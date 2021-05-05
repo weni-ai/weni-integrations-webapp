@@ -1,0 +1,22 @@
+{
+  "name": "weni-marketplace-webapp",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.0.4"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.4",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.25.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^7.9.0",
+    "postcss-preset-env": "^6.7.0",
+    "prettier": "^2.2.1",
+    "vite": "^1.0.0-rc.13"
+  }
+}
