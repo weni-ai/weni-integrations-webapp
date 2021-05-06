@@ -6,7 +6,9 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vue": "^3.0.4"
+    "@weni/unnnic-system": "^1.0.32",
+    "vue": "^3.0.4",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.4",
