@@ -1,14 +1,12 @@
-import { createApp, h } from 'vue';
+import Vue from 'vue';
 import App from './App.vue';
-import './index.css';
 import i18n from './utils/plugins/i18n';
 import router from './router';
 
-const app = createApp({
-  render: () => h(App),
-});
+Vue.config.productionTip = false;
 
-app.use(router);
-app.use(i18n);
-
-app.mount('#app');
+new Vue({
+  i18n,
+  router,
+  render: (h) => h(App),
+}).$mount('#app');

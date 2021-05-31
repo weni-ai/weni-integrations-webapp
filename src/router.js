@@ -1,8 +1,12 @@
-import { createWebHistory, createRouter } from 'vue-router';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 import Discovery from './views/Discovery.vue';
 import Apps from './views/Apps.vue';
 
+Vue.use(VueRouter);
+
 const routes = [
+  { path: '/', redirect: { name: 'Discovery' } },
   {
     name: 'Discovery',
     path: '/discovery',
@@ -15,8 +19,8 @@ const routes = [
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(),
+const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 
