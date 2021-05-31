@@ -1,9 +1,15 @@
 <template>
-  <p>Discovery</p>
+  <div>
+    <Carousel />
+  </div>
 </template>
 <script>
-export default {
-  name: 'Discovery',
-};
+  import Carousel from '../components/Carousel.vue';
+  export default {
+    name: 'Discovery',
+    components: {
+      Carousel,
+    },
+  };
 </script>
 <style scoped></style>

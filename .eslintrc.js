@@ -1,20 +1,16 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
-    es2021: true,
     node: true,
   },
   extends: [
-    'plugin:vue/vue3-recommended',
+    'plugin:vue/essential',
     'eslint:recommended',
     'prettier',
     'prettier/vue',
     'plugin:prettier/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 12,
-    sourceType: 'module',
     parser: 'babel-eslint',
   },
   plugins: ['vue'],
@@ -32,6 +28,9 @@ module.exports = {
         endOfLine: 'auto',
         semi: true,
         trailingComma: 'all',
+      },
+      {
+        usePrettierrc: true,
       },
     ],
     'no-console': 'warn',
