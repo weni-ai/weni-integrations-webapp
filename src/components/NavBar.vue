@@ -1,12 +1,24 @@
 <template>
   <div id="topnav">
-    <router-link class="link" to="discovery">Descoberta</router-link>
-    <router-link class="link" to="apps">Meus aplicativos</router-link>
+    <router-link class="link" to="discovery">{{ $t('discovery') }}</router-link>
+    <router-link class="link" to="apps">{{ $t('my_apps') }}</router-link>
   </div>
 </template>
 <script>
+  import eventHub from '../utils/plugins/eventHub';
+
   export default {
     name: 'NavBar',
+
+    mounted() {
+      eventHub.$on('change-language', async (language) => {
+        const languages = {
+          'en-us': 'en',
+          'pt-br': 'pt_br',
+        };
+        this.$root.$i18n.locale = languages[language];
+      });
+    },
   };
 </script>
 <style lang="scss" scoped>

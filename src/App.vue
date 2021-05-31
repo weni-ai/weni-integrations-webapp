@@ -4,12 +4,17 @@
 </template>
 
 <script>
+  import { useI18n } from 'vue-i18n';
   import NavBar from './components/NavBar.vue';
 
   export default {
     name: 'App',
     components: {
       NavBar,
+    },
+    setup() {
+      const { t, locale } = useI18n();
+      return { t, locale };
     },
   };
 </script>
