@@ -3,10 +3,10 @@
 </template>
 
 <script>
-export default {
-  name: 'Apps',
-  setup() {},
-};
+  export default {
+    name: 'Apps',
+    setup() {},
+  };
 </script>
 
 <style scoped></style>
