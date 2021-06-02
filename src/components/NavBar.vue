@@ -25,6 +25,7 @@
     font-size: $unnnic-font-size-title-lg;
     font-weight: $unnnic-font-weight-bold;
     line-height: calc($unnnic-font-size-title-lg + $unnnic-line-height-md);
+    margin-bottom: 90px;
   }
 
   .link {
