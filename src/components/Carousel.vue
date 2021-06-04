@@ -1,22 +1,25 @@
 <template>
-  <div class="carousel">
-    <div class="add">
-      <unnnicButton type="terciary" size="small" :text="$t('add')" iconLeft="add-1" />
-    </div>
-    <div class="content">
-      <unnnic-icon icon="arrow-left-1-1" size="ant" />
-      <div class="info">
-        <p class="title">Title</p>
-
-        <p class="description">
-          Fugiat exercitation officia reprehenderit est commodo. Exercitation nostrud esse excepteur
-          minim irure quis minim sit quis. Officia ex est ullamco ut reprehenderit id. Quis eu nulla
-          duis in fugiat exercitation adipisicing irure consequat laborum commodo nulla cillum est.
-        </p>
-
-        <p class="users-count">+69 users</p>
+  <div>
+    <div
+      class="carousel"
+      v-bind:style="{ backgroundImage: 'url(' + currentApp.backgroundImage + ')' }"
+    >
+      <div class="add">
+        <unnnicButton type="terciary" size="small" :text="$t('add')" iconLeft="add-1" />
       </div>
-      <unnnic-icon icon="arrow-right-1-1" size="ant" />
+      <div class="content">
+        <unnnic-icon icon="arrow-left-1-1" size="ant" @click.native="showPrevElement" />
+        <div class="info">
+          <p class="title">{{ currentApp.name }}</p>
+
+          <p class="description">
+            {{ currentApp.description }}
+          </p>
+
+          <p class="users-count">+{{ currentApp.usersCount }} users</p>
+        </div>
+        <unnnic-icon icon="arrow-right-1-1" size="ant" @click.native="showNextElement" />
+      </div>
     </div>
   </div>
 </template>
@@ -24,6 +27,61 @@
 <script>
   export default {
     name: 'Carousel',
+
+    data() {
+      return {
+        currentAppIndex: 0,
+
+        // mocked apps
+        apps: [
+          {
+            id: 1,
+            name: 'Weni Webchat',
+            description:
+              'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
+            usersCount: 25,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1523474438810-b04a2480633c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80',
+          },
+          {
+            id: 2,
+            name: 'Whatsapp',
+            description:
+              'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
+            usersCount: 590,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+          },
+          {
+            id: 3,
+            name: 'Telegram',
+            description:
+              'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+            usersCount: 57,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+          },
+        ],
+      };
+    },
+
+    computed: {
+      currentApp() {
+        return this.apps[Math.abs(this.currentAppIndex)];
+      },
+    },
+
+    methods: {
+      showNextElement() {
+        const newIndex = (this.currentAppIndex + 1) % this.apps.length;
+
+        this.currentAppIndex = newIndex;
+      },
+      showPrevElement() {
+        let newIndex = this.currentAppIndex - 1;
+        this.currentAppIndex = newIndex < 0 ? this.apps.length - 1 : newIndex;
+      },
+    },
   };
 </script>
 
@@ -31,12 +89,17 @@
   @import '~@weni/unnnic-system/dist/unnnic.css';
   @import '~@weni/unnnic-system/src/assets/scss/unnnic.scss';
 
+  #preload {
+    display: none;
+  }
   .carousel {
     display: flex;
     flex-direction: column;
-    background-color: #a0e7e5;
+    background-color: #f0f0f0;
     color: $unnnic-color-neutral-light;
     border-radius: $unnnic-border-radius-sm;
+    background-position: center;
+    background-size: 100% auto;
   }
 
   .add {
@@ -67,8 +130,7 @@
 
   .info {
     flex-grow: 1;
-    margin-bottom: $unnnic-spacing-stack-giant;
-    margin-left: $unnnic-inline-lg;
+    margin: $unnnic-spacing-stack-md 0 $unnnic-spacing-stack-giant $unnnic-inline-lg;
     min-width: 0;
 
     .title {
