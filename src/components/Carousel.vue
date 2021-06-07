@@ -1,35 +1,24 @@
 <template>
-  <div>
-    <div class="carousel-container" :key="currentApp.id">
-      <transition name="slide" mode="out-in">
-        <img v-bind:src="currentApp.backgroundImage" :key="currentApp.id" />
-      </transition>
-      <div class="carousel">
-        <div class="add">
-          <unnnicButton type="terciary" size="small" :text="$t('add')" iconLeft="add-1" />
-        </div>
-        <div class="content">
-          <unnnic-icon icon="arrow-left-1-1" size="ant" @click.native="showPrevElement" />
-
-          <div class="info">
-            <p class="title">{{ currentApp.name }}</p>
-
-            <p class="description">
-              {{ currentApp.description }}
-            </p>
-
-            <p class="users-count">+{{ currentApp.usersCount }} users</p>
-          </div>
-          <unnnic-icon icon="arrow-right-1-1" size="ant" @click.native="showNextElement" />
-        </div>
-      </div>
-    </div>
+  <div class="carousel-container">
+    <vueper-slides :arrows="false" fixed-height="235px" :autoplay="true" :duration="6000">
+      <vueper-slide
+        v-for="app in apps"
+        :key="app.id"
+        :title="app.name"
+        :content="app.description"
+        :image="app.backgroundImage"
+      />
+    </vueper-slides>
   </div>
 </template>
 
 <script>
+  import { VueperSlides, VueperSlide } from 'vueperslides';
+  import 'vueperslides/dist/vueperslides.css';
   export default {
     name: 'Carousel',
+
+    components: { VueperSlides, VueperSlide },
 
     data() {
       return {
@@ -39,7 +28,7 @@
         apps: [
           {
             id: 1,
-            name: 'Weni Webchat',
+            name: 'Weni Webchannel',
             description:
               'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
             usersCount: 25,
@@ -97,116 +86,55 @@
   @import '~@weni/unnnic-system/dist/unnnic.css';
   @import '~@weni/unnnic-system/src/assets/scss/unnnic.scss';
 
-  /* Animações de entrada e saída podem utilizar diferentes  */
-  /* funções de duração e de tempo.                          */
-  .slide-fade-enter-active {
-    transition: all 0.3s ease;
-  }
-  .slide-fade-leave-active {
-    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-  }
-  .slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
-    transform: translateX(10px);
-    opacity: 0;
-  }
-
   .carousel-container {
-    display: grid;
-    justify-items: start;
-    align-items: start;
-
-    height: 235px;
-    max-height: 235px;
-
     margin-bottom: $unnnic-spacing-stack-md;
-
-    // overflow: hidden;
   }
 
-  .carousel-container > * {
-    grid-column-start: 1;
-    grid-row-start: 1;
+  .vueperslides {
+    &__bullets {
+      left: inherit;
+      margin-right: $unnnic-inline-sm;
+    }
+
+    &__track {
+      border-radius: $unnnic-border-radius-md;
+    }
+
+    &__parallax-wrapper {
+      &::before,
+      &::after {
+        box-shadow: unset !important;
+      }
+    }
   }
 
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 235px;
-  }
+  .vueperslide {
+    &__content-wrapper {
+      text-align: left !important;
+      align-items: start !important;
+      justify-content: flex-end !important;
+      max-width: 50%;
+      margin-left: $unnnic-inline-md !important;
+    }
 
-  .carousel {
-    display: flex;
-    flex-direction: column;
-    // background-color: #f0f0f0;
-    color: $unnnic-color-neutral-light;
-    border-radius: $unnnic-border-radius-sm;
-    // background-position: center;
-    // background-size: 100% auto;
-    // background-image: var(--current-background);
-    // transition: background-position 0.7s cubic-bezier(0.47, 0.1, 1, 0.63), color 0.2s linear;
-    // transition-delay: 0s, 0.15s;
-  }
-
-  .add {
-    display: inline-flex;
-    justify-content: flex-end;
-
-    .unnnic-icon,
-    .unnnic-button__label {
+    &__title {
+      font-weight: $unnnic-font-weight-black;
+      font-size: $unnnic-font-size-title-lg;
       color: $unnnic-color-neutral-light;
-      font-size: $unnnic-font-size-title-sm;
     }
 
-    .unnnic-button:hover:enabled {
-      border: 0.0625rem solid transparent;
-    }
-  }
-
-  .content {
-    display: flex;
-    flex-direction: row;
-
-    .unnnic-icon {
-      display: flex;
-      align-items: center;
-      margin: 0px $unnnic-inline-sm $unnnic-spacing-stack-lg;
-    }
-  }
-
-  .info {
-    flex-grow: 1;
-    margin: $unnnic-spacing-stack-md 0 $unnnic-spacing-stack-giant $unnnic-inline-lg;
-    min-width: 0;
-
-    .title {
-      margin: $unnnic-inset-nano 0;
-    }
-
-    .description {
-      margin: 0;
-      margin-bottom: $unnnic-spacing-stack-xs;
+    &__content {
+      color: $unnnic-color-neutral-lightest;
       font-size: $unnnic-font-size-body-lg;
       line-height: calc($unnnic-font-size-body-lg + $unnnic-line-height-md);
+      margin-top: $unnnic-spacing-stack-nano;
+      margin-bottom: $unnnic-spacing-stack-md;
 
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 50%;
     }
-
-    .users-count {
-      margin: 0;
-      font-size: $unnnic-font-size-body-gt;
-      line-height: calc($unnnic-font-size-body-gt + $unnnic-line-height-md);
-    }
-  }
-
-  .title {
-    font-size: $unnnic-font-size-h4;
-    line-height: calc($unnnic-font-size-h4 + $unnnic-line-height-md);
-    font-weight: $unnnic-font-weight-bold;
   }
 </style>
