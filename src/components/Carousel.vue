@@ -1,24 +1,27 @@
 <template>
   <div>
-    <div
-      class="carousel"
-      v-bind:style="{ backgroundImage: 'url(' + currentApp.backgroundImage + ')' }"
-    >
-      <div class="add">
-        <unnnicButton type="terciary" size="small" :text="$t('add')" iconLeft="add-1" />
-      </div>
-      <div class="content">
-        <unnnic-icon icon="arrow-left-1-1" size="ant" @click.native="showPrevElement" />
-        <div class="info">
-          <p class="title">{{ currentApp.name }}</p>
-
-          <p class="description">
-            {{ currentApp.description }}
-          </p>
-
-          <p class="users-count">+{{ currentApp.usersCount }} users</p>
+    <div class="carousel-container" :key="currentApp.id">
+      <transition name="slide" mode="out-in">
+        <img v-bind:src="currentApp.backgroundImage" :key="currentApp.id" />
+      </transition>
+      <div class="carousel">
+        <div class="add">
+          <unnnicButton type="terciary" size="small" :text="$t('add')" iconLeft="add-1" />
         </div>
-        <unnnic-icon icon="arrow-right-1-1" size="ant" @click.native="showNextElement" />
+        <div class="content">
+          <unnnic-icon icon="arrow-left-1-1" size="ant" @click.native="showPrevElement" />
+
+          <div class="info">
+            <p class="title">{{ currentApp.name }}</p>
+
+            <p class="description">
+              {{ currentApp.description }}
+            </p>
+
+            <p class="users-count">+{{ currentApp.usersCount }} users</p>
+          </div>
+          <unnnic-icon icon="arrow-right-1-1" size="ant" @click.native="showNextElement" />
+        </div>
       </div>
     </div>
   </div>
@@ -69,6 +72,11 @@
       currentApp() {
         return this.apps[Math.abs(this.currentAppIndex)];
       },
+      currentBackground() {
+        return {
+          '--current-background': `url('${this.currentApp.backgroundImage}')`,
+        };
+      },
     },
 
     methods: {
@@ -89,17 +97,55 @@
   @import '~@weni/unnnic-system/dist/unnnic.css';
   @import '~@weni/unnnic-system/src/assets/scss/unnnic.scss';
 
-  #preload {
-    display: none;
+  /* Animações de entrada e saída podem utilizar diferentes  */
+  /* funções de duração e de tempo.                          */
+  .slide-fade-enter-active {
+    transition: all 0.3s ease;
   }
+  .slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active em versões anteriores a 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+  .carousel-container {
+    display: grid;
+    justify-items: start;
+    align-items: start;
+
+    height: 235px;
+    max-height: 235px;
+
+    margin-bottom: $unnnic-spacing-stack-md;
+
+    // overflow: hidden;
+  }
+
+  .carousel-container > * {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 235px;
+  }
+
   .carousel {
     display: flex;
     flex-direction: column;
-    background-color: #f0f0f0;
+    // background-color: #f0f0f0;
     color: $unnnic-color-neutral-light;
     border-radius: $unnnic-border-radius-sm;
-    background-position: center;
-    background-size: 100% auto;
+    // background-position: center;
+    // background-size: 100% auto;
+    // background-image: var(--current-background);
+    // transition: background-position 0.7s cubic-bezier(0.47, 0.1, 1, 0.63), color 0.2s linear;
+    // transition-delay: 0s, 0.15s;
   }
 
   .add {
