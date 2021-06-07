@@ -61,23 +61,6 @@
       currentApp() {
         return this.apps[Math.abs(this.currentAppIndex)];
       },
-      currentBackground() {
-        return {
-          '--current-background': `url('${this.currentApp.backgroundImage}')`,
-        };
-      },
-    },
-
-    methods: {
-      showNextElement() {
-        const newIndex = (this.currentAppIndex + 1) % this.apps.length;
-
-        this.currentAppIndex = newIndex;
-      },
-      showPrevElement() {
-        let newIndex = this.currentAppIndex - 1;
-        this.currentAppIndex = newIndex < 0 ? this.apps.length - 1 : newIndex;
-      },
     },
   };
 </script>
