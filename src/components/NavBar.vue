@@ -20,7 +20,6 @@
   };
 </script>
 <style lang="scss" scoped>
-  @import '@weni/unnnic-system/src/assets/scss/unnnic.scss';
   #topnav {
     font-size: $unnnic-font-size-body-lg;
     font-weight: $unnnic-font-weight-bold;
