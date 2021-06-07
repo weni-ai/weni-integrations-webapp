@@ -1,5 +1,7 @@
 {
   "discovery": "Discovery",
   "my_apps": "My Apps",
-  "add": "Add"
+  "add": "Add",
+  "communication_channels": "Communication Channels",
+  "attendance_managers": "Attendance Managers"
 }
