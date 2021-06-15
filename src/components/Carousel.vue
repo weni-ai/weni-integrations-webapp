@@ -28,7 +28,7 @@
         apps: [
           {
             id: 1,
-            name: 'Weni Webchannel',
+            name: 'Weni Web Chat',
             description:
               'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
             usersCount: 25,

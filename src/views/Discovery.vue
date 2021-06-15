@@ -2,6 +2,51 @@
   <div>
     <section id="communication-channels">
       <p class="section-title">{{ $t('communication_channels') }}</p>
+
+      <div
+        :class="[
+          'communication-channels__content',
+          `communication-channels__content__grid--${gridSize}`,
+        ]"
+      >
+        <unnnic-card
+          class="communication-channels__content__item"
+          v-for="app in apps"
+          v-bind:key="app.id"
+          type="marketplace"
+          :title="app.name"
+          :description="app.description"
+          :icon="app.icon"
+          :id="app.id"
+          :comments="`${app.commentsCount} ${$t('comments')}`"
+          :rating="app.rating"
+          iconSrc="https://api.iconify.design/grommet-icons:slack.svg"
+          typeAction="add"
+          :buttonAction="openModal"
+          clickable
+          @openModal="showAlert(app.id)"
+        />
+
+        <unnnic-modal
+          :showModal="showModal"
+          :text="$t('installed_app_title')"
+          scheme="feedback-green"
+          modal-icon="check-circle-1-1"
+          @close="onChangeModalState(false)"
+        >
+          <span slot="message" v-html="$t('installed_app_description')"></span>
+          <unnnic-button slot="options" type="terciary" @click="onChangeModalState(false)">{{
+            $t('close')
+          }}</unnnic-button>
+          <unnnic-button slot="options" type="primary" @click="navigateToMyApps()">
+            {{ $t('access_my_apps') }}
+          </unnnic-button>
+        </unnnic-modal>
+      </div>
+    </section>
+
+    <section id="attendance-managers">
+      <p class="section-title">{{ $t('attendance_managers') }}</p>
     </section>
 
     <section id="attendance-managers">
@@ -12,15 +57,42 @@
 <script>
   export default {
     name: 'Discovery',
+    methods: {
+      buttonAction() {},
+      openModal() {
+        this.showModal = true;
+      },
+      onChangeModalState(state) {
+        this.showModal = state;
+      },
+      navigateToMyApps() {
+        this.$router.push('apps');
+      },
+      showAlert: (id) => {
+        alert(`test ${id}`);
+      },
+    },
+    computed: {
+      gridSize() {
+        let screenWidth = window.innerWidth;
+        if (screenWidth > 1650) {
+          return 'md';
+        } else if (screenWidth > 960) {
+          return 'sm';
+        } else {
+          return 'xs';
+        }
+      },
+    },
     data() {
       return {
         currentAppIndex: 0,
-
+        showModal: false,
         // mocked apps
         apps: [
           {
             id: 1,
-            name: 'Weni Webchannel',
+            name: 'Weni Web Chat',
             description:
               'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
             usersCount: 25,
@@ -52,7 +124,55 @@
               'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
             rating: 4.6,
             commentsCount: 2,
-            icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGhlaWdodD0iNTEycHgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJfeDMxXzMtd2hhdHNhcHAiPjxnPjxnPjxwYXRoIGQ9Ik0yNTYuMDYzLDE2Ljc1aC0wLjEyNUMxMjQuMzc5LDE2Ljc1LDE3LjM5NywxMjQuMDUxLDE3LjM5NywyNTYgICAgIGMwLDUyLjMzNiwxNi44MTksMTAwLjg0OCw0NS40MjIsMTQwLjIzMmwtMjkuNzMyLDg4Ljg3M2w5MS43MTYtMjkuMzk0YzM3LjcyNSwyNS4wNjMsODIuNzMxLDM5LjUzOCwxMzEuMjYsMzkuNTM4ICAgICBjMTMxLjU1OSwwLDIzOC41NDEtMTA3LjMzNSwyMzguNTQxLTIzOS4yNUM0OTQuNjA0LDEyNC4wODMsMzg3LjYyMSwxNi43NSwyNTYuMDYzLDE2Ljc1TDI1Ni4wNjMsMTYuNzV6IE0yNTYuMDYzLDE2Ljc1IiBzdHlsZT0iZmlsbDojNUFDRjVGOyIvPjxwYXRoIGQ9Ik0zOTQuODk2LDM1NC41OTZjLTUuNzU4LDE2LjMwNC0yOC42MDQsMjkuODE3LTQ2LjgyNCwzMy43NzEgICAgIGMtMTIuNDczLDIuNjU3LTI4Ljc1NCw0Ljc4NS04My41NjgtMTguMDA2Yy03MC4xMjUtMjkuMTI3LTExNS4yOC0xMDAuNTc1LTExOC43OTUtMTA1LjIxICAgICBjLTMuMzc1LTQuNjM3LTI4LjMzNi0zNy44MjctMjguMzM2LTcyLjE2NWMwLTM0LjMzMSwxNy4zODYtNTEuMDUyLDI0LjM5OC01OC4yMjNjNS43NTEtNS44OTcsMTUuMjY3LTguNTgzLDI0LjM5NC04LjU4MyAgICAgYzIuOTU0LDAsNS42MDYsMC4xNDYsNy45OTcsMC4yNjdjNy4wMDgsMC4zMDIsMTAuNTI0LDAuNzE3LDE1LjE1MSwxMS44MTNjNS43NTYsMTMuOTA5LDE5Ljc3LDQ4LjIzOSwyMS40NDUsNTEuNzcxICAgICBjMS43MDEsMy41MywzLjM5Niw4LjMxMSwxLjAxMiwxMi45NDVjLTIuMjQsNC43ODgtNC4yMDUsNi45MS03LjcyNSwxMC45NzVjLTMuNTIxLDQuMDczLTYuODY1LDcuMTgyLTEwLjM4MSwxMS41NDQgICAgIGMtMy4yMTksMy43OTgtNi44NTksNy44NjctMi44MDEsMTQuODk2YzQuMDU1LDYuODc5LDE4LjA3LDI5LjgxMiwzOC43MDcsNDguMjM1YzI2LjY0MSwyMy43NzUsNDguMjI5LDMxLjM3Miw1NS45NTcsMzQuNjA0ICAgICBjNS43NTYsMi4zOTUsMTIuNjE1LDEuODIyLDE2LjgxNi0yLjY2M2M1LjM0LTUuNzc0LDExLjkzOC0xNS4zNDIsMTguNjQ1LTI0Ljc1OWM0Ljc3MS02Ljc2LDEwLjc5NS03LjU5OSwxNy4xMTktNS4yMDggICAgIGM2LjQ0MSwyLjI0NCw0MC41MzEsMTkuMTQzLDQ3LjU0MSwyMi42NDFjNy4wMDYsMy41MjksMTEuNjM1LDUuMjAzLDEzLjMzNCw4LjE2NSAgICAgQzQwMC42NTIsMzI0LjM2MSw0MDAuNjUyLDMzOC4yNzEsMzk0Ljg5NiwzNTQuNTk2TDM5NC44OTYsMzU0LjU5NnogTTM5NC44OTYsMzU0LjU5NiIgc3R5bGU9ImZpbGw6I0ZDRkNGQzsiLz48L2c+PC9nPjwvZz48ZyBpZD0iTGF5ZXJfMSIvPjwvc3ZnPg==',
+            icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIGZpbGw9IiMwMDg4Q0MiIGlkPSJlbGxpcHNlIiByPSIyNTYiLz48cGF0aCBkPSJNMjQ2LjQsMzMyLjFjLTEyLjMsMTEuOS0yNC40LDIzLjctMzYuNSwzNS41Yy00LjIsNC4xLTguOSw2LjQtMTUsNi4xYy00LjEtMC4yLTYuNC0yLTcuNy01LjkgIGMtOS4yLTI4LjYtMTguNi01Ny4yLTI3LjgtODUuOWMtMC45LTIuOC0yLjItNC4xLTUtNWMtMjEuNy02LjYtNDMuNS0xMy40LTY1LjEtMjAuM2MtMy4zLTEuMS02LjctMi40LTkuNi00LjQgIGMtNC41LTMtNS4xLTcuOS0xLjEtMTEuNWMzLjctMy4zLDguMS02LjEsMTIuNy03LjljMjYuNi0xMC41LDUzLjMtMjAuNyw4MC0zMWM2Ny43LTI2LjEsMTM1LjQtNTIuMywyMDMuMS03OC40ICBjMTIuOS01LDIyLjgsMiwyMS40LDE2Yy0wLjksOC45LTMuMiwxNy43LTUsMjYuNWMtMTQuNyw2OS40LTI5LjQsMTM4LjktNDQuMiwyMDguM2MtMy41LDE2LjUtMTUuMSwyMC44LTI4LjYsMTAuOCAgYy0yMi43LTE2LjctNDUuNC0zMy41LTY4LjEtNTAuM0MyNDguOCwzMzMuOCwyNDcuNywzMzMsMjQ2LjQsMzMyLjF6IE0xOTUuNCwzNTMuMmMwLjMtMC4xLDAuNS0wLjEsMC44LTAuMmMwLjEtMC43LDAuMy0xLjMsMC40LTEuOSAgYzEuNS0xNS43LDMtMzEuNSw0LjMtNDcuMmMwLjMtMy41LDEuNS02LDQuMS04LjRjMjAuOS0xOC43LDQxLjgtMzcuNiw2Mi42LTU2LjRjMjMuMS0yMC44LDQ2LjItNDEuNiw2OS4yLTYyLjVjMS40LTEuMywyLTMuNSwzLTUuMyAgYy0yLjItMC4yLTQuNS0xLjEtNi41LTAuNmMtMi43LDAuNy01LjIsMi4zLTcuNiwzLjhjLTUwLjksMzIuMS0xMDEuOSw2NC4yLTE1Mi44LDk2LjNjLTIuOSwxLjgtMy40LDMuMy0yLjMsNi41ICBjMy44LDEwLjgsNy4yLDIxLjcsMTAuNywzMi42QzE4NiwzMjQuMywxOTAuNywzMzguOCwxOTUuNCwzNTMuMnoiIGZpbGw9IiNGRkZGRkYiIGlkPSJsb2dvIi8+PC9zdmc+',
+          },
+          {
+            id: 4,
+            name: 'Telegram',
+            description:
+              'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+            usersCount: 57,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+            rating: 4.6,
+            commentsCount: 2,
+            icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIGZpbGw9IiMwMDg4Q0MiIGlkPSJlbGxpcHNlIiByPSIyNTYiLz48cGF0aCBkPSJNMjQ2LjQsMzMyLjFjLTEyLjMsMTEuOS0yNC40LDIzLjctMzYuNSwzNS41Yy00LjIsNC4xLTguOSw2LjQtMTUsNi4xYy00LjEtMC4yLTYuNC0yLTcuNy01LjkgIGMtOS4yLTI4LjYtMTguNi01Ny4yLTI3LjgtODUuOWMtMC45LTIuOC0yLjItNC4xLTUtNWMtMjEuNy02LjYtNDMuNS0xMy40LTY1LjEtMjAuM2MtMy4zLTEuMS02LjctMi40LTkuNi00LjQgIGMtNC41LTMtNS4xLTcuOS0xLjEtMTEuNWMzLjctMy4zLDguMS02LjEsMTIuNy03LjljMjYuNi0xMC41LDUzLjMtMjAuNyw4MC0zMWM2Ny43LTI2LjEsMTM1LjQtNTIuMywyMDMuMS03OC40ICBjMTIuOS01LDIyLjgsMiwyMS40LDE2Yy0wLjksOC45LTMuMiwxNy43LTUsMjYuNWMtMTQuNyw2OS40LTI5LjQsMTM4LjktNDQuMiwyMDguM2MtMy41LDE2LjUtMTUuMSwyMC44LTI4LjYsMTAuOCAgYy0yMi43LTE2LjctNDUuNC0zMy41LTY4LjEtNTAuM0MyNDguOCwzMzMuOCwyNDcuNywzMzMsMjQ2LjQsMzMyLjF6IE0xOTUuNCwzNTMuMmMwLjMtMC4xLDAuNS0wLjEsMC44LTAuMmMwLjEtMC43LDAuMy0xLjMsMC40LTEuOSAgYzEuNS0xNS43LDMtMzEuNSw0LjMtNDcuMmMwLjMtMy41LDEuNS02LDQuMS04LjRjMjAuOS0xOC43LDQxLjgtMzcuNiw2Mi42LTU2LjRjMjMuMS0yMC44LDQ2LjItNDEuNiw2OS4yLTYyLjVjMS40LTEuMywyLTMuNSwzLTUuMyAgYy0yLjItMC4yLTQuNS0xLjEtNi41LTAuNmMtMi43LDAuNy01LjIsMi4zLTcuNiwzLjhjLTUwLjksMzIuMS0xMDEuOSw2NC4yLTE1Mi44LDk2LjNjLTIuOSwxLjgtMy40LDMuMy0yLjMsNi41ICBjMy44LDEwLjgsNy4yLDIxLjcsMTAuNywzMi42QzE4NiwzMjQuMywxOTAuNywzMzguOCwxOTUuNCwzNTMuMnoiIGZpbGw9IiNGRkZGRkYiIGlkPSJsb2dvIi8+PC9zdmc+',
+          },
+          {
+            id: 5,
+            name: 'Telegram',
+            description:
+              'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+            usersCount: 57,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+            rating: 4.6,
+            commentsCount: 2,
+            icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIGZpbGw9IiMwMDg4Q0MiIGlkPSJlbGxpcHNlIiByPSIyNTYiLz48cGF0aCBkPSJNMjQ2LjQsMzMyLjFjLTEyLjMsMTEuOS0yNC40LDIzLjctMzYuNSwzNS41Yy00LjIsNC4xLTguOSw2LjQtMTUsNi4xYy00LjEtMC4yLTYuNC0yLTcuNy01LjkgIGMtOS4yLTI4LjYtMTguNi01Ny4yLTI3LjgtODUuOWMtMC45LTIuOC0yLjItNC4xLTUtNWMtMjEuNy02LjYtNDMuNS0xMy40LTY1LjEtMjAuM2MtMy4zLTEuMS02LjctMi40LTkuNi00LjQgIGMtNC41LTMtNS4xLTcuOS0xLjEtMTEuNWMzLjctMy4zLDguMS02LjEsMTIuNy03LjljMjYuNi0xMC41LDUzLjMtMjAuNyw4MC0zMWM2Ny43LTI2LjEsMTM1LjQtNTIuMywyMDMuMS03OC40ICBjMTIuOS01LDIyLjgsMiwyMS40LDE2Yy0wLjksOC45LTMuMiwxNy43LTUsMjYuNWMtMTQuNyw2OS40LTI5LjQsMTM4LjktNDQuMiwyMDguM2MtMy41LDE2LjUtMTUuMSwyMC44LTI4LjYsMTAuOCAgYy0yMi43LTE2LjctNDUuNC0zMy41LTY4LjEtNTAuM0MyNDguOCwzMzMuOCwyNDcuNywzMzMsMjQ2LjQsMzMyLjF6IE0xOTUuNCwzNTMuMmMwLjMtMC4xLDAuNS0wLjEsMC44LTAuMmMwLjEtMC43LDAuMy0xLjMsMC40LTEuOSAgYzEuNS0xNS43LDMtMzEuNSw0LjMtNDcuMmMwLjMtMy41LDEuNS02LDQuMS04LjRjMjAuOS0xOC43LDQxLjgtMzcuNiw2Mi42LTU2LjRjMjMuMS0yMC44LDQ2LjItNDEuNiw2OS4yLTYyLjVjMS40LTEuMywyLTMuNSwzLTUuMyAgYy0yLjItMC4yLTQuNS0xLjEtNi41LTAuNmMtMi43LDAuNy01LjIsMi4zLTcuNiwzLjhjLTUwLjksMzIuMS0xMDEuOSw2NC4yLTE1Mi44LDk2LjNjLTIuOSwxLjgtMy40LDMuMy0yLjMsNi41ICBjMy44LDEwLjgsNy4yLDIxLjcsMTAuNywzMi42QzE4NiwzMjQuMywxOTAuNywzMzguOCwxOTUuNCwzNTMuMnoiIGZpbGw9IiNGRkZGRkYiIGlkPSJsb2dvIi8+PC9zdmc+',
+          },
+          {
+            id: 6,
+            name: 'Telegram',
+            description:
+              'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+            usersCount: 57,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+            rating: 4.6,
+            commentsCount: 2,
+            icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIGZpbGw9IiMwMDg4Q0MiIGlkPSJlbGxpcHNlIiByPSIyNTYiLz48cGF0aCBkPSJNMjQ2LjQsMzMyLjFjLTEyLjMsMTEuOS0yNC40LDIzLjctMzYuNSwzNS41Yy00LjIsNC4xLTguOSw2LjQtMTUsNi4xYy00LjEtMC4yLTYuNC0yLTcuNy01LjkgIGMtOS4yLTI4LjYtMTguNi01Ny4yLTI3LjgtODUuOWMtMC45LTIuOC0yLjItNC4xLTUtNWMtMjEuNy02LjYtNDMuNS0xMy40LTY1LjEtMjAuM2MtMy4zLTEuMS02LjctMi40LTkuNi00LjQgIGMtNC41LTMtNS4xLTcuOS0xLjEtMTEuNWMzLjctMy4zLDguMS02LjEsMTIuNy03LjljMjYuNi0xMC41LDUzLjMtMjAuNyw4MC0zMWM2Ny43LTI2LjEsMTM1LjQtNTIuMywyMDMuMS03OC40ICBjMTIuOS01LDIyLjgsMiwyMS40LDE2Yy0wLjksOC45LTMuMiwxNy43LTUsMjYuNWMtMTQuNyw2OS40LTI5LjQsMTM4LjktNDQuMiwyMDguM2MtMy41LDE2LjUtMTUuMSwyMC44LTI4LjYsMTAuOCAgYy0yMi43LTE2LjctNDUuNC0zMy41LTY4LjEtNTAuM0MyNDguOCwzMzMuOCwyNDcuNywzMzMsMjQ2LjQsMzMyLjF6IE0xOTUuNCwzNTMuMmMwLjMtMC4xLDAuNS0wLjEsMC44LTAuMmMwLjEtMC43LDAuMy0xLjMsMC40LTEuOSAgYzEuNS0xNS43LDMtMzEuNSw0LjMtNDcuMmMwLjMtMy41LDEuNS02LDQuMS04LjRjMjAuOS0xOC43LDQxLjgtMzcuNiw2Mi42LTU2LjRjMjMuMS0yMC44LDQ2LjItNDEuNiw2OS4yLTYyLjVjMS40LTEuMywyLTMuNSwzLTUuMyAgYy0yLjItMC4yLTQuNS0xLjEtNi41LTAuNmMtMi43LDAuNy01LjIsMi4zLTcuNiwzLjhjLTUwLjksMzIuMS0xMDEuOSw2NC4yLTE1Mi44LDk2LjNjLTIuOSwxLjgtMy40LDMuMy0yLjMsNi41ICBjMy44LDEwLjgsNy4yLDIxLjcsMTAuNywzMi42QzE4NiwzMjQuMywxOTAuNywzMzguOCwxOTUuNCwzNTMuMnoiIGZpbGw9IiNGRkZGRkYiIGlkPSJsb2dvIi8+PC9zdmc+',
+          },
+          {
+            id: 7,
+            name: 'Telegram',
+            description:
+              'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+            usersCount: 57,
+            backgroundImage:
+              'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+            rating: 4.6,
+            commentsCount: 2,
+            icon: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Y2lyY2xlIGN4PSIyNTYiIGN5PSIyNTYiIGZpbGw9IiMwMDg4Q0MiIGlkPSJlbGxpcHNlIiByPSIyNTYiLz48cGF0aCBkPSJNMjQ2LjQsMzMyLjFjLTEyLjMsMTEuOS0yNC40LDIzLjctMzYuNSwzNS41Yy00LjIsNC4xLTguOSw2LjQtMTUsNi4xYy00LjEtMC4yLTYuNC0yLTcuNy01LjkgIGMtOS4yLTI4LjYtMTguNi01Ny4yLTI3LjgtODUuOWMtMC45LTIuOC0yLjItNC4xLTUtNWMtMjEuNy02LjYtNDMuNS0xMy40LTY1LjEtMjAuM2MtMy4zLTEuMS02LjctMi40LTkuNi00LjQgIGMtNC41LTMtNS4xLTcuOS0xLjEtMTEuNWMzLjctMy4zLDguMS02LjEsMTIuNy03LjljMjYuNi0xMC41LDUzLjMtMjAuNyw4MC0zMWM2Ny43LTI2LjEsMTM1LjQtNTIuMywyMDMuMS03OC40ICBjMTIuOS01LDIyLjgsMiwyMS40LDE2Yy0wLjksOC45LTMuMiwxNy43LTUsMjYuNWMtMTQuNyw2OS40LTI5LjQsMTM4LjktNDQuMiwyMDguM2MtMy41LDE2LjUtMTUuMSwyMC44LTI4LjYsMTAuOCAgYy0yMi43LTE2LjctNDUuNC0zMy41LTY4LjEtNTAuM0MyNDguOCwzMzMuOCwyNDcuNywzMzMsMjQ2LjQsMzMyLjF6IE0xOTUuNCwzNTMuMmMwLjMtMC4xLDAuNS0wLjEsMC44LTAuMmMwLjEtMC43LDAuMy0xLjMsMC40LTEuOSAgYzEuNS0xNS43LDMtMzEuNSw0LjMtNDcuMmMwLjMtMy41LDEuNS02LDQuMS04LjRjMjAuOS0xOC43LDQxLjgtMzcuNiw2Mi42LTU2LjRjMjMuMS0yMC44LDQ2LjItNDEuNiw2OS4yLTYyLjVjMS40LTEuMywyLTMuNSwzLTUuMyAgYy0yLjItMC4yLTQuNS0xLjEtNi41LTAuNmMtMi43LDAuNy01LjIsMi4zLTcuNiwzLjhjLTUwLjksMzIuMS0xMDEuOSw2NC4yLTE1Mi44LDk2LjNjLTIuOSwxLjgtMy40LDMuMy0yLjMsNi41ICBjMy44LDEwLjgsNy4yLDIxLjcsMTAuNywzMi42QzE4NiwzMjQuMywxOTAuNywzMzguOCwxOTUuNCwzNTMuMnoiIGZpbGw9IiNGRkZGRkYiIGlkPSJsb2dvIi8+PC9zdmc+',
           },
         ],
       };
@@ -63,5 +183,18 @@
   .section-title {
     color: $unnnic-color-neutral-darkest;
     font-size: $unnnic-font-size-title-sm;
+  }
+
+  .unnnic-grid-md {
+    padding: 0 !important;
+  }
+
+  .communication-channels {
+    &__content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+      grid-gap: $unnnic-spacing-stack-sm;
+      align-items: flex-start;
+    }
   }
 </style>

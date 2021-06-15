@@ -2,6 +2,11 @@
   "discovery": "Discovery",
   "my_apps": "My Apps",
   "add": "Add",
+  "close": "Close",
   "communication_channels": "Communication Channels",
-  "attendance_managers": "Attendance Managers"
+  "attendance_managers": "Attendance Managers",
+  "installed_app_title": "Installed Application!",
+  "installed_app_description": "You can configure the application by accessing the \"My apps\" area.",
+  "access_my_apps": "Access my Apps",
+  "comments": "comments"
 }

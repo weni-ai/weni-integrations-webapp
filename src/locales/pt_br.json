@@ -2,6 +2,11 @@
   "discovery": "Descoberta",
   "my_apps": "Meus aplicativos",
   "add": "Adicionar",
+  "close": "Fechar",
   "communication_channels": "Canais de Comunicação",
-  "attendance_managers": "Gerenciadores de Atendimento"
+  "attendance_managers": "Gerenciadores de Atendimento",
+  "installed_app_title": "Aplicativo Instalado!",
+  "installed_app_description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
+  "access_my_apps": "Acessar meus aplicativos",
+  "comments": "comentários"
 }
