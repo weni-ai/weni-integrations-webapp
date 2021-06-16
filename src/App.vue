@@ -17,6 +17,15 @@
       NavBar,
       Carousel,
     },
+    mounted() {
+      this.$root.$on('change-language', async (language) => {
+        const languages = {
+          'en-us': 'en',
+          'pt-br': 'pt_br',
+        };
+        this.$root.$i18n.locale = languages[language];
+      });
+    },
   };
 </script>
 
