@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="app-grid">
+    <section id="app-grid test">
       <p class="app-grid__title">{{ $t(section) }}</p>
 
       <div class="app-grid__content">
