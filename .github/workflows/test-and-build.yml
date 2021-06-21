@@ -10,7 +10,7 @@ jobs:
           node-version: '14'
       - run: |
               npm install -g yarn
-              yarn install --frozen-lockfile
+              yarn install
               yarn lint
               yarn test:unit
               yarn build
