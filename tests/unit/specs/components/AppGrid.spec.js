@@ -75,6 +75,12 @@ describe('AppGrid.vue', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('should change AppModal', async () => {
+    wrapper.vm.openAppModal(123);
+
+    expect(wrapper.vm.showAppModal).toEqual(123);
+  });
+
   // TODO: check test when mocked apps are gone
   it('should return communication_channel apps', () => {
     const communicationApps = [
@@ -187,10 +193,4 @@ describe('AppGrid.vue', () => {
 
     expect(wrapper.vm.apps).toMatchObject(attendanceApps);
   });
-
-  // it('should not render when section is unknow', async () => {
-  //   await wrapper.setProps({ section: 'unknow' });
-    
-  //   expect(wrapper.vm.apps).toMatchObject([]);
-  // });
 });

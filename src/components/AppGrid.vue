@@ -75,11 +75,14 @@
       navigateToMyApps() {
         this.$router.push('apps');
       },
-      openAppModal: () => {},
+      openAppModal(id) {
+        this.showAppModal = id;
+      },
     },
     data() {
       return {
         showAddModal: false,
+        showAppModal: null,
       };
     },
     computed: {
