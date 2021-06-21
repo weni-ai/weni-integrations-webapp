@@ -98,7 +98,7 @@
     &__content {
       color: $unnnic-color-neutral-lightest;
       font-size: $unnnic-font-size-body-lg;
-      line-height: calc($unnnic-font-size-body-lg + $unnnic-line-height-md);
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
       margin-top: $unnnic-spacing-stack-nano;
       margin-bottom: $unnnic-spacing-stack-md;
 
