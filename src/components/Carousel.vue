@@ -22,8 +22,6 @@
 
     data() {
       return {
-        currentAppIndex: 0,
-
         // mocked apps
         apps: [
           {
@@ -55,12 +53,6 @@
           },
         ],
       };
-    },
-
-    computed: {
-      currentApp() {
-        return this.apps[Math.abs(this.currentAppIndex)];
-      },
     },
   };
 </script>

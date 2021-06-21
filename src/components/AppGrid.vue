@@ -5,6 +5,7 @@
 
       <div class="app-grid__content">
         <unnnic-card
+          ref="unnnic-marketplace-card"
           class="app-grid__content__item"
           v-for="app in apps"
           v-bind:key="app.id"
@@ -25,17 +26,27 @@
     </section>
 
     <unnnic-modal
+      ref="unnnic-add-modal"
       :showModal="showAddModal"
       :text="$t('installed_app_title')"
       scheme="feedback-green"
       modal-icon="check-circle-1-1"
-      @close="onChangeModalState(false)"
+      @close="closeAddModal"
     >
       <span slot="message" v-html="$t('installed_app_description')"></span>
-      <unnnic-button slot="options" type="terciary" @click="onChangeModalState(false)">{{
-        $t('close')
-      }}</unnnic-button>
-      <unnnic-button slot="options" type="primary" @click="navigateToMyApps()">
+      <unnnic-button
+        ref="unnnic-add-modal-close-button"
+        slot="options"
+        type="terciary"
+        @click="closeAddModal"
+        >{{ $t('close') }}</unnnic-button
+      >
+      <unnnic-button
+        ref="unnnic-add-modal-navigate-button"
+        slot="options"
+        type="primary"
+        @click="navigateToMyApps()"
+      >
         {{ $t('access_my_apps') }}
       </unnnic-button>
     </unnnic-modal>
@@ -54,8 +65,26 @@
         },
       },
     },
+    methods: {
+      openAddModal() {
+        this.showAddModal = true;
+      },
+      closeAddModal() {
+        this.showAddModal = false;
+      },
+      navigateToMyApps() {
+        this.$router.push('apps');
+      },
+      openAppModal: () => {},
+    },
+    data() {
+      return {
+        showAddModal: false,
+      };
+    },
     computed: {
       // mocked apps
+      // eslint-disable-next-line vue/return-in-computed-property
       apps() {
         switch (this.section) {
           case 'communication_channels':
@@ -160,30 +189,8 @@
                 icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/rocket-chat+1.svg',
               },
             ];
-          default:
-            return [];
         }
       },
-    },
-    methods: {
-      openAddModal() {
-        this.showAddModal = true;
-      },
-      onChangeModalState(state) {
-        this.showAddModal = state;
-      },
-      navigateToMyApps() {
-        this.$router.push('apps');
-      },
-      openAppModal: (id) => {
-        alert(`test ${id}`);
-      },
-    },
-    data() {
-      return {
-        currentAppIndex: 0,
-        showAddModal: false,
-      };
     },
   };
 </script>

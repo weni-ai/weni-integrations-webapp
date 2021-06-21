@@ -7,8 +7,8 @@
 <script>
   import AppGrid from '../components/AppGrid.vue';
   export default {
-    components: { AppGrid },
     name: 'Discovery',
+    components: { AppGrid },
   };
 </script>
 <style lang="scss"></style>
