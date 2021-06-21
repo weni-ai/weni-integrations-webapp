@@ -14,14 +14,14 @@ module.exports = {
     '!**/node_modules/**',
     '!tests/**',
   ],
-  // coverageThreshold: {
-  //   global: {
-  //     branches: 95,
-  //     functions: 95,
-  //     lines: 95,
-  //     statements: 0,
-  //   },
-  // },
+  coverageThreshold: {
+    global: {
+      branches: 95,
+      functions: 95,
+      lines: 95,
+      statements: -1,
+    },
+  },
   moduleFileExtensions: ['js', 'json', 'vue'],
   snapshotSerializers: ['jest-serializer-vue'],
   transform: {
