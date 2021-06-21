@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="app-grid test">
+    <section id="app-grid">
       <p class="app-grid__title">{{ $t(section) }}</p>
 
       <div class="app-grid__content">
@@ -18,7 +18,7 @@
           :rating="app.rating"
           :iconSrc="app.icon"
           typeAction="add"
-          :buttonAction="() => openAddModal(app.id, app.name)"
+          :buttonAction="openAddModal(app.id, app.name)"
           clickable
           @openModal="openAppModal(app.id)"
         />
