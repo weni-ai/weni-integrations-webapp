@@ -18,7 +18,7 @@
           :rating="app.rating"
           :iconSrc="app.icon"
           typeAction="add"
-          :buttonAction="openAddModal(app.id, app.name)"
+          :buttonAction="/* istanbul ignore next */ () => openAddModal(app.id, app.name)"
           clickable
           @openModal="openAppModal(app.id)"
         />

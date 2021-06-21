@@ -39,7 +39,7 @@ describe('AppGrid.vue', () => {
   });
 
   it('should set AddModal state as open', () => {
-    expect(wrapper.vm.showAddModal).toBeTruthy();
+    expect(wrapper.vm.showAddModal).toBeFalsy();
     wrapper.vm.openAddModal();
     expect(wrapper.vm.showAddModal).toBeTruthy();
   });
@@ -51,7 +51,7 @@ describe('AppGrid.vue', () => {
     expect(wrapper.vm.showAddModal).toBeTruthy();
 
     await addModalComponent.vm.$emit('close');
-    expect(wrapper.vm.showAddModal).toBeTruthy();
+    expect(wrapper.vm.showAddModal).toBeFalsy();
   });
 
   it('should change route to app on modal button action', async () => {
