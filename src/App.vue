@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Carousel />
     <NavBar />
     <router-view />
   </div>
@@ -7,24 +8,34 @@
 
 <script>
   import NavBar from './components/NavBar.vue';
+  import Carousel from './components/Carousel.vue';
   import '@weni/unnnic-system';
 
   export default {
     name: 'App',
     components: {
       NavBar,
+      Carousel,
+    },
+    mounted() {
+      this.$root.$on('change-language', async (language) => {
+        const languages = {
+          'en-us': 'en',
+          'pt-br': 'pt_br',
+        };
+        this.$root.$i18n.locale = languages[language];
+      });
     },
   };
 </script>
 
 <style lang="scss">
-  @import '~@weni/unnnic-system/dist/unnnic.css';
-  @import '~@weni/unnnic-system/src/assets/scss/unnnic.scss';
   body {
-    margin: 45px 34px 0px 34px;
+    margin: $unnnic-spacing-inset-md;
     background-color: $unnnic-color-background-snow;
     font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
   }
 </style>

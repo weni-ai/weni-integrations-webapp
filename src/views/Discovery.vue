@@ -1,15 +1,14 @@
 <template>
   <div>
-    <Carousel />
+    <app-grid section="communication_channels" />
+    <app-grid section="attendance_managers" />
   </div>
 </template>
 <script>
-  import Carousel from '../components/Carousel.vue';
+  import AppGrid from '../components/AppGrid.vue';
   export default {
+    components: { AppGrid },
     name: 'Discovery',
-    components: {
-      Carousel,
-    },
   };
 </script>
-<style scoped></style>
+<style lang="scss"></style>
