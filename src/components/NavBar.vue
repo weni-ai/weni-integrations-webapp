@@ -7,35 +7,24 @@
 <script>
   export default {
     name: 'NavBar',
-
-    mounted() {
-      this.$root.$on('change-language', async (language) => {
-        const languages = {
-          'en-us': 'en',
-          'pt-br': 'pt_br',
-        };
-        this.$root.$i18n.locale = languages[language];
-      });
-    },
   };
 </script>
 <style lang="scss" scoped>
-  @import '@weni/unnnic-system/src/assets/scss/unnnic.scss';
   #topnav {
-    font-size: $unnnic-font-size-title-lg;
+    font-size: $unnnic-font-size-body-lg;
     font-weight: $unnnic-font-weight-bold;
-    line-height: calc($unnnic-font-size-title-lg + $unnnic-line-height-md);
-    margin-bottom: 90px;
+    line-height: calc($unnnic-font-size-body-lg + $unnnic-line-height-md);
+    border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+    padding-bottom: $unnnic-spacing-stack-sm;
   }
 
   .link {
     text-decoration: none;
-    color: $unnnic-color-neutral-cleanest;
+    color: $unnnic-color-neutral-clean;
     margin-right: $unnnic-inline-lg;
   }
 
   .router-link-active {
-    color: $unnnic-color-neutral-dark;
-    border-bottom: $unnnic-border-width-thin solid $unnnic-color-brand-weni-soft;
+    color: $unnnic-color-neutral-darkest;
   }
 </style>

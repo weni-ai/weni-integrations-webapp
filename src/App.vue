@@ -17,12 +17,19 @@
       NavBar,
       Carousel,
     },
+    mounted() {
+      this.$root.$on('change-language', async (language) => {
+        const languages = {
+          'en-us': 'en',
+          'pt-br': 'pt_br',
+        };
+        this.$root.$i18n.locale = languages[language];
+      });
+    },
   };
 </script>
 
 <style lang="scss">
-  @import '~@weni/unnnic-system/dist/unnnic.css';
-  @import '~@weni/unnnic-system/src/assets/scss/unnnic.scss';
   body {
     margin: $unnnic-spacing-inset-md;
     background-color: $unnnic-color-background-snow;
