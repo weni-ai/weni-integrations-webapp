@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Discovery from './views/Discovery.vue';
 import Apps from './views/Apps.vue';
 import MyApps from './views/MyApps.vue';
-import AppPage from './views/AppPage.vue';
+import AppDetails from './views/AppDetails.vue';
 import store from './store';
 
 Vue.use(VueRouter);
@@ -29,27 +29,13 @@ const routes = [
   {
     name: 'App Detail',
     path: '/apps/:appId/details',
-    component: AppPage,
-    props: ({ params }) => ({ appId: Number.parseInt(params.appId, 10) || 0 }),
+    component: AppDetails,
   },
   // {
   //   name: 'App Config',
   //   path: '/apps/:appId/config',
   //   component: AppConfig,
-  //   props: ({ params }) => ({ appId: Number.parseInt(params.appId, 10) || 0 }),
   // },
-  {
-    path: '/loginexternal/:token/:org/:project',
-    name: 'externalLogin',
-    component: null,
-    beforeEnter: async (to, from, next) => {
-      const { token, org, project } = to.params;
-      store.dispatch('externalLogin', { token: token.replace('+', ' ') });
-      store.dispatch('selectedOrg', { org });
-      store.dispatch('selectedProject', { project });
-      next('/');
-    },
-  },
   {
     path: '/loginexternal/:token/:org/:project',
     name: 'externalLogin',

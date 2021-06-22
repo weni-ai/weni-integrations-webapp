@@ -76,13 +76,12 @@
         this.$router.push('apps');
       },
       openAppModal(id) {
-        this.showAppModal = id;
+        this.$router.push(`/apps/${id}/details`);
       },
     },
     data() {
       return {
         showAddModal: false,
-        showAppModal: null,
       };
     },
     computed: {
