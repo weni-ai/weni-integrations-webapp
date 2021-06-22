@@ -1,31 +1,14 @@
 <template>
   <div>
-    <Carousel />
-    <NavBar />
     <router-view />
   </div>
 </template>
 
 <script>
-  import NavBar from './components/NavBar.vue';
-  import Carousel from './components/Carousel.vue';
   import '@weni/unnnic-system';
 
   export default {
     name: 'App',
-    components: {
-      NavBar,
-      Carousel,
-    },
-    mounted() {
-      this.$root.$on('change-language', async (language) => {
-        const languages = {
-          'en-us': 'en',
-          'pt-br': 'pt_br',
-        };
-        this.$root.$i18n.locale = languages[language];
-      });
-    },
   };
 </script>
 
