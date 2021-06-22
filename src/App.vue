@@ -1,22 +1,14 @@
 <template>
   <div>
-    <Carousel />
-    <NavBar />
     <router-view />
   </div>
 </template>
 
 <script>
-  import NavBar from './components/NavBar.vue';
-  import Carousel from './components/Carousel.vue';
   import '@weni/unnnic-system';
 
   export default {
     name: 'App',
-    components: {
-      NavBar,
-      Carousel,
-    },
   };
 </script>
 
