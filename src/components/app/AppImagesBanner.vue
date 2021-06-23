@@ -22,7 +22,6 @@
     flex-direction: row;
     width: 100%;
     max-width: 100%;
-    // border: 2px solid red;
     border-radius: $unnnic-border-radius-md;
     overflow: hidden;
     &__image {

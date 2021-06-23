@@ -1,7 +1,13 @@
 <template>
   <div class="app-details">
     <navigator class="app-details__navigator" :routes="navigatorHistory" />
-    <app-images-banner class="app-details__images-banner" :images="app.banners" />
+    <app-images-banner class="app-details__section" :images="app.banners" />
+    <app-details-header
+      class="app-details__section"
+      :title="app.name"
+      :description="app.brief"
+      :icon="app.icon"
+    />
     <unnnic-banner
       type="info"
       :firstTitle="$t('Version')"
@@ -19,9 +25,10 @@
 <script>
   import Navigator from '../components/Navigator.vue';
   import AppImagesBanner from '../components/app/AppImagesBanner.vue';
+  import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
   export default {
     name: 'AppPage',
-    components: { Navigator, AppImagesBanner },
+    components: { Navigator, AppImagesBanner, AppDetailsHeader },
     data() {
       return {
         loading: true,
@@ -51,9 +58,10 @@
       fetchApp() {
         this.app = {
           id: this.$route.params.appId,
-          name: 'Whatsapp',
+          name: 'WhatsApp',
           version: 'v1.0.0',
           integrationsCount: '253',
+          brief: 'Sint in minim consequat est velit in aliquip dolor consequat',
           description:
             'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
           usersCount: 590,
@@ -75,7 +83,7 @@
 
 <style scoped lang="scss">
   .app-details {
-    &__images-banner {
+    &__section {
       margin: $unnnic-spacing-stack-md 0;
     }
   }
