@@ -1,15 +1,27 @@
 <template>
-  <div class="">
-    <navigator :routes="navigatorHistory" />
-    Test {{ app.id }}
+  <div class="app-details">
+    <navigator class="app-details__navigator" :routes="navigatorHistory" />
+    <app-images-banner class="app-details__images-banner" :images="app.banners" />
+    <unnnic-banner
+      type="info"
+      :firstTitle="$t('Version')"
+      :firstDescription="app.version"
+      :secondTitle="$t('Integrated_into')"
+      :secondDescription="app.integrationsCount"
+      :subtitle="$t('organizations')"
+      :thirdTitle="$t('Classification')"
+      :thirdDescription="app.rating.toString()"
+      :rating="app.rating"
+    />
   </div>
 </template>
 
 <script>
   import Navigator from '../components/Navigator.vue';
+  import AppImagesBanner from '../components/app/AppImagesBanner.vue';
   export default {
     name: 'AppPage',
-    components: { Navigator },
+    components: { Navigator, AppImagesBanner },
     data() {
       return {
         loading: true,
@@ -40,18 +52,31 @@
         this.app = {
           id: this.$route.params.appId,
           name: 'Whatsapp',
+          version: 'v1.0.0',
+          integrationsCount: '253',
           description:
             'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
           usersCount: 590,
           backgroundImage:
-            'https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png',
           rating: 4.7,
           commentsCount: 7,
           icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
+          banners: [
+            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%201.png',
+            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%202.png',
+            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%203.png',
+          ],
         };
       },
     },
   };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+  .app-details {
+    &__images-banner {
+      margin: $unnnic-spacing-stack-md 0;
+    }
+  }
+</style>

@@ -8,5 +8,9 @@
   "installed_app_title": "Installed Application!",
   "installed_app_description": "You can configure the application by accessing the \"My apps\" area.",
   "access_my_apps": "Access my Apps",
-  "comments": "comments"
+  "comments": "comments",
+  "Version": "Version",
+  "Integrated_into": "Integrated into",
+  "organizations": "organizations",
+  "Classification": "Classification"
 }
