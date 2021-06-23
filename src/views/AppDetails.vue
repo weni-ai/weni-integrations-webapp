@@ -19,11 +19,10 @@
       :thirdDescription="app.rating.toString()"
       :rating="app.rating"
     />
-    <app-details-about
-      class="app-details__section"
-      :description="app.description"
-      :links="app.links"
-    />
+    <div class="app-details__section app-details__section__columns">
+      <app-details-about :description="app.description" :links="app.links" />
+      <app-details-recommended class="app-details__section__columns__recommended" />
+    </div>
   </div>
 </template>
 
@@ -32,9 +31,17 @@
   import AppImagesBanner from '../components/app/AppImagesBanner.vue';
   import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
   import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
+  import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
+
   export default {
     name: 'AppPage',
-    components: { Navigator, AppImagesBanner, AppDetailsHeader, AppDetailsAbout },
+    components: {
+      Navigator,
+      AppImagesBanner,
+      AppDetailsHeader,
+      AppDetailsAbout,
+      AppDetailsRecommended,
+    },
     data() {
       return {
         loading: true,
@@ -105,6 +112,14 @@
   .app-details {
     &__section {
       margin: $unnnic-spacing-stack-md 0;
+
+      &__columns {
+        display: flex;
+
+        &__recommended {
+          max-width: 256px;
+        }
+      }
     }
   }
 </style>
