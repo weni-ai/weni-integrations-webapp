@@ -19,6 +19,11 @@
       :thirdDescription="app.rating.toString()"
       :rating="app.rating"
     />
+    <app-details-about
+      class="app-details__section"
+      :description="app.description"
+      :links="app.links"
+    />
   </div>
 </template>
 
@@ -26,9 +31,10 @@
   import Navigator from '../components/Navigator.vue';
   import AppImagesBanner from '../components/app/AppImagesBanner.vue';
   import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
+  import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
   export default {
     name: 'AppPage',
-    components: { Navigator, AppImagesBanner, AppDetailsHeader },
+    components: { Navigator, AppImagesBanner, AppDetailsHeader, AppDetailsAbout },
     data() {
       return {
         loading: true,
@@ -74,6 +80,20 @@
             'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%201.png',
             'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%202.png',
             'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%203.png',
+          ],
+          links: [
+            {
+              title: 'Access documentation',
+              url: 'https://google.com',
+            },
+            {
+              title: 'How to integrate?',
+              url: 'https://google.com',
+            },
+            {
+              title: 'Social Media',
+              url: 'https://google.com',
+            },
           ],
         };
       },
