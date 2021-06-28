@@ -110,6 +110,7 @@
   .app-details-recommended {
     &__header {
       display: flex;
+      margin-bottom: $unnnic-spacing-stack-xs;
 
       &__title {
         font-family: $unnnic-font-family-secondary;
@@ -117,6 +118,8 @@
         font-size: $unnnic-font-size-title-sm;
         line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
+
+        align-self: center;
       }
 
       &__buttons {
@@ -130,8 +133,10 @@
   }
 </style>
 
-<style>
-  .unnnic-card-marketplace__icons__button {
-    display: none;
+<style lang="scss">
+  .app-details-recommended {
+    .unnnic-card-marketplace__icons__button {
+      display: none;
+    }
   }
 </style>
