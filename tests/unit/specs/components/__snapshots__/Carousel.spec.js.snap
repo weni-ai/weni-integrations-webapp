@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppGrid.vue should be rendered properly 1`] = `
+<div class="carousel-container">
+  <vueper-slides-stub autoplay="true" breakpoints="[object Object]" bullets="true" duration="6000" infinite="true" fixedheight="235px" gap="0" initslide="1" pauseonhover="true" pauseontouch="true" pagescrollingelement="" slidecontentoutsideclass="" slideratio="0.3333333333333333" touchable="true" transitionspeed="600" visibleslides="1">
+    <vueper-slide-stub image="https://images.unsplash.com/photo-1523474438810-b04a2480633c?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" video="" title="Weni Web Chat" content="Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s" link="" duration="0"></vueper-slide-stub>
+    <vueper-slide-stub image="https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" video="" title="Whatsapp" content="Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore." link="" duration="0"></vueper-slide-stub>
+    <vueper-slide-stub image="https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" video="" title="Telegram" content="Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum." link="" duration="0"></vueper-slide-stub>
+  </vueper-slides-stub>
+</div>
+`;

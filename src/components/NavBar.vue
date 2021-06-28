@@ -13,7 +13,7 @@
   #topnav {
     font-size: $unnnic-font-size-body-lg;
     font-weight: $unnnic-font-weight-bold;
-    line-height: calc($unnnic-font-size-body-lg + $unnnic-line-height-md);
+    line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
     border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
     padding-bottom: $unnnic-spacing-stack-sm;
   }

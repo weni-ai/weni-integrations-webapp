@@ -22,8 +22,6 @@
 
     data() {
       return {
-        currentAppIndex: 0,
-
         // mocked apps
         apps: [
           {
@@ -55,12 +53,6 @@
           },
         ],
       };
-    },
-
-    computed: {
-      currentApp() {
-        return this.apps[Math.abs(this.currentAppIndex)];
-      },
     },
   };
 </script>
@@ -106,7 +98,7 @@
     &__content {
       color: $unnnic-color-neutral-lightest;
       font-size: $unnnic-font-size-body-lg;
-      line-height: calc($unnnic-font-size-body-lg + $unnnic-line-height-md);
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
       margin-top: $unnnic-spacing-stack-nano;
       margin-bottom: $unnnic-spacing-stack-md;
 
