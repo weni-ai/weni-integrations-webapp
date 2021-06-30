@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppDetailsHeader.vue should be rendered properly 1`] = `
+<div class="app-details-header">
+  <div class="app-details-header__icon"><img class="app-details-header__icon__src"></div>
+  <div class="app-details-header__content">
+    <div class="app-details-header__content__title"></div>
+    <div class="app-details-header__content__description"></div>
+  </div>
+  <unnnicbutton-stub type="secondary" icon-left="add-1" class="app-details-header__button">some specific text</unnnicbutton-stub>
+</div>
+`;

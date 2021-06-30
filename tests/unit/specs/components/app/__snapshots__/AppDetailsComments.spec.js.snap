@@ -4,7 +4,7 @@ exports[`AppDetailsComments.vue should be rendered properly 1`] = `
 <div class="app-details-comments">
   <div class="app-details-comments__header">some specific text</div>
   <unnnicinput-stub type="normal" iconright="send-email-3-1" tooltipsideiconright="right" size="md" placeholder="some specific text" class="app-details-comments__input"></unnnicinput-stub>
-  <unnniccomment-stub avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8qiVsOfzasQWdcm81N6WmPicyHp50mMkvgw&amp;usqp=CAU" title="Paulo" time="- 2 hours ago" text="This is a comment text" class="app-details-comments__comment">
+  <unnniccomment-stub avatar="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8qiVsOfzasQWdcm81N6WmPicyHp50mMkvgw&amp;usqp=CAU" title="Paulo" time="- 3 hours ago" text="This is a comment text" class="app-details-comments__comment">
     <unnnicdropdown-stub>
       <unnniciconsvg-stub icon="navigation-menu-vertical-1" size="sm"></unnniciconsvg-stub>
       <unnnicdropdownitem-stub>

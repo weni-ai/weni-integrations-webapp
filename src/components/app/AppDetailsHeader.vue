@@ -8,10 +8,11 @@
       <div class="app-details-header__content__description">{{ description }}</div>
     </div>
     <unnnic-button
+      ref="unnnic-button-add"
       class="app-details-header__button"
       type="secondary"
       icon-left="add-1"
-      @click="emitAdd"
+      @click="emitAdd()"
       >{{ $t('add') }}</unnnic-button
     >
   </div>

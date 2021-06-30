@@ -3,7 +3,6 @@ import AppGrid from '@/components/AppGrid.vue';
 import i18n from '@/utils/plugins/i18n';
 import VueRouter from 'vue-router';
 const router = new VueRouter();
-// import { UnnnicCard } from '@weni/unnnic-system';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
