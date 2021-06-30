@@ -196,4 +196,58 @@ describe('AppGrid.vue', () => {
 
     expect(wrapper.vm.apps).toMatchObject(attendanceApps);
   });
+
+  it('should return configured_apps apps', async () => {
+    const configured_apps = [
+      {
+        id: 2,
+        name: 'Whatsapp',
+        description:
+          'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
+        usersCount: 590,
+        backgroundImage:
+          'https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
+        rating: 4.7,
+        commentsCount: 7,
+        icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
+      },
+    ];
+
+    await wrapper.setProps({ section: 'configured_apps' });
+
+    expect(wrapper.vm.apps).toMatchObject(configured_apps);
+  });
+
+  it('should return installed_apps apps', async () => {
+    const installed_apps = [
+      {
+        id: 7,
+        name: 'Dropbox',
+        description:
+          'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+        usersCount: 57,
+        backgroundImage:
+          'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        rating: 4.6,
+        commentsCount: 2,
+        icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_dropbox_social_network_logo_1920522+1.svg',
+      },
+      {
+        id: 8,
+        name: 'Rocket.Chat',
+        description:
+          'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+        usersCount: 57,
+        backgroundImage:
+          'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+        rating: 4.6,
+        commentsCount: 2,
+        icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/rocket-chat+1.svg',
+      },
+    ];
+
+    await wrapper.setProps({ section: 'installed_apps' });
+
+    expect(wrapper.vm.apps).toMatchObject(installed_apps);
+  });
 });
