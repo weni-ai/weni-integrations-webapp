@@ -23,6 +23,7 @@
       <app-details-about :description="app.description" :links="app.links" />
       <app-details-recommended class="app-details__section__columns__recommended" />
     </div>
+    <app-details-comments />
   </div>
 </template>
 
@@ -32,6 +33,7 @@
   import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
   import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
   import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
+  import AppDetailsComments from '../components/app/AppDetailsComments.vue';
 
   export default {
     name: 'AppPage',
@@ -41,6 +43,7 @@
       AppDetailsHeader,
       AppDetailsAbout,
       AppDetailsRecommended,
+      AppDetailsComments,
     },
     data() {
       return {
@@ -118,6 +121,7 @@
 
         &__recommended {
           max-width: 256px;
+          margin-left: auto;
         }
       }
     }
