@@ -14,7 +14,7 @@ module.exports = {
     '!src/router.js',
     '!**/node_modules/**',
     '!tests/**',
-    '!src/utils/time.js',
+    '!src/utils/**',
     // ignore store configuration files
     '!src/store/index.js',
     '!src/store/types.js',
