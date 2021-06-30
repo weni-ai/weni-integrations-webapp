@@ -1,7 +1,7 @@
 import mutations from '../../../../../src/store/auth/mutations';
 import TYPES from '../../../../../src/store/types';
 
-describe('mutations', () => {
+describe('store/auth/mutations.js', () => {
   let state = {};
 
   beforeEach(() => {
