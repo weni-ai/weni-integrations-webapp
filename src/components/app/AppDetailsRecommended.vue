@@ -20,6 +20,7 @@
       </div>
     </div>
     <unnnic-card
+      ref="unnnic-card-marketplace"
       class="app-details-recommended__card"
       type="marketplace"
       :title="currentRecommended.name"

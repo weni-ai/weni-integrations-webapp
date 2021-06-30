@@ -6,6 +6,7 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['text', 'text-summary'],
   verbose: true,
+  setupFiles: ['<rootDir>/tests/unit/setup'],
   coverageDirectory: '<rootDir>/tests/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
