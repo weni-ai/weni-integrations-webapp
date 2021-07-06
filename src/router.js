@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Discovery from './views/Discovery.vue';
 import Apps from './views/Apps.vue';
+import MyApps from './views/MyApps.vue';
+import AppDetails from './views/AppDetails.vue';
 import store from './store';
 
 Vue.use(VueRouter);
@@ -9,15 +11,31 @@ Vue.use(VueRouter);
 const routes = [
   { path: '/', redirect: { name: 'Discovery' } },
   {
-    name: 'Discovery',
-    path: '/discovery',
-    component: Discovery,
-  },
-  {
-    name: 'Apps',
     path: '/apps',
     component: Apps,
+    children: [
+      {
+        name: 'Discovery',
+        path: 'discovery',
+        component: Discovery,
+      },
+      {
+        name: 'Apps',
+        path: 'my',
+        component: MyApps,
+      },
+    ],
   },
+  {
+    name: 'App Detail',
+    path: '/apps/:appId/details',
+    component: AppDetails,
+  },
+  // {
+  //   name: 'App Config',
+  //   path: '/apps/:appId/config',
+  //   component: AppConfig,
+  // },
   {
     path: '/loginexternal/:token/:org/:project',
     name: 'externalLogin',

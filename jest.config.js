@@ -6,6 +6,7 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ['text', 'text-summary'],
   verbose: true,
+  setupFiles: ['<rootDir>/tests/unit/setup'],
   coverageDirectory: '<rootDir>/tests/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
@@ -13,6 +14,12 @@ module.exports = {
     '!src/router.js',
     '!**/node_modules/**',
     '!tests/**',
+    '!src/utils/**',
+    // ignore store configuration files
+    '!src/store/index.js',
+    '!src/store/types.js',
+    '!src/store/auth/index.js',
+    '!src/store/auth/state.js',
   ],
   coverageThreshold: {
     global: {

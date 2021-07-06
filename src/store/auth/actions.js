@@ -14,20 +14,20 @@ export default {
     if (!project) return;
     commit(TYPES.SET_PROJECT, project);
   },
+  /* istanbul ignore next */
   retriveAuthToken({ commit }) {
-    /* istanbul ignore next */
     if (window.localStorage) {
       commit(TYPES.SET_TOKEN, window.localStorage.getItem('authToken'));
     }
   },
+  /* istanbul ignore next */
   retriveSelectedOrg({ commit }) {
-    /* istanbul ignore next */
     if (window.localStorage) {
       commit(TYPES.SET_ORG, window.localStorage.getItem('org'));
     }
   },
+  /* istanbul ignore next */
   retriveSelectedProject({ commit }) {
-    /* istanbul ignore next */
     if (window.localStorage) {
       commit(TYPES.SET_PROJECT, window.localStorage.getItem('project'));
     }

@@ -8,8 +8,7 @@ import pt_br from '../../locales/pt_br.json';
 
 const languages = {
   en: en,
-  pt_br: pt_br,
-  pt_BR: pt_br,
+  'pt-BR': pt_br,
 };
 
 const messages = Object.assign(languages);

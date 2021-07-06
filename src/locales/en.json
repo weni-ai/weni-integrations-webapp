@@ -8,5 +8,16 @@
   "installed_app_title": "Installed Application!",
   "installed_app_description": "You can configure the application by accessing the \"My apps\" area.",
   "access_my_apps": "Access my Apps",
-  "comments": "comments"
+  "comments": "comments",
+  "Version": "Version",
+  "Integrated_into": "Integrated into",
+  "organizations": "organizations",
+  "Classification": "Classification",
+  "About_the_app": "About the App",
+  "Useful_links": "Useful Links",
+  "Recommended": "Recommended",
+  "Configured_apps": "Configured Apps",
+  "Installed_apps": "Installed Apps",
+  "Leave_a_comment": "Leave a Comment",
+  "A_good_comment_can_help_others_that_are_learning": "A good comment can help others that are learning :)"
 }

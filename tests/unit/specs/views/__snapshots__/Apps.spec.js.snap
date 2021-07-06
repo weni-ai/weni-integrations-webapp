@@ -2,6 +2,8 @@
 
 exports[`App.vue should be rendered properly 1`] = `
 <div>
+  <carousel-stub></carousel-stub>
+  <navbar-stub></navbar-stub>
   <router-view-stub name="default"></router-view-stub>
 </div>
 `;

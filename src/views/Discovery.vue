@@ -1,7 +1,7 @@
 <template>
   <div>
-    <app-grid section="communication_channels" />
-    <app-grid section="attendance_managers" />
+    <app-grid section="communication_channels" type="add" />
+    <app-grid section="attendance_managers" type="add" />
   </div>
 </template>
 <script>

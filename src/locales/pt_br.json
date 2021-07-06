@@ -8,5 +8,16 @@
   "installed_app_title": "Aplicativo Instalado!",
   "installed_app_description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
   "access_my_apps": "Acessar meus aplicativos",
-  "comments": "comentários"
+  "comments": "comentários",
+  "Version": "Versão",
+  "Integrated_into": "Integrada em",
+  "organizations": "organizações",
+  "Classification": "Classificação",
+  "About_the_app": "Sobre o Aplicativo",
+  "Useful_links": "Links úteis",
+  "Recommended": "Recomendados",
+  "configured_apps": "Aplicativos Configurados",
+  "installed_apps": "Aplicativos Instalados",
+  "Leave_a_comment": "Deixe um comentário ",
+  "A_good_comment_can_help_others_that_are_learning": "Um bom comentário pode ajudar outras pessoas que estão aprendendo :)"
 }
