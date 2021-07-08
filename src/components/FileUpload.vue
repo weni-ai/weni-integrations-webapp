@@ -90,10 +90,10 @@
         show: 'drop',
         uploadedFiles: 0,
         dropzoneOptions: {
+          // url is mandatory but we will not use it, so set to localhost
+          url: 'https://localhost',
           autoProcessQueue: false,
           autoQueue: false,
-          // url is mandatory and we will not use it, so set to localhost
-          url: 'https://localhost',
           previewTemplate: this.template(),
           maxFilesize: 2,
           parallelUploads: 1,
