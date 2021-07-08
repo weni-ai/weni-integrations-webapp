@@ -104,7 +104,6 @@
     },
     methods: {
       emitFile(file) {
-        console.log('emitting', file);
         this.$emit('newFile', file);
       },
       allowedTypes() {
