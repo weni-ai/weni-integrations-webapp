@@ -88,7 +88,6 @@
     data() {
       return {
         show: 'drop',
-        uploadedFiles: 0,
         dropzoneOptions: {
           // url is mandatory but we will not use it, so set to localhost
           url: 'https://localhost',
