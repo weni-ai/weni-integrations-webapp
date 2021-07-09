@@ -123,12 +123,12 @@ describe('FileUpload.vue', () => {
         files = ['invalidFile', 'validFile'];
       });
 
-      // it('should call validateFile', () => {
-      //   const spy = spyOn(wrapper.vm, 'validateFile');
-      //   wrapper.vm.handleAdd(files);
+      it('should call validateFile', () => {
+        const spy = spyOn(wrapper.vm, 'validateFile');
+        wrapper.vm.handleAdd(files);
 
-      //   expect(spy).toHaveBeenCalledTimes(files.length);
-      // });
+        expect(spy).toHaveBeenCalledTimes(files.length);
+      });
 
       it('should emit valid files', () => {
         spyOn(wrapper.vm, 'validateFile').and.returnValues(false, true);
