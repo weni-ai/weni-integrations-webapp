@@ -2308,14 +2308,15 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@weni/unnnic-system@^1.1.15":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.1.15.tgz#86cd89be5c321e9f05a43497db7e794d8e6992b7"
-  integrity sha512-a/K1KkyW/7MDx+EP0HWwwREMY2gYes9FaypajKvECQj/zLjRDXCywAutCewBDSgH07JF0Y+4l60IKFrh4Pq3QQ==
+"@weni/unnnic-system@^1.1.23":
+  version "1.1.23"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.1.23.tgz#6774d0c57564f0b598aa54cca45b070dd53fdcbe"
+  integrity sha512-fmgNM3AEcbLW9Q9mD3+DtJDXU06Ai3/plgh0TLstgcLWeK+rjA6F5dOiEz3Fly2rskb+jp6RQ6TVbvWZRrdKXQ==
   dependencies:
     core-js "^3.6.5"
     v-click-outside "^3.1.2"
     vue "^2.6.11"
+    vue-the-mask "^0.11.1"
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -12242,6 +12243,11 @@ vue-template-es2015-compiler@^1.6.0, vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue-the-mask@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/vue-the-mask/-/vue-the-mask-0.11.1.tgz#91ee01008354ae57bccc79bb61b65f32d971d9d5"
+  integrity sha512-UquSfnSWejD0zAfcD+3jJ1chUAkOAyoxya9Lxh9acCRtrlmGcAIvd0cQYraWqKenbuZJUdum+S174atv2AuEHQ==
 
 vue2-dropzone@^3.6.0:
   version "3.6.0"

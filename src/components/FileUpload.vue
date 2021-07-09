@@ -1,6 +1,7 @@
 <template>
   <div class="file-upload">
     <vue-dropzone
+      v-if="!loading"
       id="customdropzone"
       ref="myDropzone"
       :options="dropzoneOptions"
@@ -60,7 +61,9 @@
 </template>
 
 <script>
+  import Vue from 'vue';
   import vue2Dropzone from 'vue2-dropzone';
+  import PreviewTemplate from './PreviewTemplate.vue';
   import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
   export default {
@@ -87,19 +90,32 @@
     },
     data() {
       return {
+        loading: true,
         show: 'drop',
-        dropzoneOptions: {
+        previewHtml: null,
+      };
+    },
+    computed: {
+      dropzoneOptions() {
+        return {
           // url is mandatory but we will not use it, so set to localhost
           url: 'https://localhost',
           autoProcessQueue: false,
           autoQueue: false,
-          previewTemplate: this.template(),
+          previewTemplate: this.previewHtml,
           maxFilesize: 2,
           parallelUploads: 1,
           maxFiles: 1,
           acceptedFiles: this.allowedTypes(),
-        },
-      };
+        };
+      },
+    },
+    created() {
+      const ComponentClass = Vue.extend(PreviewTemplate);
+      const instance = new ComponentClass({ propsData: { type: this.type } });
+      instance.$mount();
+      this.previewHtml = instance.$el.outerHTML;
+      this.loading = false;
     },
     methods: {
       emitFile(file) {
@@ -148,6 +164,7 @@
           if (validFiles.length > 0) {
             const firstFile = validFiles[0];
             setTimeout(() => this.handleExceeded(firstFile), 50);
+            this.show = 'preview';
             this.emitFile(firstFile);
           } else {
             this.show = 'error';
@@ -159,24 +176,13 @@
             this.show = 'error';
             setTimeout(() => this.$refs.myDropzone.removeAllFiles(), 50);
           } else {
+            this.show = 'preview';
             this.emitFile(incomingFile);
           }
         }
       },
-      template: () => {
-        return `
-          <div class="dz-preview dz-file-preview">
-            <div class="dz-image">
-              <div class="data-dz-thumbnail-bg"></div>
-            </div>
-            <div class="dz-details">
-              <div class="dz-size"><span data-dz-size></span></div>
-            </div>
-          </div>
-        `;
-      },
-      thumbnail: function (file, dataUrl) {
-        var j, len, ref, thumbnailElement;
+      thumbnail: /* istanbul ignore next */ function (file, dataUrl) {
+        let j, len, ref, thumbnailElement;
         if (file.previewElement) {
           file.previewElement.classList.remove('dz-file-preview');
           ref = file.previewElement.querySelectorAll('div.data-dz-thumbnail-bg');
@@ -184,9 +190,6 @@
             thumbnailElement = ref[j];
             thumbnailElement.alt = file.name;
             thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
-          }
-          if (this.validateFile(file)) {
-            this.show = 'preview';
           }
           return setTimeout(
             // eslint-disable-next-line no-unused-vars
