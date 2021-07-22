@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppGrid.vue should be rendered properly 1`] = `
+<div class="color-picker">
+  <div class="color-picker__color" style="background-color: rgb(0, 158, 150);"></div>
+  <div class="color-picker__color" style="background-color: rgb(38, 38, 38);"></div>
+  <div class="color-picker__color" style="background-color: rgb(196, 234, 245);"></div>
+  <div class="color-picker__color" style="background-color: rgb(196, 196, 196);"></div> <label class="color-picker__input">
+    <unnniciconsvg-stub icon="add-circle-1" size="sm" class="color-picker__input__icon"></unnniciconsvg-stub> <input type="color">
+  </label>
+</div>
+`;
+
+exports[`ColorPicker.vue should be rendered properly 1`] = `
+<div class="color-picker">
+  <div class="color-picker__color" style="background-color: rgb(0, 158, 150);"></div>
+  <div class="color-picker__color" style="background-color: rgb(38, 38, 38);"></div>
+  <div class="color-picker__color" style="background-color: rgb(196, 234, 245);"></div>
+  <div class="color-picker__color" style="background-color: rgb(196, 196, 196);"></div> <label class="color-picker__input">
+    <unnniciconsvg-stub icon="add-circle-1" size="sm" class="color-picker__input__icon"></unnniciconsvg-stub> <input type="color">
+  </label>
+</div>
+`;
