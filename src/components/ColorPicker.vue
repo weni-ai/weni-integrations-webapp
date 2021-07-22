@@ -49,13 +49,13 @@
     &__color {
       width: $unnnic-icon-size-xs;
       height: $unnnic-icon-size-xs;
-      border-radius: 50%;
+      border-radius: $unnnic-border-radius-pill;
     }
 
     &__input {
       width: $unnnic-icon-size-xs;
       height: $unnnic-icon-size-xs;
-      border-radius: 50%;
+      border-radius: $unnnic-border-radius-pill;
 
       &__icon {
         left: -2px;
