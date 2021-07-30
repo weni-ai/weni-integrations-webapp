@@ -283,7 +283,8 @@
     background-color: $unnnic-color-background-carpet;
     border: $unnnic-border-width-thin dashed $unnnic-color-neutral-clean;
     border-radius: $unnnic-border-radius-sm;
-    padding: $unnnic-squish-xs;
+    padding: 8px 16px;
+    min-height: 40px;
 
     &.dz-started {
       display: flex;
@@ -299,7 +300,7 @@
 
       .dz-preview {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
         flex-grow: 1;
 
@@ -315,6 +316,7 @@
           }
         }
         .dz-details {
+          margin-left: $unnnic-inline-xs;
           color: $unnnic-color-neutral-cloudy;
         }
       }
