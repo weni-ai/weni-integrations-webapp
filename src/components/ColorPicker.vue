@@ -9,7 +9,7 @@
     />
     <label class="color-picker__input">
       <unnnic-icon-svg class="color-picker__input__icon" icon="add-circle-1" size="sm" />
-      <input ref="color-picker__input" type="color" @change="addColor()" />
+      <input ref="color-picker__input" type="color" @change="addColor" />
     </label>
   </div>
 </template>
