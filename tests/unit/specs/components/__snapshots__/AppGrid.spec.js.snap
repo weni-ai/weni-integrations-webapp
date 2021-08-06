@@ -25,5 +25,8 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
       some specific text
     </unnnicbutton-stub>
   </unnnicmodal-stub>
+  <transition-stub name="fade">
+    <!---->
+  </transition-stub>
 </div>
 `;

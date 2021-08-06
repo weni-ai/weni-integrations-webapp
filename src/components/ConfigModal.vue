@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div class="config-modal" v-if="show">
-      <div class="config-modal__backdrop" @click="closeModal()" />
+      <div class="config-modal__backdrop" @click="closeModal" />
 
       <div class="config-modal__dialog">
         <component
@@ -32,7 +32,7 @@
         this.show = false;
       },
       openModal(app) {
-        this.type = app.slug;
+        this.type = app.code;
         this.currentApp = app;
         this.show = true;
       },

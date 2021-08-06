@@ -20,7 +20,7 @@
           :typeAction="type"
           :buttonAction="/* istanbul ignore next */ () => openAddModal(app.id, app.name)"
           clickable
-          @openModal="openAppModal(app.id)"
+          @openModal="openAppModal(app)"
         />
       </div>
     </section>
@@ -50,12 +50,17 @@
         {{ $t('access_my_apps') }}
       </unnnic-button>
     </unnnic-modal>
+
+    <config-modal ref="configModal" />
   </div>
 </template>
 
 <script>
+  import configModal from '../components/ConfigModal.vue';
+
   export default {
     name: 'AppGrid',
+    components: { configModal },
     props: {
       section: {
         type: String,
@@ -88,8 +93,12 @@
       navigateToMyApps() {
         this.$router.push('apps');
       },
-      openAppModal(id) {
-        this.$router.push(`/apps/${id}/details`);
+      openAppModal(app) {
+        if (this.type === 'add') {
+          this.$router.push(`/apps/${app.id}/details`);
+        } else {
+          this.$refs.configModal.openModal(app);
+        }
       },
     },
     data() {
@@ -207,23 +216,47 @@
           case 'configured_apps':
             return [
               {
-                id: 2,
-                name: 'Whatsapp',
+                code: 'wwc',
+                name: 'Weni Web Chat',
                 description:
-                  'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
-                usersCount: 590,
-                backgroundImage:
-                  'https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-                rating: 4.7,
-                commentsCount: 7,
-                icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
+                  'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
+                summary: 'Ullamco occaecat et id cillum.',
+                category: 'channel',
+                bg_color: '#00DED333',
+                icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg',
+                assets: [
+                  {
+                    type: 'image_banner',
+                    url: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png',
+                    description: '',
+                  },
+                ],
+                usersCount: 25,
+                rating: {
+                  average: 4.9,
+                },
+                commentsCount: 3,
+                config: {
+                  title: 'Chat Title',
+                  subtitle: 'Chat subtitle',
+                  placeholder: 'Chat placeholder',
+                  fullScreenButton: false,
+                  unreadIndicator: false,
+                  keepHistory: false,
+                  avatarImage:
+                    'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
+                  customCSS: '',
+                  primaryColor: '#009E96',
+                  messageDelay: 1,
+                },
               },
             ];
           case 'installed_apps':
             return [
               {
-                id: 7,
-                name: 'Dropbox',
+                id: 3,
+                name: 'Telegram',
+                slug: 'telegram',
                 description:
                   'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
                 usersCount: 57,
@@ -231,19 +264,7 @@
                   'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
                 rating: 4.6,
                 commentsCount: 2,
-                icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_dropbox_social_network_logo_1920522+1.svg',
-              },
-              {
-                id: 8,
-                name: 'Rocket.Chat',
-                description:
-                  'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
-                usersCount: 57,
-                backgroundImage:
-                  'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-                rating: 4.6,
-                commentsCount: 2,
-                icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/rocket-chat+1.svg',
+                icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/telegram+1.svg',
               },
             ];
         }
