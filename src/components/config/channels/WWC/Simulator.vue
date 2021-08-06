@@ -56,10 +56,10 @@
               >
                 <div
                   v-for="reply in message.replies"
-                  :key="reply"
+                  :key="reply.id"
                   :class="`wwc-simulator__content__body__message--${message.direction}__content__replies__reply`"
                 >
-                  {{ reply }}
+                  {{ reply.text }}
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
 </template>
 
 <script>
-  import i18n from '../../../../utils/plugins/i18n';
+  // import i18n from '../../../../utils/plugins/i18n';
 
   export default {
     name: 'wwcSimulator',
@@ -110,15 +110,21 @@
       },
       title: {
         type: String,
-        default: i18n.t('weniWebChat.simulator.chatTitle'),
+        default: function () {
+          this.$t('weniWebChat.simulator.chatTitle');
+        },
       },
       subtitle: {
         type: String,
-        default: i18n.t('weniWebChat.simulator.chatSubtitle'),
+        default: function () {
+          this.$t('weniWebChat.simulator.chatSubtitle');
+        },
       },
       placeholder: {
         type: String,
-        default: i18n.t('weniWebChat.simulator.chatPlaceholder'),
+        default: function () {
+          this.$t('weniWebChat.simulator.chatPlaceholder');
+        },
       },
     },
     data() {
@@ -141,9 +147,9 @@
             direction: 'incoming',
             text: `Curabitur porta, tortor sit amet laoreet posuere.`,
             replies: [
-              i18n.t('weniWebChat.simulator.replies.yes'),
-              i18n.t('weniWebChat.simulator.replies.no'),
-              i18n.t('weniWebChat.simulator.replies.maybe'),
+              { id: 1, text: this.$t('weniWebChat.simulator.replies.yes') },
+              { id: 2, text: this.$t('weniWebChat.simulator.replies.no') },
+              { id: 3, text: this.$t('weniWebChat.simulator.replies.maybe') },
             ],
           },
         ],
