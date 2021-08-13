@@ -10,10 +10,10 @@ exports[`Simulator.vue should be rendered properly 1`] = `
         </div>
         <div class="wwc-simulator__content__header__text">
           <div class="wwc-simulator__content__header__text__title">
-            weniWebChat.simulator.chatTitle
+            some specific text
           </div>
           <div class="wwc-simulator__content__header__text__subtitle">
-            weniWebChat.simulator.chatSubtitle
+            some specific text
           </div>
         </div>
         <div class="wwc-simulator__content__header__button">
@@ -53,13 +53,13 @@ exports[`Simulator.vue should be rendered properly 1`] = `
             </div>
             <div class="wwc-simulator__content__body__message--incoming__content__replies">
               <div class="wwc-simulator__content__body__message--incoming__content__replies__reply">
-                weniWebChat.simulator.replies.yes
+                some specific text
               </div>
               <div class="wwc-simulator__content__body__message--incoming__content__replies__reply">
-                weniWebChat.simulator.replies.no
+                some specific text
               </div>
               <div class="wwc-simulator__content__body__message--incoming__content__replies__reply">
-                weniWebChat.simulator.replies.maybe
+                some specific text
               </div>
             </div>
           </div>
@@ -67,7 +67,7 @@ exports[`Simulator.vue should be rendered properly 1`] = `
       </div>
       <div class="wwc-simulator__content__input">
         <div class="wwc-simulator__content__input__text">
-          weniWebChat.simulator.chatPlaceholder
+          some specific text
         </div>
         <div class="wwc-simulator__content__input__button">
           <unnniciconsvg-stub icon="send-email-3-1" size="md" scheme="neutral-clean" class="wwc-simulator__content__input__button__icon"></unnniciconsvg-stub>
