@@ -99,7 +99,7 @@
           this.apps = [
             {
               code: 'wwc',
-              name: 'Weni Web Chat MOCK',
+              name: 'Weni Web Chat',
               description:
                 'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
               summary: 'Ullamco occaecat et id cillum.',
