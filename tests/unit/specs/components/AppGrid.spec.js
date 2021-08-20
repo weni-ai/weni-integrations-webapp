@@ -2,8 +2,9 @@ jest.mock('@/api/appType', () => jest.fn());
 
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import AppGrid from '@/components/AppGrid.vue';
+import ConfigModal from '@/components/ConfigModal.vue';
 import i18n from '@/utils/plugins/i18n';
 import AppTypeStore from '@/store/appType';
 import { singleApp } from '../../../__mocks__/appMock';
@@ -24,7 +25,7 @@ describe('AppGrid.vue with mocked loadApps', () => {
 
     store = new Vuex.Store(AppTypeStore);
 
-    wrapper = mount(AppGrid, {
+    wrapper = shallowMount(AppGrid, {
       localVue,
       store,
       i18n,
@@ -36,6 +37,7 @@ describe('AppGrid.vue with mocked loadApps', () => {
         UnnnicButton: true,
         UnnnicModal: true,
         UnnnicCard: true,
+        ConfigModal,
       },
       propsData: {
         section: 'communication_channels',
@@ -91,13 +93,29 @@ describe('AppGrid.vue with mocked loadApps', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should change AppModal', async () => {
-    const appId = 123;
-    expect(wrapper.vm.$route.path).not.toEqual(`/apps/${appId}/details`);
+  it('should change change route on card click when type is "add"', async () => {
+    await wrapper.setProps({ type: 'add' });
+    await wrapper.setData({ apps: [singleApp] });
+    const app = wrapper.vm.apps[0];
+    expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
 
-    wrapper.vm.openAppModal(appId);
+    wrapper.vm.openAppModal(app);
 
-    expect(wrapper.vm.$route.path).toEqual(`/apps/${appId}/details`);
+    expect(wrapper.vm.$route.path).toEqual(`/apps/${app.code}/details`);
+  });
+
+  it('should open configModal if type is not "add"', async () => {
+    await wrapper.setProps({ type: 'config' });
+    await wrapper.setData({ apps: [singleApp] });
+
+    const app = wrapper.vm.apps[0];
+    const configModal = wrapper.findComponent({ ref: 'configModal' });
+
+    expect(configModal.vm.show).toBeFalsy();
+
+    wrapper.vm.openAppModal(app);
+
+    expect(configModal.vm.show).toBeTruthy();
   });
 
   it('should call loadApps when mounted', () => {

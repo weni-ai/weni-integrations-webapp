@@ -44,4 +44,10 @@ describe('ConfigModal.vue', () => {
 
     expect(currentComponent).toMatchObject(wwcConfig);
   });
+
+  it('should return default currentComponent', () => {
+    const currentComponent = wrapper.vm.currentComponent;
+
+    expect(currentComponent).toMatchObject(wwcConfig);
+  });
 });

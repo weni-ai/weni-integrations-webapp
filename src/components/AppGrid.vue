@@ -20,7 +20,7 @@
           :typeAction="type"
           :buttonAction="/* istanbul ignore next */ () => openAddModal(app.id, app.name)"
           clickable
-          @openModal="openAppModal(app.code)"
+          @openModal="openAppModal(app)"
         />
       </div>
     </section>
@@ -50,13 +50,18 @@
         {{ $t('access_my_apps') }}
       </unnnic-button>
     </unnnic-modal>
+
+    <config-modal ref="configModal" />
   </div>
 </template>
 
 <script>
+  import configModal from '../components/ConfigModal.vue';
   import { mapActions } from 'vuex';
+
   export default {
     name: 'AppGrid',
+    components: { configModal },
     props: {
       section: {
         type: String,
@@ -153,8 +158,12 @@
       navigateToMyApps() {
         this.$router.push('apps');
       },
-      openAppModal(code) {
-        this.$router.push(`/apps/${code}/details`);
+      openAppModal(app) {
+        if (this.type === 'add') {
+          this.$router.push(`/apps/${app.code}/details`);
+        } else {
+          this.$refs.configModal.openModal(app);
+        }
       },
     },
   };
