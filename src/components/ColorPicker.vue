@@ -63,7 +63,7 @@
       }
 
       input {
-        visibility: hidden;
+        display: none;
       }
     }
   }
