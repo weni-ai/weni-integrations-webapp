@@ -52,7 +52,6 @@
       return {
         loading: true,
         app: null,
-        navigatorHistory: null,
       };
     },
     watch: {
@@ -60,17 +59,6 @@
     },
     async mounted() {
       await this.fetchApp(this.$route.params.appCode);
-
-      this.navigatorHistory = [
-        {
-          name: this.$t('discovery'),
-          path: '/apps/discovery',
-        },
-        {
-          name: this.app.name,
-          path: '',
-        },
-      ];
     },
     methods: {
       ...mapActions(['getAppType']),
@@ -83,6 +71,18 @@
     computed: {
       appRatingString() {
         return this.app.rating.average ? this.app.rating.average.toString() : '0';
+      },
+      navigatorHistory() {
+        return [
+          {
+            name: this.$t('discovery'),
+            path: '/apps/discovery',
+          },
+          {
+            name: this.app.name,
+            path: '',
+          },
+        ];
       },
     },
   };
