@@ -15,11 +15,11 @@ module.exports = {
     '!**/node_modules/**',
     '!tests/**',
     '!src/utils/**',
+    '!src/api/**',
     // ignore store configuration files
-    '!src/store/index.js',
     '!src/store/types.js',
-    '!src/store/auth/index.js',
-    '!src/store/auth/state.js',
+    '!src/store/**/index.js',
+    '!src/store/**/state.js',
   ],
   coverageThreshold: {
     global: {

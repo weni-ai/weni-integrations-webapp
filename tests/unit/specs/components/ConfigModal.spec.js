@@ -3,6 +3,8 @@ import ConfigModal from '@/components/ConfigModal.vue';
 import { singleApp } from '../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
+import wwcConfig from '@/components/config/channels/WWC/Config.vue';
+
 const localVue = createLocalVue();
 
 describe('ConfigModal.vue', () => {
@@ -33,5 +35,13 @@ describe('ConfigModal.vue', () => {
 
     expect(wrapper.vm.show).toBeTruthy();
     expect(wrapper.vm.currentApp).toMatchObject(singleApp);
+  });
+
+  it('should set current component to WWC', async () => {
+    await wrapper.setData({ type: 'wwc' });
+
+    const currentComponent = wrapper.vm.currentComponent;
+
+    expect(currentComponent).toMatchObject(wwcConfig);
   });
 });
