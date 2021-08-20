@@ -2,12 +2,12 @@
 
 exports[`AppDetails.vue should be rendered properly 1`] = `
 <div class="app-details">
-  <navigator-stub class="app-details__navigator" routes="[object Object],[object Object]"></navigator-stub>
-  <appimagesbanner-stub images="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%201.png,https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%202.png,https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%203.png" class="app-details__section"></appimagesbanner-stub>
-  <appdetailsheader-stub title="WhatsApp" description="Sint in minim consequat est velit in aliquip dolor consequat" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg" class="app-details__section"></appdetailsheader-stub>
-  <unnnicbanner-stub type="info" firsttitle="Version" firstdescription="v1.0.0" secondtitle="Integrated into" seconddescription="253" subtitle="organizations" thirdtitle="Classification" thirddescription="4.7" rating="4.7"></unnnicbanner-stub>
+  <navigator-stub routes="[object Object],[object Object]" class="app-details__navigator"></navigator-stub>
+  <appimagesbanner-stub class="app-details__section"></appimagesbanner-stub>
+  <appdetailsheader-stub title="Weni Web Chat" description="Ullamco occaecat et id cillum." icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconbgcolor="#00DED333" class="app-details__section"></appdetailsheader-stub>
+  <unnnicbanner-stub type="info" firsttitle="Version" firstdescription="0" secondtitle="Integrated into" seconddescription="0" subtitle="organizations" thirdtitle="Classification" thirddescription="4.9" rating="4.9"></unnnicbanner-stub>
   <div class="app-details__section app-details__section__columns">
-    <appdetailsabout-stub description="Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore." links="[object Object],[object Object],[object Object]"></appdetailsabout-stub>
+    <appdetailsabout-stub description="Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s"></appdetailsabout-stub>
     <appdetailsrecommended-stub class="app-details__section__columns__recommended"></appdetailsrecommended-stub>
   </div>
   <appdetailscomments-stub></appdetailscomments-stub>
