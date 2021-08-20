@@ -55,6 +55,7 @@
 
 <script>
   import { mapActions } from 'vuex';
+
   export default {
     name: 'AppGrid',
     props: {

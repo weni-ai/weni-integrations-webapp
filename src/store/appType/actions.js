@@ -5,7 +5,7 @@ export default {
     return await appType.getAllAppTypes(filter);
   },
 
-  async getAppType(code) {
+  async getAppType(store, code) {
     return await appType.getAppType(code);
   },
 };

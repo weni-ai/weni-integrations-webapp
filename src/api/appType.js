@@ -8,6 +8,6 @@ export default {
     return request.$http.get(`${resource}/?${queryString}`);
   },
   getAppType(code) {
-    return request.$http.get(`${resource}/${code}`);
+    return request.$http.get(`${resource}/${code}/`);
   },
 };
