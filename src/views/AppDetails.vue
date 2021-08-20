@@ -1,23 +1,24 @@
 <template>
-  <div class="app-details">
+  <div class="app-details" v-if="!loading">
     <navigator class="app-details__navigator" :routes="navigatorHistory" />
     <app-images-banner class="app-details__section" :images="app.banners" />
     <app-details-header
       class="app-details__section"
       :title="app.name"
-      :description="app.brief"
+      :description="app.summary"
       :icon="app.icon"
+      :iconbgColor="app.bg_color"
     />
     <unnnic-banner
       type="info"
       :firstTitle="$t('Version')"
-      :firstDescription="app.version"
+      :firstDescription="app.version || '0'"
       :secondTitle="$t('Integrated_into')"
-      :secondDescription="app.integrationsCount"
+      :secondDescription="app.integrationsCount || '0'"
       :subtitle="$t('organizations')"
       :thirdTitle="$t('Classification')"
-      :thirdDescription="app.rating.toString()"
-      :rating="app.rating"
+      :thirdDescription="appRatingString"
+      :rating="app.rating.average || 0"
     />
     <div class="app-details__section app-details__section__columns">
       <app-details-about :description="app.description" :links="app.links" />
@@ -35,6 +36,8 @@
   import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../components/app/AppDetailsComments.vue';
 
+  import { mapActions } from 'vuex';
+
   export default {
     name: 'AppPage',
     components: {
@@ -49,63 +52,37 @@
       return {
         loading: true,
         app: null,
-        navigatorHistory: null,
       };
-    },
-    created() {
-      this.fetchApp();
     },
     watch: {
       $route: 'fetchApp',
     },
-    mounted() {
-      this.navigatorHistory = [
-        {
-          name: this.$t('discovery'),
-          path: '/apps/discovery',
-        },
-        {
-          name: this.app.name,
-          path: '',
-        },
-      ];
+    async mounted() {
+      await this.fetchApp(this.$route.params.appCode);
     },
     methods: {
-      fetchApp() {
-        this.app = {
-          id: this.$route.params.appId,
-          name: 'WhatsApp',
-          version: 'v1.0.0',
-          integrationsCount: '253',
-          brief: 'Sint in minim consequat est velit in aliquip dolor consequat',
-          description:
-            'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
-          usersCount: 590,
-          backgroundImage:
-            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png',
-          rating: 4.7,
-          commentsCount: 7,
-          icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
-          banners: [
-            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%201.png',
-            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%202.png',
-            'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/imagem%203.png',
-          ],
-          links: [
-            {
-              title: 'Access documentation',
-              url: 'https://google.com',
-            },
-            {
-              title: 'How to integrate?',
-              url: 'https://google.com',
-            },
-            {
-              title: 'Social Media',
-              url: 'https://google.com',
-            },
-          ],
-        };
+      ...mapActions(['getAppType']),
+      async fetchApp(appCode) {
+        const { data } = await this.getAppType(appCode);
+        this.app = data;
+        this.loading = false;
+      },
+    },
+    computed: {
+      appRatingString() {
+        return this.app.rating.average ? this.app.rating.average.toString() : '0';
+      },
+      navigatorHistory() {
+        return [
+          {
+            name: this.$t('discovery'),
+            path: '/apps/discovery',
+          },
+          {
+            name: this.app.name,
+            path: '',
+          },
+        ];
       },
     },
   };

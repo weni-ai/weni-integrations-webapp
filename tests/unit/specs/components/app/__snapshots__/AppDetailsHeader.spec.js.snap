@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AppDetailsHeader.vue should be rendered properly 1`] = `
-<div class="app-details-header">
+<div class="app-details-header" style="--icon-bg-color: none;">
   <div class="app-details-header__icon"><img class="app-details-header__icon__src"></div>
   <div class="app-details-header__content">
     <div class="app-details-header__content__title"></div>

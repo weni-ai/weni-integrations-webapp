@@ -28,7 +28,7 @@ const routes = [
   },
   {
     name: 'App Detail',
-    path: '/apps/:appId/details',
+    path: '/apps/:appCode/details',
     component: AppDetails,
   },
   // {

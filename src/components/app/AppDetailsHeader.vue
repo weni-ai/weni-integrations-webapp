@@ -1,5 +1,5 @@
 <template>
-  <div class="app-details-header">
+  <div class="app-details-header" :style="cssVars">
     <div class="app-details-header__icon">
       <img class="app-details-header__icon__src" :src="icon" />
     </div>
@@ -34,10 +34,21 @@
         type: String,
         default: null,
       },
+      iconbgColor: {
+        type: String,
+        default: 'none',
+      },
     },
     methods: {
       emitAdd() {
         this.$root.$emit('add');
+      },
+    },
+    computed: {
+      cssVars() {
+        return {
+          '--icon-bg-color': this.iconbgColor,
+        };
       },
     },
   };
@@ -52,8 +63,7 @@
       display: flex;
       height: 80px;
       width: 80px;
-      //TODO: verify if color will come from backend
-      background-color: rgba(209, 252, 201, 0.8);
+      background-color: var(--icon-bg-color);
       border-radius: $unnnic-border-radius-md;
       justify-content: center;
 
