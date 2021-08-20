@@ -19,5 +19,41 @@
   "Configured_apps": "Configured Apps",
   "Installed_apps": "Installed Apps",
   "Leave_a_comment": "Leave a Comment",
-  "A_good_comment_can_help_others_that_are_learning": "A good comment can help others that are learning :)"
+  "A_good_comment_can_help_others_that_are_learning": "A good comment can help others that are learning :)",
+
+  "weniWebChat": {
+    "config": {
+      "ChatTitle": {
+        "label": "Chat Title",
+        "placeholder": "Ex.: Name of your chatbot"
+      },
+      "ChatSubtitle": {
+        "label": "Chat Subtitle",
+        "placeholder": "Ex.: Name of your company"
+      },
+      "ChatPlaceholder": {
+        "label": "Placeholder text",
+        "placeholder": "Ex.: Type your message"
+      },
+      "CustomCSS": "Custom CSS",
+      "AvatarImage": "Avatar image",
+      "ShowFullscreenButton": "Show fullscreen button",
+      "UnreadMessagesIndicator": "Unread messages indicator",
+      "KeepChatHistory": "Keep chat history",
+      "TimeBetweenMessages": "Time between messages",
+      "MainColor": "Main color",
+      "ConfigureLater": "Configure later",
+      "SaveChanges": "Save changes"
+    },
+    "simulator": {
+      "chatTitle": "Chat Title",
+      "chatSubtitle": "Chat Subtitle",
+      "chatPlaceholder": "Placeholder text",
+      "replies": {
+        "yes": "Yes",
+        "no":"No",
+        "maybe": "Maybe"
+      }
+    }
+  }
 }
