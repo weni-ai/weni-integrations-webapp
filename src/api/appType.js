@@ -10,4 +10,16 @@ export default {
   getAppType(code) {
     return request.$http.get(`${resource}/${code}/`);
   },
+  listComments(appCode) {
+    return request.$http.get(`${resource}/${appCode}/comments`);
+  },
+  createComment(appCode, payload) {
+    return request.$http.post(`${resource}/${appCode}/comments/`, payload);
+  },
+  updateComment(appCode, commentId, data) {
+    return request.$http.put(`${resource}/${appCode}/comments/${commentId}/`, data);
+  },
+  deleteComment(appCode, commentUuid) {
+    return request.$http.delete(`${resource}/${appCode}/comments/${commentUuid}`);
+  },
 };
