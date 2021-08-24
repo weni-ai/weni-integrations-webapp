@@ -86,6 +86,7 @@
         const { data } = await this.listComments(appCode);
         this.comments = data.reverse();
       },
+      /* istanbul ignore next */
       getCommentTime(time) {
         const epoch = new Date(time).getTime();
         return `- ${getRelativeTime(epoch, this.$root.$i18n.locale)}`;
@@ -115,9 +116,7 @@
               });
             }
             await this.fetchComments(this.appCode);
-            this.resetFields();
           } catch (err) {
-            this.resetFields();
             unnnicCallAlert({
               props: {
                 text: this.$t('app_details.status_error'),
@@ -129,6 +128,8 @@
               },
               seconds: 3,
             });
+          } finally {
+            this.resetFields();
           }
         }
       },
@@ -152,8 +153,6 @@
             },
             seconds: 3,
           });
-        } finally {
-          await this.fetchComments(this.appCode);
         }
       },
       handleUpdate(comment) {
