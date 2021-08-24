@@ -37,13 +37,12 @@ const routes = [
   //   component: AppConfig,
   // },
   {
-    path: '/loginexternal/:token/:org/:project',
+    path: '/loginexternal/:token/:project',
     name: 'externalLogin',
     component: null,
     beforeEnter: async (to, from, next) => {
-      const { token, org, project } = to.params;
+      const { token, project } = to.params;
       store.dispatch('externalLogin', { token: token.replace('+', ' ') });
-      store.dispatch('selectedOrg', { org });
       store.dispatch('selectedProject', { project });
       next('/');
     },
