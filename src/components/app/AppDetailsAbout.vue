@@ -8,11 +8,11 @@
       <div class="app-details-about__links__title">{{ $t('Useful_links') }}</div>
       <div class="app-details-about__links__content">
         <a
-          v-for="link in links"
-          :key="link.title"
+          v-for="(link, index) in links"
+          :key="index"
           :href="link.url"
           class="app-details-about__links__content__link"
-          >{{ link.title }}</a
+          >{{ link.description }}</a
         >
       </div>
     </div>

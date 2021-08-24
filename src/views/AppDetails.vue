@@ -21,7 +21,7 @@
       :rating="app.rating.average || 0"
     />
     <div class="app-details__section app-details__section__columns">
-      <app-details-about :description="app.description" :links="app.links" />
+      <app-details-about :description="app.description" :links="appLinks" />
       <app-details-recommended class="app-details__section__columns__recommended" />
     </div>
     <app-details-comments :appCode="app.code" />
@@ -83,6 +83,10 @@
             path: '',
           },
         ];
+      },
+      appLinks() {
+        const links = this.app.assets.filter((asset) => asset.type === 'link');
+        return links;
       },
     },
   };
