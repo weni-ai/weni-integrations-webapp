@@ -81,4 +81,25 @@ describe('AppDetails.vue', () => {
       expect(typeof str).toEqual('string');
     });
   });
+
+  describe('appLinks()', () => {
+    beforeEach(() => {
+      wrapper.vm.app = {
+        rating: { average: null },
+        assets: [],
+      };
+    });
+
+    it('should return no links', () => {
+      const assets = [{ type: 'notLink' }, { type: 'notLink' }];
+      wrapper.vm.app.assets = assets;
+      expect(wrapper.vm.appLinks).toHaveLength(0);
+    });
+
+    it('should return valid links', () => {
+      const assets = [{ type: 'notLink' }, { type: 'link' }];
+      wrapper.vm.app.assets = assets;
+      expect(wrapper.vm.appLinks).toHaveLength(1);
+    });
+  });
 });
