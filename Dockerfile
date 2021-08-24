@@ -12,6 +12,9 @@ RUN yarn install
 
 COPY . .
 
+ARG VUE_APP_API_BASE_URL
+ENV VUE_APP_API_BASE_URL $VUE_APP_API_BASE_URL
+
 RUN yarn build
 
 FROM nginx
