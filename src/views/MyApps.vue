@@ -1,7 +1,7 @@
 <template>
   <div>
-    <app-grid section="configured_apps" type="edit" />
-    <app-grid section="installed_apps" type="config" />
+    <app-grid section="configured" type="edit" />
+    <app-grid section="installed" type="config" />
   </div>
 </template>
 

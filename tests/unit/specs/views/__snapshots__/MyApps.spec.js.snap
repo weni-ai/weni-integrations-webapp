@@ -2,7 +2,7 @@
 
 exports[`App.vue should be rendered properly 1`] = `
 <div>
-  <appgrid-stub section="configured_apps" type="edit"></appgrid-stub>
-  <appgrid-stub section="installed_apps" type="config"></appgrid-stub>
+  <appgrid-stub section="configured" type="edit"></appgrid-stub>
+  <appgrid-stub section="installed" type="config"></appgrid-stub>
 </div>
 `;

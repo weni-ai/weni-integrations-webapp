@@ -11,12 +11,12 @@
     />
     <unnnic-banner
       type="info"
-      :firstTitle="$t('Version')"
+      :firstTitle="$t('apps.details.info')"
       :firstDescription="app.version || '0'"
-      :secondTitle="$t('Integrated_into')"
+      :secondTitle="$t('apps.details.integrated_into')"
       :secondDescription="app.integrationsCount || '0'"
-      :subtitle="$t('organizations')"
-      :thirdTitle="$t('Classification')"
+      :subtitle="$t('apps.details.organizations')"
+      :thirdTitle="$t('apps.details.rating')"
       :thirdDescription="appRatingString"
       :rating="app.rating.average || 0"
     />
@@ -75,7 +75,7 @@
       navigatorHistory() {
         return [
           {
-            name: this.$t('discovery'),
+            name: this.$t('apps.details.navigator.discovery'),
             path: '/apps/discovery',
           },
           {

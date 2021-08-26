@@ -1,12 +1,12 @@
 <template>
   <div class="app-details-comments">
     <div v-if="!editMode" class="app-details-comments__header">
-      {{ $t('app_details.leave_a_comment') }}
+      {{ $t('apps.details.comments.leave_a_comment') }}
     </div>
     <div v-else class="app-details-comments__header">
-      {{ $t('app_details.edit_comment') + ' -&nbsp;' }}
+      {{ $t('apps.details.comments.edit_comment') + ' -&nbsp;' }}
       <div class="app-details-comments__header__cancel" @click="resetFields">
-        {{ $t('Cancel') }}
+        {{ $t('general.Cancel') }}
       </div>
     </div>
     <unnnic-input
@@ -16,7 +16,7 @@
       iconRight="send-email-3-1"
       tooltipSideIconRight="right"
       size="md"
-      :placeholder="$t('app_details.input_placeholder')"
+      :placeholder="$t('apps.details.comments.input_placeholder')"
       iconRightClickable
       @change="handleComment"
       v-model="currentComment"
@@ -37,7 +37,7 @@
           <unnnic-button
             type="terciary"
             iconLeft="pencil-write-1"
-            :text="$t('app_details.edit_comment')"
+            :text="$t('apps.details.comments.edit_comment')"
             size="small"
             @click="handleUpdate(comment)"
           />
@@ -46,7 +46,7 @@
           <unnnic-button
             type="terciary"
             iconLeft="delete-1"
-            :text="$t('app_details.delete_comment')"
+            :text="$t('apps.details.comments.delete_comment')"
             size="small"
             @click="handleDelete(comment.uuid)"
           />

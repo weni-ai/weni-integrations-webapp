@@ -1,54 +1,100 @@
 {
-  "discovery": "Descoberta",
-  "my_apps": "Meus aplicativos",
-  "add": "Adicionar",
-  "close": "Fechar",
-  "communication_channels": "Canais de Comunicação",
-  "attendance_managers": "Gerenciadores de Atendimento",
-  "installed_app_title": "Aplicativo Instalado!",
-  "installed_app_description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
-  "access_my_apps": "Acessar meus aplicativos",
-  "comments": "comentários",
-  "Version": "Versão",
-  "Integrated_into": "Integrada em",
-  "organizations": "organizações",
-  "Classification": "Classificação",
-  "About_the_app": "Sobre o Aplicativo",
-  "Useful_links": "Links úteis",
-  "Recommended": "Recomendados",
-  "configured_apps": "Aplicativos Configurados",
-  "installed_apps": "Aplicativos Instalados",
-  "Leave_a_comment": "Deixe um comentário ",
-  "A_good_comment_can_help_others_that_are_learning": "Um bom comentário pode ajudar outras pessoas que estão aprendendo :)",
+  "general": {
+    "Cancel": "Cancelar",
+    "Close": "Fechar"
+  },
+
+  "apps": {
+    "nav": {
+      "discovery": "Descoberta",
+      "my_apps": "Meus Aplicativos"
+    },
+    "discovery": {
+      "categories": {
+        "channel": "Canais de Comunicação",
+        "ticket": "Gerenciadores de Atendimento",
+        "configured": "Aplicativos configurados",
+        "installed": "Aplicativos instalados"
+      }
+    }, 
+    "details": {
+      "info": "Número de mensagens trocadas",
+      "integrated_into": "Integrado em",
+      "organizations": "organizações",
+      "rating": "Avaliação",
+      "navigator": {
+        "discovery": "Descoberta"
+      },
+      "about": {
+        "about_the_app": "Sobre o App",
+        "useful_links": "Links Úteis"
+      },
+      "recommended": {
+        "title": "Recomendados",
+        "comments": "comentários"
+      },
+      "comments": {
+        "leave_a_comment": "Deixe um comentário",
+        "input_placeholder": "Um bom comentário pode ajudar outras pessoas que estão aprendendo :)",
+        "edit_comment": "Editar comentário",
+        "delete_comment": "Deletar comentário"
+      },
+      "header": {
+        "add": "Adicionar"
+      },
+      "card": {
+        "comments": "comentários"
+      },
+      "actions": {
+        "installed": {
+          "title": "Aplicativo adicionado!",
+          "description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
+          "access_my_apps": "Acessar meus aplicativos"
+        }
+      }
+    }
+  },
+
+  "file_upload": {
+    "drag_your_file_here_or": "Arraste seu arquivo aqui, ou",
+    "search_it": "procure-o",
+    "supported_formats": "Formatos suportados ",
+    "drag_another_file_or": "Arraste outro arquivo, ou",
+    "modify": "Modificar"
+  },
 
   "weniWebChat": {
     "config": {
-      "ChatTitle": {
+      "settings": "Configurações",
+      "script": "Código Script",
+      "custom_css": "CSS Customizado",
+      "avatar_image": "Imagem do Avatar",
+      "show_fullscreen_button": "Mostrar botão de tela cheia",
+      "unread_messages_indicator": "Indicador de mensagens não lidas",
+      "keep_chat_history": "Manter histórico de mensagens",
+      "time_between_messages": "Tempo entre as mensagens",
+      "main_color": "Cor principal",
+      "configure_later": "Configurar depois",
+      "save_changes": "Salvar alterações",
+      "script_placeholder": "Seu script estará aqui",
+      "copy": "Copiar",
+      "TitleInput": {
         "label": "Título do Chat",
-        "placeholder": "Ex.: Nome do seu Chatbot"
+        "placeholder": "Ex.: Nome do seu chatbot"
       },
-      "ChatSubtitle": {
+      "SubtitleInput": {
         "label": "Subtítulo do Chat",
-        "placeholder": "Ex.: Nome da sua Empresa"
+        "placeholder": "Ex.: Nome da empresa"
       },
-      "ChatPlaceholder": {
-        "label": "Texto do Placeholder",
-        "placeholder": "Ex.: Digite sua Mensagem"
-      },
-      "CustomCSS": "CSS Customizado",
-      "AvatarImage": "Imagem do Avatar",
-      "ShowFullscreenButton": "Mostrar botão de Tela Cheia",
-      "UnreadMessagesIndicator": "Indicador de Mensagens não lidas",
-      "KeepChatHistory": "Manter histórico do Chat",
-      "TimeBetweenMessages": "Tempo entre as mensagens",
-      "MainColor": "Cor Principal",
-      "ConfigureLater": "Configurar depois",
-      "SaveChanges": "Salvar alterações"
+      "PlaceholderInput": {
+        "label": "Texto do placeholder",
+        "placeholder": "Ex.: Digite sua mensagem"
+      }
     },
     "simulator": {
       "chatTitle": "Título do Chat",
       "chatSubtitle": "Subtítulo do Chat",
-      "chatPlaceholder": "Texto do Placeholder",
+      "chatPlaceholder": "Digite sua mensagem",
       "replies": {
         "yes": "Sim",
         "no": "Não",

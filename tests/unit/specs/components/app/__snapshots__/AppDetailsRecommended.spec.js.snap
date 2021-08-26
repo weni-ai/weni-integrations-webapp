@@ -3,7 +3,9 @@
 exports[`AppDetailsComments.vue should be rendered properly 1`] = `
 <div class="app-details-recommended">
   <div class="app-details-recommended__header">
-    <div class="app-details-recommended__header__title">some specific text</div>
+    <div class="app-details-recommended__header__title">
+      some specific text
+    </div>
     <div class="app-details-recommended__header__buttons">
       <unnnicbutton-stub type="terciary" icon-center="arrow-left-1-1" size="small" class="app-details-recommended__header__buttons__prev"></unnnicbutton-stub>
       <unnnicbutton-stub type="terciary" icon-center="arrow-right-1-1" size="small" class="app-details-recommended__header__buttons__next"></unnnicbutton-stub>

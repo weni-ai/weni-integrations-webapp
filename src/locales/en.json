@@ -1,49 +1,95 @@
 {
-  "discovery": "Discovery",
-  "my_apps": "My Apps",
-  "add": "Add",
-  "close": "Close",
-  "communication_channels": "Communication Channels",
-  "attendance_managers": "Attendance Managers",
-  "installed_app_title": "Installed Application!",
-  "installed_app_description": "You can configure the application by accessing the \"My apps\" area.",
-  "access_my_apps": "Access my Apps",
-  "comments": "comments",
-  "Version": "Version",
-  "Integrated_into": "Integrated into",
-  "organizations": "organizations",
-  "Classification": "Classification",
-  "About_the_app": "About the App",
-  "Useful_links": "Useful Links",
-  "Recommended": "Recommended",
-  "Configured_apps": "Configured Apps",
-  "Installed_apps": "Installed Apps",
-  "Leave_a_comment": "Leave a Comment",
-  "A_good_comment_can_help_others_that_are_learning": "A good comment can help others that are learning :)",
+  "general": {
+    "Cancel": "Cancel",
+    "Close": "Close"
+  },
+
+  "apps": {
+    "nav": {
+      "discovery": "Discovery",
+      "my_apps": "My Apps"
+    },
+    "discovery": {
+      "categories": {
+        "channel": "Communication Channels",
+        "ticket": "Attendance Managers",
+        "configured": "Configured Apps",
+        "installed": "Installed Apps"
+      }
+    },
+    "details": {
+      "info": "Number of exchanged messages",
+      "integrated_into": "Integrated into",
+      "organizations": "organizations",
+      "rating": "Rating",
+      "navigator": {
+        "discovery": "Discovery"
+      },
+      "about": {
+        "about_the_app": "About the App",
+        "useful_links": "Useful Links"
+      },
+      "recommended": {
+        "title": "Recommended",
+        "comments": "comments"
+      },
+      "comments": {
+        "leave_a_comment": "Leave a comment",
+        "input_placeholder": "A good comment can help others that are learning :)",
+        "edit_comment": "Edit comment",
+        "delete_comment": "Delete comment"
+      },
+      "header": {
+        "add": "Add"
+      },
+      "card": {
+        "comments": "comments"
+      },
+      "actions": {
+        "installed": {
+          "title": "Installed Application!",
+          "description": "You can configure the application by accessing the \"My apps\" area.",
+          "access_my_apps": "Access My Apps"
+        }
+      }
+    }
+  },
+
+  "file_upload": {
+    "drag_your_file_here_or": "Drag your file here or",
+    "search_it": "search it",
+    "supported_formats": "Supported formats",
+    "drag_another_file_or": "Drag another file or",
+    "modify": "Modify"
+  },
 
   "weniWebChat": {
     "config": {
-      "ChatTitle": {
+      "settings": "Settings",
+      "script": "Script Code",
+      "custom_css": "Custom CSS",
+      "avatar_image": "Avatar image",
+      "show_fullscreen_button": "Show fullscreen button",
+      "unread_messages_indicator": "Unread messages indicator",
+      "keep_chat_history": "Keep chat history",
+      "time_between_messages": "Time between messages",
+      "main_color": "Main color",
+      "configure_later": "Configure later",
+      "save_changes": "Save changes",
+      "script_placeholder": "Your script will be here",
+      "copy": "Copy",
+      "TitleInput": {
         "label": "Chat Title",
         "placeholder": "Ex.: Name of your chatbot"
       },
-      "ChatSubtitle": {
+      "SubtitleInput": {
         "label": "Chat Subtitle",
         "placeholder": "Ex.: Name of your company"
       },
-      "ChatPlaceholder": {
+      "PlaceholderInput": {
         "label": "Placeholder text",
         "placeholder": "Ex.: Type your message"
-      },
-      "CustomCSS": "Custom CSS",
-      "AvatarImage": "Avatar image",
-      "ShowFullscreenButton": "Show fullscreen button",
-      "UnreadMessagesIndicator": "Unread messages indicator",
-      "KeepChatHistory": "Keep chat history",
-      "TimeBetweenMessages": "Time between messages",
-      "MainColor": "Main color",
-      "ConfigureLater": "Configure later",
-      "SaveChanges": "Save changes"
+      }
     },
     "simulator": {
       "chatTitle": "Chat Title",
@@ -51,7 +97,7 @@
       "chatPlaceholder": "Placeholder text",
       "replies": {
         "yes": "Yes",
-        "no":"No",
+        "no": "No",
         "maybe": "Maybe"
       }
     }
