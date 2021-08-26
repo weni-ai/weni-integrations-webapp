@@ -8,14 +8,14 @@
     </div>
 
     <unnnic-tab class="app-config-wwc__tabs" :tabs="configTabs" initialTab="settings">
-      <template slot="tab-head-settings"> {{ $t('Settings') }} </template>
+      <template slot="tab-head-settings"> {{ $t('weniWebChat.config.settings') }} </template>
       <template slot="tab-panel-settings">
         <div class="app-config-wwc__tabs__settings-content">
           <unnnic-input
             v-model="simulatorTitle"
             type="normal"
-            :label="$t('Chat_title')"
-            :placeholder="app.config.placeholder || $t('Title')"
+            :label="$t('weniWebChat.config.TitleInput.label')"
+            :placeholder="app.config.placeholder || $t('weniWebChat.config.TitleInput.placeholder')"
           />
 
           <unnnic-switch
@@ -23,7 +23,7 @@
             class="app-config-wwc__tabs__settings-content__switch"
             :inititalState="false"
             size="small"
-            :textLeft="$t('Chat_subtitle')"
+            :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
           />
 
           <unnnic-input
@@ -31,27 +31,31 @@
             v-model="simulatorSubtitle"
             class="app-config-wwc__tabs__settings-content__input__subtitle"
             type="normal"
-            :placeholder="app.config.placeholder || $t('Title')"
+            :placeholder="
+              app.config.placeholder || $t('weniWebChat.config.SubtitleInput.placeholder')
+            "
           />
 
           <unnnic-input
             v-model="simulatorPlaceholder"
             class="app-config-wwc__tabs__settings-content__input"
             type="normal"
-            :label="$t('Placeholder_text')"
-            :placeholder="app.config.placeholder || $t('Title')"
+            :label="$t('weniWebChat.config.PlaceholderInput.label')"
+            :placeholder="
+              app.config.placeholder || $t('weniWebChat.config.PlaceholderInput.placeholder')
+            "
           />
 
           <div class="app-config-wwc__tabs__settings-content__files">
             <div class="app-config-wwc__tabs__settings-content__files__content">
               <div class="app-config-wwc__tabs__settings-content__files__content__label">
-                {{ $t('Custom_CSS') }}
+                {{ $t('weniWebChat.config.custom_css') }}
               </div>
               <file-upload type="style" formatsLabel=".CSS" />
             </div>
             <div class="app-config-wwc__tabs__settings-content__files__content">
               <div class="app-config-wwc__tabs__settings-content__files__content__label">
-                {{ $t('Avatar_image') }}
+                {{ $t('weniWebChat.config.avatar_image') }}
               </div>
               <file-upload
                 type="image"
@@ -66,22 +70,22 @@
               <unnnic-switch
                 :inititalState="false"
                 size="small"
-                :textRight="$t('Show_fullscreen_button')"
+                :textRight="$t('weniWebChat.config.show_fullscreen_button')"
               />
               <unnnic-switch
                 :inititalState="false"
                 size="small"
-                :textRight="$t('Unread_messages_indicator')"
+                :textRight="$t('weniWebChat.config.unread_messages_indicator')"
               />
               <unnnic-switch
                 :inititalState="false"
                 size="small"
-                :textRight="$t('Keep_chat_history')"
+                :textRight="$t('weniWebChat.config.keep_chat_history')"
               />
             </div>
             <div class="app-config-wwc__tabs__settings-content__selectors__slider">
               <div class="app-config-wwc__tabs__settings-content__selectors__slider__label">
-                {{ $t('Time_between_messages') }}
+                {{ $t('weniWebChat.config.time_between_messages') }}
               </div>
               <unnnic-slider
                 :initialValue="1"
@@ -95,7 +99,7 @@
 
           <div class="app-config-wwc__tabs__settings-content__colors">
             <div class="app-config-wwc__tabs__settings-content__colors__label">
-              {{ $t('Main_color') }}
+              {{ $t('weniWebChat.config.main_color') }}
             </div>
             <color-picker
               ref="color-picker"
@@ -110,14 +114,14 @@
             class="app-config-wwc__tabs__settings-content__buttons__cancel"
             type="terciary"
             size="large"
-            :text="$t('Configure_later')"
+            :text="$t('weniWebChat.config.configure_later')"
           ></unnnic-button>
 
           <unnnic-button
             class="app-config-wwc__tabs__settings-content__buttons__save"
             type="primary"
             size="large"
-            :text="$t('Save_changes')"
+            :text="$t('weniWebChat.config.save_changes')"
           ></unnnic-button>
         </div>
       </template>
@@ -129,10 +133,10 @@
             v-model="script"
             class="app-config-wwc__tabs__script-content__input"
             type="normal"
-            :placeholder="$t('Script_placeholder')"
+            :placeholder="$t('weniWebChat.config.script_placeholder')"
           >
           </unnnic-input>
-          <unnnic-toolTip :text="$t('Copy')" :enabled="true" side="top">
+          <unnnic-toolTip :text="$t('weniWebChat.config.copy')" :enabled="true" side="top">
             <unnnic-button
               class="app-config-wwc__tabs__script-content__copy"
               type="secondary"

@@ -1,7 +1,9 @@
 <template>
   <div class="app-details-recommended">
     <div class="app-details-recommended__header">
-      <div class="app-details-recommended__header__title">{{ $t('Recommended') }}</div>
+      <div class="app-details-recommended__header__title">
+        {{ $t('apps.details.recommended.title') }}
+      </div>
       <div class="app-details-recommended__header__buttons">
         <unnnic-button
           class="app-details-recommended__header__buttons__prev"
@@ -27,7 +29,7 @@
       :description="currentRecommended.description"
       :icon="currentRecommended.icon"
       :id="currentRecommended.id"
-      :comments="`${currentRecommended.commentsCount} ${$t('comments')}`"
+      :comments="`${currentRecommended.commentsCount} ${$t('apps.details.recommended.comments')}`"
       :rating="currentRecommended.rating"
       :iconSrc="currentRecommended.icon"
       typeAction="add"

@@ -21,13 +21,13 @@
           />
           <div class="dropzone-custom__content__text">
             <div class="dropzone-custom__content__text__title">
-              {{ $t('Drag_your_file_here_or') }}&nbsp;
+              {{ $t('file_upload.drag_your_file_here_or') }}&nbsp;
               <div class="dropzone-custom__content__text__title__highlight">
-                {{ $t('search_it') }}
+                {{ $t('file_upload.search_it') }}
               </div>
             </div>
             <div class="dropzone-custom__content__text__subtitle">
-              {{ `${$t('Supported_formats')}: ${formatsLabel} ` }}
+              {{ `${$t('file_upload.supported_formats')}: ${formatsLabel} ` }}
             </div>
           </div>
         </div>
@@ -43,8 +43,8 @@
           <div class="dropzone-error__message__label">{{ $t('Invalid_file') }}</div>
         </div>
         <div class="dropzone-error__action">
-          {{ $t('Drag_another_file_or') }}&nbsp;
-          <div class="dropzone-error__action__highlight">{{ $t('search_it') }}</div>
+          {{ $t('file_upload.drag_another_file_or') }}&nbsp;
+          <div class="dropzone-error__action__highlight">{{ $t('file_upload.search_it') }}</div>
         </div>
       </div>
       <div v-else class="dropzone-preview">
@@ -54,7 +54,7 @@
           size="md"
           scheme="aux-blue"
         />
-        <div class="dropzone-preview__text">{{ $t('Modify') }}</div>
+        <div class="dropzone-preview__text">{{ $t('file_upload.modify') }}</div>
       </div>
     </vue-dropzone>
   </div>

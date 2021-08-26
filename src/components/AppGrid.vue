@@ -1,7 +1,7 @@
 <template>
   <div>
     <section id="app-grid">
-      <p class="app-grid__title">{{ $t(section) }}</p>
+      <p class="app-grid__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
 
       <div class="app-grid__content">
         <unnnic-card
@@ -14,7 +14,7 @@
           :description="app.description"
           :icon="app.icon"
           :id="app.id"
-          :comments="`${app.comments_count} ${$t('comments')}`"
+          :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="app.rating.average || 0"
           :iconSrc="app.icon"
           :typeAction="type"
@@ -28,18 +28,18 @@
     <unnnic-modal
       ref="unnnic-add-modal"
       :showModal="showAddModal"
-      :text="$t('installed_app_title')"
+      :text="$t('apps.details.actions.installed.title')"
       scheme="feedback-green"
       modal-icon="check-circle-1-1"
       @close="closeAddModal"
     >
-      <span slot="message" v-html="$t('installed_app_description')"></span>
+      <span slot="message" v-html="$t('apps.details.actions.installed.description')"></span>
       <unnnic-button
         ref="unnnic-add-modal-close-button"
         slot="options"
         type="terciary"
         @click="closeAddModal"
-        >{{ $t('close') }}</unnnic-button
+        >{{ $t('general.Close') }}</unnnic-button
       >
       <unnnic-button
         ref="unnnic-add-modal-navigate-button"
@@ -47,7 +47,7 @@
         type="primary"
         @click="navigateToMyApps()"
       >
-        {{ $t('access_my_apps') }}
+        {{ $t('apps.details.actions.installed.access_my_apps') }}
       </unnnic-button>
     </unnnic-modal>
 
@@ -67,14 +67,7 @@
         type: String,
         default: null,
         validator(value) {
-          return (
-            [
-              'communication_channels',
-              'attendance_managers',
-              'configured_apps',
-              'installed_apps',
-            ].indexOf(value) !== -1
-          );
+          return ['channel', 'ticket', 'configured', 'installed'].indexOf(value) !== -1;
         },
       },
       type: {
@@ -91,8 +84,8 @@
       };
     },
     async mounted() {
-      const category = this.getCategory(this.section);
-      this.loadApps({ category });
+      // const category = this.getCategory(this.section);
+      this.loadApps({ category: this.section });
     },
     methods: {
       ...mapActions(['getAllAppTypes']),
@@ -140,15 +133,15 @@
           ];
         }
       },
-      getCategory(section) {
-        const categories = {
-          communication_channels: 'channel',
-          attendance_managers: 'ticket',
-          configured_apps: null,
-          installed_apps: null,
-        };
-        return categories[section];
-      },
+      // getCategory(section) {
+      //   const categories = {
+      //     communication_channels: 'channel',
+      //     attendance_managers: 'ticket',
+      //     configured_apps: null,
+      //     installed_apps: null,
+      //   };
+      //   return categories[section];
+      // },
       openAddModal() {
         this.showAddModal = true;
       },

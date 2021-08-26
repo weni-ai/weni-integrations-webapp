@@ -13,7 +13,7 @@
       type="secondary"
       icon-left="add-1"
       @click="emitAdd()"
-      >{{ $t('add') }}</unnnic-button
+      >{{ $t('apps.details.header.add') }}</unnnic-button
     >
   </div>
 </template>

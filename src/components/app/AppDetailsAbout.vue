@@ -1,11 +1,13 @@
 <template>
   <div class="app-details-about">
     <div class="app-details-about__content">
-      <div class="app-details-about__content__title">{{ $t('About_the_app') }}</div>
+      <div class="app-details-about__content__title">
+        {{ $t('apps.details.about.about_the_app') }}
+      </div>
       <div class="app-details-about__content__description">{{ description }}</div>
     </div>
     <div class="app-details-about__links">
-      <div class="app-details-about__links__title">{{ $t('Useful_links') }}</div>
+      <div class="app-details-about__links__title">{{ $t('apps.details.about.useful_links') }}</div>
       <div class="app-details-about__links__content">
         <a
           v-for="(link, index) in links"
