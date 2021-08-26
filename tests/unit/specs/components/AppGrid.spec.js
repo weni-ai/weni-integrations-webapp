@@ -40,7 +40,7 @@ describe('AppGrid.vue with mocked loadApps', () => {
         ConfigModal,
       },
       propsData: {
-        section: 'communication_channels',
+        section: 'channel',
         type: 'add',
       },
     });
@@ -152,7 +152,7 @@ describe('AppGrid.vue without mocked loadApps', () => {
         UnnnicCard: true,
       },
       propsData: {
-        section: 'communication_channels',
+        section: 'channel',
         type: 'add',
       },
     });

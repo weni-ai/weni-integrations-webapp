@@ -2,7 +2,7 @@
 
 exports[`Discovery.vue should be rendered properly 1`] = `
 <div>
-  <app-grid-stub section="communication_channels" type="add"></app-grid-stub>
-  <app-grid-stub section="attendance_managers" type="add"></app-grid-stub>
+  <app-grid-stub section="channel" type="add"></app-grid-stub>
+  <app-grid-stub section="ticket" type="add"></app-grid-stub>
 </div>
 `;
