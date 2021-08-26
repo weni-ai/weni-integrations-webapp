@@ -66,7 +66,7 @@
   "weniWebChat": {
     "config": {
       "settings": "Settings",
-      "title": "Title",
+      "script": "Script Code",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
       "show_fullscreen_button": "Show fullscreen button",

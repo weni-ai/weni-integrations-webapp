@@ -126,7 +126,7 @@
         </div>
       </template>
 
-      <template slot="tab-head-script"> Script </template>
+      <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
       <template slot="tab-panel-script">
         <div class="app-config-wwc__tabs__script-content">
           <unnnic-input
