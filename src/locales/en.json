@@ -51,7 +51,8 @@
           "description": "You can configure the application by accessing the \"My apps\" area.",
           "access_my_apps": "Access My Apps"
         }
-      }
+      },
+      "status_error": "Unable to complete this action, please try again"
     }
   },
 
