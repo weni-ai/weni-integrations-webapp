@@ -57,9 +57,6 @@ describe('AppDetails.vue', () => {
         AppDetailsRecommended: true,
         AppDetailsComments: true,
       },
-      mocks: {
-        $t: () => 'some specific text',
-      },
     });
   });
 
