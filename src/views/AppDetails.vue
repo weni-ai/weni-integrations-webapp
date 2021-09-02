@@ -19,6 +19,7 @@
       :thirdTitle="$t('apps.details.rating')"
       :thirdDescription="appRatingString"
       :rating="app.rating.average || 0"
+      @ratingAction="handleRating"
     />
     <div class="app-details__section app-details__section__columns">
       <app-details-about :description="app.description" :links="appLinks" />
@@ -35,6 +36,7 @@
   import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
   import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../components/app/AppDetailsComments.vue';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   import { mapActions } from 'vuex';
 
@@ -61,11 +63,34 @@
       await this.fetchApp(this.$route.params.appCode);
     },
     methods: {
-      ...mapActions(['getAppType']),
+      ...mapActions(['getAppType', 'postRating']),
       async fetchApp(appCode) {
         const { data } = await this.getAppType(appCode);
         this.app = data;
         this.loading = false;
+      },
+      async handleRating(rate) {
+        try {
+          const data = {
+            code: this.app.code,
+            payload: {
+              rate,
+            },
+          };
+          await this.postRating(data);
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('app_details.status_error'),
+              title: 'Error',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        }
       },
     },
     computed: {

@@ -24,4 +24,8 @@ export default {
   async updateComment(store, { code, commentUuid, payload }) {
     return await appType.updateComment(code, commentUuid, payload);
   },
+
+  async postRating(store, { code, payload }) {
+    return await appType.postRating(code, payload);
+  },
 };
