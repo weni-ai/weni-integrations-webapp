@@ -11,7 +11,7 @@ export default {
     return request.$http.get(`${resource}/${code}/`);
   },
   listComments(appCode) {
-    return request.$http.get(`${resource}/${appCode}/comments`);
+    return request.$http.get(`${resource}/${appCode}/comments/`);
   },
   createComment(appCode, payload) {
     return request.$http.post(`${resource}/${appCode}/comments/`, payload);
@@ -20,7 +20,7 @@ export default {
     return request.$http.put(`${resource}/${appCode}/comments/${commentId}/`, data);
   },
   deleteComment(appCode, commentUuid) {
-    return request.$http.delete(`${resource}/${appCode}/comments/${commentUuid}`);
+    return request.$http.delete(`${resource}/${appCode}/comments/${commentUuid}/`);
   },
   createApp(appCode, data) {
     return request.$http.post(`${resource}/${appCode}/apps/`, data);

@@ -93,50 +93,36 @@
       }),
     },
     methods: {
-      ...mapActions(['getAllAppTypes', 'createApp', 'getApp']),
+      ...mapActions([
+        'getAllAppTypes',
+        'createApp',
+        'getApp',
+        'getConfiguredApps',
+        'getInstalledApps',
+      ]),
       async loadApps(filter) {
-        if (this.type == 'add') {
-          const { data } = await this.getAllAppTypes(filter);
-          this.apps = data;
-        } else {
-          this.apps = [
-            {
-              uuid: '123',
-              code: 'wwc',
-              name: 'Weni Web Chat',
-              description:
-                'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
-              summary: 'Ullamco occaecat et id cillum.',
-              category: 'channel',
-              bg_color: '#00DED333',
-              icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg',
-              assets: [
-                {
-                  type: 'image_banner',
-                  url: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png',
-                  description: '',
-                },
-              ],
-              usersCount: 25,
-              rating: {
-                average: 4.9,
-              },
-              commentsCount: 3,
-              config: {
-                title: 'Chat Title',
-                subtitle: 'Chat subtitle',
-                placeholder: 'Chat placeholder',
-                fullScreenButton: false,
-                unreadIndicator: false,
-                keepHistory: false,
-                avatarImage:
-                  'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
-                customCSS: '',
-                primaryColor: '#009E96',
-                messageDelay: 1,
-              },
-            },
-          ];
+        switch (this.type) {
+          case 'add': {
+            const { data } = await this.getAllAppTypes(filter);
+            this.apps = data;
+            break;
+          }
+          case 'config': {
+            const params = {
+              project_uuid: this.getSelectedProject,
+            };
+            const { data } = await this.getConfiguredApps({ params });
+            this.apps = data;
+            break;
+          }
+          case 'edit': {
+            const params = {
+              project_uuid: this.getSelectedProject,
+            };
+            const { data } = await this.getInstalledApps({ params });
+            this.apps = data;
+            break;
+          }
         }
       },
       async openAddModal(code) {
