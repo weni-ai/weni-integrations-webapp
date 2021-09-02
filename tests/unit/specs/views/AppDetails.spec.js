@@ -1,3 +1,10 @@
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 jest.mock('@/api/appType', () => jest.fn());
 
 import { shallowMount, createLocalVue } from '@vue/test-utils';
@@ -26,6 +33,7 @@ describe('AppDetails.vue', () => {
       getAppType: jest.fn(() => {
         return { data: singleApp };
       }),
+      postRating: jest.fn(),
     };
 
     store = new Vuex.Store({
@@ -37,6 +45,9 @@ describe('AppDetails.vue', () => {
       store,
       i18n,
       router,
+      mocks: {
+        $t: () => 'some specific text',
+      },
       stubs: {
         UnnnicBanner: true,
         Navigator: true,
@@ -88,6 +99,7 @@ describe('AppDetails.vue', () => {
   describe('appLinks()', () => {
     beforeEach(() => {
       wrapper.vm.app = {
+        code: 'code',
         rating: { average: null },
         assets: [],
       };
@@ -103,6 +115,35 @@ describe('AppDetails.vue', () => {
       const assets = [{ type: 'notLink' }, { type: 'link' }];
       wrapper.vm.app.assets = assets;
       expect(wrapper.vm.appLinks).toHaveLength(1);
+    });
+  });
+
+  describe('handleRating()', () => {
+    beforeEach(() => {
+      wrapper.vm.app = {
+        rating: { average: null },
+        assets: [],
+      };
+    });
+
+    it('should call postRating()', async () => {
+      expect(actions.postRating).not.toHaveBeenCalled();
+      const rate = 4;
+      await wrapper.vm.handleRating(rate);
+      expect(actions.postRating).toHaveBeenCalledTimes(1);
+      expect(actions.postRating).toHaveBeenCalledWith(expect.any(Object), {
+        code: wrapper.vm.app.code,
+        payload: { rate },
+      });
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      actions.postRating.mockImplementation(() => {
+        throw new Error();
+      });
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.handleRating();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
   });
 });

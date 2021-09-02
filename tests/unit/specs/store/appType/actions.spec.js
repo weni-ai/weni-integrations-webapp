@@ -6,6 +6,7 @@ jest.mock('@/api/appType', () => {
     createComment: jest.fn(),
     deleteComment: jest.fn(),
     updateComment: jest.fn(),
+    postRating: jest.fn(),
     createApp: jest.fn(),
   };
 });
@@ -89,6 +90,21 @@ describe('store/appType/actions.js', () => {
         data.commentUuid,
         data.payload,
       );
+    });
+  });
+
+  describe('Rating', () => {
+    it('should call appType.postRating', async () => {
+      expect(appTypeApi.postRating).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        payload: {
+          foo: 'bar',
+        },
+      };
+      await actions.postRating({}, data);
+      expect(appTypeApi.postRating).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.postRating).toHaveBeenCalledWith(data.code, data.payload);
     });
   });
 
