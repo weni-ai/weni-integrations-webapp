@@ -22,6 +22,9 @@ export default {
   deleteComment(appCode, commentUuid) {
     return request.$http.delete(`${resource}/${appCode}/comments/${commentUuid}/`);
   },
+  postRating(appCode, payload) {
+    return request.$http.post(`${resource}/${appCode}/ratings/`, payload);
+  },
   createApp(appCode, data) {
     return request.$http.post(`${resource}/${appCode}/apps/`, data);
   },
