@@ -64,6 +64,12 @@ describe('AppGrid.vue without mocked loadApps', () => {
         return { data: [singleApp] };
       }),
       createApp: jest.fn(() => {}),
+      getConfiguredApps: jest.fn(() => {
+        return { data: [singleApp] };
+      }),
+      getInstalledApps: jest.fn(() => {
+        return { data: [singleApp] };
+      }),
     };
 
     getters = {
@@ -165,11 +171,26 @@ describe('AppGrid.vue without mocked loadApps', () => {
       expect(actions.getAllAppTypes).toHaveBeenCalledWith(expect.any(Object), filter);
     });
 
-    // TODO: test when API return other sections
-    it('should return mocked app if type is not add', async () => {
+    it('should fetch installed apps from API when type is config', async () => {
+      const params = {
+        project_uuid: getters.getSelectedProject(),
+      };
+      expect(actions.getInstalledApps).toHaveBeenCalledTimes(0);
+      await wrapper.setProps({ type: 'config' });
+      await wrapper.vm.loadApps();
+      expect(actions.getInstalledApps).toHaveBeenCalledTimes(1);
+      expect(actions.getInstalledApps).toHaveBeenCalledWith(expect.any(Object), { params });
+    });
+
+    it('should fetch configured apps from API when type is edit', async () => {
+      const params = {
+        project_uuid: getters.getSelectedProject(),
+      };
+      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(0);
       await wrapper.setProps({ type: 'edit' });
       await wrapper.vm.loadApps();
-      expect(wrapper.vm.apps).toEqual([singleApp]);
+      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(1);
+      expect(actions.getConfiguredApps).toHaveBeenCalledWith(expect.any(Object), { params });
     });
   });
 
