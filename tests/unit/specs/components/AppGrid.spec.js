@@ -171,26 +171,26 @@ describe('AppGrid.vue without mocked loadApps', () => {
       expect(actions.getAllAppTypes).toHaveBeenCalledWith(expect.any(Object), filter);
     });
 
-    it('should fetch configured apps from API when type is config', async () => {
-      const params = {
-        project_uuid: getters.getSelectedProject(),
-      };
-      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(0);
-      await wrapper.setProps({ type: 'config' });
-      await wrapper.vm.loadApps();
-      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(1);
-      expect(actions.getConfiguredApps).toHaveBeenCalledWith(expect.any(Object), { params });
-    });
-
-    it('should fetch installed apps from API when type is edit', async () => {
+    it('should fetch installed apps from API when type is config', async () => {
       const params = {
         project_uuid: getters.getSelectedProject(),
       };
       expect(actions.getInstalledApps).toHaveBeenCalledTimes(0);
-      await wrapper.setProps({ type: 'edit' });
+      await wrapper.setProps({ type: 'config' });
       await wrapper.vm.loadApps();
       expect(actions.getInstalledApps).toHaveBeenCalledTimes(1);
       expect(actions.getInstalledApps).toHaveBeenCalledWith(expect.any(Object), { params });
+    });
+
+    it('should fetch configured apps from API when type is edit', async () => {
+      const params = {
+        project_uuid: getters.getSelectedProject(),
+      };
+      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(0);
+      await wrapper.setProps({ type: 'edit' });
+      await wrapper.vm.loadApps();
+      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(1);
+      expect(actions.getConfiguredApps).toHaveBeenCalledWith(expect.any(Object), { params });
     });
   });
 

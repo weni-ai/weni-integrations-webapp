@@ -111,7 +111,7 @@
             const params = {
               project_uuid: this.getSelectedProject,
             };
-            const { data } = await this.getConfiguredApps({ params });
+            const { data } = await this.getInstalledApps({ params });
             this.apps = data;
             break;
           }
@@ -119,7 +119,7 @@
             const params = {
               project_uuid: this.getSelectedProject,
             };
-            const { data } = await this.getInstalledApps({ params });
+            const { data } = await this.getConfiguredApps({ params });
             this.apps = data;
             break;
           }
