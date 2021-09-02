@@ -25,4 +25,7 @@ export default {
   postRating(appCode, payload) {
     return request.$http.post(`${resource}/${appCode}/ratings/`, payload);
   },
+  createApp(appCode, data) {
+    return request.$http.post(`${resource}/${appCode}/apps/`, data);
+  },
 };

@@ -7,6 +7,7 @@ jest.mock('@/api/appType', () => {
     deleteComment: jest.fn(),
     updateComment: jest.fn(),
     postRating: jest.fn(),
+    createApp: jest.fn(),
   };
 });
 
@@ -14,13 +15,11 @@ import actions from '@/store/appType/actions';
 import appTypeApi from '@/api/appType';
 
 describe('store/appType/actions.js', () => {
-  // let context = {};
-  // let state = {};
   beforeEach(() => {
     jest.resetAllMocks();
   });
 
-  describe('Apps', () => {
+  describe('AppsTypes', () => {
     describe('getAllAppTypes()', () => {
       it('should call appType.getAllAppTypes', async () => {
         expect(appTypeApi.getAllAppTypes).not.toHaveBeenCalled();
@@ -106,6 +105,21 @@ describe('store/appType/actions.js', () => {
       await actions.postRating({}, data);
       expect(appTypeApi.postRating).toHaveBeenCalledTimes(1);
       expect(appTypeApi.postRating).toHaveBeenCalledWith(data.code, data.payload);
+    });
+  });
+
+  describe('Apps', () => {
+    it('should call appType.createApp', async () => {
+      expect(appTypeApi.createApp).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        payload: {
+          projectUuid: '123',
+        },
+      };
+      await actions.createApp({}, data);
+      expect(appTypeApi.createApp).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.createApp).toHaveBeenCalledWith(data.code, data.payload);
     });
   });
 });

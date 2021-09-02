@@ -1,4 +1,5 @@
 const singleApp = {
+  uuid: '123',
   code: 'wwc',
   name: 'Weni Web Chat',
   description:

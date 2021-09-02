@@ -7,18 +7,18 @@
         <unnnic-card
           ref="unnnic-marketplace-card"
           class="app-grid__content__item"
-          v-for="app in apps"
-          v-bind:key="app.id"
+          v-for="(app, index) in apps"
+          v-bind:key="index"
           type="marketplace"
           :title="app.name"
           :description="app.description"
           :icon="app.icon"
           :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
-          :rating="app.rating.average || 0"
+          :rating="appRatingAverage(app)"
           :iconSrc="app.icon"
           :typeAction="type"
-          :buttonAction="/* istanbul ignore next */ () => openAddModal(app.id, app.name)"
+          :buttonAction="/* istanbul ignore next */ () => openAddModal(app.code)"
           clickable
           @openModal="openAppModal(app)"
         />
@@ -56,8 +56,9 @@
 </template>
 
 <script>
+  import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from '../components/ConfigModal.vue';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'AppGrid',
@@ -84,11 +85,15 @@
       };
     },
     async mounted() {
-      // const category = this.getCategory(this.section);
-      this.loadApps({ category: this.section });
+      await this.loadApps({ category: this.section });
+    },
+    computed: {
+      ...mapGetters({
+        getSelectedProject: 'getSelectedProject',
+      }),
     },
     methods: {
-      ...mapActions(['getAllAppTypes']),
+      ...mapActions(['getAllAppTypes', 'createApp', 'getApp']),
       async loadApps(filter) {
         if (this.type == 'add') {
           const { data } = await this.getAllAppTypes(filter);
@@ -96,6 +101,7 @@
         } else {
           this.apps = [
             {
+              uuid: '123',
               code: 'wwc',
               name: 'Weni Web Chat',
               description:
@@ -133,23 +139,32 @@
           ];
         }
       },
-      // getCategory(section) {
-      //   const categories = {
-      //     communication_channels: 'channel',
-      //     attendance_managers: 'ticket',
-      //     configured_apps: null,
-      //     installed_apps: null,
-      //   };
-      //   return categories[section];
-      // },
-      openAddModal() {
-        this.showAddModal = true;
+      async openAddModal(code) {
+        try {
+          const payload = {
+            project_uuid: this.getSelectedProject,
+          };
+          await this.createApp({ code, payload });
+          this.showAddModal = true;
+        } catch (error) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        }
       },
       closeAddModal() {
         this.showAddModal = false;
       },
       navigateToMyApps() {
-        this.$router.push('apps');
+        this.$router.push('my');
       },
       openAppModal(app) {
         if (this.type === 'add') {
@@ -157,6 +172,9 @@
         } else {
           this.$refs.configModal.openModal(app);
         }
+      },
+      appRatingAverage(app) {
+        return app.rating ? (app.rating.average ? app.rating.average : 0) : 0;
       },
     },
   };
