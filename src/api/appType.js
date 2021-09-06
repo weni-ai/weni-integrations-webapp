@@ -28,4 +28,7 @@ export default {
   createApp(appCode, data) {
     return request.$http.post(`${resource}/${appCode}/apps/`, data);
   },
+  updateAppConfig(appCode, appUuid, data) {
+    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);
+  },
 };

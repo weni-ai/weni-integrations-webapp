@@ -8,6 +8,7 @@ jest.mock('@/api/appType', () => {
     updateComment: jest.fn(),
     postRating: jest.fn(),
     createApp: jest.fn(),
+    updateAppConfig: jest.fn(),
   };
 });
 
@@ -120,6 +121,24 @@ describe('store/appType/actions.js', () => {
       await actions.createApp({}, data);
       expect(appTypeApi.createApp).toHaveBeenCalledTimes(1);
       expect(appTypeApi.createApp).toHaveBeenCalledWith(data.code, data.payload);
+    });
+
+    it('should call appType.updateAppConfig', async () => {
+      expect(appTypeApi.updateAppConfig).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+        payload: {
+          projectUuid: '123',
+        },
+      };
+      await actions.updateAppConfig({}, data);
+      expect(appTypeApi.updateAppConfig).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.updateAppConfig).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.payload,
+      );
     });
   });
 });
