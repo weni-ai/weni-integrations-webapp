@@ -8,6 +8,7 @@ jest.mock('@/api/appType', () => {
     updateComment: jest.fn(),
     postRating: jest.fn(),
     createApp: jest.fn(),
+    fetchFeatured: jest.fn(),
   };
 });
 
@@ -90,6 +91,12 @@ describe('store/appType/actions.js', () => {
         data.commentUuid,
         data.payload,
       );
+    });
+
+    it('should call appType.fetchFeatured', async () => {
+      expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
+      await actions.fetchFeatured();
+      expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
     });
   });
 

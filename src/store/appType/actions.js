@@ -32,4 +32,8 @@ export default {
   async createApp(store, { code, payload }) {
     return await appType.createApp(code, payload);
   },
+
+  async fetchFeatured() {
+    return await appType.fetchFeatured();
+  },
 };
