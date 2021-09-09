@@ -142,5 +142,27 @@ describe('AppDetails.vue', () => {
       await wrapper.vm.handleRating();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
+
+    describe('appMetrics', () => {
+      it('should return hifen if no app metrics', () => {
+        expect(wrapper.vm.appMetrics).toEqual('-');
+      });
+
+      it('should return metric as string if exists', async () => {
+        await wrapper.setData({ app: { metrics: 2 } });
+        expect(wrapper.vm.appMetrics).toEqual('2');
+      });
+    });
+
+    describe('appIntegrationsCount', () => {
+      it('should return hifen if no app integrations_count', () => {
+        expect(wrapper.vm.appIntegrationsCount).toEqual('-');
+      });
+
+      it('should return integrations_count as string if exists', async () => {
+        await wrapper.setData({ app: { integrations_count: 2 } });
+        expect(wrapper.vm.appIntegrationsCount).toEqual('2');
+      });
+    });
   });
 });
