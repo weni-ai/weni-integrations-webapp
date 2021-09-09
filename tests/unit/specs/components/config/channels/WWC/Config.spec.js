@@ -117,7 +117,7 @@ describe('Config.vue', () => {
 
   it('should set new customCss', () => {
     const css = 'css';
-    expect(wrapper.vm.customCss).toEqual('');
+    expect(wrapper.vm.customCss).toEqual(null);
     wrapper.vm.setNewCss(css);
     expect(wrapper.vm.customCss).toEqual(css);
   });
