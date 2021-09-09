@@ -28,6 +28,9 @@ export default {
   createApp(appCode, data) {
     return request.$http.post(`${resource}/${appCode}/apps/`, data);
   },
+  fetchFeatured() {
+    return request.$http.get(`${resource}/featureds/`);
+  },
   updateAppConfig(appCode, appUuid, data) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);
   },

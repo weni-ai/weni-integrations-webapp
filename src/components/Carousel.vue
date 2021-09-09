@@ -1,13 +1,27 @@
 <template>
-  <div class="carousel-container">
-    <vueper-slides :arrows="false" fixed-height="235px" :autoplay="true" :duration="6000">
+  <div class="carousel-container" v-if="!loading">
+    <vueper-slides :arrows="false" fixed-height="152px" :autoplay="true" :duration="6000">
       <vueper-slide
-        v-for="app in apps"
-        :key="app.id"
+        v-for="(app, index) in apps"
+        :key="index"
         :title="app.name"
-        :content="app.description"
-        :image="app.backgroundImage"
+        :content="$t(app.summary)"
+        :image="appImageBanner(app.assets)"
       />
+
+      <template #bullets="{ bulletIndexes, goToSlide, currentSlide }">
+        <div class="carousel-container__bullets__wrapper">
+          <span
+            v-for="(slideIndex, i) in bulletIndexes"
+            :key="i"
+            :class="{
+              'carousel-container__bullets__wrapper__bullet': true,
+              'carousel-container__bullets__wrapper__bullet--active': currentSlide === slideIndex,
+            }"
+            @click="goToSlide(slideIndex)"
+          />
+        </div>
+      </template>
     </vueper-slides>
   </div>
 </template>
@@ -15,44 +29,31 @@
 <script>
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
+  import { mapActions } from 'vuex';
+
   export default {
     name: 'Carousel',
-
     components: { VueperSlides, VueperSlide },
-
     data() {
       return {
-        // mocked apps
-        apps: [
-          {
-            id: 1,
-            name: 'Weni Web Chat',
-            description:
-              'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
-            usersCount: 25,
-            backgroundImage:
-              'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png',
-          },
-          {
-            id: 2,
-            name: 'Whatsapp',
-            description:
-              'Sint in minim consequat est velit in aliquip dolor consequat esse veniam magna. Exercitation est duis esse id dolor id enim magna. Ad laborum ea dolor proident ullamco minim deserunt laborum nulla laboris labore adipisicing labore.',
-            usersCount: 590,
-            backgroundImage:
-              'https://images.unsplash.com/photo-1603145733146-ae562a55031e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-          },
-          {
-            id: 3,
-            name: 'Telegram',
-            description:
-              'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
-            usersCount: 57,
-            backgroundImage:
-              'https://images.unsplash.com/photo-1521931961826-fe48677230a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-          },
-        ],
+        loading: true,
+        apps: [],
       };
+    },
+    async mounted() {
+      await this.loadFeatureds();
+    },
+    methods: {
+      ...mapActions(['fetchFeatured']),
+      async loadFeatureds() {
+        const { data } = await this.fetchFeatured();
+        this.apps = data;
+        this.loading = false;
+      },
+      appImageBanner(assets) {
+        const banner = assets.filter((asset) => asset.type == 'image_banner');
+        return banner[0].url;
+      },
     },
   };
 </script>
@@ -64,8 +65,36 @@
 
   .vueperslides {
     &__bullets {
-      left: inherit;
       margin-right: $unnnic-inline-sm;
+      margin-bottom: $unnnic-spacing-stack-sm;
+
+      .carousel-container__bullets__wrapper__bullet {
+        z-index: 1;
+        height: $unnnic-inline-nano;
+        width: $unnnic-inline-nano;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: $unnnic-color-neutral-dark;
+        opacity: 0.4;
+        &--active {
+          width: 1rem;
+          border-radius: $unnnic-border-radius-sm;
+          background-color: $unnnic-color-neutral-dark;
+          opacity: 1;
+        }
+      }
+
+      .carousel-container__bullets__wrapper {
+        margin: 0 $unnnic-inline-xs;
+        display: flex;
+        justify-content: center;
+        > * {
+          margin-right: $unnnic-inline-xs;
+        }
+        :last-child {
+          margin: 0;
+        }
+      }
     }
 
     &__track {

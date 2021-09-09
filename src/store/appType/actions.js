@@ -33,6 +33,10 @@ export default {
     return await appType.createApp(code, payload);
   },
 
+  async fetchFeatured() {
+    return await appType.fetchFeatured();
+  },
+
   async updateAppConfig(store, { code, appUuid, payload }) {
     return await appType.updateAppConfig(code, appUuid, payload);
   },
