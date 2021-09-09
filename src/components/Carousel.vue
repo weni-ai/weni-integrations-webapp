@@ -70,26 +70,26 @@
 
       .carousel-container__bullets__wrapper__bullet {
         z-index: 1;
-        height: 0.25rem;
-        width: 0.25rem;
+        height: $unnnic-inline-nano;
+        width: $unnnic-inline-nano;
         border-radius: 50%;
         display: inline-block;
         background-color: $unnnic-color-neutral-dark;
         opacity: 0.4;
         &--active {
           width: 1rem;
-          border-radius: 4px;
+          border-radius: $unnnic-border-radius-sm;
           background-color: $unnnic-color-neutral-dark;
           opacity: 1;
         }
       }
 
       .carousel-container__bullets__wrapper {
-        margin: 0 0.5rem;
+        margin: 0 $unnnic-inline-xs;
         display: flex;
         justify-content: center;
         > * {
-          margin-right: 0.5rem;
+          margin-right: $unnnic-inline-xs;
         }
         :last-child {
           margin: 0;
