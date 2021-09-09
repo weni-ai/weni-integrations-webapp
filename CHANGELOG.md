@@ -1,3 +1,20 @@
+0.1.4
+----------
+`2021-09-08 ·  2 🐛 · 2 🎉 ·  1 🚀`
+
+### 🐛 Bug fixes
+- Fix: Color picker selector placement  
+- Fix: App details description translations 
+
+### 🎉 New features
+- Feat: WWC config with api 
+- Feat: New metrics to app details banner
+
+### 🚀 Improvements
+- Improve: Banner style and featured apps
+
+
+
 0.1.3
 ----------
 `2021-09-02 · 2 🎉`
