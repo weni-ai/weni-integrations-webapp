@@ -12,10 +12,11 @@
       <template slot="tab-panel-settings">
         <div class="app-config-wwc__tabs__settings-content">
           <unnnic-input
-            v-model="simulatorTitle"
+            key="config-title"
+            v-model="title"
             type="normal"
             :label="$t('weniWebChat.config.TitleInput.label')"
-            :placeholder="app.config.placeholder || $t('weniWebChat.config.TitleInput.placeholder')"
+            :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
           />
 
           <unnnic-switch
@@ -28,22 +29,18 @@
 
           <unnnic-input
             v-if="enableSubtitle"
-            v-model="simulatorSubtitle"
+            v-model="subtitle"
             class="app-config-wwc__tabs__settings-content__input__subtitle"
             type="normal"
-            :placeholder="
-              app.config.placeholder || $t('weniWebChat.config.SubtitleInput.placeholder')
-            "
+            :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
           />
 
           <unnnic-input
-            v-model="simulatorPlaceholder"
+            v-model="inputTextFieldHint"
             class="app-config-wwc__tabs__settings-content__input"
             type="normal"
             :label="$t('weniWebChat.config.PlaceholderInput.label')"
-            :placeholder="
-              app.config.placeholder || $t('weniWebChat.config.PlaceholderInput.placeholder')
-            "
+            :placeholder="$t('weniWebChat.config.PlaceholderInput.placeholder')"
           />
 
           <div class="app-config-wwc__tabs__settings-content__files">
@@ -51,7 +48,7 @@
               <div class="app-config-wwc__tabs__settings-content__files__content__label">
                 {{ $t('weniWebChat.config.custom_css') }}
               </div>
-              <file-upload type="style" formatsLabel=".CSS" />
+              <file-upload type="style" formatsLabel=".CSS" @newFile="handleNewCss" />
             </div>
             <div class="app-config-wwc__tabs__settings-content__files__content">
               <div class="app-config-wwc__tabs__settings-content__files__content__label">
@@ -68,16 +65,19 @@
           <div class="app-config-wwc__tabs__settings-content__selectors">
             <div class="app-config-wwc__tabs__settings-content__selectors__switches">
               <unnnic-switch
+                v-model="showFullscreenButton"
                 :inititalState="false"
                 size="small"
                 :textRight="$t('weniWebChat.config.show_fullscreen_button')"
               />
               <unnnic-switch
+                v-model="displayUnreadCount"
                 :inititalState="false"
                 size="small"
                 :textRight="$t('weniWebChat.config.unread_messages_indicator')"
               />
               <unnnic-switch
+                v-model="keepHistory"
                 :inititalState="false"
                 size="small"
                 :textRight="$t('weniWebChat.config.keep_chat_history')"
@@ -88,11 +88,12 @@
                 {{ $t('weniWebChat.config.time_between_messages') }}
               </div>
               <unnnic-slider
-                :initialValue="1"
+                :initialValue="timeBetweenMessages"
                 :minValue="1"
                 :maxValue="4"
                 minLabel="1"
                 maxLabel="4"
+                @valueChange="handleSliderChange"
               />
             </div>
           </div>
@@ -119,9 +120,10 @@
 
           <unnnic-button
             class="app-config-wwc__tabs__settings-content__buttons__save"
-            type="primary"
+            type="secondary"
             size="large"
             :text="$t('weniWebChat.config.save_changes')"
+            @click="saveConfig"
           ></unnnic-button>
         </div>
       </template>
@@ -130,7 +132,8 @@
       <template slot="tab-panel-script">
         <div class="app-config-wwc__tabs__script-content">
           <unnnic-input
-            v-model="script"
+            key="config-script"
+            v-model="scriptCode"
             class="app-config-wwc__tabs__script-content__input"
             type="normal"
             :placeholder="$t('weniWebChat.config.script_placeholder')"
@@ -159,19 +162,20 @@
     <wwc-simulator
       ref="simulator"
       :avatar="simulatorAvatar"
-      :mainColor="simulatorColor"
-      :title="simulatorTitle"
-      :subtitle="simulatorSubtitle"
-      :placeholder="simulatorPlaceholder"
+      :mainColor="mainColor"
+      :title="title"
+      :subtitle="subtitle"
+      :placeholder="inputTextFieldHint"
     />
   </div>
 </template>
 
 <script>
-  /* istanbul ignore next */
+  import { mapActions } from 'vuex';
   import FileUpload from '../../../FileUpload.vue';
   import ColorPicker from '../../../ColorPicker.vue';
   import wwcSimulator from './Simulator.vue';
+  import removeEmpty from '../../../../utils/clean';
 
   export default {
     name: 'wwc-config',
@@ -179,18 +183,24 @@
     props: {
       app: {
         type: Object,
-        default: () => {},
+        default: /* istanbul ignore next */ () => {},
       },
     },
+    /* istanbul ignore next */
     data() {
       return {
-        enableSubtitle: false,
-        simulatorAvatar: null,
-        simulatorColor: '#009E96',
-        simulatorTitle: null,
-        simulatorSubtitle: null,
-        simulatorPlaceholder: null,
-        script: '',
+        enableSubtitle: !!this.app.config.subtitle,
+        simulatorAvatar: this.app.config.avatarImage ?? null,
+        mainColor: this.app.config.mainColor ?? '#009E96',
+        title: this.app.config.title,
+        subtitle: this.app.config.subtitle,
+        inputTextFieldHint: this.app.config.inputTextFieldHint,
+        scriptUrl: this.app.config.script ?? '',
+        displayUnreadCount: !!this.app.config.displayUnreadCount,
+        showFullscreenButton: !!this.app.config.showFullscreenButton,
+        keepHistory: !!this.app.config.keepHistory,
+        customCss: this.app.config.customCss ?? '',
+        timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
       };
     },
     computed: {
@@ -202,10 +212,27 @@
           '--config-bg-color': this.app.bg_color,
         };
       },
+      scriptCode() {
+        const a = `
+          <script> 
+            (function (d, s, u) {
+              let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
+              k.onload = function () {
+                let l = d.createElement(s); l.src = u; l.async = true;
+                h.parentNode.insertBefore(l, k.nextSibling);
+              };
+              k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+              h.parentNode.insertBefore(k, h);
+            })(document, 'script', ${this.app.config.script});
+          <script/>
+        `;
+        return a;
+      },
     },
     methods: {
+      ...mapActions(['updateAppConfig']),
       handleColorChange(color) {
-        this.simulatorColor = color;
+        this.mainColor = color;
       },
       /* istanbul ignore next */
       handleNewAvatar(avatar) {
@@ -213,11 +240,52 @@
         fileReader.onload = (event) => this.setNewAvatar(event.target.result);
         fileReader.readAsDataURL(avatar);
       },
+      /* istanbul ignore next */
+      handleNewCss(css) {
+        const fileReader = new FileReader();
+        fileReader.onload = (event) => this.setNewCss(event.target.result);
+        fileReader.readAsText(css);
+      },
       setNewAvatar(avatarUrl) {
         this.simulatorAvatar = avatarUrl;
       },
+      setNewCss(customCss) {
+        this.customCss = customCss;
+      },
       toggleSimulator() {
         this.$refs.simulator.toggleChat();
+      },
+      handleSliderChange(value) {
+        this.timeBetweenMessages = parseInt(value);
+      },
+      async saveConfig() {
+        const data = removeEmpty({
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          payload: {
+            config: {
+              title: this.title,
+              subtitle: this.subtitle,
+              inputTextFieldHint: this.inputTextFieldHint,
+              showFullscreenButton: this.showFullscreenButton,
+              displayUnreadCount: this.displayUnreadCount,
+              keepHistory: this.keepHistory,
+              mainColor: this.mainColor,
+              avatarImage: this.simulatorAvatar,
+              customCss: this.customCss,
+            },
+          },
+        });
+
+        // remove avatar image if not base64
+        /* istanbul ignore next */
+        if (
+          data.payload.config.avatarImage &&
+          !data.payload.config.avatarImage.startsWith('data:image')
+        ) {
+          delete data.payload.config.avatarImage;
+        }
+        await this.updateAppConfig(data);
       },
     },
   };
@@ -367,10 +435,6 @@
           &__cancel,
           &__save {
             flex-grow: 1;
-          }
-
-          &__save {
-            background-color: $unnnic-color-brand-weni-soft;
           }
         }
       }

@@ -12,9 +12,9 @@
     <unnnic-banner
       type="info"
       :firstTitle="$t('apps.details.info')"
-      :firstDescription="app.version || '0'"
+      :firstDescription="appMetrics"
       :secondTitle="$t('apps.details.integrated_into')"
-      :secondDescription="app.integrationsCount || '0'"
+      :secondDescription="appIntegrationsCount"
       :subtitle="$t('apps.details.organizations')"
       :thirdTitle="$t('apps.details.rating')"
       :thirdDescription="appRatingString"
@@ -112,6 +112,12 @@
       appLinks() {
         const links = this.app.assets.filter((asset) => asset.type === 'link');
         return links;
+      },
+      appMetrics() {
+        return this.app.metrics ? this.app.metrics.toString() : '-';
+      },
+      appIntegrationsCount() {
+        return this.app.integrations_count ? this.app.integrations_count.toString() : '-';
       },
     },
   };

@@ -5,7 +5,7 @@
     </div>
     <div class="app-details-header__content">
       <div class="app-details-header__content__title">{{ title }}</div>
-      <div class="app-details-header__content__description">{{ description }}</div>
+      <div class="app-details-header__content__description">{{ $t(description) }}</div>
     </div>
     <unnnic-button
       ref="unnnic-button-add"

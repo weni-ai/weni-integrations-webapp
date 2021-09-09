@@ -84,6 +84,10 @@
         type: String,
         default: '',
       },
+      initFileUrl: {
+        type: String,
+        default: null,
+      },
     },
     components: {
       vueDropzone: vue2Dropzone,
@@ -110,7 +114,7 @@
         };
       },
     },
-    created() {
+    async created() {
       const ComponentClass = Vue.extend(PreviewTemplate);
       const instance = new ComponentClass({ propsData: { type: this.type } });
       instance.$mount();

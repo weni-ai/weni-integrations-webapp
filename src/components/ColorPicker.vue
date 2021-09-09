@@ -63,7 +63,9 @@
       }
 
       input {
-        display: none;
+        width: 0;
+        height: 0;
+        visibility: hidden;
       }
     }
   }

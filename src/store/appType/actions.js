@@ -36,4 +36,8 @@ export default {
   async fetchFeatured() {
     return await appType.fetchFeatured();
   },
+
+  async updateAppConfig(store, { code, appUuid, payload }) {
+    return await appType.updateAppConfig(code, appUuid, payload);
+  },
 };
