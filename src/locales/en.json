@@ -22,6 +22,7 @@
       "integrated_into": "Integrated into",
       "organizations": "organizations",
       "rating": "Rating",
+      "status_error": "Unable to complete this action, please try again",
       "navigator": {
         "discovery": "Discovery"
       },
@@ -51,8 +52,7 @@
           "description": "You can configure the application by accessing the \"My apps\" area.",
           "access_my_apps": "Access My Apps"
         }
-      },
-      "status_error": "Unable to complete this action, please try again"
+      }
     }
   },
 
@@ -65,6 +65,10 @@
   },
 
   "weniWebChat": {
+    "data": {
+      "summary": "With Weni Web Chat, you can integrate your Rapidpro organization as a chat on your website.",
+      "description": "Use Weni Web Chat to have a humanized automation experience of Weni Platform directly on your website or web platform. By integrating it, you can customize aspects of the Webchat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that Weni Platform has to offer with your's brand identity."
+    },
     "config": {
       "settings": "Settings",
       "script": "Script Code",
