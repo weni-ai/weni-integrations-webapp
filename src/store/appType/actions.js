@@ -32,4 +32,8 @@ export default {
   async createApp(store, { code, payload }) {
     return await appType.createApp(code, payload);
   },
+
+  async updateAppConfig(store, { code, appUuid, payload }) {
+    return await appType.updateAppConfig(code, appUuid, payload);
+  },
 };

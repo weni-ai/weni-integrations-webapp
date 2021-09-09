@@ -11,18 +11,16 @@ exports[`Config.vue should be rendered properly 1`] = `
     <unnniciconsvg-stub icon="view-1-1" size="xl" scheme="brand-weni-soft" class="app-config-wwc__simulator-switch__icon"></unnniciconsvg-stub>
   </div>
   <transition-stub name="fade">
-    <div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(null);">
+    <div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg);">
       <div class="wwc-simulator__content">
         <div class="wwc-simulator__content__header">
-          <div class="wwc-simulator__content__header__icon-container">
-            <unnniciconsvg-stub icon="single-neutral-2" size="sm" scheme="background-snow" class="wwc-simulator__content__header__icon-container__icon"></unnniciconsvg-stub>
-          </div>
+          <div class="wwc-simulator__content__header__custom-icon"></div>
           <div class="wwc-simulator__content__header__text">
             <div class="wwc-simulator__content__header__text__title">
-              some specific text
+              Chat Title
             </div>
             <div class="wwc-simulator__content__header__text__subtitle">
-              some specific text
+              Chat subtitle
             </div>
           </div>
           <div class="wwc-simulator__content__header__button">
@@ -31,9 +29,7 @@ exports[`Config.vue should be rendered properly 1`] = `
         </div>
         <div class="wwc-simulator__content__body">
           <div class="wwc-simulator__content__body__message--incoming">
-            <div class="wwc-simulator__content__body__message--incoming__icon-container">
-              <unnniciconsvg-stub icon="single-neutral-2" size="sm" scheme="background-snow" class="wwc-simulator__content__body__message--incoming__icon-container__icon"></unnniciconsvg-stub>
-            </div>
+            <div class="wwc-simulator__content__body__message--incoming__custom-icon"></div>
             <div class="wwc-simulator__content__body__message--incoming__content">
               <div class="wwc-simulator__content__body__message--incoming__content__text">
                 Curabitur vitae luctus felis, eget placerat est. In hac habitasse platea dictumst.
@@ -53,9 +49,7 @@ exports[`Config.vue should be rendered properly 1`] = `
             </div>
           </div>
           <div class="wwc-simulator__content__body__message--incoming">
-            <div class="wwc-simulator__content__body__message--incoming__icon-container">
-              <unnniciconsvg-stub icon="single-neutral-2" size="sm" scheme="background-snow" class="wwc-simulator__content__body__message--incoming__icon-container__icon"></unnniciconsvg-stub>
-            </div>
+            <div class="wwc-simulator__content__body__message--incoming__custom-icon"></div>
             <div class="wwc-simulator__content__body__message--incoming__content">
               <div class="wwc-simulator__content__body__message--incoming__content__text">
                 Curabitur porta, tortor sit amet laoreet posuere.
@@ -84,9 +78,7 @@ exports[`Config.vue should be rendered properly 1`] = `
         </div>
       </div>
       <div class="wwc-simulator__button">
-        <div class="wwc-simulator__button__content">
-          <unnniciconsvg-stub icon="single-neutral-2" size="md" scheme="background-snow" class="wwc-simulator__button__content__icon"></unnniciconsvg-stub>
-        </div>
+        <div class="wwc-simulator__button__custom-icon"></div>
       </div>
     </div>
   </transition-stub>
