@@ -199,7 +199,7 @@
         displayUnreadCount: !!this.app.config.displayUnreadCount,
         showFullscreenButton: !!this.app.config.showFullscreenButton,
         keepHistory: !!this.app.config.keepHistory,
-        customCss: this.app.config.customCss ?? '',
+        customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
       };
     },
