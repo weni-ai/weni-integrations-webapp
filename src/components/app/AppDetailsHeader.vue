@@ -12,16 +12,27 @@
       class="app-details-header__button"
       type="secondary"
       icon-left="add-1"
-      @click="emitAdd()"
+      @click="openAddModal(appCode)"
       >{{ $t('apps.details.header.add') }}</unnnic-button
     >
+
+    <add-modal ref="addModal" />
   </div>
 </template>
 
 <script>
+  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import addModal from '../../components/AddModal.vue';
+  import { mapActions, mapGetters } from 'vuex';
+
   export default {
     name: 'AppDetailsHeader',
+    components: { addModal },
     props: {
+      appCode: {
+        type: String,
+        default: null,
+      },
       title: {
         type: String,
         default: null,
@@ -40,11 +51,33 @@
       },
     },
     methods: {
-      emitAdd() {
-        this.$root.$emit('add');
+      ...mapActions(['createApp']),
+      async openAddModal(code) {
+        try {
+          const payload = {
+            project_uuid: this.getSelectedProject,
+          };
+          await this.createApp({ code, payload });
+          this.$refs.addModal.toggleModal();
+        } catch (error) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        }
       },
     },
     computed: {
+      ...mapGetters({
+        getSelectedProject: 'getSelectedProject',
+      }),
       cssVars() {
         return {
           '--icon-bg-color': this.iconbgColor,

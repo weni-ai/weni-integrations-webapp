@@ -8,6 +8,7 @@
       :description="app.summary"
       :icon="app.icon"
       :iconbgColor="app.bg_color"
+      :appCode="app.code"
     />
     <unnnic-banner
       type="info"
