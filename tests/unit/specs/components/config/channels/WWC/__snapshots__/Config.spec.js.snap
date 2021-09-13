@@ -10,8 +10,8 @@ exports[`Config.vue should be rendered properly 1`] = `
   <div class="app-config-wwc__simulator-switch">
     <unnniciconsvg-stub icon="view-1-1" size="xl" scheme="brand-weni-soft" class="app-config-wwc__simulator-switch__icon"></unnniciconsvg-stub>
   </div>
-  <transition-stub name="fade">
-    <div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg);">
+  <div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg);">
+    <transition-stub name="fade">
       <div class="wwc-simulator__content">
         <div class="wwc-simulator__content__header">
           <div class="wwc-simulator__content__header__custom-icon"></div>
@@ -24,6 +24,7 @@ exports[`Config.vue should be rendered properly 1`] = `
             </div>
           </div>
           <div class="wwc-simulator__content__header__button">
+            <!---->
             <unnniciconsvg-stub icon="close-1" size="sm" lineheight="sm" scheme="background-snow"></unnniciconsvg-stub>
           </div>
         </div>
@@ -77,10 +78,11 @@ exports[`Config.vue should be rendered properly 1`] = `
           </div>
         </div>
       </div>
-      <div class="wwc-simulator__button">
-        <div class="wwc-simulator__button__custom-icon"></div>
-      </div>
+    </transition-stub>
+    <div class="wwc-simulator__button">
+      <!---->
+      <div class="wwc-simulator__button__custom-icon"></div>
     </div>
-  </transition-stub>
+  </div>
 </div>
 `;
