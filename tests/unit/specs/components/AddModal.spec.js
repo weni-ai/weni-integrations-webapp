@@ -10,20 +10,16 @@ jest.mock('@/api/appType', () => {
   };
 });
 
-// import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
-
 jest.mock('@weni/unnnic-system', () => ({
   ...jest.requireActual('@weni/unnnic-system'),
   unnnicCallAlert: jest.fn(),
 }));
 
 import VueRouter from 'vue-router';
-// import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import AddModal from '@/components/AddModal.vue';
 import ConfigModal from '@/components/ConfigModal.vue';
 import i18n from '@/utils/plugins/i18n';
-// import { singleApp } from '../../../__mocks__/appMock';
 
 const router = new VueRouter();
 

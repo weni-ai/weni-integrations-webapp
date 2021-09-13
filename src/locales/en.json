@@ -23,6 +23,7 @@
       "organizations": "organizations",
       "rating": "Rating",
       "status_error": "Unable to complete this action, please try again",
+      "status_success": "Success",
       "navigator": {
         "discovery": "Discovery"
       },
@@ -51,6 +52,12 @@
           "title": "Installed Application!",
           "description": "You can configure the application by accessing the \"My apps\" area.",
           "access_my_apps": "Access My Apps"
+        },
+        "remove": {
+          "title": "Remove Application",
+          "description": "Do you really want to delete this Application? This cannot be undone.",
+          "remove": "Remove Application",
+          "status_text": "Successfully removed the Application"
         }
       }
     }

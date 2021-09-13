@@ -11,19 +11,72 @@
           v-bind:key="index"
           type="marketplace"
           :title="app.name"
-          :description="app.description"
+          :description="$t(app.summary)"
           :icon="app.icon"
           :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
           :iconSrc="app.icon"
           :typeAction="type"
-          :buttonAction="/* istanbul ignore next */ () => openAddModal(app.code)"
           clickable
           @openModal="openAppModal(app)"
-        />
+        >
+          <unnnic-button
+            class="app-grid__content__item__button--add"
+            v-if="type === 'add'"
+            slot="actions"
+            size="small"
+            type="secondary"
+            :iconCenter="actionIcon"
+            @click.stop="addApp(app.code)"
+          />
+
+          <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
+            <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="actionIcon" />
+            <unnnic-dropdown-item v-if="type === 'config'" @click="openAppModal(app)">
+              Configure
+            </unnnic-dropdown-item>
+            <unnnic-dropdown-item v-else-if="type === 'edit'" @click="openAppModal(app)">
+              Edit
+            </unnnic-dropdown-item>
+            <unnnic-dropdown-item
+              class="app-grid__content__item__button--remove"
+              @click="toggleRemoveModal(app)"
+            >
+              <unnnic-icon-svg icon="bin-1-1" size="sm" scheme="feedback-red" />
+              Remove
+            </unnnic-dropdown-item>
+          </unnnic-dropdown>
+        </unnnic-card>
       </div>
     </section>
+
+    <unnnic-modal
+      ref="unnnic-remove-modal"
+      :showModal="showRemoveModal"
+      :text="$t('apps.details.actions.remove.title')"
+      scheme="feedback-red"
+      modal-icon="alert-circle-1"
+      @close="toggleRemoveModal"
+    >
+      <span slot="message" v-html="$t('apps.details.actions.remove.description')"></span>
+      <unnnic-button
+        ref="unnnic-remove-modal-close-button"
+        slot="options"
+        type="terciary"
+        @click="toggleRemoveModal"
+        >{{ $t('general.Cancel') }}</unnnic-button
+      >
+      <unnnic-button
+        ref="unnnic-remove-modal-navigate-button"
+        slot="options"
+        type="primary"
+        @click="removeApp(currentRemoval.code, currentRemoval.uuid)"
+        scheme="feedback-red"
+      >
+        {{ $t('apps.details.actions.remove.remove') }}
+      </unnnic-button>
+    </unnnic-modal>
 
     <add-modal ref="addModal" />
     <config-modal ref="configModal" />
@@ -57,16 +110,31 @@
     data() {
       return {
         showAddModal: false,
+        showRemoveModal: false,
+        currentRemoval: null,
         apps: [],
       };
     },
     async mounted() {
-      await this.loadApps({ category: this.section });
+      await this.loadApps();
     },
     computed: {
       ...mapGetters({
         getSelectedProject: 'getSelectedProject',
       }),
+      actionIcon() {
+        switch (this.type) {
+          case 'add':
+            return 'add-1';
+          case 'config':
+            return 'cog-1';
+          case 'edit':
+            return 'pencil-write-1';
+          /* istanbul ignore next */
+          default:
+            return null;
+        }
+      },
     },
     methods: {
       ...mapActions([
@@ -75,10 +143,12 @@
         'getApp',
         'getConfiguredApps',
         'getInstalledApps',
+        'deleteApp',
       ]),
-      async loadApps(filter) {
+      async loadApps() {
         switch (this.type) {
           case 'add': {
+            const filter = { category: this.section };
             const { data } = await this.getAllAppTypes(filter);
             this.apps = data;
             break;
@@ -101,7 +171,7 @@
           }
         }
       },
-      async openAddModal(code) {
+      async addApp(code) {
         try {
           const payload = {
             project_uuid: this.getSelectedProject,
@@ -114,6 +184,40 @@
               text: this.$t('apps.details.status_error'),
               title: 'Error',
               icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        }
+      },
+      toggleRemoveModal(app = null) {
+        this.currentRemoval = app;
+        this.showRemoveModal = !this.showRemoveModal;
+      },
+      async removeApp(code, appUuid) {
+        try {
+          await this.deleteApp({ code, appUuid });
+          this.toggleRemoveModal();
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.actions.remove.status_text'),
+              title: this.$t('apps.details.status_success'),
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+          await this.loadApps();
+        } catch (error) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'alert-circle-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('close'),
@@ -148,6 +252,26 @@
       grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
       grid-gap: $unnnic-spacing-stack-sm;
       align-items: flex-start;
+
+      &__item {
+        &__dropdown {
+          font-family: $unnnic-font-family-secondary;
+          font-size: $unnnic-font-size-body-md;
+          line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
+          color: $unnnic-color-neutral-dark;
+        }
+        &__button {
+          &--remove {
+            display: inline-block;
+            width: max-content;
+
+            font-family: $unnnic-font-family-secondary;
+            font-size: $unnnic-font-size-body-md;
+            line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
+            color: $unnnic-color-feedback-red;
+          }
+        }
+      }
     }
   }
 </style>

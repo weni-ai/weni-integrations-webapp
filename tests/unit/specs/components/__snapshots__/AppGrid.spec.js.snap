@@ -5,9 +5,17 @@ exports[`AppGrid.vue without mocked loadApps should be rendered properly 1`] = `
   <section id="app-grid">
     <p class="app-grid__title">some specific text</p>
     <div class="app-grid__content">
-      <unnniccard-stub type="marketplace" title="Weni Web Chat" description="Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item"></unnniccard-stub>
+      <unnniccard-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item">
+        <unnnicbutton-stub size="small" type="secondary" iconcenter="add-1" class="app-grid__content__item__button--add"></unnnicbutton-stub>
+      </unnniccard-stub>
     </div>
   </section>
+  <unnnicmodal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
+    <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+    <unnnicbutton-stub size="large" type="primary" scheme="feedback-red">
+      some specific text
+    </unnnicbutton-stub>
+  </unnnicmodal-stub>
   <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green"><span>some specific text</span>
     <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
     <unnnicbutton-stub size="large" type="primary">
