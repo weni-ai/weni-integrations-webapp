@@ -109,6 +109,21 @@ describe('Config.vue', () => {
     expect(wrapper.vm.cssVars).toBeDefined();
   });
 
+  it('should return valid subtitle if enableSubtitle is true', async () => {
+    await wrapper.setData({ enableSubtitle: true, subtitle: 'text' });
+    expect(wrapper.vm.chatSubtitle).toEqual('text');
+  });
+
+  it('should return blank space subtitle if enableSubtitle is false', async () => {
+    await wrapper.setData({ enableSubtitle: false });
+    expect(wrapper.vm.chatSubtitle).toEqual(' ');
+  });
+
+  it('should return valid subtitle if enableSubtitle is true', async () => {
+    await wrapper.setData({ enableSubtitle: true, subtitle: 'text' });
+    expect(wrapper.vm.chatSubtitle).toEqual('text');
+  });
+
   it('should have default app defined', () => {
     const fn = jest.fn();
     wrapper.vm.app;

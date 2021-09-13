@@ -164,7 +164,7 @@
       :avatar="simulatorAvatar"
       :mainColor="mainColor"
       :title="title"
-      :subtitle="subtitle"
+      :subtitle="chatSubtitle"
       :placeholder="inputTextFieldHint"
     />
   </div>
@@ -212,9 +212,12 @@
           '--config-bg-color': this.app.bg_color,
         };
       },
+      chatSubtitle() {
+        return this.enableSubtitle ? this.subtitle : ' ';
+      },
       scriptCode() {
         const a = `
-          <script> 
+          <script>
             (function (d, s, u) {
               let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
               k.onload = function () {
@@ -259,13 +262,14 @@
         this.timeBetweenMessages = parseInt(value);
       },
       async saveConfig() {
+        /* istanbul ignore next */
         const data = removeEmpty({
           code: this.app.code,
           appUuid: this.app.uuid,
           payload: {
             config: {
               title: this.title,
-              subtitle: this.subtitle,
+              subtitle: this.enableSubtitle ? this.subtitle : null,
               inputTextFieldHint: this.inputTextFieldHint,
               showFullscreenButton: this.showFullscreenButton,
               displayUnreadCount: this.displayUnreadCount,
