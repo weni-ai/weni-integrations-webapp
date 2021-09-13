@@ -41,6 +41,7 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   import { mapActions } from 'vuex';
+  import millify from 'millify';
 
   export default {
     name: 'AppPage',
@@ -129,10 +130,10 @@
         return links;
       },
       appMetrics() {
-        return this.app.metrics ? this.app.metrics.toString() : '-';
+        return this.app.metrics ? millify(this.app.metrics) : '-';
       },
       appIntegrationsCount() {
-        return this.app.integrations_count ? this.app.integrations_count.toString() : '-';
+        return this.app.integrations_count ? millify(this.app.integrations_count) : '-';
       },
     },
   };
