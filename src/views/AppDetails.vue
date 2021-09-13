@@ -11,6 +11,7 @@
       :appCode="app.code"
     />
     <unnnic-banner
+      :key="bannerKey"
       type="info"
       :firstTitle="$t('apps.details.info')"
       :firstDescription="appMetrics"
@@ -19,7 +20,7 @@
       :subtitle="$t('apps.details.organizations')"
       :thirdTitle="$t('apps.details.rating')"
       :thirdDescription="appRatingString"
-      :rating="app.rating.average || 0"
+      :rating="appRatingAverage"
       @ratingAction="handleRating"
     />
     <div class="app-details__section app-details__section__columns">
@@ -55,6 +56,7 @@
       return {
         loading: true,
         app: null,
+        bannerKey: 0,
       };
     },
     watch: {
@@ -69,6 +71,10 @@
         const { data } = await this.getAppType(appCode);
         this.app = data;
         this.loading = false;
+      },
+      async reloadSection() {
+        await this.fetchApp(this.$route.params.appCode);
+        this.reloadBanner();
       },
       async handleRating(rate) {
         try {
@@ -91,12 +97,20 @@
             },
             seconds: 3,
           });
+        } finally {
+          this.reloadSection();
         }
+      },
+      reloadBanner() {
+        this.bannerKey += 1;
       },
     },
     computed: {
       appRatingString() {
         return this.app.rating.average ? this.app.rating.average.toString() : '0';
+      },
+      appRatingAverage() {
+        return this.app.rating.average || 0;
       },
       navigatorHistory() {
         return [
