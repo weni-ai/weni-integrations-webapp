@@ -4,6 +4,13 @@ jest.mock('@/api/appType', () => {
   };
 });
 
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';
@@ -109,6 +116,21 @@ describe('Config.vue', () => {
     expect(wrapper.vm.cssVars).toBeDefined();
   });
 
+  it('should return valid subtitle if enableSubtitle is true', async () => {
+    await wrapper.setData({ enableSubtitle: true, subtitle: 'text' });
+    expect(wrapper.vm.chatSubtitle).toEqual('text');
+  });
+
+  it('should return blank space subtitle if enableSubtitle is false', async () => {
+    await wrapper.setData({ enableSubtitle: false });
+    expect(wrapper.vm.chatSubtitle).toEqual(' ');
+  });
+
+  it('should return valid subtitle if enableSubtitle is true', async () => {
+    await wrapper.setData({ enableSubtitle: true, subtitle: 'text' });
+    expect(wrapper.vm.chatSubtitle).toEqual('text');
+  });
+
   it('should have default app defined', () => {
     const fn = jest.fn();
     wrapper.vm.app;
@@ -133,5 +155,31 @@ describe('Config.vue', () => {
     expect(actions.updateAppConfig).not.toHaveBeenCalled();
     await wrapper.vm.saveConfig();
     expect(actions.updateAppConfig).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call unnnicCallAlert on error', async () => {
+    actions.updateAppConfig.mockImplementation(() => {
+      throw new Error('error fetching');
+    });
+    expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+    await wrapper.vm.saveConfig();
+    expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call toggleChat on unreadCount watch if chat is open', async () => {
+    const spy = spyOn(wrapper.vm.$refs.simulator, 'toggleChat');
+    expect(spy).not.toHaveBeenCalled();
+    expect(wrapper.vm.$refs.simulator.isOpen).toBeTruthy();
+    await wrapper.setData({ displayUnreadCount: true });
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not call toggleChat on unreadCount watch if chat is open', async () => {
+    const spy = spyOn(wrapper.vm.$refs.simulator, 'toggleChat');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.$refs.simulator.isOpen = false;
+    expect(wrapper.vm.$refs.simulator.isOpen).toBeFalsy();
+    await wrapper.setData({ displayUnreadCount: true });
+    expect(spy).not.toHaveBeenCalled();
   });
 });

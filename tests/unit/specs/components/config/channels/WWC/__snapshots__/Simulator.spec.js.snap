@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Simulator.vue should be rendered properly 1`] = `
-<transition-stub name="fade">
-  <div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(null);">
+<div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(null);">
+  <transition-stub name="fade">
     <div class="wwc-simulator__content">
       <div class="wwc-simulator__content__header">
         <div class="wwc-simulator__content__header__icon-container">
@@ -17,6 +17,7 @@ exports[`Simulator.vue should be rendered properly 1`] = `
           </div>
         </div>
         <div class="wwc-simulator__content__header__button">
+          <!---->
           <unnniciconsvg-stub icon="close-1" size="sm" lineheight="sm" scheme="background-snow"></unnniciconsvg-stub>
         </div>
       </div>
@@ -74,11 +75,12 @@ exports[`Simulator.vue should be rendered properly 1`] = `
         </div>
       </div>
     </div>
-    <div class="wwc-simulator__button">
-      <div class="wwc-simulator__button__content">
-        <unnniciconsvg-stub icon="single-neutral-2" size="md" scheme="background-snow" class="wwc-simulator__button__content__icon"></unnniciconsvg-stub>
-      </div>
+  </transition-stub>
+  <div class="wwc-simulator__button">
+    <!---->
+    <div class="wwc-simulator__button__content">
+      <unnniciconsvg-stub icon="single-neutral-2" size="md" scheme="background-snow" class="wwc-simulator__button__content__icon"></unnniciconsvg-stub>
     </div>
   </div>
-</transition-stub>
+</div>
 `;

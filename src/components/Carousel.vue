@@ -1,6 +1,6 @@
 <template>
   <div class="carousel-container" v-if="!loading">
-    <vueper-slides :arrows="false" fixed-height="152px" :autoplay="true" :duration="6000">
+    <vueper-slides :arrows="false" fixed-height="152px" :autoplay="hasAutoPlay" :duration="6000">
       <vueper-slide
         v-for="(app, index) in apps"
         :key="index"
@@ -53,6 +53,11 @@
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'image_banner');
         return banner[0].url;
+      },
+    },
+    computed: {
+      hasAutoPlay() {
+        return this.apps.length > 1 ? true : false;
       },
     },
   };
@@ -121,11 +126,11 @@
     &__title {
       font-weight: $unnnic-font-weight-black;
       font-size: $unnnic-font-size-title-lg;
-      color: $unnnic-color-neutral-light;
+      color: $unnnic-color-neutral-cloudy;
     }
 
     &__content {
-      color: $unnnic-color-neutral-lightest;
+      color: $unnnic-color-neutral-cloudy;
       font-size: $unnnic-font-size-body-lg;
       line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
       margin-top: $unnnic-spacing-stack-nano;

@@ -36,4 +36,14 @@ describe('Carousel.vue', () => {
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should return true autoPlay if more than 1 app', async () => {
+    await wrapper.setData({ apps: [singleApp, singleApp] });
+    expect(wrapper.vm.hasAutoPlay).toBeTruthy();
+  });
+
+  it('should return true autoPlay if more than 1 app', async () => {
+    await wrapper.setData({ apps: [singleApp] });
+    expect(wrapper.vm.hasAutoPlay).toBeFalsy();
+  });
 });

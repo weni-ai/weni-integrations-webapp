@@ -22,6 +22,7 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import AppGrid from '@/components/AppGrid.vue';
+import addModal from '@/components/AddModal.vue';
 import ConfigModal from '@/components/ConfigModal.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../__mocks__/appMock';
@@ -98,6 +99,7 @@ describe('AppGrid.vue without mocked loadApps', () => {
         UnnnicModal: true,
         UnnnicCard: true,
         ConfigModal,
+        addModal,
       },
       propsData: {
         section: 'channel',
@@ -127,18 +129,6 @@ describe('AppGrid.vue without mocked loadApps', () => {
   it('shold return add icon', async () => {
     await wrapper.setProps({ type: 'edit' });
     expect(wrapper.vm.actionIcon).toEqual('pencil-write-1');
-  });
-
-  it('should change route to app on modal button action', async () => {
-    const spy = spyOn(wrapper.vm.$router, 'push');
-    const addModalNavigationButton = wrapper.findComponent({
-      ref: 'unnnic-add-modal-navigate-button',
-    });
-
-    await addModalNavigationButton.vm.$emit('click');
-
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('my');
   });
 
   it('should open App modal on trigger', async () => {
@@ -238,22 +228,6 @@ describe('AppGrid.vue without mocked loadApps', () => {
   });
 
   describe('addApp()', () => {
-    it('should set AddModal state as open', async () => {
-      expect(wrapper.vm.showAddModal).toBeFalsy();
-      await wrapper.vm.addApp();
-      expect(wrapper.vm.showAddModal).toBeTruthy();
-    });
-
-    it('should set AddModal state as closed on modal close', async () => {
-      const addModalComponent = wrapper.findComponent({ ref: 'unnnic-add-modal' });
-
-      await wrapper.vm.addApp();
-      expect(wrapper.vm.showAddModal).toBeTruthy();
-
-      await addModalComponent.vm.$emit('close');
-      expect(wrapper.vm.showAddModal).toBeFalsy();
-    });
-
     it('should call createApp method', async () => {
       expect(actions.createApp).not.toHaveBeenCalled();
       const code = 'code';
