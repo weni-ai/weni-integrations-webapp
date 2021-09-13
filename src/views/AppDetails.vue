@@ -25,7 +25,7 @@
     />
     <div class="app-details__section app-details__section__columns">
       <app-details-about :description="app.description" :links="appLinks" />
-      <app-details-recommended class="app-details__section__columns__recommended" />
+      <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
     </div>
     <app-details-comments :appCode="app.code" />
   </div>
@@ -36,7 +36,7 @@
   import AppImagesBanner from '../components/app/AppImagesBanner.vue';
   import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
   import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
-  import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
+  // import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../components/app/AppDetailsComments.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -49,7 +49,7 @@
       AppImagesBanner,
       AppDetailsHeader,
       AppDetailsAbout,
-      AppDetailsRecommended,
+      // AppDetailsRecommended,
       AppDetailsComments,
     },
     data() {
