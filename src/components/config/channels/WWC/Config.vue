@@ -166,6 +166,8 @@
       :title="title"
       :subtitle="chatSubtitle"
       :placeholder="inputTextFieldHint"
+      :showFullscreenButton="showFullscreenButton"
+      :displayUnreadCount="displayUnreadCount"
     />
   </div>
 </template>
@@ -202,6 +204,13 @@
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
       };
+    },
+    watch: {
+      displayUnreadCount: function (newDisplayUnreadCount) {
+        if (newDisplayUnreadCount && this.$refs.simulator.isOpen) {
+          this.$refs.simulator.toggleChat();
+        }
+      },
     },
     computed: {
       configTabs() {
@@ -474,7 +483,7 @@
       bottom: 0;
       right: 50%;
       max-width: 293px;
-      max-height: 461px;
+      height: auto;
       margin-right: 10px;
       margin-bottom: 25px;
     }
