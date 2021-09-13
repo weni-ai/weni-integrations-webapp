@@ -10,6 +10,7 @@ jest.mock('@/api/appType', () => {
     createApp: jest.fn(),
     fetchFeatured: jest.fn(),
     updateAppConfig: jest.fn(),
+    deleteApp: jest.fn(),
   };
 });
 
@@ -146,6 +147,17 @@ describe('store/appType/actions.js', () => {
         data.appUuid,
         data.payload,
       );
+    });
+
+    it('should call appType.deleteApp', async () => {
+      expect(appTypeApi.deleteApp).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+      };
+      await actions.deleteApp({}, data);
+      expect(appTypeApi.deleteApp).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.deleteApp).toHaveBeenCalledWith(data.code, data.appUuid);
     });
   });
 });

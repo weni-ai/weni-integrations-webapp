@@ -154,6 +154,7 @@
             return 'cog-1';
           case 'edit':
             return 'pencil-write-1';
+          /* istanbul ignore next */
           default:
             return null;
         }
