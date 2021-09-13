@@ -164,8 +164,10 @@
       :avatar="simulatorAvatar"
       :mainColor="mainColor"
       :title="title"
-      :subtitle="subtitle"
+      :subtitle="chatSubtitle"
       :placeholder="inputTextFieldHint"
+      :showFullscreenButton="showFullscreenButton"
+      :displayUnreadCount="displayUnreadCount"
     />
   </div>
 </template>
@@ -204,6 +206,13 @@
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
       };
     },
+    watch: {
+      displayUnreadCount: function (newDisplayUnreadCount) {
+        if (newDisplayUnreadCount && this.$refs.simulator.isOpen) {
+          this.$refs.simulator.toggleChat();
+        }
+      },
+    },
     computed: {
       configTabs() {
         return ['settings', 'script'];
@@ -212,6 +221,9 @@
         return {
           '--config-bg-color': this.app.bg_color,
         };
+      },
+      chatSubtitle() {
+        return this.enableSubtitle ? this.subtitle : ' ';
       },
       scriptCode() {
         const a = `
@@ -260,13 +272,14 @@
         this.timeBetweenMessages = parseInt(value);
       },
       async saveConfig() {
+        /* istanbul ignore next */
         const data = removeEmpty({
           code: this.app.code,
           appUuid: this.app.uuid,
           payload: {
             config: {
               title: this.title,
-              subtitle: this.subtitle,
+              subtitle: this.enableSubtitle ? this.subtitle : null,
               inputTextFieldHint: this.inputTextFieldHint,
               showFullscreenButton: this.showFullscreenButton,
               displayUnreadCount: this.displayUnreadCount,
@@ -496,7 +509,7 @@
       bottom: 0;
       right: 50%;
       max-width: 293px;
-      max-height: 461px;
+      height: auto;
       margin-right: 10px;
       margin-bottom: 25px;
     }
