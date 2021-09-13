@@ -172,6 +172,7 @@
 
 <script>
   import { mapActions } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
   import FileUpload from '../../../FileUpload.vue';
   import ColorPicker from '../../../ColorPicker.vue';
   import wwcSimulator from './Simulator.vue';
@@ -214,7 +215,7 @@
       },
       scriptCode() {
         const a = `
-          <script> 
+          <script>
             (function (d, s, u) {
               let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
               k.onload = function () {
@@ -285,7 +286,32 @@
         ) {
           delete data.payload.config.avatarImage;
         }
-        await this.updateAppConfig(data);
+        try {
+          await this.updateAppConfig(data);
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.config.integration_success'),
+              title: 'Success',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        }
       },
     },
   };

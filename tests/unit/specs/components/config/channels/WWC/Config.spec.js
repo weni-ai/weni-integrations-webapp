@@ -4,6 +4,13 @@ jest.mock('@/api/appType', () => {
   };
 });
 
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';
@@ -133,5 +140,14 @@ describe('Config.vue', () => {
     expect(actions.updateAppConfig).not.toHaveBeenCalled();
     await wrapper.vm.saveConfig();
     expect(actions.updateAppConfig).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call unnnicCallAlert on error', async () => {
+    actions.updateAppConfig.mockImplementation(() => {
+      throw new Error('error fetching');
+    });
+    expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+    await wrapper.vm.saveConfig();
+    expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
   });
 });
