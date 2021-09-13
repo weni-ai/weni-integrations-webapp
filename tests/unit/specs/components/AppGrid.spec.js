@@ -7,6 +7,7 @@ jest.mock('@/api/appType', () => {
     deleteComment: jest.fn(),
     updateComment: jest.fn(),
     createApp: jest.fn(),
+    deleteApp: jest.fn(),
   };
 });
 
@@ -21,6 +22,7 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import AppGrid from '@/components/AppGrid.vue';
+import addModal from '@/components/AddModal.vue';
 import ConfigModal from '@/components/ConfigModal.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../__mocks__/appMock';
@@ -64,6 +66,7 @@ describe('AppGrid.vue without mocked loadApps', () => {
         return { data: [singleApp] };
       }),
       createApp: jest.fn(() => {}),
+      deleteApp: jest.fn(() => {}),
       getConfiguredApps: jest.fn(() => {
         return { data: [singleApp] };
       }),
@@ -96,6 +99,7 @@ describe('AppGrid.vue without mocked loadApps', () => {
         UnnnicModal: true,
         UnnnicCard: true,
         ConfigModal,
+        addModal,
       },
       propsData: {
         section: 'channel',
@@ -112,16 +116,19 @@ describe('AppGrid.vue without mocked loadApps', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should change route to app on modal button action', async () => {
-    const spy = spyOn(wrapper.vm.$router, 'push');
-    const addModalNavigationButton = wrapper.findComponent({
-      ref: 'unnnic-add-modal-navigate-button',
-    });
+  it('shold return add icon', async () => {
+    await wrapper.setProps({ type: 'add' });
+    expect(wrapper.vm.actionIcon).toEqual('add-1');
+  });
 
-    await addModalNavigationButton.vm.$emit('click');
+  it('shold return config icon', async () => {
+    await wrapper.setProps({ type: 'config' });
+    expect(wrapper.vm.actionIcon).toEqual('cog-1');
+  });
 
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith('my');
+  it('shold return add icon', async () => {
+    await wrapper.setProps({ type: 'edit' });
+    expect(wrapper.vm.actionIcon).toEqual('pencil-write-1');
   });
 
   it('should open App modal on trigger', async () => {
@@ -220,34 +227,18 @@ describe('AppGrid.vue without mocked loadApps', () => {
     });
   });
 
-  describe('openAddModal()', () => {
-    it('should set AddModal state as open', async () => {
-      expect(wrapper.vm.showAddModal).toBeFalsy();
-      await wrapper.vm.openAddModal();
-      expect(wrapper.vm.showAddModal).toBeTruthy();
-    });
-
-    it('should set AddModal state as closed on modal close', async () => {
-      const addModalComponent = wrapper.findComponent({ ref: 'unnnic-add-modal' });
-
-      await wrapper.vm.openAddModal();
-      expect(wrapper.vm.showAddModal).toBeTruthy();
-
-      await addModalComponent.vm.$emit('close');
-      expect(wrapper.vm.showAddModal).toBeFalsy();
-    });
-
+  describe('addApp()', () => {
     it('should call createApp method', async () => {
       expect(actions.createApp).not.toHaveBeenCalled();
       const code = 'code';
-      await wrapper.vm.openAddModal(code);
+      await wrapper.vm.addApp(code);
       expect(actions.createApp).toHaveBeenCalledTimes(1);
     });
 
     it('should call getSelectedProject getter', async () => {
       expect(getters.getSelectedProject).not.toHaveBeenCalled();
       const code = 'code';
-      await wrapper.vm.openAddModal(code);
+      await wrapper.vm.addApp(code);
       expect(getters.getSelectedProject).toHaveBeenCalledTimes(1);
     });
 
@@ -257,7 +248,61 @@ describe('AppGrid.vue without mocked loadApps', () => {
       });
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       const code = 'code';
-      await wrapper.vm.openAddModal(code);
+      await wrapper.vm.addApp(code);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('removeApp()', () => {
+    it('should set RemoveModal state as open', async () => {
+      expect(wrapper.vm.showRemoveModal).toBeFalsy();
+      await wrapper.vm.removeApp();
+      expect(wrapper.vm.showRemoveModal).toBeTruthy();
+    });
+
+    it('should set RemoveModal state as closed on modal close', async () => {
+      const removeModalComponent = wrapper.findComponent({ ref: 'unnnic-remove-modal' });
+
+      await wrapper.vm.removeApp();
+      expect(wrapper.vm.showRemoveModal).toBeTruthy();
+
+      await removeModalComponent.vm.$emit('close');
+      expect(wrapper.vm.showRemoveModal).toBeFalsy();
+    });
+
+    it('should call deleteApp method', async () => {
+      expect(actions.deleteApp).not.toHaveBeenCalled();
+      const code = 'code';
+      const appUuid = '123';
+      await wrapper.vm.removeApp(code, appUuid);
+      expect(actions.deleteApp).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call toggleRemoveModal', async () => {
+      const spy = spyOn(wrapper.vm, 'toggleRemoveModal');
+      expect(spy).not.toHaveBeenCalled();
+      const code = 'code';
+      const appUuid = '123';
+      await wrapper.vm.removeApp(code, appUuid);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call unnnicCallAlert on success', async () => {
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      const code = 'code';
+      const appUuid = '123';
+      await wrapper.vm.removeApp(code, appUuid);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      actions.deleteApp.mockImplementation(() => {
+        throw new Error('error fetching');
+      });
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      const code = 'code';
+      const appUuid = '123';
+      await wrapper.vm.removeApp(code, appUuid);
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
   });

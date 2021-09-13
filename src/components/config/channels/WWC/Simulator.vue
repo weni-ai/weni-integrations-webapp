@@ -1,7 +1,7 @@
 <template>
-  <transition name="fade">
-    <div v-if="isOpen" class="wwc-simulator" :style="cssVars">
-      <div class="wwc-simulator__content">
+  <div class="wwc-simulator" :style="cssVars">
+    <transition name="fade">
+      <div v-if="isOpen" class="wwc-simulator__content">
         <div class="wwc-simulator__content__header">
           <div v-if="!avatar" class="wwc-simulator__content__header__icon-container">
             <unnnic-icon-svg
@@ -21,6 +21,13 @@
             </div>
           </div>
           <div class="wwc-simulator__content__header__button">
+            <unnnic-icon-svg
+              v-if="showFullscreenButton"
+              icon="expand-full-1"
+              size="sm"
+              lineHeight="sm"
+              scheme="background-snow"
+            />
             <unnnic-icon-svg icon="close-1" size="sm" lineHeight="sm" scheme="background-snow" />
           </div>
         </div>
@@ -79,24 +86,23 @@
           </div>
         </div>
       </div>
-      <div class="wwc-simulator__button">
-        <div v-if="!avatar" class="wwc-simulator__button__content">
-          <unnnic-icon-svg
-            :class="`wwc-simulator__button__content__icon`"
-            :icon="'single-neutral-2'"
-            size="md"
-            scheme="background-snow"
-          />
-        </div>
-        <div v-else class="wwc-simulator__button__custom-icon" />
+    </transition>
+    <div class="wwc-simulator__button" @click="toggleChat">
+      <div v-if="displayUnreadCount" class="wwc-simulator__button__unread">{{ 2 }}</div>
+      <div v-if="!avatar" class="wwc-simulator__button__content">
+        <unnnic-icon-svg
+          :class="`wwc-simulator__button__content__icon`"
+          :icon="'single-neutral-2'"
+          size="md"
+          scheme="background-snow"
+        />
       </div>
+      <div v-else class="wwc-simulator__button__custom-icon" />
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
-  // import i18n from '../../../../utils/plugins/i18n';
-
   export default {
     name: 'wwcSimulator',
     props: {
@@ -125,6 +131,14 @@
         default: function () {
           this.$t('weniWebChat.simulator.chatPlaceholder');
         },
+      },
+      showFullscreenButton: {
+        type: Boolean,
+        default: false,
+      },
+      displayUnreadCount: {
+        type: Boolean,
+        default: false,
       },
     },
     data() {
@@ -260,6 +274,7 @@
           display: flex;
           align-items: center;
           margin-right: $unnnic-inline-sm;
+          gap: $unnnic-spacing-inset-nano;
         }
       }
 
@@ -389,6 +404,21 @@
         width: 48px;
         height: 48px;
         margin: 0;
+      }
+
+      &__unread {
+        z-index: 1;
+
+        color: $unnnic-color-background-snow;
+        background-color: var(--main-color);
+
+        margin-right: -$unnnic-spacing-inline-xs;
+        height: $unnnic-icon-size-sm;
+        width: $unnnic-icon-size-sm;
+        border-radius: $unnnic-border-radius-pill;
+
+        font-size: $unnnic-font-size-body-md;
+        text-align: center;
       }
     }
   }

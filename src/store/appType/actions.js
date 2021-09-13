@@ -33,6 +33,10 @@ export default {
     return await appType.createApp(code, payload);
   },
 
+  async deleteApp(store, { code, appUuid }) {
+    return await appType.deleteApp(code, appUuid);
+  },
+
   async fetchFeatured() {
     return await appType.fetchFeatured();
   },

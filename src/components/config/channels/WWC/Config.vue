@@ -164,14 +164,17 @@
       :avatar="simulatorAvatar"
       :mainColor="mainColor"
       :title="title"
-      :subtitle="subtitle"
+      :subtitle="chatSubtitle"
       :placeholder="inputTextFieldHint"
+      :showFullscreenButton="showFullscreenButton"
+      :displayUnreadCount="displayUnreadCount"
     />
   </div>
 </template>
 
 <script>
   import { mapActions } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
   import FileUpload from '../../../FileUpload.vue';
   import ColorPicker from '../../../ColorPicker.vue';
   import wwcSimulator from './Simulator.vue';
@@ -203,6 +206,13 @@
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
       };
     },
+    watch: {
+      displayUnreadCount: function (newDisplayUnreadCount) {
+        if (newDisplayUnreadCount && this.$refs.simulator.isOpen) {
+          this.$refs.simulator.toggleChat();
+        }
+      },
+    },
     computed: {
       configTabs() {
         return ['settings', 'script'];
@@ -212,9 +222,12 @@
           '--config-bg-color': this.app.bg_color,
         };
       },
+      chatSubtitle() {
+        return this.enableSubtitle ? this.subtitle : ' ';
+      },
       scriptCode() {
         const a = `
-          <script> 
+          <script>
             (function (d, s, u) {
               let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
               k.onload = function () {
@@ -259,13 +272,14 @@
         this.timeBetweenMessages = parseInt(value);
       },
       async saveConfig() {
+        /* istanbul ignore next */
         const data = removeEmpty({
           code: this.app.code,
           appUuid: this.app.uuid,
           payload: {
             config: {
               title: this.title,
-              subtitle: this.subtitle,
+              subtitle: this.enableSubtitle ? this.subtitle : null,
               inputTextFieldHint: this.inputTextFieldHint,
               showFullscreenButton: this.showFullscreenButton,
               displayUnreadCount: this.displayUnreadCount,
@@ -285,7 +299,32 @@
         ) {
           delete data.payload.config.avatarImage;
         }
-        await this.updateAppConfig(data);
+        try {
+          await this.updateAppConfig(data);
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.config.integration_success'),
+              title: 'Success',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('close'),
+            },
+            seconds: 3,
+          });
+        }
       },
     },
   };
@@ -470,7 +509,7 @@
       bottom: 0;
       right: 50%;
       max-width: 293px;
-      max-height: 461px;
+      height: auto;
       margin-right: 10px;
       margin-bottom: 25px;
     }

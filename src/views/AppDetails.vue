@@ -8,8 +8,10 @@
       :description="app.summary"
       :icon="app.icon"
       :iconbgColor="app.bg_color"
+      :appCode="app.code"
     />
     <unnnic-banner
+      :key="bannerKey"
       type="info"
       :firstTitle="$t('apps.details.info')"
       :firstDescription="appMetrics"
@@ -18,12 +20,12 @@
       :subtitle="$t('apps.details.organizations')"
       :thirdTitle="$t('apps.details.rating')"
       :thirdDescription="appRatingString"
-      :rating="app.rating.average || 0"
+      :rating="appRatingAverage"
       @ratingAction="handleRating"
     />
     <div class="app-details__section app-details__section__columns">
       <app-details-about :description="app.description" :links="appLinks" />
-      <app-details-recommended class="app-details__section__columns__recommended" />
+      <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
     </div>
     <app-details-comments :appCode="app.code" />
   </div>
@@ -34,7 +36,7 @@
   import AppImagesBanner from '../components/app/AppImagesBanner.vue';
   import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
   import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
-  import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
+  // import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../components/app/AppDetailsComments.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -48,13 +50,14 @@
       AppImagesBanner,
       AppDetailsHeader,
       AppDetailsAbout,
-      AppDetailsRecommended,
+      // AppDetailsRecommended,
       AppDetailsComments,
     },
     data() {
       return {
         loading: true,
         app: null,
+        bannerKey: 0,
       };
     },
     watch: {
@@ -69,6 +72,10 @@
         const { data } = await this.getAppType(appCode);
         this.app = data;
         this.loading = false;
+      },
+      async reloadSection() {
+        await this.fetchApp(this.$route.params.appCode);
+        this.reloadBanner();
       },
       async handleRating(rate) {
         try {
@@ -91,12 +98,20 @@
             },
             seconds: 3,
           });
+        } finally {
+          this.reloadSection();
         }
+      },
+      reloadBanner() {
+        this.bannerKey += 1;
       },
     },
     computed: {
       appRatingString() {
         return this.app.rating.average ? this.app.rating.average.toString() : '0';
+      },
+      appRatingAverage() {
+        return this.app.rating.average || 0;
       },
       navigatorHistory() {
         return [

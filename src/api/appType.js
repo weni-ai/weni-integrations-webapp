@@ -28,6 +28,9 @@ export default {
   createApp(appCode, data) {
     return request.$http.post(`${resource}/${appCode}/apps/`, data);
   },
+  deleteApp(appCode, appUuid) {
+    return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/`);
+  },
   fetchFeatured() {
     return request.$http.get(`${resource}/featureds/`);
   },

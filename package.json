@@ -9,7 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@weni/unnnic-system": "^1.1.33",
+    "@weni/unnnic-system": "^1.1.46",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "global": "^4.4.0",
