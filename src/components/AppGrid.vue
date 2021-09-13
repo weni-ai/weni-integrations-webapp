@@ -25,32 +25,7 @@
       </div>
     </section>
 
-    <unnnic-modal
-      ref="unnnic-add-modal"
-      :showModal="showAddModal"
-      :text="$t('apps.details.actions.installed.title')"
-      scheme="feedback-green"
-      modal-icon="check-circle-1-1"
-      @close="closeAddModal"
-    >
-      <span slot="message" v-html="$t('apps.details.actions.installed.description')"></span>
-      <unnnic-button
-        ref="unnnic-add-modal-close-button"
-        slot="options"
-        type="terciary"
-        @click="closeAddModal"
-        >{{ $t('general.Close') }}</unnnic-button
-      >
-      <unnnic-button
-        ref="unnnic-add-modal-navigate-button"
-        slot="options"
-        type="primary"
-        @click="navigateToMyApps()"
-      >
-        {{ $t('apps.details.actions.installed.access_my_apps') }}
-      </unnnic-button>
-    </unnnic-modal>
-
+    <add-modal ref="addModal" />
     <config-modal ref="configModal" />
   </div>
 </template>
@@ -58,11 +33,12 @@
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from '../components/ConfigModal.vue';
+  import addModal from '../components/AddModal.vue';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'AppGrid',
-    components: { configModal },
+    components: { configModal, addModal },
     props: {
       section: {
         type: String,
@@ -131,7 +107,7 @@
             project_uuid: this.getSelectedProject,
           };
           await this.createApp({ code, payload });
-          this.showAddModal = true;
+          this.$refs.addModal.toggleModal();
         } catch (error) {
           unnnicCallAlert({
             props: {
@@ -145,12 +121,6 @@
             seconds: 3,
           });
         }
-      },
-      closeAddModal() {
-        this.showAddModal = false;
-      },
-      navigateToMyApps() {
-        this.$router.push('my');
       },
       openAppModal(app) {
         if (this.type === 'add') {
