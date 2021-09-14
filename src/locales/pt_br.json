@@ -22,6 +22,8 @@
       "integrated_into": "Integrado em",
       "organizations": "organizações",
       "rating": "Avaliação",
+      "status_error": "Não foi possível completar a ação, tente novamente",
+      "status_success": "Sucesso",
       "navigator": {
         "discovery": "Descoberta"
       },
@@ -50,8 +52,17 @@
           "title": "Aplicativo adicionado!",
           "description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
           "access_my_apps": "Acessar meus aplicativos"
+        },
+        "remove": {
+          "title": "Remover Aplicativo",
+          "description": "Você realmente deseja remover esse Aplicativo? Isso não pode ser desfeito.",
+          "remove": "Remover Aplicativo",
+          "status_text": "Aplicativo removido com sucesso"
         }
       }
+    },
+    "config": {
+      "integration_success": "Aplicação instalada com sucesso!"
     }
   },
 

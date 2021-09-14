@@ -60,6 +60,9 @@
           "status_text": "Successfully removed the Application"
         }
       }
+    },
+    "config": {
+      "integration_success": "Successfully installed application"
     }
   },
 
