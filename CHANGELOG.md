@@ -1,3 +1,23 @@
+0.1.5
+----------
+`2021-09-13 ·  6 🐛 · 2 🎉 ·  1 🚀`
+
+### 🐛 Bug fixes
+- Fix: Added millify to get human-readable metrics
+- Fix: Update rating after action
+- Fix: Banner autoplay and text color
+- Fix: Simulator behaviors
+- Fix: Hide recommended section
+- Fix: Custom css being not being sent as null by default
+
+### 🎉 New features
+- Feat: Delete and Edit dropdown
+- Feat: Notification alert on save config action with success or error
+
+### 🚀 Improvements
+- Improve: Add modal as component 
+
+
 0.1.4
 ----------
 `2021-09-08 ·  2 🐛 · 2 🎉 ·  1 🚀`
