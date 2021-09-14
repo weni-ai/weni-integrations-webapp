@@ -261,6 +261,10 @@
           color: $unnnic-color-neutral-dark;
         }
         &__button {
+          &--add {
+            height: fit-content;
+          }
+
           &--remove {
             display: inline-block;
             width: max-content;
