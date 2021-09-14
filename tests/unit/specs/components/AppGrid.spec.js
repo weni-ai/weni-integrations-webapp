@@ -116,6 +116,13 @@ describe('AppGrid.vue without mocked loadApps', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should call loadApps on updateGrid event', () => {
+    const spy = spyOn(wrapper.vm, 'loadApps');
+    expect(spy).toHaveBeenCalledTimes(0);
+    wrapper.vm.$root.$emit('updateGrid');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('shold return add icon', async () => {
     await wrapper.setProps({ type: 'add' });
     expect(wrapper.vm.actionIcon).toEqual('add-1');
