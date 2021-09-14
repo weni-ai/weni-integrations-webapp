@@ -10,7 +10,7 @@
           v-for="(app, index) in apps"
           v-bind:key="index"
           type="marketplace"
-          :title="app.name"
+          :title="appName(app)"
           :description="$t(app.summary)"
           :icon="app.icon"
           :id="app.id"
@@ -235,6 +235,9 @@
       },
       appRatingAverage(app) {
         return app.rating ? (app.rating.average ? app.rating.average : 0) : 0;
+      },
+      appName(app) {
+        return `${app.name}${this.type === 'edit' ? ' - ' + app.config.title : ''}`;
       },
     },
   };
