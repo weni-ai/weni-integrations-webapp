@@ -337,8 +337,7 @@
     height: -webkit-fill-available;
     height: -moz-available;
     padding: $unnnic-spacing-stack-lg;
-    // min-height: 0;
-    // overflow-y: hidden;
+
     &__header {
       display: flex;
       margin-bottom: $unnnic-spacing-stack-sm;
