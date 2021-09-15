@@ -334,8 +334,11 @@
   .app-config-wwc {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    margin: $unnnic-spacing-stack-lg;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    padding: $unnnic-spacing-stack-lg;
+    // min-height: 0;
+    // overflow-y: hidden;
     &__header {
       display: flex;
       margin-bottom: $unnnic-spacing-stack-sm;
@@ -369,23 +372,25 @@
     &__tabs {
       display: flex;
       flex-direction: column;
-      flex: 1;
-      max-height: 95%;
+      height: -webkit-fill-available;
+      height: -moz-available;
+      overflow-y: hidden;
 
       ::v-deep .tab-body {
         display: flex;
-        flex: 1;
-        height: 100%;
+        height: -webkit-fill-available;
+        height: -moz-available;
+        overflow-y: auto;
       }
       ::v-deep .tab-panel {
-        flex-direction: column;
-        display: flex;
-        flex: 1;
+        width: -webkit-fill-available;
+        width: -moz-available;
       }
       &__settings-content {
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
+
         &__input {
           margin-top: $unnnic-spacing-stack-xs;
 
@@ -466,10 +471,9 @@
         }
 
         &__buttons {
+          padding-right: $unnnic-spacing-inline-xs;
           margin-top: $unnnic-spacing-stack-sm;
           display: flex;
-          justify-content: space-between;
-          align-content: flex-end;
 
           &__cancel,
           &__save {
