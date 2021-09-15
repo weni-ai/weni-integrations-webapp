@@ -412,7 +412,7 @@
           justify-content: space-between;
           flex-wrap: wrap;
           gap: $unnnic-inline-sm;
-          margin-top: $unnnic-spacing-stack-md;
+          margin-top: $unnnic-spacing-stack-sm;
 
           &__content {
             flex-grow: 1;
