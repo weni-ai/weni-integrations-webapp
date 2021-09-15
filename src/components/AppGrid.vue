@@ -117,6 +117,10 @@
     },
     async mounted() {
       await this.loadApps();
+
+      this.$root.$on('updateGrid', async () => {
+        await this.loadApps();
+      });
     },
     computed: {
       ...mapGetters({

@@ -324,6 +324,8 @@
             },
             seconds: 3,
           });
+        } finally {
+          this.$root.$emit('updateGrid');
         }
       },
     },
