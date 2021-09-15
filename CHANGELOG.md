@@ -1,3 +1,15 @@
+0.1.6
+----------
+`2021-09-15 · 1 🐛 · 2 🎉`
+
+### 🐛 Bug fixes 
+- Fix: Add button height  
+
+### 🎉 New features
+- Feat: UpdateGrid event
+- Feat: App title on edit card
+
+
 0.1.5
 ----------
 `2021-09-13 ·  6 🐛 · 2 🎉 ·  1 🚀`
