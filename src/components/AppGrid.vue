@@ -1,7 +1,10 @@
 <template>
   <div>
     <section v-if="!loading" id="app-grid">
-      <p class="app-grid__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
+      <div class="app-grid__header">
+        <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
+        <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
+      </div>
 
       <div class="app-grid__content">
         <unnnic-card
@@ -129,6 +132,20 @@
       ...mapGetters({
         getSelectedProject: 'getSelectedProject',
       }),
+      sectionIcon() {
+        switch (this.section) {
+          case 'channel':
+            return { icon: 'messages-bubble-1', scheme: 'aux-purple' };
+          case 'ticket':
+            return { icon: 'messaging-we-chat-3', scheme: 'aux-blue' };
+          case 'configured':
+            return { icon: 'cog-1', scheme: 'aux-purple' };
+          case 'installed':
+            return { icon: 'check-circle-1-1', scheme: 'aux-blue' };
+        }
+        /* istanbul ignore next */
+        return null;
+      },
       actionIcon() {
         switch (this.type) {
           case 'add':
@@ -268,9 +285,15 @@
 
 <style lang="scss" scoped>
   .app-grid {
-    &__title {
-      color: $unnnic-color-neutral-darkest;
-      font-size: $unnnic-font-size-title-sm;
+    &__header {
+      display: flex;
+      gap: $unnnic-spacing-inline-nano;
+      align-items: center;
+
+      &__title {
+        color: $unnnic-color-neutral-darkest;
+        font-size: $unnnic-font-size-title-sm;
+      }
     }
 
     &__content {
