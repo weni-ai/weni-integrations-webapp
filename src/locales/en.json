@@ -62,7 +62,7 @@
       }
     },
     "config": {
-      "integration_success": "Successfully installed application"
+      "integration_success": "Successfully updated application"
     }
   },
 

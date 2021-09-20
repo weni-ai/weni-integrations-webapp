@@ -124,7 +124,7 @@
                 icon: 'check-circle-1-1',
                 scheme: 'feedback-red',
                 position: 'bottom-right',
-                closeText: this.$t('close'),
+                closeText: this.$t('general.Close'),
               },
               seconds: 3,
             });
@@ -149,7 +149,7 @@
               icon: 'check-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
-              closeText: this.$t('close'),
+              closeText: this.$t('general.Close'),
             },
             seconds: 3,
           });
