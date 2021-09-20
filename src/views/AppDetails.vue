@@ -1,33 +1,37 @@
 <template>
-  <div class="app-details" v-if="!loading">
-    <navigator class="app-details__navigator" :routes="navigatorHistory" />
-    <app-images-banner class="app-details__section" :images="app.banners" />
-    <app-details-header
-      class="app-details__section"
-      :title="app.name"
-      :description="app.summary"
-      :icon="app.icon"
-      :iconbgColor="app.bg_color"
-      :appCode="app.code"
-    />
-    <unnnic-banner
-      :key="bannerKey"
-      type="info"
-      :firstTitle="$t('apps.details.info')"
-      :firstDescription="appMetrics"
-      :secondTitle="$t('apps.details.integrated_into')"
-      :secondDescription="appIntegrationsCount"
-      :subtitle="$t('apps.details.organizations')"
-      :thirdTitle="$t('apps.details.rating')"
-      :thirdDescription="appRatingString"
-      :rating="appRatingAverage"
-      @ratingAction="handleRating"
-    />
-    <div class="app-details__section app-details__section__columns">
-      <app-details-about :description="app.description" :links="appLinks" />
-      <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
+  <div>
+    <navigator class="navigator" :routes="navigatorHistory" />
+
+    <div class="app-details" v-if="!loading">
+      <app-images-banner class="app-details__section" :images="app.banners" />
+      <app-details-header
+        class="app-details__section"
+        :title="app.name"
+        :description="app.summary"
+        :icon="app.icon"
+        :iconbgColor="app.bg_color"
+        :appCode="app.code"
+      />
+      <unnnic-banner
+        :key="bannerKey"
+        type="info"
+        :firstTitle="$t('apps.details.info')"
+        :firstDescription="appMetrics"
+        :secondTitle="$t('apps.details.integrated_into')"
+        :secondDescription="appIntegrationsCount"
+        :subtitle="$t('apps.details.organizations')"
+        :thirdTitle="$t('apps.details.rating')"
+        :thirdDescription="appRatingString"
+        :rating="appRatingAverage"
+        @ratingAction="handleRating"
+      />
+      <div class="app-details__section app-details__section__columns">
+        <app-details-about :description="app.description" :links="appLinks" />
+        <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
+      </div>
+      <app-details-comments :appCode="app.code" />
     </div>
-    <app-details-comments :appCode="app.code" />
+    <skeleton-loading v-else />
   </div>
 </template>
 
@@ -38,6 +42,7 @@
   import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
   // import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../components/app/AppDetailsComments.vue';
+  import skeletonLoading from './loadings/AppDetails.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   import { mapActions } from 'vuex';
@@ -52,6 +57,7 @@
       AppDetailsAbout,
       // AppDetailsRecommended,
       AppDetailsComments,
+      skeletonLoading,
     },
     data() {
       return {
@@ -94,7 +100,7 @@
               icon: 'check-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
-              closeText: this.$t('close'),
+              closeText: this.$t('general.Close'),
             },
             seconds: 3,
           });
@@ -114,16 +120,19 @@
         return this.app.rating.average || 0;
       },
       navigatorHistory() {
-        return [
+        let history = [
           {
             name: this.$t('apps.details.navigator.discovery'),
             path: '/apps/discovery',
           },
-          {
+        ];
+        if (this.app) {
+          history.push({
             name: this.app.name,
             path: '',
-          },
-        ];
+          });
+        }
+        return history;
       },
       appLinks() {
         const links = this.app.assets.filter((asset) => asset.type === 'link');
