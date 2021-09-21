@@ -64,9 +64,7 @@
       z-index: 1;
     }
     &__dialog {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      height: 100vh;
       width: 50%;
       background-color: $unnnic-color-background-snow;
       margin: 0 50%;
