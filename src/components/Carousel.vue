@@ -117,6 +117,8 @@
   }
 
   .vueperslide {
+    background-position: right;
+
     &__content-wrapper {
       text-align: left !important;
       align-items: start !important;
