@@ -3,6 +3,5 @@
 exports[`Discovery.vue should be rendered properly 1`] = `
 <div>
   <app-grid-stub section="channel" type="add"></app-grid-stub>
-  <app-grid-stub section="ticket" type="add"></app-grid-stub>
 </div>
 `;

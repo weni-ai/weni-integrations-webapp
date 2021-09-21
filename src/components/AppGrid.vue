@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section id="app-grid">
+    <section v-if="!loading" id="app-grid">
       <p class="app-grid__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
 
       <div class="app-grid__content">
@@ -50,6 +50,7 @@
         </unnnic-card>
       </div>
     </section>
+    <skeleton-loading v-else />
 
     <unnnic-modal
       ref="unnnic-remove-modal"
@@ -87,11 +88,12 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from '../components/ConfigModal.vue';
   import addModal from '../components/AddModal.vue';
+  import skeletonLoading from './loadings/AppGrid.vue';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'AppGrid',
-    components: { configModal, addModal },
+    components: { configModal, addModal, skeletonLoading },
     props: {
       section: {
         type: String,
@@ -109,6 +111,7 @@
     },
     data() {
       return {
+        loading: true,
         showAddModal: false,
         showRemoveModal: false,
         currentRemoval: null,
@@ -150,29 +153,45 @@
         'deleteApp',
       ]),
       async loadApps() {
-        switch (this.type) {
-          case 'add': {
-            const filter = { category: this.section };
-            const { data } = await this.getAllAppTypes(filter);
-            this.apps = data;
-            break;
+        this.loading = true;
+        try {
+          switch (this.type) {
+            case 'add': {
+              const filter = { category: this.section };
+              const { data } = await this.getAllAppTypes(filter);
+              this.apps = data;
+              break;
+            }
+            case 'config': {
+              const params = {
+                project_uuid: this.getSelectedProject,
+              };
+              const { data } = await this.getInstalledApps({ params });
+              this.apps = data;
+              break;
+            }
+            case 'edit': {
+              const params = {
+                project_uuid: this.getSelectedProject,
+              };
+              const { data } = await this.getConfiguredApps({ params });
+              this.apps = data;
+              break;
+            }
           }
-          case 'config': {
-            const params = {
-              project_uuid: this.getSelectedProject,
-            };
-            const { data } = await this.getInstalledApps({ params });
-            this.apps = data;
-            break;
-          }
-          case 'edit': {
-            const params = {
-              project_uuid: this.getSelectedProject,
-            };
-            const { data } = await this.getConfiguredApps({ params });
-            this.apps = data;
-            break;
-          }
+          this.loading = false;
+        } catch (e) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.grid.status_error'),
+              title: 'Error',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
         }
       },
       async addApp(code) {
@@ -190,7 +209,7 @@
               icon: 'check-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
-              closeText: this.$t('close'),
+              closeText: this.$t('general.Close'),
             },
             seconds: 3,
           });
@@ -211,7 +230,7 @@
               icon: 'check-circle-1-1',
               scheme: 'feedback-green',
               position: 'bottom-right',
-              closeText: this.$t('close'),
+              closeText: this.$t('general.Close'),
             },
             seconds: 3,
           });
@@ -224,7 +243,7 @@
               icon: 'alert-circle-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
-              closeText: this.$t('close'),
+              closeText: this.$t('general.Close'),
             },
             seconds: 3,
           });

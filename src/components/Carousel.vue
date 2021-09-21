@@ -24,16 +24,18 @@
       </template>
     </vueper-slides>
   </div>
+  <skeleton-loading v-else />
 </template>
 
 <script>
+  import skeletonLoading from './loadings/Carousel.vue';
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
   import { mapActions } from 'vuex';
 
   export default {
     name: 'Carousel',
-    components: { VueperSlides, VueperSlide },
+    components: { VueperSlides, VueperSlide, skeletonLoading },
     data() {
       return {
         loading: true,
