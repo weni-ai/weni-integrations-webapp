@@ -4,6 +4,7 @@
 
 ### 🐛 Bug fixes
 - Fix: Carousel image position
+- Fix: Config modal responsiveness
 
 ### 🎉 New features
 - Feat: Loading screens
