@@ -98,6 +98,7 @@ describe('AppGrid.vue without mocked loadApps', () => {
         UnnnicButton: true,
         UnnnicModal: true,
         UnnnicCard: true,
+        UnnnicAvatarIcon: true,
         ConfigModal,
         addModal,
       },
@@ -123,21 +124,39 @@ describe('AppGrid.vue without mocked loadApps', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('shold return add icon', async () => {
+  it('should return add icon', async () => {
     await wrapper.setProps({ type: 'add' });
     expect(wrapper.vm.actionIcon).toEqual('add-1');
   });
 
-  it('shold return config icon', async () => {
+  it('should return config icon', async () => {
     await wrapper.setProps({ type: 'config' });
     expect(wrapper.vm.actionIcon).toEqual('cog-1');
   });
 
-  it('shold return add icon', async () => {
+  it('should return add icon', async () => {
     await wrapper.setProps({ type: 'edit' });
     expect(wrapper.vm.actionIcon).toEqual('pencil-write-1');
   });
 
+  it('should return channel section icon and color', async () => {
+    await wrapper.setProps({ type: 'add', section: 'channel' });
+    expect(wrapper.vm.sectionIcon).toEqual({ icon: 'messages-bubble-1', scheme: 'aux-purple' });
+  });
+  it('should return ticket section icon and color', async () => {
+    await wrapper.setProps({ type: 'add', section: 'ticket' });
+    expect(wrapper.vm.sectionIcon).toEqual({ icon: 'messaging-we-chat-3', scheme: 'aux-blue' });
+  });
+
+  it('should return configure section icon and color', async () => {
+    await wrapper.setProps({ type: 'add', section: 'configured' });
+    expect(wrapper.vm.sectionIcon).toEqual({ icon: 'cog-1', scheme: 'aux-purple' });
+  });
+
+  it('should return installed section icon and color', async () => {
+    await wrapper.setProps({ type: 'add', section: 'installed' });
+    expect(wrapper.vm.sectionIcon).toEqual({ icon: 'check-circle-1-1', scheme: 'aux-blue' });
+  });
   it('should open App modal on trigger', async () => {
     const spy = spyOn(wrapper.vm, 'openAppModal');
 
@@ -205,6 +224,18 @@ describe('AppGrid.vue without mocked loadApps', () => {
       await wrapper.vm.loadApps();
       expect(actions.getConfiguredApps).toHaveBeenCalledTimes(1);
       expect(actions.getConfiguredApps).toHaveBeenCalledWith(expect.any(Object), { params });
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      actions.getAllAppTypes.mockImplementation(() => {
+        throw new Error('error fetching');
+      });
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      const filter = {
+        category: 'channel',
+      };
+      await wrapper.vm.loadApps(filter);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
   });
 
