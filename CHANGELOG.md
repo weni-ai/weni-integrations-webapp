@@ -1,3 +1,16 @@
+0.1.7
+----------
+`2021-09-22 ·  1 🐛 · 3 🎉`
+
+### 🐛 Bug fixes
+- Fix: Carousel image position
+- Fix: Config modal responsiveness
+
+### 🎉 New features
+- Feat: Loading screens
+- Feat: Sentry
+- Feat: Section icons
+
 0.1.6
 ----------
 `2021-09-15 · 1 🐛 · 2 🎉`
