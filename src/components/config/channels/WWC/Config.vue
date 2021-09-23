@@ -131,22 +131,22 @@
       <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
       <template slot="tab-panel-script">
         <div class="app-config-wwc__tabs__script-content">
-          <unnnic-input
-            key="config-script"
-            v-model="scriptCode"
-            class="app-config-wwc__tabs__script-content__input"
-            type="normal"
-            :placeholder="$t('weniWebChat.config.script_placeholder')"
-          >
-          </unnnic-input>
-          <unnnic-toolTip :text="$t('weniWebChat.config.copy')" :enabled="true" side="top">
-            <unnnic-button
-              class="app-config-wwc__tabs__script-content__copy"
-              type="secondary"
-              size="large"
-              iconCenter="copy-paste-1"
-            ></unnnic-button>
-          </unnnic-toolTip>
+          <unnnic-data-area :text="scriptCode">
+            <unnnic-toolTip
+              slot="buttons"
+              :text="$t('weniWebChat.config.copy')"
+              :enabled="true"
+              side="top"
+            >
+              <unnnic-button
+                class="app-config-wwc__tabs__script-content__copy"
+                type="secondary"
+                size="large"
+                iconCenter="copy-paste-1"
+                @click="copyScript"
+              ></unnnic-button>
+            </unnnic-toolTip>
+          </unnnic-data-area>
         </div>
       </template>
     </unnnic-tab>
@@ -226,19 +226,17 @@
         return this.enableSubtitle ? this.subtitle : ' ';
       },
       scriptCode() {
-        const a = `
-          <script>
-            (function (d, s, u) {
-              let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
-              k.onload = function () {
-                let l = d.createElement(s); l.src = u; l.async = true;
-                h.parentNode.insertBefore(l, k.nextSibling);
-              };
-              k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
-              h.parentNode.insertBefore(k, h);
-            })(document, 'script', ${this.app.config.script});
-          <script/>
-        `;
+        const a = `<script>
+  (function (d, s, u) {
+    let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
+    k.onload = function () {
+      let l = d.createElement(s); l.src = u; l.async = true;
+      h.parentNode.insertBefore(l, k.nextSibling);
+    };
+    k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+    h.parentNode.insertBefore(k, h);
+  })(document, 'script', '${this.app.config.script}');
+<script/>`;
         return a;
       },
     },
@@ -270,6 +268,10 @@
       },
       handleSliderChange(value) {
         this.timeBetweenMessages = parseInt(value);
+      },
+      /* istanbul ignore next */
+      async copyScript() {
+        await navigator.clipboard.writeText(this.scriptCode);
       },
       async saveConfig() {
         /* istanbul ignore next */
