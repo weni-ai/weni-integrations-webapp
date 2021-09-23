@@ -19,21 +19,35 @@
             :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
           />
 
-          <unnnic-switch
-            v-model="enableSubtitle"
-            class="app-config-wwc__tabs__settings-content__switch"
-            :inititalState="false"
-            size="small"
-            :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
-          />
+          <div class="app-config-wwc__tabs__settings-content__horizontal-input">
+            <div
+              class="app-config-wwc__tabs__settings-content__horizontal-input__subtitle-container"
+            >
+              <unnnic-switch
+                v-model="enableSubtitle"
+                class="app-config-wwc__tabs__settings-content__switch"
+                :inititalState="false"
+                size="small"
+                :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
+              />
 
-          <unnnic-input
-            v-if="enableSubtitle"
-            v-model="subtitle"
-            class="app-config-wwc__tabs__settings-content__input__subtitle"
-            type="normal"
-            :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
-          />
+              <unnnic-input
+                v-model="subtitle"
+                class="app-config-wwc__tabs__settings-content__input__subtitle"
+                type="normal"
+                :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
+                :disabled="!enableSubtitle"
+              />
+            </div>
+
+            <unnnic-input
+              v-model="initPayload"
+              class="app-config-wwc__tabs__settings-content__input__payload"
+              type="normal"
+              :label="$t('weniWebChat.config.initPayloadInput.label')"
+              :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+            />
+          </div>
 
           <unnnic-input
             v-model="inputTextFieldHint"
@@ -204,6 +218,7 @@
         keepHistory: !!this.app.config.keepHistory,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
+        initPayload: this.app.config.initPayload,
       };
     },
     watch: {
@@ -280,9 +295,11 @@
             config: {
               title: this.title,
               subtitle: this.enableSubtitle ? this.subtitle : null,
+              initPayload: this.initPayload,
               inputTextFieldHint: this.inputTextFieldHint,
               showFullscreenButton: this.showFullscreenButton,
               displayUnreadCount: this.displayUnreadCount,
+              timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
               avatarImage: this.simulatorAvatar,
@@ -396,7 +413,15 @@
           margin-top: $unnnic-spacing-stack-xs;
 
           &__subtitle {
+            margin-top: $unnnic-spacing-stack-nano/2;
+          }
+
+          &__payload {
             margin-top: $unnnic-spacing-stack-xs;
+
+            ::v-deep .unnnic-form-input {
+              margin-top: $unnnic-spacing-stack-xs;
+            }
           }
         }
 
@@ -405,6 +430,17 @@
           ::v-deep .unnnic-switch__label {
             font-size: $unnnic-font-size-body-gt;
             color: $unnnic-color-neutral-cloudy;
+          }
+        }
+
+        &__horizontal-input {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: $unnnic-inline-sm;
+
+          &__subtitle-container {
+            flex: 1;
           }
         }
 
