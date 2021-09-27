@@ -48,13 +48,20 @@
         </div>
       </div>
       <div v-else class="dropzone-preview">
-        <unnnic-icon-svg
-          class="dropzone-preview__icon"
-          icon="upload-bottom-1"
-          size="md"
-          scheme="aux-blue"
-        />
-        <div class="dropzone-preview__text">{{ $t('file_upload.modify') }}</div>
+        <div class="dropzone-preview__item">
+          <unnnic-icon-svg
+            class="dropzone-preview__item__icon"
+            icon="upload-bottom-1"
+            size="md"
+            scheme="aux-blue"
+          />
+          <div class="dropzone-preview__item__text">{{ $t('file_upload.modify') }}</div>
+        </div>
+
+        <div class="dropzone-preview__item" @click.stop="clearFile">
+          <unnnic-icon-svg class="dropzone-preview__item__icon" icon="bin-1-1" size="md" />
+          <div class="dropzone-preview__item__text">{{ $t('file_upload.remove') }}</div>
+        </div>
       </div>
     </vue-dropzone>
   </div>
@@ -122,6 +129,17 @@
       this.loading = false;
     },
     methods: {
+      clearFile() {
+        this.$refs.myDropzone.removeAllFiles();
+        this.$emit('fileRemoval');
+        this.show = 'drop';
+      },
+      setPreview(info, data) {
+        this.$refs.myDropzone.manuallyAddFile(info, data);
+        this.$refs.myDropzone.dropzone.emit('thumbnail', info, data);
+        this.$refs.myDropzone.dropzone.emit('complete', info);
+        this.show = 'preview';
+      },
       emitFile(file) {
         this.$emit('newFile', file);
       },
@@ -222,6 +240,7 @@
       }
 
       &__text {
+        margin: $unnnic-inset-nano;
         text-align: center;
         white-space: nowrap;
         font-family: $unnnic-font-family-secondary;
@@ -248,15 +267,24 @@
 
   .dropzone-preview {
     display: flex;
+    flex-direction: column;
+    gap: $unnnic-spacing-stack-nano;
+    // margin: $unnnic-squish-nano;
     cursor: pointer;
-    align-items: center;
-    border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-clean;
+    align-items: flex-start;
     font-family: $unnnic-font-family-secondary;
     font-size: $unnnic-font-size-body-md;
     font-weight: $unnnic-font-weight-bold;
     line-height: $unnnic-font-size-body-md + $unnnic-line-height-md;
-    &__icon {
-      margin-right: $unnnic-inline-nano;
+
+    &__item {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-clean;
+      &__icon {
+        margin-right: $unnnic-inline-nano;
+      }
     }
   }
 
@@ -316,7 +344,8 @@
             width: inherit;
             height: inherit;
             border-radius: 50%;
-            background-size: contain;
+            background-size: cover;
+            background-position: center;
           }
         }
         .dz-details {
