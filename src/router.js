@@ -54,4 +54,14 @@ const router = new VueRouter({
   routes,
 });
 
+router.afterEach(() => {
+  window.parent.postMessage(
+    {
+      event: 'changePathname',
+      pathname: window.location.pathname,
+    },
+    '*',
+  );
+});
+
 export default router;
