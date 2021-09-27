@@ -1,6 +1,15 @@
+0.1.8
+----------
+`2021-09-27 · 3 🎉`
+
+### 🎉 New features
+- Feat: Support to initPayload and timeBetweenMessages config
+- Feat: WWC script copy to clipboard
+- Feat: New postMessage with pathname after route change
+
 0.1.7
 ----------
-`2021-09-22 ·  1 🐛 · 3 🎉`
+`2021-09-22 ·  2 🐛 · 3 🎉`
 
 ### 🐛 Bug fixes
 - Fix: Carousel image position
