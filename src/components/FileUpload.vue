@@ -270,7 +270,6 @@
     display: flex;
     flex-direction: column;
     gap: $unnnic-spacing-stack-nano;
-    // margin: $unnnic-squish-nano;
     cursor: pointer;
     align-items: flex-start;
     font-family: $unnnic-font-family-secondary;
