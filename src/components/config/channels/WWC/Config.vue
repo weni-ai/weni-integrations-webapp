@@ -181,6 +181,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import { mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import FileUpload from '../../../FileUpload.vue';
@@ -225,31 +226,10 @@
     },
     async mounted() {
       if (this.app.config.avatarImage) {
-        // await this.createAvatarFile();
-        const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
-          this.avatarFile = {
-            data: e.target.result,
-            info: {
-              name: 'avatar.jpg',
-              size: blob.size,
-              type: blob.type,
-            },
-          };
-          this.manuallySetAvatarImage();
-        });
+        await this.createAvatarPreview();
       }
       if (this.app.config.customCss) {
-        const blob = await this.createFile(this.app.config.customCss, 'text', (e) => {
-          this.customCssFile = {
-            data: e.target.result,
-            info: {
-              name: 'custom.css',
-              size: blob.size,
-              type: blob.type,
-            },
-          };
-          this.manuallySetCssFile();
-        });
+        await this.createCustomCssPreview();
       }
     },
     computed: {
@@ -328,8 +308,8 @@
         this.customCssFile = {};
       },
       async createFile(file, type, callback) {
-        const res = await fetch(file);
-        const blob = await res.blob();
+        const res = await axios.get(file, { responseType: 'blob' });
+        const blob = res.data;
         let reader = new FileReader();
         reader.addEventListener('loadend', callback);
 
@@ -346,6 +326,32 @@
       },
       manuallySetCssFile() {
         this.$refs.cssUpload.setPreview(this.customCssFile.info, this.customCssFile.data);
+      },
+      async createAvatarPreview() {
+        const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
+          this.avatarFile = {
+            data: e.target.result,
+            info: {
+              name: 'avatar.jpg',
+              size: blob.size,
+              type: blob.type,
+            },
+          };
+          this.manuallySetAvatarImage();
+        });
+      },
+      async createCustomCssPreview() {
+        const blob = await this.createFile(this.app.config.customCss, 'text', (e) => {
+          this.customCssFile = {
+            data: e.target.result,
+            info: {
+              name: 'custom.css',
+              size: blob.size,
+              type: blob.type,
+            },
+          };
+          this.manuallySetCssFile();
+        });
       },
       async saveConfig() {
         /* istanbul ignore next */
