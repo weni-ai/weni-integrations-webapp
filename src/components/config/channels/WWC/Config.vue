@@ -19,21 +19,35 @@
             :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
           />
 
-          <unnnic-switch
-            v-model="enableSubtitle"
-            class="app-config-wwc__tabs__settings-content__switch"
-            :inititalState="false"
-            size="small"
-            :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
-          />
+          <div class="app-config-wwc__tabs__settings-content__horizontal-input">
+            <div
+              class="app-config-wwc__tabs__settings-content__horizontal-input__subtitle-container"
+            >
+              <unnnic-switch
+                v-model="enableSubtitle"
+                class="app-config-wwc__tabs__settings-content__switch"
+                :inititalState="false"
+                size="small"
+                :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
+              />
 
-          <unnnic-input
-            v-if="enableSubtitle"
-            v-model="subtitle"
-            class="app-config-wwc__tabs__settings-content__input__subtitle"
-            type="normal"
-            :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
-          />
+              <unnnic-input
+                v-model="subtitle"
+                class="app-config-wwc__tabs__settings-content__input__subtitle"
+                type="normal"
+                :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
+                :disabled="!enableSubtitle"
+              />
+            </div>
+
+            <unnnic-input
+              v-model="initPayload"
+              class="app-config-wwc__tabs__settings-content__input__payload"
+              type="normal"
+              :label="$t('weniWebChat.config.initPayloadInput.label')"
+              :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+            />
+          </div>
 
           <unnnic-input
             v-model="inputTextFieldHint"
@@ -139,22 +153,22 @@
       <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
       <template slot="tab-panel-script">
         <div class="app-config-wwc__tabs__script-content">
-          <unnnic-input
-            key="config-script"
-            v-model="scriptCode"
-            class="app-config-wwc__tabs__script-content__input"
-            type="normal"
-            :placeholder="$t('weniWebChat.config.script_placeholder')"
-          >
-          </unnnic-input>
-          <unnnic-toolTip :text="$t('weniWebChat.config.copy')" :enabled="true" side="top">
-            <unnnic-button
-              class="app-config-wwc__tabs__script-content__copy"
-              type="secondary"
-              size="large"
-              iconCenter="copy-paste-1"
-            ></unnnic-button>
-          </unnnic-toolTip>
+          <unnnic-data-area :text="scriptCode">
+            <unnnic-toolTip
+              slot="buttons"
+              :text="$t('weniWebChat.config.copy')"
+              :enabled="true"
+              side="top"
+            >
+              <unnnic-button
+                class="app-config-wwc__tabs__script-content__copy"
+                type="secondary"
+                size="large"
+                iconCenter="copy-paste-1"
+                @click="copyScript"
+              ></unnnic-button>
+            </unnnic-toolTip>
+          </unnnic-data-area>
         </div>
       </template>
     </unnnic-tab>
@@ -213,6 +227,7 @@
         keepHistory: !!this.app.config.keepHistory,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
+        initPayload: this.app.config.initPayload,
         avatarFile: {},
         customCssFile: {},
       };
@@ -246,19 +261,17 @@
         return this.enableSubtitle ? this.subtitle : ' ';
       },
       scriptCode() {
-        const a = `
-          <script>
-            (function (d, s, u) {
-              let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
-              k.onload = function () {
-                let l = d.createElement(s); l.src = u; l.async = true;
-                h.parentNode.insertBefore(l, k.nextSibling);
-              };
-              k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
-              h.parentNode.insertBefore(k, h);
-            })(document, 'script', ${this.app.config.script});
-          <script/>
-        `;
+        const a = `<script>
+  (function (d, s, u) {
+    let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
+    k.onload = function () {
+      let l = d.createElement(s); l.src = u; l.async = true;
+      h.parentNode.insertBefore(l, k.nextSibling);
+    };
+    k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+    h.parentNode.insertBefore(k, h);
+  })(document, 'script', '${this.app.config.script}');
+<script/>`;
         return a;
       },
       imageForUpload() {
@@ -357,6 +370,10 @@
           this.manuallySetCssFile();
         });
       },
+      /* istanbul ignore next */
+      async copyScript() {
+        await navigator.clipboard.writeText(this.scriptCode);
+      },
       async saveConfig() {
         /* istanbul ignore next */
         const data = removeEmpty({
@@ -366,9 +383,11 @@
             config: {
               title: this.title,
               subtitle: this.enableSubtitle ? this.subtitle : null,
+              initPayload: this.initPayload,
               inputTextFieldHint: this.inputTextFieldHint,
               showFullscreenButton: this.showFullscreenButton,
               displayUnreadCount: this.displayUnreadCount,
+              timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
               avatarImage: this.imageForUpload,
@@ -474,7 +493,15 @@
           margin-top: $unnnic-spacing-stack-xs;
 
           &__subtitle {
+            margin-top: $unnnic-spacing-stack-nano/2;
+          }
+
+          &__payload {
             margin-top: $unnnic-spacing-stack-xs;
+
+            ::v-deep .unnnic-form-input {
+              margin-top: $unnnic-spacing-stack-xs;
+            }
           }
         }
 
@@ -483,6 +510,17 @@
           ::v-deep .unnnic-switch__label {
             font-size: $unnnic-font-size-body-gt;
             color: $unnnic-color-neutral-cloudy;
+          }
+        }
+
+        &__horizontal-input {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: $unnnic-inline-sm;
+
+          &__subtitle-container {
+            flex: 1;
           }
         }
 
