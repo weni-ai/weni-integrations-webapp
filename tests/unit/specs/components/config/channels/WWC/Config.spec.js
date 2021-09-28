@@ -15,6 +15,7 @@ import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';
 import wwcSimulator from '@/components/config/channels/WWC/Simulator.vue';
+import FileUpload from '@/components/FileUpload.vue';
 import { singleApp } from '../../../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
@@ -25,6 +26,8 @@ describe('Config.vue', () => {
   let wrapper;
   let handleColorChangeSpy;
   let toggleSimulatorSpy;
+  let createAvatarPreviewSpy;
+  let createCustomCssPreviewSpy;
 
   let actions;
   let store;
@@ -32,6 +35,8 @@ describe('Config.vue', () => {
   beforeEach(() => {
     handleColorChangeSpy = jest.spyOn(wwcConfig.methods, 'handleColorChange');
     toggleSimulatorSpy = jest.spyOn(wwcConfig.methods, 'toggleSimulator');
+    createAvatarPreviewSpy = jest.spyOn(wwcConfig.methods, 'createAvatarPreview');
+    createCustomCssPreviewSpy = jest.spyOn(wwcConfig.methods, 'createCustomCssPreview');
 
     actions = {
       updateAppConfig: jest.fn(),
@@ -53,6 +58,7 @@ describe('Config.vue', () => {
       },
       stubs: {
         wwcSimulator,
+        FileUpload,
         UnnnicTab: true,
         UnnnicInput: true,
         UnnnicSwitch: true,
@@ -139,7 +145,7 @@ describe('Config.vue', () => {
 
   it('should set new customCss', () => {
     const css = 'css';
-    expect(wrapper.vm.customCss).toEqual(null);
+    expect(wrapper.vm.customCss).not.toEqual(css);
     wrapper.vm.setNewCss(css);
     expect(wrapper.vm.customCss).toEqual(css);
   });
@@ -181,5 +187,63 @@ describe('Config.vue', () => {
     expect(wrapper.vm.$refs.simulator.isOpen).toBeFalsy();
     await wrapper.setData({ displayUnreadCount: true });
     expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should clear avatar related variables', () => {
+    wrapper.setData({ simulatorAvatar: 'text', avatarFile: { info: {}, data: 'text' } });
+    expect(wrapper.vm.simulatorAvatar).not.toBeNull();
+    expect(wrapper.vm.avatarFile).not.toStrictEqual({});
+
+    wrapper.vm.clearAvatars();
+
+    expect(wrapper.vm.simulatorAvatar).toBeNull();
+    expect(wrapper.vm.avatarFile).toStrictEqual({});
+  });
+
+  it('should clear custom css related variables', () => {
+    wrapper.setData({ customCss: 'text', customCssFile: { info: {}, data: 'text' } });
+    expect(wrapper.vm.customCss).not.toBeNull();
+    expect(wrapper.vm.customCssFile).not.toStrictEqual({});
+
+    wrapper.vm.clearCssFile();
+
+    expect(wrapper.vm.customCss).toBeNull();
+    expect(wrapper.vm.customCssFile).toStrictEqual({});
+  });
+
+  it('should call setPreview from avatarUpload component', () => {
+    const spy = spyOn(wrapper.vm.$refs.avatarUpload, 'setPreview');
+    expect(spy).not.toHaveBeenCalled();
+
+    wrapper.vm.manuallySetAvatarImage();
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call setPreview from cssUpload component', () => {
+    const spy = spyOn(wrapper.vm.$refs.cssUpload, 'setPreview');
+    expect(spy).not.toHaveBeenCalled();
+
+    wrapper.vm.manuallySetCssFile();
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  describe('imageForUpload', () => {
+    it('should return avatarFile.data if simulatorAvatar not a base64', () => {
+      const file = { data: '123' };
+      wrapper.setData({ avatarFile: file });
+      const imageData = wrapper.vm.imageForUpload;
+
+      expect(imageData).toStrictEqual(file.data);
+    });
+
+    it('should return simulatorAvatar if it is a base64', () => {
+      const data = 'data:image/png;base64,iVBORw0KGgoAAA';
+      wrapper.setData({ simulatorAvatar: data });
+      const imageData = wrapper.vm.imageForUpload;
+
+      expect(imageData).toStrictEqual(data);
+    });
   });
 });

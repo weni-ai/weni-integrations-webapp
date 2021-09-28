@@ -224,6 +224,7 @@
         }
       },
     },
+    /* istanbul ignore next */
     async mounted() {
       if (this.app.config.avatarImage) {
         await this.createAvatarPreview();
@@ -307,6 +308,7 @@
         this.customCss = null;
         this.customCssFile = {};
       },
+      /* istanbul ignore next */
       async createFile(file, type, callback) {
         const res = await axios.get(file, { responseType: 'blob' });
         const blob = res.data;
@@ -328,6 +330,7 @@
         this.$refs.cssUpload.setPreview(this.customCssFile.info, this.customCssFile.data);
       },
       async createAvatarPreview() {
+        /* istanbul ignore next */
         const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
           this.avatarFile = {
             data: e.target.result,
@@ -341,6 +344,7 @@
         });
       },
       async createCustomCssPreview() {
+        /* istanbul ignore next */
         const blob = await this.createFile(this.app.config.customCss, 'text', (e) => {
           this.customCssFile = {
             data: e.target.result,
