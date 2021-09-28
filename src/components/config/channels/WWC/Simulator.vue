@@ -88,7 +88,7 @@
       </div>
     </transition>
     <div class="wwc-simulator__button" @click="toggleChat">
-      <div v-if="displayUnreadCount" class="wwc-simulator__button__unread">{{ 2 }}</div>
+      <div v-if="displayUnreadCount && !isOpen" class="wwc-simulator__button__unread">{{ 2 }}</div>
       <div v-if="!avatar" class="wwc-simulator__button__content">
         <unnnic-icon-svg
           :class="`wwc-simulator__button__content__icon`"
@@ -386,6 +386,7 @@
       }
     }
     &__button {
+      cursor: pointer;
       justify-content: flex-end;
       display: flex;
       flex-direction: row;
