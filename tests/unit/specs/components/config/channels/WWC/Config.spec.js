@@ -34,6 +34,8 @@ describe('Config.vue', () => {
     handleColorChangeSpy = jest.spyOn(wwcConfig.methods, 'handleColorChange');
     toggleSimulatorSpy = jest.spyOn(wwcConfig.methods, 'toggleSimulator');
 
+    spyOn(wwcConfig.methods, 'createFile');
+
     actions = {
       updateAppConfig: jest.fn(),
     };
