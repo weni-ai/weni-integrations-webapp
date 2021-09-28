@@ -26,8 +26,6 @@ describe('Config.vue', () => {
   let wrapper;
   let handleColorChangeSpy;
   let toggleSimulatorSpy;
-  let createAvatarPreviewSpy;
-  let createCustomCssPreviewSpy;
 
   let actions;
   let store;
@@ -35,8 +33,6 @@ describe('Config.vue', () => {
   beforeEach(() => {
     handleColorChangeSpy = jest.spyOn(wwcConfig.methods, 'handleColorChange');
     toggleSimulatorSpy = jest.spyOn(wwcConfig.methods, 'toggleSimulator');
-    createAvatarPreviewSpy = jest.spyOn(wwcConfig.methods, 'createAvatarPreview');
-    createCustomCssPreviewSpy = jest.spyOn(wwcConfig.methods, 'createCustomCssPreview');
 
     actions = {
       updateAppConfig: jest.fn(),

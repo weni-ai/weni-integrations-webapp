@@ -329,8 +329,8 @@
       manuallySetCssFile() {
         this.$refs.cssUpload.setPreview(this.customCssFile.info, this.customCssFile.data);
       },
+      /* istanbul ignore next */
       async createAvatarPreview() {
-        /* istanbul ignore next */
         const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
           this.avatarFile = {
             data: e.target.result,
@@ -343,8 +343,8 @@
           this.manuallySetAvatarImage();
         });
       },
+      /* istanbul ignore next */
       async createCustomCssPreview() {
-        /* istanbul ignore next */
         const blob = await this.createFile(this.app.config.customCss, 'text', (e) => {
           this.customCssFile = {
             data: e.target.result,
