@@ -134,6 +134,7 @@
         this.$emit('fileRemoval');
         this.show = 'drop';
       },
+      /* istanbul ignore next */
       setPreview(info, data) {
         this.$refs.myDropzone.manuallyAddFile(info, data);
         this.$refs.myDropzone.dropzone.emit('thumbnail', info, data);
