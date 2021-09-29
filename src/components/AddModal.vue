@@ -1,6 +1,7 @@
 <template>
   <unnnic-modal
     ref="unnnic-add-modal"
+    class="add-modal"
     :showModal="showAddModal"
     :text="$t('apps.details.actions.installed.title')"
     scheme="feedback-green"
@@ -46,4 +47,12 @@
   };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+  .add-modal {
+    ::v-deep .unnnic-modal-container-background-body-close_icon {
+      .unnnic-icon {
+        display: none;
+      }
+    }
+  }
+</style>
