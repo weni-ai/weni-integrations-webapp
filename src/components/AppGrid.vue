@@ -36,11 +36,8 @@
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
             <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="actionIcon" />
-            <unnnic-dropdown-item v-if="type === 'config'" @click="openAppModal(app)">
-              Configure
-            </unnnic-dropdown-item>
-            <unnnic-dropdown-item v-else-if="type === 'edit'" @click="openAppModal(app)">
-              Edit
+            <unnnic-dropdown-item @click="openAppDetails(app.code)">
+              {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
               class="app-grid__content__item__button--remove"
@@ -266,9 +263,12 @@
           });
         }
       },
+      openAppDetails(code) {
+        this.$router.push(`/apps/${code}/details`);
+      },
       openAppModal(app) {
         if (this.type === 'add') {
-          this.$router.push(`/apps/${app.code}/details`);
+          this.openAppDetails(app.code);
         } else {
           this.$refs.configModal.openModal(app);
         }
