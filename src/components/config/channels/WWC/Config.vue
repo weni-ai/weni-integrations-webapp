@@ -138,6 +138,7 @@
             type="terciary"
             size="large"
             :text="$t('weniWebChat.config.configure_later')"
+            @click="closeConfig"
           ></unnnic-button>
 
           <unnnic-button
@@ -424,6 +425,9 @@
         } finally {
           this.$root.$emit('updateGrid');
         }
+      },
+      closeConfig() {
+        this.$parent.closeModal();
       },
     },
   };
