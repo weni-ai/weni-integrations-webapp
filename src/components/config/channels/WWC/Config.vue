@@ -374,6 +374,17 @@
       /* istanbul ignore next */
       async copyScript() {
         await navigator.clipboard.writeText(this.scriptCode);
+        unnnicCallAlert({
+          props: {
+            text: this.$t('apps.config.copy_success'),
+            title: 'Success',
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 3,
+        });
       },
       async saveConfig() {
         /* istanbul ignore next */
