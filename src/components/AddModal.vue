@@ -19,6 +19,7 @@
       ref="unnnic-add-modal-navigate-button"
       slot="options"
       type="primary"
+      scheme="feedback-green"
       @click="navigateToMyApps"
     >
       {{ $t('apps.details.actions.installed.access_my_apps') }}
