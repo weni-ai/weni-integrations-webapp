@@ -28,7 +28,9 @@
               lineHeight="sm"
               scheme="background-snow"
             />
-            <unnnic-icon-svg icon="close-1" size="sm" lineHeight="sm" scheme="background-snow" />
+            <div class="wwc-simulator__content__header__button__close" @click="toggleChat">
+              <unnnic-icon-svg icon="close-1" size="sm" lineHeight="sm" scheme="background-snow" />
+            </div>
           </div>
         </div>
         <div class="wwc-simulator__content__body">
@@ -275,6 +277,11 @@
           align-items: center;
           margin-right: $unnnic-inline-sm;
           gap: $unnnic-spacing-inset-nano;
+
+          &__close {
+            margin-top: -$unnnic-spacing-stack-nano;
+            cursor: pointer;
+          }
         }
       }
 
