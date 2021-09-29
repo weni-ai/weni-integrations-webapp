@@ -501,6 +501,7 @@
           }
 
           &__payload {
+            flex: 1;
             margin-top: $unnnic-spacing-stack-xs;
 
             ::v-deep .unnnic-form-input {
