@@ -1,5 +1,5 @@
 <template>
-  <div class="app-config-wwc" :style="cssVars">
+  <div class="app-config-wwc">
     <div class="app-config-wwc__header">
       <div class="app-config-wwc__header__icon-container">
         <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
@@ -253,11 +253,6 @@
       configTabs() {
         return ['settings', 'script'];
       },
-      cssVars() {
-        return {
-          '--config-bg-color': this.app.bg_color,
-        };
-      },
       chatSubtitle() {
         return this.enableSubtitle ? this.subtitle : ' ';
       },
@@ -462,7 +457,7 @@
         height: $unnnic-avatar-size-sm;
         border-radius: $unnnic-border-radius-sm;
 
-        background-color: var(--config-bg-color);
+        background-color: rgba(0, 222, 211, 0.2);
 
         &__icon {
           width: $unnnic-icon-size-md;
