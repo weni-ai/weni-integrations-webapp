@@ -62,7 +62,8 @@
       }
     },
     "config": {
-      "integration_success": "Aplicação instalada com sucesso!"
+      "integration_success": "Aplicação instalada com sucesso!",
+      "copy_success": "Copiado com sucesso!"
     }
   },
 
