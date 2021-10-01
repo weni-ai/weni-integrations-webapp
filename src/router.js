@@ -44,7 +44,11 @@ const routes = [
       const { token, project } = to.params;
       store.dispatch('externalLogin', { token: token.replace('+', ' ') });
       store.dispatch('selectedProject', { project });
-      next('/');
+      if (to.query.next) {
+        next(to.query.next);
+      } else {
+        next('/');
+      }
     },
   },
 ];
