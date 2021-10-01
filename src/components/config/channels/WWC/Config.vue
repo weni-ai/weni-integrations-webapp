@@ -433,7 +433,7 @@
         }
       },
       closeConfig() {
-        this.$parent.closeModal();
+        this.$emit('closeModal');
       },
     },
   };

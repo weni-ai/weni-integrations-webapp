@@ -9,6 +9,7 @@
           :is="currentComponent"
           :v-bind="$attrs"
           :app="currentApp"
+          @closeModal="closeModal"
         />
       </div>
     </div>
