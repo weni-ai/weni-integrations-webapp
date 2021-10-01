@@ -116,10 +116,6 @@ describe('Config.vue', () => {
     expect(wrapper.vm.configTabs).toEqual(['settings', 'script']);
   });
 
-  it('should return cssVars', () => {
-    expect(wrapper.vm.cssVars).toBeDefined();
-  });
-
   it('should return valid subtitle if enableSubtitle is true', async () => {
     await wrapper.setData({ enableSubtitle: true, subtitle: 'text' });
     expect(wrapper.vm.chatSubtitle).toEqual('text');
@@ -242,6 +238,14 @@ describe('Config.vue', () => {
       const imageData = wrapper.vm.imageForUpload;
 
       expect(imageData).toStrictEqual(data);
+    });
+  });
+
+  describe('closeConfig()', () => {
+    it('should call parent closeModal()', () => {
+      expect(wrapper.emitted('closeModal')).toBeFalsy();
+      wrapper.vm.closeConfig();
+      expect(wrapper.emitted('closeModal')).toBeTruthy();
     });
   });
 });

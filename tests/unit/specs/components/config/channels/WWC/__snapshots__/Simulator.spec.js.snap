@@ -18,7 +18,9 @@ exports[`Simulator.vue should be rendered properly 1`] = `
         </div>
         <div class="wwc-simulator__content__header__button">
           <!---->
-          <unnniciconsvg-stub icon="close-1" size="sm" lineheight="sm" scheme="background-snow"></unnniciconsvg-stub>
+          <div class="wwc-simulator__content__header__button__close">
+            <unnniciconsvg-stub icon="close-1" size="sm" lineheight="sm" scheme="background-snow"></unnniciconsvg-stub>
+          </div>
         </div>
       </div>
       <div class="wwc-simulator__content__body">

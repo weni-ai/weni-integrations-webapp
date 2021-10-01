@@ -29,6 +29,9 @@ describe('Carousel.vue', () => {
       i18n,
       mocks: {
         $t: () => 'some specific text',
+        $router: {
+          push: () => {},
+        },
       },
     });
   });
@@ -45,5 +48,14 @@ describe('Carousel.vue', () => {
   it('should return true autoPlay if more than 1 app', async () => {
     await wrapper.setData({ apps: [singleApp] });
     expect(wrapper.vm.hasAutoPlay).toBeFalsy();
+  });
+
+  it('should change route on banner click', () => {
+    const spy = spyOn(wrapper.vm.$router, 'push');
+    const code = '123';
+    wrapper.vm.openAppDetails(code);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(`/apps/${code}/details`);
   });
 });

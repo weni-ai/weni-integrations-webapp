@@ -19,9 +19,9 @@ exports[`AppGrid.vue without mocked loadApps should be rendered properly 1`] = `
       some specific text
     </unnnicbutton-stub>
   </unnnicmodal-stub>
-  <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green"><span>some specific text</span>
+  <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green" class="add-modal"><span>some specific text</span>
     <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
-    <unnnicbutton-stub size="large" type="primary">
+    <unnnicbutton-stub size="large" type="primary" scheme="feedback-green">
       some specific text
     </unnnicbutton-stub>
   </unnnicmodal-stub>
