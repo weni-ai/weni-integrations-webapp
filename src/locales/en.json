@@ -45,7 +45,8 @@
         "add": "Add"
       },
       "card": {
-        "comments": "comments"
+        "comments": "comments",
+        "see_details": "See details"
       },
       "actions": {
         "installed": {
@@ -62,7 +63,8 @@
       }
     },
     "config": {
-      "integration_success": "Successfully updated application"
+      "integration_success": "Successfully updated application",
+      "copy_success": "Successfully copied!"
     }
   },
 
@@ -105,6 +107,10 @@
       "PlaceholderInput": {
         "label": "Placeholder text",
         "placeholder": "Ex.: Type your message"
+      },
+      "initPayloadInput": {
+        "label": "Trigger message",
+        "placeholder": "Ex.: Hello, welcome"
       }
     },
     "simulator": {

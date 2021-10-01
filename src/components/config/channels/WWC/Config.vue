@@ -1,5 +1,5 @@
 <template>
-  <div class="app-config-wwc" :style="cssVars">
+  <div class="app-config-wwc">
     <div class="app-config-wwc__header">
       <div class="app-config-wwc__header__icon-container">
         <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
@@ -138,6 +138,7 @@
             type="terciary"
             size="large"
             :text="$t('weniWebChat.config.configure_later')"
+            @click="closeConfig"
           ></unnnic-button>
 
           <unnnic-button
@@ -251,11 +252,6 @@
     computed: {
       configTabs() {
         return ['settings', 'script'];
-      },
-      cssVars() {
-        return {
-          '--config-bg-color': this.app.bg_color,
-        };
       },
       chatSubtitle() {
         return this.enableSubtitle ? this.subtitle : ' ';
@@ -373,6 +369,17 @@
       /* istanbul ignore next */
       async copyScript() {
         await navigator.clipboard.writeText(this.scriptCode);
+        unnnicCallAlert({
+          props: {
+            text: this.$t('apps.config.copy_success'),
+            title: 'Success',
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 3,
+        });
       },
       async saveConfig() {
         /* istanbul ignore next */
@@ -425,6 +432,9 @@
           this.$root.$emit('updateGrid');
         }
       },
+      closeConfig() {
+        this.$emit('closeModal');
+      },
     },
   };
 </script>
@@ -447,7 +457,7 @@
         height: $unnnic-avatar-size-sm;
         border-radius: $unnnic-border-radius-sm;
 
-        background-color: var(--config-bg-color);
+        background-color: rgba(0, 222, 211, 0.2);
 
         &__icon {
           width: $unnnic-icon-size-md;
@@ -497,6 +507,7 @@
           }
 
           &__payload {
+            flex: 1;
             margin-top: $unnnic-spacing-stack-xs;
 
             ::v-deep .unnnic-form-input {

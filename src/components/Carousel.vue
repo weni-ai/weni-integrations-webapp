@@ -7,6 +7,7 @@
         :title="app.name"
         :content="$t(app.summary)"
         :image="appImageBanner(app.assets)"
+        @click.native="openAppDetails(app.code)"
       />
 
       <template #bullets="{ bulletIndexes, goToSlide, currentSlide }">
@@ -55,6 +56,9 @@
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'image_banner');
         return banner[0].url;
+      },
+      openAppDetails(code) {
+        this.$router.push(`/apps/${code}/details`);
       },
     },
     computed: {
@@ -118,6 +122,7 @@
 
   .vueperslide {
     background-position: right;
+    cursor: pointer;
 
     &__content-wrapper {
       text-align: left !important;

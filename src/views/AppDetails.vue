@@ -13,6 +13,7 @@
         :appCode="app.code"
       />
       <unnnic-banner
+        class="app-details__banner"
         :key="bannerKey"
         type="info"
         :firstTitle="$t('apps.details.info')"
@@ -160,6 +161,12 @@
           max-width: 256px;
           margin-left: auto;
         }
+      }
+    }
+
+    &__banner {
+      ::v-deep .unnnic-banner-info__section {
+        align-self: center;
       }
     }
   }

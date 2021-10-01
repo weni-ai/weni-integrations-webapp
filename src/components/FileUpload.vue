@@ -34,12 +34,6 @@
       </div>
       <div v-else-if="show === 'error'" class="dropzone-error">
         <div class="dropzone-error__message">
-          <unnnic-icon-svg
-            class="dropzone-error__message__icon"
-            icon="alert-circle-1"
-            size="md"
-            scheme="feedback-red"
-          />
           <div class="dropzone-error__message__label">{{ $t('Invalid_file') }}</div>
         </div>
         <div class="dropzone-error__action">
@@ -294,6 +288,7 @@
     font-size: $unnnic-font-size-body-md;
     font-weight: $unnnic-font-weight-bold;
     line-height: $unnnic-font-size-body-md + $unnnic-line-height-md;
+    padding: $unnnic-spacing-inset-nano;
     &__message {
       display: flex;
       flex-direction: column;
@@ -315,7 +310,7 @@
     background-color: $unnnic-color-background-carpet;
     border: $unnnic-border-width-thin dashed $unnnic-color-neutral-clean;
     border-radius: $unnnic-border-radius-sm;
-    padding: 8px 16px;
+    padding: $unnnic-spacing-inset-nano;
     min-height: 40px;
 
     &.dz-started {
