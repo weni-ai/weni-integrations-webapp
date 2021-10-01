@@ -1,5 +1,5 @@
 {
-  "name": "weni-marketplace",
+  "name": "weni-integrations",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@sentry/integrations": "^6.13.2",
     "@sentry/vue": "^6.13.2",
-    "@weni/unnnic-system": "^1.1.53",
+    "@weni/unnnic-system": "^1.1.56",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "global": "^4.4.0",
