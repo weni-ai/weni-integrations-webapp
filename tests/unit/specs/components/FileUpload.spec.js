@@ -52,6 +52,34 @@ describe('FileUpload.vue', () => {
     });
   });
 
+  describe('clearFile()', () => {
+    it('should call dropzone removeAllFiles()', () => {
+      const spy = spyOn(wrapper.vm.$refs.myDropzone, 'removeAllFiles');
+      expect(spy).not.toHaveBeenCalled();
+
+      wrapper.vm.clearFile();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should emit `fileRemoval`', () => {
+      expect(wrapper.emitted().fileRemoval).toBeFalsy();
+
+      wrapper.vm.clearFile();
+
+      expect(wrapper.emitted('fileRemoval')).toBeTruthy();
+    });
+
+    it('should set show type to `drop`', () => {
+      wrapper.setData({ show: 'preview' });
+      expect(wrapper.vm.show).not.toEqual('drop');
+
+      wrapper.vm.clearFile();
+
+      expect(wrapper.vm.show).toEqual('drop');
+    });
+  });
+
   describe('allowedTypes()', () => {
     it('should return images types', () => {
       const types = wrapper.vm.allowedTypes();

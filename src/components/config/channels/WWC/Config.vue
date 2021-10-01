@@ -62,16 +62,24 @@
               <div class="app-config-wwc__tabs__settings-content__files__content__label">
                 {{ $t('weniWebChat.config.custom_css') }}
               </div>
-              <file-upload type="style" formatsLabel=".CSS" @newFile="handleNewCss" />
+              <file-upload
+                ref="cssUpload"
+                type="style"
+                formatsLabel=".CSS"
+                @newFile="handleNewCss"
+                @fileRemoval="clearCssFile"
+              />
             </div>
             <div class="app-config-wwc__tabs__settings-content__files__content">
               <div class="app-config-wwc__tabs__settings-content__files__content__label">
                 {{ $t('weniWebChat.config.avatar_image') }}
               </div>
               <file-upload
+                ref="avatarUpload"
                 type="image"
                 formatsLabel=".PNG, .JPEG, .SVG"
                 @newFile="handleNewAvatar"
+                @fileRemoval="clearAvatars"
               />
             </div>
           </div>
@@ -187,6 +195,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import { mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import FileUpload from '../../../FileUpload.vue';
@@ -219,6 +228,8 @@
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,
+        avatarFile: {},
+        customCssFile: {},
       };
     },
     watch: {
@@ -227,6 +238,15 @@
           this.$refs.simulator.toggleChat();
         }
       },
+    },
+    /* istanbul ignore next */
+    async mounted() {
+      if (this.app.config.avatarImage) {
+        await this.createAvatarPreview();
+      }
+      if (this.app.config.customCss) {
+        await this.createCustomCssPreview();
+      }
     },
     computed: {
       configTabs() {
@@ -253,6 +273,15 @@
   })(document, 'script', '${this.app.config.script}');
 <script/>`;
         return a;
+      },
+      imageForUpload() {
+        if (this.simulatorAvatar?.startsWith('data:image')) {
+          return this.simulatorAvatar;
+        }
+        return this.avatarFile.data;
+      },
+      cssForUpload() {
+        return this.customCssFile.data ?? this.customCss;
       },
     },
     methods: {
@@ -284,6 +313,63 @@
       handleSliderChange(value) {
         this.timeBetweenMessages = parseInt(value);
       },
+      clearAvatars() {
+        this.simulatorAvatar = null;
+        this.avatarFile = {};
+      },
+      clearCssFile() {
+        this.customCss = null;
+        this.customCssFile = {};
+      },
+      /* istanbul ignore next */
+      async createFile(file, type, callback) {
+        const res = await axios.get(file, { responseType: 'blob' });
+        const blob = res.data;
+        let reader = new FileReader();
+        reader.addEventListener('loadend', callback);
+
+        if (type == 'text') {
+          reader.readAsText(blob);
+        } else {
+          reader.readAsDataURL(blob);
+        }
+
+        return blob;
+      },
+      manuallySetAvatarImage() {
+        this.$refs.avatarUpload.setPreview(this.avatarFile.info, this.avatarFile.data);
+      },
+      manuallySetCssFile() {
+        this.$refs.cssUpload.setPreview(this.customCssFile.info, this.customCssFile.data);
+      },
+      /* istanbul ignore next */
+      async createAvatarPreview() {
+        const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
+          this.avatarFile = {
+            data: e.target.result,
+            info: {
+              name: 'avatar.jpg',
+              size: blob.size,
+              type: blob.type,
+            },
+          };
+          this.manuallySetAvatarImage();
+        });
+      },
+      /* istanbul ignore next */
+      async createCustomCssPreview() {
+        const blob = await this.createFile(this.app.config.customCss, 'text', (e) => {
+          this.customCssFile = {
+            data: e.target.result,
+            info: {
+              name: 'custom.css',
+              size: blob.size,
+              type: blob.type,
+            },
+          };
+          this.manuallySetCssFile();
+        });
+      },
       /* istanbul ignore next */
       async copyScript() {
         await navigator.clipboard.writeText(this.scriptCode);
@@ -304,20 +390,12 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
-              avatarImage: this.simulatorAvatar,
-              customCss: this.customCss,
+              avatarImage: this.imageForUpload,
+              customCss: this.cssForUpload,
             },
           },
         });
 
-        // remove avatar image if not base64
-        /* istanbul ignore next */
-        if (
-          data.payload.config.avatarImage &&
-          !data.payload.config.avatarImage.startsWith('data:image')
-        ) {
-          delete data.payload.config.avatarImage;
-        }
         try {
           await this.updateAppConfig(data);
           unnnicCallAlert({
@@ -357,7 +435,7 @@
     flex-direction: column;
     height: -webkit-fill-available;
     height: -moz-available;
-    padding: $unnnic-spacing-stack-lg;
+    padding: $unnnic-inset-lg;
 
     &__header {
       display: flex;
@@ -532,6 +610,7 @@
     }
 
     &__simulator-switch {
+      cursor: pointer;
       position: fixed;
       z-index: 2;
       bottom: 50%;
@@ -544,6 +623,11 @@
       justify-content: center;
       align-items: center;
       box-shadow: $unnnic-shadow-level-near;
+      transition: all 0.5s;
+
+      &:hover {
+        background-color: $unnnic-color-neutral-lightest;
+      }
     }
 
     .wwc-simulator {
