@@ -1,3 +1,18 @@
+0.1.9
+----------
+`2021-10-01 ·  2 🐛 · 1 🎉 · 1 🔍`
+
+### 🐛 Bug fixes
+- Fix: File upload preview
+- Fix: Design review issues
+
+### 🎉 New features
+- Feat: New option to use next on query parameter to route after login
+
+###### 🔍 Minor Changes
+- Chore: Update package name and unnnic package
+
+
 0.1.8
 ----------
 `2021-09-27 · 3 🎉`
