@@ -10,6 +10,7 @@ module.exports = {
   coverageDirectory: '<rootDir>/tests/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
+    '!src/App.vue',
     '!src/main.js',
     '!src/router.js',
     '!**/node_modules/**',
