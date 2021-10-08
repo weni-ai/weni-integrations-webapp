@@ -1,3 +1,11 @@
+0.1.10
+----------
+`2021-10-08 · 1 🎉`
+
+### 🎉 New features
+- Feat: Links translations for connect 
+
+
 0.1.9
 ----------
 `2021-10-01 ·  2 🐛 · 1 🎉 · 1 🔍`
