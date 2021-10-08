@@ -9,6 +9,67 @@
 
   export default {
     name: 'App',
+    data() {
+      return {
+        connectBaseURL: '',
+      };
+    },
+    mounted() {
+      window.parent.postMessage(
+        {
+          event: 'getConnectBaseURL',
+        },
+        '*',
+      );
+      window.addEventListener('message', (event) => {
+        const eventName = event.data && event.data.event;
+        if (eventName === 'setConnectBaseURL') {
+          this.connectBaseURL = event.data.connectBaseURL;
+          this.translateAllLinks();
+        }
+      });
+    },
+    methods: {
+      translateAllLinks() {
+        if (!this.connectBaseURL) {
+          return;
+        }
+        const url = new URL(this.connectBaseURL);
+        const debug = url.host && url.host.includes('develop');
+        document.querySelectorAll('a[href]').forEach((link) => {
+          const internalHref = link.getAttribute('internal-href') || link.getAttribute('href');
+          if (['http://', 'https://'].some((initial) => internalHref.startsWith(initial))) {
+            return;
+          }
+          const dashHref = this.connectBaseURL + internalHref;
+          if (link.translateLinkConnect) {
+            if (link.getAttribute('href') === dashHref) {
+              return;
+            }
+            link.removeEventListener('click', link.translateLinkConnect);
+          }
+          link.setAttribute('internal-href', internalHref);
+          link.setAttribute('href', dashHref);
+          const randomId = Math.floor(Math.random() * 100);
+          link.addEventListener(
+            'click',
+            (link.translateLinkConnect = () => {
+              if (debug) {
+                // eslint-disable-next-line no-console
+                console.log(`TranslateLinkConnectId ${randomId}`);
+              }
+              link.setAttribute('href', internalHref);
+              setTimeout(() => {
+                link.setAttribute('href', dashHref);
+              }, 0);
+            }),
+          );
+        });
+      },
+    },
+    updated() {
+      this.translateAllLinks();
+    },
   };
 </script>
 
