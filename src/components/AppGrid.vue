@@ -31,7 +31,7 @@
             size="small"
             type="secondary"
             :iconCenter="actionIcon"
-            @click.stop="addApp(app.code)"
+            @click.stop="addApp(app)"
           />
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
@@ -81,19 +81,21 @@
 
     <add-modal ref="addModal" />
     <config-modal ref="configModal" />
+    <config-pop-up ref="configPopUp" />
   </div>
 </template>
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import configModal from '../components/ConfigModal.vue';
+  import configModal from './config/ConfigModal.vue';
+  import configPopUp from './config/ConfigPopUp.vue';
   import addModal from '../components/AddModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'AppGrid',
-    components: { configModal, addModal, skeletonLoading },
+    components: { configModal, configPopUp, addModal, skeletonLoading },
     props: {
       section: {
         type: String,
@@ -208,13 +210,20 @@
           });
         }
       },
-      async addApp(code) {
+      async addApp(app) {
         try {
+          const code = app.code;
           const payload = {
             project_uuid: this.getSelectedProject,
           };
           await this.createApp({ code, payload });
-          this.$refs.addModal.toggleModal();
+          if (app.config_design === 'popup') {
+            app.config = {};
+            app.config.wa_url = 'https://google.com/'; // TODO: remove since this url will come from API
+            this.$refs.configPopUp.openPopUp(app);
+          } else {
+            this.$refs.addModal.toggleModal();
+          }
         } catch (error) {
           unnnicCallAlert({
             props: {
@@ -270,7 +279,9 @@
         if (this.type === 'add') {
           this.openAppDetails(app.code);
         } else {
-          this.$refs.configModal.openModal(app);
+          if (app.config_design !== 'popup') {
+            this.$refs.configModal.openModal(app);
+          }
         }
       },
       appRatingAverage(app) {
