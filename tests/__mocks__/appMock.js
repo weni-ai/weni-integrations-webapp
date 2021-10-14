@@ -20,6 +20,7 @@ const singleApp = {
     average: 4.9,
   },
   commentsCount: 3,
+  config_design: 'sidemenu',
   config: {
     title: 'Chat Title',
     subtitle: 'Chat subtitle',

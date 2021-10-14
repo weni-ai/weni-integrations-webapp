@@ -218,7 +218,10 @@
           };
           await this.createApp({ code, payload });
           if (app.config_design === 'popup') {
+            // TODO: use default config when it is fetched from api
+            /* istanbul ignore next */
             app.config = {};
+            /* istanbul ignore next */
             app.config.wa_url = 'https://google.com/'; // TODO: remove since this url will come from API
             this.$refs.configPopUp.openPopUp(app);
           } else {

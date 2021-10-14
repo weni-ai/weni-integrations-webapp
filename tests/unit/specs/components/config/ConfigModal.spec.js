@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import ConfigModal from '@/components/ConfigModal.vue';
-import { singleApp } from '../../../__mocks__/appMock';
+import ConfigModal from '@/components/config/ConfigModal.vue';
+import { singleApp } from '../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';

@@ -28,5 +28,6 @@ exports[`AppGrid.vue without mocked loadApps should be rendered properly 1`] = `
   <transition-stub name="fade">
     <!---->
   </transition-stub>
+  <!---->
 </div>
 `;
