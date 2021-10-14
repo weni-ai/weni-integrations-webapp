@@ -137,7 +137,7 @@
             class="app-config-wwc__tabs__settings-content__buttons__cancel"
             type="terciary"
             size="large"
-            :text="$t('weniWebChat.config.configure_later')"
+            :text="$t('apps.config.configure_later')"
             @click="closeConfig"
           ></unnnic-button>
 
@@ -145,7 +145,7 @@
             class="app-config-wwc__tabs__settings-content__buttons__save"
             type="secondary"
             size="large"
-            :text="$t('weniWebChat.config.save_changes')"
+            :text="$t('apps.config.save_changes')"
             @click="saveConfig"
           ></unnnic-button>
         </div>

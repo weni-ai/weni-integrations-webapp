@@ -64,7 +64,9 @@
     },
     "config": {
       "integration_success": "Successfully updated application",
-      "copy_success": "Successfully copied!"
+      "copy_success": "Successfully copied!",
+      "configure_later": "Configure later",
+      "save_changes": "Save changes"
     }
   },
 
@@ -92,8 +94,6 @@
       "keep_chat_history": "Keep chat history",
       "time_between_messages": "Time between messages",
       "main_color": "Main color",
-      "configure_later": "Configure later",
-      "save_changes": "Save changes",
       "script_placeholder": "Your script will be here",
       "copy": "Copy",
       "TitleInput": {
@@ -121,6 +121,18 @@
         "yes": "Yes",
         "no": "No",
         "maybe": "Maybe"
+      }
+    }
+  },
+
+  "telegram": {
+    "config": {
+      "description": {
+        "text": "Learn more about how to integrate Telegram",
+        "link": "here"
+      },
+      "TokenInput": {
+        "label": "Token"
       }
     }
   }
