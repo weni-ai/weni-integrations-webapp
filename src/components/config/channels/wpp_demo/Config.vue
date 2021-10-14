@@ -5,14 +5,14 @@
     :text="$t('wpp_demo.config.title')"
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
-    @close="toggleModal"
+    @close="closePopUp"
   >
     <span slot="message" v-html="$t('wpp_demo.config.description')"></span>
     <unnnic-button
       ref="unnnic-wpp-demo-modal-close-button"
       slot="options"
       type="terciary"
-      @click="toggleModal"
+      @click="closePopUp"
       >{{ $t('general.Close') }}</unnnic-button
     >
     <unnnic-button
@@ -42,13 +42,14 @@
       };
     },
     methods: {
-      toggleModal() {
+      closePopUp() {
         this.showModal = !this.showModal;
-        this.$parent.closePopUp();
+        this.$emit('closePopUp');
       },
       openWppLink() {
+        /* istanbul ignore next */
         window.open(this.app.config.wa_url, '_blank');
-        this.toggleModal();
+        this.closePopUp();
       },
     },
   };
