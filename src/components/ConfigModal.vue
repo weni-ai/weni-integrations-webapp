@@ -18,6 +18,7 @@
 
 <script>
   import wwcConfig from '../components/config/channels/WWC/Config.vue';
+  import telegramConfig from '../components/config/channels/telegram/Config.vue';
 
   export default {
     name: 'Modal',
@@ -41,7 +42,8 @@
     computed: {
       currentComponent() {
         if (this.type === 'wwc') return wwcConfig;
-        return wwcConfig;
+        if (this.type === 'telegram') return telegramConfig;
+        return null;
       },
     },
   };
