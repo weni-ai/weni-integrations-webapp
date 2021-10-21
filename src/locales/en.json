@@ -85,6 +85,7 @@
     "config": {
       "settings": "Settings",
       "script": "Script Code",
+      "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
       "show_fullscreen_button": "Show fullscreen button",
