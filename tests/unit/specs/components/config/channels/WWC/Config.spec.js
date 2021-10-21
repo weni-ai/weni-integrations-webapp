@@ -1,9 +1,3 @@
-jest.mock('@/api/appType', () => {
-  return {
-    updateAppConfig: jest.fn(),
-  };
-});
-
 import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
 
 jest.mock('@weni/unnnic-system', () => ({
@@ -38,6 +32,9 @@ describe('Config.vue', () => {
 
     actions = {
       updateAppConfig: jest.fn(),
+      getApp: jest.fn(() => {
+        return { data: singleApp };
+      }),
     };
 
     store = new Vuex.Store({
@@ -131,6 +128,18 @@ describe('Config.vue', () => {
     expect(wrapper.vm.chatSubtitle).toEqual('text');
   });
 
+  describe('scriptCode()', () => {
+    it('should return empty string if config script is not present', async () => {
+      await wrapper.setProps({ app: { ...singleApp, config: { script: undefined } } });
+      expect(wrapper.vm.scriptCode).toEqual('');
+    });
+
+    it('should return not an empy string if config script is present', async () => {
+      await wrapper.setProps({ app: { ...singleApp, config: { script: 'url' } } });
+      expect(wrapper.vm.scriptCode).not.toEqual('');
+    });
+  });
+
   it('should have default app defined', () => {
     const fn = jest.fn();
     wrapper.vm.app;
@@ -151,19 +160,34 @@ describe('Config.vue', () => {
     expect(wrapper.vm.timeBetweenMessages).toEqual(parseInt(value));
   });
 
-  it('should call updateAppConfig on save', async () => {
-    expect(actions.updateAppConfig).not.toHaveBeenCalled();
-    await wrapper.vm.saveConfig();
-    expect(actions.updateAppConfig).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call unnnicCallAlert on error', async () => {
-    actions.updateAppConfig.mockImplementation(() => {
-      throw new Error('error fetching');
+  describe('saveConfig()', () => {
+    it('should call updateAppConfig on save', async () => {
+      expect(actions.updateAppConfig).not.toHaveBeenCalled();
+      await wrapper.vm.saveConfig();
+      expect(actions.updateAppConfig).toHaveBeenCalledTimes(1);
     });
-    expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
-    await wrapper.vm.saveConfig();
-    expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+
+    it('should set new app.config on save', async () => {
+      await wrapper.setProps({ app: { ...singleApp, config: {} } });
+      expect(wrapper.vm.app).not.toMatchObject(singleApp);
+      await wrapper.vm.saveConfig();
+      expect(wrapper.vm.app).toMatchObject(singleApp);
+    });
+
+    it('should call getApp on save', async () => {
+      expect(actions.getApp).not.toHaveBeenCalled();
+      await wrapper.vm.saveConfig();
+      expect(actions.getApp).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      actions.updateAppConfig.mockImplementation(() => {
+        throw new Error('error fetching');
+      });
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.saveConfig();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('should call toggleChat on unreadCount watch if chat is open', async () => {
