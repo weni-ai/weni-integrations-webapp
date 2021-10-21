@@ -154,6 +154,11 @@
       <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
       <template slot="tab-panel-script">
         <div class="app-config-wwc__tabs__script-content">
+          <div
+            class="app-config-wwc__tabs__script-content__text"
+            v-html="$t('weniWebChat.config.script_tutorial')"
+          />
+
           <unnnic-data-area :text="scriptCode">
             <unnnic-toolTip
               slot="buttons"
@@ -257,7 +262,7 @@
         return this.enableSubtitle ? this.subtitle : ' ';
       },
       scriptCode() {
-        const a = `<script>
+        const code = `<script>
   (function (d, s, u) {
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
     k.onload = function () {
@@ -268,7 +273,7 @@
     h.parentNode.insertBefore(k, h);
   })(document, 'script', '${this.app.config.script}');
 <script/>`;
-        return a;
+        return this.app.config.script ? code : '';
       },
       imageForUpload() {
         if (this.simulatorAvatar?.startsWith('data:image')) {
@@ -281,7 +286,7 @@
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
+      ...mapActions(['updateAppConfig', 'getApp']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -383,7 +388,7 @@
       },
       async saveConfig() {
         /* istanbul ignore next */
-        const data = removeEmpty({
+        const reqData = removeEmpty({
           code: this.app.code,
           appUuid: this.app.uuid,
           payload: {
@@ -404,7 +409,9 @@
         });
 
         try {
-          await this.updateAppConfig(data);
+          await this.updateAppConfig(reqData);
+          const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
+          this.app.config = data.config;
           unnnicCallAlert({
             props: {
               text: this.$t('apps.config.integration_success'),
@@ -612,10 +619,18 @@
 
       &__script-content {
         display: flex;
+        flex-direction: column;
         gap: $unnnic-inline-xs;
 
-        &__input {
-          flex: 1;
+        &__text {
+          color: $unnnic-color-neutral-dark;
+          font-family: $unnnic-font-family-secondary;
+          font-size: $unnnic-font-size-body-lg;
+          line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+        }
+
+        .data-area-container {
+          width: 100%;
         }
       }
     }

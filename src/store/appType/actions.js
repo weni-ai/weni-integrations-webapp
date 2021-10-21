@@ -29,6 +29,10 @@ export default {
     return await appType.postRating(code, payload);
   },
 
+  async getApp(store, { code, appUuid }) {
+    return await appType.getApp(code, appUuid);
+  },
+
   async createApp(store, { code, payload }) {
     return await appType.createApp(code, payload);
   },
