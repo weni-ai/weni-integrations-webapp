@@ -140,6 +140,9 @@
       fullOwnerName(owner) {
         return owner.first_name + ' ' + owner.last_name;
       },
+      toggleRemoveModal() {
+        this.showRemoveModal = !this.showRemoveModal;
+      },
       async handleComment() {
         if (this.currentComment !== null && this.currentComment.trim() !== '') {
           try {
