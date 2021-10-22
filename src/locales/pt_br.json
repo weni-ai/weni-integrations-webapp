@@ -4,6 +4,10 @@
     "Close": "Fechar"
   },
 
+  "errors": {
+    "empty_input": "Campos obrigatórios não podem estar vazios."
+  },
+
   "apps": {
     "nav": {
       "discovery": "Descoberta",
