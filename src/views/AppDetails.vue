@@ -136,7 +136,7 @@
         return history;
       },
       appLinks() {
-        const links = this.app.assets.filter((asset) => asset.type === 'link');
+        const links = this.app.assets.filter((asset) => asset.type === 'LK');
         return links;
       },
       appMetrics() {
