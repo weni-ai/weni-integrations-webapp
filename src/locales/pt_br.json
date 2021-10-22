@@ -16,7 +16,14 @@
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados"
       }
-    }, 
+    },
+    "myApps": {
+      "empty": {
+        "no-integrations": "Você ainda não instalou nenhuma integração.",
+        "search": "Procure o que você precisa",
+        "link": "aqui"
+      }
+    },
     "details": {
       "info": "Número de mensagens trocadas",
       "integrated_into": "Integrado em",
