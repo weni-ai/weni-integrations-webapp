@@ -14,8 +14,8 @@
           <unnnic-input
             key="config-title"
             v-model="title"
-            type="normal"
-            :label="$t('weniWebChat.config.TitleInput.label')"
+            :type="errorFor('title') ? 'error' : 'normal'"
+            :label="`${$t('weniWebChat.config.TitleInput.label')}*`"
             :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
           />
 
@@ -43,8 +43,8 @@
             <unnnic-input
               v-model="initPayload"
               class="app-config-wwc__tabs__settings-content__input__payload"
-              type="normal"
-              :label="$t('weniWebChat.config.initPayloadInput.label')"
+              :type="errorFor('initPayload') ? 'error' : 'normal'"
+              :label="`${$t('weniWebChat.config.initPayloadInput.label')}*`"
               :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
             />
           </div>
@@ -386,7 +386,41 @@
           seconds: 3,
         });
       },
+      errorFor(key) {
+        const value = this.$data[key];
+        if (key === 'initPayload' || key === 'title') {
+          if (!(value && value.trim())) {
+            return this.$t('errors.empty_input');
+          }
+        }
+      },
+      validConfig() {
+        let valid = true;
+
+        Object.entries(this.$data).forEach(([key]) => {
+          const error = this.errorFor(key);
+          if (error) {
+            unnnicCallAlert({
+              props: {
+                text: error,
+                title: 'Error',
+                icon: 'alert-circle-1-1',
+                scheme: 'feedback-red',
+                position: 'bottom-right',
+                closeText: this.$t('general.Close'),
+              },
+              seconds: 3,
+            });
+            valid = false;
+          }
+        });
+        return valid;
+      },
       async saveConfig() {
+        if (!this.validConfig()) {
+          return;
+        }
+
         /* istanbul ignore next */
         const reqData = removeEmpty({
           code: this.app.code,
