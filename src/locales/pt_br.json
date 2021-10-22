@@ -4,6 +4,10 @@
     "Close": "Fechar"
   },
 
+  "errors": {
+    "empty_input": "Campos obrigatórios não podem estar vazios."
+  },
+
   "apps": {
     "nav": {
       "discovery": "Descoberta",
@@ -16,7 +20,7 @@
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados"
       }
-    }, 
+    },
     "details": {
       "info": "Número de mensagens trocadas",
       "integrated_into": "Integrado em",

@@ -4,6 +4,10 @@
     "Close": "Close"
   },
 
+  "errors": {
+    "empty_input": "Required fields cannot be empty"
+  },
+
   "apps": {
     "nav": {
       "discovery": "Discovery",
