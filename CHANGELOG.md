@@ -1,3 +1,21 @@
+0.1.11
+----------
+`2021-10-22 · 4 🐛 · 2 🎉 · 1 🚀`
+
+### 🐛 Bug fixes
+- Fix: wwc script code appears only when configured
+- Fix: Comments names and avatars
+- fix: new assets types nomenclature
+- Fix: Get all app types params
+
+### 🎉 New features
+- Feat: Empty screen for my-apps
+- Feat: Required fields title and trigger
+
+### 🚀 Improvements
+- Improve: My apps dropdown options
+
+
 0.1.10
 ----------
 `2021-10-08 · 1 🎉`
