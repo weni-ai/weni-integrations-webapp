@@ -58,11 +58,38 @@
             iconLeft="delete-1"
             :text="$t('apps.details.comments.delete_comment')"
             size="small"
-            @click="handleDelete(comment.uuid)"
+            @click="confirmDelete(comment.uuid)"
           />
         </unnnic-dropdown-item>
       </unnnic-dropdown>
     </unnnic-comment>
+
+    <unnnic-modal
+      ref="unnnic-remove-modal"
+      :showModal="showRemoveModal"
+      :text="$t('apps.details.comments.remove.title')"
+      scheme="feedback-red"
+      modal-icon="alert-circle-1"
+      @close="toggleRemoveModal"
+    >
+      <span slot="message" v-html="$t('apps.details.comments.remove.description')"></span>
+      <unnnic-button
+        ref="unnnic-remove-modal-close-button"
+        slot="options"
+        type="terciary"
+        @click="toggleRemoveModal"
+        >{{ $t('general.Cancel') }}</unnnic-button
+      >
+      <unnnic-button
+        ref="unnnic-remove-modal-navigate-button"
+        slot="options"
+        type="primary"
+        @click="handleDelete(currentRemovalUuid)"
+        scheme="feedback-red"
+      >
+        {{ $t('apps.details.comments.remove.remove') }}
+      </unnnic-button>
+    </unnnic-modal>
   </div>
 </template>
 
@@ -87,6 +114,8 @@
         currentComment: null,
         editMode: false,
         editCommentUuid: null,
+        showRemoveModal: false,
+        currentRemovalUuid: null,
       };
     },
     async mounted() {
@@ -148,14 +177,30 @@
           }
         }
       },
+      async confirmDelete(commentUuid) {
+        this.showRemoveModal = true;
+        this.currentRemovalUuid = commentUuid;
+      },
       async handleDelete(commentUuid) {
         try {
           await this.deleteComment({
             code: this.appCode,
             commentUuid,
           });
-
+          this.showRemoveModal = false;
+          this.currentRemovalUuid = null;
           await this.fetchComments(this.appCode);
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.comments.remove.status_text'),
+              title: 'Success',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
         } catch (err) {
           unnnicCallAlert({
             props: {

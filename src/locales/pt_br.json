@@ -51,7 +51,13 @@
         "leave_a_comment": "Deixe um comentário",
         "input_placeholder": "Um bom comentário pode ajudar outras pessoas que estão aprendendo :)",
         "edit_comment": "Editar comentário",
-        "delete_comment": "Deletar comentário"
+        "delete_comment": "Deletar comentário",
+        "remove": {
+          "title": "Deletar comentário",
+          "description": "Deseja mesmo excluir o seu comentário no aprendizado? Você poderá inserir outro novamente.",
+          "remove": "Deletar comentário",
+          "status_text": "Comentário removido com sucesso"
+        }
       },
       "header": {
         "add": "Adicionar"

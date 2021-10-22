@@ -51,7 +51,13 @@
         "leave_a_comment": "Leave a comment",
         "input_placeholder": "A good comment can help others that are learning :)",
         "edit_comment": "Edit comment",
-        "delete_comment": "Delete comment"
+        "delete_comment": "Delete comment",
+        "remove": {
+          "title": "Delete Comment",
+          "description": "Do you really want to delete your comment on learning? You will be able to insert another one.",
+          "remove": "Delete comment",
+          "status_text": "Successfully deleted comment"
+        }
       },
       "header": {
         "add": "Add"
