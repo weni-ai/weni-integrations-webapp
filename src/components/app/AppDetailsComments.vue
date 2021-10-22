@@ -26,11 +26,21 @@
       class="app-details-comments__comment"
       v-for="(comment, index) in comments"
       :key="index"
-      :avatar="comment.avatar || ''"
-      :title="comment.username || 'nome'"
+      :title="comment.owned ? $t('general.You') : comment.owner.first_name"
       :time="getCommentTime(comment.created_on)"
       :text="comment.content"
     >
+      <Avatar
+        v-if="!comment.owner.photo_url"
+        :username="fullOwnerName(comment.owner)"
+        slot="avatar"
+      />
+      <img
+        class="app-details-comments__comment__avatar"
+        v-else
+        :src="comment.owner.photo_url"
+        slot="avatar"
+      />
       <unnnic-dropdown v-if="comment.owned" slot="actions">
         <unnnic-icon-svg slot="trigger" icon="navigation-menu-vertical-1" size="sm" />
         <unnnic-dropdown-item>
@@ -48,11 +58,38 @@
             iconLeft="delete-1"
             :text="$t('apps.details.comments.delete_comment')"
             size="small"
-            @click="handleDelete(comment.uuid)"
+            @click="confirmDelete(comment.uuid)"
           />
         </unnnic-dropdown-item>
       </unnnic-dropdown>
     </unnnic-comment>
+
+    <unnnic-modal
+      ref="unnnic-remove-modal"
+      :showModal="showRemoveModal"
+      :text="$t('apps.details.comments.remove.title')"
+      scheme="feedback-red"
+      modal-icon="alert-circle-1"
+      @close="toggleRemoveModal"
+    >
+      <span slot="message" v-html="$t('apps.details.comments.remove.description')"></span>
+      <unnnic-button
+        ref="unnnic-remove-modal-close-button"
+        slot="options"
+        type="terciary"
+        @click="toggleRemoveModal"
+        >{{ $t('general.Cancel') }}</unnnic-button
+      >
+      <unnnic-button
+        ref="unnnic-remove-modal-navigate-button"
+        slot="options"
+        type="primary"
+        @click="handleDelete(currentRemovalUuid)"
+        scheme="feedback-red"
+      >
+        {{ $t('apps.details.comments.remove.remove') }}
+      </unnnic-button>
+    </unnnic-modal>
   </div>
 </template>
 
@@ -60,9 +97,11 @@
   import { mapActions } from 'vuex';
   import getRelativeTime from '../../utils/time.js';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import Avatar from 'vue-avatar';
 
   export default {
     name: 'AppDetailsComments',
+    components: { Avatar },
     props: {
       appCode: {
         type: String,
@@ -75,6 +114,8 @@
         currentComment: null,
         editMode: false,
         editCommentUuid: null,
+        showRemoveModal: false,
+        currentRemovalUuid: null,
       };
     },
     async mounted() {
@@ -95,6 +136,12 @@
         this.editMode = false;
         this.editCommentUuid = null;
         this.currentComment = null;
+      },
+      fullOwnerName(owner) {
+        return owner.first_name + ' ' + owner.last_name;
+      },
+      toggleRemoveModal() {
+        this.showRemoveModal = !this.showRemoveModal;
       },
       async handleComment() {
         if (this.currentComment !== null && this.currentComment.trim() !== '') {
@@ -133,14 +180,30 @@
           }
         }
       },
+      async confirmDelete(commentUuid) {
+        this.showRemoveModal = true;
+        this.currentRemovalUuid = commentUuid;
+      },
       async handleDelete(commentUuid) {
         try {
           await this.deleteComment({
             code: this.appCode,
             commentUuid,
           });
-
+          this.showRemoveModal = false;
+          this.currentRemovalUuid = null;
           await this.fetchComments(this.appCode);
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.comments.remove.status_text'),
+              title: 'Success',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
         } catch (err) {
           unnnicCallAlert({
             props: {
@@ -189,6 +252,12 @@
 
     &__comment {
       margin-bottom: $unnnic-spacing-stack-md;
+
+      &__avatar {
+        width: 56px;
+        object-fit: cover;
+        border-radius: $unnnic-border-radius-pill;
+      }
     }
   }
 </style>
