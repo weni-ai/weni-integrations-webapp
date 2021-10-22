@@ -1,7 +1,7 @@
 <template>
   <div>
     <section v-if="!loading" id="app-grid">
-      <div class="app-grid__header">
+      <div v-if="apps.length" class="app-grid__header">
         <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
@@ -108,22 +108,21 @@
           return ['add', 'config', 'edit'].indexOf(value) !== -1;
         },
       },
+      apps: {
+        type: Array,
+        default: null,
+      },
+      loading: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
-        loading: true,
         showAddModal: false,
         showRemoveModal: false,
         currentRemoval: null,
-        apps: [],
       };
-    },
-    async mounted() {
-      await this.loadApps();
-
-      this.$root.$on('updateGrid', async () => {
-        await this.loadApps();
-      });
     },
     computed: {
       ...mapGetters({
@@ -166,48 +165,6 @@
         'getInstalledApps',
         'deleteApp',
       ]),
-      async loadApps() {
-        this.loading = true;
-        try {
-          switch (this.type) {
-            case 'add': {
-              const filter = { category: this.section };
-              const { data } = await this.getAllAppTypes(filter);
-              this.apps = data;
-              break;
-            }
-            case 'config': {
-              const params = {
-                project_uuid: this.getSelectedProject,
-              };
-              const { data } = await this.getInstalledApps({ params });
-              this.apps = data;
-              break;
-            }
-            case 'edit': {
-              const params = {
-                project_uuid: this.getSelectedProject,
-              };
-              const { data } = await this.getConfiguredApps({ params });
-              this.apps = data;
-              break;
-            }
-          }
-          this.loading = false;
-        } catch (e) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.grid.status_error'),
-              title: 'Error',
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-        }
-      },
       async addApp(code) {
         try {
           const payload = {
@@ -248,7 +205,7 @@
             },
             seconds: 3,
           });
-          await this.loadApps();
+          this.$emit('update');
         } catch (error) {
           unnnicCallAlert({
             props: {

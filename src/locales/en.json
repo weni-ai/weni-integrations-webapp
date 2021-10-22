@@ -17,6 +17,13 @@
         "installed": "Installed Apps"
       }
     },
+    "myApps": {
+      "empty": {
+        "no-integrations": "You haven't installed any integrations yet.",
+        "search": "Search for what you need",
+        "link": "here"
+      }
+    },
     "details": {
       "info": "Number of exchanged messages",
       "integrated_into": "Integrated into",
