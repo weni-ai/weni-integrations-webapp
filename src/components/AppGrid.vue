@@ -35,8 +35,19 @@
           />
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
-            <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="actionIcon" />
-            <unnnic-dropdown-item @click="openAppDetails(app.code)">
+            <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="cardIcon" />
+            <unnnic-dropdown-item
+              class="app-grid__content__item__button--action"
+              @click="openAppModal(app)"
+            >
+              <unnnic-icon-svg :icon="actionIcon" size="sm" />
+              {{ actionText }}
+            </unnnic-dropdown-item>
+            <unnnic-dropdown-item
+              class="app-grid__content__item__button--details"
+              @click="openAppDetails(app.code)"
+            >
+              <unnnic-icon-svg icon="export-1" size="sm" />
               {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
@@ -150,6 +161,30 @@
             return 'cog-1';
           case 'edit':
             return 'pencil-write-1';
+          /* istanbul ignore next */
+          default:
+            return null;
+        }
+      },
+      cardIcon() {
+        switch (this.type) {
+          case 'add':
+            return 'add-1';
+          case 'config':
+            return 'navigation-menu-vertical-1';
+          case 'edit':
+            return 'navigation-menu-vertical-1';
+          /* istanbul ignore next */
+          default:
+            return null;
+        }
+      },
+      actionText() {
+        switch (this.type) {
+          case 'config':
+            return 'Configure';
+          case 'edit':
+            return 'Edit';
           /* istanbul ignore next */
           default:
             return null;
@@ -271,6 +306,8 @@
             height: fit-content;
           }
 
+          &--action,
+          &--details,
           &--remove {
             display: inline-block;
             width: max-content;
@@ -278,6 +315,9 @@
             font-family: $unnnic-font-family-secondary;
             font-size: $unnnic-font-size-body-md;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
+          }
+
+          &--remove {
             color: $unnnic-color-feedback-red;
           }
         }
