@@ -1,8 +1,8 @@
 import appType from '@/api/appType';
 
 export default {
-  async getAllAppTypes(store, filter) {
-    return await appType.getAllAppTypes(filter);
+  async getAllAppTypes(store, { params }) {
+    return await appType.getAllAppTypes(params);
   },
 
   async getAppType(store, code) {

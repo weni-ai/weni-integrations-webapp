@@ -72,7 +72,7 @@
       },
     },
     methods: {
-      ...mapActions(['getAllAppTypes', 'getConfiguredApps', 'getInstalledApps']),
+      ...mapActions(['getConfiguredApps', 'getInstalledApps']),
       async fetchCategories() {
         await this.fetchConfigured();
         await this.fetchInstalled();
