@@ -31,7 +31,7 @@
       async fetchChannels() {
         this.channels.loading = true;
         const params = {
-          project_uuid: this.getSelectedProject,
+          category: 'channel',
         };
         const { data } = await this.getAllAppTypes({ params });
         this.channels.data = data;
