@@ -1,6 +1,6 @@
 0.1.11
 ----------
-`2021-10-08 · 4 🐛 · 2 🎉 · 1 🚀`
+`2021-10-22 · 4 🐛 · 2 🎉 · 1 🚀`
 
 ### 🐛 Bug fixes
 - Fix: wwc script code appears only when configured
