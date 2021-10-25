@@ -310,7 +310,7 @@
           &--details,
           &--remove {
             display: inline-block;
-            width: max-content;
+            width: $unnnic-inline-awesome;
 
             font-family: $unnnic-font-family-secondary;
             font-size: $unnnic-font-size-body-md;

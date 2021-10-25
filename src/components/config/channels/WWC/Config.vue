@@ -113,8 +113,8 @@
                 :initialValue="timeBetweenMessages"
                 :minValue="1"
                 :maxValue="4"
-                minLabel="1"
-                maxLabel="4"
+                minLabel="1s"
+                maxLabel="4s"
                 @valueChange="handleSliderChange"
               />
             </div>
@@ -137,7 +137,7 @@
             class="app-config-wwc__tabs__settings-content__buttons__cancel"
             type="terciary"
             size="large"
-            :text="$t('weniWebChat.config.configure_later')"
+            :text="$t('general.Cancel')"
             @click="closeConfig"
           ></unnnic-button>
 
@@ -275,7 +275,7 @@
     k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
     h.parentNode.insertBefore(k, h);
   })(document, 'script', '${this.app.config.script}');
-<script/>`;
+<${'/'}script>`;
         return this.app.config.script ? code : '';
       },
       imageForUpload() {
@@ -456,7 +456,7 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
-              avatarImage: this.imageForUpload,
+              profileAvatar: this.imageForUpload,
               customCss: this.cssForUpload,
             },
           },
