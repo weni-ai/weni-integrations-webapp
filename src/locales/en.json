@@ -2,7 +2,8 @@
   "general": {
     "Cancel": "Cancel",
     "Close": "Close",
-    "You": "You"
+    "You": "You",
+    "confirm": "Confirm"
   },
 
   "errors": {
@@ -82,7 +83,12 @@
     },
     "config": {
       "integration_success": "Successfully updated application",
-      "copy_success": "Successfully copied!"
+      "copy_success": "Successfully copied!",
+      "confirmation": {
+        "title": "Cancel modifications",
+        "description": "Do you really want to cancel your changes? All unsaved changes will be lost.",
+        "goBackToConfig": "Go back to configuration"
+      }
     }
   },
 

@@ -2,7 +2,8 @@
   "general": {
     "Cancel": "Cancelar",
     "Close": "Fechar",
-    "You": "Você"
+    "You": "Você",
+    "confirm": "Confirmar"
   },
 
   "errors": {
@@ -81,7 +82,12 @@
     },
     "config": {
       "integration_success": "Aplicação instalada com sucesso!",
-      "copy_success": "Copiado com sucesso!"
+      "copy_success": "Copiado com sucesso!",
+      "confirmation": {
+        "title": "Cancelar alterações",
+        "description": "Deseja mesmo cancelar as alterações? Você perderá o que não foi salvo.",
+        "goBackToConfig": "Voltar para configuração"
+      }
     }
   },
 

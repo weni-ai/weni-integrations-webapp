@@ -244,6 +244,9 @@
           this.$refs.simulator.toggleChat();
         }
       },
+      configProperties() {
+        this.$emit('setConfirmation', true);
+      },
     },
     /* istanbul ignore next */
     async mounted() {
@@ -283,6 +286,23 @@
       },
       cssForUpload() {
         return this.customCssFile.data ?? this.customCss;
+      },
+      configProperties() {
+        return `
+          ${this.mainColor}|
+          ${this.title}|
+          ${this.subtitle}|
+          ${this.inputTextFieldHint}|
+          ${this.displayUnreadCount}|
+          ${this.showFullscreenButton}|
+          ${this.keepHistory}|
+          ${this.customCss}|
+          ${this.timeBetweenMessages}|
+          ${this.initPayload}|
+          ${this.simulatorAvatar}|
+          ${this.avatarFile}|
+          ${this.customCssFile}
+          `;
       },
     },
     methods: {
@@ -446,6 +466,7 @@
           await this.updateAppConfig(reqData);
           const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
           this.app.config = data.config;
+          this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
               text: this.$t('apps.config.integration_success'),
