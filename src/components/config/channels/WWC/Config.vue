@@ -113,8 +113,8 @@
                 :initialValue="timeBetweenMessages"
                 :minValue="1"
                 :maxValue="4"
-                minLabel="1"
-                maxLabel="4"
+                minLabel="1s"
+                maxLabel="4s"
                 @valueChange="handleSliderChange"
               />
             </div>
