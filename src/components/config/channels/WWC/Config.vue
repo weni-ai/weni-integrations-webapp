@@ -456,7 +456,7 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
-              avatarImage: this.imageForUpload,
+              profileAvatar: this.imageForUpload,
               customCss: this.cssForUpload,
             },
           },
