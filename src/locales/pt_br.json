@@ -118,6 +118,7 @@
       "save_changes": "Salvar alterações",
       "script_placeholder": "Seu script estará aqui",
       "copy": "Copiar",
+      "initPayloadToolTip": "Ao abrir o chat em seu site, uma trigger com este valor sera chamada automaticamente para iniciar um fluxo escolhido. Voce pode configura-la em Estúdio.",
       "TitleInput": {
         "label": "Título do Chat",
         "placeholder": "Ex.: Nome do seu chatbot"

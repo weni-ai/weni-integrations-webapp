@@ -40,13 +40,34 @@
               />
             </div>
 
-            <unnnic-input
-              v-model="initPayload"
-              class="app-config-wwc__tabs__settings-content__input__payload"
-              :type="errorFor('initPayload') ? 'error' : 'normal'"
-              :label="`${$t('weniWebChat.config.initPayloadInput.label')}*`"
-              :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
-            />
+            <div class="app-config-wwc__tabs__settings-content__initPayload">
+              <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
+                <div class="app-config-wwc__tabs__settings-content__initPayload__label">
+                  {{ `${$t('weniWebChat.config.initPayloadInput.label')}*` }}
+                </div>
+                <unnnic-toolTip
+                  slot="buttons"
+                  :text="$t('weniWebChat.config.initPayloadToolTip')"
+                  :enabled="true"
+                  side="top"
+                  maxWidth="300px"
+                >
+                  <unnnic-icon-svg
+                    class="app-config-wwc__tabs__settings-content__initPayload__icon"
+                    icon="information-circle-4"
+                    size="sm"
+                    scheme="neutral-cloudy"
+                  />
+                </unnnic-toolTip>
+              </div>
+
+              <unnnic-input
+                v-model="initPayload"
+                class="app-config-wwc__tabs__settings-content__input__payload"
+                :type="errorFor('initPayload') ? 'error' : 'normal'"
+                :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+              />
+            </div>
           </div>
 
           <unnnic-input
@@ -575,6 +596,27 @@
             ::v-deep .unnnic-form-input {
               margin-top: $unnnic-spacing-stack-xs;
             }
+          }
+        }
+
+        &__initPayload {
+          margin-top: $unnnic-spacing-stack-sm;
+          flex: 1;
+
+          &__horizontal {
+            display: flex;
+          }
+          &__label {
+            font-family: $unnnic-font-family-secondary;
+            font-weight: $unnnic-font-weight-regular;
+            font-size: $unnnic-font-size-body-gt;
+            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+            color: $unnnic-color-neutral-cloudy;
+          }
+
+          &__icon {
+            margin-top: $unnnic-spacing-stack-nano;
+            margin-left: $unnnic-inline-nano;
           }
         }
 
