@@ -137,7 +137,7 @@
             class="app-config-wwc__tabs__settings-content__buttons__cancel"
             type="terciary"
             size="large"
-            :text="$t('weniWebChat.config.configure_later')"
+            :text="$t('general.Cancel')"
             @click="closeConfig"
           ></unnnic-button>
 
