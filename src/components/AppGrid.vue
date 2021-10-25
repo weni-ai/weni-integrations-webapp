@@ -97,8 +97,8 @@
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import configModal from '../components/ConfigModal.vue';
-  import addModal from '../components/AddModal.vue';
+  import configModal from './config/ConfigModal.vue';
+  import addModal from './AddModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
   import { mapActions, mapGetters } from 'vuex';
 
