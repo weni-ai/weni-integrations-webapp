@@ -275,7 +275,7 @@
     k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
     h.parentNode.insertBefore(k, h);
   })(document, 'script', '${this.app.config.script}');
-<script/>`;
+<${'/'}script>`;
         return this.app.config.script ? code : '';
       },
       imageForUpload() {
