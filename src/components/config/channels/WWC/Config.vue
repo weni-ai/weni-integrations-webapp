@@ -243,7 +243,7 @@
     data() {
       return {
         enableSubtitle: !!this.app.config.subtitle,
-        simulatorAvatar: this.app.config.avatarImage ?? null,
+        simulatorAvatar: this.app.config.profileAvatar ?? null,
         mainColor: this.app.config.mainColor ?? '#009E96',
         title: this.app.config.title,
         subtitle: this.app.config.subtitle,
@@ -271,7 +271,7 @@
     },
     /* istanbul ignore next */
     async mounted() {
-      if (this.app.config.avatarImage) {
+      if (this.app.config.profileAvatar) {
         await this.createAvatarPreview();
       }
       if (this.app.config.customCss) {
@@ -386,7 +386,7 @@
       },
       /* istanbul ignore next */
       async createAvatarPreview() {
-        const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
+        const blob = await this.createFile(this.app.config.profileAvatar, 'base64', (e) => {
           this.avatarFile = {
             data: e.target.result,
             info: {
