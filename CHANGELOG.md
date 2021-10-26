@@ -1,3 +1,15 @@
+0.1.12
+----------
+`2021-10-26 · 1 🐛 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: Minor front fixes 
+
+### 🎉 New features
+- Feat: Trigger message tooltip
+- Feat: Confirmation modal when canceling config changes
+
+
 0.1.11
 ----------
 `2021-10-22 · 4 🐛 · 2 🎉 · 1 🚀`
