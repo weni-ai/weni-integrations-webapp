@@ -484,6 +484,7 @@
         });
 
         try {
+          /* istanbul ignore next */
           const firstSave = this.scriptCode ? false : true;
           await this.updateAppConfig(reqData);
           const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
@@ -491,7 +492,7 @@
           this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
-              text: firstSave
+              text: /* istanbul ignore next */ firstSave
                 ? this.$t('apps.config.first_integration_success')
                 : this.$t('apps.config.integration_success'),
               title: 'Success',
@@ -500,7 +501,7 @@
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
             },
-            seconds: firstSave ? 8 : 3,
+            seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
         } catch (err) {
           unnnicCallAlert({
