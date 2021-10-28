@@ -161,13 +161,22 @@ describe('Config.vue', () => {
   });
 
   describe('saveConfig()', () => {
-    it('should call updateAppConfig on save', async () => {
+    it('should not call updateAppConfig if not valid', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(false);
+      expect(actions.updateAppConfig).not.toHaveBeenCalled();
+      await wrapper.vm.saveConfig();
+      expect(actions.updateAppConfig).not.toHaveBeenCalled();
+    });
+
+    it('should call updateAppConfig on save if config is valid', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       expect(actions.updateAppConfig).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(actions.updateAppConfig).toHaveBeenCalledTimes(1);
     });
 
     it('should set new app.config on save', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       await wrapper.setProps({ app: { ...singleApp, config: {} } });
       expect(wrapper.vm.app).not.toMatchObject(singleApp);
       await wrapper.vm.saveConfig();
@@ -175,6 +184,7 @@ describe('Config.vue', () => {
     });
 
     it('should call getApp on save', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       expect(actions.getApp).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(actions.getApp).toHaveBeenCalledTimes(1);
