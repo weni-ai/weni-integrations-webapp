@@ -484,20 +484,23 @@
         });
 
         try {
+          const firstSave = this.scriptCode ? false : true;
           await this.updateAppConfig(reqData);
           const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
           this.app.config = data.config;
           this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
-              text: this.$t('apps.config.integration_success'),
+              text: firstSave
+                ? this.$t('apps.config.first_integration_success')
+                : this.$t('apps.config.integration_success'),
               title: 'Success',
               icon: 'check-circle-1-1',
               scheme: 'feedback-green',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
             },
-            seconds: 3,
+            seconds: firstSave ? 8 : 3,
           });
         } catch (err) {
           unnnicCallAlert({

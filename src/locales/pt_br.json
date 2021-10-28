@@ -69,7 +69,7 @@
       "actions": {
         "installed": {
           "title": "Aplicativo adicionado!",
-          "description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
+          "description": "Você ainda precisa configurar o aplicativo acessando a área \"Meus aplicativos\".",
           "access_my_apps": "Acessar meus aplicativos"
         },
         "remove": {
@@ -81,6 +81,7 @@
       }
     },
     "config": {
+      "first_integration_success": "Para baixar o código para colocar em seu website vá para a aba Código Script.",
       "integration_success": "Aplicação instalada com sucesso!",
       "copy_success": "Copiado com sucesso!",
       "confirmation": {
