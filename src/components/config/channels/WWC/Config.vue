@@ -183,16 +183,17 @@
           <unnnic-data-area :text="scriptCode">
             <unnnic-toolTip
               slot="buttons"
-              :text="$t('weniWebChat.config.copy')"
+              :text="$t('weniWebChat.config.download')"
               :enabled="true"
               side="top"
             >
               <unnnic-button
-                class="app-config-wwc__tabs__script-content__copy"
+                class="app-config-wwc__tabs__script-content__download"
                 type="secondary"
                 size="large"
-                iconCenter="copy-paste-1"
-                @click="copyScript"
+                iconCenter="download-bottom-1"
+                @click="downloadScript"
+                :disabled="scriptCode ? false : true"
               ></unnnic-button>
             </unnnic-toolTip>
           </unnnic-data-area>
@@ -413,19 +414,17 @@
         });
       },
       /* istanbul ignore next */
-      async copyScript() {
-        await navigator.clipboard.writeText(this.scriptCode);
-        unnnicCallAlert({
-          props: {
-            text: this.$t('apps.config.copy_success'),
-            title: 'Success',
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-          },
-          seconds: 3,
-        });
+      async downloadScript() {
+        let element = document.createElement('a');
+        element.setAttribute(
+          'href',
+          'data:text/plain;charset=utf-8, ' + encodeURIComponent(this.scriptCode),
+        );
+        element.setAttribute('download', `wwc-script-${this.title}.html`);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
       },
       errorFor(key) {
         const value = this.$data[key];
