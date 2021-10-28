@@ -50,12 +50,14 @@
         },
       };
     },
+    /* istanbul ignore next */
     async mounted() {
       await this.fetchCategories();
       this.$root.$on('updateGrid', async () => {
         await this.fetchCategories();
       });
     },
+    /* istanbul ignore next */
     beforeDestroy() {
       this.$root.$off('updateGrid');
     },
