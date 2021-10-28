@@ -10,7 +10,7 @@ const singleApp = {
   icon: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg',
   assets: [
     {
-      type: 'image_banner',
+      type: 'IB',
       url: 'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png',
       description: '',
     },
