@@ -161,13 +161,22 @@ describe('Config.vue', () => {
   });
 
   describe('saveConfig()', () => {
-    it('should call updateAppConfig on save', async () => {
+    it('should not call updateAppConfig if not valid', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(false);
+      expect(actions.updateAppConfig).not.toHaveBeenCalled();
+      await wrapper.vm.saveConfig();
+      expect(actions.updateAppConfig).not.toHaveBeenCalled();
+    });
+
+    it('should call updateAppConfig on save if config is valid', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       expect(actions.updateAppConfig).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(actions.updateAppConfig).toHaveBeenCalledTimes(1);
     });
 
     it('should set new app.config on save', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       await wrapper.setProps({ app: { ...singleApp, config: {} } });
       expect(wrapper.vm.app).not.toMatchObject(singleApp);
       await wrapper.vm.saveConfig();
@@ -175,12 +184,14 @@ describe('Config.vue', () => {
     });
 
     it('should call getApp on save', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       expect(actions.getApp).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(actions.getApp).toHaveBeenCalledTimes(1);
     });
 
     it('should call unnnicCallAlert on error', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       actions.updateAppConfig.mockImplementation(() => {
         throw new Error('error fetching');
       });
@@ -270,6 +281,22 @@ describe('Config.vue', () => {
       expect(wrapper.emitted('closeModal')).toBeFalsy();
       wrapper.vm.closeConfig();
       expect(wrapper.emitted('closeModal')).toBeTruthy();
+    });
+  });
+
+  describe('validConfig()', () => {
+    it('should return true if no errors are found', async () => {
+      await wrapper.setData({ initPayload: 'payload' });
+      await wrapper.setData({ title: 'title' });
+      const isValid = wrapper.vm.validConfig();
+      expect(isValid).toBeTruthy();
+    });
+
+    it('should return false if an error is found', async () => {
+      await wrapper.setData({ initPayload: '' });
+      await wrapper.setData({ title: 'title' });
+      const isValid = wrapper.vm.validConfig();
+      expect(isValid).toBeFalsy();
     });
   });
 });

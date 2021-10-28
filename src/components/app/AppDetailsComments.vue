@@ -180,7 +180,7 @@
           }
         }
       },
-      async confirmDelete(commentUuid) {
+      confirmDelete(commentUuid) {
         this.showRemoveModal = true;
         this.currentRemovalUuid = commentUuid;
       },

@@ -1,8 +1,54 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App.vue should be rendered properly 1`] = `
+exports[`MyApps.vue should be rendered properly 1`] = `
 <div>
-  <appgrid-stub section="configured" type="edit"></appgrid-stub>
-  <appgrid-stub section="installed" type="config"></appgrid-stub>
+  <div>
+    <div>
+      <section id="app-grid">
+        <div class="app-grid__header">
+          <unnnic-avatar-icon-stub enabled="true" icon="cog-1" size="sm" scheme="aux-purple"></unnnic-avatar-icon-stub>
+          <p class="app-grid__header__title">some specific text</p>
+        </div>
+        <div class="app-grid__content">
+          <unnnic-card-stub type="marketplace" title="Weni Web Chat - Chat Title" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="edit" buttonaction="[Function]" class="app-grid__content__item">
+            <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
+              <unnnic-button-stub size="small" type="secondary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
+              <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
+                <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
+                Edit
+              </unnnic-dropdown-item-stub>
+              <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
+                <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
+                some specific text
+              </unnnic-dropdown-item-stub>
+              <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
+                <unnnic-icon-svg-stub icon="bin-1-1" size="sm" scheme="feedback-red"></unnnic-icon-svg-stub>
+                Remove
+              </unnnic-dropdown-item-stub>
+            </unnnic-dropdown-stub>
+          </unnnic-card-stub>
+        </div>
+      </section>
+      <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
+        <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
+        <unnnic-button-stub size="large" type="primary" scheme="feedback-red">
+          some specific text
+        </unnnic-button-stub>
+      </unnnic-modal-stub>
+      <add-modal-stub></add-modal-stub>
+      <config-modal-stub></config-modal-stub>
+    </div>
+    <div>
+      <skeleton-loading-stub></skeleton-loading-stub>
+      <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
+        <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
+        <unnnic-button-stub size="large" type="primary" scheme="feedback-red">
+          some specific text
+        </unnnic-button-stub>
+      </unnnic-modal-stub>
+      <add-modal-stub></add-modal-stub>
+      <config-modal-stub></config-modal-stub>
+    </div>
+  </div>
 </div>
 `;

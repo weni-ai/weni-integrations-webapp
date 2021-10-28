@@ -13,5 +13,6 @@ exports[`AppDetailsComments.vue should be rendered properly 1`] = `
     </div>
     <!---->
   </div>
+  <!---->
 </div>
 `;

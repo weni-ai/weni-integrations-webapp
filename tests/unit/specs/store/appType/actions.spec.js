@@ -27,10 +27,12 @@ describe('store/appType/actions.js', () => {
     describe('getAllAppTypes()', () => {
       it('should call appType.getAllAppTypes', async () => {
         expect(appTypeApi.getAllAppTypes).not.toHaveBeenCalled();
-        const filter = 'filter';
+        const filter = {
+          params: 'param',
+        };
         await actions.getAllAppTypes({}, filter);
         expect(appTypeApi.getAllAppTypes).toHaveBeenCalledTimes(1);
-        expect(appTypeApi.getAllAppTypes).toHaveBeenCalledWith(filter);
+        expect(appTypeApi.getAllAppTypes).toHaveBeenCalledWith(filter.params);
       });
     });
 
