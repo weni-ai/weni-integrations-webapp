@@ -7,15 +7,15 @@ import en from '../../locales/en.json';
 import pt_br from '../../locales/pt_br.json';
 
 const languages = {
-  en: en,
-  'pt-BR': pt_br,
+  'en-us': en,
+  'pt-br': pt_br,
 };
 
 const messages = Object.assign(languages);
 
 const i18n = new VueI18n({
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'en-us',
+  fallbackLocale: 'en-us',
   messages,
 });
 
