@@ -70,7 +70,7 @@
       "actions": {
         "installed": {
           "title": "Installed Application!",
-          "description": "You can configure the application by accessing the \"My apps\" area.",
+          "description": "You still need to configure the application by accessing the \"My apps\" area.",
           "access_my_apps": "Access My Apps"
         },
         "remove": {
@@ -82,6 +82,7 @@
       }
     },
     "config": {
+      "first_integration_success": "To download the script for your website go to the Script Code tab.",
       "integration_success": "Successfully updated application",
       "copy_success": "Successfully copied!",
       "confirmation": {
