@@ -484,8 +484,7 @@
         });
 
         try {
-          /* istanbul ignore next */
-          const firstSave = this.scriptCode ? false : true;
+          const firstSave = !this.scriptCode;
           await this.updateAppConfig(reqData);
           const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
           this.app.config = data.config;
