@@ -1,3 +1,17 @@
+0.1.14
+----------
+`2021-10-29 · 2 🐛 · 3 🎉`
+
+### 🐛 Bug fixes
+- Fix: File-upload error state always on
+- Fix: Missing tests
+
+### 🎉 New features
+- Feat: Change i18n locale on setLanguage message
+- Feat: Download script option
+- Feat: wwc save alert based on first configuration
+
+
 0.1.13
 ----------
 `2021-10-26 · 1 🐛`
