@@ -119,7 +119,7 @@
       "main_color": "Main color",
       "save_changes": "Save changes",
       "script_placeholder": "Your script will be here",
-      "copy": "Copy",
+      "download": "Download",
       "initPayloadToolTip": "When opening the chat on your website, a trigger with this value will be called automatically to start a chosen flow. You can configure it on Studio.",
       "TitleInput": {
         "label": "Chat Title",
