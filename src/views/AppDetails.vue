@@ -115,10 +115,12 @@
     },
     computed: {
       appRatingString() {
-        return this.app.rating.average ? this.app.rating.average.toString() : '0';
+        return this.app.rating.average
+          ? parseFloat(this.app.rating.average.toFixed(2)).toString()
+          : '0';
       },
       appRatingAverage() {
-        return this.app.rating.average || 0;
+        return this.app.rating.average ? parseFloat(this.app.rating.average.toFixed(2)) : 0;
       },
       navigatorHistory() {
         let history = [

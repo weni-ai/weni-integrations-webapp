@@ -195,7 +195,6 @@
       ...mapActions([
         'getAllAppTypes',
         'createApp',
-        'getApp',
         'getConfiguredApps',
         'getInstalledApps',
         'deleteApp',
@@ -266,7 +265,11 @@
         }
       },
       appRatingAverage(app) {
-        return app.rating ? (app.rating.average ? app.rating.average : 0) : 0;
+        return app.rating
+          ? app.rating.average
+            ? parseFloat(app.rating.average.toFixed(2))
+            : 0
+          : 0;
       },
       appName(app) {
         return `${app.name}${this.type === 'edit' ? ' - ' + app.config.title : ''}`;
