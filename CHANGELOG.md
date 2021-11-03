@@ -1,3 +1,13 @@
+1.0.1
+----------
+`2021-11-03 · 3 🐛`
+
+### 🐛 Bug fixes
+- Fix: wwc config header icon margin
+- Fix: Show only a maximum of two decimals on ratings
+- Fix: Cors issue in chromium based browsers
+
+
 1.0.0
 ----------
 `2021-10-29 · ∞ 🎉`
