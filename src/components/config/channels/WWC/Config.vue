@@ -366,7 +366,7 @@
       },
       /* istanbul ignore next */
       async createFile(file, type, callback) {
-        const res = await axios.get(file, { responseType: 'blob' });
+        const res = await axios.get(file + '?file', { responseType: 'blob' });
         const blob = res.data;
         let reader = new FileReader();
         reader.addEventListener('loadend', callback);
