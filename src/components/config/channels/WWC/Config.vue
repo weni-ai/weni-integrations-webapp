@@ -545,8 +545,7 @@
         background-color: rgba(0, 222, 211, 0.2);
 
         &__icon {
-          width: $unnnic-icon-size-md;
-          margin: 0 auto;
+          margin: $unnnic-inline-nano;
         }
       }
 
