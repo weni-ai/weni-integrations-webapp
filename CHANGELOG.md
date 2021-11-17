@@ -1,3 +1,13 @@
+1.0.2
+----------
+`2021-11-17 · 1 🐛`
+- Fix: Missing sentry envs
+
+### 🐛 Bug fixes
+- Fix: wwc config header icon margin
+- Fix: Show only a maximum of two decimals on ratings
+- Fix: Cors issue in chromium based browsers
+
 1.0.1
 ----------
 `2021-11-03 · 3 🐛`
