@@ -77,3 +77,12 @@ To get a local copy up and running follow these simple example steps.
 | VUE_APP_USE_SENTRY                     	| Bool 	|   False   	|          False          	| Boolean that defines if sentry should be used and notified on errors. |
 | VUE_APP_SENTRY_ENVIRONMENT                  	|  String  	|   False  	|          None          	| Environment to be sent to sentry as metadata. |
 | VUE_APP_SENTRY_DSN | String | False | None | Sentry's DSN Url |
+
+
+## Build
+
+Docker can be used to create an image to be used in production environments. Any environment variable should be inserted as a new `build-arg`.
+
+```sh
+  $ docker build --build-arg VUE_APP_API_BASE_URL=http://localhost:8001 --build-arg VUE_APP_USE_SENTRY=false --tag integrations:webapp --file Dockerfile --no-cache .
+```
