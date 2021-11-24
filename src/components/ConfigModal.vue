@@ -42,7 +42,7 @@
     computed: {
       currentComponent() {
         if (this.type === 'wwc') return wwcConfig;
-        if (this.type === 'telegram') return telegramConfig;
+        if (this.type === 'tg') return telegramConfig;
         return null;
       },
     },
