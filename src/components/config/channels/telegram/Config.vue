@@ -10,7 +10,10 @@
       <div class="app-config-telegram__header__description">
         {{ $t('telegram.config.description.text') }}
         <!-- TODO: get correct href -->
-        <a href="https://google.com" target="_blank">
+        <a
+          href="https://docs.ilhasoft.mobi/l/pt/article/qzw2i2og1s-como-obter-o-token-de-um-bot-do-telegram#"
+          target="_blank"
+        >
           {{ $t('telegram.config.description.link') }}
         </a>
       </div>
