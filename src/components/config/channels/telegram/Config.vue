@@ -30,7 +30,7 @@
         class="app-config-telegram__settings__buttons__cancel"
         type="terciary"
         size="large"
-        :text="$t('apps.config.configure_later')"
+        :text="$t('apps.config.cancel')"
         @click="closeConfig"
       ></unnnic-button>
 
@@ -38,7 +38,7 @@
         class="app-config-telegram__settings__buttons__save"
         type="secondary"
         size="large"
-        :text="$t('apps.config.save_changes')"
+        :text="$t('apps.config.validate')"
         @click="saveConfig"
       ></unnnic-button>
     </div>
@@ -121,7 +121,7 @@
 
     &__header {
       display: flex;
-      margin-bottom: $unnnic-spacing-stack-sm;
+      margin-bottom: $unnnic-spacing-stack-nano;
       flex-direction: column;
 
       &__title {
@@ -157,8 +157,20 @@
         display: flex;
         flex-wrap: wrap;
 
+        margin-top: $unnnic-inline-sm;
+        padding-bottom: $unnnic-inline-md;
+        border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+
+        font-family: $unnnic-font-family-secondary;
+        font-weight: $unnnic-font-weight-regular;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+        color: $unnnic-color-neutral-cloudy;
+
         a {
           margin-left: $unnnic-inline-nano;
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-neutral-cloudy;
         }
       }
     }
@@ -193,9 +205,8 @@
       }
       &__buttons {
         padding-right: $unnnic-spacing-inline-xs;
-        margin-top: $unnnic-spacing-stack-sm;
+        margin-top: $unnnic-spacing-stack-md;
         display: flex;
-        // justify-content: space-evenly;
 
         &__cancel,
         &__save {

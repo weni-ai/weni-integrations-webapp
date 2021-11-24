@@ -7,6 +7,7 @@ jest.mock('@/api/appType', () => {
     deleteComment: jest.fn(),
     updateComment: jest.fn(),
     postRating: jest.fn(),
+    getApp: jest.fn(),
     createApp: jest.fn(),
     fetchFeatured: jest.fn(),
     updateAppConfig: jest.fn(),
@@ -26,10 +27,12 @@ describe('store/appType/actions.js', () => {
     describe('getAllAppTypes()', () => {
       it('should call appType.getAllAppTypes', async () => {
         expect(appTypeApi.getAllAppTypes).not.toHaveBeenCalled();
-        const filter = 'filter';
+        const filter = {
+          params: 'param',
+        };
         await actions.getAllAppTypes({}, filter);
         expect(appTypeApi.getAllAppTypes).toHaveBeenCalledTimes(1);
-        expect(appTypeApi.getAllAppTypes).toHaveBeenCalledWith(filter);
+        expect(appTypeApi.getAllAppTypes).toHaveBeenCalledWith(filter.params);
       });
     });
 
@@ -118,6 +121,17 @@ describe('store/appType/actions.js', () => {
   });
 
   describe('Apps', () => {
+    it('should call appType.getApp', async () => {
+      expect(appTypeApi.getApp).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+      };
+      await actions.getApp({}, data);
+      expect(appTypeApi.getApp).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.getApp).toHaveBeenCalledWith(data.code, data.appUuid);
+    });
+
     it('should call appType.createApp', async () => {
       expect(appTypeApi.createApp).not.toHaveBeenCalled();
       const data = {

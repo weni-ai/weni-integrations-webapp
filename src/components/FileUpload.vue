@@ -171,6 +171,11 @@
 
         return isValid;
       },
+      setDropState(time) {
+        setTimeout(() => {
+          this.show = 'drop';
+        }, time);
+      },
       handleAdd(files) {
         if (files.length > 1) {
           const validFiles = files.filter((file) => {
@@ -186,12 +191,14 @@
           } else {
             this.show = 'error';
             setTimeout(() => this.handleExceeded(), 50);
+            this.setDropState(3000);
           }
         } else {
           const incomingFile = files[0];
           if (!this.validateFile(incomingFile)) {
             this.show = 'error';
             setTimeout(() => this.$refs.myDropzone.removeAllFiles(), 50);
+            this.setDropState(3000);
           } else {
             this.show = 'preview';
             this.emitFile(incomingFile);

@@ -14,8 +14,8 @@
           <unnnic-input
             key="config-title"
             v-model="title"
-            type="normal"
-            :label="$t('weniWebChat.config.TitleInput.label')"
+            :type="errorFor('title') ? 'error' : 'normal'"
+            :label="`${$t('weniWebChat.config.TitleInput.label')}*`"
             :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
           />
 
@@ -40,13 +40,34 @@
               />
             </div>
 
-            <unnnic-input
-              v-model="initPayload"
-              class="app-config-wwc__tabs__settings-content__input__payload"
-              type="normal"
-              :label="$t('weniWebChat.config.initPayloadInput.label')"
-              :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
-            />
+            <div class="app-config-wwc__tabs__settings-content__initPayload">
+              <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
+                <div class="app-config-wwc__tabs__settings-content__initPayload__label">
+                  {{ `${$t('weniWebChat.config.initPayloadInput.label')}*` }}
+                </div>
+                <unnnic-toolTip
+                  slot="buttons"
+                  :text="$t('weniWebChat.config.initPayloadToolTip')"
+                  :enabled="true"
+                  side="top"
+                  maxWidth="300px"
+                >
+                  <unnnic-icon-svg
+                    class="app-config-wwc__tabs__settings-content__initPayload__icon"
+                    icon="information-circle-4"
+                    size="sm"
+                    scheme="neutral-cloudy"
+                  />
+                </unnnic-toolTip>
+              </div>
+
+              <unnnic-input
+                v-model="initPayload"
+                class="app-config-wwc__tabs__settings-content__input__payload"
+                :type="errorFor('initPayload') ? 'error' : 'normal'"
+                :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+              />
+            </div>
           </div>
 
           <unnnic-input
@@ -113,8 +134,8 @@
                 :initialValue="timeBetweenMessages"
                 :minValue="1"
                 :maxValue="4"
-                minLabel="1"
-                maxLabel="4"
+                minLabel="1s"
+                maxLabel="4s"
                 @valueChange="handleSliderChange"
               />
             </div>
@@ -137,7 +158,7 @@
             class="app-config-wwc__tabs__settings-content__buttons__cancel"
             type="terciary"
             size="large"
-            :text="$t('apps.config.configure_later')"
+            :text="$t('general.Cancel')"
             @click="closeConfig"
           ></unnnic-button>
 
@@ -154,19 +175,25 @@
       <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
       <template slot="tab-panel-script">
         <div class="app-config-wwc__tabs__script-content">
+          <div
+            class="app-config-wwc__tabs__script-content__text"
+            v-html="$t('weniWebChat.config.script_tutorial')"
+          />
+
           <unnnic-data-area :text="scriptCode">
             <unnnic-toolTip
               slot="buttons"
-              :text="$t('weniWebChat.config.copy')"
+              :text="$t('weniWebChat.config.download')"
               :enabled="true"
               side="top"
             >
               <unnnic-button
-                class="app-config-wwc__tabs__script-content__copy"
+                class="app-config-wwc__tabs__script-content__download"
                 type="secondary"
                 size="large"
-                iconCenter="copy-paste-1"
-                @click="copyScript"
+                iconCenter="download-bottom-1"
+                @click="downloadScript"
+                :disabled="scriptCode ? false : true"
               ></unnnic-button>
             </unnnic-toolTip>
           </unnnic-data-area>
@@ -217,7 +244,7 @@
     data() {
       return {
         enableSubtitle: !!this.app.config.subtitle,
-        simulatorAvatar: this.app.config.avatarImage ?? null,
+        simulatorAvatar: this.app.config.profileAvatar ?? null,
         mainColor: this.app.config.mainColor ?? '#009E96',
         title: this.app.config.title,
         subtitle: this.app.config.subtitle,
@@ -239,10 +266,13 @@
           this.$refs.simulator.toggleChat();
         }
       },
+      configProperties() {
+        this.$emit('setConfirmation', true);
+      },
     },
     /* istanbul ignore next */
     async mounted() {
-      if (this.app.config.avatarImage) {
+      if (this.app.config.profileAvatar) {
         await this.createAvatarPreview();
       }
       if (this.app.config.customCss) {
@@ -257,7 +287,7 @@
         return this.enableSubtitle ? this.subtitle : ' ';
       },
       scriptCode() {
-        const a = `<script>
+        const code = `<script>
   (function (d, s, u) {
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
     k.onload = function () {
@@ -267,8 +297,8 @@
     k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
     h.parentNode.insertBefore(k, h);
   })(document, 'script', '${this.app.config.script}');
-<script/>`;
-        return a;
+<${'/'}script>`;
+        return this.app.config.script ? code : '';
       },
       imageForUpload() {
         if (this.simulatorAvatar?.startsWith('data:image')) {
@@ -279,9 +309,26 @@
       cssForUpload() {
         return this.customCssFile.data ?? this.customCss;
       },
+      configProperties() {
+        return `
+          ${this.mainColor}|
+          ${this.title}|
+          ${this.subtitle}|
+          ${this.inputTextFieldHint}|
+          ${this.displayUnreadCount}|
+          ${this.showFullscreenButton}|
+          ${this.keepHistory}|
+          ${this.customCss}|
+          ${this.timeBetweenMessages}|
+          ${this.initPayload}|
+          ${this.simulatorAvatar}|
+          ${this.avatarFile}|
+          ${this.customCssFile}
+          `;
+      },
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
+      ...mapActions(['updateAppConfig', 'getApp']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -319,7 +366,7 @@
       },
       /* istanbul ignore next */
       async createFile(file, type, callback) {
-        const res = await axios.get(file, { responseType: 'blob' });
+        const res = await axios.get(file + '?file', { responseType: 'blob' });
         const blob = res.data;
         let reader = new FileReader();
         reader.addEventListener('loadend', callback);
@@ -340,7 +387,7 @@
       },
       /* istanbul ignore next */
       async createAvatarPreview() {
-        const blob = await this.createFile(this.app.config.avatarImage, 'base64', (e) => {
+        const blob = await this.createFile(this.app.config.profileAvatar, 'base64', (e) => {
           this.avatarFile = {
             data: e.target.result,
             info: {
@@ -367,23 +414,55 @@
         });
       },
       /* istanbul ignore next */
-      async copyScript() {
-        await navigator.clipboard.writeText(this.scriptCode);
-        unnnicCallAlert({
-          props: {
-            text: this.$t('apps.config.copy_success'),
-            title: 'Success',
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-          },
-          seconds: 3,
+      async downloadScript() {
+        let element = document.createElement('a');
+        element.setAttribute(
+          'href',
+          'data:text/plain;charset=utf-8, ' + encodeURIComponent(this.scriptCode),
+        );
+        element.setAttribute('download', `wwc-script-${this.title}.html`);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+      },
+      errorFor(key) {
+        const value = this.$data[key];
+        if (key === 'initPayload' || key === 'title') {
+          if (!(value && value.trim())) {
+            return this.$t('errors.empty_input');
+          }
+        }
+      },
+      validConfig() {
+        let valid = true;
+
+        Object.entries(this.$data).forEach(([key]) => {
+          const error = this.errorFor(key);
+          if (error) {
+            unnnicCallAlert({
+              props: {
+                text: error,
+                title: 'Error',
+                icon: 'alert-circle-1-1',
+                scheme: 'feedback-red',
+                position: 'bottom-right',
+                closeText: this.$t('general.Close'),
+              },
+              seconds: 3,
+            });
+            valid = false;
+          }
         });
+        return valid;
       },
       async saveConfig() {
+        if (!this.validConfig()) {
+          return;
+        }
+
         /* istanbul ignore next */
-        const data = removeEmpty({
+        const reqData = removeEmpty({
           code: this.app.code,
           appUuid: this.app.uuid,
           payload: {
@@ -397,24 +476,30 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
-              avatarImage: this.imageForUpload,
+              profileAvatar: this.imageForUpload,
               customCss: this.cssForUpload,
             },
           },
         });
 
         try {
-          await this.updateAppConfig(data);
+          const firstSave = !this.scriptCode;
+          await this.updateAppConfig(reqData);
+          const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
+          this.app.config = data.config;
+          this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
-              text: this.$t('apps.config.integration_success'),
+              text: /* istanbul ignore next */ firstSave
+                ? this.$t('apps.config.first_integration_success')
+                : this.$t('apps.config.integration_success'),
               title: 'Success',
               icon: 'check-circle-1-1',
               scheme: 'feedback-green',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
             },
-            seconds: 3,
+            seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
         } catch (err) {
           unnnicCallAlert({
@@ -460,8 +545,7 @@
         background-color: rgba(0, 222, 211, 0.2);
 
         &__icon {
-          width: $unnnic-icon-size-md;
-          margin: 0 auto;
+          margin: $unnnic-inline-nano;
         }
       }
 
@@ -513,6 +597,27 @@
             ::v-deep .unnnic-form-input {
               margin-top: $unnnic-spacing-stack-xs;
             }
+          }
+        }
+
+        &__initPayload {
+          margin-top: $unnnic-spacing-stack-sm;
+          flex: 1;
+
+          &__horizontal {
+            display: flex;
+          }
+          &__label {
+            font-family: $unnnic-font-family-secondary;
+            font-weight: $unnnic-font-weight-regular;
+            font-size: $unnnic-font-size-body-gt;
+            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+            color: $unnnic-color-neutral-cloudy;
+          }
+
+          &__icon {
+            margin-top: $unnnic-spacing-stack-nano;
+            margin-left: $unnnic-inline-nano;
           }
         }
 
@@ -612,10 +717,18 @@
 
       &__script-content {
         display: flex;
+        flex-direction: column;
         gap: $unnnic-inline-xs;
 
-        &__input {
-          flex: 1;
+        &__text {
+          color: $unnnic-color-neutral-dark;
+          font-family: $unnnic-font-family-secondary;
+          font-size: $unnnic-font-size-body-lg;
+          line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+        }
+
+        .data-area-container {
+          width: 100%;
         }
       }
     }

@@ -54,7 +54,7 @@
         this.loading = false;
       },
       appImageBanner(assets) {
-        const banner = assets.filter((asset) => asset.type == 'image_banner');
+        const banner = assets.filter((asset) => asset.type == 'IB');
         return banner[0].url;
       },
       openAppDetails(code) {

@@ -1,7 +1,13 @@
 {
   "general": {
     "Cancel": "Cancel",
-    "Close": "Close"
+    "Close": "Close",
+    "You": "You",
+    "confirm": "Confirm"
+  },
+
+  "errors": {
+    "empty_input": "Required fields cannot be empty"
   },
 
   "apps": {
@@ -15,6 +21,13 @@
         "ticket": "Attendance Managers",
         "configured": "Configured Apps",
         "installed": "Installed Apps"
+      }
+    },
+    "myApps": {
+      "empty": {
+        "no-integrations": "You haven't installed any integrations yet.",
+        "search": "Search for what you need",
+        "link": "here"
       }
     },
     "details": {
@@ -39,7 +52,13 @@
         "leave_a_comment": "Leave a comment",
         "input_placeholder": "A good comment can help others that are learning :)",
         "edit_comment": "Edit comment",
-        "delete_comment": "Delete comment"
+        "delete_comment": "Delete comment",
+        "remove": {
+          "title": "Delete Comment",
+          "description": "Do you really want to delete your comment on learning? You will be able to insert another one.",
+          "remove": "Delete comment",
+          "status_text": "Successfully deleted comment"
+        }
       },
       "header": {
         "add": "Add"
@@ -51,7 +70,7 @@
       "actions": {
         "installed": {
           "title": "Installed Application!",
-          "description": "You can configure the application by accessing the \"My apps\" area.",
+          "description": "You still need to configure the application by accessing the \"My apps\" area.",
           "access_my_apps": "Access My Apps"
         },
         "remove": {
@@ -63,12 +82,18 @@
       }
     },
     "config": {
+      "first_integration_success": "To download the script for your website go to the Script Code tab.",
       "integration_success": "Successfully updated application",
       "copy_success": "Successfully copied!",
       "configure_later": "Configure later",
       "save_changes": "Save changes",
       "cancel": "Cancel",
-      "validate": "Validate"
+      "validate": "Validate",
+      "confirmation": {
+        "title": "Cancel modifications",
+        "description": "Do you really want to cancel your changes? All unsaved changes will be lost.",
+        "goBackToConfig": "Go back to configuration"
+      }
     }
   },
 
@@ -89,6 +114,7 @@
     "config": {
       "settings": "Settings",
       "script": "Script Code",
+      "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
       "show_fullscreen_button": "Show fullscreen button",
@@ -96,8 +122,10 @@
       "keep_chat_history": "Keep chat history",
       "time_between_messages": "Time between messages",
       "main_color": "Main color",
+      "save_changes": "Save changes",
       "script_placeholder": "Your script will be here",
-      "copy": "Copy",
+      "download": "Download",
+      "initPayloadToolTip": "When opening the chat on your website, a trigger with this value will be called automatically to start a chosen flow. You can configure it on Studio.",
       "TitleInput": {
         "label": "Chat Title",
         "placeholder": "Ex.: Name of your chatbot"

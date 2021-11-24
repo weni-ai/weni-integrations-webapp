@@ -1,3 +1,81 @@
+1.0.2
+----------
+`2021-11-17 · 1 🐛`
+- Fix: Missing sentry envs
+
+### 🐛 Bug fixes
+- Fix: wwc config header icon margin
+- Fix: Show only a maximum of two decimals on ratings
+- Fix: Cors issue in chromium based browsers
+
+1.0.1
+----------
+`2021-11-03 · 3 🐛`
+
+### 🐛 Bug fixes
+- Fix: wwc config header icon margin
+- Fix: Show only a maximum of two decimals on ratings
+- Fix: Cors issue in chromium based browsers
+
+
+1.0.0
+----------
+`2021-10-29 · ∞ 🎉`
+
+## 🎉 Major Release 1.0.0 🎉
+
+
+0.1.14
+----------
+`2021-10-29 · 2 🐛 · 3 🎉`
+
+### 🐛 Bug fixes
+- Fix: File-upload error state always on
+- Fix: Missing tests
+
+### 🎉 New features
+- Feat: Change i18n locale on setLanguage message
+- Feat: Download script option
+- Feat: wwc save alert based on first configuration
+
+
+0.1.13
+----------
+`2021-10-26 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Avatar image preview using wrong key
+
+0.1.12
+----------
+`2021-10-26 · 1 🐛 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: Minor front fixes 
+
+### 🎉 New features
+- Feat: Trigger message tooltip
+- Feat: Confirmation modal when canceling config changes
+
+
+0.1.11
+----------
+`2021-10-22 · 4 🐛 · 2 🎉 · 1 🚀`
+
+### 🐛 Bug fixes
+- Fix: wwc script code appears only when configured
+- Fix: Comments names and avatars
+- fix: new assets types nomenclature
+- Fix: Get all app types params
+
+### 🎉 New features
+- Feat: Empty screen for my-apps
+- Feat: Required fields title and trigger
+
+### 🚀 Improvements
+- Improve: My apps dropdown options
+
+
 0.1.10
 ----------
 `2021-10-08 · 1 🎉`
