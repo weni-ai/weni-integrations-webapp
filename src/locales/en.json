@@ -66,7 +66,9 @@
       "integration_success": "Successfully updated application",
       "copy_success": "Successfully copied!",
       "configure_later": "Configure later",
-      "save_changes": "Save changes"
+      "save_changes": "Save changes",
+      "cancel": "Cancel",
+      "validate": "Validate"
     }
   },
 
@@ -129,7 +131,7 @@
     "config": {
       "description": {
         "text": "Learn more about how to integrate Telegram",
-        "link": "here"
+        "link": "here."
       },
       "TokenInput": {
         "label": "Token"

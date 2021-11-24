@@ -16,7 +16,7 @@
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados"
       }
-    }, 
+    },
     "details": {
       "info": "Número de mensagens trocadas",
       "integrated_into": "Integrado em",
@@ -63,7 +63,11 @@
     },
     "config": {
       "integration_success": "Aplicação instalada com sucesso!",
-      "copy_success": "Copiado com sucesso!"
+      "copy_success": "Copiado com sucesso!",
+      "configure_later": "Configurar depois",
+      "save_changes": "Salvar alterações",
+      "cancel": "Cancelar",
+      "validate": "Validar"
     }
   },
 
@@ -115,6 +119,18 @@
         "yes": "Sim",
         "no": "Não",
         "maybe": "Talvez"
+      }
+    }
+  },
+
+  "telegram": {
+    "config": {
+      "description": {
+        "text": "Saiba mais sobre como integrar o telegram",
+        "link": "aqui."
+      },
+      "TokenInput": {
+        "label": "Token"
       }
     }
   }
