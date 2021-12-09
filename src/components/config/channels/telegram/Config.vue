@@ -9,7 +9,6 @@
       </div>
       <div class="app-config-telegram__header__description">
         {{ $t('telegram.config.description.text') }}
-        <!-- TODO: get correct href -->
         <a
           href="https://docs.ilhasoft.mobi/l/pt/article/qzw2i2og1s-como-obter-o-token-de-um-bot-do-telegram#"
           target="_blank"
@@ -23,7 +22,7 @@
       <unnnic-input
         key="config-title"
         v-model="token"
-        type="normal"
+        :type="invalidToken ? 'error' : 'normal'"
         :label="$t('telegram.config.TokenInput.label')"
       />
     </div>
@@ -63,6 +62,7 @@
     data() {
       return {
         token: null,
+        invalidToken: false,
       };
     },
     methods: {
@@ -92,9 +92,16 @@
             seconds: 3,
           });
         } catch (err) {
+          let errorMessage = this.$t('apps.details.status_error');
+
+          if (err.response?.status === 400) {
+            this.invalidToken = true;
+            errorMessage = this.$t('telegram.config.errors.invalidToken');
+          }
+
           unnnicCallAlert({
             props: {
-              text: this.$t('apps.details.status_error'),
+              text: errorMessage,
               title: 'Error',
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
@@ -109,6 +116,11 @@
       },
       closeConfig() {
         this.$emit('closeModal');
+      },
+    },
+    watch: {
+      token: function () {
+        this.invalidToken = false;
       },
     },
   };
