@@ -104,6 +104,20 @@ describe('TelegramConfig.vue', () => {
         }),
       );
     });
+
+    it('should set invalid token if api returns 400', async () => {
+      actions.updateAppConfig.mockImplementation(() => {
+        throw {
+          response: {
+            status: 400,
+          },
+        };
+      });
+
+      expect(wrapper.vm.invalidToken).toBeFalsy();
+      await wrapper.vm.saveConfig();
+      expect(wrapper.vm.invalidToken).toBeTruthy();
+    });
   });
 
   describe('closeConfig()', () => {
@@ -111,6 +125,28 @@ describe('TelegramConfig.vue', () => {
       expect(wrapper.emitted('closeModal')).toBeFalsy();
       wrapper.vm.closeConfig();
       expect(wrapper.emitted('closeModal')).toBeTruthy();
+    });
+  });
+
+  describe('watchers', () => {
+    it('should set invalidToken as false when token is changed', async () => {
+      await wrapper.setData({ token: '123' });
+      await wrapper.setData({ invalidToken: true });
+      expect(wrapper.vm.invalidToken).toBeTruthy();
+
+      await wrapper.setData({ token: '1234' });
+
+      expect(wrapper.vm.invalidToken).toBeFalsy();
+    });
+
+    it('should set invalidToken as true when token was not modified', async () => {
+      await wrapper.setData({ token: '123' });
+      await wrapper.setData({ invalidToken: true });
+      expect(wrapper.vm.invalidToken).toBeTruthy();
+
+      await wrapper.setData({ token: '123' });
+
+      expect(wrapper.vm.invalidToken).toBeTruthy();
     });
   });
 });
