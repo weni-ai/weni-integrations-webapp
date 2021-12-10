@@ -84,7 +84,6 @@
         slot="options"
         type="primary"
         @click="removeApp(currentRemoval.code, currentRemoval.uuid)"
-        scheme="feedback-red"
       >
         {{ $t('apps.details.actions.remove.remove') }}
       </unnnic-button>
