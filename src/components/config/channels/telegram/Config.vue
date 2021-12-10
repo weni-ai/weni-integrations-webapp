@@ -24,6 +24,7 @@
         v-model="token"
         :type="invalidToken ? 'error' : 'normal'"
         :label="$t('telegram.config.TokenInput.label')"
+        :disabled="this.app.config.token"
       />
     </div>
 
@@ -41,6 +42,7 @@
         type="secondary"
         size="large"
         :text="$t('apps.config.validate')"
+        :disabled="this.app.config.token"
         @click="saveConfig"
       ></unnnic-button>
     </div>
