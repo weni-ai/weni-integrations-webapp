@@ -15,7 +15,7 @@ exports[`TelegramConfig.vue should be rendered properly 1`] = `
     </div>
   </div>
   <div class="app-config-telegram__settings__content">
-    <unnnic-input-stub type="normal" label="Token" tooltipsideiconright="right" size="md" mask=""></unnnic-input-stub>
+    <unnnic-input-stub placeholder="" type="normal" nativetype="text" label="Token" size="md" mask=""></unnnic-input-stub>
   </div>
   <div class="app-config-telegram__settings__buttons">
     <unnnic-button-stub size="large" text="Cancel" type="terciary" class="app-config-telegram__settings__buttons__cancel"></unnnic-button-stub>
