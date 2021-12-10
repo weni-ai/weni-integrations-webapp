@@ -35,7 +35,7 @@
           />
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
-            <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="cardIcon" />
+            <unnnic-button slot="trigger" size="small" type="terciary" :iconCenter="cardIcon" />
             <unnnic-dropdown-item
               class="app-grid__content__item__button--action"
               @click="openAppModal(app)"
@@ -84,7 +84,6 @@
         slot="options"
         type="primary"
         @click="removeApp(currentRemoval.code, currentRemoval.uuid)"
-        scheme="feedback-red"
       >
         {{ $t('apps.details.actions.remove.remove') }}
       </unnnic-button>
@@ -282,7 +281,7 @@
   .app-grid {
     &__header {
       display: flex;
-      gap: $unnnic-spacing-inline-nano;
+      gap: $unnnic-spacing-inline-sm;
       align-items: center;
 
       &__title {

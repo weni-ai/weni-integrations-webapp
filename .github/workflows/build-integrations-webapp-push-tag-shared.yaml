@@ -27,8 +27,8 @@ jobs:
               echo "VERSION=$VERSION"
               echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
               echo "COMMIT_SHA=$GITHUB_SHA"
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:engine-$TAG" >> $GITHUB_ENV
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:engine-$TAG"
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             elif $(echo  $TAG|grep --silent -e 'v*.*.*-staging*')
             then
               echo "Found environment: STAGING - $TAG"
@@ -41,8 +41,8 @@ jobs:
               echo "VERSION=$VERSION"
               echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
               echo "COMMIT_SHA=$GITHUB_SHA"
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:engine-$TAG" >> $GITHUB_ENV
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:engine-$TAG"
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             elif $(echo  $TAG|grep --silent -e 'v*.*.*')
             then
               echo "No environment found, assuming: PRODUCTION - $TAG"
@@ -55,8 +55,8 @@ jobs:
               echo "VERSION=$VERSION"
               echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
               echo "COMMIT_SHA=$GITHUB_SHA"
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:engine-$TAG" >> $GITHUB_ENV
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:engine-$TAG"
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             else
               echo 'Not a valid tag. Skipping...'
               exit 1
@@ -102,7 +102,7 @@ jobs:
         with:
           ref: main
           repository: Ilhasoft/kubernetes-manifests-platform
-          token: ${{secrets.CICEROW_GITHUB_PERMANENT_TOKEN}}
+          token: ${{secrets.DEVOPS_GITHUB_PERMANENT_TOKEN}}
           path: ./kubernetes-manifests/
 
       - name: Update image on deployment
@@ -153,7 +153,7 @@ jobs:
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
-          github_token: ${{ secrets.CICEROW_GITHUB_PERMANENT_TOKEN }}
+          github_token: ${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}
           repository: Ilhasoft/kubernetes-manifests-platform
           directory: ./kubernetes-manifests/
           branch: main

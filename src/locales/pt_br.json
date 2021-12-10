@@ -7,7 +7,8 @@
   },
 
   "errors": {
-    "empty_input": "Campos obrigatórios não podem estar vazios."
+    "empty_input": "Campos obrigatórios não podem estar vazios.",
+    "required_message": "Este campo é obrigatório."
   },
 
   "apps": {
@@ -135,6 +136,10 @@
       "PlaceholderInput": {
         "label": "Texto do placeholder",
         "placeholder": "Ex.: Digite sua mensagem"
+      },
+      "initPayloadInput": {
+        "label": "Mensagem de disparo",
+        "placeholder": "Ex.: Olá, seja bem vindo"
       }
     },
     "simulator": {

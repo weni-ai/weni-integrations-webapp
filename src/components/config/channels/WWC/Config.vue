@@ -12,11 +12,13 @@
       <template slot="tab-panel-settings">
         <div class="app-config-wwc__tabs__settings-content">
           <unnnic-input
+            class="app-config-wwc__tabs__settings-content__input__title"
             key="config-title"
             v-model="title"
             :type="errorFor('title') ? 'error' : 'normal'"
-            :label="`${$t('weniWebChat.config.TitleInput.label')}*`"
+            :label="`${$t('weniWebChat.config.TitleInput.label')}`"
             :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
+            :message="errorFor('title') ? $t('errors.required_message') : ''"
           />
 
           <div class="app-config-wwc__tabs__settings-content__horizontal-input">
@@ -43,7 +45,7 @@
             <div class="app-config-wwc__tabs__settings-content__initPayload">
               <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
                 <div class="app-config-wwc__tabs__settings-content__initPayload__label">
-                  {{ `${$t('weniWebChat.config.initPayloadInput.label')}*` }}
+                  {{ `${$t('weniWebChat.config.initPayloadInput.label')}` }}
                 </div>
                 <unnnic-toolTip
                   slot="buttons"
@@ -56,7 +58,7 @@
                     class="app-config-wwc__tabs__settings-content__initPayload__icon"
                     icon="information-circle-4"
                     size="sm"
-                    scheme="neutral-cloudy"
+                    scheme="neutral-soft"
                   />
                 </unnnic-toolTip>
               </div>
@@ -66,6 +68,7 @@
                 class="app-config-wwc__tabs__settings-content__input__payload"
                 :type="errorFor('initPayload') ? 'error' : 'normal'"
                 :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+                :message="errorFor('initPayload') ? $t('errors.required_message') : ''"
               />
             </div>
           </div>
@@ -583,8 +586,33 @@
         display: flex;
         flex-direction: column;
 
+        ::v-deep .unnnic-form__message {
+          color: $unnnic-color-feedback-red;
+        }
+
         &__input {
           margin-top: $unnnic-spacing-stack-xs;
+
+          &__title,
+          &__payload {
+            ::v-deep .unnnic-form-input {
+              /* Chrome, Firefox, Opera, Safari 10.1+ */
+              ::placeholder {
+                color: $unnnic-color-feedback-red;
+                opacity: 1; /* Firefox */
+              }
+
+              /* Internet Explorer 10-11 */
+              :-ms-input-placeholder {
+                color: $unnnic-color-feedback-red;
+              }
+
+              /* Microsoft Edge */
+              ::-ms-input-placeholder {
+                color: $unnnic-color-feedback-red;
+              }
+            }
+          }
 
           &__subtitle {
             margin-top: $unnnic-spacing-stack-nano/2;
