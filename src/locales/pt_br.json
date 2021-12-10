@@ -150,6 +150,10 @@
   },
 
   "telegram": {
+    "data": {
+      "summary": "Envie e receba mensagens de usuários do Telegram gratuitamente.",
+      "description": "Ao utilizar o Telegram, você está conectando um dos maiores aplicativos de troca de mensagem como um canal disponível para o seu público na Weni Plataforma. Envie e receba textos, vídeos e áudios através desse canal, garantindo o conforto e comunidade da sua audiência, bem como os recursos disponíveis na plataforma."
+    },
     "config": {
       "description": {
         "text": "Saiba mais sobre como integrar o telegram",
