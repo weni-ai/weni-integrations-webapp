@@ -61,7 +61,7 @@
     },
     data() {
       return {
-        token: null,
+        token: this.app.config.token ?? null,
         invalidToken: false,
       };
     },
