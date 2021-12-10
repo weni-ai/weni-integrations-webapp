@@ -56,7 +56,7 @@
                     class="app-config-wwc__tabs__settings-content__initPayload__icon"
                     icon="information-circle-4"
                     size="sm"
-                    scheme="neutral-cloudy"
+                    scheme="neutral-soft"
                   />
                 </unnnic-toolTip>
               </div>
