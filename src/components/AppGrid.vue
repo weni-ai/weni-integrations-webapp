@@ -282,7 +282,7 @@
   .app-grid {
     &__header {
       display: flex;
-      gap: $unnnic-spacing-inline-nano;
+      gap: $unnnic-spacing-inline-sm;
       align-items: center;
 
       &__title {
