@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="hasApps">
+    <div v-if="hasApps" class="my-apps__sections">
       <app-grid
         section="configured"
         type="edit"
@@ -139,6 +139,12 @@
           }
         }
       }
+    }
+
+    &__sections {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-spacing-stack-giant;
     }
   }
 </style>

@@ -16,7 +16,7 @@ exports[`Discovery.vue should be rendered properly 1`] = `
     </section>
     <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
       <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
-      <unnnic-button-stub size="large" type="primary" scheme="feedback-red">
+      <unnnic-button-stub size="large" type="primary">
         some specific text
       </unnnic-button-stub>
     </unnnic-modal-stub>
