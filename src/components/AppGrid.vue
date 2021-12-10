@@ -35,7 +35,7 @@
           />
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
-            <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="cardIcon" />
+            <unnnic-button slot="trigger" size="small" type="terciary" :iconCenter="cardIcon" />
             <unnnic-dropdown-item
               class="app-grid__content__item__button--action"
               @click="openAppModal(app)"
