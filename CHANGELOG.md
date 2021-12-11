@@ -1,12 +1,22 @@
+1.1.0
+----------
+`2021-12-10 · 1 🐛 · 5 🎉`
+
+### 🐛 Bug fixes
+- Fix: Design issues
+
+### 🎉 New Features
+- Feat: Add new workflows to build image
+- Feat: Update README with newer instructions
+- Feat: Add workflow protection to prevent deploy old image
+- Feat: Change Github token used in secret
+- Feat: Telegram config
+
+
 1.0.2
 ----------
 `2021-11-17 · 1 🐛`
 - Fix: Missing sentry envs
-
-### 🐛 Bug fixes
-- Fix: wwc config header icon margin
-- Fix: Show only a maximum of two decimals on ratings
-- Fix: Cors issue in chromium based browsers
 
 1.0.1
 ----------
