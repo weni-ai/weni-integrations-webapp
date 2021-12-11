@@ -169,7 +169,7 @@
             class="app-config-wwc__tabs__settings-content__buttons__save"
             type="secondary"
             size="large"
-            :text="$t('weniWebChat.config.save_changes')"
+            :text="$t('apps.config.save_changes')"
             @click="saveConfig"
           ></unnnic-button>
         </div>
