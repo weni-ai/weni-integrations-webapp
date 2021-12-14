@@ -111,7 +111,7 @@
           <div class="app-config-wwc__tabs__settings-content__selectors">
             <div class="app-config-wwc__tabs__settings-content__selectors__switches">
               <unnnic-switch
-                v-model="showFullscreenButton"
+                v-model="showFullScreenButton"
                 :inititalState="false"
                 size="small"
                 :textRight="$t('weniWebChat.config.show_fullscreen_button')"
@@ -219,7 +219,7 @@
       :title="title"
       :subtitle="chatSubtitle"
       :placeholder="inputTextFieldHint"
-      :showFullscreenButton="showFullscreenButton"
+      :showFullScreenButton="showFullScreenButton"
       :displayUnreadCount="displayUnreadCount"
     />
   </div>
@@ -254,7 +254,7 @@
         inputTextFieldHint: this.app.config.inputTextFieldHint,
         scriptUrl: this.app.config.script ?? '',
         displayUnreadCount: !!this.app.config.displayUnreadCount,
-        showFullscreenButton: !!this.app.config.showFullscreenButton,
+        showFullScreenButton: !!this.app.config.showFullScreenButton,
         keepHistory: !!this.app.config.keepHistory,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
@@ -319,7 +319,7 @@
           ${this.subtitle}|
           ${this.inputTextFieldHint}|
           ${this.displayUnreadCount}|
-          ${this.showFullscreenButton}|
+          ${this.showFullScreenButton}|
           ${this.keepHistory}|
           ${this.customCss}|
           ${this.timeBetweenMessages}|
@@ -474,7 +474,7 @@
               subtitle: this.enableSubtitle ? this.subtitle : null,
               initPayload: this.initPayload,
               inputTextFieldHint: this.inputTextFieldHint,
-              showFullscreenButton: this.showFullscreenButton,
+              showFullScreenButton: this.showFullScreenButton,
               displayUnreadCount: this.displayUnreadCount,
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,

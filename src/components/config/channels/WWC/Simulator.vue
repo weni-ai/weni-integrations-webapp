@@ -22,7 +22,7 @@
           </div>
           <div class="wwc-simulator__content__header__button">
             <unnnic-icon-svg
-              v-if="showFullscreenButton"
+              v-if="showFullScreenButton"
               icon="expand-full-1"
               size="sm"
               lineHeight="sm"
@@ -134,7 +134,7 @@
           this.$t('weniWebChat.simulator.chatPlaceholder');
         },
       },
-      showFullscreenButton: {
+      showFullScreenButton: {
         type: Boolean,
         default: false,
       },
