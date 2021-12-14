@@ -1,3 +1,10 @@
+1.1.1
+----------
+`2021-12-14 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: showFullScreenButton not working due to case typo 
+
 1.1.0
 ----------
 `2021-12-10 · 1 🐛 · 5 🎉`
