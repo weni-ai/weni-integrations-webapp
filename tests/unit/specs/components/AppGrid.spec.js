@@ -160,37 +160,53 @@ describe('AppGrid.vue without mocked loadApps', () => {
     });
   });
 
-  it('should open App modal on trigger', async () => {
-    const spy = spyOn(wrapper.vm, 'openAppModal');
+  describe('openAppModal()', () => {
+    it('should open App modal on trigger', async () => {
+      const spy = spyOn(wrapper.vm, 'openAppModal');
 
-    const cardComponent = wrapper.findComponent({ ref: 'unnnic-marketplace-card' });
+      const cardComponent = wrapper.findComponent({ ref: 'unnnic-marketplace-card' });
 
-    await cardComponent.vm.$emit('openModal');
+      await cardComponent.vm.$emit('openModal');
 
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
 
-  it('should change change route on card click when type is "add"', async () => {
-    await wrapper.setProps({ type: 'add' });
-    const app = wrapper.vm.apps[0];
-    expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
+    it('should change change route on card click when type is "add"', async () => {
+      await wrapper.setProps({ type: 'add' });
+      const app = wrapper.vm.apps[0];
+      expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
 
-    wrapper.vm.openAppModal(app);
+      wrapper.vm.openAppModal(app);
 
-    expect(wrapper.vm.$route.path).toEqual(`/apps/${app.code}/details`);
-  });
+      expect(wrapper.vm.$route.path).toEqual(`/apps/${app.code}/details`);
+    });
 
-  it('should open configModal if type is not "add" and design not popup', async () => {
-    await wrapper.setProps({ type: 'config' });
+    it('should open configModal if type is not "add" and design not popup', async () => {
+      await wrapper.setProps({ type: 'config' });
 
-    const app = wrapper.vm.apps[0];
-    const configModal = wrapper.findComponent({ ref: 'configModal' });
+      const app = wrapper.vm.apps[0];
+      const configModal = wrapper.findComponent({ ref: 'configModal' });
 
-    expect(configModal.vm.show).toBeFalsy();
+      expect(configModal.vm.show).toBeFalsy();
 
-    wrapper.vm.openAppModal(app);
+      wrapper.vm.openAppModal(app);
 
-    expect(configModal.vm.show).toBeTruthy();
+      expect(configModal.vm.show).toBeTruthy();
+    });
+
+    it('should not open configModal if type is not "add" and design is popup', async () => {
+      await wrapper.setProps({ type: 'config' });
+
+      const app = wrapper.vm.apps[0];
+      app.config_design = 'popup';
+      const configModal = wrapper.findComponent({ ref: 'configModal' });
+
+      expect(configModal.vm.show).toBeFalsy();
+
+      wrapper.vm.openAppModal(app);
+
+      expect(configModal.vm.show).toBeFalsy();
+    });
   });
 
   describe('appRatingAverage', () => {
