@@ -1,7 +1,7 @@
 <template>
   <div>
     <section v-if="!loading" id="app-grid">
-      <div class="app-grid__header">
+      <div v-if="apps.length" class="app-grid__header">
         <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
@@ -35,8 +35,19 @@
           />
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
-            <unnnic-button slot="trigger" size="small" type="secondary" :iconCenter="actionIcon" />
-            <unnnic-dropdown-item @click="openAppDetails(app.code)">
+            <unnnic-button slot="trigger" size="small" type="terciary" :iconCenter="cardIcon" />
+            <unnnic-dropdown-item
+              class="app-grid__content__item__button--action"
+              @click="openAppModal(app)"
+            >
+              <unnnic-icon-svg :icon="actionIcon" size="sm" />
+              {{ actionText }}
+            </unnnic-dropdown-item>
+            <unnnic-dropdown-item
+              class="app-grid__content__item__button--details"
+              @click="openAppDetails(app.code)"
+            >
+              <unnnic-icon-svg icon="export-1" size="sm" />
               {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
@@ -73,7 +84,6 @@
         slot="options"
         type="primary"
         @click="removeApp(currentRemoval.code, currentRemoval.uuid)"
-        scheme="feedback-red"
       >
         {{ $t('apps.details.actions.remove.remove') }}
       </unnnic-button>
@@ -89,7 +99,7 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from './config/ConfigModal.vue';
   import configPopUp from './config/ConfigPopUp.vue';
-  import addModal from '../components/AddModal.vue';
+  import addModal from './AddModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
   import { mapActions, mapGetters } from 'vuex';
 
@@ -110,22 +120,21 @@
           return ['add', 'config', 'edit'].indexOf(value) !== -1;
         },
       },
+      apps: {
+        type: Array,
+        default: null,
+      },
+      loading: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
-        loading: true,
         showAddModal: false,
         showRemoveModal: false,
         currentRemoval: null,
-        apps: [],
       };
-    },
-    async mounted() {
-      await this.loadApps();
-
-      this.$root.$on('updateGrid', async () => {
-        await this.loadApps();
-      });
     },
     computed: {
       ...mapGetters({
@@ -158,58 +167,39 @@
             return null;
         }
       },
+      cardIcon() {
+        switch (this.type) {
+          case 'add':
+            return 'add-1';
+          case 'config':
+            return 'navigation-menu-vertical-1';
+          case 'edit':
+            return 'navigation-menu-vertical-1';
+          /* istanbul ignore next */
+          default:
+            return null;
+        }
+      },
+      actionText() {
+        switch (this.type) {
+          case 'config':
+            return 'Configure';
+          case 'edit':
+            return 'Edit';
+          /* istanbul ignore next */
+          default:
+            return null;
+        }
+      },
     },
     methods: {
       ...mapActions([
         'getAllAppTypes',
         'createApp',
-        'getApp',
         'getConfiguredApps',
         'getInstalledApps',
         'deleteApp',
       ]),
-      async loadApps() {
-        this.loading = true;
-        try {
-          switch (this.type) {
-            case 'add': {
-              const filter = { category: this.section };
-              const { data } = await this.getAllAppTypes(filter);
-              this.apps = data;
-              break;
-            }
-            case 'config': {
-              const params = {
-                project_uuid: this.getSelectedProject,
-              };
-              const { data } = await this.getInstalledApps({ params });
-              this.apps = data;
-              break;
-            }
-            case 'edit': {
-              const params = {
-                project_uuid: this.getSelectedProject,
-              };
-              const { data } = await this.getConfiguredApps({ params });
-              this.apps = data;
-              break;
-            }
-          }
-          this.loading = false;
-        } catch (e) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.grid.status_error'),
-              title: 'Error',
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-        }
-      },
       async addApp(app) {
         try {
           const code = app.code;
@@ -260,7 +250,7 @@
             },
             seconds: 3,
           });
-          await this.loadApps();
+          this.$emit('update');
         } catch (error) {
           unnnicCallAlert({
             props: {
@@ -288,7 +278,11 @@
         }
       },
       appRatingAverage(app) {
-        return app.rating ? (app.rating.average ? app.rating.average : 0) : 0;
+        return app.rating
+          ? app.rating.average
+            ? parseFloat(app.rating.average.toFixed(2))
+            : 0
+          : 0;
       },
       appName(app) {
         return `${app.name}${this.type === 'edit' ? ' - ' + app.config.title : ''}`;
@@ -301,7 +295,7 @@
   .app-grid {
     &__header {
       display: flex;
-      gap: $unnnic-spacing-inline-nano;
+      gap: $unnnic-spacing-inline-sm;
       align-items: center;
 
       &__title {
@@ -328,13 +322,18 @@
             height: fit-content;
           }
 
+          &--action,
+          &--details,
           &--remove {
             display: inline-block;
-            width: max-content;
+            width: $unnnic-inline-awesome;
 
             font-family: $unnnic-font-family-secondary;
             font-size: $unnnic-font-size-body-md;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
+          }
+
+          &--remove {
             color: $unnnic-color-feedback-red;
           }
         }

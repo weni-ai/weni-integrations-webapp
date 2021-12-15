@@ -21,11 +21,20 @@
         },
         '*',
       );
+      window.parent.postMessage(
+        {
+          event: 'getLanguage',
+        },
+        '*',
+      );
       window.addEventListener('message', (event) => {
         const eventName = event.data && event.data.event;
         if (eventName === 'setConnectBaseURL') {
           this.connectBaseURL = event.data.connectBaseURL;
           this.translateAllLinks();
+        }
+        if (eventName === 'setLanguage') {
+          this.$i18n.locale = event.data.language;
         }
       });
     },

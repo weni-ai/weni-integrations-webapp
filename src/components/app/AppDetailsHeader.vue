@@ -22,7 +22,7 @@
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import addModal from '../../components/AddModal.vue';
+  import addModal from '../AddModal.vue';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {

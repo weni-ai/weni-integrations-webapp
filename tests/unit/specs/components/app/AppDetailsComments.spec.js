@@ -65,6 +65,41 @@ describe('AppDetailsComments.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  describe('fullOwnerName()', () => {
+    it('should return full name', () => {
+      const owner = {
+        first_name: 'Jane',
+        last_name: 'Doe',
+      };
+      const fullName = wrapper.vm.fullOwnerName(owner);
+      expect(fullName).toEqual('Jane Doe');
+    });
+  });
+
+  describe('toggleRemoveModal()', () => {
+    it('should toggle', () => {
+      expect(wrapper.vm.showRemoveModal).toBeFalsy();
+      wrapper.vm.toggleRemoveModal();
+      expect(wrapper.vm.showRemoveModal).toBeTruthy();
+    });
+  });
+
+  describe('confirmDelete()', () => {
+    it('should set showRemoveModal to true', () => {
+      const uuid = '123';
+      expect(wrapper.vm.showRemoveModal).toBeFalsy();
+      wrapper.vm.confirmDelete(uuid);
+      expect(wrapper.vm.showRemoveModal).toBeTruthy();
+    });
+
+    it('should set currentRemovalUuid', () => {
+      const uuid = '123';
+      expect(wrapper.vm.currentRemovalUuid).not.toEqual(uuid);
+      wrapper.vm.confirmDelete(uuid);
+      expect(wrapper.vm.currentRemovalUuid).toEqual(uuid);
+    });
+  });
+
   describe('handleComment()', () => {
     const comment = {
       uuid: '123',

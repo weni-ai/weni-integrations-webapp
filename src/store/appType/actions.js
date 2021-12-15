@@ -1,8 +1,8 @@
 import appType from '@/api/appType';
 
 export default {
-  async getAllAppTypes(store, filter) {
-    return await appType.getAllAppTypes(filter);
+  async getAllAppTypes(store, { params }) {
+    return await appType.getAllAppTypes(params);
   },
 
   async getAppType(store, code) {
@@ -27,6 +27,10 @@ export default {
 
   async postRating(store, { code, payload }) {
     return await appType.postRating(code, payload);
+  },
+
+  async getApp(store, { code, appUuid }) {
+    return await appType.getApp(code, appUuid);
   },
 
   async createApp(store, { code, payload }) {

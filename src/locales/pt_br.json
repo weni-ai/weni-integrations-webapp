@@ -1,7 +1,14 @@
 {
   "general": {
     "Cancel": "Cancelar",
-    "Close": "Fechar"
+    "Close": "Fechar",
+    "You": "Você",
+    "confirm": "Confirmar"
+  },
+
+  "errors": {
+    "empty_input": "Campos obrigatórios não podem estar vazios.",
+    "required_message": "Este campo é obrigatório."
   },
 
   "apps": {
@@ -16,7 +23,14 @@
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados"
       }
-    }, 
+    },
+    "myApps": {
+      "empty": {
+        "no-integrations": "Você ainda não instalou nenhuma integração.",
+        "search": "Procure o que você precisa",
+        "link": "aqui"
+      }
+    },
     "details": {
       "info": "Número de mensagens trocadas",
       "integrated_into": "Integrado em",
@@ -39,7 +53,13 @@
         "leave_a_comment": "Deixe um comentário",
         "input_placeholder": "Um bom comentário pode ajudar outras pessoas que estão aprendendo :)",
         "edit_comment": "Editar comentário",
-        "delete_comment": "Deletar comentário"
+        "delete_comment": "Deletar comentário",
+        "remove": {
+          "title": "Deletar comentário",
+          "description": "Deseja mesmo excluir o seu comentário no aprendizado? Você poderá inserir outro novamente.",
+          "remove": "Deletar comentário",
+          "status_text": "Comentário removido com sucesso"
+        }
       },
       "header": {
         "add": "Adicionar"
@@ -50,7 +70,7 @@
       "actions": {
         "installed": {
           "title": "Aplicativo adicionado!",
-          "description": "Você pode configurar o aplicativo acessando a área \"Meus aplicativos\".",
+          "description": "Você ainda precisa configurar o aplicativo acessando a área \"Meus aplicativos\".",
           "access_my_apps": "Acessar meus aplicativos"
         },
         "remove": {
@@ -62,8 +82,18 @@
       }
     },
     "config": {
+      "first_integration_success": "Para baixar o código para colocar em seu website vá para a aba Código Script.",
       "integration_success": "Aplicação instalada com sucesso!",
-      "copy_success": "Copiado com sucesso!"
+      "copy_success": "Copiado com sucesso!",
+      "configure_later": "Configurar depois",
+      "save_changes": "Salvar alterações",
+      "cancel": "Cancelar",
+      "validate": "Validar",
+      "confirmation": {
+        "title": "Cancelar alterações",
+        "description": "Deseja mesmo cancelar as alterações? Você perderá o que não foi salvo.",
+        "goBackToConfig": "Voltar para configuração"
+      }
     }
   },
 
@@ -83,6 +113,7 @@
     "config": {
       "settings": "Configurações",
       "script": "Código Script",
+      "script_tutorial": "Para instalar o Weni Web Chat no seu site, copie e cole este código acima da última tag <<strong>/body</strong>> no seu site",
       "custom_css": "CSS Customizado",
       "avatar_image": "Imagem do Avatar",
       "show_fullscreen_button": "Mostrar botão de tela cheia",
@@ -90,10 +121,10 @@
       "keep_chat_history": "Manter histórico de mensagens",
       "time_between_messages": "Tempo entre as mensagens",
       "main_color": "Cor principal",
-      "configure_later": "Configurar depois",
       "save_changes": "Salvar alterações",
       "script_placeholder": "Seu script estará aqui",
-      "copy": "Copiar",
+      "download": "Baixar",
+      "initPayloadToolTip": "Ao abrir o chat em seu site, uma trigger com este valor sera chamada automaticamente para iniciar um fluxo escolhido. Voce pode configura-la em Estúdio.",
       "TitleInput": {
         "label": "Título do Chat",
         "placeholder": "Ex.: Nome do seu chatbot"
@@ -105,6 +136,10 @@
       "PlaceholderInput": {
         "label": "Texto do placeholder",
         "placeholder": "Ex.: Digite sua mensagem"
+      },
+      "initPayloadInput": {
+        "label": "Mensagem de disparo",
+        "placeholder": "Ex.: Olá, seja bem vindo"
       }
     },
     "simulator": {
@@ -115,6 +150,22 @@
         "yes": "Sim",
         "no": "Não",
         "maybe": "Talvez"
+      }
+    }
+  },
+
+  "telegram": {
+    "data": {
+      "summary": "Envie e receba mensagens de usuários do Telegram gratuitamente.",
+      "description": "Ao utilizar o Telegram, você está conectando um dos maiores aplicativos de troca de mensagem como um canal disponível para o seu público na Weni Plataforma. Envie e receba textos, vídeos e áudios através desse canal, garantindo o conforto e comunidade da sua audiência, bem como os recursos disponíveis na plataforma."
+    },
+    "config": {
+      "description": {
+        "text": "Saiba mais sobre como integrar o telegram",
+        "link": "aqui."
+      },
+      "TokenInput": {
+        "label": "Token"
       }
     }
   }

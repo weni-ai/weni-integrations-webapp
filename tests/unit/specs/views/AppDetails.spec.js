@@ -109,7 +109,7 @@ describe('AppDetails.vue', () => {
     });
 
     it('should return valid links', () => {
-      const assets = [{ type: 'notLink' }, { type: 'link' }];
+      const assets = [{ type: 'notLink' }, { type: 'LK' }];
       wrapper.vm.app.assets = assets;
       expect(wrapper.vm.appLinks).toHaveLength(1);
     });
