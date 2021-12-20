@@ -90,6 +90,7 @@
       "save_changes": "Save changes",
       "cancel": "Cancel",
       "validate": "Validate",
+      "copy": "Copy",
       "confirmation": {
         "title": "Cancel modifications",
         "description": "Do you really want to cancel your changes? All unsaved changes will be lost.",

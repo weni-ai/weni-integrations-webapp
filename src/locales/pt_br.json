@@ -89,6 +89,7 @@
       "save_changes": "Salvar alterações",
       "cancel": "Cancelar",
       "validate": "Validar",
+      "copy": "Copiar",
       "confirmation": {
         "title": "Cancelar alterações",
         "description": "Deseja mesmo cancelar as alterações? Você perderá o que não foi salvo.",
