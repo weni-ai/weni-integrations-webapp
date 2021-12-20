@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preview.vue should be rendered properly 1`] = `
+<div class="app-preview-wpp_demo">
+  <div class="app-preview-wpp_demo__header">
+    <div class="app-preview-wpp_demo__header__title">
+      <div class="app-preview-wpp_demo__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-preview-wpp_demo__header__title__icon-container__icon"></div>
+      <div class="app-preview-wpp_demo__header__title__name">Weni Web Chat</div>
+    </div>
+    <div class="app-preview-wpp_demo__header__description">
+      some specific text
+    </div>
+  </div>
+  <div class="app-preview-wpp_demo__settings__content">
+    <unnnicinput-stub label="some specific text" disabled=""></unnnicinput-stub>
+  </div>
+  <div class="app-preview-wpp_demo__settings__buttons">
+    <unnnicbutton-stub type="terciary" size="large" text="some specific text" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
+    <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="app-preview-wpp_demo__settings__buttons__copy"></unnnicbutton-stub>
+  </div>
+</div>
+`;

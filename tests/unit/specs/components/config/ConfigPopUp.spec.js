@@ -20,7 +20,8 @@ describe('ConfigModal.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should close popup', () => {
+  it('should close popup', async () => {
+    await wrapper.setData({ type: 'wpp-demo' });
     wrapper.vm.show = true;
 
     expect(wrapper.vm.show).toBeTruthy();
@@ -29,6 +30,7 @@ describe('ConfigModal.vue', () => {
   });
 
   it('should open configPopUp', async () => {
+    await wrapper.setData({ type: 'wpp-demo' });
     expect(wrapper.vm.currentApp).toMatchObject({});
 
     wrapper.vm.openPopUp(singleApp);
@@ -38,14 +40,15 @@ describe('ConfigModal.vue', () => {
   });
 
   it('should set current component to wpp_demo', async () => {
-    await wrapper.setData({ type: 'whatsapp_demo' });
+    await wrapper.setData({ type: 'wpp-demo' });
 
     const currentComponent = wrapper.vm.currentComponent;
 
     expect(currentComponent).toMatchObject(wppDemoConfig);
   });
 
-  it('should return default currentComponent', () => {
+  it('should return default currentComponent', async () => {
+    // await wrapper.setData({ type: 'wpp-demo' });
     const currentComponent = wrapper.vm.currentComponent;
 
     expect(currentComponent).toMatchObject(wppDemoConfig);

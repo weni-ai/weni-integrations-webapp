@@ -38,7 +38,7 @@ const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 
-describe('AppGrid.vue without mocked loadApps', () => {
+describe('AppGrid.vue', () => {
   let wrapper;
   let actions;
   let getters;
@@ -193,20 +193,6 @@ describe('AppGrid.vue without mocked loadApps', () => {
 
       expect(configModal.vm.show).toBeTruthy();
     });
-
-    it('should not open configModal if type is not "add" and design is popup', async () => {
-      await wrapper.setProps({ type: 'config' });
-
-      const app = wrapper.vm.apps[0];
-      app.config_design = 'popup';
-      const configModal = wrapper.findComponent({ ref: 'configModal' });
-
-      expect(configModal.vm.show).toBeFalsy();
-
-      wrapper.vm.openAppModal(app);
-
-      expect(configModal.vm.show).toBeFalsy();
-    });
   });
 
   describe('appRatingAverage', () => {
@@ -286,6 +272,15 @@ describe('AppGrid.vue without mocked loadApps', () => {
 
     it('should call openPopUp if design is popup', async () => {
       const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
+      actions.createApp.mockImplementation(() => {
+        return Promise.resolve({
+          data: {
+            config: {
+              redirect_url: 'https://url.com',
+            },
+          },
+        });
+      });
       expect(spy).not.toHaveBeenCalled();
       const app = {
         code: 'code',

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppGrid.vue without mocked loadApps should be rendered properly 1`] = `
+exports[`AppGrid.vue should be rendered properly 1`] = `
 <div>
   <section id="app-grid">
     <div class="app-grid__header">
