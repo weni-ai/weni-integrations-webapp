@@ -48,7 +48,7 @@
       },
       openWppLink() {
         /* istanbul ignore next */
-        window.open(this.app.config.wa_url, '_blank');
+        window.open(this.app.config.redirect_url, '_blank');
         this.closePopUp();
       },
     },

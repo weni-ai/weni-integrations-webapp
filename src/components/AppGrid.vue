@@ -206,13 +206,13 @@
           const payload = {
             project_uuid: this.getSelectedProject,
           };
-          await this.createApp({ code, payload });
+          const res = await this.createApp({ code, payload });
           if (app.config_design === 'popup') {
             // TODO: use default config when it is fetched from api
             /* istanbul ignore next */
             app.config = {};
             /* istanbul ignore next */
-            app.config.wa_url = 'https://google.com/'; // TODO: remove since this url will come from API
+            app.config.redirect_url = res.data.config.redirect_url; // TODO: remove since this url will come from API
             this.$refs.configPopUp.openPopUp(app);
           } else {
             this.$refs.addModal.toggleModal();
@@ -272,9 +272,7 @@
         if (this.type === 'add') {
           this.openAppDetails(app.code);
         } else {
-          if (app.config_design !== 'popup') {
-            this.$refs.configModal.openModal(app);
-          }
+          this.$refs.configModal.openModal(app);
         }
       },
       appRatingAverage(app) {

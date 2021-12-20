@@ -34,7 +34,7 @@
     },
     computed: {
       currentComponent() {
-        if (this.type === 'whatsapp_demo') return wppDemoConfig;
+        if (this.type === 'wpp-demo') return wppDemoConfig;
         return wppDemoConfig;
       },
     },
