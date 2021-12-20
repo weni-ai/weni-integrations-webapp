@@ -1,0 +1,175 @@
+{
+  "general": {
+    "Cancel": "Cancelar",
+    "Close": "Cerrar",
+    "You": "Ustedes",
+    "confirm": "Confirmar"
+  },
+
+  "errors": {
+    "empty_input": "Los campos obligatorios no pueden estar vacíos.",
+    "required_message": "Este campo es necesario."
+  },
+
+  "apps": {
+    "nav": {
+      "discovery": "Descubrimiento",
+      "my_apps": "Mis aplicaciones"
+    },
+    "discovery": {
+      "categories": {
+        "channel": "Canales de comunicación",
+        "ticket": "Gestores de asistencia",
+        "configured": "Aplicaciones configuradas",
+        "installed": "Aplicaciones instaladas"
+      }
+    },
+    "myApps": {
+      "empty": {
+        "no-integrations": "odavía no has instalado ninguna",
+        "search": "Busque lo que necesita",
+        "link": "aquí"
+      }
+    },
+    "details": {
+      "info": "Número de mensajes intercambiados",
+      "integrated_into": "Integrado en",
+      "organizations": "organizaciones",
+      "rating": "Clasificación",
+      "status_error": "No se ha podido completar esta acción, por favor, inténtelo de nuevo",
+      "status_success": "Éxito",
+      "navigator": {
+        "discovery": "Descubrimiento"
+      },
+      "about": {
+        "about_the_app": "Sobre la aplicación",
+        "useful_links": "Enlaces útiles"
+      },
+      "recommended": {
+        "title": "Recomendado",
+        "comments": "comentarios"
+      },
+      "comments": {
+        "leave_a_comment": "Deja un comentario",
+        "input_placeholder": "Un buen comentario puede ayudar a otros que están aprendiendo :)",
+        "edit_comment": "Editar comentario",
+        "delete_comment": "Borrar comentario",
+        "remove": {
+          "title": "Borrar comentario",
+          "description": " borrar tu comentario sobre el aprendizaje? Podrás insertar otro.",
+          "remove": "Borrar comentario",
+          "status_text": "Comentario borrado con éxito"
+        }
+      },
+      "header": {
+        "add": "Añadir"
+      },
+      "card": {
+        "comments": "comentarios",
+        "see_details": "Ver detalles"
+      },
+      "actions": {
+        "installed": {
+          "title": "¡Aplicación instalada!",
+          "description": "Todavía tiene que configurar la aplicación accediendo al área \"Mis aplicaciones\".",
+          "access_my_apps": "Acceder a mis aplicaciones"
+        },
+        "remove": {
+          "title": "Retirar la aplicación",
+          "description": "¿Realmente quiere eliminar esta aplicación? Esto no se puede deshacer.",
+          "remove": "Retirar la aplicación",
+          "status_text": "Se ha eliminado la aplicación con éxito"
+        }
+      }
+    },
+    "config": {
+      "first_integration_success": "Para descargar el script para su sitio web, vaya a la pestaña de Código Script.",
+      "integration_success": "¡Aplicación actualizada con éxito!",
+      "copy_success": "¡Copiado con éxito!",
+      "configure_later": "Configurar más tarde",
+      "save_changes": "Guardar los cambios",
+      "cancel": "Cancelar",
+      "validate": "Validar",
+      "copy": "Copiar",
+      "confirmation": {
+        "title": "Anular las modificaciones",
+        "description": "¿Realmente quiere cancelar sus cambios? Todos los cambios no guardados se perderán.",
+        "goBackToConfig": "Volver a la configuración"
+      }
+    }
+  },
+
+  "file_upload": {
+    "drag_your_file_here_or": "Arrastre su archivo aquí o",
+    "search_it": "buscarlo",
+    "supported_formats": "Formatos compatibles",
+    "drag_another_file_or": "Arrastre otro archivo o",
+    "modify": "Modificar",
+    "remove": "Eliminar"
+  },
+
+  "weniWebChat": {
+    "data": {
+      "summary": "Con Weni Web Chat, puede integrar su organización Rapidpro como un chat en su sitio web.",
+      "description": "Utilice el Weni Web Chat para tener una experiencia de automatización humanizada de la Plataforma Weni directamente en su sitio web o plataforma web. Al integrarlo, podrá personalizar aspectos del Webchat como el color, el tiempo entre mensajes, los indicadores de los mensajes, el avatar, ¡y mucho más! Así, garantizando todo lo que la Plataforma Weni tiene para ofrecer con la identidad de su marca."
+    },
+    "config": {
+      "settings": "Ajustes",
+      "script": "Código Script",
+      "script_tutorial": "Para instalar Weni Web Chat en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
+      "custom_css": "CSS personalizado",
+      "avatar_image": "Imagen del avatar",
+      "show_fullscreen_button": "Mostrar el botón de pantalla completa",
+      "unread_messages_indicator": "Unread messages indicator",
+      "keep_chat_history": "Indicador de mensajes no leídos",
+      "time_between_messages": "Tiempo entre mensajes",
+      "main_color": "Color principal",
+      "save_changes": "Guardar los cambios",
+      "script_placeholder": "Su Script estará aquí",
+      "download": "Descargar",
+      "initPayloadToolTip": "Al abrir el chat en su sitio web, un disparador con este valor será llamado automáticamente para iniciar un flujo elegido. Puede configurarlo en Studio.",
+      "TitleInput": {
+        "label": "Título del chat",
+        "placeholder": "Ej.: Nombre de su chatbot"
+      },
+      "SubtitleInput": {
+        "label": "Subtítulo del chat",
+        "placeholder": "Ej.: Nombre de su empresa"
+      },
+      "PlaceholderInput": {
+        "label": "Placeholder text",
+        "placeholder": "Texto del marcador de posición"
+      },
+      "initPayloadInput": {
+        "label": "Mensaje de activación",
+        "placeholder": "Ej.: Hola, bienvenido"
+      }
+    },
+    "simulator": {
+      "chatTitle": "Título del chat",
+      "chatSubtitle": "Subtítulo del chat",
+      "chatPlaceholder": "Texto del marcador de posición",
+      "replies": {
+        "yes": "Sí",
+        "no": "No",
+        "maybe": "Quizás"
+      }
+    }
+  },
+
+  "telegram": {
+    "data": {
+      "summary": "Envía y recibe mensajes de los usuarios de Telegram de forma gratuita.",
+      "description": "Al utilizar Telegram, usted está conectando una de las mayores aplicaciones de mensajería como un canal disponible para su audiencia en la Plataforma Weni. Envía y recibe textos, vídeos y audio a través de este canal, asegurando la comodidad y la comunidad de tu audiencia, así como los recursos disponibles en la plataforma."
+    },
+    "config": {
+      "description": {
+        "text": "Más información sobre cómo integrar Telegram",
+        "link": "aquí."
+      },
+      "TokenInput": {
+        "label": "Token"
+      }
+    }
+  }
+}

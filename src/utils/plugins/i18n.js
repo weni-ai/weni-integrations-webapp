@@ -5,10 +5,12 @@ Vue.use(VueI18n);
 
 import en from '../../locales/en.json';
 import pt_br from '../../locales/pt_br.json';
+import es_es from '../../locales/es_es.json';
 
 const languages = {
   'en-us': en,
   'pt-br': pt_br,
+  'es-es': es_es,
 };
 
 const messages = Object.assign(languages);
