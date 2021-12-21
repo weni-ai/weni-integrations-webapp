@@ -52,7 +52,8 @@
     },
     /* istanbul ignore next */
     async mounted() {
-      await this.fetchCategories();
+      await this.loadCategories();
+
       this.$root.$on('updateGrid', async () => {
         await this.fetchCategories();
       });
@@ -79,23 +80,33 @@
         await this.fetchConfigured();
         await this.fetchInstalled();
       },
-      async fetchConfigured() {
+      async loadCategories() {
+        await this.loadConfigured();
+        await this.loadInstalled();
+      },
+      async loadConfigured() {
         this.configuredApps.loading = true;
+        await this.fetchConfigured();
+        this.configuredApps.loading = false;
+      },
+      async loadInstalled() {
+        this.installedApps.loading = true;
+        await this.fetchInstalled();
+        this.installedApps.loading = false;
+      },
+      async fetchConfigured() {
         const params = {
           project_uuid: this.getSelectedProject,
         };
         const { data } = await this.getConfiguredApps({ params });
         this.configuredApps.data = data;
-        this.configuredApps.loading = false;
       },
       async fetchInstalled() {
-        this.installedApps.loading = true;
         const params = {
           project_uuid: this.getSelectedProject,
         };
         const { data } = await this.getInstalledApps({ params });
         this.installedApps.data = data;
-        this.installedApps.loading = false;
       },
       navigateToDiscovery() {
         this.$router.replace('/apps/discovery');
