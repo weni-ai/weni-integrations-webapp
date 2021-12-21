@@ -2,12 +2,12 @@
   <unnnic-modal
     ref="unnnic-wpp-demo-modal"
     class="wpp-demo-modal"
-    :text="$t('wpp_demo.config.title')"
+    :text="$t('WhatsAppDemo.config.title')"
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
     @close="closePopUp"
   >
-    <span slot="message" v-html="$t('wpp_demo.config.description')"></span>
+    <span slot="message" v-html="$t('WhatsAppDemo.config.description')"></span>
     <unnnic-button
       ref="unnnic-wpp-demo-modal-close-button"
       slot="options"
@@ -19,10 +19,9 @@
       ref="unnnic-wpp-demo-modal-navigate-button"
       slot="options"
       type="primary"
-      scheme="feedback-green"
       @click="openWppLink"
     >
-      {{ $t('wpp_demo.config.continue_and_redirect') }}
+      {{ $t('WhatsAppDemo.config.continue_and_redirect') }}
     </unnnic-button>
   </unnnic-modal>
 </template>

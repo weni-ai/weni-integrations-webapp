@@ -8,7 +8,7 @@
         <div class="app-preview-wpp_demo__header__title__name">{{ app.name }}</div>
       </div>
       <div class="app-preview-wpp_demo__header__description">
-        {{ $t('wpp_demo.config.description.text') }}
+        {{ $t('WhatsAppDemo.preview.description') }}
       </div>
     </div>
 
@@ -16,7 +16,7 @@
       <unnnic-input
         key="config-title"
         v-model="url"
-        :label="$t('wpp_demo.config.UrlInput.label')"
+        :label="$t('WhatsAppDemo.preview.UrlInput.label')"
         disabled
       />
     </div>

@@ -171,5 +171,23 @@
         "label": "Token"
       }
     }
+  },
+
+  "WhatsAppDemo": {
+    "data": {
+      "summary": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project.",
+      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user"
+    },
+    "config": {
+      "title": "Almost there!",
+      "description": "To be able to use Whatsapp Demo you will be directed to a link.",
+      "continue_and_redirect": "Continue and Redirect"
+    },
+    "preview": {
+      "description": "Copy your URL here!",
+      "UrlInput": {
+        "label": "URL"
+      }
+    }
   }
 }
