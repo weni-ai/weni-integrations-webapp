@@ -10,7 +10,7 @@ exports[`Discovery.vue should be rendered properly 1`] = `
       </div>
       <div class="app-grid__content">
         <unnnic-card-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item">
-          <unnnic-button-stub size="small" type="secondary" iconcenter="add-1" class="app-grid__content__item__button--add"></unnnic-button-stub>
+          <unnnic-button-stub size="small" type="secondary" iconcenter="add-1" disabled="true" class="app-grid__content__item__button--add"></unnnic-button-stub>
         </unnnic-card-stub>
       </div>
     </section>
