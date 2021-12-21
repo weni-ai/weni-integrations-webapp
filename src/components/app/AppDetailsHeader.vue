@@ -13,6 +13,7 @@
       type="secondary"
       icon-left="add-1"
       @click="openAddModal(appCode)"
+      :disabled="!canAdd"
       >{{ $t('apps.details.header.add') }}</unnnic-button
     >
 
@@ -48,6 +49,10 @@
       iconbgColor: {
         type: String,
         default: 'none',
+      },
+      canAdd: {
+        type: Boolean,
+        default: true,
       },
     },
     methods: {

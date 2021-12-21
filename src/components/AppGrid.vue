@@ -32,6 +32,7 @@
             type="secondary"
             :iconCenter="actionIcon"
             @click.stop="addApp(app)"
+            :disabled="!app.can_add"
           />
 
           <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
@@ -229,6 +230,8 @@
             },
             seconds: 3,
           });
+        } finally {
+          this.$emit('update');
         }
       },
       toggleRemoveModal(app = null) {
