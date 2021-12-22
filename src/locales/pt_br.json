@@ -174,7 +174,7 @@
   "WhatsAppDemo": {
     "data": {
       "summary": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto.",
-      "description": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto. Com um número compartilhado gratuito você consegue testar com até 200 usuários mensais todas a features disponíveis na plataforma, bem como validar o funcionamento e atendimento do seu negócio por esse canal.<br>Obs.:<br>- Não suporta personalizações (foto, descrição, número, etc)<br>- Não suporte template messages, ou seja, todas as conversas devem ser iniciadas pelo usuário"
+      "description": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto. Com um número compartilhado gratuito você consegue testar com até 200 usuários mensais todas a features disponíveis na plataforma, bem como validar o funcionamento e atendimento do seu negócio por esse canal.<br>Obs.:<br>- Não suporta personalizações (foto, descrição, número, etc)<br>- Não suporta template messages, ou seja, todas as conversas devem ser iniciadas pelo usuário"
     },
     "config": {
       "title": "Quase lá!",
@@ -182,7 +182,7 @@
       "continue_and_redirect": "Continuar e Redirecionar"
     },
     "preview": {
-      "description": "Copie sua url aqui!",
+      "description": "Com a URL abaixo vc pode utilizar o Whatsapp Demo, testar no seu projeto, ou até mesmo compartilhar com outras pessoas.",
       "UrlInput": {
         "label": "URL"
       }

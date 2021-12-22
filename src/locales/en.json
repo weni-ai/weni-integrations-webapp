@@ -184,7 +184,7 @@
       "continue_and_redirect": "Continue and Redirect"
     },
     "preview": {
-      "description": "Copy your URL here!",
+      "description": "With the URL below you can use Whatsapp Demo, test it on your project, or even share it with others.",
       "UrlInput": {
         "label": "URL"
       }
