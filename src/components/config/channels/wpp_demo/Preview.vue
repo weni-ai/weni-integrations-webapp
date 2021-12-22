@@ -84,6 +84,7 @@
           seconds: 3,
         });
       },
+      /* istanbul ignore next */
       openWppLink() {
         window.open(this.app.config.redirect_url, '_blank');
       },

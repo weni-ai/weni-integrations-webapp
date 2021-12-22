@@ -12,11 +12,13 @@ exports[`Preview.vue should be rendered properly 1`] = `
     </div>
   </div>
   <div class="app-preview-wpp_demo__settings__content">
-    <unnnicinput-stub label="some specific text" disabled=""></unnnicinput-stub>
+    <unnnic-data-area-stub>
+      <unnnicbutton-stub size="large" type="primary" iconcenter="export-1" class="app-preview-wpp_demo__settings__content__button"></unnnicbutton-stub>
+    </unnnic-data-area-stub>
   </div>
   <div class="app-preview-wpp_demo__settings__buttons">
-    <unnnicbutton-stub type="terciary" size="large" text="some specific text" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
-    <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="app-preview-wpp_demo__settings__buttons__copy"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="some specific text" type="secondary" class="app-preview-wpp_demo__settings__buttons__copy"></unnnicbutton-stub>
   </div>
 </div>
 `;
