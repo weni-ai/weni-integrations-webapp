@@ -13,12 +13,16 @@
     </div>
 
     <div class="app-preview-wpp_demo__settings__content">
-      <unnnic-input
-        key="config-title"
-        v-model="url"
-        :label="$t('WhatsAppDemo.preview.UrlInput.label')"
-        disabled
-      />
+      <unnnic-data-area :text="url">
+        <unnnic-button
+          slot="buttons"
+          class="app-preview-wpp_demo__settings__content__button"
+          type="primary"
+          size="large"
+          iconCenter="export-1"
+          @click="openWppLink"
+        ></unnnic-button>
+      </unnnic-data-area>
     </div>
 
     <div class="app-preview-wpp_demo__settings__buttons">
@@ -44,6 +48,7 @@
 
 <script>
   import { mapActions } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'wpp-demo-preview',
@@ -66,6 +71,21 @@
       /* istanbul ignore next */
       copyUrl() {
         navigator.clipboard.writeText(this.url);
+
+        unnnicCallAlert({
+          props: {
+            text: this.$t('apps.config.copy_success'),
+            title: 'Success',
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 3,
+        });
+      },
+      openWppLink() {
+        window.open(this.app.config.redirect_url, '_blank');
       },
     },
   };
@@ -93,7 +113,7 @@
           height: $unnnic-avatar-size-sm;
           border-radius: $unnnic-border-radius-sm;
 
-          background-color: rgba(3, 155, 229, 0.2);
+          background: rgba(209, 252, 201, 0.8);
 
           &__icon {
             width: $unnnic-icon-size-md;
@@ -118,8 +138,6 @@
         flex-wrap: wrap;
 
         margin-top: $unnnic-inline-sm;
-        padding-bottom: $unnnic-inline-md;
-        border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
 
         font-family: $unnnic-font-family-secondary;
         font-weight: $unnnic-font-weight-regular;
@@ -168,5 +186,9 @@
         }
       }
     }
+  }
+
+  ::v-deep .unnnic-button--primary {
+    background-color: rgba(226, 230, 237, 0.4) !important;
   }
 </style>
