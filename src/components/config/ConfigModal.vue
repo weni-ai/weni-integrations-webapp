@@ -49,6 +49,7 @@
 <script>
   import wwcConfig from './channels/WWC/Config.vue';
   import telegramConfig from './channels/telegram/Config.vue';
+  import wppDemoPreview from './channels/wpp_demo/Preview.vue';
 
   export default {
     name: 'Modal',
@@ -90,6 +91,7 @@
       currentComponent() {
         if (this.type === 'wwc') return wwcConfig;
         if (this.type === 'tg') return telegramConfig;
+        if (this.type === 'wpp-demo') return wppDemoPreview;
         return wwcConfig;
       },
     },
