@@ -108,7 +108,7 @@
 
   "weniWebChat": {
     "data": {
-      "summary": "Com o Weni Web Chat, você pode integrar sua organização Rapidpro como um chat em seu site.",
+      "summary": "Com o Weni Web Chat, você pode integrar seu projeto como um chat em seu site.",
       "description": "Use o Weni Web Chat para ter a experiência de automação humanizada da Weni Plataforma diretamente no seu site ou plataforma web. Ao integrar o canal, você consegue customizar aspectos do Webchat como: Cor, espaçamento entre mensagens, indicadores de mensagem, avatar, e muito mais! Assim, garantindo tudo que a Weni Plataforma tem a oferecer, com a cara da sua marca."
     },
     "config": {
