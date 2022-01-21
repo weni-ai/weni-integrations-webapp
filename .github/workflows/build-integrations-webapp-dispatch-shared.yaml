@@ -5,37 +5,92 @@ on:
     inputs:
 
       source-branch:
-        description: 'Source branch in NinaWebApp repository (main, staging, develop, fix/sentry etc.)'
+        description: 'Source branch in Integrations repository (main, staging, develop, fix/sentry etc.)'
         required: true
         default: 'main'
 
       tag-name:
-        description: 'Tag id (v0.0.1-develop, v0.0.2, etc.)'
+        description: 'Tag id (v0.0.1-develop, v0.0.1-staging, v0.0.2, etc.)'
         required: true
-
-      destination-env:
-        description: 'Destination environment (develop, production, staging)'
-        required: true
-
-      api-base-url:
-        description: 'Base URL of the backend API'
-        required: true
-        default: 'https://integrations-engine.weni.ai'
-
-      sentry-dsn:
-        description: 'Sentry DSN'
-        required: true
-        default: 'https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20'
-
-      sentry-environment:
-        description: 'Sentry environment (production, staging, develop)'
-        required: true
-        default: 'production'
 
 jobs:
   docker:
     runs-on: ubuntu-latest 
     steps:
+
+      - name: Set variables
+        run: |
+            TAG=${{github.event.inputs.tag-name}}
+            if $(echo  $TAG|grep --silent -e 'v*.*.*-develop*')
+            then 
+              echo "Found environment: DEVELOP - $TAG"
+              echo "MANIFESTS_ENVIRONMENT=develop" >> $GITHUB_ENV
+              echo "MANIFESTS_ENVIRONMENT=develop"
+              echo "TAG=$TAG" >> $GITHUB_ENV
+              echo "TAG=$TAG"
+              VERSION=${TAG#v} 
+              echo "VERSION=$VERSION" >> $GITHUB_ENV
+              echo "VERSION=$VERSION"
+              echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+              echo "COMMIT_SHA=$GITHUB_SHA"
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-dev.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-dev.weni.ai"
+              echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41" >> $GITHUB_ENV
+              echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41"
+              echo "VUE_APP_USE_HOTJAR=false" >> $GITHUB_ENV
+              echo "VUE_APP_USE_HOTJAR=false"
+              echo "VUE_APP_HOTJAR_ID=" >> $GITHUB_ENV
+              echo "VUE_APP_HOTJAR_ID="
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
+            elif $(echo  $TAG|grep --silent -e 'v*.*.*-staging*')
+            then
+              echo "Found environment: STAGING - $TAG"
+              echo "MANIFESTS_ENVIRONMENT=staging" >> $GITHUB_ENV
+              echo "MANIFESTS_ENVIRONMENT=staging"
+              echo "TAG=$TAG" >> $GITHUB_ENV
+              echo "TAG=$TAG"
+              VERSION=${TAG#v} 
+              echo "VERSION=$VERSION" >> $GITHUB_ENV
+              echo "VERSION=$VERSION"
+              echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+              echo "COMMIT_SHA=$GITHUB_SHA"
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai"
+              echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15" >> $GITHUB_ENV
+              echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15"
+              echo "VUE_APP_USE_HOTJAR=true" >> $GITHUB_ENV
+              echo "VUE_APP_USE_HOTJAR=true"
+              echo "VUE_APP_HOTJAR_ID=2793355" >> $GITHUB_ENV
+              echo "VUE_APP_HOTJAR_ID=2793355"
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
+            elif $(echo  $TAG|grep --silent -e 'v*.*.*')
+            then
+              echo "No environment found, assuming: PRODUCTION - $TAG"
+              echo "MANIFESTS_ENVIRONMENT=production" >> $GITHUB_ENV
+              echo "MANIFESTS_ENVIRONMENT=production"
+              echo "TAG=$TAG" >> $GITHUB_ENV
+              echo "TAG=$TAG"
+              VERSION=${TAG#v} 
+              echo "VERSION=$VERSION" >> $GITHUB_ENV
+              echo "VERSION=$VERSION"
+              echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+              echo "COMMIT_SHA=$GITHUB_SHA"
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai"
+              echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20" >> $GITHUB_ENV
+              echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20"
+              echo "VUE_APP_USE_HOTJAR=true" >> $GITHUB_ENV
+              echo "VUE_APP_USE_HOTJAR=true"
+              echo "VUE_APP_HOTJAR_ID=2793351" >> $GITHUB_ENV
+              echo "VUE_APP_HOTJAR_ID=2793351"
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
+              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
+            else
+              echo 'Not a valid tag. Skipping...'
+              exit 1
+            fi
 
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -66,10 +121,12 @@ jobs:
           tags: 869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-${{github.event.inputs.tag-name}}
           no-cache: true
           build-args: |
-            VUE_APP_API_BASE_URL=${{github.event.inputs.api-base-url}}
+            VUE_APP_API_BASE_URL=${{env.VUE_APP_API_BASE_URL}}
             VUE_APP_USE_SENTRY=true
-            VUE_APP_SENTRY_DSN=${{github.event.inputs.sentry-dsn}}
-            VUE_APP_SENTRY_ENVIRONMENT=${{github.event.inputs.sentry-environment}}
+            VUE_APP_SENTRY_DSN=${{env.VUE_APP_SENTRY_DSN}}
+            VUE_APP_SENTRY_ENVIRONMENT=${{env.MANIFESTS_ENVIRONMENT}}
+            VUE_APP_USE_HOTJAR=${{env.VUE_APP_USE_HOTJAR}}
+            VUE_APP_HOTJAR_ID=${{env.VUE_APP_HOTJAR_ID}}
 
       - name: Check out Kubernetes Manifests
         uses: actions/checkout@master
@@ -94,7 +151,7 @@ jobs:
               [ "$1" = "$2" ] && return 1 || verlte $1 $2
             }
             export PROJECT_DIR="integrations" PATCH_TARGET="deployment-webapp.json"
-            for e in ${{github.event.inputs.destination-env}}; do
+            for e in ${MANIFESTS_ENVIRONMENT}; do
               echo "Update ${e}:"
               if [ ! -d "kubernetes-manifests/${PROJECT_DIR}/${e}" ] ; then
                 echo "kubernetes-manifests/${PROJECT_DIR}/${e}: Does not exist, skipping"

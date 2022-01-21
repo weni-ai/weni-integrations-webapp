@@ -27,6 +27,14 @@ jobs:
               echo "VERSION=$VERSION"
               echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
               echo "COMMIT_SHA=$GITHUB_SHA"
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-dev.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-dev.weni.ai"
+              echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41" >> $GITHUB_ENV
+              echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41"
+              echo "VUE_APP_USE_HOTJAR=false" >> $GITHUB_ENV
+              echo "VUE_APP_USE_HOTJAR=false"
+              echo "VUE_APP_HOTJAR_ID=" >> $GITHUB_ENV
+              echo "VUE_APP_HOTJAR_ID="
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             elif $(echo  $TAG|grep --silent -e 'v*.*.*-staging*')
@@ -41,6 +49,14 @@ jobs:
               echo "VERSION=$VERSION"
               echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
               echo "COMMIT_SHA=$GITHUB_SHA"
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai"
+              echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15" >> $GITHUB_ENV
+              echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15"
+              echo "VUE_APP_USE_HOTJAR=true" >> $GITHUB_ENV
+              echo "VUE_APP_USE_HOTJAR=true"
+              echo "VUE_APP_HOTJAR_ID=2793355" >> $GITHUB_ENV
+              echo "VUE_APP_HOTJAR_ID=2793355"
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             elif $(echo  $TAG|grep --silent -e 'v*.*.*')
@@ -55,6 +71,14 @@ jobs:
               echo "VERSION=$VERSION"
               echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
               echo "COMMIT_SHA=$GITHUB_SHA"
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai"
+              echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20" >> $GITHUB_ENV
+              echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20"
+              echo "VUE_APP_USE_HOTJAR=true" >> $GITHUB_ENV
+              echo "VUE_APP_USE_HOTJAR=true"
+              echo "VUE_APP_HOTJAR_ID=2793351" >> $GITHUB_ENV
+              echo "VUE_APP_HOTJAR_ID=2793351"
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             else
@@ -92,10 +116,12 @@ jobs:
           tags: ${{env.IMAGE_TAG}}
           no-cache: true
           build-args: |
-            VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai
+            VUE_APP_API_BASE_URL=${{env.VUE_APP_API_BASE_URL}}
             VUE_APP_USE_SENTRY=true
-            VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20
+            VUE_APP_SENTRY_DSN=${{env.VUE_APP_SENTRY_DSN}}
             VUE_APP_SENTRY_ENVIRONMENT=${{env.MANIFESTS_ENVIRONMENT}}
+            VUE_APP_USE_HOTJAR=${{env.VUE_APP_USE_HOTJAR}}
+            VUE_APP_HOTJAR_ID=${{env.VUE_APP_HOTJAR_ID}}
 
       - name: Check out Kubernetes Manifests
         uses: actions/checkout@master
