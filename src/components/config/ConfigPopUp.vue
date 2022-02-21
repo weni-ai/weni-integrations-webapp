@@ -13,6 +13,7 @@
 
 <script>
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
+  import wppPageSelection from './channels/whatsapp/PageSelection.vue';
 
   export default {
     name: 'Config-PopUp',
@@ -38,6 +39,7 @@
     computed: {
       currentComponent() {
         if (this.type === 'wpp-demo') return wppDemoConfig;
+        if (this.type === 'wpp') return wppPageSelection;
         return wppDemoConfig;
       },
     },
