@@ -4,15 +4,7 @@
 
     <div class="app-details" v-if="!loading">
       <app-images-banner class="app-details__section" :images="app.banners" />
-      <app-details-header
-        class="app-details__section"
-        :title="app.name"
-        :description="app.summary"
-        :icon="app.icon"
-        :iconbgColor="app.bg_color"
-        :appCode="app.code"
-        :canAdd="app.can_add"
-      />
+      <app-details-header class="app-details__section" :app="app" />
       <unnnic-banner
         class="app-details__banner"
         :key="bannerKey"
