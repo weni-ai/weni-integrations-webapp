@@ -5,6 +5,7 @@
       :is="currentComponent"
       :v-bind="$attrs"
       :app="currentApp"
+      :customData="currentCustomData"
       @closePopUp="closePopUp"
     />
   </div>
@@ -20,15 +21,17 @@
         show: false,
         type: '',
         currentApp: {},
+        currentCustomData: null,
       };
     },
     methods: {
       closePopUp() {
         this.show = false;
       },
-      openPopUp(app) {
+      openPopUp(app, customData) {
         this.type = app.code;
         this.currentApp = app;
+        this.currentCustomData = customData;
         this.show = true;
       },
     },
