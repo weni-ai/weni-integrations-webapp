@@ -48,4 +48,8 @@ export default {
   async updateAppConfig(store, { code, appUuid, payload }) {
     return await appType.updateAppConfig(code, appUuid, payload);
   },
+
+  async getSharedWabas(store, { code, params }) {
+    return await appType.getSharedWabas(code, params);
+  },
 };

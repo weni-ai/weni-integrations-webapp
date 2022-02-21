@@ -40,4 +40,8 @@ export default {
   updateAppConfig(appCode, appUuid, data) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);
   },
+  getSharedWabas(appCode, filter) {
+    const queryString = qs.stringify(filter);
+    return request.$http.get(`${resource}/${appCode}/apps/shared-wabas/?${queryString}`);
+  },
 };
