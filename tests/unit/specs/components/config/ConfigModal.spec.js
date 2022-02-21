@@ -6,6 +6,7 @@ import i18n from '@/utils/plugins/i18n';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';
 import telegramConfig from '@/components/config/channels/telegram/Config.vue';
 import wppDemoPreview from '@/components/config/channels/wpp_demo/Preview.vue';
+import whatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
 
 const localVue = createLocalVue();
 
@@ -98,12 +99,20 @@ describe('ConfigModal.vue', () => {
       expect(currentComponent).toMatchObject(telegramConfig);
     });
 
-    it('should set current component to telegram', async () => {
+    it('should set current component to wpp-demo', async () => {
       await wrapper.setData({ type: 'wpp-demo' });
 
       const currentComponent = wrapper.vm.currentComponent;
 
       expect(currentComponent).toMatchObject(wppDemoPreview);
+    });
+
+    it('should set current component to whatsapp', async () => {
+      await wrapper.setData({ type: 'wpp' });
+
+      const currentComponent = wrapper.vm.currentComponent;
+
+      expect(currentComponent).toMatchObject(whatsappConfig);
     });
 
     it('should return default currentComponent', () => {

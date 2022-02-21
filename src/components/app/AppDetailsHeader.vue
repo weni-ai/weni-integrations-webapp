@@ -34,7 +34,7 @@
     props: {
       app: {
         type: Object,
-        default: () => {},
+        default: /* istanbul ignore next */ () => {},
       },
     },
     methods: {

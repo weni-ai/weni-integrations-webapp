@@ -4,10 +4,11 @@ import { singleApp } from '../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
 import wppDemoConfig from '@/components/config/channels/wpp_demo/Config.vue';
+import wppPageSelection from '@/components/config/channels/whatsapp/PageSelection.vue';
 
 const localVue = createLocalVue();
 
-describe('ConfigModal.vue', () => {
+describe('ConfigPopUp.vue', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallowMount(ConfigPopUp, {
@@ -45,6 +46,14 @@ describe('ConfigModal.vue', () => {
     const currentComponent = wrapper.vm.currentComponent;
 
     expect(currentComponent).toMatchObject(wppDemoConfig);
+  });
+
+  it('should set current component to wppPageSelection', async () => {
+    await wrapper.setData({ type: 'wpp' });
+
+    const currentComponent = wrapper.vm.currentComponent;
+
+    expect(currentComponent).toMatchObject(wppPageSelection);
   });
 
   it('should return default currentComponent', async () => {

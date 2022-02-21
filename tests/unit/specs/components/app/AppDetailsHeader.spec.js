@@ -9,6 +9,7 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import AppDetailsHeader from '@/components/app/AppDetailsHeader.vue';
 import i18n from '@/utils/plugins/i18n';
 import Vuex from 'vuex';
+import { singleApp } from '../../../../__mocks__/appMock';
 
 const localVue = createLocalVue();
 
@@ -45,6 +46,9 @@ describe('AppDetailsHeader.vue', () => {
       },
       stubs: {
         UnnnicButton: true,
+      },
+      propsData: {
+        app: singleApp,
       },
     });
   });
