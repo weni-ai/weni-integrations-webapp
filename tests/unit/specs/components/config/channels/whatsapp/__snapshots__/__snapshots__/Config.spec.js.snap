@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TelegramConfig.vue should be rendered properly 1`] = `
+<div class="config-whatsapp">
+  <div class="config-whatsapp__header">
+    <div class="config-whatsapp__header__title">
+      <div class="config-whatsapp__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-whatsapp__header__title__icon-container__icon"></div>
+      <div class="config-whatsapp__header__title__name">Weni Web Chat</div>
+    </div>
+    <div class="config-whatsapp__header__description">
+      Learn more about how to integrate Whatsapp
+      <a href="https://docs.ilhasoft.mobi/l/pt/article/qzw2i2og1s-como-obter-o-token-de-um-bot-do-whatsapp#" target="_blank">
+        here.
+      </a>
+    </div>
+  </div>
+  <unnnic-tab-stub initialtab="general" tabs="general,profile,contact_info" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnic-tab-stub>
+</div>
+`;

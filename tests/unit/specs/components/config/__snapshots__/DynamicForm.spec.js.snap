@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DynamicForm.vue should be rendered properly 1`] = `
+<div class="dynamic-form">
+  <div class="dynamic-form__fields">
+    <unnnicinput-stub label="some specific text" class=""></unnnicinput-stub>
+  </div>
+  <div class="dynamic-form__fields">
+    <unnnicselect-stub placeholder="some specific text" label="some specific text">
+      <option value="1">
+        select1
+      </option>
+      <option value="2">
+        select2
+      </option>
+    </unnnicselect-stub>
+  </div>
+</div>
+`;

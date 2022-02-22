@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/PageSelection.vue should be rendered properly 1`] = `
+<unnnicmodal-stub text="Selecione sua conta do WhatsApp Business que deseja conectar" scheme="feedback-green" modal-icon="check-circle-1-1" class="page-selection">
+  <div>
+    <unnnicbutton-stub type="secondary" size="large" text="page1"></unnnicbutton-stub>
+    <unnnicbutton-stub type="secondary" size="large" text="page2"></unnnicbutton-stub>
+  </div>
+</unnnicmodal-stub>
+`;
