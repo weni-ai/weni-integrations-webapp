@@ -167,6 +167,9 @@
       },
       "TokenInput": {
         "label": "Token"
+      },
+      "errors": {
+        "invalidToken": "Token inválido"
       }
     }
   },
@@ -185,6 +188,81 @@
       "description": "Com a URL abaixo vc pode utilizar o Whatsapp Demo, testar no seu projeto, ou até mesmo compartilhar com outras pessoas.",
       "UrlInput": {
         "label": "URL"
+      }
+    }
+  },
+
+  "WhatsApp": {
+    "data": {
+      "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts"
+    },
+    "config": {
+      "tabs": {
+        "general": "General",
+        "profile": "Profile",
+        "contact_info": "Contact Information"
+      },
+      "description": {
+        "text": "Learn more about how to integrate Whatsapp",
+        "link": "here."
+      },
+      "account": {
+        "title": "Account"
+      },
+      "billing": {
+        "title": "Billing Information"
+      },
+      "channel": {
+        "title": "WhatsApp Channel",
+        "fields": {
+          "phone_number": "Phone number",
+          "whatsapp_display_name": "WhatsApp Display Name",
+          "number_registration": "Number Registration",
+          "default_language_for_templates": "Default Language for templates",
+          "ivr_existing": "IVR existing",
+          "ivr_active": "IVR active",
+          "certificate": "Certificate",
+          "consent_status": "Consent Status"
+        }
+      },
+      "business_account": {
+        "title": "WhatsApp Business Account",
+        "fields": {
+          "waba_name": "WhatsApp Business Account Name",
+          "message_on_behalf_of": "Message on Behalf Name",
+          "timezone_id": "Timezone ID",
+          "waba_id": "WhatsApp Business Account ID",
+          "namespace": "Namespace"
+        }
+      },
+      "profile": {
+        "api_token": {
+          "label": "API Token"
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Ex.: Disponível apenas para texto"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Descreva o seu negócio ou objetivo do seu chat bot"
+        },
+        "sector": {
+          "label": "Company Sector",
+          "placeholder": "Select"
+        },
+        "configure_later": "Configure later",
+        "create_channel": "Create Channel"
+      },
+      "contact_info": {
+        "website_url": {
+          "label": "Website"
+        },
+        "corporate_email": {
+          "label": "Corporate Email",
+          "placeholder": "Email that customers can contact"
+        }
       }
     }
   }
