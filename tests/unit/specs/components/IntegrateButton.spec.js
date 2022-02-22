@@ -14,7 +14,7 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import IntegrateButton from '@/components/IntegrateButton.vue';
 import addModal from '@/components/AddModal.vue';
 import ConfigPopUp from '@/components/config/ConfigPopUp.vue';
@@ -47,7 +47,7 @@ describe('IntegrateButton.vue', () => {
       getters,
     });
 
-    wrapper = shallowMount(IntegrateButton, {
+    wrapper = mount(IntegrateButton, {
       localVue,
       store,
       i18n,
@@ -80,10 +80,10 @@ describe('IntegrateButton.vue', () => {
     expect(spy).not.toHaveBeenCalled();
 
     const button = wrapper.findComponent({ ref: 'button' });
-    button.vm.$emit('click');
+    button.vm.$emit('click', { stopPropagation: () => {} });
 
-    expect(spy).not.toHaveBeenCalledTimes(1);
-    expect(spy).not.toHaveBeenCalledWith(wrapper.props('app'));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(wrapper.props('app'));
   });
 
   describe('created()', () => {
