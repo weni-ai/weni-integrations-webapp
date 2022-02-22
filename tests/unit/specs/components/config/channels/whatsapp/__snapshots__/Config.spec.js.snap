@@ -14,6 +14,6 @@ exports[`TelegramConfig.vue should be rendered properly 1`] = `
       </a>
     </div>
   </div>
-  <unnnic-tab-stub initialtab="general" tabs="general,profile,contact_info" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnic-tab-stub>
+  <unnnictab-stub tabs="general,profile,contact_info" initialtab="general" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
 </div>
 `;

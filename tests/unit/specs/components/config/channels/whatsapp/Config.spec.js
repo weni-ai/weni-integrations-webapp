@@ -1,5 +1,3 @@
-import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
-
 jest.mock('@weni/unnnic-system', () => ({
   ...jest.requireActual('@weni/unnnic-system'),
   unnnicCallAlert: jest.fn(),
@@ -7,7 +5,7 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import { singleApp } from '../../../../../../../__mocks__/appMock.js';
+import { singleApp } from '../../../../../../__mocks__/appMock.js';
 import i18n from '@/utils/plugins/i18n';
 
 import whatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
@@ -42,6 +40,10 @@ describe('TelegramConfig.vue', () => {
       },
       stubs: {
         DynamicForm: true,
+        UnnnicTab: true,
+        UnnnicIconSvg: true,
+        UnnnicInput: true,
+        UnnnicButton: true,
       },
     });
   });
