@@ -1,7 +1,7 @@
 <template>
   <unnnic-modal
-    ref="unnnic-wpp-demo-modal"
-    class="wpp-demo-modal"
+    ref="page-selection-modal"
+    class="page-selection"
     text="Selecione sua conta do WhatsApp Business que deseja conectar"
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
@@ -9,6 +9,7 @@
   >
     <div slot="message">
       <unnnic-button
+        ref="unnnic-button"
         v-for="(page, index) in customData.pages"
         :key="index"
         type="secondary"
@@ -22,7 +23,7 @@
 
 <script>
   export default {
-    name: 'WppDemoModal',
+    name: 'PageSelection',
     props: {
       app: {
         type: Object,
@@ -30,7 +31,7 @@
       },
       customData: {
         type: Object,
-        default: () => {},
+        default: /* istanbul ignore next */ () => {},
       },
     },
     data() {

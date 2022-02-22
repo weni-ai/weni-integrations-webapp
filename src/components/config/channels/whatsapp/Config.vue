@@ -332,6 +332,7 @@
       closeConfig() {
         this.$emit('closeModal');
       },
+      /* istanbul ignore next */
       saveConfig() {
         console.log('saved');
       },

@@ -1,6 +1,7 @@
 <template>
   <div>
     <unnnic-button
+      ref="button"
       :size="size"
       type="secondary"
       :iconCenter="icon"
@@ -27,7 +28,7 @@
     props: {
       app: {
         type: Object,
-        default: () => {},
+        default: /* istanbul ignore next */ () => {},
       },
       icon: {
         type: String,
@@ -91,6 +92,7 @@
         }
       },
 
+      /* istanbul ignore next */
       async facebookLoginAppCreation() {
         /* eslint-disable no-undef */
         FB.login(
@@ -116,8 +118,6 @@
         const { data } = await this.getSharedWabas({ code: this.app.code, params });
 
         this.$refs.configPopUp.openPopUp(this.app, { pages: data });
-
-        console.log('response:', data);
       },
     },
   };

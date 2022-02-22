@@ -3,6 +3,7 @@
     <div class="dynamic-form__fields" v-for="(input, index) in inputs" :key="index">
       <unnnic-input
         v-if="input.type === 'input'"
+        ref="unnnic-input"
         :class="[!input.label && 'dynamic-form__fields--top-margin']"
         v-model="inputs[index].value"
         :label="input.label && $t(input.label)"
@@ -11,6 +12,7 @@
       />
       <unnnic-select
         v-else-if="input.type === 'select'"
+        ref="unnnic-select"
         :placeholder="input.placeholder && $t(input.placeholder)"
         :label="input.label && $t(input.label)"
         :value="input.value"
@@ -30,7 +32,7 @@
     props: {
       inputs: {
         type: Array,
-        default: () => [],
+        default: /* istanbul ignore next */ () => [],
       },
     },
     methods: {
