@@ -26,6 +26,7 @@ import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import AppGrid from '@/components/AppGrid.vue';
 import addModal from '@/components/AddModal.vue';
+import configPopUp from '@/components/config/ConfigPopUp.vue';
 import ConfigModal from '@/components/config/ConfigModal.vue';
 import skeletonLoading from '@/components/loadings/AppGrid.vue';
 import i18n from '@/utils/plugins/i18n';
@@ -37,7 +38,7 @@ const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 
-describe('AppGrid.vue without mocked loadApps', () => {
+describe('AppGrid.vue', () => {
   let wrapper;
   let actions;
   let getters;
@@ -85,6 +86,7 @@ describe('AppGrid.vue without mocked loadApps', () => {
         skeletonLoading,
         ConfigModal,
         addModal,
+        configPopUp,
       },
       propsData: {
         section: 'channel',
@@ -158,37 +160,39 @@ describe('AppGrid.vue without mocked loadApps', () => {
     });
   });
 
-  it('should open App modal on trigger', async () => {
-    const spy = spyOn(wrapper.vm, 'openAppModal');
+  describe('openAppModal()', () => {
+    it('should open App modal on trigger', async () => {
+      const spy = spyOn(wrapper.vm, 'openAppModal');
 
-    const cardComponent = wrapper.findComponent({ ref: 'unnnic-marketplace-card' });
+      const cardComponent = wrapper.findComponent({ ref: 'unnnic-marketplace-card' });
 
-    await cardComponent.vm.$emit('openModal');
+      await cardComponent.vm.$emit('openModal');
 
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
 
-  it('should change change route on card click when type is "add"', async () => {
-    await wrapper.setProps({ type: 'add' });
-    const app = wrapper.vm.apps[0];
-    expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
+    it('should change change route on card click when type is "add"', async () => {
+      await wrapper.setProps({ type: 'add' });
+      const app = wrapper.vm.apps[0];
+      expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
 
-    wrapper.vm.openAppModal(app);
+      wrapper.vm.openAppModal(app);
 
-    expect(wrapper.vm.$route.path).toEqual(`/apps/${app.code}/details`);
-  });
+      expect(wrapper.vm.$route.path).toEqual(`/apps/${app.code}/details`);
+    });
 
-  it('should open configModal if type is not "add"', async () => {
-    await wrapper.setProps({ type: 'config' });
+    it('should open configModal if type is not "add" and design not popup', async () => {
+      await wrapper.setProps({ type: 'config' });
 
-    const app = wrapper.vm.apps[0];
-    const configModal = wrapper.findComponent({ ref: 'configModal' });
+      const app = wrapper.vm.apps[0];
+      const configModal = wrapper.findComponent({ ref: 'configModal' });
 
-    expect(configModal.vm.show).toBeFalsy();
+      expect(configModal.vm.show).toBeFalsy();
 
-    wrapper.vm.openAppModal(app);
+      wrapper.vm.openAppModal(app);
 
-    expect(configModal.vm.show).toBeTruthy();
+      expect(configModal.vm.show).toBeTruthy();
+    });
   });
 
   describe('appRatingAverage', () => {
@@ -220,15 +224,25 @@ describe('AppGrid.vue without mocked loadApps', () => {
   describe('addApp()', () => {
     it('should call createApp method', async () => {
       expect(actions.createApp).not.toHaveBeenCalled();
-      const code = 'code';
-      await wrapper.vm.addApp(code);
+      const app = {
+        code: 'code',
+        config_design: 'sidemenu',
+      };
+      await wrapper.vm.addApp(app);
       expect(actions.createApp).toHaveBeenCalledTimes(1);
+      expect(actions.createApp).toHaveBeenCalledWith(expect.any(Object), {
+        code: app.code,
+        payload: expect.any(Object),
+      });
     });
 
     it('should call getSelectedProject getter', async () => {
       expect(getters.getSelectedProject).not.toHaveBeenCalled();
-      const code = 'code';
-      await wrapper.vm.addApp(code);
+      const app = {
+        code: 'code',
+        config_design: 'sidemenu',
+      };
+      await wrapper.vm.addApp(app);
       expect(getters.getSelectedProject).toHaveBeenCalledTimes(1);
     });
 
@@ -237,9 +251,43 @@ describe('AppGrid.vue without mocked loadApps', () => {
         throw new Error('error fetching');
       });
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
-      const code = 'code';
-      await wrapper.vm.addApp(code);
+      const app = {
+        code: 'code',
+        config_design: 'sidemenu',
+      };
+      await wrapper.vm.addApp(app);
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call toggleModal if design not popup', async () => {
+      const spy = spyOn(wrapper.vm.$refs.addModal, 'toggleModal');
+      expect(spy).not.toHaveBeenCalled();
+      const app = {
+        code: 'code',
+        config_design: 'sidemenu',
+      };
+      await wrapper.vm.addApp(app);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call openPopUp if design is popup', async () => {
+      const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
+      actions.createApp.mockImplementation(() => {
+        return Promise.resolve({
+          data: {
+            config: {
+              redirect_url: 'https://url.com',
+            },
+          },
+        });
+      });
+      expect(spy).not.toHaveBeenCalled();
+      const app = {
+        code: 'code',
+        config_design: 'popup',
+      };
+      await wrapper.vm.addApp(app);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 

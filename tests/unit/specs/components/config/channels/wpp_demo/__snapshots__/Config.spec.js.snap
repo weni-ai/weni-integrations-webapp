@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Config.vue should be rendered properly 1`] = `
+<unnnicmodal-stub text="some specific text" scheme="feedback-green" modal-icon="check-circle-1-1" class="wpp-demo-modal"><span>some specific text</span>
+  <unnnicbutton-stub type="terciary">some specific text</unnnicbutton-stub>
+  <unnnicbutton-stub type="primary">
+    some specific text
+  </unnnicbutton-stub>
+</unnnicmodal-stub>
+`;

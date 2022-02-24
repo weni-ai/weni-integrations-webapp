@@ -108,7 +108,7 @@
 
   "weniWebChat": {
     "data": {
-      "summary": "Com o Weni Web Chat, você pode integrar sua organização Rapidpro como um chat em seu site.",
+      "summary": "Com o Weni Web Chat, você pode integrar seu projeto como um chat em seu site.",
       "description": "Use o Weni Web Chat para ter a experiência de automação humanizada da Weni Plataforma diretamente no seu site ou plataforma web. Ao integrar o canal, você consegue customizar aspectos do Webchat como: Cor, espaçamento entre mensagens, indicadores de mensagem, avatar, e muito mais! Assim, garantindo tudo que a Weni Plataforma tem a oferecer, com a cara da sua marca."
     },
     "config": {
@@ -167,6 +167,24 @@
       },
       "TokenInput": {
         "label": "Token"
+      }
+    }
+  },
+
+  "WhatsAppDemo": {
+    "data": {
+      "summary": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto.",
+      "description": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto. Com um número compartilhado gratuito você consegue testar com até 200 usuários mensais todas a features disponíveis na plataforma, bem como validar o funcionamento e atendimento do seu negócio por esse canal.<br>Obs.:<br>- Não suporta personalizações (foto, descrição, número, etc)<br>- Não suporta template messages, ou seja, todas as conversas devem ser iniciadas pelo usuário"
+    },
+    "config": {
+      "title": "Quase lá!",
+      "description": "Para utilziar o Whatsapp Demo você será direcionado para um link.",
+      "continue_and_redirect": "Continuar e Redirecionar"
+    },
+    "preview": {
+      "description": "Com a URL abaixo vc pode utilizar o Whatsapp Demo, testar no seu projeto, ou até mesmo compartilhar com outras pessoas.",
+      "UrlInput": {
+        "label": "URL"
       }
     }
   }

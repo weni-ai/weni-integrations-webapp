@@ -11,6 +11,7 @@
         :icon="app.icon"
         :iconbgColor="app.bg_color"
         :appCode="app.code"
+        :canAdd="app.can_add"
       />
       <unnnic-banner
         class="app-details__banner"

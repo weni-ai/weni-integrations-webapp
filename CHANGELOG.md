@@ -1,3 +1,24 @@
+1.2.2
+----------
+`2022-01-21 · 1 🎉`
+
+### 🎉 New features
+- Feat: Hotjar integration
+
+1.2.1
+----------
+`2022-01-13 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Weni Web Chat summary locale 
+
+1.2.0
+----------
+`2022-01-11 · 1 🎉`
+
+### 🎉 New features
+- Feat: Whatsapp Demo
+
 1.1.1
 ----------
 `2021-12-14 · 1 🐛`

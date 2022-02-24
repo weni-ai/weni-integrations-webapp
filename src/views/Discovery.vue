@@ -1,6 +1,12 @@
 <template>
   <div>
-    <app-grid section="channel" type="add" :loading="channels.loading" :apps="channels.data" />
+    <app-grid
+      section="channel"
+      type="add"
+      :loading="channels.loading"
+      :apps="channels.data"
+      @update="fetchChannels"
+    />
   </div>
 </template>
 <script>
@@ -19,7 +25,7 @@
       };
     },
     async mounted() {
-      await this.fetchChannels();
+      await this.loadChannels();
     },
     computed: {
       ...mapGetters({
@@ -28,14 +34,17 @@
     },
     methods: {
       ...mapActions(['getAllAppTypes']),
-      async fetchChannels() {
+      async loadChannels() {
         this.channels.loading = true;
+        await this.fetchChannels();
+        this.channels.loading = false;
+      },
+      async fetchChannels() {
         const params = {
           category: 'channel',
         };
         const { data } = await this.getAllAppTypes({ params });
         this.channels.data = data;
-        this.channels.loading = false;
       },
     },
   };
