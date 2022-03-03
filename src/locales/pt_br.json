@@ -106,6 +106,21 @@
     "modify": "Modificar"
   },
 
+  "upload_area": {
+    "title": {
+      "text": "Arraste seu arquivo aqui, ou",
+      "highlight": "procure-o"
+    },
+    "invalid": {
+      "text": ", tente novamente",
+      "highlight": "Arquivo inválido"
+    },
+    "subtitle": "Formatos suportados:"
+  },
+  "import_card": {
+    "importing": "Importando"
+  },
+
   "weniWebChat": {
     "data": {
       "summary": "Com o Weni Web Chat, você pode integrar seu projeto como um chat em seu site.",
@@ -237,8 +252,8 @@
         }
       },
       "profile": {
-        "api_token": {
-          "label": "API Token"
+        "profile_image": {
+          "label": "Imagem de perfil"
         },
         "status": {
           "label": "Status",

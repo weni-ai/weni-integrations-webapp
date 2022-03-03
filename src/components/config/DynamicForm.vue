@@ -22,6 +22,19 @@
           {{ option.text }}
         </option>
       </unnnic-select>
+      <div v-else-if="input.type === 'upload'">
+        <unnnic-label :label="$t(input.label)" />
+        <unnnic-upload-area
+          :acceptMultiple="input.props.acceptMultiple"
+          :supportedFormats="input.props.supportedFormats"
+          :maximumUploads="input.props.maximumUploads"
+          :filesProgress="input.props.filesProgress"
+          :isUploading="input.props.isUploading"
+          :canImport="input.props.canImport"
+          :canDelete="input.props.canDelete"
+          @fileChange="emitInput(index, input, $event)"
+        />
+      </div>
     </div>
   </div>
 </template>

@@ -264,11 +264,19 @@
         ],
         profileInputs: [
           {
-            type: 'input',
-            name: 'api_token',
-            label: 'WhatsApp.config.profile.api_token.label',
-            placeholder: null,
+            type: 'upload',
+            name: 'profile_image',
+            label: 'WhatsApp.config.profile.profile_image.label',
             value: null,
+            props: {
+              acceptMultiple: false,
+              supportedFormats: '.png,.jpeg',
+              maximumUploads: 1,
+              filesProgress: [],
+              isUploading: false,
+              canImport: true,
+              canDelete: true,
+            },
           },
           {
             type: 'input',
