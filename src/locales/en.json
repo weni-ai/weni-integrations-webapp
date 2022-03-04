@@ -99,15 +99,6 @@
     }
   },
 
-  "file_upload": {
-    "drag_your_file_here_or": "Drag your file here or",
-    "search_it": "search it",
-    "supported_formats": "Supported formats",
-    "drag_another_file_or": "Drag another file or",
-    "modify": "Modify",
-    "remove": "Remove"
-  },
-
   "upload_area": {
     "title": {
       "text": "Drag your file here or",
@@ -185,6 +176,9 @@
       },
       "TokenInput": {
         "label": "Token"
+      },
+      "errors": {
+        "invalidToken": "Provided token is not valid."
       }
     }
   },

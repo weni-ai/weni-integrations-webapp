@@ -317,6 +317,10 @@
           font-size: $unnnic-font-size-body-md;
           line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
           color: $unnnic-color-neutral-dark;
+
+          ::v-deep .unnnic-dropdown__content {
+            width: max-content;
+          }
         }
         &__button {
           &--add {
@@ -327,7 +331,6 @@
           &--details,
           &--remove {
             display: inline-block;
-            width: $unnnic-inline-awesome;
 
             font-family: $unnnic-font-family-secondary;
             font-size: $unnnic-font-size-body-md;
