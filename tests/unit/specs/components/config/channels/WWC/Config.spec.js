@@ -9,7 +9,6 @@ import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';
 import wwcSimulator from '@/components/config/channels/WWC/Simulator.vue';
-import FileUpload from '@/components/FileUpload.vue';
 import { singleApp } from '../../../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
@@ -53,7 +52,6 @@ describe('Config.vue', () => {
       },
       stubs: {
         wwcSimulator,
-        FileUpload,
         UnnnicTab: true,
         UnnnicInput: true,
         UnnnicSwitch: true,
