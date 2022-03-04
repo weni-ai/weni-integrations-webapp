@@ -11,7 +11,7 @@
   "dependencies": {
     "@sentry/integrations": "^6.13.2",
     "@sentry/vue": "^6.13.2",
-    "@weni/unnnic-system": "^1.1.75",
+    "@weni/unnnic-system": "^1.1.96",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "global": "^4.4.0",
@@ -38,6 +38,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^6.2.2",
     "jest": "^26.0.4",
+    "jest-fetch-mock": "^3.0.3",
     "jest-serializer-vue": "^2.0.2",
     "mockdate": "^3.0.5",
     "node-sass": "^4.14.0",

@@ -106,6 +106,21 @@
     "modify": "Modificar"
   },
 
+  "upload_area": {
+    "title": {
+      "text": "Arraste seu arquivo aqui, ou",
+      "highlight": "procure-o"
+    },
+    "invalid": {
+      "text": ", tente novamente",
+      "highlight": "Arquivo inválido"
+    },
+    "subtitle": "Formatos suportados:"
+  },
+  "import_card": {
+    "importing": "Importando"
+  },
+
   "weniWebChat": {
     "data": {
       "summary": "Com o Weni Web Chat, você pode integrar seu projeto como um chat em seu site.",
@@ -114,6 +129,7 @@
     "config": {
       "settings": "Configurações",
       "script": "Código Script",
+      "appearance": "Aparência",
       "script_tutorial": "Para instalar o Weni Web Chat no seu site, copie e cole este código acima da última tag <<strong>/body</strong>> no seu site",
       "custom_css": "CSS Customizado",
       "avatar_image": "Imagem do Avatar",
