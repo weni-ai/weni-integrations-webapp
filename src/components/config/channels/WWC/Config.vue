@@ -310,10 +310,12 @@
       }
       if (this.app.config.customCss) {
         const file = await this.dataUrlToFile(this.app.config.customCss, 'style.css');
-        await this.handleNewCss([file]);
-        setTimeout(() => {
-          this.$emit('setConfirmation', false);
-        }, 250);
+        if (file) {
+          await this.handleNewCss([file]);
+          setTimeout(() => {
+            this.$emit('setConfirmation', false);
+          }, 250);
+        }
       }
     },
     computed: {
@@ -400,7 +402,7 @@
       /* istanbul ignore next */
       handleNewCss(files) {
         if (files.length < 1) {
-          this.setNewCss(null);
+          this.setNewCss(null, null);
           return;
         }
 
@@ -468,6 +470,7 @@
       getFileType(b64File) {
         return b64File.split(';')[0].split(':')[1];
       },
+      /* istanbul ignore next */
       async toBase64(fileUrl) {
         if (!fileUrl) {
           return null;
@@ -480,7 +483,12 @@
           reader.onerror = (error) => reject(error);
         });
       },
+      /* istanbul ignore next */
       async dataUrlToFile(dataUrl, fileName) {
+        if (!dataUrl) {
+          return null;
+        }
+
         const res = await fetch(dataUrl);
         const blob = await res.blob();
         return new File([blob], fileName, { type: res.headers.get('Content-Type') });
