@@ -10,7 +10,7 @@ import es_es from '../../locales/es_es.json';
 const languages = {
   'en-us': en,
   'pt-br': pt_br,
-  'es-es': es_es,
+  es: es_es,
 };
 
 const messages = Object.assign(languages);

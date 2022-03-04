@@ -108,6 +108,21 @@
     "remove": "Eliminar"
   },
 
+  "upload_area": {
+    "title": {
+      "text": "Arrastre su archivo aquí o",
+      "highlight": "buscarlo"
+    },
+    "invalid": {
+      "text": ", inténtalo de nuevo",
+      "highlight": "Archivo inválido"
+    },
+    "subtitle": "Formatos compatibles"
+  },
+  "import_card": {
+    "importing": "Importando"
+  },
+
   "weniWebChat": {
     "data": {
       "summary": "Con Weni Web Chat, puede integrar su organización Rapidpro como un chat en su sitio web.",
