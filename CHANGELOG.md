@@ -1,3 +1,11 @@
+1.3.0
+----------
+`2022-03-04 · 2 🎉`
+
+### 🎉 New features
+- Feat: Weni Web Chat appearance tab
+- Feat: Spanish locale 
+
 1.2.2
 ----------
 `2022-01-21 · 1 🎉`
