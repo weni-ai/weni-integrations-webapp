@@ -21,7 +21,6 @@
             :message="errorFor('title') ? $t('errors.required_message') : ''"
           />
 
-          <!-- <div class="app-config-wwc__tabs__settings-content__horizontal-input"> -->
           <div class="app-config-wwc__tabs__settings-content__input__subtitle-container">
             <unnnic-switch
               v-model="enableSubtitle"
@@ -70,7 +69,6 @@
               :message="errorFor('initPayload') ? $t('errors.required_message') : ''"
             />
           </div>
-          <!-- </div> -->
 
           <unnnic-input
             v-model="inputTextFieldHint"
