@@ -2386,14 +2386,15 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@weni/unnnic-system@^1.1.75":
-  version "1.1.75"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.1.75.tgz#6f4edf1988cfaf80959741fc08425887fe71c412"
-  integrity sha512-bGeAEY5y16gFuEWdmA42F8KhQLlxFbKAe5ZIxscK3mGvYxKmMaHg9+aoSe7T94GmzxMm3fHBlffYOFO78UzFkw==
+"@weni/unnnic-system@^1.1.96":
+  version "1.1.96"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.1.96.tgz#a99baefa757a26c0c6900c8bc02de4bf2e5c4270"
+  integrity sha512-MW0OFkjUilyffNnKOJnuzSkKd8PmZkss0aqxaYNcTUksnqyUXa+5s8Z0FlPD8A6GqxBqqqSMI8+d9bCbP6KQYg==
   dependencies:
     core-js "^3.6.5"
     v-click-outside "^3.1.2"
     vue "^2.6.11"
+    vue-i18n "8"
     vue-the-mask "^0.11.1"
 
 "@xtuc/ieee754@^1.2.0":
@@ -12386,6 +12387,11 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
+
+vue-i18n@8:
+  version "8.27.0"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.27.0.tgz#3e3b3ed2c107ccbd7f20dbdd7a96763a9990253e"
+  integrity sha512-SX35iJHL5PJ4Gfh0Mo/q0shyHiI2V6Zkh51c+k8E9O1RKv5BQyYrCxRzpvPrsIOJEnLaeiovet3dsUB0e/kDzw==
 
 vue-i18n@^8.24.4:
   version "8.26.5"
