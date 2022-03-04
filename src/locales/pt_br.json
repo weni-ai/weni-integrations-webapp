@@ -167,6 +167,9 @@
       },
       "TokenInput": {
         "label": "Token"
+      },
+      "errors": {
+        "invalidToken": "Provided token is not valid."
       }
     }
   },
