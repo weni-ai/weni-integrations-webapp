@@ -488,7 +488,11 @@
           return null;
         }
 
-        const res = await axios.get(dataUrl + '?file', { responseType: 'blob' });
+        if (!dataUrl.startsWith('data:')) {
+          dataUrl = dataUrl.concat('?file');
+        }
+
+        const res = await axios.get(dataUrl, { responseType: 'blob' });
         const blob = await res.data;
         return new File([blob], fileName, { type: res.headers['content-type'] });
       },
