@@ -875,3 +875,9 @@
     }
   }
 </style>
+
+<style lang="scss">
+  .unnnic-upload-area__dropzone {
+    cursor: pointer;
+  }
+</style>
