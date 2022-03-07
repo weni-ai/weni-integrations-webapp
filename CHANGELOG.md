@@ -1,3 +1,13 @@
+1.3.1
+----------
+`2022-03-07 · 1 🐛 · 1 🎉`
+
+### 🎉 New features
+- Feat: upload area click support 
+
+### 🐛 Bug fixes
+- Fix: cors issue 
+
 1.3.0
 ----------
 `2022-03-04 · 2 🎉`
