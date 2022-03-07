@@ -246,6 +246,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import { mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import ColorPicker from '../../../ColorPicker.vue';
@@ -487,9 +488,9 @@
           return null;
         }
 
-        const res = await fetch(dataUrl);
-        const blob = await res.blob();
-        return new File([blob], fileName, { type: res.headers.get('Content-Type') });
+        const res = await axios.get(dataUrl + '?file', { responseType: 'blob' });
+        const blob = await res.data;
+        return new File([blob], fileName, { type: res.headers['content-type'] });
       },
       /* istanbul ignore next */
       async downloadScript() {
