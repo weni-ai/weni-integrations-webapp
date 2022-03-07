@@ -292,7 +292,7 @@ describe('Config.vue', () => {
 
   describe('setNewAvatar()', () => {
     it('should call stopAvatarUploadProgress()', async () => {
-      const b64String = 'base64:image/png;Ak1bBTG6jBGQ';
+      const b64String = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP';
       const spy = spyOn(wrapper.vm, 'stopAvatarUploadProgress');
       expect(spy).not.toHaveBeenCalled();
       await wrapper.vm.setNewAvatar(b64String, 'file.png');
