@@ -13,7 +13,7 @@ import whatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('TelegramConfig.vue', () => {
+describe('WhatsAppConfig.vue', () => {
   let wrapper;
 
   let actions;

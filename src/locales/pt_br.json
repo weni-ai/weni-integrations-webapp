@@ -209,45 +209,46 @@
 
   "WhatsApp": {
     "data": {
-      "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
-      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts"
+      "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos"
     },
     "config": {
       "tabs": {
-        "general": "General",
-        "profile": "Profile",
-        "contact_info": "Contact Information"
+        "general": "Geral",
+        "profile": "Perfil",
+        "contact_info": "Informações de Contato",
+        "billing": "Cobrança"
       },
       "description": {
-        "text": "Learn more about how to integrate Whatsapp",
-        "link": "here."
+        "text": "Saiba mais sobre como integrar o WhatsApp",
+        "link": "aqui."
       },
       "account": {
-        "title": "Account"
+        "title": "Conta"
       },
       "billing": {
-        "title": "Billing Information"
+        "title": "Informações de Cobrança"
       },
       "channel": {
-        "title": "WhatsApp Channel",
+        "title": "Canal do WhatsApp",
         "fields": {
-          "phone_number": "Phone number",
-          "whatsapp_display_name": "WhatsApp Display Name",
-          "number_registration": "Number Registration",
-          "default_language_for_templates": "Default Language for templates",
-          "ivr_existing": "IVR existing",
-          "ivr_active": "IVR active",
-          "certificate": "Certificate",
-          "consent_status": "Consent Status"
+          "phone_number": "Número de telefone",
+          "whatsapp_display_name": "Nome de exibição do WhatsApp",
+          "number_registration": "Registro do número",
+          "default_language_for_templates": "Idioma padrão para templates",
+          "ivr_existing": "IVR existente",
+          "ivr_active": "IVR ativo",
+          "certificate": "Certificado",
+          "consent_status": "Status de consentimento"
         }
       },
       "business_account": {
-        "title": "WhatsApp Business Account",
+        "title": "Conta do WhatsApp Business (WABA)",
         "fields": {
-          "waba_name": "WhatsApp Business Account Name",
-          "message_on_behalf_of": "Message on Behalf Name",
-          "timezone_id": "Timezone ID",
-          "waba_id": "WhatsApp Business Account ID",
+          "waba_name": "Nome WABA",
+          "message_on_behalf_of": "Mensagens em nome de",
+          "timezone_id": "ID do fuso-horário",
+          "waba_id": "WABA ID",
           "namespace": "Namespace"
         }
       },
@@ -260,22 +261,22 @@
           "placeholder": "Ex.: Disponível apenas para texto"
         },
         "description": {
-          "label": "Description",
+          "label": "Descrição",
           "placeholder": "Descreva o seu negócio ou objetivo do seu chat bot"
         },
         "sector": {
-          "label": "Company Sector",
-          "placeholder": "Select"
+          "label": "Setor da Empresa",
+          "placeholder": "Selecionar"
         },
-        "configure_later": "Configure later",
-        "create_channel": "Create Channel"
+        "configure_later": "Configurar depois",
+        "create_channel": "Criar Canal"
       },
       "contact_info": {
         "website_url": {
           "label": "Website"
         },
         "corporate_email": {
-          "label": "Corporate Email",
+          "label": "Email Corporativo",
           "placeholder": "Email that customers can contact"
         }
       }

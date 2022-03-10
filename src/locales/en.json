@@ -218,7 +218,8 @@
       "tabs": {
         "general": "General",
         "profile": "Profile",
-        "contact_info": "Contact Information"
+        "contact_info": "Contact Information",
+        "billing": "Billing"
       },
       "description": {
         "text": "Learn more about how to integrate Whatsapp",
@@ -244,12 +245,12 @@
         }
       },
       "business_account": {
-        "title": "WhatsApp Business Account",
+        "title": "WhatsApp Business Account (WABA)",
         "fields": {
-          "waba_name": "WhatsApp Business Account Name",
+          "waba_name": "WABA Name",
           "message_on_behalf_of": "Message on Behalf Name",
           "timezone_id": "Timezone ID",
-          "waba_id": "WhatsApp Business Account ID",
+          "waba_id": "WABA ID",
           "namespace": "Namespace"
         }
       },

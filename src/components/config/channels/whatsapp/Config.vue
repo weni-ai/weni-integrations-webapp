@@ -84,7 +84,9 @@
                   {{ field.value }}
                 </div>
                 <div v-else class="config-whatsapp__tabs__general-content__section__field__edit">
-                  <unnnic-input size="sm"></unnnic-input>
+                  <unnnic-input
+                    class="config-whatsapp__tabs__general-content__section__field__edit__input"
+                  />
                   <span class="status yellow" />
                   <unnnic-icon-svg
                     class="config-whatsapp__tabs__general-content__section__field__edit__icon"
@@ -150,6 +152,31 @@
           </div>
         </div>
       </template>
+
+      <template slot="tab-head-billing"> {{ $t('WhatsApp.config.tabs.billing') }} </template>
+      <template slot="tab-panel-billing">
+        <div class="config-whatsapp__tabs__billing-content">
+          <unnnic-date-picker @change="handleDateFilter" />
+
+          <div class="config-whatsapp__tabs__billing-content__message_count">
+            {{ $t('WhatsApp.config.billing.message_count') }}
+          </div>
+
+          <span class="config-whatsapp__tabs__billing-content__message_count__value">
+            {{ messageCountValue || 'Not available' }}
+          </span>
+
+          <div class="config-whatsapp__tabs__billing-content">
+            <unnnic-button
+              class="config-whatsapp__tabs__billing-content__buttons__cancel"
+              type="secondary"
+              size="large"
+              :text="$t('WhatsApp.config.billing.close')"
+              @click="closeConfig"
+            />
+          </div>
+        </div>
+      </template>
     </unnnic-tab>
   </div>
 </template>
@@ -186,6 +213,9 @@
                 name: 'whatsapp_display_name',
                 label: 'WhatsApp.config.channel.fields.whatsapp_display_name',
                 value: 'Weni',
+                style: {
+                  height: '22px',
+                },
               },
               {
                 type: 'text',
@@ -327,7 +357,7 @@
     },
     computed: {
       configTabs() {
-        return ['general', 'profile', 'contact_info'];
+        return ['general', 'profile', 'contact_info', 'billing'];
       },
     },
     methods: {
@@ -343,6 +373,9 @@
       /* istanbul ignore next */
       saveConfig() {
         console.log('saved');
+      },
+      handleDateFilter(event) {
+        console.log('event', event);
       },
     },
   };
@@ -548,6 +581,15 @@
               display: inline-flex;
               gap: $unnnic-spacing-inline-xs;
               align-items: center;
+
+              &__input {
+                height: 29px;
+                max-width: 70%;
+
+                ::v-deep .input {
+                  height: 29px;
+                }
+              }
             }
           }
         }

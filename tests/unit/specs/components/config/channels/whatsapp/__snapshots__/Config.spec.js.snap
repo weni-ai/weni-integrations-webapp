@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TelegramConfig.vue should be rendered properly 1`] = `
+exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
 <div class="config-whatsapp">
   <div class="config-whatsapp__header">
     <div class="config-whatsapp__header__title">
@@ -14,6 +14,6 @@ exports[`TelegramConfig.vue should be rendered properly 1`] = `
       </a>
     </div>
   </div>
-  <unnnictab-stub tabs="general,profile,contact_info" initialtab="general" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
+  <unnnictab-stub tabs="general,profile,contact_info,billing" initialtab="general" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
 </div>
 `;
