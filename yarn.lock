@@ -2386,10 +2386,10 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@weni/unnnic-system@^1.1.97":
-  version "1.1.97"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.1.97.tgz#5746ee09f86b8a42fcf2ec18a7fdcdffae258f11"
-  integrity sha512-YoyRrDiXl5IS3ChkcBHKx/jdgVkeqw8Nne02A+mD2xAYIKHWFrm7oCqd93d6QCbcZVUCzhzlnRrKspqNyJEZMg==
+"@weni/unnnic-system@^1.1.98":
+  version "1.1.99"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.1.99.tgz#4009859e4996dc932bbf705fb46183f6716fe1d4"
+  integrity sha512-jUMhbSW53mWJbPlLlWZNzU9v2MPts+z6xZQwmCVwXzQ3iYulq8L/AXWPWLAPwjIOSNFEIsBAXtQUkIn8q+j4oA==
   dependencies:
     core-js "^3.6.5"
     v-click-outside "^3.1.2"
@@ -8228,6 +8228,11 @@ loglevel@^1.4.1, loglevel@^1.6.8:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"
   integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
+
+logrocket@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/logrocket/-/logrocket-2.2.0.tgz#fbcaa11eb6ca55b44bd40cc677bf92af2c75aa72"
+  integrity sha512-YYZqYj4UjC9h992+yNt5E+h1bXCKyVjTa1UlbgK/onhLfNV/78tRqw9Ti7XBcwqOgaFsD2xrDDl+emZH36ch8g==
 
 loose-envify@^1.0.0:
   version "1.4.0"

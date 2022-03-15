@@ -6,7 +6,6 @@
 
 <script>
   import '@weni/unnnic-system';
-  import hotjar from '@/utils/plugins/hotjar';
 
   export default {
     name: 'App',
@@ -16,7 +15,6 @@
       };
     },
     mounted() {
-      hotjar.addHotjar();
       window.parent.postMessage(
         {
           event: 'getConnectBaseURL',
