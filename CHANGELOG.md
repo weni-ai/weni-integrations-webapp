@@ -1,3 +1,28 @@
+1.4.0
+----------
+`2022-03-14 · 1 🎉`
+
+### 🎉 New features
+- Feat: LogRocket integration
+
+1.3.1
+----------
+`2022-03-07 · 1 🐛 · 1 🎉`
+
+### 🎉 New features
+- Feat: upload area click support 
+
+### 🐛 Bug fixes
+- Fix: cors issue 
+
+1.3.0
+----------
+`2022-03-04 · 2 🎉`
+
+### 🎉 New features
+- Feat: Weni Web Chat appearance tab
+- Feat: Spanish locale 
+
 1.2.2
 ----------
 `2022-01-21 · 1 🎉`

@@ -129,6 +129,7 @@
     "config": {
       "settings": "Configurações",
       "script": "Código Script",
+      "appearance": "Aparência",
       "script_tutorial": "Para instalar o Weni Web Chat no seu site, copie e cole este código acima da última tag <<strong>/body</strong>> no seu site",
       "custom_css": "CSS Customizado",
       "avatar_image": "Imagem do Avatar",
@@ -184,7 +185,7 @@
         "label": "Token"
       },
       "errors": {
-        "invalidToken": "Token inválido"
+        "invalidToken": "Token provido não é válido."
       }
     }
   },

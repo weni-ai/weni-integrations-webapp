@@ -30,7 +30,6 @@ const singleApp = {
     keepHistory: false,
     avatarImage:
       'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/iconfinder_13-whatsapp_4202050+1.svg',
-    customCss: 'styles',
     primaryColor: '#009E96',
     messageDelay: 1,
   },

@@ -99,15 +99,6 @@
     }
   },
 
-  "file_upload": {
-    "drag_your_file_here_or": "Drag your file here or",
-    "search_it": "search it",
-    "supported_formats": "Supported formats",
-    "drag_another_file_or": "Drag another file or",
-    "modify": "Modify",
-    "remove": "Remove"
-  },
-
   "upload_area": {
     "title": {
       "text": "Drag your file here or",
@@ -131,6 +122,7 @@
     "config": {
       "settings": "Settings",
       "script": "Script Code",
+      "appearance": "Appearance",
       "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
@@ -186,7 +178,7 @@
         "label": "Token"
       },
       "errors": {
-        "invalidToken": "Invalid Token"
+        "invalidToken": "Provided token is not valid."
       }
     }
   },

@@ -21,56 +21,53 @@
             :message="errorFor('title') ? $t('errors.required_message') : ''"
           />
 
-          <div class="app-config-wwc__tabs__settings-content__horizontal-input">
-            <div
-              class="app-config-wwc__tabs__settings-content__horizontal-input__subtitle-container"
-            >
-              <unnnic-switch
-                v-model="enableSubtitle"
-                class="app-config-wwc__tabs__settings-content__switch"
-                :inititalState="false"
-                size="small"
-                :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
-              />
+          <div class="app-config-wwc__tabs__settings-content__input__subtitle-container">
+            <unnnic-switch
+              v-model="enableSubtitle"
+              class="app-config-wwc__tabs__settings-content__switch"
+              :inititalState="false"
+              size="small"
+              :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
+            />
 
-              <unnnic-input
-                v-model="subtitle"
-                class="app-config-wwc__tabs__settings-content__input__subtitle"
-                type="normal"
-                :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
-                :disabled="!enableSubtitle"
-              />
-            </div>
+            <unnnic-input
+              v-model="subtitle"
+              class="app-config-wwc__tabs__settings-content__input__subtitle"
+              type="normal"
+              :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
+              :disabled="!enableSubtitle"
+            />
+          </div>
 
-            <div class="app-config-wwc__tabs__settings-content__initPayload">
-              <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
-                <div class="app-config-wwc__tabs__settings-content__initPayload__label">
-                  {{ `${$t('weniWebChat.config.initPayloadInput.label')}` }}
-                </div>
-                <unnnic-toolTip
-                  slot="buttons"
-                  :text="$t('weniWebChat.config.initPayloadToolTip')"
-                  :enabled="true"
-                  side="top"
-                  maxWidth="300px"
-                >
-                  <unnnic-icon-svg
-                    class="app-config-wwc__tabs__settings-content__initPayload__icon"
-                    icon="information-circle-4"
-                    size="sm"
-                    scheme="neutral-soft"
-                  />
-                </unnnic-toolTip>
+          <div class="app-config-wwc__tabs__settings-content__initPayload">
+            <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
+              <div class="app-config-wwc__tabs__settings-content__initPayload__label">
+                {{ `${$t('weniWebChat.config.initPayloadInput.label')}` }}
               </div>
-
-              <unnnic-input
-                v-model="initPayload"
-                class="app-config-wwc__tabs__settings-content__input__payload"
-                :type="errorFor('initPayload') ? 'error' : 'normal'"
-                :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
-                :message="errorFor('initPayload') ? $t('errors.required_message') : ''"
-              />
+              <unnnic-toolTip
+                class="app-config-wwc__tabs__settings-content__initPayload__tooltip"
+                slot="buttons"
+                :text="$t('weniWebChat.config.initPayloadToolTip')"
+                :enabled="true"
+                side="right"
+                maxWidth="300px"
+              >
+                <unnnic-icon-svg
+                  class="app-config-wwc__tabs__settings-content__initPayload__icon"
+                  icon="information-circle-4"
+                  size="sm"
+                  scheme="neutral-soft"
+                />
+              </unnnic-toolTip>
             </div>
+
+            <unnnic-input
+              v-model="initPayload"
+              class="app-config-wwc__tabs__settings-content__input__payload"
+              :type="errorFor('initPayload') ? 'error' : 'normal'"
+              :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+              :message="errorFor('initPayload') ? $t('errors.required_message') : ''"
+            />
           </div>
 
           <unnnic-input
@@ -80,33 +77,6 @@
             :label="$t('weniWebChat.config.PlaceholderInput.label')"
             :placeholder="$t('weniWebChat.config.PlaceholderInput.placeholder')"
           />
-
-          <div class="app-config-wwc__tabs__settings-content__files">
-            <div class="app-config-wwc__tabs__settings-content__files__content">
-              <div class="app-config-wwc__tabs__settings-content__files__content__label">
-                {{ $t('weniWebChat.config.custom_css') }}
-              </div>
-              <file-upload
-                ref="cssUpload"
-                type="style"
-                formatsLabel=".CSS"
-                @newFile="handleNewCss"
-                @fileRemoval="clearCssFile"
-              />
-            </div>
-            <div class="app-config-wwc__tabs__settings-content__files__content">
-              <div class="app-config-wwc__tabs__settings-content__files__content__label">
-                {{ $t('weniWebChat.config.avatar_image') }}
-              </div>
-              <file-upload
-                ref="avatarUpload"
-                type="image"
-                formatsLabel=".PNG, .JPEG, .SVG"
-                @newFile="handleNewAvatar"
-                @fileRemoval="clearAvatars"
-              />
-            </div>
-          </div>
 
           <div class="app-config-wwc__tabs__settings-content__selectors">
             <div class="app-config-wwc__tabs__settings-content__selectors__switches">
@@ -143,35 +113,85 @@
               />
             </div>
           </div>
+          <div class="app-config-wwc__tabs__settings-content__buttons">
+            <unnnic-button
+              class="app-config-wwc__tabs__settings-content__buttons__cancel"
+              type="terciary"
+              size="large"
+              :text="$t('general.Cancel')"
+              @click="closeConfig"
+            ></unnnic-button>
 
-          <div class="app-config-wwc__tabs__settings-content__colors">
-            <div class="app-config-wwc__tabs__settings-content__colors__label">
-              {{ $t('weniWebChat.config.main_color') }}
+            <unnnic-button
+              class="app-config-wwc__tabs__settings-content__buttons__save"
+              type="secondary"
+              size="large"
+              :text="$t('apps.config.save_changes')"
+              @click="saveConfig"
+            ></unnnic-button>
+          </div>
+        </div>
+      </template>
+
+      <template slot="tab-head-appearance"> {{ $t('weniWebChat.config.appearance') }} </template>
+      <template slot="tab-panel-appearance">
+        <div class="app-config-wwc__tabs__settings-content">
+          <div>
+            <div class="app-config-wwc__tabs__settings-content__files__content">
+              <unnnic-label :label="$t('weniWebChat.config.custom_css')" />
+              <unnnic-upload-area
+                v-model="customCssFiles"
+                :acceptMultiple="false"
+                supportedFormats=".css"
+                :maximumUploads="1"
+                :filesProgress="[cssUploadProgress]"
+                :isUploading="cssUploadState"
+                :canImport="true"
+                :canDelete="true"
+                :maxFileSize="2"
+                @fileChange="handleNewCss"
+              />
             </div>
+            <div class="app-config-wwc__tabs__settings-content__files__content">
+              <unnnic-label :label="$t('weniWebChat.config.avatar_image')" />
+              <unnnic-upload-area
+                v-model="avatarFiles"
+                :acceptMultiple="false"
+                supportedFormats=".png,.jpg,.jpeg"
+                :maximumUploads="1"
+                :filesProgress="[avatarUploadProgress]"
+                :isUploading="avatarUploadState"
+                :canImport="true"
+                :canDelete="true"
+                :maxFileSize="10"
+              />
+            </div>
+          </div>
+          <div class="app-config-wwc__tabs__settings-content__files__content">
+            <unnnic-label :label="$t('weniWebChat.config.main_color')" />
             <color-picker
               ref="color-picker"
               class="app-config-wwc__tabs__settings-content__colors__picker"
               @colorChange="handleColorChange"
             />
           </div>
-        </div>
+          <div class="app-config-wwc__tabs__settings-content__buttons">
+            <unnnic-button
+              class="app-config-wwc__tabs__settings-content__buttons__cancel"
+              type="terciary"
+              size="large"
+              :text="$t('general.Cancel')"
+              @click="closeConfig"
+            ></unnnic-button>
 
-        <div class="app-config-wwc__tabs__settings-content__buttons">
-          <unnnic-button
-            class="app-config-wwc__tabs__settings-content__buttons__cancel"
-            type="terciary"
-            size="large"
-            :text="$t('general.Cancel')"
-            @click="closeConfig"
-          ></unnnic-button>
-
-          <unnnic-button
-            class="app-config-wwc__tabs__settings-content__buttons__save"
-            type="secondary"
-            size="large"
-            :text="$t('apps.config.save_changes')"
-            @click="saveConfig"
-          ></unnnic-button>
+            <unnnic-button
+              class="app-config-wwc__tabs__settings-content__buttons__save"
+              type="secondary"
+              size="large"
+              :text="$t('apps.config.save_changes')"
+              @click="saveConfig"
+            ></unnnic-button>
+          </div>
         </div>
       </template>
 
@@ -229,14 +249,13 @@
   import axios from 'axios';
   import { mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import FileUpload from '../../../FileUpload.vue';
   import ColorPicker from '../../../ColorPicker.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
 
   export default {
     name: 'wwc-config',
-    components: { FileUpload, ColorPicker, wwcSimulator },
+    components: { ColorPicker, wwcSimulator },
     props: {
       app: {
         type: Object,
@@ -259,8 +278,15 @@
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,
-        avatarFile: {},
-        customCssFile: {},
+
+        avatarFile: this.app.config.profileAvatar ?? null,
+        customCssFile: this.app.config.customCss ?? null,
+
+        cssUploadState: false,
+        cssUploadProgress: 0,
+
+        avatarUploadState: false,
+        avatarUploadProgress: 0,
       };
     },
     watch: {
@@ -276,15 +302,40 @@
     /* istanbul ignore next */
     async mounted() {
       if (this.app.config.profileAvatar) {
-        await this.createAvatarPreview();
+        this.avatarFile = await this.dataUrlToFile(this.app.config.profileAvatar, 'avatar.png');
+        setTimeout(() => {
+          this.$emit('setConfirmation', false);
+        }, 250);
       }
       if (this.app.config.customCss) {
-        await this.createCustomCssPreview();
+        const file = await this.dataUrlToFile(this.app.config.customCss, 'style.css');
+        if (file) {
+          await this.handleNewCss([file]);
+          setTimeout(() => {
+            this.$emit('setConfirmation', false);
+          }, 250);
+        }
       }
     },
     computed: {
+      avatarFiles: {
+        get() {
+          return this.avatarFile ? [this.avatarFile] : [];
+        },
+        set(files) {
+          this.handleNewAvatar(files);
+        },
+      },
+      customCssFiles: {
+        get() {
+          return this.customCssFile ? [this.customCssFile] : [];
+        },
+        set(files) {
+          this.handleNewCss(files);
+        },
+      },
       configTabs() {
-        return ['settings', 'script'];
+        return ['settings', 'appearance', 'script'];
       },
       chatSubtitle() {
         return this.enableSubtitle ? this.subtitle : ' ';
@@ -303,31 +354,25 @@
 <${'/'}script>`;
         return this.app.config.script ? code : '';
       },
-      imageForUpload() {
-        if (this.simulatorAvatar?.startsWith('data:image')) {
-          return this.simulatorAvatar;
-        }
-        return this.avatarFile.data;
-      },
       cssForUpload() {
-        return this.customCssFile.data ?? this.customCss;
+        return this.customCss;
       },
       configProperties() {
         return `
-          ${this.mainColor}|
-          ${this.title}|
-          ${this.subtitle}|
-          ${this.inputTextFieldHint}|
-          ${this.displayUnreadCount}|
-          ${this.showFullScreenButton}|
-          ${this.keepHistory}|
-          ${this.customCss}|
-          ${this.timeBetweenMessages}|
-          ${this.initPayload}|
-          ${this.simulatorAvatar}|
-          ${this.avatarFile}|
-          ${this.customCssFile}
-          `;
+            ${this.mainColor}|
+            ${this.title}|
+            ${this.subtitle}|
+            ${this.inputTextFieldHint}|
+            ${this.displayUnreadCount}|
+            ${this.showFullScreenButton}|
+            ${this.keepHistory}|
+            ${this.customCss}|
+            ${this.timeBetweenMessages}|
+            ${this.initPayload}|
+            ${this.simulatorAvatar}|
+            ${this.avatarFile}|
+            ${this.customCssFile}
+            `;
       },
     },
     methods: {
@@ -335,23 +380,77 @@
       handleColorChange(color) {
         this.mainColor = color;
       },
-      /* istanbul ignore next */
-      handleNewAvatar(avatar) {
-        const fileReader = new FileReader();
-        fileReader.onload = (event) => this.setNewAvatar(event.target.result);
-        fileReader.readAsDataURL(avatar);
+      async imageForUpload() {
+        return await this.toBase64(this.avatarFile);
       },
       /* istanbul ignore next */
-      handleNewCss(css) {
+      handleNewAvatar(files) {
+        if (files.length < 1) {
+          this.setNewAvatar(null, null, null);
+          return;
+        }
+
+        const file = files[0];
         const fileReader = new FileReader();
-        fileReader.onload = (event) => this.setNewCss(event.target.result);
-        fileReader.readAsText(css);
+        FileReader.onloadstart = this.startAvatarUploadProgress();
+        fileReader.onprogress = (event) => this.updateAvatarUploadProgress(event);
+        fileReader.onload = (event) => this.setNewAvatar(event.target.result, file.name);
+
+        fileReader.readAsDataURL(file);
       },
-      setNewAvatar(avatarUrl) {
-        this.simulatorAvatar = avatarUrl;
+      /* istanbul ignore next */
+      handleNewCss(files) {
+        if (files.length < 1) {
+          this.setNewCss(null, null);
+          return;
+        }
+
+        const file = files[0];
+        const fileReader = new FileReader();
+        FileReader.onloadstart = this.startCssUploadProgress();
+        fileReader.onprogress = (event) => this.updateCssUploadProgress(event);
+        fileReader.onload = (event) => this.setNewCss(event.target.result, file);
+
+        fileReader.readAsText(file);
       },
-      setNewCss(customCss) {
+      startCssUploadProgress() {
+        this.cssUploadState = true;
+        this.cssUploadProgress = 0;
+      },
+      updateCssUploadProgress(event) {
+        this.cssUploadProgress = parseInt((event.loaded / event.total) * 100);
+      },
+      stopCssUploadProgress() {
+        this.cssUploadState = false;
+        this.cssUploadProgress = 0;
+      },
+      startAvatarUploadProgress() {
+        this.avatarUploadState = true;
+        this.avatarUploadProgress = 0;
+      },
+      updateAvatarUploadProgress(event) {
+        this.avatarUploadProgress = parseInt((event.loaded / event.total) * 100);
+      },
+      stopAvatarUploadProgress() {
+        this.avatarUploadState = false;
+        this.avatarUploadProgress = 0;
+      },
+      async setNewAvatar(b64Avatar, fileName) {
+        if (!b64Avatar) {
+          this.avatarFile = null;
+          this.simulatorAvatar = null;
+          return;
+        }
+
+        const fileType = this.getFileType(b64Avatar);
+        this.avatarFile = await this.dataUrlToFile(b64Avatar, fileName, fileType);
+        this.simulatorAvatar = b64Avatar;
+        this.stopAvatarUploadProgress();
+      },
+      setNewCss(customCss, file) {
+        this.customCssFile = file;
         this.customCss = customCss;
+        this.stopCssUploadProgress();
       },
       toggleSimulator() {
         this.$refs.simulator.toggleChat();
@@ -367,54 +466,35 @@
         this.customCss = null;
         this.customCssFile = {};
       },
+      getFileType(b64File) {
+        return b64File.split(';')[0].split(':')[1];
+      },
       /* istanbul ignore next */
-      async createFile(file, type, callback) {
-        const res = await axios.get(file + '?file', { responseType: 'blob' });
-        const blob = res.data;
-        let reader = new FileReader();
-        reader.addEventListener('loadend', callback);
-
-        if (type == 'text') {
-          reader.readAsText(blob);
-        } else {
-          reader.readAsDataURL(blob);
+      async toBase64(fileUrl) {
+        if (!fileUrl) {
+          return null;
         }
 
-        return blob;
-      },
-      manuallySetAvatarImage() {
-        this.$refs.avatarUpload.setPreview(this.avatarFile.info, this.avatarFile.data);
-      },
-      manuallySetCssFile() {
-        this.$refs.cssUpload.setPreview(this.customCssFile.info, this.customCssFile.data);
-      },
-      /* istanbul ignore next */
-      async createAvatarPreview() {
-        const blob = await this.createFile(this.app.config.profileAvatar, 'base64', (e) => {
-          this.avatarFile = {
-            data: e.target.result,
-            info: {
-              name: 'avatar.jpg',
-              size: blob.size,
-              type: blob.type,
-            },
-          };
-          this.manuallySetAvatarImage();
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(fileUrl);
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = (error) => reject(error);
         });
       },
       /* istanbul ignore next */
-      async createCustomCssPreview() {
-        const blob = await this.createFile(this.app.config.customCss, 'text', (e) => {
-          this.customCssFile = {
-            data: e.target.result,
-            info: {
-              name: 'custom.css',
-              size: blob.size,
-              type: blob.type,
-            },
-          };
-          this.manuallySetCssFile();
-        });
+      async dataUrlToFile(dataUrl, fileName) {
+        if (!dataUrl) {
+          return null;
+        }
+
+        if (!dataUrl.startsWith('data:')) {
+          dataUrl = dataUrl.concat('?file');
+        }
+
+        const res = await axios.get(dataUrl, { responseType: 'blob' });
+        const blob = await res.data;
+        return new File([blob], fileName, { type: res.headers['content-type'] });
       },
       /* istanbul ignore next */
       async downloadScript() {
@@ -479,7 +559,7 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               mainColor: this.mainColor,
-              profileAvatar: this.imageForUpload,
+              profileAvatar: await this.imageForUpload(),
               customCss: this.cssForUpload,
             },
           },
@@ -580,11 +660,16 @@
       ::v-deep .tab-panel {
         width: -webkit-fill-available;
         width: -moz-available;
+
+        display: flex;
+        flex-direction: column;
       }
       &__settings-content {
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
+        height: 100%;
+        margin-bottom: $unnnic-spacing-stack-xs;
 
         ::v-deep .unnnic-form__message {
           color: $unnnic-color-feedback-red;
@@ -630,7 +715,6 @@
 
         &__initPayload {
           margin-top: $unnnic-spacing-stack-sm;
-          flex: 1;
 
           &__horizontal {
             display: flex;
@@ -677,7 +761,6 @@
 
           &__content {
             flex-grow: 1;
-            flex-basis: 170px;
             color: $unnnic-color-neutral-cloudy;
             font-family: $unnnic-font-family-secondary;
             font-size: $unnnic-font-size-body-gt;
@@ -695,6 +778,7 @@
           gap: $unnnic-inline-sm;
           margin-top: $unnnic-spacing-stack-md;
           flex-wrap: wrap;
+          margin-bottom: auto;
 
           &__switches,
           &__slider {
@@ -734,6 +818,7 @@
         &__buttons {
           padding-right: $unnnic-spacing-inline-xs;
           margin-top: $unnnic-spacing-stack-sm;
+          padding-bottom: $unnnic-spacing-stack-sm;
           display: flex;
 
           &__cancel,
@@ -792,5 +877,11 @@
       margin-right: 10px;
       margin-bottom: 25px;
     }
+  }
+</style>
+
+<style lang="scss">
+  .unnnic-upload-area__dropzone {
+    cursor: pointer;
   }
 </style>

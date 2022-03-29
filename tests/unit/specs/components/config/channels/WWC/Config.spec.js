@@ -9,7 +9,6 @@ import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue';
 import wwcSimulator from '@/components/config/channels/WWC/Simulator.vue';
-import FileUpload from '@/components/FileUpload.vue';
 import { singleApp } from '../../../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
@@ -25,10 +24,10 @@ describe('Config.vue', () => {
   let store;
 
   beforeEach(() => {
+    fetch.resetMocks();
+
     handleColorChangeSpy = jest.spyOn(wwcConfig.methods, 'handleColorChange');
     toggleSimulatorSpy = jest.spyOn(wwcConfig.methods, 'toggleSimulator');
-
-    spyOn(wwcConfig.methods, 'createFile');
 
     actions = {
       updateAppConfig: jest.fn(),
@@ -53,7 +52,6 @@ describe('Config.vue', () => {
       },
       stubs: {
         wwcSimulator,
-        FileUpload,
         UnnnicTab: true,
         UnnnicInput: true,
         UnnnicSwitch: true,
@@ -61,6 +59,7 @@ describe('Config.vue', () => {
         UnnnicButton: true,
         UnnnicToolTip: true,
         UnnnicIconSvg: true,
+        UnnnicUploadArea: true,
       },
     });
   });
@@ -102,15 +101,21 @@ describe('Config.vue', () => {
     expect(simulatorToggleSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('should set new avatar', () => {
-    const url = 'https://localhost';
-    expect(wrapper.vm.simulatorAvatar).not.toEqual(url);
-    wrapper.vm.setNewAvatar(url);
-    expect(wrapper.vm.simulatorAvatar).toEqual(url);
+  describe('setNewAvatar()', () => {
+    it('should set avatarFile and simulatorAvatar as null if undefined parameter', () => {
+      const avatar = undefined;
+      wrapper.setData({ avatarFile: '123', simulatorAvatar: '456' });
+
+      expect(wrapper.vm.avatarFile).not.toEqual(null);
+      expect(wrapper.vm.simulatorAvatar).not.toEqual(null);
+      wrapper.vm.setNewAvatar(avatar);
+      expect(wrapper.vm.avatarFile).toEqual(null);
+      expect(wrapper.vm.simulatorAvatar).toEqual(null);
+    });
   });
 
   it('should return config tabs', () => {
-    expect(wrapper.vm.configTabs).toEqual(['settings', 'script']);
+    expect(wrapper.vm.configTabs).toEqual(['settings', 'appearance', 'script']);
   });
 
   it('should return valid subtitle if enableSubtitle is true', async () => {
@@ -240,39 +245,16 @@ describe('Config.vue', () => {
     expect(wrapper.vm.customCssFile).toStrictEqual({});
   });
 
-  it('should call setPreview from avatarUpload component', () => {
-    const spy = spyOn(wrapper.vm.$refs.avatarUpload, 'setPreview');
-    expect(spy).not.toHaveBeenCalled();
-
-    wrapper.vm.manuallySetAvatarImage();
-
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should call setPreview from cssUpload component', () => {
-    const spy = spyOn(wrapper.vm.$refs.cssUpload, 'setPreview');
-    expect(spy).not.toHaveBeenCalled();
-
-    wrapper.vm.manuallySetCssFile();
-
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   describe('imageForUpload', () => {
-    it('should return avatarFile.data if simulatorAvatar not a base64', () => {
+    it('should call toBase64 with avatarFile', async () => {
       const file = { data: '123' };
       wrapper.setData({ avatarFile: file });
-      const imageData = wrapper.vm.imageForUpload;
+      const spy = spyOn(wrapper.vm, 'toBase64');
 
-      expect(imageData).toStrictEqual(file.data);
-    });
+      await wrapper.vm.imageForUpload(file);
 
-    it('should return simulatorAvatar if it is a base64', () => {
-      const data = 'data:image/png;base64,iVBORw0KGgoAAA';
-      wrapper.setData({ simulatorAvatar: data });
-      const imageData = wrapper.vm.imageForUpload;
-
-      expect(imageData).toStrictEqual(data);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(wrapper.vm.avatarFile);
     });
   });
 
@@ -297,6 +279,110 @@ describe('Config.vue', () => {
       await wrapper.setData({ title: 'title' });
       const isValid = wrapper.vm.validConfig();
       expect(isValid).toBeFalsy();
+    });
+  });
+
+  describe('getFileType()', () => {
+    it('should return file type from base64 string', () => {
+      const b64String = 'base64:image/png;Ak1bBTG6jBGQ';
+      const type = wrapper.vm.getFileType(b64String);
+      expect(type).toEqual('image/png');
+    });
+  });
+
+  describe('setNewAvatar()', () => {
+    it('should call stopAvatarUploadProgress()', async () => {
+      const b64String = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP';
+      const spy = spyOn(wrapper.vm, 'stopAvatarUploadProgress');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.setNewAvatar(b64String, 'file.png');
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('stopAvatarUploadProgress()', () => {
+    it('should set uploadState to false and progress to 0', async () => {
+      await wrapper.setData({ avatarUploadState: true, avatarUploadProgress: 100 });
+      expect(wrapper.vm.avatarUploadState).toBeTruthy();
+      expect(wrapper.vm.avatarUploadProgress).not.toEqual(0);
+      wrapper.vm.stopAvatarUploadProgress();
+      expect(wrapper.vm.avatarUploadState).toBeFalsy();
+      expect(wrapper.vm.avatarUploadProgress).toEqual(0);
+    });
+  });
+
+  describe('updateAvatarUploadProgress()', () => {
+    it('should return progress percentage', () => {
+      const event = {
+        loaded: 2,
+        total: 4,
+      };
+      expect(wrapper.vm.avatarUploadProgress).not.toEqual(50);
+      wrapper.vm.updateAvatarUploadProgress(event);
+      expect(wrapper.vm.avatarUploadProgress).toEqual(50);
+    });
+  });
+
+  describe('startAvatarUploadProgress()', () => {
+    it('should set uploadState to true and progress to 0', async () => {
+      await wrapper.setData({ avatarUploadState: false, avatarUploadProgress: 100 });
+      expect(wrapper.vm.avatarUploadState).toBeFalsy();
+      expect(wrapper.vm.avatarUploadProgress).not.toEqual(0);
+      wrapper.vm.startAvatarUploadProgress();
+      expect(wrapper.vm.avatarUploadState).toBeTruthy();
+      expect(wrapper.vm.avatarUploadProgress).toEqual(0);
+    });
+  });
+
+  describe('stopCssUploadProgress()', () => {
+    it('should set uploadState to false and progress to 0', async () => {
+      await wrapper.setData({ cssUploadState: true, cssUploadProgress: 100 });
+      expect(wrapper.vm.cssUploadState).toBeTruthy();
+      expect(wrapper.vm.cssUploadProgress).not.toEqual(0);
+      wrapper.vm.stopCssUploadProgress();
+      expect(wrapper.vm.cssUploadState).toBeFalsy();
+      expect(wrapper.vm.cssUploadProgress).toEqual(0);
+    });
+  });
+
+  describe('updateCssUploadProgress()', () => {
+    it('should return progress percentage', () => {
+      const event = {
+        loaded: 2,
+        total: 4,
+      };
+      expect(wrapper.vm.cssUploadProgress).not.toEqual(50);
+      wrapper.vm.updateCssUploadProgress(event);
+      expect(wrapper.vm.cssUploadProgress).toEqual(50);
+    });
+  });
+
+  describe('startCssUploadProgress()', () => {
+    it('should set uploadState to true and progress to 0', async () => {
+      await wrapper.setData({ cssUploadState: false, cssUploadProgress: 100 });
+      expect(wrapper.vm.cssUploadState).toBeFalsy();
+      expect(wrapper.vm.cssUploadProgress).not.toEqual(0);
+      wrapper.vm.startCssUploadProgress();
+      expect(wrapper.vm.cssUploadState).toBeTruthy();
+      expect(wrapper.vm.cssUploadProgress).toEqual(0);
+    });
+  });
+
+  describe('avatarFiles computed setter', () => {
+    it('should call handleNewAvatar', () => {
+      const spy = spyOn(wrapper.vm, 'handleNewAvatar');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.avatarFiles = [];
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('customCssFiles computed setter', () => {
+    it('should call handleNewCss', () => {
+      const spy = spyOn(wrapper.vm, 'handleNewCss');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.customCssFiles = [];
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 });
