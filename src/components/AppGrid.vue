@@ -42,6 +42,7 @@
               {{ actionText }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
+              v-if="app.code !== 'wpp'"
               class="app-grid__content__item__button--details"
               @click="openAppDetails(app.code)"
             >
@@ -49,6 +50,7 @@
               {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
+              v-if="app.code !== 'wpp'"
               class="app-grid__content__item__button--remove"
               @click="toggleRemoveModal(app)"
             >
