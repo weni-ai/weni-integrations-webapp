@@ -2,21 +2,15 @@
   <unnnic-modal
     ref="page-selection-modal"
     class="page-selection"
-    text="Selecione sua conta do WhatsApp Business que deseja conectar"
+    :text="$t('whatsapp.selection.popup_title')"
     scheme="feedback-green"
-    modal-icon="check-circle-1-1"
+    modal-icon="phone-3"
     @close="closePopUp"
   >
     <div slot="message">
-      <unnnic-button
-        ref="unnnic-button"
-        v-for="(page, index) in customData.pages"
-        :key="index"
-        type="secondary"
-        size="large"
-        :text="page.name"
-        @click.stop="selectPage(page)"
-      />
+      <unnnic-select :search="false" size="sm" :value="selectedAccount">
+        <option v-for="(page, index) in customData.pages" :key="index">page.name</option>
+      </unnnic-select>
     </div>
   </unnnic-modal>
 </template>
@@ -37,6 +31,7 @@
     data() {
       return {
         showModal: false,
+        selectedAccount: this.customData.pages[0],
       };
     },
     methods: {
