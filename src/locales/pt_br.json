@@ -217,7 +217,7 @@
         "general": "Geral",
         "profile": "Perfil",
         "contact_info": "Informações de Contato",
-        "billing": "Cobrança"
+        "conversations": "Conversas"
       },
       "description": {
         "text": "Saiba mais sobre como integrar o WhatsApp",
@@ -226,8 +226,19 @@
       "account": {
         "title": "Conta"
       },
-      "billing": {
-        "title": "Informações de Cobrança"
+      "conversations": {
+        "title": "Informações de conversa",
+        "filter": {
+          "label": "Filtrar por"
+        },
+        "conversations_count": {
+          "label": "Número de conversas",
+          "table": {
+            "user_messages": "Iniciadas pelo usuário",
+            "template_messages": "Mensagens de template",
+            "total": "Total"
+          }
+        }
       },
       "channel": {
         "title": "Canal do WhatsApp",

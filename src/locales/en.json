@@ -219,7 +219,7 @@
         "general": "General",
         "profile": "Profile",
         "contact_info": "Contact Information",
-        "billing": "Billing"
+        "conversations": "Conversations"
       },
       "description": {
         "text": "Learn more about how to integrate Whatsapp",
@@ -228,8 +228,19 @@
       "account": {
         "title": "Account"
       },
-      "billing": {
-        "title": "Billing Information"
+      "conversations": {
+        "title": "Conversations Information",
+        "filter": {
+          "label": "Filter by"
+        },
+        "conversations_count": {
+          "label": "Number of conversations",
+          "table": {
+            "user_messages": "Started by user",
+            "template_messages": "Template messages",
+            "total": "Total"
+          }
+        }
       },
       "channel": {
         "title": "WhatsApp Channel",
