@@ -209,6 +209,7 @@
   import dynamicForm from '../../DynamicForm.vue';
   import ConversationsTable from './ConversationsTable.vue';
   import { mapActions } from 'vuex';
+  import debounce from 'lodash.debounce';
 
   export default {
     name: 'whatsapp-config',
@@ -420,7 +421,7 @@
       saveConfig() {
         console.log('saved');
       },
-      async handleDateFilter(event) {
+      handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
 
@@ -438,7 +439,7 @@
         this.businessInitiated = data.business_initiated;
         this.userInitiated = data.user_initiated;
         this.totalInitiated = data.total;
-      },
+      }, 250),
     },
   };
 </script>
