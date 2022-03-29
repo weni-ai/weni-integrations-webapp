@@ -223,6 +223,7 @@
       },
     },
     created() {
+      /* istanbul ignore next */
       window.addEventListener('click', (event) => {
         if (event.target.closest('.config-whatsapp__tabs__conversations-content__dropdown')) {
           return false;

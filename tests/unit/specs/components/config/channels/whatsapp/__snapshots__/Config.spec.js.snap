@@ -14,6 +14,6 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
       </a>
     </div>
   </div>
-  <unnnictab-stub tabs="general,profile,contact_info,billing" initialtab="general" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
+  <unnnictab-stub tabs="conversations" initialtab="conversations" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
 </div>
 `;

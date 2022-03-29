@@ -13,6 +13,7 @@ jest.mock('@/api/appType', () => {
     updateAppConfig: jest.fn(),
     deleteApp: jest.fn(),
     getSharedWabas: jest.fn(),
+    getConversations: jest.fn(),
   };
 });
 
@@ -184,6 +185,22 @@ describe('store/appType/actions.js', () => {
       await actions.getSharedWabas({}, data);
       expect(appTypeApi.getSharedWabas).toHaveBeenCalledTimes(1);
       expect(appTypeApi.getSharedWabas).toHaveBeenCalledWith(data.code, data.params);
+    });
+
+    it('should call appType.getConversations', async () => {
+      expect(appTypeApi.getConversations).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+        params: {},
+      };
+      await actions.getConversations({}, data);
+      expect(appTypeApi.getConversations).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.getConversations).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.params,
+      );
     });
   });
 });

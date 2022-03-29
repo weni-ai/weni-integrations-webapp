@@ -21,8 +21,7 @@ describe('WhatsAppConfig.vue', () => {
 
   beforeEach(() => {
     actions = {
-      updateAppConfig: jest.fn(),
-      getApp: jest.fn(() => {
+      getConversations: jest.fn(() => {
         return { data: singleApp };
       }),
     };
@@ -83,6 +82,26 @@ describe('WhatsAppConfig.vue', () => {
       expect(wrapper.emitted('closeModal')).toBeFalsy();
       wrapper.vm.closeConfig();
       expect(wrapper.emitted('closeModal')).toBeTruthy();
+    });
+  });
+
+  describe('handleDateFilter()', () => {
+    it('should call getConversations()', async () => {
+      const event = {
+        startDate: '03-12-22',
+        endDate: '04-13-23',
+      };
+      expect(actions.getConversations).not.toHaveBeenCalled();
+      await wrapper.vm.handleDateFilter(event);
+      expect(actions.getConversations).toHaveBeenCalledTimes(1);
+      expect(actions.getConversations).toBeCalledWith(expect.any(Object), {
+        code: singleApp.code,
+        appUuid: singleApp.uuid,
+        params: {
+          start: event.startDate,
+          end: event.endDate,
+        },
+      });
     });
   });
 });
