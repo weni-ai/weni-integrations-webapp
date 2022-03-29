@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <unnnic-tab class="config-whatsapp__tabs" :tabs="configTabs" initialTab="general">
+    <unnnic-tab class="config-whatsapp__tabs" :tabs="configTabs" initialTab="conversations">
       <template slot="tab-head-general"> {{ $t('WhatsApp.config.tabs.general') }} </template>
       <template slot="tab-panel-general">
         <div class="config-whatsapp__tabs__general-content">
@@ -43,14 +43,14 @@
               </div>
             </div>
 
-            <div class="config-whatsapp__tabs__general-content__info__billing">
-              <div class="config-whatsapp__tabs__general-content__info__billing__title">
-                {{ $t('WhatsApp.config.billing.title') }}
+            <div class="config-whatsapp__tabs__general-content__info__conversations">
+              <div class="config-whatsapp__tabs__general-content__info__conversations__title">
+                {{ $t('WhatsApp.config.conversations.title') }}
               </div>
-              <div class="config-whatsapp__tabs__general-content__info__billing__time">
-                Billing start at (local time):
+              <div class="config-whatsapp__tabs__general-content__info__conversations__time">
+                conversations start at (local time):
               </div>
-              <div class="config-whatsapp__tabs__general-content__info__billing__limit">
+              <div class="config-whatsapp__tabs__general-content__info__conversations__limit">
                 Message per day limit: 10k
               </div>
             </div>
@@ -153,28 +153,52 @@
         </div>
       </template>
 
-      <template slot="tab-head-billing"> {{ $t('WhatsApp.config.tabs.billing') }} </template>
-      <template slot="tab-panel-billing">
-        <div class="config-whatsapp__tabs__billing-content">
-          <unnnic-date-picker @change="handleDateFilter" />
-
-          <div class="config-whatsapp__tabs__billing-content__message_count">
-            {{ $t('WhatsApp.config.billing.message_count') }}
-          </div>
-
-          <span class="config-whatsapp__tabs__billing-content__message_count__value">
-            {{ messageCountValue || 'Not available' }}
-          </span>
-
-          <div class="config-whatsapp__tabs__billing-content">
-            <unnnic-button
-              class="config-whatsapp__tabs__billing-content__buttons__cancel"
-              type="secondary"
-              size="large"
-              :text="$t('WhatsApp.config.billing.close')"
-              @click="closeConfig"
+      <template slot="tab-head-conversations">
+        {{ $t('WhatsApp.config.tabs.conversations') }}
+      </template>
+      <template slot="tab-panel-conversations">
+        <div class="config-whatsapp__tabs__conversations-content">
+          <div
+            :class="[
+              'config-whatsapp__tabs__conversations-content__dropdown',
+              { active: showDateFilter },
+            ]"
+          >
+            <div class="config-whatsapp__tabs__conversations-content__label">
+              {{ $t('WhatsApp.config.conversations.filter.label') }}
+            </div>
+            <unnnic-date-filter
+              class="config-whatsapp__tabs__conversations-content__dropdown-filter"
+              dateFormat="DD/MM/YYYY"
+              @filter="showDateFilter = true"
+              :startDate="startDateObject"
+              :endDate="endDateObject"
+              placeholder="DD/MM/YYYY ~ DD/MM/YYYY"
             />
+
+            <div class="config-whatsapp__tabs__conversations-content__dropdown-data">
+              <unnnic-date-picker v-if="showDateFilter" size="small" @change="handleDateFilter" />
+            </div>
           </div>
+
+          <div class="config-whatsapp__tabs__conversations-content__label">
+            {{ $t('WhatsApp.config.conversations.conversations_count.label') }}
+          </div>
+
+          <conversations-table
+            :userMessages="userInitiated"
+            :templateMessages="businessInitiated"
+            :total="totalInitiated"
+          />
+        </div>
+        <div class="config-whatsapp__tabs__conversations-buttons">
+          <unnnic-button
+            class="config-whatsapp__tabs__conversations-buttons__close"
+            type="secondary"
+            size="large"
+            :text="$t('general.Close')"
+            @click="closeConfig"
+          />
         </div>
       </template>
     </unnnic-tab>
@@ -183,11 +207,14 @@
 
 <script>
   import dynamicForm from '../../DynamicForm.vue';
+  import ConversationsTable from './ConversationsTable.vue';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'whatsapp-config',
     components: {
       dynamicForm,
+      ConversationsTable,
     },
     props: {
       app: {
@@ -195,8 +222,22 @@
         default: /* istanbul ignore next */ () => {},
       },
     },
+    created() {
+      window.addEventListener('click', (event) => {
+        if (event.target.closest('.config-whatsapp__tabs__conversations-content__dropdown')) {
+          return false;
+        }
+        this.showDateFilter = false;
+      });
+    },
     data() {
       return {
+        showDateFilter: false,
+        startDate: null,
+        endDate: null,
+        businessInitiated: 0,
+        userInitiated: 0,
+        totalInitiated: 0,
         generalSections: [
           {
             name: 'channel',
@@ -209,13 +250,10 @@
                 value: '+558299620000',
               },
               {
-                type: 'input',
+                type: 'text',
                 name: 'whatsapp_display_name',
                 label: 'WhatsApp.config.channel.fields.whatsapp_display_name',
                 value: 'Weni',
-                style: {
-                  height: '22px',
-                },
               },
               {
                 type: 'text',
@@ -357,10 +395,17 @@
     },
     computed: {
       configTabs() {
-        return ['general', 'profile', 'contact_info', 'billing'];
+        return ['conversations'];
+      },
+      startDateObject() {
+        return this.startDate && new Date(this.startDate);
+      },
+      endDateObject() {
+        return this.endDate && new Date(this.endDate);
       },
     },
     methods: {
+      ...mapActions(['getConversations']),
       updateContactInfoInput(inputData) {
         this.contactInfoInputs[inputData.index].value = inputData.value;
       },
@@ -374,8 +419,24 @@
       saveConfig() {
         console.log('saved');
       },
-      handleDateFilter(event) {
-        console.log('event', event);
+      async handleDateFilter(event) {
+        this.startDate = event.startDate;
+        this.endDate = event.endDate;
+
+        const params = {
+          start: event.startDate,
+          end: event.endDate,
+        };
+
+        const { data } = await this.getConversations({
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          params,
+        });
+
+        this.businessInitiated = data.business_initiated;
+        this.userInitiated = data.user_initiated;
+        this.totalInitiated = data.total;
       },
     },
   };
@@ -480,8 +541,11 @@
         overflow-y: auto;
       }
       ::v-deep .tab-panel {
+        display: flex;
+        flex-direction: column;
         width: -webkit-fill-available;
         width: -moz-available;
+        overflow-x: hidden;
       }
 
       &__general-content {
@@ -500,7 +564,7 @@
           margin-bottom: $unnnic-spacing-stack-sm;
 
           &__account,
-          &__billing {
+          &__conversations {
             flex: 1;
 
             &__title {
@@ -538,7 +602,7 @@
             }
           }
 
-          &__billing {
+          &__conversations {
             flex: 1;
           }
         }
@@ -616,6 +680,46 @@
           font-family: $unnnic-font-family-secondary;
           font-size: $unnnic-font-size-body-lg;
           line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+        }
+      }
+
+      &__conversations {
+        display: flex;
+        flex: 1;
+
+        &-content {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+
+          &__dropdown {
+            width: fit-content;
+            &-data {
+              position: absolute;
+            }
+
+            &-filter {
+              width: 14rem;
+            }
+          }
+
+          &__label {
+            font-weight: $unnnic-font-weight-bold;
+            font-size: $unnnic-font-size-body-gt;
+            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+            color: $unnnic-color-neutral-darkest;
+
+            margin: $unnnic-spacing-stack-xs 0;
+          }
+        }
+
+        &-buttons {
+          display: flex;
+          justify-content: flex-end;
+
+          &__close {
+            width: 50%;
+          }
         }
       }
     }
