@@ -44,4 +44,10 @@ export default {
     const queryString = qs.stringify(filter);
     return request.$http.get(`${resource}/${appCode}/apps/shared-wabas/?${queryString}`);
   },
+  getConversations(appCode, appUuid, params) {
+    const queryString = qs.stringify(params);
+    return request.$http.get(
+      `${resource}/${appCode}/apps/${appUuid}/conversations/?${queryString}`,
+    );
+  },
 };

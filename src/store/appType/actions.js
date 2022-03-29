@@ -52,4 +52,8 @@ export default {
   async getSharedWabas(store, { code, params }) {
     return await appType.getSharedWabas(code, params);
   },
+
+  async getConversations(store, { code, appUuid, params }) {
+    return await appType.getConversations(code, appUuid, params);
+  },
 };
