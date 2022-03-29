@@ -6,6 +6,7 @@
     scheme="feedback-green"
     modal-icon="phone-3"
     @close="closePopUp"
+    @click.stop
   >
     <div slot="message">
       <unnnic-select :search="false" size="sm" :value="selectedAccount">
