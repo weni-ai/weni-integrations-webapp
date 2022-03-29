@@ -2,6 +2,7 @@ jest.mock('@weni/unnnic-system', () => ({
   ...jest.requireActual('@weni/unnnic-system'),
   unnnicCallAlert: jest.fn(),
 }));
+jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
 
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
