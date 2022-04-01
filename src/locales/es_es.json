@@ -158,6 +158,10 @@
       "initPayloadInput": {
         "label": "Mensaje de activación",
         "placeholder": "Ej.: Hola, bienvenido"
+      },
+      "TooltipInput": {
+        "label": "Mensaje de notificación de chat",
+        "placeholder": "Mensaje de notificación cuando el usuario visita el sitio web"
       }
     },
     "simulator": {

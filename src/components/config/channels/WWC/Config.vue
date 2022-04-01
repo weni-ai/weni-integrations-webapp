@@ -41,9 +41,13 @@
 
           <div class="app-config-wwc__tabs__settings-content__initPayload">
             <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
-              <div class="app-config-wwc__tabs__settings-content__initPayload__label">
-                {{ `${$t('weniWebChat.config.initPayloadInput.label')}` }}
-              </div>
+              <unnnic-switch
+                v-model="enableInitPayload"
+                class="app-config-wwc__tabs__settings-content__switch"
+                :inititalState="false"
+                size="small"
+                :textLeft="$t('weniWebChat.config.initPayloadInput.label')"
+              />
               <unnnic-toolTip
                 class="app-config-wwc__tabs__settings-content__initPayload__tooltip"
                 slot="buttons"
@@ -61,13 +65,35 @@
               </unnnic-toolTip>
             </div>
 
-            <unnnic-input
-              v-model="initPayload"
-              class="app-config-wwc__tabs__settings-content__input__payload"
-              :type="errorFor('initPayload') ? 'error' : 'normal'"
-              :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
-              :message="errorFor('initPayload') ? $t('errors.required_message') : ''"
+            <transition name="fade">
+              <unnnic-input
+                v-if="enableInitPayload"
+                v-model="initPayload"
+                class="app-config-wwc__tabs__settings-content__input__payload"
+                type="normal"
+                :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
+              />
+            </transition>
+          </div>
+
+          <div class="app-config-wwc__tabs__settings-content__input__tooltip-container">
+            <unnnic-switch
+              v-model="enableTooltipMessage"
+              class="app-config-wwc__tabs__settings-content__switch"
+              :inititalState="false"
+              size="small"
+              :textLeft="$t('weniWebChat.config.TooltipInput.label')"
             />
+
+            <transition name="fade">
+              <unnnic-input
+                v-if="enableTooltipMessage"
+                v-model="tooltipMessage"
+                class="app-config-wwc__tabs__settings-content__input__tooltip"
+                type="normal"
+                :placeholder="$t('weniWebChat.config.TooltipInput.placeholder')"
+              />
+            </transition>
           </div>
 
           <unnnic-input
@@ -278,6 +304,9 @@
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,
+        enableInitPayload: !!this.app.config.initPayload,
+        enableTooltipMessage: !!this.app.config.tooltipMessage,
+        tooltipMessage: this.app.config.tooltipMessage,
 
         avatarFile: this.app.config.profileAvatar ?? null,
         customCssFile: this.app.config.customCss ?? null,
@@ -340,6 +369,12 @@
       chatSubtitle() {
         return this.enableSubtitle ? this.subtitle : ' ';
       },
+      chatInitPayload() {
+        return this.enableInitPayload ? this.initPayload : null;
+      },
+      chatTooltipMessage() {
+        return this.enableTooltipMessage ? this.tooltipMessage : null;
+      },
       scriptCode() {
         const code = `<script>
   (function (d, s, u) {
@@ -363,6 +398,7 @@
             ${this.title}|
             ${this.subtitle}|
             ${this.inputTextFieldHint}|
+            ${this.tooltipMessage}|
             ${this.displayUnreadCount}|
             ${this.showFullScreenButton}|
             ${this.keepHistory}|
@@ -511,7 +547,7 @@
       },
       errorFor(key) {
         const value = this.$data[key];
-        if (key === 'initPayload' || key === 'title') {
+        if (key === 'title') {
           if (!(value && value.trim())) {
             return this.$t('errors.empty_input');
           }
@@ -552,7 +588,8 @@
             config: {
               title: this.title,
               subtitle: this.enableSubtitle ? this.subtitle : null,
-              initPayload: this.initPayload,
+              initPayload: this.chatInitPayload,
+              tooltipMessage: this.chatTooltipMessage,
               inputTextFieldHint: this.inputTextFieldHint,
               showFullScreenButton: this.showFullScreenButton,
               displayUnreadCount: this.displayUnreadCount,
@@ -608,6 +645,15 @@
 </script>
 
 <style lang="scss" scoped>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
   .app-config-wwc {
     display: flex;
     flex-direction: column;
@@ -678,8 +724,7 @@
         &__input {
           margin-top: $unnnic-spacing-stack-xs;
 
-          &__title,
-          &__payload {
+          &__title {
             ::v-deep .unnnic-form-input {
               /* Chrome, Firefox, Opera, Safari 10.1+ */
               ::placeholder {
@@ -699,8 +744,12 @@
             }
           }
 
+          &__subtitle-container {
+            margin-top: $unnnic-spacing-stack-sm;
+          }
+
           &__subtitle {
-            margin-top: $unnnic-spacing-stack-nano/2;
+            margin-top: $unnnic-spacing-stack-nano;
           }
 
           &__payload {
@@ -710,6 +759,14 @@
             ::v-deep .unnnic-form-input {
               margin-top: $unnnic-spacing-stack-xs;
             }
+          }
+
+          &__tooltip-container {
+            margin-top: $unnnic-spacing-stack-sm;
+          }
+
+          &__tooltip {
+            margin-top: $unnnic-spacing-stack-nano;
           }
         }
 
@@ -734,7 +791,6 @@
         }
 
         &__switch {
-          margin-top: $unnnic-spacing-stack-sm;
           ::v-deep .unnnic-switch__label {
             font-size: $unnnic-font-size-body-gt;
             color: $unnnic-color-neutral-cloudy;
@@ -746,10 +802,6 @@
           justify-content: space-between;
           flex-wrap: wrap;
           gap: $unnnic-inline-sm;
-
-          &__subtitle-container {
-            flex: 1;
-          }
         }
 
         &__files {

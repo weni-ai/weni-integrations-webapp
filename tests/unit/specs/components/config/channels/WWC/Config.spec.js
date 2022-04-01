@@ -128,6 +128,30 @@ describe('Config.vue', () => {
     expect(wrapper.vm.chatSubtitle).toEqual(' ');
   });
 
+  describe('computed: chatInitPayload', () => {
+    it('should return valid initPayload if enableInitPayload is true', async () => {
+      await wrapper.setData({ enableInitPayload: true, initPayload: 'text' });
+      expect(wrapper.vm.chatInitPayload).toEqual('text');
+    });
+
+    it('should return null if enableInitPayload is false', async () => {
+      await wrapper.setData({ enableInitPayload: false });
+      expect(wrapper.vm.chatInitPayload).toBeNull();
+    });
+  });
+
+  describe('computed: chatTooltipMessage', () => {
+    it('should return valid tooltipMessage if enableTooltipMessage is true', async () => {
+      await wrapper.setData({ enableTooltipMessage: true, tooltipMessage: 'text' });
+      expect(wrapper.vm.chatTooltipMessage).toEqual('text');
+    });
+
+    it('should return null if enableTooltipMessage is false', async () => {
+      await wrapper.setData({ enableTooltipMessage: false });
+      expect(wrapper.vm.chatTooltipMessage).toBeNull();
+    });
+  });
+
   it('should return valid subtitle if enableSubtitle is true', async () => {
     await wrapper.setData({ enableSubtitle: true, subtitle: 'text' });
     expect(wrapper.vm.chatSubtitle).toEqual('text');
@@ -275,8 +299,7 @@ describe('Config.vue', () => {
     });
 
     it('should return false if an error is found', async () => {
-      await wrapper.setData({ initPayload: '' });
-      await wrapper.setData({ title: 'title' });
+      await wrapper.setData({ title: '' });
       const isValid = wrapper.vm.validConfig();
       expect(isValid).toBeFalsy();
     });
