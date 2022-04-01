@@ -1,3 +1,10 @@
+1.4.1
+----------
+`2022-04-1 · 1 🎉`
+
+### 🎉 New features
+- Feat: Weni Web Chat TooltipMessage input
+
 1.4.0
 ----------
 `2022-03-14 · 1 🎉`
