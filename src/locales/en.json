@@ -150,6 +150,10 @@
       "initPayloadInput": {
         "label": "Trigger message",
         "placeholder": "Ex.: Hello, welcome"
+      },
+      "TooltipInput": {
+        "label": "Chat notification message",
+        "placeholder": "Notification message when the user visits the website"
       }
     },
     "simulator": {

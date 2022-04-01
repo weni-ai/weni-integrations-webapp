@@ -158,6 +158,10 @@
       "initPayloadInput": {
         "label": "Mensagem de disparo",
         "placeholder": "Ex.: Olá, seja bem vindo"
+      },
+      "TooltipInput": {
+        "label": "Mensagem de notificação do chat",
+        "placeholder": "Mensagem que aparecerá na notificação do chatbot"
       }
     },
     "simulator": {
