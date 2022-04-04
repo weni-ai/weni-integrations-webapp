@@ -9,12 +9,6 @@
       </div>
       <div class="config-whatsapp__header__description">
         {{ $t('WhatsApp.config.description.text') }}
-        <a
-          href="https://docs.ilhasoft.mobi/l/pt/article/qzw2i2og1s-como-obter-o-token-de-um-bot-do-whatsapp#"
-          target="_blank"
-        >
-          {{ $t('WhatsApp.config.description.link') }}
-        </a>
       </div>
     </div>
 
@@ -187,7 +181,7 @@
 
           <conversations-table
             :userMessages="userInitiated"
-            :templateMessages="businessInitiated"
+            :businessMessages="businessInitiated"
             :total="totalInitiated"
           />
         </div>

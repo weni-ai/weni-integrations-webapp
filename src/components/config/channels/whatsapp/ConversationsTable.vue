@@ -13,9 +13,9 @@
             </div>
           </template>
 
-          <template v-slot:templateMessages>
-            <div :title="item.templateMessages" class="break-text">
-              {{ item.templateMessages }}
+          <template v-slot:businessMessages>
+            <div :title="item.businessMessages" class="break-text">
+              {{ item.businessMessages }}
             </div>
           </template>
 
@@ -38,7 +38,7 @@
         type: Number,
         default: 0,
       },
-      templateMessages: {
+      businessMessages: {
         type: Number,
         default: 0,
       },
@@ -56,9 +56,9 @@
             flex: 1,
           },
           {
-            id: 'templateMessages',
+            id: 'businessMessages',
             text: this.$t(
-              'WhatsApp.config.conversations.conversations_count.table.template_messages',
+              'WhatsApp.config.conversations.conversations_count.table.business_messages',
             ),
             flex: 1,
           },
@@ -75,7 +75,7 @@
         return [
           {
             userMessages: this.userMessages,
-            templateMessages: this.templateMessages,
+            businessMessages: this.businessMessages,
             total: this.total,
           },
         ];
