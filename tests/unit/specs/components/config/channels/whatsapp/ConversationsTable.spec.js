@@ -13,7 +13,7 @@ describe('whatsapp/ConversationsTable.vue', () => {
       i18n,
       propsData: {
         userMessages: 10,
-        templateMessages: 20,
+        businessMessages: 20,
         total: 30,
       },
       mocks: {
