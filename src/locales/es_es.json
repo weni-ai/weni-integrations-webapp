@@ -207,5 +207,91 @@
         "label": "URL"
       }
     }
+  },
+
+  "WhatsApp": {
+    "data": {
+      "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
+      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos"
+    },
+    "config": {
+      "tabs": {
+        "general": "General",
+        "profile": "Perfil",
+        "contact_info": "Información del contacto",
+        "conversations": "Conversaciones"
+      },
+      "description": {
+        "text": "Vea cuántas conversaciones ha intercambiado su cuenta en un período determinado."
+      },
+      "account": {
+        "title": "Cuenta"
+      },
+      "conversations": {
+        "title": "Información de conversaciones",
+        "filter": {
+          "label": "Filtrado por"
+        },
+        "conversations_count": {
+          "label": "Número de conversaciones",
+          "table": {
+            "user_messages": "Iniciado por el usuario",
+            "business_messages": "Iniciado por negocio",
+            "total": "Total"
+          }
+        }
+      },
+      "channel": {
+        "title": "Canal de WhatsApp",
+        "fields": {
+          "phone_number": "Número de teléfono",
+          "whatsapp_display_name": "Nombre para mostrar de WhatsApp",
+          "number_registration": "Registro de número",
+          "default_language_for_templates": "Idioma predeterminado para plantillas",
+          "ivr_existing": "IVR existente",
+          "ivr_active": "IVR activo",
+          "certificate": "Certificate",
+          "consent_status": "Estado de consentimiento"
+        }
+      },
+      "business_account": {
+        "title": "Cuenta comercial de WhatsApp (WABA)",
+        "fields": {
+          "waba_name": "Nombre WABA",
+          "message_on_behalf_of": "Message on Behalf Name",
+          "timezone_id": "ID de zona horaria",
+          "waba_id": "WABA ID",
+          "namespace": "Namespace"
+        }
+      },
+      "profile": {
+        "profile_image": {
+          "label": "Imagen de perfil"
+        },
+        "status": {
+          "label": "El estatus",
+          "placeholder": "Ej.: Disponible apenas para texto"
+        },
+        "description": {
+          "label": "Descripción",
+          "placeholder": "Describa su negocio o el propósito de su bot de chat"
+        },
+        "sector": {
+          "label": "Sector de la empresa",
+          "placeholder": "Seleccione"
+        },
+        "configure_later": "Configurar más tarde",
+        "create_channel": "Crear canal"
+      },
+      "contact_info": {
+        "website_url": {
+          "label": "Sitio web"
+        },
+        "corporate_email": {
+          "label": "Correo electrónico corporativo",
+          "placeholder": "Correo electrónico que los clientes pueden contactar"
+        }
+      }
+    }
   }
 }

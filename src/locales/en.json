@@ -214,8 +214,7 @@
         "conversations": "Conversations"
       },
       "description": {
-        "text": "Learn more about how to integrate Whatsapp",
-        "link": "here."
+        "text": "See how many conversations your account has exchanged in a given period."
       },
       "account": {
         "title": "Account"
@@ -229,7 +228,7 @@
           "label": "Number of conversations",
           "table": {
             "user_messages": "Started by user",
-            "template_messages": "Template messages",
+            "business_messages": "Started by business",
             "total": "Total"
           }
         }
@@ -263,11 +262,11 @@
         },
         "status": {
           "label": "Status",
-          "placeholder": "Ex.: Disponível apenas para texto"
+          "placeholder": "Eg: Available for text only"
         },
         "description": {
           "label": "Description",
-          "placeholder": "Descreva o seu negócio ou objetivo do seu chat bot"
+          "placeholder": "Describe your business or purpose of your chatbot"
         },
         "sector": {
           "label": "Company Sector",

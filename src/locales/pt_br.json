@@ -221,8 +221,7 @@
         "conversations": "Conversas"
       },
       "description": {
-        "text": "Saiba mais sobre como integrar o WhatsApp",
-        "link": "aqui."
+        "text": "Consulte a quantidade de conversas que a sua conta trocou em um determinado período."
       },
       "account": {
         "title": "Conta"
@@ -289,7 +288,7 @@
         },
         "corporate_email": {
           "label": "Email Corporativo",
-          "placeholder": "Email that customers can contact"
+          "placeholder": "E-mail que os clientes podem entrar em contato"
         }
       }
     }
