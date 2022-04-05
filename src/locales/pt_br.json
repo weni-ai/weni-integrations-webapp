@@ -239,10 +239,11 @@
           "label": "Número de conversas",
           "table": {
             "user_messages": "Iniciadas pelo usuário",
-            "template_messages": "Mensagens de template",
+            "business_messages": "Iniciadas pelo Negócio",
             "total": "Total"
           }
-        }
+        },
+        "fetch_error": "Falha ao buscar dados de conversas. Entre em contato com o suporte."
       },
       "channel": {
         "title": "Canal do WhatsApp",
