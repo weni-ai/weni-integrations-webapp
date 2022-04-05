@@ -202,6 +202,7 @@
 <script>
   import dynamicForm from '../../DynamicForm.vue';
   import ConversationsTable from './ConversationsTable.vue';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions } from 'vuex';
   import debounce from 'lodash.debounce';
 
@@ -424,16 +425,29 @@
           end: event.endDate,
         };
 
-        const { data } = await this.getConversations({
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          params,
-        });
-
-        this.businessInitiated = data.business_initiated;
-        this.userInitiated = data.user_initiated;
-        this.totalInitiated = data.total;
-      }, 250),
+        try {
+          const { data } = await this.getConversations({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            params,
+          });
+          this.businessInitiated = data.business_initiated;
+          this.userInitiated = data.user_initiated;
+          this.totalInitiated = data.total;
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.conversations.fetch_error'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        }
+      }, 750),
     },
   };
 </script>
