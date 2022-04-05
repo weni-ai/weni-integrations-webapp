@@ -235,7 +235,8 @@
             "business_messages": "Started by business",
             "total": "Total"
           }
-        }
+        },
+        "fetch_error": "Failed to fetch conversations data. Please contact the support team."
       },
       "channel": {
         "title": "WhatsApp Channel",
