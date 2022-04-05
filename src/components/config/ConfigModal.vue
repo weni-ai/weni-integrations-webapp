@@ -50,6 +50,7 @@
   import wwcConfig from './channels/WWC/Config.vue';
   import telegramConfig from './channels/telegram/Config.vue';
   import wppDemoPreview from './channels/wpp_demo/Preview.vue';
+  import whatsappConfig from './channels/whatsapp/Config.vue';
 
   export default {
     name: 'Modal',
@@ -92,6 +93,7 @@
         if (this.type === 'wwc') return wwcConfig;
         if (this.type === 'tg') return telegramConfig;
         if (this.type === 'wpp-demo') return wppDemoPreview;
+        if (this.type === 'wpp') return whatsappConfig;
         return wwcConfig;
       },
     },

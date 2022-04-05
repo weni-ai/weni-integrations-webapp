@@ -24,14 +24,11 @@
           clickable
           @openModal="openAppModal(app)"
         >
-          <unnnic-button
-            class="app-grid__content__item__button--add"
+          <integrate-button
             v-if="type === 'add'"
             slot="actions"
-            size="small"
-            type="secondary"
-            :iconCenter="actionIcon"
-            @click.stop="addApp(app)"
+            :app="app"
+            :icon="actionIcon"
             :disabled="!app.can_add"
           />
 
@@ -45,6 +42,7 @@
               {{ actionText }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
+              v-if="app.code !== 'wpp'"
               class="app-grid__content__item__button--details"
               @click="openAppDetails(app.code)"
             >
@@ -52,6 +50,7 @@
               {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
+              v-if="app.code !== 'wpp'"
               class="app-grid__content__item__button--remove"
               @click="toggleRemoveModal(app)"
             >
@@ -90,23 +89,20 @@
       </unnnic-button>
     </unnnic-modal>
 
-    <add-modal ref="addModal" />
     <config-modal ref="configModal" />
-    <config-pop-up ref="configPopUp" />
   </div>
 </template>
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from './config/ConfigModal.vue';
-  import configPopUp from './config/ConfigPopUp.vue';
-  import addModal from './AddModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
   import { mapActions, mapGetters } from 'vuex';
+  import IntegrateButton from './IntegrateButton.vue';
 
   export default {
     name: 'AppGrid',
-    components: { configModal, configPopUp, addModal, skeletonLoading },
+    components: { configModal, skeletonLoading, IntegrateButton },
     props: {
       section: {
         type: String,
@@ -201,39 +197,6 @@
         'getInstalledApps',
         'deleteApp',
       ]),
-      async addApp(app) {
-        try {
-          const code = app.code;
-          const payload = {
-            project_uuid: this.getSelectedProject,
-          };
-          const res = await this.createApp({ code, payload });
-          if (app.config_design === 'popup') {
-            // TODO: use default config when it is fetched from api
-            /* istanbul ignore next */
-            app.config = {};
-            /* istanbul ignore next */
-            app.config.redirect_url = res.data.config.redirect_url; // TODO: remove since this url will come from API
-            this.$refs.configPopUp.openPopUp(app);
-          } else {
-            this.$refs.addModal.toggleModal();
-          }
-        } catch (error) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              title: 'Error',
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-        } finally {
-          this.$emit('update');
-        }
-      },
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;

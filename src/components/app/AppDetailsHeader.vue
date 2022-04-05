@@ -1,21 +1,22 @@
 <template>
   <div class="app-details-header" :style="cssVars">
     <div class="app-details-header__icon">
-      <img class="app-details-header__icon__src" :src="icon" />
+      <img class="app-details-header__icon__src" :src="app.icon" />
     </div>
     <div class="app-details-header__content">
-      <div class="app-details-header__content__title">{{ title }}</div>
-      <div class="app-details-header__content__description">{{ $t(description) }}</div>
+      <div class="app-details-header__content__title">{{ app.name }}</div>
+      <div class="app-details-header__content__description">{{ $t(app.summary) }}</div>
     </div>
-    <unnnic-button
+    <integrate-button
       ref="unnnic-button-add"
       class="app-details-header__button"
-      type="secondary"
-      icon-left="add-1"
-      @click="openAddModal(appCode)"
-      :disabled="!canAdd"
-      >{{ $t('apps.details.header.add') }}</unnnic-button
-    >
+      type="add"
+      size="large"
+      icon="add-1"
+      :app="app"
+      :disabled="!app.can_add"
+      :text="$t('apps.details.header.add')"
+    />
 
     <add-modal ref="addModal" />
   </div>
@@ -24,35 +25,16 @@
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import addModal from '../AddModal.vue';
+  import IntegrateButton from '../IntegrateButton.vue';
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'AppDetailsHeader',
-    components: { addModal },
+    components: { addModal, IntegrateButton },
     props: {
-      appCode: {
-        type: String,
-        default: null,
-      },
-      title: {
-        type: String,
-        default: null,
-      },
-      description: {
-        type: String,
-        default: null,
-      },
-      icon: {
-        type: String,
-        default: null,
-      },
-      iconbgColor: {
-        type: String,
-        default: 'none',
-      },
-      canAdd: {
-        type: Boolean,
-        default: true,
+      app: {
+        type: Object,
+        default: /* istanbul ignore next */ () => {},
       },
     },
     methods: {
@@ -85,7 +67,7 @@
       }),
       cssVars() {
         return {
-          '--icon-bg-color': this.iconbgColor,
+          '--icon-bg-color': this.app.bg_color,
         };
       },
     },

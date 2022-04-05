@@ -106,7 +106,6 @@
     "modify": "Modificar"
   },
 
-
   "upload_area": {
     "title": {
       "text": "Arraste seu arquivo aqui, ou",
@@ -190,7 +189,7 @@
         "label": "Token"
       },
       "errors": {
-        "invalidToken": "Provided token is not valid."
+        "invalidToken": "Token provido não é válido."
       }
     }
   },
@@ -209,6 +208,92 @@
       "description": "Com a URL abaixo vc pode utilizar o Whatsapp Demo, testar no seu projeto, ou até mesmo compartilhar com outras pessoas.",
       "UrlInput": {
         "label": "URL"
+      }
+    }
+  },
+
+  "WhatsApp": {
+    "data": {
+      "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos"
+    },
+    "config": {
+      "tabs": {
+        "general": "Geral",
+        "profile": "Perfil",
+        "contact_info": "Informações de Contato",
+        "conversations": "Conversas"
+      },
+      "description": {
+        "text": "Consulte a quantidade de conversas que a sua conta trocou em um determinado período."
+      },
+      "account": {
+        "title": "Conta"
+      },
+      "conversations": {
+        "title": "Informações de conversa",
+        "filter": {
+          "label": "Filtrar por"
+        },
+        "conversations_count": {
+          "label": "Número de conversas",
+          "table": {
+            "user_messages": "Iniciadas pelo usuário",
+            "template_messages": "Mensagens de template",
+            "total": "Total"
+          }
+        }
+      },
+      "channel": {
+        "title": "Canal do WhatsApp",
+        "fields": {
+          "phone_number": "Número de telefone",
+          "whatsapp_display_name": "Nome de exibição do WhatsApp",
+          "number_registration": "Registro do número",
+          "default_language_for_templates": "Idioma padrão para templates",
+          "ivr_existing": "IVR existente",
+          "ivr_active": "IVR ativo",
+          "certificate": "Certificado",
+          "consent_status": "Status de consentimento"
+        }
+      },
+      "business_account": {
+        "title": "Conta do WhatsApp Business (WABA)",
+        "fields": {
+          "waba_name": "Nome WABA",
+          "message_on_behalf_of": "Mensagens em nome de",
+          "timezone_id": "ID do fuso-horário",
+          "waba_id": "WABA ID",
+          "namespace": "Namespace"
+        }
+      },
+      "profile": {
+        "profile_image": {
+          "label": "Imagem de perfil"
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Ex.: Disponível apenas para texto"
+        },
+        "description": {
+          "label": "Descrição",
+          "placeholder": "Descreva o seu negócio ou objetivo do seu chat bot"
+        },
+        "sector": {
+          "label": "Setor da Empresa",
+          "placeholder": "Selecionar"
+        },
+        "configure_later": "Configurar depois",
+        "create_channel": "Criar Canal"
+      },
+      "contact_info": {
+        "website_url": {
+          "label": "Website"
+        },
+        "corporate_email": {
+          "label": "Email Corporativo",
+          "placeholder": "E-mail que os clientes podem entrar em contato"
+        }
       }
     }
   }

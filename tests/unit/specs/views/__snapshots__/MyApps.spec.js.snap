@@ -35,9 +35,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
           some specific text
         </unnnic-button-stub>
       </unnnic-modal-stub>
-      <add-modal-stub></add-modal-stub>
       <config-modal-stub></config-modal-stub>
-      <config-pop-up-stub></config-pop-up-stub>
     </div>
     <div>
       <skeleton-loading-stub></skeleton-loading-stub>
@@ -47,9 +45,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
           some specific text
         </unnnic-button-stub>
       </unnnic-modal-stub>
-      <add-modal-stub></add-modal-stub>
       <config-modal-stub></config-modal-stub>
-      <config-pop-up-stub></config-pop-up-stub>
     </div>
   </div>
 </div>

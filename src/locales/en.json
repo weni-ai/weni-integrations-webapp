@@ -203,5 +203,91 @@
         "label": "URL"
       }
     }
+  },
+
+  "WhatsApp": {
+    "data": {
+      "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts"
+    },
+    "config": {
+      "tabs": {
+        "general": "General",
+        "profile": "Profile",
+        "contact_info": "Contact Information",
+        "conversations": "Conversations"
+      },
+      "description": {
+        "text": "See how many conversations your account has exchanged in a given period."
+      },
+      "account": {
+        "title": "Account"
+      },
+      "conversations": {
+        "title": "Conversations Information",
+        "filter": {
+          "label": "Filter by"
+        },
+        "conversations_count": {
+          "label": "Number of conversations",
+          "table": {
+            "user_messages": "Started by user",
+            "business_messages": "Started by business",
+            "total": "Total"
+          }
+        }
+      },
+      "channel": {
+        "title": "WhatsApp Channel",
+        "fields": {
+          "phone_number": "Phone number",
+          "whatsapp_display_name": "WhatsApp Display Name",
+          "number_registration": "Number Registration",
+          "default_language_for_templates": "Default Language for templates",
+          "ivr_existing": "IVR existing",
+          "ivr_active": "IVR active",
+          "certificate": "Certificate",
+          "consent_status": "Consent Status"
+        }
+      },
+      "business_account": {
+        "title": "WhatsApp Business Account (WABA)",
+        "fields": {
+          "waba_name": "WABA Name",
+          "message_on_behalf_of": "Message on Behalf Name",
+          "timezone_id": "Timezone ID",
+          "waba_id": "WABA ID",
+          "namespace": "Namespace"
+        }
+      },
+      "profile": {
+        "profile_image": {
+          "label": "Profile image"
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Eg: Available for text only"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Describe your business or purpose of your chatbot"
+        },
+        "sector": {
+          "label": "Company Sector",
+          "placeholder": "Select"
+        },
+        "configure_later": "Configure later",
+        "create_channel": "Create Channel"
+      },
+      "contact_info": {
+        "website_url": {
+          "label": "Website"
+        },
+        "corporate_email": {
+          "label": "Corporate Email",
+          "placeholder": "Email that customers can contact"
+        }
+      }
+    }
   }
 }

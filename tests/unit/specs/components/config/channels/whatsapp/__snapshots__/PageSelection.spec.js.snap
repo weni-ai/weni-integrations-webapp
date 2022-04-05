@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/PageSelection.vue should be rendered properly 1`] = `
+<unnnicmodal-stub text="some specific text" scheme="feedback-green" modal-icon="phone-3" class="page-selection">
+  <div>
+    <unnnic-select size="sm" value="[object Object]">
+      <option>page.name</option>
+      <option>page.name</option>
+    </unnnic-select>
+  </div>
+</unnnicmodal-stub>
+`;
