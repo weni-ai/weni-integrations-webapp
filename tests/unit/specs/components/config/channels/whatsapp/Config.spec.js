@@ -1,3 +1,5 @@
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
 jest.mock('@weni/unnnic-system', () => ({
   ...jest.requireActual('@weni/unnnic-system'),
   unnnicCallAlert: jest.fn(),
@@ -103,6 +105,20 @@ describe('WhatsAppConfig.vue', () => {
           end: event.endDate,
         },
       });
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      actions.getConversations.mockImplementation(() => {
+        throw new Error('error fetching');
+      });
+
+      const event = {
+        startDate: '03-12-22',
+        endDate: '04-13-23',
+      };
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.handleDateFilter(event);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
   });
 });
