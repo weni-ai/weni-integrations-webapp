@@ -277,7 +277,7 @@
           "placeholder": "Select"
         },
         "configure_later": "Configure later",
-        "create_channel": "Create Channel"
+        "save_changes": "Save changes"
       },
       "contact_info": {
         "website_url": {
@@ -286,7 +286,9 @@
         "corporate_email": {
           "label": "Corporate Email",
           "placeholder": "Email that customers can contact"
-        }
+        },
+        "configure_later": "Configure later",
+        "save_changes": "Save changes"
       }
     }
   }

@@ -285,7 +285,7 @@
           "placeholder": "Seleccione"
         },
         "configure_later": "Configurar más tarde",
-        "create_channel": "Crear canal"
+        "save_changes": "Guardar los cambios"
       },
       "contact_info": {
         "website_url": {
@@ -294,7 +294,9 @@
         "corporate_email": {
           "label": "Correo electrónico corporativo",
           "placeholder": "Correo electrónico que los clientes pueden contactar"
-        }
+        },
+        "configure_later": "Configurar más tarde",
+        "save_changes": "Guardar los cambios"
       }
     }
   }
