@@ -240,10 +240,11 @@
           "label": "Número de conversaciones",
           "table": {
             "user_messages": "Iniciado por el usuario",
-            "business_messages": "Iniciado por negocio",
+            "business_messages": "Iniciado por el negocio",
             "total": "Total"
           }
-        }
+        },
+        "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte."
       },
       "channel": {
         "title": "Canal de WhatsApp",

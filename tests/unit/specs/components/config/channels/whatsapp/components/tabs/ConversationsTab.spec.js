@@ -1,4 +1,10 @@
 jest.mock('lodash.debounce', () => jest.fn((fn) => fn));
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
 
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -72,6 +78,20 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
           end: event.endDate,
         },
       });
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      actions.getConversations.mockImplementation(() => {
+        throw new Error('error fetching');
+      });
+
+      const event = {
+        startDate: '03-12-22',
+        endDate: '04-13-23',
+      };
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.handleDateFilter(event);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
   });
 });

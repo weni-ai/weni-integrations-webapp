@@ -7,7 +7,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
       <div class="conversations__content__label">
         some specific text
       </div>
-      <unnnicdatefilter-stub dateformat="DD/MM/YYYY" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" class="conversations__content__dropdown-filter"></unnnicdatefilter-stub>
+      <unnnicdatefilter-stub size="sm" dateformat="DD/MM/YYYY" dateseparator="~" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" class="conversations__content__dropdown-filter"></unnnicdatefilter-stub>
       <div class="conversations__content__dropdown-data">
         <!---->
       </div>
@@ -18,7 +18,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
     <conversationstable-stub usermessages="0" businessmessages="0" total="0"></conversationstable-stub>
   </div>
   <div class="conversations__buttons">
-    <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="conversations__buttons__close"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="some specific text" type="secondary" class="conversations__buttons__close"></unnnicbutton-stub>
   </div>
 </div>
 `;

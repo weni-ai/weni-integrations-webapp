@@ -1,8 +1,3 @@
-jest.mock('@weni/unnnic-system', () => ({
-  ...jest.requireActual('@weni/unnnic-system'),
-  unnnicCallAlert: jest.fn(),
-}));
-
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { singleApp } from '../../../../../../__mocks__/appMock.js';
 import i18n from '@/utils/plugins/i18n';

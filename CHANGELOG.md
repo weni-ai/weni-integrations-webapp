@@ -1,3 +1,10 @@
+1.5.1
+----------
+`2022-04-5 · 1 🎉`
+
+### 🎉 New features
+- Feat: Conversations data error handler
+
 1.5.0
 ----------
 `2022-04-4 · 1 🎉`
