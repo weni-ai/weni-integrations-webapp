@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/components/tabs/ContactInfoTab.vue should be rendered properly 1`] = `
+<div class="contact-info">
+  <dynamicform-stub inputs="[object Object],[object Object],[object Object]" class="contact-info__form"></dynamicform-stub>
+  <div class="contact-info__buttons">
+    <unnnicbutton-stub type="terciary" size="large" text="some specific text" class="contact-info__buttons__cancel"></unnnicbutton-stub>
+    <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="contact-info__buttons__save"></unnnicbutton-stub>
+  </div>
+</div>
+`;

@@ -11,6 +11,11 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
       See how many conversations your account has exchanged in a given period.
     </div>
   </div>
-  <unnnictab-stub tabs="conversations" initialtab="conversations" class="config-whatsapp__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
+  <unnnictab-stub tabs="conversations" initialtab="conversations" class="config-whatsapp__tabs"><template></template>
+    <generaltab-stub></generaltab-stub> <template></template>
+    <profiletab-stub></profiletab-stub> <template></template>
+    <contactinfotab-stub></contactinfotab-stub> <template></template>
+    <conversationstab-stub app="[object Object]"></conversationstab-stub>
+  </unnnictab-stub>
 </div>
 `;

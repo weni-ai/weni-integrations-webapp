@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`] = `
+<div class="general-tab">
+  <div class="general-tab__content">
+    <div class="general-tab__content__info">
+      <div class="general-tab__content__info__account">
+        <div class="general-tab__content__info__account__title">
+          some specific text
+        </div>
+        <div class="general-tab__content__info__account__name">
+          <unnniciconsvg-stub icon="single-neutral-2" scheme="neutral-cloudy" size="sm" class="general-tab__content__info__account__name__icon"></unnniciconsvg-stub>
+          <div class="general-tab__content__info__account__name__text">Weni Tecnologia</div>
+        </div>
+        <div class="general-tab__content__info__account__business">
+          Weni Tech - FB 881768118574045
+        </div>
+      </div>
+      <div class="general-tab__content__info__conversations">
+        <div class="general-tab__content__info__conversations__title">
+          some specific text
+        </div>
+        <div class="general-tab__content__info__conversations__time">
+          conversations start at (local time):
+        </div>
+        <div class="general-tab__content__info__conversations__limit">
+          Message per day limit: 10k
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="general-tab__content__section">
+        <div class="general-tab__content__section__title">
+          <statusindicator-stub status="green"></statusindicator-stub> <span class="general-tab__content__section__title__name">
+            some specific text
+          </span>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            +558299620000
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            Weni
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            Pin Verification
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            pt_BR
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            IVR existing
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            IVR active
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            N/A
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            Approved
+          </div>
+        </div>
+      </div>
+      <div class="general-tab__content__section">
+        <div class="general-tab__content__section__title">
+          <statusindicator-stub status="yellow"></statusindicator-stub> <span class="general-tab__content__section__title__name">
+            some specific text
+          </span>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            Weni Tecnologia - FB 881768118500000
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            Weni Tecnologia
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            America/Sao_Paulo
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            372347354000000
+          </div>
+        </div>
+        <div class="general-tab__content__section__field">
+          <div class="general-tab__content__section__field__key">
+            some specific text
+          </div>
+          <div class="general-tab__content__section__field__value">
+            2ee3daabc_0f8e_0000_ae7c_175b808f916
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="general-tab__close-button"></unnnicbutton-stub>
+</div>
+`;

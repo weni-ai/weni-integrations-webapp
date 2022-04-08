@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/components/tabs/ProfileTab.vue should be rendered properly 1`] = `
+<div class="profile-content">
+  <dynamicform-stub inputs="[object Object],[object Object],[object Object],[object Object]" class="profile-content__form"></dynamicform-stub>
+  <div class="profile-content__buttons">
+    <unnnicbutton-stub type="terciary" size="large" text="some specific text" class="profile-content__buttons__cancel"></unnnicbutton-stub>
+    <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="profile-content__buttons__save"></unnnicbutton-stub>
+  </div>
+</div>
+`;
