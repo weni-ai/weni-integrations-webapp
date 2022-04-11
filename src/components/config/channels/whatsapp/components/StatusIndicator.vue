@@ -20,12 +20,12 @@
 <style lang="scss" scoped>
   .status {
     height: 8px;
-    border-radius: 50%;
+    border-radius: $unnnic-border-radius-pill;
     display: inline-block;
 
+    width: 8px;
     min-width: 8px;
     align-self: center;
-    width: 8px;
 
     &.green {
       background-color: $unnnic-color-feedback-green;
