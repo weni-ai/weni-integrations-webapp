@@ -84,4 +84,8 @@
   };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  ::v-deep .scroll {
+    padding-right: 0;
+  }
+</style>

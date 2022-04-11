@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered properly 1`] = `
+<div class="conversations">
+  <div class="conversations__content">
+    <div class="conversations__content__dropdown">
+      <div class="conversations__content__label">
+        some specific text
+      </div>
+      <unnnicdatefilter-stub size="sm" dateformat="DD/MM/YYYY" dateseparator="~" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" class="conversations__content__dropdown-filter"></unnnicdatefilter-stub>
+      <div class="conversations__content__dropdown-data">
+        <!---->
+      </div>
+    </div>
+    <div class="conversations__content__label">
+      some specific text
+    </div>
+    <conversationstable-stub usermessages="0" businessmessages="0" total="0"></conversationstable-stub>
+  </div>
+  <div class="conversations__buttons">
+    <unnnicbutton-stub size="large" text="some specific text" type="secondary" class="conversations__buttons__close"></unnnicbutton-stub>
+  </div>
+</div>
+`;

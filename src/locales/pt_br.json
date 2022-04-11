@@ -239,7 +239,7 @@
           "label": "Número de conversas",
           "table": {
             "user_messages": "Iniciadas pelo usuário",
-            "business_messages": "Iniciadas pelo Negócio",
+            "business_messages": "Iniciadas pelo negócio",
             "total": "Total"
           }
         },
@@ -285,7 +285,7 @@
           "placeholder": "Selecionar"
         },
         "configure_later": "Configurar depois",
-        "create_channel": "Criar Canal"
+        "save_changes": "Salvar alterações"
       },
       "contact_info": {
         "website_url": {
@@ -294,7 +294,9 @@
         "corporate_email": {
           "label": "Email Corporativo",
           "placeholder": "E-mail que os clientes podem entrar em contato"
-        }
+        },
+        "configure_later": "Configurar depois",
+        "save_changes": "Salvar alterações"
       }
     }
   }

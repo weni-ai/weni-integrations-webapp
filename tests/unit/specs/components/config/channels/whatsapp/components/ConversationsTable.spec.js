@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import ConversationsTable from '@/components/config/channels/whatsapp/ConversationsTable.vue';
+import ConversationsTable from '@/components/config/channels/whatsapp/components/ConversationsTable.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
 localVue.use(VueRouter);
-describe('whatsapp/ConversationsTable.vue', () => {
+describe('whatsapp/components/ConversationsTable.vue', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallowMount(ConversationsTable, {

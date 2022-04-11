@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`whatsapp/ConversationsTable.vue should be rendered properly 1`] = `
+exports[`whatsapp/components/ConversationsTable.vue should be rendered properly 1`] = `
 <div class="conversations-table-container">
   <unnnictable-stub items="[object Object]"></unnnictable-stub>
 </div>
