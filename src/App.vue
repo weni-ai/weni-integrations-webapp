@@ -6,6 +6,7 @@
 
 <script>
   import '@weni/unnnic-system';
+  import initHelpHero from 'helphero';
 
   export default {
     name: 'App',
@@ -15,6 +16,9 @@
       };
     },
     mounted() {
+      const hlp = initHelpHero(process.env.VUE_APP_HELPHERO_ID);
+      hlp.anonymous();
+
       window.parent.postMessage(
         {
           event: 'getConnectBaseURL',
