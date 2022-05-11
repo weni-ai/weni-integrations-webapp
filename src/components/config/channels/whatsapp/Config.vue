@@ -12,7 +12,12 @@
       </div>
     </div>
 
-    <unnnic-tab class="config-whatsapp__tabs" :tabs="configTabs" initialTab="conversations">
+    <unnnic-tab
+      v-if="!loading"
+      class="config-whatsapp__tabs"
+      :tabs="configTabs"
+      initialTab="conversations"
+    >
       <template slot="tab-head-general"> {{ $t('WhatsApp.config.tabs.general') }} </template>
       <GeneralTab slot="tab-panel-general" @close="closeConfig" />
 
@@ -29,6 +34,7 @@
       </template>
       <ConversationsTab slot="tab-panel-conversations" :app="app" />
     </unnnic-tab>
+    <skeleton-loading v-else />
   </div>
 </template>
 
@@ -37,10 +43,12 @@
   import ProfileTab from './components/tabs/ProfileTab.vue';
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
+  import skeletonLoading from './loadings/Config.vue';
 
   export default {
     name: 'whatsapp-config',
     components: {
+      skeletonLoading,
       GeneralTab,
       ProfileTab,
       ContactInfoTab,
@@ -53,7 +61,9 @@
       },
     },
     data() {
-      return {};
+      return {
+        loading: false,
+      };
     },
     computed: {
       configTabs() {
