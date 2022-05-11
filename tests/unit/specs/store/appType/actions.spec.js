@@ -14,6 +14,8 @@ jest.mock('@/api/appType', () => {
     deleteApp: jest.fn(),
     getSharedWabas: jest.fn(),
     getConversations: jest.fn(),
+    fetchWppProfile: jest.fn(),
+    updateWppProfile: jest.fn(),
   };
 });
 
@@ -200,6 +202,33 @@ describe('store/appType/actions.js', () => {
         data.code,
         data.appUuid,
         data.params,
+      );
+    });
+
+    it('should call appType.fetchWppProfile', async () => {
+      expect(appTypeApi.fetchWppProfile).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+      };
+      await actions.fetchWppProfile({}, data);
+      expect(appTypeApi.fetchWppProfile).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.fetchWppProfile).toHaveBeenCalledWith(data.code, data.appUuid);
+    });
+
+    it('should call appType.updateWppProfile', async () => {
+      expect(appTypeApi.updateWppProfile).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+        payload: {},
+      };
+      await actions.updateWppProfile({}, data);
+      expect(appTypeApi.updateWppProfile).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.updateWppProfile).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.payload,
       );
     });
   });
