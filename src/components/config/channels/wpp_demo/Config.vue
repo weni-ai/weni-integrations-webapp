@@ -6,6 +6,7 @@
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
     @close="closePopUp"
+    @click.stop
   >
     <span slot="message" v-html="$t('WhatsAppDemo.config.description')"></span>
     <unnnic-button
