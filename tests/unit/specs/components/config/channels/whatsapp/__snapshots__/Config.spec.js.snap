@@ -13,7 +13,7 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
   </div>
   <unnnictab-stub initialtab="conversations" tabs="conversations" class="config-whatsapp__tabs"><template></template>
     <generaltab-stub></generaltab-stub> <template></template>
-    <profiletab-stub app="[object Object]"></profiletab-stub> <template></template>
+    <profiletab-stub></profiletab-stub> <template></template>
     <contactinfotab-stub></contactinfotab-stub> <template></template>
     <conversationstab-stub app="[object Object]"></conversationstab-stub>
   </unnnictab-stub>
