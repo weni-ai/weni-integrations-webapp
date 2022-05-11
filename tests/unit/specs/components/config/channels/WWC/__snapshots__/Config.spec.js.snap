@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Config.vue should be rendered properly 1`] = `
+exports[`wwc/Config.vue should be rendered properly 1`] = `
 <div class="app-config-wwc">
   <div class="app-config-wwc__header">
     <div class="app-config-wwc__header__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-config-wwc__header__icon-container__icon"></div>
