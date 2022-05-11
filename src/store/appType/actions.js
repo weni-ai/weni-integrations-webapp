@@ -56,4 +56,12 @@ export default {
   async getConversations(store, { code, appUuid, params }) {
     return await appType.getConversations(code, appUuid, params);
   },
+
+  async fetchWppProfile(store, { code, appUuid }) {
+    return await appType.fetchWppProfile(code, appUuid);
+  },
+
+  async updateWppProfile(store, { code, appUuid, payload }) {
+    return await appType.updateWppProfile(code, appUuid, payload);
+  },
 };
