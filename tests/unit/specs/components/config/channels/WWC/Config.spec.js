@@ -1,8 +1,14 @@
 import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+import { toBase64 as mockToBase64 } from '@/utils/files';
 
 jest.mock('@weni/unnnic-system', () => ({
   ...jest.requireActual('@weni/unnnic-system'),
   unnnicCallAlert: jest.fn(),
+}));
+
+jest.mock('@/utils/files', () => ({
+  ...jest.requireActual('@/utils/files'),
+  toBase64: jest.fn(),
 }));
 
 import Vuex from 'vuex';
@@ -15,7 +21,7 @@ import i18n from '@/utils/plugins/i18n';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('Config.vue', () => {
+describe('wwc/Config.vue', () => {
   let wrapper;
   let handleColorChangeSpy;
   let toggleSimulatorSpy;
@@ -273,12 +279,12 @@ describe('Config.vue', () => {
     it('should call toBase64 with avatarFile', async () => {
       const file = { data: '123' };
       wrapper.setData({ avatarFile: file });
-      const spy = spyOn(wrapper.vm, 'toBase64');
+      expect(mockToBase64).not.toHaveBeenCalled();
 
       await wrapper.vm.imageForUpload(file);
 
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith(wrapper.vm.avatarFile);
+      expect(mockToBase64).toHaveBeenCalledTimes(1);
+      expect(mockToBase64).toHaveBeenCalledWith(wrapper.vm.avatarFile);
     });
   });
 

@@ -272,9 +272,9 @@
 </template>
 
 <script>
-  import axios from 'axios';
   import { mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
@@ -331,13 +331,13 @@
     /* istanbul ignore next */
     async mounted() {
       if (this.app.config.profileAvatar) {
-        this.avatarFile = await this.dataUrlToFile(this.app.config.profileAvatar, 'avatar.png');
+        this.avatarFile = await dataUrlToFile(this.app.config.profileAvatar, 'avatar.png');
         setTimeout(() => {
           this.$emit('setConfirmation', false);
         }, 250);
       }
       if (this.app.config.customCss) {
-        const file = await this.dataUrlToFile(this.app.config.customCss, 'style.css');
+        const file = await dataUrlToFile(this.app.config.customCss, 'style.css');
         if (file) {
           await this.handleNewCss([file]);
           setTimeout(() => {
@@ -417,7 +417,7 @@
         this.mainColor = color;
       },
       async imageForUpload() {
-        return await this.toBase64(this.avatarFile);
+        return await toBase64(this.avatarFile);
       },
       /* istanbul ignore next */
       handleNewAvatar(files) {
@@ -479,7 +479,7 @@
         }
 
         const fileType = this.getFileType(b64Avatar);
-        this.avatarFile = await this.dataUrlToFile(b64Avatar, fileName, fileType);
+        this.avatarFile = await dataUrlToFile(b64Avatar, fileName, fileType);
         this.simulatorAvatar = b64Avatar;
         this.stopAvatarUploadProgress();
       },
@@ -504,33 +504,6 @@
       },
       getFileType(b64File) {
         return b64File.split(';')[0].split(':')[1];
-      },
-      /* istanbul ignore next */
-      async toBase64(fileUrl) {
-        if (!fileUrl) {
-          return null;
-        }
-
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.readAsDataURL(fileUrl);
-          reader.onload = () => resolve(reader.result);
-          reader.onerror = (error) => reject(error);
-        });
-      },
-      /* istanbul ignore next */
-      async dataUrlToFile(dataUrl, fileName) {
-        if (!dataUrl) {
-          return null;
-        }
-
-        if (!dataUrl.startsWith('data:')) {
-          dataUrl = dataUrl.concat('?file');
-        }
-
-        const res = await axios.get(dataUrl, { responseType: 'blob' });
-        const blob = await res.data;
-        return new File([blob], fileName, { type: res.headers['content-type'] });
       },
       /* istanbul ignore next */
       async downloadScript() {
