@@ -3,6 +3,7 @@ import { singleApp } from '../../../../../../__mocks__/appMock.js';
 import i18n from '@/utils/plugins/i18n';
 
 import whatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
+import skeletonLoading from '@/components/config/channels/whatsapp/loadings/Config.vue';
 
 const localVue = createLocalVue();
 
@@ -17,6 +18,7 @@ describe('WhatsAppConfig.vue', () => {
         app: singleApp,
       },
       stubs: {
+        skeletonLoading,
         DynamicForm: true,
         UnnnicTab: true,
         UnnnicIconSvg: true,
