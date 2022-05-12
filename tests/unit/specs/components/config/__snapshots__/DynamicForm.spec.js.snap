@@ -7,10 +7,10 @@ exports[`DynamicForm.vue should be rendered properly 1`] = `
   </div>
   <div class="dynamic-form__fields">
     <unnnicselect-stub placeholder="some specific text" label="some specific text">
-      <option value="1">
+      <option value="select1">
         select1
       </option>
-      <option value="2">
+      <option value="select2">
         select2
       </option>
     </unnnicselect-stub>

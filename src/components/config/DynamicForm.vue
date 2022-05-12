@@ -18,7 +18,7 @@
         :value="input.value"
         @input="emitInput(index, input, $event)"
       >
-        <option v-for="(option, index) in input.options" :key="index" :value="option.value">
+        <option v-for="option in input.options" :key="option.key" :value="option.value">
           {{ option.text }}
         </option>
       </unnnic-select>
@@ -52,7 +52,9 @@
       emitInput(index, input, value) {
         switch (input.type) {
           case 'select':
-            this.$emit('input', { index, value: input.options[value].value });
+            // eslint-disable-next-line no-case-declarations
+            const option = input.options.find((option) => option.value === value);
+            this.$emit('input', { index, value: option.value });
             break;
           default:
             this.$emit('input', { index, value });
