@@ -25,6 +25,7 @@
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="$t(input.label)" />
         <unnnic-upload-area
+          :files="input.props.files"
           :acceptMultiple="input.props.acceptMultiple"
           :supportedFormats="input.props.supportedFormats"
           :maximumUploads="input.props.maximumUploads"
