@@ -13,22 +13,12 @@
               scheme="neutral-cloudy"
               size="sm"
             />
-            <div class="general-tab__content__info__account__name__text">Weni Tecnologia</div>
+            <div class="general-tab__content__info__account__name__text">
+              {{ fieldHandler(appConfig.phone_number.display_name) }}
+            </div>
           </div>
           <div class="general-tab__content__info__account__business">
-            Weni Tech - FB 881768118574045
-          </div>
-        </div>
-
-        <div class="general-tab__content__info__conversations">
-          <div class="general-tab__content__info__conversations__title">
-            {{ $t('WhatsApp.config.conversations.title') }}
-          </div>
-          <div class="general-tab__content__info__conversations__time">
-            conversations start at (local time):
-          </div>
-          <div class="general-tab__content__info__conversations__limit">
-            Message per day limit: 10k
+            {{ wabaInfo.name }}
           </div>
         </div>
       </div>
@@ -73,13 +63,39 @@
 
 <script>
   import StatusIndicator from '../StatusIndicator.vue';
-
   export default {
     name: 'GeneralTab',
     components: { StatusIndicator },
-    data() {
-      return {
-        generalSections: [
+    props: {
+      appInfo: {
+        type: Object,
+        default: /* istanbul ignore next */ () => {},
+      },
+    },
+    methods: {
+      emitClose() {
+        this.$emit('close');
+      },
+      fieldHandler(field) {
+        return field ?? `-`;
+      },
+    },
+    computed: {
+      wabaInfo() {
+        return this.appInfo?.config?.waba ?? {};
+      },
+      appConfig() {
+        return (
+          this.appInfo?.config ?? {
+            phone_number: {},
+            certificate: null,
+            default_template_language: null,
+            consent_status: null,
+          }
+        );
+      },
+      generalSections() {
+        return [
           {
             name: 'channel',
             status: 'green',
@@ -88,49 +104,31 @@
                 type: 'text',
                 name: 'phone_number',
                 label: 'WhatsApp.config.channel.fields.phone_number',
-                value: '+558299620000',
+                value: this.fieldHandler(this.appConfig.phone_number.display_phone_number),
               },
               {
                 type: 'text',
                 name: 'whatsapp_display_name',
                 label: 'WhatsApp.config.channel.fields.whatsapp_display_name',
-                value: 'Weni',
-              },
-              {
-                type: 'text',
-                name: 'number_registration',
-                label: 'WhatsApp.config.channel.fields.number_registration',
-                value: 'Pin Verification',
+                value: this.fieldHandler(this.appConfig.phone_number.display_name),
               },
               {
                 type: 'text',
                 name: 'default_language_for_templates',
                 label: 'WhatsApp.config.channel.fields.default_language_for_templates',
-                value: 'pt_BR',
-              },
-              {
-                type: 'text',
-                name: 'ivr_existing',
-                label: 'WhatsApp.config.channel.fields.ivr_existing',
-                value: 'IVR existing',
-              },
-              {
-                type: 'text',
-                name: 'ivr_active',
-                label: 'WhatsApp.config.channel.fields.ivr_active',
-                value: 'IVR active',
+                value: this.fieldHandler(this.appConfig.default_template_language),
               },
               {
                 type: 'text',
                 name: 'certificate',
                 label: 'WhatsApp.config.channel.fields.certificate',
-                value: 'N/A',
+                value: this.appConfig.certificate ?? 'N/A',
               },
               {
                 type: 'text',
                 name: 'consent_status',
                 label: 'WhatsApp.config.channel.fields.consent_status',
-                value: 'Approved',
+                value: this.fieldHandler(this.appConfig.consent_status),
               },
             ],
           },
@@ -142,40 +140,35 @@
                 type: 'text',
                 name: 'waba_name',
                 label: 'WhatsApp.config.business_account.fields.waba_name',
-                value: 'Weni Tecnologia - FB 881768118500000',
+                value: this.fieldHandler(this.wabaInfo.name),
               },
               {
                 type: 'text',
                 name: 'message_on_behalf_of',
                 label: 'WhatsApp.config.business_account.fields.message_on_behalf_of',
-                value: 'Weni Tecnologia',
+                value: this.fieldHandler(this.wabaInfo.message_behalf_name),
               },
               {
                 type: 'text',
                 name: 'timezone_id',
                 label: 'WhatsApp.config.business_account.fields.timezone_id',
-                value: 'America/Sao_Paulo',
+                value: this.fieldHandler(this.wabaInfo.timezone),
               },
               {
                 type: 'text',
                 name: 'waba_id',
                 label: 'WhatsApp.config.business_account.fields.waba_id',
-                value: '372347354000000',
+                value: this.fieldHandler(this.wabaInfo.id),
               },
               {
                 type: 'text',
                 name: 'namespace',
                 label: 'WhatsApp.config.business_account.fields.namespace',
-                value: '2ee3daabc_0f8e_0000_ae7c_175b808f916',
+                value: this.fieldHandler(this.wabaInfo.namespace),
               },
             ],
           },
-        ],
-      };
-    },
-    methods: {
-      emitClose() {
-        this.$emit('close');
+        ];
       },
     },
   };
@@ -192,12 +185,12 @@
       flex-direction: column;
       padding-right: $unnnic-spacing-inline-sm;
       overflow-x: hidden;
+      flex: 1;
 
       &__info {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        // margin-bottom: $unnnic-spacing-stack-md;
 
         &__account,
         &__conversations {
@@ -218,7 +211,6 @@
             font-size: $unnnic-font-size-body-gt;
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
             color: $unnnic-color-neutral-cloudy;
-            margin-bottom: $unnnic-spacing-stack-xs;
 
             &__icon {
               margin-right: $unnnic-inline-nano;
@@ -230,11 +222,11 @@
           }
 
           &__business,
-          &__time,
           &__limit {
             font-size: $unnnic-font-size-body-gt;
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
             color: $unnnic-color-neutral-cloudy;
+            margin-top: $unnnic-spacing-stack-xs;
           }
         }
 
@@ -248,7 +240,6 @@
         flex-direction: column;
         flex-basis: 100%;
         gap: $unnnic-spacing-inline-sm;
-        // margin-bottom: $unnnic-spacing-stack-sm;
 
         &__title {
           display: flex;

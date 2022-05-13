@@ -10,21 +10,12 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
         </div>
         <div class="general-tab__content__info__account__name">
           <unnniciconsvg-stub icon="single-neutral-2" scheme="neutral-cloudy" size="sm" class="general-tab__content__info__account__name__icon"></unnniciconsvg-stub>
-          <div class="general-tab__content__info__account__name__text">Weni Tecnologia</div>
+          <div class="general-tab__content__info__account__name__text">
+            Number Name
+          </div>
         </div>
         <div class="general-tab__content__info__account__business">
-          Weni Tech - FB 881768118574045
-        </div>
-      </div>
-      <div class="general-tab__content__info__conversations">
-        <div class="general-tab__content__info__conversations__title">
-          some specific text
-        </div>
-        <div class="general-tab__content__info__conversations__time">
-          conversations start at (local time):
-        </div>
-        <div class="general-tab__content__info__conversations__limit">
-          Message per day limit: 10k
+          Waba name
         </div>
       </div>
     </div>
@@ -40,7 +31,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            +558299620000
+            +5511999999999
           </div>
         </div>
         <div class="general-tab__content__section__field">
@@ -48,7 +39,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            Weni
+            Number Name
           </div>
         </div>
         <div class="general-tab__content__section__field">
@@ -56,31 +47,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            Pin Verification
-          </div>
-        </div>
-        <div class="general-tab__content__section__field">
-          <div class="general-tab__content__section__field__key">
-            some specific text
-          </div>
-          <div class="general-tab__content__section__field__value">
-            pt_BR
-          </div>
-        </div>
-        <div class="general-tab__content__section__field">
-          <div class="general-tab__content__section__field__key">
-            some specific text
-          </div>
-          <div class="general-tab__content__section__field__value">
-            IVR existing
-          </div>
-        </div>
-        <div class="general-tab__content__section__field">
-          <div class="general-tab__content__section__field__key">
-            some specific text
-          </div>
-          <div class="general-tab__content__section__field__value">
-            IVR active
+            -
           </div>
         </div>
         <div class="general-tab__content__section__field">
@@ -96,7 +63,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            Approved
+            -
           </div>
         </div>
       </div>
@@ -111,7 +78,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            Weni Tecnologia - FB 881768118500000
+            Waba name
           </div>
         </div>
         <div class="general-tab__content__section__field">
@@ -119,7 +86,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            Weni Tecnologia
+            on behalf name
           </div>
         </div>
         <div class="general-tab__content__section__field">
@@ -135,7 +102,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            372347354000000
+            123
           </div>
         </div>
         <div class="general-tab__content__section__field">
@@ -143,7 +110,7 @@ exports[`whatsapp/components/tabs/GeneralTab.vue should be rendered properly 1`]
             some specific text
           </div>
           <div class="general-tab__content__section__field__value">
-            2ee3daabc_0f8e_0000_ae7c_175b808f916
+            123123123123123
           </div>
         </div>
       </div>
