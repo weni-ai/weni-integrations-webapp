@@ -16,29 +16,45 @@
         type="secondary"
         size="large"
         :text="$t('WhatsApp.config.profile.save_changes')"
-        @click="() => this.$emit('save')"
+        @click="saveProfile"
       />
     </div>
   </div>
 </template>
 
 <script>
-  import DynamicForm from '../../../../DynamicForm';
+  import DynamicForm from '@/components/config/DynamicForm';
+  import removeEmpty from '@/utils/clean.js';
+  import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
+  import { mapActions } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'ProfileTab',
     components: { DynamicForm },
+    props: {
+      app: {
+        type: Object,
+        default: /* istanbul ignore next */ () => {},
+      },
+      profile: {
+        type: Object,
+        default: /* istanbul ignore next */ () => {},
+      },
+    },
     data() {
       return {
+        modifiedInitialPhoto: false,
         profileInputs: [
           {
             type: 'upload',
             name: 'profile_image',
             label: 'WhatsApp.config.profile.profile_image.label',
-            value: null,
+            value: Array.of(this.profile.photoFile).filter((e) => e),
             props: {
+              files: Array.of(this.profile.photoFile).filter((e) => e),
               acceptMultiple: false,
-              supportedFormats: '.png,.jpeg',
+              supportedFormats: '.jpg,.jpeg,.png',
               maximumUploads: 1,
               filesProgress: [],
               isUploading: false,
@@ -51,35 +67,121 @@
             name: 'status',
             label: 'WhatsApp.config.profile.status.label',
             placeholder: 'WhatsApp.config.profile.status.placeholder',
-            value: null,
+            value: this.profile.status,
           },
           {
             type: 'input',
             name: 'description',
             label: 'WhatsApp.config.profile.description.label',
             placeholder: 'WhatsApp.config.profile.description.placeholder',
-            value: null,
+            value: this.profile.business?.description,
           },
           {
             type: 'select',
             name: 'sector',
             label: 'WhatsApp.config.profile.sector.label',
             placeholder: 'WhatsApp.config.profile.sector.placeholder',
-            value: null,
-            options: [
-              { value: '1', text: 'option1' },
-              { value: '2', text: 'option2' },
-              { value: '3', text: 'option3' },
-              { value: '4', text: 'option4' },
-              { value: '5', text: 'option5' },
-            ],
+            value: this.profile.business?.vertical,
+            options: this.profile.business?.vertical_choices.map((value) => {
+              return {
+                value: value,
+                text: value,
+              };
+            }),
           },
         ],
       };
     },
+    watch: {
+      profileInputs: {
+        handler: function (val) {
+          const photoIndex = val.indexOf(val.find((input) => input.name === 'profile_image'));
+          if (val[photoIndex].value[0]?.lastModified !== this.profile.photoFile?.lastModified) {
+            this.modifiedInitialPhoto = true;
+          }
+        },
+        deep: true,
+      },
+    },
     methods: {
+      ...mapActions(['updateWppProfile', 'deleteWppProfilePhoto']),
       updateInputs(inputData) {
         this.profileInputs[inputData.index].value = inputData.value;
+      },
+      async isValidPhotoSize(b64ProfilePhoto) {
+        const { height, width } = await getHeightAndWidthFromDataUrl(b64ProfilePhoto);
+        if (this.modifiedInitialPhoto && (height < 192 || width < 192)) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.invalid_photo_size'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+
+          return false;
+        }
+        return true;
+      },
+      async saveProfile() {
+        try {
+          const photoIndex = this.profileInputs.findIndex(
+            (input) => input.name === 'profile_image',
+          );
+          const photo = this.profileInputs[photoIndex].value[0];
+
+          if (!photo) {
+            const data = { code: this.app.code, appUuid: this.app.uuid };
+            await this.deleteWppProfilePhoto(data);
+          }
+
+          const b64ProfilePhoto = photo ? await toBase64(photo) : null;
+
+          const validSize = await this.isValidPhotoSize(b64ProfilePhoto);
+          if (!validSize) {
+            return;
+          }
+
+          const payload = {
+            photo: this.modifiedInitialPhoto ? b64ProfilePhoto : null,
+            status: this.profileInputs.find((input) => input.name === 'status').value,
+            business: {
+              description: this.profileInputs.find((input) => input.name === 'description').value,
+              vertical: this.profileInputs.find((input) => input.name === 'sector').value,
+            },
+          };
+
+          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          await this.updateWppProfile(data);
+
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.success.profile_updated'),
+              title: 'Success',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        } catch (e) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        }
       },
     },
   };
@@ -97,6 +199,8 @@
       flex-direction: column;
       overflow-x: hidden;
       flex: 1;
+
+      padding-right: $unnnic-spacing-inline-xs;
     }
 
     &__buttons {
