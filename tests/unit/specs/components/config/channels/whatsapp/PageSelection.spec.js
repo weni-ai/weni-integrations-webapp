@@ -32,6 +32,7 @@ describe('whatsapp/PageSelection.vue', () => {
       stubs: {
         UnnnicModal: true,
         UnnnicButton: true,
+        UnnnicSelect: true,
       },
     });
   });
