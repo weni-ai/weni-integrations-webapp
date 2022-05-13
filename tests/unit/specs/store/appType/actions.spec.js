@@ -16,6 +16,7 @@ jest.mock('@/api/appType', () => {
     getConversations: jest.fn(),
     fetchWppProfile: jest.fn(),
     updateWppProfile: jest.fn(),
+    deleteWppProfilePhoto: jest.fn(),
   };
 });
 
@@ -230,6 +231,17 @@ describe('store/appType/actions.js', () => {
         data.appUuid,
         data.payload,
       );
+    });
+
+    it('should call deleteWppProfilePhoto', async () => {
+      expect(appTypeApi.deleteWppProfilePhoto).not.toHaveBeenCalled();
+      const data = {
+        code: 'code',
+        appUuid: '123',
+      };
+      await actions.deleteWppProfilePhoto({}, data);
+      expect(appTypeApi.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
+      expect(appTypeApi.deleteWppProfilePhoto).toHaveBeenCalledWith(data.code, data.appUuid);
     });
   });
 });

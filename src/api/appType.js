@@ -56,4 +56,7 @@ export default {
   updateWppProfile(appCode, appUuid, data) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/profile/`, data);
   },
+  deleteWppProfilePhoto(appCode, appUuid) {
+    return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/profile/`);
+  },
 };

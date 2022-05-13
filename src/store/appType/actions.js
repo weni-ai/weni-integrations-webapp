@@ -64,4 +64,8 @@ export default {
   async updateWppProfile(store, { code, appUuid, payload }) {
     return await appType.updateWppProfile(code, appUuid, payload);
   },
+
+  async deleteWppProfilePhoto(store, { code, appUuid }) {
+    return await appType.deleteWppProfilePhoto(code, appUuid);
+  },
 };
