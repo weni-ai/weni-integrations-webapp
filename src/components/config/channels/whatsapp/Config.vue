@@ -44,6 +44,9 @@
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import skeletonLoading from './loadings/Config.vue';
+  import { mapActions } from 'vuex';
+  import { dataUrlToFile } from '@/utils/files';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'whatsapp-config',
@@ -62,8 +65,14 @@
     },
     data() {
       return {
-        loading: false,
+        appInfo: null,
+        appProfile: null,
+        loading: true,
       };
+    },
+    async mounted() {
+      await this.fetchData();
+
     },
     computed: {
       configTabs() {
@@ -71,12 +80,39 @@
       },
     },
     methods: {
+      ...mapActions(['getApp', 'fetchWppProfile']),
       closeConfig() {
         this.$emit('closeModal');
       },
-      /* istanbul ignore next */
-      saveConfig() {
-        console.log('saved');
+      async fetchData() {
+        try {
+          this.loading = true;
+          const options = { code: this.app.code, appUuid: this.app.uuid };
+          await this.fetchAppInfo(options);
+          await this.fetchProfile(options);
+          this.loading = false;
+        } catch (error) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        }
+      },
+      async fetchAppInfo(options) {
+        const { data } = await this.getApp(options);
+        this.appInfo = data;
+      },
+      async fetchProfile(options) {
+        const { data } = await this.fetchWppProfile(options);
+        data.photoFile = await dataUrlToFile(data.photo_url, 'photo.jpg', true);
+        this.appProfile = data;
       },
     },
   };
