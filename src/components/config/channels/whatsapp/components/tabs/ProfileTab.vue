@@ -141,7 +141,7 @@
 
           const b64ProfilePhoto = photo ? await toBase64(photo) : null;
 
-          const validSize = await this.isValidPhotoSize(b64ProfilePhoto);
+          const validSize = b64ProfilePhoto ? await this.isValidPhotoSize(b64ProfilePhoto) : true;
           if (!validSize) {
             return;
           }
