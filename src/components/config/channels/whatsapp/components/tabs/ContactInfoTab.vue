@@ -60,14 +60,19 @@
   .contact-info {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    gap: $unnnic-inline-xs;
+    height: 100%;
 
     &__form {
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
       flex: 1;
+
+      padding-right: $unnnic-spacing-inline-xs;
     }
 
     &__buttons {
-      // padding-right: $unnnic-spacing-inline-xs;
       margin-top: $unnnic-spacing-stack-sm;
       display: flex;
 
