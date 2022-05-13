@@ -27,4 +27,17 @@ async function toBase64(fileUrl) {
   });
 }
 
-export { dataUrlToFile, toBase64 };
+async function getHeightAndWidthFromDataUrl(dataURL) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      resolve({
+        height: img.height,
+        width: img.width,
+      });
+    };
+    img.src = dataURL;
+  });
+}
+
+export { dataUrlToFile, toBase64, getHeightAndWidthFromDataUrl };
