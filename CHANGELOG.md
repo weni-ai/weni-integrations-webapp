@@ -1,3 +1,27 @@
+1.6.0
+----------
+`2022-05-13 · 5 🐛 · 8 🎉 · 1 ⚙️`
+
+### ⚙️ Improvements
+- Refactor: Whatsapp config
+
+### 🎉 New features
+- Feat: WhatsApp Profile API actions
+- Feat: Files utils
+- Feat: Wpp skeleton loading
+- Feat: Function to get image height and width from img src
+- Feat: Delete WhatsApp profile photo action
+- Feat: WhatsApp backend data fetch integration 
+- Feat: Removed mocked data from general tab
+- Feat: WhatsApp profile tab form
+
+### 🐛 Bug fixes
+- Fix: Dynamic form select options 
+- Fix: Add stop modifier on modal click
+- Fix: Missing upload files input prop
+- Fix: Contact info button positioning
+- Fix: Page selection missing unnnic-select stub
+
 1.5.1
 ----------
 `2022-04-5 · 1 🎉`
