@@ -16,13 +16,13 @@
       v-if="!loading"
       class="config-whatsapp__tabs"
       :tabs="configTabs"
-      initialTab="conversations"
+      initialTab="general"
     >
       <template slot="tab-head-general"> {{ $t('WhatsApp.config.tabs.general') }} </template>
-      <GeneralTab slot="tab-panel-general" @close="closeConfig" />
+      <GeneralTab :appInfo="appInfo" slot="tab-panel-general" @close="closeConfig" />
 
       <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
-      <ProfileTab slot="tab-panel-profile" @close="closeConfig" @save="saveConfig" />
+      <ProfileTab slot="tab-panel-profile" :app="app" :profile="appProfile" @close="closeConfig" />
 
       <template slot="tab-head-contact_info">
         {{ $t('WhatsApp.config.tabs.contact_info') }}
@@ -72,15 +72,28 @@
     },
     async mounted() {
       await this.fetchData();
-
+      this.headerScrollBehavior();
     },
     computed: {
       configTabs() {
-        return ['conversations'];
+        return ['general', 'profile', 'conversations'];
       },
     },
     methods: {
       ...mapActions(['getApp', 'fetchWppProfile']),
+      /* istanbul ignore next */
+      headerScrollBehavior() {
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+        if (tabHeader) {
+          tabHeader.addEventListener('wheel', (event) => {
+            event.preventDefault();
+
+            tabHeader.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          });
+        }
+      },
       closeConfig() {
         this.$emit('closeModal');
       },
@@ -197,6 +210,27 @@
         flex-direction: column;
         width: -webkit-fill-available;
         width: -moz-available;
+      }
+      ::v-deep .tab-header {
+        .tab-content {
+          overflow-y: hidden;
+          overflow-x: auto;
+        }
+
+        .tab-head {
+          white-space: nowrap;
+        }
+
+        ::-webkit-scrollbar {
+          height: $unnnic-border-width-thick;
+        }
+        ::-webkit-scrollbar-track {
+          background: $unnnic-color-neutral-soft;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: $unnnic-color-neutral-clean;
+          border-radius: $unnnic-border-radius-md;
+        }
       }
     }
   }
