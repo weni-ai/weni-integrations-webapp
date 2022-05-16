@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`whatsapp/components/StatusIndicator.vue should be rendered properly 1`] = `<span class="status green"></span>`;

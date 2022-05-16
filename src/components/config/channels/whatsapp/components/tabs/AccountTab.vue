@@ -30,7 +30,6 @@
           class="account-tab__content__section"
         >
           <div class="account-tab__content__section__title">
-            <StatusIndicator :status="section.status" />
             <span class="account-tab__content__section__title__name">
               {{ $t(`WhatsApp.config.${section.name}.title`) }}
             </span>
@@ -62,10 +61,8 @@
 </template>
 
 <script>
-  import StatusIndicator from '../StatusIndicator.vue';
   export default {
     name: 'AccountTab',
-    components: { StatusIndicator },
     props: {
       appInfo: {
         type: Object,
