@@ -1,12 +1,12 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import GeneralTab from '@/components/config/channels/whatsapp/components/tabs/GeneralTab.vue';
+import AccountTab from '@/components/config/channels/whatsapp/components/tabs/AccountTab.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
-describe('whatsapp/components/tabs/GeneralTab.vue', () => {
+describe('whatsapp/components/tabs/AccountTab.vue', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = shallowMount(GeneralTab, {
+    wrapper = shallowMount(AccountTab, {
       localVue,
       i18n,
       mocks: {
