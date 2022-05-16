@@ -14,7 +14,7 @@
               size="sm"
             />
             <div class="account-tab__content__info__account__name__text">
-              {{ fieldHandler(appConfig.phone_number.display_name) }}
+              {{ fieldHandler(phoneNumber.display_name) }}
             </div>
           </div>
           <div class="account-tab__content__info__account__business">
@@ -81,6 +81,9 @@
       },
     },
     computed: {
+      phoneNumber() {
+        return this.appInfo?.config?.phone_number ?? {};
+      },
       wabaInfo() {
         return this.appInfo?.config?.waba ?? {};
       },
@@ -104,13 +107,13 @@
                 type: 'text',
                 name: 'phone_number',
                 label: 'WhatsApp.config.channel.fields.phone_number',
-                value: this.fieldHandler(this.appConfig.phone_number.display_phone_number),
+                value: this.fieldHandler(this.phoneNumber.display_phone_number),
               },
               {
                 type: 'text',
                 name: 'whatsapp_display_name',
                 label: 'WhatsApp.config.channel.fields.whatsapp_display_name',
-                value: this.fieldHandler(this.appConfig.phone_number.display_name),
+                value: this.fieldHandler(this.phoneNumber.display_name),
               },
               {
                 type: 'text',
