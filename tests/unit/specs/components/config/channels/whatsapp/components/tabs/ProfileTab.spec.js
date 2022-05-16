@@ -59,7 +59,7 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
       propsData: {
         app: singleApp,
         profile: {
-          photoFile: null,
+          photoFile: 'photo',
           status: 'status',
           business: {
             description: 'description',
@@ -143,6 +143,30 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
 
   describe('saveProfile()', () => {
     it('should call deleteWppProfilePhoto if no photo is provided', async () => {
+      wrapper = shallowMount(ProfileTab, {
+        localVue,
+        store,
+        i18n,
+        mocks: {
+          $t: () => 'some specific text',
+        },
+        stubs: {
+          DynamicForm: true,
+          UnnnicButton: true,
+        },
+        propsData: {
+          app: singleApp,
+          profile: {
+            photoFile: null,
+            status: 'status',
+            business: {
+              description: 'description',
+              vertical: 'option1',
+              vertical_choices: ['option1', 'option2'],
+            },
+          },
+        },
+      });
       expect(actions.deleteWppProfilePhoto).not.toHaveBeenCalled();
       await wrapper.vm.saveProfile();
       expect(actions.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
@@ -157,6 +181,7 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
 
     it('should call isValidPhotoSize() if photo is provided', async () => {
       wrapper.vm.updateInputs({ index: 0, value: ['photo'] });
+      mockToBase64.mockImplementation(() => Promise.resolve('b64photo'));
       const spy = spyOn(wrapper.vm, 'isValidPhotoSize');
       expect(spy).not.toHaveBeenCalled();
       await wrapper.vm.saveProfile();
