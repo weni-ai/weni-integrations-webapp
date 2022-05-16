@@ -29,6 +29,7 @@
           :acceptMultiple="input.props.acceptMultiple"
           :supportedFormats="input.props.supportedFormats"
           :maximumUploads="input.props.maximumUploads"
+          :maxFileSize="input.props.maxFileSize"
           :filesProgress="input.props.filesProgress"
           :isUploading="input.props.isUploading"
           :canImport="input.props.canImport"
