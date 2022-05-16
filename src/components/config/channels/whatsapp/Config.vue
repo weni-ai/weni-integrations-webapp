@@ -16,10 +16,10 @@
       v-if="!loading"
       class="config-whatsapp__tabs"
       :tabs="configTabs"
-      initialTab="general"
+      initialTab="account"
     >
-      <template slot="tab-head-general"> {{ $t('WhatsApp.config.tabs.general') }} </template>
-      <GeneralTab :appInfo="appInfo" slot="tab-panel-general" @close="closeConfig" />
+      <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
+      <AccountTab :appInfo="appInfo" slot="tab-panel-account" @close="closeConfig" />
 
       <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
       <ProfileTab slot="tab-panel-profile" :app="app" :profile="appProfile" @close="closeConfig" />
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import GeneralTab from './components/tabs/GeneralTab.vue';
+  import AccountTab from './components/tabs/AccountTab.vue';
   import ProfileTab from './components/tabs/ProfileTab.vue';
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
@@ -52,7 +52,7 @@
     name: 'whatsapp-config',
     components: {
       skeletonLoading,
-      GeneralTab,
+      AccountTab,
       ProfileTab,
       ContactInfoTab,
       ConversationsTab,
@@ -76,7 +76,7 @@
     },
     computed: {
       configTabs() {
-        return ['general', 'profile', 'conversations'];
+        return ['account', 'profile', 'conversations'];
       },
     },
     methods: {

@@ -1,23 +1,23 @@
 <template>
-  <div class="general-tab">
-    <div class="general-tab__content">
-      <div class="general-tab__content__info">
-        <div class="general-tab__content__info__account">
-          <div class="general-tab__content__info__account__title">
+  <div class="account-tab">
+    <div class="account-tab__content">
+      <div class="account-tab__content__info">
+        <div class="account-tab__content__info__account">
+          <div class="account-tab__content__info__account__title">
             {{ $t('WhatsApp.config.account.title') }}
           </div>
-          <div class="general-tab__content__info__account__name">
+          <div class="account-tab__content__info__account__name">
             <unnnic-icon-svg
-              class="general-tab__content__info__account__name__icon"
+              class="account-tab__content__info__account__name__icon"
               icon="single-neutral-2"
               scheme="neutral-cloudy"
               size="sm"
             />
-            <div class="general-tab__content__info__account__name__text">
+            <div class="account-tab__content__info__account__name__text">
               {{ fieldHandler(appConfig.phone_number.display_name) }}
             </div>
           </div>
-          <div class="general-tab__content__info__account__business">
+          <div class="account-tab__content__info__account__business">
             {{ wabaInfo.name }}
           </div>
         </div>
@@ -25,13 +25,13 @@
 
       <div>
         <div
-          v-for="(section, index) in generalSections"
+          v-for="(section, index) in accountSections"
           :key="index"
-          class="general-tab__content__section"
+          class="account-tab__content__section"
         >
-          <div class="general-tab__content__section__title">
+          <div class="account-tab__content__section__title">
             <StatusIndicator :status="section.status" />
-            <span class="general-tab__content__section__title__name">
+            <span class="account-tab__content__section__title__name">
               {{ $t(`WhatsApp.config.${section.name}.title`) }}
             </span>
           </div>
@@ -39,12 +39,12 @@
           <div
             v-for="(field, i) in section.fields"
             :key="i"
-            class="general-tab__content__section__field"
+            class="account-tab__content__section__field"
           >
-            <div class="general-tab__content__section__field__key">
+            <div class="account-tab__content__section__field__key">
               {{ $t(field.label) }}
             </div>
-            <div class="general-tab__content__section__field__value">
+            <div class="account-tab__content__section__field__value">
               {{ field.value }}
             </div>
           </div>
@@ -52,7 +52,7 @@
       </div>
     </div>
     <unnnic-button
-      class="general-tab__close-button"
+      class="account-tab__close-button"
       type="secondary"
       size="large"
       :text="$t('general.Close')"
@@ -64,7 +64,7 @@
 <script>
   import StatusIndicator from '../StatusIndicator.vue';
   export default {
-    name: 'GeneralTab',
+    name: 'AccountTab',
     components: { StatusIndicator },
     props: {
       appInfo: {
@@ -94,7 +94,7 @@
           }
         );
       },
-      generalSections() {
+      accountSections() {
         return [
           {
             name: 'channel',
@@ -175,7 +175,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .general-tab {
+  .account-tab {
     display: flex;
     flex-direction: column;
     height: 100%;
