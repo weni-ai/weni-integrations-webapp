@@ -56,6 +56,7 @@
               acceptMultiple: false,
               supportedFormats: '.jpg,.jpeg,.png',
               maximumUploads: 1,
+              maxFileSize: 5,
               filesProgress: [],
               isUploading: false,
               canImport: true,
