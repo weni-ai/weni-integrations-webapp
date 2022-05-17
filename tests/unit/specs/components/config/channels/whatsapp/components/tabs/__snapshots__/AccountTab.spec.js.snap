@@ -21,11 +21,9 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
     </div>
     <div>
       <div class="account-tab__content__section">
-        <div class="account-tab__content__section__title">
-          <statusindicator-stub status="green"></statusindicator-stub> <span class="account-tab__content__section__title__name">
+        <div class="account-tab__content__section__title"><span class="account-tab__content__section__title__name">
             some specific text
-          </span>
-        </div>
+          </span></div>
         <div class="account-tab__content__section__field">
           <div class="account-tab__content__section__field__key">
             some specific text
@@ -68,11 +66,9 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
         </div>
       </div>
       <div class="account-tab__content__section">
-        <div class="account-tab__content__section__title">
-          <statusindicator-stub status="yellow"></statusindicator-stub> <span class="account-tab__content__section__title__name">
+        <div class="account-tab__content__section__title"><span class="account-tab__content__section__title__name">
             some specific text
-          </span>
-        </div>
+          </span></div>
         <div class="account-tab__content__section__field">
           <div class="account-tab__content__section__field__key">
             some specific text
