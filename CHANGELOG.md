@@ -1,3 +1,21 @@
+1.6.2
+----------
+`2022-05-17 · 4 🐛 · 3 🎉 · 1 🔧
+
+### 🔧 Improvements
+- Chore: Bump unnnic to v1.4.5 
+
+### 🎉 New Features
+- Feat: Modify GeneralTab into AccountTab
+- Feat: WhatsApp max photo size
+- Feat: Update WhatsApp locales
+
+### 🐛 Bug fixes
+- Fix: Missing profileTab tests
+- Fix: Removed mocked status indicator
+- Fix: Handle empty phone number
+- Fix: AppDetailsComment snapshot
+
 1.6.1
 ----------
 `2022-05-13 · 1 🐛 
@@ -7,9 +25,9 @@
 
 1.6.0
 ----------
-`2022-05-13 · 5 🐛 · 8 🎉 · 1 ⚙️`
+`2022-05-13 · 5 🐛 · 8 🎉 · 1 🔧`
 
-### ⚙️ Improvements
+### 🔧 Improvements
 - Refactor: Whatsapp config
 
 ### 🎉 New features
