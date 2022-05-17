@@ -115,7 +115,8 @@
     },
     "invalid": {
       "text": ", inténtalo de nuevo",
-      "highlight": "Archivo inválido"
+      "highlight": "Archivo inválido",
+      "subtitle": "El archivo no es compatible."
     },
     "subtitle": "Formatos compatibles"
   },
@@ -220,7 +221,7 @@
     },
     "config": {
       "tabs": {
-        "general": "General",
+        "account": "Cuenta WhatsApp",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
         "conversations": "Conversaciones"
@@ -229,7 +230,11 @@
         "text": "Vea cuántas conversaciones ha intercambiado su cuenta en un período determinado."
       },
       "account": {
-        "title": "Cuenta"
+        "title": "Cuenta",
+        "message_per_day_limit": "Límite diario de mensajes"
+      },
+      "billing": {
+        "title": "Datos de facturación"
       },
       "conversations": {
         "title": "Información de conversaciones",
@@ -298,6 +303,13 @@
         },
         "configure_later": "Configurar más tarde",
         "save_changes": "Guardar los cambios"
+      },
+      "success": {
+        "profile_updated": "Perfil de WhatsApp actualizado con éxito"
+      },
+      "error": {
+        "invalid_photo_size": "La foto importada debe tener al menos 192x192 píxeles",
+        "data_fetch": "No se pudieron recuperar los datos de WhatsApp. Por favor contacte al equipo de soporte."
       }
     }
   }
