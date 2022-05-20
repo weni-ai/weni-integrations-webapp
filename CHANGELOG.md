@@ -1,6 +1,19 @@
+1.6.3
+----------
+`2022-05-20 · 3 🎉 · 2 🔧`
+
+### 🔧 Improvements
+- Improve: WhatsApp Profile Tab input find
+- Improve: removeEmpty util function with better array handling
+
+### 🎉 New Features
+- Feat: WhatsApp store actions
+- Feat: Contact info backend integration
+- Feat: Helphero
+
 1.6.2
 ----------
-`2022-05-17 · 4 🐛 · 3 🎉 · 1 🔧
+`2022-05-17 · 4 🐛 · 3 🎉 · 1 🔧`
 
 ### 🔧 Improvements
 - Chore: Bump unnnic to v1.4.5 
@@ -18,7 +31,7 @@
 
 1.6.1
 ----------
-`2022-05-13 · 1 🐛 
+`2022-05-13 · 1 🐛`
 
 ### 🐛 Bug fixes
 - Fix: Better image handler when null
