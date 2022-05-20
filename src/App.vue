@@ -16,8 +16,10 @@
       };
     },
     mounted() {
-      const hlp = initHelpHero(process.env.VUE_APP_HELPHERO_ID);
-      hlp.anonymous();
+      if (process.env.VUE_APP_HELPHERO_ID) {
+        const hlp = initHelpHero(process.env.VUE_APP_HELPHERO_ID);
+        hlp.anonymous();
+      }
 
       window.parent.postMessage(
         {
