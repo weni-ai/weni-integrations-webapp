@@ -287,11 +287,15 @@
       },
       "contact_info": {
         "website_url": {
-          "label": "Website"
+          "label": "Websites:"
         },
-        "corporate_email": {
-          "label": "Corporate Email",
+        "email": {
+          "label": "Corporate Email:",
           "placeholder": "Email that customers can contact"
+        },
+        "address": {
+          "label": "Address:",
+          "placeholder": "Your business address"
         },
         "configure_later": "Configure later",
         "save_changes": "Save changes"
@@ -301,7 +305,8 @@
       },
       "error": {
         "invalid_photo_size": "Imported photo must be at least 192x192 pixels",
-        "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team."
+        "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
+        "data_update": "Failed to update WhatsApp data."
       }
     }
   }

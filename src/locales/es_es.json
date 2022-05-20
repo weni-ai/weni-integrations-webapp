@@ -295,11 +295,15 @@
       },
       "contact_info": {
         "website_url": {
-          "label": "Sitio web"
+          "label": "Sitios web:"
         },
-        "corporate_email": {
-          "label": "Correo electrónico corporativo",
+        "email": {
+          "label": "Correo electrónico corporativo:",
           "placeholder": "Correo electrónico que los clientes pueden contactar"
+        },
+        "address": {
+          "label": "Dirección:",
+          "placeholder": "Tu dirección comercial"
         },
         "configure_later": "Configurar más tarde",
         "save_changes": "Guardar los cambios"
@@ -309,7 +313,8 @@
       },
       "error": {
         "invalid_photo_size": "La foto importada debe tener al menos 192x192 píxeles",
-        "data_fetch": "No se pudieron recuperar los datos de WhatsApp. Por favor contacte al equipo de soporte."
+        "data_fetch": "No se pudieron recuperar los datos de WhatsApp. Por favor contacte al equipo de soporte.",
+        "data_update": "Error al actualizar los datos de WhatsApp."
       }
     }
   }
