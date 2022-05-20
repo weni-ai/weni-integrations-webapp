@@ -1,6 +1,12 @@
 <template>
   <div class="contact-info">
-    <dynamic-form class="contact-info__form" :inputs="contactInfoInputs" @input="updateInputs" />
+    <dynamic-form
+      v-if="!loadingContactInfo"
+      class="contact-info__form"
+      :inputs="contactInfoInputs"
+      @input="updateInputs"
+    />
+    <skeleton-loading v-else />
 
     <div class="contact-info__buttons">
       <unnnic-button
@@ -16,41 +22,141 @@
         type="secondary"
         size="large"
         :text="$t('WhatsApp.config.contact_info.save_changes')"
-        @click="() => this.$emit('save')"
+        @click="saveContactInfo"
       ></unnnic-button>
     </div>
   </div>
 </template>
 
 <script>
-  import DynamicForm from '../../../../DynamicForm';
+  import skeletonLoading from './loadings/ContactInfoTab.vue';
+  import DynamicForm from '@/components/config/DynamicForm.vue';
+  import removeEmpty from '@/utils/clean.js';
+  import { mapActions, mapGetters } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'ContactInfoTab',
-    components: { DynamicForm },
+    components: { DynamicForm, skeletonLoading },
+    props: {
+      app: {
+        type: Object,
+        default: /* istanbul ignore next */ () => {},
+      },
+    },
+    /* istanbul ignore next */
+    async mounted() {
+      if (!this.fetchedContactInfo) {
+        try {
+          await this.fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_fetch'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        }
+      }
+      this.setInitialInputs();
+    },
+    computed: {
+      ...mapGetters({
+        loadingContactInfo: 'WhatsApp/loadingContactInfo',
+        fetchedContactInfo: 'WhatsApp/fetchedContactInfo',
+        contactInfo: 'WhatsApp/contactInfo',
+      }),
+    },
     data() {
       return {
         contactInfoInputs: [
           {
             type: 'input',
-            name: 'website_url',
+            name: 'websites.0',
             label: 'WhatsApp.config.contact_info.website_url.label',
             value: null,
           },
-          { name: 'website_url_alternative', label: null, value: null, type: 'input' },
+          {
+            name: 'websites.1',
+            label: null,
+            value: null,
+            type: 'input',
+          },
           {
             type: 'input',
-            name: 'corporate_email',
-            label: 'WhatsApp.config.contact_info.corporate_email.label',
-            placeholder: 'WhatsApp.config.contact_info.corporate_email.placeholder',
+            name: 'email',
+            label: 'WhatsApp.config.contact_info.email.label',
+            placeholder: 'WhatsApp.config.contact_info.email.placeholder',
+            value: null,
+          },
+          {
+            type: 'input',
+            name: 'address',
+            label: 'WhatsApp.config.contact_info.address.label',
+            placeholder: 'WhatsApp.config.contact_info.address.placeholder',
             value: null,
           },
         ],
       };
     },
     methods: {
+      ...mapActions({
+        fetchWppContactInfo: 'WhatsApp/fetchWppContactInfo',
+        updateWppContactInfo: 'WhatsApp/updateWppContactInfo',
+      }),
+      /* istanbul ignore next */
+      setInitialInputs() {
+        if (this.contactInfo) {
+          Object.entries(this.contactInfo).forEach(([key, value]) => {
+            if (Array.isArray(value)) {
+              this.contactInfoInputs.forEach((input, index) => {
+                if (input.name.includes(key)) {
+                  input.value = value[index];
+                }
+              });
+            } else {
+              const input = this.contactInfoInputs.find((input) => input.name === key);
+              if (input) {
+                input.value = value;
+              }
+            }
+          });
+        }
+      },
       updateInputs(inputData) {
         this.contactInfoInputs[inputData.index].value = inputData.value;
+      },
+      getInputValue(inputName) {
+        return this.contactInfoInputs.find((input) => input.name === inputName).value;
+      },
+      async saveContactInfo() {
+        try {
+          const payload = {
+            websites: Array.of(this.getInputValue('websites.0'), this.getInputValue('websites.1')),
+            email: this.getInputValue('email'),
+            address: this.getInputValue('address'),
+          };
+
+          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          await this.updateWppContactInfo(data);
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_update'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        }
       },
     },
   };

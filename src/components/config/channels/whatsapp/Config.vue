@@ -27,7 +27,7 @@
       <template slot="tab-head-contact_info">
         {{ $t('WhatsApp.config.tabs.contact_info') }}
       </template>
-      <ContactInfoTab slot="tab-panel-contact_info" />
+      <ContactInfoTab slot="tab-panel-contact_info" :app="app" @close="closeConfig" />
 
       <template slot="tab-head-conversations">
         {{ $t('WhatsApp.config.tabs.conversations') }}
@@ -74,13 +74,20 @@
       await this.fetchData();
       this.headerScrollBehavior();
     },
+    beforeDestroy() {
+      this.resetWppFetchResults();
+    },
     computed: {
       configTabs() {
-        return ['account', 'profile', 'conversations'];
+        return ['account', 'profile', 'contact_info', 'conversations'];
       },
     },
     methods: {
-      ...mapActions(['getApp', 'fetchWppProfile']),
+      ...mapActions({
+        getApp: 'getApp',
+        fetchWppProfile: 'fetchWppProfile',
+        resetWppFetchResults: 'WhatsApp/resetWppFetchResults',
+      }),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
