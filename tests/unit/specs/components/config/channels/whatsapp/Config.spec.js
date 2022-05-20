@@ -23,6 +23,7 @@ localVue.use(Vuex);
 describe('WhatsAppConfig.vue', () => {
   let wrapper;
   let actions;
+  let wppActions;
   let store;
 
   beforeEach(() => {
@@ -35,7 +36,17 @@ describe('WhatsAppConfig.vue', () => {
       }),
     };
 
+    wppActions = {
+      resetWppFetchResults: jest.fn(),
+    };
+
     store = new Vuex.Store({
+      modules: {
+        WhatsApp: {
+          namespaced: true,
+          actions: wppActions,
+        },
+      },
       actions,
     });
 
@@ -63,6 +74,14 @@ describe('WhatsAppConfig.vue', () => {
 
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('beforeDestroy()', () => {
+    it('should call resetWppFetchResults()', async () => {
+      expect(wppActions.resetWppFetchResults).not.toHaveBeenCalled();
+      wrapper.destroy();
+      expect(wppActions.resetWppFetchResults).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('closeConfig()', () => {
