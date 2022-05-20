@@ -12,7 +12,6 @@ import AppDetails from '@/views/AppDetails.vue';
 import i18n from '@/utils/plugins/i18n';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import AppTypeStore from '@/store/appType';
 import { singleApp } from '../../../__mocks__/appMock';
 
 const router = new VueRouter();
@@ -27,8 +26,6 @@ describe('AppDetails.vue', () => {
   let actions;
 
   beforeEach(() => {
-    store = new Vuex.Store(AppTypeStore);
-
     actions = {
       getAppType: jest.fn(() => {
         return { data: singleApp };
