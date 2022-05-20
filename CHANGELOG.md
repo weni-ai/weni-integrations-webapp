@@ -1,6 +1,6 @@
 1.6.3
 ----------
-`2022-05-20 · 2 🎉 · 2 🔧`
+`2022-05-20 · 3 🎉 · 2 🔧`
 
 ### 🔧 Improvements
 - Improve: WhatsApp Profile Tab input find
@@ -9,6 +9,7 @@
 ### 🎉 New Features
 - Feat: WhatsApp store actions
 - Feat: Contact info backend integration
+- Feat: Helphero
 
 1.6.2
 ----------
