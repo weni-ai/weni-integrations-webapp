@@ -128,12 +128,12 @@
         }
         return true;
       },
+      getInputValue(inputName) {
+        return this.profileInputs.find((input) => input.name === inputName).value;
+      },
       async saveProfile() {
         try {
-          const photoIndex = this.profileInputs.findIndex(
-            (input) => input.name === 'profile_image',
-          );
-          const photo = this.profileInputs[photoIndex].value[0];
+          const photo = this.getInputValue('profile_image')[0];
 
           if (!photo) {
             const data = { code: this.app.code, appUuid: this.app.uuid };
@@ -149,10 +149,10 @@
 
           const payload = {
             photo: this.modifiedInitialPhoto ? b64ProfilePhoto : null,
-            status: this.profileInputs.find((input) => input.name === 'status').value,
+            status: this.getInputValue('status'),
             business: {
-              description: this.profileInputs.find((input) => input.name === 'description').value,
-              vertical: this.profileInputs.find((input) => input.name === 'sector').value,
+              description: this.getInputValue('description'),
+              vertical: this.getInputValue('sector'),
             },
           };
 
