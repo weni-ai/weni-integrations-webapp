@@ -50,4 +50,13 @@ export default {
       `${resource}/${appCode}/apps/${appUuid}/conversations/?${queryString}`,
     );
   },
+  fetchWppProfile(appCode, appUuid) {
+    return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/profile/`);
+  },
+  updateWppProfile(appCode, appUuid, data) {
+    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/profile/`, data);
+  },
+  deleteWppProfilePhoto(appCode, appUuid) {
+    return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/profile/`);
+  },
 };

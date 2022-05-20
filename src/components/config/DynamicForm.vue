@@ -18,16 +18,18 @@
         :value="input.value"
         @input="emitInput(index, input, $event)"
       >
-        <option v-for="(option, index) in input.options" :key="index" :value="option.value">
+        <option v-for="option in input.options" :key="option.key" :value="option.value">
           {{ option.text }}
         </option>
       </unnnic-select>
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="$t(input.label)" />
         <unnnic-upload-area
+          :files="input.props.files"
           :acceptMultiple="input.props.acceptMultiple"
           :supportedFormats="input.props.supportedFormats"
           :maximumUploads="input.props.maximumUploads"
+          :maxFileSize="input.props.maxFileSize"
           :filesProgress="input.props.filesProgress"
           :isUploading="input.props.isUploading"
           :canImport="input.props.canImport"
@@ -52,7 +54,9 @@
       emitInput(index, input, value) {
         switch (input.type) {
           case 'select':
-            this.$emit('input', { index, value: input.options[value].value });
+            // eslint-disable-next-line no-case-declarations
+            const option = input.options.find((option) => option.value === value);
+            this.$emit('input', { index, value: option.value });
             break;
           default:
             this.$emit('input', { index, value });

@@ -106,7 +106,8 @@
     },
     "invalid": {
       "text": "file, try again",
-      "highlight": "Invalid"
+      "highlight": "Invalid",
+      "subtitle": "The file you tried to upload is not supported."
     },
     "subtitle": "Supported formats:"
   },
@@ -212,7 +213,7 @@
     },
     "config": {
       "tabs": {
-        "general": "General",
+        "account": "WhatsApp Account",
         "profile": "Profile",
         "contact_info": "Contact Information",
         "conversations": "Conversations"
@@ -221,7 +222,11 @@
         "text": "See how many conversations your account has exchanged in a given period."
       },
       "account": {
-        "title": "Account"
+        "title": "Account",
+        "message_per_day_limit": "Message per day limit"
+      },
+      "billing": {
+        "title": "Billing Information"
       },
       "conversations": {
         "title": "Conversations Information",
@@ -282,14 +287,26 @@
       },
       "contact_info": {
         "website_url": {
-          "label": "Website"
+          "label": "Websites:"
         },
-        "corporate_email": {
-          "label": "Corporate Email",
+        "email": {
+          "label": "Corporate Email:",
           "placeholder": "Email that customers can contact"
+        },
+        "address": {
+          "label": "Address:",
+          "placeholder": "Your business address"
         },
         "configure_later": "Configure later",
         "save_changes": "Save changes"
+      },
+      "success": {
+        "profile_updated": "WhatsApp profile updated successfully"
+      },
+      "error": {
+        "invalid_photo_size": "Imported photo must be at least 192x192 pixels",
+        "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
+        "data_update": "Failed to update WhatsApp data."
       }
     }
   }

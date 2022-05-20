@@ -1,3 +1,52 @@
+1.6.2
+----------
+`2022-05-17 · 4 🐛 · 3 🎉 · 1 🔧
+
+### 🔧 Improvements
+- Chore: Bump unnnic to v1.4.5 
+
+### 🎉 New Features
+- Feat: Modify GeneralTab into AccountTab
+- Feat: WhatsApp max photo size
+- Feat: Update WhatsApp locales
+
+### 🐛 Bug fixes
+- Fix: Missing profileTab tests
+- Fix: Removed mocked status indicator
+- Fix: Handle empty phone number
+- Fix: AppDetailsComment snapshot
+
+1.6.1
+----------
+`2022-05-13 · 1 🐛 
+
+### 🐛 Bug fixes
+- Fix: Better image handler when null
+
+1.6.0
+----------
+`2022-05-13 · 5 🐛 · 8 🎉 · 1 🔧`
+
+### 🔧 Improvements
+- Refactor: Whatsapp config
+
+### 🎉 New features
+- Feat: WhatsApp Profile API actions
+- Feat: Files utils
+- Feat: Wpp skeleton loading
+- Feat: Function to get image height and width from img src
+- Feat: Delete WhatsApp profile photo action
+- Feat: WhatsApp backend data fetch integration 
+- Feat: Removed mocked data from general tab
+- Feat: WhatsApp profile tab form
+
+### 🐛 Bug fixes
+- Fix: Dynamic form select options 
+- Fix: Add stop modifier on modal click
+- Fix: Missing upload files input prop
+- Fix: Contact info button positioning
+- Fix: Page selection missing unnnic-select stub
+
 1.5.1
 ----------
 `2022-04-5 · 1 🎉`

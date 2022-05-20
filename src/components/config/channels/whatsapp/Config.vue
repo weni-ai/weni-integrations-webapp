@@ -12,36 +12,47 @@
       </div>
     </div>
 
-    <unnnic-tab class="config-whatsapp__tabs" :tabs="configTabs" initialTab="conversations">
-      <template slot="tab-head-general"> {{ $t('WhatsApp.config.tabs.general') }} </template>
-      <GeneralTab slot="tab-panel-general" @close="closeConfig" />
+    <unnnic-tab
+      v-if="!loading"
+      class="config-whatsapp__tabs"
+      :tabs="configTabs"
+      initialTab="account"
+    >
+      <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
+      <AccountTab :appInfo="appInfo" slot="tab-panel-account" @close="closeConfig" />
 
       <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
-      <ProfileTab slot="tab-panel-profile" @close="closeConfig" @save="saveConfig" />
+      <ProfileTab slot="tab-panel-profile" :app="app" :profile="appProfile" @close="closeConfig" />
 
       <template slot="tab-head-contact_info">
         {{ $t('WhatsApp.config.tabs.contact_info') }}
       </template>
-      <ContactInfoTab slot="tab-panel-contact_info" />
+      <ContactInfoTab slot="tab-panel-contact_info" :app="app" @close="closeConfig" />
 
       <template slot="tab-head-conversations">
         {{ $t('WhatsApp.config.tabs.conversations') }}
       </template>
       <ConversationsTab slot="tab-panel-conversations" :app="app" />
     </unnnic-tab>
+    <skeleton-loading v-else />
   </div>
 </template>
 
 <script>
-  import GeneralTab from './components/tabs/GeneralTab.vue';
+  import AccountTab from './components/tabs/AccountTab.vue';
   import ProfileTab from './components/tabs/ProfileTab.vue';
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
+  import skeletonLoading from './loadings/Config.vue';
+  import { mapActions } from 'vuex';
+  import { dataUrlToFile } from '@/utils/files';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'whatsapp-config',
     components: {
-      GeneralTab,
+      skeletonLoading,
+      AccountTab,
       ProfileTab,
       ContactInfoTab,
       ConversationsTab,
@@ -53,20 +64,75 @@
       },
     },
     data() {
-      return {};
+      return {
+        appInfo: null,
+        appProfile: null,
+        loading: true,
+      };
+    },
+    async mounted() {
+      await this.fetchData();
+      this.headerScrollBehavior();
+    },
+    beforeDestroy() {
+      this.resetWppFetchResults();
     },
     computed: {
       configTabs() {
-        return ['conversations'];
+        return ['account', 'profile', 'contact_info', 'conversations'];
       },
     },
     methods: {
+      ...mapActions({
+        getApp: 'getApp',
+        fetchWppProfile: 'fetchWppProfile',
+        resetWppFetchResults: 'WhatsApp/resetWppFetchResults',
+      }),
+      /* istanbul ignore next */
+      headerScrollBehavior() {
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+        if (tabHeader) {
+          tabHeader.addEventListener('wheel', (event) => {
+            event.preventDefault();
+
+            tabHeader.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          });
+        }
+      },
       closeConfig() {
         this.$emit('closeModal');
       },
-      /* istanbul ignore next */
-      saveConfig() {
-        console.log('saved');
+      async fetchData() {
+        try {
+          this.loading = true;
+          const options = { code: this.app.code, appUuid: this.app.uuid };
+          await this.fetchAppInfo(options);
+          await this.fetchProfile(options);
+          this.loading = false;
+        } catch (error) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_fetch'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 8,
+          });
+        }
+      },
+      async fetchAppInfo(options) {
+        const { data } = await this.getApp(options);
+        this.appInfo = data;
+      },
+      async fetchProfile(options) {
+        const { data } = await this.fetchWppProfile(options);
+        data.photoFile = await dataUrlToFile(data.photo_url, 'photo.jpg', true);
+        this.appProfile = data;
       },
     },
   };
@@ -151,6 +217,27 @@
         flex-direction: column;
         width: -webkit-fill-available;
         width: -moz-available;
+      }
+      ::v-deep .tab-header {
+        .tab-content {
+          overflow-y: hidden;
+          overflow-x: auto;
+        }
+
+        .tab-head {
+          white-space: nowrap;
+        }
+
+        ::-webkit-scrollbar {
+          height: $unnnic-border-width-thick;
+        }
+        ::-webkit-scrollbar-track {
+          background: $unnnic-color-neutral-soft;
+        }
+        ::-webkit-scrollbar-thumb {
+          background: $unnnic-color-neutral-clean;
+          border-radius: $unnnic-border-radius-md;
+        }
       }
     }
   }

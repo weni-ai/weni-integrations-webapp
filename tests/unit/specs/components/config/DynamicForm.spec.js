@@ -21,8 +21,8 @@ describe('DynamicForm.vue', () => {
         placeholder: 'select',
         value: null,
         options: [
-          { value: '1', text: 'select1' },
-          { value: '2', text: 'select2' },
+          { value: 'select1', text: 'select1' },
+          { value: 'select2', text: 'select2' },
         ],
       },
     ];
@@ -84,11 +84,11 @@ describe('DynamicForm.vue', () => {
     it('should emit option value if input type is select', () => {
       const index = 1;
       const input = wrapper.props().inputs[index];
-      const event = 1;
+      const event = 'select2';
       expect(wrapper.emitted('input')).toBeFalsy();
       wrapper.vm.emitInput(index, input, event);
       expect(wrapper.emitted('input')).toBeTruthy();
-      expect(wrapper.emitted('input')[0]).toEqual([{ index, value: input.options[event].value }]);
+      expect(wrapper.emitted('input')[0]).toEqual([{ index, value: input.options[1].value }]);
     });
   });
 });

@@ -3,10 +3,10 @@
 exports[`whatsapp/PageSelection.vue should be rendered properly 1`] = `
 <unnnicmodal-stub text="some specific text" scheme="feedback-green" modal-icon="phone-3" class="page-selection">
   <div>
-    <unnnic-select size="sm" value="[object Object]">
+    <unnnicselect-stub size="sm" value="[object Object]">
       <option>page.name</option>
       <option>page.name</option>
-    </unnnic-select>
+    </unnnicselect-stub>
   </div>
 </unnnicmodal-stub>
 `;
