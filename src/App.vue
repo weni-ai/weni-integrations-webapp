@@ -7,6 +7,7 @@
 <script>
   import '@weni/unnnic-system';
   import initHelpHero from 'helphero';
+  import getEnv from '@/utils/env';
 
   export default {
     name: 'App',
@@ -16,8 +17,8 @@
       };
     },
     mounted() {
-      if (process.env.VUE_APP_HELPHERO_ID) {
-        const hlp = initHelpHero(process.env.VUE_APP_HELPHERO_ID);
+      if (getEnv('VUE_APP_HELPHERO_ID')) {
+        const hlp = initHelpHero(getEnv('VUE_APP_HELPHERO_ID'));
         hlp.anonymous();
       }
 
