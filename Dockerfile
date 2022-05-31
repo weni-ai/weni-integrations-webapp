@@ -56,3 +56,5 @@ COPY docker-entrypoint.sh /usr/share/nginx/
 RUN chmod +x /usr/share/nginx/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/share/nginx/docker-entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
