@@ -6,13 +6,11 @@ exports[`TelegramConfig.vue should be rendered properly 1`] = `
     <div class="app-config-telegram__header__title">
       <div class="app-config-telegram__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-config-telegram__header__title__icon-container__icon"></div>
       <div class="app-config-telegram__header__title__name">Weni Web Chat</div>
-    </div>
-    <div class="app-config-telegram__header__description">
+    </div> <span class="app-config-telegram__header__description">
       Learn more about how to integrate Telegram
-      <a href="https://docs.ilhasoft.mobi/l/pt/article/qzw2i2og1s-como-obter-o-token-de-um-bot-do-telegram#" target="_blank">
-        here.
-      </a>
-    </div>
+      <a href="https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel" target="_blank"><span>
+          here.
+        </span></a></span>
   </div>
   <div class="app-config-telegram__settings__content">
     <unnnic-input-stub placeholder="" type="normal" nativetype="text" label="Token" size="md" mask=""></unnnic-input-stub>

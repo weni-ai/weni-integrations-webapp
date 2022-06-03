@@ -7,15 +7,14 @@
         </div>
         <div class="app-config-telegram__header__title__name">{{ app.name }}</div>
       </div>
-      <div class="app-config-telegram__header__description">
+      <span class="app-config-telegram__header__description">
         {{ $t('telegram.config.description.text') }}
-        <a
-          href="https://docs.ilhasoft.mobi/l/pt/article/qzw2i2og1s-como-obter-o-token-de-um-bot-do-telegram#"
-          target="_blank"
-        >
-          {{ $t('telegram.config.description.link') }}
+        <a :href="documentationLink" target="_blank">
+          <span>
+            {{ $t('telegram.config.description.link') }}
+          </span>
         </a>
-      </div>
+      </span>
     </div>
 
     <div class="app-config-telegram__settings__content">
@@ -65,7 +64,16 @@
       return {
         token: this.app.config.token ?? null,
         invalidToken: false,
+        documentations: {
+          'en-us': 'https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel',
+          'pt-br': 'https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-no-telegram',
+        },
       };
+    },
+    computed: {
+      documentationLink() {
+        return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
+      },
     },
     methods: {
       ...mapActions(['updateAppConfig']),
@@ -171,9 +179,6 @@
       }
 
       &__description {
-        display: flex;
-        flex-wrap: wrap;
-
         margin-top: $unnnic-inline-sm;
         padding-bottom: $unnnic-inline-md;
         border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
@@ -185,7 +190,6 @@
         color: $unnnic-color-neutral-cloudy;
 
         a {
-          margin-left: $unnnic-inline-nano;
           font-weight: $unnnic-font-weight-bold;
           color: $unnnic-color-neutral-cloudy;
         }
@@ -198,6 +202,7 @@
       height: -webkit-fill-available;
       height: -moz-available;
       overflow-y: hidden;
+
       &__content {
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;

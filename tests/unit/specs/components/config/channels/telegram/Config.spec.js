@@ -149,4 +149,18 @@ describe('TelegramConfig.vue', () => {
       expect(wrapper.vm.invalidToken).toBeTruthy();
     });
   });
+
+  describe('computed', () => {
+    describe('documentationLink', () => {
+      it('should return link based on locale', () => {
+        wrapper.vm.$i18n.locale = 'pt-br';
+        expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['pt-br']);
+      });
+
+      it('should return en-us link as default', () => {
+        wrapper.vm.$i18n.locale = 'unknown';
+        expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['en-us']);
+      });
+    });
+  });
 });
