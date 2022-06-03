@@ -1,3 +1,11 @@
+1.7.0
+----------
+`2022-06-03 · 2 🎉`
+
+### 🎉 New Features
+- Feat: Runtime environment variables
+- Feat: Telegram documentation based on locale
+
 1.6.3
 ----------
 `2022-05-20 · 3 🎉 · 2 🔧`
