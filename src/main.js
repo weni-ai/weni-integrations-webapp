@@ -6,14 +6,15 @@ import App from './App.vue';
 import i18n from './utils/plugins/i18n';
 import router from './router';
 import store from './store';
+import getEnv from '@/utils/env';
 
 import { initFacebookSdk } from './utils/plugins/fb';
 
 Vue.config.productionTip = false;
 
-if (process.env.VUE_APP_USE_SENTRY && process.env.VUE_APP_SENTRY_DSN) {
+if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
   Sentry.init({
-    dsn: process.env.VUE_APP_SENTRY_DSN,
+    dsn: getEnv('VUE_APP_SENTRY_DSN'),
     integrations: [
       new Integrations.Vue({
         Vue,
@@ -24,14 +25,14 @@ if (process.env.VUE_APP_USE_SENTRY && process.env.VUE_APP_SENTRY_DSN) {
   });
 }
 
-if (process.env.VUE_APP_FACEBOOK_APP_ID) {
+if (getEnv('VUE_APP_FACEBOOK_APP_ID')) {
   initFacebookSdk();
 }
 
-if (process.env.VUE_APP_LOGROCKET_ID) {
-  LogRocket.init(process.env.VUE_APP_LOGROCKET_ID, {
+if (getEnv('VUE_APP_LOGROCKET_ID')) {
+  LogRocket.init(getEnv('VUE_APP_LOGROCKET_ID'), {
     mergeIframes: true,
-    parentDomain: process.env.VUE_APP_PARENT_IFRAME_DOMAIN,
+    parentDomain: getEnv('VUE_APP_PARENT_IFRAME_DOMAIN'),
   });
 }
 

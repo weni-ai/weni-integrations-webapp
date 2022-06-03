@@ -28,10 +28,17 @@ ENV VUE_APP_LOGROCKET_ID $VUE_APP_LOGROCKET_ID
 ENV VUE_APP_PARENT_IFRAME_DOMAIN $VUE_APP_PARENT_IFRAME_DOMAIN
 ENV VUE_APP_HELPHERO_ID $VUE_APP_HELPHERO_ID
 
-
 RUN yarn build
 
 FROM nginx
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html/integrations
+
+COPY docker-entrypoint.sh /usr/share/nginx/
+
+RUN chmod +x /usr/share/nginx/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/share/nginx/docker-entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]
