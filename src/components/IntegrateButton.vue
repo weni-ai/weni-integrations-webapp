@@ -103,7 +103,7 @@
             }
           },
           {
-            scope: 'business_management,whatsapp_business_management',
+            scope: 'business_management,whatsapp_business_management,whatsapp_business_messaging',
             extras: {
               feature: 'whatsapp_embedded_signup',
             },
