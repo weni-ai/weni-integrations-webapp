@@ -98,8 +98,8 @@
         FB.login(
           async function (response) {
             if (response.authResponse) {
+              // eslint-disable-next-line no-unused-vars
               const accessToken = response.authResponse.accessToken;
-              getFbPages(accessToken);
             }
           },
           {
@@ -109,15 +109,6 @@
             },
           },
         );
-      },
-
-      async getFbPages(input_token) {
-        const params = {
-          input_token,
-        };
-        const { data } = await this.getSharedWabas({ code: this.app.code, params });
-
-        this.$refs.configPopUp.openPopUp(this.app, { pages: data });
       },
     },
   };

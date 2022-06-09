@@ -171,27 +171,4 @@ describe('IntegrateButton.vue', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
-
-  describe('getFbPages', () => {
-    it('should call getSharedWabas with incoming parameter', async () => {
-      expect(actions.getSharedWabas).not.toHaveBeenCalled();
-      const input_token = '123';
-      await wrapper.vm.getFbPages(input_token);
-      expect(actions.getSharedWabas).toHaveBeenCalledTimes(1);
-      expect(actions.getSharedWabas).toHaveBeenCalledWith(expect.any(Object), {
-        code: wrapper.props('app').code,
-        params: {
-          input_token,
-        },
-      });
-    });
-
-    it('should call openPupUp from configPupUp', async () => {
-      const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
-      expect(spy).not.toHaveBeenCalled();
-      const token = '123';
-      await wrapper.vm.getFbPages(token);
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
 });
