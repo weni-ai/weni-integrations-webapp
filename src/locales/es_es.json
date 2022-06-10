@@ -321,9 +321,9 @@
   "WhatsAppCloud": {
     "config": {
       "phone_numbers": {
-        "connect_later": "Connect later",
-        "create_channel": "Create channel",
-        "connect": "Connect"
+        "connect_later": "Conectar más tarde",
+        "create_channel": "Crear canal",
+        "connect": "Conectar"
       }
     }
   }
