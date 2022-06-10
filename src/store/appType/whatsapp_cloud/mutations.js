@@ -2,10 +2,13 @@ export default {
   SET_WPP_CLOUD_WABA_ID(state, data) {
     state.wabaId = data;
   },
-  SET_FETCHED_WABA_ID(state, data) {
+  SET_WPP_CLOUD_BUSINESS_ID(state, data) {
+    state.businessId = data;
+  },
+  SET_FETCHED_DEBUG_TOKEN(state, data) {
     state.fetchedWabaId = data;
   },
-  SET_LOADING_WABA_ID(state, data) {
+  SET_LOADING_DEBUG_TOKEN(state, data) {
     state.loadingWabaId = data;
   },
   SET_WPP_CLOUD_PHONE_NUMBERS(state, data) {
@@ -19,5 +22,8 @@ export default {
   },
   SET_SELECTED_PHONE_NUMBER(state, data) {
     state.selectedPhoneNumber = data;
+  },
+  SET_LOADING_WHATSAPP_CLOUD_CONFIGURE(state, data) {
+    state.loadingWhatsAppCloudConfigure = data;
   },
 };
