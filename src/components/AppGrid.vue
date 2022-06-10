@@ -50,7 +50,7 @@
               {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
-              v-if="app.code !== 'wpp'"
+              v-if="app.code !== 'wpp' && app.code !== 'wpp-cloud'"
               class="app-grid__content__item__button--remove"
               @click="toggleRemoveModal(app)"
             >
