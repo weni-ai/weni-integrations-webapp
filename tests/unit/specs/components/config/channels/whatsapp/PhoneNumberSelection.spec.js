@@ -1,19 +1,17 @@
-import VueRouter from 'vue-router';
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import PhoneNumberSelection from '@/components/config/channels/whatsapp/PhoneNumberSelection.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../../../../__mocks__/appMock';
 
-const router = new VueRouter();
-
 const localVue = createLocalVue();
-localVue.use(VueRouter);
 localVue.use(Vuex);
 
 describe('whatsapp/PhoneNumberSelection.vue', () => {
   let wrapper;
   let actions;
+  let getters;
   let wppCloudGetters;
   let wppCloudActions;
   let store;
@@ -35,9 +33,13 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       }),
     };
 
+    getters = {
+      getSelectedProject: jest.fn(() => {}),
+    };
+
     wppCloudGetters = {
       whatsAppPhoneNumbers: jest.fn(() => {
-        return [];
+        return [{ display_phone_number: '123', verified_name: 'number' }];
       }),
       selectedPhoneNumber: jest.fn(() => {
         return { data: {} };
@@ -64,12 +66,12 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
         },
       },
       actions,
+      getters,
     });
 
     wrapper = shallowMount(PhoneNumberSelection, {
       localVue,
       i18n,
-      router,
       store,
       propsData: {
         app: singleApp,
@@ -77,6 +79,9 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       },
       mocks: {
         $t: () => 'some specific text',
+        $router: {
+          replace: jest.fn(),
+        },
         $route: {
           path: '/apps/1/details',
         },
@@ -112,11 +117,17 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
     });
   });
 
-  describe('selectedNumberWatcher', () => {
+  describe('selectedNumber watcher', () => {
     it('should call setSelectedPhoneNumber', async () => {
       expect(wppCloudActions.setSelectedPhoneNumber).not.toHaveBeenCalled();
       await wrapper.setData({ selectedNumber: 'number ~ (123)' });
       expect(wppCloudActions.setSelectedPhoneNumber).toHaveBeenCalledTimes(1);
+      expect(wppCloudActions.setSelectedPhoneNumber).toHaveBeenLastCalledWith(expect.any(Object), {
+        data: {
+          verified_name: 'number',
+          display_phone_number: '123',
+        },
+      });
     });
   });
 
@@ -130,9 +141,11 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
 
   describe('createChannel()', () => {
     it('should change url into /apps/my', async () => {
-      expect(wrapper.vm.$route.path).not.toEqual('/apps/my');
+      const spy = spyOn(wrapper.vm.$router, 'replace');
       await wrapper.vm.createChannel();
-      expect(wrapper.vm.$route.path).toEqual('/apps/my');
+
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(`/apps/my`);
     });
 
     it('should call configurePhoneNumber', async () => {

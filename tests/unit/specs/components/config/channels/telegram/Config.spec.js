@@ -40,6 +40,9 @@ describe('TelegramConfig.vue', () => {
       propsData: {
         app: singleApp,
       },
+      mocks: {
+        $t: () => 'some specific text',
+      },
     });
   });
 
