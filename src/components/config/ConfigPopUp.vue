@@ -13,7 +13,7 @@
 
 <script>
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
-  import wppPageSelection from './channels/whatsapp/PageSelection.vue';
+  import wppPhoneNumberSelection from './channels/whatsapp/PhoneNumberSelection.vue';
 
   export default {
     name: 'Config-PopUp',
@@ -23,6 +23,10 @@
         type: '',
         currentApp: {},
         currentCustomData: null,
+        componentMapping: {
+          'wpp-demo': wppDemoConfig,
+          'wpp-cloud': wppPhoneNumberSelection,
+        },
       };
     },
     methods: {
@@ -38,9 +42,7 @@
     },
     computed: {
       currentComponent() {
-        if (this.type === 'wpp-demo') return wppDemoConfig;
-        if (this.type === 'wpp') return wppPageSelection;
-        return wppDemoConfig;
+        return this.componentMapping[this.type];
       },
     },
   };

@@ -61,6 +61,13 @@
         currentApp: {},
         showConfirmationModal: false,
         needConfirmation: false,
+        componentMapping: {
+          wwc: wwcConfig,
+          tg: telegramConfig,
+          wpp: whatsappConfig,
+          'wpp-cloud': whatsappConfig,
+          'wpp-demo': wppDemoPreview,
+        },
       };
     },
     methods: {
@@ -90,11 +97,7 @@
     },
     computed: {
       currentComponent() {
-        if (this.type === 'wwc') return wwcConfig;
-        if (this.type === 'tg') return telegramConfig;
-        if (this.type === 'wpp-demo') return wppDemoPreview;
-        if (this.type === 'wpp') return whatsappConfig;
-        return wwcConfig;
+        return this.componentMapping[this.type];
       },
     },
   };
