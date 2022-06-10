@@ -318,6 +318,10 @@
     }
   },
   "WhatsAppCloud": {
+    "data": {
+      "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos"
+    },
     "config": {
       "phone_numbers": {
         "connect_later": "Conectar depois",

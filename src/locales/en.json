@@ -304,6 +304,10 @@
     }
   },
   "WhatsAppCloud": {
+    "data": {
+      "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts"
+    },
     "config": {
       "phone_numbers": {
         "connect_later": "Connect later",
