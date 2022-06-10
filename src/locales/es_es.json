@@ -319,6 +319,10 @@
     }
   },
   "WhatsAppCloud": {
+    "data": {
+      "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
+      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos"
+    },
     "config": {
       "phone_numbers": {
         "connect_later": "Conectar más tarde",
