@@ -6,10 +6,10 @@ export default {
     state.businessId = data;
   },
   SET_FETCHED_DEBUG_TOKEN(state, data) {
-    state.fetchedWabaId = data;
+    state.fetchedDebugToken = data;
   },
   SET_LOADING_DEBUG_TOKEN(state, data) {
-    state.loadingWabaId = data;
+    state.loadingDebugToken = data;
   },
   SET_WPP_CLOUD_PHONE_NUMBERS(state, data) {
     state.whatsAppPhoneNumbers = data;
