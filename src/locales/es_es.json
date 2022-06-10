@@ -317,5 +317,14 @@
         "data_update": "Error al actualizar los datos de WhatsApp."
       }
     }
+  },
+  "WhatsAppCloud": {
+    "config": {
+      "phone_numbers": {
+        "connect_later": "Conectar más tarde",
+        "create_channel": "Crear canal",
+        "connect": "Conectar"
+      }
+    }
   }
 }

@@ -28,7 +28,7 @@ localVue.use(VueRouter);
 localVue.use(Vuex);
 
 describe('IntegrateButton.vue', () => {
-  let wrapper, actions, getters, store;
+  let wrapper, actions, getters, store, whatsAppCloudActions, whatsAppCloudGetters;
 
   beforeEach(() => {
     actions = {
@@ -42,7 +42,35 @@ describe('IntegrateButton.vue', () => {
       }),
     };
 
+    whatsAppCloudActions = {
+      getDebugToken: jest.fn(() =>
+        Promise.resolve({
+          data: {
+            waba_id: 'waba_id_123',
+            business_id: 'business_id_123',
+          },
+        }),
+      ),
+      getWhatsAppPhoneNumbers: jest.fn(() =>
+        Promise.resolve({
+          data: [{ id: 1 }, { id: 2 }],
+        }),
+      ),
+    };
+
+    whatsAppCloudGetters = {
+      wabaId: jest.fn(() => 'waba_id_123'),
+      whatsAppPhoneNumbers: jest.fn(() => [{ id: 1 }, { id: 2 }]),
+    };
+
     store = new Vuex.Store({
+      modules: {
+        WhatsAppCloud: {
+          namespaced: true,
+          actions: whatsAppCloudActions,
+          getters: whatsAppCloudGetters,
+        },
+      },
       actions,
       getters,
     });
@@ -87,17 +115,21 @@ describe('IntegrateButton.vue', () => {
   });
 
   describe('created()', () => {
-    it('should add getFbPages into DOM', async () => {
-      expect(window.getFbPages).toEqual(wrapper.vm.getFbPages);
+    it('should add fetchDebugToken into DOM', async () => {
+      expect(window.fetchDebugToken).toEqual(wrapper.vm.fetchDebugToken);
+    });
+
+    it('should add fetchPhoneNumbers into DOM', async () => {
+      expect(window.fetchPhoneNumbers).toEqual(wrapper.vm.fetchPhoneNumbers);
     });
   });
 
   describe('addApp()', () => {
-    it('should call facebookLogin if app code is wpp', async () => {
+    it('should call facebookLogin if app code is wpp-cloud', async () => {
       const spy = spyOn(wrapper.vm, 'facebookLoginAppCreation');
       expect(spy).not.toHaveBeenCalled();
       const app = {
-        code: 'wpp',
+        code: 'wpp-cloud',
       };
       await wrapper.vm.addApp(app);
       expect(spy).toHaveBeenCalledTimes(1);
@@ -169,6 +201,26 @@ describe('IntegrateButton.vue', () => {
       };
       await wrapper.vm.addApp(app);
       expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('fetchDebugToken', () => {
+    it('should call fetchDebugToken action', async () => {
+      const token = '123';
+
+      expect(whatsAppCloudActions.getDebugToken).not.toHaveBeenCalled();
+      await wrapper.vm.fetchDebugToken(token);
+      expect(whatsAppCloudActions.getDebugToken).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('fetchPhoneNumbers', () => {
+    it('should call getWhatsAppPhoneNumbers action', async () => {
+      const token = '123';
+
+      expect(whatsAppCloudActions.getWhatsAppPhoneNumbers).not.toHaveBeenCalled();
+      await wrapper.vm.fetchPhoneNumbers(token);
+      expect(whatsAppCloudActions.getWhatsAppPhoneNumbers).toHaveBeenCalledTimes(1);
     });
   });
 });

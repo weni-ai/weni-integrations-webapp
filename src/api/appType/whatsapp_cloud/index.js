@@ -3,12 +3,15 @@ import request from '@/api/request.js';
 
 const resource = '/api/v1/apptypes/wpp-cloud/apps';
 export default {
-  getWabaId(params) {
+  getDebugToken(params) {
     const queryString = qs.stringify(params);
-    return request.$http.get(`${resource}/waba_id/?${queryString}`);
+    return request.$http.get(`${resource}/debug_token/?${queryString}`);
   },
   getWhatsAppPhoneNumbers(params) {
     const queryString = qs.stringify(params);
     return request.$http.get(`${resource}/phone_numbers/?${queryString}`);
+  },
+  configurePhoneNumber(data) {
+    return request.$http.post(`${resource}/`, data);
   },
 };

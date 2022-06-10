@@ -4,7 +4,7 @@ import { singleApp } from '../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
 import wppDemoConfig from '@/components/config/channels/wpp_demo/Config.vue';
-import wppPageSelection from '@/components/config/channels/whatsapp/PageSelection.vue';
+import wppPhoneNumberSelection from '@/components/config/channels/whatsapp/PhoneNumberSelection.vue';
 
 const localVue = createLocalVue();
 
@@ -49,17 +49,17 @@ describe('ConfigPopUp.vue', () => {
   });
 
   it('should set current component to wppPageSelection', async () => {
-    await wrapper.setData({ type: 'wpp' });
+    await wrapper.setData({ type: 'wpp-cloud' });
 
     const currentComponent = wrapper.vm.currentComponent;
 
-    expect(currentComponent).toMatchObject(wppPageSelection);
+    expect(currentComponent).toMatchObject(wppPhoneNumberSelection);
   });
 
-  it('should return default currentComponent', async () => {
+  it('should return undefined currentComponent', async () => {
     // await wrapper.setData({ type: 'wpp-demo' });
     const currentComponent = wrapper.vm.currentComponent;
 
-    expect(currentComponent).toMatchObject(wppDemoConfig);
+    expect(currentComponent).toBe(undefined);
   });
 });

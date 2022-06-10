@@ -2,14 +2,17 @@ export default {
   wabaId(state) {
     return state.wabaId;
   },
+  businessId(state) {
+    return state.businessId;
+  },
   whatsAppPhoneNumbers(state) {
     return state.whatsAppPhoneNumbers;
   },
-  fetchedWabaId(state) {
-    return state.fetchedWabaId;
+  fetchedDebugToken(state) {
+    return state.fetchedDebugToken;
   },
-  loadingWabaId(state) {
-    return state.loadingWabaId;
+  loadingDebugToken(state) {
+    return state.loadingDebugToken;
   },
   fetchedPhoneNumbers(state) {
     return state.fetchedPhoneNumbers;
@@ -19,5 +22,8 @@ export default {
   },
   selectedPhoneNumber(state) {
     return state.selectedPhoneNumber;
+  },
+  loadingWhatsAppCloudConfigure(state) {
+    return state.loadingWhatsAppCloudConfigure;
   },
 };
