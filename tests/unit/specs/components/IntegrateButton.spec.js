@@ -115,8 +115,8 @@ describe('IntegrateButton.vue', () => {
   });
 
   describe('created()', () => {
-    it('should add fetchWabaId into DOM', async () => {
-      expect(window.fetchWabaId).toEqual(wrapper.vm.fetchWabaId);
+    it('should add fetchDebugToken into DOM', async () => {
+      expect(window.fetchDebugToken).toEqual(wrapper.vm.fetchDebugToken);
     });
 
     it('should add fetchPhoneNumbers into DOM', async () => {

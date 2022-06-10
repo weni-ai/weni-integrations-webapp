@@ -48,7 +48,7 @@
       },
     },
     created() {
-      window.fetchWabaId = this.fetchWabaId;
+      window.fetchDebugToken = this.fetchDebugToken;
       window.fetchPhoneNumbers = this.fetchPhoneNumbers;
     },
     computed: {
@@ -118,6 +118,9 @@
             },
           },
         );
+
+        await this.fetchDebugToken(accessToken);
+        await this.fetchPhoneNumbers(accessToken);
       },
 
       async fetchDebugToken(input_token) {
