@@ -48,17 +48,25 @@
       },
     },
     created() {
-      window.getFbPages = this.getFbPages;
+      window.fetchWabaId = this.fetchWabaId;
+      window.fetchPhoneNumbers = this.fetchPhoneNumbers;
     },
     computed: {
       ...mapGetters({
         getSelectedProject: 'getSelectedProject',
+        wabaId: 'WhatsAppCloud/wabaId',
+        whatsAppPhoneNumbers: 'WhatsAppCloud/whatsAppPhoneNumbers',
       }),
     },
     methods: {
-      ...mapActions(['createApp', 'getSharedWabas']),
+      ...mapActions({
+        createApp: 'createApp',
+        getSharedWabas: 'getSharedWabas',
+        getDebugToken: 'WhatsAppCloud/getDebugToken',
+        getWhatsAppPhoneNumbers: 'WhatsAppCloud/getWhatsAppPhoneNumbers',
+      }),
       async addApp(app) {
-        if (app.code === 'wpp') {
+        if (app.code === 'wpp-cloud') {
           await this.facebookLoginAppCreation(app);
           return;
         }
@@ -98,8 +106,9 @@
         FB.login(
           async function (response) {
             if (response.authResponse) {
-              // eslint-disable-next-line no-unused-vars
               const accessToken = response.authResponse.accessToken;
+              await this.fetchDebugToken(accessToken);
+              await this.fetchPhoneNumbers(accessToken);
             }
           },
           {
@@ -109,6 +118,28 @@
             },
           },
         );
+      },
+
+      async fetchDebugToken(input_token) {
+        const params = {
+          input_token,
+        };
+
+        await this.getDebugToken({ params });
+      },
+
+      async fetchPhoneNumbers(input_token) {
+        const params = {
+          waba_id: this.wabaId,
+          input_token,
+        };
+
+        await this.getWhatsAppPhoneNumbers({ params });
+
+        const customData = {
+          input_token,
+        };
+        this.$refs.configPopUp.openPopUp(this.app, customData);
       },
     },
   };
