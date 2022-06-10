@@ -115,10 +115,10 @@ describe('ConfigModal.vue', () => {
       expect(currentComponent).toMatchObject(whatsappConfig);
     });
 
-    it('should return default currentComponent', () => {
+    it('should return undefined currentComponent', () => {
       const currentComponent = wrapper.vm.currentComponent;
 
-      expect(currentComponent).toMatchObject(wwcConfig);
+      expect(currentComponent).toBe(undefined);
     });
   });
 });

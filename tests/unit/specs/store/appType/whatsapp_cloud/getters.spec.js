@@ -26,16 +26,20 @@ describe('store/appType/whatsapp_cloud/getters.js', () => {
     expect(store.getters['WhatsAppCloud/wabaId']).toEqual(state.wabaId);
   });
 
+  it('should return state.businessId', () => {
+    expect(store.getters['WhatsAppCloud/businessId']).toEqual(state.businessId);
+  });
+
   it('should return state.whatsAppPhoneNumbers', () => {
     expect(store.getters['WhatsAppCloud/whatsAppPhoneNumbers']).toEqual(state.whatsAppPhoneNumbers);
   });
 
-  it('should return state.fetchedWabaId', () => {
-    expect(store.getters['WhatsAppCloud/fetchedWabaId']).toEqual(state.fetchedWabaId);
+  it('should return state.fetchedDebugToken', () => {
+    expect(store.getters['WhatsAppCloud/fetchedDebugToken']).toEqual(state.fetchedDebugToken);
   });
 
-  it('should return state.loadingWabaId', () => {
-    expect(store.getters['WhatsAppCloud/loadingWabaId']).toEqual(state.loadingWabaId);
+  it('should return state.loadingDebugToken', () => {
+    expect(store.getters['WhatsAppCloud/loadingDebugToken']).toEqual(state.loadingDebugToken);
   });
 
   it('should return state.fetchedPhoneNumbers', () => {
@@ -48,5 +52,11 @@ describe('store/appType/whatsapp_cloud/getters.js', () => {
 
   it('should return state.selectedPhoneNumber', () => {
     expect(store.getters['WhatsAppCloud/selectedPhoneNumber']).toEqual(state.selectedPhoneNumber);
+  });
+
+  it('should return state.loadingWhatsAppCloudConfigure', () => {
+    expect(store.getters['WhatsAppCloud/loadingWhatsAppCloudConfigure']).toEqual(
+      state.loadingWhatsAppCloudConfigure,
+    );
   });
 });
