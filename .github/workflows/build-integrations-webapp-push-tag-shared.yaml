@@ -31,10 +31,10 @@ jobs:
               echo "VUE_APP_API_BASE_URL=https://integrations-engine-dev.weni.ai"
               echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41" >> $GITHUB_ENV
               echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41"
-              echo "VUE_APP_USE_HOTJAR=false" >> $GITHUB_ENV
-              echo "VUE_APP_USE_HOTJAR=false"
-              echo "VUE_APP_HOTJAR_ID=" >> $GITHUB_ENV
-              echo "VUE_APP_HOTJAR_ID="
+              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_DEVELOP }}" >> $GITHUB_ENV
+              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_DEVELOP }}"
+              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash-develop.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash-develop.weni.ai"
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             elif $(echo  $TAG|grep --silent -e 'v*.*.*-staging*')
@@ -53,10 +53,10 @@ jobs:
               echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai"
               echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15" >> $GITHUB_ENV
               echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15"
-              echo "VUE_APP_USE_HOTJAR=true" >> $GITHUB_ENV
-              echo "VUE_APP_USE_HOTJAR=true"
-              echo "VUE_APP_HOTJAR_ID=2793355" >> $GITHUB_ENV
-              echo "VUE_APP_HOTJAR_ID=2793355"
+              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_STAGING }}" >> $GITHUB_ENV
+              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_STAGING }}"
+              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash-staging.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash-staging.weni.ai"
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             elif $(echo  $TAG|grep --silent -e 'v*.*.*')
@@ -75,10 +75,10 @@ jobs:
               echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai"
               echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20" >> $GITHUB_ENV
               echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20"
-              echo "VUE_APP_USE_HOTJAR=true" >> $GITHUB_ENV
-              echo "VUE_APP_USE_HOTJAR=true"
-              echo "VUE_APP_HOTJAR_ID=2793351" >> $GITHUB_ENV
-              echo "VUE_APP_HOTJAR_ID=2793351"
+              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_PRODUCTION }}" >> $GITHUB_ENV
+              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_PRODUCTION }}"
+              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash.weni.ai" >> $GITHUB_ENV
+              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash.weni.ai"
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
               echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
             else
@@ -120,8 +120,8 @@ jobs:
             VUE_APP_USE_SENTRY=true
             VUE_APP_SENTRY_DSN=${{env.VUE_APP_SENTRY_DSN}}
             VUE_APP_SENTRY_ENVIRONMENT=${{env.MANIFESTS_ENVIRONMENT}}
-            VUE_APP_USE_HOTJAR=${{env.VUE_APP_USE_HOTJAR}}
-            VUE_APP_HOTJAR_ID=${{env.VUE_APP_HOTJAR_ID}}
+            VUE_APP_LOGROCKET_ID=${{env.VUE_APP_LOGROCKET_ID}}
+            VUE_APP_PARENT_IFRAME_DOMAIN=${{env.VUE_APP_PARENT_IFRAME_DOMAIN}}
 
       - name: Check out Kubernetes Manifests
         uses: actions/checkout@master
@@ -129,7 +129,7 @@ jobs:
           ref: main
           repository: Ilhasoft/kubernetes-manifests-platform
           token: ${{secrets.DEVOPS_GITHUB_PERMANENT_TOKEN}}
-          path: ./kubernetes-manifests/
+          path: ./kubernetes-manifests-platform/
 
       - name: Update image on deployment
         run: |
@@ -144,15 +144,15 @@ jobs:
             export PROJECT_DIR="integrations" PATCH_TARGET="deployment-webapp.json"
             for e in ${{env.MANIFESTS_ENVIRONMENT}}; do
               echo "Update ${e}:"
-              if [ ! -d "kubernetes-manifests/${PROJECT_DIR}/${e}" ] ; then
-                echo "kubernetes-manifests/${PROJECT_DIR}/${e}: Does not exist, skipping"
-              elif [ ! -r "kubernetes-manifests/${PROJECT_DIR}/${e}/kustomization.yaml" ] ; then
-                echo "kubernetes-manifests/${PROJECT_DIR}/${e}/kustomization.yaml: Does not readable, skipping"
-              elif [ ! -r "kubernetes-manifests/${PROJECT_DIR}/${e}/${PATCH_TARGET}" ] ; then
-                echo "kubernetes-manifests/${PROJECT_DIR}/${e}/${PATCH_TARGET}: Does not readable, skipping"
+              if [ ! -d "kubernetes-manifests-platform/${PROJECT_DIR}/${e}" ] ; then
+                echo "kubernetes-manifests-platform/${PROJECT_DIR}/${e}: Does not exist, skipping"
+              elif [ ! -r "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/kustomization.yaml" ] ; then
+                echo "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/kustomization.yaml: Does not readable, skipping"
+              elif [ ! -r "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}" ] ; then
+                echo "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}: Does not readable, skipping"
               else
                 OLD_IMAGE=$(
-                  cat "kubernetes-manifests/${PROJECT_DIR}/${e}/${PATCH_TARGET}" \
+                  cat "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}" \
                     | jq '.[] | select(.path == "/spec/template/spec/containers/0/image") | .value'
                 )
                 echo "Old image to replace: ${OLD_IMAGE}"
@@ -165,11 +165,11 @@ jobs:
                 if verlte "${OLD_VERSION}" "${{env.VERSION}}" ; then
                   echo 'New configurations:'
                   new_configuration=$(
-                    cat "kubernetes-manifests/${PROJECT_DIR}/${e}/${PATCH_TARGET}" \
+                    cat "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}" \
                       | jq '(..|select(.path == "/spec/template/spec/containers/0/image")?) += {value: "'"${{env.IMAGE_TAG}}"'"}'
                   )
                   echo "${new_configuration}"
-                  echo "${new_configuration}" > "kubernetes-manifests/${PROJECT_DIR}/${e}/${PATCH_TARGET}"
+                  echo "${new_configuration}" > "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}"
                 else
                   echo "Version in file is greater than build, skiping update yaml"
                 fi
@@ -181,7 +181,7 @@ jobs:
         with:
           github_token: ${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}
           repository: Ilhasoft/kubernetes-manifests-platform
-          directory: ./kubernetes-manifests/
+          directory: ./kubernetes-manifests-platform/
           branch: main
           message: "From Integrations WebApp Build (Push-Tag)"
 
