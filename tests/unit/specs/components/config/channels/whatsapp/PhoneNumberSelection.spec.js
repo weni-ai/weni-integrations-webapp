@@ -6,7 +6,7 @@ jest.mock('@weni/unnnic-system', () => ({
 }));
 
 import Vuex from 'vuex';
-import { shallowMount, mount, createLocalVue } from '@vue/test-utils';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import PhoneNumberSelection from '@/components/config/channels/whatsapp/PhoneNumberSelection.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../../../../__mocks__/appMock';
