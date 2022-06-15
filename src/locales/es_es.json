@@ -307,7 +307,7 @@
   "WhatsAppCloud": {
     "data": {
       "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
-      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos"
+      "description": "WhatsApp es la aplicación de mensajería más grande del mundo y una de las preferidas por los usuarios.<br/>Su integración con la Plataforma Weni le permite conectar su número comercial a la aplicación y crear flujos inteligentes para atender a sus clientes.<br/><br/>Puede usar esta integración en la Plataforma Weni de forma gratuita hasta 200 contactos activos mensuales y 1000 conversaciones con mensajes ilimitados en un período de 24 horas.<br/><br/>Esta versión gratuita de la API de WhatsApp admite personalizaciones como fotos, videos, carga de archivos, GIF, descripciones y mensajes de plantilla (las conversaciones pueden ser iniciadas por el usuario o la empresa)."
     },
     "config": {
       "phone_numbers": {
