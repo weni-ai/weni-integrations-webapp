@@ -3,7 +3,8 @@
     "Cancel": "Cancel",
     "Close": "Close",
     "You": "You",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "loading": "Loading"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
