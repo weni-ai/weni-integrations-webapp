@@ -1,29 +1,41 @@
 export default {
-  SET_WPP_CLOUD_WABA_ID(state, data) {
-    state.wabaId = data;
+  DEBUG_TOKEN_REQUEST(state) {
+    state.loadingDebugToken = true;
   },
-  SET_WPP_CLOUD_BUSINESS_ID(state, data) {
-    state.businessId = data;
+  DEBUG_TOKEN_SUCCESS(state, data) {
+    state.wabaId = data.waba_id;
+    state.businessId = data.business_id;
+    state.loadingDebugToken = false;
   },
-  SET_FETCHED_DEBUG_TOKEN(state, data) {
-    state.fetchedDebugToken = data;
+  DEBUG_TOKEN_ERROR(state, data) {
+    state.errorDebugToken = data;
+    state.loadingDebugToken = false;
   },
-  SET_LOADING_DEBUG_TOKEN(state, data) {
-    state.loadingDebugToken = data;
+
+  PHONE_NUMBERS_REQUEST(state) {
+    state.loadingPhoneNumbers = true;
   },
-  SET_WPP_CLOUD_PHONE_NUMBERS(state, data) {
+  PHONE_NUMBERS_SUCCESS(state, data) {
     state.whatsAppPhoneNumbers = data;
+    state.loadingPhoneNumbers = false;
   },
-  SET_FETCHED_PHONE_NUMBERS(state, data) {
-    state.fetchedPhoneNumbers = data;
+  PHONE_NUMBERS_ERROR(state, data) {
+    state.errorPhoneNumbers = data;
+    state.loadingPhoneNumbers = false;
   },
-  SET_LOADING_PHONE_NUMBERS(state, data) {
-    state.loadingPhoneNumbers = data;
+
+  CLOUD_CONFIGURE_REQUEST(state) {
+    state.loadingWhatsAppCloudConfigure = true;
   },
+  CLOUD_CONFIGURE_SUCCESS(state) {
+    state.loadingWhatsAppCloudConfigure = false;
+  },
+  CLOUD_CONFIGURE_ERROR(state, data) {
+    state.errorCloudConfigure = data;
+    state.loadingWhatsAppCloudConfigure = false;
+  },
+
   SET_SELECTED_PHONE_NUMBER(state, data) {
     state.selectedPhoneNumber = data;
-  },
-  SET_LOADING_WHATSAPP_CLOUD_CONFIGURE(state, data) {
-    state.loadingWhatsAppCloudConfigure = data;
   },
 };

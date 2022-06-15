@@ -2,10 +2,14 @@ export default {
   wabaId: null,
   businessId: null,
   whatsAppPhoneNumbers: null,
-  fetchedDebugToken: false,
-  loadingDebugToken: false,
-  fetchedPhoneNumbers: false,
-  loadingPhoneNumbers: false,
   selectedPhoneNumber: null,
+
+  loadingDebugToken: false,
+  errorDebugToken: false,
+
+  loadingPhoneNumbers: false,
+  errorPhoneNumbers: false,
+
   loadingWhatsAppCloudConfigure: false,
+  errorCloudConfigure: false,
 };
