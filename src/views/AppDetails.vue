@@ -13,7 +13,7 @@
         :firstDescription="appMetrics"
         :secondTitle="$t('apps.details.integrated_into')"
         :secondDescription="appIntegrationsCount"
-        :subtitle="$t('apps.details.organizations')"
+        :subtitle="$t('apps.details.projects')"
         :thirdTitle="$t('apps.details.rating')"
         :thirdDescription="appRatingString"
         :rating="appRatingAverage"

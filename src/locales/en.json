@@ -33,7 +33,7 @@
     "details": {
       "info": "Number of exchanged messages",
       "integrated_into": "Integrated into",
-      "organizations": "organizations",
+      "projects": "projects",
       "rating": "Rating",
       "status_error": "Unable to complete this action, please try again",
       "status_success": "Success",
