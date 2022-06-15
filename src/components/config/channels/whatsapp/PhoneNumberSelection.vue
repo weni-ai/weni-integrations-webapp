@@ -8,14 +8,15 @@
     @close="closePopUp"
     @click.stop
   >
-    <div slot="message">
+    <skeleton-loading v-if="loadingPhoneNumbers || loadingDebugToken" slot="message" />
+    <div v-else slot="message">
       <unnnic-select
         :search="false"
         size="sm"
         v-model="selectedNumber"
         placeholder="Select your phone number"
       >
-        <option v-for="(number, index) in phoneNumbers" :key="index">
+        <option v-for="(number, index) in whatsAppPhoneNumbers" :key="index">
           {{ number.verified_name }} ~ ({{ number.display_phone_number }})
         </option>
       </unnnic-select>
@@ -33,8 +34,13 @@
           class="phone-number-selection__buttons__save"
           type="terciary"
           size="large"
-          :text="$t('WhatsAppCloud.config.phone_numbers.create_channel')"
+          :text="
+            loadingWhatsAppCloudConfigure
+              ? $t('general.loading')
+              : $t('WhatsAppCloud.config.phone_numbers.create_channel')
+          "
           @click="createChannel"
+          :iconLeft="loadingWhatsAppCloudConfigure ? 'loading-circle-1' : null"
         ></unnnic-button>
       </div>
     </div>
@@ -42,10 +48,15 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
+  import skeletonLoading from './loadings/PhoneNumberSelection.vue';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
-    name: 'PageSelection',
+    name: 'PhoneNumberSelection',
+    components: {
+      skeletonLoading,
+    },
     props: {
       app: {
         type: Object,
@@ -60,41 +71,104 @@
       return {
         showModal: false,
         selectedNumber: null,
-        input_token: null,
       };
     },
     beforeDestroy() {
       this.setSelectedPhoneNumber({ data: null });
     },
+    /* istanbul ignore next */
+    async mounted() {
+      await this.fetchDebugToken();
+      if (!this.errorDebugToken) {
+        await this.fetchPhoneNumbers();
+      }
+    },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
-        phoneNumbers: 'WhatsAppCloud/whatsAppPhoneNumbers',
-        selectedPhoneNumber: 'WhatsAppCloud/selectedPhoneNumber',
-        wabaId: 'WhatsAppCloud/wabaId',
-        businessId: 'WhatsAppCloud/businessId',
-      }),
+      ...mapState('WhatsAppCloud', [
+        'getSelectedProject',
+        'loadingPhoneNumbers',
+        'loadingDebugToken',
+        'loadingWhatsAppCloudConfigure',
+        'errorCloudConfigure',
+        'errorPhoneNumbers',
+        'errorDebugToken',
+        'selectedPhoneNumber',
+        'wabaId',
+        'businessId',
+        'whatsAppPhoneNumbers',
+      ]),
     },
     methods: {
       ...mapActions({
         setSelectedPhoneNumber: 'WhatsAppCloud/setSelectedPhoneNumber',
         configurePhoneNumber: `WhatsAppCloud/configurePhoneNumber`,
+        getDebugToken: 'WhatsAppCloud/getDebugToken',
+        getWhatsAppPhoneNumbers: 'WhatsAppCloud/getWhatsAppPhoneNumbers',
       }),
       closePopUp() {
         this.showModal = !this.showModal;
         this.$emit('closePopUp');
       },
       async createChannel() {
-        const data = {
-          waba_id: this.wabaId,
-          business_id: this.businessId,
-          phone_number_id: this.selectedPhoneNumber.id,
+        if (!this.loadingWhatsAppCloudConfigure) {
+          const data = {
+            waba_id: this.wabaId,
+            business_id: this.businessId,
+            phone_number_id: this.selectedPhoneNumber?.id,
+            input_token: this.customData.input_token,
+            project_uuid: this.getSelectedProject,
+          };
+
+          await this.configurePhoneNumber({ data });
+
+          if (this.errorCloudConfigure) {
+            this.callErrorModal({
+              text: this.$t('WhatsAppCloud.config.configure_phone_number.error'),
+            });
+          } else {
+            this.$router.replace('/apps/my');
+          }
+        }
+      },
+      async fetchDebugToken() {
+        const params = {
           input_token: this.customData.input_token,
-          project_uuid: this.getSelectedProject,
         };
 
-        await this.configurePhoneNumber({ data });
-        this.$router.replace('/apps/my');
+        await this.getDebugToken({ params });
+
+        if (this.errorDebugToken) {
+          this.callErrorModal({
+            text: this.$t('WhatsAppCloud.config.debug_token.error'),
+          });
+        }
+      },
+      async fetchPhoneNumbers() {
+        const params = {
+          waba_id: this.wabaId,
+          input_token: this.customData.input_token,
+        };
+
+        await this.getWhatsAppPhoneNumbers({ params });
+
+        if (this.errorPhoneNumbers) {
+          this.callErrorModal({
+            text: this.$t('WhatsAppCloud.config.phone_numbers.error'),
+          });
+        }
+      },
+      callErrorModal({ text }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: 'Error',
+            icon: 'alert-circle-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 3,
+        });
       },
     },
     watch: {
@@ -105,7 +179,7 @@
           .replaceAll(')', '')
           .trim();
 
-        const number = this.phoneNumbers.find(
+        const number = this.whatsAppPhoneNumbers.find(
           (number) => number.display_phone_number === newValueDisplayNumber,
         );
 
@@ -123,10 +197,25 @@
       display: flex;
       justify-content: space-around;
       margin-top: $unnnic-spacing-stack-lg;
+
+      &__save {
+        ::v-deep svg {
+          animation: rotation 1.5s infinite linear;
+        }
+      }
     }
 
     ::v-deep .unnnic-modal-container-background-body-description {
       padding-bottom: $unnnic-spacing-stack-lg;
+    }
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 </style>
