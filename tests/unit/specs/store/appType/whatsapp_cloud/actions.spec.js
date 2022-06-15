@@ -69,18 +69,22 @@ describe('store/appType/whatsapp_cloud/actions.js', () => {
       expect(store.state.WhatsAppCloud.businessId).toEqual('business_id_123');
     });
 
-    it('should set fetchedDebugToken to true', async () => {
-      store.state.WhatsAppCloud.fetchedDebugToken = false;
-      expect(store.state.WhatsAppCloud.fetchedDebugToken).toBe(false);
-      await store.dispatch('WhatsAppCloud/getDebugToken', params);
-      expect(store.state.WhatsAppCloud.fetchedDebugToken).toBe(true);
-    });
-
     it('should set loadingDebugToken to false', async () => {
       store.state.WhatsAppCloud.loadingDebugToken = true;
       expect(store.state.WhatsAppCloud.loadingDebugToken).toBe(true);
       await store.dispatch('WhatsAppCloud/getDebugToken', params);
       expect(store.state.WhatsAppCloud.loadingDebugToken).toBe(false);
+    });
+
+    it('should set errorDebugToken as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppCloudApi.getDebugToken.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsAppCloud.errorDebugToken = {};
+      expect(store.state.WhatsAppCloud.errorDebugToken).not.toEqual(error);
+      await store.dispatch('WhatsAppCloud/getDebugToken', params);
+      expect(store.state.WhatsAppCloud.errorDebugToken).toEqual(error);
     });
   });
 
@@ -112,18 +116,22 @@ describe('store/appType/whatsapp_cloud/actions.js', () => {
       expect(store.state.WhatsAppCloud.whatsAppPhoneNumbers).toEqual(mockPhoneNumbers);
     });
 
-    it('should set fetchedPhoneNumbers to true', async () => {
-      store.state.WhatsAppCloud.fetchedPhoneNumbers = false;
-      expect(store.state.WhatsAppCloud.fetchedPhoneNumbers).toBe(false);
-      await store.dispatch('WhatsAppCloud/getWhatsAppPhoneNumbers', params);
-      expect(store.state.WhatsAppCloud.fetchedPhoneNumbers).toBe(true);
-    });
-
     it('should set loadingPhoneNumbers to false', async () => {
       store.state.WhatsAppCloud.loadingPhoneNumbers = true;
       expect(store.state.WhatsAppCloud.loadingPhoneNumbers).toBe(true);
       await store.dispatch('WhatsAppCloud/getWhatsAppPhoneNumbers', params);
       expect(store.state.WhatsAppCloud.loadingPhoneNumbers).toBe(false);
+    });
+
+    it('should set errorPhoneNumbers as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppCloudApi.getWhatsAppPhoneNumbers.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsAppCloud.errorPhoneNumbers = {};
+      expect(store.state.WhatsAppCloud.errorPhoneNumbers).not.toEqual(error);
+      await store.dispatch('WhatsAppCloud/getWhatsAppPhoneNumbers', params);
+      expect(store.state.WhatsAppCloud.errorPhoneNumbers).toEqual(error);
     });
   });
 
@@ -151,6 +159,17 @@ describe('store/appType/whatsapp_cloud/actions.js', () => {
       expect(store.state.WhatsAppCloud.loadingWhatsAppCloudConfigure).toBe(true);
       await store.dispatch('WhatsAppCloud/configurePhoneNumber', data);
       expect(store.state.WhatsAppCloud.loadingWhatsAppCloudConfigure).toBe(false);
+    });
+
+    it('should set errorCloudConfigure as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppCloudApi.configurePhoneNumber.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsAppCloud.errorCloudConfigure = {};
+      expect(store.state.WhatsAppCloud.errorCloudConfigure).not.toEqual(error);
+      await store.dispatch('WhatsAppCloud/configurePhoneNumber', data);
+      expect(store.state.WhatsAppCloud.errorCloudConfigure).toEqual(error);
     });
   });
 

@@ -28,7 +28,7 @@ localVue.use(VueRouter);
 localVue.use(Vuex);
 
 describe('IntegrateButton.vue', () => {
-  let wrapper, actions, getters, store, whatsAppCloudActions, whatsAppCloudGetters;
+  let wrapper, actions, getters, store;
 
   beforeEach(() => {
     actions = {
@@ -42,35 +42,7 @@ describe('IntegrateButton.vue', () => {
       }),
     };
 
-    whatsAppCloudActions = {
-      getDebugToken: jest.fn(() =>
-        Promise.resolve({
-          data: {
-            waba_id: 'waba_id_123',
-            business_id: 'business_id_123',
-          },
-        }),
-      ),
-      getWhatsAppPhoneNumbers: jest.fn(() =>
-        Promise.resolve({
-          data: [{ id: 1 }, { id: 2 }],
-        }),
-      ),
-    };
-
-    whatsAppCloudGetters = {
-      wabaId: jest.fn(() => 'waba_id_123'),
-      whatsAppPhoneNumbers: jest.fn(() => [{ id: 1 }, { id: 2 }]),
-    };
-
     store = new Vuex.Store({
-      modules: {
-        WhatsAppCloud: {
-          namespaced: true,
-          actions: whatsAppCloudActions,
-          getters: whatsAppCloudGetters,
-        },
-      },
       actions,
       getters,
     });
@@ -149,16 +121,6 @@ describe('IntegrateButton.vue', () => {
       });
     });
 
-    it('should call getSelectedProject getter', async () => {
-      expect(getters.getSelectedProject).not.toHaveBeenCalled();
-      const app = {
-        code: 'code',
-        config_design: 'sidemenu',
-      };
-      await wrapper.vm.addApp(app);
-      expect(getters.getSelectedProject).toHaveBeenCalledTimes(1);
-    });
-
     it('should call unnnicCallAlert on error', async () => {
       actions.createApp.mockImplementation(() => {
         throw new Error('error fetching');
@@ -204,23 +166,14 @@ describe('IntegrateButton.vue', () => {
     });
   });
 
-  describe('fetchDebugToken', () => {
-    it('should call fetchDebugToken action', async () => {
+  describe('openWACloudPopUp()', () => {
+    it('should call openPopUp with parameter token', () => {
+      const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
+      expect(spy).not.toHaveBeenCalled();
       const token = '123';
-
-      expect(whatsAppCloudActions.getDebugToken).not.toHaveBeenCalled();
-      await wrapper.vm.fetchDebugToken(token);
-      expect(whatsAppCloudActions.getDebugToken).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('fetchPhoneNumbers', () => {
-    it('should call getWhatsAppPhoneNumbers action', async () => {
-      const token = '123';
-
-      expect(whatsAppCloudActions.getWhatsAppPhoneNumbers).not.toHaveBeenCalled();
-      await wrapper.vm.fetchPhoneNumbers(token);
-      expect(whatsAppCloudActions.getWhatsAppPhoneNumbers).toHaveBeenCalledTimes(1);
+      wrapper.vm.openWACloudPopUp(token);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(wrapper.vm.app, { input_token: token });
     });
   });
 });
