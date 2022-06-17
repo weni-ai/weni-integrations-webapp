@@ -171,7 +171,7 @@ describe('IntegrateButton.vue', () => {
       const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
       expect(spy).not.toHaveBeenCalled();
       const token = '123';
-      wrapper.vm.openWACloudPopUp(token);
+      wrapper.vm.openWACloudPopUp(wrapper.vm.app, token);
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith(wrapper.vm.app, { input_token: token });
     });
