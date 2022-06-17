@@ -89,7 +89,7 @@
         } catch (err) {
           unnnicCallAlert({
             props: {
-              text: this.$t('app_details.status_error'),
+              text: this.$t('apps.details.status_error'),
               title: 'Error',
               icon: 'check-circle-1-1',
               scheme: 'feedback-red',

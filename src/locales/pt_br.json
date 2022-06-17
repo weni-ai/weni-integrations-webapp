@@ -314,7 +314,14 @@
       "phone_numbers": {
         "connect_later": "Conectar depois",
         "create_channel": "Criar canal",
-        "connect": "Conectar"
+        "connect": "Conectar",
+        "error": "Ocorreu um erro ao tentar buscar os dados do número de telefone. Tente novamente mais tarde."
+      },
+      "configure_phone_number": {
+        "error": "Ocorreu um erro ao tentar criar o Canal, tente novamente mais tarde."
+      },
+      "debug_token": {
+        "error": "Ocorreu um erro ao tentar se comunicar com o Facebook, tente novamente mais tarde."
       }
     }
   }
