@@ -3,14 +3,13 @@
     "Cancel": "Cancelar",
     "Close": "Cerrar",
     "You": "Ustedes",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "loading": "Cargando"
   },
-
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
     "required_message": "Este campo es necesario."
   },
-
   "apps": {
     "nav": {
       "discovery": "Descubrimiento",
@@ -34,7 +33,7 @@
     "details": {
       "info": "Número de mensajes intercambiados",
       "integrated_into": "Integrado en",
-      "organizations": "organizaciones",
+      "projects": "proyectos",
       "rating": "Clasificación",
       "status_error": "No se ha podido completar esta acción, por favor, inténtelo de nuevo",
       "status_success": "Éxito",
@@ -98,16 +97,6 @@
       }
     }
   },
-
-  "file_upload": {
-    "drag_your_file_here_or": "Arrastre su archivo aquí o",
-    "search_it": "buscarlo",
-    "supported_formats": "Formatos compatibles",
-    "drag_another_file_or": "Arrastre otro archivo o",
-    "modify": "Modificar",
-    "remove": "Eliminar"
-  },
-
   "upload_area": {
     "title": {
       "text": "Arrastre su archivo aquí o",
@@ -123,7 +112,6 @@
   "import_card": {
     "importing": "Importando"
   },
-
   "weniWebChat": {
     "data": {
       "summary": "Con Weni Web Chat, puede integrar su organización Rapidpro como un chat en su sitio web.",
@@ -132,6 +120,7 @@
     "config": {
       "settings": "Ajustes",
       "script": "Código Script",
+      "appearance": "Apariencia",
       "script_tutorial": "Para instalar Weni Web Chat en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
       "custom_css": "CSS personalizado",
       "avatar_image": "Imagen del avatar",
@@ -176,7 +165,6 @@
       }
     }
   },
-
   "telegram": {
     "data": {
       "summary": "Envía y recibe mensajes de los usuarios de Telegram de forma gratuita.",
@@ -189,13 +177,12 @@
       },
       "TokenInput": {
         "label": "Token"
+      },
+      "errors": {
+        "invalidToken": "El token proporcionado no es válido."
       }
-    },
-    "errors": {
-      "invalidToken": "El token proporcionado no es válido."
-    }
+    }    
   },
-
   "WhatsAppDemo": {
     "data": {
       "summary": "Con WhatsApp Demo puedes traer lo mejor de WhatsApp, la aplicación de chat más grande del mundo, gratis para validar tu proyecto.",
@@ -213,7 +200,6 @@
       }
     }
   },
-
   "WhatsApp": {
     "data": {
       "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
@@ -321,7 +307,7 @@
   "WhatsAppCloud": {
     "data": {
       "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
-      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos"
+      "description": "WhatsApp es la aplicación de mensajería más grande del mundo y una de las preferidas por los usuarios.<br/>Su integración con la Plataforma Weni le permite conectar su número comercial a la aplicación y crear flujos inteligentes para atender a sus clientes.<br/><br/>Puede usar esta integración en la Plataforma Weni de forma gratuita hasta 200 contactos activos mensuales y 1000 conversaciones con mensajes ilimitados en un período de 24 horas.<br/><br/>Esta versión gratuita de la API de WhatsApp admite personalizaciones como fotos, videos, carga de archivos, GIF, descripciones y mensajes de plantilla (las conversaciones pueden ser iniciadas por el usuario o la empresa)."
     },
     "config": {
       "phone_numbers": {

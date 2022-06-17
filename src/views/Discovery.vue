@@ -44,7 +44,7 @@
           category: 'channel',
         };
         const { data } = await this.getAllAppTypes({ params });
-        this.channels.data = data;
+        this.channels.data = data.reverse();
       },
     },
   };

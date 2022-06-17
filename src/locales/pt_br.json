@@ -3,14 +3,13 @@
     "Cancel": "Cancelar",
     "Close": "Fechar",
     "You": "Você",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "loading": "Carregando"
   },
-
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
     "required_message": "Este campo é obrigatório."
   },
-
   "apps": {
     "nav": {
       "discovery": "Descoberta",
@@ -34,7 +33,7 @@
     "details": {
       "info": "Número de mensagens trocadas",
       "integrated_into": "Integrado em",
-      "organizations": "organizações",
+      "projects": "projetos",
       "rating": "Avaliação",
       "status_error": "Não foi possível completar a ação, tente novamente",
       "status_success": "Sucesso",
@@ -65,7 +64,8 @@
         "add": "Adicionar"
       },
       "card": {
-        "comments": "comentários"
+        "comments": "comentários",
+        "see_details": "Ver detalhes"
       },
       "actions": {
         "installed": {
@@ -97,15 +97,6 @@
       }
     }
   },
-
-  "file_upload": {
-    "drag_your_file_here_or": "Arraste seu arquivo aqui, ou",
-    "search_it": "procure-o",
-    "supported_formats": "Formatos suportados ",
-    "drag_another_file_or": "Arraste outro arquivo, ou",
-    "modify": "Modificar"
-  },
-
   "upload_area": {
     "title": {
       "text": "Arraste seu arquivo aqui, ou",
@@ -121,7 +112,6 @@
   "import_card": {
     "importing": "Importando"
   },
-
   "weniWebChat": {
     "data": {
       "summary": "Com o Weni Web Chat, você pode integrar seu projeto como um chat em seu site.",
@@ -175,7 +165,6 @@
       }
     }
   },
-
   "telegram": {
     "data": {
       "summary": "Envie e receba mensagens de usuários do Telegram gratuitamente.",
@@ -194,7 +183,6 @@
       }
     }
   },
-
   "WhatsAppDemo": {
     "data": {
       "summary": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto.",
@@ -212,7 +200,6 @@
       }
     }
   },
-
   "WhatsApp": {
     "data": {
       "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
@@ -320,7 +307,7 @@
   "WhatsAppCloud": {
     "data": {
       "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
-      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos"
+      "description": "O WhatsApp é o maior aplicativo de mensagens do mundo e um dos mais preferidos pelos usuários.<br/>A sua integração com a Weni Plataforma permite que você conecte o seu número comercial do aplicativo e crie fluxos inteligentes para atender os seus clientes.<br/><br/>Você pode usar essa integração na Plataforma Weni gratuitamente até 200 contatos ativos mensais e 1000 conversas com mensagens ilimitadas em um período de 24 horas.<br/><br/>Essa versão gratuita da API do WhatsApp suporta personalizações, como fotos, vídeos, envio de arquivos, GIFs, descrições e templates messages (as conversas podem ser iniciadas pelo usuário ou pela empresa)."
     },
     "config": {
       "phone_numbers": {

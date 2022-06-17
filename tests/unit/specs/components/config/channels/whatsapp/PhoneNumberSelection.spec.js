@@ -1,3 +1,10 @@
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import PhoneNumberSelection from '@/components/config/channels/whatsapp/PhoneNumberSelection.vue';
@@ -11,16 +18,13 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
   let wrapper;
   let actions;
   let getters;
-  let wppCloudGetters;
+  let wppCloudState;
   let wppCloudActions;
   let store;
 
   beforeEach(() => {
     const customData = {
-      pages: [
-        { id: 1, name: 'page1' },
-        { id: 2, name: 'page2' },
-      ],
+      input_token: '123',
     };
 
     actions = {
@@ -36,24 +40,38 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       getSelectedProject: jest.fn(() => {}),
     };
 
-    wppCloudGetters = {
-      whatsAppPhoneNumbers: jest.fn(() => {
-        return [{ display_phone_number: '123', verified_name: 'number' }];
-      }),
-      selectedPhoneNumber: jest.fn(() => {
-        return { data: {} };
-      }),
-      wabaId: jest.fn(() => {
-        return { data: {} };
-      }),
-      businessId: jest.fn(() => {
-        return { data: {} };
-      }),
+    wppCloudState = {
+      wabaId: null,
+      businessId: null,
+      whatsAppPhoneNumbers: [{ display_phone_number: '123', verified_name: 'number', id: 1 }],
+      selectedPhoneNumber: null,
+
+      loadingDebugToken: false,
+      errorDebugToken: false,
+
+      loadingPhoneNumbers: false,
+      errorPhoneNumbers: false,
+
+      loadingWhatsAppCloudConfigure: false,
+      errorCloudConfigure: false,
     };
 
     wppCloudActions = {
       setSelectedPhoneNumber: jest.fn(),
       configurePhoneNumber: jest.fn(),
+      getDebugToken: jest.fn(() =>
+        Promise.resolve({
+          data: {
+            waba_id: 'waba_id_123',
+            business_id: 'business_id_123',
+          },
+        }),
+      ),
+      getWhatsAppPhoneNumbers: jest.fn(() =>
+        Promise.resolve({
+          data: [{ id: 1 }, { id: 2 }],
+        }),
+      ),
     };
 
     store = new Vuex.Store({
@@ -61,7 +79,7 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
         WhatsAppCloud: {
           namespaced: true,
           actions: wppCloudActions,
-          getters: wppCloudGetters,
+          state: wppCloudState,
         },
       },
       actions,
@@ -93,7 +111,7 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
     });
   });
 
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
   });
 
@@ -125,6 +143,7 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
         data: {
           verified_name: 'number',
           display_phone_number: '123',
+          id: 1,
         },
       });
     });
@@ -151,6 +170,78 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       expect(wppCloudActions.configurePhoneNumber).not.toHaveBeenCalled();
       await wrapper.vm.createChannel();
       expect(wppCloudActions.configurePhoneNumber).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call callErrorModal on error', async () => {
+      store.state.WhatsAppCloud.errorCloudConfigure = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.createChannel();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not call configurePhoneNumber if loadingWhatsAppCloudConfigure is defined', async () => {
+      store.state.WhatsAppCloud.loadingWhatsAppCloudConfigure = true;
+      expect(wppCloudActions.configurePhoneNumber).not.toHaveBeenCalled();
+      await wrapper.vm.createChannel();
+      expect(wppCloudActions.configurePhoneNumber).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('fetchDebugToken', () => {
+    it('should call fetchDebugToken action', async () => {
+      const token = '123';
+
+      expect(wppCloudActions.getDebugToken).not.toHaveBeenCalled();
+      await wrapper.vm.fetchDebugToken(token);
+      expect(wppCloudActions.getDebugToken).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call callErrorModal on error', async () => {
+      store.state.WhatsAppCloud.errorDebugToken = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.fetchDebugToken();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('fetchPhoneNumbers', () => {
+    it('should call getWhatsAppPhoneNumbers action', async () => {
+      const token = '123';
+
+      expect(wppCloudActions.getWhatsAppPhoneNumbers).not.toHaveBeenCalled();
+      await wrapper.vm.fetchPhoneNumbers(token);
+      expect(wppCloudActions.getWhatsAppPhoneNumbers).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call callErrorModal on error', async () => {
+      store.state.WhatsAppCloud.errorPhoneNumbers = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.fetchPhoneNumbers();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('callErrorModal', () => {
+    it('should call unnnicCallAlert', () => {
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.callErrorModal({ text: 'error text' });
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'error text',
+            title: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
     });
   });
 });

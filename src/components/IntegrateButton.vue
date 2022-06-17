@@ -20,7 +20,7 @@
   import addModal from './AddModal.vue';
   import configPopUp from './config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     name: 'IntegrateButton',
@@ -48,23 +48,13 @@
       },
     },
     created() {
-      window.fetchDebugToken = this.fetchDebugToken;
-      window.fetchPhoneNumbers = this.fetchPhoneNumbers;
+      window.openWACloudPopUp = this.openWACloudPopUp;
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
-        wabaId: 'WhatsAppCloud/wabaId',
-        whatsAppPhoneNumbers: 'WhatsAppCloud/whatsAppPhoneNumbers',
-      }),
+      ...mapState(['getSelectedProject']),
     },
     methods: {
-      ...mapActions({
-        createApp: 'createApp',
-        getSharedWabas: 'getSharedWabas',
-        getDebugToken: 'WhatsAppCloud/getDebugToken',
-        getWhatsAppPhoneNumbers: 'WhatsAppCloud/getWhatsAppPhoneNumbers',
-      }),
+      ...mapActions(['createApp', 'getSharedWabas']),
       async addApp(app) {
         if (app.code === 'wpp-cloud') {
           await this.facebookLoginAppCreation(app);
@@ -99,6 +89,12 @@
           this.$emit('update');
         }
       },
+      openWACloudPopUp(input_token) {
+        const customData = {
+          input_token,
+        };
+        this.$refs.configPopUp.openPopUp(this.app, customData);
+      },
 
       /* istanbul ignore next */
       async facebookLoginAppCreation() {
@@ -107,8 +103,7 @@
           async function (response) {
             if (response.authResponse) {
               const accessToken = response.authResponse.accessToken;
-              await this.fetchDebugToken(accessToken);
-              await this.fetchPhoneNumbers(accessToken);
+              this.openWACloudPopUp(accessToken);
             }
           },
           {
@@ -118,31 +113,6 @@
             },
           },
         );
-
-        await this.fetchDebugToken(accessToken);
-        await this.fetchPhoneNumbers(accessToken);
-      },
-
-      async fetchDebugToken(input_token) {
-        const params = {
-          input_token,
-        };
-
-        await this.getDebugToken({ params });
-      },
-
-      async fetchPhoneNumbers(input_token) {
-        const params = {
-          waba_id: this.wabaId,
-          input_token,
-        };
-
-        await this.getWhatsAppPhoneNumbers({ params });
-
-        const customData = {
-          input_token,
-        };
-        this.$refs.configPopUp.openPopUp(this.app, customData);
       },
     },
   };
