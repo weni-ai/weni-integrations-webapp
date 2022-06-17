@@ -89,21 +89,21 @@
           this.$emit('update');
         }
       },
-      openWACloudPopUp(input_token) {
+      openWACloudPopUp(app, input_token) {
         const customData = {
           input_token,
         };
-        this.$refs.configPopUp.openPopUp(this.app, customData);
+        this.$refs.configPopUp.openPopUp(app, customData);
       },
 
       /* istanbul ignore next */
-      async facebookLoginAppCreation() {
+      async facebookLoginAppCreation(app) {
         /* eslint-disable no-undef */
         FB.login(
           async function (response) {
             if (response.authResponse) {
               const accessToken = response.authResponse.accessToken;
-              this.openWACloudPopUp(accessToken);
+              this.openWACloudPopUp(app, accessToken);
             }
           },
           {
