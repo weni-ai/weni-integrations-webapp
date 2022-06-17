@@ -84,8 +84,8 @@
       }
     },
     computed: {
+      ...mapState(['getSelectedProject']),
       ...mapState('WhatsAppCloud', [
-        'getSelectedProject',
         'loadingPhoneNumbers',
         'loadingDebugToken',
         'loadingWhatsAppCloudConfigure',
