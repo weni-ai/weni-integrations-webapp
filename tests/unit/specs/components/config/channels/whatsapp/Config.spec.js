@@ -170,4 +170,23 @@ describe('WhatsAppConfig.vue', () => {
       expect(actions.fetchWppProfile).toHaveBeenCalledTimes(1);
     });
   });
+
+  describe('computed', () => {
+    describe('documentationLink', () => {
+      it('should return link based on locale', () => {
+        wrapper.vm.$i18n.locale = 'en-us';
+        expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['en-us']);
+      });
+
+      it('should return link based on locale', () => {
+        wrapper.vm.$i18n.locale = 'pt-br';
+        expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['pt-br']);
+      });
+
+      it('should return en-us link as default', () => {
+        wrapper.vm.$i18n.locale = 'unknown';
+        expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['en-us']);
+      });
+    });
+  });
 });

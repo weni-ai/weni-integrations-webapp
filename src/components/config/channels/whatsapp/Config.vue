@@ -7,9 +7,14 @@
         </div>
         <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
       </div>
-      <div class="config-whatsapp__header__description">
+      <span class="config-whatsapp__header__description">
         {{ $t('WhatsApp.config.description.text') }}
-      </div>
+        <a :href="documentationLink" target="_blank">
+          <span>
+            {{ $t('WhatsApp.config.description.link') }}
+          </span>
+        </a>
+      </span>
     </div>
 
     <unnnic-tab
@@ -68,6 +73,10 @@
         appInfo: null,
         appProfile: null,
         loading: true,
+        documentations: {
+          'en-us': 'http://docs.weni.ai/l/en/weni-integrations/how-to-verify-my-business',
+          'pt-br': 'https://docs.weni.ai/l/pt/m-dulo-integra-es/como-verificar-o-meu-neg-cio#',
+        },
       };
     },
     async mounted() {
@@ -80,6 +89,9 @@
     computed: {
       configTabs() {
         return ['account', 'profile', 'contact_info', 'conversations'];
+      },
+      documentationLink() {
+        return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
       },
     },
     methods: {
