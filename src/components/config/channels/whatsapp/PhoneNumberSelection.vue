@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState, mapGetters } from 'vuex';
   import skeletonLoading from './loadings/PhoneNumberSelection.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -84,7 +84,7 @@
       }
     },
     computed: {
-      ...mapState(['getSelectedProject']),
+      ...mapGetters(['getSelectedProject']),
       ...mapState('WhatsAppCloud', [
         'loadingPhoneNumbers',
         'loadingDebugToken',
@@ -118,6 +118,8 @@
             input_token: this.customData.input_token,
             project_uuid: this.getSelectedProject,
           };
+
+          console.log('data:', data);
 
           await this.configurePhoneNumber({ data });
 
