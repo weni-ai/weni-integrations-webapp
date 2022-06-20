@@ -119,8 +119,6 @@
             project_uuid: this.getSelectedProject,
           };
 
-          console.log('data:', data);
-
           await this.configurePhoneNumber({ data });
 
           if (this.errorCloudConfigure) {
