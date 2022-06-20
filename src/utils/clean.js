@@ -3,7 +3,7 @@
 function removeEmpty(obj) {
   if (Array.isArray(obj)) {
     return obj.filter((element, i) => {
-      if (typeof element === 'object') {
+      if (element && typeof element === 'object') {
         return removeEmpty(element);
       }
       if (element) {
