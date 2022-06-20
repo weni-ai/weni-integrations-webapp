@@ -20,7 +20,7 @@
   import addModal from './AddModal.vue';
   import configPopUp from './config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'IntegrateButton',
@@ -51,7 +51,7 @@
       window.openWACloudPopUp = this.openWACloudPopUp;
     },
     computed: {
-      ...mapState(['getSelectedProject']),
+      ...mapGetters(['getSelectedProject']),
     },
     methods: {
       ...mapActions(['createApp', 'getSharedWabas']),
