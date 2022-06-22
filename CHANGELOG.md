@@ -1,3 +1,19 @@
+1.9.0
+----------
+`2022-06-22 · 3 🎉 · 5 🐛`
+
+### 🎉 New Features
+- Feat: WhatsApp Cloud Loading and Error handling
+- Feat: WhatsApp description with doc links
+- Feat: WhatsApp Cloud remove status input and photo delete option
+
+### 🐛 Bug fixes
+- Fix: Wrong app being used when popup in opened
+- Fix: Missing locales
+- Fix: Selected project
+- Fix: Remove phone_numbers token param
+- Fix: Increase error alert time
+
 1.8.1
 ----------
 `2022-06-10 · 1 🐛`
