@@ -166,7 +166,7 @@
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
           },
-          seconds: 3,
+          seconds: 6,
         });
       },
     },
