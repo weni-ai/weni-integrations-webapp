@@ -146,7 +146,6 @@
       async fetchPhoneNumbers() {
         const params = {
           waba_id: this.wabaId,
-          input_token: this.customData.input_token,
         };
 
         await this.getWhatsAppPhoneNumbers({ params });
