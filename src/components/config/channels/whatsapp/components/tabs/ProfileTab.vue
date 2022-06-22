@@ -42,6 +42,13 @@
         default: /* istanbul ignore next */ () => {},
       },
     },
+    mounted() {
+      if (this.app.code !== 'wpp') {
+        this.profileInputs = this.profileInputs.filter((value) => {
+          return value.name !== 'status';
+        });
+      }
+    },
     data() {
       return {
         modifiedInitialPhoto: false,
@@ -60,7 +67,7 @@
               filesProgress: [],
               isUploading: false,
               canImport: true,
-              canDelete: true,
+              canDelete: this.app.code === 'wpp',
             },
           },
           {
@@ -129,7 +136,7 @@
         return true;
       },
       getInputValue(inputName) {
-        return this.profileInputs.find((input) => input.name === inputName).value;
+        return this.profileInputs.find((input) => input.name === inputName)?.value;
       },
       async saveProfile() {
         try {
