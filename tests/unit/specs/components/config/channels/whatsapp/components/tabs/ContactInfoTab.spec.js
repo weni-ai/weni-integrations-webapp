@@ -120,11 +120,43 @@ describe('whatsapp/components/tabs/ContactInfoTab.vue', () => {
       expect(actions.updateWppContactInfo).toHaveBeenCalledTimes(1);
     });
 
+    it('should call unnnicCallAlert on success', async () => {
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.saveContactInfo();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            title: 'Success',
+            text: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
+    });
+
     it('should call unnnicCallAlert on error', async () => {
       actions.updateWppContactInfo.mockImplementation(() => Promise.reject(new Error('error')));
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.saveContactInfo();
-      expect(mockUnnnicCallAlert).toHaveBeenCalled();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            title: 'Error',
+            text: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
     });
   });
 });
