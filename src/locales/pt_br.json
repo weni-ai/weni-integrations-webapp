@@ -296,7 +296,8 @@
         "save_changes": "Salvar alterações"
       },
       "success": {
-        "profile_updated": "Perfil do WhatsApp atualizado com sucesso"
+        "profile_updated": "Perfil do WhatsApp atualizado com sucesso",
+        "contact_info_update": "Informações de contato do WhatsApp atualizadas com sucesso"
       },
       "error": {
         "invalid_photo_size": "A foto importada deve ter pelo menos 192 x 192 pixels",

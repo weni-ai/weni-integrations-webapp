@@ -144,6 +144,18 @@
 
           const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
           await this.updateWppContactInfo(data);
+
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.success.contact_info_update'),
+              title: 'Success',
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
         } catch (err) {
           unnnicCallAlert({
             props: {
