@@ -5,7 +5,7 @@ on:
     inputs:
 
       source-branch:
-        description: 'Source branch in Integrations repository (main, staging, develop, fix/sentry etc.)'
+        description: 'Source branch (master, staging, develop, etc.)'
         required: true
         default: 'main'
 
@@ -13,88 +13,50 @@ on:
         description: 'Tag id (v0.0.1-develop, v0.0.1-staging, v0.0.2, etc.)'
         required: true
 
+      destination-env:
+        type: choice
+        description: 'Destination environment (production, develop)'
+        required: true
+        default: 'develop'
+        options:
+          - develop
+          - staging
+          - production
+
+      api-base-url:
+        type: choice
+        description: 'Base URL of the backend API'
+        required: true
+        default: 'https://integrations-engine.dev.cloud.weni.ai'
+        options:
+          - https://integrations-engine.dev.cloud.weni.ai
+          - https://integrations-engine-stg.dev.cloud.weni.ai
+          - https://integrations-engine.weni.ai
+
+      sentry-dsn:
+        description: 'Sentry DSN'
+        required: true
+        default: 'https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20'
+      
+      sentry-environment:
+        description: 'Sentry environment (production, staging, develop)'
+        required: true
+        default: 'develop'
+      
+      helphero-id:
+        description: 'Helphero_id'
+        required: true
+        default: 'm7dO0to4OK'
+
 jobs:
   docker:
     runs-on: ubuntu-latest 
     steps:
-
-      - name: Set variables
-        run: |
-            TAG=${{github.event.inputs.tag-name}}
-            if $(echo  $TAG|grep --silent -e 'v*.*.*-develop*')
-            then 
-              echo "Found environment: DEVELOP - $TAG"
-              echo "MANIFESTS_ENVIRONMENT=develop" >> $GITHUB_ENV
-              echo "MANIFESTS_ENVIRONMENT=develop"
-              echo "TAG=$TAG" >> $GITHUB_ENV
-              echo "TAG=$TAG"
-              VERSION=${TAG#v} 
-              echo "VERSION=$VERSION" >> $GITHUB_ENV
-              echo "VERSION=$VERSION"
-              echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
-              echo "COMMIT_SHA=$GITHUB_SHA"
-              echo "VUE_APP_API_BASE_URL=https://integrations-engine.dev.cloud.weni.ai" >> $GITHUB_ENV
-              echo "VUE_APP_API_BASE_URL=https://integrations-engine.dev.cloud.weni.ai"
-              echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41" >> $GITHUB_ENV
-              echo "VUE_APP_SENTRY_DSN=https://e8e2f947d2434a73962259d74eee9c38@sentry.dev.cloud.weni.ai/41"
-              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_DEVELOP }}" >> $GITHUB_ENV
-              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_DEVELOP }}"
-              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash.dev.cloud.weni.ai" >> $GITHUB_ENV
-              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash.dev.cloud.weni.ai"
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
-            elif $(echo  $TAG|grep --silent -e 'v*.*.*-staging*')
-            then
-              echo "Found environment: STAGING - $TAG"
-              echo "MANIFESTS_ENVIRONMENT=staging" >> $GITHUB_ENV
-              echo "MANIFESTS_ENVIRONMENT=staging"
-              echo "TAG=$TAG" >> $GITHUB_ENV
-              echo "TAG=$TAG"
-              VERSION=${TAG#v} 
-              echo "VERSION=$VERSION" >> $GITHUB_ENV
-              echo "VERSION=$VERSION"
-              echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
-              echo "COMMIT_SHA=$GITHUB_SHA"
-              echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai" >> $GITHUB_ENV
-              echo "VUE_APP_API_BASE_URL=https://integrations-engine-staging.weni.ai"
-              echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15" >> $GITHUB_ENV
-              echo "VUE_APP_SENTRY_DSN=https://cf0543927f0244d7b780639d4dda1634@sentry.dev.cloud.weni.ai/15"
-              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_STAGING }}" >> $GITHUB_ENV
-              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_STAGING }}"
-              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash-staging.weni.ai" >> $GITHUB_ENV
-              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash-staging.weni.ai"
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
-            elif $(echo  $TAG|grep --silent -e 'v*.*.*')
-            then
-              echo "No environment found, assuming: PRODUCTION - $TAG"
-              echo "MANIFESTS_ENVIRONMENT=production" >> $GITHUB_ENV
-              echo "MANIFESTS_ENVIRONMENT=production"
-              echo "TAG=$TAG" >> $GITHUB_ENV
-              echo "TAG=$TAG"
-              VERSION=${TAG#v} 
-              echo "VERSION=$VERSION" >> $GITHUB_ENV
-              echo "VERSION=$VERSION"
-              echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
-              echo "COMMIT_SHA=$GITHUB_SHA"
-              echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai" >> $GITHUB_ENV
-              echo "VUE_APP_API_BASE_URL=https://integrations-engine.weni.ai"
-              echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20" >> $GITHUB_ENV
-              echo "VUE_APP_SENTRY_DSN=https://bf0213db44f44d97b286f2c0d7793f4f@sentry.dev.cloud.weni.ai/20"
-              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_PRODUCTION }}" >> $GITHUB_ENV
-              echo "VUE_APP_LOGROCKET_ID=${{ secrets.LOGROCKET_ID_PRODUCTION }}"
-              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash.weni.ai" >> $GITHUB_ENV
-              echo "VUE_APP_PARENT_IFRAME_DOMAIN=https://dash.weni.ai"
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG" >> $GITHUB_ENV
-              echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-$TAG"
-            else
-              echo 'Not a valid tag. Skipping...'
-              exit 1
-            fi
-
+        
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
+          repository: weni-ai/weni-integrations-webapp
           ref: ${{github.event.inputs.source-branch}}
 
       - name: Set up QEMU
@@ -115,86 +77,35 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          labels: branch=${{github.event.inputs.source-branch}},commit=${{env.GITHUB_SHA}},repository=https://github.com/Ilhasoft/weni-integrations-webapp
           file: Dockerfile
           push: true
-          tags: 869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-${{github.event.inputs.tag-name}}
+          tags: 869898323958.dkr.ecr.us-east-1.amazonaws.com/push-backend:integrations-webapp-${{github.event.inputs.tag-name}}
           no-cache: true
-          build-args: |
-            VUE_APP_API_BASE_URL=${{env.VUE_APP_API_BASE_URL}}
-            VUE_APP_USE_SENTRY=true
-            VUE_APP_SENTRY_DSN=${{env.VUE_APP_SENTRY_DSN}}
-            VUE_APP_SENTRY_ENVIRONMENT=${{env.MANIFESTS_ENVIRONMENT}}
-            VUE_APP_LOGROCKET_ID=${{env.VUE_APP_LOGROCKET_ID}}
-            VUE_APP_PARENT_IFRAME_DOMAIN=${{env.VUE_APP_PARENT_IFRAME_DOMAIN}}
-
+        
       - name: Check out Kubernetes Manifests
         uses: actions/checkout@master
         with:
           ref: main
           repository: Ilhasoft/kubernetes-manifests-platform
-          token: ${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}
+          token: ${{ secrets.CICEROW_GITHUB_PERMANENT_TOKEN }}
           path: ./kubernetes-manifests-platform/
 
-      - name: Set variable tag for jq
+      - name: Update image deployment 01
         run: |
-          echo "IMAGE_TAG=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-${{github.event.inputs.tag-name}}" >> $GITHUB_ENV
-
-      - name: Update image on deployment
-        run: |
-            which jq > /dev/null 2>&1 || ( sudo apt update ; sudo apt install -y jq )
-            # Dep: coreutils
-            verlte() {
-              [ "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
-            }
-            verlt(){
-              [ "$1" = "$2" ] && return 1 || verlte $1 $2
-            }
-            export PROJECT_DIR="integrations" PATCH_TARGET="deployment-webapp.json"
-            for e in ${MANIFESTS_ENVIRONMENT}; do
-              echo "Update ${e}:"
-              if [ ! -d "kubernetes-manifests-platform/${PROJECT_DIR}/${e}" ] ; then
-                echo "kubernetes-manifests-platform/${PROJECT_DIR}/${e}: Does not exist, skipping"
-              elif [ ! -r "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/kustomization.yaml" ] ; then
-                echo "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/kustomization.yaml: Does not readable, skipping"
-              elif [ ! -r "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}" ] ; then
-                echo "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}: Does not readable, skipping"
-              else
-                OLD_IMAGE=$(
-                  cat "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}" \
-                    | jq '.[] | select(.path == "/spec/template/spec/containers/0/image") | .value'
-                )
-                echo "Old image to replace: ${OLD_IMAGE}"
-                OLD_VERSION=$(
-                  echo "${OLD_IMAGE}" \
-                    | sed s'/^.*[v:-]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/'g \
-                    | head -n1
-                )
-                NEW_VERSION=$(echo ${{github.event.inputs.tag-name}}|grep -o -e '[0-9]*\.[0-9]*\.[0-9]*')
-                echo "Old image version to compare: ${OLD_VERSION}<=${NEW_VERSION}"
-                if verlte "${OLD_VERSION}" "${NEW_VERSION}" ; then
-                  echo 'New configurations:'
-                  new_configuration=$(
-                    cat "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}" \
-                      | jq '(..|select(.path == "/spec/template/spec/containers/0/image")?) += {value: "'"${{env.IMAGE_TAG}}"'"}'
-                  )
-                  echo "${new_configuration}"
-                  echo "${new_configuration}" > "kubernetes-manifests-platform/${PROJECT_DIR}/${e}/${PATCH_TARGET}"
-                else
-                  echo "Version in file is greater than build, skiping update yaml"
-                fi
-              fi
-            done
+            sudo apt update
+            sudo apt install -y jq
+            echo 'Old image to replace:'
+            cat ./kubernetes-manifests-platform/integrations-webapp/${{github.event.inputs.destination-env}}/deployment-webapp.json|jq '.[0].value'
+            echo 'New configurations:'
+            new_configuration=$(cat ./kubernetes-manifests-platform/integrations-webapp/${{github.event.inputs.destination-env}}/deployment-webapp.json|jq '.[0].value = "869898323958.dkr.ecr.us-east-1.amazonaws.com/push-backend:integrations-webapp-${{github.event.inputs.tag-name}}"')
+            echo "$new_configuration"
+            echo "$new_configuration" > ./kubernetes-manifests-platform/integrations-webapp/${{github.event.inputs.destination-env}}/deployment-webapp.json
 
       - name: Commit & Push changes
         uses: actions-js/push@master
         with:
-          github_token: ${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}
+          github_token: ${{ secrets.CICEROW_GITHUB_PERMANENT_TOKEN }}
           repository: Ilhasoft/kubernetes-manifests-platform
           directory: ./kubernetes-manifests-platform/
           branch: main
           message: "From Integrations WebApp Build (Dispatch)"
-
-      - name: Generated Image URL to Copy
-        run: |
-            echo ${{ env.IMAGE_TAG }}
