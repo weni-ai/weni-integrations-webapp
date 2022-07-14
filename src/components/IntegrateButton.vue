@@ -1,15 +1,15 @@
 <template>
   <div>
-    <unnnic-button
-      ref="button"
-      :size="size"
+    <LoadingButton
       type="secondary"
+      loadingPosition="center"
+      :size="size"
       :iconCenter="icon"
-      @click.stop="addApp(app)"
+      :isLoading="loadingCreateApp"
       :disabled="disabled"
-    >
-      {{ text }}
-    </unnnic-button>
+      :text="text"
+      @clicked="addApp(app)"
+    />
 
     <add-modal ref="addModal" />
     <config-pop-up ref="configPopUp" />
@@ -20,11 +20,11 @@
   import addModal from './AddModal.vue';
   import configPopUp from './config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapGetters } from 'vuex';
+  import LoadingButton from './LoadingButton.vue';
 
   export default {
     name: 'IntegrateButton',
-    components: { configPopUp, addModal },
+    components: { configPopUp, addModal, LoadingButton },
     props: {
       app: {
         type: Object,
@@ -46,6 +46,11 @@
         type: String,
         default: 'small',
       },
+    },
+    data() {
+      return {
+        loadingCreateApp: false,
+      };
     },
     created() {
       window.openWACloudPopUp = this.openWACloudPopUp;
