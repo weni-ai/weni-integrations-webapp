@@ -1,12 +1,16 @@
+import state from './state';
 import actions from './actions';
+import mutations from './mutations';
 
-import WhatsApp from './whatsapp';
-import WhatsAppCloud from './whatsapp_cloud';
+import channels from './channels';
+import comments from './comments';
 
 export default {
   modules: {
-    WhatsApp,
-    WhatsAppCloud,
+    channels,
+    comments,
   },
   actions,
+  mutations,
+  state,
 };

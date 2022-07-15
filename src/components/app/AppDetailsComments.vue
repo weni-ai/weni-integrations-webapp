@@ -122,7 +122,12 @@
       await this.fetchComments(this.appCode);
     },
     methods: {
-      ...mapActions(['listComments', 'createComment', 'deleteComment', 'updateComment']),
+      ...mapActions('comments', [
+        'listComments',
+        'createComment',
+        'deleteComment',
+        'updateComment',
+      ]),
       async fetchComments(appCode) {
         const { data } = await this.listComments(appCode);
         this.comments = data.reverse();

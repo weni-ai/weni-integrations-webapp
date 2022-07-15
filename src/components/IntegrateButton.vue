@@ -1,15 +1,16 @@
 <template>
   <div>
-    <unnnic-button
+    <LoadingButton
       ref="button"
-      :size="size"
       type="secondary"
+      loadingPosition="center"
+      :size="size"
       :iconCenter="icon"
-      @click.stop="addApp(app)"
+      :isLoading="loadingCreateApp"
       :disabled="disabled"
-    >
-      {{ text }}
-    </unnnic-button>
+      :text="text"
+      @clicked="addApp(app)"
+    />
 
     <add-modal ref="addModal" />
     <config-pop-up ref="configPopUp" />
@@ -20,11 +21,12 @@
   import addModal from './AddModal.vue';
   import configPopUp from './config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapGetters, mapState } from 'vuex';
+  import LoadingButton from './LoadingButton.vue';
 
   export default {
     name: 'IntegrateButton',
-    components: { configPopUp, addModal },
+    components: { configPopUp, addModal, LoadingButton },
     props: {
       app: {
         type: Object,
@@ -47,11 +49,20 @@
         default: 'small',
       },
     },
+    data() {
+      return {
+        loadingCreateApp: false,
+      };
+    },
     created() {
       window.openWACloudPopUp = this.openWACloudPopUp;
     },
     computed: {
       ...mapGetters(['getSelectedProject']),
+      ...mapState({
+        createAppResponse: (state) => state.appType.createAppResponse,
+        errorCreateApp: (state) => state.appType.errorCreateApp,
+      }),
     },
     methods: {
       ...mapActions(['createApp', 'getSharedWabas']),
@@ -61,39 +72,45 @@
           return;
         }
 
-        try {
-          const code = app.code;
-          const payload = {
-            project_uuid: this.getSelectedProject,
-          };
-          const res = await this.createApp({ code, payload });
-          if (app.config_design === 'popup') {
-            app.config = res.data.config;
-            this.$refs.configPopUp.openPopUp(app);
-          } else {
-            this.$refs.addModal.toggleModal();
-          }
-        } catch (error) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              title: 'Error',
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-        } finally {
-          this.$emit('update');
+        const code = app.code;
+        const payload = {
+          project_uuid: this.getSelectedProject,
+        };
+        this.loadingCreateApp = true;
+        await this.createApp({ code, payload });
+        this.loadingCreateApp = false;
+
+        if (this.errorCreateApp) {
+          this.callErrorModal({ text: this.$t('apps.details.status_error') });
+          return;
         }
+
+        if (app.config_design === 'popup') {
+          app.config = this.createAppResponse.config;
+          this.$refs.configPopUp.openPopUp(app);
+        } else {
+          this.$refs.addModal.toggleModal();
+        }
+        this.$emit('update');
       },
       openWACloudPopUp(app, input_token) {
         const customData = {
           input_token,
         };
         this.$refs.configPopUp.openPopUp(app, customData);
+      },
+      callErrorModal({ text }) {
+        unnnicCallAlert({
+          props: {
+            text,
+            title: 'Error',
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
       },
 
       /* istanbul ignore next */

@@ -9,9 +9,9 @@ import WhatsAppCloudApi from '@/api/appType/whatsapp_cloud';
 
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import actions from '@/store/appType/whatsapp_cloud/actions';
-import mutations from '@/store/appType/whatsapp_cloud/mutations';
-import state from '@/store/appType/whatsapp_cloud/state';
+import actions from '@/store/appType/channels/whatsapp_cloud/actions';
+import mutations from '@/store/appType/channels/whatsapp_cloud/mutations';
+import state from '@/store/appType/channels/whatsapp_cloud/state';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);

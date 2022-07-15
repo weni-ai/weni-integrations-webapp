@@ -43,6 +43,7 @@
       },
     },
     mounted() {
+      /* istanbul ignore next */
       if (this.app.code !== 'wpp') {
         this.profileInputs = this.profileInputs.filter((value) => {
           return value.name !== 'status';

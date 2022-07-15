@@ -30,18 +30,15 @@
           @click="closePopUp"
         ></unnnic-button>
 
-        <unnnic-button
+        <LoadingButton
           class="phone-number-selection__buttons__save"
           type="terciary"
           size="large"
-          :text="
-            loadingWhatsAppCloudConfigure
-              ? $t('general.loading')
-              : $t('WhatsAppCloud.config.phone_numbers.create_channel')
-          "
-          @click="createChannel"
-          :iconLeft="loadingWhatsAppCloudConfigure ? 'loading-circle-1' : null"
-        ></unnnic-button>
+          :isLoading="loadingWhatsAppCloudConfigure"
+          :loadingText="$t('general.loading')"
+          :text="$t('WhatsAppCloud.config.phone_numbers.create_channel')"
+          @clicked="createChannel"
+        />
       </div>
     </div>
   </unnnic-modal>
@@ -51,11 +48,13 @@
   import { mapActions, mapState, mapGetters } from 'vuex';
   import skeletonLoading from './loadings/PhoneNumberSelection.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import LoadingButton from '../../../LoadingButton.vue';
 
   export default {
     name: 'PhoneNumberSelection',
     components: {
       skeletonLoading,
+      LoadingButton,
     },
     props: {
       app: {
@@ -196,25 +195,10 @@
       display: flex;
       justify-content: space-around;
       margin-top: $unnnic-spacing-stack-lg;
-
-      &__save {
-        ::v-deep svg {
-          animation: rotation 1.5s infinite linear;
-        }
-      }
     }
 
     ::v-deep .unnnic-modal-container-background-body-description {
       padding-bottom: $unnnic-spacing-stack-lg;
-    }
-  }
-
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
     }
   }
 </style>

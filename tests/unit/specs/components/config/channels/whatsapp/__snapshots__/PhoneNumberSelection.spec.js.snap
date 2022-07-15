@@ -10,7 +10,7 @@ exports[`whatsapp/PhoneNumberSelection.vue should be rendered properly 1`] = `
     </unnnicselect-stub>
     <div class="phone-number-selection__buttons">
       <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="phone-number-selection__buttons__cancel"></unnnicbutton-stub>
-      <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="phone-number-selection__buttons__save"></unnnicbutton-stub>
+      <loadingbutton-stub type="terciary" size="large" loadingtext="some specific text" loadingposition="left" text="some specific text" class="phone-number-selection__buttons__save"></loadingbutton-stub>
     </div>
   </div>
 </unnnicmodal-stub>

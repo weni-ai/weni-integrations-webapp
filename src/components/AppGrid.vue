@@ -79,14 +79,16 @@
         @click="toggleRemoveModal"
         >{{ $t('general.Cancel') }}</unnnic-button
       >
-      <unnnic-button
+
+      <LoadingButton
         ref="unnnic-remove-modal-navigate-button"
         slot="options"
         type="primary"
-        @click="removeApp(currentRemoval.code, currentRemoval.uuid)"
-      >
-        {{ $t('apps.details.actions.remove.remove') }}
-      </unnnic-button>
+        :isLoading="loadingDeleteApp"
+        :loadingText="$t('general.loading')"
+        :text="$t('apps.details.actions.remove.remove')"
+        @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
+      />
     </unnnic-modal>
 
     <config-modal ref="configModal" />
@@ -97,12 +99,13 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from './config/ConfigModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapGetters, mapState } from 'vuex';
   import IntegrateButton from './IntegrateButton.vue';
+  import LoadingButton from './LoadingButton.vue';
 
   export default {
     name: 'AppGrid',
-    components: { configModal, skeletonLoading, IntegrateButton },
+    components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
     props: {
       section: {
         type: String,
@@ -136,6 +139,10 @@
     computed: {
       ...mapGetters({
         getSelectedProject: 'getSelectedProject',
+      }),
+      ...mapState({
+        loadingDeleteApp: (state) => state.appType.loadingDeleteApp,
+        errorDeleteApp: (state) => state.appType.errorDeleteApp,
       }),
       sectionIcon() {
         switch (this.section) {
@@ -190,46 +197,45 @@
       },
     },
     methods: {
-      ...mapActions([
-        'getAllAppTypes',
-        'createApp',
-        'getConfiguredApps',
-        'getInstalledApps',
-        'deleteApp',
-      ]),
+      ...mapActions(['deleteApp']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
       },
       async removeApp(code, appUuid) {
-        try {
-          await this.deleteApp({ code, appUuid });
-          this.toggleRemoveModal();
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.actions.remove.status_text'),
-              title: this.$t('apps.details.status_success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-          this.$emit('update');
-        } catch (error) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              title: 'Error',
-              icon: 'alert-circle-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
+        await this.deleteApp({ code, appUuid });
+
+        if (this.errorDeleteApp) {
+          this.callErrorModal({ text: this.$t('apps.details.status_error') });
+          return;
         }
+
+        this.toggleRemoveModal();
+        unnnicCallAlert({
+          props: {
+            text: this.$t('apps.details.actions.remove.status_text'),
+            title: this.$t('apps.details.status_success'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 3,
+        });
+        this.$emit('update');
+      },
+      callErrorModal({ text }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: 'Error',
+            icon: 'alert-circle-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
       },
       openAppDetails(code) {
         this.$router.push(`/apps/${code}/details`);

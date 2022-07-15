@@ -23,10 +23,9 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
   import addModal from '../AddModal.vue';
   import IntegrateButton from '../IntegrateButton.vue';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapGetters } from 'vuex';
 
   export default {
     name: 'AppDetailsHeader',
@@ -35,30 +34,6 @@
       app: {
         type: Object,
         default: /* istanbul ignore next */ () => {},
-      },
-    },
-    methods: {
-      ...mapActions(['createApp']),
-      async openAddModal(code) {
-        try {
-          const payload = {
-            project_uuid: this.getSelectedProject,
-          };
-          await this.createApp({ code, payload });
-          this.$refs.addModal.toggleModal();
-        } catch (error) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              title: 'Error',
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-        }
       },
     },
     computed: {

@@ -9,22 +9,6 @@ export default {
     return await appType.getAppType(code);
   },
 
-  async listComments(store, code) {
-    return await appType.listComments(code);
-  },
-
-  async createComment(store, { code, payload }) {
-    return await appType.createComment(code, payload);
-  },
-
-  async deleteComment(store, { code, commentUuid }) {
-    return await appType.deleteComment(code, commentUuid);
-  },
-
-  async updateComment(store, { code, commentUuid, payload }) {
-    return await appType.updateComment(code, commentUuid, payload);
-  },
-
   async postRating(store, { code, payload }) {
     return await appType.postRating(code, payload);
   },
@@ -33,12 +17,24 @@ export default {
     return await appType.getApp(code, appUuid);
   },
 
-  async createApp(store, { code, payload }) {
-    return await appType.createApp(code, payload);
+  async createApp({ commit }, { code, payload }) {
+    commit('CREATE_APP_REQUEST');
+    try {
+      const { data } = await appType.createApp(code, payload);
+      commit('CREATE_APP_SUCCESS', data);
+    } catch (err) {
+      commit('CREATE_APP_ERROR', err);
+    }
   },
 
-  async deleteApp(store, { code, appUuid }) {
-    return await appType.deleteApp(code, appUuid);
+  async deleteApp({ commit }, { code, appUuid }) {
+    commit('DELETE_APP_REQUEST');
+    try {
+      await appType.deleteApp(code, appUuid);
+      commit('DELETE_APP_SUCCESS');
+    } catch (err) {
+      commit('DELETE_APP_ERROR', err);
+    }
   },
 
   async fetchFeatured() {

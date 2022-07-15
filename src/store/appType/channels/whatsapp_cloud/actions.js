@@ -1,10 +1,10 @@
-import WhatsAppCloud from '@/api/appType/whatsapp_cloud';
+import whatsAppCloud from '@/api/appType/whatsapp_cloud';
 
 export default {
   async getDebugToken({ commit }, { params }) {
     commit('DEBUG_TOKEN_REQUEST');
     try {
-      const { data } = await WhatsAppCloud.getDebugToken(params);
+      const { data } = await whatsAppCloud.getDebugToken(params);
       commit('DEBUG_TOKEN_SUCCESS', data);
     } catch (err) {
       commit('DEBUG_TOKEN_ERROR', err);
@@ -13,7 +13,7 @@ export default {
   async getWhatsAppPhoneNumbers({ commit }, { params }) {
     commit('PHONE_NUMBERS_REQUEST');
     try {
-      const { data } = await WhatsAppCloud.getWhatsAppPhoneNumbers(params);
+      const { data } = await whatsAppCloud.getWhatsAppPhoneNumbers(params);
       commit('PHONE_NUMBERS_SUCCESS', data);
     } catch (err) {
       commit('PHONE_NUMBERS_ERROR', err);
@@ -22,7 +22,7 @@ export default {
   async configurePhoneNumber({ commit }, { data }) {
     commit('CLOUD_CONFIGURE_REQUEST');
     try {
-      await WhatsAppCloud.configurePhoneNumber(data);
+      await whatsAppCloud.configurePhoneNumber(data);
       commit('CLOUD_CONFIGURE_SUCCESS');
     } catch (err) {
       commit('CLOUD_CONFIGURE_ERROR', err);

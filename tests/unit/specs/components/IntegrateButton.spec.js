@@ -28,7 +28,7 @@ localVue.use(VueRouter);
 localVue.use(Vuex);
 
 describe('IntegrateButton.vue', () => {
-  let wrapper, actions, getters, store;
+  let wrapper, actions, getters, state, store;
 
   beforeEach(() => {
     actions = {
@@ -42,9 +42,17 @@ describe('IntegrateButton.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        createAppResponse: null,
+        errorCreateApp: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
       getters,
+      state,
     });
 
     wrapper = mount(IntegrateButton, {
@@ -80,7 +88,7 @@ describe('IntegrateButton.vue', () => {
     expect(spy).not.toHaveBeenCalled();
 
     const button = wrapper.findComponent({ ref: 'button' });
-    button.vm.$emit('click', { stopPropagation: () => {} });
+    button.vm.$emit('clicked', { stopPropagation: () => {} });
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(wrapper.props('app'));
@@ -122,16 +130,15 @@ describe('IntegrateButton.vue', () => {
     });
 
     it('should call unnnicCallAlert on error', async () => {
-      actions.createApp.mockImplementation(() => {
-        throw new Error('error fetching');
-      });
-      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      store.state.appType.errorCreateApp = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
       const app = {
         code: 'code',
         config_design: 'sidemenu',
       };
       await wrapper.vm.addApp(app);
-      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should call toggleModal if design not popup', async () => {
@@ -147,15 +154,17 @@ describe('IntegrateButton.vue', () => {
 
     it('should call openPopUp if design is popup', async () => {
       const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
+      const appConfig = {
+        config: {
+          redirect_url: 'https://url.com',
+        },
+      };
       actions.createApp.mockImplementation(() => {
         return Promise.resolve({
-          data: {
-            config: {
-              redirect_url: 'https://url.com',
-            },
-          },
+          data: appConfig,
         });
       });
+      store.state.appType.createAppResponse = appConfig;
       expect(spy).not.toHaveBeenCalled();
       const app = {
         code: 'code',
@@ -174,6 +183,27 @@ describe('IntegrateButton.vue', () => {
       wrapper.vm.openWACloudPopUp(wrapper.vm.app, token);
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith(wrapper.vm.app, { input_token: token });
+    });
+  });
+
+  describe('callErrorModal', () => {
+    it('should call unnnicCallAlert', () => {
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.callErrorModal({ text: 'error text' });
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'error text',
+            title: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
     });
   });
 });

@@ -8,9 +8,9 @@ import WhatsAppApi from '@/api/appType/whatsapp';
 
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import actions from '@/store/appType/whatsapp/actions';
-import mutations from '@/store/appType/whatsapp/mutations';
-import state from '@/store/appType/whatsapp/state';
+import actions from '@/store/appType/channels/whatsapp/actions';
+import mutations from '@/store/appType/channels/whatsapp/mutations';
+import state from '@/store/appType/channels/whatsapp/state';
 
 import storeMock from './__mocks__/store';
 
