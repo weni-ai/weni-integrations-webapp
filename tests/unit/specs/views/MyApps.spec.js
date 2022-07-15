@@ -11,6 +11,7 @@ describe('MyApps.vue', () => {
   let wrapper;
   let actions;
   let getters;
+  let state;
   let store;
 
   beforeEach(() => {
@@ -30,9 +31,17 @@ describe('MyApps.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        loadingDeleteApp: false,
+        errorDeleteApp: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
       getters,
+      state,
     });
 
     wrapper = shallowMount(MyApps, {

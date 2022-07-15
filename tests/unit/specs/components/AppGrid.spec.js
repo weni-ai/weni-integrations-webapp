@@ -42,6 +42,7 @@ describe('AppGrid.vue', () => {
   let wrapper;
   let actions;
   let getters;
+  let state;
   let store;
 
   beforeEach(() => {
@@ -65,9 +66,17 @@ describe('AppGrid.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        loadingDeleteApp: false,
+        errorDeleteApp: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
       getters,
+      state,
     });
 
     wrapper = shallowMount(AppGrid, {
@@ -264,14 +273,34 @@ describe('AppGrid.vue', () => {
     });
 
     it('should call unnnicCallAlert on error', async () => {
-      actions.deleteApp.mockImplementation(() => {
-        throw new Error('error fetching');
-      });
-      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      store.state.appType.errorDeleteApp = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
       const code = 'code';
       const appUuid = '123';
       await wrapper.vm.removeApp(code, appUuid);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('callErrorModal', () => {
+    it('should call unnnicCallAlert', () => {
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.callErrorModal({ text: 'error text' });
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'error text',
+            title: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
     });
   });
 });

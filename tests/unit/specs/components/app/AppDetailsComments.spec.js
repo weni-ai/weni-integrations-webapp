@@ -31,7 +31,12 @@ describe('AppDetailsComments.vue', () => {
     };
 
     store = new Vuex.Store({
-      actions,
+      modules: {
+        comments: {
+          namespaced: true,
+          actions,
+        },
+      },
     });
 
     wrapper = mount(AppDetailsComments, {

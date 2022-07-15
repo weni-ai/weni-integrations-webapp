@@ -1,7 +1,7 @@
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
-import getters from '@/store/appType/whatsapp/getters';
-import state from '@/store/appType/whatsapp/state';
+import getters from '@/store/appType/channels/whatsapp/getters';
+import state from '@/store/appType/channels/whatsapp/state';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);

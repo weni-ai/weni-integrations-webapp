@@ -11,6 +11,7 @@ describe('Discovery.vue', () => {
   let wrapper;
   let actions;
   let getters;
+  let state;
   let store;
 
   beforeEach(() => {
@@ -26,9 +27,17 @@ describe('Discovery.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        loadingDeleteApp: false,
+        errorDeleteApp: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
       getters,
+      state,
     });
 
     wrapper = shallowMount(Discovery, {

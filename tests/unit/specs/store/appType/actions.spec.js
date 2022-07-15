@@ -20,11 +20,31 @@ jest.mock('@/api/appType', () => {
   };
 });
 
+import { createLocalVue } from '@vue/test-utils';
+import Vuex from 'vuex';
 import actions from '@/store/appType/actions';
+import state from '@/store/appType/state';
+import mutations from '@/store/appType/mutations';
 import appTypeApi from '@/api/appType';
+import { singleApp } from '../../../../__mocks__/appMock';
+
+const localVue = createLocalVue();
+localVue.use(Vuex);
 
 describe('store/appType/actions.js', () => {
+  let store;
+
   beforeEach(() => {
+    store = new Vuex.Store({
+      modules: {
+        appType: {
+          state,
+          actions,
+          mutations,
+        },
+      },
+    });
+
     jest.resetAllMocks();
   });
 
@@ -52,64 +72,6 @@ describe('store/appType/actions.js', () => {
     });
   });
 
-  describe('Comments', () => {
-    it('should call appType.listComments', async () => {
-      expect(appTypeApi.listComments).not.toHaveBeenCalled();
-      const code = 'code';
-      await actions.listComments({}, code);
-      expect(appTypeApi.listComments).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.listComments).toHaveBeenCalledWith(code);
-    });
-
-    it('should call appType.createComment', async () => {
-      expect(appTypeApi.createComment).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        payload: {
-          foo: 'bar',
-        },
-      };
-      await actions.createComment({}, data);
-      expect(appTypeApi.createComment).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.createComment).toHaveBeenCalledWith(data.code, data.payload);
-    });
-
-    it('should call appType.deleteComment', async () => {
-      expect(appTypeApi.deleteComment).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        commentUuid: '123',
-      };
-      await actions.deleteComment({}, data);
-      expect(appTypeApi.deleteComment).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.deleteComment).toHaveBeenCalledWith(data.code, data.commentUuid);
-    });
-
-    it('should call appType.updateComment', async () => {
-      expect(appTypeApi.updateComment).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        commentUuid: '123',
-        payload: {
-          foo: 'bar',
-        },
-      };
-      await actions.updateComment({}, data);
-      expect(appTypeApi.updateComment).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.updateComment).toHaveBeenCalledWith(
-        data.code,
-        data.commentUuid,
-        data.payload,
-      );
-    });
-
-    it('should call appType.fetchFeatured', async () => {
-      expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
-      await actions.fetchFeatured();
-      expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('Rating', () => {
     it('should call appType.postRating', async () => {
       expect(appTypeApi.postRating).not.toHaveBeenCalled();
@@ -126,6 +88,12 @@ describe('store/appType/actions.js', () => {
   });
 
   describe('Apps', () => {
+    it('should call appType.fetchFeatured', async () => {
+      expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
+      await actions.fetchFeatured();
+      expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
+    });
+
     it('should call appType.getApp', async () => {
       expect(appTypeApi.getApp).not.toHaveBeenCalled();
       const data = {
@@ -137,17 +105,91 @@ describe('store/appType/actions.js', () => {
       expect(appTypeApi.getApp).toHaveBeenCalledWith(data.code, data.appUuid);
     });
 
-    it('should call appType.createApp', async () => {
-      expect(appTypeApi.createApp).not.toHaveBeenCalled();
+    describe('createApp', () => {
       const data = {
         code: 'code',
         payload: {
           projectUuid: '123',
         },
       };
-      await actions.createApp({}, data);
-      expect(appTypeApi.createApp).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.createApp).toHaveBeenCalledWith(data.code, data.payload);
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.createApp.mockImplementation(() => {
+          return Promise.resolve({ data: singleApp });
+        });
+      });
+
+      it('should call createApp from API', async () => {
+        expect(appTypeApi.createApp).not.toHaveBeenCalled();
+        await store.dispatch('createApp', data);
+        expect(appTypeApi.createApp).toHaveBeenCalledTimes(1);
+      });
+
+      it('should set returned app as result data', async () => {
+        store.state.appType.createAppResponse = {};
+        expect(store.state.appType.createAppResponse).not.toEqual(singleApp);
+        await store.dispatch('createApp', data);
+        expect(store.state.appType.createAppResponse).toEqual(singleApp);
+      });
+
+      it('should set loadingCreateApp to false', async () => {
+        store.state.appType.loadingCreateApp = true;
+        expect(store.state.appType.loadingCreateApp).toBe(true);
+        await store.dispatch('createApp', data);
+        expect(store.state.appType.loadingCreateApp).toBe(false);
+      });
+
+      it('should set errorCreateApp as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.createApp.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorCreateApp = {};
+        expect(store.state.appType.errorCreateApp).not.toEqual(error);
+        await store.dispatch('createApp', data);
+        expect(store.state.appType.errorCreateApp).toEqual(error);
+      });
+    });
+
+    describe('deleteApp', () => {
+      const data = {
+        code: 'code',
+        appUuid: '123',
+      };
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.deleteApp.mockImplementation(() => {
+          return Promise.resolve({});
+        });
+      });
+
+      it('should call deleteApp from API', async () => {
+        expect(appTypeApi.deleteApp).not.toHaveBeenCalled();
+        await store.dispatch('deleteApp', data);
+        expect(appTypeApi.deleteApp).toHaveBeenCalledTimes(1);
+      });
+
+      it('should set loadingDeleteApp to false', async () => {
+        store.state.appType.loadingDeleteApp = true;
+        expect(store.state.appType.loadingDeleteApp).toBe(true);
+        await store.dispatch('deleteApp', data);
+        expect(store.state.appType.loadingDeleteApp).toBe(false);
+      });
+
+      it('should set errorDeleteApp as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.deleteApp.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorDeleteApp = {};
+        expect(store.state.appType.errorDeleteApp).not.toEqual(error);
+        await store.dispatch('deleteApp', data);
+        expect(store.state.appType.errorDeleteApp).toEqual(error);
+      });
     });
 
     it('should call appType.updateAppConfig', async () => {
@@ -166,17 +208,6 @@ describe('store/appType/actions.js', () => {
         data.appUuid,
         data.payload,
       );
-    });
-
-    it('should call appType.deleteApp', async () => {
-      expect(appTypeApi.deleteApp).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        appUuid: '123',
-      };
-      await actions.deleteApp({}, data);
-      expect(appTypeApi.deleteApp).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.deleteApp).toHaveBeenCalledWith(data.code, data.appUuid);
     });
 
     it('should call appType.getSharedWabas', async () => {

@@ -1,6 +1,7 @@
 <template>
   <div>
     <LoadingButton
+      ref="button"
       type="secondary"
       loadingPosition="center"
       :size="size"
