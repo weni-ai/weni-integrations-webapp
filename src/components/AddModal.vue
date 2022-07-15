@@ -7,13 +7,14 @@
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
     @close="toggleModal"
+    @click.stop
   >
     <span slot="message" v-html="$t('apps.details.actions.installed.description')"></span>
     <unnnic-button
       ref="unnnic-add-modal-close-button"
       slot="options"
       type="terciary"
-      @click="toggleModal"
+      @click.stop="toggleModal"
       >{{ $t('general.Close') }}</unnnic-button
     >
     <unnnic-button
