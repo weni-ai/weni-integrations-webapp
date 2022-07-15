@@ -1,5 +1,3 @@
-import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
-
 jest.mock('@weni/unnnic-system', () => ({
   ...jest.requireActual('@weni/unnnic-system'),
   unnnicCallAlert: jest.fn(),
