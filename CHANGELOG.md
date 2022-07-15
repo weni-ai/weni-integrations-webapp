@@ -1,3 +1,14 @@
+1.10.0
+----------
+`2022-07-15 · 1 🎉 · 1 🐛`
+
+### 🎉 New Features
+- Refactor: App creation and deletion loading behavior
+
+### 🐛 Bug fixes
+- Fix: Improper click propagation on add modal 
+
+
 1.9.1
 ----------
 `2022-06-23 · 1 🐛`
