@@ -1,6 +1,9 @@
 export default {
   DEBUG_TOKEN_REQUEST(state) {
     state.loadingDebugToken = true;
+    state.wabaId = null;
+    state.businessId = null;
+    state.errorDebugToken = null;
   },
   DEBUG_TOKEN_SUCCESS(state, data) {
     state.wabaId = data.waba_id;
@@ -14,6 +17,8 @@ export default {
 
   PHONE_NUMBERS_REQUEST(state) {
     state.loadingPhoneNumbers = true;
+    state.whatsAppPhoneNumbers = null;
+    state.errorPhoneNumbers = null;
   },
   PHONE_NUMBERS_SUCCESS(state, data) {
     state.whatsAppPhoneNumbers = data;
@@ -26,6 +31,8 @@ export default {
 
   CLOUD_CONFIGURE_REQUEST(state) {
     state.loadingWhatsAppCloudConfigure = true;
+    state.loadingWhatsAppCloudConfigure = null;
+    state.errorCloudConfigure = null;
   },
   CLOUD_CONFIGURE_SUCCESS(state) {
     state.loadingWhatsAppCloudConfigure = false;

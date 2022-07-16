@@ -3,6 +3,7 @@
     :class="['loading-button', { 'loading-button--loading': isLoading }]"
     :type="type"
     :size="size"
+    :disabled="disabled"
     :text="isLoading ? loadingText : text"
     :iconLeft="loadingPosition === 'left' && isLoading ? 'loading-circle-1' : iconLeft"
     :iconCenter="loadingPosition === 'center' && isLoading ? 'loading-circle-1' : iconCenter"
