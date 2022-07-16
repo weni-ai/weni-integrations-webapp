@@ -1,6 +1,7 @@
 export default {
   DELETE_APP_REQUEST(state) {
     state.loadingDeleteApp = true;
+    state.errorDeleteApp = null;
   },
   DELETE_APP_SUCCESS(state) {
     state.loadingDeleteApp = false;
@@ -12,6 +13,8 @@ export default {
 
   CREATE_APP_REQUEST(state) {
     state.loadingCreateApp = true;
+    state.errorCreateApp = null;
+    state.createAppResponse = null;
   },
   CREATE_APP_SUCCESS(state, data) {
     state.createAppResponse = data;
