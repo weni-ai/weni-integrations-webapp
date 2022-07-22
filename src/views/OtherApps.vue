@@ -11,13 +11,16 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import getEnv from '@/utils/env';
 
   export default {
     name: 'OtherApps',
     computed: {
       ...mapGetters(['getSelectedFlowOrg']),
       iframeSrc() {
-        return `${process.env.VUE_APP_FLOWS_IFRAME_URL}/weni/${this.getSelectedFlowOrg}/authenticate?next=/org/home/?flows_config_hide=configs`;
+        return `${getEnv('VUE_APP_FLOWS_IFRAME_URL')}/weni/${
+          this.getSelectedFlowOrg
+        }/authenticate?next=/org/home/?flows_config_hide=configs`;
       },
     },
   };
