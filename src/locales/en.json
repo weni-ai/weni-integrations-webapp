@@ -13,7 +13,8 @@
   "apps": {
     "nav": {
       "discovery": "Discovery",
-      "my_apps": "My Apps"
+      "my_apps": "My Apps",
+      "other_apps": "Other Apps"
     },
     "discovery": {
       "categories": {
