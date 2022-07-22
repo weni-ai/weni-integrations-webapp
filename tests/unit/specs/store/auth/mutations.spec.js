@@ -9,6 +9,7 @@ describe('store/auth/mutations.js', () => {
       token: null,
       org: null,
       project: null,
+      flowOrg: null,
     };
   });
 
@@ -31,5 +32,12 @@ describe('store/auth/mutations.js', () => {
 
     mutations[TYPES.SET_PROJECT](state, project);
     expect(state.project).toEqual(project);
+  });
+
+  it('should set flowOrg to state.flowOrg', () => {
+    const flowOrg = '88ef972c-9378-4cb1-b7c0-bacf838adfec';
+
+    mutations[TYPES.SET_FLOW_ORG](state, flowOrg);
+    expect(state.flowOrg).toEqual(flowOrg);
   });
 });
