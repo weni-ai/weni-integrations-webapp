@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <Carousel />
     <NavBar />
     <router-view />
@@ -18,4 +18,12 @@
   };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: auto;
+    height: calc(100vh - 16px);
+  }
+</style>
