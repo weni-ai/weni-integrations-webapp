@@ -91,7 +91,7 @@
 
 <style lang="scss">
   body {
-    // margin: $unnnic-spacing-inset-md;
+    margin: $unnnic-spacing-inset-md;
     background-color: $unnnic-color-background-snow;
     font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
