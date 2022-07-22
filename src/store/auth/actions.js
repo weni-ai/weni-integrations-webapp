@@ -14,6 +14,10 @@ export default {
     if (!project) return;
     commit(TYPES.SET_PROJECT, project);
   },
+  async selectedFlowOrg({ commit }, { flowOrg }) {
+    if (!flowOrg) return;
+    commit(TYPES.SET_FLOW_ORG, flowOrg);
+  },
   /* istanbul ignore next */
   retriveAuthToken({ commit }) {
     if (window.localStorage) {
@@ -30,6 +34,12 @@ export default {
   retriveSelectedProject({ commit }) {
     if (window.localStorage) {
       commit(TYPES.SET_PROJECT, window.localStorage.getItem('project'));
+    }
+  },
+  /* istanbul ignore next */
+  retriveSelectedFlowOrg({ commit }) {
+    if (window.localStorage) {
+      commit(TYPES.SET_FLOW_ORG, window.localStorage.getItem('flowOrg'));
     }
   },
 };

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Discovery from './views/Discovery.vue';
 import Apps from './views/Apps.vue';
 import MyApps from './views/MyApps.vue';
+import OtherApps from './views/OtherApps.vue';
 import AppDetails from './views/AppDetails.vue';
 import store from './store';
 
@@ -24,6 +25,11 @@ const routes = [
         path: 'my',
         component: MyApps,
       },
+      {
+        name: 'Other Apps',
+        path: 'other-apps',
+        component: OtherApps,
+      },
     ],
   },
   {
@@ -37,13 +43,14 @@ const routes = [
   //   component: AppConfig,
   // },
   {
-    path: '/loginexternal/:token/:project',
+    path: '/loginexternal/:token/:project/:flowOrg',
     name: 'externalLogin',
     component: null,
     beforeEnter: async (to, from, next) => {
-      const { token, project } = to.params;
+      const { token, project, flowOrg } = to.params;
       store.dispatch('externalLogin', { token: token.replace('+', ' ') });
       store.dispatch('selectedProject', { project });
+      store.dispatch('selectedFlowOrg', { flowOrg });
       if (to.query.next) {
         next(to.query.next);
       } else {

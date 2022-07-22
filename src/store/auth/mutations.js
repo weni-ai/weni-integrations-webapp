@@ -15,4 +15,8 @@ export default {
     state.project = project;
     setLocal('project', project);
   },
+  [TYPES.SET_FLOW_ORG](state, flowOrg) {
+    state.flowOrg = flowOrg;
+    setLocal('flowOrg', flowOrg);
+  },
 };

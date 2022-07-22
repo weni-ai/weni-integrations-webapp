@@ -11,4 +11,7 @@ export default {
   getSelectedProject(state) {
     return state.project;
   },
+  getSelectedFlowOrg(state) {
+    return state.flowOrg;
+  },
 };
