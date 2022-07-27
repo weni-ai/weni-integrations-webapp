@@ -11,6 +11,7 @@ describe('store/auth/actions.js', () => {
       token: 123,
       org: 'org1',
       project: 'bacf838a-b7c0-4cb1-9378-88ef972cdfec',
+      flowOrg: '88ef972c-9378-4cb1-b7c0-bacf838adfec',
     };
   });
 
@@ -35,6 +36,13 @@ describe('store/auth/actions.js', () => {
 
       expect(context.commit).not.toHaveBeenCalled();
     });
+
+    it('should NOT set flowOrg if flowOrg is missing', async () => {
+      state.flowOrg = null;
+      await actions.selectedFlowOrg(context, state);
+
+      expect(context.commit).not.toHaveBeenCalled();
+    });
   });
 
   describe('PROVIDED', () => {
@@ -52,6 +60,12 @@ describe('store/auth/actions.js', () => {
 
     it('should set project if project provided', async () => {
       await actions.selectedProject(context, state);
+
+      expect(context.commit).toHaveBeenCalledTimes(1);
+    });
+
+    it('should set flowOrg if flowOrg provided', async () => {
+      await actions.selectedFlowOrg(context, state);
 
       expect(context.commit).toHaveBeenCalledTimes(1);
     });

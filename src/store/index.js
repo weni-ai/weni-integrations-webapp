@@ -18,5 +18,6 @@ const store = new Vuex.Store({
 store.dispatch('retriveAuthToken');
 store.dispatch('retriveSelectedOrg');
 store.dispatch('retriveSelectedProject');
+store.dispatch('retriveSelectedFlowOrg');
 
 export default store;

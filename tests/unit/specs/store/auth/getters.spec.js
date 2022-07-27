@@ -8,6 +8,7 @@ describe('store/auth/getters.js', () => {
       token: 123,
       org: 'org1',
       project: 'bacf838a-b7c0-4cb1-9378-88ef972cdfec',
+      flowOrg: '88ef972c-9378-4cb1-b7c0-bacf838adfec',
     };
   });
 
@@ -29,5 +30,10 @@ describe('store/auth/getters.js', () => {
   it('should return state.project', () => {
     const project = getters.getSelectedProject(state);
     expect(project).toEqual(state.project);
+  });
+
+  it('should return state.flowOrg', () => {
+    const flowOrg = getters.getSelectedFlowOrg(state);
+    expect(flowOrg).toEqual(state.flowOrg);
   });
 });
