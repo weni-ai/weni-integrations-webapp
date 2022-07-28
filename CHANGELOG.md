@@ -1,3 +1,13 @@
+1.11.1
+----------
+`2022-07-28 · 1 🎉 · 1 🐛`
+
+### 🎉 New Features
+- Feat: Other apps tab loading
+
+### 🐛 Bug fixes
+- Fix: WhatsApp Cloud texts
+
 1.11.0
 ----------
 `2022-07-27 · 1 🎉`
