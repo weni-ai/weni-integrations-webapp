@@ -46,4 +46,12 @@ describe('OtherApps.vue', () => {
       }/weni/${getters.getSelectedFlowOrg()}/authenticate?next=/org/home/?flows_config_hide=configs`,
     );
   });
+
+  describe('onLoad()', () => {
+    it('should set loading to false', () => {
+      expect(wrapper.vm.loading).toEqual(true);
+      wrapper.vm.onLoad();
+      expect(wrapper.vm.loading).toEqual(false);
+    })
+  })
 });

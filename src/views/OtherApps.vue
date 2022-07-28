@@ -1,6 +1,12 @@
 <template>
   <div class="container">
+    <div v-if="loading" class="flows-iframe">
+      <img class="logo" src="../assets/svgs/LogoWeniAnimada4.svg" />
+    </div>
+
     <iframe
+      @load="onLoad"
+      v-show="!loading"
       class="flows-iframe"
       :src="iframeSrc"
       allow="clipboard-read; clipboard-write;"
@@ -15,12 +21,22 @@
 
   export default {
     name: 'OtherApps',
+    data() {
+      return {
+        loading: true,
+      };
+    },
     computed: {
       ...mapGetters(['getSelectedFlowOrg']),
       iframeSrc() {
         return `${getEnv('VUE_APP_FLOWS_IFRAME_URL')}/weni/${
           this.getSelectedFlowOrg
         }/authenticate?next=/org/home/?flows_config_hide=configs`;
+      },
+    },
+    methods: {
+      onLoad() {
+        this.loading = false;
       },
     },
   };
@@ -39,12 +55,17 @@
       flex: 1;
       height: auto;
     }
+
+    .logo {
+      width: 10%;
+      max-width: $unnnic-avatar-size-md;
+      max-height: $unnnic-avatar-size-md;
+    }
   }
 </style>
 
 <style lang="scss">
   body {
     margin-bottom: 0 !important;
-    // margin-top: 0 !important;
   }
 </style>
