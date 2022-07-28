@@ -1,3 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OtherApps.vue should be rendered properly 1`] = `<div class="container"><iframe src="flows_url/weni/123/authenticate?next=/org/home/?flows_config_hide=configs" allow="clipboard-read; clipboard-write;" frameborder="0" class="flows-iframe"></iframe></div>`;
+exports[`OtherApps.vue should be rendered properly 1`] = `
+<div class="container">
+  <div class="flows-iframe"><img src="../assets/svgs/LogoWeniAnimada4.svg" class="logo"></div> <iframe src="flows_url/weni/123/authenticate?next=/org/home/?flows_config_hide=configs" allow="clipboard-read; clipboard-write;" frameborder="0" class="flows-iframe" style="display: none;"></iframe>
+</div>
+`;
