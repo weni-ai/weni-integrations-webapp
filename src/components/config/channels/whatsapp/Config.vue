@@ -74,8 +74,8 @@
         appProfile: null,
         loading: true,
         documentations: {
-          'en-us': 'http://docs.weni.ai/l/en/weni-integrations/how-to-verify-my-business',
-          'pt-br': 'https://docs.weni.ai/l/pt/m-dulo-integra-es/como-verificar-o-meu-neg-cio#',
+          'en-us': 'https://docs.weni.ai/l/en/channels/how-to-verify-my-business',
+          'pt-br': 'https://docs.weni.ai/l/pt/canais/como-verificar-o-meu-neg-cio',
         },
       };
     },

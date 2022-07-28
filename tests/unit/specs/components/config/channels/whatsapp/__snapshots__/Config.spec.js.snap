@@ -8,7 +8,7 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
       <div class="config-whatsapp__header__title__name">Weni Web Chat</div>
     </div> <span class="config-whatsapp__header__description">
       Learn more about how to increase your daily message limit in WhatsApp
-      <a href="http://docs.weni.ai/l/en/weni-integrations/how-to-verify-my-business" target="_blank"><span>
+      <a href="https://docs.weni.ai/l/en/channels/how-to-verify-my-business" target="_blank"><span>
           here.
         </span></a></span>
   </div>
