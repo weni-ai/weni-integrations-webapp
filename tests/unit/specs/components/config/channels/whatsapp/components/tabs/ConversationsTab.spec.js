@@ -21,13 +21,22 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
   let wrapper;
 
   let actions;
+  let state;
   let store;
 
   beforeEach(() => {
     actions = {
-      getConversations: jest.fn(() => {
-        return { data: singleApp };
-      }),
+      getConversations: jest.fn(),
+    };
+
+    state = {
+      whatsAppConversations: {
+        business_initiated: 0,
+        user_initiated: 0,
+        total: 0,
+      },
+      loadingConversations: false,
+      errorConversations: false,
     };
 
     store = new Vuex.Store({
@@ -35,6 +44,7 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
         WhatsApp: {
           namespaced: true,
           actions,
+          state,
         },
       },
     });
@@ -86,10 +96,7 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
     });
 
     it('should call unnnicCallAlert on error', async () => {
-      actions.getConversations.mockImplementation(() => {
-        throw new Error('error fetching');
-      });
-
+      store.state.WhatsApp.errorConversations = true;
       const event = {
         startDate: '03-12-22',
         endDate: '04-13-23',

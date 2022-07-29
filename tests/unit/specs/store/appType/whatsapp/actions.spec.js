@@ -111,16 +111,59 @@ describe('store/appType/whatsapp/actions.js', () => {
     });
   });
 
-  it('should call appType.getConversations', async () => {
-    expect(WhatsAppApi.getConversations).not.toHaveBeenCalled();
+  describe('getConversations()', () => {
     const data = {
       code: 'code',
       appUuid: '123',
       params: {},
     };
-    await actions.getConversations({}, data);
-    expect(WhatsAppApi.getConversations).toHaveBeenCalledTimes(1);
-    expect(WhatsAppApi.getConversations).toHaveBeenCalledWith(data.code, data.appUuid, data.params);
+
+    const mockConversations = {
+      business_initiated: 1,
+      user_initiated: 2,
+      total: 3,
+    };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.getConversations.mockImplementation(() => {
+        return Promise.resolve({
+          data: mockConversations,
+        });
+      });
+    });
+
+    it('should call getConversations from API', async () => {
+      expect(WhatsAppApi.getConversations).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/getConversations', data);
+      expect(WhatsAppApi.getConversations).toHaveBeenCalledTimes(1);
+    });
+
+    it('should set whatsAppConversations as result data', async () => {
+      store.state.WhatsApp.whatsAppConversations = {};
+      expect(store.state.WhatsApp.whatsAppConversations).not.toEqual(mockConversations);
+      await store.dispatch('WhatsApp/getConversations', data);
+      expect(store.state.WhatsApp.whatsAppConversations).toEqual(mockConversations);
+    });
+
+    it('should set loadingConversations to false', async () => {
+      store.state.WhatsApp.loadingConversations = true;
+      expect(store.state.WhatsApp.loadingConversations).toBe(true);
+      await store.dispatch('WhatsApp/getConversations', data);
+      expect(store.state.WhatsApp.loadingConversations).toBe(false);
+    });
+
+    it('should set errorConversations as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.getConversations.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorConversations = {};
+      expect(store.state.WhatsApp.errorConversations).not.toEqual(error);
+      await store.dispatch('WhatsApp/getConversations', data);
+      expect(store.state.WhatsApp.errorConversations).toEqual(error);
+    });
   });
 
   it('should call appType.fetchWppProfile', async () => {
