@@ -7,6 +7,10 @@ export default {
   errorCreateApp: false,
 
   allAppTypes: null,
-  loadingAllAppTypes: false,
+  loadingAllAppTypes: true,
   errorAllAppTypes: false,
+
+  currentAppType: null,
+  loadingCurrentAppType: true,
+  errorCurrentAppType: false,
 };

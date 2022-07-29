@@ -87,12 +87,48 @@ describe('store/appType/actions.js', () => {
     });
 
     describe('getAppType()', () => {
-      it('should call appType.getAppType', async () => {
+      const data = {
+        code: 'code',
+        shouldLoad: true,
+      };
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.getAppType.mockImplementation(() => {
+          return Promise.resolve({ data: singleApp });
+        });
+      });
+
+      it('should call getAppType from API', async () => {
         expect(appTypeApi.getAppType).not.toHaveBeenCalled();
-        const code = 'code';
-        await actions.getAppType({}, code);
+        await store.dispatch('getAppType', { ...data, shouldLoad: false });
         expect(appTypeApi.getAppType).toHaveBeenCalledTimes(1);
-        expect(appTypeApi.getAppType).toHaveBeenCalledWith(code);
+      });
+
+      it('should set returned app as result data', async () => {
+        store.state.appType.currentAppType = [];
+        expect(store.state.appType.currentAppType).not.toEqual(singleApp);
+        await store.dispatch('getAppType', data);
+        expect(store.state.appType.currentAppType).toEqual(singleApp);
+      });
+
+      it('should set loadingCurrentAppType to false', async () => {
+        store.state.appType.loadingCurrentAppType = true;
+        expect(store.state.appType.loadingCurrentAppType).toBe(true);
+        await store.dispatch('getAppType', data);
+        expect(store.state.appType.loadingCurrentAppType).toBe(false);
+      });
+
+      it('should set errorCurrentAppType as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.getAppType.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorCurrentAppType = {};
+        expect(store.state.appType.errorCurrentAppType).not.toEqual(error);
+        await store.dispatch('getAppType', data);
+        expect(store.state.appType.errorCurrentAppType).toEqual(error);
       });
     });
   });

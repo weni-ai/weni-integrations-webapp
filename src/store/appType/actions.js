@@ -11,8 +11,14 @@ export default {
     }
   },
 
-  async getAppType(store, code) {
-    return await appType.getAppType(code);
+  async getAppType({ commit }, { code, shouldLoad }) {
+    commit('GET_APP_TYPE_REQUEST', shouldLoad);
+    try {
+      const { data } = await appType.getAppType(code);
+      commit('GET_APP_TYPE_SUCCESS', data);
+    } catch (err) {
+      commit('GET_APP_TYPE_ERROR', err);
+    }
   },
 
   async postRating(store, { code, payload }) {

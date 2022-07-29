@@ -12,6 +12,22 @@ export default {
     state.errorAllAppTypes = err;
   },
 
+  GET_APP_TYPE_REQUEST(state, shouldLoad) {
+    if (shouldLoad) {
+      state.loadingCurrentAppType = true;
+      state.currentAppType = null;
+    }
+    state.errorCurrentAppType = null;
+  },
+  GET_APP_TYPE_SUCCESS(state, data) {
+    state.currentAppType = data;
+    state.loadingCurrentAppType = false;
+  },
+  GET_APP_TYPE_ERROR(state, err) {
+    state.errorCurrentAppType = err;
+    state.loadingCurrentAppType = false;
+  },
+
   DELETE_APP_REQUEST(state) {
     state.loadingDeleteApp = true;
     state.errorDeleteApp = null;
