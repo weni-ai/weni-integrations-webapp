@@ -61,8 +61,14 @@ export default {
     }
   },
 
-  async fetchFeatured() {
-    return await appType.fetchFeatured();
+  async fetchFeatured({ commit }) {
+    commit('FETCH_FEATURED_REQUEST');
+    try {
+      const { data } = await appType.fetchFeatured();
+      commit('FETCH_FEATURED_SUCCESS', data);
+    } catch (err) {
+      commit('FETCH_FEATURED_ERROR', err);
+    }
   },
 
   async updateAppConfig(store, { code, appUuid, payload }) {

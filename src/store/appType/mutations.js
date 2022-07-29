@@ -81,4 +81,18 @@ export default {
     state.errorCreateApp = err;
     state.loadingCreateApp = false;
   },
+
+  FETCH_FEATURED_REQUEST(state) {
+    state.loadingFeaturedApps = true;
+    state.errorFeaturedApps = null;
+    state.featuredApps = null;
+  },
+  FETCH_FEATURED_SUCCESS(state, data) {
+    state.featuredApps = data;
+    state.loadingFeaturedApps = false;
+  },
+  FETCH_FEATURED_ERROR(state, err) {
+    state.errorFeaturedApps = err;
+    state.loadingFeaturedApps = false;
+  },
 };

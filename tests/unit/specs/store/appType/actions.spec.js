@@ -185,10 +185,45 @@ describe('store/appType/actions.js', () => {
   });
 
   describe('Apps', () => {
-    it('should call appType.fetchFeatured', async () => {
-      expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
-      await actions.fetchFeatured();
-      expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
+    describe('fetchFeatured()', () => {
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.fetchFeatured.mockImplementation(() => {
+          return Promise.resolve({ data: [singleApp] });
+        });
+      });
+
+      it('should call fetchFeatured from API', async () => {
+        expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
+        await store.dispatch('fetchFeatured');
+        expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
+      });
+
+      it('should set data as featuredApps', async () => {
+        store.state.appType.featuredApps = null;
+        expect(store.state.appType.featuredApps).not.toEqual([singleApp]);
+        await store.dispatch('fetchFeatured');
+        expect(store.state.appType.featuredApps).toEqual([singleApp]);
+      });
+
+      it('should set loadingFeaturedApps to false', async () => {
+        store.state.appType.loadingFeaturedApps = true;
+        expect(store.state.appType.loadingFeaturedApps).toBe(true);
+        await store.dispatch('fetchFeatured');
+        expect(store.state.appType.loadingFeaturedApps).toBe(false);
+      });
+
+      it('should set errorFeaturedApps as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.fetchFeatured.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorFeaturedApps = {};
+        expect(store.state.appType.errorFeaturedApps).not.toEqual(error);
+        await store.dispatch('fetchFeatured');
+        expect(store.state.appType.errorFeaturedApps).toEqual(error);
+      });
     });
 
     describe('getApp()', () => {

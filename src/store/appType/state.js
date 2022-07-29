@@ -21,4 +21,8 @@ export default {
   currentApp: null,
   loadingCurrentApp: false,
   errorCurrentApp: false,
+
+  featuredApps: null,
+  loadingFeaturedApps: false,
+  errorFeaturedApps: false,
 };
