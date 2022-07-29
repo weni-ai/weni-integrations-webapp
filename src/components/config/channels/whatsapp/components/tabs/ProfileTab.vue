@@ -113,7 +113,7 @@
       },
     },
     computed: {
-      ...mapState('WhatsApp', ['errorUpdateWhatsAppProfile']),
+      ...mapState('WhatsApp', ['errorUpdateWhatsAppProfile', 'errorDeleteWhatsAppProfilePhoto']),
     },
     methods: {
       ...mapActions('WhatsApp', ['updateWppProfile', 'deleteWppProfilePhoto']),
@@ -149,6 +149,10 @@
           if (!photo) {
             const data = { code: this.app.code, appUuid: this.app.uuid };
             await this.deleteWppProfilePhoto(data);
+
+            if (this.errorDeleteWhatsAppProfilePhoto) {
+              throw new Error(this.errorDeleteWhatsAppProfilePhoto);
+            }
           }
 
           const b64ProfilePhoto = photo ? await toBase64(photo) : null;

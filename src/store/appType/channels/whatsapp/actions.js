@@ -42,7 +42,13 @@ export default {
       commit('UPDATE_WHATSAPP_PROFILE_ERROR', err);
     }
   },
-  async deleteWppProfilePhoto(store, { code, appUuid }) {
-    return await whatsApp.deleteWppProfilePhoto(code, appUuid);
+  async deleteWppProfilePhoto({ commit }, { code, appUuid }) {
+    commit('DELETE_WHATSAPP_PROFILE_PHOTO_REQUEST');
+    try {
+      const { data } = await whatsApp.deleteWppProfilePhoto(code, appUuid);
+      commit('DELETE_WHATSAPP_PROFILE_PHOTO_SUCCESS', data);
+    } catch (err) {
+      commit('DELETE_WHATSAPP_PROFILE_PHOTO_ERROR', err);
+    }
   },
 };

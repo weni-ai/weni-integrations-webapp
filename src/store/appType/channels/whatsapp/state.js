@@ -18,4 +18,8 @@ export default {
   updateWhatsAppProfileResult: null,
   loadingUpdateWhatsAppProfile: false,
   errorUpdateWhatsAppProfile: false,
+
+  deleteWhatsAppProfilePhotoResult: null,
+  loadingDeleteWhatsAppProfilePhoto: false,
+  errorDeleteWhatsAppProfilePhoto: false,
 };

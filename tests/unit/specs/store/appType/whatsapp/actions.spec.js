@@ -274,14 +274,52 @@ describe('store/appType/whatsapp/actions.js', () => {
     });
   });
 
-  it('should call deleteWppProfilePhoto', async () => {
-    expect(WhatsAppApi.deleteWppProfilePhoto).not.toHaveBeenCalled();
+  describe('deleteWppProfilePhoto()', () => {
     const data = {
       code: 'code',
       appUuid: '123',
     };
-    await actions.deleteWppProfilePhoto({}, data);
-    expect(WhatsAppApi.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
-    expect(WhatsAppApi.deleteWppProfilePhoto).toHaveBeenCalledWith(data.code, data.appUuid);
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.deleteWppProfilePhoto.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call deleteWppProfilePhoto from API', async () => {
+      expect(WhatsAppApi.deleteWppProfilePhoto).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/deleteWppProfilePhoto', data);
+      expect(WhatsAppApi.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.deleteWppProfilePhoto).toHaveBeenCalledWith(data.code, data.appUuid);
+    });
+
+    it('should set deleteWhatsAppProfilePhotoResult as result data', async () => {
+      store.state.WhatsApp.deleteWhatsAppProfilePhotoResult = {};
+      expect(store.state.WhatsApp.deleteWhatsAppProfilePhotoResult).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/deleteWppProfilePhoto', data);
+      expect(store.state.WhatsApp.deleteWhatsAppProfilePhotoResult).toEqual(mockedResult);
+    });
+
+    it('should set loadingDeleteWhatsAppProfilePhoto to false', async () => {
+      store.state.WhatsApp.loadingDeleteWhatsAppProfilePhoto = true;
+      expect(store.state.WhatsApp.loadingDeleteWhatsAppProfilePhoto).toBe(true);
+      await store.dispatch('WhatsApp/deleteWppProfilePhoto', data);
+      expect(store.state.WhatsApp.loadingDeleteWhatsAppProfilePhoto).toBe(false);
+    });
+
+    it('should set errorDeleteWhatsAppProfilePhoto as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.deleteWppProfilePhoto.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorDeleteWhatsAppProfilePhoto = {};
+      expect(store.state.WhatsApp.errorDeleteWhatsAppProfilePhoto).not.toEqual(error);
+      await store.dispatch('WhatsApp/deleteWppProfilePhoto', data);
+      expect(store.state.WhatsApp.errorDeleteWhatsAppProfilePhoto).toEqual(error);
+    });
   });
 });

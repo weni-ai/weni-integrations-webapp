@@ -177,6 +177,49 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
       expect(actions.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
     });
 
+    it('should throw error if deleteWppProfilePhoto fails', async () => {
+      wrapper = shallowMount(ProfileTab, {
+        localVue,
+        store,
+        i18n,
+        mocks: {
+          $t: () => 'some specific text',
+        },
+        stubs: {
+          DynamicForm: true,
+          UnnnicButton: true,
+        },
+        propsData: {
+          app: singleApp,
+          profile: {
+            photoFile: null,
+            status: 'status',
+            business: {
+              description: 'description',
+              vertical: 'option1',
+              vertical_choices: ['option1', 'option2'],
+            },
+          },
+        },
+      });
+      store.state.WhatsApp.errorDeleteWhatsAppProfilePhoto = true;
+      await wrapper.vm.saveProfile();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            title: 'Error',
+            text: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
+    });
+
     it('should call toBase64() if photo is provided', async () => {
       wrapper.vm.updateInputs({ index: 0, value: ['photo'] });
       expect(mockToBase64).not.toHaveBeenCalled();

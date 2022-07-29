@@ -50,4 +50,18 @@ export default {
     state.errorUpdateWhatsAppProfile = data;
     state.loadingUpdateWhatsAppProfile = false;
   },
+
+  DELETE_WHATSAPP_PROFILE_PHOTO_REQUEST(state) {
+    state.loadingDeleteWhatsAppProfilePhoto = true;
+    state.deleteWhatsAppProfilePhotoResult = null;
+    state.errorDeleteWhatsAppProfilePhoto = null;
+  },
+  DELETE_WHATSAPP_PROFILE_PHOTO_SUCCESS(state, data) {
+    state.deleteWhatsAppProfilePhotoResult = data;
+    state.loadingDeleteWhatsAppProfilePhoto = false;
+  },
+  DELETE_WHATSAPP_PROFILE_PHOTO_ERROR(state, data) {
+    state.errorDeleteWhatsAppProfilePhoto = data;
+    state.loadingDeleteWhatsAppProfilePhoto = false;
+  },
 };
