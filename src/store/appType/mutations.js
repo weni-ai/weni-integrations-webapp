@@ -28,6 +28,20 @@ export default {
     state.loadingCurrentAppType = false;
   },
 
+  POST_RATING_REQUEST(state) {
+    state.loadingPostRating = true;
+    state.errorPostRating = null;
+    state.postRatingResult = null;
+  },
+  POST_RATING_SUCCESS(state, data) {
+    state.postRatingResult = data;
+    state.loadingPostRating = false;
+  },
+  POST_RATING_ERROR(state, err) {
+    state.errorPostRating = err;
+    state.loadingPostRating = false;
+  },
+
   DELETE_APP_REQUEST(state) {
     state.loadingDeleteApp = true;
     state.errorDeleteApp = null;

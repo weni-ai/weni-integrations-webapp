@@ -154,9 +154,7 @@ describe('AppDetails.vue', () => {
     });
 
     it('should call unnnicCallAlert on error', async () => {
-      actions.postRating.mockImplementation(() => {
-        throw new Error();
-      });
+      store.state.appType.errorPostRating = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.handleRating();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);

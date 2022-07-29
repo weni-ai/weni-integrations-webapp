@@ -7,10 +7,14 @@ export default {
   errorCreateApp: false,
 
   allAppTypes: null,
-  loadingAllAppTypes: true,
+  loadingAllAppTypes: false,
   errorAllAppTypes: false,
 
   currentAppType: null,
   loadingCurrentAppType: true,
   errorCurrentAppType: false,
+
+  postRatingResult: null,
+  loadingPostRating: false,
+  errorPostRating: false,
 };

@@ -134,17 +134,53 @@ describe('store/appType/actions.js', () => {
   });
 
   describe('Rating', () => {
-    it('should call appType.postRating', async () => {
+    const data = {
+      code: 'code',
+      payload: {
+        foo: 'bar',
+      },
+    };
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      appTypeApi.postRating.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call postRating from API', async () => {
       expect(appTypeApi.postRating).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        payload: {
-          foo: 'bar',
-        },
-      };
-      await actions.postRating({}, data);
+      await store.dispatch('postRating', data);
       expect(appTypeApi.postRating).toHaveBeenCalledTimes(1);
       expect(appTypeApi.postRating).toHaveBeenCalledWith(data.code, data.payload);
+    });
+
+    it('should set rating result as data', async () => {
+      store.state.appType.postRatingResult = null;
+      expect(store.state.appType.postRatingResult).not.toEqual(mockedResult);
+      await store.dispatch('postRating', data);
+      expect(store.state.appType.postRatingResult).toEqual(mockedResult);
+    });
+
+    it('should set loadingPostRating to false', async () => {
+      store.state.appType.loadingPostRating = true;
+      expect(store.state.appType.loadingPostRating).toBe(true);
+      await store.dispatch('postRating', data);
+      expect(store.state.appType.loadingPostRating).toBe(false);
+    });
+
+    it('should set errorPostRating as result data', async () => {
+      const error = { error: 'failed' };
+      appTypeApi.postRating.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.appType.errorPostRating = {};
+      expect(store.state.appType.errorPostRating).not.toEqual(error);
+      await store.dispatch('postRating', data);
+      expect(store.state.appType.errorPostRating).toEqual(error);
     });
   });
 

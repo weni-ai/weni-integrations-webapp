@@ -21,8 +21,14 @@ export default {
     }
   },
 
-  async postRating(store, { code, payload }) {
-    return await appType.postRating(code, payload);
+  async postRating({ commit }, { code, payload }) {
+    commit('POST_RATING_REQUEST');
+    try {
+      const { data } = await appType.postRating(code, payload);
+      commit('POST_RATING_SUCCESS', data);
+    } catch (err) {
+      commit('POST_RATING_ERROR', err);
+    }
   },
 
   async getApp(store, { code, appUuid }) {

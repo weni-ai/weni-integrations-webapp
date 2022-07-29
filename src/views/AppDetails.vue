@@ -74,15 +74,15 @@
         this.reloadBanner();
       },
       async handleRating(rate) {
-        try {
-          const data = {
-            code: this.currentAppType.code,
-            payload: {
-              rate,
-            },
-          };
-          await this.postRating(data);
-        } catch (err) {
+        const data = {
+          code: this.currentAppType.code,
+          payload: {
+            rate,
+          },
+        };
+        await this.postRating(data);
+
+        if (this.errorPostRating) {
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
@@ -94,9 +94,10 @@
             },
             seconds: 3,
           });
-        } finally {
-          this.reloadSection();
+          return;
         }
+
+        this.reloadSection();
       },
       reloadBanner() {
         this.bannerKey += 1;
@@ -106,6 +107,7 @@
       ...mapState({
         currentAppType: (state) => state.appType.currentAppType,
         loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
+        errorPostRating: (state) => state.appType.errorPostRating,
       }),
       appRatingString() {
         return this.currentAppType.rating.average
