@@ -218,20 +218,60 @@ describe('store/appType/whatsapp/actions.js', () => {
     });
   });
 
-  it('should call appType.updateWppProfile', async () => {
-    expect(WhatsAppApi.updateWppProfile).not.toHaveBeenCalled();
+  describe('updateWppProfile', () => {
     const data = {
       code: 'code',
       appUuid: '123',
-      payload: {},
+      payload: {
+        foo: 'bar',
+      },
     };
-    await actions.updateWppProfile({}, data);
-    expect(WhatsAppApi.updateWppProfile).toHaveBeenCalledTimes(1);
-    expect(WhatsAppApi.updateWppProfile).toHaveBeenCalledWith(
-      data.code,
-      data.appUuid,
-      data.payload,
-    );
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.updateWppProfile.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call updateWppProfile from API', async () => {
+      expect(WhatsAppApi.updateWppProfile).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/updateWppProfile', data);
+      expect(WhatsAppApi.updateWppProfile).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.updateWppProfile).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.payload,
+      );
+    });
+
+    it('should set updateWhatsAppProfileResult as result data', async () => {
+      store.state.WhatsApp.updateWhatsAppProfileResult = {};
+      expect(store.state.WhatsApp.updateWhatsAppProfileResult).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/updateWppProfile', data);
+      expect(store.state.WhatsApp.updateWhatsAppProfileResult).toEqual(mockedResult);
+    });
+
+    it('should set loadingUpdateWhatsAppProfile to false', async () => {
+      store.state.WhatsApp.loadingUpdateWhatsAppProfile = true;
+      expect(store.state.WhatsApp.loadingUpdateWhatsAppProfile).toBe(true);
+      await store.dispatch('WhatsApp/updateWppProfile', data);
+      expect(store.state.WhatsApp.loadingUpdateWhatsAppProfile).toBe(false);
+    });
+
+    it('should set errorUpdateWhatsAppProfile as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.updateWppProfile.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorUpdateWhatsAppProfile = {};
+      expect(store.state.WhatsApp.errorUpdateWhatsAppProfile).not.toEqual(error);
+      await store.dispatch('WhatsApp/updateWppProfile', data);
+      expect(store.state.WhatsApp.errorUpdateWhatsAppProfile).toEqual(error);
+    });
   });
 
   it('should call deleteWppProfilePhoto', async () => {

@@ -33,8 +33,14 @@ export default {
       commit('FETCH_WHATSAPP_PROFILE_ERROR', err);
     }
   },
-  async updateWppProfile(store, { code, appUuid, payload }) {
-    return await whatsApp.updateWppProfile(code, appUuid, payload);
+  async updateWppProfile({ commit }, { code, appUuid, payload }) {
+    commit('UPDATE_WHATSAPP_PROFILE_REQUEST');
+    try {
+      const { data } = await whatsApp.updateWppProfile(code, appUuid, payload);
+      commit('UPDATE_WHATSAPP_PROFILE_SUCCESS', data);
+    } catch (err) {
+      commit('UPDATE_WHATSAPP_PROFILE_ERROR', err);
+    }
   },
   async deleteWppProfilePhoto(store, { code, appUuid }) {
     return await whatsApp.deleteWppProfilePhoto(code, appUuid);

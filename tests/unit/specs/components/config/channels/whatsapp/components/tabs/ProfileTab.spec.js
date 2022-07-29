@@ -228,16 +228,7 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
           height: 192,
         });
       });
-      const error = {
-        response: {
-          data: {
-            error: 'error',
-          },
-        },
-      };
-      actions.updateWppProfile.mockImplementation(() => {
-        return Promise.reject(error);
-      });
+      store.state.WhatsApp.errorUpdateWhatsAppProfile = true;
       await wrapper.vm.saveProfile();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
       expect(mockUnnnicCallAlert).toHaveBeenCalledWith(

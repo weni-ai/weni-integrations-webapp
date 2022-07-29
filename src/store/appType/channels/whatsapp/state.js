@@ -14,4 +14,8 @@ export default {
   whatsAppProfile: null,
   loadingWhatsAppProfile: false,
   errorWhatsAppProfile: false,
+
+  updateWhatsAppProfileResult: null,
+  loadingUpdateWhatsAppProfile: false,
+  errorUpdateWhatsAppProfile: false,
 };

@@ -36,4 +36,18 @@ export default {
     state.errorWhatsAppProfile = data;
     state.loadingWhatsAppProfile = false;
   },
+
+  UPDATE_WHATSAPP_PROFILE_REQUEST(state) {
+    state.loadingUpdateWhatsAppProfile = true;
+    state.updateWhatsAppProfileResult = null;
+    state.errorUpdateWhatsAppProfile = null;
+  },
+  UPDATE_WHATSAPP_PROFILE_SUCCESS(state, data) {
+    state.updateWhatsAppProfileResult = data;
+    state.loadingUpdateWhatsAppProfile = false;
+  },
+  UPDATE_WHATSAPP_PROFILE_ERROR(state, data) {
+    state.errorUpdateWhatsAppProfile = data;
+    state.loadingUpdateWhatsAppProfile = false;
+  },
 };
