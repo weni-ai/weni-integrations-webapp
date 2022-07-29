@@ -24,6 +24,7 @@ describe('WhatsAppConfig.vue', () => {
   let wrapper;
   let actions;
   let wppActions;
+  let wppState;
   let store;
 
   beforeEach(() => {
@@ -31,13 +32,19 @@ describe('WhatsAppConfig.vue', () => {
       getApp: jest.fn(() => {
         return { data: singleApp };
       }),
+    };
+
+    wppActions = {
+      resetWppFetchResults: jest.fn(),
       fetchWppProfile: jest.fn(() => {
         return { data: { photo_url: 'photo' } };
       }),
     };
 
-    wppActions = {
-      resetWppFetchResults: jest.fn(),
+    wppState = {
+      whatsAppProfile: { photo_url: 'url' },
+      loadingWhatsAppProfile: false,
+      errorWhatsAppProfile: false,
     };
 
     store = new Vuex.Store({
@@ -45,6 +52,7 @@ describe('WhatsAppConfig.vue', () => {
         WhatsApp: {
           namespaced: true,
           actions: wppActions,
+          state: wppState,
         },
       },
       actions,
@@ -165,9 +173,15 @@ describe('WhatsAppConfig.vue', () => {
     it('should call fetchWppProfile()', async () => {
       jest.clearAllMocks();
       const options = { code: 'code', appUuid: 'appUuid' };
-      expect(actions.fetchWppProfile).not.toHaveBeenCalled();
+      expect(wppActions.fetchWppProfile).not.toHaveBeenCalled();
       await wrapper.vm.fetchProfile(options);
-      expect(actions.fetchWppProfile).toHaveBeenCalledTimes(1);
+      expect(wppActions.fetchWppProfile).toHaveBeenCalledTimes(1);
+    });
+
+    it('should throw error on fetchWppProfile() failure', async () => {
+      const options = { code: 'code', appUuid: 'appUuid' };
+      store.state.WhatsApp.errorWhatsAppProfile = true;
+      await expect(wrapper.vm.fetchProfile(options)).rejects.toThrow();
     });
   });
 

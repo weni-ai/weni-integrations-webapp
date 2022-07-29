@@ -49,7 +49,7 @@
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import skeletonLoading from './loadings/Config.vue';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { dataUrlToFile } from '@/utils/files';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -87,6 +87,11 @@
       this.resetWppFetchResults();
     },
     computed: {
+      ...mapState('WhatsApp', [
+        'whatsAppProfile',
+        'loadingWhatsAppProfile',
+        'errorWhatsAppProfile',
+      ]),
       configTabs() {
         return ['account', 'profile', 'contact_info', 'conversations'];
       },
@@ -95,11 +100,8 @@
       },
     },
     methods: {
-      ...mapActions({
-        getApp: 'getApp',
-        fetchWppProfile: 'fetchWppProfile',
-        resetWppFetchResults: 'WhatsApp/resetWppFetchResults',
-      }),
+      ...mapActions(['getApp']),
+      ...mapActions('WhatsApp', ['fetchWppProfile', 'resetWppFetchResults']),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -142,9 +144,15 @@
         this.appInfo = data;
       },
       async fetchProfile(options) {
-        const { data } = await this.fetchWppProfile(options);
-        data.photoFile = await dataUrlToFile(data.photo_url, 'photo.jpg', true);
-        this.appProfile = data;
+        await this.fetchWppProfile(options);
+
+        if (this.errorWhatsAppProfile) {
+          throw new Error(this.errorWhatsAppProfile);
+        }
+
+        let profile = this.whatsAppProfile;
+        profile.photoFile = await dataUrlToFile(this.whatsAppProfile.photo_url, 'photo.jpg', true);
+        this.appProfile = profile;
       },
     },
   };
