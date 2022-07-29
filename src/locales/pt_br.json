@@ -22,7 +22,8 @@
         "ticket": "Gerenciadores de Atendimento",
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados"
-      }
+      },
+      "fetch-error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde."
     },
     "myApps": {
       "empty": {
