@@ -15,8 +15,14 @@ export default {
     const { data } = await whatsApp.updateWppContactInfo(code, appUuid, payload);
     commit('SET_WPP_CONTACT_INFO', data);
   },
-  async getConversations(store, { code, appUuid, params }) {
-    return await whatsApp.getConversations(code, appUuid, params);
+  async getConversations({ commit }, { code, appUuid, params }) {
+    commit('CONVERSATIONS_REQUEST');
+    try {
+      const { data } = await whatsApp.getConversations(code, appUuid, params);
+      commit('CONVERSATIONS_SUCCESS', data);
+    } catch (err) {
+      commit('CONVERSATIONS_ERROR', err);
+    }
   },
   async fetchWppProfile(store, { code, appUuid }) {
     return await whatsApp.fetchWppProfile(code, appUuid);
