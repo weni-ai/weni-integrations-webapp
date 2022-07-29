@@ -5,4 +5,8 @@ export default {
   createAppResponse: null,
   loadingCreateApp: false,
   errorCreateApp: false,
+
+  allAppTypes: null,
+  loadingAllAppTypes: false,
+  errorAllAppTypes: false,
 };

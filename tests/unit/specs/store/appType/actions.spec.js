@@ -45,14 +45,44 @@ describe('store/appType/actions.js', () => {
 
   describe('AppsTypes', () => {
     describe('getAllAppTypes()', () => {
-      it('should call appType.getAllAppTypes', async () => {
+      const code = 'code';
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.getAllAppTypes.mockImplementation(() => {
+          return Promise.resolve({ data: [singleApp] });
+        });
+      });
+
+      it('should call getAllAppTypes from API', async () => {
         expect(appTypeApi.getAllAppTypes).not.toHaveBeenCalled();
-        const filter = {
-          params: 'param',
-        };
-        await actions.getAllAppTypes({}, filter);
+        await store.dispatch('getAllAppTypes', code);
         expect(appTypeApi.getAllAppTypes).toHaveBeenCalledTimes(1);
-        expect(appTypeApi.getAllAppTypes).toHaveBeenCalledWith(filter.params);
+      });
+
+      it('should set returned apps as result data', async () => {
+        store.state.appType.allAppTypes = [];
+        expect(store.state.appType.allAppTypes).not.toEqual(singleApp);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.allAppTypes).toEqual([singleApp]);
+      });
+
+      it('should set loadingAllAppTypes to false', async () => {
+        store.state.appType.loadingAllAppTypes = true;
+        expect(store.state.appType.loadingAllAppTypes).toBe(true);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.loadingAllAppTypes).toBe(false);
+      });
+
+      it('should set errorAllAppTypes as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.getAllAppTypes.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorAllAppTypes = {};
+        expect(store.state.appType.errorAllAppTypes).not.toEqual(error);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.errorAllAppTypes).toEqual(error);
       });
     });
 

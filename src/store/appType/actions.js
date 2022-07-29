@@ -1,8 +1,14 @@
 import appType from '@/api/appType';
 
 export default {
-  async getAllAppTypes(store, { params }) {
-    return await appType.getAllAppTypes(params);
+  async getAllAppTypes({ commit }, { params }) {
+    commit('GET_ALL_APP_TYPES_REQUEST');
+    try {
+      const { data } = await appType.getAllAppTypes(params);
+      commit('GET_ALL_APP_TYPES_SUCCESS', data);
+    } catch (err) {
+      commit('GET_ALL_APP_TYPES_ERROR', err);
+    }
   },
 
   async getAppType(store, code) {
