@@ -23,6 +23,7 @@ localVue.use(Vuex);
 describe('WhatsAppConfig.vue', () => {
   let wrapper;
   let actions;
+  let state;
   let wppActions;
   let wppState;
   let store;
@@ -32,6 +33,14 @@ describe('WhatsAppConfig.vue', () => {
       getApp: jest.fn(() => {
         return { data: singleApp };
       }),
+    };
+
+    state = {
+      appType: {
+        currentApp: singleApp,
+        loadingCurrentApp: false,
+        errorCurrentApp: false,
+      },
     };
 
     wppActions = {
@@ -56,6 +65,7 @@ describe('WhatsAppConfig.vue', () => {
         },
       },
       actions,
+      state,
     });
 
     wrapper = shallowMount(whatsappConfig, {
@@ -101,12 +111,6 @@ describe('WhatsAppConfig.vue', () => {
   });
 
   describe('fetchData()', () => {
-    it('should stop loading state', async () => {
-      expect(wrapper.vm.loading).toBeTruthy();
-      await wrapper.vm.fetchData();
-      expect(wrapper.vm.loading).toBeFalsy();
-    });
-
     it('should call fetchAppInfo()', async () => {
       const spy = spyOn(wrapper.vm, 'fetchAppInfo');
       expect(spy).not.toHaveBeenCalled();
@@ -161,11 +165,10 @@ describe('WhatsAppConfig.vue', () => {
       expect(actions.getApp).toHaveBeenCalledTimes(1);
     });
 
-    it('should set appInfo with getApp() return data', async () => {
+    it('should throw error on getApp() failure', async () => {
       const options = { code: 'code', appUuid: 'appUuid' };
-      await wrapper.setData({ appInfo: null });
-      await wrapper.vm.fetchAppInfo(options);
-      expect(wrapper.vm.appInfo).toEqual(singleApp);
+      store.state.appType.errorCurrentApp = true;
+      await expect(wrapper.vm.fetchAppInfo(options)).rejects.toThrow();
     });
   });
 

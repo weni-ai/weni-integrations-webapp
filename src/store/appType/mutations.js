@@ -42,6 +42,20 @@ export default {
     state.loadingPostRating = false;
   },
 
+  GET_APP_REQUEST(state) {
+    state.loadingCurrentApp = true;
+    state.errorCurrentApp = null;
+    state.currentApp = null;
+  },
+  GET_APP_SUCCESS(state, data) {
+    state.currentApp = data;
+    state.loadingCurrentApp = false;
+  },
+  GET_APP_ERROR(state, err) {
+    state.errorCurrentApp = err;
+    state.loadingCurrentApp = false;
+  },
+
   DELETE_APP_REQUEST(state) {
     state.loadingDeleteApp = true;
     state.errorDeleteApp = null;

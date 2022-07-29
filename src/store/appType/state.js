@@ -17,4 +17,8 @@ export default {
   postRatingResult: null,
   loadingPostRating: false,
   errorPostRating: false,
+
+  currentApp: null,
+  loadingCurrentApp: false,
+  errorCurrentApp: false,
 };

@@ -31,8 +31,14 @@ export default {
     }
   },
 
-  async getApp(store, { code, appUuid }) {
-    return await appType.getApp(code, appUuid);
+  async getApp({ commit }, { code, appUuid }) {
+    commit('GET_APP_REQUEST');
+    try {
+      const { data } = await appType.getApp(code, appUuid);
+      commit('GET_APP_SUCCESS', data);
+    } catch (err) {
+      commit('GET_APP_ERROR', err);
+    }
   },
 
   async createApp({ commit }, { code, payload }) {

@@ -191,15 +191,53 @@ describe('store/appType/actions.js', () => {
       expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
     });
 
-    it('should call appType.getApp', async () => {
-      expect(appTypeApi.getApp).not.toHaveBeenCalled();
+    describe('getApp()', () => {
       const data = {
         code: 'code',
         appUuid: '123',
       };
-      await actions.getApp({}, data);
-      expect(appTypeApi.getApp).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.getApp).toHaveBeenCalledWith(data.code, data.appUuid);
+
+      const mockedResult = singleApp;
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.getApp.mockImplementation(() => {
+          return Promise.resolve({ data: mockedResult });
+        });
+      });
+
+      it('should call getApp from API', async () => {
+        expect(appTypeApi.getApp).not.toHaveBeenCalled();
+        await store.dispatch('getApp', data);
+        expect(appTypeApi.getApp).toHaveBeenCalledTimes(1);
+        expect(appTypeApi.getApp).toHaveBeenCalledWith(data.code, data.appUuid);
+      });
+
+      it('should set data as currentApp', async () => {
+        store.state.appType.currentApp = null;
+        expect(store.state.appType.currentApp).not.toEqual(mockedResult);
+        await store.dispatch('getApp', data);
+        expect(store.state.appType.currentApp).toEqual(mockedResult);
+      });
+
+      it('should set loadingCurrentApp to false', async () => {
+        store.state.appType.loadingCurrentApp = true;
+        expect(store.state.appType.loadingCurrentApp).toBe(true);
+        await store.dispatch('getApp', data);
+        expect(store.state.appType.loadingCurrentApp).toBe(false);
+      });
+
+      it('should set errorCurrentApp as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.getApp.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorCurrentApp = {};
+        expect(store.state.appType.errorCurrentApp).not.toEqual(error);
+        await store.dispatch('getApp', data);
+        expect(store.state.appType.errorCurrentApp).toEqual(error);
+      });
     });
 
     describe('createApp', () => {

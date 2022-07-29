@@ -18,13 +18,13 @@
     </div>
 
     <unnnic-tab
-      v-if="!loading"
+      v-if="!loadingWhatsAppProfile && !loadingCurrentApp"
       class="config-whatsapp__tabs"
       :tabs="configTabs"
       initialTab="account"
     >
       <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
-      <AccountTab :appInfo="appInfo" slot="tab-panel-account" @close="closeConfig" />
+      <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
 
       <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
       <ProfileTab slot="tab-panel-profile" :app="app" :profile="appProfile" @close="closeConfig" />
@@ -70,9 +70,7 @@
     },
     data() {
       return {
-        appInfo: null,
         appProfile: null,
-        loading: true,
         documentations: {
           'en-us': 'https://docs.weni.ai/l/en/channels/how-to-verify-my-business',
           'pt-br': 'https://docs.weni.ai/l/pt/canais/como-verificar-o-meu-neg-cio',
@@ -92,6 +90,11 @@
         'loadingWhatsAppProfile',
         'errorWhatsAppProfile',
       ]),
+      ...mapState({
+        currentApp: (state) => state.appType.currentApp,
+        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
+        errorCurrentApp: (state) => state.appType.errorCurrentApp,
+      }),
       configTabs() {
         return ['account', 'profile', 'contact_info', 'conversations'];
       },
@@ -120,11 +123,9 @@
       },
       async fetchData() {
         try {
-          this.loading = true;
           const options = { code: this.app.code, appUuid: this.app.uuid };
           await this.fetchAppInfo(options);
           await this.fetchProfile(options);
-          this.loading = false;
         } catch (error) {
           unnnicCallAlert({
             props: {
@@ -140,8 +141,11 @@
         }
       },
       async fetchAppInfo(options) {
-        const { data } = await this.getApp(options);
-        this.appInfo = data;
+        await this.getApp(options);
+
+        if (this.errorCurrentApp) {
+          throw new Error(this.errorCurrentApp);
+        }
       },
       async fetchProfile(options) {
         await this.fetchWppProfile(options);
