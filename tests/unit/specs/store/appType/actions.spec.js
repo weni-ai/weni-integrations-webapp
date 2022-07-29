@@ -362,8 +362,7 @@ describe('store/appType/actions.js', () => {
       });
     });
 
-    it('should call appType.updateAppConfig', async () => {
-      expect(appTypeApi.updateAppConfig).not.toHaveBeenCalled();
+    describe('updateAppConfig', () => {
       const data = {
         code: 'code',
         appUuid: '123',
@@ -371,13 +370,43 @@ describe('store/appType/actions.js', () => {
           projectUuid: '123',
         },
       };
-      await actions.updateAppConfig({}, data);
-      expect(appTypeApi.updateAppConfig).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.updateAppConfig).toHaveBeenCalledWith(
-        data.code,
-        data.appUuid,
-        data.payload,
-      );
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.updateAppConfig.mockImplementation(() => {
+          return Promise.resolve({});
+        });
+      });
+
+      it('should call updateAppConfig from API', async () => {
+        expect(appTypeApi.updateAppConfig).not.toHaveBeenCalled();
+        await store.dispatch('updateAppConfig', data);
+        expect(appTypeApi.updateAppConfig).toHaveBeenCalledTimes(1);
+        expect(appTypeApi.updateAppConfig).toHaveBeenCalledWith(
+          data.code,
+          data.appUuid,
+          data.payload,
+        );
+      });
+
+      it('should set loadingUpdateAppConfig to false', async () => {
+        store.state.appType.loadingUpdateAppConfig = true;
+        expect(store.state.appType.loadingUpdateAppConfig).toBe(true);
+        await store.dispatch('updateAppConfig', data);
+        expect(store.state.appType.loadingUpdateAppConfig).toBe(false);
+      });
+
+      it('should set errorUpdateAppConfig as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.updateAppConfig.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorUpdateAppConfig = {};
+        expect(store.state.appType.errorUpdateAppConfig).not.toEqual(error);
+        await store.dispatch('updateAppConfig', data);
+        expect(store.state.appType.errorUpdateAppConfig).toEqual(error);
+      });
     });
   });
 });

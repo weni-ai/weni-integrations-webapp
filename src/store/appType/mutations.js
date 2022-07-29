@@ -95,4 +95,18 @@ export default {
     state.errorFeaturedApps = err;
     state.loadingFeaturedApps = false;
   },
+
+  UPDATE_APP_CONFIG_REQUEST(state) {
+    state.loadingUpdateAppConfig = true;
+    state.errorUpdateAppConfig = null;
+    state.updateAppConfigResult = null;
+  },
+  UPDATE_APP_CONFIG_SUCCESS(state, data) {
+    state.updateAppConfigResult = data;
+    state.loadingUpdateAppConfig = false;
+  },
+  UPDATE_APP_CONFIG_ERROR(state, err) {
+    state.errorUpdateAppConfig = err;
+    state.loadingUpdateAppConfig = false;
+  },
 };

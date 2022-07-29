@@ -71,7 +71,13 @@ export default {
     }
   },
 
-  async updateAppConfig(store, { code, appUuid, payload }) {
-    return await appType.updateAppConfig(code, appUuid, payload);
+  async updateAppConfig({ commit }, { code, appUuid, payload }) {
+    commit('UPDATE_APP_CONFIG_REQUEST');
+    try {
+      const { data } = await appType.updateAppConfig(code, appUuid, payload);
+      commit('UPDATE_APP_CONFIG_SUCCESS', data);
+    } catch (err) {
+      commit('UPDATE_APP_CONFIG_ERROR', err);
+    }
   },
 };

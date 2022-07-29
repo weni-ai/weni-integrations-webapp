@@ -47,7 +47,6 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
@@ -64,7 +63,6 @@
       };
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
       closePreview() {
         this.$emit('closeModal');
       },

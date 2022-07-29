@@ -3,7 +3,10 @@
     <navigator class="navigator" :routes="navigatorHistory" />
 
     <div class="app-details" v-if="!loadingCurrentAppType">
-      <app-images-banner class="app-details__section" :images="currentAppType.banners" />
+      <app-images-banner
+        class="app-details__section"
+        :images="currentAppType && currentAppType.banners"
+      />
       <app-details-header class="app-details__section" :app="currentAppType" />
       <unnnic-banner
         class="app-details__banner"
