@@ -24,8 +24,14 @@ export default {
       commit('CONVERSATIONS_ERROR', err);
     }
   },
-  async fetchWppProfile(store, { code, appUuid }) {
-    return await whatsApp.fetchWppProfile(code, appUuid);
+  async fetchWppProfile({ commit }, { code, appUuid }) {
+    commit('FETCH_WHATSAPP_PROFILE_REQUEST');
+    try {
+      const { data } = await whatsApp.fetchWppProfile(code, appUuid);
+      commit('FETCH_WHATSAPP_PROFILE_SUCCESS', data);
+    } catch (err) {
+      commit('FETCH_WHATSAPP_PROFILE_ERROR', err);
+    }
   },
   async updateWppProfile(store, { code, appUuid, payload }) {
     return await whatsApp.updateWppProfile(code, appUuid, payload);

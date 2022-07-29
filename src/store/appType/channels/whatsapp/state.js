@@ -10,4 +10,8 @@ export default {
   },
   loadingConversations: false,
   errorConversations: false,
+
+  whatsAppProfile: null,
+  loadingWhatsAppProfile: false,
+  errorWhatsAppProfile: false,
 };

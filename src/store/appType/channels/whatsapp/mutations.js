@@ -22,4 +22,18 @@ export default {
     state.errorConversations = data;
     state.loadingConversations = false;
   },
+
+  FETCH_WHATSAPP_PROFILE_REQUEST(state) {
+    state.loadingWhatsAppProfile = true;
+    state.whatsAppProfile = null;
+    state.errorWhatsAppProfile = null;
+  },
+  FETCH_WHATSAPP_PROFILE_SUCCESS(state, data) {
+    state.whatsAppProfile = data;
+    state.loadingWhatsAppProfile = false;
+  },
+  FETCH_WHATSAPP_PROFILE_ERROR(state, data) {
+    state.errorWhatsAppProfile = data;
+    state.loadingWhatsAppProfile = false;
+  },
 };

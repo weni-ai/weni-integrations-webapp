@@ -24,6 +24,7 @@ describe('WhatsAppConfig.vue', () => {
   let wrapper;
   let actions;
   let wppActions;
+  let wppState;
   let store;
 
   beforeEach(() => {
@@ -40,11 +41,18 @@ describe('WhatsAppConfig.vue', () => {
       }),
     };
 
+    wppState = {
+      whatsAppProfile: { photo_url: 'url' },
+      loadingWhatsAppProfile: false,
+      errorWhatsAppProfile: false,
+    };
+
     store = new Vuex.Store({
       modules: {
         WhatsApp: {
           namespaced: true,
           actions: wppActions,
+          state: wppState,
         },
       },
       actions,
@@ -168,6 +176,12 @@ describe('WhatsAppConfig.vue', () => {
       expect(wppActions.fetchWppProfile).not.toHaveBeenCalled();
       await wrapper.vm.fetchProfile(options);
       expect(wppActions.fetchWppProfile).toHaveBeenCalledTimes(1);
+    });
+
+    it('should throw error on fetchWppProfile() failure', async () => {
+      const options = { code: 'code', appUuid: 'appUuid' };
+      store.state.WhatsApp.errorWhatsAppProfile = true;
+      await expect(wrapper.vm.fetchProfile(options)).rejects.toThrow();
     });
   });
 

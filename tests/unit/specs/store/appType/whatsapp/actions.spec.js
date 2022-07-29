@@ -166,15 +166,56 @@ describe('store/appType/whatsapp/actions.js', () => {
     });
   });
 
-  it('should call appType.fetchWppProfile', async () => {
-    expect(WhatsAppApi.fetchWppProfile).not.toHaveBeenCalled();
+  describe('fetchWppProfile()', () => {
     const data = {
       code: 'code',
       appUuid: '123',
     };
-    await actions.fetchWppProfile({}, data);
-    expect(WhatsAppApi.fetchWppProfile).toHaveBeenCalledTimes(1);
-    expect(WhatsAppApi.fetchWppProfile).toHaveBeenCalledWith(data.code, data.appUuid);
+
+    const mockProfileResult = {
+      photo_url: 'url',
+    };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.fetchWppProfile.mockImplementation(() => {
+        return Promise.resolve({
+          data: mockProfileResult,
+        });
+      });
+    });
+
+    it('should call fetchWppProfile from API', async () => {
+      expect(WhatsAppApi.fetchWppProfile).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/fetchWppProfile', data);
+      expect(WhatsAppApi.fetchWppProfile).toHaveBeenCalledTimes(1);
+    });
+
+    it('should set whatsAppProfile as result data', async () => {
+      store.state.WhatsApp.whatsAppProfile = {};
+      expect(store.state.WhatsApp.whatsAppProfile).not.toEqual(mockProfileResult);
+      await store.dispatch('WhatsApp/fetchWppProfile', data);
+      expect(store.state.WhatsApp.whatsAppProfile).toEqual(mockProfileResult);
+    });
+
+    it('should set loadingWhatsAppProfile to false', async () => {
+      store.state.WhatsApp.loadingWhatsAppProfile = true;
+      expect(store.state.WhatsApp.loadingWhatsAppProfile).toBe(true);
+      await store.dispatch('WhatsApp/fetchWppProfile', data);
+      expect(store.state.WhatsApp.loadingWhatsAppProfile).toBe(false);
+    });
+
+    it('should set errorWhatsAppProfile as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.fetchWppProfile.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorWhatsAppProfile = {};
+      expect(store.state.WhatsApp.errorWhatsAppProfile).not.toEqual(error);
+      await store.dispatch('WhatsApp/fetchWppProfile', data);
+      expect(store.state.WhatsApp.errorWhatsAppProfile).toEqual(error);
+    });
   });
 
   it('should call appType.updateWppProfile', async () => {
