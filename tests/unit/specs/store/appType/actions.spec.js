@@ -12,11 +12,6 @@ jest.mock('@/api/appType', () => {
     fetchFeatured: jest.fn(),
     updateAppConfig: jest.fn(),
     deleteApp: jest.fn(),
-    getSharedWabas: jest.fn(),
-    getConversations: jest.fn(),
-    fetchWppProfile: jest.fn(),
-    updateWppProfile: jest.fn(),
-    deleteWppProfilePhoto: jest.fn(),
   };
 });
 
@@ -208,71 +203,6 @@ describe('store/appType/actions.js', () => {
         data.appUuid,
         data.payload,
       );
-    });
-
-    it('should call appType.getSharedWabas', async () => {
-      expect(appTypeApi.getSharedWabas).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        params: {},
-      };
-      await actions.getSharedWabas({}, data);
-      expect(appTypeApi.getSharedWabas).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.getSharedWabas).toHaveBeenCalledWith(data.code, data.params);
-    });
-
-    it('should call appType.getConversations', async () => {
-      expect(appTypeApi.getConversations).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        appUuid: '123',
-        params: {},
-      };
-      await actions.getConversations({}, data);
-      expect(appTypeApi.getConversations).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.getConversations).toHaveBeenCalledWith(
-        data.code,
-        data.appUuid,
-        data.params,
-      );
-    });
-
-    it('should call appType.fetchWppProfile', async () => {
-      expect(appTypeApi.fetchWppProfile).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        appUuid: '123',
-      };
-      await actions.fetchWppProfile({}, data);
-      expect(appTypeApi.fetchWppProfile).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.fetchWppProfile).toHaveBeenCalledWith(data.code, data.appUuid);
-    });
-
-    it('should call appType.updateWppProfile', async () => {
-      expect(appTypeApi.updateWppProfile).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        appUuid: '123',
-        payload: {},
-      };
-      await actions.updateWppProfile({}, data);
-      expect(appTypeApi.updateWppProfile).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.updateWppProfile).toHaveBeenCalledWith(
-        data.code,
-        data.appUuid,
-        data.payload,
-      );
-    });
-
-    it('should call deleteWppProfilePhoto', async () => {
-      expect(appTypeApi.deleteWppProfilePhoto).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        appUuid: '123',
-      };
-      await actions.deleteWppProfilePhoto({}, data);
-      expect(appTypeApi.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.deleteWppProfilePhoto).toHaveBeenCalledWith(data.code, data.appUuid);
     });
   });
 });

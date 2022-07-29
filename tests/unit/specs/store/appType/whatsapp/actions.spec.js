@@ -2,6 +2,11 @@ jest.mock('@/api/appType/whatsapp', () => {
   return {
     fetchWppContactInfo: jest.fn(),
     updateWppContactInfo: jest.fn(),
+    getSharedWabas: jest.fn(),
+    getConversations: jest.fn(),
+    fetchWppProfile: jest.fn(),
+    updateWppProfile: jest.fn(),
+    deleteWppProfilePhoto: jest.fn(),
   };
 });
 import WhatsAppApi from '@/api/appType/whatsapp';
@@ -105,5 +110,66 @@ describe('store/appType/whatsapp/actions.js', () => {
       await store.dispatch('WhatsApp/updateWppContactInfo', data);
       expect(store.state.WhatsApp.contactInfo).toEqual(storeMock.mockedContactInfo);
     });
+  });
+
+  it('should call appType.getSharedWabas', async () => {
+    expect(WhatsAppApi.getSharedWabas).not.toHaveBeenCalled();
+    const data = {
+      code: 'code',
+      params: {},
+    };
+    await actions.getSharedWabas({}, data);
+    expect(WhatsAppApi.getSharedWabas).toHaveBeenCalledTimes(1);
+    expect(WhatsAppApi.getSharedWabas).toHaveBeenCalledWith(data.code, data.params);
+  });
+
+  it('should call appType.getConversations', async () => {
+    expect(WhatsAppApi.getConversations).not.toHaveBeenCalled();
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      params: {},
+    };
+    await actions.getConversations({}, data);
+    expect(WhatsAppApi.getConversations).toHaveBeenCalledTimes(1);
+    expect(WhatsAppApi.getConversations).toHaveBeenCalledWith(data.code, data.appUuid, data.params);
+  });
+
+  it('should call appType.fetchWppProfile', async () => {
+    expect(WhatsAppApi.fetchWppProfile).not.toHaveBeenCalled();
+    const data = {
+      code: 'code',
+      appUuid: '123',
+    };
+    await actions.fetchWppProfile({}, data);
+    expect(WhatsAppApi.fetchWppProfile).toHaveBeenCalledTimes(1);
+    expect(WhatsAppApi.fetchWppProfile).toHaveBeenCalledWith(data.code, data.appUuid);
+  });
+
+  it('should call appType.updateWppProfile', async () => {
+    expect(WhatsAppApi.updateWppProfile).not.toHaveBeenCalled();
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      payload: {},
+    };
+    await actions.updateWppProfile({}, data);
+    expect(WhatsAppApi.updateWppProfile).toHaveBeenCalledTimes(1);
+    expect(WhatsAppApi.updateWppProfile).toHaveBeenCalledWith(
+      data.code,
+      data.appUuid,
+      data.payload,
+    );
+  });
+
+  it('should call deleteWppProfilePhoto', async () => {
+    expect(WhatsAppApi.deleteWppProfilePhoto).not.toHaveBeenCalled();
+    const data = {
+      code: 'code',
+      appUuid: '123',
+    };
+    await actions.deleteWppProfilePhoto({}, data);
+    expect(WhatsAppApi.deleteWppProfilePhoto).toHaveBeenCalledTimes(1);
+    expect(WhatsAppApi.deleteWppProfilePhoto).toHaveBeenCalledWith(data.code, data.appUuid);
   });
 });

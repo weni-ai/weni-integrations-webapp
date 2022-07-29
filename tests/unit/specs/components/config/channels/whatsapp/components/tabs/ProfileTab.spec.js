@@ -42,7 +42,12 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
     };
 
     store = new Vuex.Store({
-      actions,
+      modules: {
+        WhatsApp: {
+          namespaced: true,
+          actions,
+        },
+      },
     });
 
     wrapper = shallowMount(ProfileTab, {

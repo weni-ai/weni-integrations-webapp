@@ -52,6 +52,6 @@ describe('OtherApps.vue', () => {
       expect(wrapper.vm.loading).toEqual(true);
       wrapper.vm.onLoad();
       expect(wrapper.vm.loading).toEqual(false);
-    })
-  })
+    });
+  });
 });

@@ -31,13 +31,13 @@ describe('WhatsAppConfig.vue', () => {
       getApp: jest.fn(() => {
         return { data: singleApp };
       }),
-      fetchWppProfile: jest.fn(() => {
-        return { data: { photo_url: 'photo' } };
-      }),
     };
 
     wppActions = {
       resetWppFetchResults: jest.fn(),
+      fetchWppProfile: jest.fn(() => {
+        return { data: { photo_url: 'photo' } };
+      }),
     };
 
     store = new Vuex.Store({
@@ -165,9 +165,9 @@ describe('WhatsAppConfig.vue', () => {
     it('should call fetchWppProfile()', async () => {
       jest.clearAllMocks();
       const options = { code: 'code', appUuid: 'appUuid' };
-      expect(actions.fetchWppProfile).not.toHaveBeenCalled();
+      expect(wppActions.fetchWppProfile).not.toHaveBeenCalled();
       await wrapper.vm.fetchProfile(options);
-      expect(actions.fetchWppProfile).toHaveBeenCalledTimes(1);
+      expect(wppActions.fetchWppProfile).toHaveBeenCalledTimes(1);
     });
   });
 
