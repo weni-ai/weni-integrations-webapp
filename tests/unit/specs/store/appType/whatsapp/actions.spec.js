@@ -2,7 +2,6 @@ jest.mock('@/api/appType/whatsapp', () => {
   return {
     fetchWppContactInfo: jest.fn(),
     updateWppContactInfo: jest.fn(),
-    getSharedWabas: jest.fn(),
     getConversations: jest.fn(),
     fetchWppProfile: jest.fn(),
     updateWppProfile: jest.fn(),
@@ -110,17 +109,6 @@ describe('store/appType/whatsapp/actions.js', () => {
       await store.dispatch('WhatsApp/updateWppContactInfo', data);
       expect(store.state.WhatsApp.contactInfo).toEqual(storeMock.mockedContactInfo);
     });
-  });
-
-  it('should call appType.getSharedWabas', async () => {
-    expect(WhatsAppApi.getSharedWabas).not.toHaveBeenCalled();
-    const data = {
-      code: 'code',
-      params: {},
-    };
-    await actions.getSharedWabas({}, data);
-    expect(WhatsAppApi.getSharedWabas).toHaveBeenCalledTimes(1);
-    expect(WhatsAppApi.getSharedWabas).toHaveBeenCalledWith(data.code, data.params);
   });
 
   it('should call appType.getConversations', async () => {
