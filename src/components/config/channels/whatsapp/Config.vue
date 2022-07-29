@@ -95,11 +95,8 @@
       },
     },
     methods: {
-      ...mapActions({
-        getApp: 'getApp',
-        fetchWppProfile: 'fetchWppProfile',
-        resetWppFetchResults: 'WhatsApp/resetWppFetchResults',
-      }),
+      ...mapActions(['getApp']),
+      ...mapActions('WhatsApp', ['fetchWppProfile', 'resetWppFetchResults']),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];

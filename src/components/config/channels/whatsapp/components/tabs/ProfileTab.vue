@@ -113,7 +113,7 @@
       },
     },
     methods: {
-      ...mapActions(['updateWppProfile', 'deleteWppProfilePhoto']),
+      ...mapActions('WhatsApp', ['updateWppProfile', 'deleteWppProfilePhoto']),
       updateInputs(inputData) {
         this.profileInputs[inputData.index].value = inputData.value;
       },

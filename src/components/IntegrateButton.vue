@@ -65,7 +65,8 @@
       }),
     },
     methods: {
-      ...mapActions(['createApp', 'getSharedWabas']),
+      ...mapActions(['createApp']),
+      ...mapActions('WhatsApp', ['getSharedWabas']),
       async addApp(app) {
         if (app.code === 'wpp-cloud') {
           await this.facebookLoginAppCreation(app);

@@ -78,7 +78,7 @@
       });
     },
     methods: {
-      ...mapActions(['getConversations']),
+      ...mapActions('WhatsApp', ['getConversations']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
