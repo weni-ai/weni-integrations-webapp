@@ -27,6 +27,7 @@ describe('wwc/Config.vue', () => {
   let toggleSimulatorSpy;
 
   let actions;
+  let state;
   let store;
 
   beforeEach(() => {
@@ -42,8 +43,15 @@ describe('wwc/Config.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        errorUpdateAppConfig: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
+      state,
     });
 
     wrapper = shallowMount(wwcConfig, {
@@ -227,9 +235,7 @@ describe('wwc/Config.vue', () => {
 
     it('should call unnnicCallAlert on error', async () => {
       spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
-      actions.updateAppConfig.mockImplementation(() => {
-        throw new Error('error fetching');
-      });
+      store.state.appType.errorUpdateAppConfig = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);

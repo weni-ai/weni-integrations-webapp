@@ -22,7 +22,8 @@
         "ticket": "Attendance Managers",
         "configured": "Configured Apps",
         "installed": "Installed Apps"
-      }
+      },
+      "fetch_error": "Failed to fetch Application list, please try again later."
     },
     "myApps": {
       "empty": {

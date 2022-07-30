@@ -19,6 +19,7 @@ describe('AppDetailsComments.vue', () => {
   let wrapper;
   let store;
   let actions;
+  let state;
 
   beforeEach(() => {
     actions = {
@@ -30,6 +31,18 @@ describe('AppDetailsComments.vue', () => {
       updateComment: jest.fn(),
     };
 
+    state = {
+      appType: {
+        comments: {
+          commentsList: [],
+          errorListComments: null,
+          errorCreateComment: null,
+          errorDeleteComment: null,
+          errorUpdateComment: null,
+        },
+      },
+    };
+
     store = new Vuex.Store({
       modules: {
         comments: {
@@ -37,6 +50,7 @@ describe('AppDetailsComments.vue', () => {
           actions,
         },
       },
+      state,
     });
 
     wrapper = mount(AppDetailsComments, {
@@ -124,18 +138,17 @@ describe('AppDetailsComments.vue', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should call fetchComments()', async () => {
-      const spy = spyOn(wrapper.vm, 'fetchComments');
-      expect(spy).not.toHaveBeenCalled();
+    it('should call listComments()', async () => {
+      expect(actions.listComments).not.toHaveBeenCalled();
 
       await wrapper.vm.handleComment();
 
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith(wrapper.vm.appCode);
+      expect(actions.listComments).toHaveBeenCalledTimes(1);
+      expect(actions.listComments).toHaveBeenCalledWith(expect.any(Object), wrapper.vm.appCode);
     });
 
     it('should call unnnicCallAlert on error', async () => {
-      spyOn(wrapper.vm, 'fetchComments').and.throwError(new Error('error fetching'));
+      store.state.appType.comments.errorListComments = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.handleComment();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
@@ -166,6 +179,13 @@ describe('AppDetailsComments.vue', () => {
           },
         });
       });
+
+      it('should call unnnicCallAlert on error', async () => {
+        store.state.appType.comments.errorCreateComment = true;
+        expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+        await wrapper.vm.handleComment();
+        expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      });
     });
 
     describe('EDIT mode', () => {
@@ -186,6 +206,13 @@ describe('AppDetailsComments.vue', () => {
           },
         });
       });
+
+      it('should call unnnicCallAlert on error', async () => {
+        store.state.appType.comments.errorUpdateComment = true;
+        expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+        await wrapper.vm.handleComment();
+        expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      });
     });
   });
 
@@ -203,18 +230,22 @@ describe('AppDetailsComments.vue', () => {
       });
     });
 
-    it('should call fetchComments()', async () => {
-      const spy = spyOn(wrapper.vm, 'fetchComments');
-      expect(spy).not.toHaveBeenCalled();
-
+    it('should call listComments()', async () => {
+      expect(actions.listComments).not.toHaveBeenCalled();
       await wrapper.vm.handleDelete(commentUuid);
+      expect(actions.listComments).toHaveBeenCalledTimes(1);
+      expect(actions.listComments).toHaveBeenCalledWith(expect.any(Object), wrapper.vm.appCode);
+    });
 
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith(wrapper.vm.appCode);
+    it('should call unnnicCallAlert on error listing comments', async () => {
+      store.state.appType.comments.errorListComments = true;
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.handleDelete(commentUuid);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
 
     it('should call unnnicCallAlert() on error', async () => {
-      spyOn(wrapper.vm, 'fetchComments').and.throwError(new Error('error fetching'));
+      store.state.appType.comments.errorDeleteComment = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.handleDelete(commentUuid);
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
@@ -71,6 +71,9 @@
       };
     },
     computed: {
+      ...mapState({
+        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
+      }),
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
       },
@@ -90,6 +93,10 @@
 
         try {
           await this.updateAppConfig(data);
+
+          if (this.errorUpdateAppConfig) {
+            throw new Error(this.errorUpdateAppConfig);
+          }
           unnnicCallAlert({
             props: {
               text: this.$t('apps.config.integration_success'),

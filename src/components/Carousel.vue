@@ -1,8 +1,8 @@
 <template>
-  <div class="carousel-container" v-if="!loading">
+  <div class="carousel-container" v-if="!loadingFeaturedApps">
     <vueper-slides :arrows="false" fixed-height="152px" :autoplay="hasAutoPlay" :duration="6000">
       <vueper-slide
-        v-for="(app, index) in apps"
+        v-for="(app, index) in featuredApps"
         :key="index"
         :title="app.name"
         :content="$t(app.summary)"
@@ -32,27 +32,16 @@
   import skeletonLoading from './loadings/Carousel.vue';
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     name: 'Carousel',
     components: { VueperSlides, VueperSlide, skeletonLoading },
-    data() {
-      return {
-        loading: true,
-        apps: [],
-      };
-    },
     async mounted() {
-      await this.loadFeatureds();
+      await this.fetchFeatured();
     },
     methods: {
       ...mapActions(['fetchFeatured']),
-      async loadFeatureds() {
-        const { data } = await this.fetchFeatured();
-        this.apps = data;
-        this.loading = false;
-      },
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'IB');
         return banner[0].url;
@@ -62,8 +51,12 @@
       },
     },
     computed: {
+      ...mapState({
+        featuredApps: (state) => state.appType.featuredApps,
+        loadingFeaturedApps: (state) => state.appType.loadingFeaturedApps,
+      }),
       hasAutoPlay() {
-        return this.apps.length > 1 ? true : false;
+        return this.featuredApps?.length > 1 ? true : false;
       },
     },
   };

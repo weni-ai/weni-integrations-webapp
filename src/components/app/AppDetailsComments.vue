@@ -24,7 +24,7 @@
     <!-- TODO: Fix avatar and name when API is ready -->
     <unnnic-comment
       class="app-details-comments__comment"
-      v-for="(comment, index) in comments"
+      v-for="(comment, index) in commentsList"
       :key="index"
       :title="comment.owned ? $t('general.You') : comment.owner.first_name"
       :time="getCommentTime(comment.created_on)"
@@ -94,7 +94,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import getRelativeTime from '../../utils/time.js';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import Avatar from 'vue-avatar';
@@ -110,7 +110,6 @@
     },
     data() {
       return {
-        comments: [],
         currentComment: null,
         editMode: false,
         editCommentUuid: null,
@@ -119,7 +118,16 @@
       };
     },
     async mounted() {
-      await this.fetchComments(this.appCode);
+      await this.listComments(this.appCode);
+    },
+    computed: {
+      ...mapState({
+        commentsList: (state) => state.appType.comments.commentsList,
+        errorListComments: (state) => state.appType.comments.errorListComments,
+        errorCreateComment: (state) => state.appType.comments.errorCreateComment,
+        errorDeleteComment: (state) => state.appType.comments.errorDeleteComment,
+        errorUpdateComment: (state) => state.appType.comments.errorUpdateComment,
+      }),
     },
     methods: {
       ...mapActions('comments', [
@@ -128,10 +136,6 @@
         'deleteComment',
         'updateComment',
       ]),
-      async fetchComments(appCode) {
-        const { data } = await this.listComments(appCode);
-        this.comments = data.reverse();
-      },
       /* istanbul ignore next */
       getCommentTime(time) {
         const epoch = new Date(time).getTime();
@@ -159,6 +163,10 @@
                   content: this.currentComment.trim(),
                 },
               });
+
+              if (this.errorUpdateComment) {
+                throw new Error(this.errorUpdateComment);
+              }
             } else {
               await this.createComment({
                 code: this.appCode,
@@ -166,8 +174,16 @@
                   content: this.currentComment.trim(),
                 },
               });
+
+              if (this.errorCreateComment) {
+                throw new Error(this.errorCreateComment);
+              }
             }
-            await this.fetchComments(this.appCode);
+            await this.listComments(this.appCode);
+
+            if (this.errorListComments) {
+              throw new Error(this.errorListComments);
+            }
           } catch (err) {
             unnnicCallAlert({
               props: {
@@ -195,9 +211,19 @@
             code: this.appCode,
             commentUuid,
           });
+
+          if (this.errorDeleteComment) {
+            throw new Error(this.errorDeleteComment);
+          }
+
           this.showRemoveModal = false;
           this.currentRemovalUuid = null;
-          await this.fetchComments(this.appCode);
+          await this.listComments(this.appCode);
+
+          if (this.errorListComments) {
+            throw new Error(this.errorListComments);
+          }
+
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.comments.remove.status_text'),

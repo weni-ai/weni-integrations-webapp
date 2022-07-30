@@ -1,7 +1,7 @@
 <template>
   <div>
     <section v-if="!loading" id="app-grid">
-      <div v-if="apps.length" class="app-grid__header">
+      <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
