@@ -1,3 +1,10 @@
+1.11.2
+----------
+`2022-07-30 · 1 🎉`
+
+### 🎉 New Features
+- Feat: Update wpp description and link target
+
 1.11.1
 ----------
 `2022-07-28 · 1 🎉 · 1 🐛`
