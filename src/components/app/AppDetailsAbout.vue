@@ -14,6 +14,7 @@
           :key="index"
           :href="link.url"
           class="app-details-about__links__content__link"
+          target="_blank"
           >{{ link.description }}</a
         >
       </div>
