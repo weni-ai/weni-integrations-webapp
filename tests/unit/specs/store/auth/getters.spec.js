@@ -12,11 +12,6 @@ describe('store/auth/getters.js', () => {
     };
   });
 
-  it('should return state.token', () => {
-    const token = getters.authToken(state);
-    expect(token).toEqual(state.token);
-  });
-
   it('should return true if token not null or empty', () => {
     const authenticated = getters.authenticated(state);
     expect(authenticated).toBeTruthy();
