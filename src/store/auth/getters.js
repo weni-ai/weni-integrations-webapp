@@ -5,9 +5,6 @@ export default {
   authenticated(state) {
     return !!state.token;
   },
-  getSelectedOrg(state) {
-    return state.org;
-  },
   getSelectedFlowOrg(state) {
     return state.flowOrg;
   },
