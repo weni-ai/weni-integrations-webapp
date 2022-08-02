@@ -116,7 +116,13 @@
   "weniWebChat": {
     "data": {
       "summary": "With Weni Web Chat, you can integrate your project as a chat on your website.",
-      "description": "Use Weni Web Chat to have a humanized automation experience of Weni Platform directly on your website or web platform. By integrating it, you can customize aspects of the Webchat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that Weni Platform has to offer with your's brand identity."
+      "description": "Use Weni Web Chat to have a humanized automation experience of Weni Platform directly on your website or web platform. By integrating it, you can customize aspects of the Webchat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that Weni Platform has to offer with your's brand identity.",
+      "links": {
+        "create_channel": {
+          "label": "Adding a Web Channel",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
+        }
+      }
     },
     "config": {
       "settings": "Settings",
@@ -169,7 +175,13 @@
   "telegram": {
     "data": {
       "summary": "Send and receive messages from Telegram users for free.",
-      "description": "By using Telegram, you are connecting one of the largest messaging applications as a channel available to your audience on the Weni Platform. Send and receive texts, videos and audio through this channel, ensuring the comfort and community of your audience, as well as the resources available on the platform."
+      "description": "By using Telegram, you are connecting one of the largest messaging applications as a channel available to your audience on the Weni Platform. Send and receive texts, videos and audio through this channel, ensuring the comfort and community of your audience, as well as the resources available on the platform.",
+      "links": {
+        "create_channel": {
+          "label": "Adding a Telegram channel",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel"
+        }
+      }
     },
     "config": {
       "description": {
@@ -187,7 +199,13 @@
   "WhatsAppDemo": {
     "data": {
       "summary": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project.",
-      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user"
+      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user",
+      "links": {
+        "create_channel": {
+          "label": "Adding a WhatsApp Demo Channel",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/how-to-create-a-channel-with-whats-app-demo"
+        }
+      }
     },
     "config": {
       "title": "Almost there!",
@@ -310,7 +328,21 @@
   "WhatsAppCloud": {
     "data": {
       "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
-      "description": "WhatsApp is the largest messaging application in the world and one of the most preferred by users.<br/><br/>Its integration with the Weni Platform allows you to connect your business number to the application and create intelligent flows to meet the needs of your customers.<br/><br/>You can use this integration on the Weni Platform without having the verified business manager and start up to 50 conversations by the business with different numbers within 24h. Even without having the verified deal manager, you can have up to two numbers per WABA.<br/><br/>The first 1,000 conversations each month are free. That way, you can create experiences that customers will love before they pay for it. Each WhatsApp Business (WABA) account will receive 1,000 free conversations per month that can be initiated by the business (if you do not have the verified manager, you must pay attention to the limitation of 50 conversations with different numbers) or by the user. This benefit is provided at the WABA level. So even if the account has multiple numbers attached, the free chat limit will still be 1,000. The free conversations limit is reset each month according to the time zone associated with WABA.<br/><br/>Also, remembering that with the free plan of Weni Plataforma you can communicate with 200 active contacts (unique contacts in 1 month interval) at no cost.<br/><br/>By checking the business manager (see how to check here) you can unlock even more the potential of your WhatsApp integration, such as increasing the conversation tier initiated by the business (1000, 10,000, 100,000 or unlimited), Possibility of acquiring the OBA (official account seal/green ticket) and having more than two numbers per WABA.<br/><br/>This version of the WhatsApp API through the Weni Platform it supports customizations, such as photos, videos, sending files, descriptions and message templates (conversations can be initiated by the user or by the business)."
+      "description": "WhatsApp is the largest messaging application in the world and one of the most preferred by users.<br/><br/>Its integration with the Weni Platform allows you to connect your business number to the application and create intelligent flows to meet the needs of your customers.<br/><br/>You can use this integration on the Weni Platform without having the verified business manager and start up to 50 conversations by the business with different numbers within 24h. Even without having the verified deal manager, you can have up to two numbers per WABA.<br/><br/>The first 1,000 conversations each month are free. That way, you can create experiences that customers will love before they pay for it. Each WhatsApp Business (WABA) account will receive 1,000 free conversations per month that can be initiated by the business (if you do not have the verified manager, you must pay attention to the limitation of 50 conversations with different numbers) or by the user. This benefit is provided at the WABA level. So even if the account has multiple numbers attached, the free chat limit will still be 1,000. The free conversations limit is reset each month according to the time zone associated with WABA.<br/><br/>Also, remembering that with the free plan of Weni Plataforma you can communicate with 200 active contacts (unique contacts in 1 month interval) at no cost.<br/><br/>By checking the business manager (see how to check here) you can unlock even more the potential of your WhatsApp integration, such as increasing the conversation tier initiated by the business (1000, 10,000, 100,000 or unlimited), Possibility of acquiring the OBA (official account seal/green ticket) and having more than two numbers per WABA.<br/><br/>This version of the WhatsApp API through the Weni Platform it supports customizations, such as photos, videos, sending files, descriptions and message templates (conversations can be initiated by the user or by the business).",
+      "links": {
+        "verify_business": {
+          "label": "How to Verify my Business",
+          "url": "https://docs.weni.ai/l/en/channels/how-to-verify-my-business"
+        },
+        "express_signup": {
+          "label": "WhatsApp Express Signup",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/whatsapp-weni-express-integration"
+        },
+        "rate_limit": {
+          "label": "Rate Limit limitations",
+          "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
+        }      
+      }
     },
     "config": {
       "phone_numbers": {

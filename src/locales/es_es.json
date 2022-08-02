@@ -116,7 +116,13 @@
   "weniWebChat": {
     "data": {
       "summary": "Con Weni Web Chat, puede integrar su organización Rapidpro como un chat en su sitio web.",
-      "description": "Utilice el Weni Web Chat para tener una experiencia de automatización humanizada de la Plataforma Weni directamente en su sitio web o plataforma web. Al integrarlo, podrá personalizar aspectos del Webchat como el color, el tiempo entre mensajes, los indicadores de los mensajes, el avatar, ¡y mucho más! Así, garantizando todo lo que la Plataforma Weni tiene para ofrecer con la identidad de su marca."
+      "description": "Utilice el Weni Web Chat para tener una experiencia de automatización humanizada de la Plataforma Weni directamente en su sitio web o plataforma web. Al integrarlo, podrá personalizar aspectos del Webchat como el color, el tiempo entre mensajes, los indicadores de los mensajes, el avatar, ¡y mucho más! Así, garantizando todo lo que la Plataforma Weni tiene para ofrecer con la identidad de su marca.",
+      "links": {
+        "create_channel": {
+          "label": "Agregar un Canal Web",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
+        }
+      }
     },
     "config": {
       "settings": "Ajustes",
@@ -169,7 +175,13 @@
   "telegram": {
     "data": {
       "summary": "Envía y recibe mensajes de los usuarios de Telegram de forma gratuita.",
-      "description": "Al utilizar Telegram, usted está conectando una de las mayores aplicaciones de mensajería como un canal disponible para su audiencia en la Plataforma Weni. Envía y recibe textos, vídeos y audio a través de este canal, asegurando la comodidad y la comunidad de tu audiencia, así como los recursos disponibles en la plataforma."
+      "description": "Al utilizar Telegram, usted está conectando una de las mayores aplicaciones de mensajería como un canal disponible para su audiencia en la Plataforma Weni. Envía y recibe textos, vídeos y audio a través de este canal, asegurando la comodidad y la comunidad de tu audiencia, así como los recursos disponibles en la plataforma.",
+      "links": {
+        "create_channel": {
+          "label": "Agregar un canal de Telegram",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel"
+        }
+      }
     },
     "config": {
       "description": {
@@ -187,7 +199,13 @@
   "WhatsAppDemo": {
     "data": {
       "summary": "Con WhatsApp Demo puedes traer lo mejor de WhatsApp, la aplicación de chat más grande del mundo, gratis para validar tu proyecto.",
-      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user"
+      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user",
+      "links": {
+        "create_channel": {
+          "label": "Agregar un canal de demostración de WhatsApp",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/how-to-create-a-channel-with-whats-app-demo"
+        }
+      }
     },
     "config": {
       "title": "¡Casi llegamos!",
@@ -310,7 +328,21 @@
   "WhatsAppCloud": {
     "data": {
       "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
-      "description": "WhatsApp es la aplicación de mensajería más grande del mundo y una de las preferidas por los usuarios.<br/><br/>Su integración con la Plataforma Weni le permite conectar su número comercial a la aplicación y crear flujos inteligentes para satisfacer las necesidades de sus clientes.<br/><br/>Puede usar esta integración en la Plataforma Weni sin tener el administrador comercial verificado e iniciar hasta 50 conversaciones por parte de la empresa con diferentes números dentro de las 24 horas. Incluso sin tener el administrador de acuerdos verificado, puede tener hasta dos números por WABA.<br/><br/>Las primeras 1000 conversaciones cada mes son gratuitas. De esa manera, puede crear experiencias que a los clientes les encantarán antes de que paguen por ellas. Cada cuenta de WhatsApp Business (WABA) recibirá 1.000 conversaciones gratuitas al mes que pueden ser iniciadas por la empresa (si no tienes el gestor verificado, debes estar atento a la limitación de 50 conversaciones con números diferentes) o por el usuario. Este beneficio se proporciona a nivel de WABA. Entonces, incluso si la cuenta tiene varios números adjuntos, el límite de chat gratuito seguirá siendo 1,000. El límite de conversaciones gratis se resetea cada mes de acuerdo a la zona horaria asociada a WABA.<br/><br/>Además, recordando que con el plan gratis de Weni Plataforma puedes comunicarte con 200 contactos activos (contactos únicos en intervalo de 1 mes ) sin costo alguno.<br/><br/>Al verificar el administrador comercial (vea cómo verificar aquí) puede desbloquear aún más el potencial de su integración de WhatsApp, como aumentar el nivel de conversación iniciado por la empresa (1000, 10.000, 100.000 o ilimitado), Posibilidad de adquirir el OBA (sello de cuenta oficial/boleto verde) y tener más de dos números por WABA.<br/><br/>Esta versión de la API de WhatsApp a través de la Plataforma Weni admite personalizaciones , como fotos, videos, envío de archivos, descripciones y plantillas de mensajes (las conversaciones pueden ser iniciadas por el usuario o por la empresa)."
+      "description": "WhatsApp es la aplicación de mensajería más grande del mundo y una de las preferidas por los usuarios.<br/><br/>Su integración con la Plataforma Weni le permite conectar su número comercial a la aplicación y crear flujos inteligentes para satisfacer las necesidades de sus clientes.<br/><br/>Puede usar esta integración en la Plataforma Weni sin tener el administrador comercial verificado e iniciar hasta 50 conversaciones por parte de la empresa con diferentes números dentro de las 24 horas. Incluso sin tener el administrador de acuerdos verificado, puede tener hasta dos números por WABA.<br/><br/>Las primeras 1000 conversaciones cada mes son gratuitas. De esa manera, puede crear experiencias que a los clientes les encantarán antes de que paguen por ellas. Cada cuenta de WhatsApp Business (WABA) recibirá 1.000 conversaciones gratuitas al mes que pueden ser iniciadas por la empresa (si no tienes el gestor verificado, debes estar atento a la limitación de 50 conversaciones con números diferentes) o por el usuario. Este beneficio se proporciona a nivel de WABA. Entonces, incluso si la cuenta tiene varios números adjuntos, el límite de chat gratuito seguirá siendo 1,000. El límite de conversaciones gratis se resetea cada mes de acuerdo a la zona horaria asociada a WABA.<br/><br/>Además, recordando que con el plan gratis de Weni Plataforma puedes comunicarte con 200 contactos activos (contactos únicos en intervalo de 1 mes ) sin costo alguno.<br/><br/>Al verificar el administrador comercial (vea cómo verificar aquí) puede desbloquear aún más el potencial de su integración de WhatsApp, como aumentar el nivel de conversación iniciado por la empresa (1000, 10.000, 100.000 o ilimitado), Posibilidad de adquirir el OBA (sello de cuenta oficial/boleto verde) y tener más de dos números por WABA.<br/><br/>Esta versión de la API de WhatsApp a través de la Plataforma Weni admite personalizaciones , como fotos, videos, envío de archivos, descripciones y plantillas de mensajes (las conversaciones pueden ser iniciadas por el usuario o por la empresa).",
+      "links": {
+        "verify_business": {
+          "label": "Cómo verificar mi negocio",
+          "url": "https://docs.weni.ai/l/en/channels/how-to-verify-my-business"
+        },
+        "express_signup": {
+          "label": "Registro exprés de WhatsApp",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/whatsapp-weni-express-integration"
+        },
+        "rate_limit": {
+          "label": "Limitaciones de límite de tasa",
+          "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
+        }
+      }
     },
     "config": {
       "phone_numbers": {
