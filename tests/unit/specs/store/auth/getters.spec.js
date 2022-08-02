@@ -27,11 +27,6 @@ describe('store/auth/getters.js', () => {
     expect(org).toEqual(state.org);
   });
 
-  it('should return state.project', () => {
-    const project = getters.getSelectedProject(state);
-    expect(project).toEqual(state.project);
-  });
-
   it('should return state.flowOrg', () => {
     const flowOrg = getters.getSelectedFlowOrg(state);
     expect(flowOrg).toEqual(state.flowOrg);

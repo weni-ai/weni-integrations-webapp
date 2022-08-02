@@ -10,7 +10,7 @@ export default {
         ...(store.getters.authenticated
           ? {
               Authorization: `${store.getters.authToken}`,
-              'Project-Uuid': `${store.getters.getSelectedProject}`,
+              'Project-Uuid': `${store.state.auth.project}`,
             }
           : {}),
       },

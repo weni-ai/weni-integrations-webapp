@@ -8,9 +8,6 @@ export default {
   getSelectedOrg(state) {
     return state.org;
   },
-  getSelectedProject(state) {
-    return state.project;
-  },
   getSelectedFlowOrg(state) {
     return state.flowOrg;
   },

@@ -11,7 +11,7 @@
 </template>
 <script>
   import AppGrid from '../components/AppGrid.vue';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'Discovery',
@@ -26,11 +26,6 @@
     },
     async mounted() {
       await this.loadChannels();
-    },
-    computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
-      }),
     },
     methods: {
       ...mapActions(['getAllAppTypes']),
