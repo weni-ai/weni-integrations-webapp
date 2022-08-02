@@ -16,9 +16,4 @@ describe('store/auth/getters.js', () => {
     const authenticated = getters.authenticated(state);
     expect(authenticated).toBeTruthy();
   });
-
-  it('should return state.flowOrg', () => {
-    const flowOrg = getters.getSelectedFlowOrg(state);
-    expect(flowOrg).toEqual(state.flowOrg);
-  });
 });
