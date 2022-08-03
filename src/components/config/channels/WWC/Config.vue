@@ -899,8 +899,8 @@
       right: 50%;
       max-width: 293px;
       height: auto;
-      margin-right: 10px;
-      margin-bottom: 25px;
+      margin-right: $unnnic-spacing-inline-sm;
+      margin-bottom: $unnnic-spacing-stack-md;
     }
   }
 </style>
