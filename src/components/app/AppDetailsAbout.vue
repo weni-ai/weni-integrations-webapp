@@ -12,11 +12,12 @@
         <a
           v-for="(link, index) in links"
           :key="index"
-          :href="link.url"
+          :href="$t(link.url)"
           class="app-details-about__links__content__link"
           target="_blank"
-          >{{ link.description }}</a
         >
+          {{ $t(link.description) }}
+        </a>
       </div>
     </div>
   </div>
