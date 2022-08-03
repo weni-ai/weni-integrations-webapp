@@ -1,3 +1,13 @@
+1.11.3
+----------
+`2022-08-03 · 1 🎉 · 1 🐛`
+
+### 🎉 New Features
+- Feat: Add app details link translations
+
+### 🐛 Bug fixes
+- Fix: Minor design issues
+
 1.11.2
 ----------
 `2022-07-30 · 1 🎉`
