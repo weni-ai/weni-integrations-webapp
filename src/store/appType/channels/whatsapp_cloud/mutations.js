@@ -31,7 +31,6 @@ export default {
 
   CLOUD_CONFIGURE_REQUEST(state) {
     state.loadingWhatsAppCloudConfigure = true;
-    state.loadingWhatsAppCloudConfigure = null;
     state.errorCloudConfigure = null;
   },
   CLOUD_CONFIGURE_SUCCESS(state) {

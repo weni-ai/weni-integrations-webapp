@@ -8,7 +8,10 @@
     @close="closePopUp"
     @click.stop
   >
-    <skeleton-loading v-if="loadingPhoneNumbers || loadingDebugToken" slot="message" />
+    <skeleton-loading
+      v-if="forceLoading || loadingPhoneNumbers || loadingDebugToken"
+      slot="message"
+    />
     <div v-else slot="message">
       <unnnic-select
         :search="false"
@@ -70,6 +73,7 @@
       return {
         showModal: false,
         selectedNumber: null,
+        forceLoading: true,
       };
     },
     beforeDestroy() {
@@ -81,6 +85,10 @@
       if (!this.errorDebugToken) {
         await this.fetchPhoneNumbers();
       }
+
+      setTimeout(() => {
+        this.forceLoading = false;
+      }, 60000);
     },
     computed: {
       ...mapGetters(['getSelectedProject']),
