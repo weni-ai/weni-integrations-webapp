@@ -1,4 +1,5 @@
 import whatsAppCloud from '@/api/appType/whatsapp_cloud';
+import * as Sentry from '@sentry/browser';
 
 export default {
   async getDebugToken({ commit }, { params }) {
@@ -7,6 +8,7 @@ export default {
       const { data } = await whatsAppCloud.getDebugToken(params);
       commit('DEBUG_TOKEN_SUCCESS', data);
     } catch (err) {
+      Sentry.captureException(err, { extra: { request: err.request, response: err.response } });
       commit('DEBUG_TOKEN_ERROR', err);
     }
   },
@@ -16,6 +18,7 @@ export default {
       const { data } = await whatsAppCloud.getWhatsAppPhoneNumbers(params);
       commit('PHONE_NUMBERS_SUCCESS', data);
     } catch (err) {
+      Sentry.captureException(err, { extra: { request: err.request, response: err.response } });
       commit('PHONE_NUMBERS_ERROR', err);
     }
   },
@@ -25,6 +28,7 @@ export default {
       await whatsAppCloud.configurePhoneNumber(data);
       commit('CLOUD_CONFIGURE_SUCCESS');
     } catch (err) {
+      Sentry.captureException(err, { extra: { request: err.request, response: err.response } });
       commit('CLOUD_CONFIGURE_ERROR', err);
     }
   },
