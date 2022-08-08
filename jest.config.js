@@ -17,6 +17,7 @@ module.exports = {
     '!tests/**',
     '!src/utils/**',
     '!src/api/**',
+    '!src/miragejs/**',
     // ignore store configuration files
     '!src/store/types.js',
     '!src/store/**/index.js',
