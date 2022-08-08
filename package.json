@@ -12,7 +12,7 @@
     "@sentry/integrations": "^6.13.2",
     "@sentry/vue": "^6.13.2",
     "@weni/unnnic-system": "^1.4.5",
-    "axios": "^0.21.1",
+    "axios": "0.21.1",
     "core-js": "^3.6.5",
     "global": "^4.4.0",
     "helphero": "^3.6.0",
