@@ -1,3 +1,10 @@
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import MyApps from '@/views/MyApps.vue';
@@ -14,7 +21,6 @@ describe('MyApps.vue', () => {
   let store;
 
   beforeEach(() => {
-    // const fetchCategoriesSpy = spyOn(MyApps.methods, 'fetchCategories');
     actions = {
       getConfiguredApps: jest.fn(() => {
         return { data: [singleApp] };
@@ -28,6 +34,14 @@ describe('MyApps.vue', () => {
       appType: {
         loadingDeleteApp: false,
         errorDeleteApp: false,
+      },
+      myApps: {
+        configuredApps: [singleApp],
+        loadingConfiguredApps: false,
+        errorConfiguredApps: null,
+        installedApps: [singleApp],
+        loadingInstalledApps: false,
+        errorInstalledApps: null,
       },
       auth: {
         project: '123',
@@ -63,39 +77,25 @@ describe('MyApps.vue', () => {
 
   describe('hasApps', () => {
     it('should return true if loadings are still ocurring', () => {
+      store.state.myApps.loadingConfiguredApps = false;
+      store.state.myApps.loadingInstalledApps = true;
       expect(wrapper.vm.hasApps).toBeTruthy();
     });
 
     it('should return true if not loading and have data', async () => {
-      await wrapper.setData({
-        configuredApps: {
-          loading: false,
-          data: [singleApp],
-        },
-      });
-      await wrapper.setData({
-        installedApps: {
-          loading: false,
-          data: [],
-        },
-      });
+      store.state.myApps.loadingConfiguredApps = false;
+      store.state.myApps.loadingInstalledApps = false;
+      store.state.myApps.configuredApps = [singleApp];
+      store.state.myApps.installedApps = [];
 
       expect(wrapper.vm.hasApps).toBeTruthy();
     });
 
     it('should return false if not loading and dont have data', async () => {
-      await wrapper.setData({
-        configuredApps: {
-          loading: false,
-          data: [],
-        },
-      });
-      await wrapper.setData({
-        installedApps: {
-          loading: false,
-          data: [],
-        },
-      });
+      store.state.myApps.loadingConfiguredApps = false;
+      store.state.myApps.loadingInstalledApps = false;
+      store.state.myApps.configuredApps = [];
+      store.state.myApps.installedApps = [];
 
       expect(wrapper.vm.hasApps).toBeFalsy();
     });
@@ -112,17 +112,17 @@ describe('MyApps.vue', () => {
   });
 
   describe('fetchCategories()', () => {
-    it('should call fetchConfigured()', async () => {
+    it('should call fetchConfigured()', () => {
       const spy = spyOn(wrapper.vm, 'fetchConfigured');
       expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.fetchCategories();
+      wrapper.vm.fetchCategories();
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    it('should call fetchInstalled()', async () => {
+    it('should call fetchInstalled()', () => {
       const spy = spyOn(wrapper.vm, 'fetchInstalled');
       expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.fetchCategories();
+      wrapper.vm.fetchCategories();
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
@@ -138,11 +138,12 @@ describe('MyApps.vue', () => {
       expect(actions.getConfiguredApps).toHaveBeenCalledTimes(1);
     });
 
-    it('should set new data on configuredApps', async () => {
-      await wrapper.setData({ configuredApps: { loading: true, data: null } });
-      expect(wrapper.vm.configuredApps.data).toBeNull();
+    it('should call callErrorModal on error', async () => {
+      store.state.myApps.errorConfiguredApps = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
       await wrapper.vm.fetchConfigured();
-      expect(wrapper.vm.configuredApps.data).toEqual([singleApp]);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -157,11 +158,33 @@ describe('MyApps.vue', () => {
       expect(actions.getInstalledApps).toHaveBeenCalledTimes(1);
     });
 
-    it('should set new data on installedApps', async () => {
-      await wrapper.setData({ installedApps: { loading: true, data: null } });
-      expect(wrapper.vm.installedApps.data).toBeNull();
+    it('should call callErrorModal on error', async () => {
+      store.state.myApps.errorInstalledApps = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
       await wrapper.vm.fetchInstalled();
-      expect(wrapper.vm.installedApps.data).toEqual([singleApp]);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('callErrorModal', () => {
+    it('should call unnnicCallAlert', () => {
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.callErrorModal({ text: 'error text' });
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'error text',
+            title: expect.any(String),
+            icon: expect.any(String),
+            scheme: expect.any(String),
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
     });
   });
 });
