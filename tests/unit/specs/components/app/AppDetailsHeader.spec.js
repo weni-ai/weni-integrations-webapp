@@ -14,7 +14,7 @@ const localVue = createLocalVue();
 describe('AppDetailsHeader.vue', () => {
   let wrapper;
   let actions;
-  let getters;
+  let state;
   let store;
 
   localVue.use(Vuex);
@@ -24,15 +24,15 @@ describe('AppDetailsHeader.vue', () => {
       createApp: jest.fn(() => {}),
     };
 
-    getters = {
-      getSelectedProject: jest.fn(() => {
-        return '123';
-      }),
+    state = {
+      auth: {
+        project: '123',
+      },
     };
 
     store = new Vuex.Store({
       actions,
-      getters,
+      state,
     });
 
     wrapper = mount(AppDetailsHeader, {

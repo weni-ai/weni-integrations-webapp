@@ -185,7 +185,7 @@
           height: $unnnic-avatar-size-sm;
           border-radius: $unnnic-border-radius-sm;
 
-          background-color: rgba(3, 155, 229, 0.2);
+          background-color: rgba(96, 190, 99, 0.2);
 
           &__icon {
             width: $unnnic-icon-size-md;

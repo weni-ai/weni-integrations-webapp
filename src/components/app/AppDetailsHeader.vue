@@ -25,7 +25,6 @@
 <script>
   import addModal from '../AddModal.vue';
   import IntegrateButton from '../IntegrateButton.vue';
-  import { mapGetters } from 'vuex';
 
   export default {
     name: 'AppDetailsHeader',
@@ -37,9 +36,6 @@
       },
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
-      }),
       cssVars() {
         return {
           '--icon-bg-color': this.app.bg_color,

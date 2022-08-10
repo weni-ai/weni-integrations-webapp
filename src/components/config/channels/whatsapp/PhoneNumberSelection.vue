@@ -8,7 +8,10 @@
     @close="closePopUp"
     @click.stop
   >
-    <skeleton-loading v-if="loadingPhoneNumbers || loadingDebugToken" slot="message" />
+    <skeleton-loading
+      v-if="forceLoading || loadingPhoneNumbers || loadingDebugToken"
+      slot="message"
+    />
     <div v-else slot="message">
       <unnnic-select
         :search="false"
@@ -45,7 +48,7 @@
 </template>
 
 <script>
-  import { mapActions, mapState, mapGetters } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import skeletonLoading from './loadings/PhoneNumberSelection.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton.vue';
@@ -70,6 +73,7 @@
       return {
         showModal: false,
         selectedNumber: null,
+        forceLoading: true,
       };
     },
     beforeDestroy() {
@@ -81,9 +85,15 @@
       if (!this.errorDebugToken) {
         await this.fetchPhoneNumbers();
       }
+
+      setTimeout(() => {
+        this.forceLoading = false;
+      }, 60000);
     },
     computed: {
-      ...mapGetters(['getSelectedProject']),
+      ...mapState({
+        project: (state) => state.auth.project,
+      }),
       ...mapState('WhatsAppCloud', [
         'loadingPhoneNumbers',
         'loadingDebugToken',
@@ -115,7 +125,7 @@
             business_id: this.businessId,
             phone_number_id: this.selectedPhoneNumber?.id,
             input_token: this.customData.input_token,
-            project_uuid: this.getSelectedProject,
+            project_uuid: this.project,
           };
 
           await this.configurePhoneNumber({ data });

@@ -1,3 +1,28 @@
+1.11.4
+----------
+`2022-08-05 · 2 🎉`
+
+### 🎉 New Features
+- Feat: Force 1 minute load on phone numbers selection
+- Feat: Sentry logs into WhatsApp Cloud errors
+
+1.11.3
+----------
+`2022-08-03 · 1 🎉 · 1 🐛`
+
+### 🎉 New Features
+- Feat: Add app details link translations
+
+### 🐛 Bug fixes
+- Fix: Minor design issues
+
+1.11.2
+----------
+`2022-07-30 · 1 🎉`
+
+### 🎉 New Features
+- Feat: Update wpp description and link target
+
 1.11.1
 ----------
 `2022-07-28 · 1 🎉 · 1 🐛`

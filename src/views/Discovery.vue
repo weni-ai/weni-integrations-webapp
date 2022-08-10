@@ -11,7 +11,7 @@
 </template>
 <script>
   import AppGrid from '../components/AppGrid.vue';
-  import { mapActions, mapGetters, mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
@@ -29,9 +29,6 @@
       await this.fetchChannels();
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
-      }),
       ...mapState({
         allAppTypes: (state) => state.appType.allAppTypes,
         loadingAllAppTypes: (state) => state.appType.loadingAllAppTypes,

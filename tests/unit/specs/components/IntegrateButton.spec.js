@@ -27,17 +27,11 @@ localVue.use(VueRouter);
 localVue.use(Vuex);
 
 describe('IntegrateButton.vue', () => {
-  let wrapper, actions, getters, state, store;
+  let wrapper, actions, state, store;
 
   beforeEach(() => {
     actions = {
       createApp: jest.fn(() => {}),
-    };
-
-    getters = {
-      getSelectedProject: jest.fn(() => {
-        return '123';
-      }),
     };
 
     state = {
@@ -45,11 +39,13 @@ describe('IntegrateButton.vue', () => {
         createAppResponse: null,
         errorCreateApp: false,
       },
+      auth: {
+        project: '123',
+      },
     };
 
     store = new Vuex.Store({
       actions,
-      getters,
       state,
     });
 

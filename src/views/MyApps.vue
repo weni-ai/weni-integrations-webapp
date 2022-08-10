@@ -4,15 +4,15 @@
       <app-grid
         section="configured"
         type="edit"
-        :loading="configuredApps.loading"
-        :apps="configuredApps.data"
+        :loading="loadingConfiguredApps"
+        :apps="configuredApps"
         @update="fetchConfigured"
       />
       <app-grid
         section="installed"
         type="config"
-        :loading="installedApps.loading"
-        :apps="installedApps.data"
+        :loading="loadingInstalledApps"
+        :apps="installedApps"
         @update="fetchInstalled"
       />
     </div>
@@ -33,29 +33,18 @@
 
 <script>
   import AppGrid from '../components/AppGrid.vue';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'Apps',
     components: { AppGrid },
-    data() {
-      return {
-        configuredApps: {
-          loading: true,
-          data: null,
-        },
-        installedApps: {
-          loading: true,
-          data: null,
-        },
-      };
-    },
     /* istanbul ignore next */
-    async mounted() {
-      await this.loadCategories();
+    mounted() {
+      this.fetchCategories();
 
-      this.$root.$on('updateGrid', async () => {
-        await this.fetchCategories();
+      this.$root.$on('updateGrid', () => {
+        this.fetchCategories();
       });
     },
     /* istanbul ignore next */
@@ -63,53 +52,66 @@
       this.$root.$off('updateGrid');
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
+      ...mapState({
+        project: (state) => state.auth.project,
+      }),
+      ...mapState({
+        configuredApps: (state) => state.myApps.configuredApps,
+        loadingConfiguredApps: (state) => state.myApps.loadingConfiguredApps,
+        errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
+        installedApps: (state) => state.myApps.installedApps,
+        loadingInstalledApps: (state) => state.myApps.loadingInstalledApps,
+        errorInstalledApps: (state) => state.myApps.errorInstalledApps,
       }),
       hasApps: function () {
-        if (this.configuredApps.loading || this.installedApps.loading) {
+        if (this.loadingConfiguredApps || this.loadingInstalledApps) {
           return true;
         }
 
-        return this.configuredApps.data?.length || this.installedApps.data?.length;
+        return this.configuredApps?.length || this.installedApps?.length;
       },
     },
     methods: {
       ...mapActions(['getConfiguredApps', 'getInstalledApps']),
-      async fetchCategories() {
-        await this.fetchConfigured();
-        await this.fetchInstalled();
+      fetchCategories() {
+        this.fetchConfigured();
+        this.fetchInstalled();
       },
-      async loadCategories() {
-        await this.loadConfigured();
-        await this.loadInstalled();
-      },
-      async loadConfigured() {
-        this.configuredApps.loading = true;
-        await this.fetchConfigured();
-        this.configuredApps.loading = false;
-      },
-      async loadInstalled() {
-        this.installedApps.loading = true;
-        await this.fetchInstalled();
-        this.installedApps.loading = false;
-      },
-      async fetchConfigured() {
+      fetchConfigured() {
         const params = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
-        const { data } = await this.getConfiguredApps({ params });
-        this.configuredApps.data = data;
+        this.getConfiguredApps({ params });
+
+        if (this.errorConfiguredApps) {
+          this.callErrorModal({ text: this.$t('apps.myApps.error.configured') });
+        }
       },
-      async fetchInstalled() {
+      fetchInstalled() {
         const params = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
-        const { data } = await this.getInstalledApps({ params });
-        this.installedApps.data = data;
+        this.getInstalledApps({ params });
+
+        if (this.errorInstalledApps) {
+          this.callErrorModal({ text: this.$t('apps.myApps.error.installed') });
+        }
       },
       navigateToDiscovery() {
         this.$router.replace('/apps/discovery');
+      },
+      callErrorModal({ text }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: 'Error',
+            icon: 'alert-circle-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
       },
     },
   };

@@ -17,19 +17,12 @@ localVue.use(Vuex);
 describe('Discovery.vue', () => {
   let wrapper;
   let actions;
-  let getters;
   let state;
   let store;
 
   beforeEach(() => {
     actions = {
       getAllAppTypes: jest.fn(),
-    };
-
-    getters = {
-      getSelectedProject: jest.fn(() => {
-        return '123';
-      }),
     };
 
     state = {
@@ -41,11 +34,13 @@ describe('Discovery.vue', () => {
         loadingAllAppTypes: false,
         errorAllAppTypes: false,
       },
+      auth: {
+        project: '123',
+      },
     };
 
     store = new Vuex.Store({
       actions,
-      getters,
       state,
     });
 
