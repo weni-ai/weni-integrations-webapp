@@ -8,19 +8,19 @@ localVue.use(Vuex);
 describe('OtherApps.vue', () => {
   let wrapper;
   let store;
-  let getters;
+  let state;
 
   beforeEach(() => {
     process.env.VUE_APP_FLOWS_IFRAME_URL = 'flows_url';
 
-    getters = {
-      getSelectedFlowOrg: jest.fn(() => {
-        return '123';
-      }),
+    state = {
+      auth: {
+        flowOrg: '123',
+      },
     };
 
     store = new Vuex.Store({
-      getters,
+      state,
     });
 
     wrapper = shallowMount(OtherApps, {
@@ -41,9 +41,7 @@ describe('OtherApps.vue', () => {
 
   it('should return iframeSrc based on flowOrg', () => {
     expect(wrapper.vm.iframeSrc).toEqual(
-      `${
-        process.env.VUE_APP_FLOWS_IFRAME_URL
-      }/weni/${getters.getSelectedFlowOrg()}/authenticate?next=/org/home/?flows_config_hide=configs`,
+      `${process.env.VUE_APP_FLOWS_IFRAME_URL}/weni/${state.auth.flowOrg}/authenticate?next=/org/home/?flows_config_hide=configs`,
     );
   });
 
@@ -52,6 +50,6 @@ describe('OtherApps.vue', () => {
       expect(wrapper.vm.loading).toEqual(true);
       wrapper.vm.onLoad();
       expect(wrapper.vm.loading).toEqual(false);
-    })
-  })
+    });
+  });
 });

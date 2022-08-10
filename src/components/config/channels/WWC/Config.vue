@@ -272,7 +272,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker.vue';
@@ -347,6 +347,9 @@
       }
     },
     computed: {
+      ...mapState({
+        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
+      }),
       avatarFiles: {
         get() {
           return this.avatarFile ? [this.avatarFile] : [];
@@ -578,6 +581,11 @@
         try {
           const firstSave = !this.scriptCode;
           await this.updateAppConfig(reqData);
+
+          if (this.errorUpdateAppConfig) {
+            throw new Error(this.errorUpdateAppConfig);
+          }
+
           const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
           this.app.config = data.config;
           this.$emit('setConfirmation', false);

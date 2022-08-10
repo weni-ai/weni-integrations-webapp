@@ -18,13 +18,13 @@
     </div>
 
     <unnnic-tab
-      v-if="!loading"
+      v-if="!loadingWhatsAppProfile && !loadingCurrentApp"
       class="config-whatsapp__tabs"
       :tabs="configTabs"
       initialTab="account"
     >
       <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
-      <AccountTab :appInfo="appInfo" slot="tab-panel-account" @close="closeConfig" />
+      <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
 
       <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
       <ProfileTab slot="tab-panel-profile" :app="app" :profile="appProfile" @close="closeConfig" />
@@ -56,7 +56,7 @@
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import skeletonLoading from './loadings/Config.vue';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { dataUrlToFile } from '@/utils/files';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -77,9 +77,7 @@
     },
     data() {
       return {
-        appInfo: null,
         appProfile: null,
-        loading: true,
         documentations: {
           'en-us': 'https://docs.weni.ai/l/en/channels/how-to-verify-my-business',
           'pt-br': 'https://docs.weni.ai/l/pt/canais/como-verificar-o-meu-neg-cio',
@@ -94,6 +92,16 @@
       this.resetWppFetchResults();
     },
     computed: {
+      ...mapState('WhatsApp', [
+        'whatsAppProfile',
+        'loadingWhatsAppProfile',
+        'errorWhatsAppProfile',
+      ]),
+      ...mapState({
+        currentApp: (state) => state.appType.currentApp,
+        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
+        errorCurrentApp: (state) => state.appType.errorCurrentApp,
+      }),
       configTabs() {
         return ['account', 'profile', 'contact_info', 'conversations', 'templates'];
       },
@@ -102,11 +110,8 @@
       },
     },
     methods: {
-      ...mapActions({
-        getApp: 'getApp',
-        fetchWppProfile: 'fetchWppProfile',
-        resetWppFetchResults: 'WhatsApp/resetWppFetchResults',
-      }),
+      ...mapActions(['getApp']),
+      ...mapActions('WhatsApp', ['fetchWppProfile', 'resetWppFetchResults']),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -125,11 +130,9 @@
       },
       async fetchData() {
         try {
-          this.loading = true;
           const options = { code: this.app.code, appUuid: this.app.uuid };
           await this.fetchAppInfo(options);
           await this.fetchProfile(options);
-          this.loading = false;
         } catch (error) {
           unnnicCallAlert({
             props: {
@@ -145,13 +148,22 @@
         }
       },
       async fetchAppInfo(options) {
-        const { data } = await this.getApp(options);
-        this.appInfo = data;
+        await this.getApp(options);
+
+        if (this.errorCurrentApp) {
+          throw new Error(this.errorCurrentApp);
+        }
       },
       async fetchProfile(options) {
-        const { data } = await this.fetchWppProfile(options);
-        data.photoFile = await dataUrlToFile(data.photo_url, 'photo.jpg', true);
-        this.appProfile = data;
+        await this.fetchWppProfile(options);
+
+        if (this.errorWhatsAppProfile) {
+          throw new Error(this.errorWhatsAppProfile);
+        }
+
+        let profile = this.whatsAppProfile;
+        profile.photoFile = await dataUrlToFile(this.whatsAppProfile.photo_url, 'photo.jpg', true);
+        this.appProfile = profile;
       },
       navigateToTemplates() {
         this.$router.push({ path: `/apps/my/${this.app.code}/${this.appInfo.uuid}/templates` });

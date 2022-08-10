@@ -2,9 +2,12 @@
   <div>
     <navigator class="navigator" :routes="navigatorHistory" />
 
-    <div class="app-details" v-if="!loading">
-      <app-images-banner class="app-details__section" :images="app.banners" />
-      <app-details-header class="app-details__section" :app="app" />
+    <div class="app-details" v-if="!loadingCurrentAppType">
+      <app-images-banner
+        class="app-details__section"
+        :images="currentAppType && currentAppType.banners"
+      />
+      <app-details-header class="app-details__section" :app="currentAppType" />
       <unnnic-banner
         class="app-details__banner"
         :key="bannerKey"
@@ -20,10 +23,10 @@
         @ratingAction="handleRating"
       />
       <div class="app-details__section app-details__section__columns">
-        <app-details-about :description="app.description" :links="appLinks" />
+        <app-details-about :description="currentAppType.description" :links="appLinks" />
         <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
       </div>
-      <app-details-comments :appCode="app.code" />
+      <app-details-comments :appCode="currentAppType.code" />
     </div>
     <skeleton-loading v-else />
   </div>
@@ -39,7 +42,7 @@
   import skeletonLoading from './loadings/AppDetails.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import millify from 'millify';
 
   export default {
@@ -55,8 +58,6 @@
     },
     data() {
       return {
-        loading: true,
-        app: null,
         bannerKey: 0,
       };
     },
@@ -68,25 +69,23 @@
     },
     methods: {
       ...mapActions(['getAppType', 'postRating']),
-      async fetchApp(appCode) {
-        const { data } = await this.getAppType(appCode);
-        this.app = data;
-        this.loading = false;
+      async fetchApp(appCode, shouldLoad = true) {
+        await this.getAppType({ code: appCode, shouldLoad });
       },
       async reloadSection() {
-        await this.fetchApp(this.$route.params.appCode);
+        await this.fetchApp(this.$route.params.appCode, false);
         this.reloadBanner();
       },
       async handleRating(rate) {
-        try {
-          const data = {
-            code: this.app.code,
-            payload: {
-              rate,
-            },
-          };
-          await this.postRating(data);
-        } catch (err) {
+        const data = {
+          code: this.currentAppType.code,
+          payload: {
+            rate,
+          },
+        };
+        await this.postRating(data);
+
+        if (this.errorPostRating) {
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
@@ -98,22 +97,30 @@
             },
             seconds: 3,
           });
-        } finally {
-          this.reloadSection();
+          return;
         }
+
+        this.reloadSection();
       },
       reloadBanner() {
         this.bannerKey += 1;
       },
     },
     computed: {
+      ...mapState({
+        currentAppType: (state) => state.appType.currentAppType,
+        loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
+        errorPostRating: (state) => state.appType.errorPostRating,
+      }),
       appRatingString() {
-        return this.app.rating.average
-          ? parseFloat(this.app.rating.average.toFixed(2)).toString()
+        return this.currentAppType.rating.average
+          ? parseFloat(this.currentAppType.rating.average.toFixed(2)).toString()
           : '0';
       },
       appRatingAverage() {
-        return this.app.rating.average ? parseFloat(this.app.rating.average.toFixed(2)) : 0;
+        return this.currentAppType.rating.average
+          ? parseFloat(this.currentAppType.rating.average.toFixed(2))
+          : 0;
       },
       navigatorHistory() {
         let history = [
@@ -122,23 +129,25 @@
             path: '/apps/discovery',
           },
         ];
-        if (this.app) {
+        if (this.currentAppType) {
           history.push({
-            name: this.app.name,
+            name: this.currentAppType.name,
             path: '',
           });
         }
         return history;
       },
       appLinks() {
-        const links = this.app.assets.filter((asset) => asset.type === 'LK');
+        const links = this.currentAppType.assets.filter((asset) => asset.type === 'LK');
         return links;
       },
       appMetrics() {
-        return this.app.metrics ? millify(this.app.metrics) : '-';
+        return this.currentAppType.metrics ? millify(this.currentAppType.metrics) : '-';
       },
       appIntegrationsCount() {
-        return this.app.integrations_count ? millify(this.app.integrations_count) : '-';
+        return this.currentAppType.integrations_count
+          ? millify(this.currentAppType.integrations_count)
+          : '-';
       },
     },
   };

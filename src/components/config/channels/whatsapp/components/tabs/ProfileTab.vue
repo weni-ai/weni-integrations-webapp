@@ -26,7 +26,7 @@
   import DynamicForm from '@/components/config/DynamicForm';
   import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
@@ -112,8 +112,11 @@
         deep: true,
       },
     },
+    computed: {
+      ...mapState('WhatsApp', ['errorUpdateWhatsAppProfile', 'errorDeleteWhatsAppProfilePhoto']),
+    },
     methods: {
-      ...mapActions(['updateWppProfile', 'deleteWppProfilePhoto']),
+      ...mapActions('WhatsApp', ['updateWppProfile', 'deleteWppProfilePhoto']),
       updateInputs(inputData) {
         this.profileInputs[inputData.index].value = inputData.value;
       },
@@ -146,6 +149,10 @@
           if (!photo) {
             const data = { code: this.app.code, appUuid: this.app.uuid };
             await this.deleteWppProfilePhoto(data);
+
+            if (this.errorDeleteWhatsAppProfilePhoto) {
+              throw new Error(this.errorDeleteWhatsAppProfilePhoto);
+            }
           }
 
           const b64ProfilePhoto = photo ? await toBase64(photo) : null;
@@ -166,6 +173,10 @@
 
           const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
           await this.updateWppProfile(data);
+
+          if (this.errorUpdateWhatsAppProfile) {
+            throw new Error(this.errorUpdateWhatsAppProfile);
+          }
 
           unnnicCallAlert({
             props: {

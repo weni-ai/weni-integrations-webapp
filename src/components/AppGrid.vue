@@ -1,7 +1,7 @@
 <template>
   <div>
     <section v-if="!loading" id="app-grid">
-      <div v-if="apps.length" class="app-grid__header">
+      <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
@@ -99,7 +99,7 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import configModal from './config/ConfigModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
-  import { mapActions, mapGetters, mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import IntegrateButton from './IntegrateButton.vue';
   import LoadingButton from './LoadingButton.vue';
 
@@ -137,9 +137,6 @@
       };
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
-      }),
       ...mapState({
         loadingDeleteApp: (state) => state.appType.loadingDeleteApp,
         errorDeleteApp: (state) => state.appType.errorDeleteApp,

@@ -21,7 +21,7 @@
   import addModal from './AddModal.vue';
   import configPopUp from './config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapGetters, mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import LoadingButton from './LoadingButton.vue';
 
   export default {
@@ -58,14 +58,14 @@
       window.openWACloudPopUp = this.openWACloudPopUp;
     },
     computed: {
-      ...mapGetters(['getSelectedProject']),
       ...mapState({
         createAppResponse: (state) => state.appType.createAppResponse,
         errorCreateApp: (state) => state.appType.errorCreateApp,
+        project: (state) => state.auth.project,
       }),
     },
     methods: {
-      ...mapActions(['createApp', 'getSharedWabas']),
+      ...mapActions(['createApp']),
       async addApp(app) {
         if (app.code === 'wpp-cloud') {
           await this.facebookLoginAppCreation(app);
@@ -74,7 +74,7 @@
 
         const code = app.code;
         const payload = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
         this.loadingCreateApp = true;
         await this.createApp({ code, payload });
