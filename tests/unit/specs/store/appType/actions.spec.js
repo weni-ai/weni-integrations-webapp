@@ -45,59 +45,234 @@ describe('store/appType/actions.js', () => {
 
   describe('AppsTypes', () => {
     describe('getAllAppTypes()', () => {
-      it('should call appType.getAllAppTypes', async () => {
+      const code = 'code';
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.getAllAppTypes.mockImplementation(() => {
+          return Promise.resolve({ data: [singleApp] });
+        });
+      });
+
+      it('should call getAllAppTypes from API', async () => {
         expect(appTypeApi.getAllAppTypes).not.toHaveBeenCalled();
-        const filter = {
-          params: 'param',
-        };
-        await actions.getAllAppTypes({}, filter);
+        await store.dispatch('getAllAppTypes', code);
         expect(appTypeApi.getAllAppTypes).toHaveBeenCalledTimes(1);
-        expect(appTypeApi.getAllAppTypes).toHaveBeenCalledWith(filter.params);
+      });
+
+      it('should set returned apps as result data', async () => {
+        store.state.appType.allAppTypes = [];
+        expect(store.state.appType.allAppTypes).not.toEqual(singleApp);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.allAppTypes).toEqual([singleApp]);
+      });
+
+      it('should set loadingAllAppTypes to false', async () => {
+        store.state.appType.loadingAllAppTypes = true;
+        expect(store.state.appType.loadingAllAppTypes).toBe(true);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.loadingAllAppTypes).toBe(false);
+      });
+
+      it('should set errorAllAppTypes as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.getAllAppTypes.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorAllAppTypes = {};
+        expect(store.state.appType.errorAllAppTypes).not.toEqual(error);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.errorAllAppTypes).toEqual(error);
       });
     });
 
     describe('getAppType()', () => {
-      it('should call appType.getAppType', async () => {
+      const data = {
+        code: 'code',
+        shouldLoad: true,
+      };
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.getAppType.mockImplementation(() => {
+          return Promise.resolve({ data: singleApp });
+        });
+      });
+
+      it('should call getAppType from API', async () => {
         expect(appTypeApi.getAppType).not.toHaveBeenCalled();
-        const code = 'code';
-        await actions.getAppType({}, code);
+        await store.dispatch('getAppType', { ...data, shouldLoad: false });
         expect(appTypeApi.getAppType).toHaveBeenCalledTimes(1);
-        expect(appTypeApi.getAppType).toHaveBeenCalledWith(code);
+      });
+
+      it('should set returned app as result data', async () => {
+        store.state.appType.currentAppType = [];
+        expect(store.state.appType.currentAppType).not.toEqual(singleApp);
+        await store.dispatch('getAppType', data);
+        expect(store.state.appType.currentAppType).toEqual(singleApp);
+      });
+
+      it('should set loadingCurrentAppType to false', async () => {
+        store.state.appType.loadingCurrentAppType = true;
+        expect(store.state.appType.loadingCurrentAppType).toBe(true);
+        await store.dispatch('getAppType', data);
+        expect(store.state.appType.loadingCurrentAppType).toBe(false);
+      });
+
+      it('should set errorCurrentAppType as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.getAppType.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorCurrentAppType = {};
+        expect(store.state.appType.errorCurrentAppType).not.toEqual(error);
+        await store.dispatch('getAppType', data);
+        expect(store.state.appType.errorCurrentAppType).toEqual(error);
       });
     });
   });
 
   describe('Rating', () => {
-    it('should call appType.postRating', async () => {
+    const data = {
+      code: 'code',
+      payload: {
+        foo: 'bar',
+      },
+    };
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      appTypeApi.postRating.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call postRating from API', async () => {
       expect(appTypeApi.postRating).not.toHaveBeenCalled();
-      const data = {
-        code: 'code',
-        payload: {
-          foo: 'bar',
-        },
-      };
-      await actions.postRating({}, data);
+      await store.dispatch('postRating', data);
       expect(appTypeApi.postRating).toHaveBeenCalledTimes(1);
       expect(appTypeApi.postRating).toHaveBeenCalledWith(data.code, data.payload);
+    });
+
+    it('should set rating result as data', async () => {
+      store.state.appType.postRatingResult = null;
+      expect(store.state.appType.postRatingResult).not.toEqual(mockedResult);
+      await store.dispatch('postRating', data);
+      expect(store.state.appType.postRatingResult).toEqual(mockedResult);
+    });
+
+    it('should set loadingPostRating to false', async () => {
+      store.state.appType.loadingPostRating = true;
+      expect(store.state.appType.loadingPostRating).toBe(true);
+      await store.dispatch('postRating', data);
+      expect(store.state.appType.loadingPostRating).toBe(false);
+    });
+
+    it('should set errorPostRating as result data', async () => {
+      const error = { error: 'failed' };
+      appTypeApi.postRating.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.appType.errorPostRating = {};
+      expect(store.state.appType.errorPostRating).not.toEqual(error);
+      await store.dispatch('postRating', data);
+      expect(store.state.appType.errorPostRating).toEqual(error);
     });
   });
 
   describe('Apps', () => {
-    it('should call appType.fetchFeatured', async () => {
-      expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
-      await actions.fetchFeatured();
-      expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
+    describe('fetchFeatured()', () => {
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.fetchFeatured.mockImplementation(() => {
+          return Promise.resolve({ data: [singleApp] });
+        });
+      });
+
+      it('should call fetchFeatured from API', async () => {
+        expect(appTypeApi.fetchFeatured).not.toHaveBeenCalled();
+        await store.dispatch('fetchFeatured');
+        expect(appTypeApi.fetchFeatured).toHaveBeenCalledTimes(1);
+      });
+
+      it('should set data as featuredApps', async () => {
+        store.state.appType.featuredApps = null;
+        expect(store.state.appType.featuredApps).not.toEqual([singleApp]);
+        await store.dispatch('fetchFeatured');
+        expect(store.state.appType.featuredApps).toEqual([singleApp]);
+      });
+
+      it('should set loadingFeaturedApps to false', async () => {
+        store.state.appType.loadingFeaturedApps = true;
+        expect(store.state.appType.loadingFeaturedApps).toBe(true);
+        await store.dispatch('fetchFeatured');
+        expect(store.state.appType.loadingFeaturedApps).toBe(false);
+      });
+
+      it('should set errorFeaturedApps as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.fetchFeatured.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorFeaturedApps = {};
+        expect(store.state.appType.errorFeaturedApps).not.toEqual(error);
+        await store.dispatch('fetchFeatured');
+        expect(store.state.appType.errorFeaturedApps).toEqual(error);
+      });
     });
 
-    it('should call appType.getApp', async () => {
-      expect(appTypeApi.getApp).not.toHaveBeenCalled();
+    describe('getApp()', () => {
       const data = {
         code: 'code',
         appUuid: '123',
       };
-      await actions.getApp({}, data);
-      expect(appTypeApi.getApp).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.getApp).toHaveBeenCalledWith(data.code, data.appUuid);
+
+      const mockedResult = singleApp;
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.getApp.mockImplementation(() => {
+          return Promise.resolve({ data: mockedResult });
+        });
+      });
+
+      it('should call getApp from API', async () => {
+        expect(appTypeApi.getApp).not.toHaveBeenCalled();
+        await store.dispatch('getApp', data);
+        expect(appTypeApi.getApp).toHaveBeenCalledTimes(1);
+        expect(appTypeApi.getApp).toHaveBeenCalledWith(data.code, data.appUuid);
+      });
+
+      it('should set data as currentApp', async () => {
+        store.state.appType.currentApp = null;
+        expect(store.state.appType.currentApp).not.toEqual(mockedResult);
+        await store.dispatch('getApp', data);
+        expect(store.state.appType.currentApp).toEqual(mockedResult);
+      });
+
+      it('should set loadingCurrentApp to false', async () => {
+        store.state.appType.loadingCurrentApp = true;
+        expect(store.state.appType.loadingCurrentApp).toBe(true);
+        await store.dispatch('getApp', data);
+        expect(store.state.appType.loadingCurrentApp).toBe(false);
+      });
+
+      it('should set errorCurrentApp as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.getApp.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorCurrentApp = {};
+        expect(store.state.appType.errorCurrentApp).not.toEqual(error);
+        await store.dispatch('getApp', data);
+        expect(store.state.appType.errorCurrentApp).toEqual(error);
+      });
     });
 
     describe('createApp', () => {
@@ -187,8 +362,7 @@ describe('store/appType/actions.js', () => {
       });
     });
 
-    it('should call appType.updateAppConfig', async () => {
-      expect(appTypeApi.updateAppConfig).not.toHaveBeenCalled();
+    describe('updateAppConfig', () => {
       const data = {
         code: 'code',
         appUuid: '123',
@@ -196,13 +370,43 @@ describe('store/appType/actions.js', () => {
           projectUuid: '123',
         },
       };
-      await actions.updateAppConfig({}, data);
-      expect(appTypeApi.updateAppConfig).toHaveBeenCalledTimes(1);
-      expect(appTypeApi.updateAppConfig).toHaveBeenCalledWith(
-        data.code,
-        data.appUuid,
-        data.payload,
-      );
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.updateAppConfig.mockImplementation(() => {
+          return Promise.resolve({});
+        });
+      });
+
+      it('should call updateAppConfig from API', async () => {
+        expect(appTypeApi.updateAppConfig).not.toHaveBeenCalled();
+        await store.dispatch('updateAppConfig', data);
+        expect(appTypeApi.updateAppConfig).toHaveBeenCalledTimes(1);
+        expect(appTypeApi.updateAppConfig).toHaveBeenCalledWith(
+          data.code,
+          data.appUuid,
+          data.payload,
+        );
+      });
+
+      it('should set loadingUpdateAppConfig to false', async () => {
+        store.state.appType.loadingUpdateAppConfig = true;
+        expect(store.state.appType.loadingUpdateAppConfig).toBe(true);
+        await store.dispatch('updateAppConfig', data);
+        expect(store.state.appType.loadingUpdateAppConfig).toBe(false);
+      });
+
+      it('should set errorUpdateAppConfig as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.updateAppConfig.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorUpdateAppConfig = {};
+        expect(store.state.appType.errorUpdateAppConfig).not.toEqual(error);
+        await store.dispatch('updateAppConfig', data);
+        expect(store.state.appType.errorUpdateAppConfig).toEqual(error);
+      });
     });
   });
 });

@@ -19,6 +19,7 @@ describe('TelegramConfig.vue', () => {
   let wrapper;
 
   let actions;
+  let state;
   let store;
 
   beforeEach(() => {
@@ -29,8 +30,15 @@ describe('TelegramConfig.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        errorUpdateAppConfig: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
+      state,
     });
 
     wrapper = shallowMount(telegramConfig, {
@@ -86,10 +94,7 @@ describe('TelegramConfig.vue', () => {
     });
 
     it('should call error alert on error', async () => {
-      actions.updateAppConfig.mockImplementation(() => {
-        throw new Error('error fetching');
-      });
-
+      store.state.appType.errorUpdateAppConfig = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);

@@ -24,6 +24,7 @@ describe('AppDetails.vue', () => {
   let wrapper;
   let store;
   let actions;
+  let state;
 
   beforeEach(() => {
     actions = {
@@ -33,8 +34,17 @@ describe('AppDetails.vue', () => {
       postRating: jest.fn(),
     };
 
+    state = {
+      appType: {
+        currentAppType: singleApp,
+        loadingCurrentAppType: false,
+        errorCurrentAppType: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
+      state,
     });
 
     wrapper = shallowMount(AppDetails, {
@@ -67,26 +77,24 @@ describe('AppDetails.vue', () => {
       const appCode = 'code';
       await wrapper.vm.fetchApp(appCode);
       expect(actions.getAppType).toHaveBeenCalledTimes(2);
-      expect(actions.getAppType).toHaveBeenCalledWith(expect.any(Object), appCode);
-
-      expect(wrapper.vm.app).toEqual(singleApp);
-      expect(wrapper.vm.loading).toEqual(false);
+      expect(actions.getAppType).toHaveBeenCalledWith(expect.any(Object), {
+        code: appCode,
+        shouldLoad: true,
+      });
     });
   });
 
   describe('appRatingString()', () => {
     it('should return zero if rating average is null', async () => {
-      await wrapper.setData({ app: { rating: { average: null } } });
-      const str = wrapper.vm.appRatingString;
-      expect(str).toEqual('0');
-      expect(typeof str).toEqual('string');
+      store.state.appType.currentAppType = { ...singleApp, rating: { average: null } };
+      expect(wrapper.vm.appRatingString).toEqual('0');
+      expect(typeof wrapper.vm.appRatingString).toEqual('string');
     });
 
     it('should return rating as a string if not null', async () => {
-      await wrapper.setData({ app: { rating: { average: 2 } } });
-      const str = wrapper.vm.appRatingString;
-      expect(str).toEqual('2');
-      expect(typeof str).toEqual('string');
+      store.state.appType.currentAppType = { ...singleApp, rating: { average: 2 } };
+      expect(wrapper.vm.appRatingString).toEqual('2');
+      expect(typeof wrapper.vm.appRatingString).toEqual('string');
     });
   });
 
@@ -107,8 +115,22 @@ describe('AppDetails.vue', () => {
 
     it('should return valid links', () => {
       const assets = [{ type: 'notLink' }, { type: 'LK' }];
-      wrapper.vm.app.assets = assets;
+      store.state.appType.currentAppType = { ...singleApp, assets };
       expect(wrapper.vm.appLinks).toHaveLength(1);
+    });
+  });
+
+  describe('navigatorHistory()', () => {
+    it('should return history with current app', () => {
+      expect(wrapper.vm.navigatorHistory).toHaveLength(2);
+      expect(wrapper.vm.navigatorHistory[0].path).toEqual('/apps/discovery');
+      expect(wrapper.vm.navigatorHistory[1].path).toEqual('');
+    });
+
+    it('should return history without current app', () => {
+      store.state.appType.currentAppType = null;
+      expect(wrapper.vm.navigatorHistory).toHaveLength(1);
+      expect(wrapper.vm.navigatorHistory[0].path).toEqual('/apps/discovery');
     });
   });
 
@@ -126,15 +148,13 @@ describe('AppDetails.vue', () => {
       await wrapper.vm.handleRating(rate);
       expect(actions.postRating).toHaveBeenCalledTimes(1);
       expect(actions.postRating).toHaveBeenCalledWith(expect.any(Object), {
-        code: wrapper.vm.app.code,
+        code: wrapper.vm.currentAppType.code,
         payload: { rate },
       });
     });
 
     it('should call unnnicCallAlert on error', async () => {
-      actions.postRating.mockImplementation(() => {
-        throw new Error();
-      });
+      store.state.appType.errorPostRating = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.handleRating();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
@@ -146,7 +166,7 @@ describe('AppDetails.vue', () => {
       });
 
       it('should return metric as string if exists', async () => {
-        await wrapper.setData({ app: { metrics: 2 } });
+        store.state.appType.currentAppType = { ...singleApp, metrics: 2 };
         expect(wrapper.vm.appMetrics).toEqual('2');
       });
     });
@@ -157,7 +177,7 @@ describe('AppDetails.vue', () => {
       });
 
       it('should return integrations_count as string if exists', async () => {
-        await wrapper.setData({ app: { integrations_count: 2 } });
+        store.state.appType.currentAppType = { ...singleApp, integrations_count: 2 };
         expect(wrapper.vm.appIntegrationsCount).toEqual('2');
       });
     });
