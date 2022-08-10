@@ -10,6 +10,7 @@ localVue.use(Vuex);
 describe('Carousel.vue', () => {
   let wrapper;
   let actions;
+  let state;
   let store;
 
   beforeEach(() => {
@@ -19,8 +20,17 @@ describe('Carousel.vue', () => {
       }),
     };
 
+    state = {
+      appType: {
+        featuredApps: [singleApp],
+        loadingFeaturedApps: false,
+        errorFeaturedApps: false,
+      },
+    };
+
     store = new Vuex.Store({
       actions,
+      state,
     });
 
     wrapper = shallowMount(Carousel, {
@@ -41,12 +51,12 @@ describe('Carousel.vue', () => {
   });
 
   it('should return true autoPlay if more than 1 app', async () => {
-    await wrapper.setData({ apps: [singleApp, singleApp] });
+    store.state.appType.featuredApps = [singleApp, singleApp];
     expect(wrapper.vm.hasAutoPlay).toBeTruthy();
   });
 
   it('should return true autoPlay if more than 1 app', async () => {
-    await wrapper.setData({ apps: [singleApp] });
+    store.state.appType.featuredApps = [singleApp];
     expect(wrapper.vm.hasAutoPlay).toBeFalsy();
   });
 

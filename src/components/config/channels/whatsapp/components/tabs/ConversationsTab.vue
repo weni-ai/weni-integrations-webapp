@@ -45,7 +45,7 @@
   import debounce from 'lodash.debounce';
   import ConversationsTable from '../ConversationsTable.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     name: 'ConversationsTab',
@@ -78,7 +78,7 @@
       });
     },
     methods: {
-      ...mapActions(['getConversations']),
+      ...mapActions('WhatsApp', ['getConversations']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -88,16 +88,13 @@
           end: event.endDate,
         };
 
-        try {
-          const { data } = await this.getConversations({
-            code: this.app.code,
-            appUuid: this.app.uuid,
-            params,
-          });
-          this.businessInitiated = data.business_initiated;
-          this.userInitiated = data.user_initiated;
-          this.totalInitiated = data.total;
-        } catch (err) {
+        await this.getConversations({
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          params,
+        });
+
+        if (this.errorConversations) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.conversations.fetch_error'),
@@ -109,10 +106,20 @@
             },
             seconds: 6,
           });
+          return;
         }
+
+        this.businessInitiated = this.whatsAppConversations.business_initiated;
+        this.userInitiated = this.whatsAppConversations.user_initiated;
+        this.totalInitiated = this.whatsAppConversations.total;
       }, 750),
     },
     computed: {
+      ...mapState('WhatsApp', [
+        'whatsAppConversations',
+        'loadingConversations',
+        'errorConversations',
+      ]),
       startDateObject() {
         return this.startDate && new Date(this.startDate);
       },

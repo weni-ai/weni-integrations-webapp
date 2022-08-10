@@ -1,3 +1,10 @@
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Discovery from '@/views/Discovery.vue';
@@ -15,15 +22,17 @@ describe('Discovery.vue', () => {
 
   beforeEach(() => {
     actions = {
-      getAllAppTypes: jest.fn(() => {
-        return { data: [singleApp] };
-      }),
+      getAllAppTypes: jest.fn(),
     };
 
     state = {
       appType: {
         loadingDeleteApp: false,
         errorDeleteApp: false,
+
+        allAppTypes: [singleApp],
+        loadingAllAppTypes: false,
+        errorAllAppTypes: false,
       },
       auth: {
         project: '123',
@@ -49,5 +58,24 @@ describe('Discovery.vue', () => {
 
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('fetchChannels', () => {
+    beforeEach(() => {
+      jest.resetAllMocks();
+    });
+
+    it('should call getAllAppTypes', async () => {
+      expect(actions.getAllAppTypes).not.toHaveBeenCalled();
+      await wrapper.vm.fetchChannels();
+      expect(actions.getAllAppTypes).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call unnnicCallAlert on error', async () => {
+      store.state.appType.errorAllAppTypes = true;
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.fetchChannels();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
   });
 });

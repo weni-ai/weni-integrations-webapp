@@ -1,7 +1,6 @@
 jest.mock('@/api/appType', () => {
   return {
     createApp: jest.fn(),
-    getSharedWabas: jest.fn(),
   };
 });
 
@@ -33,7 +32,6 @@ describe('IntegrateButton.vue', () => {
   beforeEach(() => {
     actions = {
       createApp: jest.fn(() => {}),
-      getSharedWabas: jest.fn(() => []),
     };
 
     state = {

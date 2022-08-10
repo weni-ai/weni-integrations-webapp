@@ -22,7 +22,8 @@
         "ticket": "Gestores de asistencia",
         "configured": "Aplicaciones configuradas",
         "installed": "Aplicaciones instaladas"
-      }
+      },
+      "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde."
     },
     "myApps": {
       "empty": {
