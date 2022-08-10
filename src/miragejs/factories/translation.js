@@ -3,13 +3,13 @@ import { faker } from '@faker-js/faker';
 
 const possibleStatus = [
   'APPROVED',
-  'IN_APPEAL',
-  'PENDING',
+  // 'IN_APPEAL',
+  // 'PENDING',
   'REJECTED',
-  'PENDING_DELETION',
-  'DELETED',
-  'DISABLED',
-  'LOCKED',
+  // 'PENDING_DELETION',
+  // 'DELETED',
+  // 'DISABLED',
+  // 'LOCKED',
 ];
 
 export default {
@@ -22,7 +22,7 @@ export default {
       return possibleStatus[Math.floor(Math.random() * possibleStatus.length)];
     },
     language() {
-      return faker.random.locale();
+      return faker.random.locale().replace('_ocker', '');
     },
     country() {
       return faker.address.countryCode();

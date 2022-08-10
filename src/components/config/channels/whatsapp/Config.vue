@@ -38,6 +38,13 @@
         {{ $t('WhatsApp.config.tabs.conversations') }}
       </template>
       <ConversationsTab slot="tab-panel-conversations" :app="app" />
+
+      <template slot="tab-head-templates">
+        <div @click.stop="navigateToTemplates" class="config-whatsapp__tabs__template">
+          {{ $t('WhatsApp.config.tabs.templates') }}
+          <unnnic-icon-svg icon="export-1" size="sm" />
+        </div>
+      </template>
     </unnnic-tab>
     <skeleton-loading v-else />
   </div>
@@ -88,7 +95,7 @@
     },
     computed: {
       configTabs() {
-        return ['account', 'profile', 'contact_info', 'conversations'];
+        return ['account', 'profile', 'contact_info', 'conversations', 'templates'];
       },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
@@ -145,6 +152,9 @@
         const { data } = await this.fetchWppProfile(options);
         data.photoFile = await dataUrlToFile(data.photo_url, 'photo.jpg', true);
         this.appProfile = data;
+      },
+      navigateToTemplates() {
+        this.$router.push({ path: `/apps/my/${this.app.code}/${this.appInfo.uuid}/templates` });
       },
     },
   };
@@ -250,6 +260,10 @@
           background: $unnnic-color-neutral-clean;
           border-radius: $unnnic-border-radius-md;
         }
+      }
+
+      &__template {
+        color: $unnnic-color-neutral-dark;
       }
     }
   }

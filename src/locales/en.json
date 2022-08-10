@@ -229,7 +229,8 @@
         "account": "WhatsApp Account",
         "profile": "Profile",
         "contact_info": "Contact Information",
-        "conversations": "Conversations"
+        "conversations": "Conversations",
+        "templates": "Templates"
       },
       "description": {
         "text": "Learn more about how to increase your daily message limit in WhatsApp",
@@ -323,6 +324,15 @@
         "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
         "data_update": "Failed to update WhatsApp data."
       }
+    },
+    "templates": {
+      "table": {
+        "actions": {
+          "add_language": "Add language",
+          "duplicate_language": "Duplicate",
+          "delete_language": "Delete"
+        }
+      }
     }
   },
   "WhatsAppCloud": {
@@ -341,7 +351,7 @@
         "rate_limit": {
           "label": "Rate Limit limitations",
           "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
-        }      
+        }
       }
     },
     "config": {

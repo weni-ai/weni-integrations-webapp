@@ -229,7 +229,8 @@
         "account": "Conta WhatsApp",
         "profile": "Perfil",
         "contact_info": "Informações de Contato",
-        "conversations": "Conversas"
+        "conversations": "Conversas",
+        "templates": "Templates"
       },
       "description": {
         "text": "Saiba mais sobre como aumentar o seu limite de mensagens no WhatsApp",
@@ -341,7 +342,7 @@
         "rate_limit": {
           "label": "Limitação de Disparos em Massa",
           "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
-        }      
+        }
       }
     },
     "config": {

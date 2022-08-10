@@ -8,4 +8,7 @@ export default {
   updateWppContactInfo(appCode, appUuid, payload) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/contact/`, payload);
   },
+  getWhatsAppTemplates(appCode, appUuid) {
+    return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/template/`);
+  },
 };

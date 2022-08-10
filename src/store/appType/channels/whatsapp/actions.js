@@ -15,4 +15,14 @@ export default {
     const { data } = await whatsApp.updateWppContactInfo(code, appUuid, payload);
     commit('SET_WPP_CONTACT_INFO', data);
   },
+  async getWhatsAppTemplates({ commit }, { code, appUuid }) {
+    commit('GET_WHATSAPP_TEMPLATES_REQUEST');
+    try {
+      const { data } = await whatsApp.getWhatsAppTemplates(code, appUuid);
+      commit('GET_WHATSAPP_TEMPLATES_SUCCESS', data);
+    } catch (err) {
+      // captureSentryException(err);
+      commit('GET_WHATSAPP_TEMPLATES_ERROR', err);
+    }
+  },
 };

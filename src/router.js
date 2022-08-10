@@ -5,6 +5,7 @@ import Apps from './views/Apps.vue';
 import MyApps from './views/MyApps.vue';
 import OtherApps from './views/OtherApps.vue';
 import AppDetails from './views/AppDetails.vue';
+import WhatsAppTemplatesTable from './views/WhatsAppTemplatesTable.vue';
 import store from './store';
 
 Vue.use(VueRouter);
@@ -37,6 +38,11 @@ const routes = [
     path: '/apps/:appCode/details',
     component: AppDetails,
   },
+  {
+    name: 'WhatsApp Templates',
+    path: '/apps/my/:appCode/:appUuid/templates',
+    component: WhatsAppTemplatesTable,
+  },
   // {
   //   name: 'App Config',
   //   path: '/apps/:appId/config',
@@ -57,6 +63,10 @@ const routes = [
         next('/');
       }
     },
+  },
+  {
+    path: '*',
+    redirect: '/',
   },
 ];
 
