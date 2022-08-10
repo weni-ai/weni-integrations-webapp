@@ -1,3 +1,12 @@
+1.12.0
+----------
+`2022-08-10 · 2 🔧`
+
+### 🔧 Improvements
+- Refactor: Apptype Store
+- Refactor: myApps actions
+- Refactor: Auth store
+
 1.11.4
 ----------
 `2022-08-05 · 2 🎉`
