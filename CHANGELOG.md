@@ -1,3 +1,11 @@
+1.11.4
+----------
+`2022-08-05 · 2 🎉`
+
+### 🎉 New Features
+- Feat: Force 1 minute load on phone numbers selection
+- Feat: Sentry logs into WhatsApp Cloud errors
+
 1.11.3
 ----------
 `2022-08-03 · 1 🎉 · 1 🐛`

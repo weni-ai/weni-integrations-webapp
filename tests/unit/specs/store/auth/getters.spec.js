@@ -12,28 +12,8 @@ describe('store/auth/getters.js', () => {
     };
   });
 
-  it('should return state.token', () => {
-    const token = getters.authToken(state);
-    expect(token).toEqual(state.token);
-  });
-
   it('should return true if token not null or empty', () => {
     const authenticated = getters.authenticated(state);
     expect(authenticated).toBeTruthy();
-  });
-
-  it('should return state.org', () => {
-    const org = getters.getSelectedOrg(state);
-    expect(org).toEqual(state.org);
-  });
-
-  it('should return state.project', () => {
-    const project = getters.getSelectedProject(state);
-    expect(project).toEqual(state.project);
-  });
-
-  it('should return state.flowOrg', () => {
-    const flowOrg = getters.getSelectedFlowOrg(state);
-    expect(flowOrg).toEqual(state.flowOrg);
   });
 });

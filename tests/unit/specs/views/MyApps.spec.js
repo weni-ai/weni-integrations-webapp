@@ -17,7 +17,6 @@ localVue.use(Vuex);
 describe('MyApps.vue', () => {
   let wrapper;
   let actions;
-  let getters;
   let state;
   let store;
 
@@ -28,12 +27,6 @@ describe('MyApps.vue', () => {
       }),
       getInstalledApps: jest.fn(() => {
         return { data: [singleApp] };
-      }),
-    };
-
-    getters = {
-      getSelectedProject: jest.fn(() => {
-        return '123';
       }),
     };
 
@@ -50,11 +43,13 @@ describe('MyApps.vue', () => {
         loadingInstalledApps: false,
         errorInstalledApps: null,
       },
+      auth: {
+        project: '123',
+      },
     };
 
     store = new Vuex.Store({
       actions,
-      getters,
       state,
     });
 

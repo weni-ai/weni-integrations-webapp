@@ -9,8 +9,8 @@ export default {
       headers: {
         ...(store.getters.authenticated
           ? {
-              Authorization: `${store.getters.authToken}`,
-              'Project-Uuid': `${store.getters.getSelectedProject}`,
+              Authorization: `${store.state.auth.token}`,
+              'Project-Uuid': `${store.state.auth.project}`,
             }
           : {}),
       },

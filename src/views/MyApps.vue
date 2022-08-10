@@ -33,7 +33,7 @@
 
 <script>
   import AppGrid from '../components/AppGrid.vue';
-  import { mapActions, mapGetters, mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
@@ -52,8 +52,8 @@
       this.$root.$off('updateGrid');
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
+      ...mapState({
+        project: (state) => state.auth.project,
       }),
       ...mapState({
         configuredApps: (state) => state.myApps.configuredApps,
@@ -79,7 +79,7 @@
       },
       fetchConfigured() {
         const params = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
         this.getConfiguredApps({ params });
 
@@ -89,7 +89,7 @@
       },
       fetchInstalled() {
         const params = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
         this.getInstalledApps({ params });
 
