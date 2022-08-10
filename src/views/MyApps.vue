@@ -33,7 +33,7 @@
 
 <script>
   import AppGrid from '../components/AppGrid.vue';
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     name: 'Apps',
@@ -63,8 +63,8 @@
       this.$root.$off('updateGrid');
     },
     computed: {
-      ...mapGetters({
-        getSelectedProject: 'getSelectedProject',
+      ...mapState({
+        project: (state) => state.auth.project,
       }),
       hasApps: function () {
         if (this.configuredApps.loading || this.installedApps.loading) {
@@ -96,14 +96,14 @@
       },
       async fetchConfigured() {
         const params = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
         const { data } = await this.getConfiguredApps({ params });
         this.configuredApps.data = data;
       },
       async fetchInstalled() {
         const params = {
-          project_uuid: this.getSelectedProject,
+          project_uuid: this.project,
         };
         const { data } = await this.getInstalledApps({ params });
         this.installedApps.data = data;

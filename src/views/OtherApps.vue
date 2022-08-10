@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapState } from 'vuex';
   import getEnv from '@/utils/env';
 
   export default {
@@ -27,10 +27,12 @@
       };
     },
     computed: {
-      ...mapGetters(['getSelectedFlowOrg']),
+      ...mapState({
+        flowOrg: (state) => state.auth.flowOrg,
+      }),
       iframeSrc() {
         return `${getEnv('VUE_APP_FLOWS_IFRAME_URL')}/weni/${
-          this.getSelectedFlowOrg
+          this.flowOrg
         }/authenticate?next=/org/home/?flows_config_hide=configs`;
       },
     },

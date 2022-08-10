@@ -17,7 +17,7 @@ localVue.use(Vuex);
 describe('whatsapp/PhoneNumberSelection.vue', () => {
   let wrapper;
   let actions;
-  let getters;
+  let state;
   let wppCloudState;
   let wppCloudActions;
   let store;
@@ -36,8 +36,10 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       }),
     };
 
-    getters = {
-      getSelectedProject: jest.fn(() => {}),
+    state = {
+      auth: {
+        project: '123',
+      },
     };
 
     wppCloudState = {
@@ -83,7 +85,7 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
         },
       },
       actions,
-      getters,
+      state,
     });
 
     wrapper = shallowMount(PhoneNumberSelection, {
