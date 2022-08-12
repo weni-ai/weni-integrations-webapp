@@ -5,7 +5,21 @@ export default function routes() {
   this.namespace = '/api/v1';
   this.timing = 1500;
 
-  this.resource('templates', { path: '/apptypes/:appCode/apps/:appUuid/template/' });
+  this.get('/apptypes/:appCode/apps/:appUuid/template/', function (schema, request) {
+    let qp = request.queryParams;
+    let page = parseInt(qp.page) - 1;
+    let limit = parseInt(qp.limit);
+    let start = page * limit;
+    let end = start + limit;
+    let templates = schema.templates.all();
+    let count = templates.length;
+    let filtered = this.serialize(templates.slice(start, end), 'template');
+
+    return {
+      count,
+      templates: filtered.templates,
+    };
+  });
 
   this.passthrough(`${getEnv('VUE_APP_API_BASE_URL')}/**`);
 }
