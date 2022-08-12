@@ -121,7 +121,7 @@
         return this.whatsAppTemplates?.count || this.pageLimit;
       },
       pageCount() {
-        if (this.whatsAppTemplates) {
+        if (this.whatsAppTemplates?.count) {
           return Math.ceil(this.whatsAppTemplates.count / this.pageLimit);
         } else {
           return 1;
@@ -131,7 +131,7 @@
         return (this.page - 1) * this.pageLimit || 1;
       },
       currentPageCount() {
-        const value = this.pageLimit * this.page || 0;
+        const value = this.pageLimit * this.page;
         return value > this.whatsAppTemplates?.count ? this.whatsAppTemplates?.count || 0 : value;
       },
     },
@@ -165,8 +165,11 @@
       page(page) {
         this.fetchData({ page });
       },
-      whatsAppTemplates() {
-        this.firstLoad = false;
+      whatsAppTemplates: {
+        handler() {
+          this.firstLoad = false;
+        },
+        deep: true,
       },
     },
   };

@@ -30,8 +30,7 @@
             title: this.$t('WhatsApp.templates.table.actions.add_language'),
             icon: 'add-circle-1',
             scheme: 'neutral-darkest',
-            action: () => {
-              /* istanbul ignore next */
+            action: /* istanbul ignore next */ () => {
               console.log('add language');
             },
           },
@@ -40,8 +39,7 @@
             title: this.$t('WhatsApp.templates.table.actions.duplicate_language'),
             icon: 'copy-paste-1',
             scheme: 'neutral-darkest',
-            action: () => {
-              /* istanbul ignore next */
+            action: /* istanbul ignore next */ () => {
               console.log('duplicate language');
             },
           },
@@ -50,8 +48,7 @@
             title: this.$t('WhatsApp.templates.table.actions.delete_language'),
             icon: 'bin-1-1',
             scheme: 'feedback-red',
-            action: () => {
-              /* istanbul ignore next */
+            action: /* istanbul ignore next */ () => {
               console.log('delete language');
             },
           },

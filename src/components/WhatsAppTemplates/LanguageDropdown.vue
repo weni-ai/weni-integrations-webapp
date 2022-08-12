@@ -7,7 +7,7 @@
         size="sm"
         :scheme="getTranslationStatusColor(template.translations[0])"
       />
-      {{ getTemplateDefaultLanguage(template) }}
+      {{ templateDefaultLanguage }}
       <unnnic-icon-svg
         class="template-language-dropdown__icon"
         icon="arrow-button-down-1"
@@ -49,10 +49,12 @@
         },
       };
     },
-    methods: {
-      getTemplateDefaultLanguage(template) {
-        return template.translations[0].language;
+    computed: {
+      templateDefaultLanguage() {
+        return this.template.translations[0].language;
       },
+    },
+    methods: {
       getTranslationStatusIcon(translation) {
         return this.translationStatusMap[translation.status]?.icon || 'delete-1-1';
       },
