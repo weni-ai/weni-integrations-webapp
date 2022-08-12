@@ -6,6 +6,7 @@ jest.mock('@/api/appType/whatsapp', () => {
     fetchWppProfile: jest.fn(),
     updateWppProfile: jest.fn(),
     deleteWppProfilePhoto: jest.fn(),
+    getWhatsAppTemplates: jest.fn(),
   };
 });
 import WhatsAppApi from '@/api/appType/whatsapp';
@@ -320,6 +321,63 @@ describe('store/appType/whatsapp/actions.js', () => {
       expect(store.state.WhatsApp.errorDeleteWhatsAppProfilePhoto).not.toEqual(error);
       await store.dispatch('WhatsApp/deleteWppProfilePhoto', data);
       expect(store.state.WhatsApp.errorDeleteWhatsAppProfilePhoto).toEqual(error);
+    });
+  });
+
+  describe('getWhatsAppTemplates()', () => {
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      params: {
+        page: 1,
+        limit: 12,
+      },
+    };
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.getWhatsAppTemplates.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call getWhatsAppTemplates from API', async () => {
+      expect(WhatsAppApi.getWhatsAppTemplates).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/getWhatsAppTemplates', data);
+      expect(WhatsAppApi.getWhatsAppTemplates).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.getWhatsAppTemplates).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.params,
+      );
+    });
+
+    it('should set whatsAppTemplates as result data', async () => {
+      store.state.WhatsApp.whatsAppTemplates = {};
+      expect(store.state.WhatsApp.whatsAppTemplates).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/getWhatsAppTemplates', data);
+      expect(store.state.WhatsApp.whatsAppTemplates).toEqual(mockedResult);
+    });
+
+    it('should set loadingWhatsAppTemplates to false', async () => {
+      store.state.WhatsApp.loadingWhatsAppTemplates = true;
+      expect(store.state.WhatsApp.loadingWhatsAppTemplates).toBe(true);
+      await store.dispatch('WhatsApp/getWhatsAppTemplates', data);
+      expect(store.state.WhatsApp.loadingWhatsAppTemplates).toBe(false);
+    });
+
+    it('should set errorWhatsAppTemplates as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.getWhatsAppTemplates.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorWhatsAppTemplates = {};
+      expect(store.state.WhatsApp.errorWhatsAppTemplates).not.toEqual(error);
+      await store.dispatch('WhatsApp/getWhatsAppTemplates', data);
+      expect(store.state.WhatsApp.errorWhatsAppTemplates).toEqual(error);
     });
   });
 });
