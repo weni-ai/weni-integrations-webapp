@@ -67,7 +67,6 @@ export default {
 
   GET_WHATSAPP_TEMPLATES_REQUEST(state) {
     state.loadingWhatsAppTemplates = true;
-    state.whatsAppTemplates = null;
     state.errorWhatsAppTemplates = null;
   },
   GET_WHATSAPP_TEMPLATES_SUCCESS(state, data) {

@@ -166,7 +166,8 @@
         this.appProfile = profile;
       },
       navigateToTemplates() {
-        this.$router.push({ path: `/apps/my/${this.app.code}/${this.appInfo.uuid}/templates` });
+        const { code, uuid } = this.currentApp;
+        this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
     },
   };

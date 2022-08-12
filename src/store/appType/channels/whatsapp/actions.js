@@ -51,13 +51,12 @@ export default {
       commit('DELETE_WHATSAPP_PROFILE_PHOTO_ERROR', err);
     }
   },
-  async getWhatsAppTemplates({ commit }, { code, appUuid }) {
+  async getWhatsAppTemplates({ commit }, { code, appUuid, params }) {
     commit('GET_WHATSAPP_TEMPLATES_REQUEST');
     try {
-      const { data } = await whatsApp.getWhatsAppTemplates(code, appUuid);
+      const { data } = await whatsApp.getWhatsAppTemplates(code, appUuid, params);
       commit('GET_WHATSAPP_TEMPLATES_SUCCESS', data);
     } catch (err) {
-      // captureSentryException(err);
       commit('GET_WHATSAPP_TEMPLATES_ERROR', err);
     }
   },

@@ -24,7 +24,8 @@ export default {
   deleteWppProfilePhoto(appCode, appUuid) {
     return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/profile/`);
   },
-  getWhatsAppTemplates(appCode, appUuid) {
-    return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/template/`);
+  getWhatsAppTemplates(appCode, appUuid, params) {
+    const queryString = qs.stringify(params);
+    return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/template/?${queryString}`);
   },
 };
