@@ -8,7 +8,7 @@
     />
 
     <unnnic-dropdown-item
-      class="table-action__dropdown__item"
+      :class="['table-action__dropdown__item', `table-action__dropdown__item--${option.id}`]"
       v-for="option in options"
       :key="option.id"
       @click="() => option.action()"
@@ -71,7 +71,9 @@
       }
 
       &__item {
-        display: inline-block;
+        &--delete_language {
+          color: $unnnic-color-feedback-red;
+        }
       }
     }
   }
