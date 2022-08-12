@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`views/WhatsAppTemplatesTable.vue should be rendered properly 1`] = `
+<div class="whatsapp-templates">
+  <unnnicbreadcrumb-stub crumbs="[object Object],[object Object]"></unnnicbreadcrumb-stub>
+  <templatesheader-stub title="WhatsApp"></templatesheader-stub>
+  <templatestable-stub></templatestable-stub>
+</div>
+`;

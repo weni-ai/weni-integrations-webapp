@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/WhatsAppTemplates/Header.vue should be rendered properly 1`] = `
+<div class="whatsapp-templates-header">
+  <div class="whatsapp-templates-header__wrapper">
+    <div class="whatsapp-templates-header__icon"><img src="icon"></div> <span class="whatsapp-templates-header__title">WhatsApp</span>
+  </div>
+  <unnnicbutton-stub size="small" type="secondary">Novo template</unnnicbutton-stub>
+</div>
+`;
