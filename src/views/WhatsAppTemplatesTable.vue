@@ -1,6 +1,6 @@
 <template>
   <div class="whatsapp-templates">
-    <unnnic-breadcrumb :crumbs="crumbs" @crumbClick="handleCrumbClick"></unnnic-breadcrumb>
+    <unnnic-breadcrumb :crumbs="crumbs" @crumbClick="handleCrumbClick" />
     <TemplatesHeader />
     <TemplatesTable />
   </div>

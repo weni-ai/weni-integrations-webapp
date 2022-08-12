@@ -1,6 +1,9 @@
 <template>
   <div class="whatsapp-templates-table-loading">
-    <unnnic-table class="whatsapp-templates-table-loading__table" :items="items">
+    <unnnic-table
+      class="whatsapp-templates-table-loading__table"
+      :items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+    >
       <template v-slot:header>
         <unnnic-table-row :headers="headers" />
       </template>
@@ -19,11 +22,6 @@
         type: Array,
         required: true,
       },
-    },
-    data() {
-      return {
-        items: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      };
     },
   };
 </script>

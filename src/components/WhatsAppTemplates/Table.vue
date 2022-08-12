@@ -136,7 +136,6 @@
       },
     },
     methods: {
-      ...mapActions(['getAppType']),
       ...mapActions({ getWhatsAppTemplates: 'WhatsApp/getWhatsAppTemplates' }),
       fetchData({ page }) {
         const { appCode, appUuid } = this.$route.params;

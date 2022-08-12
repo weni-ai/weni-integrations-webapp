@@ -31,6 +31,7 @@
             icon: 'add-circle-1',
             scheme: 'neutral-darkest',
             action: () => {
+              /* istanbul ignore next */
               console.log('add language');
             },
           },
@@ -40,6 +41,7 @@
             icon: 'copy-paste-1',
             scheme: 'neutral-darkest',
             action: () => {
+              /* istanbul ignore next */
               console.log('duplicate language');
             },
           },
@@ -49,6 +51,7 @@
             icon: 'bin-1-1',
             scheme: 'feedback-red',
             action: () => {
+              /* istanbul ignore next */
               console.log('delete language');
             },
           },

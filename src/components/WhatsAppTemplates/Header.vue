@@ -1,8 +1,9 @@
 <template>
   <div class="whatsapp-templates-header">
-    <div class="whatsapp-templates-header__wrapper">
+    <HeaderLoading v-if="loadingCurrentAppType" />
+    <div v-else class="whatsapp-templates-header__wrapper">
       <div class="whatsapp-templates-header__icon">
-        <img :src="icon" />
+        <img :src="currentAppType.icon" />
       </div>
       <span class="whatsapp-templates-header__title">{{ title }}</span>
     </div>
@@ -11,16 +12,34 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'vuex';
+  import HeaderLoading from '@/components/WhatsAppTemplates/loadings/HeaderLoading';
+
   export default {
     name: 'WhatsAppTemplatesHeader',
+    components: {
+      HeaderLoading,
+    },
     props: {
       title: {
         type: String,
         default: 'WhatsApp',
       },
-      icon: {
-        type: String,
-        default: 'https://weni-sp-integrations-production.s3.amazonaws.com/wpp_oficial_YaNXiFt.svg',
+    },
+    created() {
+      this.fetchData();
+    },
+    computed: {
+      ...mapState({
+        currentAppType: (state) => state.appType.currentAppType,
+        loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
+      }),
+    },
+    methods: {
+      ...mapActions(['getAppType']),
+      fetchData() {
+        const { appCode } = this.$route.params;
+        this.getAppType({ code: appCode, shouldLoad: true });
       },
     },
   };
