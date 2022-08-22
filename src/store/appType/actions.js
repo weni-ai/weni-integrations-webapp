@@ -1,4 +1,5 @@
 import appType from '@/api/appType';
+import { captureSentryException } from '@/utils/sentry';
 
 export default {
   async getAllAppTypes({ commit }, { params }) {
@@ -37,6 +38,7 @@ export default {
       const { data } = await appType.getApp(code, appUuid);
       commit('GET_APP_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('GET_APP_ERROR', err);
     }
   },
@@ -47,6 +49,7 @@ export default {
       const { data } = await appType.createApp(code, payload);
       commit('CREATE_APP_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('CREATE_APP_ERROR', err);
     }
   },
@@ -57,6 +60,7 @@ export default {
       await appType.deleteApp(code, appUuid);
       commit('DELETE_APP_SUCCESS');
     } catch (err) {
+      captureSentryException(err);
       commit('DELETE_APP_ERROR', err);
     }
   },
@@ -77,6 +81,7 @@ export default {
       const { data } = await appType.updateAppConfig(code, appUuid, payload);
       commit('UPDATE_APP_CONFIG_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('UPDATE_APP_CONFIG_ERROR', err);
     }
   },
