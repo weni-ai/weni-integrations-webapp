@@ -6,7 +6,7 @@ function captureSentryException(error) {
       extra: {
         request: error.request,
         response: error.response,
-        data: JSON.stringify(error.response.data),
+        data: JSON.stringify(error.response?.data),
       },
     });
 }
