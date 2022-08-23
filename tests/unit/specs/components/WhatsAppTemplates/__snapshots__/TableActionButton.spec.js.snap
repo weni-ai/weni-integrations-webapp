@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/WhatsAppTemplates/TableActionButton.vue should be rendered properly 1`] = `
+<unnnicdropdown-stub class="table-action__dropdown">
+  <unnnicbutton-stub size="small" type="terciary" iconcenter="navigation-menu-vertical-1"></unnnicbutton-stub>
+  <unnnicdropdownitem-stub class="table-action__dropdown__item table-action__dropdown__item--add_language">
+    <unnniciconsvg-stub icon="add-circle-1" size="sm" scheme="neutral-darkest"></unnniciconsvg-stub>
+    some specific text
+  </unnnicdropdownitem-stub>
+  <unnnicdropdownitem-stub class="table-action__dropdown__item table-action__dropdown__item--duplicate_language">
+    <unnniciconsvg-stub icon="copy-paste-1" size="sm" scheme="neutral-darkest"></unnniciconsvg-stub>
+    some specific text
+  </unnnicdropdownitem-stub>
+  <unnnicdropdownitem-stub class="table-action__dropdown__item table-action__dropdown__item--delete_language">
+    <unnniciconsvg-stub icon="bin-1-1" size="sm" scheme="feedback-red"></unnniciconsvg-stub>
+    some specific text
+  </unnnicdropdownitem-stub>
+</unnnicdropdown-stub>
+`;

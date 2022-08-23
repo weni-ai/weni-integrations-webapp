@@ -26,7 +26,7 @@ export default {
     },
     afterCreate(template, server) {
       template.update({
-        translations: server.createList('translation', Math.floor(Math.random() * 5), {
+        translations: server.createList('translation', Math.floor(Math.random() * 3) + 1, {
           template,
         }),
       });

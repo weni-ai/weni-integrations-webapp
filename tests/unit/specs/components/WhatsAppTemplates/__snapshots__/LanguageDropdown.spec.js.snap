@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/WhatsAppTemplates/LanguageDropdown.vue should be rendered properly 1`] = `
+<unnnicdropdown-stub>
+  <div class="template-language-dropdown">
+    <unnniciconsvg-stub icon="check-circle-1-1-1" size="sm" scheme="feedback-green" class="template-language-dropdown__icon"></unnniciconsvg-stub>
+    en
+    <unnniciconsvg-stub icon="arrow-button-down-1" size="sm" class="template-language-dropdown__icon"></unnniciconsvg-stub>
+  </div>
+  <unnnicdropdownitem-stub class="template-language-dropdown__item">
+    <unnniciconsvg-stub icon="check-circle-1-1-1" size="sm" scheme="feedback-green" class="template-language-dropdown__item__icon"></unnniciconsvg-stub>
+    en
+  </unnnicdropdownitem-stub>
+  <unnnicdropdownitem-stub class="template-language-dropdown__item">
+    <unnniciconsvg-stub icon="delete-1-1" size="sm" scheme="feedback-red" class="template-language-dropdown__item__icon"></unnniciconsvg-stub>
+    es
+  </unnnicdropdownitem-stub>
+</unnnicdropdown-stub>
+`;

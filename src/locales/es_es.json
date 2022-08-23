@@ -199,7 +199,7 @@
       "errors": {
         "invalidToken": "El token proporcionado no es válido."
       }
-    }    
+    }
   },
   "WhatsAppDemo": {
     "data": {
@@ -234,7 +234,8 @@
         "account": "Cuenta WhatsApp",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
-        "conversations": "Conversaciones"
+        "conversations": "Conversaciones",
+        "templates": "Plantillas"
       },
       "description": {
         "text": "Obtenga más información sobre cómo aumentar su límite de mensajes de WhatsApp",

@@ -64,4 +64,17 @@ export default {
     state.errorDeleteWhatsAppProfilePhoto = data;
     state.loadingDeleteWhatsAppProfilePhoto = false;
   },
+
+  GET_WHATSAPP_TEMPLATES_REQUEST(state) {
+    state.loadingWhatsAppTemplates = true;
+    state.errorWhatsAppTemplates = null;
+  },
+  GET_WHATSAPP_TEMPLATES_SUCCESS(state, data) {
+    state.whatsAppTemplates = data;
+    state.loadingWhatsAppTemplates = false;
+  },
+  GET_WHATSAPP_TEMPLATES_ERROR(state, data) {
+    state.errorWhatsAppTemplates = data;
+    state.loadingWhatsAppTemplates = false;
+  },
 };

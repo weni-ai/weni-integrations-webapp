@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/WhatsAppTemplates/Table.vue should be rendered properly 1`] = `
+<div class="whatsapp-templates-table">
+  <unnnictable-stub items="[object Object]" class="whatsapp-templates-table__table"></unnnictable-stub>
+  <div class="whatsapp-templates-table__pagination"><span>1 - 1 de 1</span>
+    <unnnicpagination-stub max="1" show="5" value="1"></unnnicpagination-stub>
+  </div>
+</div>
+`;

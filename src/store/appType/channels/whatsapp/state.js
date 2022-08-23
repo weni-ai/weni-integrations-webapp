@@ -22,4 +22,8 @@ export default {
   deleteWhatsAppProfilePhotoResult: null,
   loadingDeleteWhatsAppProfilePhoto: false,
   errorDeleteWhatsAppProfilePhoto: false,
+
+  whatsAppTemplates: null,
+  loadingWhatsAppTemplates: false,
+  errorWhatsAppTemplates: false,
 };
