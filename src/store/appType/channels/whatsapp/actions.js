@@ -1,4 +1,5 @@
 import whatsApp from '@/api/appType/whatsapp';
+import { captureSentryException } from '@/utils/sentry';
 
 export default {
   resetWppFetchResults({ commit }) {
@@ -21,6 +22,7 @@ export default {
       const { data } = await whatsApp.getConversations(code, appUuid, params);
       commit('CONVERSATIONS_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('CONVERSATIONS_ERROR', err);
     }
   },
@@ -30,6 +32,7 @@ export default {
       const { data } = await whatsApp.fetchWppProfile(code, appUuid);
       commit('FETCH_WHATSAPP_PROFILE_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('FETCH_WHATSAPP_PROFILE_ERROR', err);
     }
   },
@@ -39,6 +42,7 @@ export default {
       const { data } = await whatsApp.updateWppProfile(code, appUuid, payload);
       commit('UPDATE_WHATSAPP_PROFILE_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('UPDATE_WHATSAPP_PROFILE_ERROR', err);
     }
   },
@@ -48,6 +52,7 @@ export default {
       const { data } = await whatsApp.deleteWppProfilePhoto(code, appUuid);
       commit('DELETE_WHATSAPP_PROFILE_PHOTO_SUCCESS', data);
     } catch (err) {
+      captureSentryException(err);
       commit('DELETE_WHATSAPP_PROFILE_PHOTO_ERROR', err);
     }
   },

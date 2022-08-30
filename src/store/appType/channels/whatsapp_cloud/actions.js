@@ -1,5 +1,5 @@
 import whatsAppCloud from '@/api/appType/whatsapp_cloud';
-import { captureSentryException } from '../../../../utils/sentry';
+import { captureSentryException } from '@/utils/sentry';
 
 export default {
   async getDebugToken({ commit }, { params }) {
