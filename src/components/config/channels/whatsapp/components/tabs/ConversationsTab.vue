@@ -121,10 +121,10 @@
         'errorConversations',
       ]),
       startDateObject() {
-        return this.startDate && new Date(this.startDate);
+        return this.startDate && new Date(this.startDate.replace('-', ' '));
       },
       endDateObject() {
-        return this.endDate && new Date(this.endDate);
+        return this.endDate && new Date(this.endDate.replace('-', ' '));
       },
     },
   };
@@ -166,6 +166,7 @@
     &__buttons {
       display: flex;
       justify-content: flex-end;
+      margin-top: $unnnic-spacing-stack-sm;
 
       &__close {
         width: 50%;
