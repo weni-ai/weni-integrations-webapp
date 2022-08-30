@@ -166,7 +166,7 @@
     &__buttons {
       display: flex;
       justify-content: flex-end;
-      margin-top: 1rem;
+      margin-top: $unnnic-spacing-stack-sm;
 
       &__close {
         width: 50%;
