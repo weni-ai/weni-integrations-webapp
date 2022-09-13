@@ -363,5 +363,19 @@
         "error": "Ocurrió un error al intentar comunicarse con Facebook, inténtelo de nuevo más tarde."
       }
     }
+  },
+
+  "PowerBi": {
+    "title": "Power BI",
+    "summary": "Power BI summary",
+    "config": {
+      "description": {
+        "text": "Con la URL a continuación, puede conectar la plataforma Weni a Power BI y comenzar a monitorear las métricas y el crecimiento de su proyecto más de cerca. Simplemente siga la documentación en",
+        "link": "Cómo instalar y usar Weni Data Connector para Power BI"
+      },
+      "download": {
+        "label": "Descargar conector aquí"
+      }
+    }
   }
 }

@@ -21,7 +21,8 @@
         "channel": "Communication Channels",
         "ticket": "Attendance Managers",
         "configured": "Configured Apps",
-        "installed": "Installed Apps"
+        "installed": "Installed Apps",
+        "bi-tools": "BI Tools"
       },
       "fetch_error": "Failed to fetch Application list, please try again later."
     },
@@ -361,6 +362,20 @@
       },
       "debug_token": {
         "error": "An error occurred while trying to communicate with Facebook, please try again later."
+      }
+    }
+  },
+
+  "PowerBi": {
+    "title": "Power BI",
+    "summary": "Power BI summary",
+    "config": {
+      "description": {
+        "text": "With the URL below you can connect the Weni platform to Power BI and start monitoring your project's metrics and growth more closely. Just follow the documentation at",
+        "link": "How to Install and Use Weni Data Connector for Power BI"
+      },
+      "download": {
+        "label": "Download conector here"
       }
     }
   }
