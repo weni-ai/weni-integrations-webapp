@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
   import '@weni/unnnic-system';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';
@@ -18,8 +17,6 @@
       };
     },
     mounted() {
-      this.getFlowToken();
-
       if (getEnv('VUE_APP_HELPHERO_ID')) {
         const hlp = initHelpHero(getEnv('VUE_APP_HELPHERO_ID'));
         hlp.anonymous();
@@ -49,7 +46,6 @@
       });
     },
     methods: {
-      ...mapActions(['getFlowToken']),
       translateAllLinks() {
         if (!this.connectBaseURL) {
           return;
