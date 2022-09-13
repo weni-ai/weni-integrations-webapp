@@ -19,4 +19,18 @@ export default {
     state.flowOrg = flowOrg;
     setLocal('flowOrg', flowOrg);
   },
+
+  GET_FLOW_TOKEN_REQUEST(state) {
+    state.loadingFlowToken = true;
+    state.errorFlowToken = null;
+    state.flowToken = null;
+  },
+  GET_FLOW_TOKEN_SUCCESS(state, data) {
+    state.flowToken = data.api_token;
+    state.loadingFlowToken = false;
+  },
+  GET_FLOW_TOKEN_ERROR(state, err) {
+    state.errorFlowToken = err;
+    state.loadingFlowToken = false;
+  },
 };
