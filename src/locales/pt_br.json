@@ -346,7 +346,7 @@
         "rate_limit": {
           "label": "Limitação de Disparos em Massa",
           "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
-        }      
+        }
       }
     },
     "config": {
@@ -367,7 +367,9 @@
 
   "PowerBi": {
     "title": "Power BI",
-    "summary": "Power BI summary",
+    "data": {
+      "summary": "Power BI summary"
+    },
     "config": {
       "description": {
         "text": "Com a URL abaixo vc pode conectar a plataforma Weni ao Power BI e começar a acompanhar mais de perto as métricas e o crescimento do seu projeto. Basta seguir a documentação em",
@@ -376,6 +378,10 @@
       "download": {
         "label": "Baixar conector aqui"
       }
+    },
+    "token_error": "Não foi possível buscar seu Token do Power BI, tente novamente mais tarde.",
+    "token_input": {
+      "tooltip": "Copiar Token"
     }
   }
 }

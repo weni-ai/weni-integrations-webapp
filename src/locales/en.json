@@ -368,7 +368,9 @@
 
   "PowerBi": {
     "title": "Power BI",
-    "summary": "Power BI summary",
+    "data": {
+      "summary": "Power BI summary"
+    },
     "config": {
       "description": {
         "text": "With the URL below you can connect the Weni platform to Power BI and start monitoring your project's metrics and growth more closely. Just follow the documentation at",
@@ -376,6 +378,10 @@
       },
       "download": {
         "label": "Download conector here"
+      },
+      "token_error": "Unable to fetch your Power BI Token, please try again later.",
+      "token_input": {
+        "tooltip": "Copy Token"
       }
     }
   }
