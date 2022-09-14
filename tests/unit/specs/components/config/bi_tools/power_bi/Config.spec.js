@@ -21,15 +21,22 @@ const mountComponent = ({
   loadingFlowToken = null,
 } = {}) => {
   const state = {
-    auth: {
-      flowToken,
-      errorFlowToken,
-      loadingFlowToken,
-    },
+    flowToken,
+    errorFlowToken,
+    loadingFlowToken,
+  };
+
+  const actions = {
+    getFlowToken: jest.fn(),
   };
 
   const store = new Vuex.Store({
-    state,
+    modules: {
+      auth: {
+        actions,
+        state,
+      },
+    },
   });
 
   const wrapper = mount(powerBiConfig, {
@@ -57,6 +64,7 @@ const mountComponent = ({
 
 describe('components/config/bi_tools/power_bi/Config.vue', () => {
   beforeEach(() => {
+    jest.useFakeTimers();
     jest.clearAllMocks();
   });
 
@@ -65,15 +73,16 @@ describe('components/config/bi_tools/power_bi/Config.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('created()', () => {
+  describe('mounted()', () => {
     it('should not call alert error on flowTokenError', () => {
-      const { wrapper } = mountComponent({ errorFlowToken: false });
+      mountComponent({ errorFlowToken: false });
 
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
     });
 
     it('should call alert error on flowTokenError', async () => {
       const { wrapper } = mountComponent({ errorFlowToken: { error: 'failed' } });
+      await jest.runAllTimers();
       await wrapper.vm.$nextTick();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
     });
