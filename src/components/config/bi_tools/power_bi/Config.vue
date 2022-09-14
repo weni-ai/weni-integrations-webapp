@@ -56,6 +56,7 @@
           type="secondary"
           size="small"
           iconCenter="download-thick-bottom-1"
+          :loading="loadingDownload"
           @click="downloadConnector"
         />
       </div>
@@ -94,6 +95,7 @@
           'pt-br':
             'https://docs.weni.ai/l/pt/extras/como-instalar-e-usar-o-conector-de-dados-para-power-bi',
         },
+        loadingDownload: false,
       };
     },
     async mounted() {
@@ -130,7 +132,11 @@
       ...mapActions(['getFlowToken']),
       /* istanbul ignore next */
       async copyToken() {
-        navigator.clipboard.writeText(this.flowToken || '');
+        if (!this.flowToken) {
+          return;
+        }
+
+        navigator.clipboard.writeText(this.flowToken);
 
         unnnicCallAlert({
           props: {
@@ -146,14 +152,19 @@
       },
       /* istanbul ignore next */
       downloadConnector() {
+        this.loadingDownload = true;
         const anchor = document.createElement('a');
         anchor.href =
           'https://github.com/Ilhasoft/custom-connector-powerbi/releases/download/v1.0.1/WeniFluxos.mez';
         anchor.download = 'WeniFluxos.mez';
         anchor.style.display = 'none';
+
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
+        setTimeout(() => {
+          this.loadingDownload = false;
+        }, 500);
       },
     },
   };
