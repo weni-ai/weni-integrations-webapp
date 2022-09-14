@@ -148,9 +148,8 @@
       downloadConnector() {
         const anchor = document.createElement('a');
         anchor.href =
-          'https://github.com/Ilhasoft/custom-connector-powerbi/releases/download/v0.1-alpha/WeniFluxos.mez';
+          'https://github.com/Ilhasoft/custom-connector-powerbi/releases/download/v1.0.1/WeniFluxos.mez';
         anchor.download = 'WeniFluxos.mez';
-
         anchor.style.display = 'none';
         document.body.appendChild(anchor);
         anchor.click();
