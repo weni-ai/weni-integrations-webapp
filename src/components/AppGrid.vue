@@ -20,7 +20,7 @@
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
           :iconSrc="app.icon"
-          :typeAction="type"
+          :typeAction="typeAction"
           clickable
           @openModal="openAppModal(app)"
         >
@@ -32,7 +32,11 @@
             :disabled="!app.can_add"
           />
 
-          <unnnic-dropdown v-else class="app-grid__content__item__dropdown" slot="actions">
+          <unnnic-dropdown
+            v-else-if="type !== 'view'"
+            class="app-grid__content__item__dropdown"
+            slot="actions"
+          >
             <unnnic-button slot="trigger" size="small" type="terciary" :iconCenter="cardIcon" />
             <unnnic-dropdown-item
               class="app-grid__content__item__button--action"
@@ -111,13 +115,13 @@
         type: String,
         default: null,
         validator(value) {
-          return ['channel', 'ticket', 'configured', 'installed'].indexOf(value) !== -1;
+          return ['channel', 'ticket', 'bi-tools', 'configured', 'installed'].indexOf(value) !== -1;
         },
       },
       type: {
         type: String,
         validator(value) {
-          return ['add', 'config', 'edit'].indexOf(value) !== -1;
+          return ['add', 'config', 'edit', 'view'].indexOf(value) !== -1;
         },
       },
       apps: {
@@ -147,6 +151,8 @@
             return { icon: 'messages-bubble-1', scheme: 'aux-purple' };
           case 'ticket':
             return { icon: 'messaging-we-chat-3', scheme: 'aux-blue' };
+          case 'bi-tools':
+            return { icon: 'gauge-dashboard-2', scheme: 'aux-orange' };
           case 'configured':
             return { icon: 'cog-1', scheme: 'aux-purple' };
           case 'installed':
@@ -191,6 +197,13 @@
           default:
             return null;
         }
+      },
+      typeAction() {
+        if (this.type === 'view') {
+          return 'edit';
+        }
+
+        return this.type;
       },
     },
     methods: {

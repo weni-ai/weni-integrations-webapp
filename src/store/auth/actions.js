@@ -1,3 +1,4 @@
+import auth from '@/api/auth';
 import TYPES from '../types';
 import window from 'global/window';
 
@@ -40,6 +41,16 @@ export default {
   retriveSelectedFlowOrg({ commit }) {
     if (window.localStorage) {
       commit(TYPES.SET_FLOW_ORG, window.localStorage.getItem('flowOrg'));
+    }
+  },
+
+  async getFlowToken({ commit }) {
+    commit('GET_FLOW_TOKEN_REQUEST');
+    try {
+      const { data } = await auth.getFlowToken();
+      commit('GET_FLOW_TOKEN_SUCCESS', data);
+    } catch (err) {
+      commit('GET_FLOW_TOKEN_ERROR', err);
     }
   },
 };

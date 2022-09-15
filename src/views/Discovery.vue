@@ -7,22 +7,38 @@
       :apps="allAppTypes"
       @update="fetchChannels"
     />
+
+    <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
   </div>
 </template>
 <script>
+  import PowerBiIcon from '@/assets/logos/power_bi.png';
   import AppGrid from '../components/AppGrid.vue';
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'Discovery',
-    components: { AppGrid },
+    components: {
+      AppGrid,
+    },
     data() {
       return {
         channels: {
           loading: true,
           data: null,
         },
+        biApps: [
+          {
+            code: 'power-bi',
+            name: 'Power BI',
+            category: 'bi-tools',
+            config_design: 'sidebar',
+            description: 'PowerBi.data.description',
+            summary: 'PowerBi.data.summary',
+            icon: PowerBiIcon,
+          },
+        ],
       };
     },
     async mounted() {

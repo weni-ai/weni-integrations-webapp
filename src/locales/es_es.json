@@ -21,7 +21,8 @@
         "channel": "Canales de comunicación",
         "ticket": "Gestores de asistencia",
         "configured": "Aplicaciones configuradas",
-        "installed": "Aplicaciones instaladas"
+        "installed": "Aplicaciones instaladas",
+        "bi-tools": "Herramientas de BI"
       },
       "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde."
     },
@@ -199,7 +200,7 @@
       "errors": {
         "invalidToken": "El token proporcionado no es válido."
       }
-    }    
+    }
   },
   "WhatsAppDemo": {
     "data": {
@@ -361,6 +362,26 @@
       },
       "debug_token": {
         "error": "Ocurrió un error al intentar comunicarse con Facebook, inténtelo de nuevo más tarde."
+      }
+    }
+  },
+
+  "PowerBi": {
+    "title": "Power BI",
+    "data": {
+      "summary": "Manténgase al día con el crecimiento de su proyecto con el conector Power BI con la Plataforma Weni."
+    },
+    "config": {
+      "description": {
+        "text": "Con la URL a continuación, puede conectar la plataforma Weni a Power BI y comenzar a monitorear las métricas y el crecimiento de su proyecto más de cerca. Simplemente siga la documentación en",
+        "link": "Cómo instalar y usar Weni Data Connector para Power BI"
+      },
+      "download": {
+        "label": "Descargar conector aquí"
+      },
+      "token_error": "No se pudo obtener su Token de Power BI, inténtelo de nuevo más tarde.",
+      "token_input": {
+        "tooltip": "Copiar Token"
       }
     }
   }
