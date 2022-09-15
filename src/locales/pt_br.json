@@ -21,9 +21,10 @@
         "channel": "Canais de Comunicação",
         "ticket": "Gerenciadores de Atendimento",
         "configured": "Aplicativos configurados",
-        "installed": "Aplicativos instalados"
+        "installed": "Aplicativos instalados",
+        "bi-tools": "Ferramentas de BI"
       },
-      "fetch-error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde."
+      "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde."
     },
     "myApps": {
       "empty": {
@@ -368,7 +369,7 @@
   "PowerBi": {
     "title": "Power BI",
     "data": {
-      "summary": "Power BI summary"
+      "summary": "Acompanhe o crescimento do seu projeto com o conector do Power BI com a Plataforma Weni."
     },
     "config": {
       "description": {
@@ -377,11 +378,11 @@
       },
       "download": {
         "label": "Baixar conector aqui"
+      },
+      "token_error": "Não foi possível buscar seu Token do Power BI, tente novamente mais tarde.",
+      "token_input": {
+        "tooltip": "Copiar Token"
       }
-    },
-    "token_error": "Não foi possível buscar seu Token do Power BI, tente novamente mais tarde.",
-    "token_input": {
-      "tooltip": "Copiar Token"
     }
   }
 }
