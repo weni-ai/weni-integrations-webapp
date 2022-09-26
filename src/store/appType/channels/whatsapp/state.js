@@ -26,4 +26,27 @@ export default {
   whatsAppTemplates: null,
   loadingWhatsAppTemplates: false,
   errorWhatsAppTemplates: false,
+
+  templateForm: {
+    name: null,
+    category: null,
+  },
+  templateTranslationForms: {},
+  templateTranslationSelectedForm: null,
+
+  whatsAppTemplate: null,
+  loadingFetchWhatsAppTemplate: false,
+  errorFetchWhatsAppTemplate: false,
+
+  whatsAppTemplateSelectLanguages: null,
+  loadingFetchWhatsAppTemplateSelectLanguages: false,
+  errorFetchWhatsAppTemplateSelectLanguages: false,
+
+  createdTemplateData: null,
+  loadingCreateTemplate: false,
+  errorCreateTemplate: false,
+
+  createdTemplateTranslationData: null,
+  loadingCreateTemplateTranslation: false,
+  errorCreateTemplateTranslation: false,
 };
