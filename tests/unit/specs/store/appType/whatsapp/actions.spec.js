@@ -7,6 +7,11 @@ jest.mock('@/api/appType/whatsapp', () => {
     updateWppProfile: jest.fn(),
     deleteWppProfilePhoto: jest.fn(),
     getWhatsAppTemplates: jest.fn(),
+    fetchTemplateData: jest.fn(),
+    fetchSelectLanguages: jest.fn(),
+    createTemplate: jest.fn(),
+    createTemplateTranslation: jest.fn(),
+    deleteTemplateMessage: jest.fn(),
   };
 });
 import WhatsAppApi from '@/api/appType/whatsapp';
@@ -348,11 +353,7 @@ describe('store/appType/whatsapp/actions.js', () => {
       expect(WhatsAppApi.getWhatsAppTemplates).not.toHaveBeenCalled();
       await store.dispatch('WhatsApp/getWhatsAppTemplates', data);
       expect(WhatsAppApi.getWhatsAppTemplates).toHaveBeenCalledTimes(1);
-      expect(WhatsAppApi.getWhatsAppTemplates).toHaveBeenCalledWith(
-        data.code,
-        data.appUuid,
-        data.params,
-      );
+      expect(WhatsAppApi.getWhatsAppTemplates).toHaveBeenCalledWith(data.appUuid, data.params);
     });
 
     it('should set whatsAppTemplates as result data', async () => {
@@ -378,6 +379,448 @@ describe('store/appType/whatsapp/actions.js', () => {
       expect(store.state.WhatsApp.errorWhatsAppTemplates).not.toEqual(error);
       await store.dispatch('WhatsApp/getWhatsAppTemplates', data);
       expect(store.state.WhatsApp.errorWhatsAppTemplates).toEqual(error);
+    });
+  });
+
+  describe('updateTemplateForm()', () => {
+    it('should set template field correctly', async () => {
+      expect(store.state.WhatsApp.templateForm.newField).not.toEqual('field_value');
+      await store.dispatch('WhatsApp/updateTemplateForm', {
+        fieldName: 'newField',
+        fieldValue: 'field_value',
+      });
+      expect(store.state.WhatsApp.templateForm.newField).toEqual('field_value');
+    });
+  });
+
+  describe('addNewTranslationForm()', () => {
+    it('should create a new translation form', async () => {
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.not.objectContaining({ new_form: { name: 'John' } }),
+      );
+      await store.dispatch('WhatsApp/addNewTranslationForm', {
+        formName: 'new_form',
+        formData: { name: 'John' },
+      });
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.objectContaining({ new_form: { name: 'John' } }),
+      );
+    });
+
+    it('should create a new empty translation form when no form data is provided', async () => {
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.not.objectContaining({ new_form: {} }),
+      );
+      await store.dispatch('WhatsApp/addNewTranslationForm', {
+        formName: 'new_form',
+      });
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.objectContaining({ new_form: {} }),
+      );
+    });
+  });
+
+  describe('renameTemplateTranslationForm()', () => {
+    beforeEach(() => {
+      store.state.WhatsApp.templateTranslationForms = {
+        form_1: {
+          name: 'John',
+        },
+      };
+    });
+
+    it('should remove current form', async () => {
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.objectContaining({ form_1: { name: 'John' } }),
+      );
+      await store.dispatch('WhatsApp/renameTemplateTranslationForm', {
+        currentName: 'form_1',
+        newName: 'new_form',
+      });
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.not.objectContaining({ form_1: { name: 'John' } }),
+      );
+    });
+
+    it('should have a new one with the same data', async () => {
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.objectContaining({ form_1: { name: 'John' } }),
+      );
+      await store.dispatch('WhatsApp/renameTemplateTranslationForm', {
+        currentName: 'form_1',
+        newName: 'new_form',
+      });
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual(
+        expect.objectContaining({ new_form: { name: 'John' } }),
+      );
+    });
+  });
+
+  describe('updateTemplateTranslationForm()', () => {
+    it('should update specific translation form field with a new basic value', async () => {
+      store.state.WhatsApp.templateTranslationForms = {
+        form_1: {
+          name: 'John',
+        },
+      };
+
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({ name: 'John' }),
+      );
+      await store.dispatch('WhatsApp/updateTemplateTranslationForm', {
+        formName: 'form_1',
+        fieldName: 'name',
+        fieldValue: 'Mary',
+      });
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({ name: 'Mary' }),
+      );
+    });
+
+    it('should update specific translation form field with a new array value', async () => {
+      store.state.WhatsApp.templateTranslationForms = {
+        form_1: {
+          pets: ['dog'],
+        },
+      };
+
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({
+          pets: ['dog'],
+        }),
+      );
+      await store.dispatch('WhatsApp/updateTemplateTranslationForm', {
+        formName: 'form_1',
+        fieldName: 'pets',
+        fieldValue: ['dog', 'cat'],
+      });
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({
+          pets: ['dog', 'cat'],
+        }),
+      );
+    });
+
+    it('should update specific translation form field with a new object value', async () => {
+      store.state.WhatsApp.templateTranslationForms = {
+        form_1: {
+          pets: { dog: true },
+        },
+      };
+
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({
+          pets: { dog: true },
+        }),
+      );
+      await store.dispatch('WhatsApp/updateTemplateTranslationForm', {
+        formName: 'form_1',
+        fieldName: 'pets',
+        fieldValue: { dog: true, cat: true },
+      });
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({
+          pets: { dog: true, cat: true },
+        }),
+      );
+    });
+
+    it('should update specific translation form field with a new value with preventRerender', async () => {
+      store.state.WhatsApp.templateTranslationForms = {
+        form_1: {
+          name: 'John',
+        },
+      };
+
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({ name: 'John' }),
+      );
+      await store.dispatch('WhatsApp/updateTemplateTranslationForm', {
+        formName: 'form_1',
+        fieldName: 'name',
+        fieldValue: 'Mary',
+        preventRerender: true,
+      });
+      expect(store.state.WhatsApp.templateTranslationForms.form_1).toEqual(
+        expect.objectContaining({ name: 'Mary' }),
+      );
+    });
+  });
+
+  describe('setTemplateTranslationSelectedForm()', () => {
+    it('should set current selected form', async () => {
+      expect(store.state.WhatsApp.templateTranslationSelectedForm).not.toEqual('form_1');
+      await store.dispatch('WhatsApp/setTemplateTranslationSelectedForm', { formName: 'form_1' });
+      expect(store.state.WhatsApp.templateTranslationSelectedForm).toEqual('form_1');
+    });
+  });
+
+  describe('clearAllTemplateFormData()', () => {
+    it('should set all template form data as an empy object', async () => {
+      expect(store.state.WhatsApp.templateForm).not.toEqual({});
+      expect(store.state.WhatsApp.templateTranslationForms).not.toEqual({});
+      expect(store.state.WhatsApp.templateTranslationSelectedForm).not.toEqual(null);
+      await store.dispatch('WhatsApp/clearAllTemplateFormData');
+      expect(store.state.WhatsApp.templateForm).toEqual({});
+      expect(store.state.WhatsApp.templateTranslationForms).toEqual({});
+      expect(store.state.WhatsApp.templateTranslationSelectedForm).toEqual(null);
+    });
+  });
+
+  describe('fetchTemplateData()', () => {
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      templateUuid: '456',
+    };
+
+    const mockedResult = { template: {} };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.fetchTemplateData.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call fetchTemplateData from API', async () => {
+      expect(WhatsAppApi.fetchTemplateData).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/fetchTemplateData', data);
+      expect(WhatsAppApi.fetchTemplateData).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.fetchTemplateData).toHaveBeenCalledWith(data.appUuid, data.templateUuid);
+    });
+
+    it('should set whatsAppTemplate as result data', async () => {
+      store.state.WhatsApp.whatsAppTemplate = {};
+      expect(store.state.WhatsApp.whatsAppTemplate).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/fetchTemplateData', data);
+      expect(store.state.WhatsApp.whatsAppTemplate).toEqual(mockedResult);
+    });
+
+    it('should set loadingFetchWhatsAppTemplate to false', async () => {
+      store.state.WhatsApp.loadingFetchWhatsAppTemplate = true;
+      expect(store.state.WhatsApp.loadingFetchWhatsAppTemplate).toBe(true);
+      await store.dispatch('WhatsApp/fetchTemplateData', data);
+      expect(store.state.WhatsApp.loadingFetchWhatsAppTemplate).toBe(false);
+    });
+
+    it('should set errorFetchWhatsAppTemplate as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.fetchTemplateData.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorFetchWhatsAppTemplate = {};
+      expect(store.state.WhatsApp.errorFetchWhatsAppTemplate).not.toEqual(error);
+      await store.dispatch('WhatsApp/fetchTemplateData', data);
+      expect(store.state.WhatsApp.errorFetchWhatsAppTemplate).toEqual(error);
+    });
+  });
+
+  describe('fetchSelectLanguages()', () => {
+    const data = {
+      appUuid: '123',
+    };
+
+    const mockedResult = { en_US: 'English (US)', pt_BR: 'Portuguese (BR)' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.fetchSelectLanguages.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call fetchSelectLanguages from API', async () => {
+      expect(WhatsAppApi.fetchSelectLanguages).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/fetchSelectLanguages', data);
+      expect(WhatsAppApi.fetchSelectLanguages).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.fetchSelectLanguages).toHaveBeenCalledWith(data.appUuid);
+    });
+
+    it('should set formatted whatsAppTemplateSelectLanguages as result data', async () => {
+      store.state.WhatsApp.whatsAppTemplateSelectLanguages = [];
+      const expectedResult = [
+        { value: 'en_US', text: 'English (US)' },
+        { value: 'pt_BR', text: 'Portuguese (BR)' },
+      ];
+      expect(store.state.WhatsApp.whatsAppTemplateSelectLanguages).not.toEqual(expectedResult);
+      await store.dispatch('WhatsApp/fetchSelectLanguages', data);
+      expect(store.state.WhatsApp.whatsAppTemplateSelectLanguages).toEqual(expectedResult);
+    });
+
+    it('should set loadingFetchWhatsAppTemplateSelectLanguages to false', async () => {
+      store.state.WhatsApp.loadingFetchWhatsAppTemplateSelectLanguages = true;
+      expect(store.state.WhatsApp.loadingFetchWhatsAppTemplateSelectLanguages).toBe(true);
+      await store.dispatch('WhatsApp/fetchSelectLanguages', data);
+      expect(store.state.WhatsApp.loadingFetchWhatsAppTemplateSelectLanguages).toBe(false);
+    });
+
+    it('should set errorFetchWhatsAppTemplateSelectLanguages as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.fetchSelectLanguages.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorFetchWhatsAppTemplateSelectLanguages = {};
+      expect(store.state.WhatsApp.errorFetchWhatsAppTemplateSelectLanguages).not.toEqual(error);
+      await store.dispatch('WhatsApp/fetchSelectLanguages', data);
+      expect(store.state.WhatsApp.errorFetchWhatsAppTemplateSelectLanguages).toEqual(error);
+    });
+  });
+
+  describe('createTemplate()', () => {
+    const data = {
+      appUuid: '123',
+      payload: {},
+    };
+
+    const mockedResult = {};
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.createTemplate.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call createTemplate from API', async () => {
+      expect(WhatsAppApi.createTemplate).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/createTemplate', data);
+      expect(WhatsAppApi.createTemplate).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.createTemplate).toHaveBeenCalledWith(data.appUuid, data.payload);
+    });
+
+    it('should set createdTemplateData as result data', async () => {
+      store.state.WhatsApp.createdTemplateData = null;
+      expect(store.state.WhatsApp.createdTemplateData).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/createTemplate', data);
+      expect(store.state.WhatsApp.createdTemplateData).toEqual(mockedResult);
+    });
+
+    it('should set loadingCreateTemplate to false', async () => {
+      store.state.WhatsApp.loadingCreateTemplate = true;
+      expect(store.state.WhatsApp.loadingCreateTemplate).toBe(true);
+      await store.dispatch('WhatsApp/createTemplate', data);
+      expect(store.state.WhatsApp.loadingCreateTemplate).toBe(false);
+    });
+
+    it('should set errorCreateTemplate as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.createTemplate.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorCreateTemplate = {};
+      expect(store.state.WhatsApp.errorCreateTemplate).not.toEqual(error);
+      await store.dispatch('WhatsApp/createTemplate', data);
+      expect(store.state.WhatsApp.errorCreateTemplate).toEqual(error);
+    });
+  });
+
+  describe('createTemplateTranslation()', () => {
+    const data = {
+      appUuid: '123',
+      templateUuid: '456',
+      payload: {},
+    };
+
+    const mockedResult = {};
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.createTemplateTranslation.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call createTemplateTranslation from API', async () => {
+      expect(WhatsAppApi.createTemplateTranslation).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/createTemplateTranslation', data);
+      expect(WhatsAppApi.createTemplateTranslation).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.createTemplateTranslation).toHaveBeenCalledWith(
+        data.appUuid,
+        data.templateUuid,
+        data.payload,
+      );
+    });
+
+    it('should set createdTemplateTranslationData as result data', async () => {
+      store.state.WhatsApp.createdTemplateTranslationData = null;
+      expect(store.state.WhatsApp.createdTemplateTranslationData).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/createTemplateTranslation', data);
+      expect(store.state.WhatsApp.createdTemplateTranslationData).toEqual(mockedResult);
+    });
+
+    it('should set loadingCreateTemplateTranslation to false', async () => {
+      store.state.WhatsApp.loadingCreateTemplateTranslation = true;
+      expect(store.state.WhatsApp.loadingCreateTemplateTranslation).toBe(true);
+      await store.dispatch('WhatsApp/createTemplateTranslation', data);
+      expect(store.state.WhatsApp.loadingCreateTemplateTranslation).toBe(false);
+    });
+
+    it('should set errorCreateTemplateTranslation as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.createTemplateTranslation.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorCreateTemplateTranslation = {};
+      expect(store.state.WhatsApp.errorCreateTemplateTranslation).not.toEqual(error);
+      await store.dispatch('WhatsApp/createTemplateTranslation', data);
+      expect(store.state.WhatsApp.errorCreateTemplateTranslation).toEqual(error);
+    });
+  });
+
+  describe('deleteTemplateMessage()', () => {
+    const data = {
+      appUuid: '123',
+      templateUuid: '456',
+    };
+
+    const mockedResult = {};
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.deleteTemplateMessage.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call deleteTemplateMessage from API', async () => {
+      expect(WhatsAppApi.deleteTemplateMessage).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/deleteTemplateMessage', data);
+      expect(WhatsAppApi.deleteTemplateMessage).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.deleteTemplateMessage).toHaveBeenCalledWith(
+        data.appUuid,
+        data.templateUuid,
+      );
+    });
+
+    it('should set deletedTemplateMessageData as result data', async () => {
+      store.state.WhatsApp.deletedTemplateMessageData = null;
+      expect(store.state.WhatsApp.deletedTemplateMessageData).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/deleteTemplateMessage', data);
+      expect(store.state.WhatsApp.deletedTemplateMessageData).toEqual(mockedResult);
+    });
+
+    it('should set loadingDeleteTemplateMessage to false', async () => {
+      store.state.WhatsApp.loadingDeleteTemplateMessage = true;
+      expect(store.state.WhatsApp.loadingDeleteTemplateMessage).toBe(true);
+      await store.dispatch('WhatsApp/deleteTemplateMessage', data);
+      expect(store.state.WhatsApp.loadingDeleteTemplateMessage).toBe(false);
+    });
+
+    it('should set errorDeleteTemplateMessage as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.deleteTemplateMessage.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorDeleteTemplateMessage = {};
+      expect(store.state.WhatsApp.errorDeleteTemplateMessage).not.toEqual(error);
+      await store.dispatch('WhatsApp/deleteTemplateMessage', data);
+      expect(store.state.WhatsApp.errorDeleteTemplateMessage).toEqual(error);
     });
   });
 });
