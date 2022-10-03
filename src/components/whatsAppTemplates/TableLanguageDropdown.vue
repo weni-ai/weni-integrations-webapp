@@ -1,5 +1,5 @@
 <template>
-  <unnnic-dropdown>
+  <unnnic-dropdown :position="position">
     <div slot="trigger" class="template-language-dropdown">
       <unnnic-icon-svg
         class="template-language-dropdown__icon"
@@ -32,11 +32,18 @@
 
 <script>
   export default {
-    name: 'LanguageDropdown',
+    name: 'TableLanguageDropdown',
     props: {
       template: {
         type: Object,
         required: true,
+      },
+      position: {
+        type: String,
+        default: 'bottom-left',
+        validator(value) {
+          return ['bottom-left', 'bottom-right', 'top-left', 'top-right'].indexOf(value) !== -1;
+        },
       },
     },
     data() {
@@ -46,20 +53,24 @@
             icon: 'check-circle-1-1-1',
             color: 'feedback-green',
           },
+          PENDING: {
+            icon: 'alert-circle-1-1',
+            color: 'feedback-yellow',
+          },
         },
       };
     },
     computed: {
       templateDefaultLanguage() {
-        return this.template.translations[0].language;
+        return this.template.translations[0]?.language || '-';
       },
     },
     methods: {
       getTranslationStatusIcon(translation) {
-        return this.translationStatusMap[translation.status]?.icon || 'delete-1-1';
+        return this.translationStatusMap[translation?.status]?.icon || 'delete-2-1';
       },
       getTranslationStatusColor(translation) {
-        return this.translationStatusMap[translation.status]?.color || 'feedback-red';
+        return this.translationStatusMap[translation?.status]?.color || 'feedback-red';
       },
     },
   };
@@ -74,7 +85,7 @@
     border-radius: $unnnic-border-radius-pill;
     padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-xs;
     align-items: center;
-    width: 100px;
+    width: 80px;
     text-transform: uppercase;
     cursor: pointer;
 
