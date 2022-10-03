@@ -37,4 +37,5 @@ module.exports = {
     '.*\\.(vue)$': 'vue-jest',
   },
   moduleNameMapper: { '\\.(css|less)$': '<rootDir>/tests/__mocks__/styleMock.js' },
+  timers: 'fake',
 };
