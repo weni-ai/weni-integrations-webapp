@@ -205,6 +205,13 @@ describe('WhatsAppConfig.vue', () => {
         path: `/apps/my/${wrapper.vm.currentApp.code}/${wrapper.vm.currentApp.uuid}/templates`,
       });
     });
+
+    it('should call unnnicCallAlert if currentApp is not defined', () => {
+      state.appType.currentApp = null;
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.navigateToTemplates();
+      expect(mockUnnnicCallAlert).toBeCalledTimes(1);
+    });
   });
 
   describe('computed', () => {
