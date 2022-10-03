@@ -1,24 +1,26 @@
 <template>
   <div class="whatsapp-templates-header">
-    <HeaderLoading v-if="loadingCurrentAppType" />
+    <TableHeaderLoading v-if="loadingCurrentAppType" />
     <div v-else class="whatsapp-templates-header__wrapper">
       <div class="whatsapp-templates-header__icon">
         <img :src="currentAppType.icon" />
       </div>
       <span class="whatsapp-templates-header__title">{{ title }}</span>
     </div>
-    <unnnic-button size="small" type="secondary">Novo template</unnnic-button>
+    <unnnic-button size="small" type="secondary" @click="navigateToCreateTemplate">
+      {{ $t('WhatsApp.templates.table.new_template') }}
+    </unnnic-button>
   </div>
 </template>
 
 <script>
   import { mapActions, mapState } from 'vuex';
-  import HeaderLoading from '@/components/WhatsAppTemplates/loadings/HeaderLoading';
+  import TableHeaderLoading from '@/components/whatsAppTemplates/loadings/TableHeaderLoading';
 
   export default {
-    name: 'WhatsAppTemplatesHeader',
+    name: 'TableHeader',
     components: {
-      HeaderLoading,
+      TableHeaderLoading,
     },
     props: {
       title: {
@@ -40,6 +42,10 @@
       fetchData() {
         const { appCode } = this.$route.params;
         this.getAppType({ code: appCode, shouldLoad: true });
+      },
+      navigateToCreateTemplate() {
+        const { appCode, appUuid } = this.$route.params;
+        this.$router.push({ path: `/apps/my/${appCode}/${appUuid}/templates/create` });
       },
     },
   };
