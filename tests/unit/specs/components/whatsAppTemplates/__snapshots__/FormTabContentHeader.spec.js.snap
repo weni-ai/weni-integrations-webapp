@@ -2,9 +2,9 @@
 
 exports[`components/whatsAppTemplates/FormTabContentHeader.vue should be rendered properly 1`] = `
 <div class="form-tab-content-header">
-  <div data-v-bd7edbf6="" class="unnnic-tag-content form-tab-content-header__tag unnnic-tag
+  <div data-v-3e4e81d5="" class="unnnic-tag-content form-tab-content-header__tag unnnic-tag
       unnnic-tag-scheme--neutral-darkest
-      " v-bind="[object Object]" count="0"><span data-v-bd7edbf6="" class="unnnic-tag__label
+      " v-bind="[object Object]" count="0"><span data-v-3e4e81d5="" class="unnnic-tag__label
     
     ">Header</span>
     <!---->
@@ -22,9 +22,9 @@ exports[`components/whatsAppTemplates/FormTabContentHeader.vue should be rendere
     <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
     <!---->
   </div>
-  <div data-v-8559d352="" class="unnnic-form form-tab-content-header__inputs__text-input" maxlength="60">
+  <div data-v-9ef23630="" class="form-tab-content-header__inputs__text-input unnnic-form md" maxlength="60">
     <!---->
-    <div data-v-8d0754d6="" data-v-8559d352="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" maxlength="60" placeholder="Ex.: Type your message..." class="input size-md normal">
+    <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" maxlength="60" placeholder="Ex.: Type your message..." class="input size-md normal">
       <!---->
       <!---->
     </div>

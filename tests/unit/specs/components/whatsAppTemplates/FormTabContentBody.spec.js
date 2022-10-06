@@ -62,7 +62,7 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
     expect(spy).toHaveBeenCalledWith('bold');
   });
 
-  it('should not add variable if disabledInputs is true', async () => {
+  it('should not add variable if body will be greater than 1024', async () => {
     const lengthyText =
       'Nam quis nulla. Integer malesuada. In in enim a arcu imperdiet malesuada. Sed vel lectus. Donec odio urna, tempus molestie, porttitor ut, iaculis quis, sem. Phasellus rhoncus. Aenean id metus id velit ullamcorper pulvinar. Vestibulum fermentum tortor id mi. Pellentesque ipsum. Nulla non arcu lacinia neque faucibus fringilla. Nulla non lectus sed nisl molestie malesuada. Proin in tellus sit amet nibh dignissim sagittis. Vivamus luctus egestas leo. Maecenas sollicitudin. Nullam rhoncus aliquam metus. Etiam egestas wisi a erat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam feugiat, turpis at pulvinar vulputate, erat libero tristique tellus, nec bibendum odio risus sit amet ante. Aliquam erat volutpat. Nunc auctor. Mauris pretium quam et urna. Fusce nibh. Duis risus. Curabitur sagittis hendrerit ante. Aliquam erat volutpat. Vestibulum erat nulla, ullamcorper nec, rutrum non, nonummy ac, erat. Duis condimentum augue id magna semper rutrum. Nullam justo enim, consectetuer nec, ullamcorper ac, v';
     const { wrapper } = mountComponent({
@@ -70,28 +70,22 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
     });
 
     const inputEditor = wrapper.findComponent(InputEditor);
-    const input = wrapper.getComponent({ ref: 'bodyText' });
-    expect(input.text()).toEqual(lengthyText);
 
     inputEditor.vm.$emit('add-variable');
     await wrapper.vm.$nextTick();
 
-    expect(input.text()).toEqual(lengthyText);
     const event = wrapper.emitted('input-change');
     expect(event).toBeFalsy();
   });
 
-  it('should not add variable if body will be greater than 1024', async () => {
+  it('should not add variable if disabledInputs is true', async () => {
     const { wrapper } = mountComponent({ body: 'text', disableInputs: true });
 
     const inputEditor = wrapper.findComponent(InputEditor);
-    const input = wrapper.getComponent({ ref: 'bodyText' });
-    expect(input.text()).toEqual('text');
 
     inputEditor.vm.$emit('add-variable');
     await wrapper.vm.$nextTick();
 
-    expect(input.text()).toEqual('text');
     const event = wrapper.emitted('input-change');
     expect(event).toBeFalsy();
   });
@@ -99,14 +93,9 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
   it('should add variable on inputEditor event', async () => {
     const { wrapper } = mountComponent({ body: 'Text {{1}} with {{2}} variables' });
     const inputEditor = wrapper.findComponent(InputEditor);
-    const input = wrapper.getComponent({ ref: 'bodyText' });
-
-    expect(input.text()).toEqual('Text {{1}} with {{2}} variables');
 
     inputEditor.vm.$emit('add-variable');
     await wrapper.vm.$nextTick();
-
-    expect(input.text()).toEqual('Text {{1}} with {{2}} variables {{3}}');
 
     const event = wrapper.emitted('input-change');
     expect(event).toBeTruthy();
@@ -122,14 +111,9 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
   it('should add variable on inputEditor event even without body', async () => {
     const { wrapper } = mountComponent({ body: undefined });
     const inputEditor = wrapper.findComponent(InputEditor);
-    const input = wrapper.getComponent({ ref: 'bodyText' });
-
-    expect(input.text()).toEqual('');
 
     inputEditor.vm.$emit('add-variable');
     await wrapper.vm.$nextTick();
-
-    expect(input.text()).toEqual('{{1}}');
 
     const event = wrapper.emitted('input-change');
     expect(event).toBeTruthy();
@@ -140,5 +124,57 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
         fieldValue: '{{1}}',
       },
     ]);
+  });
+
+  describe('handleNewEmoji()', () => {
+    it('should not emit input-change if disableInputs is true', async () => {
+      const { wrapper } = mountComponent({ body: 'text', disableInputs: true });
+
+      const inputEditor = wrapper.findComponent(InputEditor);
+
+      inputEditor.vm.$emit('emoji-event', { data: '👍' });
+      await wrapper.vm.$nextTick();
+
+      const event = wrapper.emitted('input-change');
+      expect(event).toBeFalsy();
+    });
+
+    it('should  emit input-change with new emoji appended', async () => {
+      const { wrapper } = mountComponent({ body: 'text' });
+
+      const inputEditor = wrapper.findComponent(InputEditor);
+
+      inputEditor.vm.$emit('emoji-event', { data: '👍' });
+      await wrapper.vm.$nextTick();
+
+      const event = wrapper.emitted('input-change');
+      expect(event).toBeTruthy();
+      expect(event.length).toBe(1);
+      expect(event[0]).toEqual([
+        {
+          fieldName: 'body',
+          fieldValue: 'text👍',
+        },
+      ]);
+    });
+
+    it('should  emit input-change with new emoji appended even if body is undefined', async () => {
+      const { wrapper } = mountComponent({ body: undefined });
+
+      const inputEditor = wrapper.findComponent(InputEditor);
+
+      inputEditor.vm.$emit('emoji-event', { data: '👍' });
+      await wrapper.vm.$nextTick();
+
+      const event = wrapper.emitted('input-change');
+      expect(event).toBeTruthy();
+      expect(event.length).toBe(1);
+      expect(event[0]).toEqual([
+        {
+          fieldName: 'body',
+          fieldValue: '👍',
+        },
+      ]);
+    });
   });
 });
