@@ -1,11 +1,18 @@
+import { unnnicCallAlert as mockUnnnicCallAlert } from '@weni/unnnic-system';
+
+jest.mock('@weni/unnnic-system', () => ({
+  ...jest.requireActual('@weni/unnnic-system'),
+  unnnicCallAlert: jest.fn(),
+}));
+
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Table from '@/components/WhatsAppTemplates/Table.vue';
+import Table from '@/components/whatsAppTemplates/Table.vue';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('components/WhatsAppTemplates/Table.vue', () => {
+describe('components/whatsAppTemplates/Table.vue', () => {
   let wrapper;
   let store;
   let actions;
@@ -19,7 +26,7 @@ describe('components/WhatsAppTemplates/Table.vue', () => {
     state = {
       whatsAppTemplates: {
         count: 1,
-        templates: [
+        results: [
           {
             uuid: '123',
             name: 'template name',
@@ -80,7 +87,7 @@ describe('components/WhatsAppTemplates/Table.vue', () => {
 
   describe('computed', () => {
     describe('totalCount', () => {
-      it('should return pageLimit if there are no templates provided', () => {
+      it('should return pageSize if there are no templates provided', () => {
         store.state.WhatsApp.whatsAppTemplates.count = 0;
         expect(wrapper.vm.totalCount).toBe(12);
       });
@@ -120,17 +127,26 @@ describe('components/WhatsAppTemplates/Table.vue', () => {
         expect(wrapper.vm.currentPageCount).toBe(2);
       });
 
-      it('should return the pageLimit as count if there are enough templates to show', () => {
+      it('should return the pageSize as count if there are enough templates to show', () => {
         store.state.WhatsApp.whatsAppTemplates.count = 13;
         expect(wrapper.vm.currentPageCount).toBe(12);
       });
     });
   });
 
+  describe('fetchData()', () => {
+    it('should call unnnicCallAlert on getWhatsAppTemplates error', async () => {
+      store.state.WhatsApp.errorWhatsAppTemplates = true;
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.fetchData({ page: 1 });
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+  });
+
   describe('getTranslationsLanguage()', () => {
     it('should return an array of template translations language', () => {
       const translations = wrapper.vm.getTranslationsLanguages(
-        wrapper.vm.whatsAppTemplates.templates[0].translations,
+        wrapper.vm.whatsAppTemplates.results[0].translations,
       );
       expect(translations).toEqual(['en', 'es']);
     });
@@ -140,6 +156,48 @@ describe('components/WhatsAppTemplates/Table.vue', () => {
     it('should return formatted date', () => {
       const date = wrapper.vm.formatDate('2022-01-01T00:00:00');
       expect(date).toBe('jan/2022');
+    });
+  });
+
+  describe('dropdownPosition()', () => {
+    it('should return top-left if item index is greater than 7', () => {
+      store.state.WhatsApp.whatsAppTemplates.results = [...Array(9)].map((_, index) => {
+        return {
+          uuid: index + 1,
+          name: 'template name',
+          created_on: '2020-01-01',
+          category: 'MARKETING',
+          template_type: 'TEXT',
+          namespace: '456',
+          translations: [
+            { language: 'en', status: 'APPROVED' },
+            { language: 'es', status: 'REJECTED' },
+          ],
+        };
+      });
+
+      const dropdownPosition = wrapper.vm.dropdownPosition({ uuid: 9 });
+      expect(dropdownPosition).toBe('top-left');
+    });
+
+    it('should return bottom-left if item index is lesser than 7', () => {
+      store.state.WhatsApp.whatsAppTemplates.results = [...Array(9)].map((_, index) => {
+        return {
+          uuid: index + 1,
+          name: 'template name',
+          created_on: '2020-01-01',
+          category: 'MARKETING',
+          template_type: 'TEXT',
+          namespace: '456',
+          translations: [
+            { language: 'en', status: 'APPROVED' },
+            { language: 'es', status: 'REJECTED' },
+          ],
+        };
+      });
+
+      const dropdownPosition = wrapper.vm.dropdownPosition({ uuid: 3 });
+      expect(dropdownPosition).toBe('bottom-left');
     });
   });
 
@@ -155,7 +213,7 @@ describe('components/WhatsAppTemplates/Table.vue', () => {
     it('should set firstLoad to false on whatsAppTemplates change', async () => {
       expect(wrapper.vm.firstLoad).toBe(true);
       store.state.WhatsApp.whatsAppTemplates = {
-        templates: [
+        results: [
           {
             uuid: '789',
             name: 'new template name',

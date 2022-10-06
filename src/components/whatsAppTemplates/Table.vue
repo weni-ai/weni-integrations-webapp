@@ -1,10 +1,9 @@
 <template>
   <div class="whatsapp-templates-table">
-    <TableLoading v-if="loadingWhatsAppTemplates" :headers="tableHeaders" />
     <unnnic-table
-      v-else
+      v-if="!loadingWhatsAppTemplates && !errorWhatsAppTemplates"
       class="whatsapp-templates-table__table"
-      :items="whatsAppTemplates.templates"
+      :items="whatsAppTemplates.results"
     >
       <template v-slot:header>
         <unnnic-table-row :headers="tableHeaders" />
@@ -18,9 +17,9 @@
             </div>
           </template>
 
-          <template v-slot:createdOn>
-            <div :title="item.createdOn" class="break-text whatsapp-templates-table__item__month">
-              {{ formatDate(item.createdOn) }}
+          <template v-slot:created_on>
+            <div :title="item.created_on" class="break-text whatsapp-templates-table__item__month">
+              {{ formatDate(item.created_on) }}
             </div>
           </template>
 
@@ -30,24 +29,29 @@
             </div>
           </template>
 
-          <template v-slot:preview>
-            <div :title="item.preview" class="break-text">
-              {{ item.preview }}
+          <template v-slot:text_preview>
+            <div :title="item.text_preview" class="break-text">
+              {{ item.text_preview }}
             </div>
           </template>
 
           <template v-slot:language>
             <div :title="item.language">
-              <LanguageDropdown :template="item" />
+              <TableLanguageDropdown :template="item" :position="dropdownPosition(item)" />
             </div>
           </template>
 
           <template v-slot:actions>
-            <TableActionButton />
+            <TableActionButton
+              :templateUuid="item.uuid"
+              :position="dropdownPosition(item)"
+              @refresh-table="() => fetchData({ page })"
+            />
           </template>
         </unnnic-table-row>
       </template>
     </unnnic-table>
+    <TableLoading v-else :headers="tableHeaders" />
 
     <div class="whatsapp-templates-table__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
@@ -57,52 +61,53 @@
 </template>
 
 <script>
+  import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
-  import TableLoading from '@/components/WhatsAppTemplates/loadings/TableLoading.vue';
-  import TableActionButton from '@/components/WhatsAppTemplates/TableActionButton';
-  import LanguageDropdown from '@/components/WhatsAppTemplates/LanguageDropdown';
+  import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
+  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
+  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
 
   export default {
-    name: 'WhatsAppTemplatesTable',
+    name: 'Table',
     components: {
       TableLoading,
       TableActionButton,
-      LanguageDropdown,
+      TableLanguageDropdown,
     },
     data() {
       return {
         firstLoad: true,
         page: 1,
-        pageLimit: 12,
+        pageSize: 12,
         tableHeaders: [
           {
             id: 'name',
-            text: 'Nome',
+            text: this.$t('WhatsApp.templates.table.headers.name'),
             flex: 1,
           },
           {
-            id: 'createdOn',
-            text: 'Mês',
+            id: 'created_on',
+            text: this.$t('WhatsApp.templates.table.headers.month'),
             flex: 0.5,
           },
           {
             id: 'category',
-            text: 'Categoria',
+            text: this.$t('WhatsApp.templates.table.headers.category'),
             flex: 1,
           },
           {
-            id: 'preview',
-            text: 'Pré Visualização',
+            id: 'text_preview',
+            text: this.$t('WhatsApp.templates.table.headers.preview'),
             flex: 2,
           },
           {
             id: 'language',
-            text: 'Idioma',
+            text: this.$t('WhatsApp.templates.table.headers.language'),
             flex: 1,
           },
           {
             id: 'actions',
-            text: 'Ações',
+            text: this.$t('WhatsApp.templates.table.headers.actions'),
             width: '40px',
           },
         ],
@@ -118,32 +123,46 @@
         'whatsAppTemplates',
       ]),
       totalCount() {
-        return this.whatsAppTemplates?.count || this.pageLimit;
+        return this.whatsAppTemplates?.count || this.pageSize;
       },
       pageCount() {
         if (this.whatsAppTemplates?.count) {
-          return Math.ceil(this.whatsAppTemplates.count / this.pageLimit);
+          return Math.ceil(this.whatsAppTemplates.count / this.pageSize);
         } else {
           return 1;
         }
       },
       currentPageStart() {
-        return (this.page - 1) * this.pageLimit || 1;
+        return (this.page - 1) * this.pageSize || 1;
       },
       currentPageCount() {
-        const value = this.pageLimit * this.page;
+        const value = this.pageSize * this.page;
         return value > this.whatsAppTemplates?.count ? this.whatsAppTemplates?.count || 0 : value;
       },
     },
     methods: {
-      ...mapActions({ getWhatsAppTemplates: 'WhatsApp/getWhatsAppTemplates' }),
-      fetchData({ page }) {
-        const { appCode, appUuid } = this.$route.params;
+      ...mapActions('WhatsApp', ['getWhatsAppTemplates']),
+      async fetchData({ page }) {
+        const { appUuid } = this.$route.params;
         const params = {
           page: page,
-          limit: this.pageLimit,
+          page_size: this.pageSize,
         };
-        this.getWhatsAppTemplates({ code: appCode, appUuid, params });
+        await this.getWhatsAppTemplates({ appUuid, params });
+
+        if (this.errorWhatsAppTemplates) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.templates.error.fetch_templates'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 8,
+          });
+        }
       },
       getTranslationsLanguages(translations) {
         return translations.map((translation) => translation.language);
@@ -159,6 +178,12 @@
           .replace(' ', '/')
           .replace(' ', '')
           .replaceAll('.', '');
+      },
+      dropdownPosition(item) {
+        const templates = this.whatsAppTemplates.results;
+        return templates.findIndex((template) => template.uuid === item.uuid) > 7
+          ? 'top-left'
+          : 'bottom-left';
       },
     },
     watch: {
@@ -179,8 +204,11 @@
   .whatsapp-templates-table {
     display: flex;
     flex-direction: column;
+    // height: calc(100% - 3rem);
 
     &__table {
+      height: 100%;
+
       ::v-deep .scroll {
         @media (max-height: 800px) {
           max-height: 60vh;
