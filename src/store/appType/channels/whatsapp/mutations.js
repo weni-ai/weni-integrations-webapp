@@ -103,9 +103,6 @@ export default {
 
     state.templateTranslationForms = { ...updatedForms };
   },
-  UPDATE_TEMPLATE_TRANSLATION_FORM_STATIC(state, { formName, fieldName, fieldValue }) {
-    state.templateTranslationForms[formName][fieldName] = fieldValue;
-  },
   SET_TEMPLATE_TRANSLATION_SELECTED_FORM(state, { formName }) {
     state.templateTranslationSelectedForm = formName;
   },
