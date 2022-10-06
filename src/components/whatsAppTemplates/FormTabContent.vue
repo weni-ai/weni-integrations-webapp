@@ -170,12 +170,11 @@
       handleTemplateFormInput({ fieldName, fieldValue }) {
         this.updateTemplateForm({ fieldName, fieldValue });
       },
-      handleGenericInput({ fieldName, fieldValue, preventRerender }) {
+      handleGenericInput({ fieldName, fieldValue }) {
         this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName,
           fieldValue,
-          preventRerender,
         });
       },
       handleLanguageSelection(value) {
@@ -221,13 +220,10 @@
         });
         this.$emit('language-change', selectedLanguage.text);
         this.languageKey += 1;
-        this.updateBody();
       },
       closeEdit() {
-        this.$router.go(-1);
-      },
-      updateBody() {
-        this.$refs.contentBody.forceUpdateBody();
+        const tablePath = this.$router.currentRoute.path.split('templates')[0] + 'templates';
+        this.$router.push(tablePath);
       },
     },
   };

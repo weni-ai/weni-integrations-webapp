@@ -14,31 +14,33 @@ exports[`components/whatsAppTemplates/TranslationSampleForm.vue should be render
               <div><span>
         You have the option to provide specific content examples for your template.
       </span>
-                <div class="sample-form__preview__title">
-                  Preview
-                </div>
-                <div class="template-preview sample-form__preview">
-                  <!---->
-                  <div class="template-preview__content">
+                <div class="sample-form__container">
+                  <div class="sample-form__preview__title">
+                    Preview
+                  </div>
+                  <div class="template-preview sample-form__preview">
                     <!---->
+                    <div class="template-preview__content">
+                      <!---->
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
                     <!---->
+                  </div>
+                  <div class="sample-form__content">
                     <!---->
                     <!---->
                   </div>
-                  <!---->
+                  <div class="sample-form__button"><button data-v-0c05556c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
+                      <!---->
+                      <!---->
+                      <!----><span data-v-0c05556c="" class="unnnic-button__label">
+            Send
+            </span>
+                      <!---->
+                    </button></div>
                 </div>
-                <div class="sample-form__content">
-                  <!---->
-                  <!---->
-                </div>
-                <div class="sample-form__button"><button data-v-0c05556c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
-                    <!---->
-                    <!---->
-                    <!----><span data-v-0c05556c="" class="unnnic-button__label">
-          Send
-          </span>
-                    <!---->
-                  </button></div>
                 <div class="sample-form__info">Make sure not to include any actual user or customer information, and provide only sample content in your examples.</div>
               </div>
             </div>

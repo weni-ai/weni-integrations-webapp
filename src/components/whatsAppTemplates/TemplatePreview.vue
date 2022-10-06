@@ -26,7 +26,7 @@
       </div>
       <div v-if="hasBody" class="template-preview__content__body">
         <span v-if="bodyOverwrite"> {{ bodyOverwrite }}</span>
-        <span v-else>{{ currentForm.body }}</span>
+        <span v-else v-html="parsedBody" />
       </div>
       <div v-if="hasFooter" class="template-preview__content__footer">
         <span>{{ currentForm.footer }}</span>
@@ -139,6 +139,18 @@
         };
 
         return iconMap[this.currentForm.header.mediaType] || iconMap['DOCUMENT'];
+      },
+      parsedBody() {
+        // bold
+        let result = this.currentForm.body.replaceAll(/\*(.+?)\*/gs, '<b>$1</b>');
+
+        //italic
+        result = result.replaceAll(/_(.+?)_/gs, '<i>$1</i>');
+
+        // strike through
+        result = result.replaceAll(/~(.+?)~/gs, '<s>$1</s>');
+
+        return result;
       },
     },
     methods: {

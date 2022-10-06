@@ -146,11 +146,6 @@
         'createTemplate',
         'createTemplateTranslation',
       ]),
-      forceUpdateContent() {
-        if (this.$refs.formContent) {
-          this.$refs.formContent.updateBody();
-        }
-      },
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -237,7 +232,6 @@
       handleTranslationSelection(tab) {
         this.currentTabIndex = this.tabs.indexOf(tab);
         this.setTemplateTranslationSelectedForm({ formName: tab });
-        this.forceUpdateContent();
       },
       addTranslation() {
         if (this.createdTabs.includes(this.$t('WhatsApp.templates.new_language'))) {
@@ -249,7 +243,6 @@
         this.setTemplateTranslationSelectedForm({
           formName: this.$t('WhatsApp.templates.new_language'),
         });
-        this.forceUpdateContent();
       },
       handleLanguageChange(event) {
         this.renameTemplateTranslationForm({

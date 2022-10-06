@@ -1,5 +1,5 @@
 <template>
-  <div class="form-tab-content-body" @click="$refs.bodyText.focus()">
+  <div class="form-tab-content-body">
     <unnnic-tag
       class="form-tab-content-body__tag"
       type="default"
@@ -7,21 +7,21 @@
       scheme="neutral-darkest"
     />
 
-    <div
+    <unnnic-text-area
       ref="bodyText"
       :key="bodyKey"
       class="form-tab-content-body__input"
-      :contenteditable="!disableInputs"
-      v-html="bodyContent"
-      @keypress="checkContentLength"
-      @paste="checkPasteLength"
+      :disabled="disableInputs"
+      :value="bodyContent"
       @input="onInput"
+      :maxLength="1024"
     />
     <InputEditor
       class="form-tab-content-body__input__actions"
-      :formatter="false"
+      :formatter="true"
       @format-event="handleFormatEvent"
       @add-variable="addVariable"
+      @emoji-event="handleNewEmoji"
     />
   </div>
 </template>
@@ -48,9 +48,6 @@
         bodyKey: 0,
       };
     },
-    created() {
-      this.initialContent = this.templateTranslationCurrentForm?.body || '';
-    },
     computed: {
       ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
       bodyContent() {
@@ -59,14 +56,26 @@
     },
     methods: {
       /* istanbul ignore next */
-      handleFormatEvent(event, sValue = null) {
+      handleFormatEvent(eventCharacter) {
         if (this.disableInputs) {
           return;
         }
 
-        this.$refs.bodyText.focus();
-        document.execCommand(event, false, sValue);
-        this.$refs.bodyText.focus();
+        const textArea = this.$refs.bodyText.$el.children[0];
+        const before = textArea.value.substring(0, textArea.selectionStart);
+        const selectionContent = textArea.value.substring(
+          textArea.selectionStart,
+          textArea.selectionEnd,
+        );
+        const after = textArea.value.substring(textArea.selectionEnd);
+        const result = `${before}${eventCharacter}${selectionContent}${eventCharacter}${after}`;
+
+        this.$emit('input-change', {
+          fieldName: 'body',
+          fieldValue: result,
+        });
+
+        textArea.focus();
       },
       addVariable() {
         if (this.disableInputs) {
@@ -85,47 +94,34 @@
           return;
         }
 
-        this.$refs.bodyText.textContent = fieldValue;
-
         this.$emit('input-change', {
           fieldName: 'body',
           fieldValue,
         });
+
+        this.$refs.bodyText.$el.children[0].focus();
       },
       /* istanbul ignore next */
       onInput(event) {
         if (this.disableInputs) {
           return;
         }
+
         this.$emit('input-change', {
           fieldName: 'body',
-          fieldValue: event.srcElement.textContent,
-          preventRerender: true,
+          fieldValue: event,
         });
-        this.$emit('manual-preview-update');
       },
-      /* istanbul ignore next */
-      checkContentLength(event) {
-        if (event.srcElement.textContent.length < 1024) {
-          return true;
-        } else {
-          event.preventDefault();
+      handleNewEmoji(emoji) {
+        if (this.disableInputs) {
+          return;
         }
-      },
-      /* istanbul ignore next */
-      checkPasteLength(event) {
-        const pasteData = event.clipboardData.getData('text/plain');
-        const bodyLength = this.templateTranslationCurrentForm.body?.length || 0;
-        if (bodyLength + pasteData.length >= 1024) {
-          event.preventDefault();
-          return false;
-        } else {
-          event.preventDefault();
-          document.execCommand('insertText', false, pasteData);
-        }
-      },
-      forceUpdateBody() {
-        this.bodyKey += 1;
+        const result = (this.templateTranslationCurrentForm.body || '') + emoji.data;
+
+        this.$emit('input-change', {
+          fieldName: 'body',
+          fieldValue: result,
+        });
       },
     },
   };
@@ -142,25 +138,14 @@
     }
 
     &__input {
-      height: 6.5rem;
-      box-sizing: border-box;
-      overflow: auto;
-      background-color: $unnnic-color-neutral-snow;
-      border-radius: $unnnic-border-radius-sm;
-      padding: $unnnic-spacing-inset-nano;
-      border: $unnnic-border-width-thinner solid $unnnic-color-neutral-clean;
-      outline: none;
-      color: $unnnic-color-neutral-cloudy;
-      font-family: $unnnic-font-family-secondary;
-      font-size: $unnnic-font-size-body-gt;
-      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-      font-weight: $unnnic-font-weight-regular;
-      cursor: text;
-      outline: none;
-      white-space: pre-wrap;
+      ::v-deep textarea {
+        resize: none;
+      }
 
       &__actions {
         margin-left: auto;
+        margin-top: -28px;
+        margin-right: $unnnic-spacing-inline-giant;
       }
     }
   }

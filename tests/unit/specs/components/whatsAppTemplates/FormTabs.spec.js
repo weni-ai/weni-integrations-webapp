@@ -83,6 +83,7 @@ const mountComponent = async ({
       FormTabContentBody,
       FormTabContentFooter: true,
       FormTabContentButtons: true,
+      VEmojiPicker: true,
     },
     mocks: {
       $route: {

@@ -79,6 +79,10 @@ const mountComponent = ({
     mocks: {
       $router: {
         go: jest.fn(),
+        push: jest.fn(),
+        currentRoute: {
+          path: '/apps/my/wpp-cloud/12281962-f570-4252-99f1-d465df8f2270/templates/create',
+        },
       },
     },
     propsData: {
@@ -91,6 +95,7 @@ const mountComponent = ({
       FormTabContentBody,
       FormTabContentFooter: true,
       FormTabContentButtons: true,
+      VEmojiPicker: true,
     },
   });
 
@@ -294,17 +299,19 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
     });
   });
 
-  it('should go back on closeEdit', async () => {
+  it('should go to templates table on closeEdit', async () => {
     const { wrapper } = mountComponent();
     const closeButton = wrapper.find('.form-tab-content__actions__cancel');
 
-    expect(wrapper.vm.$router.go).not.toHaveBeenCalled();
+    expect(wrapper.vm.$router.push).not.toHaveBeenCalled();
 
     await closeButton.trigger('click');
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.vm.$router.go).toHaveBeenCalledTimes(1);
-    expect(wrapper.vm.$router.go).toHaveBeenCalledWith(-1);
+    expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(1);
+    expect(wrapper.vm.$router.push).toHaveBeenCalledWith(
+      '/apps/my/wpp-cloud/12281962-f570-4252-99f1-d465df8f2270/templates',
+    );
   });
 
   describe('formatTemplateName()', () => {

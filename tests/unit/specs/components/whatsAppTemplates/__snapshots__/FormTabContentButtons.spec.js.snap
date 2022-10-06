@@ -2,9 +2,9 @@
 
 exports[`components/whatsAppTemplates/FormTabContentButtons.vue should be rendered properly 1`] = `
 <div class="form-tab-content-buttons">
-  <div data-v-bd7edbf6="" class="unnnic-tag-content form-tab-content-buttons__tag unnnic-tag
+  <div data-v-3e4e81d5="" class="unnnic-tag-content form-tab-content-buttons__tag unnnic-tag
       unnnic-tag-scheme--neutral-darkest
-      " v-bind="[object Object]" count="0"><span data-v-bd7edbf6="" class="unnnic-tag__label
+      " v-bind="[object Object]" count="0"><span data-v-3e4e81d5="" class="unnnic-tag__label
     
     ">Buttons</span>
     <!---->

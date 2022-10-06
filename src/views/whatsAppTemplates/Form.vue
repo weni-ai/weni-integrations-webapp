@@ -70,6 +70,7 @@
       width: 270px;
       flex: 0 0 270px;
       height: 100vh;
+      overflow: auto;
     }
   }
 </style>
