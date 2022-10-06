@@ -77,11 +77,7 @@ export default {
     commit('RENAME_TEMPLATE_TRANSLATION_FORM', { currentName, newName });
     commit('SET_TEMPLATE_TRANSLATION_SELECTED_FORM', { formName: newName });
   },
-  updateTemplateTranslationForm({ commit }, { formName, fieldName, fieldValue, preventRerender }) {
-    if (preventRerender) {
-      commit('UPDATE_TEMPLATE_TRANSLATION_FORM_STATIC', { formName, fieldName, fieldValue });
-      return;
-    }
+  updateTemplateTranslationForm({ commit }, { formName, fieldName, fieldValue }) {
     commit('UPDATE_TEMPLATE_TRANSLATION_FORM', { formName, fieldName, fieldValue });
   },
   setTemplateTranslationSelectedForm({ commit }, { formName }) {
