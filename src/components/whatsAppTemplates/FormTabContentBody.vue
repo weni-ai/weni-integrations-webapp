@@ -7,15 +7,14 @@
       scheme="neutral-darkest"
     />
 
-    <div
+    <unnnic-text-area
       ref="bodyText"
       :key="bodyKey"
       class="form-tab-content-body__input"
-      :contenteditable="!disableInputs"
-      v-html="bodyContent"
-      @keypress="checkContentLength"
-      @paste="checkPasteLength"
+      :disabled="disableInputs"
+      :value="bodyContent"
       @input="onInput"
+      :maxLength="1024"
     />
     <InputEditor
       class="form-tab-content-body__input__actions"
@@ -47,9 +46,6 @@
       return {
         bodyKey: 0,
       };
-    },
-    created() {
-      this.initialContent = this.templateTranslationCurrentForm?.body || '';
     },
     computed: {
       ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
@@ -85,24 +81,23 @@
           return;
         }
 
-        this.$refs.bodyText.textContent = fieldValue;
-
         this.$emit('input-change', {
           fieldName: 'body',
           fieldValue,
         });
+
+        this.$refs.bodyText.$el.children[0].focus();
       },
       /* istanbul ignore next */
       onInput(event) {
         if (this.disableInputs) {
           return;
         }
+
         this.$emit('input-change', {
           fieldName: 'body',
-          fieldValue: event.srcElement.textContent,
-          preventRerender: true,
+          fieldValue: event,
         });
-        this.$emit('manual-preview-update');
       },
       /* istanbul ignore next */
       checkContentLength(event) {
@@ -142,25 +137,14 @@
     }
 
     &__input {
-      height: 6.5rem;
-      box-sizing: border-box;
-      overflow: auto;
-      background-color: $unnnic-color-neutral-snow;
-      border-radius: $unnnic-border-radius-sm;
-      padding: $unnnic-spacing-inset-nano;
-      border: $unnnic-border-width-thinner solid $unnnic-color-neutral-clean;
-      outline: none;
-      color: $unnnic-color-neutral-cloudy;
-      font-family: $unnnic-font-family-secondary;
-      font-size: $unnnic-font-size-body-gt;
-      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-      font-weight: $unnnic-font-weight-regular;
-      cursor: text;
-      outline: none;
-      white-space: pre-wrap;
+      ::v-deep textarea {
+        resize: none;
+      }
 
       &__actions {
         margin-left: auto;
+        margin-top: -28px;
+        margin-right: $unnnic-spacing-inline-giant;
       }
     }
   }
