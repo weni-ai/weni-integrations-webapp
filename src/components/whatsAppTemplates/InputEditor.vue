@@ -1,5 +1,21 @@
 <template>
   <div class="input-editor">
+    <div>
+      <VEmojiPicker
+        v-show="displayEmoji"
+        class="input-editor__emoji-picker"
+        :emojiSize="22"
+        :emojisByRow="7"
+        @select="selectEmoji"
+      />
+      <unnnic-button
+        class="input-editor__emoji-picker__button"
+        type="terciary"
+        iconCenter="emoji"
+        size="small"
+        @click="toggleEmoji"
+      />
+    </div>
     <div v-if="formatter" class="input-editor__formatter">
       <unnnic-tool-tip side="top" text="Bold" enabled>
         <unnnic-button
@@ -45,12 +61,18 @@
 </template>
 
 <script>
+  import { VEmojiPicker } from 'v-emoji-picker';
   import StrikeThroughIcon from '@/assets/svgs/strike-through.svg';
 
   export default {
     name: 'InputEditor',
+    components: {
+      VEmojiPicker,
+    },
     data() {
       return {
+        displayEmoji: false,
+        search: '',
         strikeIcon: StrikeThroughIcon,
       };
     },
@@ -58,6 +80,15 @@
       formatter: {
         type: Boolean,
         default: true,
+      },
+    },
+    methods: {
+      toggleEmoji() {
+        this.displayEmoji = !this.displayEmoji;
+      },
+      selectEmoji(emoji) {
+        this.$emit('emoji-event', emoji);
+        this.displayEmoji = false;
       },
     },
   };
@@ -92,6 +123,21 @@
           width: $unnnic-icon-size-sm;
           margin-left: $unnnic-spacing-inline-nano;
         }
+      }
+    }
+
+    &__emoji-picker {
+      position: absolute;
+      left: 0px;
+      z-index: 1;
+      top: -270px;
+
+      &__button {
+        opacity: $unnnic-opacity-level-clarifying;
+      }
+
+      ::v-deep .container-emoji {
+        height: 200px;
       }
     }
   }
