@@ -128,7 +128,7 @@ describe('AppDetails.vue', () => {
     });
 
     it('should return history without current app', () => {
-      store.state.appType.currentAppType = {};
+      store.state.appType.currentAppType = { ...singleApp, name: null };
       expect(wrapper.vm.navigatorHistory).toHaveLength(1);
       expect(wrapper.vm.navigatorHistory[0].path).toEqual('/apps/discovery');
     });

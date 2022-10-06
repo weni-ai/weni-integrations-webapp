@@ -166,6 +166,21 @@
         this.appProfile = profile;
       },
       navigateToTemplates() {
+        if (!this.currentApp) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.open_templates'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 8,
+          });
+          return;
+        }
+
         const { code, uuid } = this.currentApp;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
