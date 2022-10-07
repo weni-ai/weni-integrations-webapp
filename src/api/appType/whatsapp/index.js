@@ -2,6 +2,8 @@ import qs from 'query-string';
 import request from '@/api/request.js';
 
 const resource = '/api/v1/apptypes';
+const templatesResource = '/api/v1/apps';
+
 export default {
   fetchWppContactInfo(appCode, appUuid) {
     return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/contact/`);
@@ -23,5 +25,27 @@ export default {
   },
   deleteWppProfilePhoto(appCode, appUuid) {
     return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/profile/`);
+  },
+  getWhatsAppTemplates(appUuid, params) {
+    const queryString = qs.stringify(params);
+    return request.$http.get(`${templatesResource}/${appUuid}/templates/?${queryString}`);
+  },
+  fetchTemplateData(appUuid, templateUuid) {
+    return request.$http.get(`${templatesResource}/${appUuid}/templates/${templateUuid}/`);
+  },
+  fetchSelectLanguages(appUuid) {
+    return request.$http.get(`${templatesResource}/${appUuid}/templates/languages/`);
+  },
+  createTemplate(appUuid, data) {
+    return request.$http.post(`${templatesResource}/${appUuid}/templates/`, data);
+  },
+  deleteTemplateMessage(appUuid, templateUuid) {
+    return request.$http.delete(`${templatesResource}/${appUuid}/templates/${templateUuid}`);
+  },
+  createTemplateTranslation(appUuid, templateUuid, data) {
+    return request.$http.post(
+      `${templatesResource}/${appUuid}/templates/${templateUuid}/translations/`,
+      data,
+    );
   },
 };

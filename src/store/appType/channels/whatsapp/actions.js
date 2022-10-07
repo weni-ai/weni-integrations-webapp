@@ -56,4 +56,93 @@ export default {
       commit('DELETE_WHATSAPP_PROFILE_PHOTO_ERROR', err);
     }
   },
+  async getWhatsAppTemplates({ commit }, { appUuid, params }) {
+    commit('GET_WHATSAPP_TEMPLATES_REQUEST');
+    try {
+      const { data } = await whatsApp.getWhatsAppTemplates(appUuid, params);
+      commit('GET_WHATSAPP_TEMPLATES_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('GET_WHATSAPP_TEMPLATES_ERROR', err);
+    }
+  },
+
+  updateTemplateForm({ commit }, { fieldName, fieldValue }) {
+    commit('UPDATE_TEMPLATE_FORM', { fieldName, fieldValue });
+  },
+  addNewTranslationForm({ commit }, { formName, formData }) {
+    commit('ADD_NEW_TRANSLATION_FORM', { formName, formData });
+  },
+  renameTemplateTranslationForm({ commit }, { currentName, newName }) {
+    commit('RENAME_TEMPLATE_TRANSLATION_FORM', { currentName, newName });
+    commit('SET_TEMPLATE_TRANSLATION_SELECTED_FORM', { formName: newName });
+  },
+  updateTemplateTranslationForm({ commit }, { formName, fieldName, fieldValue }) {
+    commit('UPDATE_TEMPLATE_TRANSLATION_FORM', { formName, fieldName, fieldValue });
+  },
+  setTemplateTranslationSelectedForm({ commit }, { formName }) {
+    commit('SET_TEMPLATE_TRANSLATION_SELECTED_FORM', { formName });
+  },
+  clearAllTemplateFormData({ commit }) {
+    commit('CLEAR_ALL_TEMPLATE_FORM_DATA');
+  },
+
+  async fetchTemplateData({ commit }, { appUuid, templateUuid }) {
+    commit('FETCH_WHATSAPP_TEMPLATE_REQUEST');
+    try {
+      const { data } = await whatsApp.fetchTemplateData(appUuid, templateUuid);
+      commit('FETCH_WHATSAPP_TEMPLATE_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('FETCH_WHATSAPP_TEMPLATE_ERROR', err);
+    }
+  },
+
+  async fetchSelectLanguages({ commit }, { appUuid }) {
+    commit('FETCH_WHATSAPP_TEMPLATE_SELECT_LANGUAGES_REQUEST');
+    try {
+      const { data } = await whatsApp.fetchSelectLanguages(appUuid);
+      const formattedData = [];
+      for (const language in data) {
+        formattedData.push({ value: language, text: data[language] });
+      }
+      commit('FETCH_WHATSAPP_TEMPLATE_SELECT_LANGUAGES_SUCCESS', formattedData);
+    } catch (err) {
+      captureSentryException(err);
+      commit('FETCH_WHATSAPP_TEMPLATE_SELECT_LANGUAGES_ERROR', err);
+    }
+  },
+
+  async createTemplate({ commit }, { appUuid, payload }) {
+    commit('CREATE_TEMPLATE_REQUEST');
+    try {
+      const { data } = await whatsApp.createTemplate(appUuid, payload);
+      commit('CREATE_TEMPLATE_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('CREATE_TEMPLATE_ERROR', err);
+    }
+  },
+
+  async createTemplateTranslation({ commit }, { appUuid, templateUuid, payload }) {
+    commit('CREATE_TEMPLATE_TRANSLATION_REQUEST');
+    try {
+      const { data } = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
+      commit('CREATE_TEMPLATE_TRANSLATION_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('CREATE_TEMPLATE_TRANSLATION_ERROR', err);
+    }
+  },
+
+  async deleteTemplateMessage({ commit }, { appUuid, templateUuid }) {
+    commit('DELETE_TEMPLATE_MESSAGE_REQUEST');
+    try {
+      const { data } = await whatsApp.deleteTemplateMessage(appUuid, templateUuid);
+      commit('DELETE_TEMPLATE_MESSAGE_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('DELETE_TEMPLATE_MESSAGE_ERROR', err);
+    }
+  },
 };

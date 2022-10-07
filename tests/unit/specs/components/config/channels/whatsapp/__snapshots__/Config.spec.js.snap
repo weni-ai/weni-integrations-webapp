@@ -7,16 +7,16 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
       <div class="config-whatsapp__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-whatsapp__header__title__icon-container__icon"></div>
       <div class="config-whatsapp__header__title__name">Weni Web Chat</div>
     </div> <span class="config-whatsapp__header__description">
-      Learn more about how to increase your daily message limit in WhatsApp
+      some specific text
       <a href="https://docs.weni.ai/l/en/channels/how-to-verify-my-business" target="_blank"><span>
-          here.
+          some specific text
         </span></a></span>
   </div>
-  <unnnictab-stub initialtab="account" tabs="account,profile,contact_info,conversations" class="config-whatsapp__tabs"><template></template>
+  <unnnictab-stub initialtab="account" tabs="account,profile,contact_info,conversations,templates" class="config-whatsapp__tabs"><template></template>
     <accounttab-stub appinfo="[object Object]"></accounttab-stub> <template></template>
     <profiletab-stub app="[object Object]"></profiletab-stub> <template></template>
     <contactinfotab-stub app="[object Object]"></contactinfotab-stub> <template></template>
-    <conversationstab-stub app="[object Object]"></conversationstab-stub>
+    <conversationstab-stub app="[object Object]"></conversationstab-stub> <template></template>
   </unnnictab-stub>
 </div>
 `;

@@ -235,7 +235,8 @@
         "account": "Cuenta WhatsApp",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
-        "conversations": "Conversaciones"
+        "conversations": "Conversaciones",
+        "templates": "Plantillas"
       },
       "description": {
         "text": "Obtenga más información sobre cómo aumentar su límite de mensajes de WhatsApp",
@@ -327,7 +328,119 @@
       "error": {
         "invalid_photo_size": "La foto importada debe tener al menos 192x192 píxeles",
         "data_fetch": "No se pudieron recuperar los datos de WhatsApp. Por favor contacte al equipo de soporte.",
-        "data_update": "Error al actualizar los datos de WhatsApp."
+        "data_update": "Error al actualizar los datos de WhatsApp.",
+        "open_templates": "No se pueden abrir las Plantillas, actualice la página y vuelva a intentarlo."
+      }
+    },
+    "templates": {
+      "table": {
+        "crumb_title": "Administrar Plantillas",
+        "actions": {
+          "add_language": "Agregar Idioma",
+          "duplicate_language": "Duplicar Idioma",
+          "delete_language": "Borrar"
+        },
+        "headers": {
+          "name": "Nombre",
+          "month": "Mes",
+          "category": "Categoría",
+          "preview": "Previsualización",
+          "language": "Idioma",
+          "actions": "Acciones"
+        },
+        "new_template": "Nueva Plantilla"
+      },
+      "form": {
+        "crumb_title": "Plantilla"
+      },
+      "error": {
+        "fetch_template_data": "Error al obtener los datos de la plantilla. Por favor, inténtelo más tarde",
+        "validation": {
+          "empty_header": "La cabecera no puede estar vacía",
+          "long_header": "La cabecera no puede tener más de 60 caracteres.",
+          "invalid_media_type": "Tipo de archivo no válido",
+          "invalid_media_example": "Ejemplo de archivo faltante",
+          "empty_body": "Cuerpo no puede estar vacío",
+          "long_body": "El cuerpo no puede tener más de 1024 caracteres",
+          "missing_variables_example": "Ejemplo de variables faltantes",
+          "empty_footer": "El pie de página no puede estar vacío",
+          "long_footer": "El pie de página no puede tener más de 60 caracteres",
+          "empty_button_text": "El texto del botón no puede estar vacío",
+          "empty_button_phone_number": "El número de teléfono no puede estar vacío",
+          "empty_button_country_code": "El código de país del teléfono no puede estar vacío",
+          "empty_button_url": "La URL no puede estar vacía"
+        },
+        "unexpected_language": "Idioma inesperado, actualice la página",
+        "language_already_exists": "Este idioma ya existe",
+        "select_languages": "Error al obtener datos de idioma. Por favor, inténtelo de nuevo más tarde...",
+        "invalid_app_uuid": "Identificador de aplicación no válido. Actualice la página.",
+        "invalid_name": "Nome do template inválido",
+        "invalid_category": "Nombre de plantilla no válido",
+        "invalid_language": "Idioma de la plantilla no válido",
+        "create_template": "No se puede crear la plantilla. Por favor, inténtelo de nuevo más tarde.",
+        "create_translation": "No se puede crear la traducción de la plantilla. Por favor, inténtelo de nuevo más tarde",
+        "unknown_error": "Se ha producido un error desconocido, actualice la página.",
+        "fetch_templates": "No se puede cargar la lista de plantillas. Por favor, inténtelo de nuevo más tarde",
+        "delete_template": "No se puede eliminar el modelo. Por favor, inténtelo de nuevo más tarde.",
+        "invalid_file_format": "Formato de archivo inválido",
+        "invalid_file_size": "Tamaño de archivo no válido, debe ser inferior a 10 Mb",
+        "missing_variable_example": "Ejemplo de variable faltante",
+        "missing_media_example": "Ejemplo de archivo faltantes",
+        "delete_sample": "Las plantillas generadas por Facebook no se pueden eliminar."
+      },
+      "new_language": "Nuevo Idioma",
+      "form_field": {
+        "name": "Nombre",
+        "category": "Categoría",
+        "language": "Idioma",
+        "body_text": "Cuerpo de texto",
+        "buttons": "Botones",
+        "type_of_action": "Tipo de Acción",
+        "button_name": "Nombre del Botón",
+        "country": "País",
+        "website_url": "URL del sitio web",
+        "phone_number": "Número de teléfono",
+        "add_another_button": "Agregar otro botón",
+        "footer_text": "Texto de pie de página",
+        "header": "Cabecera",
+        "header_text_placeholder": "Ex.: Escribe tu mensaje...",
+        "add_variable": "Agregar variable",
+        "save_language": "Guardar idioma"
+      },
+      "category_options": {
+        "marketing": "Marketing",
+        "transactional": "Transaccional",
+        "otp": "One Time Password"
+      },
+      "button_options": {
+        "none": "Ninguna",
+        "quick_reply": "Respuesta rápida",
+        "call_to_action": "Llamada a la acción"
+      },
+      "call_to_action_options": {
+        "call_phone_number": "Número de llamada",
+        "visit_website": "Visitar el sitio web"
+      },
+      "header_type_options": {
+        "text": "Texto",
+        "media": "Archívo"
+      },
+      "add_language": "Agregar idioma",
+      "preview": "Previsualización",
+      "sample": {
+        "description": "Tiene la opción de proporcionar ejemplos de contenido específicos para su plantilla.",
+        "header": "Cabecera",
+        "choose_file": "Elegir archivo",
+        "preview": "Previsualización",
+        "body": "Cuerpo",
+        "send": "Enviar",
+        "info": "Asegúrate de no incluir ninguna información de usuarios o clientes reales y sólo proporciona contenido de muestra en tus ejemplos.",
+        "title": "Agregar contenido de muestra"
+      },
+      "status": {
+        "APPROVED": "Aprobado",
+        "REJECTED": "Rechazado",
+        "PENDING": "Pendiente"
       }
     }
   },

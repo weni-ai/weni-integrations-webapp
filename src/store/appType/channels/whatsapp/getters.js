@@ -8,4 +8,7 @@ export default {
   loadingContactInfo(state) {
     return state.loadingContactInfo;
   },
+  templateTranslationCurrentForm(state) {
+    return state.templateTranslationForms[state.templateTranslationSelectedForm] || {};
+  },
 };

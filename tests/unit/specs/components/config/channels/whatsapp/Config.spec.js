@@ -83,6 +83,12 @@ describe('WhatsAppConfig.vue', () => {
         UnnnicInput: true,
         UnnnicButton: true,
       },
+      mocks: {
+        $t: () => 'some specific text',
+        $router: {
+          push: jest.fn(),
+        },
+      },
     });
   });
 
@@ -185,6 +191,26 @@ describe('WhatsAppConfig.vue', () => {
       const options = { code: 'code', appUuid: 'appUuid' };
       store.state.WhatsApp.errorWhatsAppProfile = true;
       await expect(wrapper.vm.fetchProfile(options)).rejects.toThrow();
+    });
+  });
+
+  describe('navigateToTemplates()', () => {
+    it('should change route to templates', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.navigateToTemplates();
+
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        path: `/apps/my/${wrapper.vm.currentApp.code}/${wrapper.vm.currentApp.uuid}/templates`,
+      });
+    });
+
+    it('should call unnnicCallAlert if currentApp is not defined', () => {
+      state.appType.currentApp = null;
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.navigateToTemplates();
+      expect(mockUnnnicCallAlert).toBeCalledTimes(1);
     });
   });
 

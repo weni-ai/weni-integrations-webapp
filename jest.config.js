@@ -17,6 +17,7 @@ module.exports = {
     '!tests/**',
     '!src/utils/**',
     '!src/api/**',
+    '!src/miragejs/**',
     // ignore store configuration files
     '!src/store/types.js',
     '!src/store/**/index.js',
@@ -36,4 +37,5 @@ module.exports = {
     '.*\\.(vue)$': 'vue-jest',
   },
   moduleNameMapper: { '\\.(css|less)$': '<rootDir>/tests/__mocks__/styleMock.js' },
+  timers: 'fake',
 };

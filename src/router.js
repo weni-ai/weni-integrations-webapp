@@ -1,10 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Discovery from './views/Discovery.vue';
-import Apps from './views/Apps.vue';
-import MyApps from './views/MyApps.vue';
-import OtherApps from './views/OtherApps.vue';
-import AppDetails from './views/AppDetails.vue';
 import store from './store';
 
 Vue.use(VueRouter);
@@ -13,35 +8,60 @@ const routes = [
   { path: '/', redirect: { name: 'Discovery' } },
   {
     path: '/apps',
-    component: Apps,
+    component: () => import('@/views/Apps.vue'),
     children: [
       {
         name: 'Discovery',
         path: 'discovery',
-        component: Discovery,
+        component: () => import('@/views/Discovery.vue'),
       },
       {
         name: 'Apps',
         path: 'my',
-        component: MyApps,
+        component: () => import('@/views/MyApps.vue'),
       },
       {
         name: 'Other Apps',
         path: 'other-apps',
-        component: OtherApps,
+        component: () => import('@/views/OtherApps.vue'),
       },
     ],
   },
   {
     name: 'App Detail',
     path: '/apps/:appCode/details',
-    component: AppDetails,
+    component: () => import('@/views/AppDetails.vue'),
   },
-  // {
-  //   name: 'App Config',
-  //   path: '/apps/:appId/config',
-  //   component: AppConfig,
-  // },
+  {
+    path: '/apps/my/:appCode/:appUuid/templates',
+    component: () => import('@/views/whatsAppTemplates/Base.vue'),
+    children: [
+      {
+        name: 'WhatsApp Templates Table',
+        path: '',
+        component: () => import('@/views/whatsAppTemplates/Table.vue'),
+        meta: {
+          crumb_title: 'WhatsApp.templates.table.crumb_title',
+        },
+      },
+      {
+        name: 'Create Template',
+        path: 'create',
+        component: () => import('./views/whatsAppTemplates/Form.vue'),
+        meta: {
+          crumb_title: 'WhatsApp.templates.form.crumb_title',
+        },
+      },
+      {
+        name: 'Edit Template',
+        path: 'edit/:templateUuid',
+        component: () => import('./views/whatsAppTemplates/Form.vue'),
+        meta: {
+          crumb_title: 'WhatsApp.templates.form.crumb_title',
+        },
+      },
+    ],
+  },
   {
     path: '/loginexternal/:token/:project/:flowOrg',
     name: 'externalLogin',
@@ -57,6 +77,10 @@ const routes = [
         next('/');
       }
     },
+  },
+  {
+    path: '*',
+    redirect: '/',
   },
 ];
 

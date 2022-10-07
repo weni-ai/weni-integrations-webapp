@@ -33,4 +33,19 @@ describe('store/appType/whatsapp/getters.js', () => {
   it('should return state.loadingContactInfo', () => {
     expect(store.getters['WhatsApp/loadingContactInfo']).toEqual(state.loadingContactInfo);
   });
+
+  it('should return state.templateTranslationCurrentForm', () => {
+    state.templateTranslationForms[state.templateTranslationSelectedForm] = {
+      foo: 'bar',
+    };
+
+    expect(store.getters['WhatsApp/templateTranslationCurrentForm']).toEqual(
+      state.templateTranslationForms[state.templateTranslationSelectedForm],
+    );
+  });
+
+  it('should return state.templateTranslationCurrentForm default as empty object', () => {
+    state.templateTranslationForms[state.templateTranslationSelectedForm] = null;
+    expect(store.getters['WhatsApp/templateTranslationCurrentForm']).toEqual({});
+  });
 });

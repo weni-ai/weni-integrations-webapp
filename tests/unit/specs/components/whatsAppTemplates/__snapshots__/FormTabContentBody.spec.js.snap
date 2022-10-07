@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/whatsAppTemplates/FormTabContentBody.vue should be rendered properly 1`] = `
+<div class="form-tab-content-body">
+  <div data-v-3e4e81d5="" class="unnnic-tag-content form-tab-content-body__tag unnnic-tag
+      unnnic-tag-scheme--neutral-darkest
+      " v-bind="[object Object]" count="0"><span data-v-3e4e81d5="" class="unnnic-tag__label
+    
+    ">some specific text</span>
+    <!---->
+  </div>
+  <div data-v-a6929120="" class="form-tab-content-body__input unnnic-text-area md">
+    <!----><textarea data-v-a6929120="" maxlength="1024"></textarea>
+    <div data-v-a6929120="" class="helper">0/1024</div>
+  </div>
+  <inputeditor-stub formatter="true" class="form-tab-content-body__input__actions"></inputeditor-stub>
+</div>
+`;

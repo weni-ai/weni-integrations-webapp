@@ -132,7 +132,7 @@
             path: '/apps/discovery',
           },
         ];
-        if (this.currentAppType) {
+        if (this.currentAppType?.name) {
           history.push({
             name: this.currentAppType.name,
             path: '',

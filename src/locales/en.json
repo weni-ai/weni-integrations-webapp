@@ -235,7 +235,8 @@
         "account": "WhatsApp Account",
         "profile": "Profile",
         "contact_info": "Contact Information",
-        "conversations": "Conversations"
+        "conversations": "Conversations",
+        "templates": "Templates"
       },
       "description": {
         "text": "Learn more about how to increase your daily message limit in WhatsApp",
@@ -327,7 +328,119 @@
       "error": {
         "invalid_photo_size": "Imported photo must be at least 192x192 pixels",
         "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
-        "data_update": "Failed to update WhatsApp data."
+        "data_update": "Failed to update WhatsApp data.",
+        "open_templates": "Could not open templates, please refresh the page and try again."
+      }
+    },
+    "templates": {
+      "table": {
+        "crumb_title": "Manage Templates",
+        "actions": {
+          "add_language": "Add language",
+          "duplicate_language": "Duplicate",
+          "delete_language": "Delete"
+        },
+        "headers": {
+          "name": "Name",
+          "month": "Month",
+          "category": "Category",
+          "preview": "Preview",
+          "language": "Language",
+          "actions": "Actions"
+        },
+        "new_template": "New Template"
+      },
+      "form": {
+        "crumb_title": "Template"
+      },
+      "error": {
+        "fetch_template_data": "Error fetching template data, please try again later",
+        "validation": {
+          "empty_header": "Header cannot be empty",
+          "long_header": "Header cannot be greater than 60 characters",
+          "invalid_media_type": "Invalid media type",
+          "invalid_media_example": "Missing media example",
+          "empty_body": "Body cannot be empty",
+          "long_body": "Body cannot be greater than 1024 characters",
+          "missing_variables_example": "Missing variables example",
+          "empty_footer": "Footer cannot be empty",
+          "long_footer": "Footer cannot be greater than 60 characters",
+          "empty_button_text": "Button text cannot be empty",
+          "empty_button_phone_number": "Phone number cannot be empty",
+          "empty_button_country_code": "Phone country code cannot be empty",
+          "empty_button_url": "URL cannot be empty"
+        },
+        "unexpected_language": "Unexpected language, please refresh",
+        "language_already_exists": "This language already exists",
+        "select_languages": "Error fetching languages data, please try again later...",
+        "invalid_app_uuid": "Invalid application identifier, please refresh the page.",
+        "invalid_name": "Invalid template name",
+        "invalid_category": "Invalid template category",
+        "invalid_language": "Invalid template language",
+        "create_template": "Could not create template, please try again later",
+        "create_translation": "Could not create template translation, please try again later",
+        "unknown_error": "Unknown error occurred, please refresh the page",
+        "fetch_templates": "Could not load template list, please try again later",
+        "delete_template": "Could not delete template, please try again later.",
+        "invalid_file_format": "Invalid file format",
+        "invalid_file_size": "Invalid file size, should be less than 10Mb",
+        "missing_variable_example": "Missing variable example",
+        "missing_media_example": "Missing media example",
+        "delete_sample": "Facebook generated templates cannot be deleted."
+      },
+      "new_language": "New Language",
+      "form_field": {
+        "name": "Name",
+        "category": "Category",
+        "language": "Language",
+        "body_text": "Body Text",
+        "buttons": "Buttons",
+        "type_of_action": "Type of Action",
+        "button_name": "Button name",
+        "country": "Country",
+        "website_url": "Website URL",
+        "phone_number": "Phone Number",
+        "add_another_button": "Add Another Button",
+        "footer_text": "Footer Text",
+        "header": "Header",
+        "header_text_placeholder": "Ex.: Type your message...",
+        "add_variable": "Add Variable",
+        "save_language": "Save Language"
+      },
+      "category_options": {
+        "marketing": "Marketing",
+        "transactional": "Transactional",
+        "otp": "One Time Password"
+      },
+      "button_options": {
+        "none": "None",
+        "quick_reply": "Quick Reply",
+        "call_to_action": "Call To Action"
+      },
+      "call_to_action_options": {
+        "call_phone_number": "Call Phone Number",
+        "visit_website": "Visit Website"
+      },
+      "header_type_options": {
+        "text": "Text",
+        "media": "Media"
+      },
+      "add_language": "Add Language",
+      "preview": "Preview",
+      "sample": {
+        "description": "You have the option to provide specific content examples for your template.",
+        "header": "Header",
+        "choose_file": "Choose File",
+        "preview": "Preview",
+        "body": "Body",
+        "send": "Send",
+        "info": "Make sure not to include any actual user or customer information, and provide only sample content in your examples.",
+        "title": "Add Sample Content"
+      },
+      "status": {
+        "APPROVED": "Approved",
+        "REJECTED": "Rejected",
+        "PENDING": "Pending"
       }
     }
   },

@@ -235,7 +235,8 @@
         "account": "Conta WhatsApp",
         "profile": "Perfil",
         "contact_info": "Informações de Contato",
-        "conversations": "Conversas"
+        "conversations": "Conversas",
+        "templates": "Templates"
       },
       "description": {
         "text": "Saiba mais sobre como aumentar o seu limite de mensagens no WhatsApp",
@@ -327,7 +328,119 @@
       "error": {
         "invalid_photo_size": "A foto importada deve ter pelo menos 192 x 192 pixels",
         "data_fetch": "Falha ao buscar dados do WhatsApp. Por favor entre em contato com a equipe de apoio.",
-        "data_update": "Falha ao atualizar os dados do WhatsApp."
+        "data_update": "Falha ao atualizar os dados do WhatsApp.",
+        "open_templates": "Não foi possível abrir os templates, por favor atualize a página e tente novamente."
+      }
+    },
+    "templates": {
+      "table": {
+        "crumb_title": "Gerenciar Templates",
+        "actions": {
+          "add_language": "Adicionar Idioma",
+          "duplicate_language": "Duplicar Idioma",
+          "delete_language": "Deletar"
+        },
+        "headers": {
+          "name": "Nome",
+          "month": "Mês",
+          "category": "Categoria",
+          "preview": "Pré-visualização",
+          "language": "Idioma",
+          "actions": "Ações"
+        },
+        "new_template": "Novo Template"
+      },
+      "form": {
+        "crumb_title": "Template"
+      },
+      "error": {
+        "fetch_template_data": "Erro ao buscar os dados de template. Tente novamente mais tarde",
+        "validation": {
+          "empty_header": "Cabeçalho não pode estar vazio",
+          "long_header": "Cabeçalho não pode ter mais de 60 caracteres.",
+          "invalid_media_type": "Tipo de mídia inválida",
+          "invalid_media_example": "Exemplo de mídia ausente",
+          "empty_body": "Corpo não pode estar vazio",
+          "long_body": "Corpo não pode ter mais de 1024 caracteres",
+          "missing_variables_example": "Exemplo de variáveis ausente",
+          "empty_footer": "O rodapé não pode estar vazio",
+          "long_footer": "O rodapé não pode ter mais de 60 caracteres",
+          "empty_button_text": "O texto do botão não pode estar vazio",
+          "empty_button_phone_number": "O número de telefone não pode estar vazio",
+          "empty_button_country_code": "O código do país do telefone não pode estar vazio",
+          "empty_button_url": "O URL não pode estar vazio"
+        },
+        "unexpected_language": "Idioma inesperado, por favor atualize a página",
+        "language_already_exists": "Este idioma já existe",
+        "select_languages": "Erro ao buscar dados de idiomas. Por favor tente novamente mais tarde...",
+        "invalid_app_uuid": "Identificador de aplicativo inválido. Por favor atualize a página.",
+        "invalid_name": "Nome do template inválido",
+        "invalid_category": "Categoria de template inválida",
+        "invalid_language": "Idioma de template inválido",
+        "create_template": "Não foi possível criar o template. Por favor tente novamente mais tarde.",
+        "create_translation": "Não foi possível criar a tradução do template. Por favor tente novamente mais tarde",
+        "unknown_error": "Ocorreu um erro desconhecido, por favor atualize a página.",
+        "fetch_templates": "Não foi possível carregar a lista de templates. Por favor tente novamente mais tarde",
+        "delete_template": "Não foi possível excluir o modelo. Por favor tente novamente mais tarde.",
+        "invalid_file_format": "Formato de arquivo inválido",
+        "invalid_file_size": "Tamanho de arquivo inválido, deve ser menor que 10 Mb",
+        "missing_variable_example": "Exemplo de variável ausente",
+        "missing_media_example": "Exemplo de mídia ausente",
+        "delete_sample": "Templates gerados pelo facebook não podem ser excluídos."
+      },
+      "new_language": "Nova linguagem",
+      "form_field": {
+        "name": "Nome",
+        "category": "Categoria",
+        "language": "Idioma",
+        "body_text": "Texto do Corpo",
+        "buttons": "Botões",
+        "type_of_action": "Tipo de Ação",
+        "button_name": "Nome do Botão",
+        "country": "País",
+        "website_url": "URL do Website",
+        "phone_number": "Número de telefone",
+        "add_another_button": "Adicionar outro botão",
+        "footer_text": "Texto do rodapé",
+        "header": "Cabeçalho",
+        "header_text_placeholder": "Ex.: Digite sua mensagem...",
+        "add_variable": "Adicionar variável",
+        "save_language": "Salvar Idioma"
+      },
+      "category_options": {
+        "marketing": "Marketing",
+        "transactional": "Transacional",
+        "otp": "One Time Password"
+      },
+      "button_options": {
+        "none": "Nenhum",
+        "quick_reply": "Resposta rápida",
+        "call_to_action": "Chamada à ação"
+      },
+      "call_to_action_options": {
+        "call_phone_number": "Ligar para número",
+        "visit_website": "Visitar Website"
+      },
+      "header_type_options": {
+        "text": "Texto",
+        "media": "Mídia"
+      },
+      "add_language": "Adicionar Idioma",
+      "preview": "Pré-visualização",
+      "sample": {
+        "description": "Você tem a opção de fornecer exemplos de conteúdo específicos para seu modelo.",
+        "header": "Cabeçalho",
+        "choose_file": "Escolher Arquivo",
+        "preview": "Pré-visualização",
+        "body": "Corpo",
+        "send": "Enviar",
+        "info": "Certifique-se de não incluir nenhuma informação real de usuário ou cliente e forneça apenas conteúdo de amostra em seus exemplos.",
+        "title": "Adicionar conteúdo de exemplo"
+      },
+      "status": {
+        "APPROVED": "Aprovado",
+        "REJECTED": "Rejeitado",
+        "PENDING": "Pendente"
       }
     }
   },
