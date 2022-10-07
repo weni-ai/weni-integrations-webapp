@@ -51,6 +51,7 @@
   import telegramConfig from './channels/telegram/Config.vue';
   import wppDemoPreview from './channels/wpp_demo/Preview.vue';
   import whatsappConfig from './channels/whatsapp/Config.vue';
+  import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
 
   export default {
     name: 'Modal',
@@ -67,6 +68,7 @@
           wpp: whatsappConfig,
           'wpp-cloud': whatsappConfig,
           'wpp-demo': wppDemoPreview,
+          'power-bi': powerBiConfig,
         },
       };
     },

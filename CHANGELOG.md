@@ -1,3 +1,20 @@
+1.13.0
+----------
+`2022-09-15 · 1 🎉`
+
+### 🎉 New Features
+- Feat: Power BI integration
+
+1.12.1
+----------
+`2022-08-30 · 1 🎉 · 1 🔧`
+
+### 🎉 New Features
+- Fix: WhatsApp Conversations Tab issues
+
+### 🔧 Improvements
+- Improve: Sentry coverage and extra payload
+
 1.12.0
 ----------
 `2022-08-10 · 2 🔧`

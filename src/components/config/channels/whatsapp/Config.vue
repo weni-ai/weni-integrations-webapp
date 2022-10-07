@@ -37,7 +37,7 @@
       <template slot="tab-head-conversations">
         {{ $t('WhatsApp.config.tabs.conversations') }}
       </template>
-      <ConversationsTab slot="tab-panel-conversations" :app="app" />
+      <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
 
       <template slot="tab-head-templates">
         <div @click.stop="navigateToTemplates" class="config-whatsapp__tabs__template">

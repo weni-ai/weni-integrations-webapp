@@ -23,10 +23,10 @@
         @ratingAction="handleRating"
       />
       <div class="app-details__section app-details__section__columns">
-        <app-details-about :description="currentAppType.description" :links="appLinks" />
+        <app-details-about :description="appDescription" :links="appLinks" />
         <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
       </div>
-      <app-details-comments :appCode="currentAppType.code" />
+      <app-details-comments :appCode="appCode" />
     </div>
     <skeleton-loading v-else />
   </div>
@@ -113,14 +113,17 @@
         errorPostRating: (state) => state.appType.errorPostRating,
       }),
       appRatingString() {
-        return this.currentAppType.rating.average
+        return this.currentAppType?.rating?.average
           ? parseFloat(this.currentAppType.rating.average.toFixed(2)).toString()
           : '0';
       },
       appRatingAverage() {
-        return this.currentAppType.rating.average
+        return this.currentAppType?.rating?.average
           ? parseFloat(this.currentAppType.rating.average.toFixed(2))
           : 0;
+      },
+      appDescription() {
+        return this.currentAppType?.description;
       },
       navigatorHistory() {
         let history = [
@@ -138,16 +141,22 @@
         return history;
       },
       appLinks() {
+        if (!this.currentAppType) {
+          return [];
+        }
         const links = this.currentAppType.assets.filter((asset) => asset.type === 'LK');
         return links;
       },
       appMetrics() {
-        return this.currentAppType.metrics ? millify(this.currentAppType.metrics) : '-';
+        return this.currentAppType?.metrics ? millify(this.currentAppType.metrics) : '-';
       },
       appIntegrationsCount() {
-        return this.currentAppType.integrations_count
+        return this.currentAppType?.integrations_count
           ? millify(this.currentAppType.integrations_count)
           : '-';
+      },
+      appCode() {
+        return this.currentAppType?.code;
       },
     },
   };
