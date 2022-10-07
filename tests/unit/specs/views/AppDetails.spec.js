@@ -109,7 +109,12 @@ describe('AppDetails.vue', () => {
 
     it('should return no links', () => {
       const assets = [{ type: 'notLink' }, { type: 'notLink' }];
-      wrapper.vm.app.assets = assets;
+      store.state.appType.currentAppType = { ...singleApp, assets };
+      expect(wrapper.vm.appLinks).toHaveLength(0);
+    });
+
+    it('should return no links if currentAppType is not defined', () => {
+      store.state.appType.currentAppType = null;
       expect(wrapper.vm.appLinks).toHaveLength(0);
     });
 

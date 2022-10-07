@@ -23,7 +23,6 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow: auto;
     height: calc(100vh - $unnnic-spacing-inset-md);
   }
 </style>

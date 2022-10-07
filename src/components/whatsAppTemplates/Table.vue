@@ -204,7 +204,7 @@
   .whatsapp-templates-table {
     display: flex;
     flex-direction: column;
-    // height: calc(100% - 3rem);
+    height: calc(100% - $unnnic-spacing-stack-xgiant);
 
     &__table {
       height: 100%;
