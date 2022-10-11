@@ -441,6 +441,9 @@
         "APPROVED": "Aprobado",
         "REJECTED": "Rechazado",
         "PENDING": "Pendiente"
+      },
+      "success": {
+        "create_translation": "Traducción de plantilla creada con éxito"
       }
     }
   },
