@@ -26,7 +26,7 @@ export default {
   loadingFeaturedApps: false,
   errorFeaturedApps: false,
 
-  loadingUpdateAppConfig: true,
+  loadingUpdateAppConfig: false,
   errorUpdateAppConfig: null,
   updateAppConfigResult: null,
 };
