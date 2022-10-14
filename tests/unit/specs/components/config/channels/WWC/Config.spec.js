@@ -38,14 +38,15 @@ describe('wwc/Config.vue', () => {
 
     actions = {
       updateAppConfig: jest.fn(),
-      getApp: jest.fn(() => {
-        return { data: singleApp };
-      }),
+      getApp: jest.fn(),
     };
 
     state = {
       appType: {
         errorUpdateAppConfig: false,
+        currentApp: singleApp,
+        loadingCurrentApp: false,
+        errorCurrentApp: false,
       },
     };
 
@@ -233,9 +234,17 @@ describe('wwc/Config.vue', () => {
       expect(actions.getApp).toHaveBeenCalledTimes(1);
     });
 
-    it('should call unnnicCallAlert on error', async () => {
+    it('should call unnnicCallAlert on errorUpdateAppConfig', async () => {
       spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
       store.state.appType.errorUpdateAppConfig = true;
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.saveConfig();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call unnnicCallAlert on errorCurrentApp', async () => {
+      spyOn(wrapper.vm, 'validConfig').and.returnValue(true);
+      store.state.appType.errorCurrentApp = true;
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.saveConfig();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
