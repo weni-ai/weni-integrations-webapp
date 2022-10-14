@@ -352,6 +352,8 @@
 
         if (this.errorCreateTemplateTranslation) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_translation') });
+        } else {
+          this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
         }
 
         if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
@@ -581,6 +583,19 @@
             title: 'Error',
             icon: 'alert-circle-1-1',
             scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 8,
+        });
+      },
+      callSuccessModal({ text }) {
+        unnnicCallAlert({
+          props: {
+            text,
+            title: 'Success',
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
           },
