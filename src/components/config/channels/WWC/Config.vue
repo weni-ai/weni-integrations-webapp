@@ -153,6 +153,7 @@
               type="secondary"
               size="large"
               :text="$t('apps.config.save_changes')"
+              :loading="loadingSave"
               @click="saveConfig"
             ></unnnic-button>
           </div>
@@ -215,6 +216,7 @@
               type="secondary"
               size="large"
               :text="$t('apps.config.save_changes')"
+              :loading="loadingSave"
               @click="saveConfig"
             ></unnnic-button>
           </div>
@@ -348,7 +350,11 @@
     },
     computed: {
       ...mapState({
+        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
         errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
+        currentApp: (state) => state.appType.currentApp,
+        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
+        errorCurrentApp: (state) => state.appType.errorCurrentApp,
       }),
       avatarFiles: {
         get() {
@@ -412,6 +418,9 @@
             ${this.avatarFile}|
             ${this.customCssFile}
             `;
+      },
+      loadingSave() {
+        return this.loadingUpdateAppConfig || this.loadingCurrentApp;
       },
     },
     methods: {
@@ -586,8 +595,13 @@
             throw new Error(this.errorUpdateAppConfig);
           }
 
-          const { data } = await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
-          this.app.config = data.config;
+          await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
+
+          if (this.errorCurrentApp) {
+            throw new Error(this.errorCurrentApp);
+          }
+
+          this.app.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
