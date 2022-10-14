@@ -1,3 +1,10 @@
+1.14.3
+----------
+`2022-10-14 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Default loadingUpdateAppConfig value
+
 1.14.2
 ----------
 `2022-10-14 · 1 🐛 · 1 🎉`
