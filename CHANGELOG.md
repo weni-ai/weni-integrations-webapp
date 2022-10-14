@@ -1,3 +1,13 @@
+1.14.2
+----------
+`2022-10-14 · 1 🐛 · 1 🎉`
+
+### 🐛 Bug fixes
+- Fix: WeniWebChat saveConfig incorrect error
+
+### 🎉 New Features
+- Feat: Success feedback on translation creation
+
 1.14.1
 ----------
 `2022-10-07 · 1 🐛`
