@@ -108,4 +108,46 @@ describe('components/config/bi_tools/power_bi/Config.vue', () => {
       expect(wrapper.vm.powerBiIcon).toEqual(PowerBiIcon);
     });
   });
+
+  describe('downloadConnector()', () => {
+    it('should call createDownload with WeniFluxos.mez file', async () => {
+      const { wrapper } = mountComponent();
+      const spy = spyOn(wrapper.vm, 'createDownload');
+      wrapper.vm.loadingDownloadConnector = true;
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(wrapper.vm.loadingDownloadConnector).toEqual(true);
+
+      wrapper.vm.downloadConnector();
+      await jest.runAllTimers();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        name: 'WeniFluxos.mez',
+        link: expect.stringContaining('WeniFluxos.mez'),
+      });
+      expect(wrapper.vm.loadingDownloadConnector).toEqual(false);
+    });
+  });
+
+  describe('downloadModel()', () => {
+    it('should call createDownload with base_dashboard.pbix file', async () => {
+      const { wrapper } = mountComponent();
+      const spy = spyOn(wrapper.vm, 'createDownload');
+      wrapper.vm.loadingDownloadModel = true;
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(wrapper.vm.loadingDownloadModel).toEqual(true);
+
+      wrapper.vm.downloadModel();
+      await jest.runAllTimers();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        name: 'base_dashboard.pbix',
+        link: expect.stringContaining('base_dashboard.pbix'),
+      });
+      expect(wrapper.vm.loadingDownloadModel).toEqual(false);
+    });
+  });
 });

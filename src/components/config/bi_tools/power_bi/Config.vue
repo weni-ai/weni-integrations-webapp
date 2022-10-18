@@ -56,8 +56,23 @@
           type="secondary"
           size="small"
           iconCenter="download-thick-bottom-1"
-          :loading="loadingDownload"
+          :loading="loadingDownloadConnector"
           @click="downloadConnector"
+        />
+      </div>
+
+      <div class="app-config-power-bi__content__download">
+        <unnnic-label
+          class="app-config-power-bi__content__download__label"
+          :label="$t('PowerBi.config.download_model.label')"
+        />
+        <unnnic-button
+          class="app-config-power-bi__content__download__button"
+          type="secondary"
+          size="small"
+          iconCenter="download-thick-bottom-1"
+          :loading="loadingDownloadModel"
+          @click="downloadModel"
         />
       </div>
     </div>
@@ -95,7 +110,8 @@
           'pt-br':
             'https://docs.weni.ai/l/pt/extras/como-instalar-e-usar-o-conector-de-dados-para-power-bi',
         },
-        loadingDownload: false,
+        loadingDownloadConnector: false,
+        loadingDownloadModel: false,
       };
     },
     async mounted() {
@@ -151,19 +167,34 @@
         });
       },
       /* istanbul ignore next */
-      downloadConnector() {
-        this.loadingDownload = true;
+      createDownload({ name, link }) {
         const anchor = document.createElement('a');
-        anchor.href =
-          'https://github.com/Ilhasoft/custom-connector-powerbi/releases/download/v1.0.1/WeniFluxos.mez';
-        anchor.download = 'WeniFluxos.mez';
+        anchor.href = link;
+        anchor.download = name;
         anchor.style.display = 'none';
 
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
+      },
+      downloadConnector() {
+        this.loadingDownloadConnector = true;
+        this.createDownload({
+          name: 'WeniFluxos.mez',
+          link: 'https://github.com/Ilhasoft/custom-connector-powerbi/releases/download/v1.0.1/WeniFluxos.mez',
+        });
         setTimeout(() => {
-          this.loadingDownload = false;
+          this.loadingDownloadConnector = false;
+        }, 500);
+      },
+      downloadModel() {
+        this.loadingDownloadModel = true;
+        this.createDownload({
+          name: 'base_dashboard.pbix',
+          link: 'https://github.com/Ilhasoft/custom-connector-powerbi/releases/download/v1.0.1/base_dashboard.pbix',
+        });
+        setTimeout(() => {
+          this.loadingDownloadModel = false;
         }, 500);
       },
     },
