@@ -493,11 +493,14 @@
         "link": "Como Instalar e Utilizar o Conector de Dados da Weni para Power BI"
       },
       "download": {
-        "label": "Baixar conector aqui"
+        "label": "Baixar conector"
       },
       "token_error": "Não foi possível buscar seu Token do Power BI, tente novamente mais tarde.",
       "token_input": {
         "tooltip": "Copiar Token"
+      },
+      "download_model": {
+        "label": "Baixar modelo de dashboard"
       }
     }
   }
