@@ -1,3 +1,10 @@
+1.14.4
+----------
+`2022-10-21 · 1 🎉`
+
+### 🎉 New Features
+- Feat: PowerBI download dashboard model
+
 1.14.3
 ----------
 `2022-10-14 · 1 🐛`
