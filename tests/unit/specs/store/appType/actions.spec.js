@@ -12,6 +12,7 @@ jest.mock('@/api/appType', () => {
     fetchFeatured: jest.fn(),
     updateAppConfig: jest.fn(),
     deleteApp: jest.fn(),
+    updateApp: jest.fn(),
   };
 });
 
@@ -406,6 +407,49 @@ describe('store/appType/actions.js', () => {
         expect(store.state.appType.errorUpdateAppConfig).not.toEqual(error);
         await store.dispatch('updateAppConfig', data);
         expect(store.state.appType.errorUpdateAppConfig).toEqual(error);
+      });
+    });
+
+    describe('updateApp', () => {
+      const data = {
+        code: 'code',
+        appUuid: '123',
+        payload: {
+          flow_starts: [],
+        },
+      };
+
+      beforeEach(() => {
+        jest.resetAllMocks();
+
+        appTypeApi.updateApp.mockImplementation(() => {
+          return Promise.resolve({});
+        });
+      });
+
+      it('should call updateApp from API', async () => {
+        expect(appTypeApi.updateApp).not.toHaveBeenCalled();
+        await store.dispatch('updateApp', data);
+        expect(appTypeApi.updateApp).toHaveBeenCalledTimes(1);
+        expect(appTypeApi.updateApp).toHaveBeenCalledWith(data.code, data.appUuid, data.payload);
+      });
+
+      it('should set loadingUpdateApp to false', async () => {
+        store.state.appType.loadingUpdateApp = true;
+        expect(store.state.appType.loadingUpdateApp).toBe(true);
+        await store.dispatch('updateApp', data);
+        expect(store.state.appType.loadingUpdateApp).toBe(false);
+      });
+
+      it('should set errorUpdateApp as result data', async () => {
+        const error = { error: 'failed' };
+        appTypeApi.updateApp.mockImplementation(() => {
+          return Promise.reject(error);
+        });
+        store.state.appType.errorUpdateApp = {};
+        expect(store.state.appType.errorUpdateApp).not.toEqual(error);
+        await store.dispatch('updateApp', data);
+        expect(store.state.appType.errorUpdateApp).toEqual(error);
       });
     });
   });
