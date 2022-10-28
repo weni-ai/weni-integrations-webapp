@@ -29,4 +29,8 @@ export default {
   loadingUpdateAppConfig: false,
   errorUpdateAppConfig: null,
   updateAppConfigResult: null,
+
+  loadingUpdateApp: false,
+  errorUpdateApp: null,
+  updateAppResult: null,
 };
