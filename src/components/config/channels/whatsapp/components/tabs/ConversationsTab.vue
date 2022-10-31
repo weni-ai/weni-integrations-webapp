@@ -15,7 +15,12 @@
         />
 
         <div class="conversations__content__dropdown-data">
-          <unnnic-date-picker v-if="showDateFilter" size="small" @change="handleDateFilter" />
+          <unnnic-date-picker
+            v-if="showDateFilter"
+            size="small"
+            :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
+            @change="handleDateFilter"
+          />
         </div>
       </div>
 
