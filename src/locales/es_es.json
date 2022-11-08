@@ -410,7 +410,10 @@
       "category_options": {
         "marketing": "Marketing",
         "transactional": "Transaccional",
-        "otp": "One Time Password"
+        "otp": "One Time Password",
+        "transactional_description": "Envíe actualizaciones de cuenta, actualizaciones de pedidos, alertas y más para compartir información importante.",
+        "marketing_description": "Envíe ofertas promocionales, anuncios de productos y más para aumentar la conciencia y el compromiso.",
+        "otp_description": "Envía códigos que permitan a tus clientes acceder a sus cuentas."
       },
       "button_options": {
         "none": "Ninguna",
