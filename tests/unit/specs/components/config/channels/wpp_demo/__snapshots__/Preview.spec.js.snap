@@ -1,24 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Preview.vue should be rendered properly 1`] = `
+exports[`components/config/channels/wpp_demo/Preview.vue should be rendered properly 1`] = `
 <div class="app-preview-wpp_demo">
   <div class="app-preview-wpp_demo__header">
     <div class="app-preview-wpp_demo__header__title">
-      <div class="app-preview-wpp_demo__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-preview-wpp_demo__header__title__icon-container__icon"></div>
-      <div class="app-preview-wpp_demo__header__title__name">Weni Web Chat</div>
+      <div class="app-preview-wpp_demo__header__title__icon-container"><img class="app-preview-wpp_demo__header__title__icon-container__icon"></div>
+      <div class="app-preview-wpp_demo__header__title__name"></div>
     </div>
     <div class="app-preview-wpp_demo__header__description">
-      some specific text
+      With the URL below you can use Whatsapp Demo, test it on your project, or even share it with others.
     </div>
   </div>
   <div class="app-preview-wpp_demo__settings__content">
-    <unnnic-data-area-stub>
-      <unnnicbutton-stub size="large" type="primary" iconcenter="export-1" class="app-preview-wpp_demo__settings__content__button"></unnnicbutton-stub>
-    </unnnic-data-area-stub>
+    <div class="app-preview-wpp_demo__settings__content__qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&amp;data=null"></div>
+    <div data-v-ce7095ee="" class="data-area-container">
+      <div data-v-ce7095ee="" class="data-area-container__header">
+        <div data-v-ce7095ee="" class="data-area-container__header__title"></div>
+        <div data-v-ce7095ee="" class="data-area-container__header__links-slot"></div>
+      </div>
+      <div data-v-ce7095ee="" class="data-area-container__content">
+        <div data-v-adb9aa76="" data-v-ce7095ee="" class="">
+          <div data-v-ce7095ee="" data-v-adb9aa76="" class="data-area-container__content__text"></div><span data-v-adb9aa76="" class="unnnic-tooltip-label unnnic-tooltip-label-right" style="display: none;">  </span>
+        </div>
+        <div data-v-ce7095ee="" class="data-area-container__content__buttons-slot">
+          <unnnicbutton-stub size="large" type="primary" iconcenter="export-1" class="app-preview-wpp_demo__settings__content__button" data-v-ce7095ee=""></unnnicbutton-stub>
+        </div>
+      </div>
+    </div>
+    <div data-v-57f15418="" tabindex="-1" class="app-preview-wpp_demo__settings__content__flow-select normal-multiselect">
+      <!---->
+      <div data-v-57f15418="" tabindex="0" class="select-permission">
+        <h6 data-v-57f15418="" class="title noselect">WhatsAppDemo.preview.select_flow</h6><span data-v-12da8e0b="" data-v-57f15418="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+      </div>
+      <!---->
+    </div>
   </div>
   <div class="app-preview-wpp_demo__settings__buttons">
-    <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
-    <unnnicbutton-stub size="large" text="some specific text" type="secondary" class="app-preview-wpp_demo__settings__buttons__copy"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="Cancel" type="terciary" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
   </div>
 </div>
 `;
