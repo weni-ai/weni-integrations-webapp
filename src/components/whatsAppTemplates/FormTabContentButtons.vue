@@ -36,7 +36,6 @@
         v-for="(button, index) in currentButtons"
         :key="index"
       >
-        <!-- TODO: Handle change in button.text  -->
         <unnnic-input
           class="form-tab-content-buttons__replies__input"
           :disabled="disableInputs"
@@ -61,7 +60,11 @@
       v-else-if="buttonsType === 'call_to_action'"
     >
       <div
-        class="form-tab-content-buttons__call-actions__wrapper"
+        :class="{
+          'form-tab-content-buttons__call-actions__wrapper': true,
+          'form-tab-content-buttons__call-actions__wrapper--url':
+            currentButtons[index].button_type === 'URL',
+        }"
         v-for="(button, index) in currentButtons"
         :key="index"
       >
@@ -84,7 +87,6 @@
           </option>
         </unnnic-select>
 
-        <!-- TODO: Handle change in button.text  -->
         <unnnic-input
           :label="$t('WhatsApp.templates.form_field.button_name')"
           :disabled="disableInputs"
@@ -115,16 +117,26 @@
           </option>
         </unnnic-select>
 
-        <!-- TODO: Handle change in button.url  -->
-        <unnnic-input
-          v-if="currentButtons[index].button_type === 'URL'"
-          :label="$t('WhatsApp.templates.form_field.website_url')"
-          :disabled="disableInputs"
-          :value="currentButtons[index].url"
-          @input="handleActionInput($event, 'url', index)"
-          :maxlength="2000"
-        />
-        <!-- TODO: Handle change in button.phone_number  -->
+        <div v-if="currentButtons[index].button_type === 'URL'" class="url-input-group">
+          <span
+            :class="{
+              'url-input-group__prefix': true,
+              'url-input-group__prefix--focused': focusedUrlInput,
+            }"
+            >https://</span
+          >
+          <unnnic-input
+            class="url-input-group__input"
+            :label="$t('WhatsApp.templates.form_field.website_url')"
+            :disabled="disableInputs"
+            :value="currentButtons[index].url"
+            @input="handleActionInput($event, 'url', index)"
+            @keydown="formatUrlInput($event)"
+            :maxlength="2000"
+            @focus="handleUrlFocus"
+            @blur="handleUrlBlur"
+          />
+        </div>
         <unnnic-input
           v-else
           :label="$t('WhatsApp.templates.form_field.phone_number')"
@@ -133,11 +145,6 @@
           @input="handleActionInput($event, 'phone_number', index)"
           :maxlength="20"
         />
-
-        <div
-          v-if="currentButtons[index].button_type === 'URL'"
-          class="form-tab-content-buttons__call-actions__filler"
-        ></div>
 
         <unnnic-button
           class="form-tab-content-buttons__call-actions__remove-button"
@@ -213,6 +220,7 @@
         buttons: [],
         maxRepliesButtons: 3,
         maxActionButtons: 2,
+        focusedUrlInput: false,
       };
     },
     computed: {
@@ -341,6 +349,12 @@
           fieldValue: [...this.buttons],
         });
       },
+      handleUrlFocus() {
+        this.focusedUrlInput = true;
+      },
+      handleUrlBlur() {
+        this.focusedUrlInput = false;
+      },
     },
   };
 </script>
@@ -399,6 +413,10 @@
         gap: $unnnic-spacing-inline-xs;
         margin-bottom: $unnnic-spacing-stack-sm;
         white-space: nowrap;
+
+        &--url {
+          grid-template-columns: 1fr 1fr 1fr 50px;
+        }
       }
 
       &__remove-button {
@@ -424,6 +442,40 @@
 
     &__add-button {
       width: fit-content;
+    }
+  }
+
+  .url-input-group {
+    display: flex;
+    align-items: center;
+
+    &__prefix {
+      margin-right: -$unnnic-border-width-thin;
+      box-sizing: border-box;
+      height: $unnnic-font-size-h3;
+      margin-top: 2.4rem;
+      padding: $unnnic-spacing-inline-ant $unnnic-spacing-inline-xs;
+      border: 0.0625rem solid $unnnic-color-neutral-soft;
+      border-right: none;
+      border-radius: $unnnic-border-radius-sm 0 0 $unnnic-border-radius-sm;
+      background-color: $unnnic-color-background-sky;
+      z-index: 1;
+      color: $unnnic-color-neutral-dark;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+
+      &--focused {
+        border-color: $unnnic-color-neutral-cleanest;
+      }
+    }
+
+    &__input {
+      margin-left: -$unnnic-border-width-thin;
+      width: 100%;
+
+      ::v-deep .unnnic-form__label {
+        margin-left: -58px;
+      }
     }
   }
 </style>

@@ -212,6 +212,14 @@
         }
 
         if (translation.buttons && translation.buttons.length > 0) {
+          // force to have a max of two buttons if type is not quick_reply
+          const haveActionButtons = translation.buttons.find(
+            (button) => button.button_type === 'PHONE_NUMBER' || button.button_type === 'URL',
+          );
+          if (haveActionButtons) {
+            translation.buttons.length = 2;
+          }
+
           translation.buttons.forEach((button) => {
             if (button.button_type === 'PHONE_NUMBER') {
               button.country_calling_code = button.country_code;
@@ -219,6 +227,8 @@
               const completeNumber = `+${button.country_calling_code}${number}`;
               const phoneNumber = parsePhoneNumber(completeNumber);
               button.country_code = phoneNumber.country;
+            } else if (button.button_type === 'URL') {
+              button.url = button.url.replace('https://', '');
             }
           });
         }
@@ -543,9 +553,14 @@
 
           if (button.button_type === 'URL') {
             if (button.url) {
-              button.url = button.url.trim();
-              if (!button.url) {
-                errorMsg = this.$t('WhatsApp.templates.error.validation.empty_button_url');
+              const trimmed = button.url.trim();
+
+              if (trimmed.indexOf('https://') === -1 && trimmed.indexOf('http://') === -1) {
+                button.url = `https://${trimmed}`;
+              }
+
+              if (!this.isValidUrl(button.url)) {
+                errorMsg = this.$t('WhatsApp.templates.error.validation.invalid_button_url');
               }
             } else {
               errorMsg = this.$t('WhatsApp.templates.error.validation.empty_button_url');
@@ -575,6 +590,13 @@
         });
 
         return formattedButtons;
+      },
+      isValidUrl(urlString) {
+        try {
+          return Boolean(new URL(urlString));
+        } catch (e) {
+          return false;
+        }
       },
       callErrorModal({ text }) {
         unnnicCallAlert({
