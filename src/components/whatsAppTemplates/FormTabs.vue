@@ -1,5 +1,8 @@
 <template>
-  <div v-if="!loadingFetchWhatsAppTemplate && !dataProcessingLoading" class="form-tabs">
+  <div
+    v-if="!loadingFetchWhatsAppTemplate && !loadingWhatsAppTemplates && !dataProcessingLoading"
+    class="form-tabs"
+  >
     <unnnic-tab
       class="form-tabs__tab"
       v-model="currentTab"
@@ -96,6 +99,8 @@
       await this.fetchLanguages();
       if (this.formMode === 'create') {
         this.createDefaultNewLanguageTab();
+
+        this.fetchAllTemplates();
       } else {
         await this.fetchData();
       }
@@ -116,6 +121,7 @@
         'createdTemplateData',
         'errorCreateTemplateTranslation',
         'createdTemplateTranslationData',
+        'loadingWhatsAppTemplates',
       ]),
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
@@ -145,6 +151,7 @@
         'fetchSelectLanguages',
         'createTemplate',
         'createTemplateTranslation',
+        'getWhatsAppTemplates',
       ]),
       /* istanbul ignore next */
       headerScrollBehavior() {
@@ -158,6 +165,13 @@
             });
           });
         }
+      },
+      async fetchAllTemplates() {
+        const { appUuid } = this.$route.params;
+        const params = {
+          page_size: 251,
+        };
+        await this.getWhatsAppTemplates({ appUuid, params });
       },
       async fetchLanguages() {
         const { appUuid } = this.$route.params;

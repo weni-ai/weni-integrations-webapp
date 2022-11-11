@@ -1,6 +1,7 @@
 <template>
   <div class="form-tab-content">
     <unnnic-input
+      class="form-tab-content__name-input"
       :disabled="disableInputs || formMode !== 'create'"
       :value="templateForm.name"
       @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
@@ -8,6 +9,8 @@
       @keydown="preventTemplateName"
       :label="$t('WhatsApp.templates.form_field.name')"
       :maxlength="512"
+      :type="errorStates.name.value ? 'error' : 'normal'"
+      :message="errorStates.name.message"
     />
     <div class="form-tab-content__selects">
       <unnnic-multi-select
@@ -80,7 +83,7 @@
         :loading="loadingSave"
         :text="$t('WhatsApp.templates.form_field.save_language')"
         :disabled="disableInputs"
-        @click="$emit('save-changes')"
+        @click="saveTemplate"
       />
     </div>
   </div>
@@ -156,11 +159,17 @@
             ],
           },
         ],
+        errorStates: {
+          name: {
+            value: false,
+            message: '',
+          },
+        },
       };
     },
     computed: {
       ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
-      ...mapState('WhatsApp', ['templateForm']),
+      ...mapState('WhatsApp', ['templateForm', 'whatsAppTemplates']),
       disableInputs() {
         return !this.canEdit;
       },
@@ -193,6 +202,14 @@
         event.srcElement.value = textValue;
       },
       handleTemplateFormInput({ fieldName, fieldValue }) {
+        if (fieldName === 'name') {
+          const exists = this.verifyExistingName(fieldValue);
+          this.errorStates.name.value = !!exists;
+
+          this.errorStates.name.message = exists
+            ? this.$t('WhatsApp.templates.form_field.name_exists')
+            : '';
+        }
         this.updateTemplateForm({ fieldName, fieldValue });
       },
       handleGenericInput({ fieldName, fieldValue }) {
@@ -257,6 +274,34 @@
         const tablePath = this.$router.currentRoute.path.split('templates')[0] + 'templates';
         this.$router.push(tablePath);
       },
+      verifyExistingName(templateName) {
+        return this.whatsAppTemplates.results.find((template) => template.name === templateName);
+      },
+      saveTemplate() {
+        let validFields = true;
+        for (const key in this.errorStates) {
+          if (this.errorStates[key].value) {
+            validFields = false;
+          }
+        }
+
+        if (!validFields) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.templates.error.invalid_fields'),
+              title: 'Error',
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 6,
+          });
+          return;
+        }
+
+        this.$emit('save-changes');
+      },
     },
   };
 </script>
@@ -265,6 +310,12 @@
   .form-tab-content {
     display: flex;
     flex-direction: column;
+
+    &__name-input {
+      ::v-deep .unnnic-form__message {
+        color: $unnnic-color-feedback-red;
+      }
+    }
 
     &__selects {
       display: flex;

@@ -387,7 +387,8 @@
         "invalid_file_size": "Tamaño de archivo no válido, debe ser inferior a 10 Mb",
         "missing_variable_example": "Ejemplo de variable faltante",
         "missing_media_example": "Ejemplo de archivo faltantes",
-        "delete_sample": "Las plantillas generadas por Facebook no se pueden eliminar."
+        "delete_sample": "Las plantillas generadas por Facebook no se pueden eliminar.",
+        "invalid_fields": "Hay campos inválidos, corríjalos y vuelva a intentarlo."
       },
       "new_language": "Nuevo Idioma",
       "form_field": {
@@ -406,7 +407,8 @@
         "header": "Cabecera",
         "header_text_placeholder": "Ex.: Escribe tu mensaje...",
         "add_variable": "Agregar variable",
-        "save_language": "Guardar idioma"
+        "save_language": "Guardar idioma",
+        "name_exists": "Este nombre ya existe, por favor ingrese uno diferente."
       },
       "category_options": {
         "marketing": "Marketing",

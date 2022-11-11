@@ -18,7 +18,7 @@ exports[`components/whatsAppTemplates/FormTabs.vue should be rendered properly 1
     </main>
   </div>
   <div class="form-tab-content form-tabs__content">
-    <div data-v-9ef23630="" class="unnnic-form md" maxlength="512">
+    <div data-v-9ef23630="" class="form-tab-content__name-input unnnic-form md" maxlength="512">
       <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
       <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="13" v-bind="[object Object]" maxlength="512" placeholder="" class="input size-md normal">
         <!---->

@@ -387,7 +387,8 @@
         "invalid_file_size": "Invalid file size, should be less than 10Mb",
         "missing_variable_example": "Missing variable example",
         "missing_media_example": "Missing media example",
-        "delete_sample": "Facebook generated templates cannot be deleted."
+        "delete_sample": "Facebook generated templates cannot be deleted.",
+        "invalid_fields": "There are invalid fields, please fix them and try again."
       },
       "new_language": "New Language",
       "form_field": {
@@ -406,7 +407,8 @@
         "header": "Header",
         "header_text_placeholder": "Ex.: Type your message...",
         "add_variable": "Add Variable",
-        "save_language": "Save Language"
+        "save_language": "Save Language",
+        "name_exists": "This name already exists, please enter a different one."
       },
       "category_options": {
         "marketing": "Marketing",

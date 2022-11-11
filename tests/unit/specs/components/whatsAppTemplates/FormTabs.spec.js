@@ -31,11 +31,13 @@ const mountComponent = async ({
     updateTemplateTranslationForm: jest.fn(),
     createTemplate: jest.fn(),
     createTemplateTranslation: jest.fn(),
+    getWhatsAppTemplates: jest.fn(),
   };
 
   const state = {
     whatsAppTemplate: template,
     loadingFetchWhatsAppTemplate: false,
+    loadingWhatsAppTemplates: false,
     errorFetchWhatsAppTemplate: hasError,
     whatsAppTemplateSelectLanguages: [
       { value: 'pt_BR', text: 'Portuguese (BR)' },

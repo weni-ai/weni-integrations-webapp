@@ -30,6 +30,7 @@ const mountComponent = ({
   removeLanguages = [],
   language = null,
   availableLanguages = [],
+  templateResults = [],
 } = {}) => {
   if (!availableLanguages.length) {
     availableLanguages = [
@@ -54,6 +55,9 @@ const mountComponent = ({
     templateForm: {
       name: '',
       category: '',
+    },
+    whatsAppTemplates: {
+      results: templateResults,
     },
   };
 
@@ -408,6 +412,70 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
       expect(event.preventDefault).not.toHaveBeenCalled();
       wrapper.vm.preventTemplateName(event);
       expect(event.preventDefault).not.toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('saveTemplate()', () => {
+    it('should emit save-changes if there are no errorStates', async () => {
+      const { wrapper } = mountComponent();
+      const saveButton = wrapper.find('.form-tab-content__actions__save');
+
+      expect(wrapper.emitted('save-changes')).toBeFalsy();
+
+      await saveButton.trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted('save-changes')).toBeTruthy();
+    });
+
+    it('should not emit save-changes if there are errorStates', async () => {
+      const { wrapper } = mountComponent();
+      wrapper.vm.errorStates = {
+        name: {
+          value: true,
+          message: 'error',
+        },
+      };
+      const saveButton = wrapper.find('.form-tab-content__actions__save');
+
+      expect(wrapper.emitted('save-changes')).toBeFalsy();
+
+      await saveButton.trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted('save-changes')).toBeFalsy();
+    });
+  });
+
+  describe('handleTemplateFormInput()', () => {
+    it('should set name error and message if name already exists', async () => {
+      const { wrapper } = mountComponent();
+      spyOn(wrapper.vm, 'verifyExistingName').and.returnValue(true);
+
+      wrapper.vm.handleTemplateFormInput({ fieldName: 'name', fieldValue: 'a name' });
+
+      expect(wrapper.vm.errorStates.name.value).toBeTruthy();
+      expect(wrapper.vm.errorStates.name.message).toEqual(
+        'This name already exists, please enter a different one.',
+      );
+    });
+  });
+
+  describe('verifyExistingName()', () => {
+    it('should return true if name already exists', () => {
+      const { wrapper } = mountComponent({
+        templateResults: [{ name: 'name 1' }, { name: 'name 2' }],
+      });
+
+      expect(wrapper.vm.verifyExistingName('name 1')).toBeTruthy();
+    });
+
+    it('should return false if name does not exist', () => {
+      const { wrapper } = mountComponent({
+        templateResults: [{ name: 'name 1' }, { name: 'name 2' }],
+      });
+
+      expect(wrapper.vm.verifyExistingName('name 3')).toBeFalsy();
     });
   });
 
