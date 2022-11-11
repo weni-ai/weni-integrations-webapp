@@ -368,7 +368,8 @@
           "empty_button_text": "Button text cannot be empty",
           "empty_button_phone_number": "Phone number cannot be empty",
           "empty_button_country_code": "Phone country code cannot be empty",
-          "empty_button_url": "URL cannot be empty"
+          "empty_button_url": "URL cannot be empty",
+          "invalid_button_url": "Invalid button URL"
         },
         "unexpected_language": "Unexpected language, please refresh",
         "language_already_exists": "This language already exists",
