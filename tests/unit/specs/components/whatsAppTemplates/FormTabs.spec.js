@@ -442,7 +442,7 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
             {
               button_type: 'URL',
               text: 'button url text',
-              url: 'https://weni.ai',
+              url: 'weni.ai',
             },
             {
               button_type: 'PHONE_NUMBER',
@@ -450,6 +450,99 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
               phone_number: '(82)99999-9999',
               country_code: 'BR',
               country_calling_code: '55',
+            },
+          ],
+        },
+      });
+    });
+
+    it('should set only the first 2 buttons if phontype is PHONE_NUMBER or URL', async () => {
+      const { wrapper, actions } = await mountComponent();
+      const translation = {
+        language: 'pt_BR',
+        buttons: [
+          {
+            button_type: 'URL',
+            text: 'button url text',
+            url: 'https://weni.ai',
+          },
+          {
+            button_type: 'PHONE_NUMBER',
+            text: 'button text',
+            country_code: '55',
+            phone_number: '(82)99999-9999',
+          },
+          {
+            button_type: 'PHONE_NUMBER',
+            text: 'button text 2',
+            country_code: '56',
+            phone_number: '(82)99999-9999',
+          },
+        ],
+      };
+
+      wrapper.vm.buildTranslationForm(translation);
+
+      expect(actions.addNewTranslationForm).toHaveBeenCalledWith(expect.any(Object), {
+        formName: 'Portuguese (BR)',
+        formData: {
+          language: 'pt_BR',
+          buttons: [
+            {
+              button_type: 'URL',
+              text: 'button url text',
+              url: 'weni.ai',
+            },
+            {
+              button_type: 'PHONE_NUMBER',
+              text: 'button text',
+              phone_number: '(82)99999-9999',
+              country_code: 'BR',
+              country_calling_code: '55',
+            },
+          ],
+        },
+      });
+    });
+
+    it('should QUICK_REPLIES correctly', async () => {
+      const { wrapper, actions } = await mountComponent();
+      const translation = {
+        language: 'pt_BR',
+        buttons: [
+          {
+            button_type: 'QUICK_REPLY',
+            text: 'button text 1',
+          },
+          {
+            button_type: 'QUICK_REPLY',
+            text: 'button text 2',
+          },
+          {
+            button_type: 'QUICK_REPLY',
+            text: 'button text 3',
+          },
+        ],
+      };
+
+      wrapper.vm.buildTranslationForm(translation);
+
+      expect(actions.addNewTranslationForm).toHaveBeenCalledWith(expect.any(Object), {
+        formName: 'Portuguese (BR)',
+        formData: {
+          language: 'pt_BR',
+          buttons: [
+            {
+              button_type: 'QUICK_REPLY',
+              text: 'button text 1',
+            },
+            {
+              button_type: 'QUICK_REPLY',
+              text: 'button text 2',
+            },
+            {
+              button_type: 'QUICK_REPLY',
+              text: 'button text 3',
             },
           ],
         },
@@ -1988,7 +2081,7 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
         },
       });
 
-      expect(() => wrapper.vm.validateButtons()).toThrow('URL cannot be empty');
+      expect(() => wrapper.vm.validateButtons()).toThrow('Invalid button URL');
     });
 
     it('should return valid button if buttons if type is URL, text is defined and url is defined', async () => {

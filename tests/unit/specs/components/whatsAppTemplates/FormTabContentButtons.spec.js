@@ -693,4 +693,26 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       ]);
     });
   });
+
+  describe('handleUrlFocus()', () => {
+    it('should set focusedUrlInput as true', async () => {
+      const { wrapper } = mountComponent();
+      await wrapper.setData({ focusedUrlInput: false });
+
+      wrapper.vm.handleUrlFocus();
+
+      expect(wrapper.vm.focusedUrlInput).toBe(true);
+    });
+  });
+
+  describe('handleUrlBlur', () => {
+    it('should set focusedUrlInput as false', async () => {
+      const { wrapper } = mountComponent();
+      await wrapper.setData({ focusedUrlInput: true });
+
+      wrapper.vm.handleUrlBlur();
+
+      expect(wrapper.vm.focusedUrlInput).toBe(false);
+    });
+  });
 });

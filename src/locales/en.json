@@ -368,7 +368,8 @@
           "empty_button_text": "Button text cannot be empty",
           "empty_button_phone_number": "Phone number cannot be empty",
           "empty_button_country_code": "Phone country code cannot be empty",
-          "empty_button_url": "URL cannot be empty"
+          "empty_button_url": "URL cannot be empty",
+          "invalid_button_url": "Invalid button URL"
         },
         "unexpected_language": "Unexpected language, please refresh",
         "language_already_exists": "This language already exists",
@@ -412,7 +413,10 @@
       "category_options": {
         "marketing": "Marketing",
         "transactional": "Transactional",
-        "otp": "One Time Password"
+        "otp": "One Time Password",
+        "transactional_description": "Send account updates, order updates, alerts, and more to share important information.",
+        "marketing_description": "Send promotional offers, product announcements, and more to increase awareness and engagement.",
+        "otp_description": "Send codes that allow your customers to access their accounts."
       },
       "button_options": {
         "none": "None",

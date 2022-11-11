@@ -368,7 +368,8 @@
           "empty_button_text": "O texto do botão não pode estar vazio",
           "empty_button_phone_number": "O número de telefone não pode estar vazio",
           "empty_button_country_code": "O código do país do telefone não pode estar vazio",
-          "empty_button_url": "O URL não pode estar vazio"
+          "empty_button_url": "O URL não pode estar vazio",
+          "invalid_button_url": "O botao possui uma URL inválida"
         },
         "unexpected_language": "Idioma inesperado, por favor atualize a página",
         "language_already_exists": "Este idioma já existe",
@@ -412,7 +413,10 @@
       "category_options": {
         "marketing": "Marketing",
         "transactional": "Transacional",
-        "otp": "One Time Password"
+        "otp": "One Time Password",
+        "transactional_description": "Envie atualizações de conta, atualizações de pedidos, alertas e muito mais para compartilhar informações importantes.",
+        "marketing_description": "Envie ofertas promocionais, anúncios de produtos e muito mais para aumentar a conscientização e o engajamento.",
+        "otp_description": "Envie códigos que permitem que seus clientes acessem suas contas."
       },
       "button_options": {
         "none": "Nenhum",
