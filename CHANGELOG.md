@@ -1,3 +1,12 @@
+1.15.0
+----------
+`2022-11-11 · 3 🎉`
+
+### 🎉 New Features
+- Feat: WhatsApp Templates default button url https
+- Feat: WhatsApp templates category select descriptions
+- Feat: Check if template name already exists before save
+
 1.14.5
 ----------
 `2022-11-01 · 1 🐛`
