@@ -2,6 +2,7 @@ import {
   unnnicCallAlert as mockUnnnicCallAlert,
   unnnicInput,
   unnnicSelect,
+  unnnicMultiSelect,
 } from '@weni/unnnic-system';
 
 jest.mock('@weni/unnnic-system', () => ({
@@ -99,7 +100,7 @@ const mountComponent = ({
     },
   });
 
-  return { wrapper, actions, getters };
+  return { wrapper, actions, getters, state };
 };
 
 describe('components/whatsAppTemplates/FormTabContent.vue', () => {
@@ -128,15 +129,40 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
 
   it('should emit category change', async () => {
     const { wrapper, actions } = mountComponent();
-    const categorySelectComponent = wrapper.findAllComponents(unnnicSelect).at(0);
+    console.log(wrapper.html());
+    const categorySelectComponent = wrapper.findComponent(unnnicMultiSelect);
 
-    categorySelectComponent.vm.$emit('input', 'transactional');
+    expect(actions.updateTemplateForm).not.toHaveBeenCalled();
+
+    categorySelectComponent.vm.$emit('change', [
+      {
+        title: 'Category',
+        selected: 1,
+        items: [
+          {
+            value: 'TRANSACTIONAL',
+            title: 'transactional',
+            description: 'transactional',
+          },
+          {
+            value: 'MARKETING',
+            title: 'marketing',
+            description: 'marketing',
+          },
+          {
+            value: 'OTP',
+            title: 'otp',
+            description: 'otp',
+          },
+        ],
+      },
+    ]);
     await wrapper.vm.$nextTick();
 
     expect(actions.updateTemplateForm).toHaveBeenCalledTimes(1);
     expect(actions.updateTemplateForm).toHaveBeenCalledWith(expect.any(Object), {
       fieldName: 'category',
-      fieldValue: 'transactional',
+      fieldValue: 'MARKETING',
     });
   });
 
@@ -146,7 +172,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
         removeLanguages: ['Portuguese (BR)', 'English (US)'],
         language: 'pt_BR',
       });
-      const languageSelectComponent = wrapper.findAllComponents(unnnicSelect).at(1);
+      const languageSelectComponent = wrapper.findComponent(unnnicSelect);
 
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
 
@@ -175,7 +201,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
         removeLanguages: ['Portuguese (BR)', 'English (US)'],
         language: 'pt_BR',
       });
-      const languageSelectComponent = wrapper.findAllComponents(unnnicSelect).at(1);
+      const languageSelectComponent = wrapper.findComponent(unnnicSelect);
 
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
 
@@ -205,7 +231,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
         removeLanguages: ['Portuguese (BR)'],
         language: 'pt_BR',
       });
-      const languageSelectComponent = wrapper.findAllComponents(unnnicSelect).at(1);
+      const languageSelectComponent = wrapper.findComponent(unnnicSelect);
 
       languageSelectComponent.vm.$emit('input', 'en_US');
       await wrapper.vm.$nextTick();
@@ -224,7 +250,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
         removeLanguages: ['Portuguese (BR)'],
         language: 'pt_BR',
       });
-      const languageSelectComponent = wrapper.findAllComponents(unnnicSelect).at(1);
+      const languageSelectComponent = wrapper.findComponent(unnnicSelect);
 
       languageSelectComponent.vm.$emit('input', 'en_US');
       await wrapper.vm.$nextTick();
@@ -382,6 +408,24 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
       expect(event.preventDefault).not.toHaveBeenCalled();
       wrapper.vm.preventTemplateName(event);
       expect(event.preventDefault).not.toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('currentCategory()', () => {
+    it('should return empty string if category is not found', () => {
+      const { wrapper, state } = mountComponent();
+
+      state.templateForm.category = 'not found';
+
+      expect(wrapper.vm.currentCategory).toEqual('');
+    });
+
+    it('should return category translation if category is found', () => {
+      const { wrapper, state } = mountComponent();
+
+      state.templateForm.category = 'MARKETING';
+
+      expect(wrapper.vm.currentCategory).toEqual('Marketing');
     });
   });
 });

@@ -10,22 +10,18 @@
       :maxlength="512"
     />
     <div class="form-tab-content__selects">
-      <unnnic-select
-        :class="{ 'form-tab-content__selects__disabled': disableInputs || formMode !== 'create' }"
-        :disabled="disableInputs || formMode !== 'create'"
-        :value="templateForm.category"
-        @input="handleTemplateFormInput({ fieldName: 'category', fieldValue: $event })"
+      <unnnic-multi-select
+        ref="categorySelect"
+        :class="{
+          'form-tab-content__selects--category': true,
+          'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
+        }"
+        :inputTitle="currentCategory"
+        :hideGroupTitle="true"
         :label="$t('WhatsApp.templates.form_field.category')"
-      >
-        <option
-          v-for="option in categoryOptions"
-          :key="option.value"
-          :value="option.value"
-          :label="option.text"
-        >
-          {{ option.text }}
-        </option>
-      </unnnic-select>
+        :groups="categoryGroups"
+        @change="handleCategoryChange"
+      />
       <unnnic-select
         :class="{ 'form-tab-content__selects__disabled': disableInputs }"
         :key="languageKey"
@@ -135,13 +131,30 @@
     data() {
       return {
         languageKey: 0,
-        categoryOptions: [
-          { value: 'MARKETING', text: this.$t('WhatsApp.templates.category_options.marketing') },
+        categoryGroups: [
           {
-            value: 'TRANSACTIONAL',
-            text: this.$t('WhatsApp.templates.category_options.transactional'),
+            title: this.$t('WhatsApp.templates.form_field.category'),
+            selected: -1,
+            items: [
+              {
+                value: 'TRANSACTIONAL',
+                title: this.$t('WhatsApp.templates.category_options.transactional'),
+                description: this.$t(
+                  'WhatsApp.templates.category_options.transactional_description',
+                ),
+              },
+              {
+                value: 'MARKETING',
+                title: this.$t('WhatsApp.templates.category_options.marketing'),
+                description: this.$t('WhatsApp.templates.category_options.marketing_description'),
+              },
+              {
+                value: 'OTP',
+                title: this.$t('WhatsApp.templates.category_options.otp'),
+                description: this.$t('WhatsApp.templates.category_options.otp_description'),
+              },
+            ],
           },
-          { value: 'OTP', text: this.$t('WhatsApp.templates.category_options.otp') },
         ],
       };
     },
@@ -153,6 +166,18 @@
       },
       currentLanguage() {
         return this.templateTranslationCurrentForm?.language;
+      },
+      currentCategory() {
+        const category = this.categoryGroups[0].items.find(
+          (item) => item.value === this.templateForm.category,
+        );
+
+        if (!category) {
+          return '';
+        }
+
+        const categoryLabel = category.value.toLowerCase();
+        return this.$t(`WhatsApp.templates.category_options.${categoryLabel}`);
       },
     },
     methods: {
@@ -176,6 +201,13 @@
           fieldName,
           fieldValue,
         });
+      },
+      handleCategoryChange(event) {
+        this.categoryGroups = event;
+        const selectedCategory = event[0].items[event[0].selected];
+
+        this.handleTemplateFormInput({ fieldName: 'category', fieldValue: selectedCategory.value });
+        this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
         const selectedLanguage = this.availableLanguages.find((item) => item.value === value);
@@ -242,17 +274,38 @@
         flex: 1;
       }
 
+      ::v-deep .select-permission {
+        min-width: 100px;
+        min-height: 22px;
+      }
+
       &__disabled {
         cursor: default;
+        ::v-deep {
+          .input,
+          .unnnic-icon,
+          .select-permission {
+            pointer-events: none;
+          }
 
-        ::v-deep .input,
-        ::v-deep .unnnic-icon {
-          pointer-events: none;
+          .input,
+          .select-permission {
+            border: $unnnic-border-width-thinner dashed $unnnic-color-neutral-clean;
+            background-color: $unnnic-color-neutral-light;
+          }
         }
+      }
 
-        ::v-deep .input {
-          border: $unnnic-border-width-thinner dashed $unnnic-color-neutral-clean;
-          background-color: $unnnic-color-neutral-light;
+      &--category {
+        ::v-deep {
+          .select-permission-label {
+            margin-top: $unnnic-spacing-stack-xs;
+          }
+
+          .select-content {
+            z-index: 1;
+            width: max-content;
+          }
         }
       }
     }
