@@ -9,13 +9,34 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
     </div>
     <div class="app-grid__content">
       <unnniccard-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item">
-        <integrate-button-stub app="[object Object]" icon="add-1" disabled="true" size="small"></integrate-button-stub>
+        <div>
+          <unnnicbutton-stub size="small" type="secondary" iconcenter="add-1" class="loading-button"></unnnicbutton-stub>
+          <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green" class="add-modal"><span>some specific text</span>
+            <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+            <unnnicbutton-stub size="large" type="primary">
+              some specific text
+            </unnnicbutton-stub>
+          </unnnicmodal-stub>
+          <!---->
+        </div>
+      </unnniccard-stub>
+      <unnniccard-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item">
+        <div>
+          <unnnicbutton-stub size="small" type="secondary" iconcenter="add-1" disabled="true" class="loading-button"></unnnicbutton-stub>
+          <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green" class="add-modal"><span>some specific text</span>
+            <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+            <unnnicbutton-stub size="large" type="primary">
+              some specific text
+            </unnnicbutton-stub>
+          </unnnicmodal-stub>
+          <!---->
+        </div>
       </unnniccard-stub>
     </div>
   </section>
   <unnnicmodal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
     <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
-    <loadingbutton-stub type="primary" size="large" loadingtext="some specific text" loadingposition="left" text="some specific text"></loadingbutton-stub>
+    <unnnicbutton-stub size="large" text="some specific text" type="primary" class="loading-button"></unnnicbutton-stub>
   </unnnicmodal-stub>
   <div>
     <transition-stub name="fade">
