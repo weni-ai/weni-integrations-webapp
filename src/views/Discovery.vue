@@ -46,7 +46,6 @@
       await this.fetchChannels();
 
       const createAppCode = this.$route.query.create_app;
-      console.log('createAppCode', createAppCode);
       if (createAppCode) {
         await this.callManuallyCreateApp(createAppCode);
       }
