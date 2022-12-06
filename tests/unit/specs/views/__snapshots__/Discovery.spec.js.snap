@@ -9,7 +9,7 @@ exports[`Discovery.vue should be rendered properly 1`] = `
         <p class="app-grid__header__title">some specific text</p>
       </div>
       <div class="app-grid__content">
-        <div class="unnnic-card-component unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__add app-grid__content__item" v-bind="[object Object]" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" button-action="function _default() {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
+        <div class="unnnic-card-component app-grid__content__item unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__add" v-bind="[object Object]" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" button-action="function _default() {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
           <div class="unnnic-card-marketplace__icons"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="unnnic-card-marketplace__icons__app">
             <div><button data-v-0c05556c="" disabled="disabled" class="unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button-scheme-- unnnic-button--icon-on-center loading-button">
                 <!---->
@@ -46,7 +46,7 @@ exports[`Discovery.vue should be rendered properly 1`] = `
         <p class="app-grid__header__title">some specific text</p>
       </div>
       <div class="app-grid__content">
-        <div class="unnnic-card-component unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__edit app-grid__content__item" v-bind="[object Object]" button-action="function _default() {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
+        <div class="unnnic-card-component app-grid__content__item unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__edit" v-bind="[object Object]" button-action="function _default() {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
           <div class="unnnic-card-marketplace__icons"><img src="" class="unnnic-card-marketplace__icons__app"></div>
           <div class="unnnic-card-marketplace__content">
             <div class="unnnic-card-marketplace__content__title">Power BI</div>
