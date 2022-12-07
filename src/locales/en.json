@@ -388,7 +388,10 @@
         "missing_variable_example": "Missing variable example",
         "missing_media_example": "Missing media example",
         "delete_sample": "Facebook generated templates cannot be deleted.",
-        "invalid_fields": "There are invalid fields, please fix them and try again."
+        "invalid_fields": "There are invalid fields, please fix them and try again.",
+        "start_or_end_with_variable": "The body text contains variable parameters at the beginning or end.",
+        "too_many_variables": "This template contains too many variable parameters relative to the message length. You need to decrease the number of variable parameters or increase the message length.",
+        "incomplete_bracket_variable": "This template contains variable parameters with incorrect formatting. Variable parameters must be whole numbers with two sets of curly brackets (for example, {{1}}, {{2}})."
       },
       "new_language": "New Language",
       "form_field": {

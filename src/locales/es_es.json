@@ -388,7 +388,10 @@
         "missing_variable_example": "Ejemplo de variable faltante",
         "missing_media_example": "Ejemplo de archivo faltantes",
         "delete_sample": "Las plantillas generadas por Facebook no se pueden eliminar.",
-        "invalid_fields": "Hay campos inválidos, corríjalos y vuelva a intentarlo."
+        "invalid_fields": "Hay campos inválidos, corríjalos y vuelva a intentarlo.",
+        "start_or_end_with_variable": "El cuerpo del texto contiene parámetros variables al principio o al final. Debe cambiar este formato o agregar una muestra.",
+        "too_many_variables": "Esta plantilla contiene demasiados parámetros variables en relación con la longitud del mensaje. Debe disminuir el número de parámetros variables o aumentar la longitud del mensaje.",
+        "incomplete_bracket_variable": "Esta plantilla contiene parámetros variables con formato incorrecto. Los parámetros variables deben ser números enteros con dos juegos de corchetes (por ejemplo, {{1}}, {{2}})."
       },
       "new_language": "Nuevo Idioma",
       "form_field": {
