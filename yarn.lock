@@ -2709,10 +2709,10 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@weni/unnnic-system@^1.10.15":
-  version "1.10.15"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.10.15.tgz#92e1143412f43bf7fbeedac472358fe82ce63108"
-  integrity sha512-ArMZEEVLRijxrK5ihWbp2ybuIAjLq/G+hF8ikUZpfRkFnZPZB2ZujzIhky1JD+9QLymOzd3SA8s4hzwBFWamNQ==
+"@weni/unnnic-system@^1.10.21":
+  version "1.10.21"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-1.10.21.tgz#b48f821149a384c6c345ee6b59ac35ad27890565"
+  integrity sha512-jtr41vtStsKiT5U6yyjV2r3gLPqGhn8I2JsTrHjvgLuHoXxnyVUqFHFkMOotMbQALlRsaWDyhDNrhX+KIW855Q==
   dependencies:
     core-js "^3.6.5"
     moment "^2.29.1"
@@ -13105,6 +13105,11 @@ vue-class-component@^7.2.6:
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
   integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
+
+vue-click-outside-element@1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/vue-click-outside-element/-/vue-click-outside-element-1.0.15.tgz#1883e7005c0f3b6c734473e85e9f63e92cc69705"
+  integrity sha512-6d7eUazOiHnrNorLSIPxOYcoJYaSFlc9OSnUtuZWDG3l5EIomQam0EBfJdHMA50zjBraV5WRl07fh26ger/z4A==
 
 vue-eslint-parser@^7.0.0:
   version "7.11.0"

@@ -15,9 +15,14 @@
       :value="bodyContent"
       @input="onInput"
       :maxLength="1024"
+      :type="hasErrors ? 'error' : 'normal'"
+      :errors="errorsList"
     />
     <InputEditor
-      class="form-tab-content-body__input__actions"
+      :class="[
+        'form-tab-content-body__input__actions',
+        hasErrors && 'form-tab-content-body__input__actions--error',
+      ]"
       :formatter="true"
       @format-event="handleFormatEvent"
       @add-variable="addVariable"
@@ -30,7 +35,14 @@
   import { mapGetters } from 'vuex';
   import InputEditor from '@/components/whatsAppTemplates/InputEditor';
 
-  import { countVariables } from '@/utils/countTemplateVariables.js';
+  import {
+    countVariables,
+    startsWithVariableRegex,
+    endsWithVariableRegex,
+    singleBracketVariableRegex,
+    incompleteStartBracketVariableRegex,
+    incompleteEndBracketVariableRegex,
+  } from '@/utils/countTemplateVariables.js';
 
   export default {
     name: 'FormTabContentBody',
@@ -52,6 +64,35 @@
       ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
       bodyContent() {
         return this.templateTranslationCurrentForm?.body || '';
+      },
+      hasErrors() {
+        return this.errorsList.length > 0;
+      },
+      errorsList() {
+        const errors = [];
+
+        if (
+          startsWithVariableRegex.test(this.bodyContent) ||
+          endsWithVariableRegex.test(this.bodyContent)
+        ) {
+          errors.push(this.$t('WhatsApp.templates.error.start_or_end_with_variable'));
+        }
+
+        if (
+          singleBracketVariableRegex.test(this.bodyContent) ||
+          incompleteStartBracketVariableRegex.test(this.bodyContent) ||
+          incompleteEndBracketVariableRegex.test(this.bodyContent)
+        ) {
+          errors.push(this.$t('WhatsApp.templates.error.incomplete_bracket_variable'));
+        }
+
+        const variableCount = countVariables(this.bodyContent);
+        const wordCount = this.countWords(this.bodyContent);
+        if (wordCount && variableCount * 2 + 1 > wordCount - variableCount) {
+          errors.push(this.$t('WhatsApp.templates.error.too_many_variables'));
+        }
+
+        return errors;
       },
     },
     methods: {
@@ -123,6 +164,13 @@
           fieldValue: result,
         });
       },
+      countWords(text) {
+        if (!text) {
+          return 0;
+        }
+
+        return text.trim().split(/\s+/).length;
+      },
     },
   };
 </script>
@@ -146,6 +194,11 @@
         margin-left: auto;
         margin-top: -28px;
         margin-right: $unnnic-spacing-inline-giant;
+
+        &--error {
+          margin-top: 0;
+          margin-right: 0;
+        }
       }
     }
   }

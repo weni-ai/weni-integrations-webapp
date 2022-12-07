@@ -1,6 +1,6 @@
 <template>
   <div class="input-editor">
-    <div>
+    <div v-click-outside-element="hideEmoji">
       <VEmojiPicker
         v-show="displayEmoji"
         class="input-editor__emoji-picker"
@@ -47,6 +47,17 @@
           <img :src="strikeIcon" />
         </unnnic-button>
       </unnnic-tool-tip>
+
+      <unnnic-tool-tip side="top" text="Monospace" enabled>
+        <unnnic-button
+          class="input-editor__button input-editor__button__mono"
+          type="terciary"
+          size="small"
+          @click="$emit('format-event', '```')"
+        >
+          {{ monospaceString }}
+        </unnnic-button>
+      </unnnic-tool-tip>
     </div>
     <unnnic-button
       type="terciary"
@@ -74,6 +85,7 @@
         displayEmoji: false,
         search: '',
         strikeIcon: StrikeThroughIcon,
+        monospaceString: '</>',
       };
     },
     props: {
@@ -83,6 +95,9 @@
       },
     },
     methods: {
+      hideEmoji() {
+        this.displayEmoji = false;
+      },
       toggleEmoji() {
         this.displayEmoji = !this.displayEmoji;
       },
@@ -116,6 +131,12 @@
             opacity: 0.5;
           }
         }
+      }
+
+      &__mono {
+        font-family: $unnnic-font-family-primary;
+        font-size: $unnnic-font-size-body-lg;
+        color: $unnnic-color-neutral-cleanest;
       }
 
       ::v-deep {
