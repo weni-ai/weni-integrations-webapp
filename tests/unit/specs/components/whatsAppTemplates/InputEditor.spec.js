@@ -55,4 +55,17 @@ describe('components/whatsAppTemplates/InputEditor.vue', () => {
       expect(event[0]).toEqual(['👍']);
     });
   });
+
+  describe('hideEmoji()', () => {
+    it('should set displayEmoji to false', () => {
+      const { wrapper } = mountComponent();
+
+      wrapper.vm.displayEmoji = true;
+      expect(wrapper.vm.displayEmoji).toEqual(true);
+
+      wrapper.vm.hideEmoji();
+
+      expect(wrapper.vm.displayEmoji).toEqual(false);
+    });
+  });
 });

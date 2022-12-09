@@ -388,7 +388,10 @@
         "missing_variable_example": "Exemplo de variável ausente",
         "missing_media_example": "Exemplo de mídia ausente",
         "delete_sample": "Templates gerados pelo facebook não podem ser excluídos.",
-        "invalid_fields": "Existem campos inválidos, corrija-os e tente novamente."
+        "invalid_fields": "Existem campos inválidos, corrija-os e tente novamente.",
+        "start_or_end_with_variable": "O corpo do texto contém parâmetros variáveis ​​no início ou no final.",
+        "too_many_variables": "Este modelo contém muitos parâmetros variáveis ​​relativos ao comprimento da mensagem. Você precisa diminuir o número de parâmetros variáveis ​​ou aumentar o tamanho da mensagem.",
+        "incomplete_bracket_variable": "Este modelo contém parâmetros variáveis ​​com formatação incorreta. Os parâmetros variáveis ​​devem ser números inteiros com dois conjuntos de chaves (por exemplo, {{1}}, {{2}})."
       },
       "new_language": "Nova linguagem",
       "form_field": {

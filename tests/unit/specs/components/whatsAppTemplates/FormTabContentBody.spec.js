@@ -3,6 +3,7 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
 import InputEditor from '@/components/whatsAppTemplates/InputEditor.vue';
 import '@weni/unnnic-system';
+import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -26,9 +27,7 @@ const mountComponent = ({ body = '', disableInputs = false } = {}) => {
   const wrapper = mount(FormTabContentBody, {
     localVue,
     store,
-    mocks: {
-      $t: () => 'some specific text',
-    },
+    i18n,
     stubs: {
       InputEditor: true,
     },
@@ -175,6 +174,42 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
           fieldValue: '👍',
         },
       ]);
+    });
+  });
+
+  describe('errorsList', () => {
+    it('should return empty array if there are no errors', () => {
+      const { wrapper } = mountComponent({ body: 'text with {{1}} as valid variable' });
+      expect(wrapper.vm.errorsList).toEqual([]);
+    });
+
+    it('should return start_or_end_with_variable if variables are at start or end', () => {
+      const errorMessage = 'The body text contains variable parameters at the beginning or end.';
+      let { wrapper } = mountComponent({ body: '{{1}} text with varaible at start' });
+      expect(wrapper.vm.errorsList).toEqual([errorMessage]);
+
+      ({ wrapper } = mountComponent({ body: 'text with variable at end {{1}}' }));
+      expect(wrapper.vm.errorsList).toEqual([errorMessage]);
+    });
+
+    it('should return incomplete_bracket_variable if variable is not at the correct format', () => {
+      const errorMessage =
+        'This template contains variable parameters with incorrect formatting. Variable parameters must be whole numbers with two sets of curly brackets (for example, {{1}}, {{2}}).';
+      let { wrapper } = mountComponent({ body: 'text {1}}' });
+      expect(wrapper.vm.errorsList).toEqual([errorMessage]);
+
+      ({ wrapper } = mountComponent({ body: 'text {{1}' }));
+      expect(wrapper.vm.errorsList).toEqual([errorMessage]);
+
+      ({ wrapper } = mountComponent({ body: 'text {1}' }));
+      expect(wrapper.vm.errorsList).toEqual([errorMessage]);
+    });
+
+    it('should return too_many_variables if text does not contains enough words', () => {
+      const errorMessage =
+        'This template contains too many variable parameters relative to the message length. You need to decrease the number of variable parameters or increase the message length.';
+      const { wrapper } = mountComponent({ body: 'text {{1}} {{2}} end' });
+      expect(wrapper.vm.errorsList).toEqual([errorMessage]);
     });
   });
 });

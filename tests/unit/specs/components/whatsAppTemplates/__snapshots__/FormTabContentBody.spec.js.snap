@@ -6,12 +6,13 @@ exports[`components/whatsAppTemplates/FormTabContentBody.vue should be rendered 
       unnnic-tag-scheme--neutral-darkest
       " v-bind="[object Object]" count="0"><span data-v-3e4e81d5="" class="unnnic-tag__label
     
-    ">some specific text</span>
+    ">Body Text</span>
     <!---->
   </div>
-  <div data-v-a6929120="" class="form-tab-content-body__input unnnic-text-area md">
-    <!----><textarea data-v-a6929120="" maxlength="1024"></textarea>
-    <div data-v-a6929120="" class="helper">0/1024</div>
+  <div data-v-24fcdb87="" class="form-tab-content-body__input unnnic-text-area md normal">
+    <!----><textarea data-v-24fcdb87="" maxlength="1024"></textarea>
+    <div data-v-24fcdb87="" class="helper"> 0/1024 </div>
+    <!---->
   </div>
   <inputeditor-stub formatter="true" class="form-tab-content-body__input__actions"></inputeditor-stub>
 </div>
