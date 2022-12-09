@@ -102,7 +102,10 @@
           return;
         }
 
-        const textArea = this.$refs.bodyText.$el.children[0];
+        const textArea = Array.from(this.$refs.bodyText.$el.children).find(
+          (child) => child.nodeName === 'TEXTAREA',
+        );
+
         const before = textArea.value.substring(0, textArea.selectionStart);
         const selectionContent = textArea.value.substring(
           textArea.selectionStart,
