@@ -1,3 +1,13 @@
+1.15.1
+----------
+`2022-12-09 · 1 🐛 · 1 🎉`
+
+### 🎉 New Features
+- Feat: Template message body content improvements
+
+### 🐛 Bug fixes
+- Fix: Find text-area element based on node name and not index
+
 1.15.0
 ----------
 `2022-11-11 · 3 🎉`
