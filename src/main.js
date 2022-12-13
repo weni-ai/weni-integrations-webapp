@@ -2,12 +2,14 @@ import Vue from 'vue';
 import * as Sentry from '@sentry/vue';
 import * as Integrations from '@sentry/integrations';
 import LogRocket from 'logrocket';
+import vClickOutside from 'v-click-outside';
 import App from './App.vue';
 import i18n from './utils/plugins/i18n';
 import router from './router';
 import store from './store';
 import getEnv from '@/utils/env';
-import { makeServer } from '@/miragejs/server';
+
+Vue.use(vClickOutside);
 
 import { initFacebookSdk } from './utils/plugins/fb';
 
