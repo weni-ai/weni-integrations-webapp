@@ -8,6 +8,7 @@ import i18n from './utils/plugins/i18n';
 import router from './router';
 import store from './store';
 import getEnv from '@/utils/env';
+import { makeServer } from '@/miragejs/server';
 
 Vue.use(vClickOutside);
 
