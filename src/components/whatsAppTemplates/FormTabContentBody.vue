@@ -72,16 +72,16 @@
         const errors = [];
 
         if (
-          startsWithVariableRegex.test(this.bodyContent) ||
-          endsWithVariableRegex.test(this.bodyContent)
+          this.bodyContent.match(startsWithVariableRegex) ||
+          this.bodyContent.match(endsWithVariableRegex)
         ) {
           errors.push(this.$t('WhatsApp.templates.error.start_or_end_with_variable'));
         }
 
         if (
-          singleBracketVariableRegex.test(this.bodyContent) ||
-          incompleteStartBracketVariableRegex.test(this.bodyContent) ||
-          incompleteEndBracketVariableRegex.test(this.bodyContent)
+          this.bodyContent.match(singleBracketVariableRegex) ||
+          this.bodyContent.match(incompleteStartBracketVariableRegex) ||
+          this.bodyContent.match(incompleteEndBracketVariableRegex)
         ) {
           errors.push(this.$t('WhatsApp.templates.error.incomplete_bracket_variable'));
         }
@@ -114,10 +114,7 @@
         const after = textArea.value.substring(textArea.selectionEnd);
         const result = `${before}${eventCharacter}${selectionContent}${eventCharacter}${after}`;
 
-        this.$emit('input-change', {
-          fieldName: 'body',
-          fieldValue: result,
-        });
+        this.emitInputChange(result);
 
         textArea.focus();
       },
@@ -138,10 +135,7 @@
           return;
         }
 
-        this.$emit('input-change', {
-          fieldName: 'body',
-          fieldValue,
-        });
+        this.emitInputChange(fieldValue);
 
         this.$refs.bodyText.$el.children[0].focus();
       },
@@ -151,10 +145,7 @@
           return;
         }
 
-        this.$emit('input-change', {
-          fieldName: 'body',
-          fieldValue: event,
-        });
+        this.emitInputChange(event);
       },
       handleNewEmoji(emoji) {
         if (this.disableInputs) {
@@ -162,9 +153,17 @@
         }
         const result = (this.templateTranslationCurrentForm.body || '') + emoji.data;
 
+        this.emitInputChange(result);
+      },
+      emitInputChange(fieldValue) {
         this.$emit('input-change', {
           fieldName: 'body',
-          fieldValue: result,
+          fieldValue,
+        });
+
+        this.$emit('input-change', {
+          fieldName: 'bodyHasError',
+          fieldValue: this.hasErrors,
         });
       },
       countWords(text) {

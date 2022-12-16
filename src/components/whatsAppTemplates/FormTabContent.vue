@@ -82,7 +82,7 @@
         size="large"
         :loading="loadingSave"
         :text="$t('WhatsApp.templates.form_field.save_language')"
-        :disabled="disableInputs"
+        :disabled="!canSave"
         @click="saveTemplate"
       />
     </div>
@@ -187,6 +187,9 @@
 
         const categoryLabel = category.value.toLowerCase();
         return this.$t(`WhatsApp.templates.category_options.${categoryLabel}`);
+      },
+      canSave() {
+        return !this.disableInputs && !this.templateTranslationCurrentForm?.bodyHasError;
       },
     },
     methods: {
@@ -300,7 +303,9 @@
           return;
         }
 
-        this.$emit('save-changes');
+        if (this.canSave) {
+          this.$emit('save-changes');
+        }
       },
     },
   };
