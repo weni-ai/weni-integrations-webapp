@@ -13042,6 +13042,11 @@ v-click-outside@^3.1.2:
   resolved "https://registry.yarnpkg.com/v-click-outside/-/v-click-outside-3.1.2.tgz#1dbaa14bf09a21bd16f23a38f03bfa3988f71281"
   integrity sha512-gMdRqfRE6m6XU6SiFi3dyBlFB2MWogiXpof8Aa3LQysrl9pzTndqp/iEaAphLoadaQUFnQ0ec6fLLaxr7LiY6A==
 
+v-click-outside@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/v-click-outside/-/v-click-outside-3.2.0.tgz#850ac3f52d66d84b9f7e8002a1bcadcafec5534e"
+  integrity sha512-QD0bDy38SHJXQBjgnllmkI/rbdiwmq9RC+/+pvrFjYJKTn8dtp7Penf9q1lLBta280fYG2q53mgLhQ+3l3z74w==
+
 v-emoji-picker@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/v-emoji-picker/-/v-emoji-picker-2.3.3.tgz#afff5d9be2d9c949b395616bcffd4d74f753289f"
@@ -13105,11 +13110,6 @@ vue-class-component@^7.2.6:
   version "7.2.6"
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
   integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
-
-vue-click-outside-element@1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/vue-click-outside-element/-/vue-click-outside-element-1.0.15.tgz#1883e7005c0f3b6c734473e85e9f63e92cc69705"
-  integrity sha512-6d7eUazOiHnrNorLSIPxOYcoJYaSFlc9OSnUtuZWDG3l5EIomQam0EBfJdHMA50zjBraV5WRl07fh26ger/z4A==
 
 vue-eslint-parser@^7.0.0:
   version "7.11.0"
