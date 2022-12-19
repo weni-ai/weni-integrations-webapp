@@ -1,6 +1,6 @@
 <template>
   <div class="input-editor">
-    <div v-click-outside-element="hideEmoji">
+    <div v-click-outside="hideEmoji">
       <VEmojiPicker
         v-show="displayEmoji"
         class="input-editor__emoji-picker"
