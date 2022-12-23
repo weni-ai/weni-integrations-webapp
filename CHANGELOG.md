@@ -1,3 +1,16 @@
+1.16.0
+----------
+`2022-12-23 · 2 🐛 · 3 🎉`
+
+### 🎉 New Features
+- Feat: Generic Apps support
+- Feat: Prevent template form submission on body error
+- Feat: Create app from query params
+
+### 🐛 Bug fixes
+- Fix: Remove button i18n
+- Fix: Hide emoji picker on outside click
+
 1.15.1
 ----------
 `2022-12-09 · 1 🐛 · 1 🎉`
