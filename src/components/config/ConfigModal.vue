@@ -10,6 +10,7 @@
             :is="currentComponent"
             :v-bind="$attrs"
             :app="currentApp"
+            :isConfigured="isConfigured"
             @closeModal="closeModal"
             @setConfirmation="setConfirmation"
           />
@@ -47,11 +48,12 @@
 </template>
 
 <script>
-  import wwcConfig from './channels/WWC/Config.vue';
-  import telegramConfig from './channels/telegram/Config.vue';
-  import wppDemoPreview from './channels/wpp_demo/Preview.vue';
-  import whatsappConfig from './channels/whatsapp/Config.vue';
+  import wwcConfig from '@/components/config/channels//WWC/Config.vue';
+  import telegramConfig from '@/components/config/channels//telegram/Config.vue';
+  import wppDemoPreview from '@/components/config/channels//wpp_demo/Preview.vue';
+  import whatsappConfig from '@/components/config/channels//whatsapp/Config.vue';
   import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
+  import genericTypeConfig from '@/components/config/channels/generic/Config.vue';
 
   export default {
     name: 'Modal',
@@ -60,6 +62,7 @@
         show: false,
         type: '',
         currentApp: {},
+        isConfigured: false,
         showConfirmationModal: false,
         needConfirmation: false,
         componentMapping: {
@@ -80,9 +83,10 @@
         }
         this.show = false;
       },
-      openModal(app) {
+      openModal({ app, isConfigured }) {
         this.type = app.code;
         this.currentApp = app;
+        this.isConfigured = isConfigured;
         this.show = true;
       },
       setConfirmation(value) {
@@ -99,7 +103,7 @@
     },
     computed: {
       currentComponent() {
-        return this.componentMapping[this.type];
+        return this.componentMapping[this.type] || genericTypeConfig;
       },
     },
   };
