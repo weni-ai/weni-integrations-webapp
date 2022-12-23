@@ -20,6 +20,7 @@
     "libphonenumber-js": "^1.10.13",
     "lodash.debounce": "^4.0.8",
     "lodash.snakecase": "^4.1.1",
+    "lodash.throttle": "^4.1.1",
     "logrocket": "^2.2.0",
     "millify": "^4.0.0",
     "query-string": "^7.0.1",
