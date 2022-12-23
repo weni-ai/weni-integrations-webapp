@@ -62,7 +62,7 @@
               @click="toggleRemoveModal(app)"
             >
               <unnnic-icon-svg icon="bin-1-1" size="sm" scheme="feedback-red" />
-              Remove
+              {{ $t('general.Remove') }}
             </unnnic-dropdown-item>
           </unnnic-dropdown>
         </unnnic-card>

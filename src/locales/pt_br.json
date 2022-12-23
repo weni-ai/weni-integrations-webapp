@@ -4,7 +4,8 @@
     "Close": "Fechar",
     "You": "Você",
     "confirm": "Confirmar",
-    "loading": "Carregando"
+    "loading": "Carregando",
+    "Remove": "Remover"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
