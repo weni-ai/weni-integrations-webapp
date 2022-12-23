@@ -18,7 +18,7 @@
     </div>
 
     <unnnic-tab
-      v-if="!loadingWhatsAppProfile && !loadingCurrentApp"
+      v-if="skipLoad || (!loadingWhatsAppProfile && !loadingCurrentApp)"
       class="config-whatsapp__tabs"
       :tabs="configTabs"
       initialTab="account"
@@ -27,7 +27,13 @@
       <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
 
       <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
-      <ProfileTab slot="tab-panel-profile" :app="app" :profile="appProfile" @close="closeConfig" />
+      <ProfileTab
+        slot="tab-panel-profile"
+        :app="app"
+        :profile="appProfile"
+        @close="closeConfig"
+        @save="() => fetchData({ skipLoad: true })"
+      />
 
       <template slot="tab-head-contact_info">
         {{ $t('WhatsApp.config.tabs.contact_info') }}
@@ -82,6 +88,7 @@
           'en-us': 'https://docs.weni.ai/l/en/channels/how-to-verify-my-business',
           'pt-br': 'https://docs.weni.ai/l/pt/canais/como-verificar-o-meu-neg-cio',
         },
+        skipLoad: false,
       };
     },
     async mounted() {
@@ -128,11 +135,13 @@
       closeConfig() {
         this.$emit('closeModal');
       },
-      async fetchData() {
+      async fetchData({ skipLoad = false } = {}) {
         try {
           const options = { code: this.app.code, appUuid: this.app.uuid };
+          this.skipLoad = skipLoad;
           await this.fetchAppInfo(options);
           await this.fetchProfile(options);
+          this.skipLoad = false;
         } catch (error) {
           unnnicCallAlert({
             props: {
