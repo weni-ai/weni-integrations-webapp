@@ -490,7 +490,6 @@
       }
     }
   },
-
   "PowerBi": {
     "title": "Power BI",
     "data": {
@@ -511,6 +510,32 @@
       "download_model": {
         "label": "Descargar modelo de dashboard"
       }
+    }
+  },
+  "GenericApp": {
+    "configuration_guide": {
+      "CT": "Para conectar un número <a href=\"http://clickatell.com\">Clickatell</a>, primero cree una integración HTTP para un número bidireccional, luego ingrese el número y la clave API a continuación.",
+      "FCM": "Puede conectarse mediante un <a href=\"https://firebase.google.com/docs/cloud-messaging/\">Firebase Cloud Messaging App</a> a su espacio de trabajo para automatizar el envío de notificaciones. Deberá crear una nueva aplicación en Firebase Console y obtener su clave. Para hacerlo:",
+      "FC": "<p>Puede conectar una cuenta <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> a su cuenta para automatizar el envío y la recepción de mensajes a través de FreshChat. Esto también admitirá Apple Business Chat si se configuró en su cuenta de FreshChat.<br/><br/>Cada mensaje enviado al canal tendrá una URN en el formato <span class=\"highlight\">channel-uuid/user-uuid</span> donde el UUID del canal es el UUID del canal FreshChat.</p><ol><li>En la interfaz web de FreshChat, en Configuración, Tokens de API, seleccione Generar token. Una vez que se crea el token, lo ingresará a continuación.</li><li>En Configuración nuevamente, seleccione Webhooks y copie la clave pública y péguela a continuación. Esto asegura que todas las solicitudes de webhook de FreshChat serán autenticadas.</li><li>Por último, necesitará el UUID del Agente que Weni usará cuando envíe un mensaje de FreshChat. Esto está disponible a través de la <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Una vez que presione Enviar a continuación con toda la información configurada, la página de confirmación le dará la URL para usar con los webhooks de FreshChat. Ingrese esta URL en la página Configuración, en Webhooks de donde se copió la clave pública anteriormente.</li></ol>",
+      "IB": "Puede conectar su número de Infobip ingresando su número, nombre de usuario y contraseña aquí.<br/><br/>Después de conectar su servicio, proporcionaremos URL para los puntos finales para que InfoBip llame cuando quiera enviar un mensaje a Weni.",
+      "JC": "Puede conectar un <a href=\"https://jiochat.com\">Canal JioChat</a> a su espacio de trabajo para automatizar el envío y la recepción de mensajes de JioChat.<br/><br/>Para comenzar, copie el ID de la aplicación y el Secreto de la aplicación del Centro de desarrolladores en el siguiente formulario y haga clic en Guardar.",
+      "JN": "Ingrese sus credenciales para agregar su número.",
+      "MB": "Ingrese sus credenciales para agregar su número.",
+      "SL": "Puede conectar un <a href=\"https://slack.com/app\">Slack Bot</a> a su espacio de trabajo para automatizar el envío y la recepción de mensajes.<br><br>Para hacerlo, deberá crear una nueva aplicación de slack y configurarla.<br><ol><li>Tendrás que crear un <a href=\"https://api.slack.com/apps\">Slack app</a> si aún no lo has hecho, configure un bot, agregue los ámbitos necesarios e instale la aplicación en su espacio de trabajo holgado. Si necesita ayuda sobre cómo hacer esto, lea esta guía <a href=\"https://api.slack.com/bot-users\">aquí</a>.",
+      "TM": "Puede conectar un Teams Bot a su espacio de trabajo para automatizar el envío y la recepción de mensajes de Teams. Para ello necesitarás crear y registrar una aplicación tipo Bot en Microsoft Azure.",
+      "TMS": "Puede agregar su SID de mensajería de Twilio como un canal. Puede obtener su SID del servicio de mensajería o crear un nuevo servicio de mensajería desde <a href=\"https://www.twilio.com/user/account/messaging/services\">Twilio Console</a><br/><br/>Después de agregar su SID del servicio de mensajería de Twilio, le proporcionaremos el punto final de la URL para que Twilio llame cuando quiera enviar un mensaje a Weni.",
+      "TW": "Puede agregar una API REST de TwiML como un canal utilizando su instancia de TwiML.",
+      "VP": "Para conectar su página pública de Viber a Weni, deberá crear un canal público y seguir los pasos necesarios para obtener un token de autenticación. Por favor consulte la documentación <a href=\"https://developers.viber.com/?b_id=15145\">para desarrolladores de Viber</a> sobre cómo crear su propia cuenta pública.<br/><br/> Una vez que tenga su token de autenticación, ingréselo a continuación para conectar su canal público a Weni"
+    },
+    "preview": {
+      "errors": {
+        "fetch_app": "Se produjo un error al intentar obtener los datos de la aplicación. Vuelva a intentarlo más tarde."
+      }
+    },
+    "description": {
+      "callback_url": "Para finalizar la configuración del canal, debe configurar la URL de devolución de llamada del canal de Weni Platform. La URL de devolución de llamada para este canal es",
+      "callback_url_info_1": "Para obtener más información, siga",
+      "callback_url_info_2": "esta documentación"
     }
   }
 }
