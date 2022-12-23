@@ -12,13 +12,13 @@
       </div>
       <span class="app-config-generic__header__description" v-html="appDescription" />
 
-      <div v-if="callbackChannels.includes(app.config.channel_code) && isConfigured">
+      <div v-if="callbackChannels.includes(app.config.channel_code) && shouldDisplayCallback">
         <span class="app-config-generic__header__description bold">
           {{ $t('GenericApp.description.callback_url') }}
           <span class="highlight">
             {{
               `https://flows.weni.ai/c/${app.config.channel_code.toLowerCase()}/${
-                app.config.channelUuid
+                app.config.channelUuid || currentApp.config.channelUuid
               }/receive`
             }}
           </span>
@@ -107,6 +107,7 @@
           checkbox: 'checkbox',
         },
         loadingFormBuild: true,
+        showCallback: false,
       };
     },
     async mounted() {
@@ -134,6 +135,9 @@
       appDescription() {
         const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
         return this.$te(i18nkey) ? this.$t(i18nkey) : this.app.config.channel_claim_blurb;
+      },
+      shouldDisplayCallback() {
+        return this.isConfigured || this.showCallback;
       },
     },
     methods: {
@@ -205,6 +209,9 @@
           this.callModal({ type: 'Error', text: this.$t('apps.details.status_error') });
         } else {
           this.callModal({ type: 'Success', text: this.$t('apps.config.integration_success') });
+
+          await this.fetchAppData();
+          this.showCallback = true;
         }
 
         this.$root.$emit('updateGrid');
