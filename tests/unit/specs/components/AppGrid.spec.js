@@ -23,14 +23,21 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import AppGrid from '@/components/AppGrid.vue';
 import addModal from '@/components/AddModal.vue';
 import configPopUp from '@/components/config/ConfigPopUp.vue';
 import ConfigModal from '@/components/config/ConfigModal.vue';
+import IntegrateButton from '@/components/IntegrateButton.vue';
 import skeletonLoading from '@/components/loadings/AppGrid.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../__mocks__/appMock';
+
+const mockIntegrateButtonAddApp = jest.fn();
+IntegrateButton.methods = {
+  ...IntegrateButton.methods,
+  addApp: mockIntegrateButtonAddApp,
+};
 
 const router = new VueRouter();
 
@@ -74,7 +81,7 @@ describe('AppGrid.vue', () => {
       state,
     });
 
-    wrapper = shallowMount(AppGrid, {
+    wrapper = mount(AppGrid, {
       localVue,
       store,
       i18n,
@@ -91,11 +98,15 @@ describe('AppGrid.vue', () => {
         ConfigModal,
         addModal,
         configPopUp,
+        IntegrateButton,
       },
       propsData: {
         section: 'channel',
         type: 'add',
-        apps: [singleApp],
+        apps: [
+          { ...singleApp, can_add: true },
+          { ...singleApp, can_add: false, code: 'tg' },
+        ],
         loading: false,
       },
     });
@@ -175,7 +186,7 @@ describe('AppGrid.vue', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    it('should change change route on card click when type is "add"', async () => {
+    it('should change route on card click when type is "add"', async () => {
       await wrapper.setProps({ type: 'add' });
       const app = wrapper.vm.apps[0];
       expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
@@ -363,6 +374,26 @@ describe('AppGrid.vue', () => {
         await wrapper.setProps({ apps: undefined });
         expect(wrapper.vm.currentGridApps).toHaveLength(0);
       });
+    });
+  });
+
+  describe('manuallyCreateApp()', () => {
+    it('should call integrateButton.addApp if app with provided code exists', async () => {
+      expect(mockIntegrateButtonAddApp).not.toHaveBeenCalled();
+      wrapper.vm.manuallyCreateApp('wwc');
+      expect(mockIntegrateButtonAddApp).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not call integrateButton.addApp if app with provided code does not exists', async () => {
+      expect(mockIntegrateButtonAddApp).not.toHaveBeenCalled();
+      wrapper.vm.manuallyCreateApp('random');
+      expect(mockIntegrateButtonAddApp).toHaveBeenCalledTimes(0);
+    });
+
+    it('should not call integrateButton.addApp if app with provided code exists but cannot be added', async () => {
+      expect(mockIntegrateButtonAddApp).not.toHaveBeenCalled();
+      wrapper.vm.manuallyCreateApp('tg');
+      expect(mockIntegrateButtonAddApp).toHaveBeenCalledTimes(0);
     });
   });
 

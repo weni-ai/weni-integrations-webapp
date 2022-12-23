@@ -27,6 +27,7 @@
           @openModal="openAppModal(app)"
         >
           <integrate-button
+            :ref="`integrate-button-${app.code}`"
             v-if="type === 'add'"
             slot="actions"
             :app="app"
@@ -332,6 +333,13 @@
         }
 
         return app.icon;
+      },
+      async manuallyCreateApp(appCode) {
+        const selectedApp = this.apps.find((app) => app.code === appCode);
+        const integrateButton = this.$refs[`integrate-button-${appCode}`][0];
+        if (selectedApp?.can_add) {
+          await integrateButton.addApp(selectedApp);
+        }
       },
     },
     watch: {

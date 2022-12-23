@@ -178,6 +178,8 @@
             throw new Error(this.errorUpdateWhatsAppProfile);
           }
 
+          this.$emit('save');
+
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.profile_updated'),

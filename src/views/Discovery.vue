@@ -1,6 +1,7 @@
 <template>
   <div>
     <app-grid
+      ref="appGrid"
       section="channel"
       type="add"
       :loading="loadingAllAppTypes"
@@ -43,6 +44,11 @@
     },
     async mounted() {
       await this.fetchChannels();
+
+      const createAppCode = this.$route.query.create_app;
+      if (createAppCode) {
+        await this.callManuallyCreateApp(createAppCode);
+      }
     },
     computed: {
       ...mapState({
@@ -75,6 +81,9 @@
         }
 
         this.channels.data = this.allAppTypes;
+      },
+      async callManuallyCreateApp(appCode) {
+        await this.$refs.appGrid.manuallyCreateApp(appCode);
       },
     },
   };
