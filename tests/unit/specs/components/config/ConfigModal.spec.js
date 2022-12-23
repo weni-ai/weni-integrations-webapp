@@ -7,6 +7,7 @@ import wwcConfig from '@/components/config/channels/WWC/Config.vue';
 import telegramConfig from '@/components/config/channels/telegram/Config.vue';
 import wppDemoPreview from '@/components/config/channels/wpp_demo/Preview.vue';
 import whatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
+import genericConfig from '@/components/config/channels/generic/Config.vue';
 
 const localVue = createLocalVue();
 
@@ -45,7 +46,7 @@ describe('ConfigModal.vue', () => {
     it('should open configModal', async () => {
       expect(wrapper.vm.currentApp).toMatchObject({});
 
-      wrapper.vm.openModal(singleApp);
+      wrapper.vm.openModal({ app: singleApp });
 
       expect(wrapper.vm.show).toBeTruthy();
       expect(wrapper.vm.currentApp).toMatchObject(singleApp);
@@ -115,10 +116,10 @@ describe('ConfigModal.vue', () => {
       expect(currentComponent).toMatchObject(whatsappConfig);
     });
 
-    it('should return undefined currentComponent', () => {
+    it('should return generic currentComponent if not mapped', () => {
       const currentComponent = wrapper.vm.currentComponent;
 
-      expect(currentComponent).toBe(undefined);
+      expect(currentComponent).toBe(genericConfig);
     });
   });
 });

@@ -33,6 +33,7 @@ const singleApp = {
     primaryColor: '#009E96',
     messageDelay: 1,
   },
+  generic: false,
 };
 
 const communicationApps = [

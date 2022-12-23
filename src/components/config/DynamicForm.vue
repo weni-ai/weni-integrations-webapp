@@ -4,10 +4,11 @@
       <unnnic-input
         v-if="input.type === 'input'"
         ref="unnnic-input"
-        :class="[!input.label && 'dynamic-form__fields--top-margin']"
+        :class="[!input.label && 'dynamic-form__fields--top-margin', 'dynamic-form__fields__input']"
         v-model="inputs[index].value"
         :label="input.label && $t(input.label)"
         :placeholder="input.placeholder && $t(input.placeholder)"
+        :message="input.message && $t(input.message)"
         @input="emitInput(index, input, $event)"
       />
       <unnnic-select
@@ -37,6 +38,13 @@
           @fileChange="emitInput(index, input, $event)"
         />
       </div>
+      <unnnic-checkbox
+        v-else-if="input.type === 'checkbox'"
+        class="dynamic-form__fields--top-margin"
+        :value="input.value || false"
+        :textRight="input.label"
+        @change="emitInput(index, input, $event)"
+      />
     </div>
   </div>
 </template>
@@ -72,6 +80,13 @@
     &__fields {
       &--top-margin {
         margin-top: $unnnic-spacing-stack-xs;
+      }
+      &__input {
+        ::v-deep {
+          .unnnic-form__message {
+            color: $unnnic-color-neutral-cloudy;
+          }
+        }
       }
     }
   }

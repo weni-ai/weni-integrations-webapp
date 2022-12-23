@@ -511,5 +511,31 @@
         "label": "Download dashboard model"
       }
     }
+  },
+  "GenericApp": {
+    "configuration_guide": {
+      "CT": "To connect a <a href=\"http://clickatell.com\">Clickatell</a> number, first create an HTTP integration for a two way number, then enter the number and API key below.",
+      "FCM": "You can to connect using a <a href=\"https://firebase.google.com/docs/cloud-messaging/\">Firebase Cloud Messaging App</a> to your workspace to automate sending notifications. You will need to create a new App on Firebase Console and get its key. To do so:",
+      "FC": "<p>You can connect a <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> Account to your account to automate sending and receiving messages via FreshChat. This will also support Apple Business Chat if it's been configured on your FreshChat account.<br/><br/>Each message sent to the channel will have a URN in the format <span class=\"highlight\">channel-uuid/user-uuid</span> where the channel UUID is the FreshChat channel's UUID.</p><ol><li>In the FreshChat web interface, under Settings, API Tokens, select Generate Token. Once the token is created you'll enter it below.</li><li>Under Settings again, select Webhooks and copy the Public Key and paste it below. This assures all webhook request from FreshChat will be authenticated.</li><li>Lastly, you'll need the UUID of the Agent that Weni will use when it sends FreshChat message. This is available via the <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Once you press Submit below with all the information configured, the confirmation page will give you the URL to use for the FreshChat Webhooks. Enter this URL on the Settings page, under Webhooks where the Public Key was copied from before.</li></ol>",
+      "IB": "You can connect your Infobip number by entering your number, username and password here.<br/><br/>After connecting your service we will provide URLs for the endpoints for InfoBip to call when they want to push a message to Rapidpro.",
+      "JC": "You can connect a <a href=\"https://jiochat.com\">JioChat Channel</a> to your workspace to automate sending and receiving JioChat messages.<br/><br/>To start copy the App ID and App Secret from the Developer Center into the form below and click Save.",
+      "JN": "Enter your credentials to add your number.",
+      "MB": "Enter your credentials to add your number.",
+      "SL": "You can connect a <a href=\"https://slack.com/app\">Slack Bot</a> to your workspace to automate sending and receiving messages.<br><br>To do it, you will need to create a new slack app and configure it.<br><ol><li>You'll need to create a <a href=\"https://api.slack.com/apps\">Slack app</a> if you haven't already, setup a bot to it, add the needed scopes and install app on your slack workspace. If you need help how to do this, read this guide <a href=\"https://api.slack.com/bot-users\">here</a>.",
+      "TM": "You can connect a Teams Bot to your Rapidpro workspace to automate sending and receiving Teams messages. For this, you will need to create and register a Bot-type application in Microsoft Azure.",
+      "TMS": "You can add your Twilio Messaging SID as a channel. You can get your messaging Service SID or create a new messaging service from <a href=\"https://www.twilio.com/user/account/messaging/services\">Twilio Console</a><br/><br/>After adding your Twilio Messaging Service SID we will provide you with the URL endpoint for Twilio to call when they want to push a message to Weni.",
+      "TW": "You can add a TwiML REST API as a channel using your TwiML instance.",
+      "VP": "In order to connect your public Viber page to Weni you will need to create a public channel and follow the steps necessary to get an authentication token. Please consult the <a href=\"https://developers.viber.com/?b_id=15145\">Viber developers documentation</a> on how to create your own public account.<br/><br/> Once you have your authentication token, enter it below to connect your public channel to Weni"
+    },
+    "preview": {
+      "errors": {
+        "fetch_app": "An error occured while trying to fetch application data, please try again later."
+      }
+    },
+    "description": {
+      "callback_url": "To finalize the channel configuration, you need to configure the Weni Platform channel's callback URL. The callback url for this channel is",
+      "callback_url_info_1": "For more information please follow",
+      "callback_url_info_2": "this documentation"
+    }
   }
 }

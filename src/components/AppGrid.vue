@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="appGrid">
     <section v-if="!loading" id="app-grid">
       <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
@@ -9,19 +9,21 @@
       <div class="app-grid__content">
         <unnnic-card
           ref="unnnic-marketplace-card"
-          class="app-grid__content__item"
-          v-for="(app, index) in apps"
+          :class="[
+            'app-grid__content__item',
+            { 'app-grid__content__item--generic': app.generic && type === 'add' },
+          ]"
+          v-for="(app, index) in currentGridApps"
           v-bind:key="index"
           type="marketplace"
           :title="appName(app)"
-          :description="$t(app.summary)"
-          :icon="app.icon"
+          :description="app.generic ? app.summary : $t(app.summary)"
           :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
-          :iconSrc="app.icon"
-          :typeAction="typeAction"
-          clickable
+          :iconSrc="appIcon(app)"
+          :typeAction="app.generic ? (type === 'add' ? 'edit' : typeAction) : typeAction"
+          :clickable="!app.generic || type !== 'add'"
           @openModal="openAppModal(app)"
         >
           <integrate-button
@@ -30,7 +32,7 @@
             slot="actions"
             :app="app"
             :icon="actionIcon"
-            :disabled="!app.can_add"
+            :disabled="!app.generic && !app.can_add"
           />
 
           <unnnic-dropdown
@@ -64,6 +66,11 @@
             </unnnic-dropdown-item>
           </unnnic-dropdown>
         </unnnic-card>
+      </div>
+
+      <div v-if="apps && apps.length > gridSize" class="app-grid__pagination">
+        <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
+        <unnnic-pagination v-model="currentPage" :max="maxGridPages" :show="6" />
       </div>
     </section>
     <skeleton-loading v-else />
@@ -102,9 +109,11 @@
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'vuex';
+  import throttle from 'lodash.throttle';
+
   import configModal from './config/ConfigModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
-  import { mapActions, mapState } from 'vuex';
   import IntegrateButton from './IntegrateButton.vue';
   import LoadingButton from './LoadingButton.vue';
 
@@ -139,7 +148,17 @@
         showAddModal: false,
         showRemoveModal: false,
         currentRemoval: null,
+        currentPage: 1,
+        gridSize: 10,
       };
+    },
+    /* istanbul ignore next */
+    mounted() {
+      window.addEventListener('resize', throttle(this.updateGridSize, 1000));
+    },
+    /* istanbul ignore next */
+    unmounted() {
+      window.removeEventListener('resize', this.updateGridSize);
     },
     computed: {
       ...mapState({
@@ -206,6 +225,24 @@
 
         return this.type;
       },
+      currentPageStart() {
+        return (this.currentPage - 1) * this.gridSize || 1;
+      },
+      currentPageCount() {
+        const value = this.gridSize * this.currentPage;
+        return value > this.apps?.length ? this.apps?.length || 0 : value;
+      },
+      maxGridPages() {
+        return Math.ceil(this.apps?.length / this.gridSize) || 0;
+      },
+      currentGridApps() {
+        if (this.apps) {
+          const pageStart = (this.currentPage - 1) * this.gridSize;
+          return this.apps.slice(pageStart, pageStart + this.gridSize);
+        }
+
+        return [];
+      },
     },
     methods: {
       ...mapActions(['deleteApp']),
@@ -252,10 +289,14 @@
         this.$router.push(`/apps/${code}/details`);
       },
       openAppModal(app) {
+        if (this.type === 'add' && app.generic) {
+          return;
+        }
+
         if (this.type === 'add') {
           this.openAppDetails(app.code);
         } else {
-          this.$refs.configModal.openModal(app);
+          this.$refs.configModal.openModal({ app, isConfigured: this.type === 'edit' });
         }
       },
       appRatingAverage(app) {
@@ -265,14 +306,47 @@
             : 0
           : 0;
       },
+      /* istanbul ignore next */
       appName(app) {
+        if (app.generic && this.type !== 'add') {
+          return `${app.config.channel_name}${
+            this.type === 'edit' ? ' - ' + app.config.title : ''
+          }`;
+        }
+
         return `${app.name}${this.type === 'edit' ? ' - ' + app.config.title : ''}`;
+      },
+      /* istanbul ignore next */
+      updateGridSize() {
+        const gridElement = this.$refs.appGrid;
+        if (gridElement) {
+          const gridWidth = gridElement.clientWidth;
+          const maxWidthItems = Math.floor((gridWidth + 16) / 272);
+
+          this.gridSize = maxWidthItems * 2;
+        }
+      },
+      /* istanbul ignore next */
+      appIcon(app) {
+        if (app.generic && this.type !== 'add') {
+          return app.config.channel_icon_url;
+        }
+
+        return app.icon;
       },
       async manuallyCreateApp(appCode) {
         const selectedApp = this.apps.find((app) => app.code === appCode);
         const integrateButton = this.$refs[`integrate-button-${appCode}`][0];
         if (selectedApp?.can_add) {
           await integrateButton.addApp(selectedApp);
+        }
+      },
+    },
+    watch: {
+      /* istanbul ignore next */
+      loading(newState) {
+        if (newState === false) {
+          this.updateGridSize();
         }
       },
     },
@@ -299,6 +373,12 @@
       align-items: flex-start;
 
       &__item {
+        min-height: 136px;
+
+        &--generic {
+          height: calc(190px - 2rem);
+        }
+
         &__dropdown {
           font-family: $unnnic-font-family-secondary;
           font-size: $unnnic-font-size-body-md;
@@ -329,6 +409,13 @@
           }
         }
       }
+    }
+
+    &__pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: $unnnic-spacing-stack-md;
     }
   }
 </style>

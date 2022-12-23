@@ -1,11 +1,36 @@
 import appType from '@/api/appType';
+import genericType from '@/api/appType/generic';
 import { captureSentryException } from '@/utils/sentry';
+import { clearHtmlTags } from '@/utils/clearHtmlTags';
 
 export default {
   async getAllAppTypes({ commit }, { params }) {
     commit('GET_ALL_APP_TYPES_REQUEST');
     try {
-      const { data } = await appType.getAllAppTypes(params);
+      let { data } = await appType.getAllAppTypes(params);
+      const iconData = (await genericType.getIcons())?.data;
+
+      const genericIndex = data.findIndex((app) => {
+        return app.code === 'generic';
+      });
+
+      if (genericIndex !== -1) {
+        const genericBase = data.splice(genericIndex, 1)[0];
+        let genericApps = [];
+
+        for (const [code, data] of Object.entries(genericBase.channels_available[0])) {
+          const summary = clearHtmlTags(data.attributes.claim_blurb);
+
+          genericApps.push({
+            ...data.attributes,
+            generic: true,
+            icon: iconData[code],
+            summary,
+          });
+        }
+        data = data.concat(genericApps);
+      }
+
       commit('GET_ALL_APP_TYPES_SUCCESS', data);
     } catch (err) {
       commit('GET_ALL_APP_TYPES_ERROR', err);

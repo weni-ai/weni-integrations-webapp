@@ -123,6 +123,28 @@ describe('IntegrateButton.vue', () => {
       });
     });
 
+    it('should populate payload with channel code and name if type is generic', async () => {
+      expect(actions.createApp).not.toHaveBeenCalled();
+
+      const app = {
+        code: 'code',
+        config_design: 'sidemenu',
+        name: 'name',
+        generic: true,
+      };
+
+      await wrapper.vm.addApp(app);
+
+      expect(actions.createApp).toHaveBeenCalledTimes(1);
+      expect(actions.createApp).toHaveBeenCalledWith(expect.any(Object), {
+        code: 'generic',
+        payload: {
+          project_uuid: '123',
+          channel_code: 'code',
+        },
+      });
+    });
+
     it('should call unnnicCallAlert on error', async () => {
       store.state.appType.errorCreateApp = true;
       const spy = spyOn(wrapper.vm, 'callErrorModal');

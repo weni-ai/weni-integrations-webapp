@@ -15,12 +15,19 @@ jest.mock('@/api/appType', () => {
   };
 });
 
+jest.mock('@/api/appType/generic', () => {
+  return {
+    getIcons: jest.fn(),
+  };
+});
+
 import { createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import actions from '@/store/appType/actions';
 import state from '@/store/appType/state';
 import mutations from '@/store/appType/mutations';
 import appTypeApi from '@/api/appType';
+import genericTypeApi from '@/api/appType/generic';
 import { singleApp } from '../../../../__mocks__/appMock';
 
 const localVue = createLocalVue();
@@ -49,8 +56,29 @@ describe('store/appType/actions.js', () => {
       beforeEach(() => {
         jest.resetAllMocks();
 
+        const genericBaseApp = {
+          ...singleApp,
+          code: 'generic',
+          channels_available: [
+            {
+              SL: {
+                attributes: {
+                  claim_blurb: 'claim blurb text',
+                  attribute1: 'value1',
+                },
+              },
+            },
+          ],
+        };
+
         appTypeApi.getAllAppTypes.mockImplementation(() => {
-          return Promise.resolve({ data: [singleApp] });
+          return Promise.resolve({
+            data: [singleApp, genericBaseApp],
+          });
+        });
+
+        genericTypeApi.getIcons.mockImplementation(() => {
+          return Promise.resolve({ data: { SL: 'https://url.com' } });
         });
       });
 
@@ -60,9 +88,34 @@ describe('store/appType/actions.js', () => {
         expect(appTypeApi.getAllAppTypes).toHaveBeenCalledTimes(1);
       });
 
+      it('should call getIcons from generic type API', async () => {
+        expect(genericTypeApi.getIcons).not.toHaveBeenCalled();
+        await store.dispatch('getAllAppTypes', code);
+        expect(genericTypeApi.getIcons).toHaveBeenCalledTimes(1);
+      });
+
       it('should set returned apps as result data', async () => {
+        const genericApp = {
+          generic: true,
+          summary: 'claim blurb text',
+          icon: 'https://url.com',
+          claim_blurb: 'claim blurb text',
+          attribute1: 'value1',
+        };
         store.state.appType.allAppTypes = [];
-        expect(store.state.appType.allAppTypes).not.toEqual(singleApp);
+        expect(store.state.appType.allAppTypes).not.toEqual([singleApp, genericApp]);
+        await store.dispatch('getAllAppTypes', code);
+        expect(store.state.appType.allAppTypes).toEqual([singleApp, genericApp]);
+      });
+
+      it('should set returned apps as result data', async () => {
+        appTypeApi.getAllAppTypes.mockImplementation(() => {
+          return Promise.resolve({
+            data: [singleApp],
+          });
+        });
+        store.state.appType.allAppTypes = [];
+        expect(store.state.appType.allAppTypes).not.toEqual([singleApp]);
         await store.dispatch('getAllAppTypes', code);
         expect(store.state.appType.allAppTypes).toEqual([singleApp]);
       });

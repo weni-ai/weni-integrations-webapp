@@ -72,10 +72,14 @@
           return;
         }
 
-        const code = app.code;
+        let code = app.code;
         const payload = {
           project_uuid: this.project,
         };
+        if (app.generic) {
+          code = 'generic';
+          payload.channel_code = app.code;
+        }
         this.loadingCreateApp = true;
         await this.createApp({ code, payload });
         this.loadingCreateApp = false;
