@@ -197,6 +197,18 @@ describe('AppGrid.vue', () => {
 
       expect(configModal.vm.show).toBeTruthy();
     });
+
+    it('should not open app modal if type is add and app is generic', () => {
+      const app = {
+        generic: true,
+      };
+      const spy = spyOn(wrapper.vm, 'openAppDetails');
+
+      wrapper.vm.openAppModal(app);
+
+      expect(spy).toHaveBeenCalledTimes(0);
+      expect(wrapper.vm.$route.path).not.toEqual(`/apps/${app.code}/details`);
+    });
   });
 
   describe('appRatingAverage', () => {
@@ -275,6 +287,82 @@ describe('AppGrid.vue', () => {
       const appUuid = '123';
       await wrapper.vm.removeApp(code, appUuid);
       expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('pagination', () => {
+    const elevenAppsArray = [
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+      singleApp,
+    ];
+
+    const threeAppsArray = [singleApp, singleApp, singleApp];
+
+    describe('currentPageStart', () => {
+      it('should return 1 if it is the first page', async () => {
+        await wrapper.setData({ currentPage: 1 });
+        expect(wrapper.vm.currentPageStart).toEqual(1);
+      });
+
+      it('should return correct start number based on current page', async () => {
+        await wrapper.setData({ currentPage: 4 });
+        expect(wrapper.vm.currentPageStart).toEqual(30);
+      });
+    });
+
+    describe('currentPageCount', () => {
+      it('should return current page maximum', async () => {
+        await wrapper.setProps({ apps: elevenAppsArray });
+        expect(wrapper.vm.currentPageCount).toEqual(10);
+      });
+      it('should return current page maximum', async () => {
+        await wrapper.setProps({ apps: threeAppsArray });
+        expect(wrapper.vm.currentPageCount).toEqual(3);
+      });
+    });
+
+    describe('maxGridPages', () => {
+      it('should return the max page count based on grid size and apps array length', async () => {
+        await wrapper.setProps({ apps: elevenAppsArray });
+
+        expect(wrapper.vm.maxGridPages).toEqual(2);
+      });
+
+      it('should return the max page count based on grid size and apps array length', async () => {
+        await wrapper.setProps({ apps: threeAppsArray });
+        expect(wrapper.vm.maxGridPages).toEqual(1);
+      });
+
+      it('should return 0 if there are no apps', async () => {
+        await wrapper.setProps({ apps: undefined });
+        expect(wrapper.vm.maxGridPages).toEqual(0);
+      });
+    });
+
+    describe('currentGridApps', () => {
+      it('should a maximum of apps allowed in page size', async () => {
+        await wrapper.setProps({ apps: elevenAppsArray });
+        expect(wrapper.vm.currentGridApps).toHaveLength(10);
+      });
+
+      it('should return the max page count based on grid size and apps array length', async () => {
+        await wrapper.setProps({ apps: threeAppsArray });
+        expect(wrapper.vm.currentGridApps).toHaveLength(3);
+      });
+
+      it('should return empty array if there are no apps', async () => {
+        await wrapper.setProps({ apps: undefined });
+        expect(wrapper.vm.currentGridApps).toHaveLength(0);
+      });
     });
   });
 

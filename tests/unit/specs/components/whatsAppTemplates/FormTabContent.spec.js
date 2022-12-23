@@ -133,7 +133,6 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
 
   it('should emit category change', async () => {
     const { wrapper, actions } = mountComponent();
-    console.log(wrapper.html());
     const categorySelectComponent = wrapper.findComponent(unnnicMultiSelect);
 
     expect(actions.updateTemplateForm).not.toHaveBeenCalled();

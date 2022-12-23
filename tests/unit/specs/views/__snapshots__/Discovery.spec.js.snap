@@ -9,10 +9,11 @@ exports[`Discovery.vue should be rendered properly 1`] = `
         <p class="app-grid__header__title">some specific text</p>
       </div>
       <div class="app-grid__content">
-        <unnnic-card-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" icon="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item">
+        <unnnic-card-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="add" buttonaction="[Function]" class="app-grid__content__item">
           <integrate-button-stub app="[object Object]" icon="add-1" disabled="true" size="small"></integrate-button-stub>
         </unnnic-card-stub>
       </div>
+      <!---->
     </section>
     <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
       <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
@@ -27,10 +28,11 @@ exports[`Discovery.vue should be rendered properly 1`] = `
         <p class="app-grid__header__title">some specific text</p>
       </div>
       <div class="app-grid__content">
-        <unnnic-card-stub type="marketplace" title="Power BI" description="some specific text" percent="0" rating="0" comments="undefined some specific text" enabled="true" icon="" iconsrc="" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="edit" buttonaction="[Function]" class="app-grid__content__item">
+        <unnnic-card-stub type="marketplace" title="Power BI" description="some specific text" percent="0" rating="0" comments="undefined some specific text" enabled="true" iconsrc="" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="edit" buttonaction="[Function]" class="app-grid__content__item">
           <!---->
         </unnnic-card-stub>
       </div>
+      <!---->
     </section>
     <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
       <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
