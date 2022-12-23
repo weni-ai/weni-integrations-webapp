@@ -23,7 +23,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
               </unnnic-dropdown-item-stub>
               <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
                 <unnnic-icon-svg-stub icon="bin-1-1" size="sm" scheme="feedback-red"></unnnic-icon-svg-stub>
-                Remove
+                some specific text
               </unnnic-dropdown-item-stub>
             </unnnic-dropdown-stub>
           </unnnic-card-stub>
@@ -56,7 +56,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
               </unnnic-dropdown-item-stub>
               <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
                 <unnnic-icon-svg-stub icon="bin-1-1" size="sm" scheme="feedback-red"></unnnic-icon-svg-stub>
-                Remove
+                some specific text
               </unnnic-dropdown-item-stub>
             </unnnic-dropdown-stub>
           </unnnic-card-stub>
