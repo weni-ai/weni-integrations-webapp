@@ -98,17 +98,24 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
 
     const event = wrapper.emitted('input-change');
     expect(event).toBeTruthy();
-    expect(event.length).toBe(1);
+    expect(event.length).toBe(2);
     expect(event[0]).toEqual([
       {
         fieldName: 'body',
         fieldValue: 'Text {{1}} with {{2}} variables {{3}}',
       },
     ]);
+
+    expect(event[1]).toEqual([
+      {
+        fieldName: 'bodyHasError',
+        fieldValue: true,
+      },
+    ]);
   });
 
   it('should add variable on inputEditor event even without body', async () => {
-    const { wrapper } = mountComponent({ body: undefined });
+    const { wrapper } = mountComponent({ body: '' });
     const inputEditor = wrapper.findComponent(InputEditor);
 
     inputEditor.vm.$emit('add-variable');
@@ -116,11 +123,18 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
 
     const event = wrapper.emitted('input-change');
     expect(event).toBeTruthy();
-    expect(event.length).toBe(1);
+    expect(event.length).toBe(2);
     expect(event[0]).toEqual([
       {
         fieldName: 'body',
         fieldValue: '{{1}}',
+      },
+    ]);
+
+    expect(event[1]).toEqual([
+      {
+        fieldName: 'bodyHasError',
+        fieldValue: false,
       },
     ]);
   });
@@ -148,11 +162,18 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
 
       const event = wrapper.emitted('input-change');
       expect(event).toBeTruthy();
-      expect(event.length).toBe(1);
+      expect(event.length).toBe(2);
       expect(event[0]).toEqual([
         {
           fieldName: 'body',
           fieldValue: 'text👍',
+        },
+      ]);
+
+      expect(event[1]).toEqual([
+        {
+          fieldName: 'bodyHasError',
+          fieldValue: false,
         },
       ]);
     });
@@ -167,11 +188,18 @@ describe('components/whatsAppTemplates/FormTabContentBody.vue', () => {
 
       const event = wrapper.emitted('input-change');
       expect(event).toBeTruthy();
-      expect(event.length).toBe(1);
+      expect(event.length).toBe(2);
       expect(event[0]).toEqual([
         {
           fieldName: 'body',
           fieldValue: '👍',
+        },
+      ]);
+
+      expect(event[1]).toEqual([
+        {
+          fieldName: 'bodyHasError',
+          fieldValue: false,
         },
       ]);
     });

@@ -31,6 +31,7 @@ const mountComponent = ({
   language = null,
   availableLanguages = [],
   templateResults = [],
+  canEdit = true,
 } = {}) => {
   if (!availableLanguages.length) {
     availableLanguages = [
@@ -94,6 +95,7 @@ const mountComponent = ({
       selectedForm,
       removeLanguages,
       availableLanguages,
+      canEdit,
     },
     stubs: {
       FormTabContentHeader: true,
@@ -440,6 +442,17 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
       expect(wrapper.emitted('save-changes')).toBeFalsy();
 
       await saveButton.trigger('click');
+      await wrapper.vm.$nextTick();
+
+      expect(wrapper.emitted('save-changes')).toBeFalsy();
+    });
+
+    it('should not emit save-changes if cannot save', async () => {
+      const { wrapper } = mountComponent({ canEdit: false });
+
+      expect(wrapper.emitted('save-changes')).toBeFalsy();
+
+      await wrapper.vm.saveTemplate();
       await wrapper.vm.$nextTick();
 
       expect(wrapper.emitted('save-changes')).toBeFalsy();
