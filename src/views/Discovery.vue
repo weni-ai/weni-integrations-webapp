@@ -74,7 +74,7 @@
           return;
         }
 
-        this.channels.data = this.allAppTypes.reverse();
+        this.channels.data = this.allAppTypes;
       },
     },
   };
