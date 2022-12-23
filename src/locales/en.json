@@ -4,7 +4,8 @@
     "Close": "Close",
     "You": "You",
     "confirm": "Confirm",
-    "loading": "Loading"
+    "loading": "Loading",
+    "Remove": "Remove"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
