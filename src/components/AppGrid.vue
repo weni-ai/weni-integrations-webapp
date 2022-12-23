@@ -406,9 +406,7 @@
     &__pagination {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: $unnnic-spacing-inline-sm;
-
+      justify-content: space-between;
       margin-top: $unnnic-spacing-stack-md;
     }
   }
