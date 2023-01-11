@@ -1,3 +1,14 @@
+1.16.1
+----------
+`2023-01-11 · 2 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix: Pagination component margin offset
+- Fix: Discovery page memory issue
+
+### 🔧 Improvements
+- Chore: Update Unnnic to 1.10.29
+
 1.16.0
 ----------
 `2022-12-23 · 2 🐛 · 3 🎉`
