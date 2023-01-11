@@ -70,7 +70,12 @@
 
       <div v-if="apps && apps.length > gridSize" class="app-grid__pagination">
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
-        <unnnic-pagination v-model="currentPage" :max="maxGridPages" :show="6" />
+        <unnnic-pagination
+          :style="{ marginRight: `${paginationMarginOffset}px` }"
+          v-model="currentPage"
+          :max="maxGridPages"
+          :show="6"
+        />
       </div>
     </section>
     <skeleton-loading v-else />
@@ -149,6 +154,7 @@
         currentRemoval: null,
         currentPage: 1,
         gridSize: 10,
+        paginationMarginOffset: 0,
       };
     },
     /* istanbul ignore next */
@@ -321,6 +327,8 @@
         if (gridWidth) {
           const maxWidthItems = Math.floor((gridWidth + 16) / 272) || 1;
 
+          this.paginationMarginOffset =
+            gridWidth - (maxWidthItems * 256 + (maxWidthItems - 1) * 16);
           this.gridSize = maxWidthItems * 2;
         }
       },
@@ -365,13 +373,14 @@
     }
 
     &__content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
-      grid-gap: $unnnic-spacing-stack-sm;
+      display: flex;
+      flex-wrap: wrap;
+      gap: $unnnic-spacing-stack-sm;
       align-items: flex-start;
 
       &__item {
         min-height: 136px;
+        width: 222px;
 
         &--generic {
           height: calc(190px - 2rem);
