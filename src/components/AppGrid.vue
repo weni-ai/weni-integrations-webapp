@@ -154,7 +154,7 @@
     },
     /* istanbul ignore next */
     mounted() {
-      window.addEventListener('resize', throttle(this.updateGridSize, 1000));
+      window.addEventListener('resize', this.updateGridSize);
     },
     /* istanbul ignore next */
     unmounted() {
@@ -318,10 +318,9 @@
       },
       /* istanbul ignore next */
       updateGridSize() {
-        const gridElement = this.$refs.appGrid;
-        if (gridElement) {
-          const gridWidth = gridElement.clientWidth;
-          const maxWidthItems = Math.floor((gridWidth + 16) / 272);
+        const gridWidth = this.$refs.appGrid?.clientWidth;
+        if (gridWidth) {
+          const maxWidthItems = Math.floor((gridWidth + 16) / 272) || 1;
 
           this.gridSize = maxWidthItems * 2;
         }
