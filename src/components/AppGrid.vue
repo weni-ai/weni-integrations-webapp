@@ -110,7 +110,6 @@
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
-  import throttle from 'lodash.throttle';
 
   import configModal from './config/ConfigModal.vue';
   import skeletonLoading from './loadings/AppGrid.vue';
