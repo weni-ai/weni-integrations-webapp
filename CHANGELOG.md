@@ -1,3 +1,10 @@
+1.16.2
+----------
+`2023-01-20 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp tabs scroll on firefox and horizontal wrap
+
 1.16.1
 ----------
 `2023-01-11 · 2 🐛 · 1 🔧`
