@@ -267,6 +267,7 @@
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
             color: $unnnic-color-neutral-cloudy;
             margin: auto 0;
+            word-wrap: anywhere;
           }
 
           &__edit {

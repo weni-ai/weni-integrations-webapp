@@ -242,7 +242,6 @@
 
       &__description {
         display: flex;
-        flex-wrap: wrap;
 
         margin-top: $unnnic-inline-sm;
         padding-bottom: $unnnic-spacing-stack-md;
@@ -265,6 +264,7 @@
       flex-direction: column;
       overflow: hidden;
       height: 100%;
+      max-height: calc(100vh - 170px);
 
       ::v-deep .tab-body {
         display: flex;
@@ -281,6 +281,7 @@
         .tab-content {
           overflow-y: hidden;
           overflow-x: auto;
+          scrollbar-width: thin;
         }
 
         .tab-head {
