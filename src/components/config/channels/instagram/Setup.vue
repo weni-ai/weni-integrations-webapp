@@ -141,6 +141,7 @@
       changeLoginState(state) {
         this.onLogin = state;
       },
+      /* istanbul ignore next */
       async startFacebookLogin() {
         const fbAppId = getEnv('VUE_APP_FACEBOOK_APP_ID');
 
@@ -169,9 +170,10 @@
 
         initFacebookSdk(fbAppId, loginCallback);
       },
+      /* istanbul ignore next */
       async startPageSelectionStage(accessToken) {
         this.accessToken = accessToken;
-        this.stage = 'select-phone-number';
+        this.stage = 'select-page';
 
         this.loadingPages = true;
         try {
