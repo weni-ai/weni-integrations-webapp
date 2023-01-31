@@ -12,8 +12,6 @@ import { makeServer } from '@/miragejs/server';
 
 Vue.use(vClickOutside);
 
-import { initFacebookSdk } from './utils/plugins/fb';
-
 Vue.config.productionTip = false;
 
 if (getEnv('NODE_ENV') === 'development') {
@@ -31,10 +29,6 @@ if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
     ],
     logErrors: true,
   });
-}
-
-if (getEnv('VUE_APP_FACEBOOK_APP_ID')) {
-  initFacebookSdk();
 }
 
 if (getEnv('VUE_APP_LOGROCKET_ID')) {

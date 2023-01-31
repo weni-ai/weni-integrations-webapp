@@ -13,7 +13,8 @@
 
 <script>
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
-  import wppPhoneNumberSelection from './channels/whatsapp/PhoneNumberSelection.vue';
+  import wppCloudSetup from './channels/whatsapp/Setup.vue';
+  import instagramSetup from './channels/instagram/Setup.vue';
 
   export default {
     name: 'Config-PopUp',
@@ -25,7 +26,8 @@
         currentCustomData: null,
         componentMapping: {
           'wpp-demo': wppDemoConfig,
-          'wpp-cloud': wppPhoneNumberSelection,
+          'wpp-cloud': wppCloudSetup,
+          ig: instagramSetup,
         },
       };
     },
