@@ -476,6 +476,11 @@
         }
       }
     },
+    "setup": {
+      "continue": "Continue",
+      "connect": "Connect",
+      "description": "Follow the steps and integrate with WhatsApp"
+    },
     "config": {
       "phone_numbers": {
         "connect_later": "Connect later",
@@ -537,6 +542,31 @@
       "callback_url": "To finalize the channel configuration, you need to configure the Weni Platform channel's callback URL. The callback url for this channel is",
       "callback_url_info_1": "For more information please follow",
       "callback_url_info_2": "this documentation"
+    }
+  },
+  "Instagram": {
+    "setup": {
+      "title": "Connect",
+      "description": "Follow the steps and integrate with Instagram",
+      "success": "Successfully created Instagram application",
+      "page_selection": {
+        "description": "Add a Instagram business account page"
+      },
+      "account_data": {
+        "error": "Failed to fetch Instagram pages data, please try again later."
+      },
+      "find_page": {
+        "error": "Failed to fetch page details, please try again later"
+      },
+      "create_app": {
+        "error": "Failed to create application, please try again later"
+      },
+      "update_app": {
+        "error": "Failed to setup application, please try again later"
+      }
+    },
+    "config": {
+      "connected_account": "Your instagram account is connected"
     }
   }
 }
