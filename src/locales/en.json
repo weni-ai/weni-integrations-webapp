@@ -547,10 +547,10 @@
   "Instagram": {
     "setup": {
       "title": "Connect",
-      "description": "Follow the steps and integrate with Instagram",
+      "description": "Follow the steps in the <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentation</a> before proceeding with your <strong>Instagram</strong> integration",
       "success": "Successfully created Instagram application",
       "page_selection": {
-        "description": "Add a Instagram business account page"
+        "description": "Add a <strong>Instagram</strong> business account page"
       },
       "account_data": {
         "error": "Failed to fetch Instagram pages data, please try again later."

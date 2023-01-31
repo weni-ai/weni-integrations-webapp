@@ -547,10 +547,10 @@
   "Instagram": {
     "setup": {
       "title": "Conectar",
-      "description": "Siga os passos e integre com o Instagram",
+      "description": "Siga os passos na <a href=\"https://docs.weni.ai/l/pt/configura-es/como-criar-um-canal-no-instagram\" target=\"_blank\" class=\"link\">documentação</a> antes de fazer sua integração com o <strong>Instagram</strong>",
       "success": "Aplicativo Instagram criado com sucesso",
       "page_selection": {
-        "description": "Adicionar uma página de conta comercial do Instagram"
+        "description": "Adicionar uma página de conta comercial do <strong>Instagram</strong>"
       },
       "account_data": {
         "error": "Falha ao buscar os dados das páginas do Instagram. Tente novamente mais tarde."
