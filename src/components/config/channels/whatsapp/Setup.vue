@@ -122,6 +122,9 @@
       window.startPhoneNumberSelectionStage = this.startPhoneNumberSelectionStage;
       window.changeLoginState = this.changeLoginState;
     },
+    beforeDestroy() {
+      this.setSelectedPhoneNumber({ data: null });
+    },
     computed: {
       ...mapState({
         project: (state) => state.auth.project,
