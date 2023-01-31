@@ -5,12 +5,14 @@
       ref="instagram-setup-modal"
       class="instagram-setup"
       :text="$t('Instagram.setup.title')"
-      :description="$t('Instagram.setup.description')"
       modal-icon="social-instagram-1"
       :close-icon="false"
       @close="closePopUp"
       @click.stop
     >
+      <div slot="message">
+        <span v-html="$t('Instagram.setup.description')"></span>
+      </div>
       <div slot="options">
         <div class="instagram-setup__buttons">
           <unnnic-button
@@ -39,13 +41,13 @@
       ref="page-selection-modal"
       class="page-selection"
       :text="$t('Instagram.setup.title')"
-      :description="$t('Instagram.setup.page_selection.description')"
       modal-icon="social-instagram-1"
       :close-icon="false"
       @close="closePopUp"
       @click.stop
     >
       <div slot="message" class="page-selection__select">
+        <span v-html="$t('Instagram.setup.page_selection.description')"></span>
         <unnnic-select
           ref="page-selection-input"
           :search="false"
@@ -261,8 +263,15 @@
       }
     }
 
-    ::v-deep .unnnic-modal-container-background-body-description {
-      padding-bottom: $unnnic-spacing-stack-nano;
+    ::v-deep {
+      .unnnic-modal-container-background-body-description {
+        padding-bottom: $unnnic-spacing-stack-nano;
+      }
+      .link {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-cloudy;
+      }
     }
   }
 
@@ -281,7 +290,9 @@
     }
 
     &__select {
-      padding-top: $unnnic-spacing-stack-md;
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-spacing-stack-md;
     }
 
     ::v-deep .unnnic-modal-container-background-body-description {
