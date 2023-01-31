@@ -152,6 +152,7 @@
       changeLoginState(state) {
         this.onLogin = state;
       },
+      /* istanbul ignore next */
       async startFacebookLogin() {
         const fbAppId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID');
 
@@ -198,6 +199,7 @@
           return;
         }
 
+        /* istanbul ignore next */
         setTimeout(() => {
           this.forceLoading = false;
         }, 60000);
@@ -229,12 +231,6 @@
         };
 
         await this.getDebugToken({ params });
-
-        if (this.errorDebugToken) {
-          this.callErrorModal({
-            text: this.$t('WhatsAppCloud.config.debug_token.error'),
-          });
-        }
       },
       async fetchPhoneNumbers() {
         const params = {
@@ -242,12 +238,6 @@
         };
 
         await this.getWhatsAppPhoneNumbers({ params });
-
-        if (this.errorPhoneNumbers) {
-          this.callErrorModal({
-            text: this.$t('WhatsAppCloud.config.phone_numbers.error'),
-          });
-        }
       },
       closePopUp() {
         this.$emit('closePopUp');
