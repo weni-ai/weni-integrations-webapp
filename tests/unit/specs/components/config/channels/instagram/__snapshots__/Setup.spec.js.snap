@@ -2,7 +2,8 @@
 
 exports[`instagram/Setup.vue should be rendered properly 1`] = `
 <div>
-  <unnnicmodal-stub text="Connect" modalicon="social-instagram-1" description="Follow the steps and integrate with Instagram" showmodal="true" class="instagram-setup">
+  <unnnicmodal-stub text="Connect" modalicon="social-instagram-1" showmodal="true" class="instagram-setup">
+    <div><span>Follow the steps in the <a href="https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram" target="_blank" class="link">documentation</a> before proceeding with your <strong>Instagram</strong> integration</span></div>
     <div>
       <div class="instagram-setup__buttons">
         <unnnicbutton-stub size="large" text="Cancel" type="terciary" class="instagram-setup__buttons__cancel"></unnnicbutton-stub>
@@ -15,8 +16,8 @@ exports[`instagram/Setup.vue should be rendered properly 1`] = `
 
 exports[`instagram/Setup.vue should be rendered properly on page selections stage 1`] = `
 <div>
-  <unnnicmodal-stub text="Connect" modalicon="social-instagram-1" description="Add a Instagram business account page" showmodal="true" class="page-selection">
-    <div class="page-selection__select">
+  <unnnicmodal-stub text="Connect" modalicon="social-instagram-1" showmodal="true" class="page-selection">
+    <div class="page-selection__select"><span>Add a <strong>Instagram</strong> business account page</span>
       <unnnicselect-stub searchiconleft="search-1" size="sm" type="normal" placeholder=""></unnnicselect-stub>
     </div>
     <div class="page-selection__buttons">
