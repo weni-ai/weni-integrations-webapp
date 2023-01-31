@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`instagram/Setup.vue should be rendered properly 1`] = `
+<div>
+  <unnnicmodal-stub text="Connect" modalicon="social-instagram-1" description="Follow the steps and integrate with Instagram" showmodal="true" class="instagram-setup">
+    <div>
+      <div class="instagram-setup__buttons">
+        <unnnicbutton-stub size="large" text="Cancel" type="terciary" class="instagram-setup__buttons__cancel"></unnnicbutton-stub>
+        <loadingbutton-stub type="secondary" size="large" loadingposition="left" text="Continue" class="instagram-setup__buttons__start"></loadingbutton-stub>
+      </div>
+    </div>
+  </unnnicmodal-stub>
+</div>
+`;
+
+exports[`instagram/Setup.vue should be rendered properly on page selections stage 1`] = `
+<div>
+  <unnnicmodal-stub text="Connect" modalicon="social-instagram-1" description="Add a Instagram business account page" showmodal="true" class="page-selection">
+    <div class="page-selection__select">
+      <unnnicselect-stub searchiconleft="search-1" size="sm" type="normal" placeholder=""></unnnicselect-stub>
+    </div>
+    <div class="page-selection__buttons">
+      <unnnicbutton-stub size="large" text="Connect later" type="terciary" class="page-selection__buttons__cancel"></unnnicbutton-stub>
+      <loadingbutton-stub type="secondary" size="large" loadingtext="Loading" loadingposition="left" text="Create channel" class="page-selection__buttons__save"></loadingbutton-stub>
+    </div>
+  </unnnicmodal-stub>
+</div>
+`;

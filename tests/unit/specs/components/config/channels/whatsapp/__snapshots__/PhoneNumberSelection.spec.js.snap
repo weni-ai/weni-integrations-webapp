@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`whatsapp/PhoneNumberSelection.vue should be rendered properly 1`] = `
-<unnnicmodal-stub text="some specific text" modalicon="phone-3" closeicon="true" showmodal="true" scheme="feedback-green" class="phone-number-selection">
-  <skeleton-loading-stub></skeleton-loading-stub>
-</unnnicmodal-stub>
-`;
