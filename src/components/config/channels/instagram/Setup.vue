@@ -4,14 +4,14 @@
       v-if="stage === 'login'"
       ref="instagram-setup-modal"
       class="instagram-setup"
-      :text="$t('Instagram.setup.title')"
+      :text="$t('instagram.setup.title')"
       modal-icon="social-instagram-1"
       :close-icon="false"
       @close="closePopUp"
       @click.stop
     >
       <div slot="message">
-        <span v-html="$t('Instagram.setup.description')"></span>
+        <span v-html="$t('instagram.setup.description')"></span>
       </div>
       <div slot="options">
         <div class="instagram-setup__buttons">
@@ -40,14 +40,14 @@
       v-else
       ref="page-selection-modal"
       class="page-selection"
-      :text="$t('Instagram.setup.title')"
+      :text="$t('instagram.setup.title')"
       modal-icon="social-instagram-1"
       :close-icon="false"
       @close="closePopUp"
       @click.stop
     >
       <div slot="message" class="page-selection__select">
-        <span v-html="$t('Instagram.setup.page_selection.description')"></span>
+        <span v-html="$t('instagram.setup.page_selection.description')"></span>
         <unnnic-select
           ref="page-selection-input"
           :search="false"
@@ -183,7 +183,7 @@
           const res = await axios.get(fbAccountUrl);
           this.pageList = res.data.data;
         } catch (error) {
-          this.callModal({ type: 'Error', text: this.$t('Instagram.setup.account_data.error') });
+          this.callModal({ type: 'Error', text: this.$t('instagram.setup.account_data.error') });
           return;
         }
 
@@ -193,13 +193,13 @@
         const page = this.pageList.find((page) => page.id === this.selectedPage);
 
         if (!page) {
-          this.callModal({ type: 'Error', text: this.$t('Instagram.setup.find_page.error') });
+          this.callModal({ type: 'Error', text: this.$t('instagram.setup.find_page.error') });
           return;
         }
 
         await this.createApp({ code: this.app.code, payload: { project_uuid: this.project } });
         if (this.errorCreateApp) {
-          this.callModal({ type: 'Error', text: this.$t('Instagram.setup.create_app.error') });
+          this.callModal({ type: 'Error', text: this.$t('instagram.setup.create_app.error') });
           return;
         }
 
@@ -221,11 +221,11 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'Error', text: this.$t('Instagram.setup.update_app.error') });
+          this.callModal({ type: 'Error', text: this.$t('instagram.setup.update_app.error') });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('Instagram.setup.success') });
+        this.callModal({ type: 'Success', text: this.$t('instagram.setup.success') });
         this.$router.replace('/apps/my');
       },
       closePopUp() {

@@ -544,7 +544,11 @@
       "callback_url_info_2": "esta documentación"
     }
   },
-  "Instagram": {
+  "instagram": {
+    "data": {
+      "summary": "Ahora puedes elevar el nivel y el potencial de tu servicio creando un canal que integre tu Instagram a Weni Platform",
+      "description": "Instagram ya ha alcanzado el hito de los 1.400 millones de usuarios activos, con más de 500 millones navegando asiduamente todos los días, no solo buscando interacción, sino buscando servicios y productos.<br/><br/>Ahora, ¿imagínate si tu institución no está presente, activa y eficiente en este canal? Esta ya no es solo una red social para compartir fotos y videos de rutina, sino un escaparate para hacer negocios y asociaciones importantes.<br/><br/>Y ahora puede elevar el nivel y el potencial de su servicio creando un canal que integre su Instagram con la Plataforma Weni.<br/><br/>De esa manera, creas más compromiso e interacción con tus seguidores y potenciales clientes y socios, aumentando las posibilidades de cerrar nuevos proyectos y reduciendo los costos operativos con el servicio."
+    },
     "setup": {
       "title": "Conectar",
       "description": "Siga los pasos en la <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentación</a> antes de hacer su integración de <strong>Instagram</strong>",

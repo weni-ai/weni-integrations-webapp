@@ -10,7 +10,7 @@
     </div>
 
     <div class="app-config-instagram__settings__content">
-      <unnnic-label :label="this.$t('Instagram.config.connected_account')" />
+      <unnnic-label :label="this.$t('instagram.config.connected_account')" />
       <div class="app-config-instagram__settings__content__inputs">
         <unnnic-input
           class="app-config-instagram__settings__content__inputs__name"
