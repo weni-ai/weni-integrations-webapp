@@ -69,6 +69,7 @@
               isUploading: false,
               canImport: true,
               canDelete: this.app.code === 'wpp',
+              shouldReplace: true,
             },
           },
           {
