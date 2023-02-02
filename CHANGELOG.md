@@ -1,3 +1,10 @@
+1.16.3
+----------
+`2023-02-01 · 1 🎉`
+
+### 🎉 New Features
+- Feat: WhatsApp profile image replace behavior 
+
 1.16.2
 ----------
 `2023-01-20 · 1 🐛`

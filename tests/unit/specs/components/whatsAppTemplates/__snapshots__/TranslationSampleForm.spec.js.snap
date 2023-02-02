@@ -32,10 +32,10 @@ exports[`components/whatsAppTemplates/TranslationSampleForm.vue should be render
                     <!---->
                     <!---->
                   </div>
-                  <div class="sample-form__button"><button data-v-0c05556c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
+                  <div class="sample-form__button"><button data-v-00f478da="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
                       <!---->
                       <!---->
-                      <!----><span data-v-0c05556c="" class="unnnic-button__label">
+                      <!----><span data-v-00f478da="" class="unnnic-button__label">
             Send
             </span>
                       <!---->

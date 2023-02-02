@@ -6,7 +6,7 @@ jest.mock('@weni/unnnic-system', () => ({
 }));
 
 import Vuex from 'vuex';
-import { mount, createLocalVue } from '@vue/test-utils';
+import { createLocalVue, shallowMount } from '@vue/test-utils';
 import i18n from '@/utils/plugins/i18n';
 
 import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
@@ -39,7 +39,7 @@ const mountComponent = ({
     },
   });
 
-  const wrapper = mount(powerBiConfig, {
+  const wrapper = shallowMount(powerBiConfig, {
     localVue,
     i18n,
     store,

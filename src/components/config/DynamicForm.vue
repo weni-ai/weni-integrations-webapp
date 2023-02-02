@@ -35,6 +35,7 @@
           :isUploading="input.props.isUploading"
           :canImport="input.props.canImport"
           :canDelete="input.props.canDelete"
+          :shouldReplace="input.props.shouldReplace"
           @fileChange="emitInput(index, input, $event)"
         />
       </div>
