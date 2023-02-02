@@ -54,6 +54,7 @@
   import whatsappConfig from '@/components/config/channels//whatsapp/Config.vue';
   import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
   import genericTypeConfig from '@/components/config/channels/generic/Config.vue';
+  import instagramConfig from '@/components/config/channels/instagram/Config.vue';
 
   export default {
     name: 'Modal',
@@ -72,6 +73,7 @@
           'wpp-cloud': whatsappConfig,
           'wpp-demo': wppDemoPreview,
           'power-bi': powerBiConfig,
+          ig: instagramConfig,
         },
       };
     },

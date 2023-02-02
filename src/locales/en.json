@@ -476,6 +476,11 @@
         }
       }
     },
+    "setup": {
+      "continue": "Continue",
+      "connect": "Connect",
+      "description": "Follow the steps and integrate with WhatsApp"
+    },
     "config": {
       "phone_numbers": {
         "connect_later": "Connect later",
@@ -537,6 +542,35 @@
       "callback_url": "To finalize the channel configuration, you need to configure the Weni Platform channel's callback URL. The callback url for this channel is",
       "callback_url_info_1": "For more information please follow",
       "callback_url_info_2": "this documentation"
+    }
+  },
+  "instagram": {
+    "data": {
+      "summary": "Now you can raise the level and potential of your service by creating a channel that integrates your Instagram to Weni Platform",
+      "description": "Instagram has already reached the milestone of 1.4 billion active users, with more than 500 million browsing assiduously every day, seeking not only interaction, but looking for services and products.<br/><br/>Now, imagine if your institution is not present, active and efficient on this channel? This is no longer a mere social network to share photos and videos of the routine, but rather a showcase of doing business and important partnerships.<br/><br/>And now you can raise the level and potential of your service by creating a channel that integrates your Instagram to Weni Platform.<br/><br/>This creates more engagement and interaction with your followers and potential customers and partners, increasing the chances of closing new projects while reducing operational costs with service."
+    },
+    "setup": {
+      "title": "Connect",
+      "description": "Follow the steps in the <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentation</a> before proceeding with your <strong>Instagram</strong> integration",
+      "success": "Successfully created Instagram application",
+      "page_selection": {
+        "description": "Add a <strong>Instagram</strong> business account page"
+      },
+      "account_data": {
+        "error": "Failed to fetch Instagram pages data, please try again later."
+      },
+      "find_page": {
+        "error": "Failed to fetch page details, please try again later"
+      },
+      "create_app": {
+        "error": "Failed to create application, please try again later"
+      },
+      "update_app": {
+        "error": "Failed to setup application, please try again later"
+      }
+    },
+    "config": {
+      "connected_account": "Your instagram account is connected"
     }
   }
 }

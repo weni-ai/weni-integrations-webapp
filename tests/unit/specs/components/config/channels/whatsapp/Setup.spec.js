@@ -7,16 +7,15 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import PhoneNumberSelection from '@/components/config/channels/whatsapp/PhoneNumberSelection.vue';
+import wppCloudSetup from '@/components/config/channels/whatsapp/Setup.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../../../../__mocks__/appMock';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('whatsapp/PhoneNumberSelection.vue', () => {
+describe('whatsapp/Setup.vue', () => {
   let wrapper;
-  let actions;
   let state;
   let wppCloudState;
   let wppCloudActions;
@@ -25,15 +24,6 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
   beforeEach(() => {
     const customData = {
       input_token: '123',
-    };
-
-    actions = {
-      getApp: jest.fn(() => {
-        return { data: singleApp };
-      }),
-      fetchWppProfile: jest.fn(() => {
-        return { data: { photo_url: 'photo' } };
-      }),
     };
 
     state = {
@@ -84,11 +74,10 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
           state: wppCloudState,
         },
       },
-      actions,
       state,
     });
 
-    wrapper = shallowMount(PhoneNumberSelection, {
+    wrapper = shallowMount(wppCloudSetup, {
       localVue,
       i18n,
       store,
@@ -122,13 +111,6 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
   });
 
   describe('closePopUp()', () => {
-    it('should set showModal opposite', () => {
-      wrapper.setData({ showModal: true });
-      expect(wrapper.vm.showModal).toBeTruthy();
-      wrapper.vm.closePopUp();
-      expect(wrapper.vm.showModal).toBeFalsy();
-    });
-
     it('should call parent closePopUp()', () => {
       expect(wrapper.emitted('closePopUp')).toBeFalsy();
       wrapper.vm.closePopUp();
@@ -156,6 +138,14 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       expect(wppCloudActions.setSelectedPhoneNumber).not.toHaveBeenCalled();
       await wrapper.destroy();
       expect(wppCloudActions.setSelectedPhoneNumber).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('changeLoginState', () => {
+    it('should set onLogin to desired state', () => {
+      expect(wrapper.vm.onLogin).toEqual(false);
+      wrapper.vm.changeLoginState(true);
+      expect(wrapper.vm.onLogin).toEqual(true);
     });
   });
 
@@ -198,14 +188,6 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       await wrapper.vm.fetchDebugToken(token);
       expect(wppCloudActions.getDebugToken).toHaveBeenCalledTimes(1);
     });
-
-    it('should call callErrorModal on error', async () => {
-      store.state.WhatsAppCloud.errorDebugToken = true;
-      const spy = spyOn(wrapper.vm, 'callErrorModal');
-      expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.fetchDebugToken();
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
   });
 
   describe('fetchPhoneNumbers', () => {
@@ -216,12 +198,40 @@ describe('whatsapp/PhoneNumberSelection.vue', () => {
       await wrapper.vm.fetchPhoneNumbers(token);
       expect(wppCloudActions.getWhatsAppPhoneNumbers).toHaveBeenCalledTimes(1);
     });
+  });
 
-    it('should call callErrorModal on error', async () => {
+  describe('startPhoneNumberSelectionStage', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should call fetchDebugToken', async () => {
+      const spy = spyOn(wrapper.vm, 'fetchDebugToken');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.startPhoneNumberSelectionStage();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call error modal if errorDebugToken', async () => {
+      store.state.WhatsAppCloud.errorDebugToken = true;
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.startPhoneNumberSelectionStage();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call fetchPhoneNumbers', async () => {
+      const spy = spyOn(wrapper.vm, 'fetchPhoneNumbers');
+      expect(spy).not.toHaveBeenCalled();
+      await wrapper.vm.startPhoneNumberSelectionStage();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should call error modal if errorPhoneNumbers', async () => {
       store.state.WhatsAppCloud.errorPhoneNumbers = true;
       const spy = spyOn(wrapper.vm, 'callErrorModal');
       expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.fetchPhoneNumbers();
+      await wrapper.vm.startPhoneNumberSelectionStage();
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });

@@ -4,7 +4,8 @@ import { singleApp } from '../../../../__mocks__/appMock';
 import i18n from '@/utils/plugins/i18n';
 
 import wppDemoConfig from '@/components/config/channels/wpp_demo/Config.vue';
-import wppPhoneNumberSelection from '@/components/config/channels/whatsapp/PhoneNumberSelection.vue';
+import wppCloudSetup from '@/components/config/channels/whatsapp/Setup.vue';
+import instagramSetup from '@/components/config/channels/instagram/Setup.vue';
 
 const localVue = createLocalVue();
 
@@ -48,12 +49,20 @@ describe('ConfigPopUp.vue', () => {
     expect(currentComponent).toMatchObject(wppDemoConfig);
   });
 
-  it('should set current component to wppPageSelection', async () => {
+  it('should set current component to whatsapp setup', async () => {
     await wrapper.setData({ type: 'wpp-cloud' });
 
     const currentComponent = wrapper.vm.currentComponent;
 
-    expect(currentComponent).toMatchObject(wppPhoneNumberSelection);
+    expect(currentComponent).toMatchObject(wppCloudSetup);
+  });
+
+  it('should set current component to instagram setup', async () => {
+    await wrapper.setData({ type: 'ig' });
+
+    const currentComponent = wrapper.vm.currentComponent;
+
+    expect(currentComponent).toMatchObject(instagramSetup);
   });
 
   it('should return undefined currentComponent', async () => {

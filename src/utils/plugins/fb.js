@@ -1,17 +1,26 @@
-import getEnv from '@/utils/env';
-
 /* eslint-disable no-undef */
-export function initFacebookSdk() {
+export function initFacebookSdk(appId, loginCallback) {
   // wait for facebook sdk to initialize before starting the vue app
   window.fbAsyncInit = function () {
     // JavaScript SDK configuration and setup
     FB.init({
-      appId: getEnv('VUE_APP_FACEBOOK_APP_ID'), // Facebook App ID
-      cookie: true, // enable cookies
+      appId, // Facebook App ID
       xfbml: true, // parse social plugins on this page
       version: 'v11.0', //Graph API version
     });
+
+    // Call login code after init
+    loginCallback();
   };
+
+  // Search for current loaded SDK and remove it
+  (function (d, s, id) {
+    let es = d.getElementById(id);
+    if (es) es.remove();
+    if (typeof FB !== 'undefined') {
+      FB = null;
+    }
+  })(document, 'script', 'facebook-jssdk');
 
   // Load the JavaScript SDK asynchronously
   (function (d, s, id) {

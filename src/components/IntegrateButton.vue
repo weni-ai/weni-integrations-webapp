@@ -23,6 +23,7 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
   import LoadingButton from './LoadingButton.vue';
+  import getEnv from '../utils/env';
 
   export default {
     name: 'IntegrateButton',
@@ -52,6 +53,11 @@
     data() {
       return {
         loadingCreateApp: false,
+        hasFBLoginList: ['wpp-cloud', 'ig'],
+        appCodeToFBAppId: {
+          'wpp-cloud': getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID'),
+          ig: getEnv('VUE_APP_FACEBOOK_APP_ID'),
+        },
       };
     },
     created() {
@@ -67,8 +73,8 @@
     methods: {
       ...mapActions(['createApp']),
       async addApp(app) {
-        if (app.code === 'wpp-cloud') {
-          await this.facebookLoginAppCreation(app);
+        if (this.hasFBLoginList.includes(app.code)) {
+          this.$refs.configPopUp.openPopUp(app);
           return;
         }
 
@@ -115,25 +121,6 @@
           },
           seconds: 6,
         });
-      },
-
-      /* istanbul ignore next */
-      async facebookLoginAppCreation(app) {
-        /* eslint-disable no-undef */
-        FB.login(
-          async function (response) {
-            if (response.authResponse) {
-              const accessToken = response.authResponse.accessToken;
-              this.openWACloudPopUp(app, accessToken);
-            }
-          },
-          {
-            scope: 'business_management,whatsapp_business_management,whatsapp_business_messaging',
-            extras: {
-              feature: 'whatsapp_embedded_signup',
-            },
-          },
-        );
       },
     },
   };

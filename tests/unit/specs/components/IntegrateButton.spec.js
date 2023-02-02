@@ -99,8 +99,8 @@ describe('IntegrateButton.vue', () => {
   });
 
   describe('addApp()', () => {
-    it('should call facebookLogin if app code is wpp-cloud', async () => {
-      const spy = spyOn(wrapper.vm, 'facebookLoginAppCreation');
+    it('should call configPopUp if app code is is within facebook login apps', async () => {
+      const spy = spyOn(wrapper.vm.$refs.configPopUp, 'openPopUp');
       expect(spy).not.toHaveBeenCalled();
       const app = {
         code: 'wpp-cloud',
