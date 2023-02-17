@@ -1,3 +1,10 @@
+1.17.1
+----------
+`2023-02-17 · 1 🎉`
+
+### 🎉 New Features
+- Feat: Use new Generic apps list endpoint
+
 1.17.0
 ----------
 `2023-02-02 · 1 🎉`
