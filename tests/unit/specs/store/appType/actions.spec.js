@@ -18,6 +18,7 @@ jest.mock('@/api/appType', () => {
 jest.mock('@/api/appType/generic', () => {
   return {
     getIcons: jest.fn(),
+    getAllGenericTypes: jest.fn(),
   };
 });
 
@@ -56,29 +57,33 @@ describe('store/appType/actions.js', () => {
       beforeEach(() => {
         jest.resetAllMocks();
 
-        const genericBaseApp = {
-          ...singleApp,
-          code: 'generic',
-          channels_available: [
-            {
-              SL: {
-                attributes: {
-                  claim_blurb: 'claim blurb text',
-                  attribute1: 'value1',
-                },
-              },
+        const genericApps = {
+          G1: {
+            attributes: {
+              claim_blurb: 'claim blurb text',
+              attribute1: 'value1',
             },
-          ],
+          },
+          G2: {
+            attributes: {
+              claim_blurb: 'claim blurb text 2',
+              attribute1: 'value2',
+            },
+          },
         };
 
         appTypeApi.getAllAppTypes.mockImplementation(() => {
           return Promise.resolve({
-            data: [singleApp, genericBaseApp],
+            data: [singleApp],
           });
         });
 
         genericTypeApi.getIcons.mockImplementation(() => {
-          return Promise.resolve({ data: { SL: 'https://url.com' } });
+          return Promise.resolve({ data: { G1: 'https://url1.com', G2: 'https://url2.com' } });
+        });
+
+        genericTypeApi.getAllGenericTypes.mockImplementation(() => {
+          return Promise.resolve({ data: genericApps });
         });
       });
 
@@ -95,29 +100,26 @@ describe('store/appType/actions.js', () => {
       });
 
       it('should set returned apps as result data', async () => {
-        const genericApp = {
-          generic: true,
-          summary: 'claim blurb text',
-          icon: 'https://url.com',
-          claim_blurb: 'claim blurb text',
-          attribute1: 'value1',
-        };
+        const genericApps = [
+          {
+            generic: true,
+            summary: 'claim blurb text',
+            icon: 'https://url1.com',
+            claim_blurb: 'claim blurb text',
+            attribute1: 'value1',
+          },
+          {
+            generic: true,
+            summary: 'claim blurb text 2',
+            icon: 'https://url2.com',
+            claim_blurb: 'claim blurb text 2',
+            attribute1: 'value2',
+          },
+        ];
         store.state.appType.allAppTypes = [];
-        expect(store.state.appType.allAppTypes).not.toEqual([singleApp, genericApp]);
+        expect(store.state.appType.allAppTypes).not.toEqual([singleApp, ...genericApps]);
         await store.dispatch('getAllAppTypes', code);
-        expect(store.state.appType.allAppTypes).toEqual([singleApp, genericApp]);
-      });
-
-      it('should set returned apps as result data', async () => {
-        appTypeApi.getAllAppTypes.mockImplementation(() => {
-          return Promise.resolve({
-            data: [singleApp],
-          });
-        });
-        store.state.appType.allAppTypes = [];
-        expect(store.state.appType.allAppTypes).not.toEqual([singleApp]);
-        await store.dispatch('getAllAppTypes', code);
-        expect(store.state.appType.allAppTypes).toEqual([singleApp]);
+        expect(store.state.appType.allAppTypes).toEqual([singleApp, ...genericApps]);
       });
 
       it('should set loadingAllAppTypes to false', async () => {

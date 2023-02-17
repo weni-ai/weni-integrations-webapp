@@ -7,31 +7,25 @@ export default {
   async getAllAppTypes({ commit }, { params }) {
     commit('GET_ALL_APP_TYPES_REQUEST');
     try {
-      let { data } = await appType.getAllAppTypes(params);
-      const iconData = (await genericType.getIcons())?.data;
+      const { data: baseApps } = await appType.getAllAppTypes(params);
+      const { data: genericAppsData } = await genericType.getAllGenericTypes();
+      const { data: iconData } = await genericType.getIcons();
 
-      const genericIndex = data.findIndex((app) => {
-        return app.code === 'generic';
-      });
+      const genericApps = [];
 
-      if (genericIndex !== -1) {
-        const genericBase = data.splice(genericIndex, 1)[0];
-        let genericApps = [];
+      for (const [code, data] of Object.entries(genericAppsData)) {
+        const summary = clearHtmlTags(data.attributes.claim_blurb);
 
-        for (const [code, data] of Object.entries(genericBase.channels_available[0])) {
-          const summary = clearHtmlTags(data.attributes.claim_blurb);
-
-          genericApps.push({
-            ...data.attributes,
-            generic: true,
-            icon: iconData[code],
-            summary,
-          });
-        }
-        data = data.concat(genericApps);
+        genericApps.push({
+          ...data.attributes,
+          generic: true,
+          icon: iconData[code],
+          summary,
+        });
       }
+      const fullList = baseApps.concat(genericApps);
 
-      commit('GET_ALL_APP_TYPES_SUCCESS', data);
+      commit('GET_ALL_APP_TYPES_SUCCESS', fullList);
     } catch (err) {
       commit('GET_ALL_APP_TYPES_ERROR', err);
     }
