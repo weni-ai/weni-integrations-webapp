@@ -331,6 +331,9 @@
         "data_fetch": "No se pudieron recuperar los datos de WhatsApp. Por favor contacte al equipo de soporte.",
         "data_update": "Error al actualizar los datos de WhatsApp.",
         "open_templates": "No se pueden abrir las Plantillas, actualice la página y vuelva a intentarlo."
+      },
+      "qr": {
+        "title": "Enlace de Whatsapp"
       }
     },
     "templates": {

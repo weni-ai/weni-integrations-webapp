@@ -331,6 +331,9 @@
         "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
         "data_update": "Failed to update WhatsApp data.",
         "open_templates": "Could not open templates, please refresh the page and try again."
+      },
+      "qr": {
+        "title": "Whatsapp Link"
       }
     },
     "templates": {

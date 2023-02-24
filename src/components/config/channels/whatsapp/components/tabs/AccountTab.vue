@@ -21,6 +21,22 @@
             {{ wabaInfo.name }}
           </div>
         </div>
+
+        <div class="account-tab__content__info__qr">
+          <div class="account-tab__content__info__qr__title">
+            {{ $t('WhatsApp.config.qr.title') }}
+          </div>
+          <img class="account-tab__content__info__qr__img" :src="QRCodeUrl" />
+
+          <unnnic-input
+            class="account-tab__content__info__qr__url"
+            :value="WAUrl"
+            iconRight="export-1"
+            :iconRightClickable="true"
+            @icon-right-click="openWAUrl"
+            readonly
+          />
+        </div>
       </div>
 
       <div>
@@ -76,8 +92,21 @@
       fieldHandler(field) {
         return field ?? `-`;
       },
+      /* istanbul ignore next */
+      openWAUrl() {
+        window.open(this.WAUrl, '_blank').focus();
+      },
     },
     computed: {
+      QRCodeUrl() {
+        return `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURI(
+          this.WAUrl,
+        )}`;
+      },
+      WAUrl() {
+        const cleanNumber = this.phoneNumber.display_phone_number?.replace(/\D/g, '');
+        return `https://wa.me/${cleanNumber}`;
+      },
       phoneNumber() {
         return this.appInfo?.config?.phone_number ?? {};
       },
@@ -189,6 +218,7 @@
 
       &__info {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         flex-wrap: wrap;
 
@@ -227,6 +257,21 @@
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
             color: $unnnic-color-neutral-cloudy;
             margin-top: $unnnic-spacing-stack-xs;
+          }
+        }
+
+        &__qr {
+          &__title {
+            font-weight: $unnnic-font-weight-black;
+            font-size: $unnnic-font-size-body-lg;
+            line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+            color: $unnnic-color-neutral-darkest;
+
+            margin: $unnnic-spacing-stack-sm 0;
+          }
+
+          &__img {
+            margin-bottom: $unnnic-spacing-stack-sm;
           }
         }
 
