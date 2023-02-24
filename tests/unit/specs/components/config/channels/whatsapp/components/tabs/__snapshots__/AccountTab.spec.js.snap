@@ -18,6 +18,12 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
           Waba name
         </div>
       </div>
+      <div class="account-tab__content__info__qr">
+        <div class="account-tab__content__info__qr__title">
+          some specific text
+        </div> <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&amp;data=https://wa.me/5511999999999" class="account-tab__content__info__qr__img">
+        <unnnicinput-stub value="https://wa.me/5511999999999" iconright="export-1" iconrightclickable="true" readonly="" class="account-tab__content__info__qr__url"></unnnicinput-stub>
+      </div>
     </div>
     <div>
       <div class="account-tab__content__section">

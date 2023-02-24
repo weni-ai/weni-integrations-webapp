@@ -16,6 +16,7 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
         UnnnicIconSvg: true,
         StatusIndicator: true,
         UnnnicButton: true,
+        UnnnicInput: true,
       },
       propsData: {
         appInfo: {
