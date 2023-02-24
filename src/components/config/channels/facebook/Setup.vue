@@ -2,32 +2,32 @@
   <div>
     <unnnic-modal
       v-if="stage === 'login'"
-      ref="instagram-setup-modal"
-      class="instagram-setup"
-      :text="$t('instagram.setup.title')"
-      modal-icon="social-instagram-1"
+      ref="facebook-setup-modal"
+      :class="`facebook-setup ${this.integrationName}-icon`"
+      :text="$t(`${this.integrationName}.setup.title`)"
+      :modal-icon="this.integrationIcon"
       :close-icon="false"
       @close="closePopUp"
       @click.stop
     >
       <div slot="message">
-        <span v-html="$t('instagram.setup.description')"></span>
+        <span v-html="$t(`${this.integrationName}.setup.description`)"></span>
       </div>
       <div slot="options">
-        <div class="instagram-setup__buttons">
+        <div class="facebook-setup__buttons">
           <unnnic-button
-            class="instagram-setup__buttons__cancel"
+            class="facebook-setup__buttons__cancel"
             type="terciary"
             size="large"
             :text="$t('general.Cancel')"
             @click="closePopUp"
-          ></unnnic-button>
+          />
 
           <LoadingButton
-            class="instagram-setup__buttons__start"
+            class="facebook-setup__buttons__start"
             type="secondary"
             size="large"
-            :text="$t('WhatsAppCloud.setup.continue')"
+            :text="$t(`${this.integrationName}.setup.connect`)"
             :isLoading="onLogin"
             :disabled="onLogin"
             @clicked="startFacebookLogin"
@@ -39,15 +39,15 @@
     <unnnic-modal
       v-else
       ref="page-selection-modal"
-      class="page-selection"
-      :text="$t('instagram.setup.title')"
-      modal-icon="social-instagram-1"
+      :class="`page-selection ${this.integrationName}-icon`"
+      :text="$t(`${this.integrationName}.setup.title`)"
+      :modal-icon="this.integrationIcon"
       :close-icon="false"
       @close="closePopUp"
       @click.stop
     >
       <div slot="message" class="page-selection__select">
-        <span v-html="$t('instagram.setup.page_selection.description')"></span>
+        <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
         <unnnic-select
           ref="page-selection-input"
           :search="false"
@@ -72,9 +72,9 @@
           class="page-selection__buttons__cancel"
           type="terciary"
           size="large"
-          :text="$t('WhatsAppCloud.config.phone_numbers.connect_later')"
+          :text="$t(`${this.integrationName}.setup.connect_later`)"
           @click="closePopUp"
-        ></unnnic-button>
+        />
 
         <LoadingButton
           class="page-selection__buttons__save"
@@ -82,7 +82,7 @@
           size="large"
           :isLoading="loadingUpdateAppConfig || loadingCreateApp"
           :loadingText="$t('general.loading')"
-          :text="$t('WhatsAppCloud.config.phone_numbers.create_channel')"
+          :text="$t(`${this.integrationName}.setup.create_channel`)"
           @clicked="createChannel"
         />
       </div>
@@ -95,11 +95,11 @@
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton.vue';
-  import getEnv from '../../../..//utils/env';
+  import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
 
   export default {
-    name: 'InstagramSetup',
+    name: 'FacebookSetup',
     components: {
       LoadingButton,
     },
@@ -115,9 +115,13 @@
         accessToken: null,
         pageList: [],
         selectedPage: null,
-        loadingInstagramConfigure: false,
         selectKey: 0,
         onLogin: false,
+        loadingPages: false,
+        appScopes: {
+          ig: 'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
+          fba: 'pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
+        },
       };
     },
     async mounted() {
@@ -133,9 +137,24 @@
         loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
         errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
       }),
+      integrationName() {
+        const nameMap = {
+          ig: 'instagram',
+          fba: 'facebook',
+        };
+
+        return nameMap[this.app.code];
+      },
+      integrationIcon() {
+        const iconMap = {
+          ig: 'social-instagram-1',
+          fba: 'social-media-facebook-1',
+        };
+        return iconMap[this.app.code];
+      },
     },
     methods: {
-      ...mapActions(['createApp', 'updateAppConfig']),
+      ...mapActions(['createApp', 'updateAppConfig', 'deleteApp']),
       handlePageSelection(page) {
         this.selectedPage = page;
         this.selectKey += 1;
@@ -164,8 +183,7 @@
             },
             {
               return_scopes: true,
-              scope:
-                'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
+              scope: this.appScopes[this.app.code],
             },
           );
         };
@@ -183,7 +201,10 @@
           const res = await axios.get(fbAccountUrl);
           this.pageList = res.data.data;
         } catch (error) {
-          this.callModal({ type: 'Error', text: this.$t('instagram.setup.account_data.error') });
+          this.callModal({
+            type: 'Error',
+            text: this.$t(`${this.integrationName}.setup.account_data.error`),
+          });
           return;
         }
 
@@ -193,13 +214,19 @@
         const page = this.pageList.find((page) => page.id === this.selectedPage);
 
         if (!page) {
-          this.callModal({ type: 'Error', text: this.$t('instagram.setup.find_page.error') });
+          this.callModal({
+            type: 'Error',
+            text: this.$t(`${this.integrationName}.setup.find_page.error`),
+          });
           return;
         }
 
         await this.createApp({ code: this.app.code, payload: { project_uuid: this.project } });
         if (this.errorCreateApp) {
-          this.callModal({ type: 'Error', text: this.$t('instagram.setup.create_app.error') });
+          this.callModal({
+            type: 'Error',
+            text: this.$t(`${this.integrationName}.setup.create_app.error`),
+          });
           return;
         }
 
@@ -213,7 +240,7 @@
               page_id: page.id,
               fb_user_id: FB.getUserID(),
             },
-            channeltype_code: 'IG',
+            channeltype_code: this.app.code.toUpperCase(),
             project_uuid: this.project,
           },
         };
@@ -221,11 +248,15 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'Error', text: this.$t('instagram.setup.update_app.error') });
+          this.callModal({
+            type: 'Error',
+            text: this.$t(`${this.integrationName}.setup.update_app.error`),
+          });
+          await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('instagram.setup.success') });
+        this.callModal({ type: 'Success', text: this.$t(`${this.integrationName}.setup.success`) });
         this.$router.replace('/apps/my');
       },
       closePopUp() {
@@ -249,7 +280,14 @@
 </script>
 
 <style lang="scss" scoped>
-  .instagram-setup {
+  .facebook-icon {
+    ::v-deep {
+      .unnnic-icon > svg > path {
+        fill: #3c579e;
+      }
+    }
+  }
+  .facebook-setup {
     cursor: default;
 
     &__buttons {
