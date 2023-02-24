@@ -14,7 +14,7 @@
 <script>
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
   import wppCloudSetup from './channels/whatsapp/Setup.vue';
-  import instagramSetup from './channels/instagram/Setup.vue';
+  import facebookSetup from './channels/facebook/Setup.vue';
 
   export default {
     name: 'Config-PopUp',
@@ -27,7 +27,8 @@
         componentMapping: {
           'wpp-demo': wppDemoConfig,
           'wpp-cloud': wppCloudSetup,
-          ig: instagramSetup,
+          ig: facebookSetup,
+          fba: facebookSetup,
         },
       };
     },

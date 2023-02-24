@@ -55,6 +55,7 @@
   import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
   import genericTypeConfig from '@/components/config/channels/generic/Config.vue';
   import instagramConfig from '@/components/config/channels/instagram/Config.vue';
+  import facebookConfig from '@/components/config/channels/facebook/Config.vue';
 
   export default {
     name: 'Modal',
@@ -74,6 +75,7 @@
           'wpp-demo': wppDemoPreview,
           'power-bi': powerBiConfig,
           ig: instagramConfig,
+          fba: facebookConfig,
         },
       };
     },

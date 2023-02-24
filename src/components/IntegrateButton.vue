@@ -53,7 +53,7 @@
     data() {
       return {
         loadingCreateApp: false,
-        hasFBLoginList: ['wpp-cloud', 'ig'],
+        hasFBLoginList: ['wpp-cloud', 'ig', 'fba'],
         appCodeToFBAppId: {
           'wpp-cloud': getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID'),
           ig: getEnv('VUE_APP_FACEBOOK_APP_ID'),
