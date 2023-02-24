@@ -1,3 +1,11 @@
+1.18.0
+----------
+`2023-02-24 · 2 🎉`
+
+### 🎉 New Features
+- Feat: Facebook integration
+- Feat: QR Code in WhatsApp Account tab
+
 1.17.1
 ----------
 `2023-02-17 · 1 🎉`
