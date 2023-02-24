@@ -556,6 +556,9 @@
       "title": "Conectar",
       "description": "Siga os passos na <a href=\"https://docs.weni.ai/l/pt/configura-es/como-criar-um-canal-no-instagram\" target=\"_blank\" class=\"link\">documentação</a> antes de fazer sua integração com o <strong>Instagram</strong>",
       "success": "Aplicativo Instagram criado com sucesso",
+      "connect_later": "Conectar depois",
+      "connect": "Conectar",
+      "create_channel": "Criar canal",
       "page_selection": {
         "description": "Adicionar uma página de conta comercial do <strong>Instagram</strong>"
       },
@@ -563,7 +566,7 @@
         "error": "Falha ao buscar os dados das páginas do Instagram. Tente novamente mais tarde."
       },
       "find_page": {
-        "error": "Falha ao buscar os detalhes da página, tente novamente mais tarde"
+        "error": "Por favor selecione uma página do Instagram para conectar"
       },
       "create_app": {
         "error": "Falha ao criar aplicativo, tente novamente mais tarde"
@@ -574,6 +577,38 @@
     },
     "config": {
       "connected_account": "Sua conta do Instagram está conectada"
+    }
+  },
+  "facebook": {
+    "data": {
+      "summary": "Adicione um bot no Facebook para enviar e receber mensagens em nome de uma de suas páginas do Facebook.",
+      "description": "O Facebook atualizou suas políticas de integração, então agora você pode conectar facilmente uma página do Facebook para criar um canal do Messenger em apenas alguns instantes. Você será direcionado automaticamente para a página do novo canal, onde poderá visualizar o registro do canal e criar um gatilho que fará referência a um contato quando uma nova conversa começar no Messenger."
+    },
+    "setup": {
+      "title": "Quer se conectar ao Facebook?",
+      "description": "Siga as etapas no <a href=\"https://docs.weni.ai/l/pt/configura-es/como-criar-um-canal-no-facebook\" target=\"_blank\" class=\"link\" >documentação</a> antes de prosseguir com a integração do <strong>Facebook</strong>",
+      "success": "Aplicativo do Facebook criado com sucesso",
+      "connect_later": "Conectar depois",
+      "connect": "Conectar",
+      "create_channel": "Criar canal",
+      "page_selection": {
+        "description": "Adicionar uma página de conta comercial do <strong>Facebook</strong>"
+      },
+      "account_data": {
+        "error": "Falha ao buscar os dados das páginas do Facebook. Tente novamente mais tarde."
+      },
+      "find_page": {
+        "error": "Por favor selecione uma página do Facebook para se conectar"
+      },
+      "create_app": {
+        "error": "Falha ao criar aplicativo, tente novamente mais tarde"
+      },
+      "update_app": {
+        "error": "Falha ao configurar o aplicativo, tente novamente mais tarde"
+      }
+    },
+    "config": {
+      "connected_account": "Sua conta do Facebook está conectada"
     }
   }
 }

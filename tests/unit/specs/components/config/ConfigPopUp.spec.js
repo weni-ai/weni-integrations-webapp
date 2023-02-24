@@ -5,7 +5,8 @@ import i18n from '@/utils/plugins/i18n';
 
 import wppDemoConfig from '@/components/config/channels/wpp_demo/Config.vue';
 import wppCloudSetup from '@/components/config/channels/whatsapp/Setup.vue';
-import instagramSetup from '@/components/config/channels/instagram/Setup.vue';
+import instagramSetup from '@/components/config/channels/facebook/Setup.vue';
+import facebookSetup from '@/components/config/channels/facebook/Setup.vue';
 
 const localVue = createLocalVue();
 
@@ -63,6 +64,14 @@ describe('ConfigPopUp.vue', () => {
     const currentComponent = wrapper.vm.currentComponent;
 
     expect(currentComponent).toMatchObject(instagramSetup);
+  });
+
+  it('should set current component to facebook setup', async () => {
+    await wrapper.setData({ type: 'fba' });
+
+    const currentComponent = wrapper.vm.currentComponent;
+
+    expect(currentComponent).toMatchObject(facebookSetup);
   });
 
   it('should return undefined currentComponent', async () => {

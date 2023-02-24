@@ -556,6 +556,9 @@
       "title": "Connect",
       "description": "Follow the steps in the <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentation</a> before proceeding with your <strong>Instagram</strong> integration",
       "success": "Successfully created Instagram application",
+      "connect_later": "Connect later",
+      "connect": "Connect",
+      "create_channel": "Create channel",
       "page_selection": {
         "description": "Add a <strong>Instagram</strong> business account page"
       },
@@ -563,7 +566,7 @@
         "error": "Failed to fetch Instagram pages data, please try again later."
       },
       "find_page": {
-        "error": "Failed to fetch page details, please try again later"
+        "error": "Please select an Instagram page to connect"
       },
       "create_app": {
         "error": "Failed to create application, please try again later"
@@ -573,7 +576,39 @@
       }
     },
     "config": {
-      "connected_account": "Your instagram account is connected"
+      "connected_account": "Your Instagram account is connected"
+    }
+  },
+  "facebook": {
+    "data": {
+      "summary": "Add a Facebook bot to send and receive messages on behalf of one of your Facebook pages.",
+      "description": "Facebook has updated its integration policies, so now you can easily connect a Facebook page to create a Messenger channel in just a few moments. You will be automatically taken to your new channel page where you can view your channel record, then you can create a trigger that will reference a contact when a new conversation starts in Messenger."
+    },
+    "setup": {
+      "title": "Want to connect to Facebook?",
+      "description": "Follow the steps in the <a href=\"https://docs.weni.ai/l/en/settings/adding-a-facebook-channel\" target=\"_blank\" class=\"link\">documentation</a> before proceeding with your <strong>Facebook</strong> integration",
+      "success": "Successfully created Facebook application",
+      "connect_later": "Connect later",
+      "connect": "Connect",
+      "create_channel": "Create channel",
+      "page_selection": {
+        "description": "Add a <strong>Facebook</strong> business account page"
+      },
+      "account_data": {
+        "error": "Failed to fetch Facebook pages data, please try again later."
+      },
+      "find_page": {
+        "error": "Please select a Facebook page to connect"
+      },
+      "create_app": {
+        "error": "Failed to create application, please try again later"
+      },
+      "update_app": {
+        "error": "Failed to setup application, please try again later"
+      }
+    },
+    "config": {
+      "connected_account": "Your Facebook account is connected"
     }
   }
 }

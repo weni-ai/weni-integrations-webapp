@@ -7,9 +7,11 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import instagramSetup from '@/components/config/channels/instagram/Setup.vue';
+import instagramSetup from '@/components/config/channels/facebook/Setup.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../../../../__mocks__/appMock';
+
+singleApp.code = 'fba';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -65,7 +67,7 @@ const mountComponent = async ({ errorUpdateAppConfig = false, errorCreateApp = f
   return { wrapper, actions, state };
 };
 
-describe('instagram/Setup.vue', () => {
+describe('components/config/channels/facebook/Setup.vue', () => {
   beforeEach(() => {});
 
   beforeEach(() => {
