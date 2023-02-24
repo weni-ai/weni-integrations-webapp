@@ -553,6 +553,9 @@
       "title": "Conectar",
       "description": "Siga los pasos en la <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentación</a> antes de hacer su integración de <strong>Instagram</strong>",
       "success": "Aplicación de Instagram creada con éxito",
+      "connect_later": "Conectar más tarde",
+      "connect": "Conectar",
+      "create_channel": "Crear canal",
       "page_selection": {
         "description": "Agregar una página de cuenta comercial de <strong>Instagram</strong>"
       },
@@ -560,7 +563,7 @@
         "error": "Failed to fetch Instagram pages data, please try again later."
       },
       "find_page": {
-        "error": "No se pudieron obtener los datos de las páginas de Instagram. Vuelva a intentarlo más tarde."
+        "error": "Seleccione una página de Instagram para conectarse"
       },
       "create_app": {
         "error": "No se pudo crear la aplicación, intente nuevamente más tarde"
@@ -570,7 +573,39 @@
       }
     },
     "config": {
-      "connected_account": "Tu cuenta de instagram está conectada"
+      "connected_account": "Tu cuenta de Instagram está conectada"
+    }
+  },
+  "facebook": {
+    "data": {
+      "summary": "Agrega un bot de Facebook para enviar y recibir mensajes en nombre de una de tus páginas de Facebook.",
+      "description": "Facebook actualizó sus polífechaticas de integración, por lo que ahora puede conectarse fácilmente a una página de Facebook para crear un canal de Messenger en solo unos momentos. Será llevado automáticamente a la página de su nuevo canal donde podrá ver el registro de su canal. luego puedes crear un activador que hará referencia a un contacto cuando comience una nueva conversación en Messenger"
+    },
+    "setup": {
+      "title": "¿Quieres conectarte a Facebook?",
+      "description": "Siga los pasos en <a href=\"https://docs.weni.ai/l/en/settings/adding-a-facebook-channel\" target=\"_blank\" class= \"enlace\">documentación</a> antes de continuar con su integración con <strong>Facebook</strong>",
+      "success": "Aplicación de Facebook creada con éxito",
+      "connect_later": "Conectarse más tarde",
+      "connect": "Conectar",
+      "create_channel": "Crear canal",
+      "page_selection": {
+        "description": "Agregar una página de cuenta comercial de <strong>Facebook</strong>"
+      },
+      "account_data": {
+        "error": "No se pudieron obtener los datos de las páginas de Facebook, inténtalo de nuevo más tarde"
+      },
+      "find_page": {
+        "error": "Seleccione una página de Facebook para conectarse"
+      },
+      "create_app": {
+        "error": "Error al crear la aplicación, inténtalo de nuevo más tarde"
+      },
+      "update_app": {
+        "error": "Error al configurar la aplicación, intente nuevamente más tarde"
+      }
+    },
+    "config": {
+      "connected_account": "Tu cuenta de Facebook está conectada"
     }
   }
 }
