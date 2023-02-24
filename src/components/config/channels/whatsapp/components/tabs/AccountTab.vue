@@ -92,6 +92,7 @@
       fieldHandler(field) {
         return field ?? `-`;
       },
+      /* istanbul ignore next */
       openWAUrl() {
         window.open(this.WAUrl, '_blank').focus();
       },
