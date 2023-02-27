@@ -12,13 +12,16 @@ exports[`Preview.vue should be rendered properly 1`] = `
     </div>
   </div>
   <div class="app-preview-wpp_demo__settings__content">
-    <unnnic-data-area-stub>
-      <unnnicbutton-stub size="large" type="primary" iconcenter="export-1" class="app-preview-wpp_demo__settings__content__button"></unnnicbutton-stub>
+    <div class="app-preview-wpp_demo__settings__content__qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&amp;data=null"></div>
+    <unnnic-data-area-stub hovertext="">
+      <div class="app-preview-wpp_demo__settings__content__input__buttons">
+        <unnnicbutton-stub size="large" type="primary" iconcenter="floppy-disk-1" class="app-preview-wpp_demo__settings__content__input__buttons--copy"></unnnicbutton-stub>
+        <unnnicbutton-stub size="large" type="primary" iconcenter="export-1" class="app-preview-wpp_demo__settings__content__input__buttons--open"></unnnicbutton-stub>
+      </div>
     </unnnic-data-area-stub>
   </div>
   <div class="app-preview-wpp_demo__settings__buttons">
     <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
-    <unnnicbutton-stub size="large" text="some specific text" type="secondary" class="app-preview-wpp_demo__settings__buttons__copy"></unnnicbutton-stub>
   </div>
 </div>
 `;
