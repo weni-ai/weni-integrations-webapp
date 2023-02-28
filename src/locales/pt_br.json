@@ -237,7 +237,8 @@
         "profile": "Perfil",
         "contact_info": "Informações de Contato",
         "conversations": "Conversas",
-        "templates": "Templates"
+        "templates": "Templates",
+        "webhook_info": "Webhook"
       },
       "description": {
         "text": "Saiba mais sobre como aumentar o seu limite de mensagens no WhatsApp",
@@ -249,6 +250,11 @@
       },
       "billing": {
         "title": "Informações de pagamento"
+      },
+      "webhook_info": {
+        "input": {
+          "label": "Chamar webhook"
+        }
       },
       "conversations": {
         "title": "Informações de conversa",

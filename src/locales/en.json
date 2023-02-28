@@ -237,7 +237,8 @@
         "profile": "Profile",
         "contact_info": "Contact Information",
         "conversations": "Conversations",
-        "templates": "Templates"
+        "templates": "Templates",
+        "webhook_info": "Webhook"
       },
       "description": {
         "text": "Learn more about how to increase your daily message limit in WhatsApp",
@@ -249,6 +250,11 @@
       },
       "billing": {
         "title": "Billing Information"
+      },
+      "webhook_info": {
+        "input": {
+          "label": "Call webhook"
+        }
       },
       "conversations": {
         "title": "Conversations Information",
