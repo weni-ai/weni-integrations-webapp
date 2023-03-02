@@ -1,3 +1,14 @@
+1.19.0
+----------
+`2023-03-02 · 1 🐛 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: Data area component missing data
+
+### 🎉 New Features
+- Feat: WhatsApp Demo QR Code
+- Feat: Survey Component
+
 1.18.0
 ----------
 `2023-02-24 · 2 🎉`
