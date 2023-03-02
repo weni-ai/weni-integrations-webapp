@@ -5,7 +5,9 @@
     "You": "You",
     "confirm": "Confirm",
     "loading": "Loading",
-    "Remove": "Remove"
+    "Remove": "Remove",
+    "exit": "Exit",
+    "send": "Send"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
@@ -119,6 +121,13 @@
   },
   "import_card": {
     "importing": "Importing"
+  },
+  "survey": {
+    "content": {
+      "question": "Do you miss any integration? If so, tell us which one"
+    },
+    "error_submit_answer": "Failed to submit feedback, please try again later.",
+    "success_submit_answer": "Feedback successfully sent!"
   },
   "weniWebChat": {
     "data": {
