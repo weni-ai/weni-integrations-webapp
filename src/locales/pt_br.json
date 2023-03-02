@@ -120,6 +120,13 @@
   "import_card": {
     "importing": "Importando"
   },
+  "survey": {
+    "content": {
+      "question": "Sente falta de alguma integração? Se sim, diga-nos qual"
+    },
+    "error_submit_answer": "Falha ao enviar feedback, tente novamente mais tarde.",
+    "success_submit_answer": "Feedback enviado com sucesso!"
+  },
   "weniWebChat": {
     "data": {
       "summary": "Com o Weni Web Chat, você pode integrar seu projeto como um chat em seu site.",

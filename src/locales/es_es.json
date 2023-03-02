@@ -120,6 +120,13 @@
   "import_card": {
     "importing": "Importando"
   },
+  "survey": {
+    "content": {
+      "question": "¿Echas de menos alguna integración? Si es así, dinos cuál."
+    },
+    "error_submit_answer": "Error al enviar los comentarios, inténtalo de nuevo más tarde.",
+    "success_submit_answer": "Comentarios enviados con éxito!"
+  },
   "weniWebChat": {
     "data": {
       "summary": "Con Weni Web Chat, puede integrar su organización Rapidpro como un chat en su sitio web.",
