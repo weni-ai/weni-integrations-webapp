@@ -100,9 +100,15 @@
 <style lang="scss" scoped>
   .survey-container {
     position: absolute;
-    bottom: 145px;
+    bottom: 150px;
     right: 18px;
     z-index: 3;
+  }
+
+  @supports (-moz-appearance: none) {
+    .survey-container {
+      right: 23px;
+    }
   }
 </style>
 
