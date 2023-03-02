@@ -13,15 +13,28 @@
     </div>
 
     <div class="app-preview-wpp_demo__settings__content">
-      <unnnic-data-area :text="url">
-        <unnnic-button
-          slot="buttons"
-          class="app-preview-wpp_demo__settings__content__button"
-          type="primary"
-          size="large"
-          iconCenter="export-1"
-          @click="openWppLink"
-        ></unnnic-button>
+      <div class="app-preview-wpp_demo__settings__content__qr">
+        <img :src="QRCodeUrl" />
+      </div>
+
+      <unnnic-data-area :text="url" hoverText="">
+        <div slot="buttons" class="app-preview-wpp_demo__settings__content__input__buttons">
+          <unnnic-button
+            class="app-preview-wpp_demo__settings__content__input__buttons--copy"
+            type="primary"
+            size="large"
+            iconCenter="floppy-disk-1"
+            @click="copyUrl"
+          />
+
+          <unnnic-button
+            class="app-preview-wpp_demo__settings__content__input__buttons--open"
+            type="primary"
+            size="large"
+            iconCenter="export-1"
+            @click="openWppLink"
+          />
+        </div>
       </unnnic-data-area>
     </div>
 
@@ -30,18 +43,9 @@
         class="app-preview-wpp_demo__settings__buttons__cancel"
         type="terciary"
         size="large"
-        :text="$t('apps.config.cancel')"
+        :text="$t('general.Close')"
         @click="closePreview"
-      ></unnnic-button>
-
-      <unnnic-button
-        class="app-preview-wpp_demo__settings__buttons__copy"
-        type="secondary"
-        size="large"
-        :text="$t('apps.config.copy')"
-        :disabled="this.app.config.token"
-        @click="copyUrl"
-      ></unnnic-button>
+      />
     </div>
   </div>
 </template>
@@ -61,6 +65,13 @@
       return {
         url: this.app.config.redirect_url ?? null,
       };
+    },
+    computed: {
+      QRCodeUrl() {
+        return `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURI(
+          this.url,
+        )}`;
+      },
     },
     methods: {
       closePreview() {
@@ -97,6 +108,7 @@
     height: -webkit-fill-available;
     height: -moz-available;
     padding: $unnnic-inset-lg;
+    flex: 1;
 
     &__header {
       display: flex;
@@ -156,6 +168,13 @@
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
+        flex: 1;
+        overflow: auto;
+
+        &__qr {
+          align-self: center;
+          margin: $unnnic-spacing-stack-sm 0;
+        }
 
         &__input {
           margin-top: $unnnic-spacing-stack-xs;
@@ -172,8 +191,14 @@
               margin-top: $unnnic-spacing-stack-xs;
             }
           }
+
+          &__buttons {
+            display: flex;
+            gap: $unnnic-spacing-inline-nano;
+          }
         }
       }
+
       &__buttons {
         padding-right: $unnnic-spacing-inline-xs;
         margin-top: $unnnic-spacing-stack-md;
@@ -189,5 +214,9 @@
 
   ::v-deep .unnnic-button--primary {
     background-color: rgba(226, 230, 237, 0.4) !important;
+
+    svg > path {
+      fill: $unnnic-color-neutral-darkest;
+    }
   }
 </style>
