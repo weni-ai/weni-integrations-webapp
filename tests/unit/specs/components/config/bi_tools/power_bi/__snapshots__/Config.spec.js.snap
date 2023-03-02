@@ -13,7 +13,7 @@ exports[`components/config/bi_tools/power_bi/Config.vue should be rendered prope
           <unnnic-icon-svg-stub icon="export-1" size="xs" scheme=""></unnnic-icon-svg-stub></span></a></span>
   </div>
   <div class="app-config-power-bi__content">
-    <unnnic-data-area-stub title="Token" text="" class="app-config-power-bi__content__token-input">
+    <unnnic-data-area-stub title="Token" text="" hovertext="" class="app-config-power-bi__content__token-input">
       <unnnic-tooltip-stub text="some specific text" enabled="true" side="top">
         <unnnic-button-stub size="small" type="secondary" iconcenter="copy-paste-1" class="app-config-power-bi__content__token-input__button"></unnnic-button-stub>
       </unnnic-tooltip-stub>

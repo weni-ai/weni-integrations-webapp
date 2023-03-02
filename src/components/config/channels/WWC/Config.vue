@@ -231,7 +231,7 @@
             v-html="$t('weniWebChat.config.script_tutorial')"
           />
 
-          <unnnic-data-area :text="scriptCode">
+          <unnnic-data-area :text="scriptCode" hoverText="">
             <unnnic-toolTip
               slot="buttons"
               :text="$t('weniWebChat.config.download')"

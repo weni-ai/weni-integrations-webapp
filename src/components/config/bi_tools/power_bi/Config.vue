@@ -28,6 +28,7 @@
         class="app-config-power-bi__content__token-input"
         title="Token"
         :text="flowToken || ''"
+        hoverText=""
       >
         <unnnic-toolTip
           slot="buttons"
