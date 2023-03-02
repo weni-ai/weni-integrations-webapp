@@ -5,7 +5,9 @@
     "You": "Ustedes",
     "confirm": "Confirmar",
     "loading": "Cargando",
-    "Remove": "Retirar"
+    "Remove": "Retirar",
+    "exit": "Salir",
+    "send": "Enviar"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
