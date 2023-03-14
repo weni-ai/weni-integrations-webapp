@@ -129,7 +129,11 @@
         type: String,
         default: null,
         validator(value) {
-          return ['channel', 'ticket', 'bi-tools', 'configured', 'installed'].indexOf(value) !== -1;
+          return (
+            ['channel', 'ticket', 'external', 'bi-tools', 'configured', 'installed'].indexOf(
+              value,
+            ) !== -1
+          );
         },
       },
       type: {
@@ -178,6 +182,8 @@
             return { icon: 'messaging-we-chat-3', scheme: 'aux-blue' };
           case 'bi-tools':
             return { icon: 'gauge-dashboard-2', scheme: 'aux-orange' };
+          case 'external':
+            return { icon: 'charger-1', scheme: 'aux-lemon' };
           case 'configured':
             return { icon: 'cog-1', scheme: 'aux-purple' };
           case 'installed':
@@ -319,7 +325,9 @@
           }`;
         }
 
-        return `${app.name}${this.type === 'edit' ? ' - ' + app.config.title : ''}`;
+        return `${app.name}${
+          this.type === 'edit' ? ' - ' + (app.config.title || app.config.name) : ''
+        }`;
       },
       /* istanbul ignore next */
       updateGridSize() {

@@ -10,6 +10,14 @@
     />
 
     <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
+
+    <app-grid
+      section="external"
+      type="add"
+      :loading="loadingExternalServices"
+      :apps="externalServicesList"
+      @update="fetchExternalServices"
+    />
   </div>
 </template>
 <script>
@@ -49,6 +57,8 @@
       if (createAppCode) {
         await this.callManuallyCreateApp(createAppCode);
       }
+
+      await this.fetchExternalServices();
     },
     computed: {
       ...mapState({
@@ -56,9 +66,16 @@
         loadingAllAppTypes: (state) => state.appType.loadingAllAppTypes,
         errorAllAppTypes: (state) => state.appType.errorAllAppTypes,
       }),
+
+      ...mapState('externals', [
+        'loadingExternalServices',
+        'errorExternalServices',
+        'externalServicesList',
+      ]),
     },
     methods: {
       ...mapActions(['getAllAppTypes']),
+      ...mapActions('externals', ['getExternalServicesTypes']),
       async fetchChannels() {
         const params = {
           category: 'channel',
@@ -84,6 +101,9 @@
       },
       async callManuallyCreateApp(appCode) {
         await this.$refs.appGrid.manuallyCreateApp(appCode);
+      },
+      async fetchExternalServices() {
+        await this.getExternalServicesTypes();
       },
     },
   };
