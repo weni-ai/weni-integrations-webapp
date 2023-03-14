@@ -66,5 +66,19 @@ exports[`Discovery.vue should be rendered properly 1`] = `
       <!---->
     </div>
   </div>
+  <div>
+    <section id="app-grid">
+      <!---->
+      <div class="app-grid__content"></div>
+      <!---->
+    </section>
+    <!---->
+    <div>
+      <transition-stub name="fade">
+        <!---->
+      </transition-stub>
+      <!---->
+    </div>
+  </div>
 </div>
 `;
