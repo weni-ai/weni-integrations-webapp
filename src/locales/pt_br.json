@@ -619,5 +619,37 @@
     "config": {
       "connected_account": "Sua conta do Facebook está conectada"
     }
+  },
+  "omie": {
+    "data": {
+      "summary": "Se você possui um CRM na Omie, você pode integrar com a Plataforma Weni e automatizar ações no seu CRM através do seu chatbot",
+      "description": "Se você possui um CRM na Omie, você pode integrar com a Plataforma Weni e automatizar ações no seu CRM através do seu chatbot.<br><br>Integrando a plataforma weni com seu CRM na Omie você será capaz de realizar ações como:<br><br>- Incluir Oportunidades no CRM<br>- Pesquisar Titulo e Lançamentos<br>- Listar cliente<br><br>Por aqui no módulo de Integrações, você deve realizar a Integração com a Omie fornecendo os dados de API Key e API Secret e então realizar a integração.<br>Após isso, basta ir no módulo de flows, criar um fluxo e então você terá um card disponível chamada para Serviços Externos, nele você será capaz de realizar todas as ações com o CRM da Omie mencionadas aqui."
+    },
+    "config": {
+      "description": "Saiba mais sobre como integrar com a Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">aqui</a>",
+      "connect": "Conectar",
+      "tabs": {
+        "config": {
+          "title": "Configuração",
+          "inputs": {
+            "name": {
+              "label": "Nome"
+            },
+            "app_key": {
+              "label": "App Key"
+            },
+            "app_secret": {
+              "label": "App Secret"
+            }
+          }
+        }
+      }
+    },
+    "success": {
+      "configure": "Serviço configurado com sucesso"
+    },
+    "errors": {
+      "configure": "Ocorreu um erro ao tentar configurar o serviço, por favor tente novamente"
+    }
   }
 }
