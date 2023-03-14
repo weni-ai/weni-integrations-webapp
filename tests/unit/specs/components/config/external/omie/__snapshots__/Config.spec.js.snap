@@ -6,20 +6,20 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
     <div class="app-config-omie__header__title">
       <div class="app-config-omie__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-config-omie__header__title__icon-container__icon"></div>
       <div class="app-config-omie__header__title__name">Weni Web Chat</div>
-    </div> <span class="app-config-omie__header__description">Obtenga más información sobre la integración con Omie <a href="https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api" target="_blank" class="link">aquí</a></span>
+    </div> <span class="app-config-omie__header__description">Learn more about integrating with Omie <a href="https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api" target="_blank" class="link">here</a></span>
   </div>
   <div class="app-config-omie__settings__content">
     <div data-v-7b279318="" class="tab config-omie__tabs">
       <header data-v-7b279318="" class="tab-header">
         <ul data-v-7b279318="" class="tab-content">
-          <li data-v-7b279318="" class="tab-head tab-head--active"> Configurar </li>
+          <li data-v-7b279318="" class="tab-head tab-head--active"> Configure </li>
         </ul>
       </header>
       <main data-v-7b279318="" class="tab-body">
         <div data-v-7b279318="" class="tab-panel">
           <div data-v-7b279318="">
             <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__name unnnic-form md" data-v-7b279318="">
-              <p data-v-9ef23630="" class="unnnic-form__label">Nombre</p>
+              <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
               <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
                 <!---->
                 <!---->
@@ -55,7 +55,7 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
     </button> <button data-v-00f478da="" class="app-config-omie__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
       <!---->
       <!---->
-      <!----><span data-v-00f478da="" class="unnnic-button__label"> Conectar </span>
+      <!----><span data-v-00f478da="" class="unnnic-button__label"> Connect </span>
       <!---->
     </button></div>
 </div>
