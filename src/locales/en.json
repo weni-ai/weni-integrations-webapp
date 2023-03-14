@@ -25,7 +25,8 @@
         "ticket": "Attendance Managers",
         "configured": "Configured Apps",
         "installed": "Installed Apps",
-        "bi-tools": "BI Tools"
+        "bi-tools": "BI Tools",
+        "external": "External Services"
       },
       "fetch_error": "Failed to fetch Application list, please try again later."
     },

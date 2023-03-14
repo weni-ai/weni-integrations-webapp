@@ -25,7 +25,8 @@
         "ticket": "Gerenciadores de Atendimento",
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados",
-        "bi-tools": "Ferramentas de BI"
+        "bi-tools": "Ferramentas de BI",
+        "external": "Serviços Externos"
       },
       "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde."
     },

@@ -25,7 +25,8 @@
         "ticket": "Gestores de asistencia",
         "configured": "Aplicaciones configuradas",
         "installed": "Aplicaciones instaladas",
-        "bi-tools": "Herramientas de BI"
+        "bi-tools": "Herramientas de BI",
+        "external": "Servicios externoss"
       },
       "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde."
     },
