@@ -56,6 +56,7 @@
   import genericTypeConfig from '@/components/config/channels/generic/Config.vue';
   import instagramConfig from '@/components/config/channels/instagram/Config.vue';
   import facebookConfig from '@/components/config/channels/facebook/Config.vue';
+  import omieConfig from '@/components/config/external/omie/Config.vue';
 
   export default {
     name: 'Modal',
@@ -76,6 +77,7 @@
           'power-bi': powerBiConfig,
           ig: instagramConfig,
           fba: facebookConfig,
+          omie: omieConfig,
         },
       };
     },
