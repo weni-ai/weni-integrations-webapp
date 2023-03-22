@@ -145,4 +145,15 @@ export default {
       commit('DELETE_TEMPLATE_MESSAGE_ERROR', err);
     }
   },
+
+  async updateWppWebhookInfo({ commit }, { code, appUuid, payload }) {
+    commit('UPDATE_WEBHOOK_INFO_REQUEST');
+    try {
+      const { data } = await whatsApp.updateWppWebhookInfo(code, appUuid, payload);
+      commit('UPDATE_WEBHOOK_INFO_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('UPDATE_WEBHOOK_INFO_ERROR', err);
+    }
+  },
 };
