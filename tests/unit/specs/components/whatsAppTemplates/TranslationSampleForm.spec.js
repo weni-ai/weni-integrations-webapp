@@ -173,20 +173,20 @@ describe('components/whatsAppTemplates/TranslationSampleForm.vue', () => {
   });
 
   describe('validSize()', () => {
-    it('should return false if file size is greater than 10Mb', () => {
+    it('should return false if file size is greater than 16Mb', () => {
       const header = { header_type: 'MEDIA', mediaType: 'VIDEO' };
       const { wrapper } = mountComponent({ header });
 
-      const files = [{ size: 11000000 }];
+      const files = [{ size: 17000000 }];
 
       expect(wrapper.vm.validSize(files)).toBeFalsy();
     });
 
-    it('should return true if file size lower than 10Mb', () => {
+    it('should return true if file size lower than 16Mb', () => {
       const header = { header_type: 'MEDIA', mediaType: 'VIDEO' };
       const { wrapper } = mountComponent({ header });
 
-      const files = [{ size: 9000000 }];
+      const files = [{ size: 15000000 }];
 
       expect(wrapper.vm.validSize(files)).toBeTruthy();
     });
@@ -222,7 +222,7 @@ describe('components/whatsAppTemplates/TranslationSampleForm.vue', () => {
       const header = { header_type: 'MEDIA', mediaType: 'VIDEO' };
       const { wrapper } = mountComponent({ header });
 
-      const files = [{ type: 'mp4', size: 11000000 }];
+      const files = [{ type: 'mp4', size: 17000000 }];
 
       expect(wrapper.vm.validateFiles(files)).toBeFalsy();
     });
@@ -231,7 +231,7 @@ describe('components/whatsAppTemplates/TranslationSampleForm.vue', () => {
       const header = { header_type: 'MEDIA', mediaType: 'VIDEO' };
       const { wrapper } = mountComponent({ header });
 
-      const files = [{ type: 'mp4', size: 9000000 }];
+      const files = [{ type: 'mp4', size: 15000000 }];
 
       expect(wrapper.vm.validateFiles(files)).toBeTruthy();
     });
@@ -246,7 +246,7 @@ describe('components/whatsAppTemplates/TranslationSampleForm.vue', () => {
       const header = { header_type: 'MEDIA', mediaType: 'VIDEO' };
       const { wrapper } = mountComponent({ header });
 
-      const file = { type: 'mp4', size: 9000000 };
+      const file = { type: 'mp4', size: 15000000 };
 
       const event = {
         target: {
@@ -263,7 +263,7 @@ describe('components/whatsAppTemplates/TranslationSampleForm.vue', () => {
       const header = { header_type: 'MEDIA', mediaType: 'VIDEO' };
       const { wrapper } = mountComponent({ header });
 
-      const file = { type: 'pdf', size: 9000000 };
+      const file = { type: 'pdf', size: 15000000 };
 
       const event = {
         target: {
