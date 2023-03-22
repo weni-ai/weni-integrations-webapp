@@ -99,7 +99,7 @@
 
 <style lang="scss" scoped>
   .survey-container {
-    position: absolute;
+    position: fixed;
     bottom: 150px;
     right: 18px;
     z-index: 3;
