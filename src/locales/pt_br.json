@@ -397,7 +397,7 @@
         "fetch_templates": "Não foi possível carregar a lista de templates. Por favor tente novamente mais tarde",
         "delete_template": "Não foi possível excluir o modelo. Por favor tente novamente mais tarde.",
         "invalid_file_format": "Formato de arquivo inválido",
-        "invalid_file_size": "Tamanho de arquivo inválido, deve ser menor que 10 Mb",
+        "invalid_file_size": "Tamanho de arquivo inválido, deve ser menor que 16Mb",
         "missing_variable_example": "Exemplo de variável ausente",
         "missing_media_example": "Exemplo de mídia ausente",
         "delete_sample": "Templates gerados pelo facebook não podem ser excluídos.",

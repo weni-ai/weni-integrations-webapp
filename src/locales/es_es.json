@@ -397,7 +397,7 @@
         "fetch_templates": "No se puede cargar la lista de plantillas. Por favor, inténtelo de nuevo más tarde",
         "delete_template": "No se puede eliminar el modelo. Por favor, inténtelo de nuevo más tarde.",
         "invalid_file_format": "Formato de archivo inválido",
-        "invalid_file_size": "Tamaño de archivo no válido, debe ser inferior a 10 Mb",
+        "invalid_file_size": "Tamaño de archivo no válido, debe ser inferior a 16Mb",
         "missing_variable_example": "Ejemplo de variable faltante",
         "missing_media_example": "Ejemplo de archivo faltantes",
         "delete_sample": "Las plantillas generadas por Facebook no se pueden eliminar.",
