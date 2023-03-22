@@ -5,7 +5,9 @@
     "You": "Ustedes",
     "confirm": "Confirmar",
     "loading": "Cargando",
-    "Remove": "Retirar"
+    "Remove": "Retirar",
+    "exit": "Salir",
+    "send": "Enviar"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -119,6 +121,13 @@
   },
   "import_card": {
     "importing": "Importando"
+  },
+  "survey": {
+    "content": {
+      "question": "¿Echas de menos alguna integración? Si es así, dinos cuál."
+    },
+    "error_submit_answer": "Error al enviar los comentarios, inténtalo de nuevo más tarde.",
+    "success_submit_answer": "Comentarios enviados con éxito!"
   },
   "weniWebChat": {
     "data": {

@@ -5,7 +5,9 @@
     "You": "Você",
     "confirm": "Confirmar",
     "loading": "Carregando",
-    "Remove": "Remover"
+    "Remove": "Remover",
+    "exit": "Sair",
+    "send": "Enviar"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
@@ -119,6 +121,13 @@
   },
   "import_card": {
     "importing": "Importando"
+  },
+  "survey": {
+    "content": {
+      "question": "Sente falta de alguma integração? Se sim, diga-nos qual"
+    },
+    "error_submit_answer": "Falha ao enviar feedback, tente novamente mais tarde.",
+    "success_submit_answer": "Feedback enviado com sucesso!"
   },
   "weniWebChat": {
     "data": {

@@ -1,14 +1,24 @@
 <template>
-  <router-view />
+  <div>
+    <router-view />
+
+    <div class="survey-container">
+      <Survey />
+    </div>
+  </div>
 </template>
 
 <script>
   import '@weni/unnnic-system';
+  import Survey from '@/components/Survey';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';
 
   export default {
     name: 'App',
+    components: {
+      Survey,
+    },
     data() {
       return {
         connectBaseURL: '',
@@ -86,6 +96,21 @@
     },
   };
 </script>
+
+<style lang="scss" scoped>
+  .survey-container {
+    position: absolute;
+    bottom: 150px;
+    right: 18px;
+    z-index: 3;
+  }
+
+  @supports (-moz-appearance: none) {
+    .survey-container {
+      right: 23px;
+    }
+  }
+</style>
 
 <style lang="scss">
   body {
