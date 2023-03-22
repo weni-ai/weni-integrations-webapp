@@ -253,7 +253,19 @@
       },
       "webhook_info": {
         "input": {
-          "label": "Call webhook"
+          "label": "Webhook URL"
+        },
+        "method": {
+          "label": "Method"
+        },
+        "headers": {
+          "label": "Headers"
+        },
+        "header_key": {
+          "placeholder": "Key"
+        },
+        "header_value": {
+          "placeholder": "Value"
         }
       },
       "conversations": {
@@ -330,13 +342,17 @@
       },
       "success": {
         "profile_updated": "WhatsApp profile updated successfully",
-        "contact_info_update": "WhatsApp contact info updated successfully"
+        "contact_info_update": "WhatsApp contact info updated successfully",
+        "webhook_update": "Successfully updated Webhook configuration"
       },
       "error": {
         "invalid_photo_size": "Imported photo must be at least 192x192 pixels",
         "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
         "data_update": "Failed to update WhatsApp data.",
-        "open_templates": "Could not open templates, please refresh the page and try again."
+        "open_templates": "Could not open templates, please refresh the page and try again.",
+        "empty_url": "Provided Webhook URL cannot be empty",
+        "invalid_url": "Provided Webhook URL is invalid",
+        "webhook_update": "Error while trying to update webhook data"
       },
       "qr": {
         "title": "Whatsapp Link"

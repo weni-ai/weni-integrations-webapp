@@ -253,7 +253,19 @@
       },
       "webhook_info": {
         "input": {
-          "label": "Webhook de llamada"
+          "label": "URL del webhook"
+        },
+        "method": {
+          "label": "Método"
+        },
+        "headers": {
+          "label": "Headers"
+        },
+        "header_key": {
+          "placeholder": "Llave"
+        },
+        "header_value": {
+          "placeholder": "Valor"
         }
       },
       "conversations": {
@@ -330,13 +342,17 @@
       },
       "success": {
         "profile_updated": "Perfil de WhatsApp actualizado con éxito",
-        "contact_info_update": "Información de contacto de WhatsApp actualizada con éxito"
+        "contact_info_update": "Información de contacto de WhatsApp actualizada con éxito",
+        "webhook_update": "Configuración de webhook actualizada con éxito"
       },
       "error": {
         "invalid_photo_size": "La foto importada debe tener al menos 192x192 píxeles",
         "data_fetch": "No se pudieron recuperar los datos de WhatsApp. Por favor contacte al equipo de soporte.",
         "data_update": "Error al actualizar los datos de WhatsApp.",
-        "open_templates": "No se pueden abrir las Plantillas, actualice la página y vuelva a intentarlo."
+        "open_templates": "No se pueden abrir las Plantillas, actualice la página y vuelva a intentarlo.",
+        "empty_url": "La URL proporcionada del webhook no puede estar vacía",
+        "invalid_url": "La URL proporcionada del webhook no es válida",
+        "webhook_update": "Error al intentar actualizar los datos del webhook"
       },
       "qr": {
         "title": "Enlace de Whatsapp"
