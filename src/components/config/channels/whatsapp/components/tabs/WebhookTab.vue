@@ -1,11 +1,51 @@
 <template>
   <div class="webhook-info">
     <div class="webhook-info__content">
-      <unnnic-input
-        class="webhook-info__content__input"
-        v-model="webhookUrl"
-        :label="$t('WhatsApp.config.webhook_info.input.label')"
-      />
+      <div class="webhook-info__content__inline">
+        <unnnic-select
+          class="webhook-info__content__method"
+          :search="false"
+          v-model="selectedMethod"
+          :label="$t('WhatsApp.config.webhook_info.method.label')"
+        >
+          <option v-for="(method, index) in methodsList" :key="index">{{ method }}</option>
+        </unnnic-select>
+
+        <unnnic-input
+          class="webhook-info__content__url"
+          v-model="webhookUrl"
+          ref="webhookUrl"
+          placeholder="URL"
+          :label="$t('WhatsApp.config.webhook_info.input.label')"
+          :type="validUrl ? 'normal' : 'error'"
+          nativeType="url"
+          pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)"
+        />
+      </div>
+
+      <div>
+        <unnnic-label :label="$t('WhatsApp.config.webhook_info.headers.label')" />
+        <div class="webhook-info__content__headers-container">
+          <div
+            class="webhook-info__content__headers-element"
+            v-for="(header, index) in headers"
+            :key="index"
+          >
+            <unnnic-input
+              class="webhook-info__content__headers-element--key"
+              @input="($event) => handleHeaderKeyChange(index, $event)"
+              :placeholder="$t('WhatsApp.config.webhook_info.header_key.placeholder')"
+              :value="header.key"
+            />
+            <unnnic-input
+              class="webhook-info__content__headers-element--value"
+              @input="($event) => handleHeaderValueChange(index, $event)"
+              :placeholder="$t('WhatsApp.config.webhook_info.header_value.placeholder')"
+              :value="header.value"
+            />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="webhook-info__buttons">
@@ -23,13 +63,14 @@
         size="large"
         :text="$t('WhatsApp.config.contact_info.save_changes')"
         @click="saveWebhookInfo"
+        :loading="loadingUpdateWebhookInfo"
       />
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
@@ -42,50 +83,169 @@
     },
     data() {
       return {
-        webhookUrl: this.app.config?.webhookUrl || '',
+        webhookUrl: this.app.config?.webhook?.url || '',
+        selectedMethod: this.app.config?.webhook?.method || 'GET',
+        headers: [],
+        methodsList: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        validUrl: true,
       };
+    },
+    /* istanbul ignore next */
+    mounted() {
+      this.mountHeaders();
+
+      if (!this.hasEmptyHeader()) {
+        this.createEmptyHeader();
+      }
+    },
+    /* istanbul ignore next */
+    updated() {
+      this.removeExtraEmptyHeader();
+
+      if (!this.hasEmptyHeader()) {
+        this.createEmptyHeader();
+      }
+
+      const urlInput = this.getUrlInputElement();
+      if (urlInput !== undefined) {
+        this.validUrl = urlInput.checkValidity();
+      }
+    },
+    computed: {
+      ...mapState('WhatsApp', ['loadingUpdateWebhookInfo', 'errorUpdateWebhookInfo']),
     },
     methods: {
       ...mapActions({
         updateWppWebhookInfo: 'WhatsApp/updateWppWebhookInfo',
       }),
-
-      async saveWebhookInfo() {
-        try {
-          const data = {
-            code: this.app.code,
-            appUuid: this.app.uuid,
-            payload: {
-              webhookUrl: this.webhookUrl,
-            },
-          };
-
-          await this.updateWppWebhookInfo(data);
-
-          unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.success.webhook_update'),
-              title: 'Success',
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 3,
-          });
-        } catch (err) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.error.webhook_update'),
-              title: 'Error',
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 6,
+      /* istanbul ignore next */
+      mountHeaders() {
+        if (this.app.config?.webhook?.headers) {
+          this.headers = Object.keys(this.app.config.webhook.headers).map((header) => {
+            return { key: header, value: this.app.config.webhook.headers[header] };
           });
         }
+      },
+      /* istanbul ignore next */
+      getUrlInputElement() {
+        let urlInput;
+        this.$refs.webhookUrl.$children.forEach((firstLayer) => {
+          firstLayer.$children.forEach((secondLayer) => {
+            if (secondLayer.$el.nodeName === 'INPUT') {
+              urlInput = secondLayer.$el;
+            }
+          });
+        });
+
+        return urlInput;
+      },
+      hasEmptyHeader() {
+        return this.headers.find((header) => {
+          if (!header.key.trim() || !header.value.trim()) {
+            return true;
+          }
+        });
+      },
+      removeExtraEmptyHeader() {
+        let count = 0;
+        let firstEmpty;
+        this.headers.forEach((header, index) => {
+          if (!header.key.trim() && !header.value.trim()) {
+            count += 1;
+            if (firstEmpty === undefined) {
+              firstEmpty = index;
+            }
+          }
+        });
+
+        if (count > 1) {
+          this.headers.splice(firstEmpty, 1);
+        }
+      },
+      createEmptyHeader() {
+        this.headers.push({ key: '', value: '' });
+      },
+      handleHeaderKeyChange(index, event) {
+        this.headers[index].key = event;
+      },
+      handleHeaderValueChange(index, event) {
+        this.headers[index].value = event;
+      },
+      buildHeadersPayload() {
+        const result = {};
+
+        this.headers.forEach((header) => {
+          if (header.key.trim() && header.value.trim()) {
+            result[header.key] = header.value;
+          }
+        });
+
+        return result;
+      },
+      async saveWebhookInfo() {
+        if (!this.webhookUrl.trim()) {
+          this.callModal({
+            type: 'Error',
+            text: this.$t('WhatsApp.config.error.empty_url'),
+          });
+          return;
+        }
+
+        const urlInput = this.getUrlInputElement();
+        if (!urlInput.checkValidity()) {
+          this.callModal({
+            type: 'Error',
+            text: this.$t('WhatsApp.config.error.invalid_url'),
+          });
+          return;
+        }
+
+        const headers = this.buildHeadersPayload();
+
+        const data = {
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          payload: {
+            config: {
+              webhook: {
+                url: this.webhookUrl,
+                method: this.selectedMethod,
+                headers,
+              },
+            },
+          },
+        };
+
+        await this.updateWppWebhookInfo(data);
+
+        if (this.errorUpdateWebhookInfo) {
+          this.callModal({
+            type: 'Error',
+            text: this.$t('WhatsApp.config.error.webhook_update'),
+          });
+
+          return;
+        }
+
+        this.callModal({
+          type: 'Success',
+          text: this.$t('WhatsApp.config.success.webhook_update'),
+        });
+
+        this.$root.$emit('updateGrid');
+      },
+      callModal({ text, type }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: type,
+            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
+            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
       },
     },
   };
@@ -99,7 +259,41 @@
     flex: 1;
 
     &__content {
+      display: flex;
+      flex-direction: column;
       flex: 1;
+      gap: $unnnic-spacing-stack-md;
+
+      &__inline {
+        display: flex;
+        gap: $unnnic-spacing-inline-sm;
+      }
+
+      &__method {
+        min-width: 170px;
+        width: 25%;
+      }
+
+      &__url {
+        flex: 1;
+      }
+
+      &__headers-container {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-inline-sm;
+      }
+
+      &__headers-element {
+        display: flex;
+        flex: 1;
+        gap: $unnnic-spacing-inline-sm;
+
+        &--key,
+        &--value {
+          flex: 1;
+        }
+      }
     }
 
     &__buttons {
