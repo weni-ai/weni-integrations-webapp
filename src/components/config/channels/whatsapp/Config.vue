@@ -40,6 +40,11 @@
       </template>
       <ContactInfoTab slot="tab-panel-contact_info" :app="app" @close="closeConfig" />
 
+      <template slot="tab-head-webhook_info">
+        {{ $t('WhatsApp.config.tabs.webhook_info') }}
+      </template>
+      <WebhookTab slot="tab-panel-webhook_info" :app="app" @close="closeConfig" />
+
       <template slot="tab-head-conversations">
         {{ $t('WhatsApp.config.tabs.conversations') }}
       </template>
@@ -61,6 +66,7 @@
   import ProfileTab from './components/tabs/ProfileTab.vue';
   import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
+  import WebhookTab from './components/tabs/WebhookTab.vue';
   import skeletonLoading from './loadings/Config.vue';
   import { mapActions, mapState } from 'vuex';
   import { dataUrlToFile } from '@/utils/files';
@@ -74,6 +80,7 @@
       ProfileTab,
       ContactInfoTab,
       ConversationsTab,
+      WebhookTab,
     },
     props: {
       app: {
@@ -110,7 +117,7 @@
         errorCurrentApp: (state) => state.appType.errorCurrentApp,
       }),
       configTabs() {
-        return ['account', 'profile', 'contact_info', 'conversations', 'templates'];
+        return ['account', 'profile', 'contact_info', 'webhook_info', 'conversations', 'templates'];
       },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];

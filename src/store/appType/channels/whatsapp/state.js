@@ -49,4 +49,8 @@ export default {
   createdTemplateTranslationData: null,
   loadingCreateTemplateTranslation: false,
   errorCreateTemplateTranslation: false,
+
+  loadingUpdateWebhookInfo: false,
+  errorUpdateWebhookInfo: null,
+  updateWebhookInfoData: null,
 };

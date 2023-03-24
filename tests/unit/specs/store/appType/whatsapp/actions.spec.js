@@ -12,6 +12,7 @@ jest.mock('@/api/appType/whatsapp', () => {
     createTemplate: jest.fn(),
     createTemplateTranslation: jest.fn(),
     deleteTemplateMessage: jest.fn(),
+    updateWppWebhookInfo: jest.fn(),
   };
 });
 import WhatsAppApi from '@/api/appType/whatsapp';
@@ -821,6 +822,62 @@ describe('store/appType/whatsapp/actions.js', () => {
       expect(store.state.WhatsApp.errorDeleteTemplateMessage).not.toEqual(error);
       await store.dispatch('WhatsApp/deleteTemplateMessage', data);
       expect(store.state.WhatsApp.errorDeleteTemplateMessage).toEqual(error);
+    });
+  });
+
+  describe('updateWppWebhookInfo', () => {
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      payload: {
+        foo: 'bar',
+      },
+    };
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.updateWppWebhookInfo.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call updateWppWebhookInfo from API', async () => {
+      expect(WhatsAppApi.updateWppWebhookInfo).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/updateWppWebhookInfo', data);
+      expect(WhatsAppApi.updateWppWebhookInfo).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.updateWppWebhookInfo).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.payload,
+      );
+    });
+
+    it('should set updateWebhookInfoData as result data', async () => {
+      store.state.WhatsApp.updateWebhookInfoData = {};
+      expect(store.state.WhatsApp.updateWebhookInfoData).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/updateWppWebhookInfo', data);
+      expect(store.state.WhatsApp.updateWebhookInfoData).toEqual(mockedResult);
+    });
+
+    it('should set loadingUpdateWebhookInfo to false', async () => {
+      store.state.WhatsApp.loadingUpdateWebhookInfo = true;
+      expect(store.state.WhatsApp.loadingUpdateWebhookInfo).toBe(true);
+      await store.dispatch('WhatsApp/updateWppWebhookInfo', data);
+      expect(store.state.WhatsApp.loadingUpdateWebhookInfo).toBe(false);
+    });
+
+    it('should set errorUpdateWebhookInfo as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.updateWppWebhookInfo.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorUpdateWebhookInfo = {};
+      expect(store.state.WhatsApp.errorUpdateWebhookInfo).not.toEqual(error);
+      await store.dispatch('WhatsApp/updateWppWebhookInfo', data);
+      expect(store.state.WhatsApp.errorUpdateWebhookInfo).toEqual(error);
     });
   });
 });
