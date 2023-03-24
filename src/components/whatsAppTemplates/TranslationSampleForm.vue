@@ -136,7 +136,7 @@
         return isValid;
       },
       validSize(files) {
-        const maxFileSize = 10; // 10Mb
+        const maxFileSize = 16; // 16Mb
         const isValid = Array.from(files).find((file) => {
           const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
           return sizeInMB < maxFileSize;

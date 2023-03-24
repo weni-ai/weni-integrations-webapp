@@ -419,7 +419,7 @@
         "fetch_templates": "Could not load template list, please try again later",
         "delete_template": "Could not delete template, please try again later.",
         "invalid_file_format": "Invalid file format",
-        "invalid_file_size": "Invalid file size, should be less than 10Mb",
+        "invalid_file_size": "Invalid file size, should be less than 16Mb",
         "missing_variable_example": "Missing variable example",
         "missing_media_example": "Missing media example",
         "delete_sample": "Facebook generated templates cannot be deleted.",
