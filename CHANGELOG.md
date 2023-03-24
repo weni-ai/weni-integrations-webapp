@@ -1,3 +1,14 @@
+1.20.0
+----------
+`2023-03-24 · 1 🐛 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: Survey positioning method
+
+### 🎉 New Features
+- Feat: Increase templates max sample size
+- Feat: WhatsApp Webhook Tab
+
 1.19.1
 ----------
 `2023-03-02 · 1 🐛`
