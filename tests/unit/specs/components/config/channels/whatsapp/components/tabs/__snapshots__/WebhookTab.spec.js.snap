@@ -106,32 +106,6 @@ exports[`components/config/channels/whatsapp/components/tabs/WebhookTab.vue shou
 }
 `;
 
-exports[`components/config/channels/whatsapp/components/tabs/WebhookTab.vue should call errorModal if url is empty 1`] = `
-[MockFunction] {
-  "calls": Array [
-    Array [
-      Object {
-        "props": Object {
-          "closeText": "Close",
-          "icon": "alert-circle-1",
-          "position": "bottom-right",
-          "scheme": "feedback-red",
-          "text": "Provided Webhook URL cannot be empty",
-          "title": "Error",
-        },
-        "seconds": 6,
-      },
-    ],
-  ],
-  "results": Array [
-    Object {
-      "type": "return",
-      "value": undefined,
-    },
-  ],
-}
-`;
-
 exports[`components/config/channels/whatsapp/components/tabs/WebhookTab.vue should call errorModal if url is invalid 1`] = `
 [MockFunction] {
   "calls": Array [
@@ -195,4 +169,30 @@ Array [
     "value": "",
   },
 ]
+`;
+
+exports[`components/config/channels/whatsapp/components/tabs/WebhookTab.vue should not call errorModal if url is empty 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "props": Object {
+          "closeText": "Close",
+          "icon": "check-circle-1-1",
+          "position": "bottom-right",
+          "scheme": "feedback-green",
+          "text": "Successfully updated Webhook configuration",
+          "title": "Success",
+        },
+        "seconds": 6,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
 `;
