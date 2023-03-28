@@ -155,8 +155,8 @@ describe('components/config/channels/whatsapp/components/tabs/WebhookTab.vue', (
     expect(mockUnnnicCallAlert).toMatchSnapshot();
   });
 
-  it('should call errorModal if url is empty', async () => {
-    const { wrapper, actions } = await mountComponent({ errorUpdateWebhookInfo: true });
+  it('should not call errorModal if url is empty', async () => {
+    const { wrapper, actions } = await mountComponent();
 
     const urlInput = wrapper.find('.webhook-info__content__url');
 
@@ -171,7 +171,7 @@ describe('components/config/channels/whatsapp/components/tabs/WebhookTab.vue', (
     saveButton.trigger('click');
     await wrapper.vm.$nextTick();
 
-    expect(actions.updateWppWebhookInfo).not.toHaveBeenCalled();
+    expect(actions.updateWppWebhookInfo).toHaveBeenCalled();
     expect(mockUnnnicCallAlert).toMatchSnapshot();
   });
 
