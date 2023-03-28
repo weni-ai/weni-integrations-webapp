@@ -183,14 +183,6 @@
         return result;
       },
       async saveWebhookInfo() {
-        if (!this.webhookUrl.trim()) {
-          this.callModal({
-            type: 'Error',
-            text: this.$t('WhatsApp.config.error.empty_url'),
-          });
-          return;
-        }
-
         const urlInput = this.getUrlInputElement();
         if (!urlInput.checkValidity()) {
           this.callModal({
