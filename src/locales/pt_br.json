@@ -247,7 +247,8 @@
         "profile": "Perfil",
         "contact_info": "Informações de Contato",
         "conversations": "Conversas",
-        "templates": "Templates"
+        "templates": "Templates",
+        "webhook_info": "Webhook"
       },
       "description": {
         "text": "Saiba mais sobre como aumentar o seu limite de mensagens no WhatsApp",
@@ -259,6 +260,23 @@
       },
       "billing": {
         "title": "Informações de pagamento"
+      },
+      "webhook_info": {
+        "input": {
+          "label": "URL do Webhook"
+        },
+        "method": {
+          "label": "Método"
+        },
+        "headers": {
+          "label": "Cabeçalhos"
+        },
+        "header_key": {
+          "placeholder": "Chave"
+        },
+        "header_value": {
+          "placeholder": "Valor"
+        }
       },
       "conversations": {
         "title": "Informações de conversa",
@@ -334,13 +352,17 @@
       },
       "success": {
         "profile_updated": "Perfil do WhatsApp atualizado com sucesso",
-        "contact_info_update": "Informações de contato do WhatsApp atualizadas com sucesso"
+        "contact_info_update": "Informações de contato do WhatsApp atualizadas com sucesso",
+        "webhook_update": "Configuração do Webhook atualizada com sucesso"
       },
       "error": {
         "invalid_photo_size": "A foto importada deve ter pelo menos 192 x 192 pixels",
         "data_fetch": "Falha ao buscar dados do WhatsApp. Por favor entre em contato com a equipe de apoio.",
         "data_update": "Falha ao atualizar os dados do WhatsApp.",
-        "open_templates": "Não foi possível abrir os templates, por favor atualize a página e tente novamente."
+        "open_templates": "Não foi possível abrir os templates, por favor atualize a página e tente novamente.",
+        "empty_url": "A URL do Webhook fornecida não pode estar vazia",
+        "invalid_url": "A URL do Webhook fornecida é inválida",
+        "webhook_update": "Erro ao tentar atualizar os dados do Webhook"
       },
       "qr": {
         "title": "Link do WhatsApp"
@@ -398,7 +420,7 @@
         "fetch_templates": "Não foi possível carregar a lista de templates. Por favor tente novamente mais tarde",
         "delete_template": "Não foi possível excluir o modelo. Por favor tente novamente mais tarde.",
         "invalid_file_format": "Formato de arquivo inválido",
-        "invalid_file_size": "Tamanho de arquivo inválido, deve ser menor que 10 Mb",
+        "invalid_file_size": "Tamanho de arquivo inválido, deve ser menor que 16Mb",
         "missing_variable_example": "Exemplo de variável ausente",
         "missing_media_example": "Exemplo de mídia ausente",
         "delete_sample": "Templates gerados pelo facebook não podem ser excluídos.",

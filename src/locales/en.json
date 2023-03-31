@@ -247,7 +247,8 @@
         "profile": "Profile",
         "contact_info": "Contact Information",
         "conversations": "Conversations",
-        "templates": "Templates"
+        "templates": "Templates",
+        "webhook_info": "Webhook"
       },
       "description": {
         "text": "Learn more about how to increase your daily message limit in WhatsApp",
@@ -259,6 +260,23 @@
       },
       "billing": {
         "title": "Billing Information"
+      },
+      "webhook_info": {
+        "input": {
+          "label": "Webhook URL"
+        },
+        "method": {
+          "label": "Method"
+        },
+        "headers": {
+          "label": "Headers"
+        },
+        "header_key": {
+          "placeholder": "Key"
+        },
+        "header_value": {
+          "placeholder": "Value"
+        }
       },
       "conversations": {
         "title": "Conversations Information",
@@ -334,13 +352,17 @@
       },
       "success": {
         "profile_updated": "WhatsApp profile updated successfully",
-        "contact_info_update": "WhatsApp contact info updated successfully"
+        "contact_info_update": "WhatsApp contact info updated successfully",
+        "webhook_update": "Successfully updated Webhook configuration"
       },
       "error": {
         "invalid_photo_size": "Imported photo must be at least 192x192 pixels",
         "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
         "data_update": "Failed to update WhatsApp data.",
-        "open_templates": "Could not open templates, please refresh the page and try again."
+        "open_templates": "Could not open templates, please refresh the page and try again.",
+        "empty_url": "Provided Webhook URL cannot be empty",
+        "invalid_url": "Provided Webhook URL is invalid",
+        "webhook_update": "Error while trying to update webhook data"
       },
       "qr": {
         "title": "Whatsapp Link"
@@ -398,7 +420,7 @@
         "fetch_templates": "Could not load template list, please try again later",
         "delete_template": "Could not delete template, please try again later.",
         "invalid_file_format": "Invalid file format",
-        "invalid_file_size": "Invalid file size, should be less than 10Mb",
+        "invalid_file_size": "Invalid file size, should be less than 16Mb",
         "missing_variable_example": "Missing variable example",
         "missing_media_example": "Missing media example",
         "delete_sample": "Facebook generated templates cannot be deleted.",

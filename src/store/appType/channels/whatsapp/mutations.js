@@ -180,4 +180,18 @@ export default {
     state.errorDeleteTemplateMessage = data;
     state.loadingDeleteTemplateMessage = false;
   },
+
+  UPDATE_WEBHOOK_INFO_REQUEST(state) {
+    state.loadingUpdateWebhookInfo = true;
+    state.errorUpdateWebhookInfo = null;
+    state.updateWebhookInfoData = null;
+  },
+  UPDATE_WEBHOOK_INFO_SUCCESS(state, data) {
+    state.updateWebhookInfoData = data;
+    state.loadingUpdateWebhookInfo = false;
+  },
+  UPDATE_WEBHOOK_INFO_ERROR(state, data) {
+    state.errorUpdateWebhookInfo = data;
+    state.loadingUpdateWebhookInfo = false;
+  },
 };

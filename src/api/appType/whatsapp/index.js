@@ -48,4 +48,7 @@ export default {
       data,
     );
   },
+  updateWppWebhookInfo(appCode, appUuid, payload) {
+    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/update_webhook/`, payload);
+  },
 };
