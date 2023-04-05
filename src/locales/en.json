@@ -450,11 +450,11 @@
       },
       "category_options": {
         "marketing": "Marketing",
-        "transactional": "Transactional",
-        "otp": "One Time Password",
-        "transactional_description": "Send account updates, order updates, alerts, and more to share important information.",
-        "marketing_description": "Send promotional offers, product announcements, and more to increase awareness and engagement.",
-        "otp_description": "Send codes that allow your customers to access their accounts."
+        "marketing_description": "Send promotions or information about your products, services or business.",
+        "authentication": "Authentication",
+        "authentication_description": "Send codes to verify a transaction or login.",
+        "utility": "Utility",
+        "utility_description": "Send messages about an existing order or account."
       },
       "button_options": {
         "none": "None",
