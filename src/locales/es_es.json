@@ -450,11 +450,11 @@
       },
       "category_options": {
         "marketing": "Marketing",
-        "transactional": "Transaccional",
-        "otp": "One Time Password",
-        "transactional_description": "Envíe actualizaciones de cuenta, actualizaciones de pedidos, alertas y más para compartir información importante.",
-        "marketing_description": "Envíe ofertas promocionales, anuncios de productos y más para aumentar la conciencia y el compromiso.",
-        "otp_description": "Envía códigos que permitan a tus clientes acceder a sus cuentas."
+        "marketing_description": "Enviar promociones o información sobre sus productos, servicios o negocios.",
+        "authentication": "Autenticación",
+        "authentication_description": "Envía códigos para verificar una transacción o iniciar sesión.",
+        "utility": "Utilidad",
+        "utility_description": "Envíe mensajes sobre un pedido o cuenta existente."
       },
       "button_options": {
         "none": "Ninguna",

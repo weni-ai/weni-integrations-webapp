@@ -140,11 +140,9 @@
             selected: -1,
             items: [
               {
-                value: 'TRANSACTIONAL',
-                title: this.$t('WhatsApp.templates.category_options.transactional'),
-                description: this.$t(
-                  'WhatsApp.templates.category_options.transactional_description',
-                ),
+                value: 'UTILITY',
+                title: this.$t('WhatsApp.templates.category_options.utility'),
+                description: this.$t('WhatsApp.templates.category_options.utility_description'),
               },
               {
                 value: 'MARKETING',
@@ -152,9 +150,11 @@
                 description: this.$t('WhatsApp.templates.category_options.marketing_description'),
               },
               {
-                value: 'OTP',
-                title: this.$t('WhatsApp.templates.category_options.otp'),
-                description: this.$t('WhatsApp.templates.category_options.otp_description'),
+                value: 'AUTHENTICATION',
+                title: this.$t('WhatsApp.templates.category_options.authentication'),
+                description: this.$t(
+                  'WhatsApp.templates.category_options.authentication_description',
+                ),
               },
             ],
           },
