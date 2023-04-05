@@ -1,3 +1,10 @@
+1.21.0
+----------
+`2023-04-05 · 1 🎉`
+
+### 🎉 New Features
+- Feat: Update templates categories with authentication and utilty
+
 1.20.1
 ----------
 `2023-03-28 · 1 🐛`
