@@ -1,23 +1,25 @@
 <template>
   <div>
-    <app-grid
-      ref="appGrid"
-      section="channel"
-      type="add"
-      :loading="loadingAllAppTypes"
-      :apps="allAppTypes"
-      @update="fetchChannels"
-    />
+    <div class="discovery-content__sessions">
+      <app-grid
+        ref="appGrid"
+        section="channel"
+        type="add"
+        :loading="loadingAllAppTypes"
+        :apps="allAppTypes"
+        @update="fetchChannels"
+      />
 
-    <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
+      <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
 
-    <app-grid
-      section="external"
-      type="add"
-      :loading="loadingExternalServices"
-      :apps="externalServicesList"
-      @update="fetchExternalServices"
-    />
+      <app-grid
+        section="external"
+        type="add"
+        :loading="loadingExternalServices"
+        :apps="externalServicesList"
+        @update="fetchExternalServices"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -108,4 +110,14 @@
     },
   };
 </script>
-<style lang="scss"></style>
+<style lang="scss" scoped>
+  .discovery-content {
+    &__sessions {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-spacing-stack-lg;
+
+      margin-bottom: $unnnic-spacing-stack-md;
+    }
+  }
+</style>
