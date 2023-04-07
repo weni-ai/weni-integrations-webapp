@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/config/external/omie/Config.vue should be rendered properly 1`] = `
+<div class="app-config-omie">
+  <div class="app-config-omie__header">
+    <div class="app-config-omie__header__title">
+      <div class="app-config-omie__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-config-omie__header__title__icon-container__icon"></div>
+      <div class="app-config-omie__header__title__name">Weni Web Chat</div>
+    </div> <span class="app-config-omie__header__description">Learn more about integrating with Omie <a href="https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api" target="_blank" class="link">here</a></span>
+  </div>
+  <div class="app-config-omie__settings__content">
+    <div data-v-7b279318="" class="tab config-omie__tabs">
+      <header data-v-7b279318="" class="tab-header">
+        <ul data-v-7b279318="" class="tab-content">
+          <li data-v-7b279318="" class="tab-head tab-head--active"> Configure </li>
+        </ul>
+      </header>
+      <main data-v-7b279318="" class="tab-body">
+        <div data-v-7b279318="" class="tab-panel">
+          <div data-v-7b279318="">
+            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__name unnnic-form md" data-v-7b279318="">
+              <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
+              <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
+                <!---->
+                <!---->
+              </div>
+              <!---->
+            </div>
+            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__key unnnic-form md" data-v-7b279318="">
+              <p data-v-9ef23630="" class="unnnic-form__label">App Key</p>
+              <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
+                <!---->
+                <!---->
+              </div>
+              <!---->
+            </div>
+            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__secret unnnic-form md" data-v-7b279318="">
+              <p data-v-9ef23630="" class="unnnic-form__label">App Secret</p>
+              <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
+                <!---->
+                <!---->
+              </div>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <div class="app-config-omie__settings__buttons"><button data-v-00f478da="" class="app-config-omie__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--">
+      <!---->
+      <!---->
+      <!----><span data-v-00f478da="" class="unnnic-button__label"> Cancel </span>
+      <!---->
+    </button> <button data-v-00f478da="" class="app-config-omie__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
+      <!---->
+      <!---->
+      <!----><span data-v-00f478da="" class="unnnic-button__label"> Connect </span>
+      <!---->
+    </button></div>
+</div>
+`;
+
+exports[`components/config/external/omie/Config.vue should call errorModal if update fails 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "props": Object {
+          "closeText": "Close",
+          "icon": "alert-circle-1",
+          "position": "bottom-right",
+          "scheme": "feedback-red",
+          "text": "An error occurred while trying to configure the service, please try again later",
+          "title": "Error",
+        },
+        "seconds": 6,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`components/config/external/omie/Config.vue should call updateAppConfig with desired fields 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "props": Object {
+          "closeText": "Close",
+          "icon": "check-circle-1-1",
+          "position": "bottom-right",
+          "scheme": "feedback-green",
+          "text": "Successfully configured service",
+          "title": "Success",
+        },
+        "seconds": 6,
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "type": "return",
+      "value": undefined,
+    },
+  ],
+}
+`;

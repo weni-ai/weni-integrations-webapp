@@ -25,7 +25,8 @@
         "ticket": "Attendance Managers",
         "configured": "Configured Apps",
         "installed": "Installed Apps",
-        "bi-tools": "BI Tools"
+        "bi-tools": "BI Tools",
+        "external": "External Services"
       },
       "fetch_error": "Failed to fetch Application list, please try again later."
     },
@@ -640,6 +641,38 @@
     },
     "config": {
       "connected_account": "Your Facebook account is connected"
+    }
+  },
+  "omie": {
+    "data": {
+      "summary": "If you have a CRM at Omie, you can integrate with the Weni Platform and automate actions in your CRM through your chatbot",
+      "description": "If you have a CRM at Omie, you can integrate with the Weni Platform and automate actions in your CRM through your chatbot.<br><br>By integrating the weni platform with your CRM on Omie you will be able to perform actions such as:<br><br>- Include Opportunities in the CRM<br>- Search Title and Releases<br>- List customers<br><br>Here in the Integrations module, you must perform the Integration with Omie providing the API Key and API Secret data and then perform the integration.<br>After that, just go to the flows module, create a flow and then you will have a card available called External Services, in which you will be able to perform all the actions with Omie's CRM mentioned here."
+    },
+    "config": {
+      "description": "Learn more about integrating with Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">here</a>",
+      "connect": "Connect",
+      "tabs": {
+        "config": {
+          "title": "Configure",
+          "inputs": {
+            "name": {
+              "label": "Name"
+            },
+            "app_key": {
+              "label": "App Key"
+            },
+            "app_secret": {
+              "label": "App Secret"
+            }
+          }
+        }
+      }
+    },
+    "success": {
+      "configure": "Successfully configured service"
+    },
+    "errors": {
+      "configure": "An error occurred while trying to configure the service, please try again later"
     }
   }
 }

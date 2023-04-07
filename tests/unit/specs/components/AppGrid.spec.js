@@ -156,6 +156,11 @@ describe('AppGrid.vue', () => {
       await wrapper.setProps({ type: 'add', section: 'installed' });
       expect(wrapper.vm.sectionIcon).toEqual({ icon: 'check-circle-1-1', scheme: 'aux-blue' });
     });
+
+    it('should return external section icon and color', async () => {
+      await wrapper.setProps({ type: 'add', section: 'external' });
+      expect(wrapper.vm.sectionIcon).toEqual({ icon: 'charger-1', scheme: 'aux-lemon' });
+    });
   });
 
   describe('cardIcon', () => {

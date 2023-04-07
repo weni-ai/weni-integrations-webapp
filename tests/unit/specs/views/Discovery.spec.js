@@ -34,9 +34,23 @@ const mountComponent = async ({ createAppCode = null } = {}) => {
     auth: {
       project: '123',
     },
+    externals: {
+      loadingExternalServices: false,
+      errorExternalServices: null,
+      externalServicesList: [singleApp],
+    },
+  };
+
+  const externalServicesActions = {
+    getExternalServicesTypes: jest.fn(),
   };
 
   const store = new Vuex.Store({
+    modules: {
+      externals: {
+        actions: externalServicesActions,
+      },
+    },
     actions,
     state,
   });
