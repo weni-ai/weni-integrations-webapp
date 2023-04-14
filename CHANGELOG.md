@@ -1,3 +1,11 @@
+1.22.1
+----------
+`2023-04-14 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: External services view order 
+- Fix: Omie icon dimension and positioning 
+
 1.22.0
 ----------
 `2023-04-07 · 1 🎉`
