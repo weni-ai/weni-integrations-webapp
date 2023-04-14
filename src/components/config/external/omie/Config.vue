@@ -156,11 +156,13 @@
           width: $unnnic-avatar-size-sm;
           height: $unnnic-avatar-size-sm;
           border-radius: $unnnic-border-radius-sm;
+          align-items: center;
 
           background-color: rgba(0, 227, 245, 0.1);
 
           &__icon {
             width: $unnnic-icon-size-md;
+            height: $unnnic-icon-size-md;
             margin: 0 auto;
           }
         }
