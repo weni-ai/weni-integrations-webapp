@@ -10,8 +10,6 @@
         @update="fetchChannels"
       />
 
-      <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
-
       <app-grid
         section="external"
         type="add"
@@ -19,6 +17,8 @@
         :apps="externalServicesList"
         @update="fetchExternalServices"
       />
+
+      <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
     </div>
   </div>
 </template>
