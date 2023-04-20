@@ -31,6 +31,9 @@
 
 ## About The Project
 
+[![Run Unit Tests, Lint Files and Build Project](https://github.com/weni-ai/weni-integrations-webapp/actions/workflows/test-and-build.yml/badge.svg?branch=main)](https://github.com/weni-ai/weni-integrations-webapp/actions/workflows/test-and-build.yml)
+[![codecov](https://codecov.io/gh/weni-ai/weni-integrations-webapp/branch/main/graph/badge.svg?token=TZHJ6L2U7R)](https://codecov.io/gh/weni-ai/weni-integrations-webapp)
+
 Front-end project of Weni's Integrations module. Backend data is gathered from [Weni Integrations Engine](https://github.com/Ilhasoft/weni-integrations-engine).
 This project is a module of [Weni WebApp](https://github.com/Ilhasoft/weni-webapp)
 
