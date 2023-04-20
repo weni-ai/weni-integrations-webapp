@@ -4,7 +4,7 @@ module.exports = {
   rootDir: path.resolve(__dirname),
   preset: '@vue/cli-plugin-unit-jest',
   collectCoverage: true,
-  coverageReporters: ['text', 'text-summary', 'html'],
+  coverageReporters: ['text', 'text-summary', 'html', 'lcov', 'clover', 'json'],
   verbose: true,
   setupFiles: ['<rootDir>/tests/unit/setup'],
   coverageDirectory: '<rootDir>/tests/unit/coverage',
