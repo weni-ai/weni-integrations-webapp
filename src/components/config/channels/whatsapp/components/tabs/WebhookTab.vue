@@ -249,6 +249,7 @@
     flex-direction: column;
     gap: $unnnic-inline-xs;
     flex: 1;
+    margin-top: $unnnic-spacing-inline-xs;
 
     &__content {
       display: flex;

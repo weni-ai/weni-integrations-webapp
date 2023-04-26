@@ -67,7 +67,7 @@
   .form-header {
     display: flex;
     align-items: center;
-    margin: $unnnic-spacing-stack-md auto;
+    margin: $unnnic-spacing-stack-lg auto;
 
     &__wrapper {
       display: flex;

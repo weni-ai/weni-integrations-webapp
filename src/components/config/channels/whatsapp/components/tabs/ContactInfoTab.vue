@@ -15,7 +15,7 @@
         size="large"
         :text="$t('WhatsApp.config.contact_info.configure_later')"
         @click="() => this.$emit('close')"
-      ></unnnic-button>
+      />
 
       <unnnic-button
         class="contact-info__buttons__save"
@@ -23,7 +23,7 @@
         size="large"
         :text="$t('WhatsApp.config.contact_info.save_changes')"
         @click="saveContactInfo"
-      ></unnnic-button>
+      />
     </div>
   </div>
 </template>
@@ -180,12 +180,14 @@
     flex-direction: column;
     gap: $unnnic-inline-xs;
     height: 100%;
+    margin-top: $unnnic-spacing-inline-xs;
 
     &__form {
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
       flex: 1;
+      gap: $unnnic-spacing-inline-xs;
 
       padding-right: $unnnic-spacing-inline-xs;
     }

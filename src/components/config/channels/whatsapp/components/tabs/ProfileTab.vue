@@ -216,12 +216,14 @@
     flex-direction: column;
     gap: $unnnic-inline-xs;
     height: 100%;
+    margin-top: $unnnic-spacing-stack-xs;
 
     &__form {
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
       flex: 1;
+      gap: $unnnic-spacing-inline-xs;
 
       padding-right: $unnnic-spacing-inline-xs;
     }
@@ -229,6 +231,7 @@
     &__buttons {
       margin-top: $unnnic-spacing-stack-sm;
       display: flex;
+      gap: $unnnic-spacing-inline-sm;
 
       &__cancel,
       &__save {
