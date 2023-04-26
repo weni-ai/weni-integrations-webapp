@@ -2,45 +2,41 @@
 
 exports[`components/whatsAppTemplates/FormTabContent.vue should be rendered properly 1`] = `
 <div class="form-tab-content">
-  <div data-v-9ef23630="" class="form-tab-content__name-input unnnic-form md" maxlength="512">
-    <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
-    <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" maxlength="512" placeholder="" class="input size-md normal">
-      <!---->
-      <!---->
-    </div>
-    <!---->
-  </div>
-  <div class="form-tab-content__selects">
-    <div data-v-57f15418="" tabindex="-1" class="normal-multiselect form-tab-content__selects--category"><span data-v-57f15418="" class="select-permission-label">Category</span>
-      <div data-v-57f15418="" tabindex="0" class="select-permission">
-        <h6 data-v-57f15418="" class="title noselect"></h6><span data-v-12da8e0b="" data-v-57f15418="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+  <div class="form-tab-content--inline">
+    <div data-v-9ef23630="" class="form-tab-content__input--name unnnic-form md" maxlength="512">
+      <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
+      <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" maxlength="512" placeholder="Name" class="input size-md normal">
+        <!---->
+        <!---->
       </div>
       <!---->
     </div>
-    <div class="unnnic-select">
-      <p class="unnnic-form__label"> Language </p><span data-v-6fe2671f="" class="dropdown"><div data-v-8d0754d6="" style="position: relative;" readonly="readonly" data-v-6fe2671f=""><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" readonly="readonly" placeholder="" iconright="arrow-button-down-1" iconrightclickable="true" class="input size-md normal has-icon-right"><!----><span data-v-12da8e0b="" data-v-8d0754d6="" class="icon-right unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+    <div data-v-57f15418="" tabindex="-1" class="normal-multiselect form-tab-content__selects--category"><span data-v-57f15418="" class="select-permission-label">Category</span>
+      <div data-v-57f15418="" tabindex="0" class="select-permission">
+        <h6 data-v-57f15418="" class="title noselect">Select the category</h6><span data-v-12da8e0b="" data-v-57f15418="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+      </div>
+      <!---->
     </div>
-    <option data-v-6fe2671f="" label="English (US)" value="en_US">
-      English (US)
-    </option>
-    <option data-v-6fe2671f="" label="Portuguese (BR)" value="pt_BR">
-      Portuguese (BR)
-    </option>
-    <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
-    <!---->
   </div>
+  <div class="divider"></div>
+  <div class="unnnic-select">
+    <p class="unnnic-form__label"> Language </p><span data-v-6fe2671f="" class="dropdown"><div data-v-8d0754d6="" style="position: relative;" readonly="readonly" data-v-6fe2671f=""><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" readonly="readonly" placeholder="Select the language" iconright="arrow-button-down-1" iconrightclickable="true" class="input size-md normal has-icon-right"><!----><span data-v-12da8e0b="" data-v-8d0754d6="" class="icon-right unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+  </div>
+  <option data-v-6fe2671f="" label="English (US)" value="en_US">
+    English (US)
+  </option>
+  <option data-v-6fe2671f="" label="Portuguese (BR)" value="pt_BR">
+    Portuguese (BR)
+  </option>
+  <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
+  <!---->
 </div>
 <formtabcontentheader-stub class="form-tab-content__header"></formtabcontentheader-stub>
-<div class="form-tab-content-body form-tab-content__body">
-  <div data-v-3e4e81d5="" class="unnnic-tag-content form-tab-content-body__tag unnnic-tag
-      unnnic-tag-scheme--neutral-darkest
-      " v-bind="[object Object]" count="0"><span data-v-3e4e81d5="" class="unnnic-tag__label
-    
-    ">Body Text</span>
-    <!---->
-  </div>
+<div class="form-tab-content-body form-tab-content__body"><span class="form-tab-content-body__title">
+    Body Text
+  </span>
   <div data-v-24fcdb87="" class="form-tab-content-body__input unnnic-text-area md normal">
-    <!----><textarea data-v-24fcdb87="" maxlength="1024"></textarea>
+    <!----><textarea data-v-24fcdb87="" placeholder="Write the body text" maxlength="1024"></textarea>
     <div data-v-24fcdb87="" class="helper"> 0/1024 </div>
     <!---->
   </div>
@@ -77,14 +73,14 @@ exports[`components/whatsAppTemplates/FormTabContent.vue should be rendered prop
         </span>
           <!---->
         </button><span data-v-49213caa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> Monospace <br data-v-49213caa=""></span></div>
-    </div> <button data-v-00f478da="" class="templates-form-body__add-variable unnnic-button unnnic-button--size-small unnnic-button--terciary unnnic-button-scheme--">
-      <!----><span data-v-12da8e0b="" data-v-00f478da="" class="unnnic-icon unnnic-icon__size--sm unnnic-button__icon-left"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span>
-      <!----><span data-v-00f478da="" class="unnnic-button__label">
-    Add Variable
+    </div>
+  </div> <button data-v-00f478da="" class="unnnic-button unnnic-button--size-small unnnic-button--terciary unnnic-button-scheme--">
+    <!----><span data-v-12da8e0b="" data-v-00f478da="" class="unnnic-icon unnnic-icon__size--sm unnnic-button__icon-left"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span>
+    <!----><span data-v-00f478da="" class="unnnic-button__label">
+    Add Variable to text body
     </span>
-      <!---->
-    </button>
-  </div>
+    <!---->
+  </button>
 </div>
 <formtabcontentfooter-stub class="form-tab-content__footer"></formtabcontentfooter-stub>
 <formtabcontentbuttons-stub class="form-tab-content__buttons"></formtabcontentbuttons-stub>

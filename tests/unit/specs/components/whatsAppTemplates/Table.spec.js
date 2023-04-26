@@ -89,7 +89,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
     describe('totalCount', () => {
       it('should return pageSize if there are no templates provided', () => {
         store.state.WhatsApp.whatsAppTemplates.count = 0;
-        expect(wrapper.vm.totalCount).toBe(12);
+        expect(wrapper.vm.totalCount).toBe(20);
       });
     });
 
@@ -101,7 +101,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
 
       it('should return correct number of pages based on limit and count', () => {
         store.state.WhatsApp.whatsAppTemplates = { count: 30 };
-        expect(wrapper.vm.pageCount).toBe(3);
+        expect(wrapper.vm.pageCount).toBe(2);
       });
     });
 
@@ -112,7 +112,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
 
       it('should return page limit start based on the current page', async () => {
         await wrapper.setData({ page: 2 });
-        expect(wrapper.vm.currentPageStart).toBe(12);
+        expect(wrapper.vm.currentPageStart).toBe(20);
       });
     });
 
@@ -128,8 +128,8 @@ describe('components/whatsAppTemplates/Table.vue', () => {
       });
 
       it('should return the pageSize as count if there are enough templates to show', () => {
-        store.state.WhatsApp.whatsAppTemplates.count = 13;
-        expect(wrapper.vm.currentPageCount).toBe(12);
+        store.state.WhatsApp.whatsAppTemplates.count = 23;
+        expect(wrapper.vm.currentPageCount).toBe(20);
       });
     });
   });

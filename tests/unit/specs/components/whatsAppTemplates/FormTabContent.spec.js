@@ -398,15 +398,6 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
 
       event = {
         preventDefault: jest.fn(),
-        key: ' ',
-      };
-
-      expect(event.preventDefault).not.toHaveBeenCalled();
-      wrapper.vm.preventTemplateName(event);
-      expect(event.preventDefault).not.toHaveBeenCalledTimes(1);
-
-      event = {
-        preventDefault: jest.fn(),
         key: '_',
       };
 

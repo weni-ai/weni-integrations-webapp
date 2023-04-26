@@ -5,7 +5,7 @@ exports[`components/whatsAppTemplates/TableHeader.vue should be rendered properl
   <div class="whatsapp-templates-header__wrapper">
     <div class="whatsapp-templates-header__icon"><img src="icon"></div> <span class="whatsapp-templates-header__title">WhatsApp</span>
   </div>
-  <unnnicbutton-stub size="small" type="secondary">
+  <unnnicbutton-stub type="secondary" class="whatsapp-templates-header__button">
     New Template
   </unnnicbutton-stub>
 </div>

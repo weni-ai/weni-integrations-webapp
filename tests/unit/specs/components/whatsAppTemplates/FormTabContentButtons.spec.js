@@ -163,7 +163,9 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
         ],
       });
 
-      const removeButton = wrapper.find('.form-tab-content-buttons__call-actions__remove-button');
+      const removeButton = wrapper.find(
+        '.form-tab-content-buttons__call-actions__button__header__remove-button',
+      );
       expect(removeButton.exists()).toBe(true);
     });
 
@@ -172,7 +174,9 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
         templateButtons: [{ button_type: 'PHONE_NUMBER', country_code: 'BR' }],
       });
 
-      const removeButton = wrapper.find('.form-tab-content-buttons__call-actions__remove-button');
+      const removeButton = wrapper.find(
+        '.form-tab-content-buttons__call-actions__button__header__remove-button',
+      );
       expect(removeButton.exists()).toBe(false);
     });
   });
@@ -598,7 +602,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       await wrapper.setData({ buttons });
 
       const removeButton = wrapper
-        .findAll('.form-tab-content-buttons__call-actions__remove-button')
+        .findAll('.form-tab-content-buttons__call-actions__button__header__remove-button')
         .at(1);
 
       removeButton.trigger('click');
