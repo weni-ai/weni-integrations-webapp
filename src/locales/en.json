@@ -365,7 +365,9 @@
         "webhook_update": "Error while trying to update webhook data"
       },
       "qr": {
-        "title": "Whatsapp Link"
+        "title": "Whatsapp Link",
+        "button": "Access link",
+        "info": "Para acessar o link, escaneie o QR Code ou clique no botão abaixo"
       }
     },
     "templates": {
@@ -445,9 +447,20 @@
         "footer_text": "Footer Text",
         "header": "Header",
         "header_text_placeholder": "Ex.: Type your message...",
-        "add_variable": "Add Variable",
+        "add_variable": "Add Variable to text body",
         "save_language": "Save Language",
-        "name_exists": "This name already exists, please enter a different one."
+        "name_exists": "This name already exists, please enter a different one.",
+        "category_placeholder": "Select the category",
+        "language__placeholder": "Select the language",
+        "header__label": "Format",
+        "body_text__placeholder": "Write the body text",
+        "buttons__label": "Buttons Type",
+        "reply_label": "Button text",
+        "button": "Button",
+        "button_text_placeholder": "Enter the button text",
+        "button_text": "Button text",
+        "phone_number_placeholder": "Enter the phone number",
+        "url_placeholder": "Enter the Website URL"
       },
       "category_options": {
         "marketing": "Marketing",

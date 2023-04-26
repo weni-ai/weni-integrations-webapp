@@ -365,7 +365,9 @@
         "webhook_update": "Erro ao tentar atualizar os dados do Webhook"
       },
       "qr": {
-        "title": "Link do WhatsApp"
+        "title": "Link do WhatsApp",
+        "button": "Acessar Link",
+        "info": "To access the link, scan the QR Code or click the button below"
       }
     },
     "templates": {
@@ -445,9 +447,20 @@
         "footer_text": "Texto do rodapé",
         "header": "Cabeçalho",
         "header_text_placeholder": "Ex.: Digite sua mensagem...",
-        "add_variable": "Adicionar variável",
+        "add_variable": "Adicionar variável ao corpo do texto",
         "save_language": "Salvar Idioma",
-        "name_exists": "Este nome já existe, por favor digite outro."
+        "name_exists": "Este nome já existe, por favor digite outro.",
+        "category_placeholder": "Selecione a categoria",
+        "language__placeholder": "Selecione o idioma",
+        "header__label": "Formato",
+        "body_text__placeholder": "Escreva o texto do corpo",
+        "buttons__label": "Tipo de botão",
+        "reply_label": "Texto do botão",
+        "button": "Botão",
+        "button_text_placeholder": "Escreva o texto do botão",
+        "button_text": "Texto do botão",
+        "phone_number_placeholder": "Escreva o número de telefone",
+        "url_placeholder": "Escreva a URL do website"
       },
       "category_options": {
         "marketing": "Marketing",
