@@ -1,11 +1,8 @@
 <template>
   <div class="form-tab-content-body">
-    <unnnic-tag
-      class="form-tab-content-body__tag"
-      type="default"
-      :text="$t('WhatsApp.templates.form_field.body_text')"
-      scheme="neutral-darkest"
-    />
+    <span class="form-tab-content-body__title">
+      {{ $t('WhatsApp.templates.form_field.body_text') }}
+    </span>
 
     <unnnic-text-area
       ref="bodyText"
@@ -13,6 +10,7 @@
       class="form-tab-content-body__input"
       :disabled="disableInputs"
       :value="bodyContent"
+      :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
       @input="onInput"
       :maxLength="1024"
       :type="hasErrors ? 'error' : 'normal'"
@@ -28,6 +26,9 @@
       @add-variable="addVariable"
       @emoji-event="handleNewEmoji"
     />
+    <unnnic-button type="terciary" iconLeft="add-1" size="small" @click="addVariable">
+      {{ $t('WhatsApp.templates.form_field.add_variable') }}
+    </unnnic-button>
   </div>
 </template>
 
@@ -137,7 +138,10 @@
 
         this.emitInputChange(fieldValue);
 
-        this.$refs.bodyText.$el.children[0].focus();
+        const textArea = Array.from(this.$refs.bodyText.$el.children).find(
+          (child) => child.nodeName === 'TEXTAREA',
+        );
+        textArea.focus();
       },
       /* istanbul ignore next */
       onInput(event) {
@@ -182,9 +186,13 @@
     display: flex;
     flex-direction: column;
 
-    &__tag {
-      width: fit-content;
+    &__title {
       margin-bottom: $unnnic-spacing-stack-sm;
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      font-weight: $unnnic-font-weight-bold;
+
+      color: $unnnic-color-neutral-darkest;
     }
 
     &__input {

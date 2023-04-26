@@ -1,11 +1,8 @@
 <template>
   <div class="form-tab-content-footer">
-    <unnnic-tag
-      class="form-tab-content-footer__tag"
-      type="default"
-      :text="$t('WhatsApp.templates.form_field.footer_text')"
-      scheme="neutral-darkest"
-    />
+    <span class="form-tab-content-footer__title">
+      {{ $t('WhatsApp.templates.form_field.footer_text') }}
+    </span>
 
     <unnnic-text-area
       class="form-tab-content-footer__input"
@@ -39,9 +36,13 @@
     display: flex;
     flex-direction: column;
 
-    &__tag {
-      width: fit-content;
+    &__title {
       margin-bottom: $unnnic-spacing-stack-sm;
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      font-weight: $unnnic-font-weight-bold;
+
+      color: $unnnic-color-neutral-darkest;
     }
 
     &__input {
