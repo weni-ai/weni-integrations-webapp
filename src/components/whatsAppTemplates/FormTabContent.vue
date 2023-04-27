@@ -389,13 +389,11 @@
     &__actions {
       width: 100%;
       display: flex;
-      gap: $unnnic-spacing-inline-md;
-      margin-left: auto;
-      justify-content: flex-end;
+      gap: $unnnic-spacing-inline-sm;
 
       &__save,
       &__cancel {
-        width: 200px;
+        flex: 1;
       }
     }
   }
