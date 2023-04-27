@@ -36,12 +36,11 @@
       >
         <div class="form-tab-content-buttons__replies__wrapper--inline">
           <span class="form-tab-content-buttons__replies__wrapper__button-title">
-            {{ `${$t('WhatsApp.templates.form_field.button')} ${index + 1}` }}</span
-          >
+            {{ `${$t('WhatsApp.templates.form_field.button')} ${index + 1}` }}
+          </span>
 
           <unnnic-button
             class="form-tab-content-buttons__replies__remove-button"
-            v-if="showRemoveButton"
             :disabled="disableInputs"
             type="terciary"
             iconCenter="bin-1-1"
@@ -73,12 +72,11 @@
       >
         <div class="form-tab-content-buttons__call-actions__button__header">
           <span class="form-tab-content-buttons__call-actions__button__header__title">
-            {{ `${$t('WhatsApp.templates.form_field.button')} ${index + 1}` }}</span
-          >
+            {{ `${$t('WhatsApp.templates.form_field.button')} ${index + 1}` }}
+          </span>
 
           <unnnic-button
             class="form-tab-content-buttons__call-actions__button__header__remove-button"
-            v-if="showRemoveButton"
             :disabled="disableInputs"
             type="terciary"
             iconCenter="bin-1-1"
@@ -109,7 +107,6 @@
         <div
           :class="{
             'form-tab-content-buttons__call-actions__wrapper': true,
-            remove: showRemoveButton,
             'form-tab-content-buttons__call-actions__wrapper--url':
               currentButtons[index].button_type === 'URL',
           }"
@@ -166,8 +163,9 @@
                 'url-input-group__prefix': true,
                 'url-input-group__prefix--focused': focusedUrlInput,
               }"
-              >https://</span
             >
+              https://
+            </span>
             <unnnic-input
               class="url-input-group__input"
               :label="$t('WhatsApp.templates.form_field.website_url')"
@@ -273,13 +271,6 @@
           );
         } else {
           return false;
-        }
-      },
-      showRemoveButton() {
-        if (this.buttonsType === 'quick_reply') {
-          return this.currentButtons.length > 1;
-        } else {
-          return this.currentButtons.length > 1;
         }
       },
     },
