@@ -460,7 +460,8 @@
         "button_text_placeholder": "Enter the button text",
         "button_text": "Button text",
         "phone_number_placeholder": "Enter the phone number",
-        "url_placeholder": "Enter the Website URL"
+        "url_placeholder": "Enter the Website URL",
+        "footer_text_placeholder": "Enter the footer text"
       },
       "category_options": {
         "marketing": "Marketing",

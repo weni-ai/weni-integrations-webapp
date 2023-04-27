@@ -460,7 +460,8 @@
         "button_text_placeholder": "Escreva o texto do botão",
         "button_text": "Texto do botão",
         "phone_number_placeholder": "Escreva o número de telefone",
-        "url_placeholder": "Escreva a URL do website"
+        "url_placeholder": "Escreva a URL do website",
+        "footer_text_placeholder": "Escreva o texto do rodapé"
       },
       "category_options": {
         "marketing": "Marketing",
