@@ -308,7 +308,15 @@
       }
 
       &__template {
-        color: $unnnic-color-neutral-dark;
+        display: flex;
+        align-items: center;
+        gap: $unnnic-spacing-inline-nano;
+
+        .unnnic-icon {
+          ::v-deep path {
+            fill: $unnnic-color-neutral-clean;
+          }
+        }
       }
     }
   }
