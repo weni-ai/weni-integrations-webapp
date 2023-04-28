@@ -78,7 +78,7 @@
       return {
         firstLoad: true,
         page: 1,
-        pageSize: 12,
+        pageSize: 20,
         tableHeaders: [
           {
             id: 'name',
@@ -108,7 +108,7 @@
           {
             id: 'actions',
             text: this.$t('WhatsApp.templates.table.headers.actions'),
-            width: '40px',
+            width: '55px',
           },
         ],
       };
@@ -204,20 +204,12 @@
   .whatsapp-templates-table {
     display: flex;
     flex-direction: column;
-    height: calc(100% - $unnnic-spacing-stack-xgiant);
+    height: calc(100% - 4.5rem);
 
     &__table {
-      height: 100%;
+      height: inherit;
 
       ::v-deep .scroll {
-        @media (max-height: 800px) {
-          max-height: 60vh;
-        }
-
-        @media (min-height: 800px) {
-          max-height: 68vh;
-        }
-
         overflow-x: hidden;
         overflow-y: auto;
       }

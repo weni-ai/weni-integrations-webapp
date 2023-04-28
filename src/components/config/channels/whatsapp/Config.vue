@@ -210,7 +210,7 @@
     flex-direction: column;
     height: -webkit-fill-available;
     height: -moz-available;
-    padding: $unnnic-inset-lg;
+    padding: $unnnic-inset-md;
     font-family: $unnnic-font-family-secondary;
 
     &__header {
@@ -271,7 +271,7 @@
       flex-direction: column;
       overflow: hidden;
       height: 100%;
-      max-height: calc(100vh - 170px);
+      max-height: calc(100vh - 154px);
 
       ::v-deep .tab-body {
         display: flex;
@@ -308,7 +308,15 @@
       }
 
       &__template {
-        color: $unnnic-color-neutral-dark;
+        display: flex;
+        align-items: center;
+        gap: $unnnic-spacing-inline-nano;
+
+        .unnnic-icon {
+          ::v-deep path {
+            fill: $unnnic-color-neutral-clean;
+          }
+        }
       }
     }
   }

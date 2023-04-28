@@ -1,49 +1,54 @@
 <template>
   <div class="form-tab-content">
-    <unnnic-input
-      class="form-tab-content__name-input"
-      :disabled="disableInputs || formMode !== 'create'"
-      :value="templateForm.name"
-      @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
-      @keyup="formatTemplateName"
-      @keydown="preventTemplateName"
-      :label="$t('WhatsApp.templates.form_field.name')"
-      :maxlength="512"
-      :type="errorStates.name.value ? 'error' : 'normal'"
-      :message="errorStates.name.message"
-    />
-    <div class="form-tab-content__selects">
+    <div class="form-tab-content--inline">
+      <unnnic-input
+        class="form-tab-content__input--name"
+        :disabled="disableInputs || formMode !== 'create'"
+        :value="templateForm.name"
+        @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
+        @keyup="formatTemplateName"
+        @keydown="preventTemplateName"
+        :label="$t('WhatsApp.templates.form_field.name')"
+        :placeholder="$t('WhatsApp.templates.form_field.name')"
+        :maxlength="512"
+        :type="errorStates.name.value ? 'error' : 'normal'"
+        :message="errorStates.name.message"
+      />
+
       <unnnic-multi-select
         ref="categorySelect"
         :class="{
           'form-tab-content__selects--category': true,
           'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
         }"
-        :inputTitle="currentCategory"
+        :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
         :hideGroupTitle="true"
         :label="$t('WhatsApp.templates.form_field.category')"
         :groups="categoryGroups"
         @change="handleCategoryChange"
       />
-      <unnnic-select
-        :class="{ 'form-tab-content__selects__disabled': disableInputs }"
-        :key="languageKey"
-        :disabled="disableInputs"
-        :value="currentLanguage"
-        :search="true"
-        @input="handleLanguageSelection"
-        :label="$t('WhatsApp.templates.form_field.language')"
-      >
-        <option
-          v-for="option in availableLanguages"
-          :key="option.value"
-          :value="option.value"
-          :label="option.text"
-        >
-          {{ option.text }}
-        </option>
-      </unnnic-select>
     </div>
+
+    <div class="divider" />
+    <unnnic-select
+      :class="{ 'form-tab-content__selects__disabled': disableInputs }"
+      :key="languageKey"
+      :disabled="disableInputs"
+      :value="currentLanguage"
+      :search="true"
+      @input="handleLanguageSelection"
+      :label="$t('WhatsApp.templates.form_field.language')"
+      :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
+    >
+      <option
+        v-for="option in availableLanguages"
+        :key="option.value"
+        :value="option.value"
+        :label="option.text"
+      >
+        {{ option.text }}
+      </option>
+    </unnnic-select>
 
     <FormTabContentHeader
       class="form-tab-content__header"
@@ -195,7 +200,7 @@
     methods: {
       ...mapActions('WhatsApp', ['updateTemplateForm', 'updateTemplateTranslationForm']),
       preventTemplateName(event) {
-        if (!event.key.match(/[a-zA-Z0-9_ ]+/)) {
+        if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();
         }
       },
@@ -312,26 +317,32 @@
 </script>
 
 <style lang="scss" scoped>
+  .divider {
+    margin-top: $unnnic-spacing-stack-lg;
+    margin-bottom: $unnnic-spacing-stack-md;
+    border-top: 1px solid $unnnic-color-neutral-soft;
+  }
+
   .form-tab-content {
     display: flex;
     flex-direction: column;
 
-    &__name-input {
+    &--inline {
+      display: flex;
+      // flex: 1;
+      gap: $unnnic-spacing-inline-sm;
+    }
+
+    &__input--name {
+      flex: 3;
+
       ::v-deep .unnnic-form__message {
         color: $unnnic-color-feedback-red;
       }
     }
 
     &__selects {
-      display: flex;
-      gap: $unnnic-spacing-inline-sm;
-
-      .unnnic-select {
-        flex: 1;
-      }
-
       ::v-deep .select-permission {
-        min-width: 100px;
         min-height: 22px;
       }
 
@@ -353,6 +364,8 @@
       }
 
       &--category {
+        flex: 1;
+
         ::v-deep {
           .select-permission-label {
             margin-top: $unnnic-spacing-stack-xs;
@@ -360,7 +373,6 @@
 
           .select-content {
             z-index: 1;
-            width: max-content;
           }
         }
       }
@@ -371,19 +383,17 @@
     &__footer,
     &__buttons,
     &__actions {
-      margin-top: $unnnic-spacing-stack-md;
+      margin-top: $unnnic-spacing-stack-lg;
     }
 
     &__actions {
       width: 100%;
       display: flex;
-      gap: $unnnic-spacing-inline-md;
-      margin-left: auto;
-      justify-content: flex-end;
+      gap: $unnnic-spacing-inline-sm;
 
       &__save,
       &__cancel {
-        width: 200px;
+        flex: 1;
       }
     }
   }

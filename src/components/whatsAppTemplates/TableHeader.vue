@@ -7,7 +7,11 @@
       </div>
       <span class="whatsapp-templates-header__title">{{ title }}</span>
     </div>
-    <unnnic-button size="small" type="secondary" @click="navigateToCreateTemplate">
+    <unnnic-button
+      class="whatsapp-templates-header__button"
+      type="secondary"
+      @click="navigateToCreateTemplate"
+    >
       {{ $t('WhatsApp.templates.table.new_template') }}
     </unnnic-button>
   </div>
@@ -57,10 +61,15 @@
     justify-content: space-between;
     align-items: center;
     margin: $unnnic-spacing-stack-md auto;
+    margin-bottom: $unnnic-spacing-stack-lg;
 
     &__wrapper {
       display: flex;
       align-items: center;
+    }
+
+    &__button {
+      width: 255px;
     }
 
     &__icon {

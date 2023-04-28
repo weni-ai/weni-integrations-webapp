@@ -9,9 +9,9 @@
           <div class="account-tab__content__info__account__name">
             <unnnic-icon-svg
               class="account-tab__content__info__account__name__icon"
-              icon="single-neutral-2"
+              icon="single-neutral-actions-1"
               scheme="neutral-cloudy"
-              size="sm"
+              size="md"
             />
             <div class="account-tab__content__info__account__name__text">
               {{ fieldHandler(phoneNumber.display_name) }}
@@ -26,42 +26,47 @@
           <div class="account-tab__content__info__qr__title">
             {{ $t('WhatsApp.config.qr.title') }}
           </div>
-          <img class="account-tab__content__info__qr__img" :src="QRCodeUrl" />
+          <div class="account-tab__content__info__qr__wrapper">
+            <img class="account-tab__content__info__qr__img" :src="QRCodeUrl" />
 
-          <unnnic-input
-            class="account-tab__content__info__qr__url"
-            :value="WAUrl"
-            iconRight="export-1"
-            :iconRightClickable="true"
-            @icon-right-click="openWAUrl"
-            readonly
-          />
+            <div class="account-tab__content__info__qr__content">
+              <span class="account-tab__content__info__qr__content__info">{{
+                $t('WhatsApp.config.qr.info')
+              }}</span>
+              <unnnic-button
+                class="account-tab__content__info__qr__content__button"
+                type="secondary"
+                :text="$t('WhatsApp.config.qr.button')"
+                iconLeft="export-1"
+                size="small"
+                @click="openWAUrl"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div>
-        <div
-          v-for="(section, index) in accountSections"
-          :key="index"
-          class="account-tab__content__section"
-        >
-          <div class="account-tab__content__section__title">
-            <span class="account-tab__content__section__title__name">
-              {{ $t(`WhatsApp.config.${section.name}.title`) }}
-            </span>
-          </div>
+      <div
+        v-for="(section, index) in accountSections"
+        :key="index"
+        class="account-tab__content__section"
+      >
+        <div class="account-tab__content__section__title">
+          <span class="account-tab__content__section__title__name">
+            {{ $t(`WhatsApp.config.${section.name}.title`) }}
+          </span>
+        </div>
 
-          <div
-            v-for="(field, i) in section.fields"
-            :key="i"
-            class="account-tab__content__section__field"
-          >
-            <div class="account-tab__content__section__field__key">
-              {{ $t(field.label) }}
-            </div>
-            <div class="account-tab__content__section__field__value">
-              {{ field.value }}
-            </div>
+        <div
+          v-for="(field, i) in section.fields"
+          :key="i"
+          class="account-tab__content__section__field"
+        >
+          <div class="account-tab__content__section__field__key">
+            {{ $t(field.label) }}
+          </div>
+          <div class="account-tab__content__section__field__value">
+            {{ field.value }}
           </div>
         </div>
       </div>
@@ -99,7 +104,7 @@
     },
     computed: {
       QRCodeUrl() {
-        return `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURI(
+        return `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
           this.WAUrl,
         )}`;
       },
@@ -212,7 +217,8 @@
     &__content {
       display: flex;
       flex-direction: column;
-      padding-right: $unnnic-spacing-inline-sm;
+      padding-right: $unnnic-spacing-inline-md;
+      margin-top: $unnnic-spacing-stack-sm;
       overflow-x: hidden;
       flex: 1;
 
@@ -221,18 +227,19 @@
         flex-direction: column;
         justify-content: space-between;
         flex-wrap: wrap;
+        gap: $unnnic-spacing-stack-lg;
 
-        &__account,
-        &__conversations {
+        &__account {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: $unnnic-spacing-stack-sm;
 
           &__title {
             font-weight: $unnnic-font-weight-black;
             font-size: $unnnic-font-size-body-lg;
             line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
             color: $unnnic-color-neutral-darkest;
-
-            margin-bottom: $unnnic-spacing-stack-sm;
           }
 
           &__name {
@@ -247,36 +254,40 @@
             }
           }
 
-          &__time {
-            margin-bottom: $unnnic-spacing-stack-xs;
-          }
-
-          &__business,
-          &__limit {
+          &__business {
             font-size: $unnnic-font-size-body-gt;
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
             color: $unnnic-color-neutral-cloudy;
-            margin-top: $unnnic-spacing-stack-xs;
           }
         }
 
         &__qr {
+          &__wrapper {
+            display: flex;
+            gap: $unnnic-spacing-inline-sm;
+          }
+
           &__title {
             font-weight: $unnnic-font-weight-black;
             font-size: $unnnic-font-size-body-lg;
             line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
             color: $unnnic-color-neutral-darkest;
 
-            margin: $unnnic-spacing-stack-sm 0;
-          }
-
-          &__img {
             margin-bottom: $unnnic-spacing-stack-sm;
           }
-        }
 
-        &__conversations {
-          flex: 1;
+          &__content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: space-between;
+
+            &__info {
+              font-size: $unnnic-font-size-body-gt;
+              line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+              color: $unnnic-color-neutral-cloudy;
+            }
+          }
         }
       }
 
@@ -289,7 +300,7 @@
         &__title {
           display: flex;
           margin-bottom: $unnnic-spacing-stack-nano;
-          margin-top: $unnnic-spacing-stack-md;
+          margin-top: $unnnic-spacing-stack-lg;
           gap: $unnnic-inline-xs;
 
           &__name {
@@ -334,10 +345,7 @@
     }
 
     &__close-button {
-      margin-top: $unnnic-spacing-inset-sm;
-      align-self: flex-end;
-      width: 50%;
-      min-height: 3rem;
+      margin-top: $unnnic-spacing-stack-lg;
     }
   }
 </style>

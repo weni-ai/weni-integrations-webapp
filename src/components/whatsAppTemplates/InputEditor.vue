@@ -59,15 +59,6 @@
         </unnnic-button>
       </unnnic-tool-tip>
     </div>
-    <unnnic-button
-      type="terciary"
-      iconLeft="add-1"
-      size="small"
-      class="templates-form-body__add-variable"
-      @click="$emit('add-variable')"
-    >
-      {{ $t('WhatsApp.templates.form_field.add_variable') }}
-    </unnnic-button>
   </div>
 </template>
 

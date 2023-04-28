@@ -140,6 +140,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    margin-top: $unnnic-spacing-inline-xs;
 
     &__content {
       display: flex;
@@ -164,7 +165,8 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
 
-        margin: $unnnic-spacing-stack-xs 0;
+        margin-top: $unnnic-spacing-stack-sm;
+        margin-bottom: $unnnic-spacing-stack-xs;
       }
     }
 

@@ -1,11 +1,8 @@
 <template>
   <div class="form-tab-content-header">
-    <unnnic-tag
-      class="form-tab-content-header__tag"
-      type="default"
-      :text="$t('WhatsApp.templates.form_field.header')"
-      scheme="neutral-darkest"
-    />
+    <span class="form-tab-content-header__title">
+      {{ $t('WhatsApp.templates.form_field.header') }}
+    </span>
 
     <div class="form-tab-content-header__inputs">
       <unnnic-select
@@ -15,6 +12,7 @@
           'form-tab-content-header__inputs__selector__disabled': disableInputs,
         }"
         :value="headerType"
+        :label="$t('WhatsApp.templates.form_field.header__label')"
         @input="handleHeaderTypeChange"
       >
         <option
@@ -154,9 +152,13 @@
     display: flex;
     flex-direction: column;
 
-    &__tag {
-      width: fit-content;
+    &__title {
       margin-bottom: $unnnic-spacing-stack-sm;
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      font-weight: $unnnic-font-weight-bold;
+
+      color: $unnnic-color-neutral-darkest;
     }
 
     &__inputs {
@@ -184,6 +186,7 @@
 
       &__text-input {
         flex: 1;
+        margin-top: calc($unnnic-spacing-stack-lg + 6px);
       }
 
       &__buttons {

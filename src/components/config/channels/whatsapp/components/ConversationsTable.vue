@@ -65,7 +65,7 @@
           {
             id: 'total',
             text: this.$t('WhatsApp.config.conversations.conversations_count.table.total'),
-            width: '55px',
+            flex: 1,
           },
         ],
       };

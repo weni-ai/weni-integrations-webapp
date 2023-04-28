@@ -1,11 +1,8 @@
 <template>
   <div class="form-tab-content-buttons">
-    <unnnic-tag
-      class="form-tab-content-buttons__tag"
-      type="default"
-      :text="$t('WhatsApp.templates.form_field.buttons')"
-      scheme="neutral-darkest"
-    />
+    <span class="form-tab-content-buttons__title">
+      {{ $t('WhatsApp.templates.form_field.buttons') }}
+    </span>
 
     <unnnic-select
       :disabled="disableInputs"
@@ -14,6 +11,7 @@
         'form-tab-content-buttons__type-select__disabled': disableInputs,
       }"
       :value="buttonsType"
+      :label="$t('WhatsApp.templates.form_field.buttons__label')"
       @input="handleButtonTypeChange"
     >
       <option
@@ -36,21 +34,29 @@
         v-for="(button, index) in currentButtons"
         :key="index"
       >
+        <div class="form-tab-content-buttons__replies__wrapper--inline">
+          <span class="form-tab-content-buttons__replies__wrapper__button-title">
+            {{ `${$t('WhatsApp.templates.form_field.button')} ${index + 1}` }}
+          </span>
+
+          <unnnic-button
+            class="form-tab-content-buttons__replies__remove-button"
+            :disabled="disableInputs"
+            type="terciary"
+            iconCenter="bin-1-1"
+            size="small"
+            @click="removeButton(index)"
+          />
+        </div>
+
         <unnnic-input
           class="form-tab-content-buttons__replies__input"
           :disabled="disableInputs"
           :value="currentButtons[index].text"
+          :label="$t('WhatsApp.templates.form_field.reply_label')"
           @input="handleRepliesInput($event, index)"
+          :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
           :maxlength="25"
-        />
-        <unnnic-button
-          class="form-tab-content-buttons__replies__remove-button"
-          v-if="showRemoveButton"
-          :disabled="disableInputs"
-          type="terciary"
-          iconCenter="close-1"
-          size="small"
-          @click="removeButton(index)"
         />
       </div>
     </div>
@@ -60,14 +66,25 @@
       v-else-if="buttonsType === 'call_to_action'"
     >
       <div
-        :class="{
-          'form-tab-content-buttons__call-actions__wrapper': true,
-          'form-tab-content-buttons__call-actions__wrapper--url':
-            currentButtons[index].button_type === 'URL',
-        }"
         v-for="(button, index) in currentButtons"
         :key="index"
+        class="form-tab-content-buttons__call-actions__button"
       >
+        <div class="form-tab-content-buttons__call-actions__button__header">
+          <span class="form-tab-content-buttons__call-actions__button__header__title">
+            {{ `${$t('WhatsApp.templates.form_field.button')} ${index + 1}` }}
+          </span>
+
+          <unnnic-button
+            class="form-tab-content-buttons__call-actions__button__header__remove-button"
+            :disabled="disableInputs"
+            type="terciary"
+            iconCenter="bin-1-1"
+            size="small"
+            @click="removeButton(index)"
+          />
+        </div>
+
         <unnnic-select
           :class="{
             'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
@@ -87,83 +104,91 @@
           </option>
         </unnnic-select>
 
-        <unnnic-input
-          :label="$t('WhatsApp.templates.form_field.button_name')"
-          :disabled="disableInputs"
-          :value="currentButtons[index].text"
-          @input="handleActionInput($event, 'text', index)"
-          :maxlength="25"
-        />
-
-        <unnnic-select
-          v-if="currentButtons[index].button_type === 'PHONE_NUMBER'"
+        <div
           :class="{
-            'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
+            'form-tab-content-buttons__call-actions__wrapper': true,
+            'form-tab-content-buttons__call-actions__wrapper--url':
+              currentButtons[index].button_type === 'URL',
           }"
-          :key="currentButtons[index].button_type"
-          :label="$t('WhatsApp.templates.form_field.country')"
-          :disabled="disableInputs"
-          :value="currentButtons[index].country_code"
-          :search="true"
-          @input="handleCountryCodeSelection($event, index)"
         >
-          <option
-            v-for="option in countryOptions"
-            :key="option.value"
-            :value="option.value"
-            :label="option.text"
-          >
-            {{ option.text }}
-          </option>
-        </unnnic-select>
-
-        <div v-if="currentButtons[index].button_type === 'URL'" class="url-input-group">
-          <span
-            :class="{
-              'url-input-group__prefix': true,
-              'url-input-group__prefix--focused': focusedUrlInput,
-            }"
-            >https://</span
-          >
           <unnnic-input
-            class="url-input-group__input"
-            :label="$t('WhatsApp.templates.form_field.website_url')"
+            :label="$t('WhatsApp.templates.form_field.button_text')"
+            :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
             :disabled="disableInputs"
-            :value="currentButtons[index].url"
-            @input="handleActionInput($event, 'url', index)"
-            @keydown="formatUrlInput($event)"
-            :maxlength="2000"
-            @focus="handleUrlFocus"
-            @blur="handleUrlBlur"
+            :value="currentButtons[index].text"
+            @input="handleActionInput($event, 'text', index)"
+            :maxlength="25"
           />
-        </div>
-        <unnnic-input
-          v-else
-          :label="$t('WhatsApp.templates.form_field.phone_number')"
-          :disabled="disableInputs"
-          :value="currentButtons[index].phone_number"
-          @input="handleActionInput($event, 'phone_number', index)"
-          :maxlength="20"
-        />
 
-        <unnnic-button
-          class="form-tab-content-buttons__call-actions__remove-button"
-          v-if="showRemoveButton"
-          :disabled="disableInputs"
-          type="terciary"
-          iconCenter="close-1"
-          size="small"
-          @click="removeButton(index)"
-        />
+          <div
+            v-if="currentButtons[index].button_type === 'PHONE_NUMBER'"
+            class="form-tab-content-buttons__call-actions--inline"
+          >
+            <unnnic-select
+              :class="{
+                'form-tab-content-buttons__call-actions__country-select': true,
+                'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
+              }"
+              :key="currentButtons[index].button_type"
+              :label="$t('WhatsApp.templates.form_field.country')"
+              :disabled="disableInputs"
+              :value="currentButtons[index].country_code"
+              :search="true"
+              @input="handleCountryCodeSelection($event, index)"
+            >
+              <option
+                v-for="option in countryOptions"
+                :key="option.value"
+                :value="option.value"
+                :label="`${option.text} +${getCountryCallingCode(option.text)}`"
+              >
+                {{ option.text }}
+              </option>
+            </unnnic-select>
+
+            <unnnic-input
+              class="form-tab-content-buttons__call-actions__number-input"
+              :label="$t('WhatsApp.templates.form_field.phone_number')"
+              :placeholder="$t('WhatsApp.templates.form_field.phone_number_placeholder')"
+              :disabled="disableInputs"
+              :value="currentButtons[index].phone_number"
+              @input="handleActionInput($event, 'phone_number', index)"
+              :maxlength="20"
+            />
+          </div>
+
+          <div v-if="currentButtons[index].button_type === 'URL'" class="url-input-group">
+            <span
+              :class="{
+                'url-input-group__prefix': true,
+                'url-input-group__prefix--focused': focusedUrlInput,
+              }"
+            >
+              https://
+            </span>
+            <unnnic-input
+              class="url-input-group__input"
+              :label="$t('WhatsApp.templates.form_field.website_url')"
+              :placeholder="$t('WhatsApp.templates.form_field.url_placeholder')"
+              :disabled="disableInputs"
+              :value="currentButtons[index].url"
+              @input="handleActionInput($event, 'url', index)"
+              @keydown="formatUrlInput($event)"
+              :maxlength="2000"
+              @focus="handleUrlFocus"
+              @blur="handleUrlBlur"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
     <unnnic-button
       v-if="showAddButton"
-      type="secondary"
+      type="terciary"
       :disabled="disableInputs"
       iconLeft="add-1"
-      size="large"
+      size="small"
       class="form-tab-content-buttons__add-button"
       @click="addButton"
     >
@@ -248,13 +273,6 @@
           return false;
         }
       },
-      showRemoveButton() {
-        if (this.buttonsType === 'quick_reply') {
-          return this.currentButtons.length > 1;
-        } else {
-          return this.currentButtons.length > 1;
-        }
-      },
     },
     watch: {
       /* istanbul ignore next */
@@ -263,6 +281,7 @@
       },
     },
     methods: {
+      getCountryCallingCode,
       handleButtonTypeChange(event) {
         if (event === this.buttonsType) {
           return;
@@ -364,15 +383,17 @@
     display: flex;
     flex-direction: column;
 
-    &__tag {
-      width: fit-content;
+    &__title {
       margin-bottom: $unnnic-spacing-stack-sm;
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      font-weight: $unnnic-font-weight-bold;
+
+      color: $unnnic-color-neutral-darkest;
     }
 
     &__type-select {
-      min-width: 25%;
-      width: fit-content;
-      margin-bottom: $unnnic-spacing-stack-sm;
+      margin-bottom: $unnnic-spacing-stack-md;
 
       &__disabled {
         cursor: default;
@@ -392,13 +413,31 @@
     &__replies {
       &__wrapper {
         display: flex;
-        flex: 1;
-        margin-bottom: $unnnic-spacing-stack-sm;
+        flex-direction: column;
+
+        border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+        border-radius: $unnnic-border-radius-md;
+        padding: $unnnic-spacing-inset-sm;
+        margin-bottom: $unnnic-spacing-stack-md;
+
+        &--inline {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &__button-title {
+          font-size: $unnnic-font-size-body-lg;
+          line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+
+          color: $unnnic-color-neutral-darkest;
+        }
+
+        margin-bottom: $unnnic-spacing-stack-md;
       }
 
       &__input {
         flex: 1;
-        margin-right: $unnnic-spacing-inline-xs;
       }
     }
 
@@ -407,20 +446,39 @@
       flex-direction: column;
       width: 100%;
 
-      &__wrapper {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 50px;
-        gap: $unnnic-spacing-inline-xs;
-        margin-bottom: $unnnic-spacing-stack-sm;
-        white-space: nowrap;
+      &--inline {
+        display: flex;
+        gap: $unnnic-spacing-inline-sm;
+      }
 
-        &--url {
-          grid-template-columns: 1fr 1fr 1fr 50px;
+      &__button {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-stack-xs;
+
+        border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+        border-radius: $unnnic-border-radius-md;
+        padding: $unnnic-spacing-inset-sm;
+        margin-bottom: $unnnic-spacing-stack-md;
+
+        &__header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          &__title {
+            font-size: $unnnic-font-size-body-lg;
+            line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+
+            color: $unnnic-color-neutral-darkest;
+          }
         }
       }
 
-      &__remove-button {
-        margin-top: 38px;
+      &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-stack-xs;
       }
 
       &__select {
@@ -438,10 +496,14 @@
           }
         }
       }
-    }
 
-    &__add-button {
-      width: fit-content;
+      &__number-input {
+        flex: 1;
+      }
+
+      &__country-select {
+        width: 20%;
+      }
     }
   }
 

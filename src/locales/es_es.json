@@ -365,7 +365,9 @@
         "webhook_update": "Error al intentar actualizar los datos del webhook"
       },
       "qr": {
-        "title": "Enlace de Whatsapp"
+        "title": "Enlace de Whatsapp",
+        "button": "Enlace de acceso",
+        "info": "Para acceder al enlace, escanee el código QR o haga clic en el botón de abajo"
       }
     },
     "templates": {
@@ -445,9 +447,21 @@
         "footer_text": "Texto de pie de página",
         "header": "Cabecera",
         "header_text_placeholder": "Ex.: Escribe tu mensaje...",
-        "add_variable": "Agregar variable",
+        "add_variable": "Agregar variable al cuerpo del texto",
         "save_language": "Guardar idioma",
-        "name_exists": "Este nombre ya existe, por favor ingrese uno diferente."
+        "name_exists": "Este nombre ya existe, por favor ingrese uno diferente.",
+        "category_placeholder": "Seleccione la categoría",
+        "language__placeholder": "Seleccione el idioma",
+        "header__label": "Formato",
+        "body_text__placeholder": "Escribe el cuerpo del texto",
+        "buttons__label": "Tipo de botones",
+        "reply_label": "Texto del botón",
+        "button": "Botón",
+        "button_text_placeholder": "Introduzca el texto del botón",
+        "button_text": "Texto del botón",
+        "phone_number_placeholder": "Ingrese el número de teléfono",
+        "url_placeholder": "Ingrese la URL del sitio web",
+        "footer_text_placeholder": "Escribe el texto de pie de página"
       },
       "category_options": {
         "marketing": "Marketing",

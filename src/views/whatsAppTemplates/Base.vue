@@ -17,7 +17,7 @@
       crumbs() {
         return [
           {
-            name: 'Templates',
+            name: this.$t('WhatsApp.config.tabs.profile'),
             path: '/apps/my',
           },
           {
@@ -43,7 +43,7 @@
 
 <style lang="scss" scoped>
   .whatsapp-templates-base {
-    height: 100%;
+    height: calc(100vh - 5.5rem);
   }
 </style>
 

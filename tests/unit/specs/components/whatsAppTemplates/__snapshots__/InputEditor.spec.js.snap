@@ -22,8 +22,5 @@ exports[`components/whatsAppTemplates/InputEditor.vue should be rendered properl
       </unnnicbutton-stub>
     </unnnictooltip-stub>
   </div>
-  <unnnicbutton-stub type="terciary" iconleft="add-1" size="small" class="templates-form-body__add-variable">
-    Add Variable
-  </unnnicbutton-stub>
 </div>
 `;
