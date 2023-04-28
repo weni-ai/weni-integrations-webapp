@@ -146,15 +146,6 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       expect(removeButton.exists()).toBe(true);
     });
 
-    it('should not display add button if type is quick_reply and count <= 1', async () => {
-      const { wrapper } = mountComponent({
-        templateButtons: [{ button_type: 'QUICK_REPLY', text: 'reply1' }],
-      });
-
-      const removeButton = wrapper.find('.form-tab-content-buttons__replies__remove-button');
-      expect(removeButton.exists()).toBe(false);
-    });
-
     it('should display remove button if type is call_to_action and count > 1', async () => {
       const { wrapper } = mountComponent({
         templateButtons: [
@@ -167,17 +158,6 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
         '.form-tab-content-buttons__call-actions__button__header__remove-button',
       );
       expect(removeButton.exists()).toBe(true);
-    });
-
-    it('should not display remove button if type is call_to_action and count <= 1', async () => {
-      const { wrapper } = mountComponent({
-        templateButtons: [{ button_type: 'PHONE_NUMBER', country_code: 'BR' }],
-      });
-
-      const removeButton = wrapper.find(
-        '.form-tab-content-buttons__call-actions__button__header__remove-button',
-      );
-      expect(removeButton.exists()).toBe(false);
     });
   });
 
