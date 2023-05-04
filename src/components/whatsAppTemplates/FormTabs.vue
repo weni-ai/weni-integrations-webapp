@@ -230,7 +230,7 @@
           const haveActionButtons = translation.buttons.find(
             (button) => button.button_type === 'PHONE_NUMBER' || button.button_type === 'URL',
           );
-          if (haveActionButtons) {
+          if (haveActionButtons && translation.buttons.length > 2) {
             translation.buttons.length = 2;
           }
 
