@@ -191,6 +191,7 @@
 
       &__buttons {
         display: flex;
+        align-items: flex-end;
         gap: $unnnic-spacing-inline-md;
       }
     }
