@@ -1,26 +1,27 @@
 <template lang="">
   <div>
-    <unnnic-modal
-      ref="unnnic-add-modal"
-      class="add-modal"
-      :showModal="showModal"
-      :text="currentModalTitle"
-      :description="!currentApp ? $t('onboard.modal.app_selection.description') : null"
-      scheme="feedback-green"
-      @close="closeModal"
-      @click.stop
-    >
-      <div v-if="!currentApp" slot="message" class="onboard__app-selection">
-        <img
-          class="onboard__app-selection__app"
-          v-for="(app, index) in availableApps"
-          :key="index"
-          :src="onboardIcons[app]"
-          @click="() => (currentApp = app)"
-        />
+    <unnnic-modal-next class="onboard" v-if="showModal" @close="closeModal" show-close-button>
+      <div class="onboard--title">
+        {{ currentModalTitle }}
       </div>
 
-      <div v-else slot="message" class="onboard__content">
+      <div v-if="!currentApp" class="onboard__app-selection">
+        <div class="onboard__app-selection--description">
+          {{ $t('onboard.modal.app_selection.description') }}
+        </div>
+
+        <div class="onboard__app-selection__wrapper">
+          <img
+            class="onboard__app-selection__app"
+            v-for="(app, index) in availableApps"
+            :key="index"
+            :src="onboardIcons[app]"
+            @click="() => (currentApp = app)"
+          />
+        </div>
+      </div>
+
+      <div v-else class="onboard__content">
         <img class="onboard__gif" :src="onboardGifs[currentApp][page]" />
 
         <span class="onboard__description" v-html="onboardDescriptions[currentApp][page]" />
@@ -34,7 +35,7 @@
           />
         </div>
       </div>
-    </unnnic-modal>
+    </unnnic-modal-next>
   </div>
 </template>
 
@@ -158,20 +159,44 @@
 
 <style lang="scss" scoped>
   .onboard {
+    &--title {
+      text-align: center;
+      margin-bottom: $unnnic-spacing-stack-sm;
+      font-weight: $unnnic-font-weight-black;
+      font-size: $unnnic-font-size-title-sm;
+      color: $unnnic-color-neutral-darkest;
+    }
+
     &__app-selection {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       gap: $unnnic-spacing-inline-sm;
-      margin-top: $unnnic-spacing-stack-md;
+
+      &__wrapper {
+        display: flex;
+        gap: $unnnic-spacing-inline-sm;
+        justify-content: center;
+      }
 
       &__app {
         cursor: pointer;
+      }
+
+      &--description {
+        text-align: center;
+        font-size: $unnnic-font-size-body-lg;
+        line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+        color: $unnnic-color-neutral-cloudy;
       }
     }
 
     &__content {
       display: flex;
       flex-direction: column;
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      color: $unnnic-color-neutral-cloudy;
     }
 
     &__gif {
@@ -197,9 +222,10 @@
   }
 </style>
 
-<style>
+<style lang="scss">
   ol {
-    padding-left: 1.5rem;
+    list-style-type: decimal;
     margin: 0;
+    padding-left: $unnnic-spacing-inline-md;
   }
 </style>
