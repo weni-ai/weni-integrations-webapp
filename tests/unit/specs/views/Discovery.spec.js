@@ -20,6 +20,8 @@ AppGrid.methods = {
 const mountComponent = async ({ createAppCode = null } = {}) => {
   const actions = {
     getAllAppTypes: jest.fn(),
+    deleteApp: jest.fn(),
+    getConfiguredApps: jest.fn(),
   };
 
   const state = {

@@ -1,4 +1,6 @@
 export default {
+  onboardStatus: true,
+
   loadingDeleteApp: false,
   errorDeleteApp: false,
 

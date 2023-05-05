@@ -4,6 +4,10 @@ import { captureSentryException } from '@/utils/sentry';
 import { clearHtmlTags } from '@/utils/clearHtmlTags';
 
 export default {
+  setOnboardStatus({ commit }, { status }) {
+    commit('SET_ONBOARD_STATUS', status);
+  },
+
   async getAllAppTypes({ commit }, { params }) {
     commit('GET_ALL_APP_TYPES_REQUEST');
     try {

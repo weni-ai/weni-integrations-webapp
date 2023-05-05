@@ -4,9 +4,9 @@ exports[`components/whatsAppTemplates/FormTabContentBody.vue should be rendered 
 <div class="form-tab-content-body"><span class="form-tab-content-body__title">
     Body Text
   </span>
-  <div data-v-24fcdb87="" class="form-tab-content-body__input unnnic-text-area md normal">
-    <!----><textarea data-v-24fcdb87="" placeholder="Write the body text" maxlength="1024"></textarea>
-    <div data-v-24fcdb87="" class="helper"> 0/1024 </div>
+  <div data-v-a95e6368="" class="form-tab-content-body__input unnnic-text-area md normal">
+    <!----><textarea data-v-a95e6368="" placeholder="Write the body text" maxlength="1024"></textarea>
+    <div data-v-a95e6368="" class="helper"> 0/1024 </div>
     <!---->
   </div>
   <inputeditor-stub formatter="true" class="form-tab-content-body__input__actions"></inputeditor-stub> <button data-v-00f478da="" class="unnnic-button unnnic-button--size-small unnnic-button--terciary unnnic-button-scheme--">

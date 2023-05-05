@@ -1,30 +1,31 @@
 <template>
-  <div>
-    <div class="discovery-content__sessions">
-      <app-grid
-        ref="appGrid"
-        section="channel"
-        type="add"
-        :loading="loadingAllAppTypes"
-        :apps="allAppTypes"
-        @update="fetchChannels"
-      />
+  <div class="discovery-content__sessions">
+    <app-grid
+      ref="appGrid"
+      section="channel"
+      type="add"
+      :loading="loadingAllAppTypes"
+      :apps="allAppTypes"
+      @update="fetchChannels"
+    />
 
-      <app-grid
-        section="external"
-        type="add"
-        :loading="loadingExternalServices"
-        :apps="externalServicesList"
-        @update="fetchExternalServices"
-      />
+    <app-grid
+      section="external"
+      type="add"
+      :loading="loadingExternalServices"
+      :apps="externalServicesList"
+      @update="fetchExternalServices"
+    />
 
-      <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
-    </div>
+    <app-grid section="bi-tools" type="view" :loading="false" :apps="biApps" />
+
+    <OnboardModal />
   </div>
 </template>
 <script>
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import AppGrid from '../components/AppGrid.vue';
+  import OnboardModal from '../components/OnboardModal.vue';
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -32,6 +33,7 @@
     name: 'Discovery',
     components: {
       AppGrid,
+      OnboardModal,
     },
     data() {
       return {

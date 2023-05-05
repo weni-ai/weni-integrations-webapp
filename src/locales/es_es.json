@@ -7,7 +7,10 @@
     "loading": "Cargando",
     "Remove": "Retirar",
     "exit": "Salir",
-    "send": "Enviar"
+    "send": "Enviar",
+    "back": "Volver",
+    "next": "Próximo",
+    "start": "Empezar"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -687,6 +690,35 @@
     },
     "errors": {
       "configure": "Ocurrió un error al intentar configurar el servicio, intente nuevamente más tarde"
+    }
+  },
+  "onboard": {
+    "modal": {
+      "app_selection": {
+        "title": "Integra un canal a tu proyecto",
+        "description": "Elige el canal que quieres usar y sigue el paso a paso para agregarlo. Es rápido y fácil."
+      },
+      "whatsapp": {
+        "title": "Cómo integrar WhatsApp",
+        "descriptions": {
+          "first": "<ol><li>En la tarjeta de WhatsApp, busque el botón \"+\" y haga clic en él.</li><li>A continuación, aparecerá una ventana que le preguntará si desea conectar su cuenta de WhatsApp con Facebook.</li><li>Inicie sesión en su Facebook y haga clic en \"Iniciar\" para ser redirigido a la página siguiente.</li><li>Ah, y no se preocupe por los permisos solicitados. ¡Son necesarios para que podamos ayudarte aún más!</li></ol>",
+          "second": "<ol start=\"5\"><li>Ahora es el momento de completar los detalles de su empresa.</li><li>Cree o seleccione un perfil para su negocio de Whatsapp, esta cuenta pertenecerá a su cuenta comercial de destino. <li>Agrega el número de teléfono que la gente usará para chatear contigo en Whatsapp.</li></li><li>Después de eso, ingresa tu número y completa el campo del código de verificación que se te enviará.</ li></ol>",
+          "third": "<ol start=\"9\"><li>Después de realizar estos ajustes, aparecerá una nueva pantalla de Weni Platform. Simplemente haga clic en Crear canal.</li><li>Su canal ahora está integrado con WhatsApp y listo para personalizarse.</li><li>Para personalizar, haga clic en la tarjeta de WhatsApp que muestra el número de su empresa.</li> <li>Luego puede personalizar el nombre y la descripción.</li></ol>"
+        }
+      },
+      "telegram": {
+        "descriptions": {
+          "first": "<ol><li>¡Vamos! Abra su Telegram y busque \"@BotFather\".</li><li>Luego envíe “/newbot”, elija un nombre de usuario (los nombres de usuario siempre deben terminar con “_bot”, por ejemplo: test_bot).</li> <li>Una vez completados estos pasos, recibirá un token.</li><li>En la plataforma Weni, acceda al módulo de integraciones y haga clic en el \"+\" en la tarjeta de Telegram, luego será redirigido a mi aplicaciones.</li></ol>",
+          "second": "<ol start=\"5\"><li>Busca la tarjeta de Telegram y haz clic en ella. Se abrirá una barra lateral en el lado derecho de la página.</li><li>Pegue el token que @BotFather le envió en el campo proporcionado. Luego haga clic en \"validar\".</li><li>Su bot se creará con el nombre que eligió.</li><li>Para acceder al bot en Telegram, simplemente busque el nombre que definió en la búsqueda campo y enviar un mensaje. Listo!</li></ol>"
+        },
+        "title": "Cómo integrar Telegram"
+      },
+      "wwc": {
+        "descriptions": {
+          "first": "<ol><li>En canales de comunicación, haga clic en Weni Web Chat.</li><li>Haga clic en el botón \"Agregar\" en la esquina superior derecha de la pantalla.</li><li>Ahora puede personalizar tu bot, eligiendo los colores, el nombre y los mensajes que enviará.</li><li>Por último, accede a la sección \"Código de script\" y copia el código que allí aparece. Péguelo encima de la etiqueta &lt/body&gt en su sitio.</li></ol>"
+        },
+        "title": "Cómo integrar Weni Web Chat"
+      }
     }
   }
 }
