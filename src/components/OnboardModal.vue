@@ -5,13 +5,14 @@
       class="add-modal"
       :showModal="showModal"
       :text="currentModalTitle"
-      :description="!currentApp ? $t('onboartd.modal.app_selection.description') : null"
+      :description="!currentApp ? $t('onboard.modal.app_selection.description') : null"
       scheme="feedback-green"
       @close="closeModal"
       @click.stop
     >
       <div v-if="!currentApp" slot="message" class="onboard__app-selection">
         <img
+          class="onboard__app-selection__app"
           v-for="(app, index) in availableApps"
           :key="index"
           :src="onboardIcons[app]"
@@ -162,6 +163,10 @@
       justify-content: center;
       gap: $unnnic-spacing-inline-sm;
       margin-top: $unnnic-spacing-stack-md;
+
+      &__app {
+        cursor: pointer;
+      }
     }
 
     &__content {
