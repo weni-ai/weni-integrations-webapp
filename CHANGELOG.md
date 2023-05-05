@@ -1,3 +1,13 @@
+1.24.0
+----------
+`2023-05-05 · 1 🐛 · 1 🎉`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp Templates preview 
+
+### 🎉 New Features
+- Feat: Onboard modal
+
 1.23.0
 ----------
 `2023-04-28 · 1 🎉`
