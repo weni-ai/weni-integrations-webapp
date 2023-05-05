@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
 import OnboardModal from '@/components/OnboardModal.vue';
-import { unnnicModal, unnnicButton } from '@weni/unnnic-system';
+import { unnnicModalNext, unnnicButton } from '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
 
 import { singleApp } from '../../../__mocks__/appMock';
@@ -47,7 +47,7 @@ const mountComponent = async ({
     store,
     i18n,
     stubs: {
-      unnnicModal,
+      unnnicModalNext,
     },
   });
 
