@@ -14,7 +14,7 @@ exports[`components/whatsAppTemplates/InputEditor.vue should be rendered properl
       <unnnicbutton-stub type="terciary" iconcenter="text-italic" size="small" class="input-editor__button"></unnnicbutton-stub>
     </unnnictooltip-stub>
     <unnnictooltip-stub side="top" text="Strike Through" enabled="">
-      <unnnicbutton-stub type="terciary" size="small" class="input-editor__button input-editor__button__strike"><img src=""></unnnicbutton-stub>
+      <unnnicbutton-stub type="terciary" size="small" class="input-editor__button input-editor__button__strike"><img src="[object Object]"></unnnicbutton-stub>
     </unnnictooltip-stub>
     <unnnictooltip-stub side="top" text="Monospace" enabled="">
       <unnnicbutton-stub type="terciary" size="small" class="input-editor__button input-editor__button__mono">

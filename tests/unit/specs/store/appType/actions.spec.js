@@ -463,5 +463,13 @@ describe('store/appType/actions.js', () => {
         expect(store.state.appType.errorUpdateAppConfig).toEqual(error);
       });
     });
+
+    describe('setOnboardStatus', () => {
+      it('should set onboardStatus to false', async () => {
+        expect(store.state.appType.onboardStatus).toBe(true);
+        await store.dispatch('setOnboardStatus', { status: false });
+        expect(store.state.appType.onboardStatus).toBe(false);
+      });
+    });
   });
 });

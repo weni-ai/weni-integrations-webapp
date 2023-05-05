@@ -35,6 +35,7 @@ const mountComponent = async ({ errorUpdateAppConfig = false, errorCreateApp = f
   const actions = {
     createApp: jest.fn(),
     updateAppConfig: jest.fn(),
+    deleteApp: jest.fn(),
   };
 
   const store = new Vuex.Store({

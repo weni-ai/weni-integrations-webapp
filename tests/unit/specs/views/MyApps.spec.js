@@ -28,6 +28,7 @@ describe('MyApps.vue', () => {
       getInstalledApps: jest.fn(() => {
         return { data: [singleApp] };
       }),
+      deleteApp: jest.fn(),
     };
 
     state = {
