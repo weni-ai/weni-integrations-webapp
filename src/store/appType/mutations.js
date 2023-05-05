@@ -1,4 +1,7 @@
 export default {
+  SET_ONBOARD_STATUS(state, status) {
+    state.onboardStatus = status;
+  },
   GET_ALL_APP_TYPES_REQUEST(state) {
     state.loadingAllAppTypes = true;
     state.errorAllAppTypes = null;
