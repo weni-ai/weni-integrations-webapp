@@ -701,21 +701,21 @@
       "whatsapp": {
         "title": "Como integrar o Whatsapp",
         "descriptions": {
-          "first": "<ol><li>No card de WhatsApp, procure pelo botão \"+\" e clique nele.</li><li>Em seguida, aparecerá uma janela perguntando se você quer conectar sua conta do WhatsApp com o Facebook.</li><li>Faça login no seu Facebook e clique em \"Começar\" para ser redirecionado para a próxima página.</li><li>Ah, e não se preocupe com as permissões solicitadas. Elas são necessárias para que possamos ajudar você ainda mais!</li></ol>",
+          "first": "<ol><li>No card de WhatsApp, procure pelo botão \"+\" e clique nele.</li><li>Em seguida, aparecerá uma janela perguntando se você quer conectar sua conta do WhatsApp com o Facebook.</li><li>Faça login no seu Facebook e clique em \"Começar\" para ser redirecionado para a próxima página.</li><li>Ah, e não se preocupe com as permissões solicitadas. Elas são necessárias para podermos ajudar você ainda mais!</li></ol>",
           "second": "<ol start=\"5\"><li>Agora é hora de preencher os dados da sua empresa.</li><li>Crie ou selecione um perfil para seu Whatsapp Bussines, essa conta pertencerá à sua conta empresarial da meta.<li>Adicione o número de telefone que as pessoas vão usar para conversar com você no Whatsapp.</li></li><li>Depois disso insira o seu número e preencha o campo de código de verificação que será enviado para você.</li></ol>",
-          "third": "<ol start=\"9\"><li>Após realizar essa configurações, aparecerá uma nova tela da Weni Plataforma. Basta clicar em Criar Canal.</li><li>Agora seu canal já está integrado ao WhatsApp e está pronto para ser personalizado.</li><li>Para personalizar, clique no card do WhatsApp que exibe o número da sua empresa.</li><li>Em seguida, você pode personalizar o nome e a descrição.</li></ol>"
+          "third": "<ol start=\"9\"><li>Após realizar essa configuração, aparecerá uma nova tela da Weni Plataforma. Basta clicar em Criar Canal.</li><li>Agora seu canal já está integrado ao WhatsApp e está pronto para ser personalizado.</li><li>Para personalizar, clique no card do WhatsApp que exibe o número da sua empresa.</li><li>Em seguida, você pode personalizar o nome e a descrição.</li></ol>"
         }
       },
       "telegram": {
         "descriptions": {
           "first": "<ol><li>Vamos lá! Abra o seu Telegram e procure \"@BotFather\".</li><li>Em seguida, envie “/newbot”, escolha um Username (os usernames devem sempre acabar com “_bot”, Ex:. test_bot).</li><li>Com essas etapas finalizadas, você receberá um token.</li><li>Na plataforma Weni acesse o módulo de integrações, e clique em “+” no card do telegram, em seguida você será redirecionado para meus aplicativos.</li></ol>",
-          "second": "<ol start=\"5\"><li>Encontre o card do Telegram e clique nele. Uma barra lateral vai abrir ao lado direito da página.</li><li>Cole o token que o @BotFather enviou para você no campo indicado. Em seguida, clique em \"validar\".</li><li>O  seu bot será criado com o nome que você escolheu.</li><li>Para acessar o bot no Telegram, basta pesquisar pelo nome que definiu no campo de pesquisa. Pronto!</li></ol>"
+          "second": "<ol start=\"5\"><li>Encontre o card do Telegram e clique nele. Uma barra lateral abrirá ao lado direito da página.</li><li>Cole o token que o @BotFather enviou para você no campo indicado. Em seguida, clique em \"validar\".</li><li>O  seu bot será criado com o nome que você escolheu.</li><li>Para acessar o bot no Telegram, basta pesquisar pelo nome que definiu no campo de pesquisa. Pronto!</li></ol>"
         },
         "title": "Como integrar o Telegram"
       },
       "wwc": {
         "descriptions": {
-          "first": "<ol><li>Em canais de comunicação, clique em Weni Web Chat.</li><li>Clique no botão \"Adicionar\" no canto superior direito da tela.</li><li>Agora você pode personalizar o seu bot, escolhendo as cores, o nome e as mensagens que ele vai enviar.</li><li>Por fim, acesse a seção \"Código Script\" e copie o código que aparece lá. Cole ele acima da tag &lt/body&gt no seu site.</li></ol>"
+          "first": "<ol><li>Em canais de comunicação, clique em Weni Web Chat.</li><li>Clique no botão \"Adicionar\" no canto superior direito da tela.</li><li>Agora você pode personalizar o seu bot, escolhendo as cores, o nome e as mensagens de disparo que seu chat terá.</li><li>Por fim, acesse a seção \"Código Script\" e copie o código que aparece lá. Cole ele acima da tag &lt/body&gt no seu site.</li></ol>"
         },
         "title": "Como integrar o Weni Web Chat"
       }
