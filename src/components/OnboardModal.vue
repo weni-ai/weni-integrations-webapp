@@ -5,35 +5,33 @@
         {{ currentModalTitle }}
       </div>
 
-      <div v-if="!currentApp" class="onboard__app-selection">
-        <div class="onboard__app-selection--description">
-          {{ $t('onboard.modal.app_selection.description') }}
-        </div>
-
-        <div class="onboard__app-selection__wrapper">
-          <img
-            class="onboard__app-selection__app"
-            v-for="(app, index) in availableApps"
-            :key="index"
-            :src="onboardIcons[app]"
-            @click="() => (currentApp = app)"
-          />
-        </div>
+      <div v-if="!currentApp" class="onboard__app-selection--description">
+        {{ $t('onboard.modal.app_selection.description') }}
       </div>
 
-      <div v-else class="onboard__content">
+      <div v-if="!currentApp" class="onboard__app-selection__wrapper">
+        <img
+          class="onboard__app-selection__app"
+          v-for="(app, index) in availableApps"
+          :key="index"
+          :src="onboardIcons[app]"
+          @click="() => (currentApp = app)"
+        />
+      </div>
+
+      <div v-if="currentApp" class="onboard__content">
         <img class="onboard__gif" :src="onboardGifs[currentApp][page]" />
 
         <span class="onboard__description" v-html="onboardDescriptions[currentApp][page]" />
+      </div>
 
-        <div slot="options" class="onboard__buttons">
-          <unnnic-button type="terciary" @click.stop="previousPage" :text="$t('general.back')" />
-          <unnnic-button
-            type="secondary"
-            @click="nextPage"
-            :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
-          />
-        </div>
+      <div v-if="currentApp" class="onboard__buttons">
+        <unnnic-button type="terciary" @click.stop="previousPage" :text="$t('general.back')" />
+        <unnnic-button
+          type="secondary"
+          @click="nextPage"
+          :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
+        />
       </div>
     </unnnic-modal-next>
   </div>
@@ -159,11 +157,28 @@
 
 <style lang="scss" scoped>
   .onboard {
+    ::v-deep {
+      .container {
+        padding: $unnnic-squish-md !important;
+      }
+
+      .header {
+        margin-bottom: $unnnic-spacing-stack-nano !important;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        overflow: auto !important;
+      }
+    }
+
     &--title {
       text-align: center;
-      margin-bottom: $unnnic-spacing-stack-sm;
+      margin-bottom: $unnnic-spacing-stack-xs;
       font-weight: $unnnic-font-weight-black;
       font-size: $unnnic-font-size-title-sm;
+      line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
       color: $unnnic-color-neutral-darkest;
     }
 
@@ -177,6 +192,7 @@
         display: flex;
         gap: $unnnic-spacing-inline-sm;
         justify-content: center;
+        margin-bottom: $unnnic-spacing-stack-xs;
       }
 
       &__app {
@@ -185,17 +201,21 @@
 
       &--description {
         text-align: center;
-        font-size: $unnnic-font-size-body-lg;
-        line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-neutral-cloudy;
+        margin-bottom: $unnnic-spacing-stack-sm;
+        margin-top: $unnnic-spacing-stack-xs;
       }
     }
 
     &__content {
       display: flex;
       flex-direction: column;
-      font-size: $unnnic-font-size-body-lg;
-      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      overflow: auto;
+
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
       color: $unnnic-color-neutral-cloudy;
     }
 
@@ -206,12 +226,18 @@
     }
 
     &__description {
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+      color: $unnnic-color-neutral-cloudy;
       text-align: left;
-      margin-top: $unnnic-spacing-stack-md;
+      margin-top: $unnnic-spacing-stack-sm;
+
+      flex: 1;
+      overflow: overlay;
     }
 
     &__buttons {
-      margin-top: $unnnic-spacing-stack-giant;
+      margin-top: $unnnic-spacing-stack-sm;
       display: flex;
       gap: $unnnic-spacing-inline-lg;
 
