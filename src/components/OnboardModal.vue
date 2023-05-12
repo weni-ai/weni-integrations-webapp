@@ -152,6 +152,15 @@
         this.setOnboardStatus({ status: false });
       },
     },
+    watch: {
+      showModal() {
+        if (this.showModal) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = 'auto';
+        }
+      },
+    },
   };
 </script>
 
