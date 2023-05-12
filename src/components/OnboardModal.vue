@@ -242,7 +242,6 @@
       margin-top: $unnnic-spacing-stack-sm;
 
       flex: 1;
-      overflow: overlay;
     }
 
     &__buttons {
