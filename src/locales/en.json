@@ -229,11 +229,11 @@
     },
     "config": {
       "title": "Almost there!",
-      "description": "To be able to use Whatsapp Demo you will be directed to a link.",
+      "description": "To be able to use WhatsApp Demo you will be directed to a link.",
       "continue_and_redirect": "Continue and Redirect"
     },
     "preview": {
-      "description": "With the URL below you can use Whatsapp Demo, test it on your project, or even share it with others.",
+      "description": "With the URL below you can use WhatsApp Demo, test it on your project, or even share it with others.",
       "UrlInput": {
         "label": "URL"
       }
@@ -368,7 +368,7 @@
         "webhook_update": "Error while trying to update webhook data"
       },
       "qr": {
-        "title": "Whatsapp Link",
+        "title": "WhatsApp Link",
         "button": "Access link",
         "info": "Para acessar o link, escaneie o QR Code ou clique no botão abaixo"
       }
@@ -702,7 +702,7 @@
         "title": "How to integrate WhatsApp",
         "descriptions": {
           "first": "<ol><li>On the WhatsApp card, look for the \"+\" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click \"Start\" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol>",
-          "second": "<ol start=\"5\"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your Whatsapp Bussines, this account will belong to your target business account .<li>Add the phone number that people will use to chat with you on Whatsapp.</li></li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol>",
+          "second": "<ol start=\"5\"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .<li>Add the phone number that people will use to chat with you on WhatsApp.</li></li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol>",
           "third": "<ol start=\"9\"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol>"
         }
       },
