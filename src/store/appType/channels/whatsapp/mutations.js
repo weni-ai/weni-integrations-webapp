@@ -113,6 +113,11 @@ export default {
     state.templateTranslationSelectedForm = null;
   },
 
+  CLEAR_TEMPLATE_DATA(state) {
+    state.whatsAppTemplate = null;
+    state.errorFetchWhatsAppTemplate = null;
+  },
+
   FETCH_WHATSAPP_TEMPLATE_REQUEST(state) {
     state.loadingFetchWhatsAppTemplate = true;
     state.errorFetchWhatsAppTemplate = null;
@@ -165,6 +170,20 @@ export default {
   CREATE_TEMPLATE_TRANSLATION_ERROR(state, data) {
     state.errorCreateTemplateTranslation = data;
     state.loadingCreateTemplateTranslation = false;
+  },
+
+  UPDATE_TEMPLATE_TRANSLATION_REQUEST(state) {
+    state.loadingUpdateTemplateTranslation = true;
+    state.updatedTemplateTranslationData = null;
+    state.errorUpdateTemplateTranslation = null;
+  },
+  UPDATE_TEMPLATE_TRANSLATION_SUCCESS(state, data) {
+    state.updatedTemplateTranslationData = data;
+    state.loadingUpdateTemplateTranslation = false;
+  },
+  UPDATE_TEMPLATE_TRANSLATION_ERROR(state, data) {
+    state.errorUpdateTemplateTranslation = data;
+    state.loadingUpdateTemplateTranslation = false;
   },
 
   DELETE_TEMPLATE_MESSAGE_REQUEST(state) {
