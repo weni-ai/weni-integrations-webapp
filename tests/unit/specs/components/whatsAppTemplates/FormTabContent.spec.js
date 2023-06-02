@@ -32,6 +32,7 @@ const mountComponent = ({
   availableLanguages = [],
   templateResults = [],
   canEdit = true,
+  bodyHasError = false,
 } = {}) => {
   if (!availableLanguages.length) {
     availableLanguages = [
@@ -48,7 +49,7 @@ const mountComponent = ({
 
   const getters = {
     templateTranslationCurrentForm: jest.fn(() => {
-      return { language };
+      return { language, bodyHasError };
     }),
   };
 
@@ -439,7 +440,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
     });
 
     it('should not emit save-changes if cannot save', async () => {
-      const { wrapper } = mountComponent({ canEdit: false });
+      const { wrapper } = mountComponent({ bodyHasError: true });
 
       expect(wrapper.emitted('save-changes')).toBeFalsy();
 

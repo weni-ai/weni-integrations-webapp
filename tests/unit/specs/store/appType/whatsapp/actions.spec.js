@@ -13,6 +13,7 @@ jest.mock('@/api/appType/whatsapp', () => {
     createTemplateTranslation: jest.fn(),
     deleteTemplateMessage: jest.fn(),
     updateWppWebhookInfo: jest.fn(),
+    updateTemplateTranslation: jest.fn(),
   };
 });
 import WhatsAppApi from '@/api/appType/whatsapp';
@@ -773,6 +774,60 @@ describe('store/appType/whatsapp/actions.js', () => {
     });
   });
 
+  describe('updateTemplateTranslation()', () => {
+    const data = {
+      appUuid: '123',
+      templateUuid: '456',
+      payload: {},
+    };
+
+    const mockedResult = {};
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.updateTemplateTranslation.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call updateTemplateTranslation from API', async () => {
+      expect(WhatsAppApi.updateTemplateTranslation).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/updateTemplateTranslation', data);
+      expect(WhatsAppApi.updateTemplateTranslation).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.updateTemplateTranslation).toHaveBeenCalledWith(
+        data.appUuid,
+        data.templateUuid,
+        data.payload,
+      );
+    });
+
+    it('should set updatedTemplateTranslationData as result data', async () => {
+      store.state.WhatsApp.updatedTemplateTranslationData = null;
+      expect(store.state.WhatsApp.updatedTemplateTranslationData).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/updateTemplateTranslation', data);
+      expect(store.state.WhatsApp.updatedTemplateTranslationData).toEqual(mockedResult);
+    });
+
+    it('should set loadingUpdateTemplateTranslation to false', async () => {
+      store.state.WhatsApp.loadingUpdateTemplateTranslation = true;
+      expect(store.state.WhatsApp.loadingUpdateTemplateTranslation).toBe(true);
+      await store.dispatch('WhatsApp/updateTemplateTranslation', data);
+      expect(store.state.WhatsApp.loadingUpdateTemplateTranslation).toBe(false);
+    });
+
+    it('should set errorUpdateTemplateTranslation as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.updateTemplateTranslation.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorUpdateTemplateTranslation = {};
+      expect(store.state.WhatsApp.errorUpdateTemplateTranslation).not.toEqual(error);
+      await store.dispatch('WhatsApp/updateTemplateTranslation', data);
+      expect(store.state.WhatsApp.errorUpdateTemplateTranslation).toEqual(error);
+    });
+  });
+
   describe('deleteTemplateMessage()', () => {
     const data = {
       appUuid: '123',
@@ -878,6 +933,18 @@ describe('store/appType/whatsapp/actions.js', () => {
       expect(store.state.WhatsApp.errorUpdateWebhookInfo).not.toEqual(error);
       await store.dispatch('WhatsApp/updateWppWebhookInfo', data);
       expect(store.state.WhatsApp.errorUpdateWebhookInfo).toEqual(error);
+    });
+  });
+
+  describe('clearTemplateData()', () => {
+    it('should clear template data', () => {
+      store.state.WhatsApp.whatsAppTemplate = { foo: 'bar' };
+      store.state.WhatsApp.errorFetchWhatsAppTemplate = true;
+      expect(store.state.WhatsApp.whatsAppTemplate).toEqual({ foo: 'bar' });
+      expect(store.state.WhatsApp.errorFetchWhatsAppTemplate).toEqual(true);
+      store.dispatch('WhatsApp/clearTemplateData');
+      expect(store.state.WhatsApp.whatsAppTemplate).toEqual(null);
+      expect(store.state.WhatsApp.errorFetchWhatsAppTemplate).toEqual(null);
     });
   });
 });
