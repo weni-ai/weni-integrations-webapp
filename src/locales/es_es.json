@@ -432,7 +432,8 @@
         "invalid_fields": "Hay campos inválidos, corríjalos y vuelva a intentarlo.",
         "start_or_end_with_variable": "El cuerpo del texto contiene parámetros variables al principio o al final. Debe cambiar este formato o agregar una muestra.",
         "too_many_variables": "Esta plantilla contiene demasiados parámetros variables en relación con la longitud del mensaje. Debe disminuir el número de parámetros variables o aumentar la longitud del mensaje.",
-        "incomplete_bracket_variable": "Esta plantilla contiene parámetros variables con formato incorrecto. Los parámetros variables deben ser números enteros con dos juegos de corchetes (por ejemplo, {{1}}, {{2}})."
+        "incomplete_bracket_variable": "Esta plantilla contiene parámetros variables con formato incorrecto. Los parámetros variables deben ser números enteros con dos juegos de corchetes (por ejemplo, {{1}}, {{2}}).",
+        "update_translation": "No se puede actualizar la plantilla. Por favor, inténtelo de nuevo más tarde."
       },
       "new_language": "Nuevo Idioma",
       "form_field": {
@@ -505,7 +506,8 @@
         "PENDING": "Pendiente"
       },
       "success": {
-        "create_translation": "Traducción de plantilla creada con éxito"
+        "create_translation": "Traducción de plantilla creada con éxito",
+        "update_translation": "Traducción de plantilla actualizada con éxito"
       }
     }
   },
