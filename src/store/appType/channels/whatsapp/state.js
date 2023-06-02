@@ -50,6 +50,10 @@ export default {
   loadingCreateTemplateTranslation: false,
   errorCreateTemplateTranslation: false,
 
+  updatedTemplateTranslationData: null,
+  loadingUpdateTemplateTranslation: false,
+  errorUpdateTemplateTranslation: false,
+
   loadingUpdateWebhookInfo: false,
   errorUpdateWebhookInfo: null,
   updateWebhookInfoData: null,

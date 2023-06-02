@@ -87,6 +87,10 @@ export default {
     commit('CLEAR_ALL_TEMPLATE_FORM_DATA');
   },
 
+  clearTemplateData({ commit }) {
+    commit('CLEAR_TEMPLATE_DATA');
+  },
+
   async fetchTemplateData({ commit }, { appUuid, templateUuid }) {
     commit('FETCH_WHATSAPP_TEMPLATE_REQUEST');
     try {
@@ -132,6 +136,17 @@ export default {
     } catch (err) {
       captureSentryException(err);
       commit('CREATE_TEMPLATE_TRANSLATION_ERROR', err);
+    }
+  },
+
+  async updateTemplateTranslation({ commit }, { appUuid, templateUuid, payload }) {
+    commit('UPDATE_TEMPLATE_TRANSLATION_REQUEST');
+    try {
+      const { data } = await whatsApp.updateTemplateTranslation(appUuid, templateUuid, payload);
+      commit('UPDATE_TEMPLATE_TRANSLATION_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('UPDATE_TEMPLATE_TRANSLATION_ERROR', err);
     }
   },
 

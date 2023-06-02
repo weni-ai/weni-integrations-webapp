@@ -432,7 +432,8 @@
         "invalid_fields": "Existem campos inválidos, corrija-os e tente novamente.",
         "start_or_end_with_variable": "O corpo do texto contém parâmetros variáveis ​​no início ou no final.",
         "too_many_variables": "Este modelo contém muitos parâmetros variáveis ​​relativos ao comprimento da mensagem. Você precisa diminuir o número de parâmetros variáveis ​​ou aumentar o tamanho da mensagem.",
-        "incomplete_bracket_variable": "Este modelo contém parâmetros variáveis ​​com formatação incorreta. Os parâmetros variáveis ​​devem ser números inteiros com dois conjuntos de chaves (por exemplo, {{1}}, {{2}})."
+        "incomplete_bracket_variable": "Este modelo contém parâmetros variáveis ​​com formatação incorreta. Os parâmetros variáveis ​​devem ser números inteiros com dois conjuntos de chaves (por exemplo, {{1}}, {{2}}).",
+        "update_translation": "Não foi possível atualizar o template. Por favor tente novamente mais tarde."
       },
       "new_language": "Nova linguagem",
       "form_field": {
@@ -505,7 +506,8 @@
         "PENDING": "Pendente"
       },
       "success": {
-        "create_translation": "Tradução de template criada com sucesso"
+        "create_translation": "Tradução de template criada com sucesso",
+        "update_translation": "Tradução de template atualizada com sucesso"
       }
     }
   },

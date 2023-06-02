@@ -52,24 +52,24 @@
 
     <FormTabContentHeader
       class="form-tab-content__header"
-      :disableInputs="disableInputs"
+      :disableInputs="disableContentInputs"
       @input-change="handleGenericInput"
     />
     <FormTabContentBody
       ref="contentBody"
       class="form-tab-content__body"
-      :disableInputs="disableInputs"
+      :disableInputs="disableContentInputs"
       @input-change="handleGenericInput"
       @manual-preview-update="$emit('manual-preview-update')"
     />
     <FormTabContentFooter
       class="form-tab-content__footer"
-      :disableInputs="disableInputs"
+      :disableInputs="disableContentInputs"
       @input-change="handleGenericInput"
     />
     <FormTabContentButtons
       class="form-tab-content__buttons"
-      :disableInputs="disableInputs"
+      :disableInputs="disableContentInputs"
       @input-change="handleGenericInput"
     />
 
@@ -87,7 +87,7 @@
         size="large"
         :loading="loadingSave"
         :text="$t('WhatsApp.templates.form_field.save_language')"
-        :disabled="!canSave"
+        :disabled="!canSave || disableContentInputs"
         @click="saveTemplate"
       />
     </div>
@@ -178,6 +178,13 @@
       disableInputs() {
         return !this.canEdit;
       },
+      disableContentInputs() {
+        return (
+          this.templateTranslationCurrentForm?.status !== 'REJECTED' &&
+          this.templateTranslationCurrentForm?.status !== 'APPROVED' &&
+          !this.canEdit
+        );
+      },
       currentLanguage() {
         return this.templateTranslationCurrentForm?.language;
       },
@@ -194,7 +201,7 @@
         return this.$t(`WhatsApp.templates.category_options.${categoryLabel}`);
       },
       canSave() {
-        return !this.disableInputs && !this.templateTranslationCurrentForm?.bodyHasError;
+        return !this.templateTranslationCurrentForm?.bodyHasError;
       },
     },
     methods: {

@@ -48,6 +48,9 @@ export default {
       data,
     );
   },
+  updateTemplateTranslation(appUuid, templateUuid, data) {
+    return request.$http.patch(`${templatesResource}/${appUuid}/templates/${templateUuid}/`, data);
+  },
   updateWppWebhookInfo(appCode, appUuid, payload) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/update_webhook/`, payload);
   },

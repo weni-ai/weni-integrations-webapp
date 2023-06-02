@@ -32,6 +32,8 @@ const mountComponent = async ({
     createTemplate: jest.fn(),
     createTemplateTranslation: jest.fn(),
     getWhatsAppTemplates: jest.fn(),
+    clearTemplateData: jest.fn(),
+    updateTemplateTranslation: jest.fn(),
   };
 
   const state = {
@@ -52,6 +54,7 @@ const mountComponent = async ({
     errorCreateTemplateTranslation: false,
     createdTemplateTranslationData: null,
     errorWhatsAppTemplateSelectLanguages: false,
+    errorUpdateTemplateTranslation: false,
   };
 
   const getters = {
@@ -740,16 +743,6 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
   });
 
   describe('handleSave()', () => {
-    it('should not call executeSave if currentTab is in existingTabs', async () => {
-      const { wrapper } = await mountComponent();
-      const spy = spyOn(wrapper.vm, 'executeSave');
-
-      wrapper.vm.existingTabs = ['Portuguese (BR)'];
-      await wrapper.vm.handleSave();
-
-      expect(spy).not.toHaveBeenCalled();
-    });
-
     it('should not call executeSave if template name is null', async () => {
       const { wrapper } = await mountComponent({
         template: { name: null, category: '', translations: [] },
@@ -1082,6 +1075,82 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
       expect(wrapper.vm.createdTabs).toEqual(['New Language']);
       expect(wrapper.vm.existingTabs).toEqual(['Portuguese (BR)']);
     });
+
+    it('should call updateTemplateTranslation', async () => {
+      const template = {
+        uuid: '456',
+        header: { header_type: 'TEXT', text: 'header text' },
+        body: 'body text',
+        language: 'pt_BR',
+        message_template_id: '123',
+      };
+      const { wrapper, actions, state, getters } = await mountComponent({
+        template: {
+          name: '',
+          category: '',
+          translations: [template],
+        },
+      });
+
+      wrapper.vm.currentFormMode = 'create';
+      state.createdTemplateData = template;
+      getters.templateTranslationCurrentForm = jest.fn(() => {
+        return template;
+      });
+
+      await wrapper.vm.executeSave();
+
+      expect(actions.updateTemplateTranslation).toHaveBeenCalledTimes(1);
+      expect(actions.updateTemplateTranslation).toHaveBeenCalledWith(expect.any(Object), {
+        appUuid: '123',
+        templateUuid: '456',
+        payload: {
+          body: {
+            type: 'BODY',
+            text: 'body text',
+          },
+          header: {
+            header_type: 'TEXT',
+            text: 'header text',
+          },
+          message_template_id: '123',
+          language: 'pt_BR',
+        },
+      });
+    });
+
+    it('should call callErrorModal on errorCreateTemplateTranslation', async () => {
+      const template = {
+        uuid: '456',
+        header: { header_type: 'TEXT', text: 'header text' },
+        body: 'body text',
+        language: 'pt_BR',
+        message_template_id: '123',
+      };
+      const { wrapper, state, getters } = await mountComponent({
+        template: {
+          name: '',
+          category: '',
+          translations: [template],
+        },
+      });
+
+      wrapper.vm.currentFormMode = 'edit';
+      state.createdTemplateData = template;
+      getters.templateTranslationCurrentForm = jest.fn(() => {
+        return template;
+      });
+
+      const spy = spyOn(wrapper.vm, 'callErrorModal');
+      state.errorUpdateTemplateTranslation = true;
+
+      await wrapper.vm.executeSave();
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        text: 'Could not update the template, please try again later.',
+      });
+    });
   });
 
   describe('buildPayload()', () => {
@@ -1091,6 +1160,7 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
         header: { header_type: 'TEXT', text: 'header text' },
         body: 'body text',
         language: 'pt_BR',
+        message_template_id: '123',
       };
       const { wrapper } = await mountComponent({
         template: {
@@ -1111,6 +1181,7 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
           header_type: 'TEXT',
           text: 'header text',
         },
+        message_template_id: '123',
         language: 'pt_BR',
       });
     });
@@ -1129,6 +1200,7 @@ describe('components/whatsAppTemplates/FormTabs.vue', () => {
         },
       });
       const spy = spyOn(wrapper.vm, 'callErrorModal');
+      spyOn(wrapper.vm, 'validateForm').and.throwError('Unknown error');
 
       const payload = await wrapper.vm.buildPayload();
 
