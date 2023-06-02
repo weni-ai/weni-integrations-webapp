@@ -173,7 +173,6 @@
               :disabled="disableInputs"
               :value="currentButtons[index].url"
               @input="handleActionInput($event, 'url', index)"
-              @keydown="formatUrlInput($event)"
               :maxlength="2000"
               @focus="handleUrlFocus"
               @blur="handleUrlBlur"

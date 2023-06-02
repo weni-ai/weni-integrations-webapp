@@ -98,6 +98,7 @@
       this.dataProcessingLoading = true;
       await this.fetchLanguages();
       if (this.formMode === 'create') {
+        this.clearTemplateData();
         this.createDefaultNewLanguageTab();
 
         this.fetchAllTemplates();
@@ -122,6 +123,8 @@
         'errorCreateTemplateTranslation',
         'createdTemplateTranslationData',
         'loadingWhatsAppTemplates',
+        'errorUpdateTemplateTranslation',
+        '',
       ]),
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
@@ -151,7 +154,9 @@
         'fetchSelectLanguages',
         'createTemplate',
         'createTemplateTranslation',
+        'updateTemplateTranslation',
         'getWhatsAppTemplates',
+        'clearTemplateData',
       ]),
       /* istanbul ignore next */
       headerScrollBehavior() {
@@ -220,7 +225,11 @@
         this.updateTemplateForm({ fieldName: 'category', fieldValue: template.category });
       },
       buildTranslationForm(translation) {
-        if (translation.header && translation.header.header_type !== 'TEXT') {
+        if (
+          translation.header &&
+          translation.header.header_type.trim() &&
+          translation.header.header_type !== 'TEXT'
+        ) {
           translation.header.mediaType = translation.header.header_type;
           translation.header.header_type = 'MEDIA';
         }
@@ -316,10 +325,6 @@
       },
       /* istanbul ignore next */
       async handleSave() {
-        if (this.existingTabs.includes(this.currentTab)) {
-          return;
-        }
-
         if (!this.templateForm.name || !this.templateForm.name.trim()) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_name') });
           return;
@@ -343,7 +348,7 @@
         await this.executeSave();
       },
       async executeSave() {
-        const { appCode, appUuid, templateUuid } = this.$route.params;
+        const { appUuid, templateUuid } = this.$route.params;
         this.loadingSave = true;
         let currentTemplateUuid = this.templateUuid || templateUuid;
         if (this.currentFormMode === 'create') {
@@ -368,6 +373,22 @@
           return;
         }
 
+        if (this.templateTranslationCurrentForm?.message_template_id) {
+          await this.updateTranslation({
+            currentTemplateUuid,
+            translationPayload,
+          });
+        } else {
+          await this.createTranslation({
+            currentTemplateUuid,
+            translationPayload,
+          });
+        }
+
+        this.loadingSave = false;
+      },
+      async createTranslation({ currentTemplateUuid, translationPayload }) {
+        const { appCode, appUuid } = this.$route.params;
         await this.createTemplateTranslation({
           appUuid,
           templateUuid: currentTemplateUuid,
@@ -397,12 +418,30 @@
           }
         }
 
-        this.loadingSave = false;
+        await this.fetchTemplateData({ appUuid, templateUuid: this.createdTemplateData.uuid });
+      },
+      async updateTranslation({ currentTemplateUuid, translationPayload }) {
+        const { appUuid } = this.$route.params;
+        await this.updateTemplateTranslation({
+          appUuid,
+          templateUuid: currentTemplateUuid,
+          payload: translationPayload,
+        });
+
+        if (this.errorUpdateTemplateTranslation) {
+          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.update_translation') });
+        } else {
+          this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.update_translation') });
+        }
       },
       buildPayload() {
         try {
           const validPayload = this.validateForm();
           validPayload.language = this.templateTranslationCurrentForm.language;
+          const fbMessageTemplateId = this.templateTranslationCurrentForm?.message_template_id;
+          if (fbMessageTemplateId) {
+            validPayload.message_template_id = fbMessageTemplateId;
+          }
           return validPayload;
         } catch (err) {
           if (err instanceof ValidationError) {
@@ -427,12 +466,12 @@
         });
       },
       validateHeader() {
-        let header = this.templateTranslationCurrentForm.header;
+        let header = this.templateTranslationCurrentForm?.header;
         let errorMsg = null;
         let mediaFields = {};
         let result = null;
 
-        if (header.header_type === 'TEXT') {
+        if (header?.header_type === 'TEXT') {
           if (header.text) {
             header.text = header.text.trim();
             if (!header.text) {
@@ -444,8 +483,8 @@
             header = null;
           }
           result = header;
-        } else {
-          if (!header.mediaType) {
+        } else if (header?.header_type === 'MEDIA') {
+          if (!header?.mediaType) {
             errorMsg = this.$t('WhatsApp.templates.error.validation.invalid_media_type');
           } else if (!this.sampleFileData) {
             errorMsg = this.$t('WhatsApp.templates.error.validation.invalid_media_example');
@@ -600,7 +639,7 @@
             };
           }
 
-          return { ...button };
+          return removeEmpty({ ...button });
         });
 
         return formattedButtons;
