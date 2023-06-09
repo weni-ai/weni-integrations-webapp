@@ -294,7 +294,12 @@
             "total": "Total"
           }
         },
-        "fetch_error": "Falha ao buscar dados de conversas. Entre em contato com o suporte."
+        "fetch_error": "Falha ao buscar dados de conversas. Entre em contato com o suporte.",
+        "report": {
+          "button": "Solicitar relatório",
+          "description": "Você pode receber por email o detalhamento de mensagens de no máximo 6 meses atrás. É possível que algumas informações do relatório estejam imprecisas, em caso de dúvida entre em contato com o seu gerente de conta.",
+          "label": "Relatório detalhado de conversas"
+        }
       },
       "channel": {
         "title": "Canal do WhatsApp",

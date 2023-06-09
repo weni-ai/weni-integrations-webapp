@@ -24,15 +24,36 @@
         </div>
       </div>
 
-      <div class="conversations__content__label">
-        {{ $t('WhatsApp.config.conversations.conversations_count.label') }}
+      <div>
+        <div class="conversations__content__label">
+          {{ $t('WhatsApp.config.conversations.conversations_count.label') }}
+        </div>
+
+        <conversations-table
+          :userMessages="userInitiated"
+          :businessMessages="businessInitiated"
+          :total="totalInitiated"
+        />
       </div>
 
-      <conversations-table
-        :userMessages="userInitiated"
-        :businessMessages="businessInitiated"
-        :total="totalInitiated"
-      />
+      <div class="conversations__content__report">
+        <span class="conversations__content__report__label">
+          {{ $t('WhatsApp.config.conversations.report.label') }}
+        </span>
+
+        <span class="conversations__content__report__description">
+          {{ $t('WhatsApp.config.conversations.report.description') }}
+        </span>
+
+        <unnnic-button
+          class="conversations__content__report__button"
+          type="secondary"
+          size="small"
+          @click="requestReport"
+        >
+          {{ $t('WhatsApp.config.conversations.report.button') }}
+        </unnnic-button>
+      </div>
     </div>
     <div class="conversations__buttons">
       <unnnic-button
@@ -82,8 +103,21 @@
         this.showDateFilter = false;
       });
     },
+    computed: {
+      ...mapState('WhatsApp', [
+        'whatsAppConversations',
+        'loadingConversations',
+        'errorConversations',
+      ]),
+      startDateObject() {
+        return this.startDate && new Date(this.startDate.replace('-', ' '));
+      },
+      endDateObject() {
+        return this.endDate && new Date(this.endDate.replace('-', ' '));
+      },
+    },
     methods: {
-      ...mapActions('WhatsApp', ['getConversations']),
+      ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -118,18 +152,17 @@
         this.userInitiated = this.whatsAppConversations.user_initiated;
         this.totalInitiated = this.whatsAppConversations.total;
       }, 750),
-    },
-    computed: {
-      ...mapState('WhatsApp', [
-        'whatsAppConversations',
-        'loadingConversations',
-        'errorConversations',
-      ]),
-      startDateObject() {
-        return this.startDate && new Date(this.startDate.replace('-', ' '));
-      },
-      endDateObject() {
-        return this.endDate && new Date(this.endDate.replace('-', ' '));
+      async requestReport() {
+        const params = {
+          start: this.startDate,
+          end: this.endDate,
+        };
+
+        await this.requestConversationsReport({
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          params,
+        });
       },
     },
   };
@@ -146,6 +179,7 @@
       display: flex;
       flex-direction: column;
       flex: 1;
+      gap: $unnnic-spacing-stack-md;
 
       &__dropdown {
         width: fit-content;
@@ -165,8 +199,29 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
 
-        margin-top: $unnnic-spacing-stack-sm;
         margin-bottom: $unnnic-spacing-stack-xs;
+      }
+
+      &__report {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-stack-sm;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+
+        &__label {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-neutral-darkest;
+        }
+
+        &__description {
+          font-weight: $unnnic-font-weight-regular;
+          color: $unnnic-color-neutral-cloudy;
+        }
+
+        &__button {
+          width: 33%;
+        }
       }
     }
 

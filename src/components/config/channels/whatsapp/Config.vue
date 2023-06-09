@@ -6,6 +6,14 @@
           <img class="config-whatsapp__header__title__icon-container__icon" :src="app.icon" />
         </div>
         <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
+
+        <unnnic-button
+          class="config-whatsapp__header__title__close"
+          type="terciary"
+          icon-center="close-1"
+          size="small"
+          @click="closeConfig"
+        />
       </div>
       <span class="config-whatsapp__header__description">
         {{ $t('WhatsApp.config.description.text') }}
@@ -244,6 +252,11 @@
           color: $unnnic-color-neutral-darkest;
 
           margin-left: $unnnic-inline-sm;
+        }
+
+        &__close {
+          margin-left: auto;
+          align-self: center;
         }
       }
 

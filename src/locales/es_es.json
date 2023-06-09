@@ -294,7 +294,12 @@
             "total": "Total"
           }
         },
-        "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte."
+        "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte.",
+        "report": {
+          "button": "Solicitar informe",
+          "description": "Puede recibir desgloses de mensajes por correo electrónico de no más de 6 meses. Es posible que alguna información en el informe sea inexacta. En caso de duda, póngase en contacto con su administrador de cuenta.",
+          "label": "Informe de conversación detallado"
+        }
       },
       "channel": {
         "title": "Canal de WhatsApp",

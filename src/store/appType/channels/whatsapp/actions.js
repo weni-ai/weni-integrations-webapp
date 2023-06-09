@@ -26,6 +26,16 @@ export default {
       commit('CONVERSATIONS_ERROR', err);
     }
   },
+  async requestConversationsReport({ commit }, { code, appUuid, params }) {
+    commit('CONVERSATIONS_REPORT_REQUEST');
+    try {
+      const { data } = await whatsApp.requestConversationsReport(code, appUuid, params);
+      commit('CONVERSATIONS_REPORT_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('CONVERSATIONS_REPORT_ERROR', err);
+    }
+  },
   async fetchWppProfile({ commit }, { code, appUuid }) {
     commit('FETCH_WHATSAPP_PROFILE_REQUEST');
     try {

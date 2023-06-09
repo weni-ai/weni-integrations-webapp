@@ -294,7 +294,12 @@
             "total": "Total"
           }
         },
-        "fetch_error": "Failed to fetch conversations data. Please contact the support team."
+        "fetch_error": "Failed to fetch conversations data. Please contact the support team.",
+        "report": {
+          "button": "Request report",
+          "description": "You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.",
+          "label": "Detailed conversation report"
+        }
       },
       "channel": {
         "title": "WhatsApp Channel",
