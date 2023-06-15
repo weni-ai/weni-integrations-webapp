@@ -11,6 +11,14 @@ import MyApps from '@/views/MyApps.vue';
 import AppGrid from '@/components/AppGrid.vue';
 import { singleApp } from '../../../__mocks__/appMock';
 
+const genericApp = {
+  ...singleApp,
+  name: 'generic',
+  code: 'generic',
+  generic: true,
+  config: { channel_name: 'A random generic' },
+};
+
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
@@ -23,10 +31,12 @@ describe('MyApps.vue', () => {
   beforeEach(() => {
     actions = {
       getConfiguredApps: jest.fn(() => {
-        return { data: [singleApp] };
+        return {
+          data: [singleApp, genericApp],
+        };
       }),
       getInstalledApps: jest.fn(() => {
-        return { data: [singleApp] };
+        return { data: [singleApp, genericApp] };
       }),
       deleteApp: jest.fn(),
     };
@@ -37,10 +47,10 @@ describe('MyApps.vue', () => {
         errorDeleteApp: false,
       },
       myApps: {
-        configuredApps: [singleApp],
+        configuredApps: [singleApp, genericApp],
         loadingConfiguredApps: false,
         errorConfiguredApps: null,
-        installedApps: [singleApp],
+        installedApps: [singleApp, genericApp],
         loadingInstalledApps: false,
         errorInstalledApps: null,
       },
@@ -186,6 +196,29 @@ describe('MyApps.vue', () => {
           seconds: expect.any(Number),
         }),
       );
+    });
+  });
+
+  describe('search', () => {
+    it('should filter installed and configured apps by name', () => {
+      expect(wrapper.vm.filteredConfiguredApps).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredInstalledApps).toEqual([singleApp, genericApp]);
+
+      wrapper.vm.searchTerm = 'weni';
+      expect(wrapper.vm.filteredConfiguredApps).toEqual([singleApp]);
+      expect(wrapper.vm.filteredInstalledApps).toEqual([singleApp]);
+
+      wrapper.vm.searchTerm = ' ';
+      expect(wrapper.vm.filteredConfiguredApps).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredInstalledApps).toEqual([singleApp, genericApp]);
+    });
+
+    it('should return empty array if there were no apps from store', () => {
+      store.state.myApps.installedApps = null;
+      store.state.myApps.configuredApps = null;
+
+      expect(wrapper.vm.filteredConfiguredApps).toEqual([]);
+      expect(wrapper.vm.filteredInstalledApps).toEqual([]);
     });
   });
 });
