@@ -9,16 +9,16 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
     </div> <span class="app-config-omie__header__description">Learn more about integrating with Omie <a href="https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api" target="_blank" class="link">here</a></span>
   </div>
   <div class="app-config-omie__settings__content">
-    <div data-v-7b279318="" class="tab config-omie__tabs">
-      <header data-v-7b279318="" class="tab-header">
-        <ul data-v-7b279318="" class="tab-content">
-          <li data-v-7b279318="" class="tab-head tab-head--active"> Configure </li>
+    <div data-v-1727ddfc="" class="config-omie__tabs tab size-md">
+      <header data-v-1727ddfc="" class="tab-header">
+        <ul data-v-1727ddfc="" class="tab-content">
+          <li data-v-1727ddfc="" class="tab-head tab-head--active"> Configure </li>
         </ul>
       </header>
-      <main data-v-7b279318="" class="tab-body">
-        <div data-v-7b279318="" class="tab-panel">
-          <div data-v-7b279318="">
-            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__name unnnic-form md" data-v-7b279318="">
+      <main data-v-1727ddfc="" class="tab-body">
+        <div data-v-1727ddfc="" class="tab-panel">
+          <div data-v-1727ddfc="">
+            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__name unnnic-form md" data-v-1727ddfc="">
               <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
               <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
                 <!---->
@@ -26,7 +26,7 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
               </div>
               <!---->
             </div>
-            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__key unnnic-form md" data-v-7b279318="">
+            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__key unnnic-form md" data-v-1727ddfc="">
               <p data-v-9ef23630="" class="unnnic-form__label">App Key</p>
               <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
                 <!---->
@@ -34,7 +34,7 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
               </div>
               <!---->
             </div>
-            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__secret unnnic-form md" data-v-7b279318="">
+            <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__secret unnnic-form md" data-v-1727ddfc="">
               <p data-v-9ef23630="" class="unnnic-form__label">App Secret</p>
               <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
                 <!---->
