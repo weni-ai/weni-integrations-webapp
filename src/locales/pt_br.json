@@ -10,7 +10,9 @@
     "send": "Enviar",
     "back": "Voltar",
     "next": "Próximo",
-    "start": "Começar"
+    "start": "Começar",
+    "error": "Erro",
+    "success": "Sucesso"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",

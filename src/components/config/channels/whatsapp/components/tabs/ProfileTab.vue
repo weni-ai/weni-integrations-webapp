@@ -127,7 +127,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_photo_size'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

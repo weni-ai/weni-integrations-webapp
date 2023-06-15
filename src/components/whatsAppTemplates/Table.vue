@@ -154,7 +154,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

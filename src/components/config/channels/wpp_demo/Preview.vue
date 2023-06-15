@@ -84,7 +84,7 @@
         unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            title: 'Success',
+            title: this.$t('general.success'),
             icon: 'check-circle-1-1',
             scheme: 'feedback-green',
             position: 'bottom-right',
