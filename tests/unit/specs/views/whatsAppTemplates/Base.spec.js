@@ -19,9 +19,26 @@ describe('views/whatsAppTemplates/Base.vue', () => {
           go: jest.fn(),
         },
         $route: {
+          name: 'Base route',
           meta: {
             crumb_title: 'title',
           },
+          matched: [
+            {
+              name: 'another name',
+              path: '/another-path',
+              meta: {
+                crumb_title: 'another title',
+              },
+            },
+            {
+              name: 'another name 1',
+              path: '/another-path1',
+              meta: {
+                crumb_title: 'another title1',
+              },
+            },
+          ],
         },
       },
     });
@@ -31,30 +48,30 @@ describe('views/whatsAppTemplates/Base.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('watchers', () => {
-    it('should change crumb_title on $route.meta.crumb_title change', async () => {
-      const newTitle = 'new_title';
-      expect(wrapper.vm.crumb_title).not.toEqual(newTitle);
-      wrapper.vm.$route.meta.crumb_title = newTitle;
-      await wrapper.vm.$nextTick();
-      expect(wrapper.vm.crumb_title).toEqual(newTitle);
-    });
-  });
-
   describe('handleCrumbClick()', () => {
-    it('should call router.go(-1) path is defined', () => {
+    it('should not call neither router.go nor router.push if path is the same as the current route', () => {
+      const spyPush = spyOn(wrapper.vm.$router, 'push');
+      const spyGo = spyOn(wrapper.vm.$router, 'go');
+      expect(spyPush).not.toHaveBeenCalled();
+      expect(spyGo).not.toHaveBeenCalled();
+      wrapper.vm.handleCrumbClick({ path: '/templates', meta: 'Base route' });
+      expect(spyPush).not.toHaveBeenCalled();
+      expect(spyGo).not.toHaveBeenCalled();
+    });
+
+    it('should call router.go(-1) path is for WhatsApp Templates Table', () => {
       const spy = spyOn(wrapper.vm.$router, 'go');
       expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.handleCrumbClick({ path: '/path' });
+      wrapper.vm.handleCrumbClick({ path: '/table', meta: 'WhatsApp Templates Table' });
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith(-1);
     });
 
-    it('should not call router.go if path is not defined', () => {
-      const spy = spyOn(wrapper.vm.$router, 'go');
+    it('should call router.push if path not equal as the current and different from WhatsApp Templates Table', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
       expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.handleCrumbClick({});
-      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.handleCrumbClick({ meta: 'Different', path: '/different' });
+      expect(spy).toHaveBeenCalledWith('/different');
     });
   });
 });

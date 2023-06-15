@@ -394,6 +394,12 @@
       "form": {
         "crumb_title": "Template"
       },
+      "create_form": {
+        "crumb_title": "Criar Template"
+      },
+      "edit_form": {
+        "crumb_title": "Editar Template"
+      },
       "error": {
         "fetch_template_data": "Erro ao buscar os dados de template. Tente novamente mais tarde",
         "validation": {
