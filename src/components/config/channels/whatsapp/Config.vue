@@ -57,13 +57,6 @@
         {{ $t('WhatsApp.config.tabs.conversations') }}
       </template>
       <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
-
-      <template slot="tab-head-templates">
-        <div @click.stop="navigateToTemplates" class="config-whatsapp__tabs__template">
-          {{ $t('WhatsApp.config.tabs.templates') }}
-          <unnnic-icon-svg icon="export-1" size="sm" />
-        </div>
-      </template>
     </unnnic-tab>
     <skeleton-loading v-else />
   </div>
@@ -125,7 +118,7 @@
         errorCurrentApp: (state) => state.appType.errorCurrentApp,
       }),
       configTabs() {
-        return ['account', 'profile', 'contact_info', 'webhook_info', 'conversations', 'templates'];
+        return ['account', 'profile', 'contact_info', 'webhook_info', 'conversations'];
       },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
@@ -189,25 +182,6 @@
         profile.photoFile = await dataUrlToFile(this.whatsAppProfile.photo_url, 'photo.jpg', true);
         this.appProfile = profile;
       },
-      navigateToTemplates() {
-        if (!this.currentApp) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.error.open_templates'),
-              title: 'Error',
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 8,
-          });
-          return;
-        }
-
-        const { code, uuid } = this.currentApp;
-        this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
-      },
     },
   };
 </script>
@@ -253,11 +227,14 @@
 
           margin-left: $unnnic-inline-sm;
         }
+
+        &__close {
+          margin-left: auto;
+          align-self: center;
+        }
       }
 
       &__description {
-        display: flex;
-
         margin-top: $unnnic-inline-sm;
         padding-bottom: $unnnic-spacing-stack-md;
 
@@ -267,7 +244,6 @@
         color: $unnnic-color-neutral-cloudy;
 
         a {
-          margin-left: $unnnic-inline-nano;
           font-weight: $unnnic-font-weight-bold;
           color: $unnnic-color-neutral-cloudy;
         }
