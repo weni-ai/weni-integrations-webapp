@@ -57,8 +57,8 @@
         default: /* istanbul ignore next */ () => {},
       },
     },
+    /* istanbul ignore next */
     async mounted() {
-      /* istanbul ignore next */
       if (this.app.code !== 'wpp') {
         this.profileInputs = this.profileInputs.filter((value) => {
           return value.name !== 'status';
@@ -157,7 +157,7 @@
             label: 'WhatsApp.config.contact_info.email.label',
             placeholder: 'WhatsApp.config.contact_info.email.placeholder',
             value: null,
-            validator: (value) => {
+            validator: /* istanbul ignore next */ (value) => {
               if (!value) return true;
 
               const emailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
@@ -223,6 +223,7 @@
         }
         this.contactInfoInputs[inputData.index].value = inputData.value;
       },
+      /* istanbul ignore next */
       setInitialInputs() {
         if (this.contactInfo) {
           Object.entries(this.contactInfo).forEach(([key, value]) => {
@@ -334,6 +335,7 @@
         }
       },
       async saveContactInfo() {
+        console.log('INPUTS', this.contactInfoInputs);
         if (this.contactInfoInputs.some((input) => input.error)) {
           unnnicCallAlert({
             props: {

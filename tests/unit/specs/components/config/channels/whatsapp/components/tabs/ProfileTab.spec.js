@@ -31,6 +31,7 @@ import i18n from '@/utils/plugins/i18n';
 const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
+
 describe('whatsapp/components/tabs/ProfileTab.vue', () => {
   let wrapper;
   let actions;
@@ -156,6 +157,22 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
       await wrapper.vm.$nextTick();
       expect(wrapper.vm.modifiedInitialPhoto).toBeTruthy();
     });
+
+    it('should set modifiedInputs as true if it hadInitialModified', async () => {
+      wrapper.vm.hadInitialModified = true;
+      wrapper.vm.updateProfileInputs({ index: 0, value: [{ lastModified: 123 }] });
+      await wrapper.vm.$nextTick();
+      expect(wrapper.vm.modifiedInputs).toBeTruthy();
+    });
+  });
+
+  describe('contactInfoInputs', () => {
+    it('should set modifiedInputs as true if it hadInitialModified', async () => {
+      wrapper.vm.hadInitialModified = true;
+      wrapper.vm.updateContactInfoInputs({ index: 0, value: '123' });
+      await wrapper.vm.$nextTick();
+      expect(wrapper.vm.modifiedInputs).toBeTruthy();
+    });
   });
 
   describe('isValidPhotoSize', () => {
@@ -196,6 +213,16 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
       const image = 'image';
       const isValid = await wrapper.vm.isValidPhotoSize(image);
       expect(isValid).toBe(true);
+    });
+  });
+
+  describe('handleSave', () => {
+    it('should call saveProfile and saveContactInfo', () => {
+      wrapper.vm.saveProfile = jest.fn();
+      wrapper.vm.saveContactInfo = jest.fn();
+      wrapper.vm.handleSave();
+      expect(wrapper.vm.saveProfile).toHaveBeenCalled();
+      expect(wrapper.vm.saveContactInfo).toHaveBeenCalled();
     });
   });
 
@@ -308,6 +335,26 @@ describe('whatsapp/components/tabs/ProfileTab.vue', () => {
       it('should call unnnicCallAlert on error', async () => {
         actions.updateWppContactInfo.mockImplementation(() => Promise.reject(new Error('error')));
         expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+        await wrapper.vm.saveContactInfo();
+        expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+        expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+          expect.objectContaining({
+            props: {
+              title: 'Error',
+              text: expect.any(String),
+              icon: expect.any(String),
+              scheme: expect.any(String),
+              position: expect.any(String),
+              closeText: expect.any(String),
+            },
+            seconds: expect.any(Number),
+          }),
+        );
+      });
+
+      it('should call unnnicCallAlert on input error', async () => {
+        expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+        wrapper.vm.updateContactInfoInputs({ index: 2, value: 'invalidemail' });
         await wrapper.vm.saveContactInfo();
         expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
         expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
