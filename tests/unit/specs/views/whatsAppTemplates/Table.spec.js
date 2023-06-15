@@ -12,6 +12,14 @@ describe('views/whatsAppTemplates/Table.vue', () => {
         TemplatesHeader: true,
         TemplatesTable: true,
       },
+      mocks: {
+        $route: {
+          name: 'WhatsApp Templates Table',
+          meta: {
+            crumb_title: 'title',
+          },
+        },
+      },
     });
   });
 
