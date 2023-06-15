@@ -10,12 +10,6 @@
     <div class="waba">
       <unnnic-skeleton-loading tag="div" width="100%" height="28vh" />
     </div>
-    <unnnic-button
-      class="whatsapp-config-loading__button"
-      type="secondary"
-      size="large"
-      :text="$t('general.Close')"
-    />
   </div>
 </template>
 
