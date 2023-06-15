@@ -29,9 +29,17 @@
         "configured": "Configured Apps",
         "installed": "Installed Apps",
         "bi-tools": "BI Tools",
-        "external": "External Services"
+        "external": "External Services",
+        "recommended": "Recommended channels"
       },
-      "fetch_error": "Failed to fetch Application list, please try again later."
+      "fetch_error": "Failed to fetch Application list, please try again later.",
+      "search": {
+        "placeholder": "Search",
+        "empty_title": "Wow, we couldn't find this thing called",
+        "empty_description": "But you can see all our integrations by clicking",
+        "empty_link": "here",
+        "results": "Results for"
+      }
     },
     "myApps": {
       "empty": {
