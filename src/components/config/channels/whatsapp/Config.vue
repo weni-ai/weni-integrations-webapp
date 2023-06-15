@@ -6,14 +6,22 @@
           <img class="config-whatsapp__header__title__icon-container__icon" :src="app.icon" />
         </div>
         <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
+
+        <unnnic-button
+          class="config-whatsapp__header__title__close"
+          type="terciary"
+          icon-center="close-1"
+          size="small"
+          @click="closeConfig"
+        />
       </div>
       <span class="config-whatsapp__header__description">
         {{ $t('WhatsApp.config.description.text') }}
-        <a :href="documentationLink" target="_blank">
-          <span>
+        <span>
+          <a :href="documentationLink" target="_blank">
             {{ $t('WhatsApp.config.description.link') }}
-          </span>
-        </a>
+          </a>
+        </span>
       </span>
     </div>
 
