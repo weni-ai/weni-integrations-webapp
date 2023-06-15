@@ -248,7 +248,7 @@
     },
     "config": {
       "tabs": {
-        "account": "Cuenta WhatsApp",
+        "account": "General",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
         "conversations": "Conversaciones",
