@@ -2,7 +2,147 @@
 
 exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] = `
 <div class="whatsapp-templates-table">
-  <unnnictable-stub items="[object Object]" class="whatsapp-templates-table__table"></unnnictable-stub>
+  <div class="whatsapp-templates-table__filters">
+    <div class="whatsapp-templates-table__filters__date">
+      <div class="whatsapp-templates-table__filters__date__label">
+        some specific text
+      </div>
+      <unnnic-date-filter-stub size="sm" dateformat="DD/MM/YYYY" dateseparator="~" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" class="whatsapp-templates-table__filters__date__selector"></unnnic-date-filter-stub>
+      <div class="whatsapp-templates-table__filters__date__dropdown-date">
+        <unnnic-date-picker-stub type="day" size="small" months="Janeiro,Fevereiro,Março,Abril,Maio,Junho,Julho,Agosto,Setembro,Outubro,Novembro,Dezembro" days="D,S,T,Q,Q,S,S" options="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" value="[object Object]" class="whatsapp-templates-table__filters__date__dropdown-date__picker" style="display: none;"></unnnic-date-picker-stub>
+      </div>
+    </div>
+    <unnnic-select-stub searchiconleft="search-1" size="md" type="normal" placeholder="" value="ANY" label="some specific text" class="whatsapp-templates-table__filters__category">
+      <option label="some specific text" value="ANY">
+        some specific text
+      </option>
+      <option label="some specific text" value="UTILITY">
+        some specific text
+      </option>
+      <option label="some specific text" value="MARKETING">
+        some specific text
+      </option>
+      <option label="some specific text" value="AUTHENTICATION">
+        some specific text
+      </option>
+      <option label="some specific text" value="TRANSACTIONAL">
+        some specific text
+      </option>
+      <option label="some specific text" value="OTP">
+        some specific text
+      </option>
+      <option label="some specific text" value="ACCOUNT_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="PAYMENT_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="PERSONAL_FINANCE_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="SHIPPING_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="RESERVATION_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="ISSUE_RESOLUTION">
+        some specific text
+      </option>
+      <option label="some specific text" value="APPOINTMENT_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="TRANSPORTATION_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="TICKET_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="ALERT_UPDATE">
+        some specific text
+      </option>
+      <option label="some specific text" value="AUTO_REPLY">
+        some specific text
+      </option>
+    </unnnic-select-stub>
+    <unnnic-input-stub placeholder="some specific text" type="normal" value="" nativetype="text" iconleft="search-1" size="md" mask="" class="whatsapp-templates-table__filters__search"></unnnic-input-stub>
+  </div>
+  <div data-v-97da52c2="" class="unnnic-table whatsapp-templates-table__table">
+    <div data-v-97da52c2="" class="header">
+      <div data-v-35dce591="" class="table-row" data-v-97da52c2="">
+        <div data-v-35dce591="" class="col" style="flex: 1; min-width: 0;"><span data-v-35dce591="" class="break-text whatsapp-templates-table__table__header">
+            some specific text
+            <tablesort-stub sortdirection="NONE" class="whatsapp-templates-table__table__header__name" data-v-35dce591=""></tablesort-stub></span></div>
+        <div data-v-35dce591="" class="divider"></div>
+        <div data-v-35dce591="" class="col" style="flex: 0.5; min-width: 0;">
+          <div data-v-35dce591="" class="break-text whatsapp-templates-table__table__header">
+            some specific text
+            <tablesort-stub sortdirection="NONE" class="whatsapp-templates-table__table__header__date" data-v-35dce591=""></tablesort-stub>
+          </div>
+        </div>
+        <div data-v-35dce591="" class="divider"></div>
+        <div data-v-35dce591="" class="col" style="flex: 1; min-width: 0;">
+          <div data-v-35dce591="" class="break-text">some specific text</div>
+        </div>
+        <div data-v-35dce591="" class="divider"></div>
+        <div data-v-35dce591="" class="col" style="flex: 2; min-width: 0;">
+          <div data-v-35dce591="" class="break-text">some specific text</div>
+        </div>
+        <div data-v-35dce591="" class="divider"></div>
+        <div data-v-35dce591="" class="col" style="flex: 1; min-width: 0;">
+          <div data-v-35dce591="" class="break-text">some specific text</div>
+        </div>
+        <div data-v-35dce591="" class="divider"></div>
+        <div data-v-35dce591="" class="col" style="width: 55px; min-width: 0;">
+          <div data-v-35dce591="" class="break-text">some specific text</div>
+        </div>
+        <div data-v-35dce591="" class="divider" style="display: none;"></div>
+      </div>
+    </div>
+    <div data-v-97da52c2="">
+      <div data-v-97da52c2="" class="item-spacer"></div>
+    </div>
+    <div data-v-97da52c2="" class="scroll">
+      <div data-v-97da52c2="" class="item">
+        <div data-v-35dce591="" class="table-row" data-v-97da52c2="">
+          <div data-v-35dce591="" class="col" style="flex: 1; min-width: 0;">
+            <div data-v-35dce591="" title="template name" class="break-text">
+              template name
+            </div>
+          </div>
+          <div data-v-35dce591="" class="divider"></div>
+          <div data-v-35dce591="" class="col" style="flex: 0.5; min-width: 0;">
+            <div data-v-35dce591="" title="2020-01-01" class="break-text whatsapp-templates-table__item__month">
+              dez/2019
+            </div>
+          </div>
+          <div data-v-35dce591="" class="divider"></div>
+          <div data-v-35dce591="" class="col" style="flex: 1; min-width: 0;">
+            <div data-v-35dce591="" title="MARKETING" class="break-text whatsapp-templates-table__item__category">
+              MARKETING
+            </div>
+          </div>
+          <div data-v-35dce591="" class="divider"></div>
+          <div data-v-35dce591="" class="col" style="flex: 2; min-width: 0;">
+            <div data-v-35dce591="" class="break-text">
+
+            </div>
+          </div>
+          <div data-v-35dce591="" class="divider"></div>
+          <div data-v-35dce591="" class="col" style="flex: 1; min-width: 0;">
+            <div data-v-35dce591="">
+              <tablelanguagedropdown-stub template="[object Object]" position="bottom-left" data-v-35dce591=""></tablelanguagedropdown-stub>
+            </div>
+          </div>
+          <div data-v-35dce591="" class="divider"></div>
+          <div data-v-35dce591="" class="col" style="width: 55px; min-width: 0;">
+            <tableactionbutton-stub templateuuid="123" position="bottom-left" data-v-35dce591=""></tableactionbutton-stub>
+          </div>
+          <div data-v-35dce591="" class="divider" style="display: none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="whatsapp-templates-table__pagination"><span>1 - 1 de 1</span>
     <unnnicpagination-stub value="1" max="1" show="5"></unnnicpagination-stub>
   </div>
