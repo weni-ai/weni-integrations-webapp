@@ -118,8 +118,6 @@
       display: flex;
       flex-direction: column;
       gap: $unnnic-spacing-stack-lg;
-
-      margin-bottom: $unnnic-spacing-stack-md;
     }
   }
 </style>

@@ -271,7 +271,6 @@
       flex-direction: column;
       overflow: hidden;
       height: 100%;
-      max-height: calc(100vh - 154px);
 
       ::v-deep .tab-body {
         display: flex;

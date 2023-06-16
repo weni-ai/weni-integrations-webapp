@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <router-view />
 
     <div class="survey-container">
@@ -98,6 +98,12 @@
 </script>
 
 <style lang="scss" scoped>
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   .survey-container {
     position: fixed;
     bottom: 150px;
