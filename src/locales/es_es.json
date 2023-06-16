@@ -242,7 +242,28 @@
   "WhatsApp": {
     "data": {
       "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
-      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos"
+      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
+      "templates": {
+        "category": {
+          "account_update": "Actualización de cuenta",
+          "payment_update": "Actualización de pago",
+          "personal_finance_update": "Actualización de Finanzas Personales",
+          "reservation_update": "Actualización de la Reserva",
+          "shipping_update": "Actualización de envío",
+          "issue_resolution": "Resolución de problemas",
+          "appointment_update": "Actualización de cita",
+          "transportation_update": "Actualización de transporte",
+          "ticket_update": "Actualización de entradas",
+          "alert_update": "Actualización de Alerta",
+          "auto_reply": "Respuesta automática",
+          "transactional": "Transaccional",
+          "marketing": "Comercialización",
+          "otp": "Contraseña de un solo uso",
+          "utility": "Utilidad",
+          "authentication": "Autenticación",
+          "any": "Cualquiera"
+        }
+      }
     },
     "config": {
       "tabs": {
@@ -387,9 +408,21 @@
           "category": "Categoría",
           "preview": "Previsualización",
           "language": "Idioma",
-          "actions": "Acciones"
+          "actions": "Acciones",
+          "date": "Fecha"
         },
-        "new_template": "Nueva Plantilla"
+        "new_template": "Nueva Plantilla",
+        "filters": {
+          "date": {
+            "label": "Fecha"
+          },
+          "search": "Buscar",
+          "category": "Categoría"
+        },
+        "header": {
+          "description": "La siguiente tabla muestra las plantillas de mensajes configuradas actualmente para este número.",
+          "title": "Plantillas de WhatsApp"
+        }
       },
       "form": {
         "crumb_title": "Plantilla"

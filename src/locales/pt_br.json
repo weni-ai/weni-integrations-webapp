@@ -242,7 +242,28 @@
   "WhatsApp": {
     "data": {
       "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
-      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos"
+      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "templates": {
+        "category": {
+          "account_update": "Atualização da conta",
+          "payment_update": "Atualização de pagamento",
+          "personal_finance_update": "Atualização de finanças pessoais",
+          "reservation_update": "Atualização de reserva",
+          "shipping_update": "Atualização de envio",
+          "issue_resolution": "Resolução do problema",
+          "appointment_update": "Atualização de agendamento",
+          "transportation_update": "Atualização de transporte",
+          "ticket_update": "Atualização do ticket",
+          "alert_update": "Atualização de alerta",
+          "auto_reply": "Resposta Automática",
+          "transactional": "Transacional",
+          "marketing": "Marketing",
+          "otp": "Senha única",
+          "utility": "Utilitário",
+          "authentication": "Autenticação",
+          "any": "Qualquer"
+        }
+      }
     },
     "config": {
       "tabs": {
@@ -387,9 +408,21 @@
           "category": "Categoria",
           "preview": "Pré-visualização",
           "language": "Idioma",
-          "actions": "Ações"
+          "actions": "Ações",
+          "date": "Data"
         },
-        "new_template": "Novo Template"
+        "new_template": "Novo Template",
+        "filters": {
+          "date": {
+            "label": "Data"
+          },
+          "search": "Buscar",
+          "category": "Categoria"
+        },
+        "header": {
+          "description": "Na seguinte tabela se visualizam os templates de mensagens atualmente configurados para este número.",
+          "title": "Templates de WhatsApp"
+        }
       },
       "form": {
         "crumb_title": "Template"
