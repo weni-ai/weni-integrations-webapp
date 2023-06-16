@@ -31,9 +31,16 @@
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados",
         "bi-tools": "Ferramentas de BI",
-        "external": "Serviços Externos"
+        "external": "Serviços Externos",
+        "recommended": "Canais recomendados"
       },
-      "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde."
+      "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde.",
+      "search": {
+        "empty_title": "Poxa, não encontramos esse tal de",
+        "empty_description": "Mas você pode ver todas as nossas integrações clicando",
+        "empty_link": "aqui",
+        "results": "Resultados para"
+      }
     },
     "myApps": {
       "empty": {
