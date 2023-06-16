@@ -90,7 +90,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.discovery.fetch_error'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

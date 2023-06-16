@@ -188,7 +188,7 @@
             unnnicCallAlert({
               props: {
                 text: this.$t('apps.details.status_error'),
-                title: 'Error',
+                title: this.$t('general.error'),
                 icon: 'check-circle-1-1',
                 scheme: 'feedback-red',
                 position: 'bottom-right',
@@ -227,7 +227,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.comments.remove.status_text'),
-              title: 'Success',
+              title: this.$t('general.success'),
               icon: 'check-circle-1-1',
               scheme: 'feedback-green',
               position: 'bottom-right',
@@ -239,7 +239,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'check-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

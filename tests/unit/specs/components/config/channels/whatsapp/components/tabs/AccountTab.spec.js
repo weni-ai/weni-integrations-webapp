@@ -10,7 +10,9 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
       localVue,
       i18n,
       mocks: {
-        $t: () => 'some specific text',
+        $router: {
+          push: jest.fn(),
+        },
       },
       stubs: {
         UnnnicIconSvg: true,
@@ -81,6 +83,19 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
     it('should return empty if appInfo is undefined', async () => {
       await wrapper.setProps({ appInfo: undefined });
       expect(wrapper.vm.wabaInfo).toEqual({});
+    });
+  });
+
+  describe('navigateToTemplates()', () => {
+    it('should change route to templates', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.navigateToTemplates();
+
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        path: `/apps/my/${wrapper.vm.appInfo.code}/${wrapper.vm.appInfo.uuid}/templates`,
+      });
     });
   });
 });

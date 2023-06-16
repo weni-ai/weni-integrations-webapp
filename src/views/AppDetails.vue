@@ -89,7 +89,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'check-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

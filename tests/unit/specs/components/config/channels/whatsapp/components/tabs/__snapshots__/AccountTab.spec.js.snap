@@ -4,38 +4,32 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
 <div class="account-tab">
   <div class="account-tab__content">
     <div class="account-tab__content__info">
-      <div class="account-tab__content__info__account">
-        <div class="account-tab__content__info__account__title">
-          some specific text
+      <div class="account-tab__content__info__templates">
+        <div class="account-tab__content__info__templates__title">
+          Templates
         </div>
-        <div class="account-tab__content__info__account__name">
-          <unnniciconsvg-stub icon="single-neutral-actions-1" scheme="neutral-cloudy" size="md" class="account-tab__content__info__account__name__icon"></unnniciconsvg-stub>
-          <div class="account-tab__content__info__account__name__text">
-            Number Name
-          </div>
-        </div>
-        <div class="account-tab__content__info__account__business">
-          Waba name
-        </div>
+        <unnnicbutton-stub type="secondary" size="small" class="account-tab__content__info__templates__button">
+          See my templates
+        </unnnicbutton-stub>
       </div>
       <div class="account-tab__content__info__qr">
         <div class="account-tab__content__info__qr__title">
-          some specific text
+          WhatsApp Link
         </div>
         <div class="account-tab__content__info__qr__wrapper"><img src="https://api.qrserver.com/v1/create-qr-code/?size=74x74&amp;data=https://wa.me/5511999999999" class="account-tab__content__info__qr__img">
-          <div class="account-tab__content__info__qr__content"><span class="account-tab__content__info__qr__content__info">some specific text</span>
-            <unnnicbutton-stub type="secondary" text="some specific text" iconleft="export-1" size="small" class="account-tab__content__info__qr__content__button"></unnnicbutton-stub>
+          <div class="account-tab__content__info__qr__content"><span class="account-tab__content__info__qr__content__info">To access the link, scan the QR Code or click the button below</span>
+            <unnnicbutton-stub type="secondary" text="Access link" iconleft="export-1" size="small" class="account-tab__content__info__qr__content__button"></unnnicbutton-stub>
           </div>
         </div>
       </div>
     </div>
     <div class="account-tab__content__section">
       <div class="account-tab__content__section__title"><span class="account-tab__content__section__title__name">
-          some specific text
+          WhatsApp Channel
         </span></div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Phone number
         </div>
         <div class="account-tab__content__section__field__value">
           +5511999999999
@@ -43,7 +37,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          WhatsApp Display Name
         </div>
         <div class="account-tab__content__section__field__value">
           Number Name
@@ -51,7 +45,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Default Language for templates
         </div>
         <div class="account-tab__content__section__field__value">
           -
@@ -59,7 +53,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Certificate
         </div>
         <div class="account-tab__content__section__field__value">
           N/A
@@ -67,7 +61,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Consent Status
         </div>
         <div class="account-tab__content__section__field__value">
           -
@@ -76,11 +70,11 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
     </div>
     <div class="account-tab__content__section">
       <div class="account-tab__content__section__title"><span class="account-tab__content__section__title__name">
-          some specific text
+          WhatsApp Business Account (WABA)
         </span></div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          WABA Name
         </div>
         <div class="account-tab__content__section__field__value">
           Waba name
@@ -88,7 +82,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Message on Behalf Name
         </div>
         <div class="account-tab__content__section__field__value">
           on behalf name
@@ -96,7 +90,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Timezone ID
         </div>
         <div class="account-tab__content__section__field__value">
           America/Sao_Paulo
@@ -104,7 +98,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          WABA ID
         </div>
         <div class="account-tab__content__section__field__value">
           123
@@ -112,7 +106,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
       <div class="account-tab__content__section__field">
         <div class="account-tab__content__section__field__key">
-          some specific text
+          Namespace
         </div>
         <div class="account-tab__content__section__field__value">
           123123123123123
@@ -120,6 +114,5 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
       </div>
     </div>
   </div>
-  <unnnicbutton-stub type="secondary" size="large" text="some specific text" class="account-tab__close-button"></unnnicbutton-stub>
 </div>
 `;

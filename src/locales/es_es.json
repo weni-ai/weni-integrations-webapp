@@ -10,7 +10,9 @@
     "send": "Enviar",
     "back": "Volver",
     "next": "Próximo",
-    "start": "Empezar"
+    "start": "Empezar",
+    "error": "Error",
+    "success": "Éxito"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -246,7 +248,7 @@
     },
     "config": {
       "tabs": {
-        "account": "Cuenta WhatsApp",
+        "account": "General",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
         "conversations": "Conversaciones",
