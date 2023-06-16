@@ -1,12 +1,84 @@
 <template>
   <div class="whatsapp-templates-table">
+    <div class="whatsapp-templates-table__filters">
+      <div class="whatsapp-templates-table__filters__date">
+        <div class="whatsapp-templates-table__filters__date__label">
+          {{ $t('WhatsApp.templates.table.filters.date.label') }}
+        </div>
+        <unnnic-date-filter
+          class="whatsapp-templates-table__filters__date__selector"
+          dateFormat="DD/MM/YYYY"
+          @filter="showDateFilter = true"
+          :startDate="startDateObject"
+          :endDate="endDateObject"
+          placeholder="DD/MM/YYYY ~ DD/MM/YYYY"
+        />
+
+        <div class="whatsapp-templates-table__filters__date__dropdown-date">
+          <unnnic-date-picker
+            class="whatsapp-templates-table__filters__date__dropdown-date__picker"
+            v-show="showDateFilter"
+            size="small"
+            :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
+            @change="handleDateFilter"
+            :value="datePickerDates"
+          />
+        </div>
+      </div>
+
+      <unnnic-select
+        class="whatsapp-templates-table__filters__category"
+        :search="false"
+        :value="selectedCategory"
+        @input="handleCategoryChange"
+        :label="$t('WhatsApp.templates.table.filters.category')"
+      >
+        <option
+          v-for="(category, index) in categoryOptions"
+          :key="index"
+          :value="category.type"
+          :label="$t(category.translation)"
+        >
+          {{ $t(category.translation) }}
+        </option>
+      </unnnic-select>
+      <unnnic-input
+        v-model="searchTerm"
+        class="whatsapp-templates-table__filters__search"
+        :placeholder="$t('WhatsApp.templates.table.filters.search')"
+        icon-left="search-1"
+      />
+    </div>
+
     <unnnic-table
       v-if="!loadingWhatsAppTemplates && !errorWhatsAppTemplates"
       class="whatsapp-templates-table__table"
-      :items="whatsAppTemplates.results"
+      :items="tableItems"
     >
       <template v-slot:header>
-        <unnnic-table-row :headers="tableHeaders" />
+        <unnnic-table-row :headers="tableHeaders">
+          <template v-slot:name>
+            <span class="break-text whatsapp-templates-table__table__header">
+              {{ $t('WhatsApp.templates.table.headers.name') }}
+              <table-sort
+                class="whatsapp-templates-table__table__header__name"
+                :sort-direction="nameSortDirection"
+                @sort="handleNameSort"
+              />
+            </span>
+          </template>
+
+          <template v-slot:created_on>
+            <div class="break-text whatsapp-templates-table__table__header">
+              {{ $t('WhatsApp.templates.table.headers.date') }}
+              <table-sort
+                class="whatsapp-templates-table__table__header__date"
+                :sort-direction="dateSortDirection"
+                @sort="handleDateSort"
+              />
+            </div>
+          </template>
+        </unnnic-table-row>
       </template>
 
       <template v-slot:item="{ item }">
@@ -61,11 +133,13 @@
 </template>
 
 <script>
+  import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
   import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
   import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
+  import TableSort from '@/components/whatsAppTemplates/TableSort';
 
   export default {
     name: 'Table',
@@ -73,12 +147,90 @@
       TableLoading,
       TableActionButton,
       TableLanguageDropdown,
+      TableSort,
     },
     data() {
       return {
         firstLoad: true,
         page: 1,
-        pageSize: 20,
+        pageSize: 15,
+        showDateFilter: false,
+        startDate: null,
+        endDate: null,
+        searchTerm: '',
+        selectedCategory: 'ANY',
+        nameSortDirection: 'NONE',
+        dateSortDirection: 'NONE',
+        categoryOptions: [
+          {
+            type: 'ANY',
+            translation: 'WhatsApp.data.templates.category.any',
+          },
+          {
+            type: 'UTILITY',
+            translation: 'WhatsApp.data.templates.category.utility',
+          },
+          {
+            type: 'MARKETING',
+            translation: 'WhatsApp.data.templates.category.marketing',
+          },
+          {
+            type: 'AUTHENTICATION',
+            translation: 'WhatsApp.data.templates.category.authentication',
+          },
+          {
+            type: 'TRANSACTIONAL',
+            translation: 'WhatsApp.data.templates.category.transactional',
+          },
+          {
+            type: 'OTP',
+            translation: 'WhatsApp.data.templates.category.otp',
+          },
+          {
+            type: 'ACCOUNT_UPDATE',
+            translation: 'WhatsApp.data.templates.category.account_update',
+          },
+          {
+            type: 'PAYMENT_UPDATE',
+            translation: 'WhatsApp.data.templates.category.payment_update',
+          },
+          {
+            type: 'PERSONAL_FINANCE_UPDATE',
+            translation: 'WhatsApp.data.templates.category.personal_finance_update',
+          },
+          {
+            type: 'SHIPPING_UPDATE',
+            translation: 'WhatsApp.data.templates.category.shipping_update',
+          },
+          {
+            type: 'RESERVATION_UPDATE',
+            translation: 'WhatsApp.data.templates.category.reservation_update',
+          },
+          {
+            type: 'ISSUE_RESOLUTION',
+            translation: 'WhatsApp.data.templates.category.issue_resolution',
+          },
+          {
+            type: 'APPOINTMENT_UPDATE',
+            translation: 'WhatsApp.data.templates.category.appointment_update',
+          },
+          {
+            type: 'TRANSPORTATION_UPDATE',
+            translation: 'WhatsApp.data.templates.category.transportation_update',
+          },
+          {
+            type: 'TICKET_UPDATE',
+            translation: 'WhatsApp.data.templates.category.ticket_update',
+          },
+          {
+            type: 'ALERT_UPDATE',
+            translation: 'WhatsApp.data.templates.category.alert_update',
+          },
+          {
+            type: 'AUTO_REPLY',
+            translation: 'WhatsApp.data.templates.category.auto_reply',
+          },
+        ],
         tableHeaders: [
           {
             id: 'name',
@@ -87,7 +239,7 @@
           },
           {
             id: 'created_on',
-            text: this.$t('WhatsApp.templates.table.headers.month'),
+            text: this.$t('WhatsApp.templates.table.headers.date'),
             flex: 0.5,
           },
           {
@@ -115,6 +267,14 @@
     },
     created() {
       this.fetchData({ page: this.page });
+
+      /* istanbul ignore next */
+      window.addEventListener('click', (event) => {
+        if (event.target.closest('.whatsapp-templates-table__filters__date')) {
+          return false;
+        }
+        this.showDateFilter = false;
+      });
     },
     computed: {
       ...mapState('WhatsApp', [
@@ -122,6 +282,9 @@
         'errorWhatsAppTemplates',
         'whatsAppTemplates',
       ]),
+      tableItems() {
+        return this.whatsAppTemplates?.results || [];
+      },
       totalCount() {
         return this.whatsAppTemplates?.count || this.pageSize;
       },
@@ -139,15 +302,60 @@
         const value = this.pageSize * this.page;
         return value > this.whatsAppTemplates?.count ? this.whatsAppTemplates?.count || 0 : value;
       },
+      startDateObject() {
+        return this.startDate && new Date(this.startDate.replace('-', ' '));
+      },
+      endDateObject() {
+        return this.endDate && new Date(this.endDate.replace('-', ' '));
+      },
+      datePickerDates() {
+        return { startDate: this.startDateObject, endDate: this.endDateObject };
+      },
+      filterState() {
+        return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+      },
     },
     methods: {
       ...mapActions('WhatsApp', ['getWhatsAppTemplates']),
-      async fetchData({ page }) {
+      fetchData: debounce(async function ({ page }) {
         const { appUuid } = this.$route.params;
         const params = {
           page: page,
           page_size: this.pageSize,
         };
+
+        if (this.selectedCategory !== 'ANY') {
+          params.category = this.selectedCategory;
+        }
+
+        if (this.startDate) {
+          params.start = this.startDate;
+        }
+
+        if (this.endDate) {
+          params.end = this.endDate;
+        }
+
+        if (this.searchTerm && this.searchTerm.trim()) {
+          params.name = this.searchTerm.trim();
+        }
+
+        if (this.nameSortDirection !== 'NONE') {
+          if (this.nameSortDirection === 'ASC') {
+            params.sort = 'name';
+          } else {
+            params.sort = '-name';
+          }
+        }
+
+        if (this.dateSortDirection !== 'NONE') {
+          if (this.dateSortDirection === 'ASC') {
+            params.sort = 'created_on';
+          } else {
+            params.sort = '-created_on';
+          }
+        }
+
         await this.getWhatsAppTemplates({ appUuid, params });
 
         if (this.errorWhatsAppTemplates) {
@@ -163,7 +371,7 @@
             seconds: 8,
           });
         }
-      },
+      }, 750),
       getTranslationsLanguages(translations) {
         return translations.map((translation) => translation.language);
       },
@@ -180,10 +388,25 @@
           .replaceAll('.', '');
       },
       dropdownPosition(item) {
-        const templates = this.whatsAppTemplates.results;
+        const templates = this.whatsAppTemplates?.results || [];
         return templates.findIndex((template) => template.uuid === item.uuid) > 7
           ? 'top-left'
           : 'bottom-left';
+      },
+      handleCategoryChange(event) {
+        this.selectedCategory = event;
+      },
+      handleDateFilter: debounce(async function (event) {
+        this.startDate = event.startDate;
+        this.endDate = event.endDate;
+      }, 750),
+      handleNameSort(sortDirection) {
+        this.nameSortDirection = sortDirection;
+        this.dateSortDirection = 'NONE';
+      },
+      handleDateSort(sortDirection) {
+        this.dateSortDirection = sortDirection;
+        this.nameSortDirection = 'NONE';
       },
     },
     watch: {
@@ -196,6 +419,16 @@
         },
         deep: true,
       },
+      filterState: {
+        handler() {
+          if (this.page === 1) {
+            this.fetchData({ page: this.page });
+          } else {
+            this.page = 1;
+          }
+        },
+        deep: true,
+      },
     },
   };
 </script>
@@ -204,14 +437,26 @@
   .whatsapp-templates-table {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 4.5rem);
+    flex: 1;
+    overflow: hidden;
 
     &__table {
       height: inherit;
+      flex: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
 
       ::v-deep .scroll {
         overflow-x: hidden;
         overflow-y: auto;
+
+        padding-right: unset;
+      }
+
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
 
@@ -225,12 +470,66 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: $unnnic-spacing-stack-md 0;
+      margin-top: $unnnic-spacing-stack-md;
 
       span {
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
         color: $unnnic-color-neutral-dark;
+      }
+    }
+
+    &__filters {
+      display: flex;
+      align-items: center;
+      gap: $unnnic-spacing-inline-sm;
+      margin-bottom: $unnnic-spacing-stack-lg;
+
+      &__date {
+        display: flex;
+        flex-direction: column;
+
+        &__dropdown-date {
+          position: absolute;
+          z-index: 1;
+          margin-top: $unnnic-spacing-stack-awesome + $unnnic-spacing-stack-xs;
+        }
+
+        &__selector {
+          flex: 1;
+          width: 260px;
+          max-width: 300px;
+
+          ::v-deep {
+            .input {
+              padding: $unnnic-squish-xs;
+              font-size: $unnnic-font-size-body-gt;
+              line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+            }
+
+            .icon-left {
+              transform: translateY(150%);
+            }
+          }
+        }
+
+        &__label {
+          font-size: $unnnic-font-size-body-gt;
+          line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+          color: $unnnic-color-neutral-cloudy;
+          margin: $unnnic-spacing-inline-xs 0;
+        }
+      }
+
+      &__category {
+        flex: 1;
+        min-width: 150px;
+        max-width: 200px;
+      }
+
+      &__search {
+        margin-top: 38px;
+        flex: 4;
       }
     }
   }
