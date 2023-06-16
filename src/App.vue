@@ -119,8 +119,12 @@
 </style>
 
 <style lang="scss">
+  html {
+    height: 100%;
+  }
+
   body {
-    height: 100vh;
+    height: 100%;
     margin: $unnnic-spacing-inset-md;
     background-color: $unnnic-color-background-snow;
     font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;
