@@ -409,6 +409,12 @@
       "form": {
         "crumb_title": "Template"
       },
+      "create_form": {
+        "crumb_title": "Create Template"
+      },
+      "edit_form": {
+        "crumb_title": "Edit Template"
+      },
       "error": {
         "fetch_template_data": "Error fetching template data, please try again later",
         "validation": {

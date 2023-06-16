@@ -2,7 +2,9 @@
 
 exports[`views/whatsAppTemplates/Table.vue should be rendered properly 1`] = `
 <div class="whatsapp-templates">
-  <header-stub title="WhatsApp"></header-stub>
-  <table-stub></table-stub>
+  <div class="whatsapp-templates__table">
+    <header-stub title="WhatsApp"></header-stub>
+    <table-stub></table-stub>
+  </div>
 </div>
 `;

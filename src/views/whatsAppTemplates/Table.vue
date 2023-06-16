@@ -1,7 +1,10 @@
 <template>
   <div class="whatsapp-templates">
-    <Header />
-    <Table />
+    <div class="whatsapp-templates__table" v-if="$route.name === 'WhatsApp Templates Table'">
+      <Header />
+      <Table />
+    </div>
+    <router-view v-else />
   </div>
 </template>
 
@@ -21,6 +24,10 @@
 <style lang="scss" scoped>
   .whatsapp-templates {
     height: 100%;
+
+    &__table {
+      height: 100%;
+    }
   }
 </style>
 

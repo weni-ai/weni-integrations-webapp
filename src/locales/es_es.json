@@ -403,6 +403,12 @@
       "form": {
         "crumb_title": "Plantilla"
       },
+      "create_form": {
+        "crumb_title": "Crear Plantilla"
+      },
+      "edit_form": {
+        "crumb_title": "Editar Plantilla"
+      },
       "error": {
         "fetch_template_data": "Error al obtener los datos de la plantilla. Por favor, inténtelo más tarde",
         "validation": {
