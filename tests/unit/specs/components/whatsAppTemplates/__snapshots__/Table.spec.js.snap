@@ -254,8 +254,8 @@ exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] 
         </div>
         <div data-v-35dce591="" class="divider"></div>
         <div data-v-35dce591="" class="col" style="flex: 0.5; min-width: 0;">
-          <div data-v-35dce591="" title="2020-01-01" class="break-text whatsapp-templates-table__item__month">
-            dez/2019
+          <div data-v-35dce591="" title="2020-01-15" class="break-text whatsapp-templates-table__item__month">
+            jan/2020
           </div>
         </div>
         <div data-v-35dce591="" class="divider"></div>

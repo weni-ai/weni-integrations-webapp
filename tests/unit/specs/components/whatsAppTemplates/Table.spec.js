@@ -160,27 +160,27 @@ describe('components/whatsAppTemplates/Table.vue', () => {
       });
 
       it('should add start filter if startDate is not null', async () => {
-        await wrapper.setData({ startDate: '2020-01-01' });
+        await wrapper.setData({ startDate: '2020-01-13' });
         await wrapper.vm.fetchData({ page: 1 });
         expect(actions.getWhatsAppTemplates).toHaveBeenCalledWith(expect.any(Object), {
           appUuid: '123',
           params: {
             page: wrapper.vm.page,
             page_size: wrapper.vm.pageSize,
-            start: '2020-01-01',
+            start: '2020-01-13',
           },
         });
       });
 
       it('should add end filter if endDate is not null', async () => {
-        await wrapper.setData({ endDate: '2020-01-01' });
+        await wrapper.setData({ endDate: '2020-01-13' });
         await wrapper.vm.fetchData({ page: 1 });
         expect(actions.getWhatsAppTemplates).toHaveBeenCalledWith(expect.any(Object), {
           appUuid: '123',
           params: {
             page: wrapper.vm.page,
             page_size: wrapper.vm.pageSize,
-            end: '2020-01-01',
+            end: '2020-01-13',
           },
         });
       });
@@ -263,7 +263,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
 
   describe('formatDate()', () => {
     it('should return formatted date', () => {
-      const date = wrapper.vm.formatDate('2022-01-01T00:00:00');
+      const date = wrapper.vm.formatDate('2022-01-13T00:00:00');
       expect(date).toBe('jan/2022');
     });
   });
@@ -274,7 +274,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
         return {
           uuid: `${index + 1}`,
           name: 'template name',
-          created_on: '2020-01-01',
+          created_on: '2020-01-13',
           category: 'MARKETING',
           template_type: 'TEXT',
           namespace: '456',
@@ -294,7 +294,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
         return {
           uuid: `${index + 1}`,
           name: 'template name',
-          created_on: '2020-01-01',
+          created_on: '2020-01-13',
           category: 'MARKETING',
           template_type: 'TEXT',
           namespace: '456',
@@ -332,7 +332,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
           {
             uuid: '789',
             name: 'new template name',
-            created_on: '2021-01-01',
+            created_on: '2021-01-13',
             category: 'OTP',
             template_type: 'MEDIA',
             namespace: '999',
