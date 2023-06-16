@@ -2,10 +2,13 @@
 
 exports[`whatsapp/components/tabs/ProfileTab.vue should be rendered properly 1`] = `
 <div class="profile-content">
-  <dynamicform-stub inputs="[object Object],[object Object],[object Object]" class="profile-content__form"></dynamicform-stub>
+  <div class="profile-content__wrapper">
+    <dynamicform-stub inputs="[object Object],[object Object],[object Object]" class="profile-content__form"></dynamicform-stub>
+    <dynamicform-stub inputs="[object Object],[object Object],[object Object],[object Object]" class="contact-info__form"></dynamicform-stub>
+  </div>
   <div class="profile-content__buttons">
-    <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="profile-content__buttons__cancel"></unnnicbutton-stub>
-    <unnnicbutton-stub size="large" text="some specific text" type="secondary" class="profile-content__buttons__save"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="Configure later" type="terciary" class="profile-content__buttons__cancel"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="Save changes" type="secondary" disabled="true" class="profile-content__buttons__save"></unnnicbutton-stub>
   </div>
 </div>
 `;

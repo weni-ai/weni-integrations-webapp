@@ -43,22 +43,24 @@ const routes = [
         meta: {
           crumb_title: 'WhatsApp.templates.table.crumb_title',
         },
-      },
-      {
-        name: 'Create Template',
-        path: 'create',
-        component: () => import('./views/whatsAppTemplates/Form.vue'),
-        meta: {
-          crumb_title: 'WhatsApp.templates.form.crumb_title',
-        },
-      },
-      {
-        name: 'Edit Template',
-        path: 'edit/:templateUuid',
-        component: () => import('./views/whatsAppTemplates/Form.vue'),
-        meta: {
-          crumb_title: 'WhatsApp.templates.form.crumb_title',
-        },
+        children: [
+          {
+            name: 'Create Template',
+            path: 'create',
+            component: () => import('./views/whatsAppTemplates/Form.vue'),
+            meta: {
+              crumb_title: 'WhatsApp.templates.create_form.crumb_title',
+            },
+          },
+          {
+            name: 'Edit Template',
+            path: 'edit/:templateUuid',
+            component: () => import('./views/whatsAppTemplates/Form.vue'),
+            meta: {
+              crumb_title: 'WhatsApp.templates.edit_form.crumb_title',
+            },
+          },
+        ],
       },
     ],
   },

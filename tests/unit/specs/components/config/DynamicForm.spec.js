@@ -33,9 +33,6 @@ describe('DynamicForm.vue', () => {
       propsData: {
         inputs,
       },
-      mocks: {
-        $t: () => 'some specific text',
-      },
       stubs: {
         UnnnicInput: true,
         UnnnicSelect: true,

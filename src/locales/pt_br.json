@@ -10,7 +10,9 @@
     "send": "Enviar",
     "back": "Voltar",
     "next": "Próximo",
-    "start": "Começar"
+    "start": "Começar",
+    "error": "Erro",
+    "success": "Sucesso"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
@@ -29,9 +31,16 @@
         "configured": "Aplicativos configurados",
         "installed": "Aplicativos instalados",
         "bi-tools": "Ferramentas de BI",
-        "external": "Serviços Externos"
+        "external": "Serviços Externos",
+        "recommended": "Canais recomendados"
       },
-      "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde."
+      "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde.",
+      "search": {
+        "empty_title": "Poxa, não encontramos esse tal de",
+        "empty_description": "Mas você pode ver todas as nossas integrações clicando",
+        "empty_link": "aqui",
+        "results": "Resultados para"
+      }
     },
     "myApps": {
       "empty": {
@@ -267,7 +276,7 @@
     },
     "config": {
       "tabs": {
-        "account": "Conta WhatsApp",
+        "account": "Geral",
         "profile": "Perfil",
         "contact_info": "Informações de Contato",
         "conversations": "Conversas",
@@ -386,12 +395,17 @@
         "open_templates": "Não foi possível abrir os templates, por favor atualize a página e tente novamente.",
         "empty_url": "A URL do Webhook fornecida não pode estar vazia",
         "invalid_url": "A URL do Webhook fornecida é inválida",
-        "webhook_update": "Erro ao tentar atualizar os dados do Webhook"
+        "webhook_update": "Erro ao tentar atualizar os dados do Webhook",
+        "invalid_data": "Alguns campos são inválidos, corrija-os e tente novamente"
       },
       "qr": {
         "title": "Link do WhatsApp",
         "button": "Acessar Link",
-        "info": "To access the link, scan the QR Code or click the button below"
+        "info": "Para acessar o link, escaneie o QR Code ou clique no botão abaixo"
+      },
+      "templates": {
+        "button": "Ver meus templates",
+        "title": "Templates"
       }
     },
     "templates": {
@@ -426,6 +440,12 @@
       },
       "form": {
         "crumb_title": "Template"
+      },
+      "create_form": {
+        "crumb_title": "Criar Template"
+      },
+      "edit_form": {
+        "crumb_title": "Editar Template"
       },
       "error": {
         "fetch_template_data": "Erro ao buscar os dados de template. Tente novamente mais tarde",

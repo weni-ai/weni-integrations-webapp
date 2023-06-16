@@ -10,7 +10,9 @@
     "send": "Enviar",
     "back": "Volver",
     "next": "Próximo",
-    "start": "Empezar"
+    "start": "Empezar",
+    "error": "Error",
+    "success": "Éxito"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -29,9 +31,16 @@
         "configured": "Aplicaciones configuradas",
         "installed": "Aplicaciones instaladas",
         "bi-tools": "Herramientas de BI",
-        "external": "Servicios externoss"
+        "external": "Servicios externos",
+        "recommended": "Canales recomendados"
       },
-      "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde."
+      "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde.",
+      "search": {
+        "empty_title": "Wow, no pudimos encontrar esta cosa de",
+        "empty_description": "Pero puedes ver todas nuestras integraciones pinchando",
+        "empty_link": "aquí",
+        "results": "Resultados para"
+      }
     },
     "myApps": {
       "empty": {
@@ -267,7 +276,7 @@
     },
     "config": {
       "tabs": {
-        "account": "Cuenta WhatsApp",
+        "account": "General",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
         "conversations": "Conversaciones",
@@ -426,6 +435,12 @@
       },
       "form": {
         "crumb_title": "Plantilla"
+      },
+      "create_form": {
+        "crumb_title": "Crear Plantilla"
+      },
+      "edit_form": {
+        "crumb_title": "Editar Plantilla"
       },
       "error": {
         "fetch_template_data": "Error al obtener los datos de la plantilla. Por favor, inténtelo más tarde",

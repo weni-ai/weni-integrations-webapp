@@ -2,24 +2,19 @@
   <div class="account-tab">
     <div class="account-tab__content">
       <div class="account-tab__content__info">
-        <div class="account-tab__content__info__account">
-          <div class="account-tab__content__info__account__title">
-            {{ $t('WhatsApp.config.account.title') }}
+        <div class="account-tab__content__info__templates">
+          <div class="account-tab__content__info__templates__title">
+            {{ $t('WhatsApp.config.templates.title') }}
           </div>
-          <div class="account-tab__content__info__account__name">
-            <unnnic-icon-svg
-              class="account-tab__content__info__account__name__icon"
-              icon="single-neutral-actions-1"
-              scheme="neutral-cloudy"
-              size="md"
-            />
-            <div class="account-tab__content__info__account__name__text">
-              {{ fieldHandler(phoneNumber.display_name) }}
-            </div>
-          </div>
-          <div class="account-tab__content__info__account__business">
-            {{ wabaInfo.name }}
-          </div>
+
+          <unnnic-button
+            class="account-tab__content__info__templates__button"
+            @click="navigateToTemplates"
+            type="secondary"
+            size="small"
+          >
+            {{ $t('WhatsApp.config.templates.button') }}
+          </unnnic-button>
         </div>
 
         <div class="account-tab__content__info__qr">
@@ -71,13 +66,6 @@
         </div>
       </div>
     </div>
-    <unnnic-button
-      class="account-tab__close-button"
-      type="secondary"
-      size="large"
-      :text="$t('general.Close')"
-      @click="emitClose"
-    />
   </div>
 </template>
 
@@ -100,6 +88,10 @@
       /* istanbul ignore next */
       openWAUrl() {
         window.open(this.WAUrl, '_blank').focus();
+      },
+      navigateToTemplates() {
+        const { code, uuid } = this.appInfo;
+        this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
     },
     computed: {
@@ -229,7 +221,7 @@
         flex-wrap: wrap;
         gap: $unnnic-spacing-stack-lg;
 
-        &__account {
+        &__templates {
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -242,22 +234,8 @@
             color: $unnnic-color-neutral-darkest;
           }
 
-          &__name {
-            display: inline-flex;
-            align-items: center;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-cloudy;
-
-            &__icon {
-              margin-right: $unnnic-inline-nano;
-            }
-          }
-
-          &__business {
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-cloudy;
+          &__button {
+            max-width: 160px;
           }
         }
 
@@ -294,7 +272,6 @@
       &__section {
         display: flex;
         flex-direction: column;
-        flex-basis: 100%;
         gap: $unnnic-spacing-inline-sm;
 
         &__title {

@@ -120,6 +120,7 @@
 
 <style lang="scss">
   body {
+    height: 100vh;
     margin: $unnnic-spacing-inset-md;
     background-color: $unnnic-color-background-snow;
     font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;

@@ -10,7 +10,9 @@
     "send": "Send",
     "back": "Back",
     "next": "Next",
-    "start": "Start"
+    "start": "Start",
+    "error": "Error",
+    "success": "Success"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
@@ -29,9 +31,17 @@
         "configured": "Configured Apps",
         "installed": "Installed Apps",
         "bi-tools": "BI Tools",
-        "external": "External Services"
+        "external": "External Services",
+        "recommended": "Recommended channels"
       },
-      "fetch_error": "Failed to fetch Application list, please try again later."
+      "fetch_error": "Failed to fetch Application list, please try again later.",
+      "search": {
+        "placeholder": "Search",
+        "empty_title": "Wow, we couldn't find this thing called",
+        "empty_description": "But you can see all our integrations by clicking",
+        "empty_link": "here",
+        "results": "Results for"
+      }
     },
     "myApps": {
       "empty": {
@@ -267,7 +277,7 @@
     },
     "config": {
       "tabs": {
-        "account": "WhatsApp Account",
+        "account": "General",
         "profile": "Profile",
         "contact_info": "Contact Information",
         "conversations": "Conversations",
@@ -386,12 +396,17 @@
         "open_templates": "Could not open templates, please refresh the page and try again.",
         "empty_url": "Provided Webhook URL cannot be empty",
         "invalid_url": "Provided Webhook URL is invalid",
-        "webhook_update": "Error while trying to update webhook data"
+        "webhook_update": "Error while trying to update webhook data",
+        "invalid_data": "Some fields are invalid, please fix them and try again"
       },
       "qr": {
         "title": "WhatsApp Link",
         "button": "Access link",
-        "info": "Para acessar o link, escaneie o QR Code ou clique no botão abaixo"
+        "info": "To access the link, scan the QR Code or click the button below"
+      },
+      "templates": {
+        "button": "See my templates",
+        "title": "Templates"
       }
     },
     "templates": {
@@ -426,6 +441,12 @@
       },
       "form": {
         "crumb_title": "Template"
+      },
+      "create_form": {
+        "crumb_title": "Create Template"
+      },
+      "edit_form": {
+        "crumb_title": "Edit Template"
       },
       "error": {
         "fetch_template_data": "Error fetching template data, please try again later",

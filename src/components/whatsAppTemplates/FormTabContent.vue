@@ -248,7 +248,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'top-right',
@@ -266,7 +266,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'top-right',
@@ -304,7 +304,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.invalid_fields'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

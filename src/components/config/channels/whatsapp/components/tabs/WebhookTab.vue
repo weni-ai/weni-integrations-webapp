@@ -230,7 +230,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type,
+            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
             icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
             scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
             position: 'bottom-right',
