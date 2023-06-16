@@ -7,7 +7,7 @@ jest.mock('@weni/unnnic-system', () => ({
 }));
 
 import Vuex from 'vuex';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import Table from '@/components/whatsAppTemplates/Table.vue';
 import { unnnicTable, unnnicTableRow } from '@weni/unnnic-system';
 
@@ -32,7 +32,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
           {
             uuid: '123',
             name: 'template name',
-            created_on: '2020-01-01',
+            created_on: '2020-01-15',
             category: 'MARKETING',
             template_type: 'TEXT',
             namespace: '456',
@@ -57,7 +57,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
       },
     });
 
-    wrapper = shallowMount(Table, {
+    wrapper = mount(Table, {
       localVue,
       store,
       stubs: {
