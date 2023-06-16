@@ -252,7 +252,28 @@
   "WhatsApp": {
     "data": {
       "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
-      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts"
+      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "templates": {
+        "category": {
+          "account_update": "Account Update",
+          "payment_update": "Payment Update",
+          "personal_finance_update": "Personal Finance Update",
+          "reservation_update": "Reservation Update",
+          "shipping_update": "Shipping Update",
+          "issue_resolution": "Issue Resolution",
+          "appointment_update": "Appointment Update",
+          "transportation_update": "Transportation Update",
+          "ticket_update": "Ticket Update",
+          "alert_update": "Alert Update",
+          "auto_reply": "Auto Reply",
+          "transactional": "Transactional",
+          "marketing": "Marketing",
+          "otp": "One Time Password",
+          "utility": "Utility",
+          "authentication": "Authentication",
+          "any": "Any"
+        }
+      }
     },
     "config": {
       "tabs": {
@@ -402,9 +423,21 @@
           "category": "Category",
           "preview": "Preview",
           "language": "Language",
-          "actions": "Actions"
+          "actions": "Actions",
+          "date": "Date"
         },
-        "new_template": "New Template"
+        "new_template": "New Template",
+        "filters": {
+          "date": {
+            "label": "Date"
+          },
+          "search": "Search",
+          "category": "Category"
+        },
+        "header": {
+          "title": "WhatsApp Templates",
+          "description": "The following table shows the message templates currently configured for this number."
+        }
       },
       "form": {
         "crumb_title": "Template"

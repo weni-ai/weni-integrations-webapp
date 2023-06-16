@@ -23,16 +23,15 @@
 
 <style lang="scss" scoped>
   .whatsapp-templates {
+    display: flex;
+    flex-direction: column;
     height: 100%;
+    flex: 1;
 
     &__table {
+      display: flex;
+      flex-direction: column;
       height: 100%;
     }
-  }
-</style>
-
-<style lang="scss">
-  body {
-    height: calc(100vh - $unnnic-spacing-stack-md);
   }
 </style>

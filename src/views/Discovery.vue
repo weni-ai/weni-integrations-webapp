@@ -200,7 +200,6 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-bottom: $unnnic-spacing-stack-lg;
 
     &__grids {
       display: flex;
