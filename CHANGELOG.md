@@ -1,3 +1,15 @@
+1.26.0
+----------
+`2023-06-16 · 2 🐛 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp design issues
+- Fix: Whatsapp templates crumbs
+
+### 🎉 New Features
+- Feat: Discovery and My Apps search bar
+- Feat: WhatsApp Template search and filters
+
 1.25.0
 ----------
 `2023-06-02 · 1 🎉`
