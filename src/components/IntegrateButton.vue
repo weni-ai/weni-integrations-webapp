@@ -73,7 +73,7 @@
     methods: {
       ...mapActions(['createApp']),
       async addApp(app) {
-        if (this.hasFBLoginList.includes(app.code)) {
+        if (this.hasFBLoginList.includes(app.code) || app.config_design === 'pre-popup') {
           this.$refs.configPopUp.openPopUp(app);
           return;
         }
