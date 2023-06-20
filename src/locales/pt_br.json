@@ -12,7 +12,8 @@
     "next": "Próximo",
     "start": "Começar",
     "error": "Erro",
-    "success": "Sucesso"
+    "success": "Sucesso",
+    "continue": "Continuar"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
@@ -39,7 +40,8 @@
         "empty_title": "Poxa, não encontramos esse tal de",
         "empty_description": "Mas você pode ver todas as nossas integrações clicando",
         "empty_link": "aqui",
-        "results": "Resultados para"
+        "results": "Resultados para",
+        "placeholder": "Buscar"
       }
     },
     "myApps": {
@@ -774,6 +776,50 @@
         },
         "title": "Como integrar o Weni Web Chat"
       }
+    }
+  },
+  "ChatGPT": {
+    "setup": {
+      "version": "Versão",
+      "title": "Integrar com ChatGPT",
+      "description": "Para fazer a integração crie um nome, insira sua API-Token e selecione uma das versões disponíveis",
+      "name": "Nome",
+      "name_placeholder": "Insira um nome",
+      "token": "Token",
+      "token_placeholder": "Insira o Token",
+      "version_tooltip": "Mudar a versão do ChatGPT pode mudar a forma com que a IA gera as respostas baseadas na base de conhecimento e regras.",
+      "success": "Integração ChatGPT criada com sucesso",
+      "create_app": {
+        "error": "Falha ao criar a integração do ChatGPT, tente novamente mais tarde"
+      }
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Fluxos",
+          "description": "Defina como o ChatGPT vai se comportar quando for responder as pessoas na área de fluxos.",
+          "inputs": {
+            "rules_label": "Regras",
+            "knowledge_label": "Base de conhecimento",
+            "prompt_label": "Inserir prompts",
+            "prompt_placeholder": "Insira o texto do prompt e pressione enter"
+          },
+          "prompts_list": "Lista de prompts"
+        },
+        "general": {
+          "title": "Geral"
+        }
+      },
+      "save_modifications": "Salvar alterações"
+    },
+    "errors": {
+      "configure": "Falha ao atualizar os campos, tente novamente mais tarde",
+      "create_prompt": "Falha ao criar prompts, tente novamente mais tarde",
+      "delete_prompt": "Falha ao excluir as solicitações. Tente novamente mais tarde",
+      "get_prompts": "Falha ao buscar prompts, tente novamente mais tarde"
+    },
+    "success": {
+      "configure": "Integração atualizada com sucesso"
     }
   }
 }

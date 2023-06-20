@@ -12,7 +12,8 @@
     "next": "Next",
     "start": "Start",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "continue": "Continue"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
@@ -775,6 +776,50 @@
         },
         "title": "How to Integrate Weni Web Chat"
       }
+    }
+  },
+  "ChatGPT": {
+    "setup": {
+      "version": "Version",
+      "title": "Integrate with ChatGPT",
+      "description": "To integrate, create a name, insert your API-Token and select one of the available versions",
+      "name": "Name",
+      "name_placeholder": "Insert a name",
+      "token": "Token",
+      "token_placeholder": "Insert the Token",
+      "version_tooltip": "Changing the version of ChatGPT can change the way with that the AI ​​generates the answers based on the knowledge base and rules.",
+      "create_app": {
+        "error": "Failed to create ChatGPT integration, please try again later"
+      },
+      "success": "Successfully created ChatGPT integration"
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Flows",
+          "description": "Define how ChatGPT will behave when it responds to people in the Flows area.",
+          "inputs": {
+            "rules_label": "Rules",
+            "knowledge_label": "Knowledge base",
+            "prompt_label": "Insert prompts",
+            "prompt_placeholder": "Insert prompt text and press enter"
+          },
+          "prompts_list": "Prompt list"
+        },
+        "general": {
+          "title": "General"
+        }
+      },
+      "save_modifications": "Save modifications"
+    },
+    "errors": {
+      "configure": "Failed to update fields, please try again later",
+      "create_prompt": "Failed to create prompts, please try again later",
+      "delete_prompt": "Failed to delete prompts, please try again later",
+      "get_prompts": "Failed to fetch prompts, please try again later"
+    },
+    "success": {
+      "configure": "Successfully updated integration"
     }
   }
 }

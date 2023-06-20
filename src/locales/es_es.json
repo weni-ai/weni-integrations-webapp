@@ -12,7 +12,8 @@
     "next": "Próximo",
     "start": "Empezar",
     "error": "Error",
-    "success": "Éxito"
+    "success": "Éxito",
+    "continue": "Continuar"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -39,7 +40,8 @@
         "empty_title": "Wow, no pudimos encontrar esta cosa de",
         "empty_description": "Pero puedes ver todas nuestras integraciones pinchando",
         "empty_link": "aquí",
-        "results": "Resultados para"
+        "results": "Resultados para",
+        "placeholder": "Buscar"
       }
     },
     "myApps": {
@@ -395,12 +397,17 @@
         "open_templates": "No se pueden abrir las Plantillas, actualice la página y vuelva a intentarlo.",
         "empty_url": "La URL proporcionada del webhook no puede estar vacía",
         "invalid_url": "La URL proporcionada del webhook no es válida",
-        "webhook_update": "Error al intentar actualizar los datos del webhook"
+        "webhook_update": "Error al intentar actualizar los datos del webhook",
+        "invalid_data": "Algunos campos no son válidos, corríjalos y vuelva a intentarlo"
       },
       "qr": {
         "title": "Enlace de WhatsApp",
         "button": "Enlace de acceso",
         "info": "Para acceder al enlace, escanee el código QR o haga clic en el botón de abajo"
+      },
+      "templates": {
+        "button": "Ver mis plantillas",
+        "title": "Plantillas"
       }
     },
     "templates": {
@@ -769,6 +776,50 @@
         },
         "title": "Cómo integrar Weni Web Chat"
       }
+    }
+  },
+  "ChatGPT": {
+    "setup": {
+      "version": "Versión",
+      "title": "Integrar con ChatGPT",
+      "description": "Para integrar, cree un nombre, inserte su API-Token y seleccione una de las versiones disponibles",
+      "name": "Nombre",
+      "name_placeholder": "Ingresa un nombre",
+      "token": "Token",
+      "token_placeholder": "Ingrese el Token",
+      "version_tooltip": "Cambiar la versión de ChatGPT puede cambiar la forma con que la IA genera las respuestas en base a la base de conocimientos y reglas.",
+      "create_app": {
+        "error": "No se pudo crear la integración de ChatGPT, inténtalo de nuevo más tarde"
+      },
+      "success": "Integración de ChatGPT creada con éxito"
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Flujos",
+          "description": "Defina cómo se comportará ChatGPT cuando responda a las personas en el área de Flujos.",
+          "inputs": {
+            "rules_label": "Normas",
+            "knowledge_label": "Base de conocimientos",
+            "prompt_label": "Insertar prompts",
+            "prompt_placeholder": "Inserte el texto del mensaje y presione enter"
+          },
+          "prompts_list": "Lista de prompts"
+        },
+        "general": {
+          "title": "General"
+        }
+      },
+      "save_modifications": "Guardar modificaciones"
+    },
+    "errors": {
+      "configure": "No se pudieron actualizar los campos, inténtelo de nuevo más tarde",
+      "create_prompt": "No se pudieron crear los prompts, inténtalo de nuevo más tarde",
+      "delete_prompt": "No se han podido eliminar los prompts, inténtalo de nuevo más tarde",
+      "get_prompts": "No se pudieron obtener los prompts, inténtelo de nuevo más tarde"
+    },
+    "success": {
+      "configure": "Integración actualizada con éxito"
     }
   }
 }
