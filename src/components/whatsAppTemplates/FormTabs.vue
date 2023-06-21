@@ -684,6 +684,10 @@
 <style lang="scss" scoped>
   .form-tabs {
     flex: 1;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
     &__loading {
       display: flex;
@@ -721,10 +725,6 @@
           border-radius: $unnnic-border-radius-md;
         }
       }
-    }
-
-    &__content {
-      margin-bottom: $unnnic-spacing-stack-md;
     }
   }
 </style>

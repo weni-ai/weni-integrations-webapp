@@ -27,6 +27,7 @@
     flex-direction: column;
     height: 100%;
     flex: 1;
+    overflow: hidden;
 
     &__table {
       display: flex;
