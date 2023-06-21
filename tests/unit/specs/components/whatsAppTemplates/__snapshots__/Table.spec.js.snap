@@ -159,45 +159,6 @@ exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] 
     <option data-v-6fe2671f="" label="some specific text" value="AUTHENTICATION">
       some specific text
     </option>
-    <option data-v-6fe2671f="" label="some specific text" value="TRANSACTIONAL">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="OTP">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="ACCOUNT_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="PAYMENT_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="PERSONAL_FINANCE_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="SHIPPING_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="RESERVATION_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="ISSUE_RESOLUTION">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="APPOINTMENT_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="TRANSPORTATION_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="TICKET_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="ALERT_UPDATE">
-      some specific text
-    </option>
-    <option data-v-6fe2671f="" label="some specific text" value="AUTO_REPLY">
-      some specific text
-    </option>
     <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
     <!---->
   </div>
