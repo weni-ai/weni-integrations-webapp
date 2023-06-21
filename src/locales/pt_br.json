@@ -430,7 +430,9 @@
         "new_template": "Novo Template",
         "filters": {
           "date": {
-            "label": "Data"
+            "label": "Data",
+            "clear": "Limpar",
+            "filter": "Filtrar"
           },
           "search": "Buscar",
           "category": "Categoria"

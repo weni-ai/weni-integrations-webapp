@@ -430,7 +430,9 @@
         "new_template": "New Template",
         "filters": {
           "date": {
-            "label": "Date"
+            "label": "Date",
+            "clear": "Clear",
+            "filter": "Filter"
           },
           "search": "Search",
           "category": "Category"

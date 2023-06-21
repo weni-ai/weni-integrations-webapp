@@ -430,7 +430,9 @@
         "new_template": "Nueva Plantilla",
         "filters": {
           "date": {
-            "label": "Fecha"
+            "label": "Fecha",
+            "clear": "Limpiar",
+            "filter": "Filtrar"
           },
           "search": "Buscar",
           "category": "Categoría"
