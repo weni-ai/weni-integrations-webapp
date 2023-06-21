@@ -15,8 +15,8 @@ import { unnnicRadio, unnnicTag } from '@weni/unnnic-system';
 
 singleApp.code = 'chatgpt';
 singleApp.config = {
-  regras: 'rules',
-  base: 'base',
+  rules: 'rules',
+  knowledge_base: 'base',
   ai_model: 'gpt-4',
 };
 
@@ -213,8 +213,8 @@ describe('components/config/external/chatgpt/Config.vue', () => {
         payload: {
           config: {
             ai_model: 'gpt-4',
-            regras: 'rules 1',
-            base: 'knowledge base 1',
+            rules: 'rules 1',
+            knowledge_base: 'knowledge base 1',
           },
         },
       });
