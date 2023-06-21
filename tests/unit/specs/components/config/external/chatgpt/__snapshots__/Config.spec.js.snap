@@ -7,7 +7,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
       <div class="config-chatgpt__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-chatgpt__header__title__icon-container__icon"></div>
       <div class="config-chatgpt__header__title__name">Weni Web Chat</div>
       <unnnicbutton-stub size="small" type="terciary" iconcenter="close-1" class="config-chatgpt__header__title__close"></unnnicbutton-stub>
-    </div> <span class="config-chatgpt__header__description">ChatGPT.config.description</span>
+    </div> <span class="config-chatgpt__header__description">Configure how ChatGPT works in platform modules</span>
   </div>
   <div class="config-chatgpt__settings__content">
     <unnnic-tab-stub size="md" initialtab="flows" tabs="flows,general" class="config-chatgpt__tabs"><template></template>
@@ -18,7 +18,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
           <unnnic-text-area-stub size="md" label="Rules" value="rules" type="normal" errors="" class="config-chatgpt__settings__content__inputs__rules"></unnnic-text-area-stub>
           <unnnic-text-area-stub size="md" label="Knowledge base" value="base" type="normal" errors="" class="config-chatgpt__settings__content__inputs__knowledge"></unnnic-text-area-stub>
           <unnnic-input-stub placeholder="Insert prompt text and press enter" type="normal" value="" nativetype="text" label="Insert prompts" iconright="keyboard-enter-1" size="md" mask="" class="config-chatgpt__settings__content__inputs__prompt"></unnnic-input-stub>
-          <unnnic-skeleton-loading-stub prefix="unnnic" count="1" duration="1.5" tag="div" width="75px" height="25px"></unnnic-skeleton-loading-stub>
+          <!---->
           <div class="config-chatgpt__settings__content__prompts-wrapper"></div>
         </div>
         <div class="config-chatgpt__settings__buttons">
@@ -61,7 +61,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
       <div class="config-chatgpt__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-chatgpt__header__title__icon-container__icon"></div>
       <div class="config-chatgpt__header__title__name">Weni Web Chat</div>
       <unnnicbutton-stub size="small" type="terciary" iconcenter="close-1" class="config-chatgpt__header__title__close"></unnnicbutton-stub>
-    </div> <span class="config-chatgpt__header__description">ChatGPT.config.description</span>
+    </div> <span class="config-chatgpt__header__description">Configure how ChatGPT works in platform modules</span>
   </div>
   <div class="config-chatgpt__settings__content">
     <unnnic-tab-stub size="md" initialtab="flows" tabs="flows,general" class="config-chatgpt__tabs"><template></template>
@@ -72,7 +72,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
           <unnnic-text-area-stub size="md" label="Rules" type="normal" errors="" class="config-chatgpt__settings__content__inputs__rules"></unnnic-text-area-stub>
           <unnnic-text-area-stub size="md" label="Knowledge base" type="normal" errors="" class="config-chatgpt__settings__content__inputs__knowledge"></unnnic-text-area-stub>
           <unnnic-input-stub placeholder="Insert prompt text and press enter" type="normal" value="" nativetype="text" label="Insert prompts" iconright="keyboard-enter-1" size="md" mask="" class="config-chatgpt__settings__content__inputs__prompt"></unnnic-input-stub>
-          <unnnic-skeleton-loading-stub prefix="unnnic" count="1" duration="1.5" tag="div" width="75px" height="25px"></unnnic-skeleton-loading-stub>
+          <!---->
           <div class="config-chatgpt__settings__content__prompts-wrapper"></div>
         </div>
         <div class="config-chatgpt__settings__buttons">
