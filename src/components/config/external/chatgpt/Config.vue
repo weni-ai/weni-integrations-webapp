@@ -175,7 +175,7 @@
         token: this.app.config?.api_key ?? null,
         prompt: '',
         tabs: ['flows', 'general'],
-        availableVersions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo', 'gpt-4'],
+        availableVersions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo'],
         availablePrompts: [],
         toAddPrompts: [],
         toRemovePrompts: [],

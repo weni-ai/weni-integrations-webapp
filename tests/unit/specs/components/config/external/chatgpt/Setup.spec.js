@@ -90,11 +90,11 @@ describe('components/config/external/chatgpt/Setup.vue', () => {
       const versionRadio = wrapper
         .find('.chatgpt-modal__content__form__version-wrapper__options')
         .findAll(unnnicRadio)
-        .at(2);
+        .at(0);
 
       nameInput.vm.$emit('input', 'chatgpt name');
       tokenInput.vm.$emit('input', 'chatgpt token');
-      versionRadio.vm.$emit('change', 'gpt-4');
+      versionRadio.vm.$emit('change', 'gpt-3.5-turbo');
 
       expect(actions.createApp).not.toHaveBeenCalled();
       await wrapper.vm.setupChatGptService();
@@ -104,7 +104,7 @@ describe('components/config/external/chatgpt/Setup.vue', () => {
           project_uuid: '123',
           name: 'chatgpt name',
           api_key: 'chatgpt token',
-          ai_model: 'gpt-4',
+          ai_model: 'gpt-3.5-turbo',
         },
       });
 

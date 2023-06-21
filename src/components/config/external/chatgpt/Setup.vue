@@ -97,7 +97,7 @@
         name: '',
         token: '',
         selectedVersion: 'gpt-3.5-turbo-16k',
-        versions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo', 'gpt-4'],
+        versions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo'],
       };
     },
     computed: {
