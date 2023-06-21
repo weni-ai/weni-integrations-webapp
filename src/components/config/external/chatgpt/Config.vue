@@ -56,7 +56,12 @@
               v-if="availablePrompts.length > 0 && !loadingGetPrompts"
               :label="$t('ChatGPT.config.tabs.flows.prompts_list')"
             />
-            <unnnic-skeleton-loading v-else tag="div" height="25px" width="75px" />
+            <unnnic-skeleton-loading
+              v-else-if="loadingGetPrompts"
+              tag="div"
+              height="25px"
+              width="75px"
+            />
 
             <div class="config-chatgpt__settings__content__prompts-wrapper">
               <unnnic-toolTip
