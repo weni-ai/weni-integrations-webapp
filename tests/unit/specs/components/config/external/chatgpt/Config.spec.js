@@ -17,7 +17,7 @@ singleApp.code = 'chatgpt';
 singleApp.config = {
   rules: 'rules',
   knowledge_base: 'base',
-  ai_model: 'gpt-4',
+  ai_model: 'gpt-3.5-turbo-16k',
 };
 
 const localVue = createLocalVue();
@@ -212,7 +212,7 @@ describe('components/config/external/chatgpt/Config.vue', () => {
         appUuid: '123',
         payload: {
           config: {
-            ai_model: 'gpt-4',
+            ai_model: 'gpt-3.5-turbo-16k',
             rules: 'rules 1',
             knowledge_base: 'knowledge base 1',
           },
@@ -345,8 +345,6 @@ describe('components/config/external/chatgpt/Config.vue', () => {
     describe('selectedVersion', () => {
       it('should call handleUpdateApp on selectedVersion change', async () => {
         const { wrapper, actions } = await mountComponent();
-        // jest.spyOn(wrapper.vm, 'handleUpdateApp');
-        // expect(wrapper.vm.handleUpdateApp).not.toHaveBeenCalled();
         expect(actions.updateApp).not.toHaveBeenCalled();
         expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
 
