@@ -335,7 +335,6 @@
         }
       },
       async saveContactInfo() {
-        console.log('INPUTS', this.contactInfoInputs);
         if (this.contactInfoInputs.some((input) => input.error)) {
           unnnicCallAlert({
             props: {
