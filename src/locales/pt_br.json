@@ -779,6 +779,10 @@
     }
   },
   "ChatGPT": {
+    "data": {
+      "summary": "Integração poderosa: Weni + ChatGPT. Atendimento automatizado com toque humano, respostas instantâneas e experiência personalizada. Experimente agora!",
+      "description": "Apresentamos uma poderosa sinergia entre a plataforma Weni e o ChatGPT - uma combinação perfeita para transformar suas interações com clientes em uma experiência inigualável!<br><br>Com a integração do Weni com o ChatGPT, você tem à sua disposição um assistente virtual inteligente, alimentado pela avançada tecnologia de linguagem natural da OpenAI. Imagine um atendimento ao cliente totalmente automatizado, porém, com um toque humano e personalizado.<br><br>Nossa plataforma Weni, conhecida por sua interface intuitiva e recursos versáteis, agora se fortalece com a presença do ChatGPT. Com ele, você pode proporcionar aos seus clientes respostas instantâneas, precisas e envolventes para suas perguntas e necessidades, a qualquer hora e em qualquer lugar.<br><br>O ChatGPT é capaz de compreender nuances da linguagem humana, aprendendo e adaptando-se constantemente. Ele não apenas oferece respostas rápidas e eficientes, mas também é capaz de manter conversas naturais e relevantes, estabelecendo uma conexão genuína com seus clientes.<br><br>Aproveite os benefícios dessa integração para aprimorar o suporte ao cliente, automatizar tarefas repetitivas e proporcionar uma experiência personalizada e agradável. O ChatGPT, impulsionado pelo Weni, ajuda você a aumentar a eficiência, economizar tempo e conquistar a satisfação dos clientes de forma excepcional.<br><br>Experimente agora mesmo a integração Weni + ChatGPT e desfrute de um atendimento ao cliente inteligente, dinâmico e totalmente adaptado às necessidades do seu negócio. Faça parte dessa revolução na interação com clientes e veja seus resultados alcançarem novos patamares!"
+    },
     "setup": {
       "version": "Versão",
       "title": "Integrar com ChatGPT",
@@ -810,7 +814,8 @@
           "title": "Geral"
         }
       },
-      "save_modifications": "Salvar alterações"
+      "save_modifications": "Salvar alterações",
+      "description": "Configure o funcionamento do ChatGPT nos módulos da plataforma"
     },
     "errors": {
       "configure": "Falha ao atualizar os campos, tente novamente mais tarde",
