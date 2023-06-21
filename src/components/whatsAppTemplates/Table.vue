@@ -18,10 +18,12 @@
           <unnnic-date-picker
             class="whatsapp-templates-table__filters__date__dropdown-date__picker"
             v-show="showDateFilter"
-            size="small"
+            size="large"
             :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
-            @change="handleDateFilter"
+            @submit="handleDateFilter"
             :value="datePickerDates"
+            :clearLabel="$t('WhatsApp.templates.table.filters.date.clear')"
+            :actionLabel="$t('WhatsApp.templates.table.filters.date.filter')"
           />
         </div>
       </div>
@@ -399,6 +401,8 @@
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
+
+        this.showDateFilter = false;
       }, 750),
       handleNameSort(sortDirection) {
         this.nameSortDirection = sortDirection;
