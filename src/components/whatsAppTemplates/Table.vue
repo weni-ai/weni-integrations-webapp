@@ -20,6 +20,8 @@
             v-show="showDateFilter"
             size="large"
             :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
+            :months="months"
+            :options="options"
             @submit="handleDateFilter"
             :value="datePickerDates"
             :clearLabel="$t('WhatsApp.templates.table.filters.date.clear')"
@@ -264,6 +266,28 @@
             text: this.$t('WhatsApp.templates.table.headers.actions'),
             width: '55px',
           },
+        ],
+        months: [
+          this.$t('date.months.january'),
+          this.$t('date.months.february'),
+          this.$t('date.months.march'),
+          this.$t('date.months.april'),
+          this.$t('date.months.may'),
+          this.$t('date.months.june'),
+          this.$t('date.months.july'),
+          this.$t('date.months.august'),
+          this.$t('date.months.september'),
+          this.$t('date.months.october'),
+          this.$t('date.months.november'),
+          this.$t('date.months.december'),
+        ],
+        options: [
+          { name: this.$t('date.options.seven_days'), id: 'last-7-days' },
+          { name: this.$t('date.options.fourteen_days'), id: 'last-14-days' },
+          { name: this.$t('date.options.thirty_days'), id: 'last-30-days' },
+          { name: this.$t('date.options.twelve_months'), id: 'last-12-months' },
+          { name: this.$t('date.options.current_month'), id: 'current-month' },
+          { name: this.$t('date.options.personalize'), id: 'custom' },
         ],
       };
     },
