@@ -170,8 +170,8 @@
       return {
         selectedVersion: this.app.config?.ai_model ?? 'gpt-3.5-turbo-16k',
         name: this.app.config?.name ?? null,
-        rules: this.app.config?.regras ?? null,
-        knowledgeBase: this.app.config?.base ?? null,
+        rules: this.app.config?.rules ?? null,
+        knowledgeBase: this.app.config?.knowledge_base ?? null,
         token: this.app.config?.api_key ?? null,
         prompt: '',
         tabs: ['flows', 'general'],
@@ -254,8 +254,8 @@
           payload: {
             config: {
               ai_model: this.selectedVersion,
-              regras: this.rules,
-              base: this.knowledgeBase,
+              rules: this.rules,
+              knowledge_base: this.knowledgeBase,
             },
           },
         };
@@ -307,8 +307,8 @@
       },
       async saveConfig() {
         if (
-          this.rules !== this.app.config.regras ||
-          this.knowledgeBase !== this.app.config.base ||
+          this.rules !== this.app.config.rules ||
+          this.knowledgeBase !== this.app.config.knowledge_base ||
           this.selectedVersion !== this.app.config.ai_model
         ) {
           let err = await this.handleUpdateApp();
