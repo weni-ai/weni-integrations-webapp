@@ -28,7 +28,7 @@ exports[`components/config/bi_tools/power_bi/Config.vue should be rendered prope
     </div>
   </div>
   <div class="app-config-power-bi__buttons">
-    <unnnic-button-stub size="large" text="some specific text" type="secondary" class="app-config-power-bi__buttons__cancel"></unnnic-button-stub>
+    <unnnic-button-stub size="large" text="some specific text" type="terciary" class="app-config-power-bi__buttons__cancel"></unnnic-button-stub>
   </div>
 </div>
 `;
