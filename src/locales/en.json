@@ -19,6 +19,30 @@
     "empty_input": "Required fields cannot be empty.",
     "required_message": "This field is required."
   },
+  "date": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "june": "June",
+      "may": "May",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "options": {
+      "seven_days": "Last 7 days",
+      "fourteen_days": "Last 14 days",
+      "thirty_days": "Last 30 days",
+      "twelve_months": "Last 12 months",
+      "current_month": "Current month",
+      "personalize": "Personalize"
+    }
+  },
   "apps": {
     "nav": {
       "discovery": "Discovery",
@@ -430,7 +454,9 @@
         "new_template": "New Template",
         "filters": {
           "date": {
-            "label": "Date"
+            "label": "Date",
+            "clear": "Clear",
+            "filter": "Filter"
           },
           "search": "Search",
           "category": "Category"

@@ -19,6 +19,30 @@
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
     "required_message": "Este campo es necesario."
   },
+  "date": {
+    "months": {
+      "january": "Enero",
+      "february": "Febrero",
+      "march": "Marzo",
+      "april": "Abril",
+      "may": "Mayo",
+      "june": "Junio",
+      "july": "Julio",
+      "august": "Agosto",
+      "september": "Septiembre",
+      "october": "Octubre",
+      "november": "Noviembre",
+      "december": "Diciembre"
+    },
+    "options": {
+      "seven_days": "Últimos 7 días",
+      "fourteen_days": "Últimos 14 días",
+      "thirty_days": "Últimos 30 días",
+      "twelve_months": "Últimos 12 meses",
+      "current_month": "Mes actual",
+      "personalize": "Personalizar"
+    }
+  },
   "apps": {
     "nav": {
       "discovery": "Descubrimiento",
@@ -430,7 +454,9 @@
         "new_template": "Nueva Plantilla",
         "filters": {
           "date": {
-            "label": "Fecha"
+            "label": "Fecha",
+            "clear": "Limpiar",
+            "filter": "Filtrar"
           },
           "search": "Buscar",
           "category": "Categoría"
