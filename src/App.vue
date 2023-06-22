@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <router-view />
 
     <div class="survey-container">
@@ -98,6 +98,12 @@
 </script>
 
 <style lang="scss" scoped>
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
   .survey-container {
     position: fixed;
     bottom: 150px;
@@ -113,12 +119,19 @@
 </style>
 
 <style lang="scss">
+  html {
+    height: 100%;
+  }
+
   body {
+    height: 100%;
     margin: $unnnic-spacing-inset-md;
     background-color: $unnnic-color-background-snow;
     font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
 </style>

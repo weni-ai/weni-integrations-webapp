@@ -17,11 +17,11 @@
       </div>
       <span class="config-whatsapp__header__description">
         {{ $t('WhatsApp.config.description.text') }}
-        <a :href="documentationLink" target="_blank">
-          <span>
+        <span>
+          <a :href="documentationLink" target="_blank">
             {{ $t('WhatsApp.config.description.link') }}
-          </span>
-        </a>
+          </a>
+        </span>
       </span>
     </div>
 
@@ -43,11 +43,6 @@
         @save="() => fetchData({ skipLoad: true })"
       />
 
-      <template slot="tab-head-contact_info">
-        {{ $t('WhatsApp.config.tabs.contact_info') }}
-      </template>
-      <ContactInfoTab slot="tab-panel-contact_info" :app="app" @close="closeConfig" />
-
       <template slot="tab-head-webhook_info">
         {{ $t('WhatsApp.config.tabs.webhook_info') }}
       </template>
@@ -57,13 +52,6 @@
         {{ $t('WhatsApp.config.tabs.conversations') }}
       </template>
       <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
-
-      <template slot="tab-head-templates">
-        <div @click.stop="navigateToTemplates" class="config-whatsapp__tabs__template">
-          {{ $t('WhatsApp.config.tabs.templates') }}
-          <unnnic-icon-svg icon="export-1" size="sm" />
-        </div>
-      </template>
     </unnnic-tab>
     <skeleton-loading v-else />
   </div>
@@ -72,7 +60,6 @@
 <script>
   import AccountTab from './components/tabs/AccountTab.vue';
   import ProfileTab from './components/tabs/ProfileTab.vue';
-  import ContactInfoTab from './components/tabs/ContactInfoTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
   import skeletonLoading from './loadings/Config.vue';
@@ -86,7 +73,6 @@
       skeletonLoading,
       AccountTab,
       ProfileTab,
-      ContactInfoTab,
       ConversationsTab,
       WebhookTab,
     },
@@ -125,7 +111,7 @@
         errorCurrentApp: (state) => state.appType.errorCurrentApp,
       }),
       configTabs() {
-        return ['account', 'profile', 'contact_info', 'webhook_info', 'conversations', 'templates'];
+        return ['account', 'profile', 'webhook_info', 'conversations'];
       },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
@@ -161,7 +147,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_fetch'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
@@ -188,25 +174,6 @@
         let profile = this.whatsAppProfile;
         profile.photoFile = await dataUrlToFile(this.whatsAppProfile.photo_url, 'photo.jpg', true);
         this.appProfile = profile;
-      },
-      navigateToTemplates() {
-        if (!this.currentApp) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.error.open_templates'),
-              title: 'Error',
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 8,
-          });
-          return;
-        }
-
-        const { code, uuid } = this.currentApp;
-        this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
     },
   };
@@ -261,8 +228,6 @@
       }
 
       &__description {
-        display: flex;
-
         margin-top: $unnnic-inline-sm;
         padding-bottom: $unnnic-spacing-stack-md;
 
@@ -272,7 +237,6 @@
         color: $unnnic-color-neutral-cloudy;
 
         a {
-          margin-left: $unnnic-inline-nano;
           font-weight: $unnnic-font-weight-bold;
           color: $unnnic-color-neutral-cloudy;
         }
@@ -284,7 +248,6 @@
       flex-direction: column;
       overflow: hidden;
       height: 100%;
-      max-height: calc(100vh - 154px);
 
       ::v-deep .tab-body {
         display: flex;

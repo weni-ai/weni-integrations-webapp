@@ -11,30 +11,38 @@
     data() {
       return {
         crumb_title: this.$route.meta.crumb_title,
+        baseCrumbs: [
+          {
+            name: this.$t('apps.nav.my_apps'),
+            path: '/apps/my',
+            meta: 'myApps',
+          },
+        ],
       };
     },
     computed: {
       crumbs() {
-        return [
-          {
-            name: this.$t('WhatsApp.config.tabs.profile'),
-            path: '/apps/my',
-          },
-          {
-            name: this.$t(this.crumb_title),
-          },
-        ];
-      },
-    },
-    watch: {
-      '$route.meta.crumb_title'(newValue) {
-        this.crumb_title = newValue;
+        const routeCrumbs = this.$route.matched.slice(1);
+
+        const routeCrumbsWithTitles = routeCrumbs.map((crumb) => {
+          const { meta } = crumb;
+          return {
+            name: this.$t(meta.crumb_title),
+            path: crumb.path,
+            meta: crumb.name,
+          };
+        });
+        return this.baseCrumbs.concat(routeCrumbsWithTitles);
       },
     },
     methods: {
       handleCrumbClick(crumb) {
-        if (crumb.path) {
+        if (crumb.meta === this.$route.name) return;
+
+        if (crumb.meta === 'WhatsApp Templates Table') {
           this.$router.go(-1);
+        } else {
+          this.$router.push(crumb.path);
         }
       },
     },
@@ -43,7 +51,9 @@
 
 <style lang="scss" scoped>
   .whatsapp-templates-base {
-    height: calc(100vh - 5.5rem);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 </style>
 

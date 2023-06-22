@@ -23,6 +23,5 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    height: calc(100vh - $unnnic-spacing-inset-md);
   }
 </style>

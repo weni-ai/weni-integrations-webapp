@@ -1,11 +1,12 @@
 <template>
   <div class="whatsapp-templates-header">
-    <TableHeaderLoading v-if="loadingCurrentAppType" />
-    <div v-else class="whatsapp-templates-header__wrapper">
-      <div class="whatsapp-templates-header__icon">
-        <img :src="currentAppType.icon" />
-      </div>
-      <span class="whatsapp-templates-header__title">{{ title }}</span>
+    <div class="whatsapp-templates-header__wrapper">
+      <span class="whatsapp-templates-header__title">
+        {{ $t('WhatsApp.templates.table.header.title') }}
+      </span>
+      <span class="whatsapp-templates-header__description">
+        {{ $t('WhatsApp.templates.table.header.description') }}
+      </span>
     </div>
     <unnnic-button
       class="whatsapp-templates-header__button"
@@ -18,35 +19,9 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import TableHeaderLoading from '@/components/whatsAppTemplates/loadings/TableHeaderLoading';
-
   export default {
     name: 'TableHeader',
-    components: {
-      TableHeaderLoading,
-    },
-    props: {
-      title: {
-        type: String,
-        default: 'WhatsApp',
-      },
-    },
-    created() {
-      this.fetchData();
-    },
-    computed: {
-      ...mapState({
-        currentAppType: (state) => state.appType.currentAppType,
-        loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
-      }),
-    },
     methods: {
-      ...mapActions(['getAppType']),
-      fetchData() {
-        const { appCode } = this.$route.params;
-        this.getAppType({ code: appCode, shouldLoad: true });
-      },
       navigateToCreateTemplate() {
         const { appCode, appUuid } = this.$route.params;
         this.$router.push({ path: `/apps/my/${appCode}/${appUuid}/templates/create` });
@@ -60,12 +35,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: $unnnic-spacing-stack-md auto;
+    margin: $unnnic-spacing-stack-md 0;
     margin-bottom: $unnnic-spacing-stack-lg;
 
     &__wrapper {
       display: flex;
-      align-items: center;
+      flex-direction: column;
     }
 
     &__button {
@@ -89,8 +64,16 @@
     &__title {
       font-family: $unnnic-font-family-primary;
       font-weight: $unnnic-font-weight-regular;
-      font-size: $unnnic-font-size-title-md;
-      line-height: $unnnic-line-height-md + $unnnic-font-size-title-md;
+      font-size: $unnnic-font-size-title-sm;
+      line-height: $unnnic-line-height-md + $unnnic-font-size-title-sm;
+      color: $unnnic-color-neutral-darkest;
+    }
+
+    &__description {
+      font-family: $unnnic-font-family-secondary;
+      font-weight: $unnnic-font-weight-regular;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
       color: $unnnic-color-neutral-darkest;
     }
   }

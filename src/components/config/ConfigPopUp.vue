@@ -15,6 +15,7 @@
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
   import wppCloudSetup from './channels/whatsapp/Setup.vue';
   import facebookSetup from './channels/facebook/Setup.vue';
+  import chatGptSetup from './external/chatgpt/Setup.vue';
 
   export default {
     name: 'Config-PopUp',
@@ -29,6 +30,7 @@
           'wpp-cloud': wppCloudSetup,
           ig: facebookSetup,
           fba: facebookSetup,
+          chatgpt: chatGptSetup,
         },
       };
     },

@@ -130,9 +130,15 @@
         default: null,
         validator(value) {
           return (
-            ['channel', 'ticket', 'external', 'bi-tools', 'configured', 'installed'].indexOf(
-              value,
-            ) !== -1
+            [
+              'channel',
+              'ticket',
+              'external',
+              'bi-tools',
+              'configured',
+              'installed',
+              'recommended',
+            ].indexOf(value) !== -1
           );
         },
       },
@@ -163,6 +169,7 @@
     },
     /* istanbul ignore next */
     mounted() {
+      this.updateGridSize();
       window.addEventListener('resize', this.updateGridSize);
     },
     /* istanbul ignore next */
@@ -188,6 +195,8 @@
             return { icon: 'cog-1', scheme: 'aux-purple' };
           case 'installed':
             return { icon: 'check-circle-1-1', scheme: 'aux-blue' };
+          case 'recommended':
+            return { icon: 'rating-star-1-1', scheme: 'aux-orange' };
         }
         /* istanbul ignore next */
         return null;
@@ -287,7 +296,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: 'Error',
+            title: this.$t('general.error'),
             icon: 'alert-circle-1',
             scheme: 'feedback-red',
             position: 'bottom-right',

@@ -2,9 +2,11 @@
 
 exports[`components/whatsAppTemplates/TableHeader.vue should be rendered properly 1`] = `
 <div class="whatsapp-templates-header">
-  <div class="whatsapp-templates-header__wrapper">
-    <div class="whatsapp-templates-header__icon"><img src="icon"></div> <span class="whatsapp-templates-header__title">WhatsApp</span>
-  </div>
+  <div class="whatsapp-templates-header__wrapper"><span class="whatsapp-templates-header__title">
+      WhatsApp Templates
+    </span> <span class="whatsapp-templates-header__description">
+      The following table shows the message templates currently configured for this number.
+    </span></div>
   <unnnicbutton-stub type="secondary" class="whatsapp-templates-header__button">
     New Template
   </unnnicbutton-stub>

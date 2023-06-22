@@ -23,7 +23,7 @@
             class="app-preview-wpp_demo__settings__content__input__buttons--copy"
             type="primary"
             size="large"
-            iconCenter="floppy-disk-1"
+            iconCenter="copy-paste-1"
             @click="copyUrl"
           />
 
@@ -84,7 +84,7 @@
         unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            title: 'Success',
+            title: this.$t('general.success'),
             icon: 'check-circle-1-1',
             scheme: 'feedback-green',
             position: 'bottom-right',

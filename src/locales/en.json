@@ -10,7 +10,10 @@
     "send": "Send",
     "back": "Back",
     "next": "Next",
-    "start": "Start"
+    "start": "Start",
+    "error": "Error",
+    "success": "Success",
+    "continue": "Continue"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
@@ -29,9 +32,17 @@
         "configured": "Configured Apps",
         "installed": "Installed Apps",
         "bi-tools": "BI Tools",
-        "external": "External Services"
+        "external": "External Services",
+        "recommended": "Recommended channels"
       },
-      "fetch_error": "Failed to fetch Application list, please try again later."
+      "fetch_error": "Failed to fetch Application list, please try again later.",
+      "search": {
+        "placeholder": "Search",
+        "empty_title": "Wow, we couldn't find this thing called",
+        "empty_description": "But you can see all our integrations by clicking",
+        "empty_link": "here",
+        "results": "Results for"
+      }
     },
     "myApps": {
       "empty": {
@@ -242,11 +253,32 @@
   "WhatsApp": {
     "data": {
       "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
-      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts"
+      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "templates": {
+        "category": {
+          "account_update": "Account Update",
+          "payment_update": "Payment Update",
+          "personal_finance_update": "Personal Finance Update",
+          "reservation_update": "Reservation Update",
+          "shipping_update": "Shipping Update",
+          "issue_resolution": "Issue Resolution",
+          "appointment_update": "Appointment Update",
+          "transportation_update": "Transportation Update",
+          "ticket_update": "Ticket Update",
+          "alert_update": "Alert Update",
+          "auto_reply": "Auto Reply",
+          "transactional": "Transactional",
+          "marketing": "Marketing",
+          "otp": "One Time Password",
+          "utility": "Utility",
+          "authentication": "Authentication",
+          "any": "Any"
+        }
+      }
     },
     "config": {
       "tabs": {
-        "account": "WhatsApp Account",
+        "account": "General",
         "profile": "Profile",
         "contact_info": "Contact Information",
         "conversations": "Conversations",
@@ -370,12 +402,17 @@
         "open_templates": "Could not open templates, please refresh the page and try again.",
         "empty_url": "Provided Webhook URL cannot be empty",
         "invalid_url": "Provided Webhook URL is invalid",
-        "webhook_update": "Error while trying to update webhook data"
+        "webhook_update": "Error while trying to update webhook data",
+        "invalid_data": "Some fields are invalid, please fix them and try again"
       },
       "qr": {
         "title": "WhatsApp Link",
         "button": "Access link",
-        "info": "Para acessar o link, escaneie o QR Code ou clique no botão abaixo"
+        "info": "To access the link, scan the QR Code or click the button below"
+      },
+      "templates": {
+        "button": "See my templates",
+        "title": "Templates"
       }
     },
     "templates": {
@@ -392,12 +429,30 @@
           "category": "Category",
           "preview": "Preview",
           "language": "Language",
-          "actions": "Actions"
+          "actions": "Actions",
+          "date": "Date"
         },
-        "new_template": "New Template"
+        "new_template": "New Template",
+        "filters": {
+          "date": {
+            "label": "Date"
+          },
+          "search": "Search",
+          "category": "Category"
+        },
+        "header": {
+          "title": "WhatsApp Templates",
+          "description": "The following table shows the message templates currently configured for this number."
+        }
       },
       "form": {
         "crumb_title": "Template"
+      },
+      "create_form": {
+        "crumb_title": "Create Template"
+      },
+      "edit_form": {
+        "crumb_title": "Edit Template"
       },
       "error": {
         "fetch_template_data": "Error fetching template data, please try again later",
@@ -726,6 +781,55 @@
         },
         "title": "How to Integrate Weni Web Chat"
       }
+    }
+  },
+  "ChatGPT": {
+    "data": {
+      "summary": "Powerful integration: Weni + ChatGPT. Automated support with a human touch, instant responses, and personalized experience. Try it now!",
+      "description": "We present a powerful synergy between the Weni platform and ChatGPT - a perfect combination to transform your customer interactions into an unparalleled experience!<br><br>With the integration of Weni and ChatGPT, you have at your disposal an intelligent virtual assistant powered by OpenAI's advanced natural language technology. Imagine fully automated customer support that still feels human and personalized.<br><br>Our Weni platform, known for its intuitive interface and versatile features, now strengthens its capabilities with the presence of ChatGPT. With it, you can provide your customers with instant, accurate, and engaging responses to their questions and needs, anytime and anywhere.<br><br>ChatGPT understands the nuances of human language, continuously learning and adapting. It not only offers quick and efficient answers but also maintains natural and relevant conversations, establishing a genuine connection with your customers.<br><br>Take advantage of the benefits of this integration to enhance customer support, automate repetitive tasks, and deliver a personalized and pleasant experience. ChatGPT, powered by Weni, helps you increase efficiency, save time, and achieve exceptional customer satisfaction.<br><br>Try the Weni + ChatGPT integration now and enjoy intelligent, dynamic customer support tailored to your business needs. Join this revolution in customer interaction and watch your results reach new heights!"
+    },
+    "setup": {
+      "version": "Version",
+      "title": "Integrate with ChatGPT",
+      "description": "To integrate, create a name, insert your API-Token and select one of the available versions",
+      "name": "Name",
+      "name_placeholder": "Insert a name",
+      "token": "Token",
+      "token_placeholder": "Insert the Token",
+      "version_tooltip": "Changing the version of ChatGPT can change the way with that the AI ​​generates the answers based on the knowledge base and rules.",
+      "create_app": {
+        "error": "Failed to create ChatGPT integration, please try again later"
+      },
+      "success": "Successfully created ChatGPT integration"
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Flows",
+          "description": "Define how ChatGPT will behave when it responds to people in the Flows area.",
+          "inputs": {
+            "rules_label": "Rules",
+            "knowledge_label": "Knowledge base",
+            "prompt_label": "Insert prompts",
+            "prompt_placeholder": "Insert prompt text and press enter"
+          },
+          "prompts_list": "Prompt list"
+        },
+        "general": {
+          "title": "General"
+        }
+      },
+      "save_modifications": "Save modifications",
+      "description": "Configure how ChatGPT works in platform modules"
+    },
+    "errors": {
+      "configure": "Failed to update fields, please try again later",
+      "create_prompt": "Failed to create prompts, please try again later",
+      "delete_prompt": "Failed to delete prompts, please try again later",
+      "get_prompts": "Failed to fetch prompts, please try again later"
+    },
+    "success": {
+      "configure": "Successfully updated integration"
     }
   }
 }

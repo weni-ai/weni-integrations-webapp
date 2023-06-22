@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Preview.vue should be rendered properly 1`] = `
+exports[`components/config/channels/wpp_demo/Preview.vue should be rendered properly 1`] = `
 <div class="app-preview-wpp_demo">
   <div class="app-preview-wpp_demo__header">
     <div class="app-preview-wpp_demo__header__title">
@@ -15,7 +15,7 @@ exports[`Preview.vue should be rendered properly 1`] = `
     <div class="app-preview-wpp_demo__settings__content__qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&amp;data=null"></div>
     <unnnic-data-area-stub hovertext="">
       <div class="app-preview-wpp_demo__settings__content__input__buttons">
-        <unnnicbutton-stub size="large" type="primary" iconcenter="floppy-disk-1" class="app-preview-wpp_demo__settings__content__input__buttons--copy"></unnnicbutton-stub>
+        <unnnicbutton-stub size="large" type="primary" iconcenter="copy-paste-1" class="app-preview-wpp_demo__settings__content__input__buttons--copy"></unnnicbutton-stub>
         <unnnicbutton-stub size="large" type="primary" iconcenter="export-1" class="app-preview-wpp_demo__settings__content__input__buttons--open"></unnnicbutton-stub>
       </div>
     </unnnic-data-area-stub>

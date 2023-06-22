@@ -57,6 +57,7 @@
   import instagramConfig from '@/components/config/channels/instagram/Config.vue';
   import facebookConfig from '@/components/config/channels/facebook/Config.vue';
   import omieConfig from '@/components/config/external/omie/Config.vue';
+  import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
 
   export default {
     name: 'Modal',
@@ -78,6 +79,7 @@
           ig: instagramConfig,
           fba: facebookConfig,
           omie: omieConfig,
+          chatgpt: chatGptConfig,
         },
       };
     },

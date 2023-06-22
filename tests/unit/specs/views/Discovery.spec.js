@@ -11,13 +11,21 @@ import Discovery from '@/views/Discovery.vue';
 import AppGrid from '@/components/AppGrid.vue';
 import { singleApp } from '../../../__mocks__/appMock';
 
+const genericApp = {
+  ...singleApp,
+  name: 'generic',
+  code: 'generic',
+  generic: true,
+  config: { channel_name: 'A random generic' },
+};
+
 const mockManuallyCreateApp = jest.fn();
 AppGrid.methods = {
   ...AppGrid.methods,
   manuallyCreateApp: mockManuallyCreateApp,
 };
 
-const mountComponent = async ({ createAppCode = null } = {}) => {
+const mountComponent = async ({ createAppCode = null, apps = [singleApp] } = {}) => {
   const actions = {
     getAllAppTypes: jest.fn(),
     deleteApp: jest.fn(),
@@ -29,7 +37,7 @@ const mountComponent = async ({ createAppCode = null } = {}) => {
       loadingDeleteApp: false,
       errorDeleteApp: false,
 
-      allAppTypes: [singleApp],
+      allAppTypes: apps,
       loadingAllAppTypes: false,
       errorAllAppTypes: false,
     },
@@ -45,7 +53,7 @@ const mountComponent = async ({ createAppCode = null } = {}) => {
   const externalServicesState = {
     loadingExternalServices: false,
     errorExternalServices: null,
-    externalServicesList: [singleApp],
+    externalServicesList: apps,
   };
 
   const store = new Vuex.Store({
@@ -133,6 +141,37 @@ describe('Discovery.vue', () => {
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.fetchChannels();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('search', () => {
+    it('should filter apps, externalservices and biApps apps by name', async () => {
+      const { wrapper, store } = await mountComponent();
+      store.state.appType.allAppTypes = [singleApp, genericApp];
+      store.state.externals.externalServicesList = [singleApp, genericApp];
+
+      expect(wrapper.vm.filteredApps).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredExternalServices).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredBiApps).toEqual(wrapper.vm.biApps);
+
+      wrapper.vm.searchTerm = 'weni';
+      expect(wrapper.vm.filteredApps).toEqual([singleApp]);
+      expect(wrapper.vm.filteredExternalServices).toEqual([singleApp]);
+      expect(wrapper.vm.filteredBiApps).toEqual([]);
+
+      wrapper.vm.searchTerm = ' ';
+      expect(wrapper.vm.filteredApps).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredExternalServices).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredBiApps).toEqual(wrapper.vm.biApps);
+    });
+
+    it('should return empty array if there were no apps from store', async () => {
+      const { wrapper, store } = await mountComponent();
+      store.state.appType.allAppTypes = null;
+      store.state.externals.externalServicesList = null;
+
+      expect(wrapper.vm.filteredApps).toEqual([]);
+      expect(wrapper.vm.filteredExternalServices).toEqual([]);
     });
   });
 });

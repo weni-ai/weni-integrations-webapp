@@ -1,40 +1,38 @@
 <template lang="">
-  <div>
-    <unnnic-modal-next class="onboard" v-if="showModal" @close="closeModal" show-close-button>
-      <div class="onboard--title">
-        {{ currentModalTitle }}
-      </div>
+  <unnnic-modal-next class="onboard" v-if="showModal" @close="closeModal" show-close-button>
+    <div class="onboard--title">
+      {{ currentModalTitle }}
+    </div>
 
-      <div v-if="!currentApp" class="onboard__app-selection--description">
-        {{ $t('onboard.modal.app_selection.description') }}
-      </div>
+    <div v-if="!currentApp" class="onboard__app-selection--description">
+      {{ $t('onboard.modal.app_selection.description') }}
+    </div>
 
-      <div v-if="!currentApp" class="onboard__app-selection__wrapper">
-        <img
-          class="onboard__app-selection__app"
-          v-for="(app, index) in availableApps"
-          :key="index"
-          :src="onboardIcons[app]"
-          @click="() => (currentApp = app)"
-        />
-      </div>
+    <div v-if="!currentApp" class="onboard__app-selection__wrapper">
+      <img
+        class="onboard__app-selection__app"
+        v-for="(app, index) in availableApps"
+        :key="index"
+        :src="onboardIcons[app]"
+        @click="() => (currentApp = app)"
+      />
+    </div>
 
-      <div v-if="currentApp" class="onboard__content">
-        <img class="onboard__gif" :src="onboardGifs[currentApp][page]" />
+    <div v-if="currentApp" class="onboard__content">
+      <img class="onboard__gif" :src="onboardGifs[currentApp][page]" />
 
-        <span class="onboard__description" v-html="onboardDescriptions[currentApp][page]" />
-      </div>
+      <span class="onboard__description" v-html="onboardDescriptions[currentApp][page]" />
+    </div>
 
-      <div v-if="currentApp" class="onboard__buttons">
-        <unnnic-button type="terciary" @click.stop="previousPage" :text="$t('general.back')" />
-        <unnnic-button
-          type="secondary"
-          @click="nextPage"
-          :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
-        />
-      </div>
-    </unnnic-modal-next>
-  </div>
+    <div v-if="currentApp" class="onboard__buttons">
+      <unnnic-button type="terciary" @click.stop="previousPage" :text="$t('general.back')" />
+      <unnnic-button
+        type="secondary"
+        @click="nextPage"
+        :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
+      />
+    </div>
+  </unnnic-modal-next>
 </template>
 
 <script>

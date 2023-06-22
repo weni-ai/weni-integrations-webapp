@@ -200,7 +200,7 @@
         unnnicCallAlert({
           props: {
             text,
-            title: 'Error',
+            title: this.$t('general.error'),
             icon: 'check-circle-1-1',
             scheme: 'feedback-red',
             position: 'bottom-right',

@@ -10,7 +10,10 @@
     "send": "Enviar",
     "back": "Volver",
     "next": "Próximo",
-    "start": "Empezar"
+    "start": "Empezar",
+    "error": "Error",
+    "success": "Éxito",
+    "continue": "Continuar"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -29,9 +32,17 @@
         "configured": "Aplicaciones configuradas",
         "installed": "Aplicaciones instaladas",
         "bi-tools": "Herramientas de BI",
-        "external": "Servicios externoss"
+        "external": "Servicios externos",
+        "recommended": "Canales recomendados"
       },
-      "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde."
+      "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde.",
+      "search": {
+        "empty_title": "Wow, no pudimos encontrar esta cosa de",
+        "empty_description": "Pero puedes ver todas nuestras integraciones pinchando",
+        "empty_link": "aquí",
+        "results": "Resultados para",
+        "placeholder": "Buscar"
+      }
     },
     "myApps": {
       "empty": {
@@ -242,11 +253,32 @@
   "WhatsApp": {
     "data": {
       "summary": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
-      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos"
+      "description": "Si tienes una cuenta de WhatsApp empresarial, puedes conectarla para comunicarte con tus contactos",
+      "templates": {
+        "category": {
+          "account_update": "Actualización de cuenta",
+          "payment_update": "Actualización de pago",
+          "personal_finance_update": "Actualización de Finanzas Personales",
+          "reservation_update": "Actualización de la Reserva",
+          "shipping_update": "Actualización de envío",
+          "issue_resolution": "Resolución de problemas",
+          "appointment_update": "Actualización de cita",
+          "transportation_update": "Actualización de transporte",
+          "ticket_update": "Actualización de entradas",
+          "alert_update": "Actualización de Alerta",
+          "auto_reply": "Respuesta automática",
+          "transactional": "Transaccional",
+          "marketing": "Comercialización",
+          "otp": "Contraseña de un solo uso",
+          "utility": "Utilidad",
+          "authentication": "Autenticación",
+          "any": "Cualquiera"
+        }
+      }
     },
     "config": {
       "tabs": {
-        "account": "Cuenta WhatsApp",
+        "account": "General",
         "profile": "Perfil",
         "contact_info": "Información del contacto",
         "conversations": "Conversaciones",
@@ -370,12 +402,17 @@
         "open_templates": "No se pueden abrir las Plantillas, actualice la página y vuelva a intentarlo.",
         "empty_url": "La URL proporcionada del webhook no puede estar vacía",
         "invalid_url": "La URL proporcionada del webhook no es válida",
-        "webhook_update": "Error al intentar actualizar los datos del webhook"
+        "webhook_update": "Error al intentar actualizar los datos del webhook",
+        "invalid_data": "Algunos campos no son válidos, corríjalos y vuelva a intentarlo"
       },
       "qr": {
         "title": "Enlace de WhatsApp",
         "button": "Enlace de acceso",
         "info": "Para acceder al enlace, escanee el código QR o haga clic en el botón de abajo"
+      },
+      "templates": {
+        "button": "Ver mis plantillas",
+        "title": "Plantillas"
       }
     },
     "templates": {
@@ -392,12 +429,30 @@
           "category": "Categoría",
           "preview": "Previsualización",
           "language": "Idioma",
-          "actions": "Acciones"
+          "actions": "Acciones",
+          "date": "Fecha"
         },
-        "new_template": "Nueva Plantilla"
+        "new_template": "Nueva Plantilla",
+        "filters": {
+          "date": {
+            "label": "Fecha"
+          },
+          "search": "Buscar",
+          "category": "Categoría"
+        },
+        "header": {
+          "description": "La siguiente tabla muestra las plantillas de mensajes configuradas actualmente para este número.",
+          "title": "Plantillas de WhatsApp"
+        }
       },
       "form": {
         "crumb_title": "Plantilla"
+      },
+      "create_form": {
+        "crumb_title": "Crear Plantilla"
+      },
+      "edit_form": {
+        "crumb_title": "Editar Plantilla"
       },
       "error": {
         "fetch_template_data": "Error al obtener los datos de la plantilla. Por favor, inténtelo más tarde",
@@ -726,6 +781,55 @@
         },
         "title": "Cómo integrar Weni Web Chat"
       }
+    }
+  },
+  "ChatGPT": {
+    "data": {
+      "summary": "Integración poderosa: Weni + ChatGPT. Soporte automatizado con un toque humano, respuestas instantáneas y experiencia personalizada. ¡Pruébalo ahora!",
+      "description": "¡Presentamos una poderosa sinergia entre la plataforma Weni y ChatGPT, una combinación perfecta para transformar tus interacciones con los clientes en una experiencia inigualable!<br><br>Con la integración de Weni y ChatGPT, tendrás a tu disposición un asistente virtual inteligente, impulsado por la avanzada tecnología de procesamiento de lenguaje natural de OpenAI. Imagina un servicio de atención al cliente totalmente automatizado, pero con un toque humano y personalizado.<br><br>Nuestra plataforma Weni, conocida por su interfaz intuitiva y sus funciones versátiles, ahora se fortalece con la presencia de ChatGPT. Con él, puedes proporcionar a tus clientes respuestas instantáneas, precisas y atractivas a sus preguntas y necesidades, en cualquier momento y lugar.<br><br>ChatGPT es capaz de comprender las sutilezas del lenguaje humano, aprendiendo y adaptándose constantemente. No solo ofrece respuestas rápidas y eficientes, sino que también mantiene conversaciones naturales y relevantes, estableciendo una conexión genuina con tus clientes.<br><br>Aprovecha los beneficios de esta integración para mejorar el soporte al cliente, automatizar tareas repetitivas y brindar una experiencia personalizada y agradable. ChatGPT, impulsado por Weni, te ayuda a aumentar la eficiencia, ahorrar tiempo y lograr una satisfacción excepcional del cliente.<br><br>Prueba ahora mismo la integración de Weni + ChatGPT y disfruta de un servicio de atención al cliente inteligente, dinámico y adaptado completamente a las necesidades de tu negocio. ¡Únete a esta revolución en la interacción con los clientes y observa cómo tus resultados alcanzan nuevas alturas!"
+    },
+    "setup": {
+      "version": "Versión",
+      "title": "Integrar con ChatGPT",
+      "description": "Para integrar, cree un nombre, inserte su API-Token y seleccione una de las versiones disponibles",
+      "name": "Nombre",
+      "name_placeholder": "Ingresa un nombre",
+      "token": "Token",
+      "token_placeholder": "Ingrese el Token",
+      "version_tooltip": "Cambiar la versión de ChatGPT puede cambiar la forma con que la IA genera las respuestas en base a la base de conocimientos y reglas.",
+      "create_app": {
+        "error": "No se pudo crear la integración de ChatGPT, inténtalo de nuevo más tarde"
+      },
+      "success": "Integración de ChatGPT creada con éxito"
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Flujos",
+          "description": "Defina cómo se comportará ChatGPT cuando responda a las personas en el área de Flujos.",
+          "inputs": {
+            "rules_label": "Normas",
+            "knowledge_label": "Base de conocimientos",
+            "prompt_label": "Insertar prompts",
+            "prompt_placeholder": "Inserte el texto del mensaje y presione enter"
+          },
+          "prompts_list": "Lista de prompts"
+        },
+        "general": {
+          "title": "General"
+        }
+      },
+      "save_modifications": "Guardar modificaciones",
+      "description": "Configura cómo funciona ChatGPT en los módulos de la plataforma"
+    },
+    "errors": {
+      "configure": "No se pudieron actualizar los campos, inténtelo de nuevo más tarde",
+      "create_prompt": "No se pudieron crear los prompts, inténtalo de nuevo más tarde",
+      "delete_prompt": "No se han podido eliminar los prompts, inténtalo de nuevo más tarde",
+      "get_prompts": "No se pudieron obtener los prompts, inténtelo de nuevo más tarde"
+    },
+    "success": {
+      "configure": "Integración actualizada con éxito"
     }
   }
 }

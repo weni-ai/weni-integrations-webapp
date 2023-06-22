@@ -100,7 +100,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.config.integration_success'),
-              title: 'Success',
+              title: this.$t('general.success'),
               icon: 'check-circle-1-1',
               scheme: 'feedback-green',
               position: 'bottom-right',
@@ -119,7 +119,7 @@
           unnnicCallAlert({
             props: {
               text: errorMessage,
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',

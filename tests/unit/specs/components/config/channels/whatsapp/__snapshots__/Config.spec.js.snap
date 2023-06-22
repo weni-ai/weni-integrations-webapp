@@ -6,18 +6,18 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
     <div class="config-whatsapp__header__title">
       <div class="config-whatsapp__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-whatsapp__header__title__icon-container__icon"></div>
       <div class="config-whatsapp__header__title__name">Weni Web Chat</div>
+      <unnnicbutton-stub size="small" type="terciary" iconcenter="close-1" class="config-whatsapp__header__title__close"></unnnicbutton-stub>
     </div> <span class="config-whatsapp__header__description">
-      some specific text
-      <a href="https://docs.weni.ai/l/en/channels/how-to-verify-my-business" target="_blank"><span>
-          some specific text
-        </span></a></span>
+      Learn more about how to increase your daily message limit in WhatsApp
+      <span><a href="https://docs.weni.ai/l/en/channels/how-to-verify-my-business" target="_blank">
+          here.
+        </a></span></span>
   </div>
-  <unnnictab-stub initialtab="account" tabs="account,profile,contact_info,webhook_info,conversations,templates" class="config-whatsapp__tabs"><template></template>
+  <unnnictab-stub size="md" initialtab="account" tabs="account,profile,webhook_info,conversations" class="config-whatsapp__tabs"><template></template>
     <accounttab-stub appinfo="[object Object]"></accounttab-stub> <template></template>
     <profiletab-stub app="[object Object]"></profiletab-stub> <template></template>
-    <contactinfotab-stub app="[object Object]"></contactinfotab-stub> <template></template>
     <webhooktab-stub app="[object Object]"></webhooktab-stub> <template></template>
-    <conversationstab-stub app="[object Object]"></conversationstab-stub> <template></template>
+    <conversationstab-stub app="[object Object]"></conversationstab-stub>
   </unnnictab-stub>
 </div>
 `;

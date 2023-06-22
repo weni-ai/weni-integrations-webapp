@@ -112,4 +112,18 @@ export default {
     state.errorUpdateAppConfig = err;
     state.loadingUpdateAppConfig = false;
   },
+
+  UPDATE_APP_REQUEST(state) {
+    state.loadingUpdateApp = true;
+    state.errorUpdateApp = null;
+    state.updateAppResult = null;
+  },
+  UPDATE_APP_SUCCESS(state, data) {
+    state.updateAppResult = data;
+    state.loadingUpdateApp = false;
+  },
+  UPDATE_APP_ERROR(state, err) {
+    state.errorUpdateApp = err;
+    state.loadingUpdateApp = false;
+  },
 };

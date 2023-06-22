@@ -59,15 +59,6 @@ describe('components/whatsAppTemplates/TableHeader.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  describe('fetchData()', () => {
-    it('should call getAppType()', async () => {
-      jest.clearAllMocks();
-      expect(actions.getAppType).not.toHaveBeenCalled();
-      await wrapper.vm.fetchData();
-      expect(actions.getAppType).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('navigateToCreateTemplate()', () => {
     it('should change route to create template', () => {
       const spy = spyOn(wrapper.vm.$router, 'push');

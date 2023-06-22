@@ -108,4 +108,15 @@ export default {
       commit('UPDATE_APP_CONFIG_ERROR', err);
     }
   },
+
+  async updateApp({ commit }, { code, appUuid, payload }) {
+    commit('UPDATE_APP_REQUEST');
+    try {
+      const { data } = await appType.updateApp(code, appUuid, payload);
+      commit('UPDATE_APP_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('UPDATE_APP_ERROR', err);
+    }
+  },
 };

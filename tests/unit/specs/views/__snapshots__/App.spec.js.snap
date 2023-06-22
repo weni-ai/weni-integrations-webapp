@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App.vue should be rendered properly 1`] = `
-<div>
+<div class="app">
   <router-view-stub name="default"></router-view-stub>
   <div class="survey-container">
     <survey-stub></survey-stub>

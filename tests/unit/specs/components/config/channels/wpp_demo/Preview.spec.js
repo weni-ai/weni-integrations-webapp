@@ -20,7 +20,7 @@ import i18n from '@/utils/plugins/i18n';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('Preview.vue', () => {
+describe('components/config/channels/wpp_demo/Preview.vue', () => {
   let wrapper;
   let actions;
   let store;

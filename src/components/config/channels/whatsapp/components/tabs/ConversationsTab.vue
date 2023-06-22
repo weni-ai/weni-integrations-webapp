@@ -137,7 +137,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.conversations.fetch_error'),
-              title: 'Error',
+              title: this.$t('general.error'),
               icon: 'alert-circle-1-1',
               scheme: 'feedback-red',
               position: 'bottom-right',
