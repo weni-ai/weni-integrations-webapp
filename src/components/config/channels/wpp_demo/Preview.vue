@@ -105,14 +105,13 @@
   .app-preview-wpp_demo {
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
-    height: -moz-available;
-    padding: $unnnic-inset-lg;
+    height: 100%;
     flex: 1;
 
     &__header {
       display: flex;
-      margin-bottom: $unnnic-spacing-stack-nano;
+      margin: $unnnic-spacing-inset-lg;
+      margin-bottom: $unnnic-spacing-stack-sm;
       flex-direction: column;
 
       &__title {
@@ -161,15 +160,23 @@
     &__settings {
       display: flex;
       flex-direction: column;
-      height: -webkit-fill-available;
-      height: -moz-available;
+      height: 100%;
       overflow-y: hidden;
+
       &__content {
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
         flex: 1;
         overflow: auto;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        color: $unnnic-color-neutral-cloudy;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+        margin: 0 $unnnic-spacing-inset-lg;
 
         &__qr {
           align-self: center;
@@ -201,7 +208,7 @@
 
       &__buttons {
         padding-right: $unnnic-spacing-inline-xs;
-        margin-top: $unnnic-spacing-stack-md;
+        margin: $unnnic-spacing-inset-lg;
         display: flex;
 
         &__cancel,

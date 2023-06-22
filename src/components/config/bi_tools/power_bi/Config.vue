@@ -81,7 +81,7 @@
     <div class="app-config-power-bi__buttons">
       <unnnic-button
         class="app-config-power-bi__buttons__cancel"
-        type="secondary"
+        type="terciary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="$emit('closeModal')"
@@ -206,13 +206,12 @@
   .app-config-power-bi {
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
-    height: -moz-available;
-    padding: $unnnic-inset-lg;
+    height: 100%;
 
     &__header {
       display: flex;
-      margin-bottom: $unnnic-spacing-stack-nano;
+      margin: $unnnic-spacing-inset-lg;
+      margin-bottom: $unnnic-spacing-stack-sm;
       flex-direction: column;
 
       &__title {
@@ -248,7 +247,6 @@
 
       &__description {
         margin-top: $unnnic-inline-sm;
-        padding-bottom: $unnnic-inline-md;
 
         font-family: $unnnic-font-family-secondary;
         font-weight: $unnnic-font-weight-regular;
@@ -269,6 +267,15 @@
     }
 
     &__content {
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      color: $unnnic-color-neutral-cloudy;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+      margin: 0 $unnnic-spacing-inset-lg;
+
       ::v-deep .data-area-container__header__title {
         color: $unnnic-color-neutral-cloudy;
       }
@@ -295,10 +302,10 @@
       display: flex;
       gap: $unnnic-spacing-inline-sm;
       justify-content: flex-end;
-      margin-top: $unnnic-spacing-stack-xl;
+      margin: $unnnic-spacing-inset-lg;
 
       &__cancel {
-        width: 50%;
+        flex: 1;
       }
     }
   }

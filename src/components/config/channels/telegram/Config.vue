@@ -147,14 +147,13 @@
   .app-config-telegram {
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
-    height: -moz-available;
-    padding: $unnnic-inset-lg;
+    height: 100%;
 
     &__header {
       display: flex;
-      margin-bottom: $unnnic-spacing-stack-nano;
       flex-direction: column;
+      margin: $unnnic-spacing-inset-lg;
+      margin-bottom: $unnnic-spacing-stack-sm;
 
       &__title {
         display: flex;
@@ -206,14 +205,21 @@
     &__settings {
       display: flex;
       flex-direction: column;
-      height: -webkit-fill-available;
-      height: -moz-available;
+      height: 100%;
       overflow-y: hidden;
 
       &__content {
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        color: $unnnic-color-neutral-cloudy;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+        margin: 0 $unnnic-spacing-inset-lg;
 
         &__input {
           margin-top: $unnnic-spacing-stack-xs;
@@ -233,9 +239,9 @@
         }
       }
       &__buttons {
-        padding-right: $unnnic-spacing-inline-xs;
-        margin-top: $unnnic-spacing-stack-md;
         display: flex;
+        gap: $unnnic-spacing-inline-xs;
+        margin: $unnnic-spacing-inset-lg;
 
         &__cancel,
         &__save {
