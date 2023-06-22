@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <router-view />
+    <router-view class="content" />
 
     <div class="survey-container">
       <Survey />
@@ -104,6 +104,10 @@
     height: 100%;
   }
 
+  .content {
+    margin: $unnnic-spacing-inset-md;
+  }
+
   .survey-container {
     position: fixed;
     bottom: 150px;
@@ -125,7 +129,7 @@
 
   body {
     height: 100%;
-    margin: $unnnic-spacing-inset-md;
+    margin: 0;
     background-color: $unnnic-color-background-snow;
     font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

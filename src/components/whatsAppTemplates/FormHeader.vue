@@ -66,8 +66,7 @@
 <style lang="scss" scoped>
   .form-header {
     display: flex;
-    align-items: center;
-    margin: $unnnic-spacing-stack-lg auto;
+    margin: $unnnic-spacing-stack-lg 0;
 
     &__wrapper {
       display: flex;

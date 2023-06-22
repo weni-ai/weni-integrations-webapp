@@ -21,9 +21,9 @@
 
     <div v-if="hasApps" class="my-apps__sections">
       <div v-if="searchTerm && !filteredConfiguredApps.length && !filteredInstalledApps.length">
-        <EmptyApps :term="searchTerm" />
+        <EmptyApps :term="searchTerm" @clear="navigateToDiscovery" />
       </div>
-      <div v-else>
+      <div class="my-apps__sections__grids" v-else>
         <app-grid
           section="configured"
           type="edit"
@@ -243,6 +243,12 @@
       gap: $unnnic-spacing-stack-lg;
 
       margin-bottom: $unnnic-spacing-stack-md;
+
+      &__grids {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-stack-lg;
+      }
     }
   }
 </style>

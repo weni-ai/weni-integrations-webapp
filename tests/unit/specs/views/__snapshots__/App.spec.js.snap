@@ -2,7 +2,7 @@
 
 exports[`App.vue should be rendered properly 1`] = `
 <div class="app">
-  <router-view-stub name="default"></router-view-stub>
+  <router-view-stub name="default" class="content"></router-view-stub>
   <div class="survey-container">
     <survey-stub></survey-stub>
   </div>

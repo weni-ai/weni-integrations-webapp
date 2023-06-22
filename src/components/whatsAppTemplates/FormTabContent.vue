@@ -1,77 +1,79 @@
 <template>
   <div class="form-tab-content">
-    <div class="form-tab-content--inline">
-      <unnnic-input
-        class="form-tab-content__input--name"
-        :disabled="disableInputs || formMode !== 'create'"
-        :value="templateForm.name"
-        @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
-        @keyup="formatTemplateName"
-        @keydown="preventTemplateName"
-        :label="$t('WhatsApp.templates.form_field.name')"
-        :placeholder="$t('WhatsApp.templates.form_field.name')"
-        :maxlength="512"
-        :type="errorStates.name.value ? 'error' : 'normal'"
-        :message="errorStates.name.message"
-      />
+    <div class="form-tab-content__scroll">
+      <div class="form-tab-content--inline">
+        <unnnic-input
+          class="form-tab-content__input--name"
+          :disabled="disableInputs || formMode !== 'create'"
+          :value="templateForm.name"
+          @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
+          @keyup="formatTemplateName"
+          @keydown="preventTemplateName"
+          :label="$t('WhatsApp.templates.form_field.name')"
+          :placeholder="$t('WhatsApp.templates.form_field.name')"
+          :maxlength="512"
+          :type="errorStates.name.value ? 'error' : 'normal'"
+          :message="errorStates.name.message"
+        />
 
-      <unnnic-multi-select
-        ref="categorySelect"
-        :class="{
-          'form-tab-content__selects--category': true,
-          'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
-        }"
-        :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
-        :hideGroupTitle="true"
-        :label="$t('WhatsApp.templates.form_field.category')"
-        :groups="categoryGroups"
-        @change="handleCategoryChange"
+        <unnnic-multi-select
+          ref="categorySelect"
+          :class="{
+            'form-tab-content__selects--category': true,
+            'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
+          }"
+          :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
+          :hideGroupTitle="true"
+          :label="$t('WhatsApp.templates.form_field.category')"
+          :groups="categoryGroups"
+          @change="handleCategoryChange"
+        />
+      </div>
+
+      <div class="divider" />
+      <unnnic-select
+        :class="{ 'form-tab-content__selects__disabled': disableInputs }"
+        :key="languageKey"
+        :disabled="disableInputs"
+        :value="currentLanguage"
+        :search="true"
+        @input="handleLanguageSelection"
+        :label="$t('WhatsApp.templates.form_field.language')"
+        :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
+      >
+        <option
+          v-for="option in availableLanguages"
+          :key="option.value"
+          :value="option.value"
+          :label="option.text"
+        >
+          {{ option.text }}
+        </option>
+      </unnnic-select>
+
+      <FormTabContentHeader
+        class="form-tab-content__header"
+        :disableInputs="disableContentInputs"
+        @input-change="handleGenericInput"
+      />
+      <FormTabContentBody
+        ref="contentBody"
+        class="form-tab-content__body"
+        :disableInputs="disableContentInputs"
+        @input-change="handleGenericInput"
+        @manual-preview-update="$emit('manual-preview-update')"
+      />
+      <FormTabContentFooter
+        class="form-tab-content__footer"
+        :disableInputs="disableContentInputs"
+        @input-change="handleGenericInput"
+      />
+      <FormTabContentButtons
+        class="form-tab-content__buttons"
+        :disableInputs="disableContentInputs"
+        @input-change="handleGenericInput"
       />
     </div>
-
-    <div class="divider" />
-    <unnnic-select
-      :class="{ 'form-tab-content__selects__disabled': disableInputs }"
-      :key="languageKey"
-      :disabled="disableInputs"
-      :value="currentLanguage"
-      :search="true"
-      @input="handleLanguageSelection"
-      :label="$t('WhatsApp.templates.form_field.language')"
-      :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
-    >
-      <option
-        v-for="option in availableLanguages"
-        :key="option.value"
-        :value="option.value"
-        :label="option.text"
-      >
-        {{ option.text }}
-      </option>
-    </unnnic-select>
-
-    <FormTabContentHeader
-      class="form-tab-content__header"
-      :disableInputs="disableContentInputs"
-      @input-change="handleGenericInput"
-    />
-    <FormTabContentBody
-      ref="contentBody"
-      class="form-tab-content__body"
-      :disableInputs="disableContentInputs"
-      @input-change="handleGenericInput"
-      @manual-preview-update="$emit('manual-preview-update')"
-    />
-    <FormTabContentFooter
-      class="form-tab-content__footer"
-      :disableInputs="disableContentInputs"
-      @input-change="handleGenericInput"
-    />
-    <FormTabContentButtons
-      class="form-tab-content__buttons"
-      :disableInputs="disableContentInputs"
-      @input-change="handleGenericInput"
-    />
 
     <div class="form-tab-content__actions">
       <unnnic-button
@@ -333,6 +335,15 @@
   .form-tab-content {
     display: flex;
     flex-direction: column;
+    overflow: auto;
+    height: 100%;
+
+    &__scroll {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      padding-right: $unnnic-spacing-stack-sm;
+    }
 
     &--inline {
       display: flex;

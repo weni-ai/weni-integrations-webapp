@@ -13,11 +13,13 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
           here.
         </a></span></span>
   </div>
-  <unnnictab-stub size="md" initialtab="account" tabs="account,profile,webhook_info,conversations" class="config-whatsapp__tabs"><template></template>
-    <accounttab-stub appinfo="[object Object]"></accounttab-stub> <template></template>
-    <profiletab-stub app="[object Object]"></profiletab-stub> <template></template>
-    <webhooktab-stub app="[object Object]"></webhooktab-stub> <template></template>
-    <conversationstab-stub app="[object Object]"></conversationstab-stub>
-  </unnnictab-stub>
+  <div class="config-whatsapp__content">
+    <unnnictab-stub size="md" initialtab="account" tabs="account,profile,webhook_info,conversations" class="config-whatsapp__tabs"><template></template>
+      <accounttab-stub appinfo="[object Object]"></accounttab-stub> <template></template>
+      <profiletab-stub app="[object Object]"></profiletab-stub> <template></template>
+      <webhooktab-stub app="[object Object]"></webhooktab-stub> <template></template>
+      <conversationstab-stub app="[object Object]"></conversationstab-stub>
+    </unnnictab-stub>
+  </div>
 </div>
 `;
