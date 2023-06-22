@@ -182,58 +182,6 @@
             type: 'AUTHENTICATION',
             translation: 'WhatsApp.data.templates.category.authentication',
           },
-          {
-            type: 'TRANSACTIONAL',
-            translation: 'WhatsApp.data.templates.category.transactional',
-          },
-          {
-            type: 'OTP',
-            translation: 'WhatsApp.data.templates.category.otp',
-          },
-          {
-            type: 'ACCOUNT_UPDATE',
-            translation: 'WhatsApp.data.templates.category.account_update',
-          },
-          {
-            type: 'PAYMENT_UPDATE',
-            translation: 'WhatsApp.data.templates.category.payment_update',
-          },
-          {
-            type: 'PERSONAL_FINANCE_UPDATE',
-            translation: 'WhatsApp.data.templates.category.personal_finance_update',
-          },
-          {
-            type: 'SHIPPING_UPDATE',
-            translation: 'WhatsApp.data.templates.category.shipping_update',
-          },
-          {
-            type: 'RESERVATION_UPDATE',
-            translation: 'WhatsApp.data.templates.category.reservation_update',
-          },
-          {
-            type: 'ISSUE_RESOLUTION',
-            translation: 'WhatsApp.data.templates.category.issue_resolution',
-          },
-          {
-            type: 'APPOINTMENT_UPDATE',
-            translation: 'WhatsApp.data.templates.category.appointment_update',
-          },
-          {
-            type: 'TRANSPORTATION_UPDATE',
-            translation: 'WhatsApp.data.templates.category.transportation_update',
-          },
-          {
-            type: 'TICKET_UPDATE',
-            translation: 'WhatsApp.data.templates.category.ticket_update',
-          },
-          {
-            type: 'ALERT_UPDATE',
-            translation: 'WhatsApp.data.templates.category.alert_update',
-          },
-          {
-            type: 'AUTO_REPLY',
-            translation: 'WhatsApp.data.templates.category.auto_reply',
-          },
         ],
         tableHeaders: [
           {
