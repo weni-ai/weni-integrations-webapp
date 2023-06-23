@@ -406,7 +406,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
       expect(wrapper.vm.startDate).toBe(null);
       expect(wrapper.vm.endDate).toBe(null);
 
-      dateInput.vm.$emit('change', { startDate: '01-01-2023', endDate: '31-01-2023' });
+      dateInput.vm.$emit('submit', { startDate: '01-01-2023', endDate: '31-01-2023' });
 
       await wrapper.vm.$nextTick();
       expect(wrapper.vm.startDate).toBe('01-01-2023');

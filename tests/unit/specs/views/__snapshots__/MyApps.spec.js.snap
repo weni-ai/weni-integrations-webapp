@@ -5,7 +5,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
   <unnnic-autocomplete-stub type="normal" data="Weni Web Chat - Chat Title,A random generic,Weni Web Chat - Chat Title,A random generic" value="" iconleft="search-1" tooltipsideiconright="right" size="md" placeholder="some specific text" class="my-apps__search"></unnnic-autocomplete-stub>
   <!---->
   <div class="my-apps__sections">
-    <div>
+    <div class="my-apps__sections__grids">
       <div>
         <section id="app-grid">
           <div class="app-grid__header">

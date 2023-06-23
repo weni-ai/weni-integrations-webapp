@@ -54,12 +54,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-  }
-</style>
-
-<style lang="scss">
-  body {
-    margin: 0;
-    padding: $unnnic-spacing-inset-md;
+    overflow: hidden;
   }
 </style>

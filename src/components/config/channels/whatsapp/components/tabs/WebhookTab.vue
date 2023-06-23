@@ -292,6 +292,7 @@
     &__buttons {
       margin-top: $unnnic-spacing-stack-sm;
       display: flex;
+      gap: $unnnic-spacing-inline-sm;
 
       &__cancel,
       &__save {

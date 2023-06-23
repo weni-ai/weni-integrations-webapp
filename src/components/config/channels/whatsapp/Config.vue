@@ -25,35 +25,37 @@
       </span>
     </div>
 
-    <unnnic-tab
-      v-if="skipLoad || (!loadingWhatsAppProfile && !loadingCurrentApp)"
-      class="config-whatsapp__tabs"
-      :tabs="configTabs"
-      initialTab="account"
-    >
-      <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
-      <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
+    <div class="config-whatsapp__content">
+      <unnnic-tab
+        v-if="skipLoad || (!loadingWhatsAppProfile && !loadingCurrentApp)"
+        class="config-whatsapp__tabs"
+        :tabs="configTabs"
+        initialTab="account"
+      >
+        <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
+        <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
 
-      <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
-      <ProfileTab
-        slot="tab-panel-profile"
-        :app="app"
-        :profile="appProfile"
-        @close="closeConfig"
-        @save="() => fetchData({ skipLoad: true })"
-      />
+        <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
+        <ProfileTab
+          slot="tab-panel-profile"
+          :app="app"
+          :profile="appProfile"
+          @close="closeConfig"
+          @save="() => fetchData({ skipLoad: true })"
+        />
 
-      <template slot="tab-head-webhook_info">
-        {{ $t('WhatsApp.config.tabs.webhook_info') }}
-      </template>
-      <WebhookTab slot="tab-panel-webhook_info" :app="app" @close="closeConfig" />
+        <template slot="tab-head-webhook_info">
+          {{ $t('WhatsApp.config.tabs.webhook_info') }}
+        </template>
+        <WebhookTab slot="tab-panel-webhook_info" :app="app" @close="closeConfig" />
 
-      <template slot="tab-head-conversations">
-        {{ $t('WhatsApp.config.tabs.conversations') }}
-      </template>
-      <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
-    </unnnic-tab>
-    <skeleton-loading v-else />
+        <template slot="tab-head-conversations">
+          {{ $t('WhatsApp.config.tabs.conversations') }}
+        </template>
+        <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
+      </unnnic-tab>
+      <skeleton-loading v-else />
+    </div>
   </div>
 </template>
 
@@ -183,15 +185,26 @@
   .config-whatsapp {
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
-    height: -moz-available;
-    padding: $unnnic-inset-md;
+    height: 100%;
     font-family: $unnnic-font-family-secondary;
+
+    &__content {
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      color: $unnnic-color-neutral-cloudy;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+      margin: $unnnic-spacing-inset-lg;
+      margin-top: 0;
+    }
 
     &__header {
       display: flex;
       margin-bottom: $unnnic-spacing-stack-nano;
       flex-direction: column;
+      margin: $unnnic-spacing-inset-lg;
 
       &__title {
         display: flex;
@@ -229,7 +242,6 @@
 
       &__description {
         margin-top: $unnnic-inline-sm;
-        padding-bottom: $unnnic-spacing-stack-md;
 
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
@@ -246,19 +258,27 @@
     &__tabs {
       display: flex;
       flex-direction: column;
-      overflow: hidden;
       height: 100%;
+      overflow-y: hidden;
+      width: 100%;
 
       ::v-deep .tab-body {
         display: flex;
-        overflow-y: auto;
         height: 100%;
+        overflow-y: auto;
       }
       ::v-deep .tab-panel {
+        width: 100%;
+
         display: flex;
         flex-direction: column;
-        width: -webkit-fill-available;
-        width: -moz-available;
+        height: 100%;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
       }
       ::v-deep .tab-header {
         .tab-content {

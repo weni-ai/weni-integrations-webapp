@@ -57,10 +57,14 @@
 <style lang="scss" scoped>
   .templates-form {
     display: flex;
+    height: 100%;
 
     &__content {
       flex: 1;
       max-width: calc(100vw - 310px);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
     }
 
     &__preview {
