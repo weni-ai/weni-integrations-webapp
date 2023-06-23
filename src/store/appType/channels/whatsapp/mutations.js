@@ -23,6 +23,20 @@ export default {
     state.loadingConversations = false;
   },
 
+  CONVERSATIONS_REPORT_REQUEST(state) {
+    state.loadingConversationsReport = true;
+    state.reportResult = null;
+    state.errorConversationsReport = null;
+  },
+  CONVERSATIONS_REPORT_SUCCESS(state, data) {
+    state.reportResult = data;
+    state.loadingConversationsReport = false;
+  },
+  CONVERSATIONS_REPORT_ERROR(state, data) {
+    state.errorConversationsReport = data;
+    state.loadingConversationsReport = false;
+  },
+
   FETCH_WHATSAPP_PROFILE_REQUEST(state) {
     state.loadingWhatsAppProfile = true;
     state.whatsAppProfile = null;

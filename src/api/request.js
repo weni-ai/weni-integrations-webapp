@@ -16,6 +16,10 @@ export default {
       },
     });
 
+    client.interceptors.response.use(undefined, (error) => {
+      return Promise.reject(error);
+    });
+
     return client;
   },
 };

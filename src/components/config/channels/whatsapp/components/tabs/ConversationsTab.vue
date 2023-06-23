@@ -24,15 +24,45 @@
         </div>
       </div>
 
-      <div class="conversations__content__label">
-        {{ $t('WhatsApp.config.conversations.conversations_count.label') }}
+      <div>
+        <div class="conversations__content__label">
+          {{ $t('WhatsApp.config.conversations.conversations_count.label') }}
+        </div>
+
+        <conversations-table
+          :userMessages="userInitiated"
+          :businessMessages="businessInitiated"
+          :total="totalInitiated"
+        />
       </div>
 
-      <conversations-table
-        :userMessages="userInitiated"
-        :businessMessages="businessInitiated"
-        :total="totalInitiated"
-      />
+      <div class="conversations__content__report">
+        <span class="conversations__content__report__label">
+          {{ $t('WhatsApp.config.conversations.report.label') }}
+        </span>
+
+        <span class="conversations__content__report__description">
+          {{ $t('WhatsApp.config.conversations.report.description') }}
+        </span>
+
+        <unnnic-tool-tip
+          class="conversations__content__report__tooltip"
+          :text="$t('WhatsApp.config.conversations.report.missing_dates')"
+          :enabled="!this.startDate || !this.endDate"
+          side="top"
+          maxWidth="15rem"
+        >
+          <unnnic-button
+            class="conversations__content__report__button"
+            type="secondary"
+            size="small"
+            @click="requestReport"
+            :disabled="!this.startDate || !this.endDate"
+          >
+            {{ $t('WhatsApp.config.conversations.report.button') }}
+          </unnnic-button>
+        </unnnic-tool-tip>
+      </div>
     </div>
     <div class="conversations__buttons">
       <unnnic-button
@@ -51,6 +81,7 @@
   import ConversationsTable from '../ConversationsTable.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
+  import removeEmpty from '../../../../../../utils/clean';
 
   export default {
     name: 'ConversationsTab',
@@ -82,8 +113,26 @@
         this.showDateFilter = false;
       });
     },
+    computed: {
+      ...mapState({
+        project: (state) => state.auth.project,
+      }),
+      ...mapState('WhatsApp', [
+        'whatsAppConversations',
+        'loadingConversations',
+        'errorConversations',
+        'loadingConversationsReport',
+        'errorConversationsReport',
+      ]),
+      startDateObject() {
+        return this.startDate && new Date(this.startDate.replace('-', ' '));
+      },
+      endDateObject() {
+        return this.endDate && new Date(this.endDate.replace('-', ' '));
+      },
+    },
     methods: {
-      ...mapActions('WhatsApp', ['getConversations']),
+      ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -118,18 +167,55 @@
         this.userInitiated = this.whatsAppConversations.user_initiated;
         this.totalInitiated = this.whatsAppConversations.total;
       }, 750),
-    },
-    computed: {
-      ...mapState('WhatsApp', [
-        'whatsAppConversations',
-        'loadingConversations',
-        'errorConversations',
-      ]),
-      startDateObject() {
-        return this.startDate && new Date(this.startDate.replace('-', ' '));
-      },
-      endDateObject() {
-        return this.endDate && new Date(this.endDate.replace('-', ' '));
+      async requestReport() {
+        const params = removeEmpty({
+          project_uuid: this.project,
+          start_date: this.startDate,
+          end_date: this.endDate,
+        });
+
+        await this.requestConversationsReport({
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          params,
+        });
+
+        if (this.errorConversationsReport) {
+          let errorText = this.$t('WhatsApp.config.conversations.report_error');
+          let errorColor = 'feedback-red';
+          let errorTitle = this.$t('general.error');
+
+          if (this.errorConversationsReport.response.status === 409) {
+            errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
+            errorColor = 'feedback-yellow';
+            errorTitle = this.$t('general.attention');
+          }
+
+          unnnicCallAlert({
+            props: {
+              text: errorText,
+              title: errorTitle,
+              icon: 'alert-circle-1-1',
+              scheme: errorColor,
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 6,
+          });
+          return;
+        }
+
+        unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.config.conversations.report_success'),
+            title: this.$t('general.success'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
       },
     },
   };
@@ -146,6 +232,7 @@
       display: flex;
       flex-direction: column;
       flex: 1;
+      gap: $unnnic-spacing-stack-md;
 
       &__dropdown {
         width: fit-content;
@@ -165,8 +252,33 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
 
-        margin-top: $unnnic-spacing-stack-sm;
         margin-bottom: $unnnic-spacing-stack-xs;
+      }
+
+      &__report {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-stack-sm;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+
+        &__label {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-neutral-darkest;
+        }
+
+        &__description {
+          font-weight: $unnnic-font-weight-regular;
+          color: $unnnic-color-neutral-cloudy;
+        }
+
+        &__tooltip {
+          width: 33%;
+        }
+
+        &__button {
+          width: 100%;
+        }
       }
     }
 

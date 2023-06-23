@@ -13,7 +13,8 @@
     "start": "Empezar",
     "error": "Error",
     "success": "Éxito",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "attention": "Atención"
   },
   "errors": {
     "empty_input": "Los campos obligatorios no pueden estar vacíos.",
@@ -350,7 +351,16 @@
             "total": "Total"
           }
         },
-        "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte."
+        "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte.",
+        "report": {
+          "button": "Solicitar informe",
+          "description": "Puede recibir desgloses de mensajes por correo electrónico de no más de 6 meses. Es posible que alguna información en el informe sea inexacta. En caso de duda, póngase en contacto con su administrador de cuenta.",
+          "label": "Informe de conversación detallado",
+          "missing_dates": "Se requiere un rango de fechas para poder solicitar un informe"
+        },
+        "report_already_processing": "Ya solicitaste un informe detallado hace un rato, puedes solicitar uno nuevo después de recibir el último.",
+        "report_success": "En breve recibirás tu informe detallado por correo electrónico",
+        "report_error": "No se pudo solicitar el informe detallado, inténtelo de nuevo más tarde"
       },
       "channel": {
         "title": "Canal de WhatsApp",

@@ -14,6 +14,7 @@ jest.mock('@/api/appType/whatsapp', () => {
     deleteTemplateMessage: jest.fn(),
     updateWppWebhookInfo: jest.fn(),
     updateTemplateTranslation: jest.fn(),
+    requestConversationsReport: jest.fn(),
   };
 });
 import WhatsAppApi from '@/api/appType/whatsapp';
@@ -933,6 +934,62 @@ describe('store/appType/whatsapp/actions.js', () => {
       expect(store.state.WhatsApp.errorUpdateWebhookInfo).not.toEqual(error);
       await store.dispatch('WhatsApp/updateWppWebhookInfo', data);
       expect(store.state.WhatsApp.errorUpdateWebhookInfo).toEqual(error);
+    });
+  });
+
+  describe('requestConversationsReport', () => {
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      params: {
+        foo: 'bar',
+      },
+    };
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppApi.requestConversationsReport.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call requestConversationsReport from API', async () => {
+      expect(WhatsAppApi.requestConversationsReport).not.toHaveBeenCalled();
+      await store.dispatch('WhatsApp/requestConversationsReport', data);
+      expect(WhatsAppApi.requestConversationsReport).toHaveBeenCalledTimes(1);
+      expect(WhatsAppApi.requestConversationsReport).toHaveBeenCalledWith(
+        data.code,
+        data.appUuid,
+        data.params,
+      );
+    });
+
+    it('should set reportResult as result data', async () => {
+      store.state.WhatsApp.reportResult = {};
+      expect(store.state.WhatsApp.reportResult).not.toEqual(mockedResult);
+      await store.dispatch('WhatsApp/requestConversationsReport', data);
+      expect(store.state.WhatsApp.reportResult).toEqual(mockedResult);
+    });
+
+    it('should set loadingConversationsReport to false', async () => {
+      store.state.WhatsApp.loadingConversationsReport = true;
+      expect(store.state.WhatsApp.loadingConversationsReport).toBe(true);
+      await store.dispatch('WhatsApp/requestConversationsReport', data);
+      expect(store.state.WhatsApp.loadingConversationsReport).toBe(false);
+    });
+
+    it('should set errorConversationsReport as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppApi.requestConversationsReport.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsApp.errorConversationsReport = {};
+      expect(store.state.WhatsApp.errorConversationsReport).not.toEqual(error);
+      await store.dispatch('WhatsApp/requestConversationsReport', data);
+      expect(store.state.WhatsApp.errorConversationsReport).toEqual(error);
     });
   });
 
