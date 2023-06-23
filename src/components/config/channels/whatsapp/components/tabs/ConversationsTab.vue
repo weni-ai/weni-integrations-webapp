@@ -45,14 +45,23 @@
           {{ $t('WhatsApp.config.conversations.report.description') }}
         </span>
 
-        <unnnic-button
-          class="conversations__content__report__button"
-          type="secondary"
-          size="small"
-          @click="requestReport"
+        <unnnic-tool-tip
+          class="conversations__content__report__tooltip"
+          :text="$t('WhatsApp.config.conversations.report.missing_dates')"
+          :enabled="!this.startDate || !this.endDate"
+          side="top"
+          maxWidth="15rem"
         >
-          {{ $t('WhatsApp.config.conversations.report.button') }}
-        </unnnic-button>
+          <unnnic-button
+            class="conversations__content__report__button"
+            type="secondary"
+            size="small"
+            @click="requestReport"
+            :disabled="!this.startDate || !this.endDate"
+          >
+            {{ $t('WhatsApp.config.conversations.report.button') }}
+          </unnnic-button>
+        </unnnic-tool-tip>
       </div>
     </div>
     <div class="conversations__buttons">
@@ -72,6 +81,7 @@
   import ConversationsTable from '../ConversationsTable.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
+  import removeEmpty from '../../../../../../utils/clean';
 
   export default {
     name: 'ConversationsTab',
@@ -104,10 +114,15 @@
       });
     },
     computed: {
+      ...mapState({
+        project: (state) => state.auth.project,
+      }),
       ...mapState('WhatsApp', [
         'whatsAppConversations',
         'loadingConversations',
         'errorConversations',
+        'loadingConversationsReport',
+        'errorConversationsReport',
       ]),
       startDateObject() {
         return this.startDate && new Date(this.startDate.replace('-', ' '));
@@ -153,15 +168,53 @@
         this.totalInitiated = this.whatsAppConversations.total;
       }, 750),
       async requestReport() {
-        const params = {
-          start: this.startDate,
-          end: this.endDate,
-        };
+        const params = removeEmpty({
+          project_uuid: this.project,
+          start_date: this.startDate,
+          end_date: this.endDate,
+        });
 
         await this.requestConversationsReport({
           code: this.app.code,
           appUuid: this.app.uuid,
           params,
+        });
+
+        if (this.errorConversationsReport) {
+          let errorText = this.$t('WhatsApp.config.conversations.report_error');
+          let errorColor = 'feedback-red';
+          let errorTitle = this.$t('general.error');
+
+          if (this.errorConversationsReport.response.status === 409) {
+            errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
+            errorColor = 'feedback-yellow';
+            errorTitle = this.$t('general.attention');
+          }
+
+          unnnicCallAlert({
+            props: {
+              text: errorText,
+              title: errorTitle,
+              icon: 'alert-circle-1-1',
+              scheme: errorColor,
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 6,
+          });
+          return;
+        }
+
+        unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.config.conversations.report_success'),
+            title: this.$t('general.success'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
         });
       },
     },
@@ -219,8 +272,12 @@
           color: $unnnic-color-neutral-cloudy;
         }
 
-        &__button {
+        &__tooltip {
           width: 33%;
+        }
+
+        &__button {
+          width: 100%;
         }
       }
     }
