@@ -54,4 +54,10 @@ export default {
   updateWppWebhookInfo(appCode, appUuid, payload) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/update_webhook/`, payload);
   },
+  async requestConversationsReport(appCode, appUuid, params) {
+    const queryString = qs.stringify(params);
+    return await request.$http.get(
+      `${resource}/${appCode}/apps/${appUuid}/report_sent_messages/?${queryString}`,
+    );
+  },
 };
