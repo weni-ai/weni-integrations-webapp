@@ -13,7 +13,8 @@
     "start": "Começar",
     "error": "Erro",
     "success": "Sucesso",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "attention": "Atenção"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
@@ -330,8 +331,12 @@
         "report": {
           "button": "Solicitar relatório",
           "description": "Você pode receber por email o detalhamento de mensagens de no máximo 6 meses atrás. É possível que algumas informações do relatório estejam imprecisas, em caso de dúvida entre em contato com o seu gerente de conta.",
-          "label": "Relatório detalhado de conversas"
-        }
+          "label": "Relatório detalhado de conversas",
+          "missing_dates": " Um intervalo de datas é necessário para poder solicitar um relatório"
+        },
+        "report_already_processing": "Você já solicitou um relatório detalhado há pouco tempo, você pode solicitar um novo após receber o último.",
+        "report_success": "Você vai receber seu relatório detalhado por email em breve",
+        "report_error": "Falha ao solicitar relatório detalhado, tente novamente mais tarde"
       },
       "channel": {
         "title": "Canal do WhatsApp",

@@ -13,7 +13,8 @@
     "start": "Start",
     "error": "Error",
     "success": "Success",
-    "continue": "Continue"
+    "continue": "Continue",
+    "attention": "Attention"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
@@ -330,8 +331,12 @@
         "report": {
           "button": "Request report",
           "description": "You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.",
-          "label": "Detailed conversation report"
-        }
+          "label": "Detailed conversation report",
+          "missing_dates": "A date range is required to be able to request a report"
+        },
+        "report_already_processing": "You already requested a detailed report a little while ago, you can request a new one after receiving the last one.",
+        "report_success": "You will receive your detailed report by email shortly",
+        "report_error": "Failed to request detailed report, please try again later"
       },
       "channel": {
         "title": "WhatsApp Channel",
