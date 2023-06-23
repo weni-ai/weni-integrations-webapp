@@ -27,6 +27,7 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
   beforeEach(() => {
     actions = {
       getConversations: jest.fn(),
+      requestConversationsReport: jest.fn(),
     };
 
     state = {
@@ -37,9 +38,16 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
       },
       loadingConversations: false,
       errorConversations: false,
+      loadingConversationsReport: false,
+      errorConversationsReport: null,
     };
 
     store = new Vuex.Store({
+      state: {
+        auth: {
+          project: '123',
+        },
+      },
       modules: {
         WhatsApp: {
           namespaced: true,
@@ -55,9 +63,6 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
       store,
       propsData: {
         app: singleApp,
-      },
-      mocks: {
-        $t: () => 'some specific text',
       },
       stubs: {
         ConversationsTable: true,
@@ -104,6 +109,81 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.handleDateFilter(event);
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('requestReport', () => {
+    it('should call requestConversationReport', async () => {
+      expect(actions.requestConversationsReport).not.toHaveBeenCalled();
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      wrapper.vm.startDate = '2020-01-01';
+      wrapper.vm.endDate = '2020-01-02';
+      await wrapper.vm.requestReport();
+      expect(actions.requestConversationsReport).toHaveBeenCalledTimes(1);
+      expect(actions.requestConversationsReport).toBeCalledWith(expect.any(Object), {
+        code: singleApp.code,
+        appUuid: singleApp.uuid,
+        params: {
+          start_date: expect.any(String),
+          end_date: expect.any(String),
+          project_uuid: expect.any(String),
+        },
+      });
+
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'You will receive your detailed report by email shortly',
+            title: 'Success',
+            icon: expect.any(String),
+            scheme: 'feedback-green',
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
+    });
+
+    it('should call unnnicCallAlert with default error if error is not 409', async () => {
+      store.state.WhatsApp.errorConversationsReport = { response: { status: 500 } };
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.requestReport();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'Failed to request detailed report, please try again later',
+            title: 'Error',
+            icon: expect.any(String),
+            scheme: 'feedback-red',
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
+    });
+
+    it('should call unnnicCallAlert with specific error if error is 409', async () => {
+      store.state.WhatsApp.errorConversationsReport = { response: { status: 409 } };
+      expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+      await wrapper.vm.requestReport();
+      expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+      expect(mockUnnnicCallAlert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          props: {
+            text: 'You already requested a detailed report a little while ago, you can request a new one after receiving the last one.',
+            title: 'Attention',
+            icon: expect.any(String),
+            scheme: 'feedback-yellow',
+            position: expect.any(String),
+            closeText: expect.any(String),
+          },
+          seconds: expect.any(Number),
+        }),
+      );
     });
   });
 });
