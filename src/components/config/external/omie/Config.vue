@@ -11,52 +11,56 @@
     </div>
 
     <div class="app-config-omie__settings__content">
-      <unnnic-tab class="config-omie__tabs" :tabs="tabs" initialTab="config">
+      <unnnic-tab class="app-config-omie__tabs" :tabs="tabs" initialTab="config">
         <template slot="tab-head-config"> {{ $t('omie.config.tabs.config.title') }} </template>
         <div slot="tab-panel-config">
-          <unnnic-input
-            v-model="name"
-            class="app-config-omie__settings__content__inputs__name"
-            type="normal"
-            :disabled="disabledForm"
-            :label="$t('omie.config.tabs.config.inputs.name.label')"
-          />
-          <unnnic-input
-            v-model="appKey"
-            class="app-config-omie__settings__content__inputs__key"
-            type="normal"
-            :disabled="disabledForm"
-            :label="$t('omie.config.tabs.config.inputs.app_key.label')"
-          />
-          <unnnic-input
-            v-model="appSecret"
-            class="app-config-omie__settings__content__inputs__secret"
-            type="normal"
-            :disabled="disabledForm"
-            :label="$t('omie.config.tabs.config.inputs.app_secret.label')"
-          />
+          <div class="app-config-omie__tabs__config__content">
+            <div class="app-config-omie__tabs__config__content__scroll">
+              <unnnic-input
+                v-model="name"
+                class="app-config-omie__settings__content__inputs__name"
+                type="normal"
+                :disabled="disabledForm"
+                :label="$t('omie.config.tabs.config.inputs.name.label')"
+              />
+              <unnnic-input
+                v-model="appKey"
+                class="app-config-omie__settings__content__inputs__key"
+                type="normal"
+                :disabled="disabledForm"
+                :label="$t('omie.config.tabs.config.inputs.app_key.label')"
+              />
+              <unnnic-input
+                v-model="appSecret"
+                class="app-config-omie__settings__content__inputs__secret"
+                type="normal"
+                :disabled="disabledForm"
+                :label="$t('omie.config.tabs.config.inputs.app_secret.label')"
+              />
+              <div></div>
+            </div>
+          </div>
+          <div class="app-config-omie__settings__buttons">
+            <unnnic-button
+              class="app-config-omie__settings__buttons__cancel"
+              type="terciary"
+              size="large"
+              :text="$t('apps.config.cancel')"
+              @click="closeConfig"
+            />
+
+            <unnnic-button
+              class="app-config-omie__settings__buttons__save"
+              type="secondary"
+              size="large"
+              :text="$t('omie.config.connect')"
+              :disabled="disabledForm"
+              :loading="loadingUpdateAppConfig"
+              @click="saveConfig"
+            />
+          </div>
         </div>
       </unnnic-tab>
-    </div>
-
-    <div class="app-config-omie__settings__buttons">
-      <unnnic-button
-        class="app-config-omie__settings__buttons__cancel"
-        type="terciary"
-        size="large"
-        :text="$t('apps.config.cancel')"
-        @click="closeConfig"
-      />
-
-      <unnnic-button
-        class="app-config-omie__settings__buttons__save"
-        type="secondary"
-        size="large"
-        :text="$t('omie.config.connect')"
-        :disabled="disabledForm"
-        :loading="loadingUpdateAppConfig"
-        @click="saveConfig"
-      />
     </div>
   </div>
 </template>
@@ -139,13 +143,12 @@
   .app-config-omie {
     display: flex;
     flex-direction: column;
-    height: -webkit-fill-available;
-    height: -moz-available;
-    padding: $unnnic-inset-lg;
+    height: 100%;
 
     &__header {
       display: flex;
-      margin-bottom: $unnnic-spacing-stack-md;
+      margin: $unnnic-spacing-inset-lg;
+      margin-bottom: $unnnic-spacing-stack-sm;
       flex-direction: column;
 
       &__title {
@@ -208,6 +211,12 @@
         display: flex;
         flex-direction: column;
         flex: 1;
+        overflow: auto;
+        color: $unnnic-color-neutral-cloudy;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+        margin: $unnnic-spacing-inset-lg;
+        margin-top: 0;
 
         &__inputs {
           display: flex;
@@ -224,6 +233,49 @@
         &__cancel,
         &__save {
           flex-grow: 1;
+        }
+      }
+    }
+
+    &__tabs {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-y: hidden;
+      width: 100%;
+
+      ::v-deep .tab-body {
+        display: flex;
+        height: 100%;
+        overflow-y: auto;
+      }
+      ::v-deep .tab-panel {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        > div {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+      }
+      &__config {
+        &__content {
+          padding-right: $unnnic-spacing-inline-xs;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          overflow: auto;
+
+          &__scroll {
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            padding-right: $unnnic-spacing-stack-sm;
+          }
         }
       }
     }
