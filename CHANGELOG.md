@@ -1,3 +1,16 @@
+1.28.0
+----------
+`2023-06-23 · 4 🐛 · 1 🎉`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp Templates date picker
+- Fix: Scroll issues on firefox
+- Fix: Remove unnecessary template categories
+- Fix: Scroll issues on firefox for all apps
+
+### 🎉 New Features
+- Feat: Conversations report
+
 1.27.1
 ----------
 `2023-06-21 · 1 🐛`
