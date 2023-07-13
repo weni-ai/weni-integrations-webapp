@@ -348,8 +348,19 @@
           "table": {
             "user_messages": "Iniciado por el usuario",
             "business_messages": "Iniciado por el negocio",
-            "total": "Total"
-          }
+            "total": "Total",
+            "started_by": "Comenzado por",
+            "quantity": "Cantidad",
+            "business": "Negocio",
+            "user": "Usuario",
+            "authentication": "Autenticación",
+            "marketing": "Marketing",
+            "service": "Servicio",
+            "utility": "Utilidad",
+            "category": "Categoría"
+          },
+          "after_label": "Datos después del cambio de precio",
+          "before_label": "Datos antes del cambio de precio"
         },
         "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte.",
         "report": {

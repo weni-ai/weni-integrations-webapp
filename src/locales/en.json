@@ -348,8 +348,19 @@
           "table": {
             "user_messages": "Started by user",
             "business_messages": "Started by business",
-            "total": "Total"
-          }
+            "total": "Total",
+            "started_by": "Started by",
+            "quantity": "Quantity",
+            "business": "Business",
+            "user": "User",
+            "marketing": "Marketing",
+            "utility": "Utility",
+            "authentication": "Authentication",
+            "service": "Service",
+            "category": "Category"
+          },
+          "before_label": "Data before price change",
+          "after_label": "Data after price change"
         },
         "fetch_error": "Failed to fetch conversations data. Please contact the support team.",
         "report": {
