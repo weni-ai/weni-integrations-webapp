@@ -65,7 +65,6 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
         app: singleApp,
       },
       stubs: {
-        ConversationsTable: true,
         UnnnicDateFilter: true,
         UnnnicDatePicker: true,
         UnnnicButton: true,
@@ -79,6 +78,20 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
 
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('computed', () => {
+    describe('hasBeforeAndAfter', () => {
+      it('should return true if before and after are defined', () => {
+        wrapper.setData({
+          businessInitiated: 1,
+          afterData: {
+            MARKETING: 1,
+          },
+        });
+        expect(wrapper.vm.hasBeforeAndAfter).toBeTruthy();
+      });
+    });
   });
 
   describe('handleDateFilter()', () => {

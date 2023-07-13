@@ -12,11 +12,18 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
         <!---->
       </div>
     </div>
-    <div>
+    <div class="conversations__content__tables">
       <div class="conversations__content__label">
         Number of conversations
       </div>
-      <conversationstable-stub usermessages="0" businessmessages="0" total="0"></conversationstable-stub>
+      <div class="conversations__content__tables__section">
+        <!---->
+        <!---->
+      </div>
+      <div class="conversations__content__tables__section">
+        <!---->
+        <unnnic-table-stub items="[object Object],[object Object],[object Object],[object Object]"></unnnic-table-stub>
+      </div>
     </div>
     <div class="conversations__content__report"><span class="conversations__content__report__label">
         Detailed conversation report
