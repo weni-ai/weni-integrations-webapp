@@ -115,7 +115,8 @@
       },
       "card": {
         "comments": "comments",
-        "see_details": "See details"
+        "see_details": "See details",
+        "copy_uuid": "Copy UUID"
       },
       "actions": {
         "installed": {
@@ -128,6 +129,9 @@
           "description": "Do you really want to delete this Application? This cannot be undone.",
           "remove": "Remove Application",
           "status_text": "Successfully removed the Application"
+        },
+        "copy": {
+          "sucess": "The UUID {uuid} was copied and sent to the clipboard."
         }
       }
     },
