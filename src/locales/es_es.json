@@ -115,7 +115,8 @@
       },
       "card": {
         "comments": "comentarios",
-        "see_details": "Ver detalles"
+        "see_details": "Ver detalles",
+        "copy_uuid": "Copiar UUID"
       },
       "actions": {
         "installed": {
@@ -128,6 +129,9 @@
           "description": "¿Realmente quiere eliminar esta aplicación? Esto no se puede deshacer.",
           "remove": "Retirar la aplicación",
           "status_text": "Se ha eliminado la aplicación con éxito"
+        },
+        "copy": {
+          "sucess": "El UUID {uuid} fue copiado y enviado al portapapeles."
         }
       }
     },

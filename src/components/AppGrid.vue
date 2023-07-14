@@ -57,6 +57,13 @@
               {{ $t('apps.details.card.see_details') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
+              class="app-grid__content__item__button--details"
+              @click="copyToClipboard(app.uuid)"
+            >
+              <unnnic-icon-svg icon="bin-1-1" size="sm" />
+              {{ $t('apps.details.card.copy_uuid') }}
+            </unnnic-dropdown-item>
+            <unnnic-dropdown-item
               v-if="app.code !== 'wpp' && app.code !== 'wpp-cloud'"
               class="app-grid__content__item__button--remove"
               @click="toggleRemoveModal(app)"
@@ -363,6 +370,22 @@
         if (selectedApp?.can_add) {
           await integrateButton.addApp(selectedApp);
         }
+      },
+      /* istanbul ignore next */
+      copyToClipboard(content) {
+        navigator.clipboard.writeText(content);
+
+        unnnicCallAlert({
+          props: {
+            text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
+            title: this.$t('apps.details.status_success'),
+            icon: 'check-circle-1-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
       },
     },
     watch: {
