@@ -1,3 +1,11 @@
+1.29.0
+----------
+`2023-07-14 · 2 🎉`
+
+### 🎉 New Features
+- Feat: Copy UUID
+- Feat: New conversations table
+
 1.28.0
 ----------
 `2023-06-23 · 4 🐛 · 1 🎉`
