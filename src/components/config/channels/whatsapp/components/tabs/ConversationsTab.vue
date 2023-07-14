@@ -24,16 +24,64 @@
         </div>
       </div>
 
-      <div>
+      <div class="conversations__content__tables">
         <div class="conversations__content__label">
           {{ $t('WhatsApp.config.conversations.conversations_count.label') }}
         </div>
 
-        <conversations-table
-          :userMessages="userInitiated"
-          :businessMessages="businessInitiated"
-          :total="totalInitiated"
-        />
+        <div class="conversations__content__tables__section">
+          <span v-if="hasBeforeAndAfter">
+            {{ $t('WhatsApp.config.conversations.conversations_count.before_label') }}
+          </span>
+          <unnnic-table v-if="hasBefore" :items="beforeItems">
+            <template v-slot:header>
+              <unnnic-table-row :headers="beforeHeaders" />
+            </template>
+
+            <template v-slot:item="{ item }">
+              <unnnic-table-row :headers="beforeHeaders">
+                <template v-slot:startedBy>
+                  <div :title="item.startedBy" class="break-text">
+                    {{ item.startedBy }}
+                  </div>
+                </template>
+
+                <template v-slot:quantity>
+                  <div :title="item.quantity" class="break-text">
+                    {{ item.quantity }}
+                  </div>
+                </template>
+              </unnnic-table-row>
+            </template>
+          </unnnic-table>
+        </div>
+
+        <div class="conversations__content__tables__section">
+          <span v-if="hasBeforeAndAfter">
+            {{ $t('WhatsApp.config.conversations.conversations_count.after_label') }}
+          </span>
+          <unnnic-table v-if="(!hasBefore && !hasAfter) || hasAfter" :items="afterItems">
+            <template v-slot:header>
+              <unnnic-table-row :headers="afterHeaders" />
+            </template>
+
+            <template v-slot:item="{ item }">
+              <unnnic-table-row :headers="afterHeaders">
+                <template v-slot:category>
+                  <div :title="item.category" class="break-text">
+                    {{ item.category }}
+                  </div>
+                </template>
+
+                <template v-slot:quantity>
+                  <div :title="item.quantity" class="break-text">
+                    {{ item.quantity }}
+                  </div>
+                </template>
+              </unnnic-table-row>
+            </template>
+          </unnnic-table>
+        </div>
       </div>
 
       <div class="conversations__content__report">
@@ -78,16 +126,12 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import ConversationsTable from '../ConversationsTable.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
   import removeEmpty from '../../../../../../utils/clean';
 
   export default {
     name: 'ConversationsTab',
-    components: {
-      ConversationsTable,
-    },
     props: {
       app: {
         type: Object,
@@ -102,6 +146,31 @@
         businessInitiated: 0,
         userInitiated: 0,
         totalInitiated: 0,
+        afterData: {},
+        beforeHeaders: [
+          {
+            id: 'startedBy',
+            text: this.$t('WhatsApp.config.conversations.conversations_count.table.started_by'),
+            flex: 1,
+          },
+          {
+            id: 'quantity',
+            text: this.$t('WhatsApp.config.conversations.conversations_count.table.quantity'),
+            flex: 1,
+          },
+        ],
+        afterHeaders: [
+          {
+            id: 'category',
+            text: this.$t('WhatsApp.config.conversations.conversations_count.table.category'),
+            flex: 1,
+          },
+          {
+            id: 'quantity',
+            text: this.$t('WhatsApp.config.conversations.conversations_count.table.quantity'),
+            flex: 1,
+          },
+        ],
       };
     },
     created() {
@@ -129,6 +198,49 @@
       },
       endDateObject() {
         return this.endDate && new Date(this.endDate.replace('-', ' '));
+      },
+      beforeItems() {
+        return [
+          {
+            startedBy: this.$t('WhatsApp.config.conversations.conversations_count.table.business'),
+            quantity: this.businessInitiated || 0,
+          },
+          {
+            startedBy: this.$t('WhatsApp.config.conversations.conversations_count.table.user'),
+            quantity: this.userInitiated || 0,
+          },
+        ];
+      },
+      afterItems() {
+        return [
+          {
+            category: this.$t('WhatsApp.config.conversations.conversations_count.table.marketing'),
+            quantity: this.afterData.MARKETING || 0,
+          },
+          {
+            category: this.$t('WhatsApp.config.conversations.conversations_count.table.utility'),
+            quantity: this.afterData.UTILITY || 0,
+          },
+          {
+            category: this.$t(
+              'WhatsApp.config.conversations.conversations_count.table.authentication',
+            ),
+            quantity: this.afterData.AUTHENTICATION || 0,
+          },
+          {
+            category: this.$t('WhatsApp.config.conversations.conversations_count.table.service'),
+            quantity: this.afterData.SERVICE || 0,
+          },
+        ];
+      },
+      hasBeforeAndAfter() {
+        return this.hasBefore && this.hasAfter;
+      },
+      hasBefore() {
+        return !!this.beforeItems.find((item) => item.quantity > 0);
+      },
+      hasAfter() {
+        return !!this.afterItems.find((item) => item.quantity > 0);
       },
     },
     methods: {
@@ -166,6 +278,7 @@
         this.businessInitiated = this.whatsAppConversations.business_initiated;
         this.userInitiated = this.whatsAppConversations.user_initiated;
         this.totalInitiated = this.whatsAppConversations.total;
+        this.afterData = this.whatsAppConversations.templates;
       }, 750),
       async requestReport() {
         const params = removeEmpty({
@@ -251,8 +364,6 @@
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
-
-        margin-bottom: $unnnic-spacing-stack-xs;
       }
 
       &__report {
@@ -278,6 +389,22 @@
 
         &__button {
           width: 100%;
+        }
+      }
+
+      &__tables {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-stack-sm;
+
+        &__section {
+          display: flex;
+          flex-direction: column;
+          gap: $unnnic-spacing-stack-xs;
+
+          ::v-deep .scroll {
+            padding-right: 0;
+          }
         }
       }
     }

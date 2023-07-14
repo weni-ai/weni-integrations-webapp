@@ -348,8 +348,19 @@
           "table": {
             "user_messages": "Iniciadas pelo usuário",
             "business_messages": "Iniciadas pelo negócio",
-            "total": "Total"
-          }
+            "total": "Total",
+            "started_by": "Iniciadas por",
+            "quantity": "Quantidade",
+            "business": "Negócio",
+            "user": "Usuário",
+            "marketing": "Marketing",
+            "service": "Serviço",
+            "utility": "Utilidade",
+            "authentication": "Autenticação",
+            "category": "Categoria"
+          },
+          "after_label": "Dados depois da alteração de preço",
+          "before_label": "Dados antes da alteração de preço"
         },
         "fetch_error": "Falha ao buscar dados de conversas. Entre em contato com o suporte.",
         "report": {
