@@ -62,8 +62,6 @@ Before running the application, make sure you have installed the following tools
 | Variable | Type | Default | Description |
 |--|--|--|--|
 | VUE_APP_API_BASE_URL | `string` | Empty | https://integrations-engine.stg.cloud.weni.ai
-| VUE_APP_WHATSAPP_FACEBOOK_APP_ID  | `string` | Empty | 378643010643999
-| VUE_APP_FACEBOOK_APP_ID  | `string` | Empty | 2898752767103255
 | VUE_APP_LOGROCKET_ID  | `string` | Empty | 
 | VUE_APP_HELPHERO_ID | `string` | Empty | m7dO0to4OK
 | VUE_APP_PARENT_IFRAME_DOMAIN | `string` | Empty | https://dash-staging.weni.ai
