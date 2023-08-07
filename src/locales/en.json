@@ -857,7 +857,11 @@
             "rules_label": "Rules",
             "knowledge_label": "Knowledge base",
             "prompt_label": "Insert prompts",
-            "prompt_placeholder": "Insert prompt text and press enter"
+            "prompt_placeholder": "Insert prompt text and press enter",
+            "conversation_style_label": "Conversation style",
+            "conversation_style_placeholder": "Select the conversation style",
+            "voice_tone_label": "Voice tone",
+            "voice_tone_placeholder": "Select the voice tone"
           },
           "prompts_list": "Prompt list"
         },

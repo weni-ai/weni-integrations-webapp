@@ -857,7 +857,11 @@
             "rules_label": "Normas",
             "knowledge_label": "Base de conocimientos",
             "prompt_label": "Insertar prompts",
-            "prompt_placeholder": "Inserte el texto del mensaje y presione enter"
+            "prompt_placeholder": "Inserte el texto del mensaje y presione enter",
+            "conversation_style_label": "Estilo de conversación",
+            "conversation_style_placeholder": "Seleccione el estilo de conversación",
+            "voice_tone_label": "Tono de voz",
+            "voice_tone_placeholder": "Seleccione el tono de voz"
           },
           "prompts_list": "Lista de prompts"
         },
