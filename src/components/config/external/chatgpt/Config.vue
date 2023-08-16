@@ -284,7 +284,7 @@
               ai_model: this.selectedVersion,
               rules: this.rules,
               knowledge_base: this.knowledgeBase,
-              voice_tone: this.selectedVoiceTone,
+              voice_tone: `Em tom ${this.selectedVoiceTone}`,
             },
           },
         };
