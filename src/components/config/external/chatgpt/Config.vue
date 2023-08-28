@@ -41,22 +41,13 @@
               type="normal"
               :label="$t('ChatGPT.config.tabs.flows.inputs.knowledge_label')"
             />
-            <unnnic-select
-              v-model="selectedConversationStyle"
+            <unnnic-label
               :label="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_label')"
-              :placeholder="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_placeholder')"
-            >
-              <option v-for="(style, index) in stylesList" :key="index">{{ style }}</option>
-            </unnnic-select>
-            <unnnic-select
-              v-model="selectedVoiceTone"
-              :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')"
-              :placeholder="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_placeholder')"
-            >
-              <option v-for="(voice_tone, index) in voiceToneList" :key="index">
-                {{ voice_tone }}
-              </option>
-            </unnnic-select>
+            />
+            <unnnic-select-smart v-model="selectedConversationStyle" :options="stylesList" />
+            <unnnic-label :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')" />
+            <unnnic-select-smart v-model="selectedVoiceTone" :options="voiceToneList">
+            </unnnic-select-smart>
             <unnnic-input
               ref="prompt-input"
               v-model="prompt"
@@ -197,16 +188,45 @@
         toRemovePrompts: [],
         hasChanges: false,
         selectedConversationStyle: this.app.config?.style || 'Preciso',
-        stylesList: ['Preciso', 'Balanceado', 'Criativo'],
+        stylesList: [
+          {
+            value: '0.2,0.1',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.necessary_label'),
+            description: this.$t('ChatGPT.config.tabs.flows.selects.necessary_description'),
+          },
+          {
+            value: '0.5,0.5',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.balanced_label'),
+            description: this.$t('ChatGPT.config.tabs.flows.selects.balanced_description'),
+          },
+          {
+            value: '0.7,0.8',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.creative_label'),
+            description: this.$t('ChatGPT.config.tabs.flows.selects.creative_description'),
+          },
+        ],
         selectedVoiceTone: this.app.config?.voice_tone || 'Neutro',
         voiceToneList: [
-          'Neutro',
-          'Alegre',
-          'Confiante',
-          'Formal',
-          'Humilde',
-          'Informal',
-          'Prestativo',
+          {
+            value: '1',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.none_label'),
+          },
+          {
+            value: '2',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.neutral_label'),
+          },
+          {
+            value: '3',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.happy_label'),
+          },
+          {
+            value: '4',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.trusting_label'),
+          },
+          {
+            value: '5',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.formal_label'),
+          },
         ],
       };
     },
@@ -276,6 +296,8 @@
         this.hasChanges = true;
       },
       async handleUpdateApp() {
+        const [temperature, top_p] = this.selectedConversationStyle[0].value.split(',');
+        const voice_tone = `Em tom ${this.selectedVoiceTone[0].label}`;
         const data = {
           code: this.app.code,
           appUuid: this.app.uuid,
@@ -284,7 +306,9 @@
               ai_model: this.selectedVersion,
               rules: this.rules,
               knowledge_base: this.knowledgeBase,
-              voice_tone: `Em tom ${this.selectedVoiceTone}`,
+              voice_tone,
+              temperature,
+              top_p,
             },
           },
         };
@@ -583,6 +607,14 @@
         gap: $unnnic-spacing-inline-sm;
         justify-content: space-between;
       }
+    }
+
+    ::v-deep .unnnic-form__label {
+      margin: 0 0 0.25rem;
+    }
+
+    ::v-deep .unnnic-label__label {
+      margin: 5px 0px -10px;
     }
   }
 </style>
