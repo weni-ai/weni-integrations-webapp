@@ -187,7 +187,7 @@
         toAddPrompts: [],
         toRemovePrompts: [],
         hasChanges: false,
-        selectedConversationStyle: this.app.config?.style || 'Preciso',
+        selectedConversationStyle: this.app.config?.conversation_style,
         stylesList: [
           {
             value: '0.2,0.1',
@@ -205,7 +205,7 @@
             description: this.$t('ChatGPT.config.tabs.flows.selects.creative_description'),
           },
         ],
-        selectedVoiceTone: this.app.config?.voice_tone || 'Neutro',
+        selectedVoiceTone: this.app.config?.voice_tone,
         voiceToneList: [
           {
             value: '1',
@@ -226,6 +226,18 @@
           {
             value: '5',
             label: this.$t('ChatGPT.config.tabs.flows.selects.formal_label'),
+          },
+          {
+            value: '6',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.humble_label'),
+          },
+          {
+            value: '7',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.informal_label'),
+          },
+          {
+            value: '8',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.helpful_label'),
           },
         ],
       };
@@ -363,7 +375,8 @@
           this.rules !== this.app.config.rules ||
           this.knowledgeBase !== this.app.config.knowledge_base ||
           this.selectedVersion !== this.app.config.ai_model ||
-          this.selectedVoiceTone !== this.app.config.voice_tone
+          this.selectedVoiceTone !== this.app.config.voice_tone ||
+          this.selectedConversationStyle != this.app.config.conversation_style
         ) {
           let err = await this.handleUpdateApp();
           if (err) return;

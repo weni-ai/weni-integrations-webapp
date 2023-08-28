@@ -874,7 +874,10 @@
             "neutral_label": "Neutral",
             "happy_label": "Feliz",
             "trusting_label": "Confiando",
-            "formal_label": "Formal"
+            "formal_label": "Formal",
+            "humble_label": "Humilde",
+            "informal_label": "Informal",
+            "helpful_label": "Útil"
           },
           "prompts_list": "Lista de prompts"
         },
