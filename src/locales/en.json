@@ -863,6 +863,19 @@
             "voice_tone_label": "Voice tone",
             "voice_tone_placeholder": "Select the voice tone"
           },
+          "selects": {
+            "necessary_label": "Necessary",
+            "necessary_description": "Objective and straight to the point answers",
+            "balanced_label": "Balanced",
+            "balanced_description": "Use a little creativity in the answers but still be objective",
+            "creative_label": "Creative",
+            "creative_description": "Responds creatively, less objectively",
+            "none_label": "None",
+            "neutral_label": "Neutral",
+            "happy_label": "Happy",
+            "trusting_label": "Trusting",
+            "formal_label": "Formal"
+          },
           "prompts_list": "Prompt list"
         },
         "general": {
