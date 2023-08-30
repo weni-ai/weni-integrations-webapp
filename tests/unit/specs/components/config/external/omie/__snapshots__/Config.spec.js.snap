@@ -20,25 +20,25 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
           <div data-v-1727ddfc="">
             <div data-v-1727ddfc="" class="app-config-omie__tabs__config__content">
               <div data-v-1727ddfc="" class="app-config-omie__tabs__config__content__scroll">
-                <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__name unnnic-form md" data-v-1727ddfc="">
-                  <p data-v-9ef23630="" class="unnnic-form__label">Name</p>
-                  <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
+                <div data-v-48c0c241="" class="app-config-omie__settings__content__inputs__name unnnic-form md" data-v-1727ddfc="">
+                  <p data-v-48c0c241="" class="unnnic-form__label">Name</p>
+                  <div data-v-1c3c2c68="" data-v-48c0c241="" class="unnnic-form-input text-input size--md" v-bind="[object Object]" mask=""><input data-v-660d2390="" data-v-1c3c2c68="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input-itself input size-md normal">
                     <!---->
                     <!---->
                   </div>
                   <!---->
                 </div>
-                <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__key unnnic-form md" data-v-1727ddfc="">
-                  <p data-v-9ef23630="" class="unnnic-form__label">App Key</p>
-                  <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
+                <div data-v-48c0c241="" class="app-config-omie__settings__content__inputs__key unnnic-form md" data-v-1727ddfc="">
+                  <p data-v-48c0c241="" class="unnnic-form__label">App Key</p>
+                  <div data-v-1c3c2c68="" data-v-48c0c241="" class="unnnic-form-input text-input size--md" v-bind="[object Object]" mask=""><input data-v-660d2390="" data-v-1c3c2c68="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input-itself input size-md normal">
                     <!---->
                     <!---->
                   </div>
                   <!---->
                 </div>
-                <div data-v-9ef23630="" class="app-config-omie__settings__content__inputs__secret unnnic-form md" data-v-1727ddfc="">
-                  <p data-v-9ef23630="" class="unnnic-form__label">App Secret</p>
-                  <div data-v-8d0754d6="" data-v-9ef23630="" style="position: relative;" v-bind="[object Object]" mask="" class="unnnic-form-input"><input data-v-a95503a2="" data-v-8d0754d6="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input size-md normal">
+                <div data-v-48c0c241="" class="app-config-omie__settings__content__inputs__secret unnnic-form md" data-v-1727ddfc="">
+                  <p data-v-48c0c241="" class="unnnic-form__label">App Secret</p>
+                  <div data-v-1c3c2c68="" data-v-48c0c241="" class="unnnic-form-input text-input size--md" v-bind="[object Object]" mask=""><input data-v-660d2390="" data-v-1c3c2c68="" type="text" size="0" v-bind="[object Object]" placeholder="" class="input-itself input size-md normal">
                     <!---->
                     <!---->
                   </div>

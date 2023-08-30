@@ -4,9 +4,9 @@ exports[`components/whatsAppTemplates/FormTabContentFooter.vue should be rendere
 <div class="form-tab-content-footer"><span class="form-tab-content-footer__title">
     Footer Text
   </span>
-  <div data-v-a95e6368="" class="form-tab-content-footer__input unnnic-text-area md normal">
-    <!----><textarea data-v-a95e6368="" placeholder="Enter the footer text" maxlength="60"></textarea>
-    <div data-v-a95e6368="" class="helper"> 0/60 </div>
+  <div data-v-4b5c6da6="" class="form-tab-content-footer__input unnnic-text-area md normal">
+    <!----><textarea data-v-4b5c6da6="" placeholder="Enter the footer text" maxlength="60"></textarea>
+    <div data-v-4b5c6da6="" class="helper"> 0/60 </div>
     <!---->
   </div>
 </div>
