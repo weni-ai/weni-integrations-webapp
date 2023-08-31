@@ -428,9 +428,6 @@
       knowledgeBase() {
         this.hasChanges = true;
       },
-      selectedVoiceTone() {
-        this.hasChanges = true;
-      },
     },
   };
 </script>
