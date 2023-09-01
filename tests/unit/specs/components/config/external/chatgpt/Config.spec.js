@@ -18,6 +18,17 @@ singleApp.config = {
   rules: 'rules',
   knowledge_base: 'base',
   ai_model: 'gpt-3.5-turbo-16k',
+  voice_tone: [{
+    'value': '1',
+    'label': 'Neutral',
+  }],
+  conversation_style: [
+    {
+      'value': '0.7,0.8',
+      'label': 'Creative',
+      'description': 'Responds creatively, less objectively'
+    }
+  ],
 };
 
 const localVue = createLocalVue();
@@ -196,7 +207,7 @@ describe('components/config/external/chatgpt/Config.vue', () => {
   });
 
   describe('saveConfig()', () => {
-    it('should call updateApp with the correct payload if rules || knowledgeBase || selectedVersion changed', async () => {
+    it('should call updateApp with the correct payload if rules || knowledgeBase || selectedVersion changed || selectedVoiceTone || selectedConversationStyle', async () => {
       const { wrapper, actions } = await mountComponent();
 
       const rulesInput = wrapper.findComponent({ ref: 'rules-input' });
@@ -215,6 +226,9 @@ describe('components/config/external/chatgpt/Config.vue', () => {
             ai_model: 'gpt-3.5-turbo-16k',
             rules: 'rules 1',
             knowledge_base: 'knowledge base 1',
+            temperature: "0.7",
+            top_p: "0.8",
+            voice_tone: "Em tom Neutral",
           },
         },
       });

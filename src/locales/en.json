@@ -857,7 +857,27 @@
             "rules_label": "Rules",
             "knowledge_label": "Knowledge base",
             "prompt_label": "Insert prompts",
-            "prompt_placeholder": "Insert prompt text and press enter"
+            "prompt_placeholder": "Insert prompt text and press enter",
+            "conversation_style_label": "Conversation style",
+            "conversation_style_placeholder": "Select the conversation style",
+            "voice_tone_label": "Voice tone",
+            "voice_tone_placeholder": "Select the voice tone"
+          },
+          "selects": {
+            "necessary_label": "Necessary",
+            "necessary_description": "Objective and straight to the point answers",
+            "balanced_label": "Balanced",
+            "balanced_description": "Use a little creativity in the answers but still be objective",
+            "creative_label": "Creative",
+            "creative_description": "Responds creatively, less objectively",
+            "none_label": "None",
+            "neutral_label": "Neutral",
+            "happy_label": "Happy",
+            "trusting_label": "Trusting",
+            "formal_label": "Formal",
+            "humble_label": "Humble",
+            "informal_label": "Informal",
+            "helpful_label": "Helpful"
           },
           "prompts_list": "Prompt list"
         },

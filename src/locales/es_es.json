@@ -857,7 +857,27 @@
             "rules_label": "Normas",
             "knowledge_label": "Base de conocimientos",
             "prompt_label": "Insertar prompts",
-            "prompt_placeholder": "Inserte el texto del mensaje y presione enter"
+            "prompt_placeholder": "Inserte el texto del mensaje y presione enter",
+            "conversation_style_label": "Estilo de conversación",
+            "conversation_style_placeholder": "Seleccione el estilo de conversación",
+            "voice_tone_label": "Tono de voz",
+            "voice_tone_placeholder": "Seleccione el tono de voz"
+          },
+          "selects": {
+            "necessary_label": "Necesario",
+            "necessary_description": "Respuestas objetivas y directas al grano",
+            "balanced_label": "Equilibrado",
+            "balanced_description": "Usa un poco de creatividad en las respuestas pero sigue siendo objetivo",
+            "creative_label": "Creativo",
+            "creative_description": "Responde creativamente, menos objetivamente",
+            "none_label": "Ninguno",
+            "neutral_label": "Neutral",
+            "happy_label": "Feliz",
+            "trusting_label": "Confiando",
+            "formal_label": "Formal",
+            "humble_label": "Humilde",
+            "informal_label": "Informal",
+            "helpful_label": "Útil"
           },
           "prompts_list": "Lista de prompts"
         },

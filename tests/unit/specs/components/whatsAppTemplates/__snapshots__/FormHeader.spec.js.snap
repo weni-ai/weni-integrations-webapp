@@ -4,9 +4,9 @@ exports[`components/whatsAppTemplates/FormHeader.vue should be rendered properly
 <div class="form-header" templatestatus="APPROVED">
   <div class="form-header__wrapper">
     <div class="form-header__icon"><img></div> <span class="form-header__title">WhatsApp Templates</span>
-    <div data-v-3e4e81d5="" class="unnnic-tag-content form-header__tag unnnic-tag
+    <div data-v-32b4068e="" class="unnnic-tag-content form-header__tag unnnic-tag
       unnnic-tag-scheme--feedback-green
-      " v-bind="[object Object]" count="0"><span data-v-3e4e81d5="" class="unnnic-tag__label
+      " v-bind="[object Object]" count="0"><span data-v-32b4068e="" class="unnnic-tag__label
     
     ">some specific text</span>
       <!---->

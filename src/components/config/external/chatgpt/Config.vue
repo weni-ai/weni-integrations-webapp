@@ -41,6 +41,13 @@
               type="normal"
               :label="$t('ChatGPT.config.tabs.flows.inputs.knowledge_label')"
             />
+            <unnnic-label
+              :label="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_label')"
+            />
+            <unnnic-select-smart v-model="selectedConversationStyle" :options="stylesList" />
+            <unnnic-label :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')" />
+            <unnnic-select-smart v-model="selectedVoiceTone" :options="voiceToneList">
+            </unnnic-select-smart>
             <unnnic-input
               ref="prompt-input"
               v-model="prompt"
@@ -180,6 +187,59 @@
         toAddPrompts: [],
         toRemovePrompts: [],
         hasChanges: false,
+        selectedConversationStyle: this.app.config?.conversation_style,
+        stylesList: [
+          {
+            value: '0.2,0.1',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.necessary_label'),
+            description: this.$t('ChatGPT.config.tabs.flows.selects.necessary_description'),
+          },
+          {
+            value: '0.5,0.5',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.balanced_label'),
+            description: this.$t('ChatGPT.config.tabs.flows.selects.balanced_description'),
+          },
+          {
+            value: '0.7,0.8',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.creative_label'),
+            description: this.$t('ChatGPT.config.tabs.flows.selects.creative_description'),
+          },
+        ],
+        selectedVoiceTone: this.app.config?.voice_tone,
+        voiceToneList: [
+          {
+            value: '1',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.none_label'),
+          },
+          {
+            value: '2',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.neutral_label'),
+          },
+          {
+            value: '3',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.happy_label'),
+          },
+          {
+            value: '4',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.trusting_label'),
+          },
+          {
+            value: '5',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.formal_label'),
+          },
+          {
+            value: '6',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.humble_label'),
+          },
+          {
+            value: '7',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.informal_label'),
+          },
+          {
+            value: '8',
+            label: this.$t('ChatGPT.config.tabs.flows.selects.helpful_label'),
+          },
+        ],
       };
     },
     async mounted() {
@@ -248,6 +308,8 @@
         this.hasChanges = true;
       },
       async handleUpdateApp() {
+        const [temperature, top_p] = this.selectedConversationStyle[0].value.split(',');
+        const voice_tone = `Em tom ${this.selectedVoiceTone[0].label}`;
         const data = {
           code: this.app.code,
           appUuid: this.app.uuid,
@@ -256,6 +318,9 @@
               ai_model: this.selectedVersion,
               rules: this.rules,
               knowledge_base: this.knowledgeBase,
+              voice_tone,
+              temperature,
+              top_p,
             },
           },
         };
@@ -309,7 +374,9 @@
         if (
           this.rules !== this.app.config.rules ||
           this.knowledgeBase !== this.app.config.knowledge_base ||
-          this.selectedVersion !== this.app.config.ai_model
+          this.selectedVersion !== this.app.config.ai_model ||
+          this.selectedVoiceTone !== this.app.config.voice_tone ||
+          this.selectedConversationStyle != this.app.config.conversation_style
         ) {
           let err = await this.handleUpdateApp();
           if (err) return;
@@ -550,6 +617,14 @@
         gap: $unnnic-spacing-inline-sm;
         justify-content: space-between;
       }
+    }
+
+    ::v-deep .unnnic-form__label {
+      margin: 0 0 0.25rem;
+    }
+
+    ::v-deep .unnnic-label__label {
+      margin: 5px 0px -10px;
     }
   }
 </style>
