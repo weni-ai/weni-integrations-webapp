@@ -1,20 +1,26 @@
 <div align="center">
 
-<img src="https://github.com/Ilhasoft/weni-platform/raw/main/images/logos/png/weni-396x129-color.png" width="100px" />
+<img src="https://github.com/Ilhasoft/weni-webapp/raw/main/src/assets/LogoWeniAnimada.svg" height="100" />
+
+[![Run Unit Tests, Lint Files and Build Project](https://github.com/weni-ai/weni-integrations-webapp/actions/workflows/test-and-build.yml/badge.svg?branch=main)](https://github.com/weni-ai/weni-integrations-webapp/actions/workflows/test-and-build.yml)
+[![codecov](https://codecov.io/gh/weni-ai/weni-integrations-webapp/branch/main/graph/badge.svg?token=TZHJ6L2U7R)](https://codecov.io/gh/weni-ai/weni-integrations-webapp)
 
 *This project is a module of [Weni](https://github.com/weni-ai) integrated inside [Weni WebApp (Connect)](https://github.com/weni-ai/weni-webapp)*
 
-<br/> 
+# :desktop_computer: Weni-Integrations-Webapp
 
-# INTEGRATIONS
-
-Front-end project of Weni's Integrations module!
+Front-end project of Weni's Integrations module. Backend data is gathered from [Weni Integrations Engine](https://github.com/Ilhasoft/weni-integrations-engine).
 
 </div>
 
-<br/> 
+# About Weni Integrations
 
-# Technologies
+Through Integrations, users of the Weni platform will be able to connect their chatbot with different communication channels. This project was carefully developed with the needs of our clients in mind, with the aim of unlocking the human potential of your organization.
+> [Usability documentation](https://docs.weni.ai/l/pt/integracoes)
+
+![integrations-preview](https://github.com/weni-ai/weni-integrations-webapp/assets/54125469/871ce5a7-98a5-4e13-8979-b31c276172a2)
+
+# Main Technologies
 
 - [Vue 2](https://v2.vuejs.org/)
 - [Sass](https://sass-lang.com/)
@@ -22,15 +28,12 @@ Front-end project of Weni's Integrations module!
 - [Axios](https://axios-http.com/ptbr/docs/intro)
 - [Unnnic](https://github.com/weni-ai/unnnic) (Weni's design system)
 
-<br/> 
-
 # Requirements
+
 Before running the application, make sure you have installed the following tools on your machine:
 
 - [Node.js 14.x](https://nodejs.org/en)
 - [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) (recommended)
-
-<br/> 
 
 # Set up
 
@@ -50,31 +53,27 @@ Before running the application, make sure you have installed the following tools
 
 ```
   yarn
-```
-
-<br/> 
+``` 
 
 # How to develop
+
 ## Environment variables
+
 1. Create the .env file
 2. Configure the .env following the patterns below
  
 | Variable | Type | Default | Description |
 |--|--|--|--|
-| VUE_APP_API_BASE_URL | `string` | Empty | https://integrations-engine.stg.cloud.weni.ai
-| VUE_APP_LOGROCKET_ID  | `string` | Empty | 
-| VUE_APP_HELPHERO_ID | `string` | Empty | m7dO0to4OK
-| VUE_APP_PARENT_IFRAME_DOMAIN | `string` | Empty | https://dash-staging.weni.ai
-| VUE_APP_FLOWS_IFRAME_URL | `string` | Empty | https://flows-staging.weni.ai
+| VUE_APP_API_BASE_URL | `string` | Empty | URN of the backend environment to API requests. Without slash at the end.
+| VUE_APP_WHATSAPP_FACEBOOK_APP_ID  | `string` | Empty | WhatsApp Facebook App identifier
+| VUE_APP_FACEBOOK_APP_ID  | `string` | Empty | Facebook App identifier
+| VUE_APP_LOGROCKET_ID  | `string` | Empty | LogRocket identifier
+| VUE_APP_HELPHERO_ID | `string` | Empty | HelpHero identifier
+| VUE_APP_PARENT_IFRAME_DOMAIN | `string` | Empty | Weni Webapp URL
+| VUE_APP_FLOWS_IFRAME_URL | `string` | Empty | Flows module URL
 
-<br/> 
+# Development
 
-## Tokens
-...
-
-<br/> 
-
-## Execution
 Start the server with:
 
 ```
@@ -82,8 +81,6 @@ Start the server with:
 ```
 
 After that, it will be available at http://localhost:8080.
-
-<br/> 
 
 # Development Workflow
 
@@ -99,22 +96,20 @@ After that, it will be available at http://localhost:8080.
 | yarn test:unit | Run all tests
 | yarn test:unit --watch | Run test in watch mode
 
-<br/> 
-
 # Open-Source Governance
-The Weni Platform open source projects are governed by @weni-ai. Weni opens all its software parts under terms of an open-source license to reach potential users and partners mainly. Secondly, Weni wants to reach developers by building a community for some pieces that are more reusable in other businesses or software projects, such as NLP models or tools. Besides that, the openness of our software is also related to building trust by enabling our external stakeholders to audit the security of our software.
 
-<br/> 
+The Weni Platform open source projects are governed by [@weni-ai](https://github.com/weni-ai/). Weni opens all its software parts under terms of an open-source license to reach potential users and partners mainly. Secondly, Weni wants to reach developers by building a community for some pieces that are more reusable in other businesses or software projects, such as NLP models or tools. Besides that, the openness of our software is also related to building trust by enabling our external stakeholders to audit the security of our software.
 
 # Community
-- Join our community chat to discuss with our internal team
-- Join #dev for help from the community to development issues
 
-<br/>
+- Join our [community chat](https://community-chat.weni.ai) to discuss with our internal team
+- Join [#dev](https://community-chat.weni.ai/channel/dev) for help from the community to development issues
 
 # Contributing
-We are looking for collaboration from the Open Source community! There's so much we want to do, including but not limited to: enhancing existing applications with new features, optimizing the NLP tasks and algorithms involved that boost accuracy, new communication channels and integrations.
 
-- Please read our contribution guidelines for details on what and how you can contribute.
+**We are looking for collaboration from the Open Source community!** There's so much we want to do,
+including but not limited to: enhancing existing applications with new features,
+optimizing the NLP tasks and algorithms involved that boost accuracy, new communication channels and integrations.
 
-- Report a bug by using this guideline for details on what and how you can contribute.
+* Please read our [contribution guidelines](https://github.com/ilhasoft/weni-platform/blob/main/.github/CONTRIBUTING.md) for details on what and how you can contribute.
+* Report a bug by using [this guideline](https://github.com/ilhasoft/weni-platform/blob/main/.github/CONTRIBUTING.md#report-a-bug) for details on what and how you can contribute.
