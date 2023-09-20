@@ -60,7 +60,7 @@
               class="app-grid__content__item__button--details"
               @click="copyToClipboard(app.uuid)"
             >
-              <unnnic-icon-svg icon="bin-1-1" size="sm" />
+              <unnnic-icon-svg icon="copy-paste-1" size="sm" />
               {{ $t('apps.details.card.copy_uuid') }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
