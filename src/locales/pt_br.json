@@ -614,6 +614,37 @@
       "success": {
         "create_translation": "Tradução de template criada com sucesso",
         "update_translation": "Tradução de template atualizada com sucesso"
+      },
+      "authentication_form": {
+        "code_delivery": {
+          "title": "Entrega do código",
+          "autofill_label": "Preencher automaticamente",
+          "autofill_description": "Recomendado como a opção mais fácil para seus clientes. O código é enviado ao seu app quando um cliente toca no botão. Uma mensagem Copiar código será enviada quando o preenchimento automático não for possível.",
+          "autofill_tooltip": "O preenchimento automático só vai funcionar se o seu cliente pedir um código no mesmo dispositivo com a conta do Whatsapp dele. Se o preenchimento automático não for possível, uma mensagem informando pra copiar o código vai ser enviada",
+          "package_name_label": "Nome do pacote",
+          "package_name_placeholder": "Ex: com.exemplo.meuaplicativo",
+          "signature_hash_label": "Hash de assinatura do app",
+          "signature_hash_placeholder": "Escreva o texto",
+          "copy_label": "Copiar código",
+          "copy_description": "Autenticação básica com configuração rápida. Seus clientes copiam e colam o código no seu app.",
+          "copy_tooltip": "Os clientes clicam no botão para copiar e colar o código no próprio app. Funciona melhor para clientes que solicitam um código em um dispositivo que não contém sua conta Whatsapp."
+        },
+        "message_content": {
+          "title": "Conteúdo da mensagem",
+          "description": "Não é possível editar o conteúdo dos modelos de mensagem de autenticação. Você pode adicionar mais conteúdo das opções abaixo.",
+          "security_recommendation_checkbox": "Adicionar recomendação de segurança",
+          "expiration_time_checkbox": "Adicionar tempo de expiração do código",
+          "slider_label": "Expira em",
+          "slider_tooltip": "minutos"
+        },
+        "button_text": {
+          "title": "Texto do botão",
+          "description": "É possível personalizar o texto do botão para \"Preencher automaticamente\" e \"Copiar código\". Mesmo quando o toque zero estiver ativado, os botões ainda serão necessários para o método de entrega de código de reserva.",
+          "autofill_label": "Preencher automaticamente",
+          "autofill_placeholder": "Preenchimento automático",
+          "copy_label": "Copiar código",
+          "copy_placeholder": "Copiar código"
+        }
       }
     }
   },

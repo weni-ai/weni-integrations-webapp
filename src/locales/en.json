@@ -614,6 +614,37 @@
       "success": {
         "create_translation": "Successfully created Template Translation",
         "update_translation": "Successfully updated Template Translation"
+      },
+      "authentication_form": {
+        "code_delivery": {
+          "title": "Code delivery",
+          "autofill_label": "Autofill",
+          "autofill_description": "Recommended as the easiest option for your customers. The code is sent to your app when a customer taps the button. A Copy Code message will be sent when autocomplete is not possible.",
+          "autofill_tooltip": "Autofill will only work if your customer requests a code on the same device with their Whatsapp account. If automatic filling is not possible, a message informing you to copy the code will be sent.",
+          "package_name_label": "Package name",
+          "package_name_placeholder": "Ex: com.example.myapplication",
+          "signature_hash_label": "App signature hash",
+          "signature_hash_placeholder": "Write text",
+          "copy_label": "Copy code",
+          "copy_description": "Basic authentication with quick setup. Your customers copy and paste the code into your app.",
+          "copy_tooltip": "Customers click the button to copy and paste the code into the app itself. Works best for customers requesting a code on a device that doesn't contain their WhatsApp account."
+        },
+        "message_content": {
+          "title": "Message content",
+          "description": "You cannot edit the content of authentication message templates. You can add more content from the options below.",
+          "security_recommendation_checkbox": "Add security recommendation",
+          "expiration_time_checkbox": "Add code expiration time",
+          "slider_label": "Expires in",
+          "slider_tooltip": "minutes"
+        },
+        "button_text": {
+          "title": "Button text",
+          "description": "You can customize the button text to \"Autofill\" and \"Copy code\". Even when zero touch is enabled, the buttons are still required for the reservation code delivery method.",
+          "autofill_label": "Autofill",
+          "autofill_placeholder": "Automatic filling",
+          "copy_label": "Copy code",
+          "copy_placeholder": "Copy code"
+        }
       }
     }
   },
