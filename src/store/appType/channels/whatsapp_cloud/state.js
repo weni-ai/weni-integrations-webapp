@@ -12,4 +12,12 @@ export default {
 
   loadingWhatsAppCloudConfigure: false,
   errorCloudConfigure: false,
+
+  whatsAppCloudCatalogs: null,
+  loadingWhatsAppCloudCatalogs: false,
+  errorWhatsAppCloudCatalogs: false,
+
+  whatsAppCloudCatalog: null,
+  loadingFetchWhatsAppCloudCatalog: false,
+  errorFetchWhatsAppCloudCatalog: false,
 };

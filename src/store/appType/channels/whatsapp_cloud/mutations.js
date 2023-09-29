@@ -44,4 +44,28 @@ export default {
   SET_SELECTED_PHONE_NUMBER(state, data) {
     state.selectedPhoneNumber = data;
   },
+  GET_WHATSAPP_CATALOGS_REQUEST(state) {
+    state.loadingWhatsAppCloudCatalogs = true;
+    state.errorWhatsAppCloudCatalogs = null;
+  },
+  GET_WHATSAPP_CATALOGS_SUCCESS(state, data) {
+    state.whatsAppCloudCatalogs = data;
+    state.loadingWhatsAppCloudCatalogs = false;
+  },
+  GET_WHATSAPP_CATALOGS_ERROR(state, data) {
+    state.errorWhatsAppCloudCatalogs = data;
+    state.loadingWhatsAppCloudCatalogs = false;
+  },
+  FETCH_WHATSAPP_CATALOG_REQUEST(state) {
+    state.loadingFetchWhatsAppCloudCatalog = true;
+    state.errorFetchWhatsAppCloudCatalog = null;
+  },
+  FETCH_WHATSAPP_CATALOG_SUCCESS(state, data) {
+    state.whatsAppCloudCatalog = data;
+    state.loadingFetchWhatsAppCloudCatalog = false;
+  },
+  FETCH_WHATSAPP_CATALOG_ERROR(state, data) {
+    state.errorFetchWhatsAppCloudCatalog = data;
+    state.loadingFetchWhatsAppCloudCatalog = false;
+  },
 };
