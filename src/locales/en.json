@@ -457,6 +457,37 @@
       "templates": {
         "button": "See my templates",
         "title": "Templates"
+      },
+      "catalog": {
+        "button": "View list of catalogs",
+        "title": "Catalog"
+      }
+    },
+    "catalog": {
+      "list": {
+        "title": "List of catalogs",
+        "description": "Add all the items you want to advertise or sell",
+        "advanced_settings": "Advanced Settings",
+        "identification": "Identification",
+        "actions": {
+          "enabled_cart": "Cart enabled",
+          "disabled_cart": "Cart disabled",
+          "enabled_catalog": "Catalog enabled",
+          "disabled_catalog": "Disabled"
+        },
+        "disable_modal": {
+          "title": "Are you really going to disable the catalogue?",
+          "description": "To continue sending your products on Whatsapp you need an active catalogue.",
+          "label": "Type “disable catalog” to confirm",
+          "placeholder": "disable catalog",
+          "confirm": "Disable"
+        },
+        "advanced_configurations_modal": {
+          "title": "Advanced Settings",
+          "description": "Configure the level of accuracy for automatic shipping of your products",
+          "recomendation": "Recommended configuration: 1.55",
+          "confirm": "To save"
+        }
       }
     },
     "templates": {

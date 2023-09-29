@@ -68,4 +68,72 @@ export default {
     state.errorFetchWhatsAppCloudCatalog = data;
     state.loadingFetchWhatsAppCloudCatalog = false;
   },
+  DISABLE_WHATSAPP_CATALOG_REQUEST(state) {
+    state.loadingDisableCatalog = true;
+    state.disabledCatalog = null;
+    state.errorDisableCatalog = null;
+  },
+  DISABLE_WHATSAPP_CATALOG_SUCCESS(state, data) {
+    state.disabledCatalog = data;
+    state.loadingDisableCatalog = false;
+  },
+  DISABLE_WHATSAPP_CATALOG_ERROR(state, data) {
+    state.errorDisableCatalog = data;
+    state.loadingDisableCatalog = false;
+  },
+
+  ENABLE_WHATSAPP_CATALOG_REQUEST(state) {
+    state.loadingEnableCatalog = true;
+    state.enabledCatalog = null;
+    state.errorEnableCatalog = null;
+  },
+  ENABLE_WHATSAPP_CATALOG_SUCCESS(state, data) {
+    state.enabledCatalog = data;
+    state.loadingEnableCatalog = false;
+  },
+  ENABLE_WHATSAPP_CATALOG_ERROR(state, data) {
+    state.errorEnableCatalog = data;
+    state.loadingEnableCatalog = false;
+  },
+
+  TOGGLE_CART_VISIBILITY_REQUEST(state) {
+    state.loadingToggleCartVisibility = true;
+    state.toggledCartVisibility = null;
+    state.errorToggleCartVisibility = null;
+  },
+  TOGGLE_CART_VISIBILITY_SUCCESS(state, data) {
+    state.toggledCartVisibility = data;
+    state.loadingToggleCartVisibility = false;
+  },
+  TOGGLE_CART_VISIBILITY_ERROR(state, data) {
+    state.errorToggleCartVisibility = data;
+    state.loadingToggleCartVisibility = false;
+  },
+
+  TOGGLE_CATALOG_VISIBILITY_REQUEST(state) {
+    state.loadingToggleCatalogVisibility = true;
+    state.toggledCatalogVisibility = null;
+    state.errorToggleCatalogVisibility = null;
+  },
+  TOGGLE_CATALOG_VISIBILITY_SUCCESS(state, data) {
+    state.toggledCatalogVisibility = data;
+    state.loadingToggleCatalogVisibility = false;
+  },
+  TOGGLE_CATALOG_VISIBILITY_ERROR(state, data) {
+    state.errorToggleCatalogVisibility = data;
+    state.loadingToggleCatalogVisibility = false;
+  },
+
+  GET_COMMERCE_SETTINGS_REQUEST(state) {
+    state.loadingCommerceSettings = true;
+    state.errorCommerceSettings = null;
+  },
+  GET_COMMERCE_SETTINGS_SUCCESS(state, data) {
+    state.commerceSettings = data;
+    state.loadingCommerceSettings = false;
+  },
+  GET_COMMERCE_SETTINGS_ERROR(state, data) {
+    state.errorCommerceSettings = data;
+    state.loadingCommerceSettings = false;
+  },
 };

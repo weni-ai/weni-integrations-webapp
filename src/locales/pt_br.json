@@ -464,6 +464,12 @@
       }
     },
     "catalog": {
+      "error": {
+        "fetch_catalogs": "Não foi possível carregar a lista de catálogos. Por favor tente novamente mais tarde",
+        "disable_catalog": "Não foi possível desabilitar o catálogo no momento. Por favor tente novamente mais tarde",
+        "enable_catalog": "Não foi possível habilitar o catálogo no momento. Por favor tente novamente mais tarde",
+        "toggle_cart_visibility": ""
+      },
       "list": {
         "title": "Lista de catálogos",
         "description": "Adicione todos os itens que você quer anunciar ou vender",
@@ -478,7 +484,7 @@
         "disable_modal": {
           "title": "Vai mesmo desabilitar o catálogo?",
           "description": "Para continuar enviando seus produtos no Whatsapp você precisa de um catálogo ativo.",
-          "label": "Digite “desabilitar catálogo” para confirmar",
+          "label": "Digite “{name}” para confirmar",
           "placeholder": "desabilitar catálogo",
           "confirm": "Desabilitar"
         },

@@ -22,4 +22,19 @@ export default {
   fetchCatalogData(appUuid, catalogUuid) {
     return request.$http.get(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/`);
   },
+  disableWhatsAppCloudCatalogs(appUuid, catalogUuid) {
+    return request.$http.post(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/disable/`);
+  },
+  enableWhatsAppCloudCatalogs(appUuid, catalogUuid) {
+    return request.$http.post(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/enable/`);
+  },
+  toggleCartVisibility(appUuid, data) {
+    return request.$http.post(`${catalogsResource}/${appUuid}/toggle-cart-visibility/`, data);
+  },
+  toggleCatalogVisibility(appUuid, data) {
+    return request.$http.post(`${catalogsResource}/${appUuid}/toggle-catalog-visibility/`, data);
+  },
+  getCommerceSettings(appUuid) {
+    return request.$http.get(`${catalogsResource}/${appUuid}/commerce-settings/`);
+  },
 };
