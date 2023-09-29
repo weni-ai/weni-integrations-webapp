@@ -35,10 +35,10 @@ export default {
   setSelectedPhoneNumber({ commit }, { data }) {
     commit('SET_SELECTED_PHONE_NUMBER', data);
   },
-  async getWhatsAppCloudCatalogs({ commit }, { appUuid, params }) {
+  async getWhatsAppCloudCatalogs({ commit }, { appUuid }) {
     commit('GET_WHATSAPP_CATALOGS_REQUEST');
     try {
-      const { data } = await whatsAppCloud.getWhatsAppCloudCatalogs(appUuid, params);
+      const { data } = await whatsAppCloud.getWhatsAppCloudCatalogs(appUuid);
       commit('GET_WHATSAPP_CATALOGS_SUCCESS', data);
     } catch (err) {
       captureSentryException(err);

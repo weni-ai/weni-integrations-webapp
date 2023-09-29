@@ -16,9 +16,8 @@ export default {
   configurePhoneNumber(data) {
     return request.$http.post(`${resource}/`, data);
   },
-  getWhatsAppCloudCatalogs(appUuid, params) {
-    const queryString = qs.stringify(params);
-    return request.$http.get(`${catalogsResource}/${appUuid}/catalogs/?${queryString}`);
+  getWhatsAppCloudCatalogs(appUuid) {
+    return request.$http.get(`${catalogsResource}/${appUuid}/catalogs/`);
   },
   fetchCatalogData(appUuid, catalogUuid) {
     return request.$http.get(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/`);

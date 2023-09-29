@@ -67,8 +67,8 @@
 
 <script>
   import { mapActions, mapState } from 'vuex';
-  /*   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system'; */
+  import debounce from 'lodash.debounce';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'Card',
@@ -100,9 +100,9 @@
         ],
       };
     },
-    /*     created() {
+    created() {
       this.fetchData();
-    }, */
+    },
     computed: {
       ...mapState('WhatsAppCloud', [
         'loadingWhatsAppCloudCatalogs',
@@ -115,7 +115,7 @@
     },
     methods: {
       ...mapActions('WhatsAppCloud', ['getWhatsAppCloudCatalogs']),
-      /*       fetchData: debounce(async function () {
+      fetchData: debounce(async function () {
         const { appUuid } = this.$route.params;
 
         await this.getWhatsAppCloudCatalogs({ appUuid });
@@ -133,7 +133,7 @@
             seconds: 8,
           });
         }
-      }, 750), */
+      }, 750),
       modalDisableCatalog() {
         this.openModal = true;
       },

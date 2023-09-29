@@ -1,9 +1,9 @@
 <template>
-  <div class="whatsapp-catalog-table">
-    <div class="whatsapp-catalog-table__header">
-      <div class="whatsapp-catalog-table__header__title">
+  <div class="whatsapp-catalog-list">
+    <div class="whatsapp-catalog-list__header">
+      <div class="whatsapp-catalog-list__header__title">
         <unnnic-card
-          class="whatsapp-catalog-table__header__title__text"
+          class="whatsapp-catalog-list__header__title__text"
           type="title"
           :title="$t('WhatsApp.catalog.list.title')"
           :hasInformationIcon="false"
@@ -14,7 +14,7 @@
           {{ $t('WhatsApp.catalog.list.description') }}
         </span>
       </div>
-      <div class="whatsapp-catalog-table__header__button">
+      <div class="whatsapp-catalog-list__header__button">
         <unnnic-button-next type="terciary" size="large">
           {{ $t('WhatsApp.catalog.list.advanced_settings') }}
         </unnnic-button-next>
@@ -28,7 +28,7 @@
   import Card from '@/components/whatsAppCatalogs/Card';
 
   export default {
-    name: 'Table',
+    name: 'List',
     components: {
       Card,
     },
@@ -36,7 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .whatsapp-catalog-table {
+  .whatsapp-catalog-list {
     display: flex;
     flex-direction: column;
     flex: 1;

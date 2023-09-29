@@ -39,7 +39,7 @@
       handleCrumbClick(crumb) {
         if (crumb.meta === this.$route.name) return;
 
-        if (crumb.meta === 'WhatsApp Catalogs Table') {
+        if (crumb.meta === 'WhatsApp Catalogs List') {
           this.$router.go(-1);
         } else {
           this.$router.push(crumb.path);

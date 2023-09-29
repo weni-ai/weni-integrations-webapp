@@ -69,9 +69,9 @@ const routes = [
     component: () => import('@/views/whatsAppCatalogs/Base.vue'),
     children: [
       {
-        name: 'WhatsApp Catalogs Table',
+        name: 'WhatsApp Catalogs List',
         path: '',
-        component: () => import('@/views/whatsAppCatalogs/Table.vue'),
+        component: () => import('@/views/whatsAppCatalogs/List.vue'),
         meta: {
           crumb_title: 'WhatsApp.catalog.list.title',
         },
