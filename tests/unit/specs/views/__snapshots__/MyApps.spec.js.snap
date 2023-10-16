@@ -15,7 +15,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
           <div class="app-grid__content">
             <unnnic-card-stub type="marketplace" title="Weni Web Chat - Chat Title" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="edit" buttonaction="[Function]" class="app-grid__content__item">
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
-                <unnnic-button-stub size="small" type="terciary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
+                <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Edit
@@ -36,7 +36,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
             </unnnic-card-stub>
             <unnnic-card-stub type="marketplace" title="A random generic - undefined" description="Ullamco occaecat et id cillum." percent="0" rating="4.9" comments="undefined some specific text" enabled="true" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="edit" buttonaction="[Function]" class="app-grid__content__item">
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
-                <unnnic-button-stub size="small" type="terciary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
+                <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Edit
@@ -59,7 +59,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
           <!---->
         </section>
         <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
-          <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
+          <unnnic-button-stub size="large" type="tertiary">some specific text</unnnic-button-stub>
           <loadingbutton-stub type="primary" size="large" loadingtext="some specific text" loadingposition="left" text="some specific text"></loadingbutton-stub>
         </unnnic-modal-stub>
         <config-modal-stub></config-modal-stub>
@@ -73,7 +73,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
           <div class="app-grid__content">
             <unnnic-card-stub type="marketplace" title="Weni Web Chat" description="some specific text" percent="0" rating="4.9" comments="undefined some specific text" enabled="true" iconsrc="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="config" buttonaction="[Function]" class="app-grid__content__item">
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
-                <unnnic-button-stub size="small" type="terciary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
+                <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Configure
@@ -94,7 +94,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
             </unnnic-card-stub>
             <unnnic-card-stub type="marketplace" title="A random generic" description="Ullamco occaecat et id cillum." percent="0" rating="4.9" comments="undefined some specific text" enabled="true" infoposition="right" hasinformationicon="true" scheme="aux-blue" clickable="true" typeaction="config" buttonaction="[Function]" class="app-grid__content__item">
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
-                <unnnic-button-stub size="small" type="terciary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
+                <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Configure
@@ -117,7 +117,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
           <!---->
         </section>
         <unnnic-modal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
-          <unnnic-button-stub size="large" type="terciary">some specific text</unnnic-button-stub>
+          <unnnic-button-stub size="large" type="tertiary">some specific text</unnnic-button-stub>
           <loadingbutton-stub type="primary" size="large" loadingtext="some specific text" loadingposition="left" text="some specific text"></loadingbutton-stub>
         </unnnic-modal-stub>
         <config-modal-stub></config-modal-stub>

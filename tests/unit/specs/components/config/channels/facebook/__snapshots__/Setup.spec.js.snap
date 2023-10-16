@@ -6,7 +6,7 @@ exports[`components/config/channels/facebook/Setup.vue should be rendered proper
     <div><span>Follow the steps in the <a href="https://docs.weni.ai/l/en/settings/adding-a-facebook-channel" target="_blank" class="link">documentation</a> before proceeding with your <strong>Facebook</strong> integration</span></div>
     <div>
       <div class="facebook-setup__buttons">
-        <unnnicbutton-stub size="large" text="Cancel" type="terciary" class="facebook-setup__buttons__cancel"></unnnicbutton-stub>
+        <unnnicbutton-stub size="large" text="Cancel" type="tertiary" class="facebook-setup__buttons__cancel"></unnnicbutton-stub>
         <loadingbutton-stub type="secondary" size="large" loadingposition="left" text="Connect" class="facebook-setup__buttons__start"></loadingbutton-stub>
       </div>
     </div>
@@ -21,7 +21,7 @@ exports[`components/config/channels/facebook/Setup.vue should be rendered proper
       <unnnicselect-stub searchiconleft="search-1" size="sm" type="normal" placeholder=""></unnnicselect-stub>
     </div>
     <div class="page-selection__buttons">
-      <unnnicbutton-stub size="large" text="Connect later" type="terciary" class="page-selection__buttons__cancel"></unnnicbutton-stub>
+      <unnnicbutton-stub size="large" text="Connect later" type="tertiary" class="page-selection__buttons__cancel"></unnnicbutton-stub>
       <loadingbutton-stub type="secondary" size="large" loadingtext="Loading" loadingposition="left" text="Create channel" class="page-selection__buttons__save"></loadingbutton-stub>
     </div>
   </unnnicmodal-stub>

@@ -13,7 +13,7 @@
         <div class="survey__content__buttons">
           <unnnic-button
             class="survey__content__buttons__exit"
-            type="terciary"
+            type="tertiary"
             size="small"
             :text="$t('general.exit')"
             @click="closeSurvey"

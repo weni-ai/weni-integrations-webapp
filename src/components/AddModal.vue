@@ -13,7 +13,7 @@
     <unnnic-button
       ref="unnnic-add-modal-close-button"
       slot="options"
-      type="terciary"
+      type="tertiary"
       @click.stop="toggleModal"
       >{{ $t('general.Close') }}</unnnic-button
     >

@@ -10,7 +10,7 @@
       />
       <unnnic-button
         class="input-editor__emoji-picker__button"
-        type="terciary"
+        type="tertiary"
         iconCenter="emoji"
         size="small"
         @click="toggleEmoji"
@@ -20,7 +20,7 @@
       <unnnic-tool-tip side="top" text="Bold" enabled>
         <unnnic-button
           class="input-editor__button"
-          type="terciary"
+          type="tertiary"
           iconCenter="text-bold"
           size="small"
           @click="$emit('format-event', '*')"
@@ -30,7 +30,7 @@
       <unnnic-tool-tip side="top" text="Italic" enabled>
         <unnnic-button
           class="input-editor__button"
-          type="terciary"
+          type="tertiary"
           iconCenter="text-italic"
           size="small"
           @click="$emit('format-event', '_')"
@@ -40,7 +40,7 @@
       <unnnic-tool-tip side="top" text="Strike Through" enabled>
         <unnnic-button
           class="input-editor__button input-editor__button__strike"
-          type="terciary"
+          type="tertiary"
           size="small"
           @click="$emit('format-event', '~')"
         >
@@ -51,7 +51,7 @@
       <unnnic-tool-tip side="top" text="Monospace" enabled>
         <unnnic-button
           class="input-editor__button input-editor__button__mono"
-          type="terciary"
+          type="tertiary"
           size="small"
           @click="$emit('format-event', '```')"
         >

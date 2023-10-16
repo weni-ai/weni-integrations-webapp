@@ -25,7 +25,7 @@
     </div>
 
     <div v-if="currentApp" class="onboard__buttons">
-      <unnnic-button type="terciary" @click.stop="previousPage" :text="$t('general.back')" />
+      <unnnic-button type="tertiary" @click.stop="previousPage" :text="$t('general.back')" />
       <unnnic-button
         type="secondary"
         @click="nextPage"

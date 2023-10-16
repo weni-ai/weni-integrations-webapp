@@ -17,7 +17,7 @@
         <div class="facebook-setup__buttons">
           <unnnic-button
             class="facebook-setup__buttons__cancel"
-            type="terciary"
+            type="tertiary"
             size="large"
             :text="$t('general.Cancel')"
             @click="closePopUp"
@@ -70,7 +70,7 @@
       <div class="page-selection__buttons" slot="options">
         <unnnic-button
           class="page-selection__buttons__cancel"
-          type="terciary"
+          type="tertiary"
           size="large"
           :text="$t(`${this.integrationName}.setup.connect_later`)"
           @click="closePopUp"

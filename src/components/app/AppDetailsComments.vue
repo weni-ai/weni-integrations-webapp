@@ -45,7 +45,7 @@
         <unnnic-icon-svg slot="trigger" icon="navigation-menu-vertical-1" size="sm" />
         <unnnic-dropdown-item>
           <unnnic-button
-            type="terciary"
+            type="tertiary"
             iconLeft="pencil-write-1"
             :text="$t('apps.details.comments.edit_comment')"
             size="small"
@@ -54,7 +54,7 @@
         </unnnic-dropdown-item>
         <unnnic-dropdown-item>
           <unnnic-button
-            type="terciary"
+            type="tertiary"
             iconLeft="delete-1"
             :text="$t('apps.details.comments.delete_comment')"
             size="small"
@@ -76,7 +76,7 @@
       <unnnic-button
         ref="unnnic-remove-modal-close-button"
         slot="options"
-        type="terciary"
+        type="tertiary"
         @click="toggleRemoveModal"
         >{{ $t('general.Cancel') }}</unnnic-button
       >

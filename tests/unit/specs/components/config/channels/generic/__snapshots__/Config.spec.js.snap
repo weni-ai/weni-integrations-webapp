@@ -12,15 +12,15 @@ exports[`components/config/channels/generic/Config.vue should be rendered proper
   <div class="app-config-generic__settings__content">
     <div class="app-config-generic__settings__content__form-loading"><span class="unnnic-skeleton" style="background-color: rgb(232, 244, 244); animation: SkeletonLoading 1.5s ease-in-out infinite; width: 100%; height: 100%;">‌</span></div>
   </div>
-  <div class="app-config-generic__settings__buttons"><button data-v-bcdcecac="" class="app-config-generic__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--">
+  <div class="app-config-generic__settings__buttons"><button data-v-1e5e9ddd="" class="app-config-generic__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary">
       <!---->
       <!---->
-      <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Cancel </span>
+      <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Cancel </span>
       <!---->
-    </button> <button data-v-bcdcecac="" class="app-config-generic__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--">
+    </button> <button data-v-1e5e9ddd="" class="app-config-generic__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary">
       <!---->
       <!---->
-      <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Save changes </span>
+      <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Save changes </span>
       <!---->
     </button></div>
 </div>

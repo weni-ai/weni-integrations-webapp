@@ -21,7 +21,7 @@ exports[`components/config/channels/wpp_demo/Preview.vue should be rendered prop
     </unnnic-data-area-stub>
   </div>
   <div class="app-preview-wpp_demo__settings__buttons">
-    <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="some specific text" type="tertiary" class="app-preview-wpp_demo__settings__buttons__cancel"></unnnicbutton-stub>
   </div>
 </div>
 `;

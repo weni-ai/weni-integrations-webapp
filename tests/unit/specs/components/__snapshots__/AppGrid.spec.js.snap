@@ -12,7 +12,7 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
         <div>
           <unnnicbutton-stub size="small" type="secondary" iconcenter="add-1" class="loading-button"></unnnicbutton-stub>
           <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green" class="add-modal"><span>some specific text</span>
-            <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+            <unnnicbutton-stub size="large" type="tertiary">some specific text</unnnicbutton-stub>
             <unnnicbutton-stub size="large" type="primary">
               some specific text
             </unnnicbutton-stub>
@@ -24,7 +24,7 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
         <div>
           <unnnicbutton-stub size="small" type="secondary" iconcenter="add-1" disabled="true" class="loading-button"></unnnicbutton-stub>
           <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green" class="add-modal"><span>some specific text</span>
-            <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+            <unnnicbutton-stub size="large" type="tertiary">some specific text</unnnicbutton-stub>
             <unnnicbutton-stub size="large" type="primary">
               some specific text
             </unnnicbutton-stub>
@@ -36,7 +36,7 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
     <!---->
   </section>
   <unnnicmodal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
-    <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+    <unnnicbutton-stub size="large" type="tertiary">some specific text</unnnicbutton-stub>
     <unnnicbutton-stub size="large" text="some specific text" type="primary" class="loading-button"></unnnicbutton-stub>
   </unnnicmodal-stub>
   <div>
@@ -44,7 +44,7 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
       <!---->
     </transition-stub>
     <unnnicmodal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-yellow"><span>some specific text</span>
-      <unnnicbutton-stub size="large" type="terciary">
+      <unnnicbutton-stub size="large" type="tertiary">
         some specific text
       </unnnicbutton-stub>
       <unnnicbutton-stub size="large" type="primary">
