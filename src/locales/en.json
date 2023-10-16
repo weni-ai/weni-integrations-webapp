@@ -464,6 +464,12 @@
       }
     },
     "catalog": {
+      "error": {
+        "fetch_catalogs": "Unable to load catalog list. Please try again later",
+        "disable_catalog": "Unable to disable the catalog at this time. Please try again later",
+        "enable_catalog": "The catalog could not be enabled at this time. Please try again later",
+        "toggle_cart_visibility": "Unable to enable cart at this time. Please try again later"
+      },
       "list": {
         "title": "List of catalogs",
         "description": "Add all the items you want to advertise or sell",
@@ -478,14 +484,13 @@
         "disable_modal": {
           "title": "Are you really going to disable the catalogue?",
           "description": "To continue sending your products on Whatsapp you need an active catalogue.",
-          "label": "Type “disable catalog” to confirm",
-          "placeholder": "disable catalog",
+          "label": "Type “{name}” to confirm",
           "confirm": "Disable"
         },
         "advanced_configurations_modal": {
           "title": "Advanced Settings",
           "description": "Configure the level of accuracy for automatic shipping of your products",
-          "recomendation": "Recommended configuration: 1.55",
+          "recommendation": "Recommended configuration: 1.55",
           "confirm": "To save"
         }
       }

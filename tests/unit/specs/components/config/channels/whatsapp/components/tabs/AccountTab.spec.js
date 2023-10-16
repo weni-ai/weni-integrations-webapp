@@ -98,4 +98,17 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
       });
     });
   });
+
+  describe('navigateToCatalogs()', () => {
+    it('should change route to catalogs', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.navigateToCatalogs();
+
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        path: `/apps/my/${wrapper.vm.appInfo.code}/${wrapper.vm.appInfo.uuid}/catalogs`,
+      });
+    });
+  });
 });

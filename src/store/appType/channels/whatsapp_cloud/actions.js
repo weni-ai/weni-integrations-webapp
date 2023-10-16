@@ -39,7 +39,8 @@ export default {
     commit('GET_WHATSAPP_CATALOGS_REQUEST');
     try {
       const { data } = await whatsAppCloud.getWhatsAppCloudCatalogs(appUuid);
-      commit('GET_WHATSAPP_CATALOGS_SUCCESS', data);
+      const catalogs = data.results;
+      commit('GET_WHATSAPP_CATALOGS_SUCCESS', catalogs, data);
     } catch (err) {
       captureSentryException(err);
       commit('GET_WHATSAPP_CATALOGS_ERROR', err);
