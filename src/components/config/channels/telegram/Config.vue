@@ -30,7 +30,7 @@
     <div class="app-config-telegram__settings__buttons">
       <unnnic-button
         class="app-config-telegram__settings__buttons__cancel"
-        type="terciary"
+        type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="closeConfig"
@@ -223,10 +223,6 @@
 
         &__input {
           margin-top: $unnnic-spacing-stack-xs;
-
-          &__subtitle {
-            margin-top: $unnnic-spacing-stack-nano/2;
-          }
 
           &__payload {
             flex: 1;

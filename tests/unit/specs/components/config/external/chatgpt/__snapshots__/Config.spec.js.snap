@@ -6,7 +6,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
     <div class="config-chatgpt__header__title">
       <div class="config-chatgpt__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-chatgpt__header__title__icon-container__icon"></div>
       <div class="config-chatgpt__header__title__name">Weni Web Chat</div>
-      <unnnicbutton-stub size="small" type="terciary" iconcenter="close-1" class="config-chatgpt__header__title__close"></unnnicbutton-stub>
+      <unnnicbutton-stub size="small" type="tertiary" iconcenter="close-1" class="config-chatgpt__header__title__close"></unnnicbutton-stub>
     </div> <span class="config-chatgpt__header__description">Configure how ChatGPT works in platform modules</span>
   </div>
   <div class="config-chatgpt__settings__content">
@@ -26,7 +26,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
           <div class="config-chatgpt__settings__content__prompts-wrapper"></div>
         </div>
         <div class="config-chatgpt__settings__buttons">
-          <unnnicbutton-stub size="large" text="Cancel" type="terciary" class="config-chatgpt__settings__buttons__cancel"></unnnicbutton-stub>
+          <unnnicbutton-stub size="large" text="Cancel" type="tertiary" class="config-chatgpt__settings__buttons__cancel"></unnnicbutton-stub>
           <unnnicbutton-stub size="large" text="Save modifications" type="secondary" disabled="true" class="config-chatgpt__settings__buttons__save"></unnnicbutton-stub>
         </div>
       </div> <template></template>
@@ -61,7 +61,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
     <div class="config-chatgpt__header__title">
       <div class="config-chatgpt__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-chatgpt__header__title__icon-container__icon"></div>
       <div class="config-chatgpt__header__title__name">Weni Web Chat</div>
-      <unnnicbutton-stub size="small" type="terciary" iconcenter="close-1" class="config-chatgpt__header__title__close"></unnnicbutton-stub>
+      <unnnicbutton-stub size="small" type="tertiary" iconcenter="close-1" class="config-chatgpt__header__title__close"></unnnicbutton-stub>
     </div> <span class="config-chatgpt__header__description">Configure how ChatGPT works in platform modules</span>
   </div>
   <div class="config-chatgpt__settings__content">
@@ -81,7 +81,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
           <div class="config-chatgpt__settings__content__prompts-wrapper"></div>
         </div>
         <div class="config-chatgpt__settings__buttons">
-          <unnnicbutton-stub size="large" text="Cancel" type="terciary" class="config-chatgpt__settings__buttons__cancel"></unnnicbutton-stub>
+          <unnnicbutton-stub size="large" text="Cancel" type="tertiary" class="config-chatgpt__settings__buttons__cancel"></unnnicbutton-stub>
           <unnnicbutton-stub size="large" text="Save modifications" type="secondary" disabled="true" class="config-chatgpt__settings__buttons__save"></unnnicbutton-stub>
         </div>
       </div> <template></template>

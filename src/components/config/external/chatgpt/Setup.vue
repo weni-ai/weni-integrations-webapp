@@ -63,7 +63,7 @@
     <unnnic-button
       ref="unnnic-chatgpt-modal-close-button"
       slot="options"
-      type="terciary"
+      type="tertiary"
       @click="closePopUp"
     >
       {{ $t('general.Cancel') }}

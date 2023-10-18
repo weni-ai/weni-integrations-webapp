@@ -30,7 +30,7 @@
       <unnnic-button
         ref="unnnic-remove-modal-close-button"
         slot="options"
-        type="terciary"
+        type="tertiary"
         @click="toggleConfirmationModal"
       >
         {{ $t('apps.config.confirmation.goBackToConfig') }}

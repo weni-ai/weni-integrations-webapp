@@ -21,15 +21,15 @@ exports[`components/Survey.vue should be rendered properly with content open 1`]
         </div>
         <!---->
       </div>
-      <div class="survey__content__buttons"><button data-v-bcdcecac="" class="survey__content__buttons__exit unnnic-button unnnic-button--size-small unnnic-button--terciary unnnic-button-scheme--">
+      <div class="survey__content__buttons"><button data-v-1e5e9ddd="" class="survey__content__buttons__exit unnnic-button unnnic-button--size-small unnnic-button--tertiary">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Exit </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Exit </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="survey__content__buttons__send unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button-scheme--">
+        </button> <button data-v-1e5e9ddd="" class="survey__content__buttons__send unnnic-button unnnic-button--size-small unnnic-button--secondary">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Send </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Send </span>
           <!---->
         </button></div>
     </div>

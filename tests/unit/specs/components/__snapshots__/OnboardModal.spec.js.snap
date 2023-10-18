@@ -5,17 +5,17 @@ exports[`components/OnboardModal.vue should not render modal if app is configure
 exports[`components/OnboardModal.vue should not render modal if onboardStatus is false 1`] = ``;
 
 exports[`components/OnboardModal.vue should render modal app is not configured 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         Integrate a channel to your project
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection--description">
+      <div data-v-9dc3c428="" class="onboard__app-selection--description">
         Choose the channel you want to use and follow the step by step to add it. It's fast and easy.
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection__wrapper"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"></div>
+      <div data-v-9dc3c428="" class="onboard__app-selection__wrapper"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"></div>
       <!---->
       <!---->
     </div>
@@ -24,25 +24,25 @@ exports[`components/OnboardModal.vue should render modal app is not configured 1
 `;
 
 exports[`components/OnboardModal.vue telegram should handle telegram back action until app selection 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate Telegram
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol start="5"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token @BotFather sent you in the field provided. Then click "validate".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token @BotFather sent you in the field provided. Then click "validate".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Start </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Start </span>
           <!---->
         </button></div>
     </div>
@@ -51,25 +51,25 @@ exports[`components/OnboardModal.vue telegram should handle telegram back action
 `;
 
 exports[`components/OnboardModal.vue telegram should handle telegram back action until app selection 2`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate Telegram
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -78,17 +78,17 @@ exports[`components/OnboardModal.vue telegram should handle telegram back action
 `;
 
 exports[`components/OnboardModal.vue telegram should handle telegram back action until app selection 3`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         Integrate a channel to your project
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection--description">
+      <div data-v-9dc3c428="" class="onboard__app-selection--description">
         Choose the channel you want to use and follow the step by step to add it. It's fast and easy.
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection__wrapper"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"></div>
+      <div data-v-9dc3c428="" class="onboard__app-selection__wrapper"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"></div>
       <!---->
       <!---->
     </div>
@@ -97,25 +97,25 @@ exports[`components/OnboardModal.vue telegram should handle telegram back action
 `;
 
 exports[`components/OnboardModal.vue telegram should render telegram pages correctly and close modal in the end 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate Telegram
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -124,25 +124,25 @@ exports[`components/OnboardModal.vue telegram should render telegram pages corre
 `;
 
 exports[`components/OnboardModal.vue telegram should render telegram pages correctly and close modal in the end 2`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate Telegram
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol start="5"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token @BotFather sent you in the field provided. Then click "validate".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token @BotFather sent you in the field provided. Then click "validate".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Start </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Start </span>
           <!---->
         </button></div>
     </div>
@@ -153,25 +153,25 @@ exports[`components/OnboardModal.vue telegram should render telegram pages corre
 exports[`components/OnboardModal.vue telegram should render telegram pages correctly and close modal in the end 3`] = ``;
 
 exports[`components/OnboardModal.vue telegram should start telegram steps on telegram icon click 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate Telegram
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -180,25 +180,25 @@ exports[`components/OnboardModal.vue telegram should start telegram steps on tel
 `;
 
 exports[`components/OnboardModal.vue weni web chat should handle wwc back action until app selection 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate Telegram
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -207,17 +207,17 @@ exports[`components/OnboardModal.vue weni web chat should handle wwc back action
 `;
 
 exports[`components/OnboardModal.vue weni web chat should handle wwc back action until app selection 2`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         Integrate a channel to your project
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection--description">
+      <div data-v-9dc3c428="" class="onboard__app-selection--description">
         Choose the channel you want to use and follow the step by step to add it. It's fast and easy.
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection__wrapper"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"></div>
+      <div data-v-9dc3c428="" class="onboard__app-selection__wrapper"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"></div>
       <!---->
       <!---->
     </div>
@@ -226,25 +226,25 @@ exports[`components/OnboardModal.vue weni web chat should handle wwc back action
 `;
 
 exports[`components/OnboardModal.vue weni web chat should render weniwebchat pages correctly and close modal in the end 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to Integrate Weni Web Chat
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the "Add" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the "Script Code" section and copy the code that appears there. Paste it above the &lt;/body&gt; tag on your site.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the "Add" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the "Script Code" section and copy the code that appears there. Paste it above the &lt;/body&gt; tag on your site.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Start </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Start </span>
           <!---->
         </button></div>
     </div>
@@ -255,25 +255,25 @@ exports[`components/OnboardModal.vue weni web chat should render weniwebchat pag
 exports[`components/OnboardModal.vue weni web chat should render weniwebchat pages correctly and close modal in the end 2`] = ``;
 
 exports[`components/OnboardModal.vue weni web chat should start weni web chat steps on weni web chat icon click 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to Integrate Weni Web Chat
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the "Add" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the "Script Code" section and copy the code that appears there. Paste it above the &lt;/body&gt; tag on your site.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the "Add" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the "Script Code" section and copy the code that appears there. Paste it above the &lt;/body&gt; tag on your site.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Start </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Start </span>
           <!---->
         </button></div>
     </div>
@@ -282,25 +282,25 @@ exports[`components/OnboardModal.vue weni web chat should start weni web chat st
 `;
 
 exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action until app selection 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol start="9"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="9"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Start </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Start </span>
           <!---->
         </button></div>
     </div>
@@ -309,25 +309,25 @@ exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action
 `;
 
 exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action until app selection 2`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol start="5"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .</li><li>Add the phone number that people will use to chat with you on WhatsApp.</li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .</li><li>Add the phone number that people will use to chat with you on WhatsApp.</li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -336,25 +336,25 @@ exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action
 `;
 
 exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action until app selection 3`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -363,17 +363,17 @@ exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action
 `;
 
 exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action until app selection 4`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         Integrate a channel to your project
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection--description">
+      <div data-v-9dc3c428="" class="onboard__app-selection--description">
         Choose the channel you want to use and follow the step by step to add it. It's fast and easy.
       </div>
-      <div data-v-a079ec4a="" class="onboard__app-selection__wrapper"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"><img data-v-a079ec4a="" src="[object Object]" class="onboard__app-selection__app"></div>
+      <div data-v-9dc3c428="" class="onboard__app-selection__wrapper"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"><img data-v-9dc3c428="" src="[object Object]" class="onboard__app-selection__app"></div>
       <!---->
       <!---->
     </div>
@@ -382,25 +382,25 @@ exports[`components/OnboardModal.vue whatsapp should handle whatsapp back action
 `;
 
 exports[`components/OnboardModal.vue whatsapp should render whatsapp pages correctly and close modal in the end 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -409,25 +409,25 @@ exports[`components/OnboardModal.vue whatsapp should render whatsapp pages corre
 `;
 
 exports[`components/OnboardModal.vue whatsapp should render whatsapp pages correctly and close modal in the end 2`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol start="5"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .</li><li>Add the phone number that people will use to chat with you on WhatsApp.</li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .</li><li>Add the phone number that people will use to chat with you on WhatsApp.</li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>
@@ -436,25 +436,25 @@ exports[`components/OnboardModal.vue whatsapp should render whatsapp pages corre
 `;
 
 exports[`components/OnboardModal.vue whatsapp should render whatsapp pages correctly and close modal in the end 3`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol start="9"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="9"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Start </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Start </span>
           <!---->
         </button></div>
     </div>
@@ -465,25 +465,25 @@ exports[`components/OnboardModal.vue whatsapp should render whatsapp pages corre
 exports[`components/OnboardModal.vue whatsapp should render whatsapp pages correctly and close modal in the end 4`] = ``;
 
 exports[`components/OnboardModal.vue whatsapp should start whatsapp steps on whatsapp icon click 1`] = `
-<div data-v-a079ec4a="" class="onboard unnnic-modal type-default show-close-button">
-  <div data-v-a079ec4a="" class="container">
-    <div data-v-a079ec4a="" class="header"><span data-v-59b073b4="" data-v-a079ec4a="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
-    <div data-v-a079ec4a="" class="content">
-      <div data-v-a079ec4a="" class="onboard--title">
+<div data-v-9dc3c428="" class="onboard unnnic-modal type-default show-close-button">
+  <div data-v-9dc3c428="" class="container">
+    <div data-v-9dc3c428="" class="header"><span data-v-59b073b4="" data-v-9dc3c428="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span></div>
+    <div data-v-9dc3c428="" class="content">
+      <div data-v-9dc3c428="" class="onboard--title">
         How to integrate WhatsApp
       </div>
       <!---->
       <!---->
-      <div data-v-a079ec4a="" class="onboard__content"><img data-v-a079ec4a="" src="[object Object]" class="onboard__gif"> <span data-v-a079ec4a="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
-      <div data-v-a079ec4a="" class="onboard__buttons"><button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--terciary unnnic-button-scheme--" data-v-a079ec4a="">
+      <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Back </span>
           <!---->
-        </button> <button data-v-bcdcecac="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary unnnic-button-scheme--" data-v-a079ec4a="">
+        </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-bcdcecac="" class="unnnic-button__label"> Next </span>
+          <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Next </span>
           <!---->
         </button></div>
     </div>

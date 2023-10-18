@@ -26,7 +26,7 @@
       @add-variable="addVariable"
       @emoji-event="handleNewEmoji"
     />
-    <unnnic-button type="terciary" iconLeft="add-1" size="small" @click="addVariable">
+    <unnnic-button type="tertiary" iconLeft="add-1" size="small" @click="addVariable">
       {{ $t('WhatsApp.templates.form_field.add_variable') }}
     </unnnic-button>
   </div>

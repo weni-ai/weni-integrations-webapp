@@ -25,7 +25,7 @@ exports[`components/config/external/chatgpt/Setup.vue should be rendered properl
       </div>
     </div>
   </div>
-  <unnnicbutton-stub size="large" type="terciary">
+  <unnnicbutton-stub size="large" type="tertiary">
     Cancel
   </unnnicbutton-stub>
   <unnnicbutton-stub size="large" type="secondary">

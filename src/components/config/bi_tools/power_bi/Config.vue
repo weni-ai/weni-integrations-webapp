@@ -81,7 +81,7 @@
     <div class="app-config-power-bi__buttons">
       <unnnic-button
         class="app-config-power-bi__buttons__cancel"
-        type="terciary"
+        type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="$emit('closeModal')"

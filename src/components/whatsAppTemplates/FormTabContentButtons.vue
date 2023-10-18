@@ -42,7 +42,7 @@
           <unnnic-button
             class="form-tab-content-buttons__replies__remove-button"
             :disabled="disableInputs"
-            type="terciary"
+            type="tertiary"
             iconCenter="bin-1-1"
             size="small"
             @click="removeButton(index)"
@@ -78,7 +78,7 @@
           <unnnic-button
             class="form-tab-content-buttons__call-actions__button__header__remove-button"
             :disabled="disableInputs"
-            type="terciary"
+            type="tertiary"
             iconCenter="bin-1-1"
             size="small"
             @click="removeButton(index)"
@@ -184,7 +184,7 @@
 
     <unnnic-button
       v-if="showAddButton"
-      type="terciary"
+      type="tertiary"
       :disabled="disableInputs"
       iconLeft="add-1"
       size="small"
