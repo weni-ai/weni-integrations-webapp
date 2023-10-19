@@ -25,7 +25,7 @@
       v-if="whatsAppCloudCatalogs || (!loadingWhatsAppCloudCatalogs && !errorWhatsAppCloudCatalogs)"
     >
       <Card
-        v-for="(catalog, index) in whatsAppCloudCatalogs"
+        v-for="(catalog, index) in listItems"
         :key="index"
         :catalog="catalog"
         :enabledCart="commerceSettings.is_cart_enabled"
@@ -82,9 +82,6 @@
         pageSize: 15,
       };
     },
-    created() {
-      this.fetchData({ page: this.page });
-    },
     computed: {
       ...mapState('WhatsAppCloud', [
         'loadingWhatsAppCloudCatalogs',
@@ -95,6 +92,9 @@
         'commerceSettings',
         'errorToggleCartVisibility',
       ]),
+      listItems() {
+        return this.whatsAppCloudCatalogs?.results || [];
+      },
       totalCount() {
         return this.whatsAppCloudCatalogs?.count || this.pageSize;
       },
@@ -147,7 +147,7 @@
           });
         }
 
-        this.connectedCatalog = this.whatsAppCloudCatalogs.find(
+        this.connectedCatalog = this.whatsAppCloudCatalogs.results.find(
           (catalog) => catalog.is_connected === true,
         );
       }, 750),
@@ -175,7 +175,7 @@
         } else {
           this.openModal = false;
         }
-        this.fetchData();
+        this.fetchData(this.page);
       },
       async handleEnableCatalog(catalog) {
         if (this.connectedCatalog) {
@@ -211,7 +211,7 @@
           });
         }
 
-        this.fetchData();
+        this.fetchData(this.page);
       },
       async handleCatalogConfirmation() {
         await this.disableCatalog();
@@ -248,12 +248,15 @@
           });
         }
 
-        this.fetchData();
+        this.fetchData(this.page);
       },
     },
     watch: {
-      page(page) {
-        this.fetchData({ page });
+      page: {
+        immediate: true,
+        handler(page) {
+          this.fetchData(page);
+        },
       },
       whatsAppCloudCatalogs: {
         handler() {
@@ -264,7 +267,7 @@
       filterState: {
         handler() {
           if (this.page === 1) {
-            this.fetchData({ page: this.page });
+            this.fetchData(this.page);
           } else {
             this.page = 1;
           }

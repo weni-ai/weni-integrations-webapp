@@ -20,17 +20,19 @@
       <div class="whatsapp-catalog-card__wrapper__actions">
         <unnnic-switch
           :value="catalog.is_connected"
+          use-v-model
           size="small"
           :textRight="
             catalog.is_connected
               ? $t('WhatsApp.catalog.list.actions.enabled_catalog')
               : $t('WhatsApp.catalog.list.actions.disabled_catalog')
           "
-          @click.native="toggleCatalogConnect(!catalog.is_connected)"
+          @input="toggleCatalogConnect($event)"
         />
         <unnnic-switch
           v-if="catalog.is_connected"
           :value="enabledCart"
+          use-v-model
           size="small"
           :textRight="
             enabledCart
