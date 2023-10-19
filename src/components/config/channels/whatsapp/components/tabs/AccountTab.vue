@@ -8,7 +8,7 @@
               {{ $t('WhatsApp.config.templates.title') }}
             </div>
 
-            <unnnic-button
+            <unnnic-button-next
               class="account-tab__content__info__templates__buttons__button"
               @click="navigateToTemplates"
               type="secondary"
@@ -16,7 +16,7 @@
               scheme="feedback-green"
             >
               {{ $t('WhatsApp.config.templates.button') }}
-            </unnnic-button>
+            </unnnic-button-next>
           </div>
           <div class="account-tab__content__info__templates__buttons">
             <div class="account-tab__content__info__templates__buttons__title">
