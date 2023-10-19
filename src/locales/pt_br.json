@@ -468,7 +468,7 @@
         "fetch_catalogs": "Não foi possível carregar a lista de catálogos. Por favor tente novamente mais tarde",
         "disable_catalog": "Não foi possível desabilitar o catálogo no momento. Por favor tente novamente mais tarde",
         "enable_catalog": "Não foi possível habilitar o catálogo no momento. Por favor tente novamente mais tarde",
-        "toggle_cart_visibility": ""
+        "toggle_cart_visibility": "Não foi possível habilitar o carrinho no momento. Por favor tente novamente mais tarde"
       },
       "list": {
         "title": "Lista de catálogos",
@@ -485,13 +485,12 @@
           "title": "Vai mesmo desabilitar o catálogo?",
           "description": "Para continuar enviando seus produtos no Whatsapp você precisa de um catálogo ativo.",
           "label": "Digite “{name}” para confirmar",
-          "placeholder": "desabilitar catálogo",
           "confirm": "Desabilitar"
         },
         "advanced_configurations_modal": {
           "title": "Configurações avançadas",
           "description": "Configure o nível de precisão do envio automático dos seus produtos",
-          "recomendation": "Configuração recomendada: 1.55",
+          "recommendation": "Configuração recomendada: 1.55",
           "confirm": "Salvar"
         }
       }
