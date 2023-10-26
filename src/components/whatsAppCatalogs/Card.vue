@@ -24,8 +24,8 @@
           size="small"
           :textRight="
             catalog.is_connected
-              ? $t('WhatsApp.catalog.list.actions.enabled_catalog')
-              : $t('WhatsApp.catalog.list.actions.disabled_catalog')
+              ? $t('WhatsApp.catalog.list.actions.active_catalog')
+              : $t('WhatsApp.catalog.list.actions.inactive_catalog')
           "
           @input="toggleCatalogConnect($event)"
         />
@@ -36,8 +36,8 @@
           size="small"
           :textRight="
             enabledCart
-              ? $t('WhatsApp.catalog.list.actions.enabled_cart')
-              : $t('WhatsApp.catalog.list.actions.disabled_cart')
+              ? $t('WhatsApp.catalog.list.actions.active_cart')
+              : $t('WhatsApp.catalog.list.actions.inactive_cart')
           "
           @click.native="toggleCart()"
         />

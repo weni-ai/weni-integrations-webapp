@@ -476,10 +476,10 @@
         "advanced_settings": "Configurações avançadas",
         "identification": "Identificação",
         "actions": {
-          "enabled_cart": "Carrinho habilitado",
-          "disabled_cart": "Carrinho desabilitado",
-          "enabled_catalog": "Catálogo habilitado",
-          "disabled_catalog": "Desabilitado"
+          "active_cart": "Carrinho ativo",
+          "inactive_cart": "Carrinho inativo",
+          "active_catalog": "Catálogo ativo",
+          "inactive_catalog": "Inativo"
         },
         "disable_modal": {
           "title": "Vai mesmo desabilitar o catálogo?",
