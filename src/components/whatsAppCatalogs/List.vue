@@ -45,14 +45,27 @@
       scheme="feedback-red"
       :validate="connectedCatalog.name"
       :validatePlaceholder="connectedCatalog.name"
-      :title="$t('WhatsApp.catalog.list.disable_modal.title')"
+      :title="
+        catalogToEnable
+          ? $t('WhatsApp.catalog.list.disable_modal.title_active')
+          : $t('WhatsApp.catalog.list.disable_modal.title')
+      "
       :actionPrimaryLabel="$t('WhatsApp.catalog.list.disable_modal.confirm')"
       :actionSecondaryLabel="$t('general.Cancel')"
       @click-action-secondary="closeModal"
       @click-action-primary="handleCatalogConfirmation"
     >
       <template slot="description">
-        {{ $t('WhatsApp.catalog.list.disable_modal.description') }}
+        <div v-if="catalogToEnable">
+          {{
+            $t('WhatsApp.catalog.list.disable_modal.description_active', {
+              name: connectedCatalog.name,
+            })
+          }}
+        </div>
+        <div v-else>
+          {{ $t('WhatsApp.catalog.list.disable_modal.description') }}
+        </div>
         <div>
           {{ $t('WhatsApp.catalog.list.disable_modal.label', { name: connectedCatalog.name }) }}
         </div>
