@@ -483,7 +483,9 @@
         },
         "disable_modal": {
           "title": "¿De verdad vas a desactivar el catálogo?",
+          "title_active": "Ya tienes otro catálogo activo",
           "description": "Para seguir enviando tus productos por Whatsapp necesitas un catálogo activo.",
+          "description_active": "Esta acción desactivará automáticamente el catálogo. “{name}”",
           "label": "Escriba “{name}” para confirmar",
           "confirm": "Desactivar"
         },
