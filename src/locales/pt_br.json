@@ -492,7 +492,8 @@
           "description": "Configure o nível de precisão do envio automático dos seus produtos",
           "recommendation": "Configuração recomendada: 1.55",
           "confirm": "Salvar"
-        }
+        },
+        "search_placeholder": "Busque pelo nome do Catálogo"
       }
     },
     "templates": {

@@ -471,7 +471,7 @@
         "toggle_cart_visibility": "Unable to enable cart at this time. Please try again later"
       },
       "list": {
-        "title": "List of catalogs",
+        "title": "Catalog list",
         "description": "Add all the items you want to advertise or sell",
         "advanced_settings": "Advanced Settings",
         "identification": "Identification",
@@ -492,7 +492,8 @@
           "description": "Configure the level of accuracy for automatic shipping of your products",
           "recommendation": "Recommended configuration: 1.55",
           "confirm": "To save"
-        }
+        },
+        "search_placeholder": "Search for the catalog name"
       }
     },
     "templates": {
