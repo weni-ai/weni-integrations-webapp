@@ -14,11 +14,11 @@
           </span>
         </div>
       </div>
-      <div class="whatsapp-catalog-list__header__button">
+      <!-- <div class="whatsapp-catalog-list__header__button">
         <unnnic-button type="secondary" size="large">
           {{ $t('WhatsApp.catalog.list.advanced_settings') }}
         </unnnic-button>
-      </div>
+      </div> -->
     </div>
     <div
       class="whatsapp-catalog-list__cards"
