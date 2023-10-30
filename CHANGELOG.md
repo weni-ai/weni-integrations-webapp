@@ -1,3 +1,17 @@
+1.30.0
+----------
+`2023-10-30 · 2 🐛 · 4 🎉`
+
+### 🐛 Bug fixes
+- Fix: Copy UUID icon
+- Fix: Typo on unnnic button
+
+### 🎉 New Features
+- Feat: Disable button on create whatsapp channel
+- Feat: Block WhatsApp phone number selection button when loading
+- Feat: Voice tone on ChatGPT
+- feat: WhatsApp products catalogs base
+
 1.29.0
 ----------
 `2023-07-14 · 2 🎉`
