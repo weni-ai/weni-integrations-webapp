@@ -14,12 +14,21 @@
           </span>
         </div>
       </div>
-      <div class="whatsapp-catalog-list__header__button">
+      <!-- <div class="whatsapp-catalog-list__header__button">
         <unnnic-button type="secondary" size="large">
           {{ $t('WhatsApp.catalog.list.advanced_settings') }}
         </unnnic-button>
-      </div>
+      </div> -->
     </div>
+
+    <div class="whatsapp-catalog-list__search">
+      <unnnic-input
+        v-model="searchTerm"
+        :placeholder="$t('WhatsApp.catalog.list.search_placeholder')"
+        iconLeft="search-1"
+      />
+    </div>
+
     <div
       class="whatsapp-catalog-list__cards"
       v-if="whatsAppCloudCatalogs || (!loadingWhatsAppCloudCatalogs && !errorWhatsAppCloudCatalogs)"
@@ -93,6 +102,7 @@
         firstLoad: true,
         page: 1,
         pageSize: 15,
+        searchTerm: '',
       };
     },
     computed: {
@@ -142,6 +152,10 @@
           page: page,
           page_size: this.pageSize,
         };
+
+        if (this.searchTerm && this.searchTerm.trim()) {
+          params.name = this.searchTerm.trim();
+        }
 
         await this.getCommerceSettings({ appUuid });
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
@@ -277,7 +291,7 @@
         },
         deep: true,
       },
-      filterState: {
+      searchTerm: {
         handler() {
           if (this.page === 1) {
             this.fetchData(this.page);
@@ -297,12 +311,12 @@
     flex-direction: column;
     flex: 1;
     overflow: hidden;
+    gap: $unnnic-spacing-md;
 
     &__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: $unnnic-spacing-md;
 
       &__icon {
         display: flex;
@@ -327,6 +341,12 @@
       }
     }
 
+    &__search {
+      width: 33%;
+      min-width: 250px;
+      max-width: 450px;
+    }
+
     &__cards {
       display: flex;
       flex-direction: column;
@@ -340,7 +360,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: $unnnic-spacing-stack-md;
 
       span {
         font-size: $unnnic-font-size-body-gt;
