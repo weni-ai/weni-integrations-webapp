@@ -1,8 +1,7 @@
 <template>
   <div class="whatsapp-catalogs">
-    <div v-if="$route.name === 'WhatsApp Catalogs List'">
-      <List />
-    </div>
+    <List v-if="$route.name === 'WhatsApp Catalogs List'" />
+
     <router-view v-else />
   </div>
 </template>
@@ -17,3 +16,11 @@
     },
   };
 </script>
+
+<styles scoped lang="scss">
+.whatsapp-catalogs {
+  display: flex;
+  overflow: hidden;
+  height: 100%;
+}
+</styles>

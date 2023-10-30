@@ -297,7 +297,6 @@
     flex-direction: column;
     flex: 1;
     overflow: hidden;
-    margin-top: $unnnic-spacing-lg;
 
     &__header {
       display: flex;
@@ -333,6 +332,8 @@
       flex-direction: column;
       flex: 1;
       gap: $unnnic-spacing-md;
+      overflow: auto;
+      padding-right: $unnnic-spacing-xs;
     }
 
     &__pagination {
