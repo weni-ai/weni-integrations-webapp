@@ -3,7 +3,7 @@
     <unnnic-button
       slot="trigger"
       size="small"
-      type="terciary"
+      type="tertiary"
       iconCenter="navigation-menu-vertical-1"
     />
 

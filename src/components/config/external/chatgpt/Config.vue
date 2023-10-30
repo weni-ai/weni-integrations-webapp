@@ -9,7 +9,7 @@
 
         <unnnic-button
           class="config-chatgpt__header__title__close"
-          type="terciary"
+          type="tertiary"
           icon-center="close-1"
           size="small"
           @click="closeConfig"
@@ -96,7 +96,7 @@
           <div class="config-chatgpt__settings__buttons">
             <unnnic-button
               class="config-chatgpt__settings__buttons__cancel"
-              type="terciary"
+              type="tertiary"
               size="large"
               :text="$t('apps.config.cancel')"
               @click="closeConfig"

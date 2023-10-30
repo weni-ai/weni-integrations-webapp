@@ -87,7 +87,7 @@
     <div class="form-tab-content__actions">
       <unnnic-button
         class="form-tab-content__actions__cancel"
-        type="terciary"
+        type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="closeEdit"

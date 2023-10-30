@@ -12,7 +12,7 @@
     <unnnic-button
       ref="unnnic-wpp-demo-modal-close-button"
       slot="options"
-      type="terciary"
+      type="tertiary"
       @click="closePopUp"
       >{{ $t('general.Close') }}</unnnic-button
     >

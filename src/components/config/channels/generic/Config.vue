@@ -55,7 +55,7 @@
     <div class="app-config-generic__settings__buttons">
       <unnnic-button
         class="app-config-generic__settings__buttons__cancel"
-        type="terciary"
+        type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="closeConfig"

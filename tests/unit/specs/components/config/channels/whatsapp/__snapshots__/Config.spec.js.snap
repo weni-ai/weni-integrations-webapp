@@ -6,7 +6,7 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
     <div class="config-whatsapp__header__title">
       <div class="config-whatsapp__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-whatsapp__header__title__icon-container__icon"></div>
       <div class="config-whatsapp__header__title__name">Weni Web Chat</div>
-      <unnnicbutton-stub size="small" type="terciary" iconcenter="close-1" class="config-whatsapp__header__title__close"></unnnicbutton-stub>
+      <unnnicbutton-stub size="small" type="tertiary" iconcenter="close-1" class="config-whatsapp__header__title__close"></unnnicbutton-stub>
     </div> <span class="config-whatsapp__header__description">
       Learn more about how to increase your daily message limit in WhatsApp
       <span><a href="https://docs.weni.ai/l/en/channels/how-to-verify-my-business" target="_blank">

@@ -3,18 +3,35 @@
     <div class="account-tab__content">
       <div class="account-tab__content__info">
         <div class="account-tab__content__info__templates">
-          <div class="account-tab__content__info__templates__title">
-            {{ $t('WhatsApp.config.templates.title') }}
-          </div>
+          <div class="account-tab__content__info__templates__buttons">
+            <div class="account-tab__content__info__templates__buttons__title">
+              {{ $t('WhatsApp.config.templates.title') }}
+            </div>
 
-          <unnnic-button
-            class="account-tab__content__info__templates__button"
-            @click="navigateToTemplates"
-            type="secondary"
-            size="small"
-          >
-            {{ $t('WhatsApp.config.templates.button') }}
-          </unnnic-button>
+            <unnnic-button
+              class="account-tab__content__info__templates__buttons__button"
+              @click="navigateToTemplates"
+              type="alternative"
+              size="small"
+              scheme="feedback-green"
+            >
+              {{ $t('WhatsApp.config.templates.button') }}
+            </unnnic-button>
+          </div>
+          <div class="account-tab__content__info__templates__buttons">
+            <div class="account-tab__content__info__templates__buttons__title">
+              {{ $t('WhatsApp.config.catalog.title') }}
+            </div>
+
+            <unnnic-button
+              class="account-tab__content__info__templates__buttons__button"
+              @click="navigateToCatalogs"
+              type="primary"
+              size="small"
+            >
+              {{ $t('WhatsApp.config.catalog.button') }}
+            </unnnic-button>
+          </div>
         </div>
 
         <div class="account-tab__content__info__qr">
@@ -92,6 +109,10 @@
       navigateToTemplates() {
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
+      },
+      navigateToCatalogs() {
+        const { code, uuid } = this.appInfo;
+        this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
       },
     },
     computed: {
@@ -222,20 +243,23 @@
         gap: $unnnic-spacing-stack-lg;
 
         &__templates {
-          flex: 1;
           display: flex;
-          flex-direction: column;
+          justify-content: space-between;
           gap: $unnnic-spacing-stack-sm;
 
-          &__title {
-            font-weight: $unnnic-font-weight-black;
-            font-size: $unnnic-font-size-body-lg;
-            line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-darkest;
-          }
+          &__buttons {
+            width: 100%;
 
-          &__button {
-            max-width: 160px;
+            &__title {
+              font-weight: $unnnic-font-weight-bold;
+              font-size: $unnnic-font-size-body-lg;
+              line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+              color: $unnnic-color-neutral-darkest;
+              margin-bottom: $unnnic-spacing-sm;
+            }
+            &__button {
+              width: 100%;
+            }
           }
         }
 

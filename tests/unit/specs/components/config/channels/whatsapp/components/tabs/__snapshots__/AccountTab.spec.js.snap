@@ -5,12 +5,22 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
   <div class="account-tab__content">
     <div class="account-tab__content__info">
       <div class="account-tab__content__info__templates">
-        <div class="account-tab__content__info__templates__title">
-          Templates
+        <div class="account-tab__content__info__templates__buttons">
+          <div class="account-tab__content__info__templates__buttons__title">
+            Templates
+          </div>
+          <unnnicbutton-stub type="alternative" size="small" scheme="feedback-green" class="account-tab__content__info__templates__buttons__button">
+            See my templates
+          </unnnicbutton-stub>
         </div>
-        <unnnicbutton-stub type="secondary" size="small" class="account-tab__content__info__templates__button">
-          See my templates
-        </unnnicbutton-stub>
+        <div class="account-tab__content__info__templates__buttons">
+          <div class="account-tab__content__info__templates__buttons__title">
+            Catalog
+          </div>
+          <unnnicbutton-stub type="primary" size="small" class="account-tab__content__info__templates__buttons__button">
+            View list of catalogs
+          </unnnicbutton-stub>
+        </div>
       </div>
       <div class="account-tab__content__info__qr">
         <div class="account-tab__content__info__qr__title">

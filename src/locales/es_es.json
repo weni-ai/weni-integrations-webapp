@@ -457,6 +457,45 @@
       "templates": {
         "button": "Ver mis plantillas",
         "title": "Plantillas"
+      },
+      "catalog": {
+        "button": "Ver lista de catálogos",
+        "title": "Catalogar"
+      }
+    },
+    "catalog": {
+      "error": {
+        "fetch_catalogs": "No se puede cargar la lista del catálogo. Por favor, inténtelo de nuevo más tarde",
+        "disable_catalog": "No se puede desactivar el catálogo en este momento. Por favor, inténtelo de nuevo más tarde",
+        "enable_catalog": "El catálogo no se pudo activar en este momento. Por favor, inténtelo de nuevo más tarde",
+        "toggle_cart_visibility": "No se puede activar el carrito en este momento. Por favor, inténtelo de nuevo más tarde"
+      },
+      "list": {
+        "title": "Lista de catálogos",
+        "description": "Añade todos los artículos que quieras anunciar o vender",
+        "advanced_settings": "Configuraciones avanzadas",
+        "identification": "Identificación",
+        "actions": {
+          "active_cart": "Carrito activo",
+          "inactive_cart": "Carrito inactivo",
+          "active_catalog": "Catálogo activo",
+          "inactive_catalog": "Inactivo"
+        },
+        "disable_modal": {
+          "title": "¿De verdad vas a desactivar el catálogo?",
+          "title_active": "Ya tienes otro catálogo activo",
+          "description": "Para seguir enviando tus productos por Whatsapp necesitas un catálogo activo.",
+          "description_active": "Esta acción desactivará automáticamente el catálogo. “{name}”",
+          "label": "Escriba “{name}” para confirmar",
+          "confirm": "Desactivar"
+        },
+        "advanced_configurations_modal": {
+          "title": "Configuraciones avanzadas",
+          "description": "Configura el nivel de precisión para el envío automático de tus productos",
+          "recommendation": "Configuración recomendada: 1,55",
+          "confirm": "Ahorrar"
+        },
+        "search_placeholder": "Buscar el nombre del catálogo"
       }
     },
     "templates": {

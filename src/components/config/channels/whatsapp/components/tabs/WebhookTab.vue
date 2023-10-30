@@ -51,7 +51,7 @@
     <div class="webhook-info__buttons">
       <unnnic-button
         class="webhook-info__buttons__cancel"
-        type="terciary"
+        type="tertiary"
         size="large"
         :text="$t('WhatsApp.config.contact_info.configure_later')"
         @click="() => this.$emit('close')"

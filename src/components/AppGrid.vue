@@ -40,7 +40,7 @@
             class="app-grid__content__item__dropdown"
             slot="actions"
           >
-            <unnnic-button slot="trigger" size="small" type="terciary" :iconCenter="cardIcon" />
+            <unnnic-button slot="trigger" size="small" type="tertiary" :iconCenter="cardIcon" />
             <unnnic-dropdown-item
               class="app-grid__content__item__button--action"
               @click="openAppModal(app)"
@@ -99,7 +99,7 @@
       <unnnic-button
         ref="unnnic-remove-modal-close-button"
         slot="options"
-        type="terciary"
+        type="tertiary"
         @click="toggleRemoveModal"
         >{{ $t('general.Cancel') }}</unnnic-button
       >
