@@ -466,9 +466,9 @@
     "catalog": {
       "error": {
         "fetch_catalogs": "Não foi possível carregar a lista de catálogos. Por favor tente novamente mais tarde",
-        "disable_catalog": "Não foi possível desabilitar o catálogo no momento. Por favor tente novamente mais tarde",
-        "enable_catalog": "Não foi possível habilitar o catálogo no momento. Por favor tente novamente mais tarde",
-        "toggle_cart_visibility": "Não foi possível habilitar o carrinho no momento. Por favor tente novamente mais tarde"
+        "disable_catalog": "Não foi possível desativar o catálogo no momento. Por favor tente novamente mais tarde",
+        "enable_catalog": "Não foi possível ativar o catálogo no momento. Por favor tente novamente mais tarde",
+        "toggle_cart_visibility": "Não foi possível ativar o carrinho no momento. Por favor tente novamente mais tarde"
       },
       "list": {
         "title": "Lista de catálogos",
@@ -476,16 +476,16 @@
         "advanced_settings": "Configurações avançadas",
         "identification": "Identificação",
         "actions": {
-          "enabled_cart": "Carrinho habilitado",
-          "disabled_cart": "Carrinho desabilitado",
-          "enabled_catalog": "Catálogo habilitado",
-          "disabled_catalog": "Desabilitado"
+          "enabled_cart": "Carrinho ativo",
+          "disabled_cart": "Carrinho inativo",
+          "enabled_catalog": "Catálogo ativo",
+          "disabled_catalog": "Inativo"
         },
         "disable_modal": {
-          "title": "Vai mesmo desabilitar o catálogo?",
+          "title": "Vai mesmo desativar o catálogo?",
           "description": "Para continuar enviando seus produtos no Whatsapp você precisa de um catálogo ativo.",
           "label": "Digite “{name}” para confirmar",
-          "confirm": "Desabilitar"
+          "confirm": "Desativar"
         },
         "advanced_configurations_modal": {
           "title": "Configurações avançadas",

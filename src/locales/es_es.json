@@ -467,8 +467,8 @@
       "error": {
         "fetch_catalogs": "No se puede cargar la lista del catálogo. Por favor, inténtelo de nuevo más tarde",
         "disable_catalog": "No se puede desactivar el catálogo en este momento. Por favor, inténtelo de nuevo más tarde",
-        "enable_catalog": "El catálogo no se pudo habilitar en este momento. Por favor, inténtelo de nuevo más tarde",
-        "toggle_cart_visibility": "No se puede habilitar el carrito en este momento. Por favor, inténtelo de nuevo más tarde"
+        "enable_catalog": "El catálogo no se pudo activar en este momento. Por favor, inténtelo de nuevo más tarde",
+        "toggle_cart_visibility": "No se puede activar el carrito en este momento. Por favor, inténtelo de nuevo más tarde"
       },
       "list": {
         "title": "Lista de catálogos",
@@ -476,10 +476,10 @@
         "advanced_settings": "Configuraciones avanzadas",
         "identification": "Identificación",
         "actions": {
-          "enabled_cart": "Carrito habilitado",
-          "disabled_cart": "Carrito inhabilitado",
-          "enabled_catalog": "Catálogo habilitado",
-          "disabled_catalog": "Desactivado"
+          "enabled_cart": "Carrito activo",
+          "disabled_cart": "Carrito inactivo",
+          "enabled_catalog": "Catálogo activo",
+          "disabled_catalog": "Inactivo"
         },
         "disable_modal": {
           "title": "¿De verdad vas a desactivar el catálogo?",
