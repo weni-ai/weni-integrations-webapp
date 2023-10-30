@@ -494,7 +494,8 @@
           "description": "Configura el nivel de precisión para el envío automático de tus productos",
           "recommendation": "Configuración recomendada: 1,55",
           "confirm": "Ahorrar"
-        }
+        },
+        "search_placeholder": "Buscar el nombre del catálogo"
       }
     },
     "templates": {
