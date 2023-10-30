@@ -65,6 +65,20 @@ const routes = [
     ],
   },
   {
+    path: '/apps/my/:appCode/:appUuid/catalogs',
+    component: () => import('@/views/whatsAppCatalogs/Base.vue'),
+    children: [
+      {
+        name: 'WhatsApp Catalogs List',
+        path: '',
+        component: () => import('@/views/whatsAppCatalogs/List.vue'),
+        meta: {
+          crumb_title: 'WhatsApp.catalog.list.title',
+        },
+      },
+    ],
+  },
+  {
     path: '/loginexternal/:token/:project/:flowOrg',
     name: 'externalLogin',
     component: null,

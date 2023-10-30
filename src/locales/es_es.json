@@ -457,6 +457,40 @@
       "templates": {
         "button": "Ver mis plantillas",
         "title": "Plantillas"
+      },
+      "catalog": {
+        "button": "Ver lista de catálogos",
+        "title": "Catalogar"
+      }
+    },
+    "catalog": {
+      "list": {
+        "title": "Lista de catálogos",
+        "description": "Añade todos los artículos que quieras anunciar o vender",
+        "advanced_settings": "Configuraciones avanzadas",
+        "identification": "Identificación",
+        "actions": {
+          "enabled_cart": "Carrito habilitado",
+          "disabled_cart": "Carrito inhabilitado",
+          "enabled_catalog": "Catálogo habilitado",
+          "disabled_catalog": "Desactivado"
+        },
+        "disable_modal": {
+          "title": "¿De verdad vas a desactivar el catálogo?",
+          "description": "Para seguir enviando tus productos por Whatsapp necesitas un catálogo activo.",
+          "label": "Escriba “deshabilitar catálogo” para confirmar",
+          "placeholder": "desactivar catálogo",
+          "confirm": "Desactivar"
+        },
+        "advanced_configurations_modal": {
+          "title": "Configuraciones avanzadas",
+          "description": "Configura el nivel de precisión para el envío automático de tus productos",
+          "recomendation": "Configuración recomendada: 1,55",
+          "confirm": "Ahorrar"
+        }
+      },
+      "error": {
+        "toggle_cart_visibility": ""
       }
     },
     "templates": {
