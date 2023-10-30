@@ -18,7 +18,7 @@
     <div class="profile-content__buttons">
       <unnnic-button
         class="profile-content__buttons__cancel"
-        type="terciary"
+        type="tertiary"
         size="large"
         :text="$t('WhatsApp.config.profile.configure_later')"
         @click="() => this.$emit('close')"

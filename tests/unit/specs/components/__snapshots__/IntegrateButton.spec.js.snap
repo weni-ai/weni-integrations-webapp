@@ -4,7 +4,7 @@ exports[`IntegrateButton.vue should be rendered properly 1`] = `
 <div>
   <unnnicbutton-stub size="large" text="Add" type="secondary" iconcenter="add-1" class="loading-button"></unnnicbutton-stub>
   <unnnicmodal-stub text="some specific text" modalicon="check-circle-1-1" closeicon="true" scheme="feedback-green" class="add-modal"><span>some specific text</span>
-    <unnnicbutton-stub size="large" type="terciary">some specific text</unnnicbutton-stub>
+    <unnnicbutton-stub size="large" type="tertiary">some specific text</unnnicbutton-stub>
     <unnnicbutton-stub size="large" type="primary">
       some specific text
     </unnnicbutton-stub>

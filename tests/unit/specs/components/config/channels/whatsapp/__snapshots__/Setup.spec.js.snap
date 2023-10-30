@@ -5,7 +5,7 @@ exports[`whatsapp/Setup.vue should be rendered properly 1`] = `
   <unnnicmodal-stub text="some specific text" modalicon="phone-3" description="some specific text" showmodal="true" scheme="feedback-green" class="whatsapp-setup">
     <div>
       <div class="whatsapp-setup__buttons">
-        <unnnicbutton-stub size="large" text="some specific text" type="terciary" class="whatsapp-setup__buttons__cancel"></unnnicbutton-stub>
+        <unnnicbutton-stub size="large" text="some specific text" type="tertiary" class="whatsapp-setup__buttons__cancel"></unnnicbutton-stub>
         <loadingbutton-stub type="secondary" size="large" loadingposition="left" text="some specific text" class="whatsapp-setup__buttons__start"></loadingbutton-stub>
       </div>
     </div>

@@ -9,7 +9,7 @@
 
         <unnnic-button
           class="config-whatsapp__header__title__close"
-          type="terciary"
+          type="tertiary"
           icon-center="close-1"
           size="small"
           @click="closeConfig"

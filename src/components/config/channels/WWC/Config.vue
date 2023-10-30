@@ -146,7 +146,7 @@
             <div class="app-config-wwc__tabs__settings-content__buttons">
               <unnnic-button
                 class="app-config-wwc__tabs__settings-content__buttons__cancel"
-                type="terciary"
+                type="tertiary"
                 size="large"
                 :text="$t('general.Cancel')"
                 @click="closeConfig"
@@ -209,7 +209,7 @@
             <div class="app-config-wwc__tabs__settings-content__buttons">
               <unnnic-button
                 class="app-config-wwc__tabs__settings-content__buttons__cancel"
-                type="terciary"
+                type="tertiary"
                 size="large"
                 :text="$t('general.Cancel')"
                 @click="closeConfig"

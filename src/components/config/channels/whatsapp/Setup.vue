@@ -16,7 +16,7 @@
         <div class="whatsapp-setup__buttons">
           <unnnic-button
             class="whatsapp-setup__buttons__cancel"
-            type="terciary"
+            type="tertiary"
             size="large"
             :text="$t('general.Cancel')"
             @click="closePopUp"
@@ -66,7 +66,7 @@
       <div class="phone-number-selection__buttons" slot="options">
         <unnnic-button
           class="phone-number-selection__buttons__cancel"
-          type="terciary"
+          type="tertiary"
           size="large"
           :text="$t('WhatsAppCloud.config.phone_numbers.connect_later')"
           @click="closePopUp"
@@ -74,7 +74,7 @@
         <!-- eslint-disable -->
         <LoadingButton
           class="phone-number-selection__buttons__save"
-          type="terciary"
+          type="tertiary"
           size="large"
           :disabled="
             loadingPhoneNumbers || loadingDebugToken || !!errorDebugToken || !!errorPhoneNumbers || loadingWhatsAppCloudConfigure

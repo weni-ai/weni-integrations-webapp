@@ -7,14 +7,14 @@
       <div class="app-details-recommended__header__buttons">
         <unnnic-button
           class="app-details-recommended__header__buttons__prev"
-          type="terciary"
+          type="tertiary"
           icon-center="arrow-left-1-1"
           size="small"
           @click="prevRecommendation"
         />
         <unnnic-button
           class="app-details-recommended__header__buttons__next"
-          type="terciary"
+          type="tertiary"
           icon-center="arrow-right-1-1"
           size="small"
           @click="nextRecommendation"
