@@ -476,14 +476,16 @@
         "advanced_settings": "Configurações avançadas",
         "identification": "Identificação",
         "actions": {
-          "enabled_cart": "Carrinho ativo",
-          "disabled_cart": "Carrinho inativo",
-          "enabled_catalog": "Catálogo ativo",
-          "disabled_catalog": "Inativo"
+          "active_cart": "Carrinho ativo",
+          "inactive_cart": "Carrinho inativo",
+          "active_catalog": "Catálogo ativo",
+          "inactive_catalog": "Inativo"
         },
         "disable_modal": {
           "title": "Vai mesmo desativar o catálogo?",
+          "title_active": "Você já tem outro catálogo ativo",
           "description": "Para continuar enviando seus produtos no Whatsapp você precisa de um catálogo ativo.",
+          "description_active": "Essa ação vai desativar automaticamente o catálogo “{name}”",
           "label": "Digite “{name}” para confirmar",
           "confirm": "Desativar"
         },

@@ -476,14 +476,16 @@
         "advanced_settings": "Advanced Settings",
         "identification": "Identification",
         "actions": {
-          "enabled_cart": "Cart enabled",
-          "disabled_cart": "Cart disabled",
-          "enabled_catalog": "Catalog enabled",
-          "disabled_catalog": "Disabled"
+          "active_cart": "Active cart",
+          "inactive_cart": "Inactive cart",
+          "active_catalog": "Active catalog",
+          "inactive_catalog": "Inactive"
         },
         "disable_modal": {
           "title": "Are you really going to disable the catalogue?",
+          "title_active": "You already have another active catalog",
           "description": "To continue sending your products on Whatsapp you need an active catalogue.",
+          "description_active": "This action will automatically deactivate the catalog “{name}”",
           "label": "Type “{name}” to confirm",
           "confirm": "Disable"
         },
