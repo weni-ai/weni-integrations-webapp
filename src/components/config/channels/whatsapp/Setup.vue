@@ -71,13 +71,13 @@
           :text="$t('WhatsAppCloud.config.phone_numbers.connect_later')"
           @click="closePopUp"
         ></unnnic-button>
-
+        <!-- eslint-disable -->
         <LoadingButton
           class="phone-number-selection__buttons__save"
           type="terciary"
           size="large"
           :disabled="
-            loadingPhoneNumbers || loadingDebugToken || !!errorDebugToken || !!errorPhoneNumbers
+            loadingPhoneNumbers || loadingDebugToken || !!errorDebugToken || !!errorPhoneNumbers || loadingWhatsAppCloudConfigure
           "
           :isLoading="loadingWhatsAppCloudConfigure"
           :loadingText="$t('general.loading')"
