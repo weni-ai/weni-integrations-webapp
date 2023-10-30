@@ -11,7 +11,7 @@
           <span class="u font secondary body-md color-neutral-cloudy">
             {{ $t('WhatsApp.catalog.list.identification') }}
           </span>
-          <span class="u font secondary body-md color-brand-weni bold">
+          <span class="u font secondary body-md color-weni-600 bold">
             {{ catalog.facebook_catalog_id }}
           </span>
         </div>
@@ -20,17 +20,19 @@
       <div class="whatsapp-catalog-card__wrapper__actions">
         <unnnic-switch
           :value="catalog.is_connected"
+          use-v-model
           size="small"
           :textRight="
             catalog.is_connected
               ? $t('WhatsApp.catalog.list.actions.enabled_catalog')
               : $t('WhatsApp.catalog.list.actions.disabled_catalog')
           "
-          @click.native="toggleCatalogConnect(!catalog.is_connected)"
+          @input="toggleCatalogConnect($event)"
         />
         <unnnic-switch
           v-if="catalog.is_connected"
           :value="enabledCart"
+          use-v-model
           size="small"
           :textRight="
             enabledCart
@@ -65,29 +67,6 @@
         currentDisable: null,
         catalogStatus: this.catalog.is_connected,
         cartStatus: this.enabledCart,
-        listCatalog: [
-          {
-            uuid: '3081a268-fff5-4366-bf44-ee387c8ddcdc',
-            name: 'Teste_localizacao',
-            facebook_catalog_id: '312538484461506',
-            category: 'commerce',
-            is_connected: false,
-          },
-          {
-            uuid: 'eaf96431-9be8-4cbd-8541-f4ae08af0d1e',
-            name: 'catalogo marketing token',
-            facebook_catalog_id: '339959911815729',
-            category: 'commerce',
-            is_connected: true,
-          },
-          {
-            uuid: 'e7974bfa-14d8-470a-8b1b-669718bc1036',
-            name: 'catalogo criado em dev',
-            facebook_catalog_id: '664025605666699',
-            category: 'commerce',
-            is_connected: false,
-          },
-        ],
       };
     },
     computed: {

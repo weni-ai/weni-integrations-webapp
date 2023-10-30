@@ -3,6 +3,7 @@ jest.mock('@/api/appType/whatsapp_cloud', () => {
     getDebugToken: jest.fn(),
     getWhatsAppPhoneNumbers: jest.fn(),
     configurePhoneNumber: jest.fn(),
+    getWhatsAppCloudCatalogs: jest.fn(),
   };
 });
 import WhatsAppCloudApi from '@/api/appType/whatsapp_cloud';
@@ -179,6 +180,62 @@ describe('store/appType/whatsapp_cloud/actions.js', () => {
       expect(store.state.WhatsAppCloud.selectedPhoneNumber).not.toEqual(1);
       await store.dispatch('WhatsAppCloud/setSelectedPhoneNumber', { data: 1 });
       expect(store.state.WhatsAppCloud.selectedPhoneNumber).toEqual(1);
+    });
+  });
+
+  describe('getWhatsAppCloudCatalogs()', () => {
+    const data = {
+      code: 'code',
+      appUuid: '123',
+      params: {
+        page: 1,
+        limit: 12,
+      },
+    };
+
+    const mockedResult = { status: 'ok' };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppCloudApi.getWhatsAppCloudCatalogs.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call getWhatsAppCloudCatalogs from API', async () => {
+      expect(WhatsAppCloudApi.getWhatsAppCloudCatalogs).not.toHaveBeenCalled();
+      await store.dispatch('WhatsAppCloud/getWhatsAppCloudCatalogs', data);
+      expect(WhatsAppCloudApi.getWhatsAppCloudCatalogs).toHaveBeenCalledTimes(1);
+      expect(WhatsAppCloudApi.getWhatsAppCloudCatalogs).toHaveBeenCalledWith(
+        data.appUuid,
+        data.params,
+      );
+    });
+
+    it('should set whatsAppCloudCatalogs as result data', async () => {
+      store.state.WhatsAppCloud.whatsAppCloudCatalogs = {};
+      expect(store.state.WhatsAppCloud.whatsAppCloudCatalogs).not.toEqual(mockedResult);
+      await store.dispatch('WhatsAppCloud/getWhatsAppCloudCatalogs', data);
+      expect(store.state.WhatsAppCloud.whatsAppCloudCatalogs).toEqual(mockedResult);
+    });
+
+    it('should set loadingWhatsAppCloudCatalogs to false', async () => {
+      store.state.WhatsAppCloud.loadingWhatsAppCloudCatalogs = true;
+      expect(store.state.WhatsAppCloud.loadingWhatsAppCloudCatalogs).toBe(true);
+      await store.dispatch('WhatsAppCloud/getWhatsAppCloudCatalogs', data);
+      expect(store.state.WhatsAppCloud.loadingWhatsAppCloudCatalogs).toBe(false);
+    });
+
+    it('should set errorWhatsAppCloudCatalogs as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppCloudApi.getWhatsAppCloudCatalogs.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsAppCloud.errorWhatsAppCloudCatalogs = {};
+      expect(store.state.WhatsAppCloud.errorWhatsAppCloudCatalogs).not.toEqual(error);
+      await store.dispatch('WhatsAppCloud/getWhatsAppCloudCatalogs', data);
+      expect(store.state.WhatsAppCloud.errorWhatsAppCloudCatalogs).toEqual(error);
     });
   });
 });
