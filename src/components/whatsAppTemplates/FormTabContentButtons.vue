@@ -57,6 +57,8 @@
           :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
           :maxlength="25"
           :replaceRegex="EMOJI_REGEX"
+          :message="errors[index] || null"
+          :type="errors[index] ? 'error' : 'normal'"
           @input="handleRepliesInput($event, index)"
         />
       </div>
@@ -201,6 +203,7 @@
 <script>
   import { mapGetters } from 'vuex';
   import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
+  import { countVariables } from '@/utils/countTemplateVariables.js';
   import BaseInput from '../BaseInput.vue';
 
   export default {
@@ -247,6 +250,7 @@
         }),
 
         buttons: [],
+        errors: {},
         maxRepliesButtons: 3,
         maxActionButtons: 2,
         focusedUrlInput: false,
@@ -286,6 +290,16 @@
     },
     methods: {
       getCountryCallingCode,
+      checkIssues() {
+        let hasIssues = false;
+        for (const key in this.errors) {
+          if (this.errors[key]) {
+            hasIssues = true;
+          }
+        }
+
+        return hasIssues;
+      },
       handleButtonTypeChange(event) {
         if (event === this.buttonsType) {
           return;
@@ -309,10 +323,17 @@
         this.$emit('input-change', { fieldName: 'buttonsType', fieldValue: event });
       },
       handleRepliesInput(event, index) {
+        if (countVariables(event) > 0) {
+          this.errors[index] = this.$t('WhatsApp.templates.form_field.error_has_variable');
+        } else {
+          this.errors[index] = null;
+        }
+
         this.buttons[index].text = event;
         this.$emit('input-change', {
           fieldName: 'buttons',
           fieldValue: [...this.buttons],
+          hasIssue: this.checkIssues(),
         });
       },
       handleCallToActionTypeChange(event, index) {
@@ -337,10 +358,17 @@
         });
       },
       handleActionInput(event, inputName, index) {
+        if (countVariables(event) > 0) {
+          this.errors[index] = this.$t('WhatsApp.templates.form_field.error_has_variable');
+        } else {
+          this.errors[index] = null;
+        }
+
         this.buttons[index][inputName] = event;
         this.$emit('input-change', {
           fieldName: 'buttons',
           fieldValue: [...this.buttons],
+          hasIssue: this.checkIssues(),
         });
       },
       handleCountryCodeSelection(event, index) {

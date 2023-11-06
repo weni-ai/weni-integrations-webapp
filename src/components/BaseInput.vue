@@ -6,6 +6,8 @@
     :label="label"
     :placeholder="placeholder"
     :maxlength="maxlength"
+    :message="message"
+    :type="type"
   />
 </template>
 
@@ -32,6 +34,17 @@
       maxlength: {
         type: Number,
         default: 25,
+      },
+      message: {
+        type: String,
+        default: null,
+      },
+      type: {
+        type: String,
+        default: 'normal',
+        validator(value) {
+          return ['normal', 'error'].indexOf(value) !== -1;
+        },
       },
       replaceRegex: {
         type: RegExp,

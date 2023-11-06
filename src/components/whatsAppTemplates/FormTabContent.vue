@@ -172,6 +172,10 @@
             value: false,
             message: '',
           },
+          buttons: {
+            value: false,
+            message: '',
+          },
         },
       };
     },
@@ -242,7 +246,11 @@
         }
         this.updateTemplateForm({ fieldName, fieldValue });
       },
-      handleGenericInput({ fieldName, fieldValue }) {
+      handleGenericInput({ fieldName, fieldValue, hasIssue = false }) {
+        if (hasIssue) {
+          this.errorStates[fieldName].value = true;
+        }
+
         this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName,
