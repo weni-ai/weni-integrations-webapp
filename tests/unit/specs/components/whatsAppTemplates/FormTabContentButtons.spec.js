@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
 import { unnnicSelect, unnnicInput } from '@weni/unnnic-system';
 import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
+import BaseInput from '../../../../../src/components/BaseInput.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
@@ -268,7 +269,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       });
       await wrapper.setData({ buttons });
 
-      const replyInput = wrapper.findComponent(unnnicInput);
+      const replyInput = wrapper.findComponent(BaseInput);
 
       replyInput.vm.$emit('input', 'reply text');
       await wrapper.vm.$nextTick();
@@ -295,7 +296,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       });
       await wrapper.setData({ buttons });
 
-      const replyInput = wrapper.findAllComponents(unnnicInput).at(1);
+      const replyInput = wrapper.findAllComponents(BaseInput).at(1);
 
       replyInput.vm.$emit('input', 'reply text');
       await wrapper.vm.$nextTick();
@@ -409,7 +410,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       });
       await wrapper.setData({ buttons });
 
-      const nameInput = wrapper.findAllComponents(unnnicInput).at(2);
+      const nameInput = wrapper.findAllComponents(BaseInput).at(1);
 
       nameInput.vm.$emit('input', 'new website');
       await wrapper.vm.$nextTick();
