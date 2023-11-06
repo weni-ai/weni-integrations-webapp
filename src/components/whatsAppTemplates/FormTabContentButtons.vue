@@ -49,14 +49,15 @@
           />
         </div>
 
-        <unnnic-input
+        <base-input
           class="form-tab-content-buttons__replies__input"
           :disabled="disableInputs"
           :value="currentButtons[index].text"
           :label="$t('WhatsApp.templates.form_field.reply_label')"
-          @input="handleRepliesInput($event, index)"
           :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
           :maxlength="25"
+          :replaceRegex="EMOJI_REGEX"
+          @input="handleRepliesInput($event, index)"
         />
       </div>
     </div>
@@ -111,13 +112,14 @@
               currentButtons[index].button_type === 'URL',
           }"
         >
-          <unnnic-input
+          <base-input
             :label="$t('WhatsApp.templates.form_field.button_text')"
             :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
             :disabled="disableInputs"
             :value="currentButtons[index].text"
-            @input="handleActionInput($event, 'text', index)"
             :maxlength="25"
+            :replaceRegex="EMOJI_REGEX"
+            @input="handleActionInput($event, 'text', index)"
           />
 
           <div
@@ -199,9 +201,11 @@
 <script>
   import { mapGetters } from 'vuex';
   import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
+  import BaseInput from '../BaseInput.vue';
 
   export default {
     name: 'FormTabContentButtons',
+    components: { BaseInput },
     props: {
       disableInputs: {
         type: Boolean,
@@ -210,6 +214,7 @@
     },
     data() {
       return {
+        EMOJI_REGEX: /\p{Emoji_Presentation}/gu,
         buttonOptions: [
           {
             value: '',
