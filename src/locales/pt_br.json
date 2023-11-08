@@ -460,7 +460,8 @@
       },
       "catalog": {
         "button": "Ver lista de catálogos",
-        "title": "Catálogo"
+        "title": "Catálogo",
+        "button_create": "Criar catálogo"
       }
     },
     "catalog": {

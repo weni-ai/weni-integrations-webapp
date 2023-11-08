@@ -29,7 +29,11 @@
               type="primary"
               size="small"
             >
-              {{ $t('WhatsApp.config.catalog.button') }}
+              {{
+                hasCatalog
+                  ? $t('WhatsApp.config.catalog.button')
+                  : $t('WhatsApp.config.catalog.button_create')
+              }}
             </unnnic-button>
           </div>
         </div>
@@ -94,6 +98,10 @@
         type: Object,
         default: /* istanbul ignore next */ () => {},
       },
+      hasCatalog: {
+        type: Boolean,
+        default: false,
+      },
     },
     methods: {
       emitClose() {
@@ -111,6 +119,16 @@
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
       navigateToCatalogs() {
+        if (!this.hasCatalog) {
+          // TODO: use business id and not waba_id
+          window
+            .open(
+              `https://business.facebook.com/latest/settings/product_catalogs?business_id=`,
+              '_blank',
+            )
+            .focus();
+          return;
+        }
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
       },
