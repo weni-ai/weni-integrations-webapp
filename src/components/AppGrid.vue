@@ -140,6 +140,7 @@
             [
               'channel',
               'ticket',
+              'ecommerce',
               'external',
               'bi-tools',
               'configured',
@@ -194,6 +195,8 @@
             return { icon: 'messages-bubble-1', scheme: 'aux-purple' };
           case 'ticket':
             return { icon: 'messaging-we-chat-3', scheme: 'aux-blue' };
+          case 'ecommerce':
+            return { icon: 'local_mall', scheme: 'aux-blue-500' };
           case 'bi-tools':
             return { icon: 'gauge-dashboard-2', scheme: 'aux-orange' };
           case 'external':

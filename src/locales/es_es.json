@@ -936,5 +936,45 @@
     "success": {
       "configure": "Integración actualizada con éxito"
     }
+  },
+  "vtex": {
+    "setup": {
+      "title": "Integrar con VTEX",
+      "description": "Para continuar con la instalación inserte un subdominio",
+      "subdomain": "Subdominio",
+      "subdomain_placeholder": "Ej: tienda.myvtex.com"
+    },
+    "config": {
+      "description": "Conecte su catálogo VTEX para enviar productos vía Whatsapp",
+      "catalog": "Catalogar",
+      "connect_catalog": "Conectar catálogo",
+      "details": "Detalles",
+      "name": "Nombre de la cuenta",
+      "environment": "Ambiente",
+      "view_catalog": "Ver catálogo"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermercados y tiendas de comestibles",
+        "clothes_store": "Tienda de ropa",
+        "pharmacies_and_drugstores": "Farmacias y Droguerías",
+        "restaurants_and_cafes": "Restaurantes y cafeterías",
+        "electronics_stores": "Tiendas de electrónica",
+        "bookstores_and_stationery": "Librerías y Papelerías",
+        "furniture_and_decoration": "Tiendas de Muebles y Decoración",
+        "building_materials_and_hardware": "Tiendas de materiales de construcción y ferreterías",
+        "sporting_goods": "Tiendas de artículos deportivos",
+        "shoe_stores": "Tiendas de zapatos",
+        "auto_parts": "Tiendas de autopartes",
+        "other": "Otro"
+      }
+    },
+    "connect_catalog": {
+      "title": "Información básica",
+      "business_type": "Tipo de negocio",
+      "name_placeholder": "Ej: ofertas semanales",
+      "name": "Nombre del catálogo",
+      "footer": "Al crear un catálogo, acepta los <a class='link' target='_blank' href='https://google.com'><b>Términos del Administrador de catálogos</b></a> y confirma que sigue las <a class='link' target='_blank' href='https://google.com'><b>Políticas publicitarias de Facebook</b></a>. Revise estas políticas y confirme que los artículos que cargue en su catálogo las cumplan."
+    }
   }
 }

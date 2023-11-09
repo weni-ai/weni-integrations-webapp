@@ -936,5 +936,46 @@
     "success": {
       "configure": "Successfully updated integration"
     }
+  },
+  "vtex": {
+    "setup": {
+      "title": "Integrate with VTEX",
+      "description": "To proceed with the instalation insert a subdomain",
+      "subdomain": "Subdomain",
+      "subdomain_placeholder": "Ex: shop.myvtex.com"
+    },
+    "config": {
+      "description": "Connect your VTEX catalog to send products via Whatsapp",
+      "catalog": "Catalog",
+      "connect_catalog": "Connect catalog",
+      "details": "Details",
+      "name": "Account name",
+      "environment": "Environment",
+      "view_catalog": "View catalog"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermarkets and Grocery Stores",
+        "clothes_store": "Clothes store",
+        "pharmacies_and_drugstores": "Pharmacies and Drugstores",
+        "restaurants_and_cafes": "Restaurants and Cafes",
+        "electronics_stores": "Electronics Stores",
+        "bookstores_and_stationery": "Bookstores and Stationery",
+        "furniture_and_decoration": "Furniture and Decoration Stores",
+        "building_materials_and_hardware": "Building Material and Hardware Stores",
+        "sporting_goods": "Sporting Goods Stores",
+        "shoe_stores": "Shoe stores",
+        "auto_parts": "Auto parts stores",
+        "other": "Other",
+        "placeholder": "Select a business type"
+      }
+    },
+    "connect_catalog": {
+      "title": "Basic informations",
+      "business_type": "Business type",
+      "name_placeholder": "Ex: Weekly offers",
+      "name": "Catalog name",
+      "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
+    }
   }
 }

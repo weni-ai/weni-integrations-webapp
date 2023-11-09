@@ -936,5 +936,45 @@
     "success": {
       "configure": "Integração atualizada com sucesso"
     }
+  },
+  "vtex": {
+    "setup": {
+      "title": "Integrar com VTEX",
+      "description": "Para fazer a instalação insira um subdomínio",
+      "subdomain": "Subdomínio",
+      "subdomain_placeholder": "Ex: lojaweni.myvtex.com"
+    },
+    "config": {
+      "description": "Conecte seu catálogo VTEX para enviar produtos pelo WhatsApp",
+      "catalog": "Catálogo",
+      "connect_catalog": "Conectar catálogo",
+      "details": "Detalhes",
+      "name": "Nome da conta",
+      "environment": "Ambiente",
+      "view_catalog": "Ver catálogo"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermercados e mercearias",
+        "clothes_store": "Loja de roupas",
+        "pharmacies_and_drugstores": "Farmácias e Drogarias",
+        "restaurants_and_cafes": "Restaurantes e Cafés",
+        "electronics_stores": "Lojas de eletrônicos",
+        "bookstores_and_stationery": "Livrarias e papelarias",
+        "furniture_and_decoration": "Lojas de Móveis e Decoração",
+        "building_materials_and_hardware": "Lojas de materiais de construção e ferragens",
+        "sporting_goods": "Lojas de artigos esportivos",
+        "shoe_stores": "Lojas de calçados",
+        "auto_parts": "Lojas de peças de automóveis",
+        "other": "Outro"
+      }
+    },
+    "connect_catalog": {
+      "title": "Informações básica",
+      "business_type": "Tipo de Negócio",
+      "name_placeholder": "Ex: ofertas semanais",
+      "name": "Nome do catálogo",
+      "footer": "Ao criar um catálogo, você concorda com os <a class='link' target='_blank' href='https://google.com'><b>Termos do Gerenciador de Catálogos</b></a> e confirma que segue as <a class='link' target='_blank' href='https://google.com'><b>Políticas de Publicidade do Facebook</b></a>. Verifique essas políticas e confirme que os itens que você carregar no seu catálogo estejam em conformidade com elas."
+    }
   }
 }
