@@ -978,5 +978,25 @@
       "name": "Catalog name",
       "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
     }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "VTEX Catalog",
+          "description": "Automatically connect your catalog through integration with the VTEX app"
+        },
+        "default": {
+          "title": "Standard sending",
+          "description": "Create a catalog using a link or XML file"
+        }
+      },
+      "footer": "To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here",
+      "title": "Create catalog",
+      "header": {
+        "title": "Sending method",
+        "description": "Choose the way you want to send your catalog to start selling products via Whatsapp"
+      }
+    }
   }
 }

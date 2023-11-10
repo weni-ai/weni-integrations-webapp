@@ -1,5 +1,5 @@
 <template>
-  <unnnic-modal class="modal" @close="closeModal" @click.stop :closeIcon="false">
+  <div class="modal">
     <div slot="message" class="modal__content">
       <span class="modal__content__title">{{ $t('vtex.connect_catalog.title') }}</span>
 
@@ -27,18 +27,21 @@
         ></span>
       </div>
     </div>
-    <unnnic-button slot="options" type="tertiary" @click="closeModal">
-      {{ $t('general.Cancel') }}
-    </unnnic-button>
-    <unnnic-button slot="options" @click="connectCatalog">
-      {{ $t('general.continue') }}
-    </unnnic-button>
-  </unnnic-modal>
+
+    <div class="modal__buttons">
+      <unnnic-button slot="options" type="tertiary" @click="closeModal">
+        {{ $t('general.Cancel') }}
+      </unnnic-button>
+      <unnnic-button slot="options" @click="connectCatalog">
+        {{ $t('general.continue') }}
+      </unnnic-button>
+    </div>
+  </div>
 </template>
 
 <script>
   export default {
-    name: 'ConnectCatalogModal',
+    name: 'ConnectCatalogModalContent',
     data() {
       return {
         name: '',
@@ -126,9 +129,19 @@
 
 <style lang="scss" scoped>
   .modal {
-    ::v-deep .unnnic-modal-container-background {
-      width: 750px;
-      max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: $unnnic-spacing-md;
+
+    &__buttons {
+      display: flex;
+      gap: $unnnic-spacing-lg;
+      widows: 100%;
+      flex: 1;
+
+      ::v-deep .unnnic-button {
+        width: 100%;
+      }
     }
 
     &__content {

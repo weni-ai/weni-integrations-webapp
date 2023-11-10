@@ -63,7 +63,6 @@
         this.$emit('closePopUp');
       },
       async setupVtex() {
-        console.log('Setup vtex', this.subdomain);
         this.$router.replace('/apps/my');
       },
       callModal({ text, type }) {

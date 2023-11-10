@@ -25,7 +25,7 @@
 
             <unnnic-button
               class="account-tab__content__info__templates__buttons__button"
-              @click="navigateToCatalogs"
+              @click="handleCatalogButtonClick"
               type="primary"
               size="small"
             >
@@ -87,12 +87,38 @@
         </div>
       </div>
     </div>
+
+    <unnnic-modal
+      v-if="showCreateCatalogModal || showConnectCatalogModal"
+      class="catalog-modal"
+      @close="showCreateCatalogModal = false"
+      @click.stop
+      :closeIcon="false"
+    >
+      <CreateCatalogModalContent
+        v-if="showCreateCatalogModal"
+        @closeModal="showCreateCatalogModal = false"
+        @createCatalog="handleCatalogCreateModalContinue"
+      />
+
+      <ConnectCatalogModalContent
+        v-if="showConnectCatalogModal"
+        @closeModal="showConnectCatalogModal = false"
+      />
+    </unnnic-modal>
   </div>
 </template>
 
 <script>
+  import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
+  import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
+
   export default {
     name: 'AccountTab',
+    components: {
+      CreateCatalogModalContent,
+      ConnectCatalogModalContent,
+    },
     props: {
       appInfo: {
         type: Object,
@@ -102,6 +128,12 @@
         type: Boolean,
         default: false,
       },
+    },
+    data() {
+      return {
+        showCreateCatalogModal: false,
+        showConnectCatalogModal: false,
+      };
     },
     methods: {
       emitClose() {
@@ -118,19 +150,19 @@
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
-      navigateToCatalogs() {
+      handleCatalogButtonClick() {
         if (!this.hasCatalog) {
-          // TODO: use business id and not waba_id
-          window
-            .open(
-              `https://business.facebook.com/latest/settings/product_catalogs?business_id=`,
-              '_blank',
-            )
-            .focus();
+          this.showCreateCatalogModal = true;
           return;
         }
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
+      },
+      handleCatalogCreateModalContinue(type) {
+        if (type === 'vtex') {
+          this.showCreateCatalogModal = false;
+          this.showConnectCatalogModal = true;
+        }
       },
     },
     computed: {
@@ -365,6 +397,13 @@
 
     &__close-button {
       margin-top: $unnnic-spacing-stack-lg;
+    }
+  }
+
+  .catalog-modal {
+    ::v-deep .unnnic-modal-container-background {
+      width: 750px;
+      max-width: 90%;
     }
   }
 </style>

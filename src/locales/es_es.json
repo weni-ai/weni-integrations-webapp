@@ -977,5 +977,25 @@
       "name": "Nombre del catálogo",
       "footer": "Al crear un catálogo, acepta los <a class='link' target='_blank' href='https://google.com'><b>Términos del Administrador de catálogos</b></a> y confirma que sigue las <a class='link' target='_blank' href='https://google.com'><b>Políticas publicitarias de Facebook</b></a>. Revise estas políticas y confirme que los artículos que cargue en su catálogo las cumplan."
     }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "Catálogo VTEX",
+          "description": "Conecte automáticamente su catálogo mediante la integración con la aplicación VTEX"
+        },
+        "default": {
+          "title": "Envío estándar",
+          "description": "Crear un catálogo mediante un enlace o un archivo XML"
+        }
+      },
+      "footer": "Para conectar su catálogo VTEX necesita tener integrada la aplicación VTEX en la plataforma. \nSi aún no te has integrado, haz clic aquí",
+      "title": "Crear catálogo",
+      "header": {
+        "title": "Método de envío",
+        "description": "Elige la forma en la que quieres enviar tu catálogo para empezar a vender productos vía Whatsapp"
+      }
+    }
   }
 }

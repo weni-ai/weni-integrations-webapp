@@ -27,7 +27,7 @@
           <unnnic-button v-if="app.hasConnectedCatalog">
             {{ $t('vtex.config.view_catalog') }}
           </unnnic-button>
-          <unnnic-button v-else @click="() => (showConnectModal = true)">
+          <unnnic-button v-else @click="showConnectModal = true">
             {{ $t('vtex.config.connect_catalog') }}
           </unnnic-button>
         </div>
@@ -51,18 +51,26 @@
       </div>
     </div>
 
-    <ConnectCatalogModal v-if="showConnectModal" @closeModal="() => (showConnectModal = false)" />
+    <unnnic-modal
+      v-if="showConnectModal"
+      class="connect-modal"
+      @close="showConnectModal = false"
+      @click.stop
+      :closeIcon="false"
+    >
+      <ConnectCatalogModalContent @closeModal="showConnectModal = false" />
+    </unnnic-modal>
   </div>
 </template>
 
 <script>
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import ConnectCatalogModal from './ConnectCatalogModal.vue';
+  import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
 
   export default {
     name: 'vtex-config',
-    components: { ConnectCatalogModal },
+    components: { ConnectCatalogModalContent },
     props: {
       app: {
         type: Object,
@@ -100,7 +108,6 @@
       },
       async saveConfig() {
         this.handleUpdateApp();
-        console.log('Save config');
         this.$root.$emit('updateGrid');
       },
       closeConfig() {
@@ -314,5 +321,12 @@
     // ::v-deep .unnnic-label__label {
     //   margin: 5px 0px -10px;
     // }
+  }
+
+  .connect-modal {
+    ::v-deep .unnnic-modal-container-background {
+      width: 750px;
+      max-width: 90%;
+    }
   }
 </style>
