@@ -9,9 +9,6 @@
     :description="$t('ChatGPT.setup.description')"
   >
     <div slot="message" class="chatgpt-modal__content">
-      <!-- <span class="chatgpt-modal__content__title">{{ $t('ChatGPT.setup.title') }}</span>
-      <span class="chatgpt-modal__content__description">{{ $t('ChatGPT.setup.description') }}</span> -->
-
       <div class="chatgpt-modal__content__form">
         <unnnic-input
           class="chatgpt-modal__content__form__input__name"
