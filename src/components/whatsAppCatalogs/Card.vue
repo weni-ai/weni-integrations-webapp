@@ -19,6 +19,7 @@
 
       <div class="whatsapp-catalog-card__wrapper__actions">
         <unnnic-switch
+          ref="catalogConnectSwitch"
           :value="catalog.is_connected"
           use-v-model
           size="small"
@@ -31,6 +32,7 @@
         />
         <unnnic-switch
           v-if="catalog.is_connected"
+          ref="cartEnableSwitch"
           :value="enabledCart"
           use-v-model
           size="small"
@@ -55,7 +57,7 @@
       catalog: {
         type: Object,
         required: true,
-        default: () => {},
+        default: /* istanbul ignore next */ () => {},
       },
       enabledCart: {
         type: Boolean,

@@ -160,7 +160,7 @@
         await this.getCommerceSettings({ appUuid });
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
 
-        if (this.errorWhatsAppCloudCatalog) {
+        if (this.errorWhatsAppCloudCatalogs) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
