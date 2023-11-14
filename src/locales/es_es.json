@@ -943,7 +943,12 @@
       "title": "Integrar con VTEX",
       "description": "Para continuar con la instalación inserte un subdominio",
       "subdomain": "Subdominio",
-      "subdomain_placeholder": "Ej: tienda.myvtex.com"
+      "subdomain_placeholder": "Ej: tienda.myvtex.com",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Inserta tu AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Inserta tu AppToken",
+      "whatsapp_channel": "Numero WhatsApp"
     },
     "config": {
       "description": "Conecte su catálogo VTEX para enviar productos vía Whatsapp",
