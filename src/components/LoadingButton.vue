@@ -17,7 +17,7 @@
     props: {
       type: {
         type: String,
-        default: 'terciary',
+        default: 'tertiary',
       },
       size: {
         type: String,

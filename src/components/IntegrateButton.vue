@@ -3,9 +3,10 @@
     <LoadingButton
       ref="button"
       type="secondary"
-      loadingPosition="center"
+      :loadingPosition="loadingPosition"
       :size="size"
-      :iconCenter="icon"
+      :iconCenter="loadingPosition == 'center' ? icon : null"
+      :iconLeft="loadingPosition == 'left' ? icon : null"
       :isLoading="loadingCreateApp"
       :disabled="disabled"
       :text="text"
@@ -48,6 +49,13 @@
       size: {
         type: String,
         default: 'small',
+      },
+      loadingPosition: {
+        type: String,
+        default: 'center',
+        validator(value) {
+          return ['left', 'center'].indexOf(value) !== -1;
+        },
       },
     },
     data() {
