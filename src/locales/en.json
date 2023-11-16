@@ -944,11 +944,16 @@
       "description": "To proceed with the instalation insert a subdomain",
       "subdomain": "Subdomain",
       "subdomain_placeholder": "Ex: shop.myvtex.com",
-      "whatsapp_channel": "WhatsApp number",
+      "whatsapp_channel": "WhatsApp Number",
       "appKey": "AppKey",
       "appKey_placeholder": "Insert your AppKey",
       "appToken": "AppToken",
-      "appToken_placeholder": "Insert your AppToken"
+      "appToken_placeholder": "Insert your AppToken",
+      "guide": {
+        "question": "Don't know your AppKey and AppToken?",
+        "question_end": "to access the documentation on VTEX and find out.",
+        "link": "Click here"
+      }
     },
     "config": {
       "description": "Connect your VTEX catalog to send products via Whatsapp",

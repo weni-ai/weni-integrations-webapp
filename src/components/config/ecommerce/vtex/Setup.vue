@@ -9,13 +9,6 @@
   >
     <div slot="message" class="vtex-modal__content">
       <div class="vtex-modal__content__form">
-        <unnnic-input
-          class="vtex-modal__content__form__input__subdomain"
-          v-model="subdomain"
-          :label="$t('vtex.setup.subdomain')"
-          :placeholder="$t('vtex.setup.subdomain_placeholder')"
-        />
-
         <div>
           <unnnic-label :label="$t('vtex.setup.whatsapp_channel')" />
           <unnnic-select-smart
@@ -29,17 +22,38 @@
 
         <unnnic-input
           class="vtex-modal__content__form__input__subdomain"
-          v-model="appKey"
-          :label="$t('vtex.setup.appKey')"
-          :placeholder="$t('vtex.setup.appKey_placeholder')"
+          v-model="subdomain"
+          :label="$t('vtex.setup.subdomain')"
+          :placeholder="$t('vtex.setup.subdomain_placeholder')"
         />
 
-        <unnnic-input
-          class="vtex-modal__content__form__input__subdomain"
-          v-model="appToken"
-          :label="$t('vtex.setup.appToken')"
-          :placeholder="$t('vtex.setup.appToken_placeholder')"
-        />
+        <div class="vtex-modal__content__form__keys">
+          <unnnic-input
+            class="vtex-modal__content__form__input__subdomain"
+            v-model="appKey"
+            :label="$t('vtex.setup.appKey')"
+            :placeholder="$t('vtex.setup.appKey_placeholder')"
+          />
+
+          <unnnic-input
+            class="vtex-modal__content__form__input__subdomain"
+            v-model="appToken"
+            :label="$t('vtex.setup.appToken')"
+            :placeholder="$t('vtex.setup.appToken_placeholder')"
+          />
+        </div>
+
+        <span class="vtex-modal__content__form__guide">
+          {{ $t('vtex.setup.guide.question') }}
+          <a
+            href="https://help.vtex.com/en/tutorial/application-keys--2iffYzlvvz4BDMr6WGUtet"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ $t('vtex.setup.guide.link') }}
+          </a>
+          {{ $t('vtex.setup.guide.question_end') }}
+        </span>
       </div>
     </div>
     <unnnic-button
@@ -151,30 +165,33 @@
 <style lang="scss" scoped>
   .vtex-modal {
     ::v-deep {
-      .container {
-        padding: $unnnic-squish-md !important;
-      }
-      .header {
-        margin-bottom: $unnnic-spacing-stack-nano !important;
-      }
       .unnnic-modal-container-background {
         display: flex;
         flex-direction: column;
         overflow: hidden;
         padding: 0 $unnnic-spacing-md;
         max-height: 95vh;
+        cursor: auto;
+        box-shadow: none;
       }
       .unnnic-modal-container-background-body {
         border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
+        padding-top: $unnnic-spacing-giant;
       }
+
+      .unnnic-modal-container-background-body-title {
+        padding-bottom: $unnnic-spacing-xs;
+      }
+
       .unnnic-modal-container-background-body-description-container {
-        padding-bottom: $unnnic-spacing-md;
+        padding-bottom: $unnnic-spacing-xs;
       }
     }
 
     &__content {
       display: flex;
       flex-direction: column;
+      margin-top: $unnnic-spacing-md;
 
       &__title {
         font-family: $unnnic-font-family-secondary;
@@ -194,6 +211,28 @@
         flex-direction: column;
         gap: $unnnic-spacing-stack-sm;
         text-align: left;
+
+        &__keys {
+          display: inline-flex;
+          flex: 1;
+          gap: $unnnic-spacing-sm;
+
+          .unnnic-form {
+            flex: 1;
+          }
+        }
+
+        &__guide {
+          color: $unnnic-color-neutral-cloudy;
+          font-size: $unnnic-font-size-body-gt;
+          line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+
+          a {
+            color: $unnnic-color-neutral-cloudy;
+            font-weight: $unnnic-font-weight-bold;
+            text-decoration-line: underline;
+          }
+        }
       }
     }
   }

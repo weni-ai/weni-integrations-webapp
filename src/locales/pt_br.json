@@ -948,7 +948,12 @@
       "appKey_placeholder": "Insira sua AppKey",
       "appToken": "AppToken",
       "appToken_placeholder": "Insira seu AppToken",
-      "whatsapp_channel": "Número do WhatsApp"
+      "whatsapp_channel": "Número do WhatsApp",
+      "guide": {
+        "question": "Não conhece seu AppKey e AppToken?",
+        "link": "Clique aqui",
+        "question_end": "para acessar a documentação da VTEX e descobrir."
+      }
     },
     "config": {
       "description": "Conecte seu catálogo VTEX para enviar produtos pelo WhatsApp",
