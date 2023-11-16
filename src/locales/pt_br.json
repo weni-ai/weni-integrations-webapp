@@ -496,6 +496,9 @@
           "confirm": "Salvar"
         },
         "search_placeholder": "Busque pelo nome do Catálogo"
+      },
+      "products": {
+        "title": "Produtos"
       }
     },
     "templates": {
@@ -653,6 +656,19 @@
       "success": {
         "create_translation": "Tradução de template criada com sucesso",
         "update_translation": "Tradução de template atualizada com sucesso"
+      }
+    },
+    "product": {
+      "table": {
+        "headers": {
+          "name": "Nome",
+          "availability": "Disponibilidade",
+          "price": "Preço",
+          "sku": "SKU"
+        }
+      },
+      "list": {
+        "description": "Aqui você gerencia as informações do seu inventário. Adicione todos os itens que deseja anunciar ou vender"
       }
     }
   },
