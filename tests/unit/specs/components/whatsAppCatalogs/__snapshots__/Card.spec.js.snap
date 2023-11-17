@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/whatsAppCatalog/Card.vue should be rendered properly 1`] = `
+<div class="whatsapp-catalog-card">
+  <div class="whatsapp-catalog-card__wrapper">
+    <div class="whatsapp-catalog-card__wrapper__header">
+      <div class="whatsapp-catalog-card__wrapper__header__title"><span class="u font secondary body-lg color-neutral-darkest bold">
+
+        </span></div>
+      <div class="whatsapp-catalog-card__wrapper__header__description"><span class="u font secondary body-md color-neutral-cloudy">
+          Identification
+        </span> <span class="u font secondary body-md color-weni-600 bold">
+
+        </span></div>
+    </div>
+    <div class="whatsapp-catalog-card__wrapper__actions">
+      <div data-v-facf064c="" class="unnnic-switch">
+        <!----><span data-v-59b073b4="" data-v-facf064c="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon__line-height--sm unnnic-icon-scheme--neutral-soft unnnic-switch__icon"><svg id="default" viewBox="0 0 80 40" xmlns="http://www.w3.org/2000/svg"><style type="text/css"> rect { transition: fill .2s ease; } </style><rect x="4.20013" y="2.10046" width="71.6" height="35.8" rx="17.9" class="primary"></rect><circle id="default-circle" cx="22.5" cy="20.0005" r="12.5" fill="white"></circle></svg></span>
+        <div data-v-facf064c="" class="unnnic-switch__label unnnic-switch__label__right unnnic-switch__label__small"> Inactive </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+</div>
+`;

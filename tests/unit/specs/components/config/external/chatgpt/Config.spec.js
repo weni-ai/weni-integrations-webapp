@@ -18,16 +18,18 @@ singleApp.config = {
   rules: 'rules',
   knowledge_base: 'base',
   ai_model: 'gpt-3.5-turbo-16k',
-  voice_tone: [{
-    'value': '1',
-    'label': 'Neutral',
-  }],
+  voice_tone: [
+    {
+      value: '1',
+      label: 'Neutral',
+    },
+  ],
   conversation_style: [
     {
-      'value': '0.7,0.8',
-      'label': 'Creative',
-      'description': 'Responds creatively, less objectively'
-    }
+      value: '0.7,0.8',
+      label: 'Creative',
+      description: 'Responds creatively, less objectively',
+    },
   ],
 };
 
@@ -226,9 +228,9 @@ describe('components/config/external/chatgpt/Config.vue', () => {
             ai_model: 'gpt-3.5-turbo-16k',
             rules: 'rules 1',
             knowledge_base: 'knowledge base 1',
-            temperature: "0.7",
-            top_p: "0.8",
-            voice_tone: "Em tom Neutral",
+            temperature: '0.7',
+            top_p: '0.8',
+            voice_tone: 'Em tom Neutral',
           },
         },
       });
