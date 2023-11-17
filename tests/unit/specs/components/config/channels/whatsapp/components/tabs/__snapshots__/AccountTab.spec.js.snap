@@ -18,7 +18,7 @@ exports[`whatsapp/components/tabs/AccountTab.vue should be rendered properly 1`]
             Catalog
           </div>
           <unnnicbutton-stub type="primary" size="small" class="account-tab__content__info__templates__buttons__button">
-            View list of catalogs
+            Create catalog
           </unnnicbutton-stub>
         </div>
       </div>

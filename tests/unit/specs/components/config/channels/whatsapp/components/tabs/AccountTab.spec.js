@@ -100,7 +100,8 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
   });
 
   describe('navigateToCatalogs()', () => {
-    it('should change route to catalogs', () => {
+    it('should change route to catalogs', async () => {
+      await wrapper.setProps({ hasCatalog: true });
       const spy = spyOn(wrapper.vm.$router, 'push');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.navigateToCatalogs();
@@ -109,6 +110,17 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
       expect(spy).toHaveBeenCalledWith({
         path: `/apps/my/${wrapper.vm.appInfo.code}/${wrapper.vm.appInfo.uuid}/catalogs`,
       });
+    });
+
+    it('should open facebook in a new tab', async () => {
+      window.open = jest.fn();
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      expect(spy).not.toHaveBeenCalled();
+      expect(window.open).not.toHaveBeenCalled();
+      wrapper.vm.navigateToCatalogs();
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(window.open).toHaveBeenCalledTimes(1);
     });
   });
 });
