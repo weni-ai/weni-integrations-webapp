@@ -123,7 +123,7 @@
           // TODO: use business id and not waba_id
           window
             .open(
-              `https://business.facebook.com/latest/settings/product_catalogs?business_id=`,
+              `https://business.facebook.com/latest/settings/product_catalogs?business_id=${this.appConfig.wa_business_id}`,
               '_blank',
             )
             .focus();
