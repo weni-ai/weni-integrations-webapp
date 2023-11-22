@@ -10,6 +10,6 @@ export JSON_STRING='window.configs = { \
   "VUE_APP_HELPHERO_ID":"'${VUE_APP_HELPHERO_ID}'", \
   "VUE_APP_FLOWS_IFRAME_URL":"'${VUE_APP_FLOWS_IFRAME_URL}'", \
 }'
-sed -i "s|//CONFIGURATIONS_PLACEHOLDER|${JSON_STRING}|" /usr/share/nginx/html/integrations/index.html
+sed "s|//CONFIGURATIONS_PLACEHOLDER|${JSON_STRING}|" /usr/share/nginx/html/integrations/index.html.tmpl > /tmp/index.html
 
 exec "$@"

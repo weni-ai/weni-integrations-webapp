@@ -16,6 +16,9 @@ FROM nginxinc/nginx-unprivileged:1.25
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder --chown=nginx:nginx /app/dist /usr/share/nginx/html/integrations/
 COPY docker-entrypoint.sh /
+RUN mv /usr/share/nginx/html/integrations/index.html /usr/share/nginx/html/integrations/index.html.tmpl \
+    && cd /usr/share/nginx/html/integrations/ \
+    && ln -s /tmp/index.html
 
 EXPOSE 8080
 ENTRYPOINT ["bash","/docker-entrypoint.sh"]
