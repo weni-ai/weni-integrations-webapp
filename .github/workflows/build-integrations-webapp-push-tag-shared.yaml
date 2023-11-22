@@ -128,5 +128,6 @@ jobs:
           github_token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
           repository: "${{ env.MANIFESTS_REPOSITORY }}"
           directory: ./kubernetes-manifests/
-          branch: main
+          #branch: main
+          branch: feat/integrations-webapp-new-image
           message: "From Integrations WebApp Build (Push Tag ${{ env.MANIFESTS_ENVIRONMENT }})"
