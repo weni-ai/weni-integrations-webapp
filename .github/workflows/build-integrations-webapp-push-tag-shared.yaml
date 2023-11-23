@@ -71,7 +71,8 @@ jobs:
       - name: Check out Kubernetes Manifests
         uses: actions/checkout@master
         with:
-          ref: main
+          #ref: main
+          ref: feat/integrations-webapp-new-image
           repository: "${{ env.MANIFESTS_REPOSITORY }}"
           token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
           path: ./kubernetes-manifests/
