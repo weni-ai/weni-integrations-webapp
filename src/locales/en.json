@@ -953,7 +953,10 @@
         "question": "Don't know your AppKey and AppToken?",
         "question_end": "to access the documentation on VTEX and find out.",
         "link": "Click here"
-      }
+      },
+      "invalid_credentials": "Invalid credentials for the given subdomain",
+      "error": "An error occurred while trying to integreate with VTEX, please try again later",
+      "success": "VTEX integration successfully completed"
     },
     "config": {
       "description": "Connect your VTEX catalog to send products via Whatsapp",

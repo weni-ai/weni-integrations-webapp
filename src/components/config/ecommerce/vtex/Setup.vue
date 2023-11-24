@@ -117,7 +117,34 @@
         this.$emit('closePopUp');
       },
       async setupVtex() {
-        this.$router.replace('/apps/my');
+        const data = {
+          code: this.app.code,
+          payload: {
+            project_uuid: this.project,
+            domain: this.subdomain,
+            app_key: this.appKey,
+            app_token: this.appToken,
+            whatsapp_channel_uuid: this.selectedChannel[0].value,
+          },
+        };
+
+        await this.createApp(data);
+
+        if (this.errorCreateApp) {
+          if (
+            this.errorCreateApp.response.status === 400 &&
+            this.errorCreateApp.response.data.detail === 'The credentials provided are invalid.'
+          ) {
+            this.callModal({ type: 'Error', text: this.$t('vtex.setup.invalid_credentials') });
+            return;
+          }
+          this.callModal({ type: 'Error', text: this.$t('vtex.setup.error') });
+          return;
+        }
+
+        this.callModal({ type: 'Success', text: this.$t('vtex.setup.success') });
+        this.$emit('closePopUp');
+        this.$router.push({ name: 'Apps' });
       },
       async getWhatsAppChannels() {
         this.loadingChannels = true;
