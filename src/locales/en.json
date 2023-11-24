@@ -463,7 +463,7 @@
         "title": "Catalog",
         "button_create": "Create catalog",
         "error": {
-          "missing_vtex_app": "Missing configured VTEX integration, please integrate it first"
+          "missing_vtex_app": "You need to have a VTEX app configured to connect a catalog."
         }
       }
     },

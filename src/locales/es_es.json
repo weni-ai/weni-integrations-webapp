@@ -463,7 +463,7 @@
         "title": "Catalogar",
         "button_create": "Crear catálogo",
         "error": {
-          "missing_vtex_app": "Falta integración VTEX configurada, por favor intégrela primero"
+          "missing_vtex_app": "Es necesario tener configurada una aplicación VTEX para conectar un catálogo."
         }
       }
     },
