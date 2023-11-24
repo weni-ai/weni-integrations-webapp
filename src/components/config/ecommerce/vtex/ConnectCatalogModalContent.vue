@@ -109,7 +109,10 @@
     },
     methods: {
       connectCatalog() {
-        this.$emit('connectCatalog');
+        this.$emit('connectCatalog', {
+          name: this.name,
+          businessType: this.businessType[0].value,
+        });
       },
       closeModal() {
         this.$emit('closeModal');

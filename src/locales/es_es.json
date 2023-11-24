@@ -989,6 +989,9 @@
       "name_placeholder": "Ej: ofertas semanales",
       "name": "Nombre del catálogo",
       "footer": "Al crear un catálogo, acepta los <a class='link' target='_blank' href='https://google.com'><b>Términos del Administrador de catálogos</b></a> y confirma que sigue las <a class='link' target='_blank' href='https://google.com'><b>Políticas publicitarias de Facebook</b></a>. Revise estas políticas y confirme que los artículos que cargue en su catálogo las cumplan."
+    },
+    "errors": {
+      "connect_catalog": "No se pudo conectar el catálogo VTEX, inténtelo nuevamente más tarde"
     }
   },
   "whatsapp": {

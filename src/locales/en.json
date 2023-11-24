@@ -990,6 +990,9 @@
       "name_placeholder": "Ex: Weekly offers",
       "name": "Catalog name",
       "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
+    },
+    "errors": {
+      "connect_catalog": "Could not connect VTEX catalog, please try again later"
     }
   },
   "whatsapp": {

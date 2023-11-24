@@ -10,4 +10,13 @@ export default {
       commit('GET_ECOMMERCE_APPS_ERROR', err);
     }
   },
+  async connectVtexCatalog({ commit }, { code, appUuid, payload }) {
+    commit('CONNECT_VTEX_CATALOG_REQUEST');
+    try {
+      const { data } = await ecommerce.connectVtexCatalog(code, appUuid, payload);
+      commit('CONNECT_VTEX_CATALOG_SUCCESS', data);
+    } catch (err) {
+      commit('CONNECT_VTEX_CATALOG_ERROR', err);
+    }
+  },
 };

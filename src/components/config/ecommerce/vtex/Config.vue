@@ -44,7 +44,7 @@
             </tr>
             <tr>
               <td>{{ $t('vtex.config.environment') }}</td>
-              <td>{{ app.environment }}</td>
+              <td>{{ app.config.api_credentials.domain }}</td>
             </tr>
           </table>
         </div>
@@ -58,7 +58,10 @@
       @click.stop
       :closeIcon="false"
     >
-      <ConnectCatalogModalContent @closeModal="showConnectModal = false" />
+      <ConnectCatalogModalContent
+        @closeModal="showConnectModal = false"
+        @connectCatalog="connectCatalog"
+      />
     </unnnic-modal>
   </div>
 </template>
@@ -89,26 +92,31 @@
         loadingUpdateApp: (state) => state.appType.loadingUpdateApp,
         errorUpdateApp: (state) => state.appType.errorUpdateApp,
       }),
+      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },
     methods: {
       ...mapActions(['updateApp']),
-      async handleUpdateApp() {
-        // const data = {
-        //   code: this.app.code,
-        //   appUuid: this.app.uuid,
-        //   payload: {
-        //     config: {},
-        //   },
-        // };
-        // await this.updateApp(data);
-        // if (this.errorUpdateApp) {
-        //   this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.configure') });
-        //   return true;
-        // }
-      },
+      ...mapActions('ecommerce', ['connectVtexCatalog']),
       async saveConfig() {
         this.handleUpdateApp();
         this.$root.$emit('updateGrid');
+      },
+      async connectCatalog(eventData) {
+        const data = {
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          payload: {
+            name: eventData.name,
+            businessType: eventData.businessType,
+          },
+        };
+
+        await this.connectVtexCatalog(data);
+
+        if (this.errorConnectVtexCatalog) {
+          this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          return;
+        }
       },
       closeConfig() {
         this.$emit('closeModal');

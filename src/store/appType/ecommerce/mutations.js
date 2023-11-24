@@ -12,4 +12,18 @@ export default {
     state.errorEcommerceApps = err;
     state.loadingEcommerceApps = false;
   },
+
+  CONNECT_VTEX_CATALOG_REQUEST(state) {
+    state.loadingConnectVtexCatalog = true;
+    state.errorConnectVtexCatalog = null;
+    state.connectVtexCatalogData = null;
+  },
+  CONNECT_VTEX_CATALOG_SUCCESS(state, data) {
+    state.connectVtexCatalogData = data;
+    state.loadingConnectVtexCatalog = false;
+  },
+  CONNECT_VTEX_CATALOG_ERROR(state, err) {
+    state.errorConnectVtexCatalog = err;
+    state.loadingConnectVtexCatalog = false;
+  },
 };
