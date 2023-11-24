@@ -461,7 +461,10 @@
       "catalog": {
         "button": "Ver lista de catálogos",
         "title": "Catálogo",
-        "button_create": "Criar catálogo"
+        "button_create": "Criar catálogo",
+        "error": {
+          "missing_vtex_app": "Falta integração VTEX configurada, integre-a primeiro"
+        }
       }
     },
     "catalog": {

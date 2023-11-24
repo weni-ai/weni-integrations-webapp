@@ -104,6 +104,7 @@
       <ConnectCatalogModalContent
         v-if="showConnectCatalogModal"
         @closeModal="showConnectCatalogModal = false"
+        @connectCatalog="handleCatalogConnect"
       />
     </unnnic-modal>
   </div>
@@ -112,6 +113,8 @@
 <script>
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
+  import { mapActions, mapState } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'AccountTab',
@@ -129,6 +132,9 @@
         default: false,
       },
     },
+    mounted() {
+      this.getConfiguredApps();
+    },
     data() {
       return {
         showCreateCatalogModal: false,
@@ -136,6 +142,8 @@
       };
     },
     methods: {
+      ...mapActions(['getConfiguredApps']),
+      ...mapActions('ecommerce', ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
       },
@@ -164,8 +172,53 @@
           this.showConnectCatalogModal = true;
         }
       },
+      async handleCatalogConnect(eventData) {
+        const vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
+
+        if (!vtexApp) {
+          this.callModal({
+            type: 'Error',
+            text: this.$t('WhatsApp.config.catalog.error.missing_vtex_app'),
+          });
+          return;
+        }
+
+        const data = {
+          code: vtexApp.code,
+          appUuid: vtexApp.uuid,
+          payload: {
+            name: eventData.name,
+            businessType: eventData.businessType,
+          },
+        };
+
+        await this.connectVtexCatalog(data);
+
+        if (this.errorConnectVtexCatalog) {
+          this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          return;
+        }
+      },
+      callModal({ text, type }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
+            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
+            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
+      },
     },
     computed: {
+      ...mapState({
+        project: (state) => state.auth.project,
+        configuredApps: (state) => state.myApps.configuredApps,
+      }),
+      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
       QRCodeUrl() {
         return `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
           this.WAUrl,
