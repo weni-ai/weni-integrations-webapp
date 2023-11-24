@@ -28,9 +28,9 @@
       <app-grid
         section="ecommerce"
         type="add"
-        :loading="loadingExternalServices"
-        :apps="filteredExternalServices"
-        @update="fetchExternalServices"
+        :loading="loadingEcommerceApps"
+        :apps="filteredEcommerceApps"
+        @update="fetchEcommerceApps"
       />
 
       <app-grid
@@ -110,6 +110,8 @@
       }
 
       this.fetchExternalServices();
+
+      this.fetchEcommerceApps();
 
       this.fetchFeatured();
     },
