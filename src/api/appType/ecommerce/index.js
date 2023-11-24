@@ -6,4 +6,7 @@ export default {
   getAllEcommerceTypes() {
     return request.$http.get(`${resource}/?category=ecommerce`);
   },
+  connectVtexCatalog(code, appUuid, payload) {
+    return request.$http.post(`${resource}/${code}/${appUuid}/connect-vtex-catalog`, payload);
+  },
 };
