@@ -15,6 +15,7 @@
       <div class="modal__content__form">
         <div class="modal__content__form__options">
           <div
+            ref="vtexOption"
             :class="['modal__content__form__options__card', type === 'vtex' ? 'selected' : '']"
             @click="type = 'vtex'"
           >
@@ -36,6 +37,7 @@
           </div>
 
           <div
+            ref="defaultOption"
             :class="['modal__content__form__options__card', type === 'default' ? 'selected' : '']"
             @click="type = 'default'"
           >
@@ -61,11 +63,11 @@
       </div>
     </div>
     <div class="modal__buttons">
-      <unnnic-button slot="options" type="tertiary" @click="closeModal">
+      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
         {{ $t('general.Cancel') }}
       </unnnic-button>
       <!-- TODO: Check if VTEX app is enabled to enable this button -->
-      <unnnic-button slot="options" @click="createCatalog">
+      <unnnic-button slot="options" ref="createButton" @click="createCatalog">
         {{ $t('general.continue') }}
       </unnnic-button>
     </div>

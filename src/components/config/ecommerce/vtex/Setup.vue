@@ -65,7 +65,7 @@
       {{ $t('general.Cancel') }}
     </unnnic-button>
     <unnnic-button
-      ref="unnnic-vtex-modal-navigate-button"
+      ref="unnnic-vtex-modal-setup-button"
       slot="options"
       type="secondary"
       @click="setupVtex"
@@ -105,7 +105,6 @@
       ...mapState({
         project: (state) => state.auth.project,
         configuredApps: (state) => state.myApps.configuredApps,
-        loadingConfiguredApps: (state) => state.myApps.loadingConfiguredApps,
         errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
         loadingCreateApp: (state) => state.appType.loadingCreateApp,
         errorCreateApp: (state) => state.appType.errorCreateApp,
@@ -154,11 +153,15 @@
         await this.getConfiguredApps({ params });
 
         if (this.errorConfiguredApps) {
-          this.callErrorModal({ text: this.$t('apps.myApps.error.configured') });
+          this.callModal({
+            type: 'Error',
+            text: this.$t('apps.myApps.error.configured'),
+          });
+          this.closePopUp();
           return;
         }
         this.whatsappChannels = this.configuredApps
-          .filter((app) => app.code === 'wpp-cloud' || app.code === 'wpp')
+          .filter((app) => app.code === 'wpp-cloud')
           .map((wppChannel) => {
             return {
               label: `${wppChannel.config.wa_verified_name} - (${wppChannel.config.title})`,

@@ -958,7 +958,7 @@
         "link": "Click here"
       },
       "invalid_credentials": "Invalid credentials for the given subdomain",
-      "error": "An error occurred while trying to integreate with VTEX, please try again later",
+      "error": "An error occurred while trying to integrate with VTEX, please try again later",
       "success": "VTEX integration successfully completed"
     },
     "config": {

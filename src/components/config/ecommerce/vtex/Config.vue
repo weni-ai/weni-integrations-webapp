@@ -8,6 +8,7 @@
         <div class="config-vtex__header__title__name">{{ app.name }}</div>
 
         <unnnic-button
+          ref="closeButton"
           class="config-vtex__header__title__close"
           type="tertiary"
           icon-center="close-1"
@@ -24,10 +25,10 @@
           <span class="config-vtex__settings__content__catalog__label">
             {{ $t('vtex.config.catalog') }}</span
           >
-          <unnnic-button v-if="app.hasConnectedCatalog">
+          <unnnic-button v-if="app.hasConnectedCatalog" ref="viewButton">
             {{ $t('vtex.config.view_catalog') }}
           </unnnic-button>
-          <unnnic-button v-else @click="showConnectModal = true">
+          <unnnic-button v-else ref="connectButton" @click="showConnectModal = true">
             {{ $t('vtex.config.connect_catalog') }}
           </unnnic-button>
         </div>
@@ -59,6 +60,7 @@
       :closeIcon="false"
     >
       <ConnectCatalogModalContent
+        ref="connectCatalogModalContent"
         @closeModal="showConnectModal = false"
         @connectCatalog="connectCatalog"
       />
@@ -87,20 +89,11 @@
       };
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        loadingUpdateApp: (state) => state.appType.loadingUpdateApp,
-        errorUpdateApp: (state) => state.appType.errorUpdateApp,
-      }),
       ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },
     methods: {
       ...mapActions(['updateApp']),
       ...mapActions('ecommerce', ['connectVtexCatalog']),
-      async saveConfig() {
-        this.handleUpdateApp();
-        this.$root.$emit('updateGrid');
-      },
       async connectCatalog(eventData) {
         const data = {
           code: this.app.code,

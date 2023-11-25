@@ -29,10 +29,10 @@
     </div>
 
     <div class="modal__buttons">
-      <unnnic-button slot="options" type="tertiary" @click="closeModal">
+      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
         {{ $t('general.Cancel') }}
       </unnnic-button>
-      <unnnic-button slot="options" @click="connectCatalog">
+      <unnnic-button slot="options" ref="connectButton" @click="connectCatalog">
         {{ $t('general.continue') }}
       </unnnic-button>
     </div>
@@ -111,7 +111,7 @@
       connectCatalog() {
         this.$emit('connectCatalog', {
           name: this.name,
-          businessType: this.businessType[0].value,
+          businessType: this.businessType[0]?.value,
         });
       },
       closeModal() {

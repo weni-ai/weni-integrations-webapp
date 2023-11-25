@@ -56,12 +56,27 @@ const mountComponent = async ({ createAppCode = null, apps = [singleApp] } = {})
     externalServicesList: apps,
   };
 
+  const ecommerceAppsActions = {
+    getEcommerceTypes: jest.fn(),
+  };
+
+  const ecommerceAppsState = {
+    loadingEcommerceApps: false,
+    errorEcommerceApps: null,
+    ecommerceAppsList: apps,
+  };
+
   const store = new Vuex.Store({
     modules: {
       externals: {
         namespaced: true,
         actions: externalServicesActions,
         state: externalServicesState,
+      },
+      ecommerce: {
+        namespaced: true,
+        actions: ecommerceAppsActions,
+        state: ecommerceAppsState,
       },
     },
     actions,
@@ -149,19 +164,23 @@ describe('Discovery.vue', () => {
       const { wrapper, store } = await mountComponent();
       store.state.appType.allAppTypes = [singleApp, genericApp];
       store.state.externals.externalServicesList = [singleApp, genericApp];
+      store.state.ecommerce.ecommerceAppsList = [singleApp, genericApp];
 
       expect(wrapper.vm.filteredApps).toEqual([singleApp, genericApp]);
       expect(wrapper.vm.filteredExternalServices).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredEcommerceApps).toEqual([singleApp, genericApp]);
       expect(wrapper.vm.filteredBiApps).toEqual(wrapper.vm.biApps);
 
       wrapper.vm.searchTerm = 'weni';
       expect(wrapper.vm.filteredApps).toEqual([singleApp]);
       expect(wrapper.vm.filteredExternalServices).toEqual([singleApp]);
+      expect(wrapper.vm.filteredEcommerceApps).toEqual([singleApp]);
       expect(wrapper.vm.filteredBiApps).toEqual([]);
 
       wrapper.vm.searchTerm = ' ';
       expect(wrapper.vm.filteredApps).toEqual([singleApp, genericApp]);
       expect(wrapper.vm.filteredExternalServices).toEqual([singleApp, genericApp]);
+      expect(wrapper.vm.filteredEcommerceApps).toEqual([singleApp, genericApp]);
       expect(wrapper.vm.filteredBiApps).toEqual(wrapper.vm.biApps);
     });
 
@@ -169,9 +188,27 @@ describe('Discovery.vue', () => {
       const { wrapper, store } = await mountComponent();
       store.state.appType.allAppTypes = null;
       store.state.externals.externalServicesList = null;
+      store.state.ecommerce.ecommerceAppsList = null;
 
       expect(wrapper.vm.filteredApps).toEqual([]);
       expect(wrapper.vm.filteredExternalServices).toEqual([]);
+      expect(wrapper.vm.filteredEcommerceApps).toEqual([]);
+    });
+  });
+
+  describe('hasAnyVisibleApp', () => {
+    it('should return true if there are any visible app', async () => {
+      const { wrapper } = await mountComponent();
+      wrapper.vm.searchTerm = 'weni';
+
+      expect(wrapper.vm.hasAnyVisibleApp).toBeTruthy();
+    });
+
+    it('should return false if there are no visible app', async () => {
+      const { wrapper } = await mountComponent();
+      wrapper.vm.searchTerm = 'unexisting app';
+
+      expect(wrapper.vm.hasAnyVisibleApp).toBeFalsy();
     });
   });
 });

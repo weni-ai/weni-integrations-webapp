@@ -24,6 +24,7 @@
             </div>
 
             <unnnic-button
+              ref="catalogButton"
               class="account-tab__content__info__templates__buttons__button"
               @click="handleCatalogButtonClick"
               type="primary"
@@ -96,6 +97,7 @@
       :closeIcon="false"
     >
       <CreateCatalogModalContent
+        ref="createCatalogModalContent"
         v-if="showCreateCatalogModal"
         @closeModal="showCreateCatalogModal = false"
         @createCatalog="handleCatalogCreateModalContinue"
@@ -215,7 +217,6 @@
     },
     computed: {
       ...mapState({
-        project: (state) => state.auth.project,
         configuredApps: (state) => state.myApps.configuredApps,
       }),
       ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
