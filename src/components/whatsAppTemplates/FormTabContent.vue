@@ -22,7 +22,9 @@
             'form-tab-content__selects--category': true,
             'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
           }"
-          :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
+          :inputTitle="
+            translateCurrentCategory || $t('WhatsApp.templates.form_field.category_placeholder')
+          "
           :hideGroupTitle="true"
           :label="$t('WhatsApp.templates.form_field.category')"
           :groups="categoryGroups"
@@ -51,28 +53,35 @@
         </option>
       </unnnic-select>
 
-      <FormTabContentHeader
-        class="form-tab-content__header"
-        :disableInputs="disableContentInputs"
-        @input-change="handleGenericInput"
+      <AuthenticationCategoryForm
+        v-if="currentCategory === 'AUTHENTICATION'"
+        class="form-tab-content__authentication"
       />
-      <FormTabContentBody
-        ref="contentBody"
-        class="form-tab-content__body"
-        :disableInputs="disableContentInputs"
-        @input-change="handleGenericInput"
-        @manual-preview-update="$emit('manual-preview-update')"
-      />
-      <FormTabContentFooter
-        class="form-tab-content__footer"
-        :disableInputs="disableContentInputs"
-        @input-change="handleGenericInput"
-      />
-      <FormTabContentButtons
-        class="form-tab-content__buttons"
-        :disableInputs="disableContentInputs"
-        @input-change="handleGenericInput"
-      />
+
+      <div v-else>
+        <FormTabContentHeader
+          class="form-tab-content__header"
+          :disableInputs="disableContentInputs"
+          @input-change="handleGenericInput"
+        />
+        <FormTabContentBody
+          ref="contentBody"
+          class="form-tab-content__body"
+          :disableInputs="disableContentInputs"
+          @input-change="handleGenericInput"
+          @manual-preview-update="$emit('manual-preview-update')"
+        />
+        <FormTabContentFooter
+          class="form-tab-content__footer"
+          :disableInputs="disableContentInputs"
+          @input-change="handleGenericInput"
+        />
+        <FormTabContentButtons
+          class="form-tab-content__buttons"
+          :disableInputs="disableContentInputs"
+          @input-change="handleGenericInput"
+        />
+      </div>
     </div>
 
     <div class="form-tab-content__actions">
@@ -103,6 +112,7 @@
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
   import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
+  import AuthenticationCategoryForm from '@/components/whatsAppTemplates/AuthenticationCategoryForm.vue';
 
   export default {
     name: 'FormTabContent',
@@ -111,6 +121,7 @@
       FormTabContentBody,
       FormTabContentFooter,
       FormTabContentButtons,
+      AuthenticationCategoryForm,
     },
     props: {
       formMode: {
@@ -190,7 +201,7 @@
       currentLanguage() {
         return this.templateTranslationCurrentForm?.language;
       },
-      currentCategory() {
+      translateCurrentCategory() {
         const category = this.categoryGroups[0].items.find(
           (item) => item.value === this.templateForm.category,
         );
@@ -204,6 +215,17 @@
       },
       canSave() {
         return !this.templateTranslationCurrentForm?.bodyHasError;
+      },
+      currentCategory() {
+        const category = this.categoryGroups[0].items.find(
+          (item) => item.value === this.templateForm.category,
+        );
+
+        if (!category) {
+          return '';
+        }
+
+        return category.value;
       },
     },
     methods: {
@@ -400,7 +422,8 @@
     &__body,
     &__footer,
     &__buttons,
-    &__actions {
+    &__actions,
+    &__authentication {
       margin-top: $unnnic-spacing-stack-lg;
     }
 

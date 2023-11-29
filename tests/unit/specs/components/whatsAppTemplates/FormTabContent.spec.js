@@ -483,13 +483,13 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
     });
   });
 
-  describe('currentCategory()', () => {
+  describe('translateCurrentCategory()', () => {
     it('should return empty string if category is not found', () => {
       const { wrapper, state } = mountComponent();
 
       state.templateForm.category = 'not found';
 
-      expect(wrapper.vm.currentCategory).toEqual('');
+      expect(wrapper.vm.translateCurrentCategory).toEqual('');
     });
 
     it('should return category translation if category is found', () => {
@@ -497,7 +497,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
 
       state.templateForm.category = 'MARKETING';
 
-      expect(wrapper.vm.currentCategory).toEqual('Marketing');
+      expect(wrapper.vm.translateCurrentCategory).toEqual('Marketing');
     });
   });
 });
