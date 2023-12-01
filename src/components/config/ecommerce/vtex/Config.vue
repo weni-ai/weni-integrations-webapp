@@ -105,7 +105,6 @@
       ...mapState({
         currentApp: (state) => state.appType.currentApp,
         errorCurrentApp: (state) => state.appType.errorCurrentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
       }),
       ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },

@@ -28,6 +28,12 @@ exports[`components/config/ecommerce/vtex/Config.vue should be rendered properly
         </span>
         <table class="config-vtex__settings__content__details__table">
           <tr>
+            <td>WhatsApp number</td>
+            <td>
+              <div><span class="unnnic-skeleton" style="background-color: rgb(232, 244, 244); animation: SkeletonLoading 1.5s ease-in-out infinite; width: 100%; height: 22px;">‌</span></div>
+            </td>
+          </tr>
+          <tr>
             <td>Account name</td>
             <td>Weni Web Chat</td>
           </tr>

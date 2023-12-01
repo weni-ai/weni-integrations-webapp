@@ -135,7 +135,7 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
         domain: 'https://weni.ai',
         app_key: 'key',
         app_token: 'token',
-        whatsapp_channel_uuid: '456',
+        wpp_cloud_uuid: '456',
       },
     });
   });
