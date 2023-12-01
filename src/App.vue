@@ -138,4 +138,8 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+
+  .alert-container {
+    z-index: 9999;
+  }
 </style>
