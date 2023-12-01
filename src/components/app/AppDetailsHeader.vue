@@ -16,6 +16,7 @@
       :app="app"
       :disabled="!app.can_add"
       :text="$t('apps.details.header.add')"
+      loadingPosition="left"
     />
 
     <add-modal ref="addModal" />
