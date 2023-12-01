@@ -123,7 +123,7 @@
             domain: this.subdomain,
             app_key: this.appKey,
             app_token: this.appToken,
-            whatsapp_channel_uuid: this.selectedChannel[0].value,
+            wpp_cloud_uuid: this.selectedChannel[0].value,
           },
         };
 
