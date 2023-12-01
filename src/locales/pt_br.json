@@ -968,7 +968,8 @@
       "details": "Detalhes",
       "name": "Nome da conta",
       "environment": "Ambiente",
-      "view_catalog": "Ver catálogo"
+      "view_catalog": "Ver catálogo",
+      "wpp_number": "Número WhatsApp"
     },
     "connect_modal": {
       "categories": {
@@ -994,7 +995,9 @@
       "footer": "Ao criar um catálogo, você concorda com os <a class='link' target='_blank' href='https://google.com'><b>Termos do Gerenciador de Catálogos</b></a> e confirma que segue as <a class='link' target='_blank' href='https://google.com'><b>Políticas de Publicidade do Facebook</b></a>. Verifique essas políticas e confirme que os itens que você carregar no seu catálogo estejam em conformidade com elas."
     },
     "errors": {
-      "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde"
+      "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde",
+      "fetch_related_wpp_data": "Falha ao buscar informações relacionadas ao número do WhatsApp",
+      "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente"
     }
   },
   "whatsapp": {
