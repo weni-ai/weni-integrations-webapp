@@ -25,7 +25,11 @@
           <span class="config-vtex__settings__content__catalog__label">
             {{ $t('vtex.config.catalog') }}</span
           >
-          <unnnic-button v-if="app.hasConnectedCatalog" ref="viewButton">
+          <unnnic-button
+            v-if="app.hasConnectedCatalog"
+            ref="viewButton"
+            @click="redirectToWppCatalog"
+          >
             {{ $t('vtex.config.view_catalog') }}
           </unnnic-button>
           <unnnic-button v-else ref="connectButton" @click="showConnectModal = true">
@@ -39,6 +43,13 @@
           </span>
 
           <table class="config-vtex__settings__content__details__table">
+            <tr>
+              <td>{{ $t('vtex.config.wpp_number') }}</td>
+              <td v-if="wpp_number">{{ wpp_number }}</td>
+              <td v-else>
+                <unnnic-skeleton-loading tag="div" width="100%" height="22px" />
+              </td>
+            </tr>
             <tr>
               <td>{{ $t('vtex.config.name') }}</td>
               <td>{{ app.name }}</td>
@@ -86,13 +97,23 @@
       return {
         name: this.app.config?.name ?? null,
         showConnectModal: false,
+        wpp_number: null,
+        wpp_uuid: null,
       };
     },
     computed: {
+      ...mapState({
+        currentApp: (state) => state.appType.currentApp,
+        errorCurrentApp: (state) => state.appType.errorCurrentApp,
+        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
+      }),
       ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },
+    async mounted() {
+      await this.fetchRelatedWppData();
+    },
     methods: {
-      ...mapActions(['updateApp']),
+      ...mapActions(['updateApp', 'getApp']),
       ...mapActions('ecommerce', ['connectVtexCatalog']),
       async connectCatalog(eventData) {
         const data = {
@@ -111,6 +132,29 @@
           return;
         }
       },
+      async fetchRelatedWppData() {
+        const data = {
+          code: 'wpp-cloud',
+          appUuid: this.app.config.wpp_cloud_uuid,
+        };
+
+        await this.getApp(data);
+
+        if (this.errorCurrentApp) {
+          this.callModal({ type: 'Error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+          return;
+        }
+
+        this.wpp_uuid = this.currentApp.uuid;
+        this.wpp_number = this.currentApp.config.title;
+      },
+      redirectToWppCatalog() {
+        if (this.wpp_uuid) {
+          this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
+        } else {
+          this.callModal({ type: 'Error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+        }
+      },
       closeConfig() {
         this.$emit('closeModal');
       },
@@ -124,7 +168,7 @@
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
           },
-          seconds: 6,
+          seconds: 600,
         });
       },
     },
@@ -140,8 +184,8 @@
     &__header {
       display: flex;
       flex-direction: column;
-      margin: 2rem;
-      margin-bottom: 1.5rem;
+      margin: $unnnic-spacing-lg;
+      margin-bottom: $unnnic-spacing-md;
 
       &__title {
         display: flex;
@@ -211,13 +255,13 @@
         color: $unnnic-color-neutral-cloudy;
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-        margin: 0 2rem 2rem 2rem;
+        margin: 0 $unnnic-spacing-lg $unnnic-spacing-lg $unnnic-spacing-lg;
 
         &__catalog,
         &__details {
           display: flex;
           flex-direction: column;
-          margin-bottom: 1rem;
+          margin-bottom: $unnnic-spacing-sm;
 
           &__label {
             color: $unnnic-color-neutral-darkest;
@@ -236,15 +280,13 @@
             table-layout: fixed;
             border-collapse: separate;
             border-spacing: 0 $unnnic-spacing-sm;
+
+            &__loading {
+              display: flex;
+              width: 100%;
+            }
           }
         }
-
-        // &__description {
-        //   font-weight: $unnnic-font-weight-bold;
-        //   font-size: $unnnic-font-size-body-gt;
-        //   line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-        //   color: $unnnic-color-neutral-cloudy;
-        // }
 
         &__scroll {
           padding-right: $unnnic-spacing-inline-xs;
@@ -254,74 +296,10 @@
           overflow: auto;
           overflow-x: hidden;
           gap: $unnnic-spacing-stack-sm;
-          margin-bottom: 2rem;
+          margin-bottom: $unnnic-spacing-lg;
         }
-
-        // &__inputs {
-        //   display: flex;
-        //   flex-direction: row;
-        //   gap: $unnnic-spacing-inline-xs;
-
-        //   ::v-deep .unnnic-text-area {
-        //     textarea {
-        //       border-color: #e2e6ed;
-
-        //       &:focus {
-        //         border-color: #9caccc;
-        //       }
-        //     }
-        //   }
-        // }
-
-        // &__prompts-wrapper {
-        //   display: flex;
-        //   flex-wrap: wrap;
-        //   gap: $unnnic-spacing-inline-sm;
-        // }
-
-        // &__prompt {
-        //   max-width: 100%;
-        //   ::v-deep .unnnic-tag__label {
-        //     white-space: nowrap;
-        //     overflow: hidden;
-        //     text-overflow: ellipsis;
-        //   }
-        // }
       }
-
-      // &__buttons {
-      //   padding-right: $unnnic-spacing-inline-xs;
-      //   margin-top: auto;
-      //   display: flex;
-      //   justify-content: space-between;
-      //   gap: $unnnic-spacing-inline-md;
-
-      //   &__cancel,
-      //   &__save {
-      //     flex: 1;
-      //   }
-      // }
     }
-
-    // &__general {
-    //   display: flex;
-    //   flex-direction: column;
-    //   gap: $unnnic-spacing-stack-sm;
-
-    //   &__field {
-    //     display: flex;
-    //     gap: $unnnic-spacing-inline-sm;
-    //     justify-content: space-between;
-    //   }
-    // }
-
-    // ::v-deep .unnnic-form__label {
-    //   margin: 0 0 0.25rem;
-    // }
-
-    // ::v-deep .unnnic-label__label {
-    //   margin: 5px 0px -10px;
-    // }
   }
 
   .connect-modal {
