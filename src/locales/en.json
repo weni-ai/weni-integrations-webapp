@@ -610,7 +610,8 @@
         "button_text": "Button text",
         "phone_number_placeholder": "Enter the phone number",
         "url_placeholder": "Enter the Website URL",
-        "footer_text_placeholder": "Enter the footer text"
+        "footer_text_placeholder": "Enter the footer text",
+        "error_has_variable": "Template buttons cannot contain variables"
       },
       "category_options": {
         "marketing": "Marketing",

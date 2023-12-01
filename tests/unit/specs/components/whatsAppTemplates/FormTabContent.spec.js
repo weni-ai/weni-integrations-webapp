@@ -134,6 +134,22 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
     });
   });
 
+  it('replaces spaces and dashes with underscores and converts to lowercase when pasting', async () => {
+    const { wrapper } = mountComponent();
+    const clipboardData = {
+      getData: jest.fn().mockReturnValue('Test Value-With-Spaces_And-Dashes'),
+    };
+    const pasteEvent = new Event('paste');
+    pasteEvent.clipboardData = clipboardData;
+
+    const nativeNameInput = wrapper.vm.$refs.nameInput.$el.querySelector('input');
+
+    nativeNameInput.dispatchEvent(pasteEvent);
+    await wrapper.vm.$nextTick();
+
+    expect(nativeNameInput.value).toBe('test_value_with_spaces_and_dashes');
+  });
+
   it('should emit category change', async () => {
     const { wrapper, actions } = mountComponent();
     const categorySelectComponent = wrapper.findComponent(unnnicMultiSelect);
@@ -318,7 +334,7 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
     const contentHeader = wrapper.findComponent(FormTabContentButtons);
 
     contentHeader.vm.$emit('input-change', {
-      fieldName: 'templateButtons',
+      fieldName: 'buttons',
       fieldValue: ['1', '2'],
     });
     await wrapper.vm.$nextTick();
@@ -326,9 +342,32 @@ describe('components/whatsAppTemplates/FormTabContent.vue', () => {
     expect(actions.updateTemplateTranslationForm).toHaveBeenCalledTimes(1);
     expect(actions.updateTemplateTranslationForm).toHaveBeenCalledWith(expect.any(Object), {
       formName: 'Portuguese',
-      fieldName: 'templateButtons',
+      fieldName: 'buttons',
       fieldValue: ['1', '2'],
     });
+  });
+
+  it('should set errorStates if there is an error', async () => {
+    const { wrapper, actions } = mountComponent({ selectedForm: 'Portuguese' });
+    const contentHeader = wrapper.findComponent(FormTabContentHeader);
+
+    expect(wrapper.vm.errorStates.buttons.value).toBeFalsy();
+
+    contentHeader.vm.$emit('input-change', {
+      fieldName: 'buttons',
+      fieldValue: ['1', '2'],
+      hasIssue: true,
+    });
+    await wrapper.vm.$nextTick();
+
+    expect(actions.updateTemplateTranslationForm).toHaveBeenCalledTimes(1);
+    expect(actions.updateTemplateTranslationForm).toHaveBeenCalledWith(expect.any(Object), {
+      formName: 'Portuguese',
+      fieldName: 'buttons',
+      fieldValue: ['1', '2'],
+    });
+
+    expect(wrapper.vm.errorStates.buttons.value).toBeTruthy();
   });
 
   it('should go to templates table on closeEdit', async () => {

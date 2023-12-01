@@ -610,7 +610,8 @@
         "button_text": "Texto del botón",
         "phone_number_placeholder": "Ingrese el número de teléfono",
         "url_placeholder": "Ingrese la URL del sitio web",
-        "footer_text_placeholder": "Escribe el texto de pie de página"
+        "footer_text_placeholder": "Escribe el texto de pie de página",
+        "error_has_variable": "Los botones de plantilla no pueden contener variables"
       },
       "category_options": {
         "marketing": "Marketing",
