@@ -10,7 +10,7 @@ exports[`components/config/bi_tools/power_bi/Config.vue should be rendered prope
       some specific text
       <a href="https://docs.weni.ai/l/en/extras/weni-data-connector-for-power-bi" target="_blank" class="app-config-power-bi__header__description__link"><span>
           some specific text
-          <unnnic-icon-svg-stub icon="export-1" size="xs" scheme="neutral-darkest"></unnnic-icon-svg-stub></span></a></span>
+          <unnnic-icon-svg-stub icon="export-1" size="xs" scheme=""></unnnic-icon-svg-stub></span></a></span>
   </div>
   <div class="app-config-power-bi__content">
     <unnnic-data-area-stub title="Token" text="" hovertext="" class="app-config-power-bi__content__token-input">

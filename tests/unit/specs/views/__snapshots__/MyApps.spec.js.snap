@@ -17,15 +17,15 @@ exports[`MyApps.vue should be rendered properly 1`] = `
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
-                  <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Edit
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
@@ -38,15 +38,15 @@ exports[`MyApps.vue should be rendered properly 1`] = `
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
-                  <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Edit
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
@@ -75,15 +75,15 @@ exports[`MyApps.vue should be rendered properly 1`] = `
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
-                  <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Configure
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
@@ -96,15 +96,15 @@ exports[`MyApps.vue should be rendered properly 1`] = `
               <unnnic-dropdown-stub position="bottom-left" class="app-grid__content__item__dropdown">
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
-                  <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   Configure
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
-                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme="neutral-darkest"></unnnic-icon-svg-stub>
+                  <unnnic-icon-svg-stub icon="copy-paste-1" size="sm" scheme=""></unnnic-icon-svg-stub>
                   some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--remove">
