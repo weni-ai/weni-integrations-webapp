@@ -7,7 +7,7 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import Survey from '@/components/Survey.vue';
+import Survey from '@/components/Survey/index.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();

@@ -1,5 +1,5 @@
 import { shallowMount, createLocalVue, RouterLinkStub } from '@vue/test-utils';
-import NavBar from '@/components/NavBar.vue';
+import NavBar from '@/components/NavBar/index.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();

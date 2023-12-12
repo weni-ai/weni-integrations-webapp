@@ -14,3 +14,18 @@ exports[`AppDetails.vue should be rendered properly 1`] = `
   </div>
 </div>
 `;
+
+exports[`AppDetails/index.vue should be rendered properly 1`] = `
+<div>
+  <navigator-stub routes="[object Object],[object Object]" class="navigator"></navigator-stub>
+  <div class="app-details">
+    <appimagesbanner-stub class="app-details__section"></appimagesbanner-stub>
+    <appdetailsheader-stub app="[object Object]" class="app-details__section"></appdetailsheader-stub>
+    <unnnicbanner-stub type="info" firsttitle="some specific text" secondtitle="some specific text" thirdtitle="some specific text" firstdescription="-" seconddescription="-" thirddescription="4.9" subtitle="some specific text" rating="4.9" class="app-details__banner"></unnnicbanner-stub>
+    <div class="app-details__section app-details__section__columns">
+      <appdetailsabout-stub description="Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s" links=""></appdetailsabout-stub>
+    </div>
+    <appdetailscomments-stub appcode="wwc"></appdetailscomments-stub>
+  </div>
+</div>
+`;

@@ -1,11 +1,11 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import OtherApps from '@/views/OtherApps.vue';
+import OtherApps from '@/views/OtherApps/index.vue';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('OtherApps.vue', () => {
+describe('OtherApps/index.vue', () => {
   let wrapper;
   let store;
   let state;

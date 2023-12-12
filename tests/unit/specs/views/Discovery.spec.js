@@ -7,8 +7,8 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import Discovery from '@/views/Discovery.vue';
-import AppGrid from '@/components/AppGrid.vue';
+import Discovery from '@/views/Discovery/index.vue';
+import AppGrid from '@/components/AppGrid/index.vue';
 import { singleApp } from '../../../__mocks__/appMock';
 
 const genericApp = {
@@ -91,7 +91,7 @@ const mountComponent = async ({ createAppCode = null, apps = [singleApp] } = {})
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('Discovery.vue', () => {
+describe('Discovery/index.vue', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     jest.restoreAllMocks();

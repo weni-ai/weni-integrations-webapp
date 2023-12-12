@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Carousel from '@/components/Carousel.vue';
+import Carousel from '@/components/Carousel/index.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../__mocks__/appMock';
 

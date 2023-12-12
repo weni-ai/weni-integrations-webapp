@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import BaseInput from '@/components/BaseInput.vue';
+import BaseInput from '@/components/BaseInput/index.vue';
 import '@weni/unnnic-system';
 
 describe('BaseInput.vue', () => {

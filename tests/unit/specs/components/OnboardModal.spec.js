@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import OnboardModal from '@/components/OnboardModal.vue';
+import OnboardModal from '@/components/OnboardModal/index.vue';
 import { unnnicModalNext, unnnicButton } from '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
 
