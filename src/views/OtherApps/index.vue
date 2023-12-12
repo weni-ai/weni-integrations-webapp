@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="loading" class="flows-iframe">
-      <img class="logo" src="../assets/svgs/LogoWeniAnimada4.svg" />
+      <img class="logo" src="../../assets/svgs/LogoWeniAnimada4.svg" />
     </div>
 
     <iframe
@@ -45,25 +45,7 @@
 </script>
 
 <style scoped lang="scss">
-  .container {
-    display: flex;
-    flex: 1;
-    overflow: auto;
-
-    .flows-iframe {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-      height: auto;
-    }
-
-    .logo {
-      width: 10%;
-      max-width: $unnnic-avatar-size-md;
-      max-height: $unnnic-avatar-size-md;
-    }
-  }
+  @import './styles.scss';
 </style>
 
 <style lang="scss">

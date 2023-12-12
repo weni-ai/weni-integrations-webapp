@@ -204,7 +204,7 @@
   import { mapGetters } from 'vuex';
   import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
   import { countVariables } from '@/utils/countTemplateVariables.js';
-  import BaseInput from '../BaseInput.vue';
+  import BaseInput from '../BaseInput/index.vue';
 
   export default {
     name: 'FormTabContentButtons',

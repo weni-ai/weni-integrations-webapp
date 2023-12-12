@@ -24,8 +24,8 @@
 </template>
 
 <script>
-  import addModal from '../AddModal.vue';
-  import IntegrateButton from '../IntegrateButton.vue';
+  import addModal from '../AddModal/index.vue';
+  import IntegrateButton from '../IntegrateButton/index.vue';
 
   export default {
     name: 'AppDetailsHeader',

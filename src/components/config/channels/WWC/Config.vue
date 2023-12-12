@@ -282,7 +282,7 @@
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
-  import ColorPicker from '../../../ColorPicker.vue';
+  import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
 

@@ -19,12 +19,12 @@
 </template>
 
 <script>
-  import addModal from './AddModal.vue';
-  import configPopUp from './config/ConfigPopUp.vue';
+  import addModal from '../AddModal/index.vue';
+  import configPopUp from '../config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
-  import LoadingButton from './LoadingButton.vue';
-  import getEnv from '../utils/env';
+  import LoadingButton from '../LoadingButton/index.vue';
+  import getEnv from '../../utils/env';
 
   export default {
     name: 'IntegrateButton',

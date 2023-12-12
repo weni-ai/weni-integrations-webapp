@@ -2,7 +2,7 @@
   <div ref="appGrid">
     <section v-if="!loading" id="app-grid">
       <div v-if="apps && apps.length" class="app-grid__header">
-        <unnnic-avatar-icon :icon="sectionIcon.icon" :scheme="sectionIcon.scheme" size="sm" />
+        <unnnic-avatar-icon :icon="avatar.icon" :scheme="avatar.scheme" size="md" />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
 
@@ -31,7 +31,7 @@
             v-if="type === 'add'"
             slot="actions"
             :app="app"
-            :icon="actionIcon"
+            :icon="action"
             :disabled="!app.generic && !app.can_add"
           />
 
@@ -40,13 +40,13 @@
             class="app-grid__content__item__dropdown"
             slot="actions"
           >
-            <unnnic-button slot="trigger" size="small" type="tertiary" :iconCenter="cardIcon" />
+            <unnnic-button slot="trigger" size="small" type="tertiary" :iconCenter="card" />
             <unnnic-dropdown-item
               class="app-grid__content__item__button--action"
               @click="openAppModal(app)"
             >
-              <unnnic-icon-svg :icon="actionIcon" size="sm" />
-              {{ actionText }}
+              <unnnic-icon-svg :icon="action" size="sm" />
+              {{ $t(`apps.discovery.action.${type}`) }}
             </unnnic-dropdown-item>
             <unnnic-dropdown-item
               v-if="app.code !== 'wpp'"
@@ -123,11 +123,11 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
 
-  import configModal from './config/ConfigModal.vue';
-  import skeletonLoading from './loadings/AppGrid.vue';
-  import IntegrateButton from './IntegrateButton.vue';
-  import LoadingButton from './LoadingButton.vue';
-
+  import configModal from '../config/ConfigModal.vue';
+  import skeletonLoading from '../loadings/AppGrid.vue';
+  import IntegrateButton from '../IntegrateButton/index.vue';
+  import LoadingButton from '../LoadingButton/index.vue';
+  import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
   export default {
     name: 'AppGrid',
     components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
@@ -172,6 +172,9 @@
         currentPage: 1,
         gridSize: 10,
         paginationMarginOffset: 0,
+        avatar: avatarIcons[this.section],
+        action: actionIcons[this.type],
+        card: cardIcons[this.type],
       };
     },
     /* istanbul ignore next */
@@ -188,68 +191,10 @@
         loadingDeleteApp: (state) => state.appType.loadingDeleteApp,
         errorDeleteApp: (state) => state.appType.errorDeleteApp,
       }),
-      sectionIcon() {
-        switch (this.section) {
-          case 'channel':
-            return { icon: 'messages-bubble-1', scheme: 'aux-purple' };
-          case 'ticket':
-            return { icon: 'messaging-we-chat-3', scheme: 'aux-blue' };
-          case 'bi-tools':
-            return { icon: 'gauge-dashboard-2', scheme: 'aux-orange' };
-          case 'external':
-            return { icon: 'charger-1', scheme: 'aux-lemon' };
-          case 'configured':
-            return { icon: 'cog-1', scheme: 'aux-purple' };
-          case 'installed':
-            return { icon: 'check-circle-1-1', scheme: 'aux-blue' };
-          case 'recommended':
-            return { icon: 'rating-star-1-1', scheme: 'aux-orange' };
-        }
-        /* istanbul ignore next */
-        return null;
-      },
-      actionIcon() {
-        switch (this.type) {
-          case 'add':
-            return 'add-1';
-          case 'config':
-            return 'cog-1';
-          case 'edit':
-            return 'pencil-write-1';
-          /* istanbul ignore next */
-          default:
-            return null;
-        }
-      },
-      cardIcon() {
-        switch (this.type) {
-          case 'add':
-            return 'add-1';
-          case 'config':
-            return 'navigation-menu-vertical-1';
-          case 'edit':
-            return 'navigation-menu-vertical-1';
-          /* istanbul ignore next */
-          default:
-            return null;
-        }
-      },
-      actionText() {
-        switch (this.type) {
-          case 'config':
-            return 'Configure';
-          case 'edit':
-            return 'Edit';
-          /* istanbul ignore next */
-          default:
-            return null;
-        }
-      },
       typeAction() {
         if (this.type === 'view') {
           return 'edit';
         }
-
         return this.type;
       },
       currentPageStart() {
@@ -400,69 +345,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .app-grid {
-    &__header {
-      display: flex;
-      gap: $unnnic-spacing-inline-sm;
-      align-items: center;
-
-      &__title {
-        color: $unnnic-color-neutral-darkest;
-        font-size: $unnnic-font-size-title-sm;
-      }
-    }
-
-    &__content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: $unnnic-spacing-stack-sm;
-      align-items: flex-start;
-
-      &__item {
-        min-height: 136px;
-        width: 222px;
-
-        &--generic {
-          height: calc(190px - 2rem);
-        }
-
-        &__dropdown {
-          font-family: $unnnic-font-family-secondary;
-          font-size: $unnnic-font-size-body-md;
-          line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
-          color: $unnnic-color-neutral-dark;
-
-          ::v-deep .unnnic-dropdown__content {
-            width: max-content;
-          }
-        }
-        &__button {
-          &--add {
-            height: fit-content;
-          }
-
-          &--action,
-          &--details,
-          &--remove {
-            display: inline-block;
-
-            font-family: $unnnic-font-family-secondary;
-            font-size: $unnnic-font-size-body-md;
-            line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
-          }
-
-          &--remove {
-            color: $unnnic-color-feedback-red;
-          }
-        }
-      }
-    }
-
-    &__pagination {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: $unnnic-spacing-stack-md;
-    }
-  }
+  @import '../styles/grid.scss';
 </style>

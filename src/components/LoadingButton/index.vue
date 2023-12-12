@@ -59,18 +59,5 @@
 </script>
 
 <style scoped lang="scss">
-  .loading-button--loading {
-    ::v-deep svg {
-      animation: rotation 1.5s infinite linear;
-    }
-  }
-
-  @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
+  @import './styles.scss';
 </style>

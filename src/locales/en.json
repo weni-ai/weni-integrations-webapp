@@ -67,6 +67,10 @@
         "empty_description": "But you can see all our integrations by clicking",
         "empty_link": "here",
         "results": "Results for"
+      },
+      "action": {
+        "edit": "Edit",
+        "config": "Configure"
       }
     },
     "myApps": {
