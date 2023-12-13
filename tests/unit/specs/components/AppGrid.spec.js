@@ -45,7 +45,7 @@ const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 
-describe('AppGrid/index.vue', () => {
+describe('AppGrid.vue', () => {
   let wrapper;
   let actions;
   let state;

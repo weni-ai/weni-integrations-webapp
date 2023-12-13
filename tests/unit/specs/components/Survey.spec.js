@@ -52,7 +52,7 @@ const mountComponent = async ({
   return { wrapper, actions, state };
 };
 
-describe('components/Survey.vue', () => {
+describe('Survey.vue', () => {
   it('should be rendered properly with content open', async () => {
     let { wrapper } = await mountComponent();
     expect(wrapper).toMatchSnapshot();

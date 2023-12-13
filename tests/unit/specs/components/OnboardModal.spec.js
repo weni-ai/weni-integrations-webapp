@@ -56,7 +56,7 @@ const mountComponent = async ({
   return { wrapper };
 };
 
-describe('components/OnboardModal.vue', () => {
+describe('OnboardModal.vue', () => {
   it('should not render modal if app is configured', async () => {
     let { wrapper } = await mountComponent({ configuredApps: [singleApp] });
     expect(wrapper).toMatchSnapshot();

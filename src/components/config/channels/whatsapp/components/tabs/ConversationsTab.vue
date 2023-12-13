@@ -215,21 +215,21 @@
         return [
           {
             category: this.$t('WhatsApp.config.conversations.conversations_count.table.marketing'),
-            quantity: this.afterData.MARKETING || 0,
+            quantity: this.afterData?.MARKETING || 0,
           },
           {
             category: this.$t('WhatsApp.config.conversations.conversations_count.table.utility'),
-            quantity: this.afterData.UTILITY || 0,
+            quantity: this.afterData?.UTILITY || 0,
           },
           {
             category: this.$t(
               'WhatsApp.config.conversations.conversations_count.table.authentication',
             ),
-            quantity: this.afterData.AUTHENTICATION || 0,
+            quantity: this.afterData?.AUTHENTICATION || 0,
           },
           {
             category: this.$t('WhatsApp.config.conversations.conversations_count.table.service'),
-            quantity: this.afterData.SERVICE || 0,
+            quantity: this.afterData?.SERVICE || 0,
           },
         ];
       },
