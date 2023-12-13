@@ -24,7 +24,6 @@
       />
       <div class="app-details__section app-details__section__columns">
         <app-details-about :description="appDescription" :links="appLinks" />
-        <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
       </div>
       <app-details-comments :appCode="appCode" />
     </div>
