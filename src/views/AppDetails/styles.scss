@@ -1,0 +1,20 @@
+.app-details {
+    &__section {
+      margin: $unnnic-spacing-stack-md 0;
+
+      &__columns {
+        display: flex;
+
+        &__recommended {
+          max-width: 256px;
+          margin-left: auto;
+        }
+      }
+    }
+
+    &__banner {
+      ::v-deep .unnnic-banner-info__section {
+        align-self: center;
+      }
+    }
+  }

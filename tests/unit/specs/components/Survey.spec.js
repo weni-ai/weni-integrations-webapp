@@ -7,7 +7,7 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import Survey from '@/components/Survey.vue';
+import Survey from '@/components/Survey/index.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
@@ -52,7 +52,7 @@ const mountComponent = async ({
   return { wrapper, actions, state };
 };
 
-describe('components/Survey.vue', () => {
+describe('Survey.vue', () => {
   it('should be rendered properly with content open', async () => {
     let { wrapper } = await mountComponent();
     expect(wrapper).toMatchSnapshot();

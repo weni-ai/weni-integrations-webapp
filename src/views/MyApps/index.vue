@@ -56,8 +56,8 @@
 </template>
 
 <script>
-  import AppGrid from '@/components/AppGrid.vue';
-  import EmptyApps from '@/components/EmptyApps.vue';
+  import AppGrid from '@/components/AppGrid/index.vue';
+  import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
@@ -186,69 +186,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .my-apps {
-    &__search {
-      margin-top: $unnnic-spacing-stack-sm;
-      margin-bottom: $unnnic-spacing-stack-lg;
-
-      &__results {
-        font-size: $unnnic-font-size-body-lg;
-        line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
-
-        &__highlight {
-          font-weight: $unnnic-font-weight-bold;
-        }
-      }
-    }
-
-    &__empty {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: $unnnic-spacing-stack-xl;
-
-      &__description {
-        &__main {
-          font-family: $unnnic-font-family-secondary;
-          font-weight: $unnnic-font-weight-bold;
-          font-size: $unnnic-font-size-title-sm;
-          line-height: $unnnic-line-height-md + $unnnic-font-size-title-sm;
-          color: $unnnic-color-neutral-dark;
-          text-align: center;
-        }
-
-        &__secondary {
-          display: flex;
-          gap: $unnnic-inline-nano;
-          text-align: center;
-
-          font-family: $unnnic-font-family-secondary;
-          font-size: $unnnic-font-size-body-lg;
-          line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
-          color: $unnnic-color-neutral-cloudy;
-
-          &__link {
-            cursor: pointer;
-            font-weight: $unnnic-font-weight-bold;
-            border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-cloudy;
-          }
-        }
-      }
-    }
-
-    &__sections {
-      display: flex;
-      flex-direction: column;
-      gap: $unnnic-spacing-stack-lg;
-
-      margin-bottom: $unnnic-spacing-stack-md;
-
-      &__grids {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-spacing-stack-lg;
-      }
-    }
-  }
+  @import './styles.scss';
 </style>

@@ -7,8 +7,8 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import MyApps from '@/views/MyApps.vue';
-import AppGrid from '@/components/AppGrid.vue';
+import MyApps from '@/views/MyApps/index.vue';
+import AppGrid from '@/components/AppGrid/index.vue';
 import { singleApp } from '../../../__mocks__/appMock';
 
 const genericApp = {
@@ -22,7 +22,7 @@ const genericApp = {
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('MyApps.vue', () => {
+describe('MyApps/index.vue', () => {
   let wrapper;
   let actions;
   let state;

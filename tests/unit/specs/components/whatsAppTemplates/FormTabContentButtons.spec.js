@@ -2,7 +2,7 @@ import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
 import { unnnicSelect, unnnicInput } from '@weni/unnnic-system';
 import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
-import BaseInput from '../../../../../src/components/BaseInput.vue';
+import BaseInput from '../../../../../src/components/BaseInput/index.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();

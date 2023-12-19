@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MyApps.vue should be rendered properly 1`] = `
+exports[`MyApps/index.vue should be rendered properly 1`] = `
 <div class="my-apps">
   <unnnic-autocomplete-stub type="normal" data="Weni Web Chat - Chat Title,A random generic,Weni Web Chat - Chat Title,A random generic" value="" iconleft="search-1" tooltipsideiconright="right" size="md" placeholder="some specific text" class="my-apps__search"></unnnic-autocomplete-stub>
   <!---->
@@ -18,7 +18,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
-                  Edit
+                  some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
                   <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
@@ -39,7 +39,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="pencil-write-1" size="sm" scheme=""></unnnic-icon-svg-stub>
-                  Edit
+                  some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
                   <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
@@ -76,7 +76,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme=""></unnnic-icon-svg-stub>
-                  Configure
+                  some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
                   <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>
@@ -97,7 +97,7 @@ exports[`MyApps.vue should be rendered properly 1`] = `
                 <unnnic-button-stub size="small" type="tertiary" iconcenter="navigation-menu-vertical-1"></unnnic-button-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--action">
                   <unnnic-icon-svg-stub icon="cog-1" size="sm" scheme=""></unnnic-icon-svg-stub>
-                  Configure
+                  some specific text
                 </unnnic-dropdown-item-stub>
                 <unnnic-dropdown-item-stub class="app-grid__content__item__button--details">
                   <unnnic-icon-svg-stub icon="export-1" size="sm" scheme=""></unnnic-icon-svg-stub>

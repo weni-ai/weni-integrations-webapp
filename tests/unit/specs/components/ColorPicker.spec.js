@@ -1,5 +1,5 @@
 import { mount, createLocalVue } from '@vue/test-utils';
-import ColorPicker from '@/components/ColorPicker.vue';
+import ColorPicker from '@/components/ColorPicker/index.vue';
 
 const localVue = createLocalVue();
 

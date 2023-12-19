@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Survey.vue should be rendered properly with content closed 1`] = `
+exports[`Survey.vue should be rendered properly with content closed 1`] = `
 <div class="survey">
   <transition-stub name="fade">
     <!---->
@@ -9,7 +9,7 @@ exports[`components/Survey.vue should be rendered properly with content closed 1
 </div>
 `;
 
-exports[`components/Survey.vue should be rendered properly with content open 1`] = `
+exports[`Survey.vue should be rendered properly with content open 1`] = `
 <div class="survey">
   <transition-stub name="fade">
     <div class="survey__content">

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Discovery.vue should be rendered properly 1`] = `
+exports[`Discovery/index.vue should be rendered properly 1`] = `
 <div class="discovery-content">
   <div class="unnnic-autocomplete discovery-content__search">
     <!---->

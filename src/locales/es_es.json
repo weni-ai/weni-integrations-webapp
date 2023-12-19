@@ -67,6 +67,10 @@
         "empty_link": "aquí",
         "results": "Resultados para",
         "placeholder": "Buscar"
+      },
+      "action": {
+        "edit": "Edit",
+        "config": "Configure"
       }
     },
     "myApps": {

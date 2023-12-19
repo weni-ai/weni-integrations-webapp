@@ -48,11 +48,5 @@
 </script>
 
 <style lang="scss" scoped>
-  .add-modal {
-    ::v-deep .unnnic-modal-container-background-body-close_icon {
-      .unnnic-icon {
-        display: none;
-      }
-    }
-  }
+  @import './styles.scss';
 </style>

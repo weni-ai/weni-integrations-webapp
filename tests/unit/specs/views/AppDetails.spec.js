@@ -8,7 +8,7 @@ jest.mock('@weni/unnnic-system', () => ({
 jest.mock('@/api/appType', () => jest.fn());
 
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import AppDetails from '@/views/AppDetails.vue';
+import AppDetails from '@/views/AppDetails/index.vue';
 import i18n from '@/utils/plugins/i18n';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
@@ -20,7 +20,7 @@ const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
 
-describe('AppDetails.vue', () => {
+describe('AppDetails/index.vue', () => {
   let wrapper;
   let store;
   let actions;
