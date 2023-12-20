@@ -56,6 +56,18 @@
       </unnnic-tab>
       <skeleton-loading v-else />
     </div>
+    <div class="config-whatsapp__insights">
+      <div class="config-whatsapp__insights__title">Insights</div>
+      <div class="config-whatsapp__insights__about">
+        <p>
+          Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem
+          disparados.
+        </p>
+      </div>
+      <div class="config-whatsapp__insights__button">
+        <unnnic-button text="Ver insights" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -313,6 +325,31 @@
             fill: $unnnic-color-neutral-clean;
           }
         }
+      }
+    }
+    &__insights {
+      display: flex;
+      flex: 1;
+      width: 100%;
+      flex-direction: column;
+      gap: 1rem;
+      height: 100%;
+      font-family: $unnnic-font-family-secondary;
+
+      &__title {
+        font-weight: bold;
+        color: $unnnic-color-neutral-dark;
+      }
+
+      &__about {
+        color: $unnnic-color-neutral-cloudy;
+      }
+
+      &__button {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        align-items: flex-start;
       }
     }
   }
