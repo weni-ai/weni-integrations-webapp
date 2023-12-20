@@ -77,7 +77,7 @@
 
     <!-- Modal -->
     <div class="wpp_insights__modal">
-      <unnnic-modal :showModal="showModal" @close="toggleCloseModal">
+      <unnnic-modal :showModal="showModal" @close="toggleOpenModal">
         <div class="wpp_insights__modal__title">
           <img src="../assets/amazoninha-heart.svg" alt="" />
           <p>Apresentamos novos insights</p>
@@ -107,7 +107,7 @@
             text="Cancelar"
             type="secondary"
             :style="{ width: '289px' }"
-            @click="toggleCloseModal"
+            @click="toggleOpenModal"
             ref="wpp_insights__button__close"
           />
           <unnnic-button text="Confirmar" :style="{ width: '289px' }" />
@@ -140,10 +140,7 @@
     },
     methods: {
       toggleOpenModal() {
-        this.showModal = true;
-      },
-      toggleCloseModal() {
-        this.showModal = false;
+        this.showModal = !this.showModal;
       },
     },
   };
