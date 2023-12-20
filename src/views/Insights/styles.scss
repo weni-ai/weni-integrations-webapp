@@ -1,0 +1,106 @@
+.wpp_insights {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &__breadcrumb {
+      height: 24px;
+      padding-top: 1rem;
+    }
+    &__header {
+      display: flex;
+      flex-direction: row;
+      height: 54px;
+      padding-top: 1rem;
+      align-items: center;
+      &__logo {
+        padding-right: 0.5rem;
+      }
+      &__about {
+        width: 80%;
+        color: $unnnic-color-neutral-dark;
+
+        &__title {
+          font-family: $unnnic-font-family-primary;
+          font-size: $unnnic-font-size-title-sm;
+          font-weight: $unnnic-font-weight-bold;
+          padding-bottom: 0.3rem;
+        }
+
+        &__description {
+          font-family: $unnnic-font-family-secondary;
+          font-size: $unnnic-font-size-body-gt;
+        }
+      }
+    }
+    &__filters {
+      display: flex;
+      padding-top: 1rem;
+      flex-direction: row;
+      font-family: $unnnic-font-family-secondary;
+      font-size: $unnnic-font-size-body-gt;
+      color: $unnnic-color-neutral-cloudy;
+      gap: 1rem;
+
+      &__time {
+        width: 260px;
+        height: 76px;
+
+        &__title {
+          padding-bottom: 0.3rem;
+        }
+      }
+
+      &__model {
+        width: 260px;
+        height: 76px;
+
+        &__title {
+          padding-bottom: 0.3rem;
+        }
+      }
+    }
+
+    &__content {
+      display: flex;
+      height: 408px;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      &__empty {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        &__image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        &__text {
+          display: flex;
+          flex-direction: column;
+          font-family: $unnnic-font-family-secondary;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+          &__title {
+            font-size: $unnnic-font-size-body-lg;
+            color: $unnnic-color-neutral-dark;
+            font-weight: $unnnic-font-weight-bold;
+          }
+          &__description {
+            font-size: $unnnic-font-size-body-gt;
+            color: $unnnic-color-neutral-dark;
+          }
+        }
+        &__button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+  }
