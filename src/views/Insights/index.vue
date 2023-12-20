@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="wpp_insights">
     <!-- Breadcrumb -->
@@ -26,7 +25,7 @@
         <unnnic-button
           text="Ativar insights"
           :disable="!isActive"
-          ref="wpp_insights__button"
+          ref="wpp_insights__button__close"
           @click="toggleOpenModal"
         />
       </div>
@@ -57,7 +56,7 @@
       <!-- If not active -->
       <div class="wpp_insights__content__empty" v-if="!isActive">
         <div class="wpp_insights__content__empty__image">
-          <img src="../assets/insights-empty.svg" alt="" />
+          <img src="../../assets/svgs/empty-apps.svg" alt="" />
         </div>
         <div class="wpp_insights__content__empty__text">
           <div class="wpp_insights__content__empty__text__title">Você não ativou os insights</div>
@@ -69,32 +68,82 @@
         <div class="wpp_insights__content__empty__button">
           <unnnic-button
             text="Ativar insights"
-            ref="wpp_insights__button"
+            ref="wpp_insights__button__close"
             @click="toggleOpenModal"
           />
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div class="wpp_insights__modal">
+      <unnnic-modal :showModal="showModal" @close="toggleCloseModal">
+        <div class="wpp_insights__modal__title">
+          <img src="../assets/amazoninha-heart.svg" alt="" />
+          <p>Apresentamos novos insights</p>
+        </div>
+        <div class="wpp_insights__modal__content">
+          <p class="wpp_insights__modal__content__dark">
+            Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear,
+            entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão
+            insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights,
+            os dados existentes para "mensagens enviadas" serão apagados. O rastreamento recomeçará
+            na data em que você clicar em Confirmar.
+          </p>
+          <p>
+            Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp
+            Business. Esses insights incluem rastreamento de link para relatar os cliques no site.
+            Você pode desativar o rastreamento de link em cada modelo de mensagem
+          </p>
+          <p>
+            Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus
+            bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que
+            presta a você e a outras empresas.
+          </p>
+        </div>
+
+        <div class="wpp_insights__modal__buttons">
+          <unnnic-button
+            text="Cancelar"
+            type="secondary"
+            :style="{ width: '289px' }"
+            @click="toggleCloseModal"
+            ref="wpp_insights__button__close"
+          />
+          <unnnic-button text="Confirmar" :style="{ width: '289px' }" />
+        </div>
+      </unnnic-modal>
+    </div>
   </div>
 </template>
 
 <script>
-  import { unnnicBreadcrumb, unnnicAvatarIcon, unnnicButton } from '@weni/unnnic-system';
+  import {
+    unnnicBreadcrumb,
+    unnnicAvatarIcon,
+    unnnicButton,
+    unnnicModal,
+  } from '@weni/unnnic-system';
   export default {
     name: 'Insights',
     components: {
       unnnicBreadcrumb,
       unnnicAvatarIcon,
       unnnicButton,
+      unnnicModal,
     },
     data() {
       return {
         isActive: false,
+        showModal: false,
       };
     },
     methods: {
       toggleOpenModal() {
-        return alert('Modal aberto');
+        this.showModal = true;
+      },
+      toggleCloseModal() {
+        this.showModal = false;
       },
     },
   };

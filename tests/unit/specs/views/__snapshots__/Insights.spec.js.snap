@@ -48,7 +48,7 @@ exports[`AppModal should be rendered properly 1`] = `
 </div>
 <div class="wpp_insights__content">
   <div class="wpp_insights__content__empty">
-    <div class="wpp_insights__content__empty__image"><img src="../assets/insights-empty.svg" alt=""></div>
+    <div class="wpp_insights__content__empty__image"><img src="../../assets/svgs/empty-apps.svg" alt=""></div>
     <div class="wpp_insights__content__empty__text">
       <div class="wpp_insights__content__empty__text__title">Você não ativou os insights</div>
       <div class="wpp_insights__content__empty__text__description">
@@ -60,6 +60,9 @@ exports[`AppModal should be rendered properly 1`] = `
       <unnnicbutton-stub size="large" text="Ativar insights" type="primary"></unnnicbutton-stub>
     </div>
   </div>
+</div>
+<div class="wpp_insights__modal">
+  <!---->
 </div>
 </div>
 `;
