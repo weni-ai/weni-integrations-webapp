@@ -327,6 +327,10 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ac7292406da5cc2c89b9aa92489cb0a8cafd66cb
     &__insights {
       display: flex;
       flex: 1;
