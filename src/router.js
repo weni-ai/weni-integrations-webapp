@@ -25,6 +25,11 @@ const routes = [
         path: 'other-apps',
         component: () => import('@/views/OtherApps/index.vue'),
       },
+      {
+        name: 'Insights',
+        path: 'insights',
+        component: () => import('@/views/Insights/index.vue'),
+      },
     ],
   },
   {

@@ -120,7 +120,9 @@
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <unnnic-button text="Ver insights" />
+          <router-link t class="link" to="insights">
+            <unnnic-button text="Ver insights" />
+          </router-link>
         </div>
       </div>
     </div>

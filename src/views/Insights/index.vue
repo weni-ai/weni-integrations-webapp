@@ -79,7 +79,7 @@
     <div class="wpp_insights__modal">
       <unnnic-modal :showModal="showModal" @close="toggleOpenModal">
         <div class="wpp_insights__modal__title">
-          <img src="../assets/amazoninha-heart.svg" alt="" />
+          <img src="../../assets/svgs/amazoninha-heart.svg" alt="" />
           <p>Apresentamos novos insights</p>
         </div>
         <div class="wpp_insights__modal__content">
