@@ -21,17 +21,5 @@ exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
       <conversationstab-stub app="[object Object]"></conversationstab-stub>
     </unnnictab-stub>
   </div>
-  <div class="config-whatsapp__insights">
-    <div class="config-whatsapp__insights__title">Insights</div>
-    <div class="config-whatsapp__insights__about">
-      <p>
-        Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem
-        disparados.
-      </p>
-    </div>
-    <div class="config-whatsapp__insights__button">
-      <unnnicbutton-stub size="large" text="Ver insights" type="primary"></unnnicbutton-stub>
-    </div>
-  </div>
 </div>
 `;
