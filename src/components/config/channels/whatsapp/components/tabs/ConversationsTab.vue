@@ -111,6 +111,20 @@
           </unnnic-button>
         </unnnic-tool-tip>
       </div>
+      <div class="conversations__content__insights">
+        <div class="conversations__content__insights__title">Insights</div>
+        <div class="conversations__content__insights__about">
+          <p>
+            Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de
+            mensagem disparados.
+          </p>
+        </div>
+        <div class="conversations__content__insights__button">
+          <router-link t class="link" to="insights">
+            <unnnic-button text="Ver insights" />
+          </router-link>
+        </div>
+      </div>
     </div>
     <div class="conversations__buttons">
       <unnnic-button
@@ -347,6 +361,33 @@
       flex: 1;
       gap: $unnnic-spacing-stack-md;
 
+      &__insights {
+        display: flex;
+        flex: 1;
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+        font-family: $unnnic-font-family-secondary;
+
+        &__title {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-neutral-dark;
+          font-size: $unnnic-font-size-body-lg;
+        }
+
+        &__about {
+          color: $unnnic-color-neutral-cloudy;
+          font-size: $unnnic-font-size-body-gt;
+        }
+
+        &__button {
+          display: flex;
+          flex: 1;
+          width: 100%;
+          align-items: flex-start;
+        }
+      }
+
       &__dropdown {
         width: fit-content;
         &-data {
@@ -401,7 +442,6 @@
           display: flex;
           flex-direction: column;
           gap: $unnnic-spacing-stack-xs;
-
           ::v-deep .scroll {
             padding-right: 0;
           }

@@ -68,7 +68,6 @@
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-
   export default {
     name: 'Discovery',
     components: {

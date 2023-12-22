@@ -36,6 +36,20 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
         </unnnicbutton-stub>
       </unnnic-tool-tip-stub>
     </div>
+    <div class="conversations__content__insights">
+      <div class="conversations__content__insights__title">Insights</div>
+      <div class="conversations__content__insights__about">
+        <p>
+          Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de
+          mensagem disparados.
+        </p>
+      </div>
+      <div class="conversations__content__insights__button">
+        <router-link-stub to="insights" tag="a" ariacurrentvalue="page" event="click" t="" class="link">
+          <unnnicbutton-stub size="large" text="Ver insights" type="primary"></unnnicbutton-stub>
+        </router-link-stub>
+      </div>
+    </div>
   </div>
   <div class="conversations__buttons">
     <unnnicbutton-stub size="large" text="Close" type="secondary" class="conversations__buttons__close"></unnnicbutton-stub>
