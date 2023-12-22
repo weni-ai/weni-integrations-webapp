@@ -24,7 +24,7 @@
       <div class="wpp_insights__header__button">
         <unnnic-button
           text="Ativar insights"
-          :disable="!isActive"
+          :disabled="isActive"
           ref="wpp_insights__button__close"
           @click="toggleOpenModal"
         />
@@ -73,6 +73,15 @@
           />
         </div>
       </div>
+
+      <!-- If active -->
+      <div class="wpp_insights__content__active" v-if="isActive">
+        <div class="wpp_insights__content__active__chart">
+          <unnnic-chart-multi-line :data="data" :title="'Mensagens enviadas'" />
+          <unnnic-chart-multi-line :data="data" :title="'Mensagens entregues'" />
+          <unnnic-chart-multi-line :data="data" :title="'Mensagens recebidas'" />
+        </div>
+      </div>
     </div>
 
     <!-- Modal -->
@@ -93,7 +102,7 @@
           <p>
             Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp
             Business. Esses insights incluem rastreamento de link para relatar os cliques no site.
-            Você pode desativar o rastreamento de link em cada modelo de mensagem
+            Você pode desativar o rastreamento de link em cada modelo de mensagem.
           </p>
           <p>
             Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus
@@ -123,6 +132,7 @@
     unnnicAvatarIcon,
     unnnicButton,
     unnnicModal,
+    unnnicChartMultiLine,
   } from '@weni/unnnic-system';
   export default {
     name: 'Insights',
@@ -131,11 +141,65 @@
       unnnicAvatarIcon,
       unnnicButton,
       unnnicModal,
+      unnnicChartMultiLine,
     },
     data() {
       return {
-        isActive: false,
+        isActive: true,
         showModal: false,
+        data: [
+          {
+            title: 'Grupo 1',
+            data: [
+              {
+                title: '1',
+                value: 5,
+              },
+              {
+                title: '2',
+                value: 7,
+              },
+              {
+                title: '3',
+                value: 9,
+              },
+            ],
+          },
+          {
+            title: 'Grupo 2',
+            data: [
+              {
+                title: '1',
+                value: 1,
+              },
+              {
+                title: '2',
+                value: 4,
+              },
+              {
+                title: '3',
+                value: 2,
+              },
+            ],
+          },
+          {
+            title: 'Grupo 3',
+            data: [
+              {
+                title: '5',
+                value: 5,
+              },
+              {
+                title: '2',
+                value: 2,
+              },
+              {
+                title: '4',
+                value: 4,
+              },
+            ],
+          },
+        ],
       };
     },
     methods: {

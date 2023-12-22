@@ -17,7 +17,7 @@ exports[`AppModal should be rendered properly 1`] = `
       </div>
     </div>
     <div class="wpp_insights__header__button">
-      <unnnicbutton-stub size="large" text="Ativar insights" type="primary" disable="true"></unnnicbutton-stub>
+      <unnnicbutton-stub size="large" text="Ativar insights" type="primary" disabled="true"></unnnicbutton-stub>
     </div>
   </div>
   <div class="wpp_insights__filters">
@@ -25,7 +25,7 @@ exports[`AppModal should be rendered properly 1`] = `
       <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
       <div class="wpp_insights__filters__time__select">
         <div class="unnnic-select">
-          <!----><span data-v-6fe2671f="" class="dropdown"><div data-v-400546b3="" class="text-input size--md has-icon-right" readonly="readonly" data-v-6fe2671f=""><input data-v-97b44e8c="" data-v-400546b3="" type="text" size="0" readonly="readonly" placeholder="" iconright="arrow-button-down-1" iconrightclickable="true" class="input-itself input size-md normal"><!----><span data-v-59b073b4="" data-v-400546b3="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy icon-right clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+          <!----><span data-v-6fe2671f="" class="dropdown"><div data-v-400546b3="" class="text-input size--md has-icon-right" readonly="readonly" data-v-6fe2671f=""><input data-v-97b44e8c="" data-v-400546b3="" type="text" size="0" readonly="readonly" placeholder="" iconright="arrow-button-down-1" iconrightclickable="true" class="input-itself input size-md normal"><!----><span data-v-ab84ef7c="" data-v-400546b3="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy icon-right clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
         </div>
         <option data-v-6fe2671f="">Semana atual</option>
         <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
@@ -37,7 +37,7 @@ exports[`AppModal should be rendered properly 1`] = `
     <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
     <div class="wpp_insights__filters__model__select">
       <div class="unnnic-select">
-        <!----><span data-v-6fe2671f="" class="dropdown"><div data-v-400546b3="" class="text-input size--md has-icon-right" readonly="readonly" data-v-6fe2671f=""><input data-v-97b44e8c="" data-v-400546b3="" type="text" size="0" readonly="readonly" placeholder="" iconright="arrow-button-down-1" iconrightclickable="true" class="input-itself input size-md normal"><!----><span data-v-59b073b4="" data-v-400546b3="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy icon-right clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+        <!----><span data-v-6fe2671f="" class="dropdown"><div data-v-400546b3="" class="text-input size--md has-icon-right" readonly="readonly" data-v-6fe2671f=""><input data-v-97b44e8c="" data-v-400546b3="" type="text" size="0" readonly="readonly" placeholder="" iconright="arrow-button-down-1" iconrightclickable="true" class="input-itself input size-md normal"><!----><span data-v-ab84ef7c="" data-v-400546b3="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy icon-right clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
       </div>
       <option data-v-6fe2671f="">Semana atual</option>
       <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
@@ -47,17 +47,354 @@ exports[`AppModal should be rendered properly 1`] = `
 </div>
 </div>
 <div class="wpp_insights__content">
-  <div class="wpp_insights__content__empty">
-    <div class="wpp_insights__content__empty__image"><img src="../../assets/svgs/empty-apps.svg" alt=""></div>
-    <div class="wpp_insights__content__empty__text">
-      <div class="wpp_insights__content__empty__text__title">Você não ativou os insights</div>
-      <div class="wpp_insights__content__empty__text__description">
-        Os insights ajudam a acompanhar, entender e aprimorar seus modelos de mensagem de
-        marketing.
+  <!---->
+  <div class="wpp_insights__content__active">
+    <div class="wpp_insights__content__active__chart">
+      <div data-v-935026aa="" class="unnnic-chart-line">
+        <div data-v-935026aa="" class="header">
+          <div data-v-935026aa="" class="title unnnic-font secondary body-lg color-neutral-dark"> Mensagens enviadas </div>
+        </div>
+        <div data-v-935026aa="" class="main">
+          <div data-v-935026aa="" class="reference">
+            <div data-v-935026aa="" class="values">
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 9 </div>
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 5 </div>
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 1 </div>
+            </div>
+            <div data-v-935026aa="" class="unnnic-font secondary body-md color-neutral-cleanest">&nbsp;</div>
+          </div>
+          <div data-v-935026aa="" class="lines">
+            <div data-v-935026aa="" class="groups">
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C73.75%20C%203.000384657911016e-16%2C68.85%206.000769315822032e-16%2C59.05%200%2C49.25%20C%206.000769315822032e-16%2C39.45%203.000384657911016e-16%2C29.65%200%2C24.75%22%20fill%3D%22none%22%20stroke%3D%22%233182CE%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 55.55555555555556%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 5 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 77.77777777777779%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 7 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 100%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 9 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C122.75%20C%204.500576986866523e-16%2C115.4%201.500192328955508e-16%2C88.45%200%2C86%20C%201.500192328955508e-16%2C83.55%20-9.001153973733046e-16%2C105.6%200%2C110.5%22%20fill%3D%22none%22%20stroke%3D%22%2338A169%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 12.5%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 1 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 50%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 4 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 25%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 2 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C73.75%20C%204.500576986866523e-16%2C81.1%20-4.500576986866523e-16%2C108.05%200%2C110.5%20C%201.500192328955508e-16%2C112.95%203.000384657911016e-16%2C90.9%200%2C86%22%20fill%3D%22none%22%20stroke%3D%22%23DD6B20%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 71.42857142857143%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 5 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 28.57142857142857%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 2 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 57.14285714285714%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 4 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-v-935026aa="" class="titles"></div>
+        <div data-v-935026aa="" class="labels">
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#3182CE"></rect>
+            </svg> Grupo 1 </div>
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#38A169"></rect>
+            </svg> Grupo 2 </div>
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#DD6B20"></rect>
+            </svg> Grupo 3 </div>
+        </div>
       </div>
-    </div>
-    <div class="wpp_insights__content__empty__button">
-      <unnnicbutton-stub size="large" text="Ativar insights" type="primary"></unnnicbutton-stub>
+      <div data-v-935026aa="" class="unnnic-chart-line">
+        <div data-v-935026aa="" class="header">
+          <div data-v-935026aa="" class="title unnnic-font secondary body-lg color-neutral-dark"> Mensagens entregues </div>
+        </div>
+        <div data-v-935026aa="" class="main">
+          <div data-v-935026aa="" class="reference">
+            <div data-v-935026aa="" class="values">
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 9 </div>
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 5 </div>
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 1 </div>
+            </div>
+            <div data-v-935026aa="" class="unnnic-font secondary body-md color-neutral-cleanest">&nbsp;</div>
+          </div>
+          <div data-v-935026aa="" class="lines">
+            <div data-v-935026aa="" class="groups">
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C73.75%20C%203.000384657911016e-16%2C68.85%206.000769315822032e-16%2C59.05%200%2C49.25%20C%206.000769315822032e-16%2C39.45%203.000384657911016e-16%2C29.65%200%2C24.75%22%20fill%3D%22none%22%20stroke%3D%22%233182CE%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 55.55555555555556%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 5 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 77.77777777777779%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 7 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 100%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 9 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C122.75%20C%204.500576986866523e-16%2C115.4%201.500192328955508e-16%2C88.45%200%2C86%20C%201.500192328955508e-16%2C83.55%20-9.001153973733046e-16%2C105.6%200%2C110.5%22%20fill%3D%22none%22%20stroke%3D%22%2338A169%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 12.5%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 1 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 50%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 4 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 25%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 2 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C73.75%20C%204.500576986866523e-16%2C81.1%20-4.500576986866523e-16%2C108.05%200%2C110.5%20C%201.500192328955508e-16%2C112.95%203.000384657911016e-16%2C90.9%200%2C86%22%20fill%3D%22none%22%20stroke%3D%22%23DD6B20%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 71.42857142857143%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 5 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 28.57142857142857%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 2 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 57.14285714285714%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 4 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-v-935026aa="" class="titles"></div>
+        <div data-v-935026aa="" class="labels">
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#3182CE"></rect>
+            </svg> Grupo 1 </div>
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#38A169"></rect>
+            </svg> Grupo 2 </div>
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#DD6B20"></rect>
+            </svg> Grupo 3 </div>
+        </div>
+      </div>
+      <div data-v-935026aa="" class="unnnic-chart-line">
+        <div data-v-935026aa="" class="header">
+          <div data-v-935026aa="" class="title unnnic-font secondary body-lg color-neutral-dark"> Mensagens recebidas </div>
+        </div>
+        <div data-v-935026aa="" class="main">
+          <div data-v-935026aa="" class="reference">
+            <div data-v-935026aa="" class="values">
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 9 </div>
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 5 </div>
+              <div data-v-935026aa="" class="value unnnic-font secondary body-md color-neutral-cleanest"> 1 </div>
+            </div>
+            <div data-v-935026aa="" class="unnnic-font secondary body-md color-neutral-cleanest">&nbsp;</div>
+          </div>
+          <div data-v-935026aa="" class="lines">
+            <div data-v-935026aa="" class="groups">
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C73.75%20C%203.000384657911016e-16%2C68.85%206.000769315822032e-16%2C59.05%200%2C49.25%20C%206.000769315822032e-16%2C39.45%203.000384657911016e-16%2C29.65%200%2C24.75%22%20fill%3D%22none%22%20stroke%3D%22%233182CE%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 55.55555555555556%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 5 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 77.77777777777779%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 7 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 100%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 9 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C122.75%20C%204.500576986866523e-16%2C115.4%201.500192328955508e-16%2C88.45%200%2C86%20C%201.500192328955508e-16%2C83.55%20-9.001153973733046e-16%2C105.6%200%2C110.5%22%20fill%3D%22none%22%20stroke%3D%22%2338A169%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 12.5%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 1 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 50%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 4 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 25%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 2 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+              <div data-v-935026aa="">
+                <div data-v-935026aa="" class="chart" style="background-image: url(data:image/svg+xml,%0A%20%20%20%20%20%20%20%20%3Csvg%20viewBox%3D%220%200%20980%20146%3B%22%20%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22svg%22%3E%0A%20%20%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22%20M%200%2C73.75%20C%204.500576986866523e-16%2C81.1%20-4.500576986866523e-16%2C108.05%200%2C110.5%20C%201.500192328955508e-16%2C112.95%203.000384657911016e-16%2C90.9%200%2C86%22%20fill%3D%22none%22%20stroke%3D%22%23DD6B20%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%20%20%20%20%3C%2Fsvg%3E%0A%20%20%20%20%20%20);">
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 71.42857142857143%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 5 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 28.57142857142857%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 2 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="group">
+                    <div data-v-49d78ffa="" class="unnnic-tooltip" style="height: 57.14285714285714%; width: 100%;">
+                      <div data-v-49d78ffa="" class="bar"></div><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> 4 <br data-v-49d78ffa=""><!----></span>
+                    </div>
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 32px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 80.66666666666666px;">
+                    <hr class="line">
+                  </div>
+                  <div class="horizontal-line color-neutral-cleanest" style="top: 129.33333333333331px;">
+                    <hr class="line">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-v-935026aa="" class="titles"></div>
+        <div data-v-935026aa="" class="labels">
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#3182CE"></rect>
+            </svg> Grupo 1 </div>
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#38A169"></rect>
+            </svg> Grupo 2 </div>
+          <div data-v-935026aa="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-935026aa="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect data-v-935026aa="" width="15" height="6" rx="3" fill="#DD6B20"></rect>
+            </svg> Grupo 3 </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

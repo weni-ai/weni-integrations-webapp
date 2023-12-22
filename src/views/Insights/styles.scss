@@ -67,6 +67,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: 315px;
 
     &__empty {
       display: flex;
@@ -100,6 +102,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+    }
+
+    &__active{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      align-self: flex-start;
+
+      &__chart{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 0;
       }
     }
   }
