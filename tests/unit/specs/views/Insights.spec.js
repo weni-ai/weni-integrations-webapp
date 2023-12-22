@@ -35,4 +35,9 @@ describe('AppModal', () => {
     wrapper.vm.toggleOpenModal();
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should set toggleModal to true', async () => {
+    wrapper.vm.toggleOpenModal();
+    expect(wrapper.vm.showModal).toBeTruthy();
+  });
 });
