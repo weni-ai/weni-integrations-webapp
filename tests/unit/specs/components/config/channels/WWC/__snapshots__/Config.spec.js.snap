@@ -5,6 +5,9 @@ exports[`wwc/Config.vue should be rendered properly 1`] = `
   <div class="app-config-wwc__header">
     <div class="app-config-wwc__header__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-config-wwc__header__icon-container__icon"></div>
     <div class="app-config-wwc__header__title">Weni Web Chat</div>
+    <div class="app-config-wwc__header__close">
+      <unnnicbutton-stub size="small" type="tertiary" iconleft="close-1" class="app-config-wwc__header__close__button"></unnnicbutton-stub>
+    </div>
   </div>
   <div class="app-config-wwc__content">
     <unnnictab-stub size="md" initialtab="settings" tabs="settings,appearance,script" class="app-config-wwc__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>

@@ -5,6 +5,15 @@
         <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
       </div>
       <div class="app-config-wwc__header__title">{{ app.name }}</div>
+      <div class="app-config-wwc__header__close">
+        <unnnic-button
+          size="small"
+          iconLeft="close-1"
+          type="tertiary"
+          class="app-config-wwc__header__close__button"
+          @click="closeConfig"
+        />
+      </div>
     </div>
 
     <div class="app-config-wwc__content">
@@ -20,7 +29,7 @@
                 :type="errorFor('title') ? 'error' : 'normal'"
                 :label="`${$t('weniWebChat.config.TitleInput.label')}`"
                 :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
-                :message="errorFor('title') ? $t('errors.required_message') : ''"
+                :message="errorFor('title') || ''"
               />
 
               <div class="app-config-wwc__tabs__settings-content__input__subtitle-container">
@@ -154,7 +163,7 @@
 
               <unnnic-button
                 class="app-config-wwc__tabs__settings-content__buttons__save"
-                type="secondary"
+                type="primary"
                 size="large"
                 :text="$t('apps.config.save_changes')"
                 :loading="loadingSave"
@@ -217,7 +226,7 @@
 
               <unnnic-button
                 class="app-config-wwc__tabs__settings-content__buttons__save"
-                type="secondary"
+                type="primary"
                 size="large"
                 :text="$t('apps.config.save_changes')"
                 :loading="loadingSave"
@@ -541,6 +550,9 @@
           if (!(value && value.trim())) {
             return this.$t('errors.empty_input');
           }
+          if (value.length > 20) {
+            return 'By default, the maximum is 20 characters.';
+          }
         }
       },
       validConfig() {
@@ -662,6 +674,7 @@
     &__content {
       overflow: auto;
       display: flex;
+      width: 100%;
       flex-direction: column;
       flex: 1;
       color: $unnnic-color-neutral-cloudy;
@@ -673,11 +686,13 @@
 
     &__header {
       display: flex;
+      width: 100%;
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
 
       &__icon-container {
         display: flex;
+        justify-self: flex-start;
         width: $unnnic-avatar-size-sm;
         height: $unnnic-avatar-size-sm;
         border-radius: $unnnic-border-radius-sm;
@@ -690,6 +705,8 @@
       }
 
       &__title {
+        display: flex;
+        justify-self: flex-start;
         align-self: center;
         font-family: $unnnic-font-family-primary;
         font-weight: $unnnic-font-weight-regular;
@@ -698,6 +715,15 @@
         color: $unnnic-color-neutral-darkest;
 
         margin-left: $unnnic-inline-sm;
+      }
+
+      &__close {
+        display: flex;
+        width: 60%;
+        justify-content: end;
+        &__button {
+          display: flex;
+        }
       }
     }
 
@@ -894,10 +920,12 @@
           padding-right: $unnnic-spacing-inline-xs;
           margin-top: $unnnic-spacing-stack-sm;
           display: flex;
+          gap: 1rem;
 
           &__cancel,
           &__save {
             flex-grow: 1;
+            width: 250px;
           }
         }
       }
