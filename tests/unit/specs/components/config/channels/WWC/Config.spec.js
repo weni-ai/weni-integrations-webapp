@@ -324,6 +324,11 @@ describe('wwc/Config.vue', () => {
       const isValid = wrapper.vm.validConfig();
       expect(isValid).toBeFalsy();
     });
+    it('should return false if the word is greater than 20 characters', async () => {
+      await wrapper.setData({ title: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaa' });
+      const isValid = wrapper.vm.validConfig();
+      expect(isValid).toBeFalsy();
+    });
   });
 
   describe('getFileType()', () => {

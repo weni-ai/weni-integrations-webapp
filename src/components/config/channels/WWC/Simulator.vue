@@ -222,6 +222,7 @@
   .wwc-simulator {
     height: 100%;
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-content: flex-end;
     &__content {
@@ -237,6 +238,7 @@
         display: flex;
         background-color: var(--main-color);
         border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0 0;
+        width: 100%;
 
         &__custom-icon {
           @include customIcon;
@@ -262,9 +264,11 @@
           flex-grow: 1;
           color: $unnnic-color-background-snow;
           margin: $unnnic-spacing-inset-nano 0;
+          overflow: hidden;
 
           &__title {
             font-size: $unnnic-font-size-body-lg;
+            overflow: hidden;
           }
 
           &__subtitle {
@@ -377,13 +381,14 @@
         display: flex;
         align-items: center;
         background-color: $unnnic-color-background-sky;
-
         &__text {
           margin: $unnnic-inset-nano;
           font-family: $unnnic-font-family-secondary;
           font-size: $unnnic-font-size-body-lg;
           line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
           color: $unnnic-color-neutral-clean;
+          width: 100%;
+          overflow: hidden;
         }
 
         &__button {
