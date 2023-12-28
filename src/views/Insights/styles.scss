@@ -62,16 +62,16 @@
 
   &__content {
     display: flex;
-    height: 408px;
     width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
+
     top: 315px;
 
     &__empty {
       display: flex;
+      flex: 1;
       justify-content: center;
       flex-direction: column;
       align-items: center;
@@ -96,6 +96,7 @@
         &__description {
           font-size: $unnnic-font-size-body-gt;
           color: $unnnic-color-neutral-dark;
+          text-align: center;
         }
       }
       &__button {
@@ -105,14 +106,16 @@
       }
     }
 
-    &__active{
+    &__active {
       display: flex;
       flex-direction: column;
       align-items: start;
       justify-content: start;
       align-self: flex-start;
+      position: relative;
+      height: 408px;
 
-      &__chart{
+      &__chart {
         display: flex;
         width: 100%;
         flex-direction: column;

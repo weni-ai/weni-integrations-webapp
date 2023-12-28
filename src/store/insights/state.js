@@ -1,4 +1,6 @@
 export default {
   isActive: false,
-  data: [],
+  templateAnalytics: [],
+  loadingTemplateAnalytics: false,
+  errorTemplateAnalytics: null,
 };

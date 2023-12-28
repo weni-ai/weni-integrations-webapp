@@ -35,18 +35,22 @@
       <div class="wpp_insights__filters__time">
         <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
         <div class="wpp_insights__filters__time__select">
-          <unnnic-select searchPlaceholder="Buscar por...">
-            <div slot="header">header</div>
+          <unnnic-select searchPlaceholder="Buscar por..." v-model="periodo">
             <option>Semana atual</option>
+            <option>Mês atual</option>
+            <option>Últimos 60 dias</option>
           </unnnic-select>
         </div>
       </div>
       <div class="wpp_insights__filters__model">
         <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
         <div class="wpp_insights__filters__model__select">
-          <unnnic-select searchPlaceholder="Buscar por...">
-            <div slot="header">header</div>
-            <option>Semana atual</option>
+          <unnnic-select searchPlaceholder="Buscar por..." v-model="model">
+            <option>831797345020910</option>
+            <option>1515371305882507</option>
+            <option>768404021753348</option>
+            <option>730081812069736</option>
+            <option>Todos</option>
           </unnnic-select>
         </div>
       </div>
@@ -59,10 +63,11 @@
           <img src="../../assets/svgs/empty-apps.svg" alt="" />
         </div>
         <div class="wpp_insights__content__empty__text">
-          <div class="wpp_insights__content__empty__text__title">Você não ativou os insights</div>
+          <div class="wpp_insights__content__empty__text__title">
+            {{ $t('WhatsApp.insights.disabled') }}
+          </div>
           <div class="wpp_insights__content__empty__text__description">
-            Os insights ajudam a acompanhar, entender e aprimorar seus modelos de mensagem de
-            marketing.
+            {{ $t('WhatsApp.insights.about_description') }}
           </div>
         </div>
         <div class="wpp_insights__content__empty__button">
@@ -77,9 +82,14 @@
       <!-- If active -->
       <div class="wpp_insights__content__active" v-if="isActive">
         <div class="wpp_insights__content__active__chart">
-          <unnnic-chart-multi-line :data="data" :title="'Mensagens enviadas'" />
-          <unnnic-chart-multi-line :data="data" :title="'Mensagens entregues'" />
-          <unnnic-chart-multi-line :data="data" :title="'Mensagens recebidas'" />
+          <!-- <unnnic-chart-multi-line
+            :data="getChartDataByDay"
+            :title="'Envios por dia'"
+            v-if="false"
+          /> -->
+          <unnnic-chart-multi-line :data="getChartData" :title="'Mensagens enviadas'" />
+          <unnnic-chart-multi-line :data="getChartData" :title="'Mensagens entregues'" />
+          <unnnic-chart-multi-line :data="getChartData" :title="'Mensagens recebidas'" />
         </div>
       </div>
     </div>
@@ -93,21 +103,13 @@
         </div>
         <div class="wpp_insights__modal__content">
           <p class="wpp_insights__modal__content__dark">
-            Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear,
-            entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão
-            insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights,
-            os dados existentes para "mensagens enviadas" serão apagados. O rastreamento recomeçará
-            na data em que você clicar em Confirmar.
+            {{ $t('WhatsApp.insights.about_text_1') }}
           </p>
           <p>
-            Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp
-            Business. Esses insights incluem rastreamento de link para relatar os cliques no site.
-            Você pode desativar o rastreamento de link em cada modelo de mensagem.
+            {{ $t('WhatsApp.insights.about_text_2') }}
           </p>
           <p>
-            Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus
-            bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que
-            presta a você e a outras empresas.
+            {{ $t('WhatsApp.insights.about_text_3') }}
           </p>
         </div>
 
@@ -134,6 +136,7 @@
     unnnicModal,
     unnnicChartMultiLine,
   } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'vuex';
   export default {
     name: 'Insights',
     components: {
@@ -147,62 +150,120 @@
       return {
         isActive: true,
         showModal: false,
-        data: [
-          {
-            title: 'Grupo 1',
-            data: [
-              {
-                title: '1',
-                value: 5,
-              },
-              {
-                title: '2',
-                value: 7,
-              },
-              {
-                title: '3',
-                value: 9,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 2',
-            data: [
-              {
-                title: '1',
-                value: 1,
-              },
-              {
-                title: '2',
-                value: 4,
-              },
-              {
-                title: '3',
-                value: 2,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 3',
-            data: [
-              {
-                title: '5',
-                value: 5,
-              },
-              {
-                title: '2',
-                value: 2,
-              },
-              {
-                title: '4',
-                value: 4,
-              },
-            ],
-          },
-        ],
+        model: 'Todos',
+        periodo: 'Semana atual',
       };
     },
+    mounted() {
+      this.fetchTemplateAnalytics();
+    },
+    computed: {
+      ...mapState({
+        app_uuid: (state) =>
+          state.myApps.configuredApps.find((item) => item.code === 'wpp-cloud')?.uuid,
+        errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
+        errorTemplates: (state) => state.insights.errorTemplates,
+        templateAnalytics: (state) => state.insights.templateAnalytics,
+      }),
+      getPeriodo() {
+        const today = new Date(Date.now() - 24 * 60 * 60 * 1000);
+        switch (this.periodo) {
+          case 'Semana atual': {
+            const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+            return {
+              end: `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`,
+              start: `${lastWeek.getMonth() + 1}-${lastWeek.getDate()}-${lastWeek.getFullYear()}`,
+            };
+          }
+          case 'Mês atual': {
+            return {
+              end: `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`,
+              start: `${today.getMonth()}-${today.getDate()}-${today.getFullYear()}`,
+            };
+          }
+          case 'Últimos 60 dias': {
+            const noventaDias = new Date(Date.now() - 59 * 24 * 60 * 60 * 1000);
+            return {
+              end: `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`,
+              start: `${noventaDias.getMonth()}-${noventaDias.getDate()}-${noventaDias.getFullYear()}`,
+            };
+          }
+        }
+        return '';
+      },
+      getChartDataByDay() {
+        const data = [
+          {
+            title: 'Delivered',
+            data: this.templateAnalytics?.data?.map((item) => {
+              return {
+                title: item.start,
+                value: item.delivered,
+              };
+            }),
+          },
+          {
+            title: 'Read',
+            data: this.templateAnalytics?.data?.map((item) => {
+              return {
+                title: item.start,
+                value: item.read,
+              };
+            }),
+          },
+          {
+            title: 'Sent',
+            data: this.templateAnalytics?.data?.map((item) => {
+              return {
+                title: item.start,
+                value: item.sent,
+              };
+            }),
+          },
+        ];
+        return data || [];
+      },
+      getChartData() {
+        const data = this.templateAnalytics?.data?.map((template) => {
+          return {
+            title: template.template_name ?? template.template_id,
+            data: template.dates.map((item) => {
+              return {
+                title: item.start,
+                value: item.delivered,
+              };
+            }),
+          };
+        });
+        return data ?? [];
+      },
+    },
+    watch: {
+      getPeriodo() {
+        this.fetchTemplateAnalytics();
+      },
+      model(newVal, oldVal) {
+        if (newVal != oldVal) {
+          this.fetchTemplateAnalytics();
+        }
+      },
+    },
     methods: {
+      ...mapActions(['getTemplateAnalytics', 'getTemplates']),
+      fetchTemplateAnalytics() {
+        const params = {
+          app_uuid: this.app_uuid,
+          filters: {
+            start: this.getPeriodo.start,
+            end: this.getPeriodo.end,
+            fba_template_ids: this.model,
+          },
+        };
+        this.getTemplateAnalytics(params);
+        if (this.errorTemplateAnalytics) {
+          alert(this.errorTemplateAnalytics);
+        }
+      },
       toggleOpenModal() {
         this.showModal = !this.showModal;
       },

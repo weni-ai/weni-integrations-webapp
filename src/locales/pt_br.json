@@ -659,6 +659,13 @@
         "create_translation": "Tradução de template criada com sucesso",
         "update_translation": "Tradução de template atualizada com sucesso"
       }
+    },
+    "insights": {
+      "disabled": "Você não ativou os insights",
+      "about_description": "Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem disparados",
+      "about_text_1": "Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear, entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights, os dados existentes para &quot mensagens enviadas &quot; serão apagados. O rastreamento recomeçará na data em que você clicar em Confirmar.",
+      "about_text_2": " Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp Business. Esses insights incluem rastreamento de link para relatar os cliques no site. Você pode desativar o rastreamento de link em cada modelo de mensagem.",
+      "about_text_3": " Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que presta a você e a outras empresas."
     }
   },
   "WhatsAppCloud": {
