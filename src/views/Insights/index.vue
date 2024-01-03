@@ -45,13 +45,7 @@
       <div class="wpp_insights__filters__model">
         <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
         <div class="wpp_insights__filters__model__select">
-          <unnnic-select searchPlaceholder="Buscar por..." v-model="model">
-            <option>831797345020910</option>
-            <option>1515371305882507</option>
-            <option>768404021753348</option>
-            <option>730081812069736</option>
-            <option>Todos</option>
-          </unnnic-select>
+          <unnnic-select-smart v-model="model" :options="modelOptions" multiple />
         </div>
       </div>
     </div>
@@ -150,7 +144,7 @@
       return {
         isActive: true,
         showModal: false,
-        model: 'Todos',
+        model: [],
         periodo: 'Semana atual',
       };
     },
@@ -165,6 +159,54 @@
         errorTemplates: (state) => state.insights.errorTemplates,
         templateAnalytics: (state) => state.insights.templateAnalytics,
       }),
+      modelOptions() {
+        return [
+          {
+            value: '730081812069736',
+            label: 'Modelo 1',
+          },
+          {
+            value: '730081812069737',
+            label: 'Modelo 2',
+          },
+          {
+            value: '730081812069738',
+            label: 'Modelo 3',
+          },
+          {
+            value: '730081812069739',
+            label: 'Modelo 4',
+          },
+          {
+            value: '730081812069735',
+            label: 'Modelo 5',
+          },
+          {
+            value: '730081812069734',
+            label: 'Modelo 6',
+          },
+          {
+            value: '730081812069733',
+            label: 'Modelo 7',
+          },
+          {
+            value: '730081812069732',
+            label: 'Modelo 8',
+          },
+          {
+            value: '730081812069731',
+            label: 'Modelo 9',
+          },
+          {
+            value: '730081812069730',
+            label: 'Modelo 10',
+          },
+          {
+            value: '7300818120697355',
+            label: 'Modelo 11',
+          },
+        ];
+      },
       getPeriodo() {
         const today = new Date(Date.now() - 24 * 60 * 60 * 1000);
         switch (this.periodo) {
@@ -246,17 +288,22 @@
         if (newVal != oldVal) {
           this.fetchTemplateAnalytics();
         }
+        if (newVal.length > 10) {
+          this.model = this.model.slice(0, 10);
+        }
       },
     },
     methods: {
       ...mapActions(['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalytics() {
+        console.log(this.model);
+        const models = this.model.map((item) => item.value);
         const params = {
           app_uuid: this.app_uuid,
           filters: {
             start: this.getPeriodo.start,
             end: this.getPeriodo.end,
-            fba_template_ids: this.model,
+            fba_template_ids: models,
           },
         };
         this.getTemplateAnalytics(params);

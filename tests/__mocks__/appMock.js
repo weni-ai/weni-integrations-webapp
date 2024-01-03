@@ -192,10 +192,37 @@ const installedApps = [
   },
 ];
 
+const templateAnalytics = [
+  {
+    template_id: '831797345020910',
+    template_name: 'wenieditordisparo1',
+    totals: {
+      sent: 3,
+      delivered: 3,
+      read: 1,
+    },
+    dates: [
+      {
+        start: '2023-09-27',
+        sent: 0,
+        delivered: 0,
+        read: 0,
+      },
+      {
+        start: '2023-09-28',
+        sent: 3,
+        delivered: 3,
+        read: 1,
+      },
+    ],
+  },
+];
+
 module.exports = {
   singleApp,
   communicationApps,
   attendanceApps,
   configuredApps,
   installedApps,
+  templateAnalytics,
 };
