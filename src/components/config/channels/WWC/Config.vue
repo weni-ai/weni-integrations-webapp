@@ -686,7 +686,7 @@
 
     &__header {
       display: flex;
-      width: 100%;
+      width: 95%;
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
 
@@ -701,6 +701,7 @@
 
         &__icon {
           margin: $unnnic-inline-nano;
+          width: 40px;
         }
       }
 
@@ -713,15 +714,18 @@
         font-size: $unnnic-font-size-title-md;
         line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
-
         margin-left: $unnnic-inline-sm;
+        width: 432px;
       }
 
       &__close {
         display: flex;
-        width: 60%;
         justify-content: end;
+        justify-self: end;
+        width: 100%;
+        padding-right: $unnnic-spacing-inline-xs;
         &__button {
+          justify-self: end;
           display: flex;
         }
       }
@@ -753,11 +757,12 @@
         }
       }
       &__settings-content {
-        padding-right: $unnnic-spacing-inline-xs;
+        padding: 0, $unnnic-spacing-inline-lg;
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow: auto;
+        width: 95%;
+        overflow: hidden;
 
         &__scroll {
           display: flex;
@@ -904,6 +909,7 @@
 
         &__colors {
           margin-top: $unnnic-spacing-stack-sm;
+
           &__label {
             color: $unnnic-color-neutral-cloudy;
             font-family: $unnnic-font-family-secondary;
@@ -913,25 +919,29 @@
 
           &__picker {
             margin-top: $unnnic-spacing-stack-xs;
+            cursor: pointer;
           }
         }
 
         &__buttons {
-          padding-right: $unnnic-spacing-inline-xs;
           margin-top: $unnnic-spacing-stack-sm;
           display: flex;
-          gap: 1rem;
+          width: 95%;
+          gap: $unnnic-spacing-inline-xs;
+          justify-content: center;
 
           &__cancel,
           &__save {
             flex-grow: 1;
             width: 250px;
+            margin: $unnnic-spacing-inline-xs;
           }
         }
       }
 
       &__script-content {
         display: flex;
+        width: 95%;
         flex-direction: column;
         gap: $unnnic-inline-xs;
 
@@ -943,7 +953,7 @@
         }
 
         .data-area-container {
-          width: 100%;
+          width: 95%;
         }
       }
     }
