@@ -54,6 +54,22 @@
             },
           },
           {
+            id: 'add_language1',
+            title: 'See Details',
+            icon: 'pencil-write-1',
+            scheme: 'neutral-darkest',
+            action: () => {
+              const { appUuid } = this.$route.params;
+              this.$router.push({
+                path: `/apps/insights`,
+                hash: '#template',
+                query: {
+                  uuid: appUuid,
+                },
+              });
+            },
+          },
+          {
             id: 'delete_language',
             title: this.$t('WhatsApp.templates.table.actions.delete_language'),
             icon: 'bin-1-1',

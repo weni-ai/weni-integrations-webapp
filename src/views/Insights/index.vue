@@ -35,11 +35,12 @@
       <div class="wpp_insights__filters__time">
         <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
         <div class="wpp_insights__filters__time__select">
-          <unnnic-select searchPlaceholder="Buscar por..." v-model="periodo">
-            <option>Semana atual</option>
-            <option>Mês atual</option>
-            <option>Últimos 60 dias</option>
-          </unnnic-select>
+          <unnnic-input-date-picker
+            :value="periodo"
+            size="md"
+            @changed="setPeriodo"
+            format="MM-DD-YYYY"
+          />
         </div>
       </div>
       <div class="wpp_insights__filters__model">
@@ -76,14 +77,26 @@
       <!-- If active -->
       <div class="wpp_insights__content__active" v-if="isActive">
         <div class="wpp_insights__content__active__chart">
-          <!-- <unnnic-chart-multi-line
-            :data="getChartDataByDay"
-            :title="'Envios por dia'"
-            v-if="false"
-          /> -->
-          <unnnic-chart-multi-line :data="getChartData" :title="'Mensagens enviadas'" />
-          <unnnic-chart-multi-line :data="getChartData" :title="'Mensagens entregues'" />
-          <unnnic-chart-multi-line :data="getChartData" :title="'Mensagens recebidas'" />
+          <unnnic-chart-multi-line
+            :data="getChartSent"
+            :title="'Mensagens enviadas'"
+            v-if="!hash"
+          />
+          <unnnic-chart-multi-line
+            :data="getChartDelivered"
+            :title="'Mensagens entregues'"
+            v-if="!hash"
+          />
+          <unnnic-chart-multi-line
+            :data="getChartRead"
+            :title="'Mensagens recebidas'"
+            v-if="!hash"
+          />
+          <unnnic-chart-multi-line
+            :data="getChartByDay"
+            :title="'Mensagens recebidas'"
+            v-if="hash"
+          />
         </div>
       </div>
     </div>
@@ -145,7 +158,11 @@
         isActive: true,
         showModal: false,
         model: [],
-        periodo: 'Semana atual',
+        periodo: {
+          start: this.formatDate(new Date(Date.now() - 24 * 60 * 60 * 1000)),
+          end: this.formatDate(new Date()),
+        },
+        hash: this.$route.hash,
       };
     },
     mounted() {
@@ -207,83 +224,38 @@
           },
         ];
       },
-      getPeriodo() {
-        const today = new Date(Date.now() - 24 * 60 * 60 * 1000);
-        switch (this.periodo) {
-          case 'Semana atual': {
-            const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-            return {
-              end: `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`,
-              start: `${lastWeek.getMonth() + 1}-${lastWeek.getDate()}-${lastWeek.getFullYear()}`,
-            };
-          }
-          case 'Mês atual': {
-            return {
-              end: `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`,
-              start: `${today.getMonth()}-${today.getDate()}-${today.getFullYear()}`,
-            };
-          }
-          case 'Últimos 60 dias': {
-            const noventaDias = new Date(Date.now() - 59 * 24 * 60 * 60 * 1000);
-            return {
-              end: `${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}`,
-              start: `${noventaDias.getMonth()}-${noventaDias.getDate()}-${noventaDias.getFullYear()}`,
-            };
-          }
-        }
-        return '';
-      },
-      getChartDataByDay() {
-        const data = [
+      getChartByDay() {
+        const sent = this.getChartSent().data;
+        const delivered = this.getChartDelivered().data;
+        const read = this.getChartRead().data;
+        let chart = [
+          {
+            title: 'Sent',
+            data: sent,
+          },
           {
             title: 'Delivered',
-            data: this.templateAnalytics?.data?.map((item) => {
-              return {
-                title: item.start,
-                value: item.delivered,
-              };
-            }),
+            data: delivered,
           },
           {
             title: 'Read',
-            data: this.templateAnalytics?.data?.map((item) => {
-              return {
-                title: item.start,
-                value: item.read,
-              };
-            }),
-          },
-          {
-            title: 'Sent',
-            data: this.templateAnalytics?.data?.map((item) => {
-              return {
-                title: item.start,
-                value: item.sent,
-              };
-            }),
+            data: read,
           },
         ];
-        return data || [];
+
+        return chart;
       },
-      getChartData() {
-        const data = this.templateAnalytics?.data?.map((template) => {
-          return {
-            title: template.template_name ?? template.template_id,
-            data: template.dates.map((item) => {
-              return {
-                title: item.start,
-                value: item.delivered,
-              };
-            }),
-          };
-        });
-        return data ?? [];
+      getChartSent() {
+        return this.getChartByType('sent');
+      },
+      getChartDelivered() {
+        return this.getChartByType('delivered');
+      },
+      getChartRead() {
+        return this.getChartByType('read');
       },
     },
     watch: {
-      getPeriodo() {
-        this.fetchTemplateAnalytics();
-      },
       model(newVal, oldVal) {
         if (newVal != oldVal) {
           this.fetchTemplateAnalytics();
@@ -296,13 +268,12 @@
     methods: {
       ...mapActions(['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalytics() {
-        console.log(this.model);
         const models = this.model.map((item) => item.value);
         const params = {
           app_uuid: this.app_uuid,
           filters: {
-            start: this.getPeriodo.start,
-            end: this.getPeriodo.end,
+            start: this.periodo.start,
+            end: this.periodo.end,
             fba_template_ids: models,
           },
         };
@@ -313,6 +284,27 @@
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
+      },
+      setPeriodo(e) {
+        this.periodo = e;
+        this.fetchTemplateAnalytics();
+      },
+      formatDate(date) {
+        return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+      },
+      getChartByType(type) {
+        const data = this.templateAnalytics?.data?.map((template) => {
+          return {
+            title: template.template_name ?? template.template_id,
+            data: template.dates.map((item) => {
+              return {
+                title: item.start,
+                value: item[type],
+              };
+            }),
+          };
+        });
+        return data ?? [];
       },
     },
   };

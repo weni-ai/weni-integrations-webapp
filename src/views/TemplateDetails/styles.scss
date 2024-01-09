@@ -1,0 +1,12 @@
+.wpp_template_details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+
+    &__header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}

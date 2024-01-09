@@ -30,6 +30,11 @@ const routes = [
         path: 'insights',
         component: () => import('@/views/Insights/index.vue'),
       },
+      {
+        name: 'Template Details',
+        path: 'template-details',
+        component: () => import('@/views/TemplateDetails/index.vue'),
+      },
     ],
   },
   {
