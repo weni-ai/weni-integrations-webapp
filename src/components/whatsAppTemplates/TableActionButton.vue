@@ -37,6 +37,10 @@
           return ['bottom-left', 'bottom-right', 'top-left', 'top-right'].indexOf(value) !== -1;
         },
       },
+      data: {
+        type: Object,
+        required: true,
+      },
     },
     data() {
       return {
@@ -54,18 +58,15 @@
             },
           },
           {
-            id: 'add_language1',
+            id: 'see_details',
             title: 'See Details',
             icon: 'pencil-write-1',
             scheme: 'neutral-darkest',
             action: () => {
-              const { appUuid } = this.$route.params;
+              this.setSelectedTemplate({ template: this.data });
               this.$router.push({
-                path: `/apps/insights`,
-                hash: '#template',
-                query: {
-                  uuid: appUuid,
-                },
+                path: `/apps/template-details`,
+                hash: `#${this.data.uuid}`,
               });
             },
           },
@@ -106,6 +107,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['deleteTemplateMessage']),
+      ...mapActions(['setSelectedTemplate']),
     },
     computed: {
       ...mapState('WhatsApp', ['errorDeleteTemplateMessage']),

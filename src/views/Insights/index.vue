@@ -46,7 +46,7 @@
       <div class="wpp_insights__filters__model">
         <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
         <div class="wpp_insights__filters__model__select">
-          <unnnic-select-smart v-model="model" :options="modelOptions" multiple />
+          <unnnic-select-smart v-model="model" :options="modelOptions" multiple :disabled="hash" />
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@
           <unnnic-chart-multi-line
             :data="getChartByDay"
             :title="'Mensagens recebidas'"
-            v-if="hash"
+            v-if="!!hash"
           />
         </div>
       </div>
@@ -163,10 +163,15 @@
           end: this.formatDate(new Date()),
         },
         hash: this.$route.hash,
+        ...mapState({
+          selectedTemplate: (state) => state.insights.selectedTemplate,
+        }),
       };
     },
     mounted() {
-      this.fetchTemplateAnalytics();
+      if (!this.hash) {
+        this.fetchTemplateAnalytics();
+      }
     },
     computed: {
       ...mapState({
@@ -175,6 +180,7 @@
         errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
         errorTemplates: (state) => state.insights.errorTemplates,
         templateAnalytics: (state) => state.insights.templateAnalytics,
+        selectedTemplate: (state) => state.insights.selectedTemplate,
       }),
       modelOptions() {
         return [
@@ -182,52 +188,12 @@
             value: '730081812069736',
             label: 'Modelo 1',
           },
-          {
-            value: '730081812069737',
-            label: 'Modelo 2',
-          },
-          {
-            value: '730081812069738',
-            label: 'Modelo 3',
-          },
-          {
-            value: '730081812069739',
-            label: 'Modelo 4',
-          },
-          {
-            value: '730081812069735',
-            label: 'Modelo 5',
-          },
-          {
-            value: '730081812069734',
-            label: 'Modelo 6',
-          },
-          {
-            value: '730081812069733',
-            label: 'Modelo 7',
-          },
-          {
-            value: '730081812069732',
-            label: 'Modelo 8',
-          },
-          {
-            value: '730081812069731',
-            label: 'Modelo 9',
-          },
-          {
-            value: '730081812069730',
-            label: 'Modelo 10',
-          },
-          {
-            value: '7300818120697355',
-            label: 'Modelo 11',
-          },
         ];
       },
       getChartByDay() {
-        const sent = this.getChartSent().data;
-        const delivered = this.getChartDelivered().data;
-        const read = this.getChartRead().data;
+        const sent = this.getChartSent[0].data;
+        const delivered = this.getChartDelivered[0].data;
+        const read = this.getChartRead[0].data;
         let chart = [
           {
             title: 'Sent',

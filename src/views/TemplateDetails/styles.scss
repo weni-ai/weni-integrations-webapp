@@ -3,10 +3,24 @@
     flex-direction: column;
     width: 100%;
     gap: 1rem;
+    padding-top: 1rem;
 
     &__header{
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: space-between;
+        
+        &__title{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            &__text{
+                font-family: $unnnic-font-family-primary;
+                font-size: $unnnic-font-size-title-sm;
+                color: $unnnic-color-neutral-dark;
+            }
+        }
     }
 }

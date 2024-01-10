@@ -267,7 +267,7 @@ exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] 
         </div>
         <div data-v-35dce591="" class="divider"></div>
         <div data-v-35dce591="" class="col" style="width: 55px; min-width: 0;">
-          <tableactionbutton-stub templateuuid="123" position="bottom-left" data-v-35dce591=""></tableactionbutton-stub>
+          <tableactionbutton-stub templateuuid="123" position="bottom-left" data="[object Object]" data-v-35dce591=""></tableactionbutton-stub>
         </div>
         <div data-v-35dce591="" class="divider" style="display: none;"></div>
       </div>

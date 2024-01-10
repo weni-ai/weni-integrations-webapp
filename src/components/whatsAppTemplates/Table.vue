@@ -120,6 +120,7 @@
           <template v-slot:actions>
             <TableActionButton
               :templateUuid="item.uuid"
+              :data="item"
               :position="dropdownPosition(item)"
               @refresh-table="() => fetchData({ page })"
             />

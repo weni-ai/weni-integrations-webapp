@@ -10,4 +10,11 @@ export default {
       commit('GET_TEMPLATE_ANALYTICS_ERROR', err);
     }
   },
+
+  setSelectedTemplate({ commit }, { template }) {
+    commit('GET_SELECTED_TEMPLATE', template);
+  },
+  setAppUuid({ commit }, { appUuid }) {
+    commit('GET_APP_UUID', appUuid);
+  },
 };

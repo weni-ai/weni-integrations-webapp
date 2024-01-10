@@ -12,4 +12,10 @@ export default {
     state.errorTemplateAnalytics = err;
     state.loadingTemplateAnalytics = false;
   },
+  GET_SELECTED_TEMPLATE(state, data) {
+    state.selectedTemplate = data;
+  },
+  GET_APP_UUID(state, data) {
+    state.appUuid = data;
+  },
 };
