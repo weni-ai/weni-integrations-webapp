@@ -1,22 +1,17 @@
-import AppModal from '../../../../src/views/Insights/index.vue';
+import Insights from '../../../../src/views/Insights/index.vue';
 import { mount, createLocalVue } from '@vue/test-utils';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
 
-describe('AppModal', () => {
+describe('Insights', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(AppModal, {
+    wrapper = mount(Insights, {
       localVue,
       i18n,
       mocks: {
         $t: () => 'some specific text',
-      },
-      stubs: {
-        UnnnicButton: true,
-        UnnnicAvatarIcon: true,
-        UnnnicBreadcrumb: true,
       },
     });
   });
@@ -29,7 +24,7 @@ describe('AppModal', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should call toggleOpenModal', async () => {
+  it('should call toggleOpenModal', () => {
     const spy = spyOn(wrapper.vm, 'toggleOpenModal');
     expect(spy).not.toHaveBeenCalled();
     wrapper.vm.toggleOpenModal();

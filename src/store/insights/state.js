@@ -5,4 +5,6 @@ export default {
   errorTemplateAnalytics: null,
   selectedTemplate: null,
   appUuid: null,
+  templates: [],
+  errorTemplates: null,
 };

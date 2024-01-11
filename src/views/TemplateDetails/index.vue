@@ -69,7 +69,6 @@
     methods: {
       ...mapActions(['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalytics() {
-        console.log('entrou');
         const params = {
           app_uuid: this.app_uuid,
           filters: {

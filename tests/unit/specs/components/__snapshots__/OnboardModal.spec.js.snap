@@ -38,13 +38,11 @@ exports[`OnboardModal.vue telegram should handle telegram back action until app 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -65,13 +63,11 @@ exports[`OnboardModal.vue telegram should handle telegram back action until app 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -111,13 +107,11 @@ exports[`OnboardModal.vue telegram should render telegram pages correctly and cl
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -138,13 +132,11 @@ exports[`OnboardModal.vue telegram should render telegram pages correctly and cl
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -167,13 +159,11 @@ exports[`OnboardModal.vue telegram should start telegram steps on telegram icon 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -194,13 +184,11 @@ exports[`OnboardModal.vue weni web chat should handle wwc back action until app 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -240,13 +228,11 @@ exports[`OnboardModal.vue weni web chat should render weniwebchat pages correctl
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -269,13 +255,11 @@ exports[`OnboardModal.vue weni web chat should start weni web chat steps on weni
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -296,13 +280,11 @@ exports[`OnboardModal.vue whatsapp should handle whatsapp back action until app 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -323,13 +305,11 @@ exports[`OnboardModal.vue whatsapp should handle whatsapp back action until app 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -350,13 +330,11 @@ exports[`OnboardModal.vue whatsapp should handle whatsapp back action until app 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -396,13 +374,11 @@ exports[`OnboardModal.vue whatsapp should render whatsapp pages correctly and cl
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -423,13 +399,11 @@ exports[`OnboardModal.vue whatsapp should render whatsapp pages correctly and cl
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -450,13 +424,11 @@ exports[`OnboardModal.vue whatsapp should render whatsapp pages correctly and cl
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -479,13 +451,11 @@ exports[`OnboardModal.vue whatsapp should start whatsapp steps on whatsapp icon 
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
-          <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
+          <!----></button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
           <!---->
           <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
 </div>

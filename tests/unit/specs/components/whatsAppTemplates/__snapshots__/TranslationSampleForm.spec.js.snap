@@ -41,8 +41,7 @@ exports[`components/whatsAppTemplates/TranslationSampleForm.vue should be render
                       <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
             Send
             </span>
-                      <!---->
-                    </button></div>
+                      <!----></button></div>
                 </div>
                 <div class="sample-form__info">Make sure not to include any actual user or customer information, and provide only sample content in your examples.</div>
               </div>

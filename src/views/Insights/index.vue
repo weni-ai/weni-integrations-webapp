@@ -46,7 +46,12 @@
       <div class="wpp_insights__filters__model">
         <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
         <div class="wpp_insights__filters__model__select">
-          <unnnic-select-smart v-model="model" :options="modelOptions" multiple :disabled="hash" />
+          <unnnic-select-smart
+            v-model="model"
+            :options="modelOptions"
+            multiple
+            :disabled="!!hash"
+          />
         </div>
       </div>
     </div>
@@ -159,7 +164,7 @@
         showModal: false,
         model: [],
         periodo: {
-          start: this.formatDate(new Date(Date.now() - 24 * 60 * 60 * 1000)),
+          start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
           end: this.formatDate(new Date()),
         },
         hash: this.$route.hash,
@@ -169,8 +174,17 @@
       };
     },
     mounted() {
-      if (!this.hash) {
-        this.fetchTemplateAnalytics();
+      this.fetchTemplateAnalytics();
+      this.fetchTemplates();
+      if (this.hash) {
+        this.model = [this.selectedTemplate.translations[0].message_template_id];
+      } else {
+        this.model = [
+          {
+            value: '730081812069736',
+            label: 'Modelo 1',
+          },
+        ];
       }
     },
     computed: {
@@ -181,8 +195,18 @@
         errorTemplates: (state) => state.insights.errorTemplates,
         templateAnalytics: (state) => state.insights.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
+        templates: (state) =>
+          state.insights.templates.results?.map((item) => {
+            return {
+              value: item.uuid,
+              label: item.name,
+            };
+          }),
       }),
       modelOptions() {
+        if (this.templates.length > 0) {
+          return this.templates;
+        }
         return [
           {
             value: '730081812069736',
@@ -191,9 +215,9 @@
         ];
       },
       getChartByDay() {
-        const sent = this.getChartSent[0].data;
-        const delivered = this.getChartDelivered[0].data;
-        const read = this.getChartRead[0].data;
+        const sent = this.getChartByType('sent')[0].data;
+        const delivered = this.getChartByType('delievered')[0].data;
+        const read = this.getChartByType('read')[0].data;
         let chart = [
           {
             title: 'Sent',
@@ -234,7 +258,7 @@
     methods: {
       ...mapActions(['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalytics() {
-        const models = this.model.map((item) => item.value);
+        const models = this.model?.map((item) => item.value);
         const params = {
           app_uuid: this.app_uuid,
           filters: {
@@ -244,15 +268,18 @@
           },
         };
         this.getTemplateAnalytics(params);
-        if (this.errorTemplateAnalytics) {
-          alert(this.errorTemplateAnalytics);
-        }
+      },
+      fetchTemplates() {
+        this.getTemplates({ app_uuid: this.app_uuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
       },
       setPeriodo(e) {
-        this.periodo = e;
+        this.periodo = {
+          start: e.start,
+          end: e.end,
+        };
         this.fetchTemplateAnalytics();
       },
       formatDate(date) {
@@ -262,7 +289,7 @@
         const data = this.templateAnalytics?.data?.map((template) => {
           return {
             title: template.template_name ?? template.template_id,
-            data: template.dates.map((item) => {
+            data: template.dates?.map((item) => {
               return {
                 title: item.start,
                 value: item[type],

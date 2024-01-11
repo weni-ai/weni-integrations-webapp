@@ -18,4 +18,10 @@ export default {
   GET_APP_UUID(state, data) {
     state.appUuid = data;
   },
+  GET_TEMPLATES(state, data) {
+    state.templates = data;
+  },
+  GET_TEMPLATEs_ERROR(state, err) {
+    state.templates = err;
+  },
 };

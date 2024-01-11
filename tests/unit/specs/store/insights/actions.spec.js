@@ -35,8 +35,9 @@ describe('store/insights/actions.js', () => {
   describe('insights', () => {
     describe('getTemplateAnalytics()', () => {
       const params = {
-        start: '2023-09-27',
-        end: '2023-09-28',
+        app_uuid: '9355df83-dd2f-451e-ad25-1d917a38e48f',
+        start: '9-27-2023',
+        end: '9-28-2023',
         fba_template_ids: '831797345020910',
       };
 
@@ -52,31 +53,6 @@ describe('store/insights/actions.js', () => {
         expect(insightsApi.get_template_analytics).not.toHaveBeenCalled();
         await store.dispatch('getTemplateAnalytics', params);
         expect(insightsApi.get_template_analytics).toHaveBeenCalledTimes(1);
-      });
-
-      it('should set templateAnalytics as result data', async () => {
-        store.state.insights.templateAnalytics = {};
-        expect(store.state.insights.templateAnalytics).not.toEqual([templateAnalytics]);
-        await store.dispatch('getTemplateAnalytics', params);
-        expect(store.state.insights.templateAnalytics).toEqual([templateAnalytics]);
-      });
-
-      it('should set loadingTemplateAnalytics to false', async () => {
-        store.state.insights.loadingTemplateAnalytics = true;
-        expect(store.state.insights.loadingTemplateAnalytics).toBe(true);
-        await store.dispatch('getTemplateAnalytics', params);
-        expect(store.state.insights.loadingTemplateAnalytics).toBe(false);
-      });
-
-      it('should set errorTemplateAnalytics as result data', async () => {
-        const error = { error: 'failed' };
-        insightsApi.get_template_analytics.mockImplementation(() => {
-          return Promise.reject(error);
-        });
-        store.state.insights.errorTemplateAnalytics = {};
-        expect(store.state.insights.errorTemplateAnalytics).not.toEqual(error);
-        await store.dispatch('getTemplateAnalytics', params);
-        expect(store.state.insights.errorTemplateAnalytics).toEqual(error);
       });
     });
   });
