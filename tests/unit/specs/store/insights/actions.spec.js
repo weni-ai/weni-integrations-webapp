@@ -98,16 +98,16 @@ describe('store/insights/actions.js', () => {
       await store.dispatch('getTemplates', params.app_uuid);
       expect(store.state.insights.templates).toEqual([templates]);
     });
-    // it('should set errorTemplates as result data', async () => {
-    //   const error = { error: 'failed' };
-    //   insightsApi.get_templates.mockImplementation(() => {
-    //     return Promise.reject(error);
-    //   });
-    //   store.state.insights.errorTemplates = {};
-    //   expect(store.state.insights.errorTemplates).not.toEqual(error);
-    //   await store.dispatch('getTemplates', params.app_uuid);
-    //   expect(store.state.insights.errorTemplates).toEqual(error);
-    // });
+    it('should set errorTemplates as result data', async () => {
+      const error = { error: 'failed' };
+      insightsApi.get_templates.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.insights.errorTemplates = {};
+      expect(store.state.insights.errorTemplates).not.toEqual(error);
+      await store.dispatch('getTemplates', params.app_uuid);
+      expect(store.state.insights.errorTemplates).toEqual(error);
+    });
   });
 
   describe('setSelectedTemplate()', () => {
