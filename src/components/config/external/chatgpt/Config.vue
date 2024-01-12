@@ -88,6 +88,7 @@
                   scheme="neutral-cloudy"
                   hasCloseIcon
                   @close="removePrompt(prompt)"
+                  :ref="`tag-${index}`"
                 />
               </unnnic-toolTip>
             </div>
