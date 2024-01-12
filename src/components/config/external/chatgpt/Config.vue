@@ -1,3 +1,4 @@
+<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="config-chatgpt">
     <div class="config-chatgpt__header">
@@ -69,12 +70,14 @@
               height="25px"
               width="75px"
             />
-
             <div class="config-chatgpt__settings__content__prompts-wrapper">
               <unnnic-toolTip
                 v-for="(prompt, index) in availablePrompts"
                 :key="index"
-                class="config-chatgpt__settings__content__prompt config-chatgpt__settings__content__prompts__tooltip"
+                class="
+                  config-chatgpt__settings__content__prompt
+                  config-chatgpt__settings__content__prompts__tooltip
+                "
                 :text="prompt.text"
                 :enabled="true"
                 side="top"
