@@ -1,25 +1,16 @@
 import Vuex from 'vuex';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Insights from '@/views/TemplateDetails/index.vue';
-import { singleApp } from '../../../__mocks__/appMock';
-
-const genericApp = {
-  ...singleApp,
-  name: 'generic',
-  code: 'generic',
-  generic: true,
-  config: { channel_name: 'A random generic' },
-};
+import { mount, createLocalVue } from '@vue/test-utils';
+import Summary from '@/components/TemplateDetails/Summary.vue';
+import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('TemplateDetails/index.vue', () => {
+describe('components/TemplateDetails/Summary.vue', () => {
   let wrapper;
   let actions;
   let state;
   let store;
-
   beforeEach(() => {
     actions = {
       getTemplates: jest.fn(),
@@ -27,14 +18,6 @@ describe('TemplateDetails/index.vue', () => {
     };
 
     state = {
-      myApps: {
-        configuredApps: [singleApp, genericApp],
-        loadingConfiguredApps: false,
-        errorConfiguredApps: null,
-        installedApps: [singleApp, genericApp],
-        loadingInstalledApps: false,
-        errorInstalledApps: null,
-      },
       insights: {
         isActive: false,
         templateAnalytics: {
@@ -84,14 +67,14 @@ describe('TemplateDetails/index.vue', () => {
         errorTemplates: null,
       },
     };
-
     store = new Vuex.Store({
       actions,
       state,
     });
 
-    wrapper = shallowMount(Insights, {
+    wrapper = mount(Summary, {
       localVue,
+      i18n,
       store,
       mocks: {
         $t: () => 'some specific text',
@@ -102,21 +85,8 @@ describe('TemplateDetails/index.vue', () => {
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it('should call fetchTemplateAnalytics()', () => {
-    const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.fetchTemplateAnalytics();
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should call formatDate()', () => {
-    const spy = spyOn(wrapper.vm, 'formatDate');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.formatDate(new Date());
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should return default value if selectedTemplate is null', () => {
-    store.state.insights.selectedTemplate.translations = [];
-    expect(wrapper.vm.templateId).toEqual('730081812069736');
+  it('should set templateAnalytics', () => {
+    store.state.insights.templateAnalytics = [];
+    expect(wrapper.vm.templateAnalytics).toEqual([]);
   });
 });

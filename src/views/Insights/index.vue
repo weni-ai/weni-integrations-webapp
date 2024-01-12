@@ -108,7 +108,7 @@
 
     <!-- Modal -->
     <div class="wpp_insights__modal">
-      <unnnic-modal :showModal="showModal" @close="toggleOpenModal">
+      <unnnic-modal :showModal="showModal" @close="toggleOpenModal" ref="modal">
         <div class="wpp_insights__modal__title">
           <img src="../../assets/svgs/amazoninha-heart.svg" alt="" />
           <p>Apresentamos novos insights</p>
@@ -167,7 +167,7 @@
           start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
           end: this.formatDate(new Date()),
         },
-        hash: this.$route.hash,
+        hash: this.$route?.hash,
         ...mapState({
           selectedTemplate: (state) => state.insights.selectedTemplate,
         }),
@@ -190,13 +190,13 @@
     computed: {
       ...mapState({
         app_uuid: (state) =>
-          state.myApps.configuredApps.find((item) => item.code === 'wpp-cloud')?.uuid,
+          state.myApps?.configuredApps.find((item) => item.code === 'wpp-cloud')?.uuid,
         errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
         errorTemplates: (state) => state.insights.errorTemplates,
-        templateAnalytics: (state) => state.insights.templateAnalytics,
+        templateAnalytics: (state) => state.insights?.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
         templates: (state) =>
-          state.insights.templates.results?.map((item) => {
+          state.insights?.templates.results?.map((item) => {
             return {
               value: item.uuid,
               label: item.name,
@@ -204,7 +204,7 @@
           }),
       }),
       modelOptions() {
-        if (this.templates.length > 0) {
+        if (this.templates?.length > 0) {
           return this.templates;
         }
         return [
@@ -262,8 +262,8 @@
         const params = {
           app_uuid: this.app_uuid,
           filters: {
-            start: this.periodo.start,
-            end: this.periodo.end,
+            start: this.periodo?.start,
+            end: this.periodo?.end,
             fba_template_ids: models,
           },
         };

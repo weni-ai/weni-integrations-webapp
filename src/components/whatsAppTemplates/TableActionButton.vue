@@ -12,6 +12,7 @@
       v-for="option in options"
       :key="option.id"
       @click="() => option.action()"
+      :id="option.id"
     >
       <unnnic-icon-svg :icon="option.icon" size="sm" :scheme="option.scheme" />
       {{ option.title }}

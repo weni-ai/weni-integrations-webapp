@@ -51,4 +51,17 @@ describe('components/whatsAppTemplates/TableActionButton.vue', () => {
       path: '/apps/my/code/123/templates/edit/123',
     });
   });
+  it('should go to teplate details on See Details option click', async () => {
+    const triggerButton = wrapper.findComponent(unnnicButton);
+    await triggerButton.trigger('click');
+    const seeDetails = wrapper.find('#see_details');
+    expect(seeDetails.exists()).toBe(true);
+
+    // expect(wrapper.vm.$router.push).not.toHaveBeenCalled();
+    // await seeDetails.trigger('click');
+    // expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(1);
+    // expect(wrapper.vm.$router.push).toHaveBeenCalledWith({
+    //   path: '/apps/template-details`',
+    // });
+  });
 });

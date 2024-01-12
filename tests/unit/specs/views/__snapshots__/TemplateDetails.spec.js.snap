@@ -1,3 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TemplateDetails should be rendered properly 1`] = `undefined`;
+exports[`TemplateDetails/index.vue should be rendered properly 1`] = `
+<div class="wpp_template_details">
+  <div class="wpp_template_details__breadcrumb">
+    <unnnic-breadcrumb-stub crumbs="[object Object],[object Object],[object Object]"></unnnic-breadcrumb-stub>
+  </div>
+  <div class="wpp_template_details__header">
+    <div class="wpp_template_details__header__title">
+      <div class="wpp_template_details__header__title__text">testeana2</div>
+      <div class="wpp_template_details__header__about__title__tag">
+        <unnnic-tag-stub type="default" text="Marketing" count="0" scheme="neutral-dark"></unnnic-tag-stub>
+      </div>
+    </div>
+    <div class="wpp_insights__header__button">
+      <unnnic-button-stub size="large" text="Editar Modelo" type="secondary"></unnnic-button-stub>
+    </div>
+  </div>
+  <div class="wpp_insights__tabs">
+    <unnnic-tab-stub size="md" initialtab="first" tabs="first,second"><template></template> <template></template> <template></template> <template></template></unnnic-tab-stub>
+  </div>
+</div>
+`;

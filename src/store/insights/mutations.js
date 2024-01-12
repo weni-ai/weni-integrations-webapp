@@ -21,7 +21,7 @@ export default {
   GET_TEMPLATES(state, data) {
     state.templates = data;
   },
-  GET_TEMPLATEs_ERROR(state, err) {
+  GET_TEMPLATES_ERROR(state, err) {
     state.templates = err;
   },
 };

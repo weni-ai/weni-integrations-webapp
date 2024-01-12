@@ -1,3 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Insights should be rendered properly 1`] = `undefined`;
+exports[`Insights/index.vue should be rendered properly 1`] = `
+<div class="wpp_insights">
+  <div class="wpp_insights__breadcrumb">
+    <unnnic-breadcrumb-stub crumbs="[object Object],[object Object]"></unnnic-breadcrumb-stub>
+  </div>
+  <div class="wpp_insights__header">
+    <div class="wpp_insights__header__logo">
+      <unnnic-avatar-icon-stub enabled="true" icon="messaging-whatsapp-1" size="sm" scheme="feedback-green"></unnnic-avatar-icon-stub>
+    </div>
+    <div class="wpp_insights__header__about">
+      <div class="wpp_insights__header__about__title">Insights</div>
+      <div class="wpp_insights__header__about__description">
+        Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem
+        disparados
+      </div>
+    </div>
+    <div class="wpp_insights__header__button">
+      <unnnic-button-stub size="large" text="Ativar insights" type="primary" disabled="true"></unnnic-button-stub>
+    </div>
+  </div>
+  <div class="wpp_insights__filters">
+    <div class="wpp_insights__filters__time">
+      <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
+      <div class="wpp_insights__filters__time__select">
+        <unnnic-input-date-picker-stub value="[object Object]" type="day" size="md" cleartext="Clear" actiontext="Filter" format="MM-DD-YYYY" inputformat="MM-DD-YYYY" position="left"></unnnic-input-date-picker-stub>
+      </div>
+    </div>
+    <div class="wpp_insights__filters__model">
+      <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
+      <div class="wpp_insights__filters__model__select">
+        <unnnic-select-smart-stub options="[object Object]" value="[object Object]" size="md" type="normal" multiple="true" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
+      </div>
+    </div>
+  </div>
+  <div class="wpp_insights__content">
+    <!---->
+    <div class="wpp_insights__content__active">
+      <div class="wpp_insights__content__active__chart">
+        <unnnic-chart-multi-line-stub data="" title="Mensagens enviadas"></unnnic-chart-multi-line-stub>
+        <unnnic-chart-multi-line-stub data="" title="Mensagens entregues"></unnnic-chart-multi-line-stub>
+        <unnnic-chart-multi-line-stub data="" title="Mensagens recebidas"></unnnic-chart-multi-line-stub>
+        <!---->
+      </div>
+    </div>
+  </div>
+  <div class="wpp_insights__modal">
+    <unnnic-modal-stub closeicon="true">
+      <div class="wpp_insights__modal__title"><img src="../../assets/svgs/amazoninha-heart.svg" alt="">
+        <p>Apresentamos novos insights</p>
+      </div>
+      <div class="wpp_insights__modal__content">
+        <p class="wpp_insights__modal__content__dark">
+          some specific text
+        </p>
+        <p>
+          some specific text
+        </p>
+        <p>
+          some specific text
+        </p>
+      </div>
+      <div class="wpp_insights__modal__buttons">
+        <unnnic-button-stub size="large" text="Cancelar" type="secondary" style="width: 289px;"></unnnic-button-stub>
+        <unnnic-button-stub size="large" text="Confirmar" type="primary" style="width: 289px;"></unnnic-button-stub>
+      </div>
+    </unnnic-modal-stub>
+  </div>
+</div>
+`;

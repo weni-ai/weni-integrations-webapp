@@ -192,31 +192,89 @@ const installedApps = [
   },
 ];
 
-const templateAnalytics = [
-  {
-    template_id: '831797345020910',
-    template_name: 'wenieditordisparo1',
-    totals: {
-      sent: 3,
-      delivered: 3,
-      read: 1,
+const templateAnalytics = {
+  data: [
+    {
+      template_id: '730081812069736',
+      template_name: null,
+      totals: {
+        sent: 47,
+        delivered: 48,
+        read: 28,
+      },
+      dates: [
+        {
+          start: '2024-01-05',
+          sent: 7,
+          delivered: 7,
+          read: 5,
+        },
+        {
+          start: '2024-01-06',
+          sent: 6,
+          delivered: 5,
+          read: 1,
+        },
+        {
+          start: '2024-01-07',
+          sent: 4,
+          delivered: 5,
+          read: 4,
+        },
+        {
+          start: '2024-01-08',
+          sent: 1,
+          delivered: 2,
+          read: 2,
+        },
+        {
+          start: '2024-01-09',
+          sent: 0,
+          delivered: 0,
+          read: 0,
+        },
+        {
+          start: '2024-01-10',
+          sent: 11,
+          delivered: 11,
+          read: 5,
+        },
+        {
+          start: '2024-01-11',
+          sent: 13,
+          delivered: 13,
+          read: 8,
+        },
+        {
+          start: '2024-01-12',
+          sent: 5,
+          delivered: 5,
+          read: 3,
+        },
+      ],
     },
-    dates: [
-      {
-        start: '2023-09-27',
-        sent: 0,
-        delivered: 0,
-        read: 0,
-      },
-      {
-        start: '2023-09-28',
-        sent: 3,
-        delivered: 3,
-        read: 1,
-      },
-    ],
+  ],
+  grand_totals: {
+    sent: 47,
+    delivered: 48,
+    read: 28,
   },
-];
+};
+
+const templates = {
+  count: 1,
+  next: null,
+  previous: null,
+  results: [
+    {
+      uuid: 'd9019398-e5df-421f-98d5-8cfa711e7b20',
+      name: 'testeana2',
+      created_on: '2024-01-10 17:10:01.952251+00:00',
+      category: 'MARKETING',
+      translations: [],
+    },
+  ],
+};
 
 module.exports = {
   singleApp,
@@ -225,4 +283,5 @@ module.exports = {
   configuredApps,
   installedApps,
   templateAnalytics,
+  templates,
 };

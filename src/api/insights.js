@@ -8,6 +8,6 @@ export default {
     return request.$http.get(`${resource}/${app_uuid}/template-analytics/?${queryString}`);
   },
   get_templates(app_uuid) {
-    return request.$http.get(`${base}/${app_uuid}/templates/`);
+    return request.$http.get(`${base}/${app_uuid}/templates/?page=1&page_size=15`);
   },
 };
