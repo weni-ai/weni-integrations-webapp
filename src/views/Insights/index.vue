@@ -98,9 +98,10 @@
             v-if="!hash"
           />
           <unnnic-chart-multi-line
-            :data="getChartByDay"
+            :data="getChartByDay.data"
             :title="'Mensagens recebidas'"
             v-if="!!hash"
+            :fixedMaxValue="getChartByDay.maxValue"
           />
         </div>
       </div>
@@ -232,8 +233,12 @@
             data: read,
           },
         ];
+        const maxValue = this.findMax(sent);
 
-        return chart;
+        return {
+          data: chart,
+          maxValue: maxValue,
+        };
       },
       getChartSent() {
         return this.getChartByType('sent');
@@ -298,6 +303,9 @@
           };
         });
         return data ?? [];
+      },
+      findMax(array) {
+        return Math.max(...array.map(({ value }) => value));
       },
     },
   };
