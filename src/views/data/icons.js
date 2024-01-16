@@ -24,14 +24,14 @@ const avatarIcons = {
     opacity: false,
   },
   configured: {
-    icon: 'cog-1',
-    scheme: 'aux-purple',
+    icon: 'check_circle',
+    scheme: 'aux-green-500',
     filled: true,
     opacity: false,
   },
   installed: {
-    icon: 'check-circle-1-1',
-    scheme: 'aux-blue',
+    icon: 'deployed_code_update',
+    scheme: 'aux-purple-500',
     filled: true,
     opacity: false,
   },
