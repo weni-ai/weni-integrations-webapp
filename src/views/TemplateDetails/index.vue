@@ -4,10 +4,15 @@
     <div class="wpp_template_details__breadcrumb">
       <unnnic-breadcrumb
         :crumbs="[
-          { name: 'Meus aplicativos', path: '/apps' },
-          { name: 'Gerenciar templates', path: '/' },
-          { name: 'Detalhes do modelo', path: '/' },
+          { name: 'Meus aplicativos', path: '/apps/my', meta: 'Meus aplicativos' },
+          {
+            name: 'Gerenciar templates',
+            path: `/apps/my/wpp-cloud/${app_uuid}/templates`,
+            meta: 'Gerenciar Templates',
+          },
+          { name: 'Detalhes do modelo', path: '/', meta: 'Detalhes do modelo' },
         ]"
+        @crumbClick="redirectTo"
       />
     </div>
     <!-- Header -->
@@ -52,6 +57,12 @@
       Insights,
       Summary,
     },
+    data() {
+      return {
+        route: this.$route,
+        crumb_title: 'Detalhes do modelo',
+      };
+    },
     mounted() {
       this.fetchTemplateAnalytics();
     },
@@ -84,6 +95,10 @@
       },
       formatDate(date) {
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+      },
+      redirectTo(crumb) {
+        if (crumb.meta === 'Detalhes do modelo') return;
+        this.$router.push(crumb.path);
       },
     },
   };

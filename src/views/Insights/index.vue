@@ -1,12 +1,13 @@
 <template>
   <div class="wpp_insights">
     <!-- Breadcrumb -->
-    <div class="wpp_insights__breadcrumb">
+    <div class="wpp_insights__breadcrumb" v-if="!hash">
       <unnnic-breadcrumb
         :crumbs="[
-          { name: 'Meus aplicativos', path: '/apps' },
-          { name: 'Insights', path: '/' },
+          { name: 'Meus aplicativos', path: '/apps/my', meta: 'Meus aplicativos' },
+          { name: 'Insights', path: '/apps/insights', meta: 'Insights' },
         ]"
+        @crumbClick="redirectTo"
       />
     </div>
     <!-- Header -->
@@ -172,6 +173,7 @@
         ...mapState({
           selectedTemplate: (state) => state.insights.selectedTemplate,
         }),
+        crumb_title: 'Insights',
       };
     },
     mounted() {
@@ -306,6 +308,10 @@
       },
       findMax(array) {
         return Math.max(...array.map(({ value }) => value));
+      },
+      redirectTo(crumb) {
+        if (crumb?.meta === this.$route.name) return;
+        this.$router.push(crumb.path);
       },
     },
   };
