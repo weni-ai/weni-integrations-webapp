@@ -13,7 +13,12 @@
     <!-- Header -->
     <div class="wpp_insights__header">
       <div class="wpp_insights__header__logo">
-        <unnnic-avatar-icon icon="messaging-whatsapp-1" scheme="feedback-green" />
+        <unnnic-avatar-icon
+          icon="messaging-whatsapp-1"
+          scheme="aux-green-500"
+          :filled="true"
+          :opacity="false"
+        />
       </div>
       <div class="wpp_insights__header__about">
         <div class="wpp_insights__header__about__title">Insights</div>

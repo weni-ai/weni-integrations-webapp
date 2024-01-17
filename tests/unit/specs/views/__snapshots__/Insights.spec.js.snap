@@ -7,7 +7,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
   </div>
   <div class="wpp_insights__header">
     <div class="wpp_insights__header__logo">
-      <unnnic-avatar-icon-stub enabled="true" icon="messaging-whatsapp-1" size="sm" scheme="feedback-green" opacity="true"></unnnic-avatar-icon-stub>
+      <unnnic-avatar-icon-stub enabled="true" icon="messaging-whatsapp-1" size="sm" scheme="aux-green-500" filled="true"></unnnic-avatar-icon-stub>
     </div>
     <div class="wpp_insights__header__about">
       <div class="wpp_insights__header__about__title">Insights</div>
