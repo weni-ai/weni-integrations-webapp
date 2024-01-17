@@ -25,17 +25,17 @@ const routes = [
         path: 'other-apps',
         component: () => import('@/views/OtherApps/index.vue'),
       },
-      {
-        name: 'Insights',
-        path: 'insights',
-        component: () => import('@/views/Insights/index.vue'),
-      },
-      {
-        name: 'Template Details',
-        path: 'template-details',
-        component: () => import('@/views/TemplateDetails/index.vue'),
-      },
     ],
+  },
+  {
+    name: 'Insights',
+    path: '/insights',
+    component: () => import('@/views/Insights/index.vue'),
+  },
+  {
+    name: 'Template Details',
+    path: '/template-details',
+    component: () => import('@/views/TemplateDetails/index.vue'),
   },
   {
     name: 'App Detail',

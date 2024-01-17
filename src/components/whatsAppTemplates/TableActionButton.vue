@@ -66,7 +66,7 @@
             action: () => {
               this.setSelectedTemplate({ template: this.data });
               this.$router.push({
-                path: `/apps/template-details`,
+                path: `/template-details`,
                 hash: `#${this.data.uuid}`,
               });
             },

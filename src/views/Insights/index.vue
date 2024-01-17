@@ -189,7 +189,7 @@
       } else {
         this.model = [
           {
-            value: '730081812069736',
+            value: '720749078794724',
             label: 'Modelo 1',
           },
         ];
@@ -217,7 +217,7 @@
         }
         return [
           {
-            value: '730081812069736',
+            value: '720749078794724',
             label: 'Modelo 1',
           },
         ];

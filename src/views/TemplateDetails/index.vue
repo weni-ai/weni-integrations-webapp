@@ -74,7 +74,7 @@
           state.myApps.configuredApps.find((item) => item.code === 'wpp-cloud')?.uuid,
       }),
       templateId() {
-        return this.selectedTemplate?.translations[0]?.message_template_id || '730081812069736';
+        return this.selectedTemplate?.translations[0]?.message_template_id || '720749078794724';
       },
     },
     methods: {

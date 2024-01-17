@@ -48,9 +48,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
         </p>
       </div>
       <div class="conversations__content__insights__button">
-        <router-link-stub to="insights" tag="a" ariacurrentvalue="page" event="click" t="" class="link">
-          <unnnicbutton-stub size="large" text="Ver insights" type="primary"></unnnicbutton-stub>
-        </router-link-stub>
+        <unnnicbutton-stub size="large" text="Ver insights" type="primary"></unnnicbutton-stub>
       </div>
     </div>
   </div>

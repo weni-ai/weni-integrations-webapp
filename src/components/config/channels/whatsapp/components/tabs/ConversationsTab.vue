@@ -120,9 +120,7 @@
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <router-link t class="link" to="insights">
-            <unnnic-button text="Ver insights" />
-          </router-link>
+          <unnnic-button text="Ver insights" @click="navigateToInsights" />
         </div>
       </div>
     </div>
@@ -343,6 +341,9 @@
           },
           seconds: 6,
         });
+      },
+      navigateToInsights() {
+        this.$router.replace('/insights');
       },
     },
   };

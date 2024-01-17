@@ -117,6 +117,6 @@ describe('TemplateDetails/index.vue', () => {
 
   it('should return default value if selectedTemplate is null', () => {
     store.state.insights.selectedTemplate.translations = [];
-    expect(wrapper.vm.templateId).toEqual('730081812069736');
+    expect(wrapper.vm.templateId).toEqual('720749078794724');
   });
 });
