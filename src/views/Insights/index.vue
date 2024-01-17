@@ -22,7 +22,7 @@
           disparados
         </div>
       </div>
-      <div class="wpp_insights__header__button">
+      <div class="wpp_insights__header__button" v-if="!isActive">
         <unnnic-button
           text="Ativar insights"
           :disabled="isActive"
@@ -172,6 +172,76 @@
           selectedTemplate: (state) => state.insights.selectedTemplate,
         }),
         crumb_title: 'Insights',
+        teste: [
+          {
+            title: 'Grupo 1',
+            data: [
+              {
+                title: '2024-1-17',
+                value: 0,
+              },
+              {
+                title: '2024-1-16',
+                value: 7,
+              },
+              {
+                title: '2024-1-15',
+                value: 9,
+              },
+            ],
+          },
+          {
+            title: 'Grupo 2',
+            data: [
+              {
+                title: '2024-1-17',
+                value: 0,
+              },
+              {
+                title: '2024-1-16',
+                value: 1,
+              },
+              {
+                title: '2024-1-15',
+                value: 2,
+              },
+            ],
+          },
+          {
+            title: 'Grupo 3',
+            data: [
+              {
+                title: '2024-1-17',
+                value: 0,
+              },
+              {
+                title: '2024-1-16',
+                value: 10,
+              },
+              {
+                title: '2024-1-15',
+                value: 9,
+              },
+            ],
+          },
+          {
+            title: 'Grupo 1',
+            data: [
+              {
+                title: '2024-1-17',
+                value: 0,
+              },
+              {
+                title: '2024-1-16',
+                value: 0,
+              },
+              {
+                title: '2024-1-15',
+                value: 9,
+              },
+            ],
+          },
+        ],
       };
     },
     mounted() {

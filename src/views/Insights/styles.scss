@@ -62,7 +62,7 @@
 
   &__content {
     display: flex;
-    width: 100%;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -108,16 +108,15 @@
 
     &__active {
       display: flex;
+      flex: 1;
       flex-direction: column;
-      align-items: start;
       justify-content: start;
       align-self: flex-start;
-      position: relative;
-      height: 408px;
 
       &__chart {
         display: flex;
-        width: 100%;
+        flex: 1;
+        width: 95vw;
         flex-direction: column;
         gap: 2rem;
         padding: 2rem 0;

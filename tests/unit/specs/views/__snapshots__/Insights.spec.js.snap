@@ -14,9 +14,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
         disparados
       </div>
     </div>
-    <div class="wpp_insights__header__button">
-      <unnnic-button-stub size="large" text="Ativar insights" type="primary" disabled="true"></unnnic-button-stub>
-    </div>
+    <!---->
   </div>
   <div class="wpp_insights__filters">
     <div class="wpp_insights__filters__time">
