@@ -483,9 +483,8 @@
               font-size: $unnnic-font-size-body-gt;
               line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
             }
-
             .icon-left {
-              transform: translateY(150%);
+              transform: translateY(30%);
             }
           }
         }
