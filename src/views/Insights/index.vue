@@ -160,7 +160,7 @@
     },
     data() {
       return {
-        isActive: true,
+        isActive: false,
         showModal: false,
         model: [],
         periodo: {

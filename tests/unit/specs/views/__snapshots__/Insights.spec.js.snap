@@ -14,7 +14,9 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
         disparados
       </div>
     </div>
-    <!---->
+    <div class="wpp_insights__header__button">
+      <unnnic-button-stub size="large" text="Ativar insights" type="primary"></unnnic-button-stub>
+    </div>
   </div>
   <div class="wpp_insights__filters">
     <div class="wpp_insights__filters__time">
@@ -31,15 +33,21 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
     </div>
   </div>
   <div class="wpp_insights__content">
-    <!---->
-    <div class="wpp_insights__content__active">
-      <div class="wpp_insights__content__active__chart">
-        <unnnic-chart-multi-line-stub data="" title="Mensagens enviadas"></unnnic-chart-multi-line-stub>
-        <unnnic-chart-multi-line-stub data="" title="Mensagens entregues"></unnnic-chart-multi-line-stub>
-        <unnnic-chart-multi-line-stub data="" title="Mensagens recebidas"></unnnic-chart-multi-line-stub>
-        <!---->
+    <div class="wpp_insights__content__empty">
+      <div class="wpp_insights__content__empty__image"><img src="../../assets/svgs/empty-apps.svg" alt=""></div>
+      <div class="wpp_insights__content__empty__text">
+        <div class="wpp_insights__content__empty__text__title">
+          some specific text
+        </div>
+        <div class="wpp_insights__content__empty__text__description">
+          some specific text
+        </div>
+      </div>
+      <div class="wpp_insights__content__empty__button">
+        <unnnic-button-stub size="large" text="Ativar insights" type="primary"></unnnic-button-stub>
       </div>
     </div>
+    <!---->
   </div>
   <div class="wpp_insights__modal">
     <unnnic-modal-stub closeicon="true">
