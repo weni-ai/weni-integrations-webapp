@@ -15,7 +15,6 @@
     "@weni/unnnic-system": "^1.16.77",
     "axios": "0.21.1",
     "core-js": "^3.6.5",
-    "cross-env": "^7.0.3",
     "global": "^4.4.0",
     "helphero": "^3.6.0",
     "libphonenumber-js": "^1.10.13",
