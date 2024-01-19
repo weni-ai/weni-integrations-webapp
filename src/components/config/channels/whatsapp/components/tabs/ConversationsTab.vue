@@ -111,7 +111,7 @@
           </unnnic-button>
         </unnnic-tool-tip>
       </div>
-      <div class="conversations__content__insights">
+      <!-- <div class="conversations__content__insights">
         <div class="conversations__content__insights__title">Insights</div>
         <div class="conversations__content__insights__about">
           <p>
@@ -122,7 +122,7 @@
         <div class="conversations__content__insights__button">
           <unnnic-button text="Ver insights" @click="navigateToInsights" />
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="conversations__buttons">
       <unnnic-button
