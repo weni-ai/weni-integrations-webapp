@@ -51,13 +51,11 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
                 <!---->
                 <!---->
                 <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Cancel </span>
-                <!---->
-              </button> <button data-v-2d9f2cbf="" class="app-config-omie__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-69271fcc="">
+                <!----></button> <button data-v-2d9f2cbf="" class="app-config-omie__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-69271fcc="">
                 <!---->
                 <!---->
                 <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Connect </span>
-                <!---->
-              </button></div>
+                <!----></button></div>
           </div>
         </div>
       </main>
