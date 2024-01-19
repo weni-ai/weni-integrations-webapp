@@ -2,7 +2,13 @@
   <div ref="appGrid">
     <section v-if="!loading" id="app-grid">
       <div v-if="apps && apps.length" class="app-grid__header">
-        <unnnic-avatar-icon :icon="avatar.icon" :scheme="avatar.scheme" size="sm" />
+        <unnnic-avatar-icon
+          :icon="avatar.icon"
+          :scheme="avatar.scheme"
+          size="sm"
+          :filled="true"
+          :opacity="false"
+        />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
 

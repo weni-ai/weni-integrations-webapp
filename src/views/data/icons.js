@@ -1,11 +1,46 @@
 const avatarIcons = {
-  channel: { icon: 'messages-bubble-1', scheme: 'aux-purple' },
-  ticket: { icon: 'messaging-we-chat-3', scheme: 'aux-blue' },
-  'bi-tools': { icon: 'gauge-dashboard-2', scheme: 'aux-orange' },
-  external: { icon: 'charger-1', scheme: 'aux-lemon' },
-  configured: { icon: 'cog-1', scheme: 'aux-purple' },
-  installed: { icon: 'check-circle-1-1', scheme: 'aux-blue' },
-  recommended: { icon: 'rating-star-1-1', scheme: 'aux-orange' },
+  channel: {
+    icon: 'sms',
+    scheme: 'aux-purple-500',
+    filled: true,
+    opacity: false,
+  },
+  ticket: {
+    icon: 'messaging-we-chat-3',
+    scheme: 'aux-blue',
+    filled: true,
+    opacity: false,
+  },
+  'bi-tools': {
+    icon: 'bar_chart_4_bars',
+    scheme: 'aux-red-500',
+    filled: true,
+    opacity: false,
+  },
+  external: {
+    icon: 'power',
+    scheme: 'aux-orange-500',
+    filled: true,
+    opacity: false,
+  },
+  configured: {
+    icon: 'check_circle',
+    scheme: 'aux-green-500',
+    filled: true,
+    opacity: false,
+  },
+  installed: {
+    icon: 'deployed_code_update',
+    scheme: 'aux-purple-500',
+    filled: true,
+    opacity: false,
+  },
+  recommended: {
+    icon: 'rating-star-1-1',
+    scheme: 'aux-orange',
+    filled: true,
+    opacity: false,
+  },
 };
 
 const actionIcons = {
