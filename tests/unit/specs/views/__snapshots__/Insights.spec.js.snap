@@ -111,9 +111,9 @@ exports[`AppModal should be rendered properly 1`] = `
           </div>
         </div>
         <div data-v-4504f42f="" class="reference_values">
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> jan. 1 </div>
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> fev. 1 </div>
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> mar. 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Jan 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Feb 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Mar 1 </div>
         </div>
         <div data-v-4504f42f="" class="labels">
           <div data-v-4504f42f="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-4504f42f="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,9 +188,9 @@ exports[`AppModal should be rendered properly 1`] = `
           </div>
         </div>
         <div data-v-4504f42f="" class="reference_values">
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> jan. 1 </div>
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> fev. 1 </div>
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> mar. 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Jan 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Feb 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Mar 1 </div>
         </div>
         <div data-v-4504f42f="" class="labels">
           <div data-v-4504f42f="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-4504f42f="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -265,9 +265,9 @@ exports[`AppModal should be rendered properly 1`] = `
           </div>
         </div>
         <div data-v-4504f42f="" class="reference_values">
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> jan. 1 </div>
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> fev. 1 </div>
-          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> mar. 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Jan 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Feb 1 </div>
+          <div data-v-4504f42f="" class="title unnnic-font secondary body-md color-neutral-cleanest"> Mar 1 </div>
         </div>
         <div data-v-4504f42f="" class="labels">
           <div data-v-4504f42f="" class="label unnnic-font secondary body-lg color-neutral-dark"><svg data-v-4504f42f="" width="15" height="6" viewBox="0 0 15 6" fill="none" xmlns="http://www.w3.org/2000/svg">

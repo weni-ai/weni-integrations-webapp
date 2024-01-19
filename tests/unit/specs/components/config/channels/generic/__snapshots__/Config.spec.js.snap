@@ -16,10 +16,12 @@ exports[`components/config/channels/generic/Config.vue should be rendered proper
       <!---->
       <!---->
       <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Cancel </span>
-      <!----></button> <button data-v-2d9f2cbf="" class="app-config-generic__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary">
+      <!---->
+    </button> <button data-v-2d9f2cbf="" class="app-config-generic__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary">
       <!---->
       <!---->
       <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Save changes </span>
-      <!----></button></div>
+      <!---->
+    </button></div>
 </div>
 `;
