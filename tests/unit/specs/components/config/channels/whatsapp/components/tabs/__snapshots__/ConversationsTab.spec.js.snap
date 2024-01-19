@@ -43,8 +43,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
       <div class="conversations__content__insights__title">Insights</div>
       <div class="conversations__content__insights__about">
         <p>
-          Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de
-          mensagem disparados.
+          See more detailed data related to sending, delivering and reading triggered message templates.
         </p>
       </div>
       <div class="conversations__content__insights__button">
@@ -53,7 +52,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
     </div>
   </div>
   <div class="conversations__buttons">
-    <unnnicbutton-stub size="large" text="Close" type="secondary" class="conversations__buttons__close"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="Cancel" type="secondary" class="conversations__buttons__close"></unnnicbutton-stub>
   </div>
 </div>
 `;

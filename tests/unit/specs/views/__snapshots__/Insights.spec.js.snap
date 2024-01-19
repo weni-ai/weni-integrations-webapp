@@ -10,8 +10,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
     <div class="wpp_insights__header__about">
       <div class="wpp_insights__header__about__title">Insights</div>
       <div class="wpp_insights__header__about__description">
-        Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem
-        disparados
+        some specific text
       </div>
     </div>
     <div class="wpp_insights__header__button">
@@ -66,8 +65,8 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
         </p>
       </div>
       <div class="wpp_insights__modal__buttons">
-        <unnnic-button-stub size="large" text="Cancelar" type="secondary" style="width: 289px;"></unnnic-button-stub>
-        <unnnic-button-stub size="large" text="Confirmar" type="primary" style="width: 289px;"></unnnic-button-stub>
+        <unnnic-button-stub size="large" text="some specific text" type="secondary" style="width: 289px;"></unnnic-button-stub>
+        <unnnic-button-stub size="large" text="some specific text" type="primary" style="width: 289px;"></unnnic-button-stub>
       </div>
     </unnnic-modal-stub>
   </div>
