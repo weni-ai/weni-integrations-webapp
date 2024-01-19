@@ -115,8 +115,7 @@
         <div class="conversations__content__insights__title">Insights</div>
         <div class="conversations__content__insights__about">
           <p>
-            Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de
-            mensagem disparados.
+            {{ $t('WhatsApp.insights.about_description') }}
           </p>
         </div>
         <div class="conversations__content__insights__button">
@@ -129,7 +128,7 @@
         class="conversations__buttons__close"
         type="secondary"
         size="large"
-        :text="$t('general.Close')"
+        :text="$t('general.Cancel')"
         @click="() => this.$emit('close')"
       />
     </div>

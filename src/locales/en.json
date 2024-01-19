@@ -661,11 +661,19 @@
       }
     },
     "insights": {
-      "disabled": "Você não ativou os insights",
-      "about_description": "Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem disparados",
-      "about_text_1": "Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear, entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights, os dados existentes para &quot mensagens enviadas &quot; serão apagados. O rastreamento recomeçará na data em que você clicar em Confirmar.",
-      "about_text_2": " Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp Business. Esses insights incluem rastreamento de link para relatar os cliques no site. Você pode desativar o rastreamento de link em cada modelo de mensagem.",
-      "about_text_3": " Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que presta a você e a outras empresas."
+      "see_insights": "See insights",
+      "enable_insights": "Enable insights",
+      "disabled": "You haven't turned on insights",
+      "about_description": "See more detailed data related to sending, delivering and reading triggered message templates.",
+      "about_text_1": "We're introducing more performance insights to help you track, understand, and improve your messaging models. Marketing models will also show insights into button engagement. To migrate to the new insights framework, existing data for &quot sent messages &quot; will be deleted. Tracking will resume on the date you click Confirm.",
+      "about_text_2": " By clicking Confirm, you instruct Meta to add insights to your WhatsApp Business account. These insights include link tracking to report website clicks. You can disable link tracking for each message template.",
+      "about_text_3": " By clicking Confirm, you also instruct Meta to collect and anonymize data from your customer chats. Meta will anonymize this data to improve the services it provides to you and other companies.",
+      "messages": {
+        "sent": "Sent messages",
+        "delivered": "Delivered messages",
+        "read": "Read messages",
+        "received": "Received messages"
+      }
     }
   },
   "WhatsAppCloud": {

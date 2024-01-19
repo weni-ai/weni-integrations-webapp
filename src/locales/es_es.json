@@ -661,11 +661,19 @@
       }
     },
     "insights": {
-      "disabled": "Você não ativou os insights",
-      "about_description": "Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem disparados",
-      "about_text_1": "Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear, entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights, os dados existentes para &quot mensagens enviadas &quot; serão apagados. O rastreamento recomeçará na data em que você clicar em Confirmar.",
-      "about_text_2": " Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp Business. Esses insights incluem rastreamento de link para relatar os cliques no site. Você pode desativar o rastreamento de link em cada modelo de mensagem.",
-      "about_text_3": " Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que presta a você e a outras empresas."
+      "see_insights": "Ver insights",
+      "enable_insights": "Habilitar insights",
+      "disabled": "No has activado los insights",
+      "about_description": "Vea datos más detallados relacionados con el envío, la entrega y la lectura de plantillas de mensajes activados.",
+      "about_text_1": "Estamos introduciendo más información sobre el rendimiento para ayudarle a realizar un seguimiento, comprender y mejorar sus modelos de mensajería. Los modelos de marketing también mostrarán información sobre la interacción con los botones. Para migrar al nuevo marco de conocimientos, los datos existentes de mensajes enviados será borrado. El seguimiento se reanudará en la fecha en que haga clic en Confirmar.",
+      "about_text_2": " Al hacer clic en Confirmar, le indica a Meta que agregue información a su cuenta de WhatsApp Business. Estos conocimientos incluyen el seguimiento de enlaces para informar de los clics en el sitio web. Puede desactivar el seguimiento de enlaces en cada plantilla de mensaje.",
+      "about_text_3": "Al hacer clic en Confirmar, también le indica a Meta que recopile y anonimice los datos de los chats de sus clientes. Meta anonimizará estos datos para mejorar los servicios que le brinda a usted y a otras empresas.",
+      "messages": {
+        "sent": "Mensajes enviados",
+        "delivered": "Mensajes entregados",
+        "read": "Mensajes leídos",
+        "received": "Mensajes recibidos"
+      }
     }
   },
   "WhatsAppCloud": {

@@ -18,8 +18,7 @@
       <div class="wpp_insights__header__about">
         <div class="wpp_insights__header__about__title">Insights</div>
         <div class="wpp_insights__header__about__description">
-          Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem
-          disparados
+          {{ $t('WhatsApp.insights.about_description') }}
         </div>
       </div>
       <div class="wpp_insights__header__button" v-if="!isActive">
@@ -85,22 +84,22 @@
         <div class="wpp_insights__content__active__chart">
           <unnnic-chart-multi-line
             :data="getChartSent"
-            :title="'Mensagens enviadas'"
+            :title="$t('WhatsApp.insights.messages.sent')"
             v-if="!hash"
           />
           <unnnic-chart-multi-line
             :data="getChartDelivered"
-            :title="'Mensagens entregues'"
+            :title="$t('WhatsApp.insights.messages.delivered')"
             v-if="!hash"
           />
           <unnnic-chart-multi-line
             :data="getChartRead"
-            :title="'Mensagens recebidas'"
+            :title="$t('WhatsApp.insights.messages.read')"
             v-if="!hash"
           />
           <unnnic-chart-multi-line
             :data="getChartByDay.data"
-            :title="'Mensagens recebidas'"
+            :title="$t('WhatsApp.insights.messages.received')"
             v-if="!!hash"
             :fixedMaxValue="getChartByDay.maxValue"
           />
@@ -129,13 +128,17 @@
 
         <div class="wpp_insights__modal__buttons">
           <unnnic-button
-            text="Cancelar"
+            :text="$t('general.Close')"
             type="secondary"
             :style="{ width: '289px' }"
             @click="toggleOpenModal"
             ref="wpp_insights__button__close"
           />
-          <unnnic-button text="Confirmar" :style="{ width: '289px' }" @click="activeTemplate" />
+          <unnnic-button
+            :text="$t('general.confirm')"
+            :style="{ width: '289px' }"
+            @click="activeTemplate"
+          />
         </div>
       </unnnic-modal>
     </div>
