@@ -135,7 +135,7 @@
             @click="toggleOpenModal"
             ref="wpp_insights__button__close"
           />
-          <unnnic-button text="Confirmar" :style="{ width: '289px' }" />
+          <unnnic-button text="Confirmar" :style="{ width: '289px' }" @click="activeTemplate" />
         </div>
       </unnnic-modal>
     </div>
@@ -172,76 +172,6 @@
           selectedTemplate: (state) => state.insights.selectedTemplate,
         }),
         crumb_title: 'Insights',
-        teste: [
-          {
-            title: 'Grupo 1',
-            data: [
-              {
-                title: '2024-1-17',
-                value: 0,
-              },
-              {
-                title: '2024-1-16',
-                value: 7,
-              },
-              {
-                title: '2024-1-15',
-                value: 9,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 2',
-            data: [
-              {
-                title: '2024-1-17',
-                value: 0,
-              },
-              {
-                title: '2024-1-16',
-                value: 1,
-              },
-              {
-                title: '2024-1-15',
-                value: 2,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 3',
-            data: [
-              {
-                title: '2024-1-17',
-                value: 0,
-              },
-              {
-                title: '2024-1-16',
-                value: 10,
-              },
-              {
-                title: '2024-1-15',
-                value: 9,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 1',
-            data: [
-              {
-                title: '2024-1-17',
-                value: 0,
-              },
-              {
-                title: '2024-1-16',
-                value: 0,
-              },
-              {
-                title: '2024-1-15',
-                value: 9,
-              },
-            ],
-          },
-        ],
       };
     },
     mounted() {
@@ -380,6 +310,10 @@
       redirectTo(crumb) {
         if (crumb?.meta === this.$route.name) return;
         this.$router.push(crumb.path);
+      },
+      activeTemplate() {
+        this.isActive = true;
+        this.showModal = false;
       },
     },
   };
