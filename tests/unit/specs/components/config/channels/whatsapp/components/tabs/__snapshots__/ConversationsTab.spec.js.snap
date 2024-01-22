@@ -22,10 +22,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
       </div>
       <div class="conversations__content__tables__section">
         <!---->
-        <unnnic-table-stub items="[object Object],[object Object],[object Object],[object Object]">
-          <unnnic-table-row-stub headers="[object Object],[object Object]"></unnnic-table-row-stub>
-          <unnnic-table-row-stub headers="[object Object],[object Object]"></unnnic-table-row-stub>
-        </unnnic-table-stub>
+        <unnnic-table-stub items="[object Object],[object Object],[object Object],[object Object]"></unnnic-table-stub>
       </div>
     </div>
     <div class="conversations__content__report"><span class="conversations__content__report__label">

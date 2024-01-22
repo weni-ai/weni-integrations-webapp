@@ -158,11 +158,11 @@ describe('components/config/external/chatgpt/Config.vue', () => {
     });
   });
 
-  describe('removePrompt()', async () => {
-    const { wrapper } = await mountComponent({
-      getPromptsResult: [{ text: 'existing prompt', uuid: '123' }],
-    });
+  describe('removePrompt()', () => {
     it('should remove correct prompt if it is an added one', async () => {
+      const { wrapper } = await mountComponent({
+        getPromptsResult: [{ text: 'existing prompt', uuid: '123' }],
+      });
       const promptInput = wrapper.findComponent({ ref: 'prompt-input' });
 
       promptInput.vm.$emit('input', 'existing prompt');
@@ -176,13 +176,12 @@ describe('components/config/external/chatgpt/Config.vue', () => {
 
       await wrapper.vm.$nextTick();
 
-      const promptTag = wrapper.find({ ref: 'tag-1' });
-      expect(promptTag.exists()).toBe(true);
+      const promptTag = wrapper.findAllComponents(unnnicTag).at(1);
 
-      //   promptTag.vm.$emit('close', { text: 'existing prompt' });
+      promptTag.vm.$emit('close', { text: 'existing prompt' });
 
-      //   expect(wrapper.vm.availablePrompts).toEqual([{ text: 'existing prompt', uuid: '123' }]);
-      //   expect(wrapper.vm.toAddPrompts).toEqual([]);
+      expect(wrapper.vm.availablePrompts).toEqual([{ text: 'existing prompt', uuid: '123' }]);
+      expect(wrapper.vm.toAddPrompts).toEqual([]);
     });
   });
 
@@ -209,10 +208,7 @@ describe('components/config/external/chatgpt/Config.vue', () => {
     });
   });
 
-  describe('saveConfig()', async () => {
-    const { wrapper, externalsActions } = await mountComponent({
-      getPromptsResult: [{ text: 'existing prompt', uuid: '123' }],
-    });
+  describe('saveConfig()', () => {
     it('should call updateApp with the correct payload if rules || knowledgeBase || selectedVersion changed || selectedVoiceTone || selectedConversationStyle', async () => {
       const { wrapper, actions } = await mountComponent();
 
@@ -315,6 +311,10 @@ describe('components/config/external/chatgpt/Config.vue', () => {
     });
 
     it('should call deletePrompts with the correct payload if toRemovePrompts is not empty', async () => {
+      const { wrapper, externalsActions } = await mountComponent({
+        getPromptsResult: [{ text: 'existing prompt', uuid: '123' }],
+      });
+
       const promptTag = wrapper.findComponent(unnnicTag);
 
       promptTag.vm.$emit('close', { text: 'existing prompt', uuid: '123' });
@@ -358,9 +358,9 @@ describe('components/config/external/chatgpt/Config.vue', () => {
   });
 
   describe('watchers', () => {
-    describe('selectedVersion', async () => {
-      const { wrapper, actions } = await mountComponent();
+    describe('selectedVersion', () => {
       it('should call handleUpdateApp on selectedVersion change', async () => {
+        const { wrapper, actions } = await mountComponent();
         expect(actions.updateApp).not.toHaveBeenCalled();
         expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
 
