@@ -178,11 +178,11 @@
       };
     },
     mounted() {
-      this.fetchTemplateAnalytics();
       this.fetchTemplates();
       if (this.hash) {
         this.model = [this.selectedTemplate.translations[0].message_template_id];
       }
+      this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState({
@@ -208,7 +208,7 @@
       },
       getChartByDay() {
         const sent = this.getChartByType('sent')[0].data;
-        const delivered = this.getChartByType('delievered')[0].data;
+        const delivered = this.getChartByType('delivered')[0].data;
         const read = this.getChartByType('read')[0].data;
         let chart = [
           {
