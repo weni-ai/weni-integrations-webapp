@@ -27,7 +27,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
     <div class="wpp_insights__filters__model">
       <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
       <div class="wpp_insights__filters__model__select">
-        <unnnic-select-smart-stub options="[object Object]" value="[object Object]" size="md" type="normal" multiple="true" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
+        <unnnic-select-smart-stub options="" value="" size="md" type="normal" multiple="true" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
       </div>
     </div>
   </div>

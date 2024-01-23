@@ -182,13 +182,6 @@
       this.fetchTemplates();
       if (this.hash) {
         this.model = [this.selectedTemplate.translations[0].message_template_id];
-      } else {
-        this.model = [
-          {
-            value: '720749078794724',
-            label: 'Modelo 1',
-          },
-        ];
       }
     },
     computed: {
@@ -202,7 +195,7 @@
         templates: (state) =>
           state.insights?.templates.results?.map((item) => {
             return {
-              value: item.uuid,
+              value: item.translations[0].message_template_id,
               label: item.name,
             };
           }),
@@ -211,12 +204,7 @@
         if (this.templates?.length > 0) {
           return this.templates;
         }
-        return [
-          {
-            value: '720749078794724',
-            label: 'Modelo 1',
-          },
-        ];
+        return [];
       },
       getChartByDay() {
         const sent = this.getChartByType('sent')[0].data;
