@@ -77,7 +77,11 @@
           type="tertiary"
           size="large"
           :disabled="
-            loadingPhoneNumbers || loadingDebugToken || !!errorDebugToken || !!errorPhoneNumbers || loadingWhatsAppCloudConfigure
+            loadingPhoneNumbers ||
+            loadingDebugToken ||
+            !!errorDebugToken ||
+            !!errorPhoneNumbers ||
+            loadingWhatsAppCloudConfigure
           "
           :isLoading="loadingWhatsAppCloudConfigure"
           :loadingText="$t('general.loading')"

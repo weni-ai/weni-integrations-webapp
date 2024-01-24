@@ -8,15 +8,15 @@ import i18n from './utils/plugins/i18n';
 import router from './router';
 import store from './store';
 import getEnv from '@/utils/env';
-import { makeServer } from '@/miragejs/server';
+// import { makeServer } from '@/miragejs/server';
 
 Vue.use(vClickOutside);
 
 Vue.config.productionTip = false;
 
-if (getEnv('NODE_ENV') === 'development') {
-  makeServer();
-}
+// if (getEnv('NODE_ENV') === 'development') {
+//   makeServer();
+// }
 
 if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
   Sentry.init({

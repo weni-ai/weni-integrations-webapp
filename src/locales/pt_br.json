@@ -464,7 +464,11 @@
       },
       "catalog": {
         "button": "Ver lista de catálogos",
-        "title": "Catálogo"
+        "title": "Catálogo",
+        "button_create": "Criar catálogo",
+        "error": {
+          "missing_vtex_app": "É necessário ter um app VTEX configurado para conectar um catálogo."
+        }
       }
     },
     "catalog": {
@@ -955,6 +959,89 @@
     },
     "success": {
       "configure": "Integração atualizada com sucesso"
+    }
+  },
+  "vtex": {
+    "setup": {
+      "title": "Integrar com VTEX",
+      "description": "Para fazer a instalação insira um subdomínio",
+      "subdomain": "Subdomínio",
+      "subdomain_placeholder": "Ex: lojaweni.myvtex.com",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Insira sua AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Insira seu AppToken",
+      "whatsapp_channel": "Número do WhatsApp",
+      "guide": {
+        "question": "Não conhece seu AppKey e AppToken?",
+        "link": "Clique aqui",
+        "question_end": "para acessar a documentação da VTEX e descobrir."
+      },
+      "invalid_credentials": "Credenciais inválidas para o subdomínio fornecido",
+      "error": "Ocorreu um erro ao tentar integrar com a VTEX, tente novamente mais tarde",
+      "success": "Integração VTEX concluída com sucesso"
+    },
+    "config": {
+      "description": "Conecte seu catálogo VTEX para enviar produtos pelo WhatsApp",
+      "catalog": "Catálogo",
+      "connect_catalog": "Conectar catálogo",
+      "details": "Detalhes",
+      "name": "Nome da conta",
+      "environment": "Ambiente",
+      "view_catalog": "Ver catálogo",
+      "wpp_number": "Número WhatsApp"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermercados e mercearias",
+        "clothes_store": "Loja de roupas",
+        "pharmacies_and_drugstores": "Farmácias e Drogarias",
+        "restaurants_and_cafes": "Restaurantes e Cafés",
+        "electronics_stores": "Lojas de eletrônicos",
+        "bookstores_and_stationery": "Livrarias e papelarias",
+        "furniture_and_decoration": "Lojas de Móveis e Decoração",
+        "building_materials_and_hardware": "Lojas de materiais de construção e ferragens",
+        "sporting_goods": "Lojas de artigos esportivos",
+        "shoe_stores": "Lojas de calçados",
+        "auto_parts": "Lojas de peças de automóveis",
+        "other": "Outro"
+      }
+    },
+    "connect_catalog": {
+      "title": "Informações básica",
+      "business_type": "Tipo de Negócio",
+      "name_placeholder": "Ex: ofertas semanais",
+      "name": "Nome do catálogo",
+      "footer": "Ao criar um catálogo, você concorda com os <a class='link' target='_blank' href='https://google.com'><b>Termos do Gerenciador de Catálogos</b></a> e confirma que segue as <a class='link' target='_blank' href='https://google.com'><b>Políticas de Publicidade do Facebook</b></a>. Verifique essas políticas e confirme que os itens que você carregar no seu catálogo estejam em conformidade com elas."
+    },
+    "errors": {
+      "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde",
+      "fetch_related_wpp_data": "Falha ao buscar informações relacionadas ao número do WhatsApp",
+      "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente",
+      "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde."
+    },
+    "success": {
+      "connect_catalog": "Catálogo VTEX conectado com sucesso"
+    }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "Catálogo VTEX",
+          "description": "Conecte seu catálogo automaticamente através da integração com o app VTEX"
+        },
+        "default": {
+          "title": "Envio padrão",
+          "description": "Crie um catálogo usando um link ou arquivo XML"
+        }
+      },
+      "footer": "Para conectar seu catálogo VTEX você precisa ter integrado o app VTEX na plataforma. \nSe você ainda não integrou, clique aqui",
+      "title": "Criar catálogo",
+      "header": {
+        "title": "Método de envio",
+        "description": "Escolha a forma como deseja enviar seu catálogo para começar a vender produtos via Whatsapp"
+      }
     }
   }
 }

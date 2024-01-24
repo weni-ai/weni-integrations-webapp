@@ -29,7 +29,12 @@
 </template>
 
 <script>
+  import LoadingButton from '@/components/LoadingButton';
+
   export default {
+    components: {
+      LoadingButton,
+    },
     data() {
       return {
         showAddModal: false,

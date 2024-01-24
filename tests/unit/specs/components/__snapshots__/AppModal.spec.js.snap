@@ -3,6 +3,6 @@
 exports[`AppModal should be rendered properly 1`] = `
 <unnnicmodal-stub text="some specific text" scheme="feedback-red" modal-icon="alert-circle-1"><span>some specific text</span>
   <unnnic-button type="tertiary">some specific text</unnnic-button>
-  <loadingbutton type="primary" loadingtext="some specific text" text="some specific text"></loadingbutton>
+  <unnnic-button type="primary" size="large" text="some specific text" class="loading-button"></unnnic-button>
 </unnnicmodal-stub>
 `;

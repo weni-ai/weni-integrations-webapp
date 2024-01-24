@@ -147,6 +147,7 @@
             [
               'channel',
               'ticket',
+              'ecommerce',
               'external',
               'bi-tools',
               'configured',
