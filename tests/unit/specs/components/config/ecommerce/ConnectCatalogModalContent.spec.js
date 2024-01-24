@@ -34,12 +34,7 @@ describe('components/config/ecommerce/vtex/ConnectCatalogModalContent.vue', () =
     await createButton.trigger('click');
 
     expect(wrapper.emitted().connectCatalog).toBeTruthy();
-    expect(wrapper.emitted().connectCatalog[0]).toEqual([
-      {
-        name: 'name',
-        businessType: 'other',
-      },
-    ]);
+    expect(wrapper.emitted().connectCatalog[0]).toEqual([{ name: 'name' }]);
   });
 
   it('should emit closeModal on close click', async () => {

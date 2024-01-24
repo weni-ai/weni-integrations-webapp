@@ -25,11 +25,7 @@
           <span class="config-vtex__settings__content__catalog__label">
             {{ $t('vtex.config.catalog') }}</span
           >
-          <unnnic-button
-            v-if="app.hasConnectedCatalog"
-            ref="viewButton"
-            @click="redirectToWppCatalog"
-          >
+          <unnnic-button v-if="hasConnectedCatalog" ref="viewButton" @click="redirectToWppCatalog">
             {{ $t('vtex.config.view_catalog') }}
           </unnnic-button>
           <unnnic-button v-else ref="connectButton" @click="showConnectModal = true">
@@ -93,9 +89,12 @@
         default: /* istanbul ignore next */ () => {},
       },
     },
+
     data() {
+      /* istanbul ignore next */
       return {
         name: this.app.config?.name ?? null,
+        hasConnectedCatalog: this.app.config?.connected_catalog ?? false,
         showConnectModal: false,
         wpp_number: null,
         wpp_uuid: null,
@@ -116,11 +115,10 @@
       ...mapActions('ecommerce', ['connectVtexCatalog']),
       async connectCatalog(eventData) {
         const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
+          code: 'wpp-cloud',
+          appUuid: this.app.config.wpp_cloud_uuid,
           payload: {
             name: eventData.name,
-            businessType: eventData.businessType,
           },
         };
 
@@ -130,6 +128,26 @@
           this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
+
+        await this.updateConnectedCatalogStatus();
+      },
+      async updateConnectedCatalogStatus() {
+        const data = {
+          code: this.app.code,
+          appUuid: this.app.uuid,
+        };
+
+        await this.getApp(data);
+
+        if (this.errorCurrentApp) {
+          this.callModal({
+            type: 'Error',
+            text: this.$t('vtex.errors.update_connected_catalog_status'),
+          });
+          return;
+        }
+
+        this.hasConnectedCatalog = this.currentApp.config?.connected_catalog ?? false;
       },
       async fetchRelatedWppData() {
         const data = {

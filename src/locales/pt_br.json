@@ -997,7 +997,11 @@
     "errors": {
       "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde",
       "fetch_related_wpp_data": "Falha ao buscar informações relacionadas ao número do WhatsApp",
-      "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente"
+      "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente",
+      "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde."
+    },
+    "success": {
+      "connect_catalog": "Catálogo VTEX conectado com sucesso"
     }
   },
   "whatsapp": {

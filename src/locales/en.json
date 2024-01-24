@@ -998,7 +998,11 @@
     "errors": {
       "connect_catalog": "Could not connect VTEX catalog, please try again later",
       "fetch_related_wpp_data": "Failed to fetch related WhatsApp Number information",
-      "redirect_to_wpp_catalog": "Failed to redirect to catalog, please refresh the page and try again"
+      "redirect_to_wpp_catalog": "Failed to redirect to catalog, please refresh the page and try again",
+      "update_connected_catalog_status": "Failed to fetch catalog status, please try again later."
+    },
+    "success": {
+      "connect_catalog": "Successfully connected VTEX catalog"
     }
   },
   "whatsapp": {

@@ -105,6 +105,7 @@
 
       <ConnectCatalogModalContent
         v-if="showConnectCatalogModal"
+        :loading="loadingConnectVtexCatalog"
         @closeModal="showConnectCatalogModal = false"
         @connectCatalog="handleCatalogConnect"
       />
@@ -134,8 +135,12 @@
         default: false,
       },
     },
-    mounted() {
-      this.getConfiguredApps();
+    /* istanbul ignore next */
+    async mounted() {
+      const params = {
+        project_uuid: this.project,
+      };
+      await this.getConfiguredApps({ params });
     },
     data() {
       return {
@@ -178,7 +183,7 @@
         const vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
 
         if (!vtexApp) {
-          this.callModal({
+          this.callAlert({
             type: 'Error',
             text: this.$t('WhatsApp.config.catalog.error.missing_vtex_app'),
           });
@@ -186,22 +191,24 @@
         }
 
         const data = {
-          code: vtexApp.code,
-          appUuid: vtexApp.uuid,
+          code: this.appInfo.code,
+          appUuid: this.appInfo.uuid,
           payload: {
             name: eventData.name,
-            businessType: eventData.businessType,
           },
         };
 
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callAlert({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
+
+        this.showConnectCatalogModal = false;
+        this.callAlert({ type: 'Success', text: this.$t('vtex.success.connect_catalog') });
       },
-      callModal({ text, type }) {
+      callAlert({ text, type }) {
         unnnicCallAlert({
           props: {
             text: text,
@@ -217,6 +224,7 @@
     },
     computed: {
       ...mapState({
+        project: (state) => state.auth.project,
         configuredApps: (state) => state.myApps.configuredApps,
       }),
       ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),

@@ -60,6 +60,8 @@ const mountComponent = async ({
     },
     propsData: {
       appInfo: {
+        code: 'vtex',
+        uuid: '123',
         config: {
           phone_number: {
             display_phone_number: '+5511999999999',
@@ -87,84 +89,6 @@ const mountComponent = async ({
 };
 
 describe('whatsapp/components/tabs/AccountTab.vue', () => {
-  // let wrapper;
-  // let state;
-  // let actions;
-  // let ecommerceState;
-  // let ecommerceActions;
-  // let store;
-
-  // beforeEach(() => {
-  //   state = {
-  //     auth: {
-  //       project: '123',
-  //     },
-  //     configuredApps: [{ code: 'vtex', uuid: '123' }],
-  //   };
-
-  //   actions = {
-  //     getConfiguredApps: jest.fn(),
-  //   };
-
-  //   ecommerceState = {
-  //     loadingEcommerceApps: false,
-  //     errorEcommerceApps: null,
-  //   };
-
-  //   ecommerceActions = {
-  //     connectVtexCatalog: jest.fn(),
-  //   };
-
-  //   store = new Vuex.Store({
-  //     modules: {
-  //       ecommerce: {
-  //         namespaced: true,
-  //         actions: ecommerceActions,
-  //         state: ecommerceState,
-  //       },
-  //     },
-  //     actions,
-  //     state,
-  //   });
-
-  //   wrapper = shallowMount(AccountTab, {
-  //     localVue,
-  //     i18n,
-  //     store,
-  //     mocks: {
-  //       $router: {
-  //         push: jest.fn(),
-  //       },
-  //     },
-  //     stubs: {
-  //       UnnnicIconSvg: true,
-  //       StatusIndicator: true,
-  //       UnnnicButton: true,
-  //       UnnnicInput: true,
-  //     },
-  //     propsData: {
-  //       appInfo: {
-  //         config: {
-  //           phone_number: {
-  //             display_phone_number: '+5511999999999',
-  //             display_name: 'Number Name',
-  //             default_template_language: 'pt-BR',
-  //             certificate: 'certificateData',
-  //             consent_status: 'status',
-  //           },
-  //           waba: {
-  //             name: 'Waba name',
-  //             message_behalf_name: 'on behalf name',
-  //             timezone: 'America/Sao_Paulo',
-  //             id: '123',
-  //             namespace: '123123123123123',
-  //           },
-  //         },
-  //       },
-  //     },
-  //   });
-  // });
-
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -292,10 +216,14 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
   });
 
   describe('handleCatalogConnect', () => {
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('should call error modal if there is no vtex app', async () => {
       const { wrapper } = await mountComponent({ configuredApps: [] });
 
-      const spy = spyOn(wrapper.vm, 'callModal');
+      const spy = spyOn(wrapper.vm, 'callAlert');
       expect(spy).not.toHaveBeenCalled();
 
       await wrapper.vm.handleCatalogConnect();
@@ -310,30 +238,34 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
     it('should call connectVtexCatalog if vtexApp exists', async () => {
       const { wrapper, ecommerceActions } = await mountComponent();
 
-      const spy = spyOn(wrapper.vm, 'callModal');
+      const spy = spyOn(wrapper.vm, 'callAlert');
       expect(spy).not.toHaveBeenCalled();
 
-      await wrapper.vm.handleCatalogConnect({ name: 'test', businessType: 'other' });
+      await wrapper.vm.handleCatalogConnect({ name: 'test' });
 
-      expect(spy).not.toHaveBeenCalled();
       expect(ecommerceActions.connectVtexCatalog).toHaveBeenCalledTimes(1);
       expect(ecommerceActions.connectVtexCatalog).toHaveBeenCalledWith(expect.any(Object), {
         code: 'vtex',
         appUuid: '123',
         payload: {
           name: 'test',
-          businessType: 'other',
         },
+      });
+
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith({
+        type: 'Success',
+        text: 'Successfully connected VTEX catalog',
       });
     });
 
     it('should call error modal if connectVtexCatalog fails', async () => {
       const { wrapper } = await mountComponent({ errorConnectVtexCatalog: true });
 
-      const spy = spyOn(wrapper.vm, 'callModal');
+      const spy = spyOn(wrapper.vm, 'callAlert');
       expect(spy).not.toHaveBeenCalled();
 
-      await wrapper.vm.handleCatalogConnect({ name: 'test', businessType: 'other' });
+      await wrapper.vm.handleCatalogConnect({ name: 'test' });
 
       expect(spy).toHaveBeenCalledTimes(1);
       expect(spy).toHaveBeenCalledWith({
@@ -343,7 +275,7 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
     });
   });
 
-  describe('callModal', () => {
+  describe('callAlert', () => {
     beforeEach(() => {
       jest.clearAllMocks();
     });
@@ -353,7 +285,7 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
 
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
 
-      wrapper.vm.callModal({ text: 'success', type: 'Success' });
+      wrapper.vm.callAlert({ text: 'success', type: 'Success' });
 
       expect(mockUnnnicCallAlert).toHaveBeenCalledWith({
         props: {
@@ -373,7 +305,7 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
 
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
 
-      wrapper.vm.callModal({ text: 'error', type: 'Error' });
+      wrapper.vm.callAlert({ text: 'error', type: 'Error' });
 
       expect(mockUnnnicCallAlert).toHaveBeenCalledWith({
         props: {

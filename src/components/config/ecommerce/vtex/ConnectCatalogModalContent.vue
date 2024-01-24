@@ -11,16 +11,6 @@
           :placeholder="$t('vtex.connect_catalog.name_placeholder')"
         />
 
-        <div>
-          <unnnic-label :label="$t('vtex.connect_catalog.business_type')" />
-
-          <unnnic-select-smart
-            ref="businessTypeSelect"
-            v-model="businessType"
-            :options="availableBusinessTypes"
-          />
-        </div>
-
         <span
           v-html="$t('vtex.connect_catalog.footer')"
           class="modal__content__form__footer"
@@ -32,7 +22,7 @@
       <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
         {{ $t('general.Cancel') }}
       </unnnic-button>
-      <unnnic-button slot="options" ref="connectButton" @click="connectCatalog">
+      <unnnic-button slot="options" ref="connectButton" @click="connectCatalog" :loading="loading">
         {{ $t('general.continue') }}
       </unnnic-button>
     </div>
@@ -42,89 +32,27 @@
 <script>
   export default {
     name: 'ConnectCatalogModalContent',
+    props: {
+      loading: {
+        type: Boolean,
+        default: false,
+      },
+    },
     data() {
       return {
         name: '',
-        businessType: [],
-        availableBusinessTypes: [
-          {
-            label: this.$t('vtex.connect_modal.categories.placeholder'),
-            value: '',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.supermarket_and_groceries'),
-            value: 'supermarket_and_groceries',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.clothes_store'),
-            value: 'clothes',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.pharmacies_and_drugstores'),
-            value: 'pharmacies_and_drugstores',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.restaurants_and_cafes'),
-            value: 'restaurants_and_cafes',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.electronics_stores'),
-            value: 'electronics',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.bookstores_and_stationery'),
-            value: 'bookstores_and_stationery',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.furniture_and_decoration'),
-            value: 'furniture_and_decoration',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.building_materials_and_hardware'),
-            value: 'building_materials_and_hardware',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.sporting_goods'),
-            value: 'sporting_goods',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.shoe_stores'),
-            value: 'shoe_stores',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.auto_parts'),
-            value: 'auto_parts',
-          },
-          {
-            label: this.$t('vtex.connect_modal.categories.other'),
-            value: 'other',
-          },
-        ],
       };
-    },
-    mounted() {
-      this.$nextTick(() => {
-        this.setDropdownPosition();
-      });
     },
     methods: {
       connectCatalog() {
         this.$emit('connectCatalog', {
           name: this.name,
-          businessType: this.businessType[0]?.value,
         });
+
+        this.closeModal();
       },
       closeModal() {
         this.$emit('closeModal');
-      },
-      setDropdownPosition() {
-        const dropdown =
-          this.$refs.businessTypeSelect.$el.getElementsByClassName('dropdown-data')[0];
-
-        dropdown.setAttribute(
-          'style',
-          `position: fixed !important; top: ${dropdown.style.top} !important;`,
-        );
       },
     },
   };

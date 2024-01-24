@@ -12,7 +12,7 @@ function formatGenericApp(appList) {
 }
 
 export default {
-  async getConfiguredApps({ commit }, { params }) {
+  async getConfiguredApps({ commit }, { params = null }) {
     commit('GET_CONFIGURED_APPS_REQUEST');
     try {
       let { data } = await appType.getConfiguredApps(params);

@@ -10,6 +10,7 @@ export default {
       commit('GET_ECOMMERCE_APPS_ERROR', err);
     }
   },
+  // Received code and appUuid are from the related WhatsApp Cloud Channel
   async connectVtexCatalog({ commit }, { code, appUuid, payload }) {
     commit('CONNECT_VTEX_CATALOG_REQUEST');
     try {

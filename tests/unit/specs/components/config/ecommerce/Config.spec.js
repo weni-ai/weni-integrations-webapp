@@ -75,11 +75,14 @@ const mountComponent = async ({
           api_credentials: {
             domain: 'https://weni.ai',
           },
+          wpp_cloud_uuid: 'wpp-123',
+          connected_catalog: hasConnectedCatalog,
         },
-        hasConnectedCatalog,
       },
     },
   });
+
+  await wrapper.vm.$nextTick();
 
   return { wrapper, state, actions, ecommerceActions, ecommerceState };
 };
@@ -135,7 +138,9 @@ describe('components/config/ecommerce/vtex/Config.vue', () => {
   });
 
   it('should call connectVtexCatalog action', async () => {
-    const { wrapper, ecommerceActions } = await mountComponent({ hasConnectedCatalog: false });
+    const { wrapper, actions, ecommerceActions } = await mountComponent({
+      hasConnectedCatalog: false,
+    });
 
     const connectCatalogButton = wrapper.findComponent({ ref: 'connectButton' });
     await connectCatalogButton.trigger('click');
@@ -148,17 +153,62 @@ describe('components/config/ecommerce/vtex/Config.vue', () => {
       businessType: 'other',
     });
 
+    await wrapper.vm.$nextTick();
+
     expect(ecommerceActions.connectVtexCatalog).toHaveBeenCalled();
     expect(ecommerceActions.connectVtexCatalog).toHaveBeenCalledWith(expect.anything(), {
-      code: 'vtex',
-      appUuid: '123',
+      code: 'wpp-cloud',
+      appUuid: 'wpp-123',
       payload: {
         name: 'test',
-        businessType: 'other',
       },
     });
 
     expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
+
+    expect(actions.getApp).toHaveBeenCalled();
+    expect(actions.getApp).toHaveBeenCalledWith(expect.anything(), {
+      code: 'vtex',
+      appUuid: '123',
+    });
+  });
+
+  it('should call alert if get app fails action', async () => {
+    const { wrapper, actions } = await mountComponent({
+      hasConnectedCatalog: false,
+      errorCurrentApp: true,
+    });
+
+    const connectCatalogButton = wrapper.findComponent({ ref: 'connectButton' });
+    await connectCatalogButton.trigger('click');
+
+    const connectCatalogModalContent = wrapper.findComponent({ ref: 'connectCatalogModalContent' });
+    connectCatalogModalContent.vm.$emit('connectCatalog', {
+      name: 'test',
+      businessType: 'other',
+    });
+
+    await wrapper.vm.$nextTick();
+
+    expect(actions.getApp).toHaveBeenCalled();
+    expect(actions.getApp).toHaveBeenCalledWith(expect.anything(), {
+      code: 'vtex',
+      appUuid: '123',
+    });
+
+    await wrapper.vm.$nextTick();
+
+    expect(mockUnnnicCallAlert).toHaveBeenCalledWith({
+      props: {
+        text: 'Failed to fetch catalog status, please try again later.',
+        title: 'Error',
+        icon: 'alert-circle-1',
+        scheme: 'feedback-red',
+        closeText: 'Close',
+        position: 'bottom-right',
+      },
+      seconds: 6,
+    });
   });
 
   it('should call error modal on connect error', async () => {

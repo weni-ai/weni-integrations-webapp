@@ -14,7 +14,7 @@
     "@sentry/vue": "^6.13.2",
     "@weni/unnnic-system": "^1.16.68",
     "axios": "0.21.1",
-    "core-js": "^3.6.5",
+    "core-js": "^3.35.0",
     "global": "^4.4.0",
     "helphero": "^3.6.0",
     "libphonenumber-js": "^1.10.13",
