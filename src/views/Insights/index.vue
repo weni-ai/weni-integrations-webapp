@@ -243,11 +243,11 @@
     },
     watch: {
       model(newVal, oldVal) {
-        if (newVal != oldVal) {
-          this.fetchTemplateAnalytics();
-        }
         if (newVal.length > 10) {
           this.model = this.model.slice(0, 10);
+        }
+        if (newVal != oldVal) {
+          this.fetchTemplateAnalytics();
         }
       },
     },

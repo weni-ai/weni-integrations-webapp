@@ -9,7 +9,11 @@ export default {
       `${resource}/${app_uuid}/template-analytics/?${queryString}&fba_template_ids=${fba_template_ids}`,
     );
   },
-  get_templates(app_uuid) {
-    return request.$http.get(`${base}/${app_uuid}/templates/?page=1&page_size=15`);
+  async get_templates(app_uuid) {
+    const count = await request.$http
+      .get(`${base}/${app_uuid}/templates/?page=1&page_size=1`)
+      .then((r) => r.data)
+      .then((r) => r.count);
+    return request.$http.get(`${base}/${app_uuid}/templates/?page=1&page_size=${count}`);
   },
 };

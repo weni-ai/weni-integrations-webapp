@@ -19,6 +19,7 @@ export default {
     state.appUuid = data;
   },
   GET_TEMPLATES(state, data) {
+    state.errorTemplates = null;
     state.templates = data;
   },
   GET_TEMPLATES_ERROR(state, err) {
