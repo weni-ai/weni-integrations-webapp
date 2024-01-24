@@ -192,17 +192,21 @@
         errorTemplates: (state) => state.insights.errorTemplates,
         templateAnalytics: (state) => state.insights?.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
-        templates: (state) =>
-          state.insights?.templates.results?.map((item) => {
-            return {
-              value: item.translations[0].message_template_id,
-              label: item.name,
-            };
-          }),
+        templates: (state) => state.insights?.templates.results?.map((item) => item),
       }),
       modelOptions() {
         if (this.templates?.length > 0) {
-          return this.templates;
+          const templateList = [];
+          this.templates.forEach((item) => {
+            item.translations.forEach((translation) => {
+              const obj = {
+                value: translation.message_template_id,
+                label: `${item.name} (${translation.language})`,
+              };
+              templateList.push(obj);
+            });
+          });
+          return templateList;
         }
         return [];
       },
