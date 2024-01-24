@@ -102,21 +102,4 @@ describe('TemplateDetails/index.vue', () => {
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it('should call fetchTemplateAnalytics()', () => {
-    const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.fetchTemplateAnalytics();
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should call formatDate()', () => {
-    const spy = spyOn(wrapper.vm, 'formatDate');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.formatDate(new Date());
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should return default value if selectedTemplate is null', () => {
-    store.state.insights.selectedTemplate.translations = [];
-    expect(wrapper.vm.templateId).toEqual('720749078794724');
-  });
 });

@@ -50,9 +50,9 @@
 <script>
   import Insights from '../Insights/index.vue';
   import Summary from '../../components/TemplateDetails/Summary.vue';
-  import { mapState, mapActions } from 'vuex';
+  import { mapState } from 'vuex';
   export default {
-    name: 'App Details',
+    name: 'AppDetails',
     components: {
       Insights,
       Summary,
@@ -63,39 +63,13 @@
         crumb_title: 'Detalhes do modelo',
       };
     },
-    mounted() {
-      this.fetchTemplateAnalytics();
-    },
     computed: {
       ...mapState({
         selectedTemplate: (state) => state.insights.selectedTemplate,
-        templateAnalytics: (state) => state.insights.templateAnalytics,
-        app_uuid: (state) =>
-          state.myApps.configuredApps.find((item) => item.code === 'wpp-cloud')?.uuid,
+        app_uuid: (state) => state.insights.appUuid,
       }),
-      templateId() {
-        return this.selectedTemplate?.translations[0]?.message_template_id || '720749078794724';
-      },
     },
     methods: {
-      ...mapActions(['getTemplateAnalytics', 'getTemplates']),
-      fetchTemplateAnalytics() {
-        const params = {
-          app_uuid: this.app_uuid,
-          filters: {
-            start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
-            end: this.formatDate(new Date()),
-            fba_template_ids: [this.templateId],
-          },
-        };
-        this.getTemplateAnalytics(params);
-        if (this.errorTemplateAnalytics) {
-          alert(this.errorTemplateAnalytics);
-        }
-      },
-      formatDate(date) {
-        return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
-      },
       redirectTo(crumb) {
         if (crumb.meta === 'Detalhes do modelo') return;
         this.$router.push(crumb.path);

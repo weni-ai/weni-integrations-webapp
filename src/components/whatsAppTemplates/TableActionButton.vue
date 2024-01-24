@@ -64,6 +64,8 @@
             icon: 'pencil-write-1',
             scheme: 'neutral-darkest',
             action: () => {
+              const { appUuid } = this.$route.params;
+              this.setAppUuid({ appUuid: appUuid });
               this.setSelectedTemplate({ template: this.data });
               this.$router.push({
                 path: `/template-details`,
@@ -108,7 +110,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['deleteTemplateMessage']),
-      ...mapActions(['setSelectedTemplate']),
+      ...mapActions(['setSelectedTemplate', 'setAppUuid']),
     },
     computed: {
       ...mapState('WhatsApp', ['errorDeleteTemplateMessage']),

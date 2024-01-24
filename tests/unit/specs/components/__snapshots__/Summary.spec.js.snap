@@ -12,18 +12,14 @@ exports[`components/TemplateDetails/Summary.vue should be rendered properly 1`] 
         Mensagens enviadas
         <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
       </div>
-      <div class="whatsapp_template_summary__main__card__value">
-        51
-      </div>
+      <div class="whatsapp_template_summary__main__card__value">51</div>
     </div>
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
         Mensagens entregues
         <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
       </div>
-      <div class="whatsapp_template_summary__main__card__value">
-        51
-      </div>
+      <div class="whatsapp_template_summary__main__card__value">51</div>
     </div>
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
@@ -31,15 +27,16 @@ exports[`components/TemplateDetails/Summary.vue should be rendered properly 1`] 
         <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
       </div>
       <div class="whatsapp_template_summary__main__card__value">
-        30 (58
-        %)
+        30 (58%)
       </div>
     </div>
   </div>
   <div class="whatsapp_template_summary__quality">
     <div class="whatsapp_template_summary__quality__title">
       <div class="whatsapp_template_summary__title__main">Visão geral da qualidade</div>
-      <div class="whatsapp_template_summary__title__subtitle">Últimos 7 dias</div>
+      <div class="whatsapp_template_summary__title__subtitle">
+        Últimos dias
+      </div>
     </div>
     <div class="whatsapp_template_summary__quality__status">
       <div class="whatsapp_template_summary__quality__status__level">
