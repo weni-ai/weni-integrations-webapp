@@ -256,6 +256,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
+      ...mapActions(['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -342,6 +343,7 @@
         });
       },
       navigateToInsights() {
+        this.setAppUuid({ appUuid: this.app.uuid });
         this.$router.replace('/insights');
       },
     },
