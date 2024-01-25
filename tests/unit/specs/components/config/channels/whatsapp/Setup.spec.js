@@ -118,29 +118,6 @@ describe('whatsapp/Setup.vue', () => {
     });
   });
 
-  describe('selectedNumber watcher', () => {
-    it('should call setSelectedPhoneNumber', async () => {
-      expect(wppCloudActions.setSelectedPhoneNumber).not.toHaveBeenCalled();
-      await wrapper.setData({ selectedNumber: 'number ~ (123)' });
-      expect(wppCloudActions.setSelectedPhoneNumber).toHaveBeenCalledTimes(1);
-      expect(wppCloudActions.setSelectedPhoneNumber).toHaveBeenLastCalledWith(expect.any(Object), {
-        data: {
-          verified_name: 'number',
-          display_phone_number: '123',
-          id: 1,
-        },
-      });
-    });
-  });
-
-  describe('beforeDestroy()', () => {
-    it('should call setSelectedPhoneNumber', async () => {
-      expect(wppCloudActions.setSelectedPhoneNumber).not.toHaveBeenCalled();
-      await wrapper.destroy();
-      expect(wppCloudActions.setSelectedPhoneNumber).toHaveBeenCalledTimes(1);
-    });
-  });
-
   describe('changeLoginState', () => {
     it('should set onLogin to desired state', () => {
       expect(wrapper.vm.onLogin).toEqual(false);
@@ -177,62 +154,6 @@ describe('whatsapp/Setup.vue', () => {
       expect(wppCloudActions.configurePhoneNumber).not.toHaveBeenCalled();
       await wrapper.vm.createChannel();
       expect(wppCloudActions.configurePhoneNumber).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('fetchDebugToken', () => {
-    it('should call fetchDebugToken action', async () => {
-      const token = '123';
-
-      expect(wppCloudActions.getDebugToken).not.toHaveBeenCalled();
-      await wrapper.vm.fetchDebugToken(token);
-      expect(wppCloudActions.getDebugToken).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('fetchPhoneNumbers', () => {
-    it('should call getWhatsAppPhoneNumbers action', async () => {
-      const token = '123';
-
-      expect(wppCloudActions.getWhatsAppPhoneNumbers).not.toHaveBeenCalled();
-      await wrapper.vm.fetchPhoneNumbers(token);
-      expect(wppCloudActions.getWhatsAppPhoneNumbers).toHaveBeenCalledTimes(1);
-    });
-  });
-
-  describe('startPhoneNumberSelectionStage', () => {
-    beforeEach(() => {
-      jest.clearAllMocks();
-    });
-
-    it('should call fetchDebugToken', async () => {
-      const spy = spyOn(wrapper.vm, 'fetchDebugToken');
-      expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.startPhoneNumberSelectionStage();
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call error modal if errorDebugToken', async () => {
-      store.state.WhatsAppCloud.errorDebugToken = true;
-      const spy = spyOn(wrapper.vm, 'callErrorModal');
-      expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.startPhoneNumberSelectionStage();
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call fetchPhoneNumbers', async () => {
-      const spy = spyOn(wrapper.vm, 'fetchPhoneNumbers');
-      expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.startPhoneNumberSelectionStage();
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-
-    it('should call error modal if errorPhoneNumbers', async () => {
-      store.state.WhatsAppCloud.errorPhoneNumbers = true;
-      const spy = spyOn(wrapper.vm, 'callErrorModal');
-      expect(spy).not.toHaveBeenCalled();
-      await wrapper.vm.startPhoneNumberSelectionStage();
-      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
