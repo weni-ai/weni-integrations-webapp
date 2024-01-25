@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import Insights from '@/views/TemplateDetails/index.vue';
+import TemplateDetails from '@/views/TemplateDetails/index.vue';
 import { singleApp } from '../../../__mocks__/appMock';
 
 const genericApp = {
@@ -19,6 +19,11 @@ describe('TemplateDetails/index.vue', () => {
   let actions;
   let state;
   let store;
+  const crumb = {
+    name: 'my apps',
+    path: '/apps/my',
+    meta: 'my apps',
+  };
 
   beforeEach(() => {
     actions = {
@@ -90,16 +95,48 @@ describe('TemplateDetails/index.vue', () => {
       state,
     });
 
-    wrapper = shallowMount(Insights, {
+    wrapper = shallowMount(TemplateDetails, {
       localVue,
       store,
       mocks: {
         $t: () => 'some specific text',
+        $router: {
+          push: jest.fn(),
+        },
+        $route: {
+          path: '/template-details',
+        },
       },
     });
   });
 
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+  it('should call redirectTo()', () => {
+    const spy = spyOn(wrapper.vm, 'redirectTo');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.redirectTo(crumb);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  describe('redirectTo', () => {
+    it('should change route to my apps', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      wrapper.vm.redirectTo(crumb);
+
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(`/apps/my`);
+    });
+    it('should not change route', () => {
+      const thisCrumb = {
+        name: '',
+        path: '/',
+        meta: '',
+      };
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      wrapper.vm.redirectTo(thisCrumb);
+
+      expect(spy).not.toBeCalled();
+    });
   });
 });

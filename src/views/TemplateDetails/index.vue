@@ -79,7 +79,12 @@
     },
     methods: {
       redirectTo(crumb) {
-        if (crumb.meta === this.$t('WhatsApp.template_details.crumbs.manage_templates')) return;
+        if (
+          crumb.meta === this.$t('WhatsApp.template_details.crumbs.model_details') ||
+          crumb.meta === ''
+        ) {
+          return;
+        }
         this.$router.push(crumb.path);
       },
     },
