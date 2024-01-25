@@ -66,7 +66,13 @@
         selectedTemplate: (state) => state.insights.selectedTemplate,
       }),
       weekValues() {
-        return this.templateAnalytics.grand_totals;
+        return (
+          this.templateAnalytics?.grand_totals || {
+            sent: 0,
+            delivered: 0,
+            read: 0,
+          }
+        );
       },
     },
     methods: {

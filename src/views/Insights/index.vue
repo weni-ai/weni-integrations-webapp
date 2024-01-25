@@ -38,8 +38,8 @@
           <unnnic-input-date-picker
             :value="periodo"
             size="md"
-            @changed="setPeriodo"
             format="MM-DD-YYYY"
+            @changed="setPeriodo"
           />
         </div>
       </div>
@@ -171,23 +171,24 @@
           end: this.formatDate(new Date()),
         },
         hash: this.$route?.hash,
-        ...mapState({
-          selectedTemplate: (state) => state.insights.selectedTemplate,
-        }),
         crumb_title: 'Insights',
       };
     },
     mounted() {
       this.fetchTemplates();
       if (this.hash) {
-        this.model = [this.selectedTemplate.translations[0].message_template_id];
+        this.model = [
+          {
+            value: this.selectedTemplate.translations[0].message_template_id,
+            label: this.selectedTemplate.name,
+          },
+        ];
       }
       this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState({
-        app_uuid: (state) =>
-          state.myApps?.configuredApps.find((item) => item.code === 'wpp-cloud')?.uuid,
+        app_uuid: (state) => state.insights.appUuid,
         errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
         errorTemplates: (state) => state.insights.errorTemplates,
         templateAnalytics: (state) => state.insights?.templateAnalytics,
@@ -211,28 +212,25 @@
         return [];
       },
       getChartByDay() {
-        const sent = this.getChartByType('sent')[0].data;
-        const delivered = this.getChartByType('delivered')[0].data;
-        const read = this.getChartByType('read')[0].data;
-        let chart = [
-          {
-            title: 'Sent',
-            data: sent,
-          },
-          {
-            title: 'Delivered',
-            data: delivered,
-          },
-          {
-            title: 'Read',
-            data: read,
-          },
-        ];
-        const maxValue = this.findMax(sent);
-
+        const sent = this.getChartByType('sent').map(({ data }) => data);
+        const delivered = this.getChartByType('delivered').map(({ data }) => data);
+        const read = this.getChartByType('read').map(({ data }) => data);
         return {
-          data: chart,
-          maxValue: maxValue,
+          data: [
+            {
+              title: 'Sent',
+              data: sent[0],
+            },
+            {
+              title: 'Delivered',
+              data: delivered[0],
+            },
+            {
+              title: 'Read',
+              data: read[0],
+            },
+          ],
+          maxValue: this.findMax(sent),
         };
       },
       getChartSent() {
@@ -258,12 +256,12 @@
     methods: {
       ...mapActions(['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalytics() {
-        const models = this.model?.map((item) => item.value);
+        let models = this.model.map((item) => item.value);
         const params = {
           app_uuid: this.app_uuid,
           filters: {
-            start: this.periodo?.start,
-            end: this.periodo?.end,
+            start: this.periodo.start,
+            end: this.periodo.end,
             fba_template_ids: models,
           },
         };
@@ -276,10 +274,7 @@
         this.showModal = !this.showModal;
       },
       setPeriodo(e) {
-        this.periodo = {
-          start: e.start,
-          end: e.end,
-        };
+        this.periodo = e;
         this.fetchTemplateAnalytics();
       },
       formatDate(date) {
