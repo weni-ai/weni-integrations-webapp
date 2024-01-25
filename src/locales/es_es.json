@@ -674,6 +674,14 @@
         "read": "Mensajes leídos",
         "received": "Mensajes recibidos"
       }
+    },
+    "template_details": {
+      "summary": "Resumen",
+      "crumbs": {
+        "my_apps": "Mis aplicaciones",
+        "manage_templates": "Administrar Templates",
+        "model_details": "Detalles del modelo"
+      }
     }
   },
   "WhatsAppCloud": {
