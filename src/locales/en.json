@@ -676,11 +676,21 @@
       }
     },
     "template_details": {
-      "summary": "Summary",
       "crumbs": {
         "my_apps": "My Apps",
         "manage_templates": "Manage Templates",
         "model_details": "Model Details"
+      },
+      "summary": {
+        "title": "Summary",
+        "performace_overview": "Performace overview",
+        "last_7_days": "last 7 days",
+        "sent_messages": "Sent messages",
+        "delivered_messages": "Delivered messages",
+        "read_messages": "Read messages",
+        "quality_overview": "Quality overview",
+        "current_level": "Current level",
+        "block_reason": "Main blocking reason"
       }
     }
   },

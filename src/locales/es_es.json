@@ -676,11 +676,21 @@
       }
     },
     "template_details": {
-      "summary": "Resumen",
       "crumbs": {
         "my_apps": "Mis aplicaciones",
         "manage_templates": "Administrar Templates",
         "model_details": "Detalles del modelo"
+      },
+      "summary": {
+        "title": "Resumen",
+        "performace_overview": "Descripción general del rendimiento",
+        "last_7_days": "últimos 7 días",
+        "sent_messages": "Mensajes enviados",
+        "delivered_messages": "Mensajes entregados",
+        "read_messages": "Mensajes leídos",
+        "quality_overview": "Resumen de calidad",
+        "current_level": "Nivel actual",
+        "block_reason": "Razón principal del bloqueo"
       }
     }
   },

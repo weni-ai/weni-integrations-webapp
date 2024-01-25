@@ -42,7 +42,9 @@
     <!-- Tabs -->
     <div class="wpp_insights__tabs">
       <unnnic-tab initialTab="first" :tabs="['first', 'second']">
-        <template slot="tab-head-first">{{ $t('WhatsApp.template_details.summary') }}</template>
+        <template slot="tab-head-first">{{
+          $t('WhatsApp.template_details.summary.title')
+        }}</template>
         <template slot="tab-panel-first">
           <Summary />
         </template>

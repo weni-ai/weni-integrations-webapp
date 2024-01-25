@@ -1,27 +1,31 @@
 <template>
   <div class="whatsapp_template_summary">
     <div class="whatsapp_template_summary__title">
-      <div class="whatsapp_template_summary__title__main">Visão geral do desempenho</div>
-      <div class="whatsapp_template_summary__title__subtitle">últimos 7 dias</div>
+      <div class="whatsapp_template_summary__title__main">
+        {{ this.$t('WhatsApp.template_details.summary.performace_overview') }}
+      </div>
+      <div class="whatsapp_template_summary__title__subtitle">
+        {{ this.$t('WhatsApp.template_details.summary.last_7_days') }}
+      </div>
     </div>
     <div class="whatsapp_template_summary__main">
       <div class="whatsapp_template_summary__main__card">
         <div class="whatsapp_template_summary__main__card__title">
-          Mensagens enviadas
+          {{ this.$t('WhatsApp.template_details.summary.sent_messages') }}
           <unnnic-icon icon="info" size="sm" filled scheme="neutral-cleanest" />
         </div>
         <div class="whatsapp_template_summary__main__card__value">{{ weekValues.sent }}</div>
       </div>
       <div class="whatsapp_template_summary__main__card">
         <div class="whatsapp_template_summary__main__card__title">
-          Mensagens entregues
+          {{ this.$t('WhatsApp.template_details.summary.delivered_messages') }}
           <unnnic-icon icon="info" size="sm" filled scheme="neutral-cleanest" />
         </div>
         <div class="whatsapp_template_summary__main__card__value">{{ weekValues.delivered }}</div>
       </div>
       <div class="whatsapp_template_summary__main__card">
         <div class="whatsapp_template_summary__main__card__title">
-          Mensagens lidas
+          {{ this.$t('WhatsApp.template_details.summary.read_messages') }}
           <unnnic-icon icon="info" size="sm" filled scheme="neutral-cleanest" />
         </div>
         <div class="whatsapp_template_summary__main__card__value">
@@ -33,19 +37,23 @@
     </div>
     <div class="whatsapp_template_summary__quality">
       <div class="whatsapp_template_summary__quality__title">
-        <div class="whatsapp_template_summary__title__main">Visão geral da qualidade</div>
+        <div class="whatsapp_template_summary__title__main">
+          {{ this.$t('WhatsApp.template_details.summary.quality_overview') }}
+        </div>
         <div class="whatsapp_template_summary__title__subtitle">
           Últimos {{ templateAnalytics.data.lenght }} dias
         </div>
       </div>
       <div class="whatsapp_template_summary__quality__status">
         <div class="whatsapp_template_summary__quality__status__level">
-          <div class="whatsapp_template_summary__quality__status__level__title">Nível atual</div>
+          <div class="whatsapp_template_summary__quality__status__level__title">
+            {{ this.$t('WhatsApp.template_details.summary.current_level') }}
+          </div>
           <div class="whatsapp_template_summary__quality__status__level__value">--</div>
         </div>
         <div class="whatsapp_template_summary__quality__status__blocked">
           <div class="whatsapp_template_summary__quality__status__blocked__title">
-            Principal motivo do bloqueio
+            {{ this.$t('WhatsApp.template_details.summary.block_reason') }}
           </div>
           <div class="whatsapp_template_summary__quality__status__blocked__value">--</div>
         </div>

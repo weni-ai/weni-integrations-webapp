@@ -3,27 +3,31 @@
 exports[`components/TemplateDetails/Summary.vue should be rendered properly 1`] = `
 <div class="whatsapp_template_summary">
   <div class="whatsapp_template_summary__title">
-    <div class="whatsapp_template_summary__title__main">Visão geral do desempenho</div>
-    <div class="whatsapp_template_summary__title__subtitle">últimos 7 dias</div>
+    <div class="whatsapp_template_summary__title__main">
+      some specific text
+    </div>
+    <div class="whatsapp_template_summary__title__subtitle">
+      some specific text
+    </div>
   </div>
   <div class="whatsapp_template_summary__main">
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
-        Mensagens enviadas
+        some specific text
         <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
       </div>
       <div class="whatsapp_template_summary__main__card__value">51</div>
     </div>
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
-        Mensagens entregues
+        some specific text
         <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
       </div>
       <div class="whatsapp_template_summary__main__card__value">51</div>
     </div>
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
-        Mensagens lidas
+        some specific text
         <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
       </div>
       <div class="whatsapp_template_summary__main__card__value">
@@ -33,19 +37,23 @@ exports[`components/TemplateDetails/Summary.vue should be rendered properly 1`] 
   </div>
   <div class="whatsapp_template_summary__quality">
     <div class="whatsapp_template_summary__quality__title">
-      <div class="whatsapp_template_summary__title__main">Visão geral da qualidade</div>
+      <div class="whatsapp_template_summary__title__main">
+        some specific text
+      </div>
       <div class="whatsapp_template_summary__title__subtitle">
         Últimos dias
       </div>
     </div>
     <div class="whatsapp_template_summary__quality__status">
       <div class="whatsapp_template_summary__quality__status__level">
-        <div class="whatsapp_template_summary__quality__status__level__title">Nível atual</div>
+        <div class="whatsapp_template_summary__quality__status__level__title">
+          some specific text
+        </div>
         <div class="whatsapp_template_summary__quality__status__level__value">--</div>
       </div>
       <div class="whatsapp_template_summary__quality__status__blocked">
         <div class="whatsapp_template_summary__quality__status__blocked__title">
-          Principal motivo do bloqueio
+          some specific text
         </div>
         <div class="whatsapp_template_summary__quality__status__blocked__value">--</div>
       </div>
