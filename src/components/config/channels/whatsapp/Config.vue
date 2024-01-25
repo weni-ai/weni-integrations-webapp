@@ -27,13 +27,21 @@
 
     <div class="config-whatsapp__content">
       <unnnic-tab
-        v-if="skipLoad || (!loadingWhatsAppProfile && !loadingCurrentApp)"
+        v-if="
+          skipLoad ||
+          (!loadingWhatsAppProfile && !loadingCurrentApp && !loadingWhatsAppCloudCatalogs)
+        "
         class="config-whatsapp__tabs"
         :tabs="configTabs"
         initialTab="account"
       >
         <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
-        <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
+        <AccountTab
+          :appInfo="currentApp"
+          :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
+          slot="tab-panel-account"
+          @close="closeConfig"
+        />
 
         <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
         <ProfileTab
@@ -107,6 +115,11 @@
         'loadingWhatsAppProfile',
         'errorWhatsAppProfile',
       ]),
+      ...mapState('WhatsAppCloud', [
+        'loadingWhatsAppCloudCatalogs',
+        'errorWhatsAppCloudCatalogs',
+        'whatsAppCloudCatalogs',
+      ]),
       ...mapState({
         currentApp: (state) => state.appType.currentApp,
         loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
@@ -122,6 +135,7 @@
     methods: {
       ...mapActions(['getApp']),
       ...mapActions('WhatsApp', ['fetchWppProfile', 'resetWppFetchResults']),
+      ...mapActions('WhatsAppCloud', ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -144,6 +158,7 @@
           this.skipLoad = skipLoad;
           await this.fetchAppInfo(options);
           await this.fetchProfile(options);
+          await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
           unnnicCallAlert({

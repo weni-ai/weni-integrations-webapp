@@ -20,87 +20,86 @@ import skeletonLoading from '@/components/config/channels/whatsapp/loadings/Conf
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-describe('WhatsAppConfig.vue', () => {
-  let wrapper;
-  let actions;
-  let state;
-  let wppActions;
-  let wppState;
-  let store;
+const mountComponent = async ({ errorWhatsAppProfile = false, errorCurrentApp = false } = {}) => {
+  const actions = {
+    getApp: jest.fn(() => {
+      return { data: singleApp };
+    }),
+  };
 
-  beforeEach(() => {
-    actions = {
-      getApp: jest.fn(() => {
-        return { data: singleApp };
-      }),
-    };
+  const state = {
+    appType: {
+      currentApp: singleApp,
+      loadingCurrentApp: false,
+      errorCurrentApp,
+    },
+  };
 
-    state = {
-      appType: {
-        currentApp: singleApp,
-        loadingCurrentApp: false,
-        errorCurrentApp: false,
+  const wppActions = {
+    resetWppFetchResults: jest.fn(),
+    fetchWppProfile: jest.fn(() => {
+      return { data: { photo_url: 'photo' } };
+    }),
+  };
+
+  const wppState = {
+    whatsAppProfile: { photo_url: 'url' },
+    loadingWhatsAppProfile: false,
+    errorWhatsAppProfile,
+  };
+
+  const store = new Vuex.Store({
+    modules: {
+      WhatsApp: {
+        namespaced: true,
+        actions: wppActions,
+        state: wppState,
       },
-    };
-
-    wppActions = {
-      resetWppFetchResults: jest.fn(),
-      fetchWppProfile: jest.fn(() => {
-        return { data: { photo_url: 'photo' } };
-      }),
-    };
-
-    wppState = {
-      whatsAppProfile: { photo_url: 'url' },
-      loadingWhatsAppProfile: false,
-      errorWhatsAppProfile: false,
-    };
-
-    store = new Vuex.Store({
-      modules: {
-        WhatsApp: {
-          namespaced: true,
-          actions: wppActions,
-          state: wppState,
-        },
-      },
-      actions,
-      state,
-    });
-
-    wrapper = shallowMount(whatsappConfig, {
-      localVue,
-      i18n,
-      store,
-      propsData: {
-        app: singleApp,
-      },
-      stubs: {
-        skeletonLoading,
-        DynamicForm: true,
-        UnnnicTab: true,
-        UnnnicIconSvg: true,
-        UnnnicInput: true,
-        UnnnicButton: true,
-      },
-      mocks: {
-        $router: {
-          push: jest.fn(),
-        },
-      },
-    });
+    },
+    actions,
+    state,
   });
 
-  afterEach(() => {
+  const wrapper = shallowMount(whatsappConfig, {
+    localVue,
+    i18n,
+    store,
+    propsData: {
+      app: singleApp,
+    },
+    stubs: {
+      skeletonLoading,
+      DynamicForm: true,
+      UnnnicTab: true,
+      UnnnicIconSvg: true,
+      UnnnicInput: true,
+      UnnnicButton: true,
+    },
+    mocks: {
+      $router: {
+        push: jest.fn(),
+      },
+    },
+  });
+
+  await wrapper.vm.$nextTick();
+
+  return { wrapper, actions, state, wppActions, wppState };
+};
+
+describe('WhatsAppConfig.vue', () => {
+  beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('should be rendered properly', () => {
+  it('should be rendered properly', async () => {
+    const { wrapper } = await mountComponent();
     expect(wrapper).toMatchSnapshot();
   });
 
   describe('beforeDestroy()', () => {
     it('should call resetWppFetchResults()', async () => {
+      const { wrapper, wppActions } = await mountComponent();
       expect(wppActions.resetWppFetchResults).not.toHaveBeenCalled();
       wrapper.destroy();
       expect(wppActions.resetWppFetchResults).toHaveBeenCalledTimes(1);
@@ -108,7 +107,8 @@ describe('WhatsAppConfig.vue', () => {
   });
 
   describe('closeConfig()', () => {
-    it('should emit closeModal', () => {
+    it('should emit closeModal', async () => {
+      const { wrapper } = await mountComponent();
       expect(wrapper.emitted('closeModal')).toBeFalsy();
       wrapper.vm.closeConfig();
       expect(wrapper.emitted('closeModal')).toBeTruthy();
@@ -117,6 +117,7 @@ describe('WhatsAppConfig.vue', () => {
 
   describe('fetchData()', () => {
     it('should call fetchAppInfo()', async () => {
+      const { wrapper } = await mountComponent();
       const spy = spyOn(wrapper.vm, 'fetchAppInfo');
       expect(spy).not.toHaveBeenCalled();
       await wrapper.vm.fetchData();
@@ -128,6 +129,7 @@ describe('WhatsAppConfig.vue', () => {
     });
 
     it('should call fetchProfile', async () => {
+      const { wrapper } = await mountComponent();
       const spy = spyOn(wrapper.vm, 'fetchProfile');
       expect(spy).not.toHaveBeenCalled();
       await wrapper.vm.fetchData();
@@ -139,9 +141,8 @@ describe('WhatsAppConfig.vue', () => {
     });
 
     it('should call unnnicCallAlert on request failure', async () => {
-      actions.getApp.mockImplementation(() => {
-        return Promise.reject();
-      });
+      const { wrapper } = await mountComponent({ errorCurrentApp: true });
+      jest.clearAllMocks();
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.fetchData();
       expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
@@ -163,6 +164,7 @@ describe('WhatsAppConfig.vue', () => {
 
   describe('fetchAppInfo', () => {
     it('should call getApp()', async () => {
+      const { wrapper, actions } = await mountComponent();
       jest.clearAllMocks();
       const options = { code: 'code', appUuid: 'appUuid' };
       expect(actions.getApp).not.toHaveBeenCalled();
@@ -171,14 +173,15 @@ describe('WhatsAppConfig.vue', () => {
     });
 
     it('should throw error on getApp() failure', async () => {
+      const { wrapper } = await mountComponent({ errorCurrentApp: true });
       const options = { code: 'code', appUuid: 'appUuid' };
-      store.state.appType.errorCurrentApp = true;
       await expect(wrapper.vm.fetchAppInfo(options)).rejects.toThrow();
     });
   });
 
   describe('fetchProfile', () => {
     it('should call fetchWppProfile()', async () => {
+      const { wrapper, wppActions } = await mountComponent();
       jest.clearAllMocks();
       const options = { code: 'code', appUuid: 'appUuid' };
       expect(wppActions.fetchWppProfile).not.toHaveBeenCalled();
@@ -187,25 +190,28 @@ describe('WhatsAppConfig.vue', () => {
     });
 
     it('should throw error on fetchWppProfile() failure', async () => {
+      const { wrapper } = await mountComponent({ errorWhatsAppProfile: true });
       const options = { code: 'code', appUuid: 'appUuid' };
-      store.state.WhatsApp.errorWhatsAppProfile = true;
       await expect(wrapper.vm.fetchProfile(options)).rejects.toThrow();
     });
   });
 
   describe('computed', () => {
     describe('documentationLink', () => {
-      it('should return link based on locale', () => {
+      it('should return link based on locale', async () => {
+        const { wrapper } = await mountComponent();
         wrapper.vm.$i18n.locale = 'en-us';
         expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['en-us']);
       });
 
-      it('should return link based on locale', () => {
+      it('should return link based on locale', async () => {
+        const { wrapper } = await mountComponent();
         wrapper.vm.$i18n.locale = 'pt-br';
         expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['pt-br']);
       });
 
-      it('should return en-us link as default', () => {
+      it('should return en-us link as default', async () => {
+        const { wrapper } = await mountComponent();
         wrapper.vm.$i18n.locale = 'unknown';
         expect(wrapper.vm.documentationLink).toEqual(wrapper.vm.documentations['en-us']);
       });

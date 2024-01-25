@@ -47,15 +47,15 @@ exports[`components/config/external/omie/Config.vue should be rendered properly 
                 <div data-v-69271fcc=""></div>
               </div>
             </div>
-            <div data-v-69271fcc="" class="app-config-omie__settings__buttons"><button data-v-2d9f2cbf="" class="app-config-omie__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-69271fcc="">
+            <div data-v-69271fcc="" class="app-config-omie__settings__buttons"><button data-v-1e5e9ddd="" class="app-config-omie__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-69271fcc="">
                 <!---->
                 <!---->
-                <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Cancel </span>
+                <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Cancel </span>
                 <!---->
-              </button> <button data-v-2d9f2cbf="" class="app-config-omie__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-69271fcc="">
+              </button> <button data-v-1e5e9ddd="" class="app-config-omie__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-69271fcc="">
                 <!---->
                 <!---->
-                <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Connect </span>
+                <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Connect </span>
                 <!---->
               </button></div>
           </div>

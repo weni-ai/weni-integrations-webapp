@@ -464,7 +464,11 @@
       },
       "catalog": {
         "button": "View list of catalogs",
-        "title": "Catalog"
+        "title": "Catalog",
+        "button_create": "Create catalog",
+        "error": {
+          "missing_vtex_app": "You need to have a VTEX app configured to connect a catalog."
+        }
       }
     },
     "catalog": {
@@ -955,6 +959,90 @@
     },
     "success": {
       "configure": "Successfully updated integration"
+    }
+  },
+  "vtex": {
+    "setup": {
+      "title": "Integrate with VTEX",
+      "description": "To proceed with the instalation insert a subdomain",
+      "subdomain": "Subdomain",
+      "subdomain_placeholder": "Ex: shop.myvtex.com",
+      "whatsapp_channel": "WhatsApp Number",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Insert your AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Insert your AppToken",
+      "guide": {
+        "question": "Don't know your AppKey and AppToken?",
+        "question_end": "to access the documentation on VTEX and find out.",
+        "link": "Click here"
+      },
+      "invalid_credentials": "Invalid credentials for the given subdomain",
+      "error": "An error occurred while trying to integrate with VTEX, please try again later",
+      "success": "VTEX integration successfully completed"
+    },
+    "config": {
+      "description": "Connect your VTEX catalog to send products via Whatsapp",
+      "catalog": "Catalog",
+      "connect_catalog": "Connect catalog",
+      "details": "Details",
+      "name": "Account name",
+      "environment": "Environment",
+      "view_catalog": "View catalog",
+      "wpp_number": "WhatsApp number"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermarkets and Grocery Stores",
+        "clothes_store": "Clothes store",
+        "pharmacies_and_drugstores": "Pharmacies and Drugstores",
+        "restaurants_and_cafes": "Restaurants and Cafes",
+        "electronics_stores": "Electronics Stores",
+        "bookstores_and_stationery": "Bookstores and Stationery",
+        "furniture_and_decoration": "Furniture and Decoration Stores",
+        "building_materials_and_hardware": "Building Material and Hardware Stores",
+        "sporting_goods": "Sporting Goods Stores",
+        "shoe_stores": "Shoe stores",
+        "auto_parts": "Auto parts stores",
+        "other": "Other",
+        "placeholder": "Select a business type"
+      }
+    },
+    "connect_catalog": {
+      "title": "Basic informations",
+      "business_type": "Business type",
+      "name_placeholder": "Ex: Weekly offers",
+      "name": "Catalog name",
+      "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
+    },
+    "errors": {
+      "connect_catalog": "Could not connect VTEX catalog, please try again later",
+      "fetch_related_wpp_data": "Failed to fetch related WhatsApp Number information",
+      "redirect_to_wpp_catalog": "Failed to redirect to catalog, please refresh the page and try again",
+      "update_connected_catalog_status": "Failed to fetch catalog status, please try again later."
+    },
+    "success": {
+      "connect_catalog": "Successfully connected VTEX catalog"
+    }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "VTEX Catalog",
+          "description": "Automatically connect your catalog through integration with the VTEX app"
+        },
+        "default": {
+          "title": "Standard sending",
+          "description": "Create a catalog using a link or XML file"
+        }
+      },
+      "footer": "To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here",
+      "title": "Create catalog",
+      "header": {
+        "title": "Sending method",
+        "description": "Choose the way you want to send your catalog to start selling products via Whatsapp"
+      }
     }
   }
 }
