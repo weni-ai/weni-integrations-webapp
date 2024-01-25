@@ -188,7 +188,7 @@
     },
     computed: {
       ...mapState({
-        app_uuid: (state) => state.insights.appUuid,
+        app_uuid: (state) => state.insights?.appUuid,
         errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
         errorTemplates: (state) => state.insights.errorTemplates,
         templateAnalytics: (state) => state.insights?.templateAnalytics,
