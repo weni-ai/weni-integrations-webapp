@@ -25,7 +25,9 @@
           <unnnic-icon icon="info" size="sm" filled scheme="neutral-cleanest" />
         </div>
         <div class="whatsapp_template_summary__main__card__value">
-          {{ weekValues.read }} ({{ Math.floor((weekValues.read / weekValues.sent) * 100) }}%)
+          {{ weekValues.read }} ({{
+            Math.floor((weekValues.read / weekValues.sent) * 100) || '--'
+          }}%)
         </div>
       </div>
     </div>
