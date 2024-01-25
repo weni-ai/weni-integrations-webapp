@@ -17,7 +17,7 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import VueRouter from 'vue-router';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
-import AddModal from '@/components/AddModal.vue';
+import AddModal from '@/components/AddModal/index.vue';
 import ConfigModal from '@/components/config/ConfigModal.vue';
 import i18n from '@/utils/plugins/i18n';
 

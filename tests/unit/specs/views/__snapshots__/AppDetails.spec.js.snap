@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppDetails.vue should be rendered properly 1`] = `
+exports[`AppDetails/index.vue should be rendered properly 1`] = `
 <div>
   <navigator-stub routes="[object Object],[object Object]" class="navigator"></navigator-stub>
   <div class="app-details">

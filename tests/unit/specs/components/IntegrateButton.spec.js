@@ -14,8 +14,8 @@ jest.mock('@weni/unnnic-system', () => ({
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import IntegrateButton from '@/components/IntegrateButton.vue';
-import addModal from '@/components/AddModal.vue';
+import IntegrateButton from '@/components/IntegrateButton/index.vue';
+import addModal from '@/components/AddModal/index.vue';
 import ConfigPopUp from '@/components/config/ConfigPopUp.vue';
 import i18n from '@/utils/plugins/i18n';
 import { singleApp } from '../../../__mocks__/appMock';

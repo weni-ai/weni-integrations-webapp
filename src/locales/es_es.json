@@ -67,6 +67,10 @@
         "empty_link": "aquí",
         "results": "Resultados para",
         "placeholder": "Buscar"
+      },
+      "action": {
+        "edit": "Edit",
+        "config": "Configure"
       }
     },
     "myApps": {
@@ -467,8 +471,8 @@
       "error": {
         "fetch_catalogs": "No se puede cargar la lista del catálogo. Por favor, inténtelo de nuevo más tarde",
         "disable_catalog": "No se puede desactivar el catálogo en este momento. Por favor, inténtelo de nuevo más tarde",
-        "enable_catalog": "El catálogo no se pudo habilitar en este momento. Por favor, inténtelo de nuevo más tarde",
-        "toggle_cart_visibility": "No se puede habilitar el carrito en este momento. Por favor, inténtelo de nuevo más tarde"
+        "enable_catalog": "El catálogo no se pudo activar en este momento. Por favor, inténtelo de nuevo más tarde",
+        "toggle_cart_visibility": "No se puede activar el carrito en este momento. Por favor, inténtelo de nuevo más tarde"
       },
       "list": {
         "title": "Lista de catálogos",
@@ -610,7 +614,8 @@
         "button_text": "Texto del botón",
         "phone_number_placeholder": "Ingrese el número de teléfono",
         "url_placeholder": "Ingrese la URL del sitio web",
-        "footer_text_placeholder": "Escribe el texto de pie de página"
+        "footer_text_placeholder": "Escribe el texto de pie de página",
+        "error_has_variable": "Los botones de plantilla no pueden contener variables"
       },
       "category_options": {
         "marketing": "Marketing",

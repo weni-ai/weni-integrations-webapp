@@ -16,6 +16,7 @@
       :app="app"
       :disabled="!app.can_add"
       :text="$t('apps.details.header.add')"
+      loadingPosition="left"
     />
 
     <add-modal ref="addModal" />
@@ -23,8 +24,8 @@
 </template>
 
 <script>
-  import addModal from '../AddModal.vue';
-  import IntegrateButton from '../IntegrateButton.vue';
+  import addModal from '../AddModal/index.vue';
+  import IntegrateButton from '../IntegrateButton/index.vue';
 
   export default {
     name: 'AppDetailsHeader',

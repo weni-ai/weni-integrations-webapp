@@ -5,11 +5,10 @@
     @close="closePopUp"
     @click.stop
     :closeIcon="false"
+    :text="$t('ChatGPT.setup.title')"
+    :description="$t('ChatGPT.setup.description')"
   >
     <div slot="message" class="chatgpt-modal__content">
-      <span class="chatgpt-modal__content__title">{{ $t('ChatGPT.setup.title') }}</span>
-      <span class="chatgpt-modal__content__description">{{ $t('ChatGPT.setup.description') }}</span>
-
       <div class="chatgpt-modal__content__form">
         <unnnic-input
           class="chatgpt-modal__content__form__input__name"
@@ -152,26 +151,36 @@
 
 <style lang="scss" scoped>
   .chatgpt-modal {
-    ::v-deep .unnnic-modal-container-background-body-description {
-      padding-bottom: $unnnic-spacing-stack-xs;
+    ::v-deep {
+      .container {
+        padding: $unnnic-squish-md !important;
+      }
+
+      .header {
+        margin-bottom: $unnnic-spacing-stack-nano !important;
+      }
+
+      .unnnic-modal-container-background {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding: 0 $unnnic-spacing-md;
+        max-height: 95vh;
+      }
+
+      .unnnic-modal-container-background-body {
+        border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
+      }
+
+      .unnnic-modal-container-background-body-description-container {
+        padding-bottom: $unnnic-spacing-md;
+      }
     }
 
     &__content {
       display: flex;
       flex-direction: column;
-
-      &__title {
-        font-family: $unnnic-font-family-secondary;
-        color: $unnnic-color-neutral-darkest;
-        font-weight: $unnnic-font-weight-black;
-        font-size: $unnnic-font-size-title-sm;
-        line-height: ($unnnic-font-size-title-sm + $unnnic-line-height-medium);
-        padding: $unnnic-spacing-stack-md 0;
-      }
-
-      &__description {
-        margin-bottom: $unnnic-spacing-stack-lg;
-      }
+      overflow: auto;
 
       &__form {
         display: flex;
@@ -192,6 +201,16 @@
             gap: $unnnic-spacing-stack-lg;
           }
         }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      flex: 1;
+      margin-top: $unnnic-spacing-md;
+
+      * {
+        flex: 1;
       }
     }
   }

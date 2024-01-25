@@ -8,29 +8,34 @@ const routes = [
   { path: '/', redirect: { name: 'Discovery' } },
   {
     path: '/apps',
-    component: () => import('@/views/Apps.vue'),
+    component: () => import('@/views/Apps/index.vue'),
     children: [
       {
         name: 'Discovery',
         path: 'discovery',
-        component: () => import('@/views/Discovery.vue'),
+        component: () => import('@/views/Discovery/index.vue'),
       },
       {
         name: 'Apps',
         path: 'my',
-        component: () => import('@/views/MyApps.vue'),
+        component: () => import('@/views/MyApps/index.vue'),
       },
       {
         name: 'Other Apps',
         path: 'other-apps',
-        component: () => import('@/views/OtherApps.vue'),
+        component: () => import('@/views/OtherApps/index.vue'),
+      },
+      {
+        name: 'Insights',
+        path: 'insights',
+        component: () => import('@/views/Insights/index.vue'),
       },
     ],
   },
   {
     name: 'App Detail',
     path: '/apps/:appCode/details',
-    component: () => import('@/views/AppDetails.vue'),
+    component: () => import('@/views/AppDetails/index.vue'),
   },
   {
     path: '/apps/my/:appCode/:appUuid/templates',
