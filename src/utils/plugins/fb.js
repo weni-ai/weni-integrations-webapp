@@ -6,7 +6,7 @@ export function initFacebookSdk(appId, loginCallback) {
     FB.init({
       appId, // Facebook App ID
       xfbml: true, // parse social plugins on this page
-      version: 'v11.0', //Graph API version
+      version: 'v18.0', //Graph API version
     });
 
     // Call login code after init
