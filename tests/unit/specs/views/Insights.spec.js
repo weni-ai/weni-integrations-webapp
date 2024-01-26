@@ -50,6 +50,14 @@ describe('Insights/index.vue', () => {
           path: '/template-details',
         },
       },
+      stubs: {
+        unnnicChartMultiLine: true,
+        unnnicBreadCrumb: true,
+        unnnicButton: true,
+        unnnicInputDatePicker: true,
+        unnnicSelectSmart: true,
+        unnnicModal: true,
+      },
     });
   });
 
@@ -108,6 +116,15 @@ describe('Insights/index.vue', () => {
     });
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('should call fetchTemplates()', () => {
+    const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.setPeriodo({
+      start: '1-10-2024',
+      end: '1-11-2024',
+    });
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 
   // formatDate
   it('should call formatDate()', () => {
@@ -148,10 +165,15 @@ describe('Insights/index.vue', () => {
   });
 
   // activeTemplate
-  it('should call activeTemplate()', () => {
+  it('should call activeTemplate()', async () => {
     const spy = spyOn(wrapper.vm, 'activeTemplate');
     expect(spy).not.toHaveBeenCalled();
     wrapper.vm.activeTemplate();
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should set isActive to true', async () => {
+    const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
+    await toggleActive.vm.$emit('click');
+    expect(wrapper.vm.isActive).toBeTruthy();
   });
 });

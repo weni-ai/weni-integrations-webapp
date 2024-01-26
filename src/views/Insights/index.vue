@@ -138,6 +138,7 @@
             :text="$t('general.confirm')"
             :style="{ width: '289px' }"
             @click="activeTemplate"
+            ref="wpp_insights__button__active"
           />
         </div>
       </unnnic-modal>
