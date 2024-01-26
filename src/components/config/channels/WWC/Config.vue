@@ -720,12 +720,12 @@
 
       &__close {
         display: flex;
-        justify-content: end;
-        justify-self: end;
+        justify-content: flex-end;
+        justify-self: flex-end;
         width: 100%;
         padding-right: $unnnic-spacing-inline-xs;
         &__button {
-          justify-self: end;
+          justify-self: flex-end;
           display: flex;
         }
       }
