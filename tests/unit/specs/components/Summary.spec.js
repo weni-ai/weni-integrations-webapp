@@ -100,16 +100,16 @@ describe('components/TemplateDetails/Summary.vue', () => {
     wrapper.vm.fetchTemplateAnalyticsWeek();
     expect(spy).toHaveBeenCalledTimes(1);
   });
-  it('should call formatDate()', () => {
-    const spy = spyOn(wrapper.vm, 'formatDate');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.formatDate(new Date());
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
   it('should call getTemplateAnalytics()', () => {
     const spy = spyOn(wrapper.vm, 'getTemplateAnalytics');
     expect(spy).not.toHaveBeenCalled();
     wrapper.vm.fetchTemplateAnalyticsWeek();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should call formatDate()', () => {
+    const spy = spyOn(wrapper.vm, 'formatDate');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.formatDate(new Date());
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
