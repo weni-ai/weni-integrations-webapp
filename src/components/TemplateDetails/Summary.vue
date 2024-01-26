@@ -93,15 +93,12 @@
           filters: {
             start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
             end: this.formatDate(new Date()),
-            fba_template_ids: this.selectedTemplate.translations.map(
+            fba_template_ids: this.selectedTemplate?.translations.map(
               (item) => item.message_template_id,
             ),
           },
         };
         this.getTemplateAnalytics(params);
-        if (this.errorTemplateAnalytics) {
-          alert(this.errorTemplateAnalytics);
-        }
       },
       formatDate(date) {
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;

@@ -6,6 +6,13 @@ import i18n from '@/utils/plugins/i18n';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+jest.mock('@/api/insights', () => {
+  return {
+    get_template_analytics: jest.fn(),
+    get_templates: jest.fn(),
+  };
+});
+
 describe('components/TemplateDetails/Summary.vue', () => {
   let wrapper;
   let actions;
@@ -14,7 +21,28 @@ describe('components/TemplateDetails/Summary.vue', () => {
   beforeEach(() => {
     actions = {
       getTemplates: jest.fn(),
-      getTemplateAnalytics: jest.fn(),
+      getTemplateAnalytics: jest.fn(() => {
+        return {
+          data: [
+            {
+              template_id: '730081812069736',
+              template_name: null,
+              totals: { sent: 51, delivered: 51, read: 30 },
+              dates: [
+                { start: '2024-01-04', sent: 11, delivered: 10, read: 6 },
+                { start: '2024-01-05', sent: 7, delivered: 7, read: 5 },
+                { start: '2024-01-06', sent: 6, delivered: 5, read: 1 },
+                { start: '2024-01-07', sent: 4, delivered: 5, read: 4 },
+                { start: '2024-01-08', sent: 1, delivered: 2, read: 2 },
+                { start: '2024-01-09', sent: 0, delivered: 0, read: 0 },
+                { start: '2024-01-10', sent: 11, delivered: 11, read: 5 },
+                { start: '2024-01-11', sent: 11, delivered: 11, read: 7 },
+              ],
+            },
+          ],
+          grand_totals: { sent: 51, delivered: 51, read: 30 },
+        };
+      }),
     };
 
     state = {
@@ -42,28 +70,9 @@ describe('components/TemplateDetails/Summary.vue', () => {
         },
         loadingTemplateAnalytics: false,
         errorTemplateAnalytics: null,
-        selectedTemplate: {
-          uuid: 'd9019398-e5df-421f-98d5-8cfa711e7b20',
-          name: 'testeana2',
-          created_on: '2024-01-10 17:10:01.952251+00:00',
-          category: 'MARKETING',
-          translations: [],
-        },
+        selectedTemplate: null,
         appUuid: null,
-        templates: {
-          count: 1,
-          next: null,
-          previous: null,
-          results: [
-            {
-              uuid: 'd9019398-e5df-421f-98d5-8cfa711e7b20',
-              name: 'testeana2',
-              created_on: '2024-01-10 17:10:01.952251+00:00',
-              category: 'MARKETING',
-              translations: [],
-            },
-          ],
-        },
+        templates: null,
         errorTemplates: null,
       },
     };
@@ -85,8 +94,22 @@ describe('components/TemplateDetails/Summary.vue', () => {
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
   });
-  it('should set templateAnalytics', () => {
-    store.state.insights.templateAnalytics = [];
-    expect(wrapper.vm.templateAnalytics).toEqual([]);
+  it('should call fetchTemplateAnalyticsWeek', () => {
+    const spy = spyOn(wrapper.vm, 'fetchTemplateAnalyticsWeek');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.fetchTemplateAnalyticsWeek();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should call formatDate()', () => {
+    const spy = spyOn(wrapper.vm, 'formatDate');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.formatDate(new Date());
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should call getTemplateAnalytics()', () => {
+    const spy = spyOn(wrapper.vm, 'getTemplateAnalytics');
+    expect(spy).not.toHaveBeenCalled();
+    wrapper.vm.fetchTemplateAnalyticsWeek();
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
