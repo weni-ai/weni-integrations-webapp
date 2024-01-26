@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import Card from '@/components/whatsAppCatalogs/Card.vue';
+import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
 import '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
 
@@ -30,7 +30,7 @@ const mountComponent = async ({
     },
   });
 
-  const wrapper = mount(Card, {
+  const wrapper = mount(CatalogCard, {
     localVue,
     store,
     i18n,
@@ -43,7 +43,7 @@ const mountComponent = async ({
   return { wrapper, actions, state };
 };
 
-describe('components/whatsAppCatalog/Card.vue', () => {
+describe('components/whatsAppCatalog/CatalogCard.vue', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });

@@ -8,16 +8,13 @@ jest.mock('@weni/unnnic-system', () => ({
 
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import List from '@/components/whatsAppCatalogs/List.vue';
-import Card from '@/components/whatsAppCatalogs/Card.vue';
+import CatalogList from '@/components/whatsAppCatalogs/CatalogList.vue';
+import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
 import '@weni/unnnic-system';
 import { unnnicModalNext } from '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
-import VueRouter from 'vue-router';
-const router = new VueRouter();
 
 const localVue = createLocalVue();
-localVue.use(VueRouter);
 localVue.use(Vuex);
 
 const mountComponent = async ({
@@ -57,18 +54,22 @@ const mountComponent = async ({
     },
   });
 
-  const wrapper = mount(List, {
+  const wrapper = mount(CatalogList, {
     localVue,
     store,
     i18n,
-    router,
-    stubs: {
-      Card,
-    },
     mocks: {
       $router: {
         push: jest.fn(),
       },
+      $route: {
+        params: {
+          appUuid: '123',
+        },
+      },
+    },
+    stubs: {
+      CatalogCard,
     },
   });
 
@@ -528,28 +529,32 @@ describe('components/whatsAppCatalog/List.vue', () => {
     });
   });
 
-  // describe('catalog connect emits', () => {
-  //   it('should emit enable on toggle catalog connect', async () => {
-  //     const { wrapper } = await mountComponent();
-  //     const toggle = wrapper.findComponent({ ref: 'catalogConnectSwitch' });
-  //     toggle.vm.$emit('input', true);
-  //     expect(wrapper.emitted().enable).toBeTruthy();
-  //   });
+  describe('redirectToCatalogProducts', () => {
+    it('should redirect to catalog products page', async () => {
+      const { wrapper } = await mountComponent({
+        whatsAppCloudCatalogs: {
+          results: [
+            {
+              uuid: 'uuid123',
+              name: 'catalog name',
+            },
+          ],
+        },
+      });
 
-  //   it('should emit disable on toggle catalog connect', async () => {
-  //     const { wrapper } = await mountComponent();
-  //     const toggle = wrapper.findComponent({ ref: 'catalogConnectSwitch' });
-  //     toggle.vm.$emit('input', false);
-  //     expect(wrapper.emitted().disable).toBeTruthy();
-  //   });
-  // });
-
-  // describe('toggleCart emit', () => {
-  //   it('should emit toggleCart on switch click', async () => {
-  //     const { wrapper } = await mountComponent({ catalog: { is_connected: true } });
-  //     const toggle = wrapper.findComponent({ ref: 'cartEnableSwitch' });
-  //     toggle.trigger('click');
-  //     expect(wrapper.emitted().toggleCart).toBeTruthy();
-  //   });
-  // });
+      const card = wrapper.findAll('.whatsapp-catalog-card').at(0);
+      expect(wrapper.vm.$router.push).not.toHaveBeenCalled();
+      card.vm.$emit('redirectClick');
+      expect(wrapper.vm.$router.push).toHaveBeenCalledWith({
+        name: 'WhatsApp Catalog Products',
+        params: {
+          appUuid: '123',
+          catalogUuid: 'uuid123',
+        },
+        query: {
+          catalogName: 'catalog name',
+        },
+      });
+    });
+  });
 });
