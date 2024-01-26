@@ -35,6 +35,7 @@
     >
       <CatalogCard
         v-for="(catalog, index) in listItems"
+        :ref="`catalogCard-${index}`"
         :key="index"
         :catalog="catalog"
         :enabledCart="commerceSettings.is_cart_enabled"
@@ -279,7 +280,6 @@
         this.fetchData(this.page);
       },
       redirectToCatalogProducts(catalogUuid, catalogName) {
-        console.log('redirect', catalogUuid);
         this.$router.push({
           name: 'WhatsApp Catalog Products',
           params: {

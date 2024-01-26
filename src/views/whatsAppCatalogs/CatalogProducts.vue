@@ -6,7 +6,7 @@
   import ProductList from '@/components/whatsAppCatalogs/ProductList';
 
   export default {
-    name: 'WhatsAppCatalogsList',
+    name: 'CatalogProducts',
     props: {
       catalogName: {
         type: String,

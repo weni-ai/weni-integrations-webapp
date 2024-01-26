@@ -38,4 +38,10 @@ export default {
   getCommerceSettings(appUuid) {
     return request.$http.get(`${catalogsResource}/${appUuid}/commerce-settings/`);
   },
+  getCatalogProducts(appUuid, catalogUuid, params) {
+    const queryString = qs.stringify(params);
+    return request.$http.get(
+      `${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/products/?${queryString}`,
+    );
+  },
 };

@@ -23,14 +23,14 @@
 
       <template v-slot:item="{ item }">
         <unnnic-table-row :headers="headers">
-          <template v-slot:name>
-            <div class="whatsapp-product-list__table__name">
-              <img :src="item.image" class="whatsapp-product-list__table__name__image" />
-              <span>{{ item.name }}</span>
+          <template v-slot:title>
+            <div class="whatsapp-product-list__table__title">
+              <img :src="item.image_link" class="whatsapp-product-list__table__title__image" />
+              <span :data-title="item.title">{{ item.title }}</span>
             </div>
           </template>
 
-          <template v-slot:availability>
+          <template v-slot:available>
             <div :title="item.available" class="break-text whatsapp-product-list__table__status">
               <span :class="`whatsapp-product-list__table__status__indicator ${item.available}`" />
               <span>{{ item.available ? 'Disponível' : 'Indisponível' }}</span>
@@ -49,9 +49,9 @@
             </div>
           </template>
 
-          <template v-slot:sku>
-            <div :title="item.sku" class="break-text">
-              {{ item.sku }}
+          <template v-slot:facebook_product_id>
+            <div :title="item.facebook_product_id" class="break-text">
+              {{ item.facebook_product_id }}
             </div>
           </template>
         </unnnic-table-row>
@@ -65,6 +65,8 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'vuex';
+
   export default {
     name: 'ProductList',
     props: {
@@ -81,12 +83,12 @@
         pageSize: 15,
         headers: [
           {
-            id: 'name',
+            id: 'title',
             text: this.$t('WhatsApp.product.table.headers.name'),
             flex: 2,
           },
           {
-            id: 'availability',
+            id: 'available',
             text: this.$t('WhatsApp.product.table.headers.availability'),
             flex: 1,
           },
@@ -96,234 +98,31 @@
             flex: 1,
           },
           {
-            id: 'sku',
-            text: this.$t('WhatsApp.product.table.headers.sku'),
+            id: 'facebook_product_id',
+            text: this.$t('WhatsApp.product.table.headers.facebook_id'),
             flex: 1,
-          },
-        ],
-        mockedProductList: [
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
-          },
-          {
-            name: 'Mamão Papaya',
-            available: false,
-            price: 'R$ 3,99',
-            base_price: 'R$ 4,99',
-            sku: '123456789',
-            image:
-              'https://www.verdurixhortifruti.com.br/cdn/shop/products/mamaopapaia.jpg?v=1590606817',
-          },
-          {
-            name: 'Pão de Forma Panco 500g',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 3,99',
-            sku: '987654321',
-            image:
-              'https://superprix.vteximg.com.br/arquivos/ids/177070-292-292/Pao-Panco-Leite-500g.png?v=636559216471630000',
-          },
-          {
-            name: 'Banana',
-            available: true,
-            price: 'R$ 2,99',
-            base_price: 'R$ 2,99',
-            sku: '456789123',
-            image: 'https://frutasbrasilsul.com.br/wp-content/uploads/banana-terra.png',
           },
         ],
       };
     },
-    // TODO: change to get pages from product list after backend integration
+    async mounted() {
+      await this.fetchProducts(this.page);
+    },
     computed: {
+      ...mapState('WhatsAppCloud', [
+        'catalogProducts',
+        'loadingCatalogProducts',
+        'errorCatalogProducts',
+      ]),
       listItems() {
-        return this.mockedProductList || [];
+        return this.catalogProducts?.results || [];
       },
       totalCount() {
-        return this.whatsAppCloudCatalogs?.count || this.pageSize;
+        return this.catalogProducts?.count || this.pageSize;
       },
       pageCount() {
-        if (this.whatsAppCloudCatalogs?.count) {
-          return Math.ceil(this.whatsAppCloudCatalogs.count / this.pageSize);
+        if (this.catalogProducts?.count) {
+          return Math.ceil(this.catalogProducts.count / this.pageSize);
         } else {
           return 1;
         }
@@ -333,9 +132,27 @@
       },
       currentPageCount() {
         const value = this.pageSize * this.page;
-        return value > this.whatsAppCloudCatalogs?.count
-          ? this.whatsAppCloudCatalogs?.count || 0
-          : value;
+        return value > this.catalogProducts?.count ? this.catalogProducts?.count || 0 : value;
+      },
+    },
+    methods: {
+      ...mapActions('WhatsAppCloud', ['getCatalogProducts']),
+      async fetchProducts(page) {
+        const { appUuid, catalogUuid } = this.$route.params;
+        const params = {
+          page: page,
+          page_size: this.pageSize,
+        };
+
+        await this.getCatalogProducts({ appUuid, catalogUuid, params });
+      },
+    },
+    watch: {
+      page: {
+        immediate: true,
+        handler(page) {
+          this.fetchProducts(page);
+        },
       },
     },
   };
@@ -429,15 +246,24 @@
         padding-right: unset;
       }
 
-      &__name {
+      &__title {
         display: flex;
         align-items: center;
+
+        // add ellipsis if it breaks text
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
 
         &__image {
           height: $unnnic-avatar-size-sm;
           width: $unnnic-avatar-size-sm;
           border-radius: $unnnic-border-radius-sm;
           margin-right: $unnnic-spacing-inline-sm;
+          object-fit: cover;
+          aspect-ratio: 1 / 1;
         }
       }
 

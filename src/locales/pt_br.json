@@ -664,7 +664,8 @@
           "name": "Nome",
           "availability": "Disponibilidade",
           "price": "Preço",
-          "sku": "SKU"
+          "sku": "SKU",
+          "facebook_id": "Facebook ID"
         }
       },
       "list": {
