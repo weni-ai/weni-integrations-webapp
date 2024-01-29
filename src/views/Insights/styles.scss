@@ -135,7 +135,7 @@
 
     ::v-deep .unnnic-modal-container-background {
       width: 658px;
-      height: 90vh;
+      max-height: 95%;
       overflow: scroll;
     }
 
