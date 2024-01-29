@@ -40,6 +40,7 @@
     font-size: $unnnic-font-size-body-gt;
     color: $unnnic-color-neutral-cloudy;
     gap: 1rem;
+    z-index: 999;
 
     &__time {
       width: 260px;
