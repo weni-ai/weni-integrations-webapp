@@ -139,4 +139,12 @@ describe('TemplateDetails/index.vue', () => {
       expect(spy).not.toBeCalled();
     });
   });
+  describe('redirectEdit', () => {
+    it('should change route to edit template', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      expect(spy).not.toBeCalled();
+      wrapper.vm.redirectEdit();
+      expect(spy).toBeCalledTimes(1);
+    });
+  });
 });

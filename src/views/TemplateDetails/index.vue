@@ -36,6 +36,7 @@
           text="Editar Modelo"
           ref="wpp_template_details__button__edit"
           type="secondary"
+          @click="redirectEdit"
         />
       </div>
     </div>
@@ -88,6 +89,11 @@
           return;
         }
         this.$router.push(crumb.path);
+      },
+      redirectEdit() {
+        this.$router.push({
+          path: `/apps/my/wpp-cloud/${this.app_uuid}/templates/edit/${this.selectedTemplate.uuid}`,
+        });
       },
     },
   };
