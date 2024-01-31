@@ -128,12 +128,12 @@ describe('store/insights/actions.js', () => {
     });
   });
 
-  describe('setIsActive()', () => {
+  describe('setActiveProject()', () => {
     it('should call setIsActive', () => {
       store.state.insights.isActive = null;
       expect(store.state.insights.isActive).toEqual(null);
-      store.dispatch('setIsActive', { isActive: false });
-      expect(store.state.insights.isActive).toBeFalsy();
+      store.dispatch('setActiveProject', { app_uuid: '' });
+      expect(store.state.insights.isActive).toBeTruthy();
     });
   });
 });

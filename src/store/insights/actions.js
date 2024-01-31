@@ -19,12 +19,8 @@ export default {
     }
   },
   async setActiveProject({ commit }, { app_uuid }) {
-    try {
-      await insights.set_active_project(app_uuid);
-      commit('GET_IS_ACTIVE', true);
-    } catch (err) {
-      commit('GET_IS_ACTIVE', err);
-    }
+    commit('GET_IS_ACTIVE', true);
+    await insights.set_active_project(app_uuid);
   },
 
   setSelectedTemplate({ commit }, { template }) {
@@ -32,8 +28,5 @@ export default {
   },
   setAppUuid({ commit }, { appUuid }) {
     commit('GET_APP_UUID', appUuid);
-  },
-  setIsActive({ commit }, { isActive }) {
-    commit('GET_IS_ACTIVE', isActive);
   },
 };

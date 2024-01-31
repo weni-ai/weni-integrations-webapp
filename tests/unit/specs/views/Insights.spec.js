@@ -66,117 +66,165 @@ describe('Insights/index.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  // fetchTemplateAnalytics()
-  it('should call fetchTemplateAnalytics()', () => {
-    const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.fetchTemplateAnalytics();
-    expect(spy).toHaveBeenCalledTimes(1);
+  //computed
+  it('should set modelOptions', () => {
+    wrapper.vm.templates = [];
+    expect(wrapper.vm.modelOptions).toEqual([]);
   });
-  it('should call getTemplateAnalytics()', () => {
-    const spy = spyOn(wrapper.vm, 'getTemplateAnalytics');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.fetchTemplateAnalytics();
-    expect(spy).toHaveBeenCalledTimes(1);
+
+  // fetchTemplateAnalytics()
+  describe('fetchTemplateAnalytics()', () => {
+    it('should call fetchTemplateAnalytics()', () => {
+      const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.fetchTemplateAnalytics();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should call getTemplateAnalytics()', () => {
+      const spy = spyOn(wrapper.vm, 'getTemplateAnalytics');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.fetchTemplateAnalytics();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
   });
 
   // fetchTemplates
-  it('should call fetchTemplates()', () => {
-    const spy = spyOn(wrapper.vm, 'fetchTemplates');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.fetchTemplates();
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should call getTemplates()', () => {
-    const spy = spyOn(wrapper.vm, 'getTemplates');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.fetchTemplates();
-    expect(spy).toHaveBeenCalledTimes(1);
+  describe('fetchTemplates()', () => {
+    it('should call fetchTemplates()', () => {
+      const spy = spyOn(wrapper.vm, 'fetchTemplates');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.fetchTemplates();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should call getTemplates()', () => {
+      const spy = spyOn(wrapper.vm, 'getTemplates');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.fetchTemplates();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
   });
 
   // toggleOpenModal
-  it('should call toggleOpenModal()', () => {
-    const spy = spyOn(wrapper.vm, 'toggleOpenModal');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.toggleOpenModal();
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should set showModal state to true', async () => {
-    const toggleModalComponent = wrapper.findComponent({ ref: 'modal' });
-    await toggleModalComponent.vm.$emit('close');
-    expect(wrapper.vm.showModal).toBeTruthy();
+  describe('toggleOpenModal()', () => {
+    it('should call toggleOpenModal()', () => {
+      const spy = spyOn(wrapper.vm, 'toggleOpenModal');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.toggleOpenModal();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should set showModal state to true', async () => {
+      const toggleModalComponent = wrapper.findComponent({ ref: 'modal' });
+      await toggleModalComponent.vm.$emit('close');
+      expect(wrapper.vm.showModal).toBeTruthy();
+    });
   });
 
   //  setPeriodo
-  it('should call setPeriodo()', () => {
-    const spy = spyOn(wrapper.vm, 'setPeriodo');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.setPeriodo({
-      start: '1-10-2024',
-      end: '1-11-2024',
+  describe('setPeriodo()', () => {
+    it('should call setPeriodo()', () => {
+      const spy = spyOn(wrapper.vm, 'setPeriodo');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.setPeriodo({
+        start: '1-10-2024',
+        end: '1-11-2024',
+      });
+      expect(spy).toHaveBeenCalledTimes(1);
     });
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should call fetchTemplates()', () => {
-    const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.setPeriodo({
-      start: '1-10-2024',
-      end: '1-11-2024',
+    it('should call fetchTemplates()', () => {
+      const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.setPeriodo({
+        start: '1-10-2024',
+        end: '1-11-2024',
+      });
+      expect(spy).toHaveBeenCalledTimes(1);
     });
-    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   // formatDate
-  it('should call formatDate()', () => {
-    const spy = spyOn(wrapper.vm, 'formatDate');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.formatDate(new Date());
-    expect(spy).toHaveBeenCalledTimes(1);
+  describe('formatDate()', () => {
+    it('should call formatDate()', () => {
+      const spy = spyOn(wrapper.vm, 'formatDate');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.formatDate(new Date());
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
   });
 
   // getChartByType
-  it('should call getChartByType()', () => {
-    const spy = spyOn(wrapper.vm, 'getChartByType');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.getChartByType('sent');
-    expect(spy).toHaveBeenCalledTimes(1);
+  describe('getChartByType()', () => {
+    it('should call getChartByType()', () => {
+      const spy = spyOn(wrapper.vm, 'getChartByType');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.getChartByType('sent');
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
   });
 
   // findMax
-  it('should call findMax()', () => {
-    const spy = spyOn(wrapper.vm, 'findMax');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.findMax([]);
-    expect(spy).toHaveBeenCalledTimes(1);
+  describe('findMax()', () => {
+    it('should call findMax()', () => {
+      const spy = spyOn(wrapper.vm, 'findMax');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.findMax([]);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should return max value', () => {
+      const spy = spyOn(wrapper.vm, 'findMax');
+      const array = [
+        {
+          title: 1,
+          value: 1,
+        },
+        {
+          title: 2,
+          value: 2,
+        },
+      ];
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.findMax(array);
+      expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(array);
+    });
   });
 
   // redirectTo
-  it('should call redirectTo()', () => {
-    const spy = spyOn(wrapper.vm, 'redirectTo');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.redirectTo(crumb);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should change route to my apps', () => {
-    const spy = spyOn(wrapper.vm.$router, 'push');
-    wrapper.vm.redirectTo(crumb);
-    expect(spy).toBeCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(`/apps/my`);
+  describe('redirectTo()', () => {
+    it('should call redirectTo()', () => {
+      const spy = spyOn(wrapper.vm, 'redirectTo');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.redirectTo(crumb);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should change route to my apps', () => {
+      const spy = spyOn(wrapper.vm.$router, 'push');
+      wrapper.vm.redirectTo(crumb);
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(`/apps/my`);
+    });
   });
 
   // activeTemplate
-  it('should call activeTemplate()', async () => {
-    const spy = spyOn(wrapper.vm, 'activeTemplate');
-    expect(spy).not.toHaveBeenCalled();
-    wrapper.vm.activeTemplate();
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-  it('should set isActive to true', async () => {
-    const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
-    const spy = spyOn(wrapper.vm, 'setActiveProject');
-    expect(spy).not.toBeCalled();
-    await toggleActive.vm.$emit('click');
-    expect(spy).toBeCalledTimes(1);
+  describe('activeTemplate()', () => {
+    it('should call activeTemplate()', async () => {
+      const spy = spyOn(wrapper.vm, 'activeTemplate');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.activeTemplate();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should set isActive to true', async () => {
+      const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
+      const spy = spyOn(wrapper.vm, 'setActiveProject');
+      expect(spy).not.toBeCalled();
+      await toggleActive.vm.$emit('click');
+      expect(spy).toBeCalledTimes(1);
+    });
+    it('should set showModal to false', async () => {
+      const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
+      const spy = spyOn(wrapper.vm, 'showModal');
+      expect(spy).toBeTruthy();
+      await toggleActive.vm.$emit('click');
+      expect(wrapper.vm.showModal).toBeFalsy();
+    });
   });
 });
