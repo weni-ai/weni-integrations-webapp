@@ -1,6 +1,7 @@
 import Vuex from 'vuex';
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Insights from '@/views/Insights/index.vue';
+import { selectedTemplate, templateAnalytics, templates } from '../../../__mocks__/appMock';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -24,13 +25,13 @@ describe('Insights/index.vue', () => {
     };
 
     state = {
-      isActive: false,
-      templateAnalytics: [],
+      isActive: true,
+      templateAnalytics: templateAnalytics,
       loadingTemplateAnalytics: false,
       errorTemplateAnalytics: null,
-      selectedTemplate: null,
-      appUuid: null,
-      templates: [],
+      selectedTemplate: selectedTemplate,
+      appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
+      templates: templates,
       errorTemplates: null,
     };
 
@@ -68,6 +69,18 @@ describe('Insights/index.vue', () => {
 
   //computed
   it('should set modelOptions', () => {
+    const templateList = [];
+    store.state.templates.results.forEach((item) => {
+      item.translations.forEach((translation) => {
+        const obj = {
+          value: translation.message_template_id,
+          label: `${item.name} (${translation.language})`,
+        };
+        templateList.push(obj);
+      });
+    });
+    expect(wrapper.vm.modelOptions).toEqual(templateList);
+
     wrapper.vm.templates = [];
     expect(wrapper.vm.modelOptions).toEqual([]);
   });
@@ -159,6 +172,25 @@ describe('Insights/index.vue', () => {
       wrapper.vm.getChartByType('sent');
       expect(spy).toHaveBeenCalledTimes(1);
     });
+    it('should set getChartSent', () => {
+      store.state.templateAnalytics = [];
+      wrapper.vm.getChartByType('sent');
+      expect(wrapper.vm.getChartSent).toEqual([]);
+    });
+    it('should set getChartDelivered', () => {
+      store.state.templateAnalytics = [];
+      wrapper.vm.getChartByType('delivered');
+      expect(wrapper.vm.getChartDelivered).toEqual([]);
+    });
+    it('should set getChartDelivered', () => {
+      store.state.templateAnalytics = [];
+      wrapper.vm.getChartByType('read');
+      expect(wrapper.vm.getChartRead).toEqual([]);
+    });
+    it('should set getChartByDay', () => {
+      store.state.templateAnalytics = [];
+      expect(wrapper.vm.getChartRead).toEqual([]);
+    });
   });
 
   // findMax
@@ -167,6 +199,25 @@ describe('Insights/index.vue', () => {
       const spy = spyOn(wrapper.vm, 'findMax');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.findMax([]);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should call findMax()', () => {
+      const spy = spyOn(wrapper.vm, 'findMax');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.findMax([
+        {
+          title: '1',
+          value: 1,
+        },
+        {
+          title: '2',
+          value: 2,
+        },
+        {
+          title: '3',
+          value: 3,
+        },
+      ]);
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
@@ -191,6 +242,12 @@ describe('Insights/index.vue', () => {
   describe('activeTemplate()', () => {
     it('should call activeTemplate()', async () => {
       const spy = spyOn(wrapper.vm, 'activeTemplate');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.activeTemplate();
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    it('should call setActiveProject()', async () => {
+      const spy = spyOn(wrapper.vm, 'setActiveProject');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.activeTemplate();
       expect(spy).toHaveBeenCalledTimes(1);

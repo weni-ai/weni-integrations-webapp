@@ -304,7 +304,7 @@
       },
       activeTemplate() {
         this.showModal = false;
-        this.setActiveProject({ app_uuid: this.app_uuid });
+        this.setActiveProject({ appUuid: this.app_uuid });
       },
     },
   };
