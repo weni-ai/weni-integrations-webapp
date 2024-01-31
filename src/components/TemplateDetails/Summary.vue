@@ -77,7 +77,7 @@
       }),
       weekValues() {
         return (
-          this.templateAnalytics?.grand_totals || {
+          this.templateAnalytics.grand_totals || {
             sent: 0,
             delivered: 0,
             read: 0,
@@ -93,7 +93,7 @@
           filters: {
             start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
             end: this.formatDate(new Date()),
-            fba_template_ids: this.selectedTemplate?.translations.map(
+            fba_template_ids: this.selectedTemplate.translations.map(
               (item) => item.message_template_id,
             ),
           },

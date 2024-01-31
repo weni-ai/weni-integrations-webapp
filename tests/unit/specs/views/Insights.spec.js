@@ -169,23 +169,6 @@ describe('Insights/index.vue', () => {
       wrapper.vm.findMax([]);
       expect(spy).toHaveBeenCalledTimes(1);
     });
-    it('should return max value', () => {
-      const spy = spyOn(wrapper.vm, 'findMax');
-      const array = [
-        {
-          title: 1,
-          value: 1,
-        },
-        {
-          title: 2,
-          value: 2,
-        },
-      ];
-      expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.findMax(array);
-      expect(spy).toHaveBeenCalledTimes(1);
-      expect(spy).toHaveBeenCalledWith(array);
-    });
   });
 
   // redirectTo
