@@ -164,7 +164,6 @@
     },
     data() {
       return {
-        isActive: false,
         showModal: false,
         model: [],
         periodo: {
@@ -195,6 +194,7 @@
         templateAnalytics: (state) => state.insights?.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
         templates: (state) => state.insights?.templates.results?.map((item) => item),
+        isActive: (state) => state.insights?.isActive || false,
       }),
       modelOptions() {
         if (this.templates?.length > 0) {
@@ -255,7 +255,7 @@
       },
     },
     methods: {
-      ...mapActions(['getTemplateAnalytics', 'getTemplates']),
+      ...mapActions(['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
@@ -303,8 +303,8 @@
         this.$router.push(crumb.path);
       },
       activeTemplate() {
-        this.isActive = true;
         this.showModal = false;
+        this.setActiveProject({ app_uuid: this.app_uuid });
       },
     },
   };

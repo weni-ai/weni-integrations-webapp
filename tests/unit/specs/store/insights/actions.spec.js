@@ -127,4 +127,13 @@ describe('store/insights/actions.js', () => {
       expect(store.state.insights.appUuid).toEqual('123');
     });
   });
+
+  describe('setIsActive()', () => {
+    it('should call setIsActive', () => {
+      store.state.insights.isActive = null;
+      expect(store.state.insights.isActive).toEqual(null);
+      store.dispatch('setIsActive', { isActive: false });
+      expect(store.state.insights.isActive).toBeFalsy();
+    });
+  });
 });

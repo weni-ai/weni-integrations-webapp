@@ -20,6 +20,7 @@ describe('Insights/index.vue', () => {
     actions = {
       getTemplates: jest.fn(),
       getTemplateAnalytics: jest.fn(),
+      setActiveProject: jest.fn(),
     };
 
     state = {
@@ -173,7 +174,9 @@ describe('Insights/index.vue', () => {
   });
   it('should set isActive to true', async () => {
     const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
+    const spy = spyOn(wrapper.vm, 'setActiveProject');
+    expect(spy).not.toBeCalled();
     await toggleActive.vm.$emit('click');
-    expect(wrapper.vm.isActive).toBeTruthy();
+    expect(spy).toBeCalledTimes(1);
   });
 });

@@ -16,4 +16,7 @@ export default {
       .then((r) => r.count);
     return request.$http.get(`${base}/${app_uuid}/templates/?page=1&page_size=${count}`);
   },
+  set_active_project(app_uuid) {
+    return request.$http.post(`${resource}/${app_uuid}/enable-template-analytics`);
+  },
 };
