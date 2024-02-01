@@ -6,6 +6,13 @@ import { selectedTemplate, templateAnalytics, templates } from '../../../__mocks
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+jest.mock('@/api/insights', () => {
+  return {
+    get_template_analytics: jest.fn(),
+    get_templates: jest.fn(),
+  };
+});
+
 describe('Insights/index.vue', () => {
   let wrapper;
   let actions;
@@ -19,8 +26,8 @@ describe('Insights/index.vue', () => {
 
   beforeEach(() => {
     actions = {
-      getTemplates: jest.fn(),
-      getTemplateAnalytics: jest.fn(),
+      getTemplates: jest.fn(() => templates),
+      getTemplateAnalytics: jest.fn(() => templateAnalytics),
       setActiveProject: jest.fn(),
     };
 
@@ -198,27 +205,15 @@ describe('Insights/index.vue', () => {
     it('should call findMax()', () => {
       const spy = spyOn(wrapper.vm, 'findMax');
       expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.findMax([]);
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-    it('should call findMax()', () => {
-      const spy = spyOn(wrapper.vm, 'findMax');
-      expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.findMax([
+      const array = [
         {
           title: '1',
           value: 1,
         },
-        {
-          title: '2',
-          value: 2,
-        },
-        {
-          title: '3',
-          value: 3,
-        },
-      ]);
+      ];
+      wrapper.vm.findMax(array);
       expect(spy).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(array);
     });
   });
 

@@ -673,6 +673,13 @@
         "delivered": "Delivered messages",
         "read": "Read messages",
         "received": "Received messages"
+      },
+      "filters": {
+        "period_of_time": "Period of time",
+        "message_templates": "Message templates"
+      },
+      "modal": {
+        "present_insights": "We present new insights"
       }
     },
     "template_details": {

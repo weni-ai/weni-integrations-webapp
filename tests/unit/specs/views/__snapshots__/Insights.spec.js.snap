@@ -14,18 +14,22 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
       </div>
     </div>
     <div class="wpp_insights__header__button">
-      <unnnicbutton-stub size="large" text="Ativar insights" type="primary"></unnnicbutton-stub>
+      <unnnicbutton-stub size="large" text="some specific text" type="primary"></unnnicbutton-stub>
     </div>
   </div>
   <div class="wpp_insights__filters">
     <div class="wpp_insights__filters__time">
-      <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
+      <div class="wpp_insights__filters__time__title">
+        some specific text
+      </div>
       <div class="wpp_insights__filters__time__select">
         <unnnicinputdatepicker-stub value="[object Object]" type="day" size="md" cleartext="Clear" actiontext="Filter" format="MM-DD-YYYY" inputformat="MM-DD-YYYY" position="left"></unnnicinputdatepicker-stub>
       </div>
     </div>
     <div class="wpp_insights__filters__model">
-      <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
+      <div class="wpp_insights__filters__model__title">
+        some specific text
+      </div>
       <div class="wpp_insights__filters__model__select">
         <unnnicselectsmart-stub options="" value="" size="md" type="normal" multiple="true" multiplewithoutselectsmessage=""></unnnicselectsmart-stub>
       </div>
@@ -43,7 +47,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
         </div>
       </div>
       <div class="wpp_insights__content__empty__button">
-        <unnnicbutton-stub size="large" text="Ativar insights" type="primary"></unnnicbutton-stub>
+        <unnnicbutton-stub size="large" text="some specific text" type="primary"></unnnicbutton-stub>
       </div>
     </div>
     <!---->
@@ -51,7 +55,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
   <div class="wpp_insights__modal">
     <unnnicmodal-stub closeicon="true">
       <div class="wpp_insights__modal__title"><img src="../../assets/svgs/amazoninha-heart.svg" alt="">
-        <p>Apresentamos novos insights</p>
+        <p>some specific text</p>
       </div>
       <div class="wpp_insights__modal__content">
         <p class="wpp_insights__modal__content__dark">

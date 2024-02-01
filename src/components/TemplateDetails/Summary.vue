@@ -77,7 +77,7 @@
       }),
       weekValues() {
         return (
-          this.templateAnalytics.grand_totals || {
+          this.templateAnalytics?.grand_totals || {
             sent: 0,
             delivered: 0,
             read: 0,
