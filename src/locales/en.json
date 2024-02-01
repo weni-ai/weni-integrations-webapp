@@ -1012,9 +1012,9 @@
           "title": "VTEX Catalog",
           "description": "Automatically connect your catalog through integration with the VTEX app"
         },
-        "default": {
-          "title": "Standard sending",
-          "description": "Create a catalog using a link or XML file"
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Create a catalog on Meta's Facebook, a new tab will be opened."
         }
       },
       "footer": "To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here",

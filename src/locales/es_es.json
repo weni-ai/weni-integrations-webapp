@@ -1011,9 +1011,9 @@
           "title": "Catálogo VTEX",
           "description": "Conecte automáticamente su catálogo mediante la integración con la aplicación VTEX"
         },
-        "default": {
-          "title": "Envío estándar",
-          "description": "Crear un catálogo mediante un enlace o un archivo XML"
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Crea un catálogo en el Facebook de Meta, se abrirá una nueva pestaña."
         }
       },
       "footer": "Para conectar su catálogo VTEX necesita tener integrada la aplicación VTEX en la plataforma. \nSi aún no te has integrado, haz clic aquí",
