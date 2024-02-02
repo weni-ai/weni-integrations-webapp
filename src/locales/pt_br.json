@@ -58,7 +58,8 @@
         "installed": "Aplicativos instalados",
         "bi-tools": "Ferramentas de BI",
         "external": "Serviços Externos",
-        "recommended": "Canais recomendados"
+        "recommended": "Canais recomendados",
+        "ecommerce": "Ecommerce"
       },
       "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde.",
       "search": {
@@ -1004,6 +1005,10 @@
     }
   },
   "vtex": {
+    "data": {
+      "summary": "Com o aplicativo VTEX você conecta seu catálogo e vende pelo Whatsapp",
+      "description": "A integração entre a Weni Plataforma e a VTEX está redefinindo a maneira como os varejistas expandem seus negócios online. Agora, você pode conectar facilmente o catálogo de produtos, abrindo caminho para vendas diretas por meio do WhatsApp. Essa solução inovadora promete uma experiência de venda instantânea, ágil e personalizada, proporcionando uma maneira eficaz de impulsionar suas vendas.<br><br>Principais Características:<br><br>Integração com a VTEX de Forma Descomplicada:<br>- Conecte o catálogo de produtos da VTEX à Weni de maneira fácil, sincronizando automaticamente seus produtos.<br>- Atualizações rápidas garantem que sua loja esteja sempre alinhada com as últimas mudanças de inventário e preços.<br><br>Venda Direta Pelo WhatsApp:<br>- Transforme conversas em transações, permitindo que os clientes naveguem, escolham e comprem produtos diretamente pelo WhatsApp.<br>- Aumente a conveniência, alcançando os clientes onde eles já estão ativos.<br><br>Benefícios Adicionais:<br><br>Escala Global:<br>- Alcance uma audiência global através do WhatsApp, ampliando suas oportunidades de vendas internacionalmente.<br><br>Configuração Simples:<br>- Configure rapidamente, sem a necessidade de conhecimentos técnicos avançados.<br><br>Suporte Técnico Especializado:<br>- Suporte dedicado para garantir uma implementação tranquila e resolver quaisquer problemas rapidamente.<br><br>Experimente agora e descubra o potencial de impulsionar suas vendas de maneira eficiente!"
+    },
     "setup": {
       "title": "Conecte sua loja",
       "description": " Selecione o número do WhatsApp, insira o subdomínio, AppKey e AppToken",

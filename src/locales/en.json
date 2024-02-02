@@ -58,7 +58,8 @@
         "installed": "Installed Apps",
         "bi-tools": "BI Tools",
         "external": "External Services",
-        "recommended": "Recommended channels"
+        "recommended": "Recommended channels",
+        "ecommerce": "Ecommerce"
       },
       "fetch_error": "Failed to fetch Application list, please try again later.",
       "search": {
@@ -1004,6 +1005,10 @@
     }
   },
   "vtex": {
+    "data": {
+      "summary": "With the VTEX app you connect your catalog and sell via Whatsapp",
+      "description": "The integration between Weni Plataforma and VTEX is redefining the way retailers grow their businesses online. Now, you can easily connect your product catalog, paving the way for direct sales through WhatsApp. This innovative solution promises an instant, agile and personalized sales experience, providing an effective way to boost your sales.<br><br>Main Features:<br><br>Integration with VTEX in an Uncomplicated Way:<br>- Connect your VTEX product catalog to Weni easily, automatically syncing your products.<br>- Quick updates ensure your store is always in line with the latest inventory and pricing changes.<br><br>Direct Selling Via WhatsApp :<br>- Turn conversations into transactions by allowing customers to browse, choose and buy products directly through WhatsApp.<br>- Increase convenience by reaching customers where they are already active.<br><br>Additional Benefits: <br><br>Global Scale:<br>- Reach a global audience through WhatsApp, expanding your sales opportunities internationally.<br><br>Simple Setup:<br>- Set up quickly, without the need for technical knowledge <br><br>Specialized Technical Support:<br>- Dedicated support to ensure smooth implementation and resolve any issues quickly.<br><br>Try it now and discover the potential to boost your sales efficiently!"
+    },
     "setup": {
       "title": "Connect your store",
       "description": "Select WhatsApp number, enter subdomain, AppKey and AppToken",
