@@ -20,4 +20,13 @@ export default {
       commit('CONNECT_VTEX_CATALOG_ERROR', err);
     }
   },
+  async getVtexAppUuid({ commit }, { code }) {
+    commit('GET_VTEX_APP_UUID_REQUEST');
+    try {
+      const { data } = await ecommerce.getVtexAppUuid(code);
+      commit('GET_VTEX_APP_UUID_SUCCESS', data.uuid);
+    } catch (err) {
+      commit('GET_VTEX_APP_UUID_ERROR', err);
+    }
+  },
 };

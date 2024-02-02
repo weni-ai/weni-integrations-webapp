@@ -9,4 +9,7 @@ export default {
   connectVtexCatalog(code, appUuid, payload) {
     return request.$http.post(`${resource}/${code}/${appUuid}/catalogs/`, payload);
   },
+  getVtexAppUuid(code) {
+    return request.$http.get(`${resource}/${code}/apps/get-app-uuid/`);
+  },
 };

@@ -16,8 +16,8 @@
         <div class="modal__content__form__options">
           <div
             ref="vtexOption"
-            :class="['modal__content__form__options__card', type === 'vtex' ? 'selected' : '']"
-            @click="type = 'vtex'"
+            :class="['modal__content__form__options__card', type === types.VTEX ? 'selected' : '']"
+            @click="type = types.VTEX"
           >
             <div class="modal__content__form__options__card__icon">
               <img
@@ -37,20 +37,27 @@
           </div>
 
           <div
-            ref="defaultOption"
-            :class="['modal__content__form__options__card', type === 'default' ? 'selected' : '']"
-            @click="type = 'default'"
+            ref="metaOption"
+            :class="['modal__content__form__options__card', type === types.META ? 'selected' : '']"
+            @click="type = types.META"
           >
             <div class="modal__content__form__options__card__icon">
-              <unnnic-icon icon="upload" />
+              <img
+                class="modal__content__form__options__card__icon__image"
+                src="~@/assets/meta_small.png"
+              />
             </div>
 
             <div class="modal__content__form__options__card__content">
-              <span class="modal__content__form__options__card__content__title">{{
-                $t('whatsapp.create_catalog.option.default.title')
-              }}</span>
+              <span class="modal__content__form__options__card__content__title">
+                {{ $t('whatsapp.create_catalog.option.meta.title') }}
+                <unnnic-icon
+                  icon="open_in_new"
+                  class="modal__content__form__options__card__content__title__icon"
+                />
+              </span>
               <span class="modal__content__form__options__card__content__description">
-                {{ $t('whatsapp.create_catalog.option.default.description') }}
+                {{ $t('whatsapp.create_catalog.option.meta.description') }}
               </span>
             </div>
           </div>
@@ -79,6 +86,10 @@
     name: 'CreateCatalogModalContent',
     data() {
       return {
+        types: {
+          VTEX: 'vtex',
+          META: 'meta',
+        },
         type: 'vtex',
       };
     },
@@ -172,12 +183,13 @@
 
             &__icon {
               display: flex;
-              padding: $unnnic-spacing-xs;
               flex-direction: column;
               justify-content: center;
               align-items: center;
               border-radius: $unnnic-border-radius-sm;
               background: rgba(59, 65, 77, 0.08);
+              width: 40px;
+              height: 40px;
             }
 
             &__content {
@@ -186,10 +198,17 @@
               align-items: flex-start;
 
               &__title {
+                display: flex;
+                align-items: center;
+                gap: $unnnic-spacing-nano;
                 color: $unnnic-color-neutral-darkest;
                 font-size: $unnnic-font-size-body-gt;
                 font-weight: $unnnic-font-weight-bold;
                 line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
+
+                &__icon {
+                  font-size: $unnnic-font-size-title-sm !important;
+                }
               }
 
               &__description {

@@ -6,4 +6,8 @@ export default {
   loadingConnectVtexCatalog: false,
   errorConnectVtexCatalog: null,
   connectVtexCatalogData: null,
+
+  loadingVtexAppUuid: false,
+  errorVtexAppUuid: null,
+  generatedVtexAppUuid: null,
 };
