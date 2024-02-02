@@ -214,7 +214,7 @@
           border-radius: $unnnic-border-radius-sm;
           align-items: center;
 
-          background-color: rgba(0, 158, 150, 0.16);
+          background-color: rgba(247, 25, 99, 0.08);
 
           &__icon {
             width: $unnnic-icon-size-md;
