@@ -1,3 +1,34 @@
+1.32.0
+----------
+`2024-01-26 · 1 🎉`
+
+### 🎉 New Features
+- Feat: New WhatsApp Embed Signup
+
+1.31.0
+----------
+`2024-01-18 · 1 🐛 · 1 🔧 · 1 🎉`
+
+### 🐛 Bug fixes
+- Fix: Weni Web Chat - design review
+
+### 🔧 Improvements
+- Refactor: Folders and code structure
+
+### 🎉 New Features
+- Feat: Design review
+
+1.30.1
+----------
+`2023-12-01 · 2 🐛 · 1 🎉`
+
+### 🐛 Bug fixes
+- Fix: ChatGPT modal height
+- Fix: Integrate button width on app details page
+
+### 🎉 New Features
+- Feat: Prevent whatsapp template fields invalid characters paste
+
 1.30.0
 ----------
 `2023-10-30 · 2 🐛 · 4 🎉`

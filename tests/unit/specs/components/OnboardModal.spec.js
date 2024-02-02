@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
-import OnboardModal from '@/components/OnboardModal.vue';
+import OnboardModal from '@/components/OnboardModal/index.vue';
 import { unnnicModalNext, unnnicButton } from '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
 
@@ -56,7 +56,7 @@ const mountComponent = async ({
   return { wrapper };
 };
 
-describe('components/OnboardModal.vue', () => {
+describe('OnboardModal.vue', () => {
   it('should not render modal if app is configured', async () => {
     let { wrapper } = await mountComponent({ configuredApps: [singleApp] });
     expect(wrapper).toMatchSnapshot();

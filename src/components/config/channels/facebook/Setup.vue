@@ -94,7 +94,7 @@
   import axios from 'axios';
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import LoadingButton from '../../../LoadingButton.vue';
+  import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
 

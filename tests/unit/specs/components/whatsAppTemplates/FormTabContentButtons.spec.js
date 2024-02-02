@@ -2,6 +2,7 @@ import Vuex from 'vuex';
 import { mount, createLocalVue } from '@vue/test-utils';
 import { unnnicSelect, unnnicInput } from '@weni/unnnic-system';
 import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
+import BaseInput from '../../../../../src/components/BaseInput/index.vue';
 import i18n from '@/utils/plugins/i18n';
 
 const localVue = createLocalVue();
@@ -268,7 +269,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       });
       await wrapper.setData({ buttons });
 
-      const replyInput = wrapper.findComponent(unnnicInput);
+      const replyInput = wrapper.findComponent(BaseInput);
 
       replyInput.vm.$emit('input', 'reply text');
       await wrapper.vm.$nextTick();
@@ -280,6 +281,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
         {
           fieldName: 'buttons',
           fieldValue: [{ button_type: 'QUICK_REPLY', text: 'reply text' }],
+          hasIssue: false,
         },
       ]);
     });
@@ -295,7 +297,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       });
       await wrapper.setData({ buttons });
 
-      const replyInput = wrapper.findAllComponents(unnnicInput).at(1);
+      const replyInput = wrapper.findAllComponents(BaseInput).at(1);
 
       replyInput.vm.$emit('input', 'reply text');
       await wrapper.vm.$nextTick();
@@ -310,8 +312,42 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
             { button_type: 'QUICK_REPLY', text: 'reply1' },
             { button_type: 'QUICK_REPLY', text: 'reply text' },
           ],
+          hasIssue: false,
         },
       ]);
+    });
+
+    it('should set error in correct index if reply has variable', async () => {
+      const buttons = [
+        { button_type: 'QUICK_REPLY', text: 'reply1' },
+        { button_type: 'QUICK_REPLY', text: 'reply2' },
+      ];
+      const { wrapper } = mountComponent({
+        buttonsType: 'quick_reply',
+        templateButtons: buttons,
+      });
+      await wrapper.setData({ buttons });
+
+      const replyInput = wrapper.findAllComponents(BaseInput).at(1);
+
+      replyInput.vm.$emit('input', 'reply text {{1}}');
+      await wrapper.vm.$nextTick();
+
+      const event = wrapper.emitted('input-change');
+      expect(event).toBeTruthy();
+      expect(event.length).toBe(1);
+      expect(event[0]).toEqual([
+        {
+          fieldName: 'buttons',
+          fieldValue: [
+            { button_type: 'QUICK_REPLY', text: 'reply1' },
+            { button_type: 'QUICK_REPLY', text: 'reply text {{1}}' },
+          ],
+          hasIssue: true,
+        },
+      ]);
+
+      expect(wrapper.vm.errors[1]).toEqual('Template buttons cannot contain variables');
     });
   });
 
@@ -409,7 +445,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
       });
       await wrapper.setData({ buttons });
 
-      const nameInput = wrapper.findAllComponents(unnnicInput).at(2);
+      const nameInput = wrapper.findAllComponents(BaseInput).at(1);
 
       nameInput.vm.$emit('input', 'new website');
       await wrapper.vm.$nextTick();
@@ -428,8 +464,46 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
               website_url: 'url.com',
             },
           ],
+          hasIssue: false,
         },
       ]);
+    });
+
+    it('should set error in correct index when action input has variables', async () => {
+      const buttons = [
+        { button_type: 'PHONE_NUMBER', country_code: 'BR', text: 'name', phone_number: '123' },
+        { button_type: 'URL', text: 'website name', website_url: 'url.com' },
+      ];
+      const { wrapper } = mountComponent({
+        buttonsType: 'call_to_action',
+        templateButtons: buttons,
+      });
+      await wrapper.setData({ buttons });
+
+      const nameInput = wrapper.findAllComponents(BaseInput).at(1);
+
+      nameInput.vm.$emit('input', 'new website {{1}}');
+      await wrapper.vm.$nextTick();
+
+      const event = wrapper.emitted('input-change');
+      expect(event).toBeTruthy();
+      expect(event.length).toBe(1);
+      expect(event[0]).toEqual([
+        {
+          fieldName: 'buttons',
+          fieldValue: [
+            { button_type: 'PHONE_NUMBER', country_code: 'BR', text: 'name', phone_number: '123' },
+            {
+              button_type: 'URL',
+              text: 'new website {{1}}',
+              website_url: 'url.com',
+            },
+          ],
+          hasIssue: true,
+        },
+      ]);
+
+      expect(wrapper.vm.errors[1]).toEqual('Template buttons cannot contain variables');
     });
 
     it('should emit phone number input change in correct index', async () => {
@@ -462,6 +536,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
               website_url: 'url.com',
             },
           ],
+          hasIssue: false,
         },
       ]);
     });
@@ -536,6 +611,7 @@ describe('components/whatsAppTemplates/FormTabContentButtons.vue', () => {
               url: 'newurl.com',
             },
           ],
+          hasIssue: false,
         },
       ]);
     });

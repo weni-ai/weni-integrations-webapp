@@ -10,7 +10,7 @@
 
 <script>
   import '@weni/unnnic-system';
-  import Survey from '@/components/Survey';
+  import Survey from '@/components/Survey/index.vue';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';
 
@@ -126,7 +126,6 @@
   html {
     height: 100%;
   }
-
   body {
     height: 100%;
     margin: 0;
@@ -137,5 +136,9 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+  }
+
+  .alert-container {
+    z-index: 9999;
   }
 </style>

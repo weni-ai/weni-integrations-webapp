@@ -4,6 +4,7 @@
       <div class="form-tab-content--inline">
         <unnnic-input
           class="form-tab-content__input--name"
+          ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
           :value="templateForm.name"
           @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
@@ -171,8 +172,24 @@
             value: false,
             message: '',
           },
+          buttons: {
+            value: false,
+            message: '',
+          },
         },
       };
+    },
+    mounted() {
+      const nativeNameInput = this.$refs.nameInput.$el.querySelector('input');
+
+      nativeNameInput.addEventListener('paste', (event) => {
+        event.preventDefault();
+        nativeNameInput.value = event.clipboardData
+          .getData('Text')
+          .replaceAll(' ', '_')
+          .replaceAll('-', '_')
+          .toLowerCase();
+      });
     },
     computed: {
       ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
@@ -229,7 +246,11 @@
         }
         this.updateTemplateForm({ fieldName, fieldValue });
       },
-      handleGenericInput({ fieldName, fieldValue }) {
+      handleGenericInput({ fieldName, fieldValue, hasIssue = false }) {
+        if (hasIssue) {
+          this.errorStates[fieldName].value = true;
+        }
+
         this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName,

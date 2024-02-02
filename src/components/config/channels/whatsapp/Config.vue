@@ -26,14 +26,14 @@
     </div>
 
     <div class="config-whatsapp__content">
-      <unnnic-tab
-        v-if="skipLoad || (!loadingWhatsAppProfile && !loadingCurrentApp)"
-        class="config-whatsapp__tabs"
-        :tabs="configTabs"
-        initialTab="account"
-      >
+      <unnnic-tab class="config-whatsapp__tabs" :tabs="configTabs" initialTab="account">
         <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
-        <AccountTab :appInfo="currentApp" slot="tab-panel-account" @close="closeConfig" />
+        <AccountTab
+          :appInfo="currentApp"
+          :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
+          slot="tab-panel-account"
+          @close="closeConfig"
+        />
 
         <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
         <ProfileTab
@@ -41,7 +41,7 @@
           :app="app"
           :profile="appProfile"
           @close="closeConfig"
-          @save="() => fetchData({ skipLoad: true })"
+          @save="() => fetchData()"
         />
 
         <template slot="tab-head-webhook_info">
@@ -54,7 +54,6 @@
         </template>
         <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
       </unnnic-tab>
-      <skeleton-loading v-else />
     </div>
   </div>
 </template>
@@ -64,7 +63,6 @@
   import ProfileTab from './components/tabs/ProfileTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
-  import skeletonLoading from './loadings/Config.vue';
   import { mapActions, mapState } from 'vuex';
   import { dataUrlToFile } from '@/utils/files';
   import { unnnicCallAlert } from '@weni/unnnic-system';
@@ -72,7 +70,6 @@
   export default {
     name: 'whatsapp-config',
     components: {
-      skeletonLoading,
       AccountTab,
       ProfileTab,
       ConversationsTab,
@@ -91,7 +88,6 @@
           'en-us': 'https://docs.weni.ai/l/en/channels/how-to-verify-my-business',
           'pt-br': 'https://docs.weni.ai/l/pt/canais/como-verificar-o-meu-neg-cio',
         },
-        skipLoad: false,
       };
     },
     async mounted() {
@@ -106,6 +102,11 @@
         'whatsAppProfile',
         'loadingWhatsAppProfile',
         'errorWhatsAppProfile',
+      ]),
+      ...mapState('WhatsAppCloud', [
+        'loadingWhatsAppCloudCatalogs',
+        'errorWhatsAppCloudCatalogs',
+        'whatsAppCloudCatalogs',
       ]),
       ...mapState({
         currentApp: (state) => state.appType.currentApp,
@@ -122,6 +123,7 @@
     methods: {
       ...mapActions(['getApp']),
       ...mapActions('WhatsApp', ['fetchWppProfile', 'resetWppFetchResults']),
+      ...mapActions('WhatsAppCloud', ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -138,13 +140,12 @@
       closeConfig() {
         this.$emit('closeModal');
       },
-      async fetchData({ skipLoad = false } = {}) {
+      async fetchData() {
         try {
           const options = { code: this.app.code, appUuid: this.app.uuid };
-          this.skipLoad = skipLoad;
           await this.fetchAppInfo(options);
           await this.fetchProfile(options);
-          this.skipLoad = false;
+          await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
         } catch (error) {
           unnnicCallAlert({
             props: {

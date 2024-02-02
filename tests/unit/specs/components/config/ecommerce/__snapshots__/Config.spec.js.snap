@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/config/ecommerce/vtex/Config.vue should be rendered properly 1`] = `
+<div class="config-vtex">
+  <div class="config-vtex__header">
+    <div class="config-vtex__header__title">
+      <div class="config-vtex__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-vtex__header__title__icon-container__icon"></div>
+      <div class="config-vtex__header__title__name">Weni Web Chat</div> <button data-v-2d9f2cbf="" class="config-vtex__header__title__close unnnic-button unnnic-button--size-small unnnic-button--tertiary unnnic-button--icon-on-center">
+        <!---->
+        <!----><span data-v-ab84ef7c="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34.0592 34.9982C33.9361 34.9985 33.8142 34.9744 33.7004 34.9272C33.5867 34.88 33.4835 34.8107 33.3969 34.7232L19.9995 21.3271L6.60213 34.7232C6.51561 34.811 6.4125 34.8808 6.29879 34.9284C6.18507 34.976 6.06303 35.0005 5.93976 35.0005C5.81648 35.0005 5.69444 34.976 5.58073 34.9284C5.46701 34.8808 5.3639 34.811 5.27739 34.7232C5.10209 34.5471 5.00367 34.3087 5.00367 34.0602C5.00367 33.8117 5.10209 33.5734 5.27739 33.3972L18.6748 19.9999L5.27739 6.60374C5.09992 6.42753 5.00244 6.19132 5.00244 5.94137C5.00244 5.69142 5.09992 5.45522 5.27739 5.279C5.4536 5.10154 5.68981 5.00406 5.93976 5.00406C6.18971 5.00406 6.42591 5.10154 6.60213 5.279L19.9995 18.6751L33.3969 5.27775C33.4834 5.18994 33.5865 5.1202 33.7002 5.0726C33.8139 5.025 33.936 5.00049 34.0592 5.00049C34.1825 5.00049 34.3046 5.025 34.4183 5.0726C34.532 5.1202 34.6351 5.18994 34.7216 5.27775C34.8092 5.36454 34.8787 5.46782 34.9261 5.58161C34.9735 5.69541 34.9979 5.81747 34.9979 5.94075C34.9979 6.06403 34.9735 6.18609 34.9261 6.29988C34.8787 6.41367 34.8092 6.51695 34.7216 6.60374L21.3242 20.0011L34.7216 33.3985C34.8969 33.5746 34.9953 33.813 34.9953 34.0615C34.9953 34.31 34.8969 34.5484 34.7216 34.7245C34.6347 34.8115 34.5315 34.8805 34.4178 34.9275C34.3041 34.9745 34.1822 34.9985 34.0592 34.9982Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
+        <!---->
+      </button>
+    </div> <span class="config-vtex__header__description">Connect your VTEX catalog to send products via Whatsapp</span>
+  </div>
+  <div class="config-vtex__settings__content">
+    <div class="config-vtex__settings__content__scroll">
+      <div class="config-vtex__settings__content__catalog"><span class="config-vtex__settings__content__catalog__label">
+          Catalog</span> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--primary">
+          <!---->
+          <!---->
+          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+          View catalog
+          </span>
+          <!---->
+        </button></div>
+      <div class="config-vtex__settings__content__details"><span class="config-vtex__settings__content__details__label">
+          Details
+        </span>
+        <table class="config-vtex__settings__content__details__table">
+          <tr>
+            <td>WhatsApp number</td>
+            <td>
+              <div><span class="unnnic-skeleton" style="background-color: rgb(232, 244, 244); animation: SkeletonLoading 1.5s ease-in-out infinite; width: 100%; height: 22px;">‌</span></div>
+            </td>
+          </tr>
+          <tr>
+            <td>Account name</td>
+            <td>Weni Web Chat</td>
+          </tr>
+          <tr>
+            <td>Environment</td>
+            <td>https://weni.ai</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!---->
+</div>
+`;

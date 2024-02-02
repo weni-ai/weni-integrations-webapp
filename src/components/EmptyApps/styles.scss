@@ -1,0 +1,26 @@
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $unnnic-spacing-stack-xs;
+    margin-top: $unnnic-spacing-stack-xl;
+
+    &__title {
+      font-size: $unnnic-font-size-title-sm;
+      line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
+      font-weight: $unnnic-font-weight-bold;
+    }
+
+    &__description {
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      font-weight: $unnnic-font-weight-regular;
+      color: $unnnic-color-neutral-cloudy;
+
+      &__link {
+        font-weight: $unnnic-font-weight-bold;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }

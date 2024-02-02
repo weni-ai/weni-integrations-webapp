@@ -8,7 +8,7 @@ exports[`AppDetailsHeader.vue should be rendered properly 1`] = `
     <div class="app-details-header__content__description">some specific text</div>
   </div>
   <div type="add" class="app-details-header__button">
-    <unnnicbutton-stub size="large" text="some specific text" type="secondary" iconcenter="add-1" disabled="true" class="loading-button"></unnnicbutton-stub>
+    <unnnicbutton-stub size="large" text="some specific text" type="secondary" iconleft="add-1" disabled="true" class="loading-button"></unnnicbutton-stub>
     <!---->
     <!---->
   </div>
