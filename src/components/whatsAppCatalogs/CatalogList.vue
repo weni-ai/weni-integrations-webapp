@@ -28,14 +28,16 @@
       class="whatsapp-catalog-list__cards"
       v-if="whatsAppCloudCatalogs || (!loadingWhatsAppCloudCatalogs && !errorWhatsAppCloudCatalogs)"
     >
-      <Card
+      <CatalogCard
         v-for="(catalog, index) in listItems"
+        :ref="`catalogCard-${index}`"
         :key="index"
         :catalog="catalog"
         :enabledCart="commerceSettings.is_cart_enabled"
         @enable="handleEnableCatalog(catalog)"
         @disable="handleDisableCatalog()"
         @toggleCart="toggleCart"
+        @redirectClick="redirectToCatalogProducts(catalog.uuid, catalog.name)"
       />
     </div>
     <div class="whatsapp-catalog-list__pagination">
@@ -79,15 +81,15 @@
 </template>
 
 <script>
-  import Card from '@/components/whatsAppCatalogs/Card';
+  import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard';
   import { mapActions, mapState } from 'vuex';
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
-    name: 'List',
+    name: 'CatalogList',
     components: {
-      Card,
+      CatalogCard,
     },
     data() {
       return {
@@ -271,6 +273,18 @@
         }
 
         this.fetchData(this.page);
+      },
+      redirectToCatalogProducts(catalogUuid, catalogName) {
+        this.$router.push({
+          name: 'WhatsApp Catalog Products',
+          params: {
+            appUuid: this.$route.params.appUuid,
+            catalogUuid,
+          },
+          query: {
+            catalogName,
+          },
+        });
       },
     },
     watch: {

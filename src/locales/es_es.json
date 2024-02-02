@@ -504,6 +504,9 @@
           "confirm": "Ahorrar"
         },
         "search_placeholder": "Buscar el nombre del catálogo"
+      },
+      "products": {
+        "title": "Productos"
       }
     },
     "templates": {
@@ -702,6 +705,20 @@
         "quality_overview": "Resumen de calidad",
         "current_level": "Nivel actual",
         "block_reason": "Razón principal del bloqueo"
+      }
+    },
+    "product": {
+      "table": {
+        "headers": {
+          "name": "Nombre",
+          "availability": "Disponibilidad",
+          "price": "Precio",
+          "sku": "SKU",
+          "facebook_id": "Facebook ID"
+        }
+      },
+      "list": {
+        "description": "Aquí gestionas la información de tu inventario. Añade todos los artículos que quieras anunciar o vender"
       }
     }
   },
