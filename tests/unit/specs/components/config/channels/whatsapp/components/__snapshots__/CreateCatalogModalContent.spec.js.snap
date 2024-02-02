@@ -13,11 +13,11 @@ exports[`components/config/channels/whatsapp/components/CreateCatalogModalConten
             </span></div>
         </div>
         <div class="modal__content__form__options__card">
-          <div class="modal__content__form__options__card__icon">
-            <unnnic-icon icon="upload"></unnnic-icon>
-          </div>
-          <div class="modal__content__form__options__card__content"><span class="modal__content__form__options__card__content__title">Standard sending</span> <span class="modal__content__form__options__card__content__description">
-              Create a catalog using a link or XML file
+          <div class="modal__content__form__options__card__icon"><img src="~@/assets/meta_small.png" class="modal__content__form__options__card__icon__image"></div>
+          <div class="modal__content__form__options__card__content"><span class="modal__content__form__options__card__content__title">
+              Facebook Meta
+              <unnnic-icon icon="open_in_new" class="modal__content__form__options__card__content__title__icon"></unnnic-icon></span> <span class="modal__content__form__options__card__content__description">
+              Create a catalog on Meta's Facebook, a new tab will be opened.
             </span></div>
         </div>
       </div> <span class="modal__content__form__footer">To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here</span>

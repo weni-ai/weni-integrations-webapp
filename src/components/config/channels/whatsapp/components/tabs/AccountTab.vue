@@ -31,7 +31,7 @@
               size="small"
             >
               {{
-                hasCatalog
+                hasCatalog || hasVtexCatalogConnected
                   ? $t('WhatsApp.config.catalog.button')
                   : $t('WhatsApp.config.catalog.button_create')
               }}
@@ -135,17 +135,14 @@
         default: false,
       },
     },
-    /* istanbul ignore next */
     async mounted() {
-      const params = {
-        project_uuid: this.project,
-      };
-      await this.getConfiguredApps({ params });
+      await this.fetchVtexApp();
     },
     data() {
       return {
         showCreateCatalogModal: false,
         showConnectCatalogModal: false,
+        vtexApp: null,
       };
     },
     methods: {
@@ -177,12 +174,20 @@
         if (type === 'vtex') {
           this.showCreateCatalogModal = false;
           this.showConnectCatalogModal = true;
+        } else if (type === 'meta') {
+          window
+            .open(
+              `https://business.facebook.com/settings/product-catalogs?business_id=${this.appInfo.config.wa_business_id}`,
+              '_blank',
+            )
+            .focus();
+
+          this.showCreateCatalogModal = false;
+          this.showConnectCatalogModal = false;
         }
       },
       async handleCatalogConnect(eventData) {
-        const vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
-
-        if (!vtexApp) {
+        if (!this.vtexApp) {
           this.callAlert({
             type: 'Error',
             text: this.$t('WhatsApp.config.catalog.error.missing_vtex_app'),
@@ -207,6 +212,18 @@
 
         this.showConnectCatalogModal = false;
         this.callAlert({ type: 'Success', text: this.$t('vtex.success.connect_catalog') });
+
+        await this.fetchVtexApp();
+      },
+      async fetchVtexApp() {
+        const params = {
+          project_uuid: this.project,
+        };
+        await this.getConfiguredApps({ params, skipLoading: true });
+
+        if (!this.configuredApps) return;
+
+        this.vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
       },
       callAlert({ text, type }) {
         unnnicCallAlert({
@@ -252,6 +269,9 @@
             consent_status: null,
           }
         );
+      },
+      hasVtexCatalogConnected() {
+        return this.vtexApp?.config?.connected_catalog ?? false;
       },
       accountSections() {
         return [

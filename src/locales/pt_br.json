@@ -988,8 +988,8 @@
   },
   "vtex": {
     "setup": {
-      "title": "Integrar com VTEX",
-      "description": "Para fazer a instalação insira um subdomínio",
+      "title": "Conecte sua loja",
+      "description": " Selecione o número do WhatsApp, insira o subdomínio, AppKey e AppToken",
       "subdomain": "Subdomínio",
       "subdomain_placeholder": "Ex: lojaweni.myvtex.com",
       "appKey": "AppKey",
@@ -1004,7 +1004,31 @@
       },
       "invalid_credentials": "Credenciais inválidas para o subdomínio fornecido",
       "error": "Ocorreu um erro ao tentar integrar com a VTEX, tente novamente mais tarde",
-      "success": "Integração VTEX concluída com sucesso"
+      "success": "Integração VTEX concluída com sucesso",
+      "step1": "Conecte sua loja",
+      "step2": "Configurando afiliados",
+      "storeDomain": "Link do website",
+      "apiSubdomain": "Subdomínio da API",
+      "affiliate_title": "Configure um afiliado na VTEX",
+      "affiliate_description": "Para configurar um afiliado na VTEX siga os passos abaixo",
+      "affiliate_step1": {
+        "title": "Acesse seu painel de Admin na VTEX",
+        "description": "Vá para <b>Configurações da loja > Pedidos > Configurações</b> ou digite <i>Pedidos</i> na barra de pesquisa na parte superior da página e selecione <i>Configurações da loja/Pedidos</i>"
+      },
+      "affiliate_step2": {
+        "title": "Crie um novo afiliado",
+        "description": "Na aba Afiliados clique em <span class='highlight'>+ Novo Afiliado</span>"
+      },
+      "affiliate_step3": {
+        "title": "Preencha os campos",
+        "description": "Seguindo a descrição abaixo, clique em <span class='highlight'>Salvar</span><ul><li><b>Nome:</b>&nbsp;o novo nome do afiliado</li><li> <b>Política comercial:</b>&nbsp;o número da política comercial que definirá a estratégia de classificação do catálogo e entrega de itens para o marketplace.</li><li><b>Endpoint de pesquisa:</b>&nbsp;URL do aplicativo que receberá produtos de estoque e notificações de preços, entre outros. Você pode copiar o URL de Weni na <i>Etapa 4<i/></li></ul>"
+      },
+      "affiliate_step4": {
+        "title": "Colar o Endpoint de Pesquisa da Weni",
+        "description": "Copie o URL abaixo e cole-o no campo Endpoint de Pesquisa"
+      },
+      "error_missing_fields": "Todos os campos são obrigatórios",
+      "storedomain_placeholder": "Ex: minhaloja.com"
     },
     "config": {
       "description": "Conecte seu catálogo VTEX para enviar produtos pelo WhatsApp",
@@ -1056,9 +1080,9 @@
           "title": "Catálogo VTEX",
           "description": "Conecte seu catálogo automaticamente através da integração com o app VTEX"
         },
-        "default": {
-          "title": "Envio padrão",
-          "description": "Crie um catálogo usando um link ou arquivo XML"
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Crie um catálogo no Facebook do Meta, uma nova aba será aberta."
         }
       },
       "footer": "Para conectar seu catálogo VTEX você precisa ter integrado o app VTEX na plataforma. \nSe você ainda não integrou, clique aqui",

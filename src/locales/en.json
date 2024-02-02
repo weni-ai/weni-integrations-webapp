@@ -988,8 +988,8 @@
   },
   "vtex": {
     "setup": {
-      "title": "Integrate with VTEX",
-      "description": "To proceed with the instalation insert a subdomain",
+      "title": "Connect your store",
+      "description": "Select WhatsApp number, enter subdomain, AppKey and AppToken",
       "subdomain": "Subdomain",
       "subdomain_placeholder": "Ex: shop.myvtex.com",
       "whatsapp_channel": "WhatsApp Number",
@@ -1004,7 +1004,31 @@
       },
       "invalid_credentials": "Invalid credentials for the given subdomain",
       "error": "An error occurred while trying to integrate with VTEX, please try again later",
-      "success": "VTEX integration successfully completed"
+      "success": "VTEX integration successfully completed",
+      "step1": "Connect your store",
+      "step2": "Setup affiliate",
+      "storeDomain": "Website Link",
+      "apiSubdomain": "API Subdomain",
+      "affiliate_title": "Setup an affiliate in VTEX",
+      "affiliate_description": "To setup an affiliate in VTEX follow the steps below",
+      "affiliate_step1": {
+        "title": "Access your admin panel in VTEX",
+        "description": "Go to <b>Store Settings > Orders > Settings,</b> or type <i>Orders</i> in the search bar on the top of the page and select <i>Store Settings / Orders</i>"
+      },
+      "affiliate_step2": {
+        "title": "Create a new affiliate",
+        "description": "In the Affiliates tab click on <span class='highlight'>+ New Affiliate</span>"
+      },
+      "affiliate_step3": {
+        "title": "Fill the form fields",
+        "description": "Following the description below, then click on <span class='highlight'>Save</span><ul><li><b>Name:</b>&nbsp;the new affiliate name</li><li><b>Trade policy:</b>&nbsp;the trade policy number that will define the catalog's sorting and items delivery strategy for the marketplace</li><li><b>Search endpoint:</b>&nbsp;application URL that will receive inventory products and price notifications, among others. You can copy Weni's URL in <i>Step 4<i/></li></ul>"
+      },
+      "affiliate_step4": {
+        "title": "Paste Weni's Search Endpoint",
+        "description": "Copy the URL below and paste it in the Search endpoint field"
+      },
+      "error_missing_fields": "All fields are mandatory",
+      "storedomain_placeholder": "Ex: myshop.com"
     },
     "config": {
       "description": "Connect your VTEX catalog to send products via Whatsapp",
@@ -1057,9 +1081,9 @@
           "title": "VTEX Catalog",
           "description": "Automatically connect your catalog through integration with the VTEX app"
         },
-        "default": {
-          "title": "Standard sending",
-          "description": "Create a catalog using a link or XML file"
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Create a catalog on Meta's Facebook, a new tab will be opened."
         }
       },
       "footer": "To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here",

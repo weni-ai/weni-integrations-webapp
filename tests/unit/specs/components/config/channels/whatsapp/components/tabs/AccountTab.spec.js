@@ -238,6 +238,8 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
     it('should call connectVtexCatalog if vtexApp exists', async () => {
       const { wrapper, ecommerceActions } = await mountComponent();
 
+      await wrapper.vm.$nextTick();
+
       const spy = spyOn(wrapper.vm, 'callAlert');
       expect(spy).not.toHaveBeenCalled();
 

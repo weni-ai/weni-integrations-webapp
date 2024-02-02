@@ -26,4 +26,18 @@ export default {
     state.errorConnectVtexCatalog = err;
     state.loadingConnectVtexCatalog = false;
   },
+
+  GET_VTEX_APP_UUID_REQUEST(state) {
+    state.loadingVtexAppUuid = true;
+    state.errorVtexAppUuid = null;
+    state.generatedVtexAppUuid = null;
+  },
+  GET_VTEX_APP_UUID_SUCCESS(state, data) {
+    state.generatedVtexAppUuid = data;
+    state.loadingVtexAppUuid = false;
+  },
+  GET_VTEX_APP_UUID_ERROR(state, err) {
+    state.errorVtexAppUuid = err;
+    state.loadingVtexAppUuid = false;
+  },
 };

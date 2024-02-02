@@ -26,14 +26,14 @@ describe('components/config/channels/whatsapp/components/CreateCatalogModalConte
   it('should emit createCatalog with selected type', async () => {
     const { wrapper } = await mountComponent();
 
-    const defaultOption = wrapper.findComponent({ ref: 'defaultOption' });
-    await defaultOption.trigger('click');
+    const metaOption = wrapper.findComponent({ ref: 'metaOption' });
+    await metaOption.trigger('click');
 
     const createButton = wrapper.findComponent({ ref: 'createButton' });
     await createButton.trigger('click');
 
     expect(wrapper.emitted().createCatalog).toBeTruthy();
-    expect(wrapper.emitted().createCatalog[0]).toEqual(['default']);
+    expect(wrapper.emitted().createCatalog[0]).toEqual(['meta']);
   });
 
   it('should emit closeModal on close click', async () => {
