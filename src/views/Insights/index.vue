@@ -288,7 +288,7 @@
       getChartByType(type) {
         const data = this.templateAnalytics?.data.map((template) => {
           return {
-            title: template.template_name || template.template_id,
+            title: template.template || template.template_id,
             data: template.dates?.map((item) => {
               return {
                 title: item.start,
