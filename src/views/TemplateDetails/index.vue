@@ -4,13 +4,21 @@
     <div class="wpp_template_details__breadcrumb">
       <unnnic-breadcrumb
         :crumbs="[
-          { name: 'Meus aplicativos', path: '/apps/my', meta: 'Meus aplicativos' },
           {
-            name: 'Gerenciar templates',
-            path: `/apps/my/wpp-cloud/${app_uuid}/templates`,
-            meta: 'Gerenciar Templates',
+            name: $t('WhatsApp.template_details.crumbs.my_apps'),
+            path: '/apps/my',
+            meta: $t('WhatsApp.template_details.crumbs.my_apps'),
           },
-          { name: 'Detalhes do modelo', path: '/', meta: 'Detalhes do modelo' },
+          {
+            name: $t('WhatsApp.template_details.crumbs.manage_templates'),
+            path: `/apps/my/wpp-cloud/${app_uuid}/templates`,
+            meta: $t('WhatsApp.template_details.crumbs.manage_templates'),
+          },
+          {
+            name: $t('WhatsApp.template_details.crumbs.model_details'),
+            path: '/',
+            meta: $t('WhatsApp.template_details.crumbs.model_details'),
+          },
         ]"
         @crumbClick="redirectTo"
       />
@@ -28,13 +36,16 @@
           text="Editar Modelo"
           ref="wpp_template_details__button__edit"
           type="secondary"
+          @click="redirectEdit"
         />
       </div>
     </div>
     <!-- Tabs -->
     <div class="wpp_insights__tabs">
       <unnnic-tab initialTab="first" :tabs="['first', 'second']">
-        <template slot="tab-head-first">Resumo</template>
+        <template slot="tab-head-first">{{
+          $t('WhatsApp.template_details.summary.title')
+        }}</template>
         <template slot="tab-panel-first">
           <Summary />
         </template>
@@ -71,8 +82,18 @@
     },
     methods: {
       redirectTo(crumb) {
-        if (crumb.meta === 'Detalhes do modelo') return;
+        if (
+          crumb.meta === this.$t('WhatsApp.template_details.crumbs.model_details') ||
+          crumb.meta === ''
+        ) {
+          return;
+        }
         this.$router.push(crumb.path);
+      },
+      redirectEdit() {
+        this.$router.push({
+          path: `/apps/my/wpp-cloud/${this.app_uuid}/templates/edit/${this.selectedTemplate.uuid}`,
+        });
       },
     },
   };

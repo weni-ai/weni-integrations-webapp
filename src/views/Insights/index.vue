@@ -4,7 +4,7 @@
     <div class="wpp_insights__breadcrumb" v-if="!hash">
       <unnnic-breadcrumb
         :crumbs="[
-          { name: 'Meus aplicativos', path: '/apps/my', meta: 'Meus aplicativos' },
+          { name: $t('apps.nav.my_apps'), path: '/apps/my', meta: 'Meus aplicativos' },
           { name: 'Insights', path: '/apps/insights', meta: 'Insights' },
         ]"
         @crumbClick="redirectTo"
@@ -23,7 +23,7 @@
       </div>
       <div class="wpp_insights__header__button" v-if="!isActive">
         <unnnic-button
-          text="Ativar insights"
+          :text="$t('WhatsApp.insights.enable_insights')"
           :disabled="isActive"
           ref="wpp_insights__button__close"
           @click="toggleOpenModal"
@@ -33,7 +33,9 @@
     <!-- Filters -->
     <div class="wpp_insights__filters">
       <div class="wpp_insights__filters__time">
-        <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
+        <div class="wpp_insights__filters__time__title">
+          {{ $t('WhatsApp.insights.filters.period_of_time') }}
+        </div>
         <div class="wpp_insights__filters__time__select">
           <unnnic-input-date-picker
             :value="periodo"
@@ -44,7 +46,9 @@
         </div>
       </div>
       <div class="wpp_insights__filters__model">
-        <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
+        <div class="wpp_insights__filters__model__title">
+          {{ $t('WhatsApp.insights.filters.message_templates') }}
+        </div>
         <div class="wpp_insights__filters__model__select">
           <unnnic-select-smart
             v-model="model"
@@ -72,7 +76,7 @@
         </div>
         <div class="wpp_insights__content__empty__button">
           <unnnic-button
-            text="Ativar insights"
+            :text="$t('WhatsApp.insights.enable_insights')"
             ref="wpp_insights__button__close"
             @click="toggleOpenModal"
           />
@@ -112,7 +116,7 @@
       <unnnic-modal :showModal="showModal" @close="toggleOpenModal" ref="modal">
         <div class="wpp_insights__modal__title">
           <img src="../../assets/svgs/amazoninha-heart.svg" alt="" />
-          <p>Apresentamos novos insights</p>
+          <p>{{ $t('WhatsApp.insights.modal.present_insights') }}</p>
         </div>
         <div class="wpp_insights__modal__content">
           <p class="wpp_insights__modal__content__dark">
@@ -138,6 +142,7 @@
             :text="$t('general.confirm')"
             :style="{ width: '289px' }"
             @click="activeTemplate"
+            ref="wpp_insights__button__active"
           />
         </div>
       </unnnic-modal>
@@ -163,7 +168,6 @@
     },
     data() {
       return {
-        isActive: false,
         showModal: false,
         model: [],
         periodo: {
@@ -194,6 +198,7 @@
         templateAnalytics: (state) => state.insights?.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
         templates: (state) => state.insights?.templates.results?.map((item) => item),
+        isActive: (state) => state.insights?.isActive || false,
       }),
       modelOptions() {
         if (this.templates?.length > 0) {
@@ -254,7 +259,7 @@
       },
     },
     methods: {
-      ...mapActions(['getTemplateAnalytics', 'getTemplates']),
+      ...mapActions(['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
@@ -281,9 +286,9 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
-        const data = this.templateAnalytics?.data?.map((template) => {
+        const data = this.templateAnalytics?.data.map((template) => {
           return {
-            title: template.template_name ?? template.template_id,
+            title: template.template || template.template_id,
             data: template.dates?.map((item) => {
               return {
                 title: item.start,
@@ -302,8 +307,8 @@
         this.$router.push(crumb.path);
       },
       activeTemplate() {
-        this.isActive = true;
         this.showModal = false;
+        this.setActiveProject({ appUuid: this.app_uuid });
       },
     },
   };

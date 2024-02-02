@@ -16,10 +16,10 @@ import { singleApp } from '../../../../../../../../__mocks__/appMock';
 const localVue = createLocalVue();
 localVue.use(VueRouter);
 localVue.use(Vuex);
+const router = new VueRouter();
 
 describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
   let wrapper;
-
   let actions;
   let state;
   let store;
@@ -61,6 +61,7 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
       localVue,
       i18n,
       store,
+      router,
       propsData: {
         app: singleApp,
       },
@@ -78,6 +79,21 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
 
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('navigateToInsights', () => {
+    it('should call navigateToInsights()', () => {
+      const spy = spyOn(wrapper.vm, 'navigateToInsights');
+      expect(spy).not.toHaveBeenCalled();
+      wrapper.vm.navigateToInsights();
+      expect(spy).toBeCalledTimes(1);
+    });
+    it('should change route to insights', () => {
+      const spy = spyOn(wrapper.vm.$router, 'replace');
+      wrapper.vm.navigateToInsights();
+      expect(spy).toBeCalledTimes(1);
+      expect(spy).toHaveBeenCalledWith(`/insights`);
+    });
   });
 
   describe('computed', () => {

@@ -1,16 +1,29 @@
 import Vuex from 'vuex';
+import VueRouter from 'vue-router';
 import { mount, createLocalVue } from '@vue/test-utils';
 import TableActionButton from '@/components/whatsAppTemplates/TableActionButton.vue';
 import { unnnicDropdownItem, unnnicButton } from '@weni/unnnic-system';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+const router = new VueRouter();
 
 describe('components/whatsAppTemplates/TableActionButton.vue', () => {
   let wrapper;
+  let actions;
+  let store;
   beforeEach(() => {
+    actions = {
+      setSelectedTemplate: jest.fn(),
+      setAppUuid: jest.fn(),
+    };
+    store = new Vuex.Store({
+      actions,
+    });
     wrapper = mount(TableActionButton, {
       localVue,
+      router,
+      store,
       mocks: {
         $t: () => 'some specific text',
         $route: {
@@ -54,14 +67,35 @@ describe('components/whatsAppTemplates/TableActionButton.vue', () => {
   it('should go to teplate details on See Details option click', async () => {
     const triggerButton = wrapper.findComponent(unnnicButton);
     await triggerButton.trigger('click');
-    const seeDetails = wrapper.find('#see_details');
+    const seeDetails = wrapper.findAllComponents(unnnicDropdownItem).at(1);
     expect(seeDetails.exists()).toBe(true);
 
-    // expect(wrapper.vm.$router.push).not.toHaveBeenCalled();
-    // await seeDetails.trigger('click');
-    // expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(1);
-    // expect(wrapper.vm.$router.push).toHaveBeenCalledWith({
-    //   path: '/apps/template-details`',
-    // });
+    expect(wrapper.vm.$router.push).not.toHaveBeenCalled();
+    await seeDetails.trigger('click');
+    expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(0);
+  });
+
+  it('should call setSelectedTemplate', async () => {
+    const triggerButton = wrapper.findComponent(unnnicButton);
+    await triggerButton.trigger('click');
+    const seeDetails = wrapper.findAllComponents(unnnicDropdownItem).at(1);
+    expect(seeDetails.exists()).toBe(true);
+
+    const spy = spyOn(wrapper.vm, 'setSelectedTemplate');
+    expect(spy).not.toHaveBeenCalled();
+    await seeDetails.trigger('click');
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should call setAppUuid', async () => {
+    const triggerButton = wrapper.findComponent(unnnicButton);
+    await triggerButton.trigger('click');
+    const seeDetails = wrapper.findAllComponents(unnnicDropdownItem).at(1);
+    expect(seeDetails.exists()).toBe(true);
+
+    const spy = spyOn(wrapper.vm, 'setAppUuid');
+    expect(spy).not.toHaveBeenCalled();
+    await seeDetails.trigger('click');
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

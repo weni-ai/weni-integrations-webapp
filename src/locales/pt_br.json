@@ -677,6 +677,31 @@
         "delivered": "Mensagens entregues",
         "read": "Mensagens lidas",
         "received": "Mensagens recebidas"
+      },
+      "filters": {
+        "period_of_time": "Período de tempo",
+        "message_templates": "Modelos de mensagem"
+      },
+      "modal": {
+        "present_insights": "Apresentamos novos insights"
+      }
+    },
+    "template_details": {
+      "crumbs": {
+        "my_apps": "Meus Aplicativos",
+        "manage_templates": "Gerenciar Templates",
+        "model_details": "Detalhes do Modelo"
+      },
+      "summary": {
+        "title": "Resumo",
+        "performace_overview": "Visão geral do desempenho",
+        "last_7_days": "últimos 7 dias",
+        "sent_messages": "Mensagens enviadas",
+        "delivered_messages": "Mensagens entregues",
+        "read_messages": "Mensagens lidas",
+        "quality_overview": "Visão geral da qualidade",
+        "current_level": "Nível atual",
+        "block_reason": "Principal motivo do bloqueio"
       }
     }
   },

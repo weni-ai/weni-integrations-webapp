@@ -25,4 +25,7 @@ export default {
   GET_TEMPLATES_ERROR(state, err) {
     state.errorTemplates = err;
   },
+  GET_IS_ACTIVE(state, data) {
+    state.isActive = data;
+  },
 };

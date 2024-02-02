@@ -275,6 +275,35 @@ const templates = {
     },
   ],
 };
+const selectedTemplate = {
+  uuid: '00030409-3816-4ecc-a75f-9e0b7c28ffac',
+  name: 'teste_multiplos_produtos_catalogo',
+  created_on: '2024-01-08 12:27:22.462929+00:00',
+  category: 'MARKETING',
+  translations: [
+    {
+      uuid: 'aed166d4-2366-4fe3-92c8-db15a2c18e3d',
+      message_template_id: '195815353473873',
+      status: 'APPROVED',
+      language: 'pt_BR',
+      country: null,
+      body: 'Olá {{1}}, venha conhecer nossa nova coleção de inverno!',
+      footer: '',
+      buttons: [
+        {
+          button_type: 'MPM',
+          text: 'View items',
+          country_code: null,
+          phone_number: null,
+          url: null,
+        },
+      ],
+      variable_count: 0,
+      header: { header_type: 'TEXT', text: 'Coleção de Inverno' },
+    },
+  ],
+  text_preview: 'Olá {{1}}, venha conhecer nossa nova coleção de inverno!',
+};
 
 module.exports = {
   singleApp,
@@ -284,4 +313,5 @@ module.exports = {
   installedApps,
   templateAnalytics,
   templates,
+  selectedTemplate,
 };

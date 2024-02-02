@@ -44,7 +44,7 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
         </p>
       </div>
       <div class="conversations__content__insights__button">
-        <unnnicbutton-stub size="large" text="Ver insights" type="primary"></unnnicbutton-stub>
+        <unnnicbutton-stub size="large" text="See insights" type="primary"></unnnicbutton-stub>
       </div>
     </div>
   </div>

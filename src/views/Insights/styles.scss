@@ -40,6 +40,7 @@
     font-size: $unnnic-font-size-body-gt;
     color: $unnnic-color-neutral-cloudy;
     gap: 1rem;
+    z-index: 999;
 
     &__time {
       width: 260px;
@@ -56,6 +57,12 @@
 
       &__title {
         padding-bottom: 0.3rem;
+      }
+      &__select{
+        ::v-deep .unnnic-select-smart__options__multiple__selecteds {
+          width: auto;
+          flex-wrap: wrap;
+        }
       }
     }
   }
@@ -135,7 +142,7 @@
 
     ::v-deep .unnnic-modal-container-background {
       width: 658px;
-      height: 90vh;
+      max-height: 95%;
       overflow: scroll;
     }
 

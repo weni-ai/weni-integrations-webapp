@@ -18,6 +18,10 @@ export default {
       commit('GET_TEMPLATES_ERROR', err);
     }
   },
+  async setActiveProject({ commit }, { app_uuid }) {
+    commit('GET_IS_ACTIVE', true);
+    await insights.set_active_project(app_uuid);
+  },
 
   setSelectedTemplate({ commit }, { template }) {
     commit('GET_SELECTED_TEMPLATE', template);

@@ -119,7 +119,7 @@
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <unnnic-button text="Ver insights" @click="navigateToInsights" />
+          <unnnic-button :text="$t('WhatsApp.insights.see_insights')" @click="navigateToInsights" />
         </div>
       </div>
     </div>
