@@ -6,6 +6,7 @@ const avatarIcons = {
   configured: { icon: 'cog-1', scheme: 'aux-purple' },
   installed: { icon: 'check-circle-1-1', scheme: 'aux-blue' },
   recommended: { icon: 'rating-star-1-1', scheme: 'aux-orange' },
+  ecommerce: { icon: 'local_mall', scheme: 'aux-blue-500' },
 };
 
 const actionIcons = {

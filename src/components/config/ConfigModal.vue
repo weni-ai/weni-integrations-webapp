@@ -58,6 +58,7 @@
   import facebookConfig from '@/components/config/channels/facebook/Config.vue';
   import omieConfig from '@/components/config/external/omie/Config.vue';
   import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
+  import vtexConfig from '@/components/config/ecommerce/vtex/Config.vue';
 
   export default {
     name: 'Modal',
@@ -80,6 +81,7 @@
           fba: facebookConfig,
           omie: omieConfig,
           chatgpt: chatGptConfig,
+          vtex: vtexConfig,
         },
       };
     },

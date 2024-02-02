@@ -1,6 +1,6 @@
 export default {
-  GET_CONFIGURED_APPS_REQUEST(state) {
-    state.loadingConfiguredApps = true;
+  GET_CONFIGURED_APPS_REQUEST(state, skipLoading = false) {
+    state.loadingConfiguredApps = !skipLoading;
     state.errorConfiguredApps = null;
     state.configuredApps = null;
   },

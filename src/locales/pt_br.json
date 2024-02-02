@@ -58,7 +58,8 @@
         "installed": "Aplicativos instalados",
         "bi-tools": "Ferramentas de BI",
         "external": "Serviços Externos",
-        "recommended": "Canais recomendados"
+        "recommended": "Canais recomendados",
+        "ecommerce": "Ecommerce"
       },
       "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde.",
       "search": {
@@ -464,7 +465,11 @@
       },
       "catalog": {
         "button": "Ver lista de catálogos",
-        "title": "Catálogo"
+        "title": "Catálogo",
+        "button_create": "Criar catálogo",
+        "error": {
+          "missing_vtex_app": "É necessário ter um app VTEX configurado para conectar um catálogo."
+        }
       }
     },
     "catalog": {
@@ -940,6 +945,117 @@
     },
     "success": {
       "configure": "Integração atualizada com sucesso"
+    }
+  },
+  "vtex": {
+    "data": {
+      "summary": "Com o aplicativo VTEX você conecta seu catálogo e vende pelo Whatsapp",
+      "description": "A integração entre a Weni Plataforma e a VTEX está redefinindo a maneira como os varejistas expandem seus negócios online. Agora, você pode conectar facilmente o catálogo de produtos, abrindo caminho para vendas diretas por meio do WhatsApp. Essa solução inovadora promete uma experiência de venda instantânea, ágil e personalizada, proporcionando uma maneira eficaz de impulsionar suas vendas.<br><br>Principais Características:<br><br>Integração com a VTEX de Forma Descomplicada:<br>- Conecte o catálogo de produtos da VTEX à Weni de maneira fácil, sincronizando automaticamente seus produtos.<br>- Atualizações rápidas garantem que sua loja esteja sempre alinhada com as últimas mudanças de inventário e preços.<br><br>Venda Direta Pelo WhatsApp:<br>- Transforme conversas em transações, permitindo que os clientes naveguem, escolham e comprem produtos diretamente pelo WhatsApp.<br>- Aumente a conveniência, alcançando os clientes onde eles já estão ativos.<br><br>Benefícios Adicionais:<br><br>Escala Global:<br>- Alcance uma audiência global através do WhatsApp, ampliando suas oportunidades de vendas internacionalmente.<br><br>Configuração Simples:<br>- Configure rapidamente, sem a necessidade de conhecimentos técnicos avançados.<br><br>Suporte Técnico Especializado:<br>- Suporte dedicado para garantir uma implementação tranquila e resolver quaisquer problemas rapidamente.<br><br>Experimente agora e descubra o potencial de impulsionar suas vendas de maneira eficiente!"
+    },
+    "setup": {
+      "title": "Conecte sua loja",
+      "description": " Selecione o número do WhatsApp, insira o subdomínio, AppKey e AppToken",
+      "subdomain": "Subdomínio",
+      "subdomain_placeholder": "Ex: lojaweni.myvtex.com",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Insira sua AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Insira seu AppToken",
+      "whatsapp_channel": "Número do WhatsApp",
+      "guide": {
+        "question": "Não conhece seu AppKey e AppToken?",
+        "link": "Clique aqui",
+        "question_end": "para acessar a documentação da VTEX e descobrir."
+      },
+      "invalid_credentials": "Credenciais inválidas para o subdomínio fornecido",
+      "error": "Ocorreu um erro ao tentar integrar com a VTEX, tente novamente mais tarde",
+      "success": "Integração VTEX concluída com sucesso",
+      "step1": "Conecte sua loja",
+      "step2": "Configurando afiliados",
+      "storeDomain": "Link do website",
+      "apiSubdomain": "Subdomínio da API",
+      "affiliate_title": "Configure um afiliado na VTEX",
+      "affiliate_description": "Para configurar um afiliado na VTEX siga os passos abaixo",
+      "affiliate_step1": {
+        "title": "Acesse seu painel de Admin na VTEX",
+        "description": "Vá para <b>Configurações da loja > Pedidos > Configurações</b> ou digite <i>Pedidos</i> na barra de pesquisa na parte superior da página e selecione <i>Configurações da loja/Pedidos</i>"
+      },
+      "affiliate_step2": {
+        "title": "Crie um novo afiliado",
+        "description": "Na aba Afiliados clique em <span class='highlight'>+ Novo Afiliado</span>"
+      },
+      "affiliate_step3": {
+        "title": "Preencha os campos",
+        "description": "Seguindo a descrição abaixo, clique em <span class='highlight'>Salvar</span><ul><li><b>Nome:</b>&nbsp;o novo nome do afiliado</li><li> <b>Política comercial:</b>&nbsp;o número da política comercial que definirá a estratégia de classificação do catálogo e entrega de itens para o marketplace.</li><li><b>Endpoint de pesquisa:</b>&nbsp;URL do aplicativo que receberá produtos de estoque e notificações de preços, entre outros. Você pode copiar o URL de Weni na <i>Etapa 4<i/></li></ul>"
+      },
+      "affiliate_step4": {
+        "title": "Colar o Endpoint de Pesquisa da Weni",
+        "description": "Copie o URL abaixo e cole-o no campo Endpoint de Pesquisa"
+      },
+      "error_missing_fields": "Todos os campos são obrigatórios",
+      "storedomain_placeholder": "Ex: minhaloja.com"
+    },
+    "config": {
+      "description": "Conecte seu catálogo VTEX para enviar produtos pelo WhatsApp",
+      "catalog": "Catálogo",
+      "connect_catalog": "Conectar catálogo",
+      "details": "Detalhes",
+      "name": "Nome da conta",
+      "environment": "Ambiente",
+      "view_catalog": "Ver catálogo",
+      "wpp_number": "Número WhatsApp"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermercados e mercearias",
+        "clothes_store": "Loja de roupas",
+        "pharmacies_and_drugstores": "Farmácias e Drogarias",
+        "restaurants_and_cafes": "Restaurantes e Cafés",
+        "electronics_stores": "Lojas de eletrônicos",
+        "bookstores_and_stationery": "Livrarias e papelarias",
+        "furniture_and_decoration": "Lojas de Móveis e Decoração",
+        "building_materials_and_hardware": "Lojas de materiais de construção e ferragens",
+        "sporting_goods": "Lojas de artigos esportivos",
+        "shoe_stores": "Lojas de calçados",
+        "auto_parts": "Lojas de peças de automóveis",
+        "other": "Outro"
+      }
+    },
+    "connect_catalog": {
+      "title": "Informações básica",
+      "business_type": "Tipo de Negócio",
+      "name_placeholder": "Ex: ofertas semanais",
+      "name": "Nome do catálogo",
+      "footer": "Ao criar um catálogo, você concorda com os <a class='link' target='_blank' href='https://google.com'><b>Termos do Gerenciador de Catálogos</b></a> e confirma que segue as <a class='link' target='_blank' href='https://google.com'><b>Políticas de Publicidade do Facebook</b></a>. Verifique essas políticas e confirme que os itens que você carregar no seu catálogo estejam em conformidade com elas."
+    },
+    "errors": {
+      "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde",
+      "fetch_related_wpp_data": "Falha ao buscar informações relacionadas ao número do WhatsApp",
+      "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente",
+      "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde."
+    },
+    "success": {
+      "connect_catalog": "Catálogo VTEX conectado com sucesso"
+    }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "Catálogo VTEX",
+          "description": "Conecte seu catálogo automaticamente através da integração com o app VTEX"
+        },
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Crie um catálogo no Facebook do Meta, uma nova aba será aberta."
+        }
+      },
+      "footer": "Para conectar seu catálogo VTEX você precisa ter integrado o app VTEX na plataforma. \nSe você ainda não integrou, clique aqui",
+      "title": "Criar catálogo",
+      "header": {
+        "title": "Método de envio",
+        "description": "Escolha a forma como deseja enviar seu catálogo para começar a vender produtos via Whatsapp"
+      }
     }
   }
 }

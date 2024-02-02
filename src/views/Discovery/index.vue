@@ -15,10 +15,7 @@
       </span>
     </span>
 
-    <div
-      v-if="filteredBiApps.length || filteredExternalServices.length || filteredApps.length"
-      class="discovery-content__grids"
-    >
+    <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
       <app-grid
         ref="appGrid"
         section="channel"
@@ -26,6 +23,14 @@
         :loading="loadingAllAppTypes"
         :apps="filteredApps"
         @update="fetchChannels"
+      />
+
+      <app-grid
+        section="ecommerce"
+        type="add"
+        :loading="loadingEcommerceApps"
+        :apps="filteredEcommerceApps"
+        @update="fetchEcommerceApps"
       />
 
       <app-grid
@@ -105,6 +110,8 @@
 
       this.fetchExternalServices();
 
+      this.fetchEcommerceApps();
+
       this.fetchFeatured();
     },
     computed: {
@@ -120,6 +127,7 @@
         'errorExternalServices',
         'externalServicesList',
       ]),
+      ...mapState('ecommerce', ['loadingEcommerceApps', 'errorEcommerceApps', 'ecommerceAppsList']),
       searchOptions() {
         if (!this.allAppTypes || !this.externalServicesList) return [];
 
@@ -152,6 +160,15 @@
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
         });
       },
+      filteredEcommerceApps() {
+        if (!this.ecommerceAppsList) return [];
+
+        if (!this.searchTerm || !this.searchTerm.trim()) return this.ecommerceAppsList;
+
+        return this.ecommerceAppsList.filter((app) => {
+          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
+        });
+      },
       filteredBiApps() {
         if (!this.searchTerm || !this.searchTerm.trim()) return this.biApps;
 
@@ -159,10 +176,19 @@
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
         });
       },
+      hasAnyVisibleApp() {
+        return (
+          this.filteredBiApps.length ||
+          this.filteredExternalServices.length ||
+          this.filteredEcommerceApps.length ||
+          this.filteredApps.length
+        );
+      },
     },
     methods: {
       ...mapActions(['getAllAppTypes', 'fetchFeatured']),
       ...mapActions('externals', ['getExternalServicesTypes']),
+      ...mapActions('ecommerce', ['getEcommerceTypes']),
       async fetchChannels() {
         const params = {
           category: 'channel',
@@ -191,6 +217,9 @@
       },
       async fetchExternalServices() {
         await this.getExternalServicesTypes();
+      },
+      async fetchEcommerceApps() {
+        await this.getEcommerceTypes();
       },
     },
   };

@@ -12,8 +12,8 @@ function formatGenericApp(appList) {
 }
 
 export default {
-  async getConfiguredApps({ commit }, { params }) {
-    commit('GET_CONFIGURED_APPS_REQUEST');
+  async getConfiguredApps({ commit }, { params = null, skipLoading = false }) {
+    commit('GET_CONFIGURED_APPS_REQUEST', skipLoading);
     try {
       let { data } = await appType.getConfiguredApps(params);
 
