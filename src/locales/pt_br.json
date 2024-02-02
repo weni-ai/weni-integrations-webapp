@@ -58,7 +58,8 @@
         "installed": "Aplicativos instalados",
         "bi-tools": "Ferramentas de BI",
         "external": "Serviços Externos",
-        "recommended": "Canais recomendados"
+        "recommended": "Canais recomendados",
+        "ecommerce": "Ecommerce"
       },
       "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde.",
       "search": {

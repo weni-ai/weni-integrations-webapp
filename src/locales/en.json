@@ -58,7 +58,8 @@
         "installed": "Installed Apps",
         "bi-tools": "BI Tools",
         "external": "External Services",
-        "recommended": "Recommended channels"
+        "recommended": "Recommended channels",
+        "ecommerce": "Ecommerce"
       },
       "fetch_error": "Failed to fetch Application list, please try again later.",
       "search": {
