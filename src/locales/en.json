@@ -505,6 +505,9 @@
           "confirm": "To save"
         },
         "search_placeholder": "Search for the catalog name"
+      },
+      "products": {
+        "title": "Products"
       }
     },
     "templates": {
@@ -663,6 +666,20 @@
       "success": {
         "create_translation": "Successfully created Template Translation",
         "update_translation": "Successfully updated Template Translation"
+      }
+    },
+    "product": {
+      "table": {
+        "headers": {
+          "name": "Name",
+          "availability": "Availability",
+          "price": "Price",
+          "sku": "SKU",
+          "facebook_id": "Facebook ID"
+        }
+      },
+      "list": {
+        "description": "Here you manage your inventory information. Add all the items you want to advertise or sell"
       }
     }
   },

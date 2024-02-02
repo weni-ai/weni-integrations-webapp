@@ -10,6 +10,7 @@ jest.mock('@/api/appType/whatsapp_cloud', () => {
     toggleCartVisibility: jest.fn(),
     toggleCatalogVisibility: jest.fn(),
     getCommerceSettings: jest.fn(),
+    getCatalogProducts: jest.fn(),
   };
 });
 import WhatsAppCloudApi from '@/api/appType/whatsapp_cloud';
@@ -560,6 +561,63 @@ describe('store/appType/whatsapp_cloud/actions.js', () => {
       expect(store.state.WhatsAppCloud.errorCommerceSettings).not.toEqual(error);
       await store.dispatch('WhatsAppCloud/getCommerceSettings', data);
       expect(store.state.WhatsAppCloud.errorCommerceSettings).toEqual(error);
+    });
+  });
+
+  describe('getCatalogProducts()', () => {
+    const data = {
+      appUuid: '123',
+      catalogUuid: 'catalog-123',
+      params: {
+        page: 1,
+        limit: 12,
+      },
+    };
+
+    const mockedResult = { data: ['ok'] };
+
+    beforeEach(() => {
+      jest.resetAllMocks();
+
+      WhatsAppCloudApi.getCatalogProducts.mockImplementation(() => {
+        return Promise.resolve({ data: mockedResult });
+      });
+    });
+
+    it('should call getCatalogProducts from API', async () => {
+      expect(WhatsAppCloudApi.getCatalogProducts).not.toHaveBeenCalled();
+      await store.dispatch('WhatsAppCloud/getCatalogProducts', data);
+      expect(WhatsAppCloudApi.getCatalogProducts).toHaveBeenCalledTimes(1);
+      expect(WhatsAppCloudApi.getCatalogProducts).toHaveBeenCalledWith(
+        data.appUuid,
+        data.catalogUuid,
+        data.params,
+      );
+    });
+
+    it('should set catalogProducts as result data', async () => {
+      store.state.WhatsAppCloud.catalogProducts = {};
+      expect(store.state.WhatsAppCloud.catalogProducts).not.toEqual(mockedResult);
+      await store.dispatch('WhatsAppCloud/getCatalogProducts', data);
+      expect(store.state.WhatsAppCloud.catalogProducts).toEqual(mockedResult);
+    });
+
+    it('should set loadingCatalogProducts to false', async () => {
+      store.state.WhatsAppCloud.loadingCatalogProducts = true;
+      expect(store.state.WhatsAppCloud.loadingCatalogProducts).toBe(true);
+      await store.dispatch('WhatsAppCloud/getCatalogProducts', data);
+      expect(store.state.WhatsAppCloud.loadingCatalogProducts).toBe(false);
+    });
+
+    it('should set errorCatalogProducts as result data', async () => {
+      const error = { error: 'failed' };
+      WhatsAppCloudApi.getCatalogProducts.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.WhatsAppCloud.errorCatalogProducts = {};
+      expect(store.state.WhatsAppCloud.errorCatalogProducts).not.toEqual(error);
+      await store.dispatch('WhatsAppCloud/getCatalogProducts', data);
+      expect(store.state.WhatsAppCloud.errorCatalogProducts).toEqual(error);
     });
   });
 });

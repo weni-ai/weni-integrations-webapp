@@ -40,4 +40,8 @@ export default {
   commerceSettings: null,
   loadingCommerceSettings: false,
   errorCommerceSettings: false,
+
+  catalogProducts: null,
+  loadingCatalogProducts: false,
+  errorCatalogProducts: false,
 };

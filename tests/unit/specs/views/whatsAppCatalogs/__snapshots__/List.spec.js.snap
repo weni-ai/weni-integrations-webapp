@@ -2,6 +2,6 @@
 
 exports[`views/whatsAppCatalogs/List.vue should be rendered properly 1`] = `
 <div class="whatsapp-catalogs">
-  <list-stub></list-stub>
+  <cataloglist-stub></cataloglist-stub>
 </div>
 `;

@@ -80,6 +80,21 @@ const routes = [
         meta: {
           crumb_title: 'WhatsApp.catalog.list.title',
         },
+        children: [
+          {
+            name: 'WhatsApp Catalog Products',
+            path: ':catalogUuid/products',
+            component: () => import('@/views/whatsAppCatalogs/CatalogProducts.vue'),
+            meta: {
+              crumb_title: 'WhatsApp.catalog.products.title',
+            },
+            props: (route) => {
+              return {
+                catalogName: route.query.catalogName,
+              };
+            },
+          },
+        ],
       },
     ],
   },
