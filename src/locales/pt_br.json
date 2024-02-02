@@ -67,6 +67,10 @@
         "empty_link": "aqui",
         "results": "Resultados para",
         "placeholder": "Buscar"
+      },
+      "action": {
+        "edit": "Editar",
+        "config": "Configurar"
       }
     },
     "myApps": {
@@ -614,7 +618,8 @@
         "button_text": "Texto do botão",
         "phone_number_placeholder": "Escreva o número de telefone",
         "url_placeholder": "Escreva a URL do website",
-        "footer_text_placeholder": "Escreva o texto do rodapé"
+        "footer_text_placeholder": "Escreva o texto do rodapé",
+        "error_has_variable": "Os botões de modelo não podem conter variáveis"
       },
       "category_options": {
         "marketing": "Marketing",

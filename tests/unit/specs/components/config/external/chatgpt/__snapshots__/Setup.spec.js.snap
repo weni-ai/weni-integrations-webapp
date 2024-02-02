@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/config/external/chatgpt/Setup.vue should be rendered properly 1`] = `
-<unnnicmodal-stub showmodal="true" class="chatgpt-modal">
-  <div class="chatgpt-modal__content"><span class="chatgpt-modal__content__title">Integrate with ChatGPT</span> <span class="chatgpt-modal__content__description">To integrate, create a name, insert your API-Token and select one of the available versions</span>
+<unnnicmodal-stub text="Integrate with ChatGPT" description="To integrate, create a name, insert your API-Token and select one of the available versions" showmodal="true" class="chatgpt-modal">
+  <div class="chatgpt-modal__content">
     <div class="chatgpt-modal__content__form">
       <unnnic-input-stub placeholder="Insert a name" type="normal" value="" nativetype="text" label="Name" size="md" mask="" class="chatgpt-modal__content__form__input__name"></unnnic-input-stub>
       <unnnic-input-stub placeholder="Insert the Token" type="normal" value="" nativetype="text" label="Token" size="md" mask="" class="chatgpt-modal__content__form__input__token"></unnnic-input-stub>

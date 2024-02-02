@@ -3,9 +3,10 @@
     <LoadingButton
       ref="button"
       type="secondary"
-      loadingPosition="center"
+      :loadingPosition="loadingPosition"
       :size="size"
-      :iconCenter="icon"
+      :iconCenter="loadingPosition == 'center' ? icon : null"
+      :iconLeft="loadingPosition == 'left' ? icon : null"
       :isLoading="loadingCreateApp"
       :disabled="disabled"
       :text="text"
@@ -18,12 +19,12 @@
 </template>
 
 <script>
-  import addModal from './AddModal.vue';
-  import configPopUp from './config/ConfigPopUp.vue';
+  import addModal from '../AddModal/index.vue';
+  import configPopUp from '../config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { mapActions, mapState } from 'vuex';
-  import LoadingButton from './LoadingButton.vue';
-  import getEnv from '../utils/env';
+  import LoadingButton from '../LoadingButton/index.vue';
+  import getEnv from '../../utils/env';
 
   export default {
     name: 'IntegrateButton',
@@ -48,6 +49,13 @@
       size: {
         type: String,
         default: 'small',
+      },
+      loadingPosition: {
+        type: String,
+        default: 'center',
+        validator(value) {
+          return ['left', 'center'].indexOf(value) !== -1;
+        },
       },
     },
     data() {

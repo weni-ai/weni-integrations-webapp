@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import NavBar from '../components/NavBar.vue';
-  import Carousel from '../components/Carousel.vue';
+  import NavBar from '../../components/NavBar/index.vue';
+  import Carousel from '../../components/Carousel/index.vue';
   export default {
     name: 'Apps',
     components: {
@@ -19,9 +19,5 @@
 </script>
 
 <style scoped lang="scss">
-  .container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
+  @import './styles.scss';
 </style>

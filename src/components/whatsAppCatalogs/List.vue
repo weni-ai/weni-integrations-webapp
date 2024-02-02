@@ -3,7 +3,7 @@
     <div class="whatsapp-catalog-list__header">
       <div class="whatsapp-catalog-list__header__text">
         <div class="whatsapp-catalog-list__header__icon">
-          <img src="@/assets/svgs/storefront.svg" />
+          <img src="@/assets/svgs/storefront.svg" alt="" />
         </div>
         <div class="whatsapp-catalog-list__header__title">
           <span class="u font primary title-sm color-neutral-darkest">
@@ -14,11 +14,6 @@
           </span>
         </div>
       </div>
-      <!-- <div class="whatsapp-catalog-list__header__button">
-        <unnnic-button type="secondary" size="large">
-          {{ $t('WhatsApp.catalog.list.advanced_settings') }}
-        </unnnic-button>
-      </div> -->
     </div>
 
     <div class="whatsapp-catalog-list__search">

@@ -5,6 +5,15 @@
         <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
       </div>
       <div class="app-config-wwc__header__title">{{ app.name }}</div>
+      <div class="app-config-wwc__header__close">
+        <unnnic-button
+          size="small"
+          iconLeft="close-1"
+          type="tertiary"
+          class="app-config-wwc__header__close__button"
+          @click="closeConfig"
+        />
+      </div>
     </div>
 
     <div class="app-config-wwc__content">
@@ -20,7 +29,7 @@
                 :type="errorFor('title') ? 'error' : 'normal'"
                 :label="`${$t('weniWebChat.config.TitleInput.label')}`"
                 :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
-                :message="errorFor('title') ? $t('errors.required_message') : ''"
+                :message="errorFor('title') || ''"
               />
 
               <div class="app-config-wwc__tabs__settings-content__input__subtitle-container">
@@ -154,7 +163,7 @@
 
               <unnnic-button
                 class="app-config-wwc__tabs__settings-content__buttons__save"
-                type="secondary"
+                type="primary"
                 size="large"
                 :text="$t('apps.config.save_changes')"
                 :loading="loadingSave"
@@ -217,7 +226,7 @@
 
               <unnnic-button
                 class="app-config-wwc__tabs__settings-content__buttons__save"
-                type="secondary"
+                type="primary"
                 size="large"
                 :text="$t('apps.config.save_changes')"
                 :loading="loadingSave"
@@ -282,7 +291,7 @@
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
-  import ColorPicker from '../../../ColorPicker.vue';
+  import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
 
@@ -541,6 +550,9 @@
           if (!(value && value.trim())) {
             return this.$t('errors.empty_input');
           }
+          if (value.length > 20) {
+            return 'By default, the maximum is 20 characters.';
+          }
         }
       },
       validConfig() {
@@ -662,6 +674,7 @@
     &__content {
       overflow: auto;
       display: flex;
+      width: 100%;
       flex-direction: column;
       flex: 1;
       color: $unnnic-color-neutral-cloudy;
@@ -673,11 +686,13 @@
 
     &__header {
       display: flex;
+      width: 95%;
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
 
       &__icon-container {
         display: flex;
+        justify-self: flex-start;
         width: $unnnic-avatar-size-sm;
         height: $unnnic-avatar-size-sm;
         border-radius: $unnnic-border-radius-sm;
@@ -686,18 +701,33 @@
 
         &__icon {
           margin: $unnnic-inline-nano;
+          width: 40px;
         }
       }
 
       &__title {
+        display: flex;
+        justify-self: flex-start;
         align-self: center;
         font-family: $unnnic-font-family-primary;
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-title-md;
         line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
         color: $unnnic-color-neutral-darkest;
-
         margin-left: $unnnic-inline-sm;
+        width: 432px;
+      }
+
+      &__close {
+        display: flex;
+        justify-content: flex-end;
+        justify-self: flex-end;
+        width: 100%;
+        padding-right: $unnnic-spacing-inline-xs;
+        &__button {
+          justify-self: flex-end;
+          display: flex;
+        }
       }
     }
 
@@ -727,11 +757,12 @@
         }
       }
       &__settings-content {
-        padding-right: $unnnic-spacing-inline-xs;
+        padding: 0, $unnnic-spacing-inline-lg;
         display: flex;
         flex-direction: column;
         height: 100%;
-        overflow: auto;
+        width: 95%;
+        overflow: hidden;
 
         &__scroll {
           display: flex;
@@ -878,6 +909,7 @@
 
         &__colors {
           margin-top: $unnnic-spacing-stack-sm;
+
           &__label {
             color: $unnnic-color-neutral-cloudy;
             font-family: $unnnic-font-family-secondary;
@@ -887,23 +919,29 @@
 
           &__picker {
             margin-top: $unnnic-spacing-stack-xs;
+            cursor: pointer;
           }
         }
 
         &__buttons {
-          padding-right: $unnnic-spacing-inline-xs;
           margin-top: $unnnic-spacing-stack-sm;
           display: flex;
+          width: 95%;
+          gap: $unnnic-spacing-inline-xs;
+          justify-content: center;
 
           &__cancel,
           &__save {
             flex-grow: 1;
+            width: 250px;
+            margin: $unnnic-spacing-inline-xs;
           }
         }
       }
 
       &__script-content {
         display: flex;
+        width: 95%;
         flex-direction: column;
         gap: $unnnic-inline-xs;
 
@@ -915,7 +953,7 @@
         }
 
         .data-area-container {
-          width: 100%;
+          width: 95%;
         }
       }
     }

@@ -66,15 +66,15 @@ exports[`components/config/channels/whatsapp/components/tabs/WebhookTab.vue shou
     </div>
   </div>
 </div>
-<div class="webhook-info__buttons"><button data-v-1e5e9ddd="" class="webhook-info__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary">
+<div class="webhook-info__buttons"><button data-v-2d9f2cbf="" class="webhook-info__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary">
     <!---->
     <!---->
-    <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Configure later </span>
+    <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Configure later </span>
     <!---->
-  </button> <button data-v-1e5e9ddd="" class="webhook-info__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary">
+  </button> <button data-v-2d9f2cbf="" class="webhook-info__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary">
     <!---->
     <!---->
-    <!----><span data-v-1e5e9ddd="" class="unnnic-button__label"> Save changes </span>
+    <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Save changes </span>
     <!---->
   </button></div>
 </div>

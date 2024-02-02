@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Discovery.vue should be rendered properly 1`] = `
+exports[`Discovery/index.vue should be rendered properly 1`] = `
 <div class="discovery-content">
   <div class="unnnic-autocomplete discovery-content__search">
     <!---->
@@ -33,47 +33,9 @@ exports[`Discovery.vue should be rendered properly 1`] = `
         <div class="app-grid__content">
           <div class="unnnic-card-component unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__add app-grid__content__item" v-bind="[object Object]" button-action="() => {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
             <div class="unnnic-card-marketplace__icons"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="unnnic-card-marketplace__icons__app">
-              <div><button data-v-1e5e9ddd="" disabled="disabled" class="unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center loading-button">
+              <div><button data-v-2d9f2cbf="" disabled="disabled" class="unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center loading-button">
                   <!---->
-                  <!----><span data-v-ab84ef7c="" data-v-1e5e9ddd="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-clean"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-1e5e9ddd="" class="unnnic-button__label">  </span>
-                  <!---->
-                </button>
-                <!---->
-                <!---->
-              </div>
-            </div>
-            <div class="unnnic-card-marketplace__content">
-              <div class="unnnic-card-marketplace__content__title">Weni Web Chat</div>
-              <div title="some specific text" class="unnnic-card-marketplace__content__description"> some specific text </div>
-              <div class="unnnic-card-marketplace__content__rating"><span data-v-ab84ef7c="" class="unnnic-card-marketplace__content__rating__star unnnic-icon unnnic-icon__size--ant unnnic-icon-scheme--feedback-yellow"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M34.752 15.8274C34.6157 15.461 34.3708 15.145 34.0501 14.9215C33.7294 14.698 33.3482 14.5776 32.9573 14.5764H25.1872C25.0549 14.5765 24.926 14.5355 24.818 14.4592C24.7101 14.3828 24.6285 14.2748 24.5847 14.1501L21.7955 6.24466C21.6589 5.87927 21.4139 5.56433 21.0934 5.34198C20.7729 5.11964 20.3921 5.00049 20.002 5.00049C19.6119 5.00049 19.2311 5.11964 18.9106 5.34198C18.5901 5.56433 18.3451 5.87927 18.2085 6.24466L18.2021 6.26508L15.4193 14.1501C15.3755 14.2746 15.2942 14.3824 15.1865 14.4588C15.0788 14.5352 14.9501 14.5763 14.8181 14.5764H7.04544C6.65205 14.5761 6.2681 14.697 5.94584 14.9226C5.62357 15.1483 5.37862 15.4677 5.24431 15.8374C5.10999 16.2072 5.09282 16.6093 5.19514 16.9892C5.29746 17.3691 5.5143 17.7082 5.81617 17.9604L12.4336 23.4494C12.5326 23.5316 12.6044 23.6417 12.6397 23.7654C12.675 23.8891 12.6721 24.0205 12.6314 24.1426L9.85121 32.4794C9.72272 32.8649 9.72018 33.2812 9.84396 33.6682C9.96774 34.0552 10.2114 34.3928 10.5397 34.6322C10.8681 34.8715 11.264 35.0003 11.6704 34.9997C12.0767 34.9991 12.4723 34.8693 12.7999 34.6291L19.6241 29.6252C19.7336 29.545 19.8657 29.5018 20.0014 29.5018C20.137 29.5018 20.2691 29.545 20.3786 29.6252L27.2002 34.6278C27.5277 34.8689 27.9235 34.9994 28.3302 35.0005C28.7369 35.0016 29.1334 34.8731 29.4621 34.6338C29.7909 34.3944 30.035 34.0566 30.1589 33.6693C30.2829 33.2819 30.2803 32.8652 30.1515 32.4794L27.3713 24.1375C27.3306 24.0154 27.3277 23.884 27.363 23.7603C27.3983 23.6366 27.4701 23.5265 27.5691 23.4443L34.1993 17.9477C34.4973 17.6933 34.7101 17.3536 34.8089 16.9744C34.9078 16.5953 34.8879 16.1949 34.752 15.8274V15.8274Z" class="primary"></path></svg></span>
-                <div class="unnnic-card-marketplace__content__rating__value">4.9</div>
-                <div class="unnnic-card-marketplace__content__rating__comments">(undefined some specific text)</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!---->
-      </section>
-      <!---->
-      <div>
-        <transition-stub name="fade">
-          <!---->
-        </transition-stub>
-        <!---->
-      </div>
-    </div>
-    <div>
-      <section id="app-grid">
-        <div class="app-grid__header">
-          <div data-v-0bc00392="" class="unnnic-avatar-icon aux-blue-500 sm"><span data-v-ab84ef7c="" data-v-0bc00392="" class="material-symbols-rounded unnnic-icon-scheme--aux-blue-500 unnnic-icon-size--md"> local_mall </span></div>
-          <p class="app-grid__header__title">some specific text</p>
-        </div>
-        <div class="app-grid__content">
-          <div class="unnnic-card-component unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__add app-grid__content__item" v-bind="[object Object]" button-action="() => {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
-            <div class="unnnic-card-marketplace__icons"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="unnnic-card-marketplace__icons__app">
-              <div><button data-v-1e5e9ddd="" disabled="disabled" class="unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center loading-button">
-                  <!---->
-                  <!----><span data-v-ab84ef7c="" data-v-1e5e9ddd="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-clean"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-1e5e9ddd="" class="unnnic-button__label">  </span>
+                  <!----><span data-v-ab84ef7c="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-clean"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
                   <!---->
                 </button>
                 <!---->
@@ -109,9 +71,9 @@ exports[`Discovery.vue should be rendered properly 1`] = `
         <div class="app-grid__content">
           <div class="unnnic-card-component unnnic-card-marketplace unnnic-card-marketplace__clickable unnnic-card-marketplace__add app-grid__content__item" v-bind="[object Object]" button-action="() => {}" percent="0" info-position="right" enabled="enabled" scheme="aux-blue" has-information-icon="true">
             <div class="unnnic-card-marketplace__icons"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="unnnic-card-marketplace__icons__app">
-              <div><button data-v-1e5e9ddd="" disabled="disabled" class="unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center loading-button">
+              <div><button data-v-2d9f2cbf="" disabled="disabled" class="unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center loading-button">
                   <!---->
-                  <!----><span data-v-ab84ef7c="" data-v-1e5e9ddd="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-clean"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-1e5e9ddd="" class="unnnic-button__label">  </span>
+                  <!----><span data-v-ab84ef7c="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-clean"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
                   <!---->
                 </button>
                 <!---->

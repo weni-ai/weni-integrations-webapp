@@ -68,12 +68,11 @@
 </template>
 <script>
   import PowerBiIcon from '@/assets/logos/power_bi.png';
-  import AppGrid from '@/components/AppGrid.vue';
-  import OnboardModal from '@/components/OnboardModal.vue';
-  import EmptyApps from '@/components/EmptyApps.vue';
+  import AppGrid from '@/components/AppGrid/index.vue';
+  import OnboardModal from '@/components/OnboardModal/index.vue';
+  import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-
   export default {
     name: 'Discovery',
     components: {
@@ -142,6 +141,7 @@
           return app.name;
         });
       },
+      // TODO Ana: unir as funções de filtro
       filteredApps() {
         if (!this.allAppTypes) return [];
 
@@ -225,35 +225,5 @@
   };
 </script>
 <style lang="scss" scoped>
-  .discovery-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-
-    &__grids {
-      display: flex;
-      flex-direction: column;
-      gap: $unnnic-spacing-stack-lg;
-      margin-bottom: $unnnic-spacing-stack-lg;
-    }
-
-    &__search {
-      margin-top: $unnnic-spacing-stack-sm;
-      margin-bottom: $unnnic-spacing-stack-lg;
-
-      &__results {
-        font-size: $unnnic-font-size-body-lg;
-        line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
-
-        &__highlight {
-          font-weight: $unnnic-font-weight-bold;
-        }
-      }
-    }
-
-    &__recommended {
-      margin-top: auto;
-    }
-  }
+  @import './styles.scss';
 </style>

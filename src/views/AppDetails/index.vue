@@ -24,7 +24,6 @@
       />
       <div class="app-details__section app-details__section__columns">
         <app-details-about :description="appDescription" :links="appLinks" />
-        <!-- <app-details-recommended class="app-details__section__columns__recommended" /> -->
       </div>
       <app-details-comments :appCode="appCode" />
     </div>
@@ -33,13 +32,13 @@
 </template>
 
 <script>
-  import Navigator from '../components/Navigator.vue';
-  import AppImagesBanner from '../components/app/AppImagesBanner.vue';
-  import AppDetailsHeader from '../components/app/AppDetailsHeader.vue';
-  import AppDetailsAbout from '../components/app/AppDetailsAbout.vue';
+  import Navigator from '../../components/Navigator/index.vue';
+  import AppImagesBanner from '../../components/app/AppImagesBanner.vue';
+  import AppDetailsHeader from '../../components/app/AppDetailsHeader.vue';
+  import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
   // import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
-  import AppDetailsComments from '../components/app/AppDetailsComments.vue';
-  import skeletonLoading from './loadings/AppDetails.vue';
+  import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
+  import skeletonLoading from '../loadings/AppDetails.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   import { mapActions, mapState } from 'vuex';
@@ -163,24 +162,5 @@
 </script>
 
 <style scoped lang="scss">
-  .app-details {
-    &__section {
-      margin: $unnnic-spacing-stack-md 0;
-
-      &__columns {
-        display: flex;
-
-        &__recommended {
-          max-width: 256px;
-          margin-left: auto;
-        }
-      }
-    }
-
-    &__banner {
-      ::v-deep .unnnic-banner-info__section {
-        align-self: center;
-      }
-    }
-  }
+  @import './styles.scss';
 </style>

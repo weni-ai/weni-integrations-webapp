@@ -60,4 +60,8 @@ export default {
       `${resource}/${appCode}/apps/${appUuid}/report_sent_messages/?${queryString}`,
     );
   },
+  async getInsightsData(templateUuid, params) {
+    const queryString = qs.stringify(params);
+    return request.$http.get(`${resource}/wpp-cloud/apps/${templateUuid}?/${queryString}`);
+  },
 };
