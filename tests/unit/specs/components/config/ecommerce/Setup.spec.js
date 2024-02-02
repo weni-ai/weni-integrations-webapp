@@ -57,6 +57,18 @@ const mountComponent = async ({
   };
 
   const store = new Vuex.Store({
+    modules: {
+      ecommerce: {
+        namespaced: true,
+        actions: {
+          getVtexAppUuid: jest.fn(),
+        },
+        state: {
+          generatedVtexAppUuid: 'generated123',
+          errorVtexAppUuid: null,
+        },
+      },
+    },
     state,
     actions,
   });
@@ -120,22 +132,32 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
   it('should setup vtex with correct information', async () => {
     const { wrapper, actions } = await mountComponent();
 
-    wrapper.vm.subdomain = 'https://weni.ai';
-    wrapper.vm.appKey = 'key';
-    wrapper.vm.appToken = 'token';
     wrapper.vm.selectedChannel = [{ value: '456' }];
+    wrapper.vm.storeDomain = 'storedomain.com';
+    wrapper.vm.apiDomain = 'apidomain.com';
+    wrapper.vm.appKey = 'appKey123';
+    wrapper.vm.appToken = 'appToken123';
 
     const setupButton = wrapper.findComponent({ ref: 'unnnic-vtex-modal-setup-button' });
+    // finish step 1
     await setupButton.trigger('click');
 
+    // click again to finish step 2
+    await setupButton.trigger('click');
+
+    await wrapper.vm.$nextTick();
+
+    console.log('before expect');
     expect(actions.createApp).toHaveBeenCalledWith(expect.anything(), {
       code: 'vtex',
       payload: {
         project_uuid: '123',
-        domain: 'https://weni.ai',
-        app_key: 'key',
-        app_token: 'token',
+        domain: 'apidomain.com',
+        store_domain: 'storedomain.com',
+        app_key: 'appKey123',
+        app_token: 'appToken123',
         wpp_cloud_uuid: '456',
+        uuid: 'generated123',
       },
     });
   });
@@ -148,8 +170,16 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
     });
 
     wrapper.vm.selectedChannel = [{ value: '456' }];
+    wrapper.vm.storeDomain = 'storedomain.com';
+    wrapper.vm.apiDomain = 'apidomain.com';
+    wrapper.vm.appKey = 'appKey123';
+    wrapper.vm.appToken = 'appToken123';
 
     const setupButton = wrapper.findComponent({ ref: 'unnnic-vtex-modal-setup-button' });
+    // finish step 1
+    await setupButton.trigger('click');
+
+    // click again to finish step 2
     await setupButton.trigger('click');
 
     await wrapper.vm.$nextTick();
@@ -175,8 +205,16 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
     });
 
     wrapper.vm.selectedChannel = [{ value: '456' }];
+    wrapper.vm.storeDomain = 'storedomain.com';
+    wrapper.vm.apiDomain = 'apidomain.com';
+    wrapper.vm.appKey = 'appKey123';
+    wrapper.vm.appToken = 'appToken123';
 
     const setupButton = wrapper.findComponent({ ref: 'unnnic-vtex-modal-setup-button' });
+    // finish step 1
+    await setupButton.trigger('click');
+
+    // click again to finish step 2
     await setupButton.trigger('click');
 
     await wrapper.vm.$nextTick();

@@ -14,17 +14,17 @@ exports[`components/config/ecommerce/vtex/ConnectCatalogModalContent.vue should 
       </div> <span class="modal__content__form__footer">By creating a catalog, you agree to the <a class="link" target="_blank" href="https://google.com"><b>Catalog Manager Terms</b></a> and confirm that you follow <a class="link" target="_blank" href="https://google.com"><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them.</span>
     </div>
   </div>
-  <div class="modal__buttons"><button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" slot="options">
+  <div class="modal__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" slot="options">
       <!---->
       <!---->
-      <!----><span data-v-1e5e9ddd="" class="unnnic-button__label">
+      <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
       Cancel
       </span>
       <!---->
-    </button> <button data-v-1e5e9ddd="" class="unnnic-button unnnic-button--size-large unnnic-button--primary" slot="options">
+    </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--primary" slot="options">
       <!---->
       <!---->
-      <!----><span data-v-1e5e9ddd="" class="unnnic-button__label">
+      <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
       Continue
       </span>
       <!---->
