@@ -1,3 +1,11 @@
+1.33.0
+----------
+`2024-02-02 · 2 🎉`
+
+### 🎉 New Features
+- Feat: VTEX App
+- Feat: Catalog products table
+
 1.32.0
 ----------
 `2024-01-26 · 1 🎉`
