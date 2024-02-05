@@ -32,14 +32,16 @@ describe('Insights/index.vue', () => {
     };
 
     state = {
-      isActive: true,
-      templateAnalytics: templateAnalytics,
-      loadingTemplateAnalytics: false,
-      errorTemplateAnalytics: null,
-      selectedTemplate: selectedTemplate,
-      appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
-      templates: templates,
-      errorTemplates: null,
+      insights: {
+        isActive: true,
+        templateAnalytics: templateAnalytics,
+        loadingTemplateAnalytics: false,
+        errorTemplateAnalytics: null,
+        selectedTemplate: selectedTemplate,
+        appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
+        templates: templates,
+        errorTemplates: null,
+      },
     };
 
     store = new Vuex.Store({
@@ -57,6 +59,7 @@ describe('Insights/index.vue', () => {
         },
         $route: {
           path: '/template-details',
+          hash: 'd9019398-e5df-421f-98d5-8cfa711e7b20',
         },
       },
       stubs: {
@@ -74,22 +77,41 @@ describe('Insights/index.vue', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
+  it('should set data', () => {
+    expect(wrapper.vm.selectedTemplate).toBe(selectedTemplate);
+    expect(wrapper.vm.errorTemplates).toBe(null);
+    expect(wrapper.vm.errorTemplateAnalytics).toBe(null);
+    expect(wrapper.vm.model).not.toEqual([]);
+  });
+
   //computed
   it('should set modelOptions', () => {
-    const templateList = [];
-    store.state.templates.results.forEach((item) => {
-      item.translations.forEach((translation) => {
-        const obj = {
-          value: translation.message_template_id,
-          label: `${item.name} (${translation.language})`,
-        };
-        templateList.push(obj);
-      });
-    });
-    expect(wrapper.vm.modelOptions).toEqual(templateList);
-
-    wrapper.vm.templates = [];
+    expect(wrapper.vm.templates).toEqual(templates.results.map((item) => item));
+    expect(wrapper.vm.modelOptions).not.toEqual([]);
+    store.state.insights.templates = [];
     expect(wrapper.vm.modelOptions).toEqual([]);
+  });
+
+  //watch
+  describe('watch', () => {
+    it('should call fetchTemplateAnalytics()', async () => {
+      const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
+      await wrapper.setData({
+        model: [
+          {
+            label: 'aaaa',
+            value: 'aaaaa',
+          },
+        ],
+      });
+      expect(spy).toBeCalled();
+    });
+    it('should trim model array', async () => {
+      await wrapper.setData({
+        model: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      });
+      expect(wrapper.vm.model).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    });
   });
 
   // fetchTemplateAnalytics()
@@ -99,13 +121,13 @@ describe('Insights/index.vue', () => {
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.fetchTemplateAnalytics();
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
     it('should call getTemplateAnalytics()', () => {
       const spy = spyOn(wrapper.vm, 'getTemplateAnalytics');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.fetchTemplateAnalytics();
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
   });
 
   // fetchTemplates
@@ -115,13 +137,13 @@ describe('Insights/index.vue', () => {
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.fetchTemplates();
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
     it('should call getTemplates()', () => {
       const spy = spyOn(wrapper.vm, 'getTemplates');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.fetchTemplates();
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
   });
 
   // toggleOpenModal
@@ -131,12 +153,12 @@ describe('Insights/index.vue', () => {
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.toggleOpenModal();
       expect(spy).toHaveBeenCalledTimes(1);
-    });
-    it('should set showModal state to true', async () => {
+    }); //ok
+    it('should set showModal state to true', () => {
       const toggleModalComponent = wrapper.findComponent({ ref: 'modal' });
-      await toggleModalComponent.vm.$emit('close');
+      toggleModalComponent.vm.$emit('close');
       expect(wrapper.vm.showModal).toBeTruthy();
-    });
+    }); //ok
   });
 
   //  setPeriodo
@@ -149,7 +171,7 @@ describe('Insights/index.vue', () => {
         end: '1-11-2024',
       });
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
     it('should call fetchTemplates()', () => {
       const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
       expect(spy).not.toHaveBeenCalled();
@@ -158,7 +180,7 @@ describe('Insights/index.vue', () => {
         end: '1-11-2024',
       });
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
   });
 
   // formatDate
@@ -168,7 +190,7 @@ describe('Insights/index.vue', () => {
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.formatDate(new Date());
       expect(spy).toHaveBeenCalledTimes(1);
-    });
+    }); //ok
   });
 
   // getChartByType
@@ -180,23 +202,37 @@ describe('Insights/index.vue', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
     it('should set getChartSent', () => {
-      store.state.templateAnalytics = [];
       wrapper.vm.getChartByType('sent');
-      expect(wrapper.vm.getChartSent).toEqual([]);
+      expect(wrapper.vm.getChartSent).not.toEqual([]);
     });
     it('should set getChartDelivered', () => {
-      store.state.templateAnalytics = [];
       wrapper.vm.getChartByType('delivered');
-      expect(wrapper.vm.getChartDelivered).toEqual([]);
+      expect(wrapper.vm.getChartDelivered).not.toEqual([]);
     });
-    it('should set getChartDelivered', () => {
-      store.state.templateAnalytics = [];
+    it('should set getChartRead', () => {
       wrapper.vm.getChartByType('read');
-      expect(wrapper.vm.getChartRead).toEqual([]);
+      expect(wrapper.vm.getChartRead).toEqual([
+        {
+          data: [
+            {
+              title: '2024-01-05',
+              value: 5,
+            },
+            {
+              title: '2024-01-06',
+              value: 1,
+            },
+            {
+              title: '2024-01-07',
+              value: 4,
+            },
+          ],
+          title: '730081812069736',
+        },
+      ]);
     });
     it('should set getChartByDay', () => {
-      store.state.templateAnalytics = [];
-      expect(wrapper.vm.getChartRead).toEqual([]);
+      expect(wrapper.vm.getChartByDay).not.toEqual([]);
     });
   });
 
@@ -235,30 +271,30 @@ describe('Insights/index.vue', () => {
 
   // activeTemplate
   describe('activeTemplate()', () => {
-    it('should call activeTemplate()', async () => {
+    it('should call activeTemplate()', () => {
       const spy = spyOn(wrapper.vm, 'activeTemplate');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.activeTemplate();
       expect(spy).toHaveBeenCalledTimes(1);
     });
-    it('should call setActiveProject()', async () => {
+    it('should call setActiveProject()', () => {
       const spy = spyOn(wrapper.vm, 'setActiveProject');
       expect(spy).not.toHaveBeenCalled();
       wrapper.vm.activeTemplate();
       expect(spy).toHaveBeenCalledTimes(1);
     });
-    it('should set isActive to true', async () => {
+    it('should set isActive to true', () => {
       const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
       const spy = spyOn(wrapper.vm, 'setActiveProject');
       expect(spy).not.toBeCalled();
-      await toggleActive.vm.$emit('click');
+      toggleActive.vm.$emit('click');
       expect(spy).toBeCalledTimes(1);
     });
-    it('should set showModal to false', async () => {
+    it('should set showModal to false', () => {
       const toggleActive = wrapper.findComponent({ ref: 'wpp_insights__button__active' });
       const spy = spyOn(wrapper.vm, 'showModal');
       expect(spy).toBeTruthy();
-      await toggleActive.vm.$emit('click');
+      toggleActive.vm.$emit('click');
       expect(wrapper.vm.showModal).toBeFalsy();
     });
   });

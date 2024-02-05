@@ -2,21 +2,8 @@
 
 exports[`Insights/index.vue should be rendered properly 1`] = `
 <div class="wpp_insights">
-  <div class="wpp_insights__breadcrumb">
-    <unnnic-breadcrumb-stub crumbs="[object Object],[object Object]"></unnnic-breadcrumb-stub>
-  </div>
-  <div class="wpp_insights__header">
-    <div class="wpp_insights__header__logo"><img src="../../assets/svgs/whatsapp-avatar.svg" alt=""></div>
-    <div class="wpp_insights__header__about">
-      <div class="wpp_insights__header__about__title">Insights</div>
-      <div class="wpp_insights__header__about__description">
-        some specific text
-      </div>
-    </div>
-    <div class="wpp_insights__header__button">
-      <unnnicbutton-stub size="large" text="some specific text" type="primary"></unnnicbutton-stub>
-    </div>
-  </div>
+  <!---->
+  <!---->
   <div class="wpp_insights__filters">
     <div class="wpp_insights__filters__time">
       <div class="wpp_insights__filters__time__title">
@@ -31,31 +18,28 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
         some specific text
       </div>
       <div class="wpp_insights__filters__model__select">
-        <unnnicselectsmart-stub options="" value="" size="md" type="normal" multiple="true" multiplewithoutselectsmessage=""></unnnicselectsmart-stub>
+        <unnnicselectsmart-stub options="[object Object],[object Object]" value="[object Object]" size="md" type="normal" disabled="true" multiple="true" multiplewithoutselectsmessage=""></unnnicselectsmart-stub>
       </div>
     </div>
   </div>
   <div class="wpp_insights__content">
-    <div class="wpp_insights__content__empty">
-      <div class="wpp_insights__content__empty__image"><img src="../../assets/svgs/empty-apps.svg" alt=""></div>
-      <div class="wpp_insights__content__empty__text">
-        <div class="wpp_insights__content__empty__text__title">
-          some specific text
-        </div>
-        <div class="wpp_insights__content__empty__text__description">
-          some specific text
-        </div>
-      </div>
-      <div class="wpp_insights__content__empty__button">
-        <unnnicbutton-stub size="large" text="some specific text" type="primary"></unnnicbutton-stub>
+    <!---->
+    <div class="wpp_insights__content__active">
+      <div class="wpp_insights__content__active__chart">
+        <!---->
+        <!---->
+        <!---->
+        <unnnicchartmultiline-stub fixedmaxvalue="NaN" data="[object Object],[object Object],[object Object]" title="some specific text"></unnnicchartmultiline-stub>
       </div>
     </div>
-    <!---->
   </div>
   <div class="wpp_insights__modal">
     <unnnicmodal-stub closeicon="true">
       <div class="wpp_insights__modal__title"><img src="../../assets/svgs/amazoninha-heart.svg" alt="">
-        <p>some specific text</p>
+        <p>
+          some specific text
+          false
+        </p>
       </div>
       <div class="wpp_insights__modal__content">
         <p class="wpp_insights__modal__content__dark">
