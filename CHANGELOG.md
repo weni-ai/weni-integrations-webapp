@@ -1,3 +1,10 @@
+1.33.1
+----------
+`2024-02-05 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Better handle of configured apps loading in whatsapp config
+
 1.33.0
 ----------
 `2024-02-02 · 2 🎉`
