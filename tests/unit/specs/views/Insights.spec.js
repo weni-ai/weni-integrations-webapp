@@ -59,6 +59,7 @@ describe('Insights/index.vue', () => {
         },
         $route: {
           path: '/template-details',
+          hash: 'd9019398-e5df-421f-98d5-8cfa711e7b20',
         },
       },
       stubs: {
@@ -74,7 +75,14 @@ describe('Insights/index.vue', () => {
 
   it('should be rendered properly', () => {
     expect(wrapper).toMatchSnapshot();
-  }); //ok
+  });
+
+  it('should set data', () => {
+    expect(wrapper.vm.selectedTemplate).toBe(selectedTemplate);
+    expect(wrapper.vm.errorTemplates).toBe(null);
+    expect(wrapper.vm.errorTemplateAnalytics).toBe(null);
+    expect(wrapper.vm.model).not.toEqual([]);
+  });
 
   //computed
   it('should set modelOptions', () => {
