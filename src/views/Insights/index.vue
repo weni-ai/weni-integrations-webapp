@@ -116,7 +116,10 @@
       <unnnic-modal :showModal="showModal" @close="toggleOpenModal" ref="modal">
         <div class="wpp_insights__modal__title">
           <img src="../../assets/svgs/amazoninha-heart.svg" alt="" />
-          <p>{{ $t('WhatsApp.insights.modal.present_insights') }}</p>
+          <p>
+            {{ $t('WhatsApp.insights.modal.present_insights') }}
+            {{ showModal }}
+          </p>
         </div>
         <div class="wpp_insights__modal__content">
           <p class="wpp_insights__modal__content__dark">
@@ -286,7 +289,7 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
-        const data = this.templateAnalytics.data.map((template) => {
+        const data = this.templateAnalytics?.data.map((template) => {
           return {
             title: template.template || template.template_id,
             data: template.dates.map((item) => {
@@ -306,9 +309,9 @@
         if (crumb.meta === this.$route.name) return;
         this.$router.push(crumb.path);
       },
-      activeTemplate() {
+      async activeTemplate() {
         this.showModal = false;
-        this.setActiveProject({ appUuid: this.app_uuid });
+        await this.setActiveProject({ app_uuid: this.app_uuid });
       },
     },
   };
