@@ -11,7 +11,7 @@
       />
     </div>
     <!-- Header -->
-    <div class="wpp_insights__header">
+    <div class="wpp_insights__header" v-if="!hash">
       <div class="wpp_insights__header__logo">
         <img src="../../assets/svgs/whatsapp-avatar.svg" alt="" />
       </div>
