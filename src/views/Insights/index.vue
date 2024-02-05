@@ -174,7 +174,7 @@
           start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
           end: this.formatDate(new Date()),
         },
-        hash: this.$route?.hash,
+        hash: this.$route.hash,
         crumb_title: 'Insights',
       };
     },
@@ -192,13 +192,13 @@
     },
     computed: {
       ...mapState({
-        app_uuid: (state) => state.insights?.appUuid,
+        app_uuid: (state) => state.insights.appUuid,
         errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
         errorTemplates: (state) => state.insights.errorTemplates,
-        templateAnalytics: (state) => state.insights?.templateAnalytics,
+        templateAnalytics: (state) => state.insights.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
-        templates: (state) => state.insights?.templates.results?.map((item) => item),
-        isActive: (state) => state.insights?.isActive || false,
+        templates: (state) => state.insights.templates.results?.map((item) => item),
+        isActive: (state) => state.insights.isActive || false,
       }),
       modelOptions() {
         if (this.templates?.length > 0) {
@@ -286,10 +286,10 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
-        const data = this.templateAnalytics?.data.map((template) => {
+        const data = this.templateAnalytics.data.map((template) => {
           return {
             title: template.template || template.template_id,
-            data: template.dates?.map((item) => {
+            data: template.dates.map((item) => {
               return {
                 title: item.start,
                 value: item[type],
@@ -297,13 +297,13 @@
             }),
           };
         });
-        return data ?? [];
+        return data || [];
       },
       findMax(array) {
         return Math.max(...array.map(({ value }) => value));
       },
       redirectTo(crumb) {
-        if (crumb?.meta === this.$route.name) return;
+        if (crumb.meta === this.$route.name) return;
         this.$router.push(crumb.path);
       },
       activeTemplate() {
