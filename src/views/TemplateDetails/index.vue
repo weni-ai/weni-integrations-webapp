@@ -28,12 +28,15 @@
       <div class="wpp_template_details__header__title">
         <div class="wpp_template_details__header__title__text">{{ selectedTemplate.name }}</div>
         <div class="wpp_template_details__header__about__title__tag">
-          <unnnic-tag scheme="neutral-dark" text="Marketing" />
+          <unnnic-tag
+            scheme="neutral-dark"
+            :text="$t('WhatsApp.template_details.summary.marketing')"
+          />
         </div>
       </div>
       <div class="wpp_insights__header__button">
         <unnnic-button
-          text="Editar Modelo"
+          :text="$t('WhatsApp.template_details.button.edit_model')"
           ref="wpp_template_details__button__edit"
           type="secondary"
           @click="redirectEdit"
@@ -49,7 +52,7 @@
         <template slot="tab-panel-first">
           <Summary />
         </template>
-        <template slot="tab-head-second">Insights</template>
+        <template slot="tab-head-second">{{ $t('WhatsApp.insights.insights') }}</template>
         <template slot="tab-panel-second">
           <Insights />
         </template>
@@ -71,7 +74,7 @@
     data() {
       return {
         route: this.$route,
-        crumb_title: 'Detalhes do modelo',
+        crumb_title: this.$t('WhatsApp.template_details.crumbs.model_details'),
       };
     },
     computed: {

@@ -516,7 +516,8 @@
         "actions": {
           "add_language": "Adicionar Idioma",
           "duplicate_language": "Duplicar Idioma",
-          "delete_language": "Deletar"
+          "delete_language": "Deletar",
+          "see_details":"Ver detalhes"
         },
         "headers": {
           "name": "Nome",
@@ -669,6 +670,7 @@
       }
     },
     "insights": {
+      "insights": "Insights",
       "see_insights": "Ver insights",
       "enable_insights": "Ativar insights",
       "disabled": "Você não ativou os insights",
@@ -698,6 +700,7 @@
       },
       "summary": {
         "title": "Resumo",
+        "marketing": "Marketing",
         "performace_overview": "Visão geral do desempenho",
         "last_7_days": "últimos 7 dias",
         "sent_messages": "Mensagens enviadas",
@@ -706,6 +709,9 @@
         "quality_overview": "Visão geral da qualidade",
         "current_level": "Nível atual",
         "block_reason": "Principal motivo do bloqueio"
+      },
+      "button": {
+        "edit_model": "Editar Modelo"
       }
     },
     "product": {

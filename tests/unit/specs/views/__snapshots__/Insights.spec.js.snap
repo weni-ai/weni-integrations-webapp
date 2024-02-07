@@ -35,7 +35,7 @@ exports[`Insights/index.vue should be rendered properly 1`] = `
   </div>
   <div class="wpp_insights__modal">
     <unnnicmodal-stub closeicon="true">
-      <div class="wpp_insights__modal__title"><img src="../../assets/svgs/amazoninha-heart.svg" alt="">
+      <div class="wpp_insights__modal__title"><img src="@/assets/svgs/amazoninha-heart.svg" alt="">
         <p>
           some specific text
           false

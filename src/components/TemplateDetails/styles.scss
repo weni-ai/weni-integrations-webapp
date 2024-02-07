@@ -2,7 +2,7 @@
   &__title {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: $unnnic-spacing-sm;
     align-items: center;
     font-family: $unnnic-font-family-secondary;
     &__main {
@@ -19,8 +19,8 @@
   &__main {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
-    margin-top: 0.5rem;
+    gap: $unnnic-spacing-sm;
+    margin-top: $unnnic-spacing-xs;
 
     &__card {
       display: flex;
@@ -42,19 +42,19 @@
   }
 
   &__quality {
-    margin-top: 0.5rem;
+    margin-top: $unnnic-spacing-xs;
     &__title {
       display: flex;
       flex-direction: row;
-      gap: 1rem;
+      gap: $unnnic-spacing-sm;
       align-items: center;
     }
     &__status {
       display: flex;
       flex-direction: row;
-      gap: 1rem;
+      gap: $unnnic-spacing-sm;
       align-items: center;
-      margin-top: .5rem;
+      margin-top: $unnnic-spacing-xs;
       
       &__level {
         display: flex;

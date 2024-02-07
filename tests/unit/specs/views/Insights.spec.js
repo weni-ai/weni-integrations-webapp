@@ -161,12 +161,12 @@ describe('Insights/index.vue', () => {
     }); //ok
   });
 
-  //  setPeriodo
-  describe('setPeriodo()', () => {
-    it('should call setPeriodo()', () => {
-      const spy = spyOn(wrapper.vm, 'setPeriodo');
+  //  setPeriod
+  describe('setPeriod()', () => {
+    it('should call setPeriod()', () => {
+      const spy = spyOn(wrapper.vm, 'setPeriod');
       expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.setPeriodo({
+      wrapper.vm.setPeriod({
         start: '1-10-2024',
         end: '1-11-2024',
       });
@@ -175,7 +175,7 @@ describe('Insights/index.vue', () => {
     it('should call fetchTemplates()', () => {
       const spy = spyOn(wrapper.vm, 'fetchTemplateAnalytics');
       expect(spy).not.toHaveBeenCalled();
-      wrapper.vm.setPeriodo({
+      wrapper.vm.setPeriod({
         start: '1-10-2024',
         end: '1-11-2024',
       });

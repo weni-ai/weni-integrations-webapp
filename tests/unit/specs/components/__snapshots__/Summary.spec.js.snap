@@ -41,7 +41,7 @@ exports[`components/TemplateDetails/Summary.vue should be rendered properly 1`] 
         some specific text
       </div>
       <div class="whatsapp_template_summary__title__subtitle">
-        Últimos dias
+        some specific text
       </div>
     </div>
     <div class="whatsapp_template_summary__quality__status">

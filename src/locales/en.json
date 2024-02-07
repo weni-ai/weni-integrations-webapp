@@ -516,7 +516,8 @@
         "actions": {
           "add_language": "Add language",
           "duplicate_language": "Duplicate",
-          "delete_language": "Delete"
+          "delete_language": "Delete",
+          "see_details":"See details"
         },
         "headers": {
           "name": "Name",
@@ -669,6 +670,7 @@
       }
     },
     "insights": {
+      "insights": "Insights",
       "see_insights": "See insights",
       "enable_insights": "Enable insights",
       "disabled": "You haven't turned on insights",
@@ -698,6 +700,7 @@
       },
       "summary": {
         "title": "Summary",
+        "marketing": "Marketing",
         "performace_overview": "Performace overview",
         "last_7_days": "last 7 days",
         "sent_messages": "Sent messages",
@@ -706,6 +709,9 @@
         "quality_overview": "Quality overview",
         "current_level": "Current level",
         "block_reason": "Main blocking reason"
+      },
+      "button": {
+        "edit_model": "Edit Model"
       }
     },
     "product": {

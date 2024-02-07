@@ -4,8 +4,8 @@
     <div class="wpp_insights__breadcrumb" v-if="!hash">
       <unnnic-breadcrumb
         :crumbs="[
-          { name: $t('apps.nav.my_apps'), path: '/apps/my', meta: 'Meus aplicativos' },
-          { name: 'Insights', path: '/apps/insights', meta: 'Insights' },
+          { name: $t('apps.nav.my_apps'), path: '/apps/my', meta: $t('apps.nav.my_apps') },
+          { name: 'Insights', path: '/apps/insights', meta: $t('WhatsApp.insights.insights') },
         ]"
         @crumbClick="redirectTo"
       />
@@ -13,7 +13,7 @@
     <!-- Header -->
     <div class="wpp_insights__header" v-if="!hash">
       <div class="wpp_insights__header__logo">
-        <img src="../../assets/svgs/whatsapp-avatar.svg" alt="" />
+        <img src="@/assets/svgs/whatsapp-avatar.svg" alt="" />
       </div>
       <div class="wpp_insights__header__about">
         <div class="wpp_insights__header__about__title">Insights</div>
@@ -38,10 +38,10 @@
         </div>
         <div class="wpp_insights__filters__time__select">
           <unnnic-input-date-picker
-            :value="periodo"
+            :value="period"
             size="md"
             format="MM-DD-YYYY"
-            @changed="setPeriodo"
+            @changed="setPeriod"
           />
         </div>
       </div>
@@ -64,7 +64,7 @@
       <!-- If not active -->
       <div class="wpp_insights__content__empty" v-if="!isActive">
         <div class="wpp_insights__content__empty__image">
-          <img src="../../assets/svgs/empty-apps.svg" alt="" />
+          <img src="@/assets/svgs/empty-apps.svg" alt="" />
         </div>
         <div class="wpp_insights__content__empty__text">
           <div class="wpp_insights__content__empty__text__title">
@@ -115,7 +115,7 @@
     <div class="wpp_insights__modal">
       <unnnic-modal :showModal="showModal" @close="toggleOpenModal" ref="modal">
         <div class="wpp_insights__modal__title">
-          <img src="../../assets/svgs/amazoninha-heart.svg" alt="" />
+          <img src="@/assets/svgs/amazoninha-heart.svg" alt="" />
           <p>
             {{ $t('WhatsApp.insights.modal.present_insights') }}
             {{ showModal }}
@@ -173,7 +173,7 @@
       return {
         showModal: false,
         model: [],
-        periodo: {
+        period: {
           start: this.formatDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)),
           end: this.formatDate(new Date()),
         },
@@ -226,15 +226,15 @@
         return {
           data: [
             {
-              title: 'Sent',
+              title: this.$t('WhatsApp.insights.messages.sent'),
               data: sent[0],
             },
             {
-              title: 'Delivered',
+              title: this.$t('WhatsApp.insights.messages.delivered'),
               data: delivered[0],
             },
             {
-              title: 'Read',
+              title: this.$t('WhatsApp.insights.messages.read'),
               data: read[0],
             },
           ],
@@ -262,14 +262,14 @@
       },
     },
     methods: {
-      ...mapActions(['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
+      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
           app_uuid: this.app_uuid,
           filters: {
-            start: this.periodo.start,
-            end: this.periodo.end,
+            start: this.period.start,
+            end: this.period.end,
             fba_template_ids: models,
           },
         };
@@ -281,8 +281,8 @@
       toggleOpenModal() {
         this.showModal = !this.showModal;
       },
-      setPeriodo(e) {
-        this.periodo = e;
+      setPeriod(e) {
+        this.period = e;
         this.fetchTemplateAnalytics();
       },
       formatDate(date) {

@@ -1,4 +1,3 @@
-<!-- eslint-disable prettier/prettier -->
 <template>
   <div class="config-chatgpt">
     <div class="config-chatgpt__header">

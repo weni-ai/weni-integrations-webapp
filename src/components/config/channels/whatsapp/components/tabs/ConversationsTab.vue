@@ -112,7 +112,9 @@
         </unnnic-tool-tip>
       </div>
       <div class="conversations__content__insights">
-        <div class="conversations__content__insights__title">Insights</div>
+        <div class="conversations__content__insights__title">
+          {{ $t('WhatsApp.insights.insights') }}
+        </div>
         <div class="conversations__content__insights__about">
           <p>
             {{ $t('WhatsApp.insights.about_description') }}
@@ -256,7 +258,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
-      ...mapActions(['setAppUuid']),
+      ...mapActions('insights', ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;

@@ -37,7 +37,9 @@ exports[`whatsapp/components/tabs/ConversationsTab.vue should be rendered proper
       </unnnic-tool-tip-stub>
     </div>
     <div class="conversations__content__insights">
-      <div class="conversations__content__insights__title">Insights</div>
+      <div class="conversations__content__insights__title">
+        Insights
+      </div>
       <div class="conversations__content__insights__about">
         <p>
           See more detailed data related to sending, delivering and reading triggered message templates.

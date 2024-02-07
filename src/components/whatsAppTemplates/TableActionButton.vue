@@ -60,7 +60,7 @@
           },
           {
             id: 'see_details',
-            title: 'See Details',
+            title: this.$t('WhatsApp.templates.table.actions.see_details'),
             icon: 'pencil-write-1',
             scheme: 'neutral-darkest',
             action: () => {
@@ -110,7 +110,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['deleteTemplateMessage']),
-      ...mapActions(['setSelectedTemplate', 'setAppUuid']),
+      ...mapActions('insights', ['setSelectedTemplate', 'setAppUuid']),
     },
     computed: {
       ...mapState('WhatsApp', ['errorDeleteTemplateMessage']),
