@@ -1,7 +1,9 @@
 .wpp_insights {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: auto;
+  height: auto;
+  padding-bottom: $unnnic-spacing-sm;
   &__breadcrumb {
     height: 24px;
     padding-top: $unnnic-spacing-sm;
@@ -69,10 +71,10 @@
 
   &__content {
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
 
     top: 315px;
 
@@ -83,7 +85,6 @@
       flex-direction: column;
       align-items: center;
       gap: $unnnic-spacing-sm;
-      margin: $unnnic-spacing-sm;
 
       
       &__image {

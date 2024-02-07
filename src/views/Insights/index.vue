@@ -173,9 +173,8 @@
       return {
         showModal: false,
         model: [],
-        sevenDays: 7 * 24 * 60 * 60 * 1000,
         period: {
-          start: this.formatDate(new Date(Date.now() - this.sevenDays)),
+          start: this.formatDate(new Date(Date.now() - 604800000)),
           end: this.formatDate(new Date()),
         },
         hash: this.$route.hash,
