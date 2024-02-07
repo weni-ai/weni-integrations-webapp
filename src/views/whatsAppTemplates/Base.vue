@@ -59,6 +59,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow: hidden;
+    padding-bottom: $unnnic-spacing-sm;
   }
 </style>
