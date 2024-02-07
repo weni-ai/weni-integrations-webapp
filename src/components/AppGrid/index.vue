@@ -225,7 +225,8 @@
       },
     },
     methods: {
-      ...mapActions(['deleteApp', 'setActiveProject']),
+      ...mapActions(['deleteApp']),
+      ...mapActions('insights', ['setActiveProject']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
