@@ -41,6 +41,12 @@ const avatarIcons = {
     filled: true,
     opacity: false,
   },
+  ecommerce: {
+    icon: 'local_mall',
+    scheme: 'aux-blue-500',
+    filled: true,
+    opacity: false,
+  },
 };
 
 const actionIcons = {
