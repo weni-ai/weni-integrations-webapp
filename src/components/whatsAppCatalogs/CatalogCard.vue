@@ -1,6 +1,6 @@
 <template>
   <div class="whatsapp-catalog-card">
-    <div class="whatsapp-catalog-card__wrapper">
+    <div class="whatsapp-catalog-card__wrapper" @click="$emit('redirectClick')">
       <div class="whatsapp-catalog-card__wrapper__header">
         <div class="whatsapp-catalog-card__wrapper__header__title">
           <span class="u font secondary body-lg color-neutral-darkest bold">
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="whatsapp-catalog-card__wrapper__actions">
+      <div class="whatsapp-catalog-card__wrapper__actions" @click.stop>
         <unnnic-switch
           ref="catalogConnectSwitch"
           :value="catalog.is_connected"
@@ -52,7 +52,7 @@
   import { mapActions, mapState } from 'vuex';
 
   export default {
-    name: 'Card',
+    name: 'CatalogCard',
     props: {
       catalog: {
         type: Object,
@@ -99,10 +99,17 @@
       border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
       border-radius: $unnnic-border-radius-md;
       padding: $unnnic-spacing-md;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $unnnic-color-neutral-lightest;
+      }
 
       &__actions {
         display: flex;
         gap: $unnnic-spacing-xs;
+        cursor: auto;
       }
     }
   }

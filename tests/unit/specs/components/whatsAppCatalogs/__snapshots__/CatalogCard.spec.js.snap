@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/whatsAppCatalog/Card.vue should be rendered properly 1`] = `
+exports[`components/whatsAppCatalog/CatalogCard.vue should be rendered properly 1`] = `
 <div class="whatsapp-catalog-card">
   <div class="whatsapp-catalog-card__wrapper">
     <div class="whatsapp-catalog-card__wrapper__header">

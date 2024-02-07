@@ -106,4 +106,14 @@ export default {
       commit('GET_COMMERCE_SETTINGS_ERROR', err);
     }
   },
+  async getCatalogProducts({ commit }, { appUuid, catalogUuid, params }) {
+    commit('GET_CATALOG_PRODUCTS_REQUEST');
+    try {
+      const { data } = await whatsAppCloud.getCatalogProducts(appUuid, catalogUuid, params);
+      commit('GET_CATALOG_PRODUCTS_SUCCESS', data);
+    } catch (err) {
+      captureSentryException(err);
+      commit('GET_CATALOG_PRODUCTS_ERROR', err);
+    }
+  },
 };

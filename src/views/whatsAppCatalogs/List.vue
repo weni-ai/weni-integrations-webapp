@@ -1,18 +1,18 @@
 <template>
   <div class="whatsapp-catalogs">
-    <List v-if="$route.name === 'WhatsApp Catalogs List'" />
+    <CatalogList v-if="$route.name === 'WhatsApp Catalogs List'" />
 
     <router-view v-else />
   </div>
 </template>
 
 <script>
-  import List from '@/components/whatsAppCatalogs/List';
+  import CatalogList from '@/components/whatsAppCatalogs/CatalogList';
 
   export default {
     name: 'WhatsAppCatalogsList',
     components: {
-      List,
+      CatalogList,
     },
   };
 </script>

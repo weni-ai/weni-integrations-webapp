@@ -24,12 +24,17 @@
             </div>
 
             <unnnic-button
+              ref="catalogButton"
               class="account-tab__content__info__templates__buttons__button"
-              @click="navigateToCatalogs"
+              @click="handleCatalogButtonClick"
               type="primary"
               size="small"
             >
-              {{ $t('WhatsApp.config.catalog.button') }}
+              {{
+                hasCatalog || hasVtexCatalogConnected
+                  ? $t('WhatsApp.config.catalog.button')
+                  : $t('WhatsApp.config.catalog.button_create')
+              }}
             </unnnic-button>
           </div>
         </div>
@@ -83,19 +88,66 @@
         </div>
       </div>
     </div>
+
+    <unnnic-modal
+      v-if="showCreateCatalogModal || showConnectCatalogModal"
+      class="catalog-modal"
+      @close="showCreateCatalogModal = false"
+      @click.stop
+      :closeIcon="false"
+    >
+      <CreateCatalogModalContent
+        ref="createCatalogModalContent"
+        v-if="showCreateCatalogModal"
+        @closeModal="showCreateCatalogModal = false"
+        @createCatalog="handleCatalogCreateModalContinue"
+      />
+
+      <ConnectCatalogModalContent
+        v-if="showConnectCatalogModal"
+        :loading="loadingConnectVtexCatalog"
+        @closeModal="showConnectCatalogModal = false"
+        @connectCatalog="handleCatalogConnect"
+      />
+    </unnnic-modal>
   </div>
 </template>
 
 <script>
+  import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
+  import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
+  import { mapActions, mapState } from 'vuex';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
+
   export default {
     name: 'AccountTab',
+    components: {
+      CreateCatalogModalContent,
+      ConnectCatalogModalContent,
+    },
     props: {
       appInfo: {
         type: Object,
         default: /* istanbul ignore next */ () => {},
       },
+      hasCatalog: {
+        type: Boolean,
+        default: false,
+      },
+    },
+    async mounted() {
+      await this.fetchVtexApp();
+    },
+    data() {
+      return {
+        showCreateCatalogModal: false,
+        showConnectCatalogModal: false,
+        vtexApp: null,
+      };
     },
     methods: {
+      ...mapActions(['getConfiguredApps']),
+      ...mapActions('ecommerce', ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
       },
@@ -110,12 +162,91 @@
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
-      navigateToCatalogs() {
+      handleCatalogButtonClick() {
+        if (!this.hasCatalog) {
+          this.showCreateCatalogModal = true;
+          return;
+        }
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
       },
+      handleCatalogCreateModalContinue(type) {
+        if (type === 'vtex') {
+          this.showCreateCatalogModal = false;
+          this.showConnectCatalogModal = true;
+        } else if (type === 'meta') {
+          window
+            .open(
+              `https://business.facebook.com/settings/product-catalogs?business_id=${this.appInfo.config.wa_business_id}`,
+              '_blank',
+            )
+            .focus();
+
+          this.showCreateCatalogModal = false;
+          this.showConnectCatalogModal = false;
+        }
+      },
+      async handleCatalogConnect(eventData) {
+        if (!this.vtexApp) {
+          this.callAlert({
+            type: 'Error',
+            text: this.$t('WhatsApp.config.catalog.error.missing_vtex_app'),
+          });
+          return;
+        }
+
+        const data = {
+          code: this.appInfo.code,
+          appUuid: this.appInfo.uuid,
+          payload: {
+            name: eventData.name,
+          },
+        };
+
+        await this.connectVtexCatalog(data);
+
+        if (this.errorConnectVtexCatalog) {
+          this.callAlert({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          return;
+        }
+
+        this.showConnectCatalogModal = false;
+        this.callAlert({ type: 'Success', text: this.$t('vtex.success.connect_catalog') });
+
+        await this.fetchVtexApp();
+      },
+      async fetchVtexApp() {
+        if (!this.configuredApps) {
+          const params = {
+            project_uuid: this.project,
+          };
+          await this.getConfiguredApps({ params, skipLoading: true });
+
+          if (!this.configuredApps) return;
+
+          this.vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
+        }
+      },
+      callAlert({ text, type }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
+            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
+            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
+      },
     },
     computed: {
+      ...mapState({
+        project: (state) => state.auth.project,
+        configuredApps: (state) => state.myApps.configuredApps,
+      }),
+      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
       QRCodeUrl() {
         return `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
           this.WAUrl,
@@ -140,6 +271,9 @@
             consent_status: null,
           }
         );
+      },
+      hasVtexCatalogConnected() {
+        return this.vtexApp?.config?.connected_catalog ?? false;
       },
       accountSections() {
         return [
@@ -347,6 +481,13 @@
 
     &__close-button {
       margin-top: $unnnic-spacing-stack-lg;
+    }
+  }
+
+  .catalog-modal {
+    ::v-deep .unnnic-modal-container-background {
+      width: 750px;
+      max-width: 90%;
     }
   }
 </style>

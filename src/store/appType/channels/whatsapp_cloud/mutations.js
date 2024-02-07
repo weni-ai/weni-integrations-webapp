@@ -136,4 +136,17 @@ export default {
     state.errorCommerceSettings = data;
     state.loadingCommerceSettings = false;
   },
+
+  GET_CATALOG_PRODUCTS_REQUEST(state) {
+    state.loadingCatalogProducts = true;
+    state.errorCatalogProducts = null;
+  },
+  GET_CATALOG_PRODUCTS_SUCCESS(state, data) {
+    state.catalogProducts = data;
+    state.loadingCatalogProducts = false;
+  },
+  GET_CATALOG_PRODUCTS_ERROR(state, data) {
+    state.errorCatalogProducts = data;
+    state.loadingCatalogProducts = false;
+  },
 };
