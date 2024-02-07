@@ -1,28 +1,5 @@
 <template>
   <div class="wpp_template_details">
-    <!-- Breadcrumb -->
-    <!-- <div class="wpp_template_details__breadcrumb">
-      <unnnic-breadcrumb
-        :crumbs="[
-          {
-            name: $t('WhatsApp.template_details.crumbs.my_apps'),
-            path: '/apps/my',
-            meta: $t('WhatsApp.template_details.crumbs.my_apps'),
-          },
-          {
-            name: $t('WhatsApp.template_details.crumbs.manage_templates'),
-            path: `/apps/my/wpp-cloud/${app_uuid}/templates`,
-            meta: $t('WhatsApp.template_details.crumbs.manage_templates'),
-          },
-          {
-            name: $t('WhatsApp.template_details.crumbs.model_details'),
-            path: '/',
-            meta: $t('WhatsApp.template_details.crumbs.model_details'),
-          },
-        ]"
-        @crumbClick="redirectTo"
-      />
-    </div> -->
     <!-- Header -->
     <div class="wpp_template_details__header">
       <div class="wpp_template_details__header__title">
