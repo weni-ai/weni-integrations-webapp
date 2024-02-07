@@ -226,7 +226,7 @@
     },
     methods: {
       ...mapActions(['deleteApp']),
-      ...mapActions('insights', ['setActiveProject']),
+      ...mapActions('insights', ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
@@ -270,7 +270,7 @@
         this.$router.push(`/apps/${code}/details`);
       },
       openAppModal(app) {
-        this.setActiveProject({ isActive: app.config?.has_insights });
+        this.setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;
         }

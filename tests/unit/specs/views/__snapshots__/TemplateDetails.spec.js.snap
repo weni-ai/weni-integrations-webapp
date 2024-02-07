@@ -6,7 +6,7 @@ exports[`TemplateDetails/index.vue should be rendered properly 1`] = `
     <div class="wpp_template_details__header__title">
       <div class="wpp_template_details__header__title__text">testeana2</div>
       <div class="wpp_template_details__header__about__title__tag">
-        <unnnic-tag-stub type="default" text="some specific text" count="0" scheme="neutral-dark"></unnnic-tag-stub>
+        <unnnic-tag-stub type="default" text="MARKETING" count="0" scheme="neutral-dark"></unnnic-tag-stub>
       </div>
     </div>
     <div class="wpp_insights__header__button">

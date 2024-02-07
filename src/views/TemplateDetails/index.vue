@@ -5,10 +5,7 @@
       <div class="wpp_template_details__header__title">
         <div class="wpp_template_details__header__title__text">{{ selectedTemplate.name }}</div>
         <div class="wpp_template_details__header__about__title__tag">
-          <unnnic-tag
-            scheme="neutral-dark"
-            :text="$t('WhatsApp.template_details.summary.marketing')"
-          />
+          <unnnic-tag scheme="neutral-dark" :text="selectedTemplate.category" />
         </div>
       </div>
       <div class="wpp_insights__header__button">

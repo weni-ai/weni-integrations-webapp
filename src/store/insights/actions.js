@@ -23,6 +23,10 @@ export default {
     await insights.set_active_project(app_uuid);
   },
 
+  setHasInsights({ commit }, { isActive }) {
+    commit('GET_IS_ACTIVE', isActive);
+  },
+
   setSelectedTemplate({ commit }, { template }) {
     commit('GET_SELECTED_TEMPLATE', template);
   },

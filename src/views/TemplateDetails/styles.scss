@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 1rem;
-    padding-top: 1rem;
+    gap: $unnnic-spacing-sm;
+    padding-top: $unnnic-spacing-sm;
 
     &__header{
         display: flex;
@@ -14,7 +14,7 @@
         &__title{
             display: flex;
             flex-direction: row;
-            gap: 1rem;
+            gap: $unnnic-spacing-sm;
 
             &__text{
                 font-family: $unnnic-font-family-primary;
