@@ -696,7 +696,8 @@
       "crumbs": {
         "my_apps": "My Apps",
         "manage_templates": "Manage Templates",
-        "model_details": "Model Details"
+        "model_details": "Model Details",
+        "template_details": "Template Details"
       },
       "summary": {
         "title": "Summary",

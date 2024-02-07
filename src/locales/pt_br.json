@@ -696,7 +696,8 @@
       "crumbs": {
         "my_apps": "Meus Aplicativos",
         "manage_templates": "Gerenciar Templates",
-        "model_details": "Detalhes do Modelo"
+        "model_details": "Detalhes do Modelo",
+        "template_details": "Detalhes do template"
       },
       "summary": {
         "title": "Resumo",

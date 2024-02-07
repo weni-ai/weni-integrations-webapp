@@ -64,11 +64,11 @@
             icon: 'pencil-write-1',
             scheme: 'neutral-darkest',
             action: () => {
-              const { appUuid } = this.$route.params;
+              const { appUuid, appCode } = this.$route.params;
               this.setAppUuid({ appUuid: appUuid });
               this.setSelectedTemplate({ template: this.data });
               this.$router.push({
-                path: `/template-details`,
+                path: `/apps/my/${appCode}/${appUuid}/templates/template-details`,
                 hash: `#${this.data.uuid}`,
               });
             },

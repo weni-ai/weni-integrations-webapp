@@ -1,7 +1,7 @@
 <template>
   <div class="wpp_template_details">
     <!-- Breadcrumb -->
-    <div class="wpp_template_details__breadcrumb">
+    <!-- <div class="wpp_template_details__breadcrumb">
       <unnnic-breadcrumb
         :crumbs="[
           {
@@ -22,7 +22,7 @@
         ]"
         @crumbClick="redirectTo"
       />
-    </div>
+    </div> -->
     <!-- Header -->
     <div class="wpp_template_details__header">
       <div class="wpp_template_details__header__title">

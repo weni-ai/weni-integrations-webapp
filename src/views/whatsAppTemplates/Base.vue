@@ -17,6 +17,11 @@
             path: '/apps/my',
             meta: 'myApps',
           },
+          {
+            name: this.$t('WhatsApp.template_details.crumbs.model_details'),
+            path: '/template-details',
+            meta: 'myApps',
+          },
         ],
       };
     },
