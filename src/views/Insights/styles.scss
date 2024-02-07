@@ -1,9 +1,11 @@
 .wpp_insights {
   display: flex;
+  flex: 1;
   flex-direction: column;
   width: auto;
   height: auto;
   padding-bottom: $unnnic-spacing-sm;
+
   &__breadcrumb {
     height: 24px;
     padding-top: $unnnic-spacing-sm;
