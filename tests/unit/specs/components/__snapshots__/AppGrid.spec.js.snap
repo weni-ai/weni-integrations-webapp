@@ -4,7 +4,7 @@ exports[`AppGrid.vue should be rendered properly 1`] = `
 <div>
   <section id="app-grid">
     <div class="app-grid__header">
-      <unnnicavataricon-stub enabled="true" icon="messages-bubble-1" size="sm" scheme="aux-purple"></unnnicavataricon-stub>
+      <unnnicavataricon-stub enabled="true" icon="sms" size="sm" scheme="aux-purple-500" filled="true" class="app-grid__header__icon"></unnnicavataricon-stub>
       <p class="app-grid__header__title">some specific text</p>
     </div>
     <div class="app-grid__content">

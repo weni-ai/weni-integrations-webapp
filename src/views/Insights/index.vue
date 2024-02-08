@@ -1,29 +1,29 @@
 <template>
   <div class="wpp_insights">
     <!-- Breadcrumb -->
-    <div class="wpp_insights__breadcrumb">
+    <div class="wpp_insights__breadcrumb" v-if="!hash">
       <unnnic-breadcrumb
         :crumbs="[
-          { name: 'Meus aplicativos', path: '/apps' },
-          { name: 'Insights', path: '/' },
+          { name: $t('apps.nav.my_apps'), path: '/apps/my', meta: $t('apps.nav.my_apps') },
+          { name: 'Insights', path: '/apps/insights', meta: $t('WhatsApp.insights.insights') },
         ]"
+        @crumbClick="redirectTo"
       />
     </div>
     <!-- Header -->
-    <div class="wpp_insights__header">
+    <div class="wpp_insights__header" v-if="!hash">
       <div class="wpp_insights__header__logo">
-        <unnnic-avatar-icon icon="messaging-whatsapp-1" scheme="feedback-green" />
+        <img src="@/assets/svgs/whatsapp-avatar.svg" alt="" />
       </div>
       <div class="wpp_insights__header__about">
         <div class="wpp_insights__header__about__title">Insights</div>
         <div class="wpp_insights__header__about__description">
-          Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem
-          disparados
+          {{ $t('WhatsApp.insights.about_description') }}
         </div>
       </div>
-      <div class="wpp_insights__header__button">
+      <div class="wpp_insights__header__button" v-if="!isActive">
         <unnnic-button
-          text="Ativar insights"
+          :text="$t('WhatsApp.insights.enable_insights')"
           :disabled="isActive"
           ref="wpp_insights__button__close"
           @click="toggleOpenModal"
@@ -33,21 +33,29 @@
     <!-- Filters -->
     <div class="wpp_insights__filters">
       <div class="wpp_insights__filters__time">
-        <div class="wpp_insights__filters__time__title">Periodo de Tempo</div>
+        <div class="wpp_insights__filters__time__title">
+          {{ $t('WhatsApp.insights.filters.period_of_time') }}
+        </div>
         <div class="wpp_insights__filters__time__select">
-          <unnnic-select searchPlaceholder="Buscar por...">
-            <div slot="header">header</div>
-            <option>Semana atual</option>
-          </unnnic-select>
+          <unnnic-input-date-picker
+            :value="period"
+            size="md"
+            format="MM-DD-YYYY"
+            @changed="setPeriod"
+          />
         </div>
       </div>
       <div class="wpp_insights__filters__model">
-        <div class="wpp_insights__filters__model__title">Modelos de mensagem</div>
+        <div class="wpp_insights__filters__model__title">
+          {{ $t('WhatsApp.insights.filters.message_templates') }}
+        </div>
         <div class="wpp_insights__filters__model__select">
-          <unnnic-select searchPlaceholder="Buscar por...">
-            <div slot="header">header</div>
-            <option>Semana atual</option>
-          </unnnic-select>
+          <unnnic-select-smart
+            v-model="model"
+            :options="modelOptions"
+            multiple
+            :disabled="!!hash"
+          />
         </div>
       </div>
     </div>
@@ -56,18 +64,19 @@
       <!-- If not active -->
       <div class="wpp_insights__content__empty" v-if="!isActive">
         <div class="wpp_insights__content__empty__image">
-          <img src="../../assets/svgs/empty-apps.svg" alt="" />
+          <img src="@/assets/svgs/empty-apps.svg" alt="" />
         </div>
         <div class="wpp_insights__content__empty__text">
-          <div class="wpp_insights__content__empty__text__title">Você não ativou os insights</div>
+          <div class="wpp_insights__content__empty__text__title">
+            {{ $t('WhatsApp.insights.disabled') }}
+          </div>
           <div class="wpp_insights__content__empty__text__description">
-            Os insights ajudam a acompanhar, entender e aprimorar seus modelos de mensagem de
-            marketing.
+            {{ $t('WhatsApp.insights.about_description') }}
           </div>
         </div>
         <div class="wpp_insights__content__empty__button">
           <unnnic-button
-            text="Ativar insights"
+            :text="$t('WhatsApp.insights.enable_insights')"
             ref="wpp_insights__button__close"
             @click="toggleOpenModal"
           />
@@ -77,49 +86,67 @@
       <!-- If active -->
       <div class="wpp_insights__content__active" v-if="isActive">
         <div class="wpp_insights__content__active__chart">
-          <unnnic-chart-multi-line :data="data" :title="'Mensagens enviadas'" />
-          <unnnic-chart-multi-line :data="data" :title="'Mensagens entregues'" />
-          <unnnic-chart-multi-line :data="data" :title="'Mensagens recebidas'" />
+          <unnnic-chart-multi-line
+            :data="getChartSent"
+            :title="$t('WhatsApp.insights.messages.sent')"
+            v-if="!hash"
+          />
+          <unnnic-chart-multi-line
+            :data="getChartDelivered"
+            :title="$t('WhatsApp.insights.messages.delivered')"
+            v-if="!hash"
+          />
+          <unnnic-chart-multi-line
+            :data="getChartRead"
+            :title="$t('WhatsApp.insights.messages.read')"
+            v-if="!hash"
+          />
+          <unnnic-chart-multi-line
+            :data="getChartByDay.data"
+            :title="$t('WhatsApp.insights.messages.received')"
+            v-if="!!hash"
+            :fixedMaxValue="getChartByDay.maxValue"
+          />
         </div>
       </div>
     </div>
 
     <!-- Modal -->
     <div class="wpp_insights__modal">
-      <unnnic-modal :showModal="showModal" @close="toggleOpenModal">
+      <unnnic-modal :showModal="showModal" @close="toggleOpenModal" ref="modal">
         <div class="wpp_insights__modal__title">
-          <img src="../../assets/svgs/amazoninha-heart.svg" alt="" />
-          <p>Apresentamos novos insights</p>
+          <img src="@/assets/svgs/amazoninha-heart.svg" alt="" />
+          <p>
+            {{ $t('WhatsApp.insights.modal.present_insights') }}
+            {{ showModal }}
+          </p>
         </div>
         <div class="wpp_insights__modal__content">
           <p class="wpp_insights__modal__content__dark">
-            Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear,
-            entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão
-            insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights,
-            os dados existentes para "mensagens enviadas" serão apagados. O rastreamento recomeçará
-            na data em que você clicar em Confirmar.
+            {{ $t('WhatsApp.insights.about_text_1') }}
           </p>
           <p>
-            Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp
-            Business. Esses insights incluem rastreamento de link para relatar os cliques no site.
-            Você pode desativar o rastreamento de link em cada modelo de mensagem.
+            {{ $t('WhatsApp.insights.about_text_2') }}
           </p>
           <p>
-            Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus
-            bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que
-            presta a você e a outras empresas.
+            {{ $t('WhatsApp.insights.about_text_3') }}
           </p>
         </div>
 
         <div class="wpp_insights__modal__buttons">
           <unnnic-button
-            text="Cancelar"
+            :text="$t('general.Close')"
             type="secondary"
             :style="{ width: '289px' }"
             @click="toggleOpenModal"
             ref="wpp_insights__button__close"
           />
-          <unnnic-button text="Confirmar" :style="{ width: '289px' }" />
+          <unnnic-button
+            :text="$t('general.confirm')"
+            :style="{ width: '289px' }"
+            @click="activeTemplate"
+            ref="wpp_insights__button__active"
+          />
         </div>
       </unnnic-modal>
     </div>
@@ -129,82 +156,162 @@
 <script>
   import {
     unnnicBreadcrumb,
-    unnnicAvatarIcon,
     unnnicButton,
     unnnicModal,
     unnnicChartMultiLine,
   } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'vuex';
   export default {
     name: 'Insights',
     components: {
       unnnicBreadcrumb,
-      unnnicAvatarIcon,
       unnnicButton,
       unnnicModal,
       unnnicChartMultiLine,
     },
     data() {
       return {
-        isActive: true,
         showModal: false,
-        data: [
-          {
-            title: 'Grupo 1',
-            data: [
-              {
-                title: '1',
-                value: 5,
-              },
-              {
-                title: '2',
-                value: 7,
-              },
-              {
-                title: '3',
-                value: 9,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 2',
-            data: [
-              {
-                title: '1',
-                value: 1,
-              },
-              {
-                title: '2',
-                value: 4,
-              },
-              {
-                title: '3',
-                value: 2,
-              },
-            ],
-          },
-          {
-            title: 'Grupo 3',
-            data: [
-              {
-                title: '5',
-                value: 5,
-              },
-              {
-                title: '2',
-                value: 2,
-              },
-              {
-                title: '4',
-                value: 4,
-              },
-            ],
-          },
-        ],
+        model: [],
+        period: {
+          start: this.formatDate(new Date(Date.now() - 604800000)),
+          end: this.formatDate(new Date()),
+        },
+        hash: this.$route.hash,
+        crumb_title: 'Insights',
       };
     },
+    mounted() {
+      this.fetchTemplates();
+      if (this.hash) {
+        this.model = [
+          {
+            value: this.selectedTemplate.translations[0].message_template_id,
+            label: this.selectedTemplate.name,
+          },
+        ];
+      }
+      this.fetchTemplateAnalytics();
+    },
+    computed: {
+      ...mapState({
+        app_uuid: (state) => state.insights.appUuid,
+        errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
+        errorTemplates: (state) => state.insights.errorTemplates,
+        templateAnalytics: (state) => state.insights.templateAnalytics,
+        selectedTemplate: (state) => state.insights.selectedTemplate,
+        templates: (state) => state.insights.templates.results?.map((item) => item),
+        isActive: (state) => state.insights.isActive || false,
+      }),
+      modelOptions() {
+        if (this.templates?.length > 0) {
+          const templateList = [];
+          this.templates.forEach((item) => {
+            item.translations.forEach((translation) => {
+              const obj = {
+                value: translation.message_template_id,
+                label: `${item.name} (${translation.language})`,
+              };
+              templateList.push(obj);
+            });
+          });
+          return templateList;
+        }
+        return [];
+      },
+      getChartByDay() {
+        const sent = this.getChartByType('sent').map(({ data }) => data);
+        const delivered = this.getChartByType('delivered').map(({ data }) => data);
+        const read = this.getChartByType('read').map(({ data }) => data);
+        return {
+          data: [
+            {
+              title: this.$t('WhatsApp.insights.messages.sent'),
+              data: sent[0],
+            },
+            {
+              title: this.$t('WhatsApp.insights.messages.delivered'),
+              data: delivered[0],
+            },
+            {
+              title: this.$t('WhatsApp.insights.messages.read'),
+              data: read[0],
+            },
+          ],
+          maxValue: this.findMax(sent),
+        };
+      },
+      getChartSent() {
+        return this.getChartByType('sent');
+      },
+      getChartDelivered() {
+        return this.getChartByType('delivered');
+      },
+      getChartRead() {
+        return this.getChartByType('read');
+      },
+    },
+    watch: {
+      model(newVal, oldVal) {
+        if (newVal.length > 10) {
+          this.model = this.model.slice(0, 10);
+        }
+        if (newVal != oldVal) {
+          this.fetchTemplateAnalytics();
+        }
+      },
+    },
     methods: {
+      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
+      fetchTemplateAnalytics() {
+        let models = this.model.map((item) => item.value);
+        const params = {
+          app_uuid: this.app_uuid,
+          filters: {
+            start: this.period.start,
+            end: this.period.end,
+            fba_template_ids: models,
+          },
+        };
+        this.getTemplateAnalytics(params);
+      },
+      fetchTemplates() {
+        this.getTemplates({ app_uuid: this.app_uuid });
+      },
       toggleOpenModal() {
         this.showModal = !this.showModal;
+      },
+      setPeriod(e) {
+        this.period = e;
+        this.fetchTemplateAnalytics();
+      },
+      formatDate(date) {
+        return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
+      },
+      getChartByType(type) {
+        const data = this.templateAnalytics?.data.map((template) => {
+          return {
+            title: template.template_name || template.template_id,
+            data: template.dates.map((item) => {
+              return {
+                title: item.start,
+                value: item[type],
+              };
+            }),
+          };
+        });
+        return data || [];
+      },
+      findMax(array) {
+        return Math.max(...array.map(({ value }) => value));
+      },
+      redirectTo(crumb) {
+        if (crumb.meta === this.$route.name) return;
+        this.$router.push(crumb.path);
+      },
+      async activeTemplate() {
+        this.showModal = false;
+        await this.setActiveProject({ app_uuid: this.app_uuid });
       },
     },
   };

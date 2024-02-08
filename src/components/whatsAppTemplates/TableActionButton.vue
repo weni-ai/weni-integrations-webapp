@@ -12,6 +12,7 @@
       v-for="option in options"
       :key="option.id"
       @click="() => option.action()"
+      :id="option.id"
     >
       <unnnic-icon-svg :icon="option.icon" size="sm" :scheme="option.scheme" />
       {{ option.title }}
@@ -37,6 +38,10 @@
           return ['bottom-left', 'bottom-right', 'top-left', 'top-right'].indexOf(value) !== -1;
         },
       },
+      data: {
+        type: Object,
+        required: true,
+      },
     },
     data() {
       return {
@@ -50,6 +55,21 @@
               const { appCode, appUuid } = this.$route.params;
               this.$router.push({
                 path: `/apps/my/${appCode}/${appUuid}/templates/edit/${this.templateUuid}`,
+              });
+            },
+          },
+          {
+            id: 'see_details',
+            title: this.$t('WhatsApp.templates.table.actions.see_details'),
+            icon: 'pencil-write-1',
+            scheme: 'neutral-darkest',
+            action: () => {
+              const { appUuid, appCode } = this.$route.params;
+              this.setAppUuid({ appUuid: appUuid });
+              this.setSelectedTemplate({ template: this.data });
+              this.$router.push({
+                path: `/apps/my/${appCode}/${appUuid}/templates/template-details`,
+                hash: `#${this.data.uuid}`,
               });
             },
           },
@@ -90,6 +110,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['deleteTemplateMessage']),
+      ...mapActions('insights', ['setSelectedTemplate', 'setAppUuid']),
     },
     computed: {
       ...mapState('WhatsApp', ['errorDeleteTemplateMessage']),

@@ -17,6 +17,11 @@
             path: '/apps/my',
             meta: 'myApps',
           },
+          {
+            name: this.$t('WhatsApp.template_details.crumbs.model_details'),
+            path: '/template-details',
+            meta: 'myApps',
+          },
         ],
       };
     },
@@ -53,7 +58,7 @@
   .whatsapp-templates-base {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    overflow: hidden;
+    height: auto;
+    padding-bottom: $unnnic-spacing-sm;
   }
 </style>

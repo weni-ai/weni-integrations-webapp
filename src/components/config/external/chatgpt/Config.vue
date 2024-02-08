@@ -69,7 +69,6 @@
               height="25px"
               width="75px"
             />
-
             <div class="config-chatgpt__settings__content__prompts-wrapper">
               <unnnic-toolTip
                 v-for="(prompt, index) in availablePrompts"
@@ -88,6 +87,7 @@
                   scheme="neutral-cloudy"
                   hasCloseIcon
                   @close="removePrompt(prompt)"
+                  :ref="`tag-${index}`"
                 />
               </unnnic-toolTip>
             </div>

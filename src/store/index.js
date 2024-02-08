@@ -5,6 +5,7 @@ import auth from './auth';
 import appType from './appType';
 import myApps from './myApps';
 import survey from './survey';
+import insights from './insights';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     appType,
     myApps,
     survey,
+    insights,
   },
 });
 

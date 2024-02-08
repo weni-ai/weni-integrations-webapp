@@ -2,7 +2,7 @@
 
 exports[`views/whatsAppTemplates/Base.vue should be rendered properly 1`] = `
 <div class="whatsapp-templates-base">
-  <unnnicbreadcrumb-stub crumbs="[object Object],[object Object]"></unnnicbreadcrumb-stub>
+  <unnnicbreadcrumb-stub crumbs="[object Object],[object Object],[object Object]"></unnnicbreadcrumb-stub>
   <routerview-stub></routerview-stub>
 </div>
 `;

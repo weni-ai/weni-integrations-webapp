@@ -192,10 +192,120 @@ const installedApps = [
   },
 ];
 
+const templateAnalytics = {
+  data: [
+    {
+      template_id: '730081812069736',
+      template_name: null,
+      totals: {
+        sent: 47,
+        delivered: 48,
+        read: 28,
+      },
+      dates: [
+        {
+          start: '2024-01-05',
+          sent: 7,
+          delivered: 7,
+          read: 5,
+        },
+        {
+          start: '2024-01-06',
+          sent: 6,
+          delivered: 5,
+          read: 1,
+        },
+        {
+          start: '2024-01-07',
+          sent: 4,
+          delivered: 5,
+          read: 4,
+        },
+      ],
+    },
+  ],
+  grand_totals: {
+    sent: 47,
+    delivered: 48,
+    read: 28,
+  },
+};
+
+const templates = {
+  count: 1,
+  next: null,
+  previous: null,
+  results: [
+    {
+      uuid: 'd9019398-e5df-421f-98d5-8cfa711e7b20',
+      name: 'testeana2',
+      created_on: '2024-01-10 17:10:01.952251+00:00',
+      category: 'MARKETING',
+      translations: [
+        {
+          uuid: '027e4510-4435-4662-ac7c-69b37ec9d952',
+          message_template_id: '1017586129013320',
+          status: 'APPROVED',
+          language: 'pt_PT',
+          country: null,
+          body: 'Oi,{{1}}! 🙂 \nEste é o seu código: {{2}} \nDá uma olhada no seu e-mail para mais detalhes. 😉',
+          footer: '',
+          buttons: [],
+          variable_count: 0,
+        },
+        {
+          uuid: '35192d56-4f5a-4ad6-9260-bc06966557aa',
+          message_template_id: '853692235548884',
+          status: 'APPROVED',
+          language: 'pt_BR',
+          country: null,
+          body: 'Oi,{{1}}! 🙂 \nEste é o seu código: {{2}} \nDá uma olhada no seu e-mail para mais detalhes. 😉',
+          footer: '',
+          buttons: [],
+          variable_count: 0,
+        },
+      ],
+    },
+  ],
+};
+
+const selectedTemplate = {
+  uuid: '00030409-3816-4ecc-a75f-9e0b7c28ffac',
+  name: 'teste_multiplos_produtos_catalogo',
+  created_on: '2024-01-08 12:27:22.462929+00:00',
+  category: 'MARKETING',
+  translations: [
+    {
+      uuid: 'aed166d4-2366-4fe3-92c8-db15a2c18e3d',
+      message_template_id: '195815353473873',
+      status: 'APPROVED',
+      language: 'pt_BR',
+      country: null,
+      body: 'Olá {{1}}, venha conhecer nossa nova coleção de inverno!',
+      footer: '',
+      buttons: [
+        {
+          button_type: 'MPM',
+          text: 'View items',
+          country_code: null,
+          phone_number: null,
+          url: null,
+        },
+      ],
+      variable_count: 0,
+      header: { header_type: 'TEXT', text: 'Coleção de Inverno' },
+    },
+  ],
+  text_preview: 'Olá {{1}}, venha conhecer nossa nova coleção de inverno!',
+};
+
 module.exports = {
   singleApp,
   communicationApps,
   attendanceApps,
   configuredApps,
   installedApps,
+  templateAnalytics,
+  templates,
+  selectedTemplate,
 };

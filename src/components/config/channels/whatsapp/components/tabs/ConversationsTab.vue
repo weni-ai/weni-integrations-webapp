@@ -111,27 +111,26 @@
           </unnnic-button>
         </unnnic-tool-tip>
       </div>
-      <!-- <div class="conversations__content__insights">
-        <div class="conversations__content__insights__title">Insights</div>
+      <div class="conversations__content__insights">
+        <div class="conversations__content__insights__title">
+          {{ $t('WhatsApp.insights.insights') }}
+        </div>
         <div class="conversations__content__insights__about">
           <p>
-            Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de
-            mensagem disparados.
+            {{ $t('WhatsApp.insights.about_description') }}
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <router-link t class="link" to="insights">
-            <unnnic-button text="Ver insights" />
-          </router-link>
+          <unnnic-button :text="$t('WhatsApp.insights.see_insights')" @click="navigateToInsights" />
         </div>
-      </div> -->
+      </div>
     </div>
     <div class="conversations__buttons">
       <unnnic-button
         class="conversations__buttons__close"
         type="secondary"
         size="large"
-        :text="$t('general.Close')"
+        :text="$t('general.Cancel')"
         @click="() => this.$emit('close')"
       />
     </div>
@@ -259,6 +258,7 @@
     },
     methods: {
       ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
+      ...mapActions('insights', ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -343,6 +343,10 @@
           },
           seconds: 6,
         });
+      },
+      navigateToInsights() {
+        this.setAppUuid({ appUuid: this.app.uuid });
+        this.$router.replace('/insights');
       },
     },
   };

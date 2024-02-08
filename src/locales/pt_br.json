@@ -516,7 +516,8 @@
         "actions": {
           "add_language": "Adicionar Idioma",
           "duplicate_language": "Duplicar Idioma",
-          "delete_language": "Deletar"
+          "delete_language": "Deletar",
+          "see_details":"Ver detalhes"
         },
         "headers": {
           "name": "Nome",
@@ -666,6 +667,52 @@
       "success": {
         "create_translation": "Tradução de template criada com sucesso",
         "update_translation": "Tradução de template atualizada com sucesso"
+      }
+    },
+    "insights": {
+      "insights": "Insights",
+      "see_insights": "Ver insights",
+      "enable_insights": "Ativar insights",
+      "disabled": "Você não ativou os insights",
+      "about_description": "Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem disparados",
+      "about_text_1": "Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear, entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights, os dados existentes para &quot mensagens enviadas &quot; serão apagados. O rastreamento recomeçará na data em que você clicar em Confirmar.",
+      "about_text_2": " Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp Business. Esses insights incluem rastreamento de link para relatar os cliques no site. Você pode desativar o rastreamento de link em cada modelo de mensagem.",
+      "about_text_3": " Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que presta a você e a outras empresas.",
+      "messages": {
+        "sent": "Mensagens enviadas",
+        "delivered": "Mensagens entregues",
+        "read": "Mensagens lidas",
+        "received": "Mensagens recebidas"
+      },
+      "filters": {
+        "period_of_time": "Período de tempo",
+        "message_templates": "Modelos de mensagem"
+      },
+      "modal": {
+        "present_insights": "Apresentamos novos insights"
+      }
+    },
+    "template_details": {
+      "crumbs": {
+        "my_apps": "Meus Aplicativos",
+        "manage_templates": "Gerenciar Templates",
+        "model_details": "Detalhes do Modelo",
+        "template_details": "Detalhes do template"
+      },
+      "summary": {
+        "title": "Resumo",
+        "marketing": "Marketing",
+        "performace_overview": "Visão geral do desempenho",
+        "last_7_days": "últimos 7 dias",
+        "sent_messages": "Mensagens enviadas",
+        "delivered_messages": "Mensagens entregues",
+        "read_messages": "Mensagens lidas",
+        "quality_overview": "Visão geral da qualidade",
+        "current_level": "Nível atual",
+        "block_reason": "Principal motivo do bloqueio"
+      },
+      "button": {
+        "edit_model": "Editar Modelo"
       }
     },
     "product": {

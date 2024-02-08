@@ -657,12 +657,10 @@
 </script>
 
 <style lang="scss" scoped>
-  .fade-enter-active,
-  .fade-leave-active {
+  .fade-enter-active .fade-leave-active {
     transition: opacity 0.5s;
   }
-  .fade-enter,
-  .fade-leave-to {
+  .fade-enter .fade-leave-to {
     opacity: 0;
   }
 
@@ -757,7 +755,7 @@
         }
       }
       &__settings-content {
-        padding: 0, $unnnic-spacing-inline-lg;
+        padding-right: $unnnic-spacing-inline-lg;
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -886,8 +884,7 @@
           flex-wrap: wrap;
           margin-bottom: auto;
 
-          &__switches,
-          &__slider {
+          &__switches &__slider {
             flex-grow: 1;
           }
 
@@ -930,8 +927,7 @@
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
-          &__cancel,
-          &__save {
+          &__cancel &__save {
             flex-grow: 1;
             width: 250px;
             margin: $unnnic-spacing-inline-xs;

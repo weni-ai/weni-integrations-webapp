@@ -9,7 +9,7 @@ exports[`MyApps/index.vue should be rendered properly 1`] = `
       <div>
         <section id="app-grid">
           <div class="app-grid__header">
-            <unnnic-avatar-icon-stub enabled="true" icon="cog-1" size="sm" scheme="aux-purple"></unnnic-avatar-icon-stub>
+            <unnnic-avatar-icon-stub enabled="true" icon="check_circle" size="sm" scheme="aux-green-500" filled="true" class="app-grid__header__icon"></unnnic-avatar-icon-stub>
             <p class="app-grid__header__title">some specific text</p>
           </div>
           <div class="app-grid__content">
@@ -67,7 +67,7 @@ exports[`MyApps/index.vue should be rendered properly 1`] = `
       <div>
         <section id="app-grid">
           <div class="app-grid__header">
-            <unnnic-avatar-icon-stub enabled="true" icon="check-circle-1-1" size="sm" scheme="aux-blue"></unnnic-avatar-icon-stub>
+            <unnnic-avatar-icon-stub enabled="true" icon="deployed_code_update" size="sm" scheme="aux-purple-500" filled="true" class="app-grid__header__icon"></unnnic-avatar-icon-stub>
             <p class="app-grid__header__title">some specific text</p>
           </div>
           <div class="app-grid__content">

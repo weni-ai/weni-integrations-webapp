@@ -2,7 +2,14 @@
   <div ref="appGrid">
     <section v-if="!loading" id="app-grid">
       <div v-if="apps && apps.length" class="app-grid__header">
-        <unnnic-avatar-icon :icon="avatar.icon" :scheme="avatar.scheme" size="sm" />
+        <unnnic-avatar-icon
+          :icon="avatar.icon"
+          :scheme="avatar.scheme"
+          :filled="avatar.filled"
+          :opacity="avatar.opacity"
+          size="sm"
+          class="app-grid__header__icon"
+        />
         <p class="app-grid__header__title">{{ $t(`apps.discovery.categories.${section}`) }}</p>
       </div>
 
@@ -219,6 +226,7 @@
     },
     methods: {
       ...mapActions(['deleteApp']),
+      ...mapActions('insights', ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
@@ -262,6 +270,7 @@
         this.$router.push(`/apps/${code}/details`);
       },
       openAppModal(app) {
+        this.setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;
         }

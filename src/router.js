@@ -25,15 +25,15 @@ const routes = [
         path: 'other-apps',
         component: () => import('@/views/OtherApps/index.vue'),
       },
-      {
-        name: 'Insights',
-        path: 'insights',
-        component: () => import('@/views/Insights/index.vue'),
-      },
     ],
   },
   {
-    name: 'App Detail',
+    name: 'Insights',
+    path: '/insights',
+    component: () => import('@/views/Insights/index.vue'),
+  },
+  {
+    name: 'App Details',
     path: '/apps/:appCode/details',
     component: () => import('@/views/AppDetails/index.vue'),
   },
@@ -63,6 +63,14 @@ const routes = [
             component: () => import('./views/whatsAppTemplates/Form.vue'),
             meta: {
               crumb_title: 'WhatsApp.templates.edit_form.crumb_title',
+            },
+          },
+          {
+            name: 'Template Details',
+            path: 'template-details',
+            component: () => import('./views/TemplateDetails/index.vue'),
+            meta: {
+              crumb_title: 'WhatsApp.template_details.crumbs.template_details',
             },
           },
         ],

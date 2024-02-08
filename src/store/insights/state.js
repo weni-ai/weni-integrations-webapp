@@ -1,4 +1,10 @@
 export default {
   isActive: false,
-  data: [],
+  templateAnalytics: [],
+  loadingTemplateAnalytics: false,
+  errorTemplateAnalytics: null,
+  selectedTemplate: null,
+  appUuid: null,
+  templates: [],
+  errorTemplates: null,
 };

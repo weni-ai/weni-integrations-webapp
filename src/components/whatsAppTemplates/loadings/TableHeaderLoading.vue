@@ -4,13 +4,11 @@
     <unnnic-skeleton-loading width="120px" height="40px" />
   </div>
 </template>
-
 <script>
   export default {
     name: 'TableHeaderLoading',
   };
 </script>
-
 <style lang="scss" scoped>
   .loading {
     display: flex;
