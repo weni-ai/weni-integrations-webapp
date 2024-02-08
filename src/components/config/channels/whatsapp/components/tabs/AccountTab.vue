@@ -223,9 +223,9 @@
           await this.getConfiguredApps({ params, skipLoading: true });
 
           if (!this.configuredApps) return;
-
-          this.vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
         }
+
+        this.vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
       },
       callAlert({ text, type }) {
         unnnicCallAlert({
