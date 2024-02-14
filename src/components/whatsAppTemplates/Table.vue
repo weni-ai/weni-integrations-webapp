@@ -364,7 +364,7 @@
       },
       dropdownPosition(item) {
         const templates = this.whatsAppTemplates?.results || [];
-        return templates.findIndex((template) => template.uuid === item.uuid) > 7
+        return templates.findIndex((template) => template.uuid === item.uuid) > 1
           ? 'top-left'
           : 'bottom-left';
       },
@@ -426,7 +426,7 @@
       ::v-deep .scroll {
         overflow-x: hidden;
         flex: none;
-        height: 50vh;
+        min-height: 248px;
 
         padding-right: unset;
       }
