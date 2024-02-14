@@ -1,3 +1,13 @@
+1.34.0
+----------
+`2024-02-08 · 1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Fix: Always fetch vtexApp in whatsapp account tab
+
+### 🎉 New Features
+- Feat: Insights
+
 1.33.1
 ----------
 `2024-02-05 · 1 🐛`
