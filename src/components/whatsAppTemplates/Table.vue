@@ -425,7 +425,8 @@
 
       ::v-deep .scroll {
         overflow-x: hidden;
-        overflow-y: auto;
+        flex: none;
+        height: 50vh;
 
         padding-right: unset;
       }
