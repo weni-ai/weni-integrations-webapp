@@ -128,6 +128,7 @@
 
       ::v-deep .unnnic-dropdown__content {
         width: max-content;
+        height: auto;
       }
 
       &__item {

@@ -305,7 +305,7 @@ describe('components/whatsAppTemplates/Table.vue', () => {
         };
       });
 
-      const dropdownPosition = wrapper.vm.dropdownPosition({ uuid: '3' });
+      const dropdownPosition = wrapper.vm.dropdownPosition({ uuid: '1' });
       expect(dropdownPosition).toBe('bottom-left');
     });
 
