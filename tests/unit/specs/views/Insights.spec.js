@@ -104,6 +104,7 @@ describe('Insights/index.vue', () => {
           },
         ],
       });
+      jest.advanceTimersByTime(500);
       expect(spy).toBeCalled();
     });
     it('should trim model array', async () => {

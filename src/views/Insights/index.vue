@@ -257,7 +257,9 @@
           this.model = this.model.slice(0, 10);
         }
         if (newVal != oldVal) {
-          this.fetchTemplateAnalytics();
+          setTimeout(() => {
+            return this.fetchTemplateAnalytics();
+          }, 500);
         }
       },
     },
