@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/StepIndicator.vue should render properly 1`] = `
+<div class="steps">
+  <div class="step">
+    <div class="indicator indicator--filled"></div> <span class="label label--filled">
+      first
+    </span>
+  </div>
+  <div class="step">
+    <div class="indicator indicator--filled"></div> <span class="label label--filled">
+      second
+    </span>
+  </div>
+</div>
+`;
