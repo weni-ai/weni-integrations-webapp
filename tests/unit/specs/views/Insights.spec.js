@@ -32,21 +32,24 @@ describe('Insights/index.vue', () => {
     };
 
     state = {
-      insights: {
-        isActive: true,
-        templateAnalytics: templateAnalytics,
-        loadingTemplateAnalytics: false,
-        errorTemplateAnalytics: null,
-        selectedTemplate: selectedTemplate,
-        appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
-        templates: templates,
-        errorTemplates: null,
-      },
+      isActive: true,
+      templateAnalytics: templateAnalytics,
+      loadingTemplateAnalytics: false,
+      errorTemplateAnalytics: null,
+      selectedTemplate: selectedTemplate,
+      appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
+      templates: templates,
+      errorTemplates: null,
     };
 
     store = new Vuex.Store({
-      actions,
-      state,
+      modules: {
+        insights: {
+          namespaced: true,
+          actions,
+          state,
+        },
+      },
     });
 
     wrapper = shallowMount(Insights, {
@@ -201,6 +204,11 @@ describe('Insights/index.vue', () => {
       wrapper.vm.getChartByType('sent');
       expect(spy).toHaveBeenCalledTimes(1);
     });
+    it('should return empty array if templateAnalytics is empty', () => {
+      state.templateAnalytics = null;
+      expect(wrapper.vm.getChartByType('sent')).toEqual([]);
+    });
+
     it('should set getChartSent', () => {
       wrapper.vm.getChartByType('sent');
       expect(wrapper.vm.getChartSent).not.toEqual([]);

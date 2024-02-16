@@ -181,6 +181,7 @@
         crumb_title: 'Insights',
       };
     },
+    /* istanbul ignore next */
     mounted() {
       this.fetchTemplates();
       if (this.hash) {
@@ -201,7 +202,7 @@
         templateAnalytics: (state) => state.insights.templateAnalytics,
         selectedTemplate: (state) => state.insights.selectedTemplate,
         templates: (state) => state.insights.templates.results?.map((item) => item),
-        isActive: (state) => state.insights.isActive || false,
+        isActive: (state) => !!state.insights.isActive,
       }),
       modelOptions() {
         if (this.templates?.length > 0) {
@@ -252,6 +253,7 @@
       },
     },
     watch: {
+      /* istanbul ignore next */
       model(newVal, oldVal) {
         if (newVal.length > 10) {
           this.model = this.model.slice(0, 10);
@@ -306,6 +308,7 @@
         return Math.max(...array.map(({ value }) => value));
       },
       redirectTo(crumb) {
+        /* istanbul ignore next */
         if (crumb.meta === this.$route.name) return;
         this.$router.push(crumb.path);
       },

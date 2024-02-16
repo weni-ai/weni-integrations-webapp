@@ -15,6 +15,11 @@ import '@weni/unnnic-system';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+// Global mock
+navigator.clipboard = {
+  writeText: jest.fn(),
+};
+
 const mountComponent = async ({
   errorConfiguredApps = false,
   errorCreateApp = false,
@@ -129,6 +134,25 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
     expect(wrapper.emitted('closePopUp')).toBeTruthy();
   });
 
+  it('should call error modal if any of the fields are empty', async () => {
+    const { wrapper } = await mountComponent();
+
+    const setupButton = wrapper.findComponent({ ref: 'unnnic-vtex-modal-setup-button' });
+    await setupButton.trigger('click');
+
+    expect(mockUnnnicCallAlert).toHaveBeenCalledWith({
+      props: {
+        text: 'All fields are mandatory',
+        title: 'Error',
+        icon: 'alert-circle-1',
+        scheme: 'feedback-red',
+        closeText: 'Close',
+        position: 'bottom-right',
+      },
+      seconds: 6,
+    });
+  });
+
   it('should setup vtex with correct information', async () => {
     const { wrapper, actions } = await mountComponent();
 
@@ -147,7 +171,6 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
 
     await wrapper.vm.$nextTick();
 
-    console.log('before expect');
     expect(actions.createApp).toHaveBeenCalledWith(expect.anything(), {
       code: 'vtex',
       payload: {
@@ -229,6 +252,38 @@ describe('components/config/ecommerce/vtex/Setup.vue', () => {
         position: 'bottom-right',
       },
       seconds: 6,
+    });
+  });
+
+  it('should save to clipboard on copy and call success modal', async () => {
+    const { wrapper } = await mountComponent();
+
+    wrapper.vm.selectedChannel = [{ value: '456' }];
+    wrapper.vm.storeDomain = 'storedomain.com';
+    wrapper.vm.apiDomain = 'apidomain.com';
+    wrapper.vm.appKey = 'appKey123';
+    wrapper.vm.appToken = 'appToken123';
+
+    const setupButton = wrapper.findComponent({ ref: 'unnnic-vtex-modal-setup-button' });
+    // finish step 1
+    await setupButton.trigger('click');
+
+    await wrapper.vm.$nextTick();
+
+    const copyButton = wrapper.findComponent({ ref: 'vtex-copy-button' });
+    await copyButton.trigger('click');
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(wrapper.vm.webhookUrl);
+    expect(mockUnnnicCallAlert).toHaveBeenCalledWith({
+      props: {
+        text: 'Successfully copied!',
+        title: 'Success',
+        icon: 'check-circle-1-1',
+        scheme: 'feedback-green',
+        closeText: 'Close',
+        position: 'bottom-right',
+      },
+      seconds: 3,
     });
   });
 

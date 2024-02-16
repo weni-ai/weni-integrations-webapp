@@ -2,6 +2,7 @@ jest.mock('@/api/appType/ecommerce', () => {
   return {
     getAllEcommerceTypes: jest.fn(),
     connectVtexCatalog: jest.fn(),
+    getVtexAppUuid: jest.fn(),
   };
 });
 import ecommerceApi from '@/api/appType/ecommerce';
@@ -122,6 +123,52 @@ describe('store/appType/ecommerce/actions.js', () => {
       expect(store.state.ecommerce.errorConnectVtexCatalog).not.toEqual(error);
       await store.dispatch('ecommerce/connectVtexCatalog', params);
       expect(store.state.ecommerce.errorConnectVtexCatalog).toEqual(error);
+    });
+  });
+
+  describe('getVtexAppUuid', () => {
+    const params = {
+      code: '123',
+    };
+
+    beforeEach(() => {
+      ecommerceApi.getVtexAppUuid.mockImplementation(() => {
+        return Promise.resolve({
+          data: {
+            uuid: '123',
+          },
+        });
+      });
+    });
+
+    it('should call getVtexAppUuid from API', async () => {
+      await store.dispatch('ecommerce/getVtexAppUuid', params);
+      expect(ecommerceApi.getVtexAppUuid).toHaveBeenCalledTimes(1);
+    });
+
+    it('should set generatedVtexAppUuid as result data', async () => {
+      store.state.ecommerce.generatedVtexAppUuid = '';
+      expect(store.state.ecommerce.generatedVtexAppUuid).not.toEqual('123');
+      await store.dispatch('ecommerce/getVtexAppUuid', params);
+      expect(store.state.ecommerce.generatedVtexAppUuid).toEqual('123');
+    });
+
+    it('should set loadingVtexAppUuid to false', async () => {
+      store.state.ecommerce.loadingVtexAppUuid = true;
+      expect(store.state.ecommerce.loadingVtexAppUuid).toBe(true);
+      await store.dispatch('ecommerce/getVtexAppUuid', params);
+      expect(store.state.ecommerce.loadingVtexAppUuid).toBe(false);
+    });
+
+    it('should set errorVtexAppUuid as result data', async () => {
+      const error = { error: 'failed' };
+      ecommerceApi.getVtexAppUuid.mockImplementation(() => {
+        return Promise.reject(error);
+      });
+      store.state.ecommerce.errorVtexAppUuid = {};
+      expect(store.state.ecommerce.errorVtexAppUuid).not.toEqual(error);
+      await store.dispatch('ecommerce/getVtexAppUuid', params);
+      expect(store.state.ecommerce.errorVtexAppUuid).toEqual(error);
     });
   });
 });

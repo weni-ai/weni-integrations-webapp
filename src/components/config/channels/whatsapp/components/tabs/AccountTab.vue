@@ -216,7 +216,7 @@
         await this.fetchVtexApp();
       },
       async fetchVtexApp() {
-        if (!this.configuredApps) {
+        if (!this.configuredApps || !this.configuredApps?.length) {
           const params = {
             project_uuid: this.project,
           };

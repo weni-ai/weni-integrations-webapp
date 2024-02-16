@@ -91,6 +91,12 @@ describe('TemplateDetails/index.vue', () => {
     };
 
     store = new Vuex.Store({
+      modules: {
+        insights: {
+          namespaced: true,
+          state: state.insights,
+        },
+      },
       actions,
       state,
     });

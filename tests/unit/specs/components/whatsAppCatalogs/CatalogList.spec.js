@@ -101,14 +101,16 @@ describe('components/whatsAppCatalog/List.vue', () => {
           whatsAppCloudCatalogs: {
             results: [
               {
-                uuid: 'uuid',
+                uuid: 'uuid123',
+                name: 'catalog name',
               },
             ],
           },
         });
         expect(wrapper.vm.listItems).toEqual([
           {
-            uuid: 'uuid',
+            uuid: 'uuid123',
+            name: 'catalog name',
           },
         ]);
       });
@@ -257,6 +259,8 @@ describe('components/whatsAppCatalog/List.vue', () => {
             results: [
               {
                 uuid: 'uuid123',
+                name: 'catalog name',
+                is_connected: false,
               },
             ],
           },
@@ -276,6 +280,8 @@ describe('components/whatsAppCatalog/List.vue', () => {
             results: [
               {
                 uuid: 'uuid123',
+                name: 'catalog name',
+                is_connected: false,
               },
             ],
           },

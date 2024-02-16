@@ -1,6 +1,7 @@
 import { mount, createLocalVue } from '@vue/test-utils';
 import CreateCatalogModalContent from '@/components/config/channels/whatsapp/components/CreateCatalogModalContent.vue';
 import i18n from '@/utils/plugins/i18n';
+import '@weni/unnnic-system';
 
 const localVue = createLocalVue();
 

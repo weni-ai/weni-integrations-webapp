@@ -48,12 +48,27 @@ const mountComponent = async ({ errorWhatsAppProfile = false, errorCurrentApp = 
     errorWhatsAppProfile,
   };
 
+  const wppCloudActions = {
+    getWhatsAppCloudCatalogs: jest.fn(),
+  };
+
+  const wppCloudState = {
+    loadingWhatsAppCloudCatalogs: false,
+    errorWhatsAppCloudCatalogs: false,
+    whatsAppCloudCatalogs: [],
+  };
+
   const store = new Vuex.Store({
     modules: {
       WhatsApp: {
         namespaced: true,
         actions: wppActions,
         state: wppState,
+      },
+      WhatsAppCloud: {
+        namespaced: true,
+        actions: wppCloudActions,
+        state: wppCloudState,
       },
     },
     actions,
