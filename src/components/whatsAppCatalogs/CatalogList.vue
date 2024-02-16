@@ -171,9 +171,9 @@
           });
         }
 
-        this.connectedCatalog = this.whatsAppCloudCatalogs.results.find(
-          (catalog) => catalog.is_connected === true,
-        );
+        this.connectedCatalog =
+          this.whatsAppCloudCatalogs?.results?.find((catalog) => catalog.is_connected === true) ||
+          {};
       }, 750),
       async disableCatalog() {
         const { appUuid } = this.$route.params;
@@ -202,7 +202,7 @@
         this.fetchData(this.page);
       },
       async handleEnableCatalog(catalog) {
-        if (this.connectedCatalog) {
+        if (this.connectedCatalog?.uuid) {
           this.catalogToEnable = catalog;
           this.openModal = true;
           return;

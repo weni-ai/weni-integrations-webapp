@@ -2,6 +2,7 @@ jest.mock('@/api/insights', () => {
   return {
     get_template_analytics: jest.fn(),
     get_templates: jest.fn(),
+    set_active_project: jest.fn(),
   };
 });
 
@@ -134,6 +135,15 @@ describe('store/insights/actions.js', () => {
       expect(store.state.insights.isActive).toEqual(null);
       store.dispatch('setActiveProject', { app_uuid: '' });
       expect(store.state.insights.isActive).toBeTruthy();
+    });
+  });
+
+  describe('setHasInsights()', () => {
+    it('should set isActive', () => {
+      store.state.insights.isActive = null;
+      expect(store.state.insights.isActive).not.toEqual(true);
+      store.dispatch('setHasInsights', { isActive: true });
+      expect(store.state.insights.isActive).toEqual(true);
     });
   });
 });

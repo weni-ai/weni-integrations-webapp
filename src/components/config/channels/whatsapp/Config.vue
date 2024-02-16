@@ -156,9 +156,9 @@
         try {
           const options = { code: this.app.code, appUuid: this.app.uuid };
           this.skipLoad = skipLoad;
-          this.fetchAppInfo(options);
-          this.fetchProfile(options);
-          this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
+          await this.fetchAppInfo(options);
+          await this.fetchProfile(options);
+          await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
           unnnicCallAlert({

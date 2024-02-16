@@ -91,7 +91,7 @@
       },
     },
     methods: {
-      ...mapActions(['getTemplateAnalytics', 'getTemplates']),
+      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalyticsWeek() {
         const params = {
           app_uuid: this.appUuid,

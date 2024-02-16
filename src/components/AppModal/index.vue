@@ -29,7 +29,13 @@
 </template>
 
 <script>
+  import LoadingButton from '@/components/LoadingButton/index.vue';
+
   export default {
+    name: 'AppModal',
+    components: {
+      LoadingButton,
+    },
     data() {
       return {
         showAddModal: false,
