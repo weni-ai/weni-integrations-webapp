@@ -49,7 +49,7 @@ describe('store/myApps/actions.js', () => {
 
       it('should call getConfiguredApps from API', async () => {
         expect(appTypeApi.getConfiguredApps).not.toHaveBeenCalled();
-        await store.dispatch('getConfiguredApps', params);
+        await store.dispatch('getConfiguredApps', { ...params, skipLoading: true });
         expect(appTypeApi.getConfiguredApps).toHaveBeenCalledTimes(1);
       });
 

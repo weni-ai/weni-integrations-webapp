@@ -16,7 +16,7 @@
     props: {
       steps: {
         type: Array,
-        default: () => [],
+        required: true,
       },
       currentStep: {
         type: Number,

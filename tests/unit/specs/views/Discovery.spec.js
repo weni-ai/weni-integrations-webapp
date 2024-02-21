@@ -16,7 +16,7 @@ const genericApp = {
   name: 'generic',
   code: 'generic',
   generic: true,
-  config: { channel_name: 'A random generic' },
+  config: { channel_name: 'A random generic', channel_icon_url: 'https://weni.ai/icon.png' },
 };
 
 const mockManuallyCreateApp = jest.fn();
@@ -30,6 +30,7 @@ const mountComponent = async ({ createAppCode = null, apps = [singleApp] } = {})
     getAllAppTypes: jest.fn(),
     deleteApp: jest.fn(),
     getConfiguredApps: jest.fn(),
+    fetchFeatured: jest.fn(),
   };
 
   const state = {
@@ -94,6 +95,7 @@ const mountComponent = async ({ createAppCode = null, apps = [singleApp] } = {})
     },
     stubs: {
       AppGrid,
+      OnboardModal: true,
     },
   });
 

@@ -12,6 +12,13 @@ import i18n from '@/utils/plugins/i18n';
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
+// Global mock
+window.open = jest.fn(() => {
+  return {
+    focus: jest.fn(),
+  };
+});
+
 const mountComponent = async ({
   configuredApps = [{ code: 'vtex', uuid: '123' }],
   loadingConnectVtexCatalog = false,
@@ -19,6 +26,9 @@ const mountComponent = async ({
   hasCatalog = false,
 } = {}) => {
   const state = {
+    auth: {
+      project: 'project_123',
+    },
     myApps: {
       configuredApps,
     },
@@ -200,7 +210,7 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
       expect(wrapper.vm.showConnectCatalogModal).toBe(true);
     });
 
-    it('should not start vtex catalog connection', async () => {
+    it('should start meta catalog connection', async () => {
       const { wrapper } = await mountComponent();
 
       const button = wrapper.findComponent({ ref: 'catalogButton' });
@@ -209,8 +219,29 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
       expect(wrapper.vm.showConnectCatalogModal).toBe(false);
 
       const createCatalogModalContent = wrapper.findComponent({ ref: 'createCatalogModalContent' });
-      await createCatalogModalContent.vm.$emit('createCatalog', 'default');
+      await createCatalogModalContent.vm.$emit('createCatalog', 'meta');
 
+      expect(wrapper.vm.showConnectCatalogModal).toBe(false);
+
+      expect(window.open).toHaveBeenCalledTimes(1);
+
+      expect(wrapper.vm.showCreateCatalogModal).toBe(false);
+      expect(wrapper.vm.showConnectCatalogModal).toBe(false);
+    });
+
+    it('should do nothing if not expected type is given', async () => {
+      const { wrapper } = await mountComponent();
+
+      const button = wrapper.findComponent({ ref: 'catalogButton' });
+      await button.trigger('click');
+
+      expect(wrapper.vm.showCreateCatalogModal).toBe(true);
+      expect(wrapper.vm.showConnectCatalogModal).toBe(false);
+
+      const createCatalogModalContent = wrapper.findComponent({ ref: 'createCatalogModalContent' });
+      await createCatalogModalContent.vm.$emit('createCatalog', 'unknown');
+
+      expect(wrapper.vm.showCreateCatalogModal).toBe(true);
       expect(wrapper.vm.showConnectCatalogModal).toBe(false);
     });
   });
@@ -273,6 +304,20 @@ describe('whatsapp/components/tabs/AccountTab.vue', () => {
       expect(spy).toHaveBeenCalledWith({
         type: 'Error',
         text: 'Could not connect VTEX catalog, please try again later',
+      });
+    });
+  });
+
+  describe('fetchVtexApp', () => {
+    it('should call getConfiguredApps if there arent any in the store', async () => {
+      const { actions } = await mountComponent({ configuredApps: null });
+
+      expect(actions.getConfiguredApps).toHaveBeenCalledTimes(1);
+      expect(actions.getConfiguredApps).toHaveBeenCalledWith(expect.any(Object), {
+        params: {
+          project_uuid: 'project_123',
+        },
+        skipLoading: true,
       });
     });
   });

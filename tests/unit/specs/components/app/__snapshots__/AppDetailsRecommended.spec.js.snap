@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AppDetailsComments.vue should be rendered properly 1`] = `
+exports[`AppDetailsRecommended.vue should be rendered properly 1`] = `
 <div class="app-details-recommended">
   <div class="app-details-recommended__header">
     <div class="app-details-recommended__header__title">

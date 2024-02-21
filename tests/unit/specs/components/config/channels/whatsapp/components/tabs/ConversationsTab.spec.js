@@ -54,6 +54,12 @@ describe('whatsapp/components/tabs/ConversationsTab.vue', () => {
           actions,
           state,
         },
+        insights: {
+          namespaced: true,
+          actions: {
+            setAppUuid: jest.fn(),
+          },
+        },
       },
     });
 

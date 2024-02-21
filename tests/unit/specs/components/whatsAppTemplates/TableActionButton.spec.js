@@ -18,6 +18,15 @@ describe('components/whatsAppTemplates/TableActionButton.vue', () => {
       setAppUuid: jest.fn(),
     };
     store = new Vuex.Store({
+      modules: {
+        insights: {
+          namespaced: true,
+          actions: {
+            setSelectedTemplate: jest.fn(),
+            setAppUuid: jest.fn(),
+          },
+        },
+      },
       actions,
     });
     wrapper = mount(TableActionButton, {
@@ -38,6 +47,9 @@ describe('components/whatsAppTemplates/TableActionButton.vue', () => {
       },
       propsData: {
         templateUuid: '123',
+        data: {
+          uuid: 'uuid123',
+        },
       },
     });
   });
@@ -64,7 +76,8 @@ describe('components/whatsAppTemplates/TableActionButton.vue', () => {
       path: '/apps/my/code/123/templates/edit/123',
     });
   });
-  it('should go to teplate details on See Details option click', async () => {
+
+  it('should go to template details on See Details option click', async () => {
     const triggerButton = wrapper.findComponent(unnnicButton);
     await triggerButton.trigger('click');
     const seeDetails = wrapper.findAllComponents(unnnicDropdownItem).at(1);
@@ -72,7 +85,7 @@ describe('components/whatsAppTemplates/TableActionButton.vue', () => {
 
     expect(wrapper.vm.$router.push).not.toHaveBeenCalled();
     await seeDetails.trigger('click');
-    expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(0);
+    expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(1);
   });
 
   it('should call setSelectedTemplate', async () => {

@@ -1,6 +1,7 @@
 import AppModal from '../../../../src/components/AppModal/index.vue';
 import { mount, createLocalVue } from '@vue/test-utils';
 import i18n from '@/utils/plugins/i18n';
+import '@weni/unnnic-system';
 
 const localVue = createLocalVue();
 
@@ -15,6 +16,7 @@ describe('AppModal', () => {
       },
       stubs: {
         UnnnicModal: true,
+        UnnnicButton: true,
       },
     });
   });

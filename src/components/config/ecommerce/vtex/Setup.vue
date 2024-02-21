@@ -137,6 +137,7 @@
                 />
 
                 <unnnic-button
+                  ref="vtex-copy-button"
                   class="vtex-modal__content__section__content__url-wrapper__button"
                   type="secondary"
                   iconLeft="content_copy"

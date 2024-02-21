@@ -77,6 +77,14 @@ describe('AppGrid.vue', () => {
     };
 
     store = new Vuex.Store({
+      modules: {
+        insights: {
+          namespaced: true,
+          actions: {
+            setHasInsights: jest.fn(),
+          },
+        },
+      },
       actions,
       state,
     });

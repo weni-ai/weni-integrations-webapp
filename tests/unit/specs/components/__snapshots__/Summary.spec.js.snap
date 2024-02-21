@@ -14,21 +14,21 @@ exports[`components/TemplateDetails/Summary.vue should be rendered properly 1`] 
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
         some specific text
-        <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
+        <span data-v-4ce83152="" class="material-symbols-rounded unnnic-icon-scheme--neutral-cleanest unnnic-icon-size--sm material-symbols-rounded--filled"> info </span>
       </div>
       <div class="whatsapp_template_summary__main__card__value">47</div>
     </div>
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
         some specific text
-        <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
+        <span data-v-4ce83152="" class="material-symbols-rounded unnnic-icon-scheme--neutral-cleanest unnnic-icon-size--sm material-symbols-rounded--filled"> info </span>
       </div>
       <div class="whatsapp_template_summary__main__card__value">48</div>
     </div>
     <div class="whatsapp_template_summary__main__card">
       <div class="whatsapp_template_summary__main__card__title">
         some specific text
-        <unnnic-icon icon="info" size="sm" filled="" scheme="neutral-cleanest"></unnnic-icon>
+        <span data-v-4ce83152="" class="material-symbols-rounded unnnic-icon-scheme--neutral-cleanest unnnic-icon-size--sm material-symbols-rounded--filled"> info </span>
       </div>
       <div class="whatsapp_template_summary__main__card__value">
         28 (59%)

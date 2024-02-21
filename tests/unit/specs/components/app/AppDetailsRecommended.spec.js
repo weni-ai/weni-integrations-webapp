@@ -7,7 +7,7 @@ import i18n from '@/utils/plugins/i18n';
 const localVue = createLocalVue();
 // localVue.use(VueRouter);
 
-describe('AppDetailsComments.vue', () => {
+describe('AppDetailsRecommended.vue', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallowMount(AppDetailsRecommended, {

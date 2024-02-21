@@ -3,6 +3,7 @@ import { mount, createLocalVue } from '@vue/test-utils';
 import Summary from '@/components/TemplateDetails/Summary.vue';
 import i18n from '@/utils/plugins/i18n';
 import { selectedTemplate, templateAnalytics, templates } from '../../../__mocks__/appMock';
+import '@weni/unnnic-system';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -47,20 +48,24 @@ describe('components/TemplateDetails/Summary.vue', () => {
     };
 
     state = {
-      insights: {
-        isActive: true,
-        templateAnalytics: templateAnalytics,
-        loadingTemplateAnalytics: false,
-        errorTemplateAnalytics: null,
-        selectedTemplate: selectedTemplate,
-        appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
-        templates: templates,
-        errorTemplates: null,
-      },
+      isActive: true,
+      templateAnalytics: templateAnalytics,
+      loadingTemplateAnalytics: false,
+      errorTemplateAnalytics: null,
+      selectedTemplate: selectedTemplate,
+      appUuid: '8e876af8-a59d-4eef-aeb4-61689d2d382b',
+      templates: templates,
+      errorTemplates: null,
     };
+
     store = new Vuex.Store({
-      actions,
-      state,
+      modules: {
+        insights: {
+          namespaced: true,
+          state,
+          actions,
+        },
+      },
     });
 
     wrapper = mount(Summary, {
