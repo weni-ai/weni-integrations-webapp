@@ -3,12 +3,12 @@
 </template>
 
 <script>
-  import { survey_store } from '@/stores/modules/survey.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
   export default {
     name: 'Discovery',
     data() {
       return {
-        teste: survey_store().surveyStatus,
+        teste: my_apps().configuredApps,
       };
     },
   };
