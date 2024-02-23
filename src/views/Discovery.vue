@@ -1,11 +1,9 @@
 <template>
-    <div>
-        aaasdcoiefjcfioejf
-    </div>
+  <div>aaasdcoiefjcfioejf</div>
 </template>
 
 <script>
-export default{
+  export default {
     name: 'Discovery',
-}
+  };
 </script>

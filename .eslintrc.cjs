@@ -10,12 +10,13 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
   },
   plugins: ['vue'],
   rules: {
     semi: ['error', 'always'],
     'vue/no-multiple-template-root': 'off',
+    'vue/multi-word-component-names': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'implicit-arrow-linebreak': 'off',
