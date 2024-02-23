@@ -17,8 +17,8 @@ export const auth_store = defineStore('auth', {
     };
   },
   getters: {
-    authenticated() {
-      return !!this.token;
+    authenticated(state) {
+      return !!state.token;
     },
   },
   actions: {

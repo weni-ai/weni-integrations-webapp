@@ -1,4 +1,4 @@
-export function getEnv(name) {
+export default function getEnv(name) {
   return window?.configs?.[name] || process.env[name];
 }
-module.exports = getEnv;
+// module.exports = getEnv;
