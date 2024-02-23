@@ -3,13 +3,16 @@
 </template>
 
 <script>
-  import { my_apps } from '@/stores/modules/myApps.store';
+  import { insights_store } from '@/stores/modules/insights.store';
   export default {
     name: 'Discovery',
     data() {
       return {
-        teste: my_apps().configuredApps,
+        teste: insights_store().isActive,
       };
+    },
+    onMounted() {
+      insights_store().setHasInsights({ isActive: true });
     },
   };
 </script>
