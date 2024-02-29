@@ -1,3 +1,4 @@
-export function getEnv(name) {
-  return window?.configs?.[name] || process.env[name];
+function getEnv(name) {
+  return window?.configs?.[name] || import.meta.env[name];
 }
+export default getEnv;
