@@ -1,4 +1,4 @@
-const { defineStore } = require('pinia');
+import { defineStore } from 'pinia';
 import externalServices from '@/api/appType/externalServices';
 
 export const externals_store = defineStore('externals', {
