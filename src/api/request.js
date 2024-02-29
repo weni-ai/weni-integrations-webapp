@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { auth_store } from '@/stores/modules/auth.store';
-import getEnv from '@/utils/env';
+import { getEnv } from '@/utils/env';
 
 export default {
   get $http() {
