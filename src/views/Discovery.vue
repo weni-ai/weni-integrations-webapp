@@ -49,6 +49,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
     data() {
@@ -73,6 +74,18 @@
     },
     async mounted() {
       insights_store().setHasInsights({ isActive: true });
+      this.fetchChannels();
+
+      const createAppCode = this.$route.query.create_app;
+      if (createAppCode) {
+        this.callManuallyCreateApp(createAppCode);
+      }
+
+      this.fetchExternalServices();
+
+      this.fetchEcommerceApps();
+
+      this.fetchFeatured();
     },
     computed: {
       appTypeState() {
@@ -158,6 +171,40 @@
           this.filteredEcommerceApps.length ||
           this.filteredApps.length
         );
+      },
+    },
+    methods: {
+      async fetchChannels() {
+        const params = {
+          category: 'channel',
+        };
+        await app_type().getAllAppTypes({ params });
+
+        if (this.appTypeState.errorAllAppTypes) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('apps.discovery.fetch_error'),
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 6,
+          });
+          return;
+        }
+
+        this.channels.data = this.appTypeState.allAppTypes;
+      },
+      async callManuallyCreateApp(appCode) {
+        await this.$refs.appGrid.manuallyCreateApp(appCode);
+      },
+      async fetchExternalServices() {
+        await externals_store().getExternalServicesTypes();
+      },
+      async fetchEcommerceApps() {
+        await ecommerce_store().getEcommerceTypes();
       },
     },
   };
