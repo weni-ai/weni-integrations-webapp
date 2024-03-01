@@ -4,10 +4,17 @@ import { auth_store } from '@/stores/modules/auth.store';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    { path: '/', redirect: { name: 'Discovery' } },
     {
-      path: '/',
-      name: 'home',
-      component: () => import('../views/Discovery.vue'),
+      path: '/apps',
+      component: () => import('@/views/Apps/index.vue'),
+      children: [
+        {
+          name: 'Discovery',
+          path: 'discovery',
+          component: () => import('@/views/Discovery.vue'),
+        },
+      ],
     },
     {
       path: '/loginexternal/:token/:project/:flowOrg',
