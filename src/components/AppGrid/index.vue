@@ -136,6 +136,7 @@
   import LoadingButton from '../LoadingButton/index.vue';
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { insights_store } from '@/stores/modules/insights.store';
   export default {
     name: 'AppGrid',
     components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
@@ -228,14 +229,13 @@
       },
     },
     methods: {
-      ...mapActions(['deleteApp']),
       ...mapActions('insights', ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
       },
       async removeApp(code, appUuid) {
-        await this.deleteApp({ code, appUuid });
+        await app_type().deleteApp({ code, appUuid });
 
         if (this.appTypeState.errorDeleteApp) {
           this.callErrorModal({ text: this.$t('apps.details.status_error') });
@@ -273,7 +273,7 @@
         this.$router.push(`/apps/${code}/details`);
       },
       openAppModal(app) {
-        this.setHasInsights({ isActive: app.config?.has_insights });
+        insights_store().setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;
         }
