@@ -85,7 +85,7 @@
 
       this.fetchEcommerceApps();
 
-      this.fetchFeatured();
+      app_type().fetchFeatured();
     },
     computed: {
       appTypeState() {

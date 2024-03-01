@@ -22,9 +22,9 @@ if (getEnv('NODE_ENV') === 'development') {
   makeServer();
 }
 
-if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
+if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
   Sentry.init({
-    dsn: getEnv('VUE_APP_SENTRY_DSN'),
+    dsn: getEnv('VITE_APP_SENTRY_DSN'),
     integrations: [
       new Integrations.Vue({
         Vue,
@@ -35,10 +35,10 @@ if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
   });
 }
 
-if (getEnv('VUE_APP_LOGROCKET_ID')) {
-  LogRocket.init(getEnv('VUE_APP_LOGROCKET_ID'), {
+if (getEnv('VITE_APP_LOGROCKET_ID')) {
+  LogRocket.init(getEnv('VITE_APP_LOGROCKET_ID'), {
     mergeIframes: true,
-    parentDomain: getEnv('VUE_APP_PARENT_IFRAME_DOMAIN'),
+    parentDomain: getEnv('VITE_APP_PARENT_IFRAME_DOMAIN'),
   });
 }
 

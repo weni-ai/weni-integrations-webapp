@@ -5,7 +5,7 @@ import getEnv from '@/utils/env';
 export default {
   get $http() {
     const client = axios.create({
-      baseURL: getEnv('VUE_APP_API_BASE_URL'),
+      baseURL: getEnv('VITE_APP_API_BASE_URL'),
       headers: {
         ...(auth_store().authenticated()
           ? {
