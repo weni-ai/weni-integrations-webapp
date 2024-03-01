@@ -1,0 +1,54 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.survey {
+  display: flex;
+  flex-direction: column;
+  gap: $unnnic-spacing-stack-xs;
+
+  &__content {
+    display: flex;
+    max-width: 300px;
+    flex-direction: column;
+    gap: $unnnic-spacing-stack-sm;
+    background-color: $unnnic-color-background-grass;
+    padding: $unnnic-squish-sm;
+    border-radius: $unnnic-border-radius-sm;
+    box-shadow: $unnnic-shadow-level-near;
+
+    &__buttons {
+      display: flex;
+      gap: $unnnic-spacing-inline-nano;
+      justify-content: center;
+
+      &__exit,
+      &__send {
+        width: 100px;
+      }
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    background-color: $unnnic-color-background-grass;
+    width: 50px;
+    aspect-ratio: 1;
+    margin-left: auto;
+    border-radius: $unnnic-border-radius-pill;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: $unnnic-shadow-level-near;
+
+    ::v-deep .unnnic-icon {
+      width: $unnnic-icon-size-xl;
+      height: $unnnic-icon-size-xl;
+    }
+  }
+}
