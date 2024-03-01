@@ -49,8 +49,8 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'telegram-config',
@@ -71,15 +71,14 @@
       };
     },
     computed: {
-      ...mapState({
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
+      errorUpdateAppConfig() {
+        return app_type().errorUpdateAppConfig;
+      },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
       async saveConfig() {
         const data = {
           code: this.app.code,
@@ -92,7 +91,7 @@
         };
 
         try {
-          await this.updateAppConfig(data);
+          await this.app_type().updateAppConfig(data);
 
           if (this.errorUpdateAppConfig) {
             throw new Error(this.errorUpdateAppConfig);
