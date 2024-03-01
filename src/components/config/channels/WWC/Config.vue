@@ -294,6 +294,7 @@
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
+  import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'wwc-config',
@@ -363,13 +364,15 @@
       }
     },
     computed: {
-      ...mapState({
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-        currentApp: (state) => state.appType.currentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-      }),
+      appTypeState() {
+        return {
+          loadingUpdateAppConfig: app_type().loadingUpdateAppConfig,
+          errorUpdateAppConfig: app_type().errorUpdateAppConfig,
+          currentApp: app_type().currentApp,
+          loadingCurrentApp: app_type().loadingCurrentApp,
+          errorCurrentApp: app_type().errorCurrentApp,
+        };
+      },
       avatarFiles: {
         get() {
           return this.avatarFile ? [this.avatarFile] : [];
@@ -434,7 +437,7 @@
             `;
       },
       loadingSave() {
-        return this.loadingUpdateAppConfig || this.loadingCurrentApp;
+        return this.appTypeState.loadingUpdateAppConfig || this.appTypeState.loadingCurrentApp;
       },
     },
     methods: {
@@ -606,19 +609,19 @@
 
         try {
           const firstSave = !this.scriptCode;
-          await this.updateAppConfig(reqData);
+          await app_type().updateAppConfig(reqData);
 
-          if (this.errorUpdateAppConfig) {
-            throw new Error(this.errorUpdateAppConfig);
+          if (this.appTypeState.errorUpdateAppConfig) {
+            throw new Error(this.appTypeState.errorUpdateAppConfig);
           }
 
           await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
 
-          if (this.errorCurrentApp) {
-            throw new Error(this.errorCurrentApp);
+          if (this.appTypeState.errorCurrentApp) {
+            throw new Error(this.appTypeState.errorCurrentApp);
           }
 
-          this.app.config = this.currentApp.config;
+          this.app.config = this.appTypeState.currentApp.config;
           this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
