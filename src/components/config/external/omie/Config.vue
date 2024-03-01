@@ -55,7 +55,7 @@
               size="large"
               :text="$t('omie.config.connect')"
               :disabled="disabledForm"
-              :loading="loadingUpdateAppConfig"
+              :loading="appTypeState.loadingUpdateAppConfig"
               @click="saveConfig"
             />
           </div>
@@ -68,6 +68,7 @@
 <script>
   import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'omie-config',
@@ -87,10 +88,12 @@
       };
     },
     computed: {
-      ...mapState({
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
+      appTypeState() {
+        return {
+          loadingUpdateAppConfig: app_type().loadingUpdateAppConfig,
+          errorUpdateAppConfig: app_type().errorUpdateAppConfig,
+        };
+      },
     },
     methods: {
       ...mapActions(['updateAppConfig']),
@@ -108,9 +111,9 @@
           },
         };
 
-        await this.updateAppConfig(data);
+        await app_type().updateAppConfig(data);
 
-        if (this.errorUpdateAppConfig) {
+        if (this.appTypeState.errorUpdateAppConfig) {
           this.callModal({ type: 'Error', text: this.$t('omie.errors.configure') });
           return;
         }
