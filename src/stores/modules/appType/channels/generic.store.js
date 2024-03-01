@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import genericTypeApi from '@/api/appType/generic';
 import { captureSentryException } from '@/utils/sentry';
 
-export const generic = defineStore('generic', {
+export const generic_store = defineStore('generic', {
   state() {
     return {
       genericAppForm: null,

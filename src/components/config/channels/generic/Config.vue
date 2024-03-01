@@ -75,10 +75,11 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   import DynamicForm from '@/components/config/DynamicForm.vue';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { generic_store } from '@/stores/modules/appType/channels/generic.store';
 
   export default {
     name: 'generic-config',
@@ -119,19 +120,23 @@
       await this.fetchAppData();
     },
     computed: {
-      ...mapState({
-        currentApp: (state) => state.appType.currentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
-      ...mapState('Generic', [
-        'loadingAppForm',
-        'errorAppForm',
-        'genericAppForm',
-        'genericAppAttributes',
-      ]),
+      appTypeState() {
+        return {
+          currentApp: app_type().currentApp,
+          loadingCurrentApp: app_type().loadingCurrentApp,
+          errorCurrentApp: app_type().errorCurrentApp,
+          loadingUpdateAppConfig: app_type().loadingUpdateAppConfig,
+          errorUpdateAppConfig: app_type().errorUpdateAppConfig,
+        };
+      },
+      genericState() {
+        return {
+          loadingAppForm: generic_store().loadingAppForm,
+          errorAppForm: generic_store().errorAppForm,
+          genericAppForm: generic_store().genericAppForm,
+          genericAppAttributes: generic_store().genericAppAttributes,
+        };
+      },
       appDescription() {
         const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
         return this.$te(i18nkey) ? this.$t(i18nkey) : this.app.config.channel_claim_blurb;
@@ -141,21 +146,19 @@
       },
     },
     methods: {
-      ...mapActions(['getApp', 'updateAppConfig']),
-      ...mapActions('Generic', ['getAppForm']),
       async fetchAppData() {
         this.loadingFormBuild = true;
-        await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
-        await this.getAppForm({ channelCode: this.app.config.channel_code });
+        await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
+        await generic_store().getAppForm({ channelCode: this.app.config.channel_code });
 
-        if (this.errorCurrentApp || this.errorAppForm) {
+        if (this.appTypeState.errorCurrentApp || this.genericState.errorAppForm) {
           this.callModal({
             type: 'Error',
             text: this.$t('GenericApp.preview.errors.fetch_app'),
           });
         }
 
-        this.appFormInputs = this.genericAppForm.flatMap((input) => {
+        this.appFormInputs = this.genericState.genericAppForm.flatMap((input) => {
           const mappedInputType = this.inputTypeMapping[input.type];
           if (!mappedInputType) {
             return [];
@@ -166,7 +169,7 @@
             name: input.name,
             label: input.label || input.help_text || input.name,
             message: input.label ? input.help_text : null,
-            value: this.currentApp.config[input.name] || null,
+            value: this.appTypeState.currentApp.config[input.name] || null,
           };
 
           if (input.type === 'select') {
