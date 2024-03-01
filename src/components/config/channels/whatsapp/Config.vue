@@ -78,7 +78,6 @@
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
   import skeletonLoading from './loadings/Config.vue';
-  import { mapActions } from 'vuex';
   import { dataUrlToFile } from '@/utils/files';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';

@@ -24,7 +24,7 @@
 
     <div class="app-config-power-bi__content">
       <unnnic-data-area
-        v-if="!loadingFlowToken"
+        v-if="!authState.loadingFlowToken"
         class="app-config-power-bi__content__token-input"
         title="Token"
         :text="flowToken || ''"
@@ -91,10 +91,9 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-
   import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'PowerBiConfig',
@@ -116,9 +115,9 @@
       };
     },
     async mounted() {
-      await this.getFlowToken();
+      await auth_store().getFlowToken();
 
-      if (this.errorFlowToken) {
+      if (this.authState.errorFlowToken) {
         unnnicCallAlert({
           props: {
             text: this.$t('PowerBi.config.token_error'),
@@ -133,11 +132,13 @@
       }
     },
     computed: {
-      ...mapState({
-        flowToken: (state) => state.auth.flowToken,
-        errorFlowToken: (state) => state.auth.errorFlowToken,
-        loadingFlowToken: (state) => state.auth.loadingFlowToken,
-      }),
+      authState() {
+        return {
+          flowToken: auth_store().flowToken,
+          errorFlowToken: auth_store().errorFlowToken,
+          loadingFlowToken: auth_store().loadingFlowToken,
+        };
+      },
       powerBiIcon() {
         return PowerBiIcon;
       },
@@ -146,14 +147,13 @@
       },
     },
     methods: {
-      ...mapActions(['getFlowToken']),
       /* istanbul ignore next */
       async copyToken() {
-        if (!this.flowToken) {
+        if (!this.authState.flowToken) {
           return;
         }
 
-        navigator.clipboard.writeText(this.flowToken);
+        navigator.clipboard.writeText(this.authState.flowToken);
 
         unnnicCallAlert({
           props: {
