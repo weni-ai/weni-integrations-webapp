@@ -73,10 +73,7 @@
               <unnnic-toolTip
                 v-for="(prompt, index) in availablePrompts"
                 :key="index"
-                class="
-                  config-chatgpt__settings__content__prompt
-                  config-chatgpt__settings__content__prompts__tooltip
-                "
+                class="config-chatgpt__settings__content__prompt config-chatgpt__settings__content__prompts__tooltip"
                 :text="prompt.text"
                 :enabled="true"
                 side="top"

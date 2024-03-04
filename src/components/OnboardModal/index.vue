@@ -48,8 +48,9 @@
   import TelegramSecondGif from '@/assets/gifs/telegram2.gif';
 
   import WWCFirstGif from '@/assets/gifs/wwc1.gif';
-
-  import { mapActions, mapState } from 'vuex';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'OnboardModal',
@@ -92,14 +93,18 @@
       this.checkModalCondition();
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        onboardStatus: (state) => state.appType.onboardStatus,
-      }),
-      ...mapState({
-        configuredApps: (state) => state.myApps.configuredApps,
-        errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
-      }),
+      onboardStatus() {
+        return app_type().onboardStatus;
+      },
+      project() {
+        return auth_store().project;
+      },
+      myAppsState() {
+        return {
+          configuredApps: my_apps().configuredApps,
+          errorConfiguredApps: my_apps().errorConfiguredApps,
+        };
+      },
       currentModalTitle() {
         const titleMap = {
           whatsapp: this.$t('onboard.modal.whatsapp.title'),
@@ -113,12 +118,11 @@
       },
     },
     methods: {
-      ...mapActions(['getConfiguredApps', 'setOnboardStatus']),
       async checkModalCondition() {
         const params = {
           project_uuid: this.project,
         };
-        await this.getConfiguredApps({ params });
+        await my_apps().getConfiguredApps({ params });
 
         if (this.errorConfiguredApps || !this.configuredApps) return;
 
@@ -147,7 +151,7 @@
         this.showModal = false;
         this.page = 0;
         this.currentApp = null;
-        this.setOnboardStatus({ status: false });
+        app_type().setOnboardStatus({ status: false });
       },
     },
     watch: {
