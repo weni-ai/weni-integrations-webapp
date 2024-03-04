@@ -128,7 +128,6 @@
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions } from 'vuex';
 
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
@@ -229,7 +228,6 @@
       },
     },
     methods: {
-      ...mapActions('insights', ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
