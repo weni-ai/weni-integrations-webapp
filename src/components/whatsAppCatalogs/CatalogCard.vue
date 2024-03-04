@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
     name: 'CatalogCard',
@@ -72,10 +72,11 @@
       };
     },
     computed: {
-      ...mapState('WhatsAppCloud', ['errorDisableCatalog']),
+      errorDisableCatalog() {
+        return whatsapp_cloud().errorDisableCatalog;
+      },
     },
     methods: {
-      ...mapActions('WhatsAppCloud', ['disableWhatsAppCloudCatalogs']),
       toggleCatalogConnect(event) {
         if (event) {
           this.$emit('enable');
