@@ -65,8 +65,7 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   export default {
     name: 'ProductList',
     props: {
@@ -109,20 +108,22 @@
       await this.fetchProducts(this.page);
     },
     computed: {
-      ...mapState('WhatsAppCloud', [
-        'catalogProducts',
-        'loadingCatalogProducts',
-        'errorCatalogProducts',
-      ]),
+      whatsappCloudState() {
+        return {
+          catalogProducts: whatsapp_cloud().catalogProducts,
+          loadingCatalogProducts: whatsapp_cloud().loadingCatalogProducts,
+          errorCatalogProduct: whatsapp_cloud().errorCatalogProduct,
+        };
+      },
       listItems() {
-        return this.catalogProducts?.results || [];
+        return this.whatsappCloudState.catalogProducts?.results || [];
       },
       totalCount() {
-        return this.catalogProducts?.count || this.pageSize;
+        return this.whatsappCloudState.catalogProducts?.count || this.pageSize;
       },
       pageCount() {
-        if (this.catalogProducts?.count) {
-          return Math.ceil(this.catalogProducts.count / this.pageSize);
+        if (this.whatsappCloudState.catalogProducts?.count) {
+          return Math.ceil(this.whatsappCloudState.catalogProducts.count / this.pageSize);
         } else {
           return 1;
         }
@@ -132,11 +133,12 @@
       },
       currentPageCount() {
         const value = this.pageSize * this.page;
-        return value > this.catalogProducts?.count ? this.catalogProducts?.count || 0 : value;
+        return value > this.whatsappCloudState.catalogProducts?.count
+          ? this.whatsappCloudState.catalogProducts?.count || 0
+          : value;
       },
     },
     methods: {
-      ...mapActions('WhatsAppCloud', ['getCatalogProducts']),
       async fetchProducts(page) {
         const { appUuid, catalogUuid } = this.$route.params;
         const params = {
@@ -144,7 +146,7 @@
           page_size: this.pageSize,
         };
 
-        await this.getCatalogProducts({ appUuid, catalogUuid, params });
+        await whatsapp_cloud().getCatalogProducts({ appUuid, catalogUuid, params });
       },
     },
     watch: {
