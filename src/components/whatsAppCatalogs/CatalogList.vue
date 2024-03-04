@@ -26,14 +26,18 @@
 
     <div
       class="whatsapp-catalog-list__cards"
-      v-if="whatsAppCloudCatalogs || (!loadingWhatsAppCloudCatalogs && !errorWhatsAppCloudCatalogs)"
+      v-if="
+        whatsAppCloudCatalogs ||
+        (!whatsappCloudState.loadingWhatsAppCloudCatalogs &&
+          !whatsappCloudState.errorWhatsAppCloudCatalogs)
+      "
     >
       <CatalogCard
         v-for="(catalog, index) in listItems"
         :ref="`catalogCard-${index}`"
         :key="index"
         :catalog="catalog"
-        :enabledCart="commerceSettings.is_cart_enabled"
+        :enabledCart="whatsappCloudState.commerceSettings.is_cart_enabled"
         @enable="handleEnableCatalog(catalog)"
         @disable="handleDisableCatalog()"
         @toggleCart="toggleCart"
@@ -82,9 +86,9 @@
 
 <script>
   import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard';
-  import { mapActions, mapState } from 'vuex';
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
     name: 'CatalogList',
@@ -103,24 +107,26 @@
       };
     },
     computed: {
-      ...mapState('WhatsAppCloud', [
-        'loadingWhatsAppCloudCatalogs',
-        'errorWhatsAppCloudCatalogs',
-        'whatsAppCloudCatalogs',
-        'errorDisableCatalog',
-        'errorEnableCatalog',
-        'commerceSettings',
-        'errorToggleCartVisibility',
-      ]),
+      whatsappCloudState() {
+        return {
+          loadingWhatsAppCloudCatalogs: whatsapp_cloud().loadingWhatsAppCloudCatalogs,
+          errorWhatsAppCloudCatalogs: whatsapp_cloud().errorWhatsAppCloudCatalogs,
+          whatsAppCloudCatalogs: whatsapp_cloud().whatsAppCloudCatalogs,
+          errorDisableCatalog: whatsapp_cloud().errorDisableCatalog,
+          errorEnableCatalog: whatsapp_cloud().errorEnableCatalog,
+          commerceSettings: whatsapp_cloud().commerceSettings,
+          errorToggleCartVisibility: whatsapp_cloud().errorToggleCartVisibility,
+        };
+      },
       listItems() {
-        return this.whatsAppCloudCatalogs?.results || [];
+        return this.whatsappCloudState.whatsAppCloudCatalogs?.results || [];
       },
       totalCount() {
-        return this.whatsAppCloudCatalogs?.count || this.pageSize;
+        return this.whatsappCloudState.whatsAppCloudCatalogs?.count || this.pageSize;
       },
       pageCount() {
-        if (this.whatsAppCloudCatalogs?.count) {
-          return Math.ceil(this.whatsAppCloudCatalogs.count / this.pageSize);
+        if (this.whatsappCloudState.whatsAppCloudCatalogs?.count) {
+          return Math.ceil(this.whatsappCloudState.whatsAppCloudCatalogs.count / this.pageSize);
         } else {
           return 1;
         }
@@ -130,19 +136,12 @@
       },
       currentPageCount() {
         const value = this.pageSize * this.page;
-        return value > this.whatsAppCloudCatalogs?.count
-          ? this.whatsAppCloudCatalogs?.count || 0
+        return value > this.whatsappCloudState.whatsAppCloudCatalogs?.count
+          ? this.whatsappCloudState.whatsAppCloudCatalogs?.count || 0
           : value;
       },
     },
     methods: {
-      ...mapActions('WhatsAppCloud', [
-        'getWhatsAppCloudCatalogs',
-        'disableWhatsAppCloudCatalogs',
-        'enableWhatsAppCloudCatalogs',
-        'getCommerceSettings',
-        'toggleCartVisibility',
-      ]),
       fetchData: debounce(async function (page) {
         const { appUuid } = this.$route.params;
         const params = {
@@ -154,10 +153,10 @@
           params.name = this.searchTerm.trim();
         }
 
-        await this.getCommerceSettings({ appUuid });
-        await this.getWhatsAppCloudCatalogs({ appUuid, params });
+        await whatsapp_cloud().getCommerceSettings({ appUuid });
+        await whatsapp_cloud().getWhatsAppCloudCatalogs({ appUuid, params });
 
-        if (this.errorWhatsAppCloudCatalogs) {
+        if (this.whatsappCloudState.errorWhatsAppCloudCatalogs) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
@@ -172,8 +171,9 @@
         }
 
         this.connectedCatalog =
-          this.whatsAppCloudCatalogs?.results?.find((catalog) => catalog.is_connected === true) ||
-          {};
+          this.whatsappCloudState.whatsAppCloudCatalogs?.results?.find(
+            (catalog) => catalog.is_connected === true,
+          ) || {};
       }, 750),
       async disableCatalog() {
         const { appUuid } = this.$route.params;
@@ -182,9 +182,9 @@
           appUuid,
         };
 
-        await this.disableWhatsAppCloudCatalogs(data);
+        await whatsapp_cloud().disableWhatsAppCloudCatalogs(data);
 
-        if (this.errorDisableCatalog) {
+        if (this.whatsappCloudState.errorDisableCatalog) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.disable_catalog'),
@@ -219,9 +219,9 @@
           appUuid,
         };
 
-        await this.enableWhatsAppCloudCatalogs(data);
+        await whatsapp_cloud().enableWhatsAppCloudCatalogs(data);
 
-        if (this.errorEnableCatalog) {
+        if (this.whatsappCloudState.errorEnableCatalog) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.enable_catalog'),
@@ -239,7 +239,7 @@
       },
       async handleCatalogConfirmation() {
         await this.disableCatalog();
-        if (!this.errorDisableCatalog && this.catalogToEnable) {
+        if (!this.whatsappCloudState.errorDisableCatalog && this.catalogToEnable) {
           await this.enableCatalog(this.catalogToEnable);
           this.catalogToEnable = null;
         }
@@ -253,12 +253,12 @@
         const data = {
           appUuid,
           payload: {
-            enable: !this.commerceSettings.is_cart_enabled,
+            enable: !this.whatsappCloudState.commerceSettings.is_cart_enabled,
           },
         };
-        await this.toggleCartVisibility(data);
+        await whatsapp_cloud().toggleCartVisibility(data);
 
-        if (this.errorToggleCartVisibility) {
+        if (this.whatsappCloudState.errorToggleCartVisibility) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
