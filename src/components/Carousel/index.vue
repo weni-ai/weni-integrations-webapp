@@ -32,7 +32,7 @@
   import skeletonLoading from '../loadings/Carousel.vue';
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
-  import { app_type } from '@/src/stores/modules/appType/appType.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'Carousel',
