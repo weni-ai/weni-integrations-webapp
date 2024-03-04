@@ -32,16 +32,15 @@
   import skeletonLoading from '../loadings/Carousel.vue';
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
-  import { mapActions, mapState } from 'vuex';
+  import { app_type } from '@/src/stores/modules/appType/appType.store';
 
   export default {
     name: 'Carousel',
     components: { VueperSlides, VueperSlide, skeletonLoading },
     async mounted() {
-      await this.fetchFeatured();
+      await app_type().fetchFeatured();
     },
     methods: {
-      ...mapActions(['fetchFeatured']),
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'IB');
         return banner[0].url;
@@ -51,12 +50,14 @@
       },
     },
     computed: {
-      ...mapState({
-        featuredApps: (state) => state.appType.featuredApps,
-        loadingFeaturedApps: (state) => state.appType.loadingFeaturedApps,
-      }),
+      appTypeState() {
+        return {
+          featuredApps: app_type().featuredApps,
+          loadingFeaturedApps: app_type().loadingFeaturedApps,
+        };
+      },
       hasAutoPlay() {
-        return this.featuredApps?.length > 1 ? true : false;
+        return this.appTypeState.featuredApps?.length > 1 ? true : false;
       },
     },
   };
