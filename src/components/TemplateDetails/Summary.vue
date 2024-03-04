@@ -63,9 +63,9 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
+  import { insights_store } from '@/stores/modules/insights.store';
   export default {
-    name: 'Summary',
+    name: 'SummaryComponent',
     mounted() {
       this.fetchTemplateAnalyticsWeek();
     },
@@ -75,14 +75,16 @@
       };
     },
     computed: {
-      ...mapState({
-        templateAnalytics: (state) => state.insights.templateAnalytics,
-        appUuid: (state) => state.insights.appUuid,
-        selectedTemplate: (state) => state.insights.selectedTemplate,
-      }),
+      insightsState() {
+        return {
+          templateAnalytics: insights_store().templateAnalytics,
+          appUuid: insights_store().appUuid,
+          selectedTemplate: insights_store().selectedTemplate,
+        };
+      },
       weekValues() {
         return (
-          this.templateAnalytics?.grand_totals || {
+          this.insightsState.templateAnalytics?.grand_totals || {
             sent: 0,
             delivered: 0,
             read: 0,
@@ -91,19 +93,18 @@
       },
     },
     methods: {
-      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalyticsWeek() {
         const params = {
-          app_uuid: this.appUuid,
+          app_uuid: this.insightsState.appUuid,
           filters: {
             start: this.formatDate(new Date(Date.now() - this.sevenDays)),
             end: this.formatDate(new Date()),
-            fba_template_ids: this.selectedTemplate.translations.map(
+            fba_template_ids: this.insightsState.selectedTemplate.translations.map(
               (item) => item.message_template_id,
             ),
           },
         };
-        this.getTemplateAnalytics(params);
+        insights_store().getTemplateAnalytics(params);
       },
       formatDate(date) {
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
