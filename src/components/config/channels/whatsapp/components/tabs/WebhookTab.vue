@@ -70,8 +70,8 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'WebhookTab',
@@ -112,12 +112,14 @@
       }
     },
     computed: {
-      ...mapState('WhatsApp', ['loadingUpdateWebhookInfo', 'errorUpdateWebhookInfo']),
+      loadingUpdateWebhookInfo(){
+        return whatsapp_store().loadingUpdateWebhookInfo
+      },
+      errorUpdateWebhookInfo(){
+        return whatsapp_store().errorUpdateWebhookInfo
+      }
     },
     methods: {
-      ...mapActions({
-        updateWppWebhookInfo: 'WhatsApp/updateWppWebhookInfo',
-      }),
       /* istanbul ignore next */
       mountHeaders() {
         if (this.app.config?.webhook?.headers) {
@@ -208,7 +210,7 @@
           },
         };
 
-        await this.updateWppWebhookInfo(data);
+        await whatsapp_store().updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
           this.callModal({
@@ -301,3 +303,4 @@
     }
   }
 </style>
+

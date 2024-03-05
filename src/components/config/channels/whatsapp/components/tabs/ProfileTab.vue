@@ -42,6 +42,7 @@
   import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'ProfileTab',
@@ -456,13 +457,6 @@
       }
     }
   }
-</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+</style>
+import { insights_store } from '@/stores/modules/insights.store';
 
