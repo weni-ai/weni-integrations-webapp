@@ -13,7 +13,7 @@
         {{ `“${searchTerm}”...` }}
       </span>
     </span>
-    <div v-if="true" class="discovery-content__grids">
+    <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
       <app-grid
         ref="appGrid"
         section="channel"
@@ -46,6 +46,7 @@
 <script>
   import { insights_store } from '@/stores/modules/insights.store';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import AppGrid from '@/components/AppGrid/index.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
