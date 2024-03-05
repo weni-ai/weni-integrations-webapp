@@ -55,7 +55,7 @@
     </div>
 
     <unnnic-table
-      v-if="!loadingWhatsAppTemplates && !errorWhatsAppTemplates"
+      v-if="!whatsappState.loadingWhatsAppTemplates && !whatsappState.errorWhatsAppTemplates"
       class="whatsapp-templates-table__table"
       :items="tableItems"
     >
@@ -140,7 +140,6 @@
 <script>
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
   import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
   import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
@@ -252,20 +251,22 @@
       });
     },
     computed: {
-      ...mapState('WhatsApp', [
-        'loadingWhatsAppTemplates',
-        'errorWhatsAppTemplates',
-        'whatsAppTemplates',
-      ]),
+      whatsappState(){
+        return {
+          loadingWhatsAppTemplates: whatsapp_store().loadingWhatsAppTemplates,
+          errorWhatsAppTemplates: whatsapp_store().errorWhatsAppTemplates,
+          whatsAppTemplates: whatsapp_store().whatsAppTemplates
+        }
+      },
       tableItems() {
-        return this.whatsAppTemplates?.results || [];
+        return this.whatsappState.whatsAppTemplates?.results || [];
       },
       totalCount() {
-        return this.whatsAppTemplates?.count || this.pageSize;
+        return this.whatsappState.whatsAppTemplates?.count || this.pageSize;
       },
       pageCount() {
-        if (this.whatsAppTemplates?.count) {
-          return Math.ceil(this.whatsAppTemplates.count / this.pageSize);
+        if (this.whatsappState.whatsAppTemplates?.count) {
+          return Math.ceil(this.whatsappState.whatsAppTemplates.count / this.pageSize);
         } else {
           return 1;
         }
@@ -275,7 +276,7 @@
       },
       currentPageCount() {
         const value = this.pageSize * this.page;
-        return value > this.whatsAppTemplates?.count ? this.whatsAppTemplates?.count || 0 : value;
+        return value > this.whatsappState.whatsAppTemplates?.count ? this.whatsappState.whatsAppTemplates?.count || 0 : value;
       },
       startDateObject() {
         return this.startDate && new Date(this.startDate.replace('-', ' '));
@@ -291,7 +292,6 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['getWhatsAppTemplates']),
       fetchData: debounce(async function ({ page }) {
         const { appUuid } = this.$route.params;
         const params = {
@@ -331,9 +331,9 @@
           }
         }
 
-        await this.getWhatsAppTemplates({ appUuid, params });
+        await whatsapp_store().getWhatsAppTemplates({ appUuid, params });
 
-        if (this.errorWhatsAppTemplates) {
+        if (this.whatsappState.errorWhatsAppTemplates) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
@@ -363,7 +363,7 @@
           .replaceAll('.', '');
       },
       dropdownPosition(item) {
-        const templates = this.whatsAppTemplates?.results || [];
+        const templates = this.whatsappState.whatsAppTemplates?.results || [];
         return templates.findIndex((template) => template.uuid === item.uuid) > 1
           ? 'top-left'
           : 'bottom-left';
@@ -510,4 +510,8 @@
       }
     }
   }
-</style>
+</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+
