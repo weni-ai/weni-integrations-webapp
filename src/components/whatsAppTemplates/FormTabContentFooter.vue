@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'FormTabContentFooter',
@@ -27,7 +27,9 @@
       },
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      templateTranslationCurrentForm(){
+        return whatsapp_store().templateTranslationCurrentForm
+      }
     },
   };
 </script>
@@ -57,3 +59,4 @@
     }
   }
 </style>
+
