@@ -40,12 +40,35 @@
 
       <app-grid section="bi-tools" type="view" :loading="false" :apps="filteredBiApps" />
     </div>
+    <div
+      v-else-if="
+        searchTerm &&
+        !filteredApps.length &&
+        !filteredExternalServices.length &&
+        !filteredBiApps.length
+      "
+    >
+      <EmptyApps :term="searchTerm" />
+    </div>
+
+    <div v-if="searchTerm" class="discovery-content__recommended">
+      <app-grid
+        section="recommended"
+        type="add"
+        :loading="loadingFeaturedApps"
+        :apps="featuredApps"
+      />
+    </div>
+    <OnboardModal />
   </div>
 </template>
 
 <script>
   import { insights_store } from '@/stores/modules/insights.store';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import AppGrid from '@/components/AppGrid/index.vue';
+  import OnboardModal from '@/components/OnboardModal/index.vue';
+  import EmptyApps from '@/components/EmptyApps/index.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
