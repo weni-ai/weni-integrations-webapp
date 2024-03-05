@@ -68,12 +68,12 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
   import { toBase64 } from '@/utils/files.js';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'TranslationSampleForm',
@@ -100,7 +100,9 @@
       this.formattedBody = this.templateTranslationCurrentForm.body;
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      templateTranslationCurrentForm(){
+        return whatsapp_store().templateTranslationCurrentForm
+      },
       variableCount() {
         return countVariables(this.templateTranslationCurrentForm.body);
       },
@@ -296,3 +298,4 @@
     }
   }
 </style>
+

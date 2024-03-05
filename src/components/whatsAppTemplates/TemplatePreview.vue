@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   export default {
     name: 'TemplatePreview',
     props: {
@@ -329,6 +330,5 @@
       }
     }
   }
-</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+</style>
 
