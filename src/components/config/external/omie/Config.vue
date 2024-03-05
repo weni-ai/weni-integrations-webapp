@@ -66,9 +66,8 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-import { app_type } from '@/stores/modules/appType/appType.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'omie-config',
@@ -96,8 +95,6 @@ import { app_type } from '@/stores/modules/appType/appType.store';
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
-
       async saveConfig() {
         const data = {
           code: this.app.code,
