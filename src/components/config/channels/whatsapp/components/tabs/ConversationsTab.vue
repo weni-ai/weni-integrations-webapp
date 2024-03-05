@@ -140,8 +140,10 @@
 <script>
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
   import removeEmpty from '../../../../../../utils/clean';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { insights_store } from '@/stores/modules/insights.store';
 
   export default {
     name: 'ConversationsTab',
@@ -196,16 +198,18 @@
       });
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-      }),
-      ...mapState('WhatsApp', [
-        'whatsAppConversations',
-        'loadingConversations',
-        'errorConversations',
-        'loadingConversationsReport',
-        'errorConversationsReport',
-      ]),
+      project(){
+        return auth_store().project
+      },
+      whatsAppConversations(){
+        return whatsapp_store().whatsAppConversations
+      },
+      loadingAppConversations(){
+        return whatsapp_store().loadingAppConversations
+      },
+      errorConversationsReport(){
+        return whatsapp_store().errorConversationsReport
+      },
       startDateObject() {
         return this.startDate && new Date(this.startDate.replace('-', ' '));
       },
@@ -257,8 +261,6 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
-      ...mapActions('insights', ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -268,7 +270,7 @@
           end: event.endDate,
         };
 
-        await this.getConversations({
+        await whatsapp_store().getConversations({
           code: this.app.code,
           appUuid: this.app.uuid,
           params,
@@ -301,7 +303,7 @@
           end_date: this.endDate,
         });
 
-        await this.requestConversationsReport({
+        await whatsapp_store().requestConversationsReport({
           code: this.app.code,
           appUuid: this.app.uuid,
           params,
@@ -345,7 +347,7 @@
         });
       },
       navigateToInsights() {
-        this.setAppUuid({ appUuid: this.app.uuid });
+        insights_store().setAppUuid({ appUuid: this.app.uuid });
         this.$router.replace('/insights');
       },
     },
@@ -464,3 +466,4 @@
     }
   }
 </style>
+
