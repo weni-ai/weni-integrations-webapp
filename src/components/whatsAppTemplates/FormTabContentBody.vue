@@ -34,6 +34,7 @@
 
 <script>
   import InputEditor from '@/components/whatsAppTemplates/InputEditor';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   import {
     countVariables,
@@ -213,5 +214,5 @@
       }
     }
   }
-</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+</style>
 

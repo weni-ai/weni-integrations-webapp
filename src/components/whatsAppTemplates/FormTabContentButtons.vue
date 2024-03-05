@@ -201,10 +201,10 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
   import { countVariables } from '@/utils/countTemplateVariables.js';
   import BaseInput from '../BaseInput/index.vue';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store'
 
   export default {
     name: 'FormTabContentButtons',
@@ -257,7 +257,9 @@
       };
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      templateTranslationCurrentForm(){
+        return whatsapp_store().templateTranslationCurrentForm
+      },
       buttonsType() {
         if (!this.templateTranslationCurrentForm.buttons?.length) {
           return '';
@@ -573,3 +575,4 @@
     }
   }
 </style>
+

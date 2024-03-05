@@ -107,6 +107,3 @@
     }
   }
 </style>
-import { app_type } from '@/stores/modules/appType/appType.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-app_type, 

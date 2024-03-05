@@ -441,10 +441,5 @@
       }
     }
   }
-</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+</style>
 
