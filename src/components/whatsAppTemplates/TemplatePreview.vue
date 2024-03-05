@@ -71,8 +71,6 @@
 </template>
 
 <script>
-  import { mapGetters, mapState } from 'vuex';
-
   export default {
     name: 'TemplatePreview',
     props: {
@@ -90,10 +88,12 @@
       },
     },
     computed: {
-      ...mapGetters('WhatsApp', {
-        currentForm: 'templateTranslationCurrentForm',
-      }),
-      ...mapState('WhatsApp', ['loadingFetchWhatsAppTemplate']),
+      currentForm(){
+        return whatsapp_store().currentForm
+      },
+      loadingFetchWhatsAppTemplate(){
+        return whatsapp_store().loadingFetchWhatsAppTemplate;
+      },
       hasHeader() {
         if (!this.currentForm) {
           return false;
@@ -329,4 +329,6 @@
       }
     }
   }
-</style>
+</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+
