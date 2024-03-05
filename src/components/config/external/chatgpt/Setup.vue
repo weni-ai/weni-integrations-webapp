@@ -80,8 +80,9 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'ChatGPTModal',
@@ -100,14 +101,17 @@
       };
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-      }),
+      project(){
+        return auth_store().project
+      },
+      loadingCreateApp(){
+        return app_type().loadingCreateApp
+      },
+      errorCreateApp(){
+        return app_type().errorCreateApp
+      }
     },
     methods: {
-      ...mapActions(['createApp']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -119,7 +123,7 @@
           ai_model: this.selectedVersion,
         };
 
-        await this.createApp({ code: this.app.code, payload });
+        await app_type().createApp({ code: this.app.code, payload });
 
         if (this.errorCreateApp) {
           this.callModal({
@@ -215,3 +219,4 @@
     }
   }
 </style>
+

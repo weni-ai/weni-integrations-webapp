@@ -92,11 +92,11 @@
 
 <script>
   import axios from 'axios';
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
+  import {app_type} from '@/stores/modules/appType/appType.store'
 
   export default {
     name: 'FacebookSetup',
@@ -129,14 +129,24 @@
       window.changeLoginState = this.changeLoginState;
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        createAppResponse: (state) => state.appType.createAppResponse,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
+      project(){
+        return auth_store().project
+      },
+      createAppResponse(){
+        return app_type().createAppResponse
+      },
+      loadingCreateApp(){
+        return app_type().loadingCreateApp
+      },
+      errorCreateApp(){
+        return app_type().errorCreateApp
+      },
+      loadingUpdateAppConfig(){
+        return app_type().loadingUpdateAppConfig
+      },
+      errorUpdateAppConfig(){
+        return app_type().errorUpdateAppConfig
+      },
       integrationName() {
         const nameMap = {
           ig: 'instagram',
@@ -154,7 +164,6 @@
       },
     },
     methods: {
-      ...mapActions(['createApp', 'updateAppConfig', 'deleteApp']),
       handlePageSelection(page) {
         this.selectedPage = page;
         this.selectKey += 1;
@@ -221,7 +230,7 @@
           return;
         }
 
-        await this.createApp({ code: this.app.code, payload: { project_uuid: this.project } });
+        await app_type().createApp({ code: this.app.code, payload: { project_uuid: this.project } });
         if (this.errorCreateApp) {
           this.callModal({
             type: 'Error',
@@ -245,14 +254,14 @@
           },
         };
 
-        await this.updateAppConfig(data);
+        await app_type().updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
           this.callModal({
             type: 'Error',
             text: this.$t(`${this.integrationName}.setup.update_app.error`),
           });
-          await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
+          await app_type().deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
         }
 

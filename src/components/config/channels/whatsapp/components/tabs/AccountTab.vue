@@ -116,8 +116,9 @@
 <script>
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { my_apps } from '@/stores/modules/myApps.store';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
 
   export default {
     name: 'AccountTab',
@@ -146,8 +147,6 @@
       };
     },
     methods: {
-      ...mapActions(['getConfiguredApps']),
-      ...mapActions('ecommerce', ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
       },
@@ -203,7 +202,7 @@
           },
         };
 
-        await this.connectVtexCatalog(data);
+        await ecommerce_store().connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
           this.callAlert({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
@@ -220,7 +219,7 @@
           const params = {
             project_uuid: this.project,
           };
-          await this.getConfiguredApps({ params, skipLoading: true });
+          await app_type().getConfiguredApps({ params, skipLoading: true });
 
           if (!this.configuredApps) return;
         }
@@ -242,11 +241,18 @@
       },
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        configuredApps: (state) => state.myApps.configuredApps,
-      }),
-      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      project(){
+        return auth_store().project
+      },
+      configuredApps(){
+        return my_apps().configuredApps
+      },
+      loadingConnectVtexCatalog(){
+        return ecommerce_store().loadingConnectVtexCatalog
+      },
+      errorConnectVtexCatalog(){
+        return ecommerce_store().errorConnectVtexCatalog
+      },
       QRCodeUrl() {
         return `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
           this.WAUrl,
@@ -491,3 +497,4 @@
     }
   }
 </style>
+
