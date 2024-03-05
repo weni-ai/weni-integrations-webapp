@@ -24,7 +24,7 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import LoadingButton from '../LoadingButton/index.vue';
   import getEnv from '../../utils/env';
-  import { app_type } from '@/src/stores/modules/appType/appType.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
 
   export default {

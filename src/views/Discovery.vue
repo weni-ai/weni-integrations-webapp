@@ -13,7 +13,7 @@
         {{ `“${searchTerm}”...` }}
       </span>
     </span>
-    <div v-if="true" class="discovery-content__grids">
+    <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
       <app-grid
         ref="appGrid"
         section="channel"

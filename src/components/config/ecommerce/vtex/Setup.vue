@@ -172,10 +172,11 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
 
   export default {
     name: 'VtexModal',
@@ -202,25 +203,36 @@
     },
     mounted() {
       this.getWhatsAppChannels();
-      this.getVtexAppUuid({ code: this.app.code });
+      ecommerce_store().getVtexAppUuid({ code: this.app.code });
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        configuredApps: (state) => state.myApps.configuredApps,
-        errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-      }),
-      ...mapState('ecommerce', ['generatedVtexAppUuid', 'errorVtexAppUuid']),
+      project(){
+        return auth_store().project
+      },
+      configuredApps(){
+        return my_apps().configuredApps
+      },
+      errorConfiguredApps(){
+        return my_apps().errorConfiguredApps
+      },
+      loadingCreateApp(){
+        return app_type().loadingCreateApp
+      },
+      errorCreateApp(){
+        return app_type().errorCreateApp
+      },
+      generatedVtexAppUuid(){
+        return ecommerce_store().generatedVtexAppUuid
+      },
+      errorVtexAppUuid(){
+        return ecommerce_store().errorVtexAppUuid
+      },
       webhookUrl() {
         const backendUrl = getEnv('VUE_APP_API_BASE_URL');
         return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid}/products-update/api/notification/`;
       },
     },
     methods: {
-      ...mapActions(['createApp', 'getConfiguredApps']),
-      ...mapActions('ecommerce', ['getVtexAppUuid']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -254,7 +266,7 @@
           },
         };
 
-        await this.createApp(data);
+        await app_type().createApp(data);
 
         if (this.errorCreateApp) {
           if (
@@ -277,7 +289,7 @@
         const params = {
           project_uuid: this.project,
         };
-        await this.getConfiguredApps({ params });
+        await app_type().getConfiguredApps({ params });
 
         if (this.errorConfiguredApps) {
           this.callModal({
@@ -498,3 +510,4 @@
     }
   }
 </style>
+
