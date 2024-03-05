@@ -288,7 +288,6 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
@@ -441,7 +440,6 @@
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig', 'getApp']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -615,7 +613,7 @@
             throw new Error(this.appTypeState.errorUpdateAppConfig);
           }
 
-          await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
+          await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
 
           if (this.appTypeState.errorCurrentApp) {
             throw new Error(this.appTypeState.errorCurrentApp);
