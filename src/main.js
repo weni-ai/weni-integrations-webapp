@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import Unnnic from '@weni/unnnic-system';
+import Unnnic from './utils/plugins/UnnnicSystem';
 import '@weni/unnnic-system/dist/unnnic.css';
 import i18n from './utils/plugins/i18n';
 import * as vueUse from '@vueuse/components';
