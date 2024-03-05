@@ -33,7 +33,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
   import InputEditor from '@/components/whatsAppTemplates/InputEditor';
 
   import {
@@ -62,7 +61,9 @@
       };
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      templateTranslationCurrentForm(){
+        return whatsapp_store().templateTranslationCurrentForm
+      },
       bodyContent() {
         return this.templateTranslationCurrentForm?.body || '';
       },
@@ -212,4 +213,5 @@
       }
     }
   }
-</style>
+</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+
