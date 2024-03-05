@@ -144,6 +144,7 @@
   import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
   import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
   import TableSort from '@/components/whatsAppTemplates/TableSort';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'Table',
@@ -510,8 +511,5 @@
       }
     }
   }
-</style>import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+</style>
 

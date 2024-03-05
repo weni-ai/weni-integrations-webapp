@@ -21,8 +21,8 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { insights_store } from '@/stores/modules/insights.store';
 
   export default {
     name: 'TableActionButton',
@@ -65,8 +65,8 @@
             scheme: 'neutral-darkest',
             action: () => {
               const { appUuid, appCode } = this.$route.params;
-              this.setAppUuid({ appUuid: appUuid });
-              this.setSelectedTemplate({ template: this.data });
+              insights_store().setAppUuid({ appUuid: appUuid });
+              insights_store().setSelectedTemplate({ template: this.data });
               this.$router.push({
                 path: `/apps/my/${appCode}/${appUuid}/templates/template-details`,
                 hash: `#${this.data.uuid}`,
@@ -80,7 +80,7 @@
             scheme: 'feedback-red',
             action: /* istanbul ignore next */ async () => {
               const { appUuid } = this.$route.params;
-              await this.deleteTemplateMessage({ appUuid, templateUuid: this.templateUuid });
+              await whatsapp_store().deleteTemplateMessage({ appUuid, templateUuid: this.templateUuid });
 
               if (this.errorDeleteTemplateMessage) {
                 let errorMsg = this.$t('WhatsApp.templates.error.delete_template');
@@ -108,12 +108,10 @@
         ],
       };
     },
-    methods: {
-      ...mapActions('WhatsApp', ['deleteTemplateMessage']),
-      ...mapActions('insights', ['setSelectedTemplate', 'setAppUuid']),
-    },
     computed: {
-      ...mapState('WhatsApp', ['errorDeleteTemplateMessage']),
+      errorDeleteTemplateMessage(){
+        return whatsapp_store().errorDeleteTemplateMessage
+      }
     },
   };
 </script>
@@ -139,3 +137,5 @@
     }
   }
 </style>
+
+
