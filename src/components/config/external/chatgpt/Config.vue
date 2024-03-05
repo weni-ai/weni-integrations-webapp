@@ -159,7 +159,6 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { mapActions, mapState } from 'vuex';
   import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
