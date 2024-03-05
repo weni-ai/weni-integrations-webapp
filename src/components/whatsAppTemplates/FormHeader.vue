@@ -1,9 +1,9 @@
 <template>
   <div class="form-header">
-    <FormHeaderLoading v-if="loadingCurrentAppType" />
+    <FormHeaderLoading v-if="appTypeState.loadingCurrentAppType" />
     <div v-else class="form-header__wrapper">
       <div class="form-header__icon">
-        <img :src="currentAppType.icon" />
+        <img :src="appTypeState.currentAppType.icon" />
       </div>
       <span class="form-header__title">{{ title }}</span>
       <unnnic-tag
@@ -17,8 +17,9 @@
 </template>
 
 <script>
-  import { mapActions, mapState, mapGetters } from 'vuex';
   import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading';
+  import {app_type} from '@/stores/modules/appType/appType.store'
+  import {whatsapp_store} from '@/stores/modules/appType/channels/whatsapp.store'
 
   export default {
     name: 'FormHeader',
@@ -34,11 +35,15 @@
       this.fetchData();
     },
     computed: {
-      ...mapState({
-        currentAppType: (state) => state.appType.currentAppType,
-        loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
-      }),
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      appTypeState() {
+        return {
+          currentAppType: app_type().currentAppType,
+          loadingCurrentAppType: app_type().loadingCurrentAppType,
+        };
+      },
+      templateTranslationCurrentForm(){
+        return whatsapp_store().templateTranslationCurrentForm;
+      },
       templateStatusScheme() {
         switch (this.templateTranslationCurrentForm.status) {
           case 'APPROVED':
@@ -54,10 +59,9 @@
       },
     },
     methods: {
-      ...mapActions(['getAppType']),
       fetchData() {
         const { appCode } = this.$route.params;
-        this.getAppType({ code: appCode, shouldLoad: true });
+        app_type().getAppType({ code: appCode, shouldLoad: true });
       },
     },
   };
@@ -103,3 +107,6 @@
     }
   }
 </style>
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+app_type, 
