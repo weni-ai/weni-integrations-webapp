@@ -14,7 +14,7 @@
       </span>
     </span>
     <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
-      <app-grid
+      <AppGrid
         ref="appGrid"
         section="channel"
         type="add"
@@ -22,7 +22,7 @@
         @update="fetchChannels"
       />
 
-      <app-grid
+      <AppGrid
         section="ecommerce"
         type="add"
         :loading="loadingEcommerceApps"
@@ -30,7 +30,7 @@
         @update="fetchEcommerceApps"
       />
 
-      <app-grid
+      <AppGrid
         section="external"
         type="add"
         :loading="loadingExternalServices"
@@ -38,7 +38,7 @@
         @update="fetchExternalServices"
       />
 
-      <app-grid section="bi-tools" type="view" :loading="false" :apps="filteredBiApps" />
+      <AppGrid section="bi-tools" type="view" :loading="false" :apps="filteredBiApps" />
     </div>
     <div
       v-else-if="
@@ -52,7 +52,7 @@
     </div>
 
     <div v-if="searchTerm" class="discovery-content__recommended">
-      <app-grid
+      <AppGrid
         section="recommended"
         type="add"
         :loading="loadingFeaturedApps"
@@ -75,6 +75,12 @@
   import { unnnicCallAlert } from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
+    components:{
+      AppGrid,
+      OnboardModal,
+      PowerBiIcon,
+      EmptyApps
+    },
     data() {
       return {
         searchTerm: '',

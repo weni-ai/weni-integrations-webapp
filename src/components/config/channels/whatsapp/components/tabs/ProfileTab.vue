@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import DynamicForm from '@/components/config/DynamicForm';
+  import DynamicForm from '@/components/config/DynamicForm.vue';
   import skeletonLoading from './loadings/ProfileTab.vue';
   import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
