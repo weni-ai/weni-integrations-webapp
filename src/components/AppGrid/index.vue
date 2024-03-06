@@ -115,7 +115,7 @@
         ref="unnnic-remove-modal-navigate-button"
         slot="options"
         type="primary"
-        :isLoading="appTypeState.loadingDeleteApp"
+        :isLoading="loadingDeleteApp"
         :loadingText="$t('general.loading')"
         :text="$t('apps.details.actions.remove.remove')"
         @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
@@ -136,6 +136,7 @@
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { insights_store } from '@/stores/modules/insights.store';
+  import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',
     components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
@@ -184,6 +185,8 @@
         avatar: avatarIcons[this.section],
         action: actionIcons[this.type],
         card: cardIcons[this.type],
+        appType: storeToRefs(app_type()),
+        insights: storeToRefs(insights_store())
       };
     },
     /* istanbul ignore next */
@@ -196,11 +199,11 @@
       window.removeEventListener('resize', this.updateGridSize);
     },
     computed: {
-      appTypeState() {
-        return {
-          loadingDeleteApp: app_type().loadingDeleteApp,
-          errorDeleteApp: app_type().errorDeleteApp,
-        };
+      loadingDeleteApp(){
+        return this.appType.loadingDeleteApp
+      },
+      errorDeleteApp(){
+        return this.appType.errorDeleteApp
       },
       typeAction() {
         if (this.type === 'view') {
@@ -233,9 +236,9 @@
         this.showRemoveModal = !this.showRemoveModal;
       },
       async removeApp(code, appUuid) {
-        await app_type().deleteApp({ code, appUuid });
+        await appType.deleteApp({ code, appUuid });
 
-        if (this.appTypeState.errorDeleteApp) {
+        if (this.errorDeleteApp) {
           this.callErrorModal({ text: this.$t('apps.details.status_error') });
           return;
         }
@@ -357,4 +360,7 @@
 
 <style lang="scss" scoped>
   @import '../styles/grid.scss';
-</style>
+</style>import insights from '@/api/insights';
+storeToRefs, insights_store, import appType from '@/api/appType';
+import appType from '@/api/appType';
+
