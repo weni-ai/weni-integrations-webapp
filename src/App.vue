@@ -1,13 +1,12 @@
-
 <template>
   <RouterView />
   <div class="survey-container">
     <Survey />
   </div>
-</template> 
+</template>
 
 <script>
-   import '@weni/unnnic-system';
+  import '@weni/unnnic-system';
   import Survey from '@/components/Survey/index.vue';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';

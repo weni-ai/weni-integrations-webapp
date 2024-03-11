@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { createApp, markRaw} from 'vue';
+import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
 import Unnnic from '@weni/unnnic-system';
 import '@weni/unnnic-system/dist/unnnic.css';
@@ -10,7 +10,6 @@ import * as Integrations from '@sentry/integrations';
 import LogRocket from 'logrocket';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
-
 
 import App from './App.vue';
 import router from './router';
@@ -44,11 +43,11 @@ if (getEnv('VITE_APP_LOGROCKET_ID')) {
   });
 }
 
-const pinia = createPinia()
+const pinia = createPinia();
 pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
-pinia.use(createPersistedState)
+pinia.use(createPersistedState);
 
 app.use(pinia).use(router).use(Unnnic).use(i18n).use(vueUse);
 
