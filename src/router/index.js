@@ -19,6 +19,11 @@ const router = createRouter({
           path: 'my',
           component: () => import('@/views/MyApps/index.vue'),
         },
+        {
+          name: 'Other Apps',
+          path: 'other-apps',
+          component: () => import('@/views/OtherApps/index.vue'),
+        },
       ],
     },
     {
