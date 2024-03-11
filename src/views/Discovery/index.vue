@@ -14,7 +14,7 @@
       </span>
     </span>
     <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
-      <AppGrid 
+      <AppGrid
         ref="appGrid"
         section="channel"
         type="add"
@@ -73,14 +73,13 @@
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { storeToRefs } from 'pinia'
+  import { storeToRefs } from 'pinia';
   export default {
     name: 'Discovery',
-    components:{
+    components: {
       AppGrid,
       OnboardModal,
-      PowerBiIcon,
-      EmptyApps
+      EmptyApps,
     },
     data() {
       return {
@@ -102,7 +101,7 @@
         ],
         appType: storeToRefs(app_type()),
         externals: storeToRefs(externals_store()),
-        ecommerce: storeToRefs(ecommerce_store())
+        ecommerce: storeToRefs(ecommerce_store()),
       };
     },
     async mounted() {
@@ -121,41 +120,37 @@
       app_type().fetchFeatured();
     },
     computed: {
-      allAppTypes(){
-        return this.appType.allAppTypes
+      allAppTypes() {
+        return this.appType.allAppTypes;
       },
-      loadingAllAppTypes(){
-        return this.appType.loadingAllAppTypes
+      loadingAllAppTypes() {
+        return this.appType.loadingAllAppTypes;
       },
-      errorAllAppTypes(){
-        return this.appType.errorAllAppTypes
+      errorAllAppTypes() {
+        return this.appType.errorAllAppTypes;
       },
-      featuredApps(){
-        return this.appType.featuredApps
+      featuredApps() {
+        return this.appType.featuredApps;
       },
-      loadingFeaturedApps(){
-        return this.appType.loadingFeaturedApps
+      loadingFeaturedApps() {
+        return this.appType.loadingFeaturedApps;
       },
-      loadingExternalServices(){
-        return this.externals.loadingExternalServices
+      loadingExternalServices() {
+        return this.externals.loadingExternalServices;
       },
-      externalServicesList(){
-        return this.externals.externalServicesList
+      externalServicesList() {
+        return this.externals.externalServicesList;
       },
-      loadingEcommerceApps(){
-        return this.ecommerce.loadingEcommerceApps
+      loadingEcommerceApps() {
+        return this.ecommerce.loadingEcommerceApps;
       },
-      ecommerceAppsList(){
-        return this.ecommerce.ecommerceAppsList
+      ecommerceAppsList() {
+        return this.ecommerce.ecommerceAppsList;
       },
       searchOptions() {
         if (!this.allAppTypes || !this.externalServicesList) return [];
 
-        const allApps = [
-          ...this.allAppTypes,
-          ...this.externalServicesList,
-          ...this.biApps,
-        ];
+        const allApps = [...this.allAppTypes, ...this.externalServicesList, ...this.biApps];
 
         const filtered = allApps.filter((app) => {
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
@@ -177,8 +172,7 @@
       filteredExternalServices() {
         if (!this.externalServicesList) return [];
 
-        if (!this.searchTerm || !this.searchTerm.trim())
-          return this.externalServicesList;
+        if (!this.searchTerm || !this.searchTerm.trim()) return this.externalServicesList;
 
         return this.externalServicesList.filter((app) => {
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
@@ -187,8 +181,7 @@
       filteredEcommerceApps() {
         if (!this.ecommerceAppsList) return [];
 
-        if (!this.searchTerm || !this.searchTerm.trim())
-          return this.ecommerceAppsList;
+        if (!this.searchTerm || !this.searchTerm.trim()) return this.ecommerceAppsList;
 
         return this.ecommerceAppsList.filter((app) => {
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
@@ -249,8 +242,6 @@
 
 <style lang="scss" scoped>
   @import './styles.scss';
-</style>storeToRefs, app_type, app_type, import appType from '@/api/appType';
-import appType from '@/api/appType';
-import appType from '@/api/appType';
-import appType from '@/api/appType';
-
+</style>
+storeToRefs, app_type, app_type, import appType from '@/api/appType'; import appType from
+'@/api/appType'; import appType from '@/api/appType'; import appType from '@/api/appType';
