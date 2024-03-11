@@ -27,6 +27,11 @@ const router = createRouter({
       ],
     },
     {
+      name: 'App Details',
+      path: '/apps/:appCode/details',
+      component: () => import('@/views/AppDetails/index.vue'),
+    },
+    {
       path: '/loginexternal/:token/:project/:flowOrg',
       name: 'externalLogin',
       component: null,
