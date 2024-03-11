@@ -15,7 +15,6 @@
     </span>
     <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
       <AppGrid
-      <AppGrid
         ref="appGrid"
         section="channel"
         type="add"
@@ -100,9 +99,6 @@
             icon: PowerBiIcon,
           },
         ],
-        appType: storeToRefs(app_type()),
-        externals: storeToRefs(externals_store()),
-        ecommerce: storeToRefs(ecommerce_store()),
       };
     },
     async mounted() {
@@ -228,5 +224,3 @@
 <style lang="scss" scoped>
   @import './styles.scss';
 </style>
-storeToRefs, app_type, app_type, import appType from '@/api/appType'; import appType from
-'@/api/appType'; import appType from '@/api/appType'; import appType from '@/api/appType';
