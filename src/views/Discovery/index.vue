@@ -15,6 +15,7 @@
     </span>
     <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
       <AppGrid
+      <AppGrid
         ref="appGrid"
         section="channel"
         type="add"
@@ -73,7 +74,7 @@
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { storeToRefs } from 'pinia';
+  import { mapState, mapActions } from 'pinia';
   export default {
     name: 'Discovery',
     components: {
@@ -120,33 +121,14 @@
       app_type().fetchFeatured();
     },
     computed: {
-      allAppTypes() {
-        return this.appType.allAppTypes;
-      },
-      loadingAllAppTypes() {
-        return this.appType.loadingAllAppTypes;
-      },
-      errorAllAppTypes() {
-        return this.appType.errorAllAppTypes;
-      },
-      featuredApps() {
-        return this.appType.featuredApps;
-      },
-      loadingFeaturedApps() {
-        return this.appType.loadingFeaturedApps;
-      },
-      loadingExternalServices() {
-        return this.externals.loadingExternalServices;
-      },
-      externalServicesList() {
-        return this.externals.externalServicesList;
-      },
-      loadingEcommerceApps() {
-        return this.ecommerce.loadingEcommerceApps;
-      },
-      ecommerceAppsList() {
-        return this.ecommerce.ecommerceAppsList;
-      },
+      ...mapState(app_type, [
+        'allAppTypes',
+        'errorAllAppTypes',
+        'featuredApps',
+        'loadingFeaturedApps',
+      ]),
+      ...mapState(externals_store, ['loadingExternalServices', 'externalServicesList']),
+      ...mapState(ecommerce_store, ['loadingEcommerceApps', 'ecommerceAppsList']),
       searchOptions() {
         if (!this.allAppTypes || !this.externalServicesList) return [];
 
@@ -204,6 +186,9 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['getAllAppTypes', 'fetchFeatured']),
+      ...mapActions(externals_store, ['getExternalServicesTypes']),
+      ...mapActions(ecommerce_store, ['getEcommerceTypes']),
       async fetchChannels() {
         const params = {
           category: 'channel',
