@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`App/index.vue should be rendered properly 1`] = `
-<div class="container">
-  <carousel-stub></carousel-stub>
-  <navbar-stub></navbar-stub>
-  <router-view-stub name="default"></router-view-stub>
-</div>
-`;

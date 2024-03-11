@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`NavBar.vue should be rendered properly 1`] = `<div id="topnav"><a class="link">some specific text</a> <a class="link">some specific text</a> <a class="link">some specific text</a></div>`;

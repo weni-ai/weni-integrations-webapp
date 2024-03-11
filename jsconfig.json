@@ -1,1 +1,9 @@
-{ "typeAcquisition": { "include": ["jest"] } }
+{
+  "typeAcquisition": { "include": ["jest"] },
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
