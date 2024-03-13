@@ -32,6 +32,11 @@ const router = createRouter({
       component: () => import('@/views/AppDetails/index.vue'),
     },
     {
+      name: 'Insights',
+      path: '/insights',
+      component: () => import('@/views/Insights/index.vue'),
+    },
+    {
       path: '/loginexternal/:token/:project/:flowOrg',
       name: 'externalLogin',
       component: null,
