@@ -37,6 +37,46 @@ const router = createRouter({
       component: () => import('@/views/Insights/index.vue'),
     },
     {
+      path: '/apps/my/:appCode/:appUuid/templates',
+      component: () => import('@/views/whatsAppTemplates/Base.vue'),
+      children: [
+        {
+          name: 'WhatsApp Templates Table',
+          path: '',
+          component: () => import('@/views/whatsAppTemplates/Table.vue'),
+          meta: {
+            crumb_title: 'WhatsApp.templates.table.crumb_title',
+          },
+          children: [
+            {
+              name: 'Create Template',
+              path: 'create',
+              component: () => import('@/views/whatsAppTemplates/Form.vue'),
+              meta: {
+                crumb_title: 'WhatsApp.templates.create_form.crumb_title',
+              },
+            },
+            {
+              name: 'Edit Template',
+              path: 'edit/:templateUuid',
+              component: () => import('@/views/whatsAppTemplates/Form.vue'),
+              meta: {
+                crumb_title: 'WhatsApp.templates.edit_form.crumb_title',
+              },
+            },
+            {
+              name: 'Template Details',
+              path: 'template-details',
+              component: () => import('@/views/TemplateDetails/index.vue'),
+              meta: {
+                crumb_title: 'WhatsApp.template_details.crumbs.template_details',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
       path: '/loginexternal/:token/:project/:flowOrg',
       name: 'externalLogin',
       component: null,
