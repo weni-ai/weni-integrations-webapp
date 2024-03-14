@@ -994,4 +994,3 @@
     cursor: pointer;
   }
 </style>
-app_type,app_type, 
