@@ -71,7 +71,9 @@
 </template>
 
 <script>
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { mapGetters, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+
   export default {
     name: 'TemplatePreview',
     props: {
@@ -89,12 +91,10 @@ import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store
       },
     },
     computed: {
-      currentForm(){
-        return whatsapp_store().currentForm
-      },
-      loadingFetchWhatsAppTemplate(){
-        return whatsapp_store().loadingFetchWhatsAppTemplate;
-      },
+      ...mapGetters(whatsapp_store, {
+        currentForm: 'templateTranslationCurrentForm',
+      }),
+      ...mapState(whatsapp_store, ['loadingFetchWhatsAppTemplate']),
       hasHeader() {
         if (!this.currentForm) {
           return false;
@@ -331,4 +331,3 @@ import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store
     }
   }
 </style>
-
