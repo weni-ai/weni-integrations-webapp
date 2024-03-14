@@ -76,7 +76,7 @@
 
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
-
+  import { mapActions, mapState } from 'pinia';
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { generic_store } from '@/stores/modules/appType/channels/generic.store';
@@ -120,23 +120,14 @@
       await this.fetchAppData();
     },
     computed: {
-      appTypeState() {
-        return {
-          currentApp: app_type().currentApp,
-          loadingCurrentApp: app_type().loadingCurrentApp,
-          errorCurrentApp: app_type().errorCurrentApp,
-          loadingUpdateAppConfig: app_type().loadingUpdateAppConfig,
-          errorUpdateAppConfig: app_type().errorUpdateAppConfig,
-        };
-      },
-      genericState() {
-        return {
-          loadingAppForm: generic_store().loadingAppForm,
-          errorAppForm: generic_store().errorAppForm,
-          genericAppForm: generic_store().genericAppForm,
-          genericAppAttributes: generic_store().genericAppAttributes,
-        };
-      },
+      ...mapState(app_type, [
+        'currentApp',
+        'loadingCurrentApp',
+        'errorCurrentApp',
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
+      ]),
+      ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
       appDescription() {
         const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
         return this.$te(i18nkey) ? this.$t(i18nkey) : this.app.config.channel_claim_blurb;
@@ -146,19 +137,21 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['getApp', 'updateAppConfig']),
+      ...mapActions(generic_store, ['getAppForm']),
       async fetchAppData() {
         this.loadingFormBuild = true;
         await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
         await generic_store().getAppForm({ channelCode: this.app.config.channel_code });
 
-        if (this.appTypeState.errorCurrentApp || this.genericState.errorAppForm) {
+        if (this.errorCurrentApp || this.errorAppForm) {
           this.callModal({
             type: 'Error',
             text: this.$t('GenericApp.preview.errors.fetch_app'),
           });
         }
 
-        this.appFormInputs = this.genericState.genericAppForm.flatMap((input) => {
+        this.appFormInputs = this.genericAppForm.flatMap((input) => {
           const mappedInputType = this.inputTypeMapping[input.type];
           if (!mappedInputType) {
             return [];
@@ -169,7 +162,7 @@
             name: input.name,
             label: input.label || input.help_text || input.name,
             message: input.label ? input.help_text : null,
-            value: this.appTypeState.currentApp.config[input.name] || null,
+            value: this.currentApp.config[input.name] || null,
           };
 
           if (input.type === 'select') {
