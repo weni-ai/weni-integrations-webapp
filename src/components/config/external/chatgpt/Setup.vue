@@ -80,9 +80,10 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'ChatGPTModal',
@@ -101,17 +102,11 @@
       };
     },
     computed: {
-      project(){
-        return auth_store().project
-      },
-      loadingCreateApp(){
-        return app_type().loadingCreateApp
-      },
-      errorCreateApp(){
-        return app_type().errorCreateApp
-      }
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
     },
     methods: {
+      ...mapActions(app_type, ['createApp']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -123,7 +118,7 @@
           ai_model: this.selectedVersion,
         };
 
-        await app_type().createApp({ code: this.app.code, payload });
+        await this.createApp({ code: this.app.code, payload });
 
         if (this.errorCreateApp) {
           this.callModal({
@@ -219,4 +214,3 @@
     }
   }
 </style>
-

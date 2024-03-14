@@ -140,10 +140,11 @@
 <script>
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import removeEmpty from '../../../../../../utils/clean';
+  import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { insights_store } from '@/stores/modules/insights.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import removeEmpty from '../../../../../../utils/clean';
 
   export default {
     name: 'ConversationsTab',
@@ -198,18 +199,14 @@
       });
     },
     computed: {
-      project(){
-        return auth_store().project
-      },
-      whatsAppConversations(){
-        return whatsapp_store().whatsAppConversations
-      },
-      loadingAppConversations(){
-        return whatsapp_store().loadingAppConversations
-      },
-      errorConversationsReport(){
-        return whatsapp_store().errorConversationsReport
-      },
+      ...mapState(auth_store, ['project']),
+      ...mapState(whatsapp_store, [
+        'whatsAppConversations',
+        'loadingConversations',
+        'errorConversations',
+        'loadingConversationsReport',
+        'errorConversationsReport',
+      ]),
       startDateObject() {
         return this.startDate && new Date(this.startDate.replace('-', ' '));
       },
@@ -261,6 +258,8 @@
       },
     },
     methods: {
+      ...mapActions(whatsapp_store, ['getConversations', 'requestConversationsReport']),
+      ...mapActions(insights_store, ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -270,7 +269,7 @@
           end: event.endDate,
         };
 
-        await whatsapp_store().getConversations({
+        await this.getConversations({
           code: this.app.code,
           appUuid: this.app.uuid,
           params,
@@ -303,7 +302,7 @@
           end_date: this.endDate,
         });
 
-        await whatsapp_store().requestConversationsReport({
+        await this.requestConversationsReport({
           code: this.app.code,
           appUuid: this.app.uuid,
           params,
@@ -347,7 +346,7 @@
         });
       },
       navigateToInsights() {
-        insights_store().setAppUuid({ appUuid: this.app.uuid });
+        this.setAppUuid({ appUuid: this.app.uuid });
         this.$router.replace('/insights');
       },
     },
@@ -466,4 +465,3 @@
     }
   }
 </style>
-

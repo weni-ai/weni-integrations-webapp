@@ -24,7 +24,7 @@
             type="secondary"
             size="small"
             :text="$t('general.send')"
-            :loading="surveyState.loadingSurveyAnswer"
+            :loading="loadingSurveyAnswer"
             @click="sendSurvey"
           />
         </div>
@@ -38,8 +38,9 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
   import { survey_store } from '@/stores/modules/survey.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'Survey',
@@ -50,31 +51,30 @@
       };
     },
     computed: {
-      surveyState() {
-        return {
-          surveyStatus: survey_store().surveyStatus,
-          loadingSurveyAnswer: survey_store().loadingSurveyAnswer,
-          errorSurveyAnswer: survey_store().errorSurveyAnswer,
-          surveyAnswerResult: survey_store().surveyAnswerResult,
-        };
-      },
+      ...mapState(survey_store, [
+        'surveyStatus',
+        'loadingSurveyAnswer',
+        'errorSurveyAnswer',
+        'surveyAnswerResult',
+      ]),
     },
     mounted() {
-      this.isOpen = this.surveyState.surveyStatus === 'TO_ANSWER';
+      this.isOpen = this.surveyStatus === 'TO_ANSWER';
     },
     methods: {
+      ...mapActions(survey_store, ['setSurveyStatus', 'submitSurveyAnswer']),
       closeSurvey() {
         this.isOpen = false;
-        survey_store().setSurveyStatus({ status: 'CLOSED' });
+        this.setSurveyStatus({ status: 'CLOSED' });
       },
       async sendSurvey() {
         const payload = {
           answer: this.answer,
         };
 
-        await survey_store().submitSurveyAnswer({ payload });
+        await this.submitSurveyAnswer({ payload });
 
-        if (this.surveyState.errorSurveyAnswer) {
+        if (this.errorSurveyAnswer) {
           this.callModal({
             type: 'Error',
             text: this.$t(`survey.error_submit_answer`),
@@ -83,7 +83,7 @@
         }
 
         this.isOpen = false;
-        survey_store().setSurveyStatus({ status: 'ANSWERED' });
+        this.setSurveyStatus({ status: 'ANSWERED' });
         this.answer = '';
 
         this.callModal({
@@ -94,8 +94,8 @@
       toggleContent() {
         this.isOpen = !this.isOpen;
 
-        if (this.surveyState.surveyStatus !== 'ANSWERED') {
-          survey_store().setSurveyStatus({ status: this.isOpen ? 'TO_ANSWER' : 'CLOSED' });
+        if (this.surveyStatus !== 'ANSWERED') {
+          this.setSurveyStatus({ status: this.isOpen ? 'TO_ANSWER' : 'CLOSED' });
         }
       },
       callModal({ text, type }) {
