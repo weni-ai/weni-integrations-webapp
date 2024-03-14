@@ -288,12 +288,13 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
-  import { app_type } from '@/stores/modules/appType/appType.store';
 
   export default {
     name: 'wwc-config',
@@ -363,15 +364,13 @@
       }
     },
     computed: {
-      appTypeState() {
-        return {
-          loadingUpdateAppConfig: app_type().loadingUpdateAppConfig,
-          errorUpdateAppConfig: app_type().errorUpdateAppConfig,
-          currentApp: app_type().currentApp,
-          loadingCurrentApp: app_type().loadingCurrentApp,
-          errorCurrentApp: app_type().errorCurrentApp,
-        };
-      },
+      ...mapState(app_type, [
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
+        'currentApp',
+        'loadingCurrentApp',
+        'errorCurrentApp',
+      ]),
       avatarFiles: {
         get() {
           return this.avatarFile ? [this.avatarFile] : [];
@@ -436,10 +435,11 @@
             `;
       },
       loadingSave() {
-        return this.appTypeState.loadingUpdateAppConfig || this.appTypeState.loadingCurrentApp;
+        return this.loadingUpdateAppConfig || this.loadingCurrentApp;
       },
     },
     methods: {
+      ...mapActions(app_type, ['updateAppConfig', 'getApp']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -607,19 +607,19 @@
 
         try {
           const firstSave = !this.scriptCode;
-          await app_type().updateAppConfig(reqData);
+          await this.updateAppConfig(reqData);
 
-          if (this.appTypeState.errorUpdateAppConfig) {
-            throw new Error(this.appTypeState.errorUpdateAppConfig);
+          if (this.errorUpdateAppConfig) {
+            throw new Error(this.errorUpdateAppConfig);
           }
 
-          await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
+          await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
 
-          if (this.appTypeState.errorCurrentApp) {
-            throw new Error(this.appTypeState.errorCurrentApp);
+          if (this.errorCurrentApp) {
+            throw new Error(this.errorCurrentApp);
           }
 
-          this.app.config = this.appTypeState.currentApp.config;
+          this.app.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
@@ -994,3 +994,4 @@
     cursor: pointer;
   }
 </style>
+app_type,app_type, 
