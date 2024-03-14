@@ -116,7 +116,7 @@
 <script>
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
