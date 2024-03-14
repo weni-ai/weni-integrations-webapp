@@ -68,12 +68,13 @@
 </template>
 
 <script>
+  import { mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
   import { toBase64 } from '@/utils/files.js';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'TranslationSampleForm',
@@ -100,9 +101,7 @@
       this.formattedBody = this.templateTranslationCurrentForm.body;
     },
     computed: {
-      templateTranslationCurrentForm(){
-        return whatsapp_store().templateTranslationCurrentForm
-      },
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       variableCount() {
         return countVariables(this.templateTranslationCurrentForm.body);
       },
@@ -298,4 +297,3 @@
     }
   }
 </style>
-

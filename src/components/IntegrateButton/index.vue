@@ -22,10 +22,11 @@
   import addModal from '../AddModal/index.vue';
   import configPopUp from '../config/ConfigPopUp.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import LoadingButton from '../LoadingButton/index.vue';
-  import getEnv from '../../utils/env';
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
+  import LoadingButton from '../LoadingButton/index.vue';
+  import getEnv from '../../utils/env';
 
   export default {
     name: 'IntegrateButton',
@@ -73,17 +74,11 @@
       window.openWACloudPopUp = this.openWACloudPopUp;
     },
     computed: {
-      appTypeState() {
-        return {
-          createAppResponse: app_type().createAppResponse,
-          errorCreateApp: app_type().errorCreateApp,
-        };
-      },
-      project() {
-        return auth_store().project;
-      },
+      ...mapState(app_type, ['createAppResponse', 'errorCreateApp']),
+      ...mapState(auth_store, ['project']),
     },
     methods: {
+      ...mapActions(app_type, ['createApp']),
       async addApp(app) {
         if (this.hasFBLoginList.includes(app.code) || app.config_design === 'pre-popup') {
           this.$refs.configPopUp.openPopUp(app);
@@ -99,7 +94,7 @@
           payload.channel_code = app.code;
         }
         this.loadingCreateApp = true;
-        await app_type().createApp({ code, payload });
+        await this.createApp({ code, payload });
         this.loadingCreateApp = false;
 
         if (this.errorCreateApp) {

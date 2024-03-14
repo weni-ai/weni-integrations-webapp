@@ -115,7 +115,7 @@
         ref="unnnic-remove-modal-navigate-button"
         slot="options"
         type="primary"
-        :isLoading="appTypeState.loadingDeleteApp"
+        :isLoading="loadingDeleteApp"
         :loadingText="$t('general.loading')"
         :text="$t('apps.details.actions.remove.remove')"
         @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
@@ -134,6 +134,7 @@
   import IntegrateButton from '../IntegrateButton/index.vue';
   import LoadingButton from '../LoadingButton/index.vue';
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { insights_store } from '@/stores/modules/insights.store';
   export default {
@@ -196,12 +197,7 @@
       window.removeEventListener('resize', this.updateGridSize);
     },
     computed: {
-      appTypeState() {
-        return {
-          loadingDeleteApp: app_type().loadingDeleteApp,
-          errorDeleteApp: app_type().errorDeleteApp,
-        };
-      },
+      ...mapState(app_type, ['loadingDeleteApp', 'errorDeleteApp']),
       typeAction() {
         if (this.type === 'view') {
           return 'edit';
@@ -228,14 +224,16 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['deleteApp']),
+      ...mapActions(insights_store, ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
       },
       async removeApp(code, appUuid) {
-        await app_type().deleteApp({ code, appUuid });
+        await this.deleteApp({ code, appUuid });
 
-        if (this.appTypeState.errorDeleteApp) {
+        if (this.errorDeleteApp) {
           this.callErrorModal({ text: this.$t('apps.details.status_error') });
           return;
         }
@@ -271,7 +269,7 @@
         this.$router.push(`/apps/${code}/details`);
       },
       openAppModal(app) {
-        insights_store().setHasInsights({ isActive: app.config?.has_insights });
+        this.setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;
         }

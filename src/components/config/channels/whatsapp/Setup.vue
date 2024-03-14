@@ -37,13 +37,13 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+  import { auth_store } from '@/stores/modules/auth.store';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../..//utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'WhatsAppSetup',
@@ -68,17 +68,11 @@
       window.changeLoginState = this.changeLoginState;
     },
     computed: {
-      project(){
-        return auth_store().project
-      },
-      loadingWhatsAppCloudConfigure(){
-        return whatsapp_cloud().loadingWhatsAppCloudConfigure
-      },
-      errorCloudConfigure(){
-        return whatsapp_cloud().errorCloudConfigure
-      }
+      ...mapState(auth_store, ['project']),
+      ...mapState(whatsapp_cloud, ['loadingWhatsAppCloudConfigure', 'errorCloudConfigure']),
     },
     methods: {
+      ...mapActions(whatsapp_cloud, ['configurePhoneNumber']),
       changeLoginState(state) {
         this.onLogin = state;
       },
@@ -161,7 +155,7 @@
             auth_code: code,
           };
 
-          await whatsapp_store().configurePhoneNumber({ data });
+          await this.configurePhoneNumber({ data });
 
           if (this.errorCloudConfigure) {
             this.callErrorModal({
@@ -212,4 +206,3 @@
     }
   }
 </style>
-

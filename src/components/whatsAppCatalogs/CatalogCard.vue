@@ -49,6 +49,7 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
@@ -72,11 +73,10 @@
       };
     },
     computed: {
-      errorDisableCatalog() {
-        return whatsapp_cloud().errorDisableCatalog;
-      },
+      ...mapState(whatsapp_cloud, ['errorDisableCatalog']),
     },
     methods: {
+      ...mapActions(whatsapp_cloud, ['disableWhatsAppCloudCatalogs']),
       toggleCatalogConnect(event) {
         if (event) {
           this.$emit('enable');

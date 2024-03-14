@@ -61,6 +61,7 @@
 </template>
 
 <script>
+  import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
@@ -92,9 +93,7 @@
       this.fillEmptyHeader();
     },
     computed: {
-      templateTranslationCurrentForm(){
-        return whatsapp_store().templateTranslationCurrentForm
-      },
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
       },
@@ -199,4 +198,3 @@
     }
   }
 </style>
-

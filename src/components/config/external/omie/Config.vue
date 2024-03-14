@@ -55,7 +55,7 @@
               size="large"
               :text="$t('omie.config.connect')"
               :disabled="disabledForm"
-              :loading="appTypeState.loadingUpdateAppConfig"
+              :loading="loadingUpdateAppConfig"
               @click="saveConfig"
             />
           </div>
@@ -66,8 +66,9 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'omie-config',
@@ -87,14 +88,11 @@
       };
     },
     computed: {
-      appTypeState() {
-        return {
-          loadingUpdateAppConfig: app_type().loadingUpdateAppConfig,
-          errorUpdateAppConfig: app_type().errorUpdateAppConfig,
-        };
-      },
+      ...mapState(app_type, ['loadingUpdateAppConfig', 'errorUpdateAppConfig']),
     },
     methods: {
+      ...mapActions(app_type, ['updateAppConfig']),
+
       async saveConfig() {
         const data = {
           code: this.app.code,
@@ -108,9 +106,9 @@
           },
         };
 
-        await app_type().updateAppConfig(data);
+        await this.updateAppConfig(data);
 
-        if (this.appTypeState.errorUpdateAppConfig) {
+        if (this.errorUpdateAppConfig) {
           this.callModal({ type: 'Error', text: this.$t('omie.errors.configure') });
           return;
         }
