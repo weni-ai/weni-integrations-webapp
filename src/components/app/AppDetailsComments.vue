@@ -294,4 +294,4 @@
       }
     }
   }
-</style>app_type, comments_store, 
+</style>
