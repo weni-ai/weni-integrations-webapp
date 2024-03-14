@@ -40,6 +40,7 @@
         v-else
         :src="comment.owner.photo_url"
         slot="avatar"
+        alt=""
       />
       <unnnic-dropdown v-if="comment.owned" slot="actions">
         <unnnic-icon-svg slot="trigger" icon="navigation-menu-vertical-1" size="sm" />
@@ -95,6 +96,7 @@
 
 <script>
   import { app_type } from '@/stores/modules/appType/appType.store.js';
+  import { mapActions, mapState } from 'pinia';
   import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
   import getRelativeTime from '../../utils/time.js';
   import { unnnicCallAlert } from '@weni/unnnic-system';
@@ -119,26 +121,24 @@
       };
     },
     async mounted() {
-      await comments_store().listComments(this.appCode);
+      await this.listComments(this.appCode);
     },
     computed: {
-      commentsList(){
-        return app_type().comments.commentsList
-      },
-      errorListComments(){
-        return app_type().comments.errorListComments
-      },
-      errorCreateComment(){
-        return app_type().comments.errorCreateComment
-      },
-      errorDeleteComment(){
-        return app_type().comments.errorDeleteComment
-      },
-      errorUpdateComment(){
-        return app_type().comments.errorUpdateComment
-      }
+      ...mapState(app_type, [
+        'commentsList',
+        'errorListComments',
+        'errorCreateComment',
+        'errorDeleteComment',
+        'errorUpdateComment',
+      ]),
     },
     methods: {
+      ...mapActions(comments_store, [
+        'listComments',
+        'createComment',
+        'deleteComment',
+        'updateComment',
+      ]),
       /* istanbul ignore next */
       getCommentTime(time) {
         const epoch = new Date(time).getTime();
@@ -171,7 +171,7 @@
                 throw new Error(this.errorUpdateComment);
               }
             } else {
-              await comments_store().createComment({
+              await this.createComment({
                 code: this.appCode,
                 payload: {
                   content: this.currentComment.trim(),
@@ -182,7 +182,7 @@
                 throw new Error(this.errorCreateComment);
               }
             }
-            await comments_store().listComments(this.appCode);
+            await this.listComments(this.appCode);
 
             if (this.errorListComments) {
               throw new Error(this.errorListComments);
@@ -210,7 +210,7 @@
       },
       async handleDelete(commentUuid) {
         try {
-          await comments_store().deleteComment({
+          await this.deleteComment({
             code: this.appCode,
             commentUuid,
           });
@@ -221,7 +221,7 @@
 
           this.showRemoveModal = false;
           this.currentRemovalUuid = null;
-          await comments_store().listComments(this.appCode);
+          await this.listComments(this.appCode);
 
           if (this.errorListComments) {
             throw new Error(this.errorListComments);
@@ -294,5 +294,4 @@
       }
     }
   }
-</style>
-
+</style>app_type, comments_store, 
