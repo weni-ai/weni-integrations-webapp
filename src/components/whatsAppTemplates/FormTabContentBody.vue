@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import InputEditor from '@/components/whatsAppTemplates/InputEditor';
+  import InputEditor from '@/components/whatsAppTemplates/InputEditor.vue';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   import {

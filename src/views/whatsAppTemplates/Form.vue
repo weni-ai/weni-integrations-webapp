@@ -16,9 +16,9 @@
 <script>
   import { mapActions } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import FormHeader from '@/components/whatsAppTemplates/FormHeader';
-  import FormTabs from '@/components/whatsAppTemplates/FormTabs';
-  import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview';
+  import FormHeader from '@/components/whatsAppTemplates/FormHeader.vue';
+  import FormTabs from '@/components/whatsAppTemplates/FormTabs.vue';
+  import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
   export default {
     name: 'WhatsAppTemplatesForm',

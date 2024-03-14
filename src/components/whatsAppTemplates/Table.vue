@@ -141,12 +141,13 @@
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
-  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
-  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
-  import TableSort from '@/components/whatsAppTemplates/TableSort';
+  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton.vue';
+  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown.vue';
+  import TableSort from '@/components/whatsAppTemplates/TableSort.vue';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
+    // eslint-disable-next-line vue/no-reserved-component-names
     name: 'Table',
     components: {
       TableLoading,

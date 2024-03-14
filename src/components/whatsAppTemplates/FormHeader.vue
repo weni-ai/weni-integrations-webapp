@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading';
+  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
