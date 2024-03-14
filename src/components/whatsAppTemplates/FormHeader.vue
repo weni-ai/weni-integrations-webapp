@@ -18,8 +18,8 @@
 
 <script>
   import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading';
-  import {app_type} from '@/stores/modules/appType/appType.store'
-  import {whatsapp_store} from '@/stores/modules/appType/channels/whatsapp.store'
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'FormHeader',
@@ -41,7 +41,7 @@
           loadingCurrentAppType: app_type().loadingCurrentAppType,
         };
       },
-      templateTranslationCurrentForm(){
+      templateTranslationCurrentForm() {
         return whatsapp_store().templateTranslationCurrentForm;
       },
       templateStatusScheme() {
