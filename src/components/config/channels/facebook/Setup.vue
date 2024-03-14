@@ -96,7 +96,9 @@
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
-  import {app_type} from '@/stores/modules/appType/appType.store'
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/store/modules/auth.store';
 
   export default {
     name: 'FacebookSetup',
@@ -129,24 +131,14 @@
       window.changeLoginState = this.changeLoginState;
     },
     computed: {
-      project(){
-        return auth_store().project
-      },
-      createAppResponse(){
-        return app_type().createAppResponse
-      },
-      loadingCreateApp(){
-        return app_type().loadingCreateApp
-      },
-      errorCreateApp(){
-        return app_type().errorCreateApp
-      },
-      loadingUpdateAppConfig(){
-        return app_type().loadingUpdateAppConfig
-      },
-      errorUpdateAppConfig(){
-        return app_type().errorUpdateAppConfig
-      },
+      ...mapState(app_type, [
+        'createAppResponse',
+        'loadingCreateApp',
+        'errorCreateApp',
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
+      ]),
+      ...mapState(auth_store, ['project']),
       integrationName() {
         const nameMap = {
           ig: 'instagram',
@@ -164,6 +156,7 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['createApp', 'updateAppConfig', 'deleteApp']),
       handlePageSelection(page) {
         this.selectedPage = page;
         this.selectKey += 1;
@@ -230,7 +223,10 @@
           return;
         }
 
-        await app_type().createApp({ code: this.app.code, payload: { project_uuid: this.project } });
+        await this.createApp({
+          code: this.app.code,
+          payload: { project_uuid: this.project },
+        });
         if (this.errorCreateApp) {
           this.callModal({
             type: 'Error',
@@ -254,14 +250,14 @@
           },
         };
 
-        await app_type().updateAppConfig(data);
+        await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
           this.callModal({
             type: 'Error',
             text: this.$t(`${this.integrationName}.setup.update_app.error`),
           });
-          await app_type().deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
+          await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
         }
 
