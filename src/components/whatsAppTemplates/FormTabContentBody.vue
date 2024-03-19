@@ -33,8 +33,9 @@
 </template>
 
 <script>
-  import InputEditor from '@/components/whatsAppTemplates/InputEditor.vue';
+  import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import InputEditor from '@/components/whatsAppTemplates/InputEditor';
 
   import {
     countVariables,
@@ -62,9 +63,7 @@
       };
     },
     computed: {
-      templateTranslationCurrentForm(){
-        return whatsapp_store().templateTranslationCurrentForm
-      },
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       bodyContent() {
         return this.templateTranslationCurrentForm?.body || '';
       },
@@ -215,4 +214,3 @@
     }
   }
 </style>
-

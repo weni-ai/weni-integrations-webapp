@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
@@ -27,9 +28,7 @@
       },
     },
     computed: {
-      templateTranslationCurrentForm(){
-        return whatsapp_store().templateTranslationCurrentForm
-      }
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
     },
   };
 </script>
@@ -59,4 +58,3 @@
     }
   }
 </style>
-

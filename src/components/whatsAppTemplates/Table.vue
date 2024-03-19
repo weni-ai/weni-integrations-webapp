@@ -55,7 +55,7 @@
     </div>
 
     <unnnic-table
-      v-if="!whatsappState.loadingWhatsAppTemplates && !whatsappState.errorWhatsAppTemplates"
+      v-if="!loadingWhatsAppTemplates && !errorWhatsAppTemplates"
       class="whatsapp-templates-table__table"
       :items="tableItems"
     >
@@ -140,11 +140,12 @@
 <script>
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
-  import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
-  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton.vue';
-  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown.vue';
-  import TableSort from '@/components/whatsAppTemplates/TableSort.vue';
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
+  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
+  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
+  import TableSort from '@/components/whatsAppTemplates/TableSort';
 
   export default {
     // eslint-disable-next-line vue/no-reserved-component-names
@@ -253,22 +254,20 @@
       });
     },
     computed: {
-      whatsappState(){
-        return {
-          loadingWhatsAppTemplates: whatsapp_store().loadingWhatsAppTemplates,
-          errorWhatsAppTemplates: whatsapp_store().errorWhatsAppTemplates,
-          whatsAppTemplates: whatsapp_store().whatsAppTemplates
-        }
-      },
+      ...mapState(whatsapp_store, [
+        'loadingWhatsAppTemplates',
+        'errorWhatsAppTemplates',
+        'whatsAppTemplates',
+      ]),
       tableItems() {
-        return this.whatsappState.whatsAppTemplates?.results || [];
+        return this.whatsAppTemplates?.results || [];
       },
       totalCount() {
-        return this.whatsappState.whatsAppTemplates?.count || this.pageSize;
+        return this.whatsAppTemplates?.count || this.pageSize;
       },
       pageCount() {
-        if (this.whatsappState.whatsAppTemplates?.count) {
-          return Math.ceil(this.whatsappState.whatsAppTemplates.count / this.pageSize);
+        if (this.whatsAppTemplates?.count) {
+          return Math.ceil(this.whatsAppTemplates.count / this.pageSize);
         } else {
           return 1;
         }
@@ -278,7 +277,7 @@
       },
       currentPageCount() {
         const value = this.pageSize * this.page;
-        return value > this.whatsappState.whatsAppTemplates?.count ? this.whatsappState.whatsAppTemplates?.count || 0 : value;
+        return value > this.whatsAppTemplates?.count ? this.whatsAppTemplates?.count || 0 : value;
       },
       startDateObject() {
         return this.startDate && new Date(this.startDate.replace('-', ' '));
@@ -294,6 +293,7 @@
       },
     },
     methods: {
+      ...mapActions(whatsapp_store, ['getWhatsAppTemplates']),
       fetchData: debounce(async function ({ page }) {
         const { appUuid } = this.$route.params;
         const params = {
@@ -333,9 +333,9 @@
           }
         }
 
-        await whatsapp_store().getWhatsAppTemplates({ appUuid, params });
+        await this.getWhatsAppTemplates({ appUuid, params });
 
-        if (this.whatsappState.errorWhatsAppTemplates) {
+        if (this.errorWhatsAppTemplates) {
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
@@ -365,7 +365,7 @@
           .replaceAll('.', '');
       },
       dropdownPosition(item) {
-        const templates = this.whatsappState.whatsAppTemplates?.results || [];
+        const templates = this.whatsAppTemplates?.results || [];
         return templates.findIndex((template) => template.uuid === item.uuid) > 1
           ? 'top-left'
           : 'bottom-left';
@@ -513,4 +513,3 @@
     }
   }
 </style>
-

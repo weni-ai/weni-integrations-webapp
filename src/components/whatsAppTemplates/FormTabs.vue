@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="!whatsappState.loadingFetchWhatsAppTemplate && !whatsappState.loadingWhatsAppTemplates && !dataProcessingLoading"
+    v-if="!loadingFetchWhatsAppTemplate && !loadingWhatsAppTemplates && !dataProcessingLoading"
     class="form-tabs"
   >
     <unnnic-tab
@@ -25,7 +25,7 @@
       :selectedForm="currentTab"
       :removeLanguages="tabs"
       :canEdit="canEditTab"
-      :availableLanguages="whatsappState.whatsAppTemplateSelectLanguages"
+      :availableLanguages="whatsAppTemplateSelectLanguages"
       :loadingSave="loadingSave"
       @language-change="handleLanguageChange($event)"
       @manual-preview-update="$emit('manual-preview-update')"
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
@@ -53,7 +55,6 @@
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
   import removeEmpty from '@/utils/clean';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   class ValidationError extends Error {
     constructor(msg) {
@@ -98,7 +99,7 @@
       this.dataProcessingLoading = true;
       await this.fetchLanguages();
       if (this.formMode === 'create') {
-        whatsapp_store().clearTemplateData();
+        this.clearTemplateData();
         this.createDefaultNewLanguageTab();
 
         this.fetchAllTemplates();
@@ -108,27 +109,24 @@
       this.dataProcessingLoading = false;
     },
     computed: {
-      templateTranslationCurrentForm(){
-        return whatsapp_store().templateTranslationCurrentForm;
-      },
-      whatsappState(){
-        return{
-          templateTranslationForms: whatsapp_store().templateTranslationForms,
-          loadingFetchWhatsAppTemplate: whatsapp_store().loadingFetchWhatsAppTemplate,
-          errorFetchWhatsAppTemplate: whatsapp_store().errorFetchWhatsAppTemplate,
-          whatsAppTemplate: whatsapp_store().whatsAppTemplate,
-          whatsAppTemplateSelectLanguages: whatsapp_store().whatsAppTemplateSelectLanguages,
-          loadingWhatsAppTemplateSelectLanguages: whatsapp_store().loadingWhatsAppTemplateSelectLanguages,
-          errorWhatsAppTemplateSelectLanguages: whatsapp_store().errorWhatsAppTemplateSelectLanguages,
-          templateForm: whatsapp_store().templateForm,
-          errorCreateTemplate: whatsapp_store().errorCreateTemplate,
-          createdTemplateData: whatsapp_store().createdTemplateData,
-          errorCreateTemplateTranslation: whatsapp_store().errorCreateTemplateTranslation,
-          createdTemplateTranslationData: whatsapp_store().createdTemplateTranslationData,
-          loadingWhatsAppTemplates: whatsapp_store().loadingWhatsAppTemplates,
-          errorUpdateTemplateTranslation: whatsapp_store().errorUpdateTemplateTranslation
-        }
-      },
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, [
+        'templateTranslationForms',
+        'loadingFetchWhatsAppTemplate',
+        'errorFetchWhatsAppTemplate',
+        'whatsAppTemplate',
+        'whatsAppTemplateSelectLanguages',
+        'loadingWhatsAppTemplateSelectLanguages',
+        'errorWhatsAppTemplateSelectLanguages',
+        'templateForm',
+        'errorCreateTemplate',
+        'createdTemplateData',
+        'errorCreateTemplateTranslation',
+        'createdTemplateTranslationData',
+        'loadingWhatsAppTemplates',
+        'errorUpdateTemplateTranslation',
+        '',
+      ]),
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
       },
@@ -148,6 +146,19 @@
       },
     },
     methods: {
+      ...mapActions(whatsapp_store, [
+        'updateTemplateForm',
+        'addNewTranslationForm',
+        'renameTemplateTranslationForm',
+        'setTemplateTranslationSelectedForm',
+        'fetchTemplateData',
+        'fetchSelectLanguages',
+        'createTemplate',
+        'createTemplateTranslation',
+        'updateTemplateTranslation',
+        'getWhatsAppTemplates',
+        'clearTemplateData',
+      ]),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -166,13 +177,13 @@
         const params = {
           page_size: 251,
         };
-        await whatsapp_store().getWhatsAppTemplates({ appUuid, params });
+        await this.getWhatsAppTemplates({ appUuid, params });
       },
       async fetchLanguages() {
         const { appUuid } = this.$route.params;
-        await whatsapp_store().fetchSelectLanguages({ appUuid });
+        await this.fetchSelectLanguages({ appUuid });
 
-        if (this.whatsappState.errorWhatsAppTemplateSelectLanguages) {
+        if (this.errorWhatsAppTemplateSelectLanguages) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.select_languages') });
           return;
         }
@@ -185,15 +196,15 @@
           return;
         }
 
-        await whatsapp_store().fetchTemplateData({ appUuid, templateUuid: this.templateUuid });
-        if (this.whatsappState.errorFetchWhatsAppTemplate) {
+        await this.fetchTemplateData({ appUuid, templateUuid: this.templateUuid });
+        if (this.errorFetchWhatsAppTemplate) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.fetch_template_data') });
           return;
         }
 
-        const translations = this.whatsappState.whatsAppTemplate.translations;
+        const translations = this.whatsAppTemplate.translations;
 
-        this.buildTemplateForm(this.whatsappState.whatsAppTemplate);
+        this.buildTemplateForm(this.whatsAppTemplate);
 
         this.createdTabs = [];
         this.existingTabs = [];
@@ -205,14 +216,14 @@
         if (!translations.length) {
           this.createDefaultNewLanguageTab();
         } else {
-          whatsapp_store().setTemplateTranslationSelectedForm({
+          this.setTemplateTranslationSelectedForm({
             formName: translations[0].language,
           });
         }
       },
       buildTemplateForm(template) {
-        whatsapp_store().updateTemplateForm({ fieldName: 'name', fieldValue: template.name });
-        whatsapp_store().updateTemplateForm({ fieldName: 'category', fieldValue: template.category });
+        this.updateTemplateForm({ fieldName: 'name', fieldValue: template.name });
+        this.updateTemplateForm({ fieldName: 'category', fieldValue: template.category });
       },
       buildTranslationForm(translation) {
         if (
@@ -246,15 +257,15 @@
           });
         }
 
-        const language = this.whatsappState.whatsAppTemplateSelectLanguages.find(
+        const language = this.whatsAppTemplateSelectLanguages.find(
           (language) => language.value === translation.language,
         );
         this.existingTabs.push(language.text);
-        whatsapp_store().addNewTranslationForm({ formName: language.text, formData: translation });
+        this.addNewTranslationForm({ formName: language.text, formData: translation });
       },
       handleTranslationSelection(tab) {
         this.currentTabIndex = this.tabs.indexOf(tab);
-        whatsapp_store().setTemplateTranslationSelectedForm({ formName: tab });
+        this.setTemplateTranslationSelectedForm({ formName: tab });
       },
       addTranslation() {
         if (this.createdTabs.includes(this.$t('WhatsApp.templates.new_language'))) {
@@ -262,13 +273,13 @@
         }
         this.createdTabs.push(this.$t('WhatsApp.templates.new_language'));
         this.currentTabIndex = this.existingTabs.length + this.createdTabs.length - 1;
-        whatsapp_store().addNewTranslationForm({ formName: this.$t('WhatsApp.templates.new_language') });
-        whatsapp_store().setTemplateTranslationSelectedForm({
+        this.addNewTranslationForm({ formName: this.$t('WhatsApp.templates.new_language') });
+        this.setTemplateTranslationSelectedForm({
           formName: this.$t('WhatsApp.templates.new_language'),
         });
       },
       handleLanguageChange(event) {
-        whatsapp_store().renameTemplateTranslationForm({
+        this.renameTemplateTranslationForm({
           currentName: this.currentTab,
           newName: event,
         });
@@ -299,7 +310,7 @@
       createDefaultNewLanguageTab() {
         this.createdTabs = [this.$t('WhatsApp.templates.new_language')];
         this.currentTabIndex = 0;
-        whatsapp_store().addNewTranslationForm({ formName: this.$t('WhatsApp.templates.new_language') });
+        this.addNewTranslationForm({ formName: this.$t('WhatsApp.templates.new_language') });
       },
       async handleSampleSubmission(event) {
         const { variables, headerFile } = event;
@@ -315,12 +326,12 @@
       },
       /* istanbul ignore next */
       async handleSave() {
-        if (!this.whatsappState.templateForm.name || !this.whatsappState.templateForm.name.trim()) {
+        if (!this.templateForm.name || !this.templateForm.name.trim()) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_name') });
           return;
         }
 
-        if (!this.whatsappState.templateForm.category) {
+        if (!this.templateForm.category) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_category') });
           return;
         }
@@ -343,18 +354,18 @@
         let currentTemplateUuid = this.templateUuid || templateUuid;
         if (this.currentFormMode === 'create') {
           const templatePayload = {
-            name: this.whatsappState.templateForm.name.trim(),
-            category: this.whatsappState.templateForm.category.trim(),
+            name: this.templateForm.name.trim(),
+            category: this.templateForm.category.trim(),
           };
 
-          await whatsapp_store().createTemplate({ appUuid, payload: templatePayload });
-          if (this.whatsappState.errorCreateTemplate) {
+          await this.createTemplate({ appUuid, payload: templatePayload });
+          if (this.errorCreateTemplate) {
             this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_template') });
             this.loadingSave = false;
             return;
           }
 
-          currentTemplateUuid = this.whatsappState.createdTemplateData.uuid;
+          currentTemplateUuid = this.createdTemplateData.uuid;
         }
 
         const translationPayload = this.buildPayload();
@@ -379,27 +390,27 @@
       },
       async createTranslation({ currentTemplateUuid, translationPayload }) {
         const { appCode, appUuid } = this.$route.params;
-        await whatsapp_store().createTemplateTranslation({
+        await this.createTemplateTranslation({
           appUuid,
           templateUuid: currentTemplateUuid,
           payload: translationPayload,
         });
 
-        if (this.whatsappState.errorCreateTemplateTranslation) {
+        if (this.errorCreateTemplateTranslation) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_translation') });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
         }
 
-        if (this.currentFormMode === 'create' && !this.whatsappState.errorCreateTemplate) {
+        if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
           this.$router.replace(
-            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.whatsappState.createdTemplateData.uuid}`,
+            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData.uuid}`,
           );
 
           this.currentFormMode = 'edit';
         }
 
-        if (!this.whatsappState.errorCreateTemplateTranslation) {
+        if (!this.errorCreateTemplateTranslation) {
           const createdTabIndex = this.createdTabs.findIndex((tab) => tab === this.currentTab);
 
           if (createdTabIndex >= 0) {
@@ -408,17 +419,17 @@
           }
         }
 
-        await whatsapp_store().fetchTemplateData({ appUuid, templateUuid: this.whatsappState.createdTemplateData.uuid });
+        await this.fetchTemplateData({ appUuid, templateUuid: this.createdTemplateData.uuid });
       },
       async updateTranslation({ currentTemplateUuid, translationPayload }) {
         const { appUuid } = this.$route.params;
-        await whatsapp_store().updateTemplateTranslation({
+        await this.updateTemplateTranslation({
           appUuid,
           templateUuid: currentTemplateUuid,
           payload: translationPayload,
         });
 
-        if (this.whatsappState.errorUpdateTemplateTranslation) {
+        if (this.errorUpdateTemplateTranslation) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.update_translation') });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.update_translation') });
@@ -718,5 +729,3 @@
     }
   }
 </style>
-
-

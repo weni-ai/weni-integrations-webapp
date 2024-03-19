@@ -48,6 +48,8 @@
   import TelegramSecondGif from '@/assets/gifs/telegram2.gif';
 
   import WWCFirstGif from '@/assets/gifs/wwc1.gif';
+
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
@@ -93,18 +95,9 @@
       this.checkModalCondition();
     },
     computed: {
-      onboardStatus() {
-        return app_type().onboardStatus;
-      },
-      project() {
-        return auth_store().project;
-      },
-      myAppsState() {
-        return {
-          configuredApps: my_apps().configuredApps,
-          errorConfiguredApps: my_apps().errorConfiguredApps,
-        };
-      },
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['onboardStatus']),
+      ...mapState(my_apps, ['configuredApps', 'errorConfiguredApps']),
       currentModalTitle() {
         const titleMap = {
           whatsapp: this.$t('onboard.modal.whatsapp.title'),
@@ -118,11 +111,12 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['getConfiguredApps', 'setOnboardStatus']),
       async checkModalCondition() {
         const params = {
           project_uuid: this.project,
         };
-        await my_apps().getConfiguredApps({ params });
+        await this.getConfiguredApps({ params });
 
         if (this.errorConfiguredApps || !this.configuredApps) return;
 
@@ -151,7 +145,7 @@
         this.showModal = false;
         this.page = 0;
         this.currentApp = null;
-        app_type().setOnboardStatus({ status: false });
+        this.setOnboardStatus({ status: false });
       },
     },
     watch: {

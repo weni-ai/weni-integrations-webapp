@@ -29,9 +29,7 @@
       <unnnic-tab
         v-if="
           skipLoad ||
-          (!whatsappState.loadingWhatsAppProfile &&
-            !appTypeState.loadingCurrentApp &&
-            !whatsappCloudState.loadingWhatsAppCloudCatalogs)
+          (!loadingWhatsAppProfile && !loadingCurrentApp && !loadingWhatsAppCloudCatalogs)
         "
         class="config-whatsapp__tabs"
         :tabs="configTabs"
@@ -39,11 +37,8 @@
       >
         <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
         <AccountTab
-          :appInfo="appTypeState.currentApp"
-          :hasCatalog="
-            whatsappCloudState.whatsAppCloudCatalogs &&
-            whatsappCloudState.whatsAppCloudCatalogs.count > 0
-          "
+          :appInfo="currentApp"
+          :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
           slot="tab-panel-account"
           @close="closeConfig"
         />
@@ -78,11 +73,12 @@
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
   import skeletonLoading from './loadings/Config.vue';
-  import { dataUrlToFile } from '@/utils/files';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { dataUrlToFile } from '@/utils/files';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'whatsapp-config',
@@ -114,30 +110,20 @@
       this.headerScrollBehavior();
     },
     beforeDestroy() {
-      this.whatsapp_store().resetWppFetchResults();
+      this.resetWppFetchResults();
     },
     computed: {
-      whatsappState() {
-        return {
-          whatsAppProfile: whatsapp_store().whatsAppProfile,
-          loadingWhatsAppProfile: whatsapp_store().loadingWhatsAppProfile,
-          errorWhatsAppProfile: whatsapp_store().errorWhatsAppProfile,
-        };
-      },
-      whatsappCloudState() {
-        return {
-          loadingWhatsAppCloudCatalogs: whatsapp_cloud().loadingWhatsAppCloudCatalogs,
-          errorWhatsAppCloudCatalogs: whatsapp_cloud().errorWhatsAppCloudCatalogs,
-          whatsAppCloudCatalogs: whatsapp_cloud().whatsAppCloudCatalog,
-        };
-      },
-      appTypeState() {
-        return {
-          currentApp: app_type().currentApp,
-          loadingCurrentApp: app_type().loadingCurrentApp,
-          errorCurrentApp: app_type().errorCurrentApp,
-        };
-      },
+      ...mapState(whatsapp_store, [
+        'whatsAppProfile',
+        'loadingWhatsAppProfile',
+        'errorWhatsAppProfile',
+      ]),
+      ...mapState(whatsapp_cloud, [
+        'loadingWhatsAppCloudCatalogs',
+        'errorWhatsAppCloudCatalogs',
+        'whatsAppCloudCatalogs',
+      ]),
+      ...mapState(app_type, ['currentApp', 'loadingCurrentApp', 'errorCurrentApp']),
       configTabs() {
         return ['account', 'profile', 'webhook_info', 'conversations'];
       },
@@ -146,6 +132,9 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['getApp']),
+      ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
+      ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
@@ -168,7 +157,7 @@
           this.skipLoad = skipLoad;
           await this.fetchAppInfo(options);
           await this.fetchProfile(options);
-          await this.whatsapp_cloud().getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
+          await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
           unnnicCallAlert({
@@ -185,25 +174,21 @@
         }
       },
       async fetchAppInfo(options) {
-        await this.app_type().getApp(options);
+        await this.getApp(options);
 
-        if (this.appTypeState.errorCurrentApp) {
-          throw new Error(this.appTypeState.errorCurrentApp);
+        if (this.errorCurrentApp) {
+          throw new Error(this.errorCurrentApp);
         }
       },
       async fetchProfile(options) {
-        await this.whatsapp_store().fetchWppProfile(options);
+        await this.fetchWppProfile(options);
 
-        if (this.whatsappState.errorWhatsAppProfile) {
-          throw new Error(this.whatsappState.errorWhatsAppProfile);
+        if (this.errorWhatsAppProfile) {
+          throw new Error(this.errorWhatsAppProfile);
         }
 
-        let profile = this.whatsappState.whatsAppProfile;
-        profile.photoFile = await dataUrlToFile(
-          this.whatsappState.whatsAppProfile.photo_url,
-          'photo.jpg',
-          true,
-        );
+        let profile = this.whatsAppProfile;
+        profile.photoFile = await dataUrlToFile(this.whatsAppProfile.photo_url, 'photo.jpg', true);
         this.appProfile = profile;
       },
     },

@@ -41,8 +41,9 @@
   import skeletonLoading from './loadings/ProfileTab.vue';
   import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'ProfileTab',
@@ -67,7 +68,7 @@
 
       if (!this.fetchedContactInfo) {
         try {
-          await whatsapp_store().fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
+          await this.fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
         } catch (err) {
           unnnicCallAlert({
             props: {
@@ -199,23 +200,21 @@
       },
     },
     computed: {
-      errorUpdateWhatsAppProfile(){
-        return whatsapp_store().errorUpdateWhatsAppProfile
-      },
-      errorDeleteWhatsAppProfilePhoto(){
-        return whatsapp_store().errorDeleteWhatsAppProfilePhoto
-      },
-      loadingContactInfo(){
-        return whatsapp_store().loadingContactInfo
-      },
-      fetchedContactInfo(){
-        return whatsapp_store().fetchedContactInfo
-      },
-      contactInfo(){
-        return whatsapp_store().contactInfo
-      }
+      ...mapState(whatsapp_store, [
+        'errorUpdateWhatsAppProfile',
+        'errorDeleteWhatsAppProfilePhoto',
+        'loadingContactInfo',
+        'fetchedContactInfo',
+        'contactInfo',
+      ]),
     },
     methods: {
+      ...mapActions(whatsapp_store, [
+        'updateWppProfile',
+        'deleteWppProfilePhoto',
+        'fetchWppContactInfo',
+        'updateWppContactInfo',
+      ]),
       updateProfileInputs(inputData) {
         this.profileInputs[inputData.index].value = inputData.value;
       },
@@ -280,7 +279,7 @@
 
           if (!photo) {
             const data = { code: this.app.code, appUuid: this.app.uuid };
-            await whatsapp_store().deleteWppProfilePhoto(data);
+            await this.deleteWppProfilePhoto(data);
 
             if (this.errorDeleteWhatsAppProfilePhoto) {
               throw new Error(this.errorDeleteWhatsAppProfilePhoto);
@@ -304,7 +303,7 @@
           };
 
           const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
-          await whatsapp_store().updateWppProfile(data);
+          await this.updateWppProfile(data);
 
           if (this.errorUpdateWhatsAppProfile) {
             throw new Error(this.errorUpdateWhatsAppProfile);
@@ -364,7 +363,7 @@
           };
 
           const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
-          await whatsapp_store().updateWppContactInfo(data);
+          await this.updateWppContactInfo(data);
 
           unnnicCallAlert({
             props: {
@@ -458,5 +457,3 @@
     }
   }
 </style>
-import { insights_store } from '@/stores/modules/insights.store';
-

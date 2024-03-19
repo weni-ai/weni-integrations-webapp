@@ -69,6 +69,7 @@
   import AppGrid from '@/components/AppGrid/index.vue';
   import OnboardModal from '@/components/OnboardModal/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';

@@ -33,14 +33,16 @@
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { mapActions, mapState } from 'pinia';
 
   export default {
     name: 'Carousel',
     components: { VueperSlides, VueperSlide, skeletonLoading },
     async mounted() {
-      await app_type().fetchFeatured();
+      await this.fetchFeatured();
     },
     methods: {
+      ...mapActions(app_type, ['fetchFeatured']),
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'IB');
         return banner[0].url;
@@ -50,14 +52,9 @@
       },
     },
     computed: {
-      appTypeState() {
-        return {
-          featuredApps: app_type().featuredApps,
-          loadingFeaturedApps: app_type().loadingFeaturedApps,
-        };
-      },
+      ...mapState(app_type, ['featuredApps', 'loadingFeaturedApps']),
       hasAutoPlay() {
-        return this.appTypeState.featuredApps?.length > 1 ? true : false;
+        return this.featuredApps?.length > 1 ? true : false;
       },
     },
   };

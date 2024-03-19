@@ -49,8 +49,9 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'telegram-config',
@@ -71,14 +72,13 @@
       };
     },
     computed: {
-      errorUpdateAppConfig() {
-        return app_type().errorUpdateAppConfig;
-      },
+      ...mapState(app_type, ['errorUpdateAppConfig']),
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
       },
     },
     methods: {
+      ...mapActions(app_type, ['updateAppConfig']),
       async saveConfig() {
         const data = {
           code: this.app.code,
@@ -91,7 +91,7 @@
         };
 
         try {
-          await this.app_type().updateAppConfig(data);
+          await this.updateAppConfig(data);
 
           if (this.errorUpdateAppConfig) {
             throw new Error(this.errorUpdateAppConfig);

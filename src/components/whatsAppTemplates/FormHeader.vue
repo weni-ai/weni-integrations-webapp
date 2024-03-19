@@ -1,9 +1,9 @@
 <template>
   <div class="form-header">
-    <FormHeaderLoading v-if="appTypeState.loadingCurrentAppType" />
+    <FormHeaderLoading v-if="loadingCurrentAppType" />
     <div v-else class="form-header__wrapper">
       <div class="form-header__icon">
-        <img :src="appTypeState.currentAppType.icon" />
+        <img :src="currentAppType.icon" />
       </div>
       <span class="form-header__title">{{ title }}</span>
       <unnnic-tag
@@ -17,9 +17,10 @@
 </template>
 
 <script>
-  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading.vue';
+  import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading';
 
   export default {
     name: 'FormHeader',
@@ -35,15 +36,8 @@
       this.fetchData();
     },
     computed: {
-      appTypeState() {
-        return {
-          currentAppType: app_type().currentAppType,
-          loadingCurrentAppType: app_type().loadingCurrentAppType,
-        };
-      },
-      templateTranslationCurrentForm() {
-        return whatsapp_store().templateTranslationCurrentForm;
-      },
+      ...mapState(app_type, ['currentAppType', 'loadingCurrentAppType']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       templateStatusScheme() {
         switch (this.templateTranslationCurrentForm.status) {
           case 'APPROVED':
@@ -59,9 +53,10 @@
       },
     },
     methods: {
+      ...mapActions(app_type, ['getAppType']),
       fetchData() {
         const { appCode } = this.$route.params;
-        app_type().getAppType({ code: appCode, shouldLoad: true });
+        this.getAppType({ code: appCode, shouldLoad: true });
       },
     },
   };
