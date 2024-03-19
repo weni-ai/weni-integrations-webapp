@@ -36,7 +36,6 @@
   import AppImagesBanner from '../../components/app/AppImagesBanner.vue';
   import AppDetailsHeader from '../../components/app/AppDetailsHeader.vue';
   import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
-  // import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
   import skeletonLoading from '../loadings/AppDetails.vue';
   import { unnnicCallAlert } from '@weni/unnnic-system';

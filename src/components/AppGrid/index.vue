@@ -358,7 +358,4 @@
 
 <style lang="scss" scoped>
   @import '../styles/grid.scss';
-</style>import insights from '@/api/insights';
-storeToRefs, insights_store, import appType from '@/api/appType';
-import appType from '@/api/appType';
-
+</style>
