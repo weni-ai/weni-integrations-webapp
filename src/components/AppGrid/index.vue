@@ -269,7 +269,7 @@
         });
       },
       openAppDetails(code) {
-        this.$router.push(`/apps/${code}/details`);
+        this.$router.push(`/${code}/details`);
       },
       openAppModal(app) {
         this.setHasInsights({ isActive: app.config?.has_insights });
