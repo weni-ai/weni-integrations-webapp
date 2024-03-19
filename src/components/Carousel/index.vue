@@ -54,7 +54,7 @@
     computed: {
       ...mapState(app_type, ['featuredApps', 'loadingFeaturedApps']),
       hasAutoPlay() {
-        return this.appTypeState.featuredApps?.length > 1 ? true : false;
+        return this.featuredApps?.length > 1 ? true : false;
       },
     },
   };
