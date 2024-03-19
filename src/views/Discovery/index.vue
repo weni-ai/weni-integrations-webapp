@@ -71,7 +71,7 @@
   import AppGrid from '@/components/AppGrid/index.vue';
   import OnboardModal from '@/components/OnboardModal/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
