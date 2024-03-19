@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
 
 const router = createRouter({
+  mode: 'history',
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', redirect: { name: 'Discovery' } },

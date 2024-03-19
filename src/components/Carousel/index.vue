@@ -7,7 +7,7 @@
         :title="app.name"
         :content="$t(app.summary)"
         :image="appImageBanner(app.assets)"
-        @click.native="openAppDetails(app.code)"
+        @click="openAppDetails(app.code)"
       />
 
       <template #bullets="{ bulletIndexes, goToSlide, currentSlide }">
