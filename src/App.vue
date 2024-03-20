@@ -1,7 +1,9 @@
 <template>
-  <RouterView />
-  <div class="survey-container">
-    <Survey />
+  <div class="app">
+    <RouterView class="content" />
+    <div class="survey-container">
+      <Survey />
+    </div>
   </div>
 </template>
 
@@ -10,6 +12,8 @@
   import Survey from '@/components/Survey/index.vue';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { mapActions } from 'pinia';
 
   export default {
     name: 'App',
@@ -22,6 +26,10 @@
       };
     },
     mounted() {
+      this.retriveAuthToken();
+      this.retriveSelectedOrg();
+      this.retriveSelectedProject();
+      this.retriveSelectedFlowOrg();
       if (getEnv('VUE_APP_HELPHERO_ID')) {
         const hlp = initHelpHero(getEnv('VUE_APP_HELPHERO_ID'));
         hlp.anonymous();
@@ -51,6 +59,12 @@
       });
     },
     methods: {
+      ...mapActions(auth_store, [
+        'retriveAuthToken',
+        'retriveSelectedOrg',
+        'retriveSelectedProject',
+        'retriveSelectedFlowOrg',
+      ]),
       translateAllLinks() {
         if (!this.connectBaseURL) {
           return;
@@ -94,66 +108,50 @@
   };
 </script>
 
-<style scoped>
-  header {
-    line-height: 1.5;
-    max-height: 100vh;
+<style lang="scss" scoped>
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 
-  .logo {
-    display: block;
-    margin: 0 auto 2rem;
+  .content {
+    margin: $unnnic-spacing-md;
   }
 
-  nav {
-    width: 100%;
-    font-size: 12px;
-    text-align: center;
-    margin-top: 2rem;
+  .survey-container {
+    position: fixed;
+    bottom: 150px;
+    right: 18px;
+    z-index: 3;
   }
 
-  nav a.router-link-exact-active {
-    color: var(--color-text);
-  }
-
-  nav a.router-link-exact-active:hover {
-    background-color: transparent;
-  }
-
-  nav a {
-    display: inline-block;
-    padding: 0 1rem;
-    border-left: 1px solid var(--color-border);
-  }
-
-  nav a:first-of-type {
-    border: 0;
-  }
-
-  @media (min-width: 1024px) {
-    header {
-      display: flex;
-      place-items: center;
-      padding-right: calc(var(--section-gap) / 2);
-    }
-
-    .logo {
-      margin: 0 2rem 0 0;
-    }
-
-    header .wrapper {
-      display: flex;
-      place-items: flex-start;
-      flex-wrap: wrap;
-    }
-
-    nav {
-      text-align: left;
-      margin-left: -1rem;
-      font-size: 1rem;
-
-      padding: 1rem 0;
-      margin-top: 1rem;
+  @supports (-moz-appearance: none) {
+    .survey-container {
+      right: 23px;
     }
   }
 </style>
+
+<style lang="scss">
+  html {
+    height: 100%;
+  }
+  body {
+    height: 100%;
+    margin: 0;
+    background-color: $unnnic-color-background-snow;
+    font-family: $unnnic-font-family-secondary, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .alert-container {
+    z-index: 9999;
+  }
+</style>
+import { auth_store } from './stores/modules/auth.store'; import { mapActions } from 'pinia';
+auth_store, import { mapActions } from 'pinia';

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Carousel />
-    <NavBar />
+    <NavBar v-if="!details" />
     <router-view />
   </div>
 </template>
@@ -15,9 +15,15 @@
       NavBar,
       Carousel,
     },
+    computed: {
+      details() {
+        return this.$route.name == 'App Details';
+      },
+    },
   };
 </script>
 
 <style scoped lang="scss">
   @import './styles.scss';
 </style>
+import { computed } from 'vue';

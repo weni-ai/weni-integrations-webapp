@@ -98,7 +98,7 @@
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import { auth_store } from '@/store/modules/auth.store';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'FacebookSetup',
