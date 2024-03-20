@@ -3,7 +3,11 @@
     <div class="config-whatsapp__header">
       <div class="config-whatsapp__header__title">
         <div class="config-whatsapp__header__title__icon-container">
-          <img class="config-whatsapp__header__title__icon-container__icon" :src="app.icon" />
+          <img
+            class="config-whatsapp__header__title__icon-container__icon"
+            :src="app.icon"
+            alt=""
+          />
         </div>
         <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
 
@@ -34,8 +38,11 @@
         class="config-whatsapp__tabs"
         :tabs="configTabs"
         initialTab="account"
+        type="md"
       >
-        <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
+        <template slot="tab-head-account">
+          {{ $t('WhatsApp.config.tabs.account') }} aaaaaa
+        </template>
         <AccountTab
           :appInfo="currentApp"
           :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
@@ -107,7 +114,7 @@
     },
     async mounted() {
       await this.fetchData();
-      this.headerScrollBehavior();
+      // this.headerScrollBehavior();
     },
     computed: {
       ...mapState(whatsapp_store, [
@@ -133,18 +140,18 @@
       ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
       ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
-      headerScrollBehavior() {
-        const tabHeader = document.getElementsByClassName('tab-content')[0];
-        if (tabHeader) {
-          tabHeader.addEventListener('wheel', (event) => {
-            event.preventDefault();
+      // headerScrollBehavior() {
+      //   const tabHeader = document.getElementsByClassName('tab-content')[0];
+      //   if (tabHeader) {
+      //     tabHeader.addEventListener('wheel', (event) => {
+      //       event.preventDefault();
 
-            tabHeader.scrollBy({
-              left: event.deltaY < 0 ? -30 : 30,
-            });
-          });
-        }
-      },
+      //       tabHeader.scrollBy({
+      //         left: event.deltaY < 0 ? -30 : 30,
+      //       });
+      //     });
+      //   }
+      // },
       closeConfig() {
         this.$emit('closeModal');
       },

@@ -66,13 +66,13 @@ export const whatsapp_store = defineStore('whatsapp', {
     };
   },
   getters: {
-    contactInfo(state) {
+    getContactInfo(state) {
       return state.contactInfo;
     },
-    fetchedContactInfo(state) {
+    getFetchedContactInfo(state) {
       return state.fetchedContactInfo;
     },
-    loadingContactInfo(state) {
+    getLoadingContactInfo(state) {
       return state.loadingContactInfo;
     },
     templateTranslationCurrentForm(state) {

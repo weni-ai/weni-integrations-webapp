@@ -59,6 +59,7 @@
   import omieConfig from '@/components/config/external/omie/Config.vue';
   import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
   import vtexConfig from '@/components/config/ecommerce/vtex/Config.vue';
+  import { markRaw } from 'vue';
 
   export default {
     name: 'Modal',
@@ -70,7 +71,7 @@
         isConfigured: false,
         showConfirmationModal: false,
         needConfirmation: false,
-        componentMapping: {
+        componentMapping: markRaw({
           wwc: wwcConfig,
           tg: telegramConfig,
           wpp: whatsappConfig,
@@ -82,7 +83,7 @@
           omie: omieConfig,
           chatgpt: chatGptConfig,
           vtex: vtexConfig,
-        },
+        }),
       };
     },
     methods: {
