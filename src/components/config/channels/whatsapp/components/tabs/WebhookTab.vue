@@ -70,8 +70,9 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
 
   export default {
     name: 'WebhookTab',
@@ -112,14 +113,10 @@
       }
     },
     computed: {
-      loadingUpdateWebhookInfo(){
-        return whatsapp_store().loadingUpdateWebhookInfo
-      },
-      errorUpdateWebhookInfo(){
-        return whatsapp_store().errorUpdateWebhookInfo
-      }
+      ...mapState(whatsapp_store, ['loadingUpdateWebhookInfo', 'errorUpdateWebhookInfo']),
     },
     methods: {
+      ...mapActions(whatsapp_store, ['updateWppWebhookInfo']),
       /* istanbul ignore next */
       mountHeaders() {
         if (this.app.config?.webhook?.headers) {
@@ -210,7 +207,7 @@
           },
         };
 
-        await whatsapp_store().updateWppWebhookInfo(data);
+        await this.updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
           this.callModal({
@@ -303,4 +300,3 @@
     }
   }
 </style>
-

@@ -63,9 +63,11 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'pinia';
   import { insights_store } from '@/stores/modules/insights.store';
   export default {
-    name: 'SummaryComponent',
+    // eslint-disable-next-line vue/no-reserved-component-names
+    name: 'Summary',
     mounted() {
       this.fetchTemplateAnalyticsWeek();
     },
@@ -75,16 +77,10 @@
       };
     },
     computed: {
-      insightsState() {
-        return {
-          templateAnalytics: insights_store().templateAnalytics,
-          appUuid: insights_store().appUuid,
-          selectedTemplate: insights_store().selectedTemplate,
-        };
-      },
+      ...mapState(insights_store, ['templateAnalytics', 'appUuid', 'selectedTemplate']),
       weekValues() {
         return (
-          this.insightsState.templateAnalytics?.grand_totals || {
+          this.templateAnalytics?.grand_totals || {
             sent: 0,
             delivered: 0,
             read: 0,
@@ -93,18 +89,19 @@
       },
     },
     methods: {
+      ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalyticsWeek() {
         const params = {
-          app_uuid: this.insightsState.appUuid,
+          app_uuid: this.appUuid,
           filters: {
             start: this.formatDate(new Date(Date.now() - this.sevenDays)),
             end: this.formatDate(new Date()),
-            fba_template_ids: this.insightsState.selectedTemplate.translations.map(
+            fba_template_ids: this.selectedTemplate.translations.map(
               (item) => item.message_template_id,
             ),
           },
         };
-        insights_store().getTemplateAnalytics(params);
+        this.getTemplateAnalytics(params);
       },
       formatDate(date) {
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;

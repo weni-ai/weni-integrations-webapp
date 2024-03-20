@@ -24,7 +24,7 @@
 
     <div class="app-config-power-bi__content">
       <unnnic-data-area
-        v-if="!authState.loadingFlowToken"
+        v-if="!loadingFlowToken"
         class="app-config-power-bi__content__token-input"
         title="Token"
         :text="flowToken || ''"
@@ -93,6 +93,7 @@
 <script>
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
@@ -115,9 +116,9 @@
       };
     },
     async mounted() {
-      await auth_store().getFlowToken();
+      await this.getFlowToken();
 
-      if (this.authState.errorFlowToken) {
+      if (this.errorFlowToken) {
         unnnicCallAlert({
           props: {
             text: this.$t('PowerBi.config.token_error'),
@@ -132,13 +133,7 @@
       }
     },
     computed: {
-      authState() {
-        return {
-          flowToken: auth_store().flowToken,
-          errorFlowToken: auth_store().errorFlowToken,
-          loadingFlowToken: auth_store().loadingFlowToken,
-        };
-      },
+      ...mapState(auth_store, ['flowToken', 'errorFlowToken', 'loadingFlowToken']),
       powerBiIcon() {
         return PowerBiIcon;
       },
@@ -147,13 +142,14 @@
       },
     },
     methods: {
+      ...mapActions(auth_store, ['getFlowToken']),
       /* istanbul ignore next */
       async copyToken() {
-        if (!this.authState.flowToken) {
+        if (!this.flowToken) {
           return;
         }
 
-        navigator.clipboard.writeText(this.authState.flowToken);
+        navigator.clipboard.writeText(this.flowToken);
 
         unnnicCallAlert({
           props: {

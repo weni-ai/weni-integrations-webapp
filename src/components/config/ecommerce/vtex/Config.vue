@@ -76,10 +76,11 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-  import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
+  import { mapActions, mapState } from 'pinia';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
+  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
 
   export default {
     name: 'vtex-config',
@@ -102,23 +103,15 @@
       };
     },
     computed: {
-      currentApp(){
-        return app_type().currentApp;
-      },
-      errorCurrentApp(){
-        return app_type().errorCurrentApp
-      },
-      loadingConnectVtexCatalog(){
-        return ecommerce_store().loadingConnectVtexCatalog
-      },
-      errorConnectVtexCatalog(){
-        return ecommerce_store().errorConnectVtexCatalog
-      }
+      ...mapState(app_type, ['currentApp', 'errorCurrentApp']),
+      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },
     async mounted() {
       await this.fetchRelatedWppData();
     },
     methods: {
+      ...mapActions(app_type, ['updateApp', 'getApp']),
+      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -128,7 +121,7 @@
           },
         };
 
-        await ecommerce_store().connectVtexCatalog(data);
+        await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
           this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
@@ -143,7 +136,7 @@
           appUuid: this.app.uuid,
         };
 
-        await app_type().getApp(data);
+        await this.getApp(data);
 
         if (this.errorCurrentApp) {
           this.callModal({
@@ -161,7 +154,7 @@
           appUuid: this.app.config.wpp_cloud_uuid,
         };
 
-        await app_type().getApp(data);
+        await this.getApp(data);
 
         if (this.errorCurrentApp) {
           this.callModal({ type: 'Error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
@@ -332,4 +325,3 @@
     }
   }
 </style>
-

@@ -172,11 +172,14 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { unnnicCallAlert } from '@weni/unnnic-system';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
 
   export default {
     name: 'VtexModal',
@@ -203,36 +206,21 @@
     },
     mounted() {
       this.getWhatsAppChannels();
-      ecommerce_store().getVtexAppUuid({ code: this.app.code });
+      this.getVtexAppUuid({ code: this.app.code });
     },
     computed: {
-      project(){
-        return auth_store().project
-      },
-      configuredApps(){
-        return my_apps().configuredApps
-      },
-      errorConfiguredApps(){
-        return my_apps().errorConfiguredApps
-      },
-      loadingCreateApp(){
-        return app_type().loadingCreateApp
-      },
-      errorCreateApp(){
-        return app_type().errorCreateApp
-      },
-      generatedVtexAppUuid(){
-        return ecommerce_store().generatedVtexAppUuid
-      },
-      errorVtexAppUuid(){
-        return ecommerce_store().errorVtexAppUuid
-      },
+      ...mapState(auth_store, ['project']),
+      ...mapState(my_apps, ['configuredApps', 'errorConfiguredApps']),
+      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
+      ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
       webhookUrl() {
         const backendUrl = getEnv('VUE_APP_API_BASE_URL');
         return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid}/products-update/api/notification/`;
       },
     },
     methods: {
+      ...mapActions(app_type, ['createApp', 'getConfiguredApps']),
+      ...mapActions(ecommerce_store, ['getVtexAppUuid']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -266,7 +254,7 @@
           },
         };
 
-        await app_type().createApp(data);
+        await this.createApp(data);
 
         if (this.errorCreateApp) {
           if (
@@ -289,7 +277,7 @@
         const params = {
           project_uuid: this.project,
         };
-        await app_type().getConfiguredApps({ params });
+        await this.getConfiguredApps({ params });
 
         if (this.errorConfiguredApps) {
           this.callModal({
@@ -510,4 +498,3 @@
     }
   }
 </style>
-
