@@ -109,9 +109,6 @@
       await this.fetchData();
       this.headerScrollBehavior();
     },
-    beforeDestroy() {
-      this.resetWppFetchResults();
-    },
     computed: {
       ...mapState(whatsapp_store, [
         'whatsAppProfile',
