@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/whatsAppTemplates/FormTabContent.vue should be rendered properly 1`] = `
+<div class="form-tab-content">
+  <div class="form-tab-content__scroll">
+    <div class="form-tab-content--inline">
+      <div data-v-48c0c241="" class="form-tab-content__input--name unnnic-form md" maxlength="512">
+        <p data-v-48c0c241="" class="unnnic-form__label">Name</p>
+        <div data-v-400546b3="" data-v-48c0c241="" class="unnnic-form-input text-input size--md" v-bind="[object Object]" mask=""><input data-v-97b44e8c="" data-v-400546b3="" type="text" size="0" v-bind="[object Object]" maxlength="512" placeholder="Name" class="input-itself input size-md normal">
+          <!---->
+          <!---->
+        </div>
+        <!---->
+      </div>
+      <div data-v-57f15418="" tabindex="-1" class="normal-multiselect form-tab-content__selects--category"><span data-v-57f15418="" class="select-permission-label">Category</span>
+        <div data-v-57f15418="" tabindex="0" class="select-permission">
+          <h6 data-v-57f15418="" class="title noselect">Select the category</h6><span data-v-4ce83152="" data-v-57f15418="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="unnnic-select">
+      <p class="unnnic-form__label">Language</p><span data-v-6fe2671f="" class="dropdown"><div data-v-400546b3="" class="text-input size--md has-icon-right" readonly="readonly" data-v-6fe2671f=""><input data-v-97b44e8c="" data-v-400546b3="" type="text" size="0" readonly="readonly" placeholder="Select the language" iconright="arrow-button-down-1" iconrightclickable="true" class="input-itself input size-md normal"><!----><span data-v-4ce83152="" data-v-400546b3="" class="unnnic-icon unnnic-icon__size--sm unnnic--clickable unnnic-icon-scheme--neutral-cloudy icon-right clickable"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.31471 14.0096L19.0432 29.5967C19.1676 29.7264 19.3169 29.8296 19.4822 29.9001C19.6474 29.9707 19.8253 30.007 20.005 30.007C20.1847 30.007 20.3625 29.9707 20.5278 29.9001C20.6931 29.8296 20.8424 29.7264 20.9668 29.5967L34.689 14.0096C34.7987 13.886 34.8825 13.7415 34.9353 13.5849C34.9882 13.4282 35.009 13.2625 34.9965 13.0977C34.984 12.9328 34.9385 12.7721 34.8627 12.6252C34.7869 12.4783 34.6824 12.3481 34.5553 12.2423L32.243 10.2963C31.9852 10.0789 31.6522 9.97163 31.316 9.99759C30.9797 10.0235 30.6671 10.1807 30.4457 10.435L20.2406 22.25C20.2112 22.2841 20.1749 22.3114 20.134 22.3302C20.0931 22.3489 20.0487 22.3587 20.0037 22.3587C19.9588 22.3587 19.9143 22.3489 19.8734 22.3302C19.8326 22.3114 19.7962 22.2841 19.7669 22.25L9.558 10.4338C9.33639 10.1806 9.02374 10.0252 8.68809 10.0013C8.52167 9.9865 8.35397 10.0052 8.19489 10.0563C8.03582 10.1074 7.8886 10.1898 7.76195 10.2988L5.44845 12.2423C5.32061 12.3479 5.21534 12.4781 5.13889 12.6252C5.06245 12.7723 5.0164 12.9332 5.0035 13.0985C4.99099 13.2635 5.01212 13.4294 5.06562 13.586C5.11911 13.7426 5.20386 13.8868 5.31471 14.0096Z" fill="#3B414D" class="primary"></path></svg></span>
+    </div>
+    <option data-v-6fe2671f="" label="English (US)" value="en_US">
+      English (US)
+    </option>
+    <option data-v-6fe2671f="" label="Portuguese (BR)" value="pt_BR">
+      Portuguese (BR)
+    </option>
+    <div data-v-6fe2671f="" class="dropdown-data" style="position: fixed; top: 0px;"></div></span>
+    <!---->
+  </div>
+  <formtabcontentheader-stub class="form-tab-content__header"></formtabcontentheader-stub>
+  <div class="form-tab-content-body form-tab-content__body"><span class="form-tab-content-body__title">
+    Body Text
+  </span>
+    <div data-v-2f3d79bf="" class="form-tab-content-body__input unnnic-text-area md normal">
+      <!----><textarea data-v-2f3d79bf="" placeholder="Write the body text" maxlength="1024"></textarea>
+      <div data-v-2f3d79bf="" class="helper"> 0/1024 </div>
+      <!---->
+    </div>
+    <div class="input-editor form-tab-content-body__input__actions">
+      <div>
+        <vemojipicker-stub emojisize="22" emojisbyrow="7" class="input-editor__emoji-picker" style="display: none;"></vemojipicker-stub> <button data-v-2d9f2cbf="" class="input-editor__emoji-picker__button unnnic-button unnnic-button--size-small unnnic-button--tertiary unnnic-button--icon-on-center">
+          <!---->
+          <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C11.7287 35.0005 5 28.2717 5 20.0005C5 11.7292 11.7287 5.00049 20 5.00049C28.2712 5.00049 35 11.7292 35 20.0005C35 28.2717 28.2712 35.0005 20 35.0005ZM20 6.87549C12.7625 6.87549 6.875 12.763 6.875 20.0005C6.875 27.238 12.7625 33.1255 20 33.1255C27.2375 33.1255 33.125 27.238 33.125 20.0005C33.125 12.763 27.2375 6.87549 20 6.87549Z" fill="#3B414D" class="primary"></path><path d="M20 31.2505C14.8312 31.2505 10.625 27.0442 10.625 21.8755C10.625 21.358 11.045 20.938 11.5625 20.938C12.08 20.938 12.5 21.358 12.5 21.8755C12.5 26.0105 15.865 29.3755 20 29.3755C24.135 29.3755 27.5 26.0105 27.5 21.8755C27.5 21.358 27.92 20.938 28.4375 20.938C28.955 20.938 29.375 21.358 29.375 21.8755C29.375 27.0442 25.1688 31.2505 20 31.2505Z" fill="#3B414D" class="primary"></path><path d="M28.1163 18.1255C27.7188 18.1255 27.3638 17.8743 27.2325 17.4993C27.0663 17.028 26.725 16.648 26.2738 16.433C26.0175 16.3105 25.7463 16.248 25.4663 16.248C25.2538 16.248 25.0438 16.2843 24.84 16.3568C24.3025 16.5468 23.8863 16.963 23.6963 17.5005C23.5638 17.8743 23.2088 18.1255 22.8125 18.1255C22.7063 18.1255 22.6013 18.108 22.5 18.0718C22.2638 17.988 22.0738 17.818 21.9663 17.5918C21.8588 17.3655 21.845 17.1118 21.9288 16.8755C22.3075 15.8018 23.1413 14.968 24.215 14.5893C24.6213 14.4468 25.0425 14.3743 25.4663 14.3743C26.0263 14.3743 26.57 14.498 27.0813 14.7418C27.985 15.173 28.6663 15.9318 29 16.8755C29.0838 17.1118 29.07 17.3655 28.9625 17.5918C28.855 17.818 28.665 17.988 28.4288 18.0718C28.3263 18.108 28.2213 18.1255 28.1163 18.1255Z" fill="#3B414D" class="primary"></path><path d="M17.1876 18.1255C16.7913 18.1255 16.4363 17.8743 16.3038 17.5005C16.0401 16.753 15.3288 16.2505 14.5338 16.2505C14.3226 16.2505 14.1126 16.2855 13.9113 16.3568C13.3738 16.5468 12.9576 16.963 12.7676 17.5005C12.6351 17.8743 12.2801 18.1255 11.8838 18.1255C11.7776 18.1255 11.6726 18.108 11.5713 18.0718C11.3351 17.988 11.1451 17.818 11.0376 17.5918C10.9301 17.3655 10.9163 17.1118 11.0001 16.8755C11.3788 15.8018 12.2126 14.968 13.2863 14.5893C13.6888 14.4468 14.1088 14.3743 14.5326 14.3743C16.1201 14.3743 17.5426 15.3793 18.0713 16.8755C18.2438 17.363 17.9863 17.8993 17.5001 18.0718C17.3988 18.108 17.2938 18.1255 17.1876 18.1255Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
+          <!---->
+        </button>
+      </div>
+      <div class="input-editor__formatter">
+        <div data-v-49d78ffa="" class="unnnic-tooltip"><button data-v-2d9f2cbf="" class="input-editor__button unnnic-button unnnic-button--size-small unnnic-button--tertiary unnnic-button--icon-on-center" data-v-49d78ffa="">
+            <!---->
+            <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.34375 17.5C5.085 17.5 4.875 17.29 4.875 17.0312C4.875 16.7725 5.085 16.5625 5.34375 16.5625H6.75V3.4375H5.34375C5.085 3.4375 4.875 3.2275 4.875 2.96875C4.875 2.71 5.085 2.5 5.34375 2.5H11.9062C13.7156 2.5 15.1875 3.97187 15.1875 5.78125C15.1875 6.95937 14.5438 8.045 13.5419 8.62437C15.1063 9.41437 16.125 11.0369 16.125 12.8125C16.125 15.3969 14.0219 17.5 11.4375 17.5H5.34375ZM11.4375 16.5625C13.505 16.5625 15.1875 14.88 15.1875 12.8125C15.1875 10.745 13.505 9.0625 11.4375 9.0625H7.6875V16.5625H11.4375ZM11.9062 8.125C13.1988 8.125 14.25 7.07375 14.25 5.78125C14.25 4.48875 13.1988 3.4375 11.9062 3.4375H7.6875V8.125H11.9062Z" fill="#9CACCC" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
+            <!---->
+          </button><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> Bold <br data-v-49d78ffa=""><!----></span></div>
+        <div data-v-49d78ffa="" class="unnnic-tooltip"><button data-v-2d9f2cbf="" class="input-editor__button unnnic-button unnnic-button--size-small unnnic-button--tertiary unnnic-button--icon-on-center" data-v-49d78ffa="">
+            <!---->
+            <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.46875 17.5C3.21 17.5 3 17.29 3 17.0312C3 16.7725 3.21 16.5625 3.46875 16.5625H6.46875L13.4688 3.4375H10.9688C10.71 3.4375 10.5 3.2275 10.5 2.96875C10.5 2.71 10.71 2.5 10.9688 2.5H17.5312C17.79 2.5 18 2.71 18 2.96875C18 3.2275 17.79 3.4375 17.5312 3.4375H14.5312L7.53125 16.5625H10.0312C10.29 16.5625 10.5 16.7725 10.5 17.0312C10.5 17.29 10.29 17.5 10.0312 17.5H3.46875Z" fill="#9CACCC" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
+            <!---->
+          </button><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> Italic <br data-v-49d78ffa=""><!----></span></div>
+        <div data-v-49d78ffa="" class="unnnic-tooltip"><button data-v-2d9f2cbf="" class="input-editor__button input-editor__button__strike unnnic-button unnnic-button--size-small unnnic-button--tertiary" data-v-49d78ffa="">
+            <!---->
+            <!---->
+            <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"><img data-v-2d9f2cbf="" src="[object Object]">  </span>
+            <!---->
+          </button><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> Strike Through <br data-v-49d78ffa=""><!----></span></div>
+        <div data-v-49d78ffa="" class="unnnic-tooltip"><button data-v-2d9f2cbf="" class="input-editor__button input-editor__button__mono unnnic-button unnnic-button--size-small unnnic-button--tertiary" data-v-49d78ffa="">
+            <!---->
+            <!---->
+            <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+        &lt;/&gt;
+        </span>
+            <!---->
+          </button><span data-v-49d78ffa="" class="unnnic-tooltip-label unnnic-tooltip-label-top"> Monospace <br data-v-49d78ffa=""><!----></span></div>
+      </div>
+    </div> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-small unnnic-button--tertiary">
+      <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark unnnic-button__icon-left"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span>
+      <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+    Add Variable to text body
+    </span>
+      <!---->
+    </button>
+  </div>
+  <formtabcontentfooter-stub class="form-tab-content__footer"></formtabcontentfooter-stub>
+  <formtabcontentbuttons-stub class="form-tab-content__buttons"></formtabcontentbuttons-stub>
+</div>
+<div class="form-tab-content__actions"><button data-v-2d9f2cbf="" class="form-tab-content__actions__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary">
+    <!---->
+    <!---->
+    <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Cancel </span>
+    <!---->
+  </button> <button data-v-2d9f2cbf="" class="form-tab-content__actions__save unnnic-button unnnic-button--size-large unnnic-button--secondary">
+    <!---->
+    <!---->
+    <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Save Language </span>
+    <!---->
+  </button></div>
+</div>
+`;

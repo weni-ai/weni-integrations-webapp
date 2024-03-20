@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WhatsAppConfig.vue should be rendered properly 1`] = `
+<div class="config-whatsapp">
+  <div class="config-whatsapp__header">
+    <div class="config-whatsapp__header__title">
+      <div class="config-whatsapp__header__title__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="config-whatsapp__header__title__icon-container__icon"></div>
+      <div class="config-whatsapp__header__title__name">Weni Web Chat</div>
+      <unnnicbutton-stub size="small" type="tertiary" iconcenter="close-1" class="config-whatsapp__header__title__close"></unnnicbutton-stub>
+    </div> <span class="config-whatsapp__header__description">
+      Learn more about how to increase your daily message limit in WhatsApp
+      <span><a href="https://docs.weni.ai/l/en/channels/how-to-verify-my-business" target="_blank">
+          here.
+        </a></span></span>
+  </div>
+  <div class="config-whatsapp__content">
+    <unnnictab-stub size="md" initialtab="account" tabs="account,profile,webhook_info,conversations" class="config-whatsapp__tabs"><template></template>
+      <accounttab-stub appinfo="[object Object]"></accounttab-stub> <template></template>
+      <profiletab-stub app="[object Object]"></profiletab-stub> <template></template>
+      <webhooktab-stub app="[object Object]"></webhooktab-stub> <template></template>
+      <conversationstab-stub app="[object Object]"></conversationstab-stub>
+    </unnnictab-stub>
+  </div>
+</div>
+`;

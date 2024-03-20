@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wwc/Config.vue should be rendered properly 1`] = `
+<div class="app-config-wwc">
+  <div class="app-config-wwc__header">
+    <div class="app-config-wwc__header__icon-container"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-config-wwc__header__icon-container__icon"></div>
+    <div class="app-config-wwc__header__title">Weni Web Chat</div>
+    <div class="app-config-wwc__header__close">
+      <unnnicbutton-stub size="small" type="tertiary" iconleft="close-1" class="app-config-wwc__header__close__button"></unnnicbutton-stub>
+    </div>
+  </div>
+  <div class="app-config-wwc__content">
+    <unnnictab-stub size="md" initialtab="settings" tabs="settings,appearance,script" class="app-config-wwc__tabs"><template></template> <template></template> <template></template> <template></template> <template></template> <template></template></unnnictab-stub>
+  </div>
+  <div class="app-config-wwc__simulator-switch">
+    <unnniciconsvg-stub icon="view-1-1" size="xl" scheme="brand-weni-soft" class="app-config-wwc__simulator-switch__icon"></unnniciconsvg-stub>
+  </div>
+  <div class="wwc-simulator" style="--main-color: #009E96; --main-color-opaque: #009E961C; --custom-avatar: url(null);">
+    <transition-stub name="fade">
+      <div class="wwc-simulator__content">
+        <div class="wwc-simulator__content__header">
+          <div class="wwc-simulator__content__header__icon-container">
+            <unnniciconsvg-stub icon="single-neutral-2" size="sm" scheme="background-snow" class="wwc-simulator__content__header__icon-container__icon"></unnniciconsvg-stub>
+          </div>
+          <div class="wwc-simulator__content__header__text">
+            <div class="wwc-simulator__content__header__text__title">
+              Chat Title
+            </div>
+            <div class="wwc-simulator__content__header__text__subtitle">
+              Chat subtitle
+            </div>
+          </div>
+          <div class="wwc-simulator__content__header__button">
+            <!---->
+            <div class="wwc-simulator__content__header__button__close">
+              <unnniciconsvg-stub icon="close-1" size="sm" lineheight="sm" scheme="background-snow"></unnniciconsvg-stub>
+            </div>
+          </div>
+        </div>
+        <div class="wwc-simulator__content__body">
+          <div class="wwc-simulator__content__body__message--incoming">
+            <div class="wwc-simulator__content__body__message--incoming__icon-container">
+              <unnniciconsvg-stub icon="single-neutral-2" size="sm" scheme="background-snow" class="wwc-simulator__content__body__message--incoming__icon-container__icon"></unnniciconsvg-stub>
+            </div>
+            <div class="wwc-simulator__content__body__message--incoming__content">
+              <div class="wwc-simulator__content__body__message--incoming__content__text">
+                Curabitur vitae luctus felis, eget placerat est. In hac habitasse platea dictumst.
+                Phasellus ipsum sem, pulvinar eget ultrices nec, tristique non quam. Nulla ac sem ut
+                nisi fermentum luctus.
+              </div>
+              <div class="wwc-simulator__content__body__message--incoming__content__replies"></div>
+            </div>
+          </div>
+          <div class="wwc-simulator__content__body__message--outgoing">
+            <!---->
+            <div class="wwc-simulator__content__body__message--outgoing__content">
+              <div class="wwc-simulator__content__body__message--outgoing__content__text">
+                Vitae
+              </div>
+              <div class="wwc-simulator__content__body__message--outgoing__content__replies"></div>
+            </div>
+          </div>
+          <div class="wwc-simulator__content__body__message--incoming">
+            <div class="wwc-simulator__content__body__message--incoming__icon-container">
+              <unnniciconsvg-stub icon="single-neutral-2" size="sm" scheme="background-snow" class="wwc-simulator__content__body__message--incoming__icon-container__icon"></unnniciconsvg-stub>
+            </div>
+            <div class="wwc-simulator__content__body__message--incoming__content">
+              <div class="wwc-simulator__content__body__message--incoming__content__text">
+                Curabitur porta, tortor sit amet laoreet posuere.
+              </div>
+              <div class="wwc-simulator__content__body__message--incoming__content__replies">
+                <div class="wwc-simulator__content__body__message--incoming__content__replies__reply">
+                  some specific text
+                </div>
+                <div class="wwc-simulator__content__body__message--incoming__content__replies__reply">
+                  some specific text
+                </div>
+                <div class="wwc-simulator__content__body__message--incoming__content__replies__reply">
+                  some specific text
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wwc-simulator__content__input">
+          <div class="wwc-simulator__content__input__text">
+            some specific text
+          </div>
+          <div class="wwc-simulator__content__input__button">
+            <unnniciconsvg-stub icon="send-email-3-1" size="md" scheme="neutral-clean" class="wwc-simulator__content__input__button__icon"></unnniciconsvg-stub>
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+    <div class="wwc-simulator__button">
+      <!---->
+      <div class="wwc-simulator__button__content">
+        <unnniciconsvg-stub icon="single-neutral-2" size="md" scheme="background-snow" class="wwc-simulator__button__content__icon"></unnniciconsvg-stub>
+      </div>
+    </div>
+  </div>
+</div>
+`;

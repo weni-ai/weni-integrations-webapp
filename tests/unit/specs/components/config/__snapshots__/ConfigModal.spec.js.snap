@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfigModal.vue should be rendered properly 1`] = `
+<div>
+  <transition-stub name="fade">
+    <!---->
+  </transition-stub>
+  <unnnic-modal-stub text="Cancel modifications" modalicon="alert-circle-1" closeicon="true" scheme="feedback-yellow"><span>Do you really want to cancel your changes? All unsaved changes will be lost.</span>
+    <unnnic-button-stub size="large" type="tertiary">
+      Go back to configuration
+    </unnnic-button-stub>
+    <unnnic-button-stub size="large" type="primary">
+      Confirm
+    </unnnic-button-stub>
+  </unnnic-modal-stub>
+</div>
+`;

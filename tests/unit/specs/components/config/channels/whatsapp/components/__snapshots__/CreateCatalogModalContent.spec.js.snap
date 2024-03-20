@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/config/channels/whatsapp/components/CreateCatalogModalContent.vue should be rendered properly 1`] = `
+<div class="modal">
+  <div slot="message" class="modal__content"><span class="modal__content__title">Create catalog</span>
+    <div class="modal__content__header"><span class="modal__content__header__title">Sending method</span> <span class="modal__content__header__description">Choose the way you want to send your catalog to start selling products via Whatsapp</span></div>
+    <div class="modal__content__form">
+      <div class="modal__content__form__options">
+        <div class="modal__content__form__options__card selected">
+          <div class="modal__content__form__options__card__icon"><img src="~@/assets/vtex_small.png" class="modal__content__form__options__card__icon__image"></div>
+          <div class="modal__content__form__options__card__content"><span class="modal__content__form__options__card__content__title">VTEX Catalog</span> <span class="modal__content__form__options__card__content__description">
+              Automatically connect your catalog through integration with the VTEX app
+            </span></div>
+        </div>
+        <div class="modal__content__form__options__card">
+          <div class="modal__content__form__options__card__icon"><img src="~@/assets/meta_small.png" class="modal__content__form__options__card__icon__image"></div>
+          <div class="modal__content__form__options__card__content"><span class="modal__content__form__options__card__content__title">
+              Facebook Meta
+              <span data-v-4ce83152="" class="modal__content__form__options__card__content__title__icon material-symbols-rounded unnnic-icon-scheme--neutral-darkest unnnic-icon-size--md"> open_in_new </span></span> <span class="modal__content__form__options__card__content__description">
+              Create a catalog on Meta's Facebook, a new tab will be opened.
+            </span></div>
+        </div>
+      </div> <span class="modal__content__form__footer">To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here</span>
+    </div>
+  </div>
+  <div class="modal__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" slot="options">
+      <!---->
+      <!---->
+      <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+      Cancel
+      </span>
+      <!---->
+    </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--primary" slot="options">
+      <!---->
+      <!---->
+      <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+      Continue
+      </span>
+      <!---->
+    </button></div>
+</div>
+`;

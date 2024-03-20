@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppModal should be rendered properly 1`] = `
+<unnnicmodal-stub text="some specific text" modalicon="alert-circle-1" closeicon="true" scheme="feedback-red"><span>some specific text</span>
+  <unnnicbutton-stub size="large" type="tertiary">some specific text</unnnicbutton-stub>
+  <unnnicbutton-stub size="large" text="some specific text" type="primary" class="loading-button"></unnnicbutton-stub>
+</unnnicmodal-stub>
+`;

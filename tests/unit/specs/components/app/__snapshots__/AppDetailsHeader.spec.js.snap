@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppDetailsHeader.vue should be rendered properly 1`] = `
+<div class="app-details-header" style="--icon-bg-color: #00DED333;">
+  <div class="app-details-header__icon"><img src="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/logo-wwc.svg" class="app-details-header__icon__src"></div>
+  <div class="app-details-header__content">
+    <div class="app-details-header__content__title">Weni Web Chat</div>
+    <div class="app-details-header__content__description">some specific text</div>
+  </div>
+  <div type="add" class="app-details-header__button">
+    <unnnicbutton-stub size="large" text="some specific text" type="secondary" iconleft="add-1" disabled="true" class="loading-button"></unnnicbutton-stub>
+    <!---->
+    <!---->
+  </div>
+  <!---->
+</div>
+`;

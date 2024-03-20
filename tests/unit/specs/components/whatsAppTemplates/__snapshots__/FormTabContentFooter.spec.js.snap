@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/whatsAppTemplates/FormTabContentFooter.vue should be rendered properly 1`] = `
+<div class="form-tab-content-footer"><span class="form-tab-content-footer__title">
+    Footer Text
+  </span>
+  <div data-v-2f3d79bf="" class="form-tab-content-footer__input unnnic-text-area md normal">
+    <!----><textarea data-v-2f3d79bf="" placeholder="Enter the footer text" maxlength="60"></textarea>
+    <div data-v-2f3d79bf="" class="helper"> 0/60 </div>
+    <!---->
+  </div>
+</div>
+`;

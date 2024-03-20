@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/config/external/chatgpt/Setup.vue should be rendered properly 1`] = `
+<unnnicmodal-stub text="Integrate with ChatGPT" description="To integrate, create a name, insert your API-Token and select one of the available versions" showmodal="true" class="chatgpt-modal">
+  <div class="chatgpt-modal__content">
+    <div class="chatgpt-modal__content__form">
+      <unnnic-input-stub placeholder="Insert a name" type="normal" value="" nativetype="text" label="Name" size="md" mask="" class="chatgpt-modal__content__form__input__name"></unnnic-input-stub>
+      <unnnic-input-stub placeholder="Insert the Token" type="normal" value="" nativetype="text" label="Token" size="md" mask="" class="chatgpt-modal__content__form__input__token"></unnnic-input-stub>
+      <div class="chatgpt-modal__content__form__version-wrapper">
+        <div>
+          Version
+
+          <unnnic-tooltip-stub text="Changing the version of ChatGPT can change the way with that the AI ​​generates the answers based on the knowledge base and rules." enabled="true" side="right" maxwidth="350px" class="chatgpt-modal__content__form__version__tooltip">
+            <unnniciconsvg-stub icon="information-circle-4" size="sm" scheme="neutral-soft" class="chatgpt-modal__content__form__version__icon"></unnniciconsvg-stub>
+          </unnnic-tooltip-stub>
+        </div>
+        <div class="chatgpt-modal__content__form__version-wrapper__options">
+          <unnnicradio-stub value="gpt-3.5-turbo-16k" globalvalue="gpt-3.5-turbo-16k" size="md" options="gpt-3.5-turbo-16k,gpt-3.5-turbo" label="Version">
+            gpt-3.5-turbo-16k
+          </unnnicradio-stub>
+          <unnnicradio-stub value="gpt-3.5-turbo" globalvalue="gpt-3.5-turbo-16k" size="md" options="gpt-3.5-turbo-16k,gpt-3.5-turbo" label="Version">
+            gpt-3.5-turbo
+          </unnnicradio-stub>
+        </div>
+      </div>
+    </div>
+  </div>
+  <unnnicbutton-stub size="large" type="tertiary">
+    Cancel
+  </unnnicbutton-stub>
+  <unnnicbutton-stub size="large" type="secondary">
+    Continue
+  </unnnicbutton-stub>
+</unnnicmodal-stub>
+`;
