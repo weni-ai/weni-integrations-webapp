@@ -8,22 +8,21 @@
     @close="closePopUp"
     @click.stop
   >
-    <span slot="message" v-html="$t('WhatsAppDemo.config.description')"></span>
-    <unnnic-button
-      ref="unnnic-wpp-demo-modal-close-button"
-      slot="options"
-      type="tertiary"
-      @click="closePopUp"
-      >{{ $t('general.Close') }}</unnnic-button
-    >
-    <unnnic-button
-      ref="unnnic-wpp-demo-modal-navigate-button"
-      slot="options"
-      type="primary"
-      @click="openWppLink"
-    >
-      {{ $t('WhatsAppDemo.config.continue_and_redirect') }}
-    </unnnic-button>
+    <template #message>
+      <span v-html="$t('WhatsAppDemo.config.description')"></span>
+    </template>
+    <template #options>
+      <unnnic-button ref="unnnic-wpp-demo-modal-close-button" type="tertiary" @click="closePopUp">{{
+        $t('general.Close')
+      }}</unnnic-button>
+      <unnnic-button
+        ref="unnnic-wpp-demo-modal-navigate-button"
+        type="primary"
+        @click="openWppLink"
+      >
+        {{ $t('WhatsAppDemo.config.continue_and_redirect') }}
+      </unnnic-button>
+    </template>
   </unnnic-modal>
 </template>
 

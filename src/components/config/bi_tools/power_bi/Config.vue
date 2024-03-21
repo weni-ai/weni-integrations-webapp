@@ -30,20 +30,21 @@
         :text="flowToken || ''"
         hoverText=""
       >
-        <unnnic-toolTip
-          slot="buttons"
-          :text="$t('PowerBi.config.token_input.tooltip')"
-          :enabled="true"
-          side="top"
-        >
-          <unnnic-button
-            class="app-config-power-bi__content__token-input__button"
-            type="secondary"
-            size="small"
-            iconCenter="copy-paste-1"
-            @click="copyToken"
-          />
-        </unnnic-toolTip>
+        <template #buttons>
+          <unnnic-toolTip
+            :text="$t('PowerBi.config.token_input.tooltip')"
+            :enabled="true"
+            side="top"
+          >
+            <unnnic-button
+              class="app-config-power-bi__content__token-input__button"
+              type="secondary"
+              size="small"
+              iconCenter="copy-paste-1"
+              @click="copyToken"
+            />
+          </unnnic-toolTip>
+        </template>
       </unnnic-data-area>
       <unnnic-skeleton-loading v-else tag="div" width="100%" height="6rem" />
 

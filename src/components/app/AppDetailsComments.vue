@@ -21,7 +21,6 @@
       @change="handleComment"
       v-model="currentComment"
     />
-    <!-- TODO: Fix avatar and name when API is ready -->
     <unnnic-comment
       class="app-details-comments__comment"
       v-for="(comment, index) in commentsList"
@@ -30,39 +29,40 @@
       :time="getCommentTime(comment.created_on)"
       :text="comment.content"
     >
-      <Avatar
-        v-if="!comment.owner.photo_url"
-        :username="fullOwnerName(comment.owner)"
-        slot="avatar"
-      />
-      <img
-        class="app-details-comments__comment__avatar"
-        v-else
-        :src="comment.owner.photo_url"
-        slot="avatar"
-        alt=""
-      />
-      <unnnic-dropdown v-if="comment.owned" slot="actions">
-        <unnnic-icon-svg slot="trigger" icon="navigation-menu-vertical-1" size="sm" />
-        <unnnic-dropdown-item>
-          <unnnic-button
-            type="tertiary"
-            iconLeft="pencil-write-1"
-            :text="$t('apps.details.comments.edit_comment')"
-            size="small"
-            @click="handleUpdate(comment)"
-          />
-        </unnnic-dropdown-item>
-        <unnnic-dropdown-item>
-          <unnnic-button
-            type="tertiary"
-            iconLeft="delete-1"
-            :text="$t('apps.details.comments.delete_comment')"
-            size="small"
-            @click="confirmDelete(comment.uuid)"
-          />
-        </unnnic-dropdown-item>
-      </unnnic-dropdown>
+      <template #avatar>
+        <Avatar v-if="!comment.owner.photo_url" :username="fullOwnerName(comment.owner)" />
+        <img
+          class="app-details-comments__comment__avatar"
+          v-else
+          :src="comment.owner.photo_url"
+          alt=""
+        />
+      </template>
+      <template #actions>
+        <unnnic-dropdown v-if="comment.owned">
+          <template #trigger>
+            <unnnic-icon-svg icon="navigation-menu-vertical-1" size="sm" />
+          </template>
+          <unnnic-dropdown-item>
+            <unnnic-button
+              type="tertiary"
+              iconLeft="pencil-write-1"
+              :text="$t('apps.details.comments.edit_comment')"
+              size="small"
+              @click="handleUpdate(comment)"
+            />
+          </unnnic-dropdown-item>
+          <unnnic-dropdown-item>
+            <unnnic-button
+              type="tertiary"
+              iconLeft="delete-1"
+              :text="$t('apps.details.comments.delete_comment')"
+              size="small"
+              @click="confirmDelete(comment.uuid)"
+            />
+          </unnnic-dropdown-item>
+        </unnnic-dropdown>
+      </template>
     </unnnic-comment>
 
     <unnnic-modal
@@ -73,23 +73,25 @@
       modal-icon="alert-circle-1"
       @close="toggleRemoveModal"
     >
-      <span slot="message" v-html="$t('apps.details.comments.remove.description')"></span>
-      <unnnic-button
-        ref="unnnic-remove-modal-close-button"
-        slot="options"
-        type="tertiary"
-        @click="toggleRemoveModal"
-        >{{ $t('general.Cancel') }}</unnnic-button
-      >
-      <unnnic-button
-        ref="unnnic-remove-modal-navigate-button"
-        slot="options"
-        type="primary"
-        @click="handleDelete(currentRemovalUuid)"
-        scheme="feedback-red"
-      >
-        {{ $t('apps.details.comments.remove.remove') }}
-      </unnnic-button>
+      <template #message>
+        <span v-html="$t('apps.details.comments.remove.description')"></span>
+      </template>
+      <template #options>
+        <unnnic-button
+          ref="unnnic-remove-modal-close-button"
+          type="tertiary"
+          @click="toggleRemoveModal"
+          >{{ $t('general.Cancel') }}</unnnic-button
+        >
+        <unnnic-button
+          ref="unnnic-remove-modal-navigate-button"
+          type="primary"
+          @click="handleDelete(currentRemovalUuid)"
+          scheme="feedback-red"
+        >
+          {{ $t('apps.details.comments.remove.remove') }}
+        </unnnic-button>
+      </template>
     </unnnic-modal>
   </div>
 </template>
