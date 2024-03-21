@@ -20,7 +20,7 @@
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading';
+  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading.vue';
 
   export default {
     name: 'FormHeader',

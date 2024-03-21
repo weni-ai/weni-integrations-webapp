@@ -35,7 +35,7 @@
 <script>
   import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import InputEditor from '@/components/whatsAppTemplates/InputEditor';
+  import InputEditor from '@/components/whatsAppTemplates/InputEditor.vue';
 
   import {
     countVariables,
