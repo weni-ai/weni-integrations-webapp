@@ -34,17 +34,15 @@ exports[`OnboardModal.vue telegram should handle telegram back action until app 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token @BotFather sent you in the field provided. Then click "validate".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Start </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -61,17 +59,15 @@ exports[`OnboardModal.vue telegram should handle telegram back action until app 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -107,17 +103,15 @@ exports[`OnboardModal.vue telegram should render telegram pages correctly and cl
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -134,17 +128,15 @@ exports[`OnboardModal.vue telegram should render telegram pages correctly and cl
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token @BotFather sent you in the field provided. Then click "validate".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Start </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -163,17 +155,15 @@ exports[`OnboardModal.vue telegram should start telegram steps on telegram icon 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -190,17 +180,15 @@ exports[`OnboardModal.vue weni web chat should handle wwc back action until app 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Let's go! Open your Telegram and search for "@BotFather".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -236,17 +224,15 @@ exports[`OnboardModal.vue weni web chat should render weniwebchat pages correctl
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the "Add" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the "Script Code" section and copy the code that appears there. Paste it above the &lt;/body&gt; tag on your site.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Start </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -265,17 +251,15 @@ exports[`OnboardModal.vue weni web chat should start weni web chat steps on weni
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the "Add" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the "Script Code" section and copy the code that appears there. Paste it above the &lt;/body&gt; tag on your site.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Start </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -292,17 +276,15 @@ exports[`OnboardModal.vue whatsapp should handle whatsapp back action until app 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="9"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Start </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -319,17 +301,15 @@ exports[`OnboardModal.vue whatsapp should handle whatsapp back action until app 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .</li><li>Add the phone number that people will use to chat with you on WhatsApp.</li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -346,17 +326,15 @@ exports[`OnboardModal.vue whatsapp should handle whatsapp back action until app 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -392,17 +370,15 @@ exports[`OnboardModal.vue whatsapp should render whatsapp pages correctly and cl
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -419,17 +395,15 @@ exports[`OnboardModal.vue whatsapp should render whatsapp pages correctly and cl
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="5"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .</li><li>Add the phone number that people will use to chat with you on WhatsApp.</li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -446,17 +420,15 @@ exports[`OnboardModal.vue whatsapp should render whatsapp pages correctly and cl
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol start="9"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Start </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Start </span>
+          <!----></button></div>
     </div>
   </div>
 </div>
@@ -475,17 +447,15 @@ exports[`OnboardModal.vue whatsapp should start whatsapp steps on whatsapp icon 
       <!---->
       <!---->
       <div data-v-9dc3c428="" class="onboard__content"><img data-v-9dc3c428="" src="[object Object]" class="onboard__gif"> <span data-v-9dc3c428="" class="onboard__description"><ol><li>On the WhatsApp card, look for the "+" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click "Start" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol></span></div>
-      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
+      <div data-v-9dc3c428="" class="onboard__buttons"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary" data-v-9dc3c428="">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Back </span>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Back </span>
+          <!----></button> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-        </button> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--secondary" data-v-9dc3c428="">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> Next </span>
-          <!---->
-        </button></div>
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> Next </span>
+          <!----></button></div>
     </div>
   </div>
 </div>

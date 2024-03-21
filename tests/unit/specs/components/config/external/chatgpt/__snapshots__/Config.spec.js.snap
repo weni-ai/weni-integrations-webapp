@@ -21,7 +21,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
           <unnnic-select-smart-stub options="[object Object],[object Object],[object Object]" value="[object Object]" size="md" type="normal" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
           <unnnic-label-stub label="Voice tone"></unnnic-label-stub>
           <unnnic-select-smart-stub options="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" value="[object Object]" size="md" type="normal" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
-          <unnnic-input-stub placeholder="Insert prompt text and press enter" type="normal" value="" nativetype="text" label="Insert prompts" iconright="keyboard-enter-1" size="md" mask="" class="config-chatgpt__settings__content__inputs__prompt"></unnnic-input-stub>
+          <unnnic-input-stub placeholder="Insert prompt text and press enter" type="normal" value="" nativetype="text" label="Insert prompts" iconright="keyboard" size="md" mask="" class="config-chatgpt__settings__content__inputs__prompt"></unnnic-input-stub>
           <!---->
           <div class="config-chatgpt__settings__content__prompts-wrapper"></div>
         </div>
@@ -76,7 +76,7 @@ exports[`components/config/external/chatgpt/Config.vue should be rendered proper
           <unnnic-select-smart-stub options="[object Object],[object Object],[object Object]" value="" size="md" type="normal" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
           <unnnic-label-stub label="Voice tone"></unnnic-label-stub>
           <unnnic-select-smart-stub options="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" value="" size="md" type="normal" multiplewithoutselectsmessage=""></unnnic-select-smart-stub>
-          <unnnic-input-stub placeholder="Insert prompt text and press enter" type="normal" value="" nativetype="text" label="Insert prompts" iconright="keyboard-enter-1" size="md" mask="" class="config-chatgpt__settings__content__inputs__prompt"></unnnic-input-stub>
+          <unnnic-input-stub placeholder="Insert prompt text and press enter" type="normal" value="" nativetype="text" label="Insert prompts" iconright="keyboard" size="md" mask="" class="config-chatgpt__settings__content__inputs__prompt"></unnnic-input-stub>
           <!---->
           <div class="config-chatgpt__settings__content__prompts-wrapper"></div>
         </div>

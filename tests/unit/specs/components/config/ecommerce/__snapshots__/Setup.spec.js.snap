@@ -86,21 +86,19 @@ exports[`components/config/ecommerce/vtex/Setup.vue should be rendered properly 
         </div>
       </div>
       <!---->
-      <div data-v-4c459454="" class="unnnic-modal-container-background-button"><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary">
+      <div data-v-4c459454="" class="unnnic-modal-container-background-button"><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--tertiary">
           <!---->
           <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label">
     Cancel
     </span>
+          <!----></button><button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-large unnnic-button--primary">
           <!---->
-        </button><button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-large unnnic-button--primary">
           <!---->
-          <!---->
-          <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+          <!----><span data-v-3b3aa28c="" class="unnnic-button__label">
     Continue
     </span>
-          <!---->
-        </button></div>
+          <!----></button></div>
     </div>
   </div>
   </div>

@@ -9,12 +9,11 @@ exports[`components/whatsAppTemplates/FormTabContentBody.vue should be rendered 
     <div data-v-2f3d79bf="" class="helper"> 0/1024 </div>
     <!---->
   </div>
-  <inputeditor-stub formatter="true" class="form-tab-content-body__input__actions"></inputeditor-stub> <button data-v-2d9f2cbf="" class="unnnic-button unnnic-button--size-small unnnic-button--tertiary">
-    <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark unnnic-button__icon-left"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span>
-    <!----><span data-v-2d9f2cbf="" class="unnnic-button__label">
+  <inputeditor-stub formatter="true" class="form-tab-content-body__input__actions"></inputeditor-stub> <button data-v-3b3aa28c="" class="unnnic-button unnnic-button--size-small unnnic-button--tertiary">
+    <!----><span data-v-4ce83152="" data-v-3b3aa28c="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark unnnic-button__icon-left"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 35.0005C19.4825 35.0005 19.0625 34.5805 19.0625 34.063V20.938H5.9375C5.42 20.938 5 20.518 5 20.0005C5 19.483 5.42 19.063 5.9375 19.063H19.0625V5.93799C19.0625 5.42049 19.4825 5.00049 20 5.00049C20.5175 5.00049 20.9375 5.42049 20.9375 5.93799V19.063H34.0625C34.58 19.063 35 19.483 35 20.0005C35 20.518 34.58 20.938 34.0625 20.938H20.9375V34.063C20.9375 34.5805 20.5175 35.0005 20 35.0005Z" fill="#3B414D" class="primary"></path></svg></span>
+    <!----><span data-v-3b3aa28c="" class="unnnic-button__label">
     Add Variable to text body
     </span>
-    <!---->
-  </button>
+    <!----></button>
 </div>
 `;

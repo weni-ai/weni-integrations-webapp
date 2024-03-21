@@ -19,11 +19,10 @@ exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] 
       <div class="whatsapp-templates-table__filters__date__dropdown-date">
         <div data-v-53d06aee="" class="unnnic-date-picker whatsapp-templates-table__filters__date__dropdown-date__picker" value="[object Object]" style="display: none;">
           <div data-v-53d06aee="" class="month-container">
-            <div data-v-53d06aee="" class="header header--large"><button data-v-2d9f2cbf="" data-v-53d06aee="" class="button-space unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center" style="grid-area: left-button;">
+            <div data-v-53d06aee="" class="header header--large"><button data-v-3b3aa28c="" data-v-53d06aee="" class="button-space unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center" style="grid-area: left-button;">
                 <!---->
-                <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.8368 35.0005C26.5868 35.0005 26.3506 34.903 26.1743 34.7255L12.7743 21.3255C12.4206 20.9717 12.2256 20.5017 12.2256 20.0017C12.2256 19.5017 12.4193 19.0305 12.7731 18.6767L26.1743 5.27549C26.3506 5.09799 26.5868 5.00049 26.8368 5.00049C27.0868 5.00049 27.3231 5.09799 27.4993 5.27549C27.6768 5.45174 27.7743 5.68799 27.7743 5.93799C27.7743 6.18799 27.6768 6.42424 27.4993 6.60049L14.0993 20.0005L27.4993 33.4005C27.6768 33.578 27.7743 33.813 27.7743 34.063C27.7743 34.313 27.6768 34.5492 27.4993 34.7255C27.3218 34.9017 27.0868 35.0005 26.8368 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
-                <!---->
-              </button>
+                <!----><span data-v-4ce83152="" data-v-3b3aa28c="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.8368 35.0005C26.5868 35.0005 26.3506 34.903 26.1743 34.7255L12.7743 21.3255C12.4206 20.9717 12.2256 20.5017 12.2256 20.0017C12.2256 19.5017 12.4193 19.0305 12.7731 18.6767L26.1743 5.27549C26.3506 5.09799 26.5868 5.00049 26.8368 5.00049C27.0868 5.00049 27.3231 5.09799 27.4993 5.27549C27.6768 5.45174 27.7743 5.68799 27.7743 5.93799C27.7743 6.18799 27.6768 6.42424 27.4993 6.60049L14.0993 20.0005L27.4993 33.4005C27.6768 33.578 27.7743 33.813 27.7743 34.063C27.7743 34.313 27.6768 34.5492 27.4993 34.7255C27.3218 34.9017 27.0868 35.0005 26.8368 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-3b3aa28c="" class="unnnic-button__label">  </span>
+                <!----></button>
               <div data-v-53d06aee="" class="label label--large"> some specific text 2018 </div>
             </div>
             <div data-v-53d06aee="" class="days days--large">
@@ -80,11 +79,10 @@ exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] 
           </div>
           <div data-v-53d06aee="" class="divider"></div>
           <div data-v-53d06aee="" class="month-container">
-            <div data-v-53d06aee="" class="header header--large"><button data-v-2d9f2cbf="" data-v-53d06aee="" class="button-space unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center" style="grid-area: right-button;">
+            <div data-v-53d06aee="" class="header header--large"><button data-v-3b3aa28c="" data-v-53d06aee="" class="button-space unnnic-button unnnic-button--size-small unnnic-button--secondary unnnic-button--icon-on-center" style="grid-area: right-button;">
                 <!---->
-                <!----><span data-v-4ce83152="" data-v-2d9f2cbf="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.1635 35.0005C12.9135 35.0005 12.6772 34.903 12.501 34.7255C12.136 34.3605 12.136 33.7655 12.501 33.3992L25.901 20.0005L12.501 6.60049C12.3235 6.42424 12.226 6.18799 12.226 5.93799C12.226 5.68799 12.3235 5.45174 12.501 5.27549C12.6772 5.09799 12.9135 5.00049 13.1635 5.00049C13.4135 5.00049 13.6497 5.09799 13.826 5.27549L27.226 18.6755C27.956 19.4055 27.9572 20.5942 27.2272 21.3242L13.826 34.7255C13.6497 34.903 13.4135 35.0005 13.1635 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-2d9f2cbf="" class="unnnic-button__label">  </span>
-                <!---->
-              </button>
+                <!----><span data-v-4ce83152="" data-v-3b3aa28c="" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-dark"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.1635 35.0005C12.9135 35.0005 12.6772 34.903 12.501 34.7255C12.136 34.3605 12.136 33.7655 12.501 33.3992L25.901 20.0005L12.501 6.60049C12.3235 6.42424 12.226 6.18799 12.226 5.93799C12.226 5.68799 12.3235 5.45174 12.501 5.27549C12.6772 5.09799 12.9135 5.00049 13.1635 5.00049C13.4135 5.00049 13.6497 5.09799 13.826 5.27549L27.226 18.6755C27.956 19.4055 27.9572 20.5942 27.2272 21.3242L13.826 34.7255C13.6497 34.903 13.4135 35.0005 13.1635 35.0005Z" fill="#3B414D" class="primary"></path></svg></span><span data-v-3b3aa28c="" class="unnnic-button__label">  </span>
+                <!----></button>
               <div data-v-53d06aee="" class="label label--large"> some specific text 2018 </div>
             </div>
             <div data-v-53d06aee="" class="days days--large">
@@ -149,17 +147,15 @@ exports[`components/whatsAppTemplates/Table.vue should be rendered properly 1`] 
               <div data-v-53d06aee="" class="option"> some specific text </div>
               <div data-v-53d06aee="" class="option"> some specific text </div>
             </div>
-            <div data-v-53d06aee="" class="actions"><button data-v-2d9f2cbf="" data-v-53d06aee="" class="unnnic-button unnnic-button--size-small unnnic-button--tertiary">
+            <div data-v-53d06aee="" class="actions"><button data-v-3b3aa28c="" data-v-53d06aee="" class="unnnic-button unnnic-button--size-small unnnic-button--tertiary">
                 <!---->
                 <!---->
-                <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> some specific text </span>
+                <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> some specific text </span>
+                <!----></button><button data-v-3b3aa28c="" data-v-53d06aee="" class="unnnic-button unnnic-button--size-small unnnic-button--secondary">
                 <!---->
-              </button><button data-v-2d9f2cbf="" data-v-53d06aee="" class="unnnic-button unnnic-button--size-small unnnic-button--secondary">
                 <!---->
-                <!---->
-                <!----><span data-v-2d9f2cbf="" class="unnnic-button__label"> some specific text </span>
-                <!---->
-              </button></div>
+                <!----><span data-v-3b3aa28c="" class="unnnic-button__label"> some specific text </span>
+                <!----></button></div>
           </div>
         </div>
       </div>
