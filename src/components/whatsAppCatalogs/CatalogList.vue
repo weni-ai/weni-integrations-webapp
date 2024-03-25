@@ -33,7 +33,7 @@
         :ref="`catalogCard-${index}`"
         :key="index"
         :catalog="catalog"
-        :enabledCart="commerceSettings.is_cart_enabled"
+        :enabledCart="hasCommerceSetting"
         @enable="handleEnableCatalog(catalog)"
         @disable="handleDisableCatalog()"
         @toggleCart="toggleCart"
@@ -102,6 +102,9 @@
         searchTerm: '',
       };
     },
+    mounted() {
+      this.fetchData(this.page);
+    },
     computed: {
       ...mapState('WhatsAppCloud', [
         'loadingWhatsAppCloudCatalogs',
@@ -112,6 +115,9 @@
         'commerceSettings',
         'errorToggleCartVisibility',
       ]),
+      hasCommerceSetting() {
+        return this.commerceSettings ? this.commerceSettings.is_cart_enabled : false;
+      },
       listItems() {
         return this.whatsAppCloudCatalogs?.results || [];
       },
@@ -153,7 +159,6 @@
         if (this.searchTerm && this.searchTerm.trim()) {
           params.name = this.searchTerm.trim();
         }
-
         await this.getCommerceSettings({ appUuid });
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
 

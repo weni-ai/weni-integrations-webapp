@@ -193,7 +193,7 @@ describe('components/whatsAppCatalog/List.vue', () => {
 
         await wrapper.vm.$nextTick();
 
-        expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(1);
+        expect(mockUnnnicCallAlert).toHaveBeenCalledTimes(2);
       });
     });
 
