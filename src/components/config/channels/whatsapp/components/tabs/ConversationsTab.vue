@@ -128,7 +128,7 @@
     <div class="conversations__buttons">
       <unnnic-button
         class="conversations__buttons__close"
-        type="secondary"
+        type="tertiary"
         size="large"
         :text="$t('general.Cancel')"
         @click="() => this.$emit('close')"
