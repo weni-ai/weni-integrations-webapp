@@ -1,11 +1,8 @@
 <template>
   <unnnic-dropdown class="table-action__dropdown" :position="position">
-    <unnnic-button
-      slot="trigger"
-      size="small"
-      type="tertiary"
-      iconCenter="navigation-menu-vertical-1"
-    />
+    <template #trigger>
+      <unnnic-button size="small" type="tertiary" iconCenter="navigation-menu-vertical-1" />
+    </template>
 
     <unnnic-dropdown-item
       :class="['table-action__dropdown__item', `table-action__dropdown__item--${option.id}`]"

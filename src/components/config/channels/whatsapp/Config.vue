@@ -40,34 +40,38 @@
         initialTab="account"
         type="md"
       >
-        <template slot="tab-head-account">
-          {{ $t('WhatsApp.config.tabs.account') }} aaaaaa
+        <template #tab-head-account> {{ $t('WhatsApp.config.tabs.account') }} </template>
+        <template #tab-panel-account>
+          <AccountTab
+            :appInfo="currentApp"
+            :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
+            @close="closeConfig"
+          />
         </template>
-        <AccountTab
-          :appInfo="currentApp"
-          :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
-          slot="tab-panel-account"
-          @close="closeConfig"
-        />
 
-        <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
-        <ProfileTab
-          slot="tab-panel-profile"
-          :app="app"
-          :profile="appProfile"
-          @close="closeConfig"
-          @save="() => fetchData({ skipLoad: true })"
-        />
+        <template #tab-head-profile> {{ $t('WhatsApp.config.tabs.profile') }} </template>
+        <template #tab-panel-profile>
+          <ProfileTab
+            :app="app"
+            :profile="appProfile"
+            @close="closeConfig"
+            @save="() => fetchData({ skipLoad: true })"
+          />
+        </template>
 
-        <template slot="tab-head-webhook_info">
+        <template #tab-head-webhook_info>
           {{ $t('WhatsApp.config.tabs.webhook_info') }}
         </template>
-        <WebhookTab slot="tab-panel-webhook_info" :app="app" @close="closeConfig" />
+        <template #tab-panel-webhook_info>
+          <WebhookTab :app="app" @close="closeConfig" />
+        </template>
 
-        <template slot="tab-head-conversations">
+        <template #tab-head-conversations>
           {{ $t('WhatsApp.config.tabs.conversations') }}
         </template>
-        <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
+        <template #tab-panel-conversations>
+          <ConversationsTab :app="app" @close="closeConfig" />
+        </template>
       </unnnic-tab>
       <skeleton-loading v-else />
     </div>

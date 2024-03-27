@@ -20,14 +20,12 @@
     <!-- Tabs -->
     <div class="wpp_insights__tabs">
       <unnnic-tab initialTab="first" :tabs="['first', 'second']">
-        <template slot="tab-head-first">{{
-          $t('WhatsApp.template_details.summary.title')
-        }}</template>
-        <template slot="tab-panel-first">
+        <template #tab-head-first>{{ $t('WhatsApp.template_details.summary.title') }}</template>
+        <template #tab-panel-first>
           <Summary />
         </template>
-        <template slot="tab-head-second">{{ $t('WhatsApp.insights.insights') }}</template>
-        <template slot="tab-panel-second">
+        <template #tab-head-second>{{ $t('WhatsApp.insights.insights') }}</template>
+        <template #tab-panel-second>
           <Insights />
         </template>
       </unnnic-tab>

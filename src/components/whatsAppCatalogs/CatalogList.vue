@@ -33,7 +33,7 @@
         :ref="`catalogCard-${index}`"
         :key="index"
         :catalog="catalog"
-        :enabledCart="commerceSettings.is_cart_enabled"
+        :enabledCart="hasCommerceSetting"
         @enable="handleEnableCatalog(catalog)"
         @disable="handleDisableCatalog()"
         @toggleCart="toggleCart"
@@ -81,11 +81,11 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
-  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
+  import { mapActions, mapState } from 'pinia';
   import debounce from 'lodash.debounce';
   import { unnnicCallAlert } from '@weni/unnnic-system';
+import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
     name: 'CatalogList',
@@ -103,6 +103,9 @@
         searchTerm: '',
       };
     },
+    mounted() {
+      this.fetchData(this.page);
+    },
     computed: {
       ...mapState(whatsapp_cloud, [
         'loadingWhatsAppCloudCatalogs',
@@ -113,6 +116,9 @@
         'commerceSettings',
         'errorToggleCartVisibility',
       ]),
+      hasCommerceSetting() {
+        return this.commerceSettings ? this.commerceSettings.is_cart_enabled : false;
+      },
       listItems() {
         return this.whatsAppCloudCatalogs?.results || [];
       },
@@ -154,7 +160,6 @@
         if (this.searchTerm && this.searchTerm.trim()) {
           params.name = this.searchTerm.trim();
         }
-
         await this.getCommerceSettings({ appUuid });
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
 
@@ -172,9 +177,9 @@
           });
         }
 
-        this.connectedCatalog =
-          this.whatsAppCloudCatalogs?.results?.find((catalog) => catalog.is_connected === true) ||
-          {};
+        this.connectedCatalog = this.whatsAppCloudCatalogs.results.find(
+          (catalog) => catalog.is_connected === true,
+        );
       }, 750),
       async disableCatalog() {
         const { appUuid } = this.$route.params;
@@ -203,7 +208,7 @@
         this.fetchData(this.page);
       },
       async handleEnableCatalog(catalog) {
-        if (this.connectedCatalog?.uuid) {
+        if (this.connectedCatalog) {
           this.catalogToEnable = catalog;
           this.openModal = true;
           return;

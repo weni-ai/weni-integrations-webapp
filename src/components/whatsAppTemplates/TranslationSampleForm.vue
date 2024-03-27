@@ -8,61 +8,62 @@
       @close="closeSampleModal"
       @click.stop
     >
-      <div slot="message">
-        <span>
-          {{ $t('WhatsApp.templates.sample.description') }}
-        </span>
-        <div class="sample-form__container">
-          <div class="sample-form__preview__title">
-            {{ $t('WhatsApp.templates.sample.preview') }}
-          </div>
-          <TemplatePreview
-            class="sample-form__preview"
-            :showTitle="false"
-            :bodyOverwrite="formattedBody"
-            :headerOverwrite="fileToPreview"
-          />
+      <template #message>
+        <div>
+          <span>
+            {{ $t('WhatsApp.templates.sample.description') }}
+          </span>
+          <div class="sample-form__container">
+            <div class="sample-form__preview__title">
+              {{ $t('WhatsApp.templates.sample.preview') }}
+            </div>
+            <TemplatePreview
+              class="sample-form__preview"
+              :showTitle="false"
+              :bodyOverwrite="formattedBody"
+              :headerOverwrite="fileToPreview"
+            />
 
-          <div class="sample-form__content">
-            <div v-if="hasMedia" class="sample-form__header__wrapper">
-              <span class="sample-form__header__title">
-                {{ $t('WhatsApp.templates.sample.header') }}
-              </span>
-              <unnnic-button type="secondary" @click="() => this.$refs.file.click()">
-                {{ $t('WhatsApp.templates.sample.choose_file') }}
+            <div class="sample-form__content">
+              <div v-if="hasMedia" class="sample-form__header__wrapper">
+                <span class="sample-form__header__title">
+                  {{ $t('WhatsApp.templates.sample.header') }}
+                </span>
+                <unnnic-button type="secondary" @click="() => this.$refs.file.click()">
+                  {{ $t('WhatsApp.templates.sample.choose_file') }}
+                </unnnic-button>
+                <input
+                  type="file"
+                  ref="file"
+                  :accept="supportedFormats"
+                  :multiple="false"
+                  @input="handleFileChange"
+                  style="display: none"
+                />
+                <span v-if="file" class="sample-form__header__file-name"> {{ file.name }} </span>
+              </div>
+              <div v-if="hasVariables" class="sample-form__body__wrapper">
+                <span class="sample-form__body__title">
+                  {{ $t('WhatsApp.templates.sample.body') }}</span
+                >
+                <unnnic-input
+                  v-for="(variable, index) in variableCount"
+                  :key="variable"
+                  :placeholder="`Enter content for {{${variable}}}`"
+                  @input="handleVariableChange(index, $event)"
+                />
+              </div>
+            </div>
+
+            <div class="sample-form__button">
+              <unnnic-button type="secondary" @click="saveSample">
+                {{ $t('WhatsApp.templates.sample.send') }}
               </unnnic-button>
-              <input
-                type="file"
-                ref="file"
-                :accept="supportedFormats"
-                :multiple="false"
-                @input="handleFileChange"
-                style="display: none"
-              />
-              <span v-if="file" class="sample-form__header__file-name"> {{ file.name }} </span>
-            </div>
-            <div v-if="hasVariables" class="sample-form__body__wrapper">
-              <span class="sample-form__body__title">
-                {{ $t('WhatsApp.templates.sample.body') }}</span
-              >
-              <unnnic-input
-                v-for="(variable, index) in variableCount"
-                :key="variable"
-                :placeholder="`Enter content for {{${variable}}}`"
-                @input="handleVariableChange(index, $event)"
-              />
             </div>
           </div>
-
-          <div class="sample-form__button">
-            <unnnic-button type="secondary" @click="saveSample">
-              {{ $t('WhatsApp.templates.sample.send') }}
-            </unnnic-button>
-          </div>
+          <div class="sample-form__info">{{ $t('WhatsApp.templates.sample.info') }}</div>
         </div>
-
-        <div class="sample-form__info">{{ $t('WhatsApp.templates.sample.info') }}</div>
-      </div>
+      </template>
     </unnnic-modal>
   </div>
 </template>
