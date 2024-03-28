@@ -1,6 +1,6 @@
 {
   "name": "integrations-vue3",
-  "version": "2.0.0-alpha.0-develop",
+  "version": "2.0.0-alpha.1-develop",
   "private": true,
   "type": "module",
   "scripts": {
