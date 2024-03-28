@@ -4,7 +4,7 @@
       <div class="app-config-wwc__header__icon-container">
         <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
       </div>
-      <div class="app-config-wwc__header__title">{{ app.name }}</div>
+      <div class="app-config-wwc__header__title">{{ selectedApp.name }}</div>
       <div class="app-config-wwc__header__close">
         <unnnic-button
           size="small"
@@ -333,6 +333,7 @@
 
         avatarUploadState: false,
         avatarUploadProgress: 0,
+        selectedApp: this.app,
       };
     },
     watch: {
@@ -347,14 +348,14 @@
     },
     /* istanbul ignore next */
     async mounted() {
-      if (this.app.config.profileAvatar) {
-        this.avatarFile = await dataUrlToFile(this.app.config.profileAvatar, 'avatar.png');
+      if (this.selectedApp.config.profileAvatar) {
+        this.avatarFile = await dataUrlToFile(this.selectedApp.config.profileAvatar, 'avatar.png');
         setTimeout(() => {
           this.$emit('setConfirmation', false);
         }, 250);
       }
-      if (this.app.config.customCss) {
-        const file = await dataUrlToFile(this.app.config.customCss, 'style.css');
+      if (this.selectedApp.config.customCss) {
+        const file = await dataUrlToFile(this.selectedApp.config.customCss, 'style.css');
         if (file) {
           await this.handleNewCss([file]);
           setTimeout(() => {
@@ -409,9 +410,9 @@
     };
     k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
     h.parentNode.insertBefore(k, h);
-  })(document, 'script', '${this.app.config.script}');
+  })(document, 'script', '${this.selectedApp.config.script}');
 <${'/'}script>`;
-        return this.app.config.script ? code : '';
+        return this.selectedApp.config.script ? code : '';
       },
       cssForUpload() {
         return this.customCss;
@@ -585,8 +586,8 @@
 
         /* istanbul ignore next */
         const reqData = removeEmpty({
-          code: this.app.code,
-          appUuid: this.app.uuid,
+          code: this.selectedApp.code,
+          appUuid: this.selectedApp.uuid,
           payload: {
             config: {
               title: this.title,
@@ -613,13 +614,13 @@
             throw new Error(this.errorUpdateAppConfig);
           }
 
-          await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
+          await this.getApp({ code: this.selectedApp.code, appUuid: this.selectedApp.uuid });
 
           if (this.errorCurrentApp) {
             throw new Error(this.errorCurrentApp);
           }
 
-          this.app.config = this.currentApp.config;
+          this.selectedApp.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
           unnnicCallAlert({
             props: {
