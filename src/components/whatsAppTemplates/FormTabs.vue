@@ -46,9 +46,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState, mapGetters } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 
@@ -108,8 +109,8 @@
       this.dataProcessingLoading = false;
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
-      ...mapState('WhatsApp', [
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, [
         'templateTranslationForms',
         'loadingFetchWhatsAppTemplate',
         'errorFetchWhatsAppTemplate',
@@ -145,7 +146,7 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', [
+      ...mapActions(whatsapp_store, [
         'updateTemplateForm',
         'addNewTranslationForm',
         'renameTemplateTranslationForm',

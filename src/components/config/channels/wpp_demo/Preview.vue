@@ -18,23 +18,24 @@
       </div>
 
       <unnnic-data-area :text="url" hoverText="">
-        <div slot="buttons" class="app-preview-wpp_demo__settings__content__input__buttons">
-          <unnnic-button
-            class="app-preview-wpp_demo__settings__content__input__buttons--copy"
-            type="primary"
-            size="large"
-            iconCenter="copy-paste-1"
-            @click="copyUrl"
-          />
-
-          <unnnic-button
-            class="app-preview-wpp_demo__settings__content__input__buttons--open"
-            type="primary"
-            size="large"
-            iconCenter="export-1"
-            @click="openWppLink"
-          />
-        </div>
+        <template #buttons>
+          <div class="app-preview-wpp_demo__settings__content__input__buttons">
+            <unnnic-button
+              class="app-preview-wpp_demo__settings__content__input__buttons--copy"
+              type="primary"
+              size="large"
+              iconCenter="copy-paste-1"
+              @click="copyUrl"
+            />
+            <unnnic-button
+              class="app-preview-wpp_demo__settings__content__input__buttons--open"
+              type="primary"
+              size="large"
+              iconCenter="export-1"
+              @click="openWppLink"
+            />
+          </div>
+        </template>
       </unnnic-data-area>
     </div>
 
@@ -51,7 +52,7 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'wpp-demo-preview',

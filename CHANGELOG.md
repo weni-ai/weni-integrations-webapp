@@ -1,3 +1,42 @@
+1.34.1
+----------
+`2024-02-14 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Whatsapp templates table height
+
+1.34.0
+----------
+`2024-02-08 · 1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Fix: Always fetch vtexApp in whatsapp account tab
+
+### 🎉 New Features
+- Feat: Insights
+
+1.33.1
+----------
+`2024-02-05 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Better handle of configured apps loading in whatsapp config
+
+1.33.0
+----------
+`2024-02-02 · 2 🎉`
+
+### 🎉 New Features
+- Feat: VTEX App
+- Feat: Catalog products table
+
+1.32.0
+----------
+`2024-01-26 · 1 🎉`
+
+### 🎉 New Features
+- Feat: New WhatsApp Embed Signup
+
 1.31.0
 ----------
 `2024-01-18 · 1 🐛 · 1 🔧 · 1 🎉`

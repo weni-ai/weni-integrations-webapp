@@ -38,8 +38,9 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
+  import { survey_store } from '@/stores/modules/survey.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'Survey',
@@ -50,7 +51,7 @@
       };
     },
     computed: {
-      ...mapState('survey', [
+      ...mapState(survey_store, [
         'surveyStatus',
         'loadingSurveyAnswer',
         'errorSurveyAnswer',
@@ -61,7 +62,7 @@
       this.isOpen = this.surveyStatus === 'TO_ANSWER';
     },
     methods: {
-      ...mapActions('survey', ['setSurveyStatus', 'submitSurveyAnswer']),
+      ...mapActions(survey_store, ['setSurveyStatus', 'submitSurveyAnswer']),
       closeSurvey() {
         this.isOpen = false;
         this.setSurveyStatus({ status: 'CLOSED' });

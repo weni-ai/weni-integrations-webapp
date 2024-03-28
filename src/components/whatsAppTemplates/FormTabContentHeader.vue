@@ -61,7 +61,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'FormTabContentHeader',
@@ -92,7 +93,7 @@
       this.fillEmptyHeader();
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
       },

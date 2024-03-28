@@ -1,7 +1,6 @@
 <template>
   <div class="app">
-    <router-view class="content" />
-
+    <RouterView class="content" />
     <div class="survey-container">
       <Survey />
     </div>
@@ -13,6 +12,8 @@
   import Survey from '@/components/Survey/index.vue';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { mapActions } from 'pinia';
 
   export default {
     name: 'App',
@@ -25,6 +26,10 @@
       };
     },
     mounted() {
+      this.retriveAuthToken();
+      this.retriveSelectedOrg();
+      this.retriveSelectedProject();
+      this.retriveSelectedFlowOrg();
       if (getEnv('VUE_APP_HELPHERO_ID')) {
         const hlp = initHelpHero(getEnv('VUE_APP_HELPHERO_ID'));
         hlp.anonymous();
@@ -54,6 +59,12 @@
       });
     },
     methods: {
+      ...mapActions(auth_store, [
+        'retriveAuthToken',
+        'retriveSelectedOrg',
+        'retriveSelectedProject',
+        'retriveSelectedFlowOrg',
+      ]),
       translateAllLinks() {
         if (!this.connectBaseURL) {
           return;
@@ -101,11 +112,11 @@
   .app {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
   }
 
   .content {
-    margin: $unnnic-spacing-inset-md;
+    margin: $unnnic-spacing-md;
   }
 
   .survey-container {
@@ -137,4 +148,10 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+
+  .alert-container {
+    z-index: 9999;
+  }
 </style>
+import { auth_store } from './stores/modules/auth.store'; import { mapActions } from 'pinia';
+auth_store, import { mapActions } from 'pinia';

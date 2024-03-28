@@ -7,7 +7,7 @@
         :title="app.name"
         :content="$t(app.summary)"
         :image="appImageBanner(app.assets)"
-        @click.native="openAppDetails(app.code)"
+        @click="openAppDetails(app.code)"
       />
 
       <template #bullets="{ bulletIndexes, goToSlide, currentSlide }">
@@ -32,7 +32,8 @@
   import skeletonLoading from '../loadings/Carousel.vue';
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
-  import { mapActions, mapState } from 'vuex';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { mapActions, mapState } from 'pinia';
 
   export default {
     name: 'Carousel',
@@ -41,20 +42,17 @@
       await this.fetchFeatured();
     },
     methods: {
-      ...mapActions(['fetchFeatured']),
+      ...mapActions(app_type, ['fetchFeatured']),
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'IB');
-        return banner[0].url;
+        return banner[0] ? banner[0].url : null;
       },
       openAppDetails(code) {
         this.$router.push(`/apps/${code}/details`);
       },
     },
     computed: {
-      ...mapState({
-        featuredApps: (state) => state.appType.featuredApps,
-        loadingFeaturedApps: (state) => state.appType.loadingFeaturedApps,
-      }),
+      ...mapState(app_type, ['featuredApps', 'loadingFeaturedApps']),
       hasAutoPlay() {
         return this.featuredApps?.length > 1 ? true : false;
       },

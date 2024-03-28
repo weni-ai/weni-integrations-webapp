@@ -111,27 +111,26 @@
           </unnnic-button>
         </unnnic-tool-tip>
       </div>
-      <!-- <div class="conversations__content__insights">
-        <div class="conversations__content__insights__title">Insights</div>
+      <div class="conversations__content__insights">
+        <div class="conversations__content__insights__title">
+          {{ $t('WhatsApp.insights.insights') }}
+        </div>
         <div class="conversations__content__insights__about">
           <p>
-            Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de
-            mensagem disparados.
+            {{ $t('WhatsApp.insights.about_description') }}
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <router-link t class="link" to="insights">
-            <unnnic-button text="Ver insights" />
-          </router-link>
+          <unnnic-button :text="$t('WhatsApp.insights.see_insights')" @click="navigateToInsights" />
         </div>
-      </div> -->
+      </div>
     </div>
     <div class="conversations__buttons">
       <unnnic-button
         class="conversations__buttons__close"
-        type="secondary"
+        type="tertiary"
         size="large"
-        :text="$t('general.Close')"
+        :text="$t('general.Cancel')"
         @click="() => this.$emit('close')"
       />
     </div>
@@ -140,8 +139,11 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
+  import unnnicCallAlert from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { insights_store } from '@/stores/modules/insights.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import removeEmpty from '../../../../../../utils/clean';
 
   export default {
@@ -197,10 +199,8 @@
       });
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-      }),
-      ...mapState('WhatsApp', [
+      ...mapState(auth_store, ['project']),
+      ...mapState(whatsapp_store, [
         'whatsAppConversations',
         'loadingConversations',
         'errorConversations',
@@ -258,7 +258,8 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
+      ...mapActions(whatsapp_store, ['getConversations', 'requestConversationsReport']),
+      ...mapActions(insights_store, ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -343,6 +344,10 @@
           },
           seconds: 6,
         });
+      },
+      navigateToInsights() {
+        this.setAppUuid({ appUuid: this.app.uuid });
+        this.$router.replace('/insights');
       },
     },
   };

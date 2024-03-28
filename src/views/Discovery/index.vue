@@ -3,32 +3,34 @@
     <unnnic-autocomplete
       v-model="searchTerm"
       class="discovery-content__search"
-      :placeholder="$t('apps.discovery.search.placeholder')"
+      placeholder="gdfgbfgbgbfg"
       icon-left="search-1"
-      :data="searchOptions"
+      :data="[]"
     />
-
     <span v-if="searchTerm && searchTerm.trim()" class="discovery-content__search__results">
       {{ $t('apps.discovery.search.results') }}
       <span class="discovery-content__search__results__highlight">
         {{ `“${searchTerm}”...` }}
       </span>
     </span>
-
-    <div
-      v-if="filteredBiApps.length || filteredExternalServices.length || filteredApps.length"
-      class="discovery-content__grids"
-    >
-      <app-grid
+    <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
+      <AppGrid
         ref="appGrid"
         section="channel"
         type="add"
-        :loading="loadingAllAppTypes"
         :apps="filteredApps"
         @update="fetchChannels"
       />
 
-      <app-grid
+      <AppGrid
+        section="ecommerce"
+        type="add"
+        :loading="loadingEcommerceApps"
+        :apps="filteredEcommerceApps"
+        @update="fetchEcommerceApps"
+      />
+
+      <AppGrid
         section="external"
         type="add"
         :loading="loadingExternalServices"
@@ -36,9 +38,8 @@
         @update="fetchExternalServices"
       />
 
-      <app-grid section="bi-tools" type="view" :loading="false" :apps="filteredBiApps" />
+      <AppGrid section="bi-tools" type="view" :loading="false" :apps="filteredBiApps" />
     </div>
-
     <div
       v-else-if="
         searchTerm &&
@@ -51,7 +52,7 @@
     </div>
 
     <div v-if="searchTerm" class="discovery-content__recommended">
-      <app-grid
+      <AppGrid
         section="recommended"
         type="add"
         :loading="loadingFeaturedApps"
@@ -61,13 +62,18 @@
     <OnboardModal />
   </div>
 </template>
+
 <script>
+  import { insights_store } from '@/stores/modules/insights.store';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import AppGrid from '@/components/AppGrid/index.vue';
   import OnboardModal from '@/components/OnboardModal/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
     components: {
@@ -96,6 +102,7 @@
       };
     },
     async mounted() {
+      insights_store().setHasInsights({ isActive: true });
       this.fetchChannels();
 
       const createAppCode = this.$route.query.create_app;
@@ -105,21 +112,19 @@
 
       this.fetchExternalServices();
 
-      this.fetchFeatured();
+      this.fetchEcommerceApps();
+
+      app_type().fetchFeatured();
     },
     computed: {
-      ...mapState({
-        allAppTypes: (state) => state.appType.allAppTypes,
-        loadingAllAppTypes: (state) => state.appType.loadingAllAppTypes,
-        errorAllAppTypes: (state) => state.appType.errorAllAppTypes,
-        featuredApps: (state) => state.appType.featuredApps,
-        loadingFeaturedApps: (state) => state.appType.loadingFeaturedApps,
-      }),
-      ...mapState('externals', [
-        'loadingExternalServices',
-        'errorExternalServices',
-        'externalServicesList',
+      ...mapState(app_type, [
+        'allAppTypes',
+        'errorAllAppTypes',
+        'featuredApps',
+        'loadingFeaturedApps',
       ]),
+      ...mapState(externals_store, ['loadingExternalServices', 'externalServicesList']),
+      ...mapState(ecommerce_store, ['loadingEcommerceApps', 'ecommerceAppsList']),
       searchOptions() {
         if (!this.allAppTypes || !this.externalServicesList) return [];
 
@@ -133,7 +138,6 @@
           return app.name;
         });
       },
-      // TODO Ana: unir as funções de filtro
       filteredApps() {
         if (!this.allAppTypes) return [];
 
@@ -152,6 +156,15 @@
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
         });
       },
+      filteredEcommerceApps() {
+        if (!this.ecommerceAppsList) return [];
+
+        if (!this.searchTerm || !this.searchTerm.trim()) return this.ecommerceAppsList;
+
+        return this.ecommerceAppsList.filter((app) => {
+          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
+        });
+      },
       filteredBiApps() {
         if (!this.searchTerm || !this.searchTerm.trim()) return this.biApps;
 
@@ -159,15 +172,24 @@
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
         });
       },
+      hasAnyVisibleApp() {
+        return (
+          this.filteredBiApps.length ||
+          this.filteredExternalServices.length ||
+          this.filteredEcommerceApps.length ||
+          this.filteredApps.length
+        );
+      },
     },
     methods: {
-      ...mapActions(['getAllAppTypes', 'fetchFeatured']),
-      ...mapActions('externals', ['getExternalServicesTypes']),
+      ...mapActions(app_type, ['getAllAppTypes', 'fetchFeatured']),
+      ...mapActions(externals_store, ['getExternalServicesTypes']),
+      ...mapActions(ecommerce_store, ['getEcommerceTypes']),
       async fetchChannels() {
         const params = {
           category: 'channel',
         };
-        await this.getAllAppTypes({ params });
+        await app_type().getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
           unnnicCallAlert({
@@ -190,11 +212,15 @@
         await this.$refs.appGrid.manuallyCreateApp(appCode);
       },
       async fetchExternalServices() {
-        await this.getExternalServicesTypes();
+        await externals_store().getExternalServicesTypes();
+      },
+      async fetchEcommerceApps() {
+        await ecommerce_store().getEcommerceTypes();
       },
     },
   };
 </script>
+
 <style lang="scss" scoped>
   @import './styles.scss';
 </style>

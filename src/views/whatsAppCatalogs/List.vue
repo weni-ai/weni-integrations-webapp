@@ -1,26 +1,25 @@
 <template>
   <div class="whatsapp-catalogs">
-    <List v-if="$route.name === 'WhatsApp Catalogs List'" />
+    <CatalogList v-if="$route.name === 'WhatsApp Catalogs List'" />
 
     <router-view v-else />
   </div>
 </template>
 
 <script>
-  import List from '@/components/whatsAppCatalogs/List';
-
+  import CatalogList from '@/components/whatsAppCatalogs/CatalogList.vue';
   export default {
     name: 'WhatsAppCatalogsList',
     components: {
-      List,
+      CatalogList,
     },
   };
 </script>
 
-<styles scoped lang="scss">
-.whatsapp-catalogs {
-  display: flex;
-  overflow: hidden;
-  height: 100%;
-}
-</styles>
+<style scoped lang="scss">
+  .whatsapp-catalogs {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+  }
+</style>

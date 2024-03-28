@@ -69,15 +69,11 @@
               height="25px"
               width="75px"
             />
-
             <div class="config-chatgpt__settings__content__prompts-wrapper">
               <unnnic-toolTip
                 v-for="(prompt, index) in availablePrompts"
                 :key="index"
-                class="
-                  config-chatgpt__settings__content__prompt
-                  config-chatgpt__settings__content__prompts__tooltip
-                "
+                class="config-chatgpt__settings__content__prompt config-chatgpt__settings__content__prompts__tooltip"
                 :text="prompt.text"
                 :enabled="true"
                 side="top"
@@ -88,6 +84,7 @@
                   scheme="neutral-cloudy"
                   hasCloseIcon
                   @close="removePrompt(prompt)"
+                  :ref="`tag-${index}`"
                 />
               </unnnic-toolTip>
             </div>
@@ -162,8 +159,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'chatgpt-config',
@@ -246,28 +242,46 @@
       await this.reloadPrompts();
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        loadingUpdateApp: (state) => state.appType.loadingUpdateApp,
-        errorUpdateApp: (state) => state.appType.errorUpdateApp,
-      }),
-      ...mapState('externals', [
-        'loadingCreatePrompt',
-        'errorCreatePrompt',
-        'createPromptsResult',
-        'loadingGetPrompts',
-        'errorGetPrompts',
-        'getPromptsResult',
-        'loadingDeletePrompts',
-        'errorDeletePrompts',
-        'deletePromptsResult',
-      ]),
+      project(){
+        return auth_store().project
+      },
+      loadingUpdateApp(){
+        return app_type().loadingUpdateApp
+      },
+      errorUpdateApp(){
+        return app_type().errorUpdateApp
+      },
+      loadingCreatePrompt(){
+        return externals_store().loadingCreatePrompt
+      },
+      errorCreatePrompt(){
+        return externals_store().errorCreatePrompt
+      },
+      createPromptsResult(){
+        return externals_store().createPromptsResult
+      },
+      loadingGetPrompts(){
+        return externals_store().loadingGetPrompts
+      },
+      errorGetPrompts(){
+        return externals_store().errorGetPrompts
+      },
+      getPromptsResult(){
+        return externals_store().getPromptsResult
+      },
+      loadingDeletePrompts(){
+        return externals_store().loadingDeletePrompts
+      },
+      errorDeletePrompts(){
+        return externals_store().errorDeletePrompts
+      },
+      deletePromptsResult(){
+        return externals_store().deletePromptsResult
+      }
     },
     methods: {
-      ...mapActions(['updateApp']),
-      ...mapActions('externals', ['createPrompts', 'getPrompts', 'deletePrompts']),
       async reloadPrompts() {
-        await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
+        await externals_store().getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
         if (this.errorGetPrompts) {
           this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.get_prompts') });
@@ -325,7 +339,7 @@
           },
         };
 
-        await this.updateApp(data);
+        await app_type().updateApp(data);
 
         if (this.errorUpdateApp) {
           this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.configure') });
@@ -342,7 +356,7 @@
           },
         };
 
-        await this.createPrompts(data);
+        await externals_store().createPrompts(data);
 
         if (this.errorCreatePrompt) {
           this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.create_prompt') });
@@ -361,7 +375,7 @@
           },
         };
 
-        await this.deletePrompts(data);
+        await externals_store().deletePrompts(data);
 
         if (this.errorDeletePrompts) {
           this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.delete_prompt') });
@@ -627,4 +641,20 @@
       margin: 5px 0px -10px;
     }
   }
-</style>
+</style>import { auth_store } from '@/stores/modules/auth.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import appType from '@/api/appType';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+

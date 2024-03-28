@@ -21,8 +21,10 @@
 <script>
   import addModal from '../AddModal/index.vue';
   import configPopUp from '../config/ConfigPopUp.vue';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
+  import unnnicCallAlert from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/stores/modules/auth.store';
   import LoadingButton from '../LoadingButton/index.vue';
   import getEnv from '../../utils/env';
 
@@ -72,14 +74,11 @@
       window.openWACloudPopUp = this.openWACloudPopUp;
     },
     computed: {
-      ...mapState({
-        createAppResponse: (state) => state.appType.createAppResponse,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-        project: (state) => state.auth.project,
-      }),
+      ...mapState(app_type, ['createAppResponse', 'errorCreateApp']),
+      ...mapState(auth_store, ['project']),
     },
     methods: {
-      ...mapActions(['createApp']),
+      ...mapActions(app_type, ['createApp']),
       async addApp(app) {
         if (this.hasFBLoginList.includes(app.code) || app.config_design === 'pre-popup') {
           this.$refs.configPopUp.openPopUp(app);

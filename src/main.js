@@ -1,16 +1,21 @@
 import Vue from 'vue';
+import { createApp, markRaw } from 'vue';
+import { createPinia } from 'pinia';
+import Unnnic from '@weni/unnnic-system';
+import '@weni/unnnic-system/dist/style.css';
+import i18n from './utils/plugins/i18n';
+import * as vueUse from '@vueuse/components';
 import * as Sentry from '@sentry/vue';
 import * as Integrations from '@sentry/integrations';
 import LogRocket from 'logrocket';
-import vClickOutside from 'v-click-outside';
-import App from './App.vue';
-import i18n from './utils/plugins/i18n';
-import router from './router';
-import store from './store';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
 
-Vue.use(vClickOutside);
+import App from './App.vue';
+import router from './router';
+import { createPersistedState } from 'pinia-plugin-persistedstate';
+
+const app = createApp(App);
 
 Vue.config.productionTip = false;
 
@@ -18,9 +23,9 @@ if (getEnv('NODE_ENV') === 'development') {
   makeServer();
 }
 
-if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
+if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
   Sentry.init({
-    dsn: getEnv('VUE_APP_SENTRY_DSN'),
+    dsn: getEnv('VITE_APP_SENTRY_DSN'),
     integrations: [
       new Integrations.Vue({
         Vue,
@@ -31,16 +36,19 @@ if (getEnv('VUE_APP_USE_SENTRY') && getEnv('VUE_APP_SENTRY_DSN')) {
   });
 }
 
-if (getEnv('VUE_APP_LOGROCKET_ID')) {
-  LogRocket.init(getEnv('VUE_APP_LOGROCKET_ID'), {
+if (getEnv('VITE_APP_LOGROCKET_ID')) {
+  LogRocket.init(getEnv('VITE_APP_LOGROCKET_ID'), {
     mergeIframes: true,
-    parentDomain: getEnv('VUE_APP_PARENT_IFRAME_DOMAIN'),
+    parentDomain: getEnv('VITE_APP_PARENT_IFRAME_DOMAIN'),
   });
 }
 
-new Vue({
-  i18n,
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');
+const pinia = createPinia();
+pinia.use(({ store }) => {
+  store.router = markRaw(router);
+});
+pinia.use(createPersistedState);
+
+app.use(pinia).use(router).use(Unnnic).use(i18n).use(vueUse);
+
+app.mount('#app');

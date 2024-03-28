@@ -37,12 +37,13 @@
 </template>
 
 <script>
-  import DynamicForm from '@/components/config/DynamicForm';
+  import DynamicForm from '@/components/config/DynamicForm.vue';
   import skeletonLoading from './loadings/ProfileTab.vue';
   import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
-  import { mapActions, mapState, mapGetters } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'ProfileTab',
@@ -199,15 +200,16 @@
       },
     },
     computed: {
-      ...mapState('WhatsApp', ['errorUpdateWhatsAppProfile', 'errorDeleteWhatsAppProfilePhoto']),
-      ...mapGetters({
-        loadingContactInfo: 'WhatsApp/loadingContactInfo',
-        fetchedContactInfo: 'WhatsApp/fetchedContactInfo',
-        contactInfo: 'WhatsApp/contactInfo',
-      }),
+      ...mapState(whatsapp_store, [
+        'errorUpdateWhatsAppProfile',
+        'errorDeleteWhatsAppProfilePhoto',
+        'loadingContactInfo',
+        'fetchedContactInfo',
+        'contactInfo',
+      ]),
     },
     methods: {
-      ...mapActions('WhatsApp', [
+      ...mapActions(whatsapp_store, [
         'updateWppProfile',
         'deleteWppProfilePhoto',
         'fetchWppContactInfo',

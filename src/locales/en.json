@@ -58,7 +58,8 @@
         "installed": "Installed Apps",
         "bi-tools": "BI Tools",
         "external": "External Services",
-        "recommended": "Recommended channels"
+        "recommended": "Recommended channels",
+        "ecommerce": "Ecommerce"
       },
       "fetch_error": "Failed to fetch Application list, please try again later.",
       "search": {
@@ -464,7 +465,11 @@
       },
       "catalog": {
         "button": "View list of catalogs",
-        "title": "Catalog"
+        "title": "Catalog",
+        "button_create": "Create catalog",
+        "error": {
+          "missing_vtex_app": "You need to have a VTEX app configured to connect a catalog."
+        }
       }
     },
     "catalog": {
@@ -500,6 +505,9 @@
           "confirm": "To save"
         },
         "search_placeholder": "Search for the catalog name"
+      },
+      "products": {
+        "title": "Products"
       }
     },
     "templates": {
@@ -508,7 +516,8 @@
         "actions": {
           "add_language": "Add language",
           "duplicate_language": "Duplicate",
-          "delete_language": "Delete"
+          "delete_language": "Delete",
+          "see_details":"See details"
         },
         "headers": {
           "name": "Name",
@@ -658,6 +667,66 @@
       "success": {
         "create_translation": "Successfully created Template Translation",
         "update_translation": "Successfully updated Template Translation"
+      }
+    },
+    "insights": {
+      "insights": "Insights",
+      "see_insights": "See insights",
+      "enable_insights": "Enable insights",
+      "disabled": "You haven't turned on insights",
+      "about_description": "See more detailed data related to sending, delivering and reading triggered message templates.",
+      "about_text_1": "We're introducing more performance insights to help you track, understand, and improve your messaging models. Marketing models will also show insights into button engagement. To migrate to the new insights framework, existing data for &quot sent messages &quot; will be deleted. Tracking will resume on the date you click Confirm.",
+      "about_text_2": " By clicking Confirm, you instruct Meta to add insights to your WhatsApp Business account. These insights include link tracking to report website clicks. You can disable link tracking for each message template.",
+      "about_text_3": " By clicking Confirm, you also instruct Meta to collect and anonymize data from your customer chats. Meta will anonymize this data to improve the services it provides to you and other companies.",
+      "messages": {
+        "sent": "Sent messages",
+        "delivered": "Delivered messages",
+        "read": "Read messages",
+        "received": "Received messages"
+      },
+      "filters": {
+        "period_of_time": "Period of time",
+        "message_templates": "Message templates"
+      },
+      "modal": {
+        "present_insights": "We present new insights"
+      }
+    },
+    "template_details": {
+      "crumbs": {
+        "my_apps": "My Apps",
+        "manage_templates": "Manage Templates",
+        "model_details": "Model Details",
+        "template_details": "Template Details"
+      },
+      "summary": {
+        "title": "Summary",
+        "marketing": "Marketing",
+        "performace_overview": "Performace overview",
+        "last_7_days": "last 7 days",
+        "sent_messages": "Sent messages",
+        "delivered_messages": "Delivered messages",
+        "read_messages": "Read messages",
+        "quality_overview": "Quality overview",
+        "current_level": "Current level",
+        "block_reason": "Main blocking reason"
+      },
+      "button": {
+        "edit_model": "Edit Model"
+      }
+    },
+    "product": {
+      "table": {
+        "headers": {
+          "name": "Name",
+          "availability": "Availability",
+          "price": "Price",
+          "sku": "SKU",
+          "facebook_id": "Facebook ID"
+        }
+      },
+      "list": {
+        "description": "Here you manage your inventory information. Add all the items you want to advertise or sell"
       }
     }
   },
@@ -940,6 +1009,118 @@
     },
     "success": {
       "configure": "Successfully updated integration"
+    }
+  },
+  "vtex": {
+    "data": {
+      "summary": "With the VTEX app you connect your catalog and sell via Whatsapp",
+      "description": "The integration between Weni Plataforma and VTEX is redefining the way retailers grow their businesses online. Now, you can easily connect your product catalog, paving the way for direct sales through WhatsApp. This innovative solution promises an instant, agile and personalized sales experience, providing an effective way to boost your sales.<br><br>Main Features:<br><br>Integration with VTEX in an Uncomplicated Way:<br>- Connect your VTEX product catalog to Weni easily, automatically syncing your products.<br>- Quick updates ensure your store is always in line with the latest inventory and pricing changes.<br><br>Direct Selling Via WhatsApp :<br>- Turn conversations into transactions by allowing customers to browse, choose and buy products directly through WhatsApp.<br>- Increase convenience by reaching customers where they are already active.<br><br>Additional Benefits: <br><br>Global Scale:<br>- Reach a global audience through WhatsApp, expanding your sales opportunities internationally.<br><br>Simple Setup:<br>- Set up quickly, without the need for technical knowledge <br><br>Specialized Technical Support:<br>- Dedicated support to ensure smooth implementation and resolve any issues quickly.<br><br>Try it now and discover the potential to boost your sales efficiently!"
+    },
+    "setup": {
+      "title": "Connect your store",
+      "description": "Select WhatsApp number, enter subdomain, AppKey and AppToken",
+      "subdomain": "Subdomain",
+      "subdomain_placeholder": "Ex: shop.myvtex.com",
+      "whatsapp_channel": "WhatsApp Number",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Insert your AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Insert your AppToken",
+      "guide": {
+        "question": "Don't know your AppKey and AppToken?",
+        "question_end": "to access the documentation on VTEX and find out.",
+        "link": "Click here"
+      },
+      "invalid_credentials": "Invalid credentials for the given subdomain",
+      "error": "An error occurred while trying to integrate with VTEX, please try again later",
+      "success": "VTEX integration successfully completed",
+      "step1": "Connect your store",
+      "step2": "Setup affiliate",
+      "storeDomain": "Website Link",
+      "apiSubdomain": "API Subdomain",
+      "affiliate_title": "Setup an affiliate in VTEX",
+      "affiliate_description": "To setup an affiliate in VTEX follow the steps below",
+      "affiliate_step1": {
+        "title": "Access your admin panel in VTEX",
+        "description": "Go to <b>Store Settings > Orders > Settings,</b> or type <i>Orders</i> in the search bar on the top of the page and select <i>Store Settings / Orders</i>"
+      },
+      "affiliate_step2": {
+        "title": "Create a new affiliate",
+        "description": "In the Affiliates tab click on <span class='highlight'>+ New Affiliate</span>"
+      },
+      "affiliate_step3": {
+        "title": "Fill the form fields",
+        "description": "Following the description below, then click on <span class='highlight'>Save</span><ul><li><b>Name:</b>&nbsp;the new affiliate name</li><li><b>Trade policy:</b>&nbsp;the trade policy number that will define the catalog's sorting and items delivery strategy for the marketplace</li><li><b>Search endpoint:</b>&nbsp;application URL that will receive inventory products and price notifications, among others. You can copy Weni's URL in <i>Step 4<i/></li></ul>"
+      },
+      "affiliate_step4": {
+        "title": "Paste Weni's Search Endpoint",
+        "description": "Copy the URL below and paste it in the Search endpoint field"
+      },
+      "error_missing_fields": "All fields are mandatory",
+      "storedomain_placeholder": "Ex: myshop.com"
+    },
+    "config": {
+      "description": "Connect your VTEX catalog to send products via Whatsapp",
+      "catalog": "Catalog",
+      "connect_catalog": "Connect catalog",
+      "details": "Details",
+      "name": "Account name",
+      "environment": "Environment",
+      "view_catalog": "View catalog",
+      "wpp_number": "WhatsApp number"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermarkets and Grocery Stores",
+        "clothes_store": "Clothes store",
+        "pharmacies_and_drugstores": "Pharmacies and Drugstores",
+        "restaurants_and_cafes": "Restaurants and Cafes",
+        "electronics_stores": "Electronics Stores",
+        "bookstores_and_stationery": "Bookstores and Stationery",
+        "furniture_and_decoration": "Furniture and Decoration Stores",
+        "building_materials_and_hardware": "Building Material and Hardware Stores",
+        "sporting_goods": "Sporting Goods Stores",
+        "shoe_stores": "Shoe stores",
+        "auto_parts": "Auto parts stores",
+        "other": "Other",
+        "placeholder": "Select a business type"
+      }
+    },
+    "connect_catalog": {
+      "title": "Basic informations",
+      "business_type": "Business type",
+      "name_placeholder": "Ex: Weekly offers",
+      "name": "Catalog name",
+      "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
+    },
+    "errors": {
+      "connect_catalog": "Could not connect VTEX catalog, please try again later",
+      "fetch_related_wpp_data": "Failed to fetch related WhatsApp Number information",
+      "redirect_to_wpp_catalog": "Failed to redirect to catalog, please refresh the page and try again",
+      "update_connected_catalog_status": "Failed to fetch catalog status, please try again later."
+    },
+    "success": {
+      "connect_catalog": "Successfully connected VTEX catalog"
+    }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "VTEX Catalog",
+          "description": "Automatically connect your catalog through integration with the VTEX app"
+        },
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Create a catalog on Meta's Facebook, a new tab will be opened."
+        }
+      },
+      "footer": "To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here",
+      "title": "Create catalog",
+      "header": {
+        "title": "Sending method",
+        "description": "Choose the way you want to send your catalog to start selling products via Whatsapp"
+      }
     }
   }
 }

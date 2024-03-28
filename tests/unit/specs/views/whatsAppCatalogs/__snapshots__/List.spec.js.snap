@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`views/whatsAppCatalogs/List.vue should be rendered properly 1`] = `
-<div class="whatsapp-catalogs">
-  <list-stub></list-stub>
-</div>
-`;

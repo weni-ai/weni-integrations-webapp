@@ -17,8 +17,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState, mapGetters } from 'vuex';
-  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import FormHeaderLoading from '@/components/whatsAppTemplates/loadings/FormHeaderLoading.vue';
 
   export default {
     name: 'FormHeader',
@@ -34,11 +36,8 @@
       this.fetchData();
     },
     computed: {
-      ...mapState({
-        currentAppType: (state) => state.appType.currentAppType,
-        loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
-      }),
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      ...mapState(app_type, ['currentAppType', 'loadingCurrentAppType']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       templateStatusScheme() {
         switch (this.templateTranslationCurrentForm.status) {
           case 'APPROVED':
@@ -54,7 +53,7 @@
       },
     },
     methods: {
-      ...mapActions(['getAppType']),
+      ...mapActions(app_type, ['getAppType']),
       fetchData() {
         const { appCode } = this.$route.params;
         this.getAppType({ code: appCode, shouldLoad: true });

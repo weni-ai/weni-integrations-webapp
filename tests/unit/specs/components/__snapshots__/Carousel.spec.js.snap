@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Carousel.vue should be rendered properly 1`] = `
-<div class="carousel-container">
-  <vueper-slides-stub breakpoints="[object Object]" bullets="true" duration="6000" infinite="true" fixedheight="152px" gap="0" initslide="1" pauseonhover="true" pauseontouch="true" pagescrollingelement="" slidecontentoutsideclass="" slideratio="0.3333333333333333" touchable="true" transitionspeed="600" visibleslides="1">
-    <vueper-slide-stub image="https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/Ilustra%C3%A7%C3%A3o%20banner%201.png" video="" title="Weni Web Chat" content="some specific text" link="" duration="0"></vueper-slide-stub>
-  </vueper-slides-stub>
-</div>
-`;

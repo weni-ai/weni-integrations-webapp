@@ -49,7 +49,10 @@
 
   import WWCFirstGif from '@/assets/gifs/wwc1.gif';
 
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'OnboardModal',
@@ -92,14 +95,9 @@
       this.checkModalCondition();
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        onboardStatus: (state) => state.appType.onboardStatus,
-      }),
-      ...mapState({
-        configuredApps: (state) => state.myApps.configuredApps,
-        errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
-      }),
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['onboardStatus']),
+      ...mapState(my_apps, ['configuredApps', 'errorConfiguredApps']),
       currentModalTitle() {
         const titleMap = {
           whatsapp: this.$t('onboard.modal.whatsapp.title'),
@@ -113,7 +111,7 @@
       },
     },
     methods: {
-      ...mapActions(['getConfiguredApps', 'setOnboardStatus']),
+      ...mapActions(app_type, ['getConfiguredApps', 'setOnboardStatus']),
       async checkModalCondition() {
         const params = {
           project_uuid: this.project,

@@ -288,8 +288,9 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
@@ -363,13 +364,13 @@
       }
     },
     computed: {
-      ...mapState({
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-        currentApp: (state) => state.appType.currentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-      }),
+      ...mapState(app_type, [
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
+        'currentApp',
+        'loadingCurrentApp',
+        'errorCurrentApp',
+      ]),
       avatarFiles: {
         get() {
           return this.avatarFile ? [this.avatarFile] : [];
@@ -438,7 +439,7 @@
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig', 'getApp']),
+      ...mapActions(app_type, ['updateAppConfig', 'getApp']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -657,12 +658,10 @@
 </script>
 
 <style lang="scss" scoped>
-  .fade-enter-active,
-  .fade-leave-active {
+  .fade-enter-active .fade-leave-active {
     transition: opacity 0.5s;
   }
-  .fade-enter,
-  .fade-leave-to {
+  .fade-enter .fade-leave-to {
     opacity: 0;
   }
 
@@ -720,12 +719,12 @@
 
       &__close {
         display: flex;
-        justify-content: end;
-        justify-self: end;
+        justify-content: flex-end;
+        justify-self: flex-end;
         width: 100%;
         padding-right: $unnnic-spacing-inline-xs;
         &__button {
-          justify-self: end;
+          justify-self: flex-end;
           display: flex;
         }
       }
@@ -757,7 +756,7 @@
         }
       }
       &__settings-content {
-        padding: 0, $unnnic-spacing-inline-lg;
+        padding-right: $unnnic-spacing-inline-lg;
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -886,8 +885,7 @@
           flex-wrap: wrap;
           margin-bottom: auto;
 
-          &__switches,
-          &__slider {
+          &__switches &__slider {
             flex-grow: 1;
           }
 
@@ -930,8 +928,7 @@
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
-          &__cancel,
-          &__save {
+          &__cancel &__save {
             flex-grow: 1;
             width: 250px;
             margin: $unnnic-spacing-inline-xs;
