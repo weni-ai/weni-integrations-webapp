@@ -84,7 +84,7 @@
   import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
   import { mapActions, mapState } from 'pinia';
   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {

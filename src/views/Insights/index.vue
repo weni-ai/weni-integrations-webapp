@@ -154,22 +154,10 @@
 </template>
 
 <script>
-  import {
-    unnnicBreadcrumb,
-    unnnicButton,
-    unnnicModal,
-    unnnicChartMultiLine,
-  } from '@weni/unnnic-system';
   import { insights_store } from '@/stores/modules/insights.store';
   import { mapState, mapActions } from 'pinia';
   export default {
     name: 'Insights',
-    components: {
-      unnnicBreadcrumb,
-      unnnicButton,
-      unnnicModal,
-      unnnicChartMultiLine,
-    },
     data() {
       return {
         showModal: false,

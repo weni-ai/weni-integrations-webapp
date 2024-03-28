@@ -21,7 +21,7 @@
 <script>
   import addModal from '../AddModal/index.vue';
   import configPopUp from '../config/ConfigPopUp.vue';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';

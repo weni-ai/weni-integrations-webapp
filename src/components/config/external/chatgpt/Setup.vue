@@ -83,7 +83,7 @@
   import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'ChatGPTModal',

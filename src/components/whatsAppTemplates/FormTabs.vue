@@ -49,7 +49,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 

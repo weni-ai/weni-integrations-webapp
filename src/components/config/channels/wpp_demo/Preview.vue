@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'wpp-demo-preview',

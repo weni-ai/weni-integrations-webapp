@@ -128,7 +128,7 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';

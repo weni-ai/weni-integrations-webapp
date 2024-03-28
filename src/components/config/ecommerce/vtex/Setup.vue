@@ -177,7 +177,7 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
 

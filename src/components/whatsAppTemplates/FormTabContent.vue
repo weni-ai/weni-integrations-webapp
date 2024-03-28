@@ -98,7 +98,7 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';

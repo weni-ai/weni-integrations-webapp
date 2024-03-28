@@ -139,7 +139,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { insights_store } from '@/stores/modules/insights.store';

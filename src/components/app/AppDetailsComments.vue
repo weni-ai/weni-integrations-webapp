@@ -101,7 +101,7 @@
   import { mapActions, mapState } from 'pinia';
   import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
   import getRelativeTime from '../../utils/time.js';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import Avatar from 'vue-avatar';
 
   export default {

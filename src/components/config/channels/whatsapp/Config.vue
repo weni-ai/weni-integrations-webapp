@@ -89,7 +89,7 @@
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { dataUrlToFile } from '@/utils/files';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'whatsapp-config',

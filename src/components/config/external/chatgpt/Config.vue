@@ -159,7 +159,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'chatgpt-config',
