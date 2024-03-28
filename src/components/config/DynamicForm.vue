@@ -5,8 +5,8 @@
         v-if="input.type === 'input'"
         ref="unnnic-input"
         :class="[!input.label && 'dynamic-form__fields--top-margin', 'dynamic-form__fields__input']"
-        :type="input.error ? 'error' : 'normal'"
-        v-model="inputs[index].value"
+        :type="getType(input)"
+        v-model="input.value"
         :label="input.label && $t(input.label)"
         :placeholder="input.placeholder && $t(input.placeholder)"
         :message="input.message && $t(input.message)"
@@ -72,6 +72,9 @@
             this.$emit('input', { index, value });
             break;
         }
+      },
+      getType(input) {
+        return input.error ? 'error' : 'normal';
       },
     },
   };
