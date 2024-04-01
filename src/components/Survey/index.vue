@@ -16,7 +16,8 @@
             type="tertiary"
             size="small"
             :text="$t('general.exit')"
-            @click="closeSurvey"
+            @click.native="closeSurvey"
+            
           />
 
           <unnnic-button
@@ -25,7 +26,7 @@
             size="small"
             :text="$t('general.send')"
             :loading="loadingSurveyAnswer"
-            @click="sendSurvey"
+            @click.native="sendSurvey"
           />
         </div>
       </div>
@@ -68,6 +69,7 @@
         this.setSurveyStatus({ status: 'CLOSED' });
       },
       async sendSurvey() {
+        console.log('aaa')
         const payload = {
           answer: this.answer,
         };
