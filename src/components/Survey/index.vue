@@ -16,7 +16,7 @@
             type="tertiary"
             size="small"
             :text="$t('general.exit')"
-            @click="closeSurvey"
+            @click.native="closeSurvey"
           />
 
           <unnnic-button
@@ -25,7 +25,7 @@
             size="small"
             :text="$t('general.send')"
             :loading="loadingSurveyAnswer"
-            @click="sendSurvey"
+            @click.native="sendSurvey"
           />
         </div>
       </div>
