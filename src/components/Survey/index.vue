@@ -16,7 +16,7 @@
             type="tertiary"
             size="small"
             :text="$t('general.exit')"
-            @click="closeSurvey"
+            @click.native="closeSurvey"
           />
 
           <unnnic-button
@@ -25,7 +25,7 @@
             size="small"
             :text="$t('general.send')"
             :loading="loadingSurveyAnswer"
-            @click="sendSurvey"
+            @click.native="sendSurvey"
           />
         </div>
       </div>
@@ -40,7 +40,7 @@
 <script>
   import { mapState, mapActions } from 'pinia';
   import { survey_store } from '@/stores/modules/survey.store';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'Survey',

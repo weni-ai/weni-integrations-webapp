@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
 import Unnnic from '@weni/unnnic-system';
-import '@weni/unnnic-system/dist/unnnic.css';
+import '@weni/unnnic-system/dist/style.css';
 import i18n from './utils/plugins/i18n';
 import * as vueUse from '@vueuse/components';
 import * as Sentry from '@sentry/vue';

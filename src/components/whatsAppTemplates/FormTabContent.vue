@@ -6,7 +6,7 @@
           class="form-tab-content__input--name"
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
-          :value="whatsappState.templateForm.name"
+          :value="templateForm.name"
           @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
           @keyup="formatTemplateName"
           @keydown="preventTemplateName"
@@ -98,11 +98,13 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
   import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { mapState, mapActions } from 'pinia';
 
   export default {
     name: 'FormTabContent',
@@ -191,15 +193,11 @@
       });
     },
     computed: {
-      templateTranslationCurrentForm(){
-        return whatsapp_store().templateTranslationCurrentForm
-      },
-      whatsappState(){
-        return {
-          templateForm: whatsapp_store().templateForm,
-          whatsAppTemplates: whatsapp_store().whatsAppTemplates,
-        };
-      },
+      ...mapState(whatsapp_store, [
+        'templateForm',
+        'whatsAppTemplates',
+        'templateTranslationCurrentForm',
+      ]),
       disableInputs() {
         return !this.canEdit;
       },
@@ -215,7 +213,7 @@
       },
       currentCategory() {
         const category = this.categoryGroups[0].items.find(
-          (item) => item.value === this.whatsappState.templateForm.category,
+          (item) => item.value === this.templateForm.category,
         );
 
         if (!category) {
@@ -230,6 +228,7 @@
       },
     },
     methods: {
+      ...mapActions(whatsapp_store, ['updateTemplateForm', 'updateTemplateTranslationForm']),
       preventTemplateName(event) {
         if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();
@@ -249,14 +248,14 @@
             ? this.$t('WhatsApp.templates.form_field.name_exists')
             : '';
         }
-        whatsapp_store().updateTemplateForm({ fieldName, fieldValue });
+        this.updateTemplateForm({ fieldName, fieldValue });
       },
       handleGenericInput({ fieldName, fieldValue, hasIssue = false }) {
         if (hasIssue) {
           this.errorStates[fieldName].value = true;
         }
 
-        whatsapp_store().updateTemplateTranslationForm({
+        this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName,
           fieldValue,
@@ -305,7 +304,7 @@
           return;
         }
 
-        whatsapp_store().updateTemplateTranslationForm({
+        this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName: 'language',
           fieldValue: selectedLanguage.value,
@@ -318,7 +317,7 @@
         this.$router.push(tablePath);
       },
       verifyExistingName(templateName) {
-        return this.whatsappState.whatsAppTemplates.results.find((template) => template.name === templateName);
+        return this.whatsAppTemplates.results.find((template) => template.name === templateName);
       },
       saveTemplate() {
         let validFields = true;
@@ -442,4 +441,3 @@
     }
   }
 </style>
-
