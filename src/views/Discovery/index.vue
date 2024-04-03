@@ -1,12 +1,11 @@
 <template>
   <div class="discovery-content">
-    <unnnic-autocomplete
-      v-model="searchTerm"
-      class="discovery-content__search"
-      placeholder="gdfgbfgbgbfg"
-      icon-left="search-1"
-      :data="[]"
-    />
+    <unnnic-input 
+    v-model="searchTerm"
+    class="discovery-content__search"
+    placeholder="Search"
+    icon-left="search-1"/>
+
     <span v-if="searchTerm && searchTerm.trim()" class="discovery-content__search__results">
       {{ $t('apps.discovery.search.results') }}
       <span class="discovery-content__search__results__highlight">
@@ -218,6 +217,11 @@
         await ecommerce_store().getEcommerceTypes();
       },
     },
+    watch: {
+      searchTerm(old, newVal){
+        console.log(old, ' - ', newVal)
+      }
+    }
   };
 </script>
 

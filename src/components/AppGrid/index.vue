@@ -1,6 +1,6 @@
 <template>
   <div ref="appGrid">
-    <section v-if="!loading" id="app-grid">
+    <section v-if="!loading" id="app-grid" maxLength="255" disabled="false">
       <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon
           :icon="avatar.icon"
