@@ -122,10 +122,6 @@ const router = createRouter({
         }
       },
     },
-    {
-      path: '*',
-      redirect: '/',
-    },
   ],
 });
 
