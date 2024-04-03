@@ -68,7 +68,6 @@
         this.setSurveyStatus({ status: 'CLOSED' });
       },
       async sendSurvey() {
-        console.log('aaa')
         const payload = {
           answer: this.answer,
         };

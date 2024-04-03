@@ -1,10 +1,11 @@
 <template>
   <div class="discovery-content">
-    <unnnic-input 
-    v-model="searchTerm"
-    class="discovery-content__search"
-    placeholder="Search"
-    icon-left="search-1"/>
+    <unnnic-input
+      v-model="searchTerm"
+      class="discovery-content__search"
+      placeholder="Search"
+      icon-left="search-1"
+    />
 
     <span v-if="searchTerm && searchTerm.trim()" class="discovery-content__search__results">
       {{ $t('apps.discovery.search.results') }}
@@ -217,11 +218,6 @@
         await ecommerce_store().getEcommerceTypes();
       },
     },
-    watch: {
-      searchTerm(old, newVal){
-        console.log(old, ' - ', newVal)
-      }
-    }
   };
 </script>
 
