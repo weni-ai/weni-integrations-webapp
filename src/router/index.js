@@ -118,25 +118,12 @@ const router = createRouter({
         if (to.query.next) {
           next(to.query.next);
         } else {
-          next();
+          next('');
         }
       },
     },
   ],
 });
-
-// function authGuard(to) {
-//   const { token, project, flowOrg } = to.params;
-//   auth_store().externalLogin({ token: token.replace('+', ' ') });
-//   auth_store().selectedProject({ project });
-//   auth_store().selectedFlowOrg({ flowOrg });
-//   if (to.query.next) {
-//     return { path: to.query.next };
-//   } else {
-//     // next({name: 'Discovery'});
-//     return { path: '/apps/discovery' };
-//   }
-// }
 
 router.afterEach(() => {
   window.parent.postMessage(
