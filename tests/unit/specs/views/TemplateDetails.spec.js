@@ -1,4 +1,4 @@
-import Vuex from 'vuex';
+import { setActivePinia, createPinia } from 'pinia'
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import TemplateDetails from '@/views/TemplateDetails/index.vue';
 import { singleApp } from '../../../__mocks__/appMock';
@@ -12,7 +12,6 @@ const genericApp = {
 };
 
 const localVue = createLocalVue();
-localVue.use(Vuex);
 
 describe('TemplateDetails/index.vue', () => {
   let wrapper;
@@ -26,6 +25,7 @@ describe('TemplateDetails/index.vue', () => {
   };
 
   beforeEach(() => {
+    setActivePinia(createPinia());
     actions = {
       getTemplates: jest.fn(),
       getTemplateAnalytics: jest.fn(),
