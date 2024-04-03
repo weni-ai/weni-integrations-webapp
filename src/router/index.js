@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
+import auth from '@/api/auth';
 
 const router = createRouter({
   mode: 'history',
@@ -110,20 +111,25 @@ const router = createRouter({
       path: '/loginexternal/:token/:project/:flowOrg',
       name: 'externalLogin',
       component: null,
-      beforeEnter: async (to, from, next) => {
-        const { token, project, flowOrg } = to.params;
-        auth_store().externalLogin({ token: token.replace('+', ' ') });
-        auth_store().selectedProject({ project });
-        auth_store().selectedFlowOrg({ flowOrg });
-        if (to.query.next) {
-          next(to.query.next);
-        } else {
-          next({name: 'Discovery'});
-        }
-      },
+      beforeEnter: [authGuard]
     },
   ],
 });
+
+function authGuard(to) {
+  const { token, project, flowOrg } = to.params;
+  auth_store().externalLogin({ token: token.replace('+', ' ') });
+  auth_store().selectedProject({ project });
+  auth_store().selectedFlowOrg({ flowOrg });
+  if (to.query.next) {
+    return {path: to.query.next}
+  } else {
+    // next({name: 'Discovery'});
+    return {path: '/apps/discovery'};
+  }
+}
+
+
 
 router.afterEach(() => {
   window.parent.postMessage(
