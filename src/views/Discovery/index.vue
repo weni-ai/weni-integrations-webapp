@@ -114,7 +114,7 @@
 
       this.fetchEcommerceApps();
 
-      app_type().fetchFeatured();
+      this.fetchFeatured();
     },
     computed: {
       ...mapState(app_type, [

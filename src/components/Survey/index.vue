@@ -17,7 +17,6 @@
             size="small"
             :text="$t('general.exit')"
             @click.native="closeSurvey"
-            
           />
 
           <unnnic-button
