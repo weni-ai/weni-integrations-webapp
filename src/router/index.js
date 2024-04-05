@@ -112,12 +112,11 @@ const router = createRouter({
       component: null,
       beforeEnter: (to, from, next) => {
         const { token, project, flowOrg } = to.params;
+        console.log(flowOrg)
         auth_store().externalLogin({ token: token.replace('+', ' ') });
         auth_store().selectedProject({ project });
-        if (!flowOrg && project) {
-          auth_store().getFlowOrganization();
-        }
-        auth_store().selectedFlowOrg({ flowOrg });
+        // auth_store().selectedFlowOrg({ flowOrg });
+        auth_store().getFlowOrganization()
         if (to.query.next) {
           next(to.query.next);
         } else {

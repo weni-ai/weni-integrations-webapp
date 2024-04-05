@@ -91,7 +91,7 @@
         />
       </div>
     </section>
-    <skeleton-loading v-else />
+    <skeleton-loading v-if="loading" />
 
     <unnnic-modal
       ref="unnnic-remove-modal"

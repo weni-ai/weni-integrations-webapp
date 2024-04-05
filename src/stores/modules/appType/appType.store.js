@@ -153,11 +153,11 @@ export const app_type = defineStore('appType', {
       try {
         const { data } = await appType.fetchFeatured();
         this.featuredApps = data;
-        this.loadingFeaturedApps = false;
       } catch (err) {
         this.errorFeaturedApps = err;
-        this.loadingFeaturedApps = false;
       }
+      if(data.length) this.loadingFeaturedApps = false;
+      
     },
     async updateAppConfig({ code, appUuid, payload }) {
       this.loadingUpdateAppConfig = true;
@@ -166,12 +166,11 @@ export const app_type = defineStore('appType', {
       try {
         const { data } = await appType.updateAppConfig(code, appUuid, payload);
         this.updateAppConfigResult = data;
-        this.loadingUpdateAppConfig = false;
       } catch (err) {
         captureSentryException(err);
         this.errorUpdateAppConfig = err;
-        this.loadingUpdateAppConfig = false;
       }
+      this.loadingUpdateAppConfig = false;
     },
     async updateApp({ code, appUuid, payload }) {
       this.loadingUpdateApp = true;

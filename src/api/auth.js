@@ -14,11 +14,10 @@ export default {
   async getFlowOrganization(projectUuid) {
     const { data: project } = await this.getProject({ uuid: projectUuid });
 
-    if (project.flow_organization) {
-      return project.flow_organization;
+    if (project.organization) {
+      return project.organization;
     } else {
       sleep(3);
-
       return await this.getFlowOrganization(projectUuid);
     }
   },
