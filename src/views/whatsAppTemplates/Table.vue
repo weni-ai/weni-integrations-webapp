@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-reserved-component-names -->
 <template>
   <div class="whatsapp-templates">
     <div class="whatsapp-templates__table" v-if="$route.name === 'WhatsApp Templates Table'">
@@ -7,10 +8,10 @@
     <router-view v-else />
   </div>
 </template>
-
+<!-- eslint-disable vue/no-reserved-component-names -->
 <script>
-  import Header from '@/components/whatsAppTemplates/TableHeader';
-  import Table from '@/components/whatsAppTemplates/Table';
+  import Header from '@/components/whatsAppTemplates/TableHeader.vue';
+  import Table from '@/components/whatsAppTemplates/Table.vue';
 
   export default {
     name: 'WhatsAppTemplatesTable',

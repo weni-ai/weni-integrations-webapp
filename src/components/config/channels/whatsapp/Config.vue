@@ -3,7 +3,11 @@
     <div class="config-whatsapp__header">
       <div class="config-whatsapp__header__title">
         <div class="config-whatsapp__header__title__icon-container">
-          <img class="config-whatsapp__header__title__icon-container__icon" :src="app.icon" />
+          <img
+            class="config-whatsapp__header__title__icon-container__icon"
+            :src="app.icon"
+            alt=""
+          />
         </div>
         <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
 
@@ -34,33 +38,40 @@
         class="config-whatsapp__tabs"
         :tabs="configTabs"
         initialTab="account"
+        type="md"
       >
-        <template slot="tab-head-account"> {{ $t('WhatsApp.config.tabs.account') }} </template>
-        <AccountTab
-          :appInfo="currentApp"
-          :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
-          slot="tab-panel-account"
-          @close="closeConfig"
-        />
+        <template #tab-head-account> {{ $t('WhatsApp.config.tabs.account') }} </template>
+        <template #tab-panel-account>
+          <AccountTab
+            :appInfo="currentApp"
+            :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
+            @close="closeConfig"
+          />
+        </template>
 
-        <template slot="tab-head-profile"> {{ $t('WhatsApp.config.tabs.profile') }} </template>
-        <ProfileTab
-          slot="tab-panel-profile"
-          :app="app"
-          :profile="appProfile"
-          @close="closeConfig"
-          @save="() => fetchData({ skipLoad: true })"
-        />
+        <template #tab-head-profile> {{ $t('WhatsApp.config.tabs.profile') }} </template>
+        <template #tab-panel-profile>
+          <ProfileTab
+            :app="app"
+            :profile="appProfile"
+            @close="closeConfig"
+            @save="() => fetchData({ skipLoad: true })"
+          />
+        </template>
 
-        <template slot="tab-head-webhook_info">
+        <template #tab-head-webhook_info>
           {{ $t('WhatsApp.config.tabs.webhook_info') }}
         </template>
-        <WebhookTab slot="tab-panel-webhook_info" :app="app" @close="closeConfig" />
+        <template #tab-panel-webhook_info>
+          <WebhookTab :app="app" @close="closeConfig" />
+        </template>
 
-        <template slot="tab-head-conversations">
+        <template #tab-head-conversations>
           {{ $t('WhatsApp.config.tabs.conversations') }}
         </template>
-        <ConversationsTab slot="tab-panel-conversations" :app="app" @close="closeConfig" />
+        <template #tab-panel-conversations>
+          <ConversationsTab :app="app" @close="closeConfig" />
+        </template>
       </unnnic-tab>
       <skeleton-loading v-else />
     </div>
@@ -73,9 +84,12 @@
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
   import skeletonLoading from './loadings/Config.vue';
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
   import { dataUrlToFile } from '@/utils/files';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'whatsapp-config',
@@ -104,27 +118,20 @@
     },
     async mounted() {
       await this.fetchData();
-      this.headerScrollBehavior();
-    },
-    beforeDestroy() {
-      this.resetWppFetchResults();
+      // this.headerScrollBehavior();
     },
     computed: {
-      ...mapState('WhatsApp', [
+      ...mapState(whatsapp_store, [
         'whatsAppProfile',
         'loadingWhatsAppProfile',
         'errorWhatsAppProfile',
       ]),
-      ...mapState('WhatsAppCloud', [
+      ...mapState(whatsapp_cloud, [
         'loadingWhatsAppCloudCatalogs',
         'errorWhatsAppCloudCatalogs',
         'whatsAppCloudCatalogs',
       ]),
-      ...mapState({
-        currentApp: (state) => state.appType.currentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-      }),
+      ...mapState(app_type, ['currentApp', 'loadingCurrentApp', 'errorCurrentApp']),
       configTabs() {
         return ['account', 'profile', 'webhook_info', 'conversations'];
       },
@@ -133,22 +140,22 @@
       },
     },
     methods: {
-      ...mapActions(['getApp']),
-      ...mapActions('WhatsApp', ['fetchWppProfile', 'resetWppFetchResults']),
-      ...mapActions('WhatsAppCloud', ['getWhatsAppCloudCatalogs']),
+      ...mapActions(app_type, ['getApp']),
+      ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
+      ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
-      headerScrollBehavior() {
-        const tabHeader = document.getElementsByClassName('tab-content')[0];
-        if (tabHeader) {
-          tabHeader.addEventListener('wheel', (event) => {
-            event.preventDefault();
+      // headerScrollBehavior() {
+      //   const tabHeader = document.getElementsByClassName('tab-content')[0];
+      //   if (tabHeader) {
+      //     tabHeader.addEventListener('wheel', (event) => {
+      //       event.preventDefault();
 
-            tabHeader.scrollBy({
-              left: event.deltaY < 0 ? -30 : 30,
-            });
-          });
-        }
-      },
+      //       tabHeader.scrollBy({
+      //         left: event.deltaY < 0 ? -30 : 30,
+      //       });
+      //     });
+      //   }
+      // },
       closeConfig() {
         this.$emit('closeModal');
       },
@@ -156,9 +163,9 @@
         try {
           const options = { code: this.app.code, appUuid: this.app.uuid };
           this.skipLoad = skipLoad;
-          this.fetchAppInfo(options);
-          this.fetchProfile(options);
-          this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
+          await this.fetchAppInfo(options);
+          await this.fetchProfile(options);
+          await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
           unnnicCallAlert({

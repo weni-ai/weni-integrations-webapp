@@ -11,34 +11,38 @@
       @close="closePopUp"
       @click.stop
     >
-      <div slot="options">
-        <div class="whatsapp-setup__buttons">
-          <unnnic-button
-            class="whatsapp-setup__buttons__cancel"
-            type="tertiary"
-            size="large"
-            :text="$t('general.Cancel')"
-            @click="closePopUp"
-          ></unnnic-button>
+      <template #options>
+        <div>
+          <div class="whatsapp-setup__buttons">
+            <unnnic-button
+              class="whatsapp-setup__buttons__cancel"
+              type="tertiary"
+              size="large"
+              :text="$t('general.Cancel')"
+              @click="closePopUp"
+            ></unnnic-button>
 
-          <LoadingButton
-            class="whatsapp-setup__buttons__start"
-            type="secondary"
-            size="large"
-            :text="$t('WhatsAppCloud.setup.continue')"
-            :isLoading="onLogin"
-            :disabled="onLogin"
-            @clicked="startFacebookLogin"
-          />
+            <LoadingButton
+              class="whatsapp-setup__buttons__start"
+              type="secondary"
+              size="large"
+              :text="$t('WhatsAppCloud.setup.continue')"
+              :isLoading="onLogin"
+              :disabled="onLogin"
+              @clicked="startFacebookLogin"
+            />
+          </div>
         </div>
-      </div>
+      </template>
     </unnnic-modal>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../..//utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
@@ -66,15 +70,11 @@
       window.changeLoginState = this.changeLoginState;
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-      }),
-      ...mapState('WhatsAppCloud', ['loadingWhatsAppCloudConfigure', 'errorCloudConfigure']),
+      ...mapState(auth_store, ['project']),
+      ...mapState(whatsapp_cloud, ['loadingWhatsAppCloudConfigure', 'errorCloudConfigure']),
     },
     methods: {
-      ...mapActions({
-        configurePhoneNumber: `WhatsAppCloud/configurePhoneNumber`,
-      }),
+      ...mapActions(whatsapp_cloud, ['configurePhoneNumber']),
       changeLoginState(state) {
         this.onLogin = state;
       },

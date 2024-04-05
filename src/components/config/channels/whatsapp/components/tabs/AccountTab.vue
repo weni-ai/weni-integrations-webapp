@@ -116,8 +116,11 @@
 <script>
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import unnnicCallAlert from '@weni/unnnic-system';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'AccountTab',
@@ -146,8 +149,8 @@
       };
     },
     methods: {
-      ...mapActions(['getConfiguredApps']),
-      ...mapActions('ecommerce', ['connectVtexCatalog']),
+      ...mapActions(app_type, ['getConfiguredApps']),
+      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
       },
@@ -216,7 +219,7 @@
         await this.fetchVtexApp();
       },
       async fetchVtexApp() {
-        if (!this.configuredApps) {
+        if (!this.configuredApps || !this.configuredApps?.length) {
           const params = {
             project_uuid: this.project,
           };
@@ -242,11 +245,9 @@
       },
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        configuredApps: (state) => state.myApps.configuredApps,
-      }),
-      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['configuredApps']),
+      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
       QRCodeUrl() {
         return `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
           this.WAUrl,

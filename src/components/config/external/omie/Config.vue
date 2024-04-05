@@ -12,8 +12,8 @@
 
     <div class="app-config-omie__settings__content">
       <unnnic-tab class="app-config-omie__tabs" :tabs="tabs" initialTab="config">
-        <template slot="tab-head-config"> {{ $t('omie.config.tabs.config.title') }} </template>
-        <div slot="tab-panel-config">
+        <template #tab-head-config> {{ $t('omie.config.tabs.config.title') }} </template>
+        <template #tab-panel-config>
           <div class="app-config-omie__tabs__config__content">
             <div class="app-config-omie__tabs__config__content__scroll">
               <unnnic-input
@@ -40,9 +40,9 @@
               <div></div>
             </div>
           </div>
-          <div class="app-config-omie__settings__buttons">
+          <div class="app-config-omie__tabs__config__content__buttons">
             <unnnic-button
-              class="app-config-omie__settings__buttons__cancel"
+              class="app-config-omie__tabs__config__content__buttons__cancel"
               type="tertiary"
               size="large"
               :text="$t('apps.config.cancel')"
@@ -50,7 +50,7 @@
             />
 
             <unnnic-button
-              class="app-config-omie__settings__buttons__save"
+              class="app-config-omie__tabs__config__content__buttons__save"
               type="secondary"
               size="large"
               :text="$t('omie.config.connect')"
@@ -59,15 +59,16 @@
               @click="saveConfig"
             />
           </div>
-        </div>
+        </template>
       </unnnic-tab>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'omie-config',
@@ -87,13 +88,10 @@
       };
     },
     computed: {
-      ...mapState({
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
+      ...mapState(app_type, ['loadingUpdateAppConfig', 'errorUpdateAppConfig']),
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
+      ...mapActions(app_type, ['updateAppConfig']),
 
       async saveConfig() {
         const data = {
@@ -224,17 +222,6 @@
           gap: $unnnic-spacing-inline-xs;
         }
       }
-
-      &__buttons {
-        padding-right: $unnnic-spacing-inline-xs;
-        margin-top: $unnnic-spacing-stack-md;
-        display: flex;
-
-        &__cancel,
-        &__save {
-          flex-grow: 1;
-        }
-      }
     }
 
     &__tabs {
@@ -255,12 +242,6 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-
-        > div {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
       }
       &__config {
         &__content {
@@ -269,6 +250,20 @@
           flex-direction: column;
           height: 100%;
           overflow: auto;
+
+          &__buttons {
+            margin-top: $unnnic-spacing-stack-md;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+
+            &__cancel,
+            &__save {
+              display: flex;
+              width: 300px;
+              flex-grow: 1;
+            }
+          }
 
           &__scroll {
             display: flex;

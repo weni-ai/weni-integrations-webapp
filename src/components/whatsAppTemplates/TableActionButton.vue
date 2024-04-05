@@ -1,11 +1,8 @@
 <template>
   <unnnic-dropdown class="table-action__dropdown" :position="position">
-    <unnnic-button
-      slot="trigger"
-      size="small"
-      type="tertiary"
-      iconCenter="navigation-menu-vertical-1"
-    />
+    <template #trigger>
+      <unnnic-button size="small" type="tertiary" iconCenter="navigation-menu-vertical-1" />
+    </template>
 
     <unnnic-dropdown-item
       :class="['table-action__dropdown__item', `table-action__dropdown__item--${option.id}`]"
@@ -21,8 +18,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { insights_store } from '@/stores/modules/insights.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'TableActionButton',
@@ -109,11 +108,11 @@
       };
     },
     methods: {
-      ...mapActions('WhatsApp', ['deleteTemplateMessage']),
-      ...mapActions('insights', ['setSelectedTemplate', 'setAppUuid']),
+      ...mapActions(whatsapp_store, ['deleteTemplateMessage']),
+      ...mapActions(insights_store, ['setSelectedTemplate', 'setAppUuid']),
     },
     computed: {
-      ...mapState('WhatsApp', ['errorDeleteTemplateMessage']),
+      ...mapState(whatsapp_store, ['errorDeleteTemplateMessage']),
     },
   };
 </script>

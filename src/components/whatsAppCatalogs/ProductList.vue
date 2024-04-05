@@ -65,7 +65,8 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
     name: 'ProductList',
@@ -109,7 +110,7 @@
       await this.fetchProducts(this.page);
     },
     computed: {
-      ...mapState('WhatsAppCloud', [
+      ...mapState(whatsapp_cloud, [
         'catalogProducts',
         'loadingCatalogProducts',
         'errorCatalogProducts',
@@ -136,7 +137,7 @@
       },
     },
     methods: {
-      ...mapActions('WhatsAppCloud', ['getCatalogProducts']),
+      ...mapActions(whatsapp_cloud, ['getCatalogProducts']),
       async fetchProducts(page) {
         const { appUuid, catalogUuid } = this.$route.params;
         const params = {

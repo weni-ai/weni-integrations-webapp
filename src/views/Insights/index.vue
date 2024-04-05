@@ -154,26 +154,14 @@
 </template>
 
 <script>
-  import {
-    unnnicBreadcrumb,
-    unnnicButton,
-    unnnicModal,
-    unnnicChartMultiLine,
-  } from '@weni/unnnic-system';
-  import { mapState, mapActions } from 'vuex';
+  import { insights_store } from '@/stores/modules/insights.store';
+  import { mapState, mapActions } from 'pinia';
   export default {
     name: 'Insights',
-    components: {
-      unnnicBreadcrumb,
-      unnnicButton,
-      unnnicModal,
-      unnnicChartMultiLine,
-    },
     data() {
       return {
         showModal: false,
         model: [],
-        sevenDays: 7 * 24 * 60 * 60 * 1000,
         period: {
           start: this.formatDate(new Date(Date.now() - 604800000)),
           end: this.formatDate(new Date()),
@@ -182,6 +170,7 @@
         crumb_title: 'Insights',
       };
     },
+    /* istanbul ignore next */
     mounted() {
       this.fetchTemplates();
       if (this.hash) {
@@ -195,15 +184,15 @@
       this.fetchTemplateAnalytics();
     },
     computed: {
-      ...mapState({
-        app_uuid: (state) => state.insights.appUuid,
-        errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
-        errorTemplates: (state) => state.insights.errorTemplates,
-        templateAnalytics: (state) => state.insights.templateAnalytics,
-        selectedTemplate: (state) => state.insights.selectedTemplate,
-        templates: (state) => state.insights.templates.results?.map((item) => item),
-        isActive: (state) => state.insights.isActive || false,
-      }),
+      ...mapState(insights_store, [
+        'app_uuid',
+        'errorTemplateAnalytics',
+        'errorTemplates',
+        'templateAnalytics',
+        'selectedTemplate',
+        'templates',
+        'isActive',
+      ]),
       modelOptions() {
         if (this.templates?.length > 0) {
           const templateList = [];
@@ -253,19 +242,18 @@
       },
     },
     watch: {
+      /* istanbul ignore next */
       model(newVal, oldVal) {
         if (newVal.length > 10) {
           this.model = this.model.slice(0, 10);
         }
         if (newVal != oldVal) {
-          setTimeout(() => {
-            return this.fetchTemplateAnalytics();
-          }, 500);
+          this.fetchTemplateAnalytics();
         }
       },
     },
     methods: {
-      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
+      ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
@@ -309,6 +297,7 @@
         return Math.max(...array.map(({ value }) => value));
       },
       redirectTo(crumb) {
+        /* istanbul ignore next */
         if (crumb.meta === this.$route.name) return;
         this.$router.push(crumb.path);
       },

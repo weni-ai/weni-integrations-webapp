@@ -10,30 +10,34 @@
       @close="closePopUp"
       @click.stop
     >
-      <div slot="message">
-        <span v-html="$t(`${this.integrationName}.setup.description`)"></span>
-      </div>
-      <div slot="options">
-        <div class="facebook-setup__buttons">
-          <unnnic-button
-            class="facebook-setup__buttons__cancel"
-            type="tertiary"
-            size="large"
-            :text="$t('general.Cancel')"
-            @click="closePopUp"
-          />
-
-          <LoadingButton
-            class="facebook-setup__buttons__start"
-            type="secondary"
-            size="large"
-            :text="$t(`${this.integrationName}.setup.connect`)"
-            :isLoading="onLogin"
-            :disabled="onLogin"
-            @clicked="startFacebookLogin"
-          />
+      <template #message>
+        <div>
+          <span v-html="$t(`${this.integrationName}.setup.description`)"></span>
         </div>
-      </div>
+      </template>
+      <template #options>
+        <div>
+          <div class="facebook-setup__buttons">
+            <unnnic-button
+              class="facebook-setup__buttons__cancel"
+              type="tertiary"
+              size="large"
+              :text="$t('general.Cancel')"
+              @click="closePopUp"
+            />
+
+            <LoadingButton
+              class="facebook-setup__buttons__start"
+              type="secondary"
+              size="large"
+              :text="$t(`${this.integrationName}.setup.connect`)"
+              :isLoading="onLogin"
+              :disabled="onLogin"
+              @clicked="startFacebookLogin"
+            />
+          </div>
+        </div>
+      </template>
     </unnnic-modal>
 
     <unnnic-modal
@@ -46,57 +50,63 @@
       @close="closePopUp"
       @click.stop
     >
-      <div slot="message" class="page-selection__select">
-        <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
-        <unnnic-select
-          ref="page-selection-input"
-          :search="false"
-          size="sm"
-          :value="selectedPage"
-          @input="handlePageSelection"
-          :key="selectKey"
-        >
-          <option
-            v-for="(page, index) in pageList"
-            :key="index"
-            :value="page.id"
-            :label="page.name"
+      <template #message>
+        <div class="page-selection__select">
+          <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
+          <unnnic-select
+            ref="page-selection-input"
+            :search="false"
+            size="sm"
+            :value="selectedPage"
+            @input="handlePageSelection"
+            :key="selectKey"
           >
-            {{ page.name }}
-          </option>
-        </unnnic-select>
-      </div>
+            <option
+              v-for="(page, index) in pageList"
+              :key="index"
+              :value="page.id"
+              :label="page.name"
+            >
+              {{ page.name }}
+            </option>
+          </unnnic-select>
+        </div>
+      </template>
 
-      <div class="page-selection__buttons" slot="options">
-        <unnnic-button
-          class="page-selection__buttons__cancel"
-          type="tertiary"
-          size="large"
-          :text="$t(`${this.integrationName}.setup.connect_later`)"
-          @click="closePopUp"
-        />
+      <template #options>
+        <div class="page-selection__buttons">
+          <unnnic-button
+            class="page-selection__buttons__cancel"
+            type="tertiary"
+            size="large"
+            :text="$t(`${this.integrationName}.setup.connect_later`)"
+            @click="closePopUp"
+          />
 
-        <LoadingButton
-          class="page-selection__buttons__save"
-          type="secondary"
-          size="large"
-          :isLoading="loadingUpdateAppConfig || loadingCreateApp"
-          :loadingText="$t('general.loading')"
-          :text="$t(`${this.integrationName}.setup.create_channel`)"
-          @clicked="createChannel"
-        />
-      </div>
+          <LoadingButton
+            class="page-selection__buttons__save"
+            type="secondary"
+            size="large"
+            :isLoading="loadingUpdateAppConfig || loadingCreateApp"
+            :loadingText="$t('general.loading')"
+            :text="$t(`${this.integrationName}.setup.create_channel`)"
+            @clicked="createChannel"
+          />
+        </div>
+      </template>
     </unnnic-modal>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'FacebookSetup',
@@ -129,14 +139,14 @@
       window.changeLoginState = this.changeLoginState;
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        createAppResponse: (state) => state.appType.createAppResponse,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
+      ...mapState(app_type, [
+        'createAppResponse',
+        'loadingCreateApp',
+        'errorCreateApp',
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
+      ]),
+      ...mapState(auth_store, ['project']),
       integrationName() {
         const nameMap = {
           ig: 'instagram',
@@ -154,7 +164,7 @@
       },
     },
     methods: {
-      ...mapActions(['createApp', 'updateAppConfig', 'deleteApp']),
+      ...mapActions(app_type, ['createApp', 'updateAppConfig', 'deleteApp']),
       handlePageSelection(page) {
         this.selectedPage = page;
         this.selectKey += 1;
@@ -221,7 +231,10 @@
           return;
         }
 
-        await this.createApp({ code: this.app.code, payload: { project_uuid: this.project } });
+        await this.createApp({
+          code: this.app.code,
+          payload: { project_uuid: this.project },
+        });
         if (this.errorCreateApp) {
           this.callModal({
             type: 'Error',

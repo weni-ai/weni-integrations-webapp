@@ -76,8 +76,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
 
   export default {
@@ -101,18 +103,15 @@
       };
     },
     computed: {
-      ...mapState({
-        currentApp: (state) => state.appType.currentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-      }),
-      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      ...mapState(app_type, ['currentApp', 'errorCurrentApp']),
+      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },
     async mounted() {
       await this.fetchRelatedWppData();
     },
     methods: {
-      ...mapActions(['updateApp', 'getApp']),
-      ...mapActions('ecommerce', ['connectVtexCatalog']),
+      ...mapActions(app_type, ['updateApp', 'getApp']),
+      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',

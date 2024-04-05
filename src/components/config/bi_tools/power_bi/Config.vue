@@ -30,20 +30,21 @@
         :text="flowToken || ''"
         hoverText=""
       >
-        <unnnic-toolTip
-          slot="buttons"
-          :text="$t('PowerBi.config.token_input.tooltip')"
-          :enabled="true"
-          side="top"
-        >
-          <unnnic-button
-            class="app-config-power-bi__content__token-input__button"
-            type="secondary"
-            size="small"
-            iconCenter="copy-paste-1"
-            @click="copyToken"
-          />
-        </unnnic-toolTip>
+        <template #buttons>
+          <unnnic-toolTip
+            :text="$t('PowerBi.config.token_input.tooltip')"
+            :enabled="true"
+            side="top"
+          >
+            <unnnic-button
+              class="app-config-power-bi__content__token-input__button"
+              type="secondary"
+              size="small"
+              iconCenter="copy-paste-1"
+              @click="copyToken"
+            />
+          </unnnic-toolTip>
+        </template>
       </unnnic-data-area>
       <unnnic-skeleton-loading v-else tag="div" width="100%" height="6rem" />
 
@@ -91,10 +92,10 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-
+  import unnnicCallAlert from '@weni/unnnic-system';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import { mapState, mapActions } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'PowerBiConfig',
@@ -133,11 +134,7 @@
       }
     },
     computed: {
-      ...mapState({
-        flowToken: (state) => state.auth.flowToken,
-        errorFlowToken: (state) => state.auth.errorFlowToken,
-        loadingFlowToken: (state) => state.auth.loadingFlowToken,
-      }),
+      ...mapState(auth_store, ['flowToken', 'errorFlowToken', 'loadingFlowToken']),
       powerBiIcon() {
         return PowerBiIcon;
       },
@@ -146,7 +143,7 @@
       },
     },
     methods: {
-      ...mapActions(['getFlowToken']),
+      ...mapActions(auth_store, ['getFlowToken']),
       /* istanbul ignore next */
       async copyToken() {
         if (!this.flowToken) {

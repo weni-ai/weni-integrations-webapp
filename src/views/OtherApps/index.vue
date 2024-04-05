@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="loading" class="flows-iframe">
-      <img class="logo" src="../../assets/svgs/LogoWeniAnimada4.svg" />
+      <img class="logo" src="../../assets/svgs/LogoWeniAnimada4.svg" alt="" />
     </div>
 
     <iframe
@@ -10,13 +10,14 @@
       class="flows-iframe"
       :src="iframeSrc"
       allow="clipboard-read; clipboard-write;"
-      frameborder="0"
+      title=""
     ></iframe>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapState } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
   import getEnv from '@/utils/env';
 
   export default {
@@ -27,9 +28,7 @@
       };
     },
     computed: {
-      ...mapState({
-        flowOrg: (state) => state.auth.flowOrg,
-      }),
+      ...mapState(auth_store, ['flowOrg']),
       iframeSrc() {
         return `${getEnv('VUE_APP_FLOWS_IFRAME_URL')}/weni/${
           this.flowOrg
@@ -53,3 +52,4 @@
     margin-bottom: 0 !important;
   }
 </style>
+import { auth_store } from '@/stores/modules/auth.store'; auth_store,

@@ -7,8 +7,7 @@
 </template>
 
 <script>
-  import CatalogList from '@/components/whatsAppCatalogs/CatalogList';
-
+  import CatalogList from '@/components/whatsAppCatalogs/CatalogList.vue';
   export default {
     name: 'WhatsAppCatalogsList',
     components: {
@@ -17,10 +16,10 @@
   };
 </script>
 
-<styles scoped lang="scss">
-.whatsapp-catalogs {
-  display: flex;
-  overflow: hidden;
-  height: 100%;
-}
-</styles>
+<style scoped lang="scss">
+  .whatsapp-catalogs {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+  }
+</style>

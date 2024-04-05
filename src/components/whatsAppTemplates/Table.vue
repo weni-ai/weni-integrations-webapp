@@ -139,14 +139,16 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
+  import unnnicCallAlert from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
-  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton';
-  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown';
-  import TableSort from '@/components/whatsAppTemplates/TableSort';
+  import TableActionButton from '@/components/whatsAppTemplates/TableActionButton.vue';
+  import TableLanguageDropdown from '@/components/whatsAppTemplates/TableLanguageDropdown.vue';
+  import TableSort from '@/components/whatsAppTemplates/TableSort.vue';
 
   export default {
+    // eslint-disable-next-line vue/no-reserved-component-names
     name: 'Table',
     components: {
       TableLoading,
@@ -252,7 +254,7 @@
       });
     },
     computed: {
-      ...mapState('WhatsApp', [
+      ...mapState(whatsapp_store, [
         'loadingWhatsAppTemplates',
         'errorWhatsAppTemplates',
         'whatsAppTemplates',
@@ -291,7 +293,7 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['getWhatsAppTemplates']),
+      ...mapActions(whatsapp_store, ['getWhatsAppTemplates']),
       fetchData: debounce(async function ({ page }) {
         const { appUuid } = this.$route.params;
         const params = {

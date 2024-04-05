@@ -98,12 +98,13 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
   import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import { mapState, mapActions } from 'pinia';
 
   export default {
     name: 'FormTabContent',
@@ -192,8 +193,11 @@
       });
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
-      ...mapState('WhatsApp', ['templateForm', 'whatsAppTemplates']),
+      ...mapState(whatsapp_store, [
+        'templateForm',
+        'whatsAppTemplates',
+        'templateTranslationCurrentForm',
+      ]),
       disableInputs() {
         return !this.canEdit;
       },
@@ -224,7 +228,7 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['updateTemplateForm', 'updateTemplateTranslationForm']),
+      ...mapActions(whatsapp_store, ['updateTemplateForm', 'updateTemplateTranslationForm']),
       preventTemplateName(event) {
         if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();

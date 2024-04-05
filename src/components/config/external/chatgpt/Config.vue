@@ -159,8 +159,11 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { externals_store } from '@/stores/modules/appType/externals/externals.store';
 
   export default {
     name: 'chatgpt-config',
@@ -243,12 +246,9 @@
       await this.reloadPrompts();
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        loadingUpdateApp: (state) => state.appType.loadingUpdateApp,
-        errorUpdateApp: (state) => state.appType.errorUpdateApp,
-      }),
-      ...mapState('externals', [
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['loadingUpdateApp', 'errorUpdateApp']),
+      ...mapState(externals_store, [
         'loadingCreatePrompt',
         'errorCreatePrompt',
         'createPromptsResult',
@@ -261,8 +261,8 @@
       ]),
     },
     methods: {
-      ...mapActions(['updateApp']),
-      ...mapActions('externals', ['createPrompts', 'getPrompts', 'deletePrompts']),
+      ...mapActions(app_type, ['updateApp']),
+      ...mapActions(externals_store, ['createPrompts', 'getPrompts', 'deletePrompts']),
       async reloadPrompts() {
         await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
@@ -625,3 +625,18 @@
     }
   }
 </style>
+import { auth_store } from '@/stores/modules/auth.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { app_type } from
+'@/stores/modules/appType/appType.store'; import appType from '@/api/appType'; import { app_type }
+from '@/stores/modules/appType/appType.store'; import { app_type } from
+'@/stores/modules/appType/appType.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+'@/stores/modules/appType/externals/externals.store';

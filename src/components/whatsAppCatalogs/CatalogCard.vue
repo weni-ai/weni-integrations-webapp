@@ -49,7 +49,8 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
     name: 'CatalogCard',
@@ -72,10 +73,10 @@
       };
     },
     computed: {
-      ...mapState('WhatsAppCloud', ['errorDisableCatalog']),
+      ...mapState(whatsapp_cloud, ['errorDisableCatalog']),
     },
     methods: {
-      ...mapActions('WhatsAppCloud', ['disableWhatsAppCloudCatalogs']),
+      ...mapActions(whatsapp_cloud, ['disableWhatsAppCloudCatalogs']),
       toggleCatalogConnect(event) {
         if (event) {
           this.$emit('enable');

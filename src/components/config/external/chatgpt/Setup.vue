@@ -80,8 +80,10 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import unnnicCallAlert from '@weni/unnnic-system';
 
   export default {
     name: 'ChatGPTModal',
@@ -100,14 +102,11 @@
       };
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-      }),
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
     },
     methods: {
-      ...mapActions(['createApp']),
+      ...mapActions(app_type, ['createApp']),
       closePopUp() {
         this.$emit('closePopUp');
       },
