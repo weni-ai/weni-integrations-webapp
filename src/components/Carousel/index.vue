@@ -25,7 +25,7 @@
       </template>
     </vueper-slides>
   </div>
-  <skeleton-loading v-else />
+  <skeleton-loading />
 </template>
 
 <script>
