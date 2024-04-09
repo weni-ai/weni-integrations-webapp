@@ -49,7 +49,7 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorVtexAppUuid = null;
       this.generatedVtexAppUuid = null;
       try {
-        const { data } = await ecommerce.getVtexAppUuid(code);
+        const data = await ecommerce.getVtexAppUuid(code);
         this.generatedVtexAppUuid = data;
         this.loadingVtexAppUuid = false;
       } catch (err) {
