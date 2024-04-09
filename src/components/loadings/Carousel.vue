@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import SkeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
+  import SkeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
   export default {
     name: 'CarouselLoading',
-    components: {SkeletonLoading}
+    components: { SkeletonLoading },
   };
 </script>
 

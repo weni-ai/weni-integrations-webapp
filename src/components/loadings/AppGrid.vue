@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import SkeletonLoading from '../Skeleton/SkeletonLoading.vue';
+  import SkeletonLoading from '../Skeleton/SkeletonLoading.vue';
   export default {
-    components: {SkeletonLoading}
+    components: { SkeletonLoading },
   };
 </script>
 
