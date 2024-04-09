@@ -91,7 +91,7 @@
         />
       </div>
     </section>
-    <skeleton-loading v-if="loading" />
+    <!-- <skeleton-loading v-if="loading" /> -->
 
     <unnnic-modal
       ref="unnnic-remove-modal"
@@ -131,7 +131,7 @@
   import unnnicCallAlert from '@weni/unnnic-system';
 
   import configModal from '../config/ConfigModal.vue';
-  import skeletonLoading from '../loadings/AppGrid.vue';
+  // import skeletonLoading from '../loadings/AppGrid.vue';
   import IntegrateButton from '../IntegrateButton/index.vue';
   import LoadingButton from '../LoadingButton/index.vue';
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
@@ -141,7 +141,7 @@
   import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',
-    components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
+    components: { configModal, IntegrateButton, LoadingButton },
     props: {
       section: {
         type: String,
