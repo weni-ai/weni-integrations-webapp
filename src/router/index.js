@@ -114,7 +114,7 @@ const router = createRouter({
         const { token, project, flowOrg } = to.params;
         auth_store().externalLogin({ token: token.replace('+', ' ') });
         auth_store().selectedProject({ project });
-        auth_store().getFlowOrganization();
+        flowOrg ? auth_store().selectedFlowOrg({ flowOrg }) : auth_store().getFlowOrganization();
         if (to.query.next) {
           next(to.query.next);
         } else {

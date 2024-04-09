@@ -11,6 +11,7 @@
   import { ref, provide } from 'vue';
   import colors from './colors.scss?inline';
 
+  // eslint-disable-next-line no-useless-escape
   const backgroundValueRegex = /unnnicColorBackgroundSolo:\s*(.*)\;/;
   export const DEFAULT_BACKGROUND = backgroundValueRegex.exec(colors)[1];
   export const DEFAULT_HIGHLIGHT = 'rgba(255,255,255,0.375)';
