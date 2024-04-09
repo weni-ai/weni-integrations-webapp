@@ -55,9 +55,9 @@ export const app_type = defineStore('appType', {
       this.allAppTypes = null;
 
       try {
-        const { data: baseApps } = await appType.getAllAppTypes(params);
-        const { data: genericAppsData } = await genericType.getAllGenericTypes();
-        const { data: iconData } = await genericType.getIcons();
+        const baseApps = await appType.getAllAppTypes(params);
+        const genericAppsData = await genericType.getAllGenericTypes();
+        const iconData = await genericType.getIcons();
 
         const genericApps = [];
 

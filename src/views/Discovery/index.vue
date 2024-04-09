@@ -212,10 +212,10 @@
         await this.$refs.appGrid.manuallyCreateApp(appCode);
       },
       async fetchExternalServices() {
-        await externals_store().getExternalServicesTypes();
+        await this.getExternalServicesTypes();
       },
       async fetchEcommerceApps() {
-        await ecommerce_store().getEcommerceTypes();
+        await this.getEcommerceTypes();
       },
     },
   };
