@@ -111,7 +111,8 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['getConfiguredApps', 'setOnboardStatus']),
+      ...mapActions(app_type, ['setOnboardStatus']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       async checkModalCondition() {
         const params = {
           project_uuid: this.project,

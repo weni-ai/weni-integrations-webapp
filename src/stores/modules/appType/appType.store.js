@@ -157,7 +157,6 @@ export const app_type = defineStore('appType', {
       } catch (err) {
         this.errorFeaturedApps = err;
       }
-      
     },
     async updateAppConfig({ code, appUuid, payload }) {
       this.loadingUpdateAppConfig = true;
