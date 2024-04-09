@@ -151,7 +151,7 @@ export const app_type = defineStore('appType', {
       this.errorFeaturedApps = null;
       this.featuredApps = null;
       try {
-        const { data } = await appType.fetchFeatured();
+        const data = await appType.fetchFeatured();
         this.featuredApps = data;
         this.loadingFeaturedApps = false;
       } catch (err) {

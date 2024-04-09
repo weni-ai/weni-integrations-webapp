@@ -23,7 +23,7 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorEcommerceApps = null;
       this.ecommerceAppsList = null;
       try {
-        const { data } = await ecommerce.getAllEcommerceTypes();
+        const data = await ecommerce.getAllEcommerceTypes();
         this.ecommerceAppsList = data;
         this.loadingEcommerceApps = false;
       } catch (err) {

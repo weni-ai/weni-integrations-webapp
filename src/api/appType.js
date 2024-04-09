@@ -34,8 +34,8 @@ export default {
   deleteApp(appCode, appUuid) {
     return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/`);
   },
-  fetchFeatured() {
-    return request.$http.get(`${resource}/featureds/`);
+  async fetchFeatured() {
+    return await request.$http.get(`${resource}/featureds/`).then((r) => r.data);
   },
   updateAppConfig(appCode, appUuid, data) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);
