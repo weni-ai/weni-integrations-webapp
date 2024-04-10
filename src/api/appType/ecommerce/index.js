@@ -7,7 +7,9 @@ export default {
     return await request.$http.get(`${resource}/?category=ecommerce`).then((r) => r.data);
   },
   connectVtexCatalog(code, appUuid, payload) {
-    return request.$http.post(`${resource}/${code}/${appUuid}/catalogs/`, payload);
+    return request.$http
+      .post(`${resource}/${code}/${appUuid}/catalogs/`, payload)
+      .then((r) => r.data);
   },
   async getVtexAppUuid(code) {
     return await request.$http.get(`${resource}/${code}/apps/get-app-uuid/`).then((r) => r.data);

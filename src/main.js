@@ -13,7 +13,6 @@ import { makeServer } from '@/miragejs/server';
 
 import App from './App.vue';
 import router from './router';
-import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 const app = createApp(App);
 
@@ -47,7 +46,6 @@ const pinia = createPinia();
 pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
-pinia.use(createPersistedState);
 
 app.use(pinia).use(router).use(Unnnic).use(i18n).use(vueUse);
 
