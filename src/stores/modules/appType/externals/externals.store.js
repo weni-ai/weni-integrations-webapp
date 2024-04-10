@@ -27,7 +27,7 @@ export const externals_store = defineStore('externals', {
       this.errorExternalServices = null;
       this.externalServicesList = null;
       try {
-        const { data } = await externalServices.getAllExternalServicesTypes();
+        const data = await externalServices.getAllExternalServicesTypes();
         this.externalServicesList = data;
         this.loadingExternalServices = false;
       } catch (err) {
@@ -40,7 +40,7 @@ export const externals_store = defineStore('externals', {
       this.errorCreatePrompts = null;
       this.createPromptsResult = null;
       try {
-        const { data } = await externalServices.createPrompts(code, appUuid, payload);
+        const data = await externalServices.createPrompts(code, appUuid, payload);
         this.createPromptsResult = data;
         this.loadingCreatePrompts = false;
       } catch (err) {
@@ -53,7 +53,7 @@ export const externals_store = defineStore('externals', {
       this.errorGetPrompts = null;
       this.getPromptsResult = null;
       try {
-        const { data } = await externalServices.getPrompts(code, appUuid);
+        const data = await externalServices.getPrompts(code, appUuid);
         this.getPromptsResult = data;
         this.loadingGetPrompts = false;
       } catch (err) {
@@ -66,7 +66,7 @@ export const externals_store = defineStore('externals', {
       this.errorDeletePrompts = null;
       this.deletePromptsResult = null;
       try {
-        const { data } = await externalServices.deletePrompts(code, appUuid, payload);
+        const data = await externalServices.deletePrompts(code, appUuid, payload);
         this.deletePromptsResult = data;
         this.loadingDeletePrompts = false;
       } catch (err) {
