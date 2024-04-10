@@ -27,13 +27,11 @@ export const externals_store = defineStore('externals', {
       this.errorExternalServices = null;
       this.externalServicesList = null;
       try {
-        const data = await externalServices.getAllExternalServicesTypes();
-        this.externalServicesList = data;
-        this.loadingExternalServices = false;
+        this.externalServicesList = await externalServices.getAllExternalServicesTypes();
       } catch (err) {
         this.errorExternalServices = err;
-        this.loadingExternalServices = false;
       }
+      this.loadingExternalServices = false;
     },
     async createPrompts({ code, appUuid, payload }) {
       this.loadingCreatePrompts = true;

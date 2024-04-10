@@ -37,10 +37,7 @@ export default {
     return await request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/`);
   },
   async fetchFeatured() {
-    return await request.$http
-      .get(`${resource}/featureds/`)
-      .then((r) => r.data)
-      .then((r) => r.data);
+    return await request.$http.get(`${resource}/featureds/`).then((r) => r.data);
   },
   async updateAppConfig(appCode, appUuid, data) {
     return await request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);

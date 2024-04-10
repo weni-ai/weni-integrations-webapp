@@ -23,13 +23,11 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorEcommerceApps = null;
       this.ecommerceAppsList = null;
       try {
-        const data = await ecommerce.getAllEcommerceTypes();
-        this.ecommerceAppsList = data;
-        this.loadingEcommerceApps = false;
+        this.ecommerceAppsList = await ecommerce.getAllEcommerceTypes();
       } catch (err) {
         this.errorEcommerceApps = err;
-        this.loadingEcommerceApps = false;
       }
+      this.loadingEcommerceApps = false;
     },
     async connectVtexCatalog({ code, appUuid, payload }) {
       this.loadingConnectVtexCatalog = true;
