@@ -39,7 +39,7 @@
     computed: {
       cssVars() {
         return {
-          '--icon-bg-color': this.app.bg_color,
+          '--icon-bg-color': this.app.bg_color || 'white',
         };
       },
     },

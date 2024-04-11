@@ -25,12 +25,12 @@ const router = createRouter({
           path: 'other-apps',
           component: () => import('@/views/OtherApps/index.vue'),
         },
-        {
-          name: 'App Details',
-          path: '/:appCode/details',
-          component: () => import('@/views/AppDetails/index.vue'),
-        },
       ],
+    },
+    {
+      name: 'App Details',
+      path: '/:appCode/details',
+      component: () => import('@/views/AppDetails/index.vue'),
     },
     {
       name: 'Insights',

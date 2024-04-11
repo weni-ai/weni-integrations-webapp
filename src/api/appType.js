@@ -8,7 +8,7 @@ export default {
     return await request.$http.get(`${resource}/?${queryString}`).then((r) => r.data);
   },
   async getAppType(code) {
-    return await request.$http.get(`${resource}/${code}/`).then((r) => r.data);
+    return await request.$http.get(`${resource}/${code}/`);
   },
   async listComments(appCode) {
     return await request.$http.get(`${resource}/${appCode}/comments/`).then((r) => r.data);
