@@ -9,11 +9,11 @@
 
 <script>
   import { ref, provide } from 'vue';
-  import colors from './colors.scss?inline';
+  import colors from './colors.scss?raw';
 
   // eslint-disable-next-line no-useless-escape
   const backgroundValueRegex = /unnnicColorBackgroundSolo:\s*(.*)\;/;
-  export const DEFAULT_BACKGROUND = backgroundValueRegex.exec(colors)[1] || 'rgba(255,255,255)';
+  export const DEFAULT_BACKGROUND = backgroundValueRegex.exec(colors)[1];
   export const DEFAULT_HIGHLIGHT = 'rgba(255,255,255,0.375)';
   export const SkeletonStyle = {
     backgroundColor: DEFAULT_BACKGROUND,
