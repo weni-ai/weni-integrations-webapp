@@ -121,6 +121,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'AccountTab',
@@ -149,7 +150,7 @@
       };
     },
     methods: {
-      ...mapActions(app_type, ['getConfiguredApps']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
