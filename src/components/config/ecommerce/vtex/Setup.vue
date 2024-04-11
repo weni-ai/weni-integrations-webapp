@@ -22,7 +22,7 @@
               v-model="selectedChannel"
               :options="whatsappChannels"
             />
-            <unnnic-skeleton-loading v-else tag="div" width="100%" height="42px" />
+            <skeleton-loading v-else tag="div" width="100%" height="42px" />
           </div>
 
           <unnnic-input
@@ -180,11 +180,13 @@
   import unnnicCallAlert from '@weni/unnnic-system';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'VtexModal',
     components: {
       StepIndicator,
+      skeletonLoading,
     },
     props: {
       app: {

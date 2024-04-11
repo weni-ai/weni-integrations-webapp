@@ -63,12 +63,7 @@
               v-if="availablePrompts.length > 0 && !loadingGetPrompts"
               :label="$t('ChatGPT.config.tabs.flows.prompts_list')"
             />
-            <unnnic-skeleton-loading
-              v-else-if="loadingGetPrompts"
-              tag="div"
-              height="25px"
-              width="75px"
-            />
+            <skeleton-loading v-else-if="loadingGetPrompts" tag="div" height="25px" width="75px" />
             <div class="config-chatgpt__settings__content__prompts-wrapper">
               <unnnic-toolTip
                 v-for="(prompt, index) in availablePrompts"
@@ -164,9 +159,11 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'chatgpt-config',
+    components: { skeletonLoading },
     props: {
       app: {
         type: Object,

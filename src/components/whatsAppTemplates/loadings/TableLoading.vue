@@ -8,15 +8,17 @@
         <unnnic-table-row :headers="headers" />
       </template>
       <template v-slot:item="{ item }">
-        <unnnic-skeleton-loading width="100%" height="64px" :item="item" />
+        <skeleton-loading width="100%" height="64px" :item="item" />
       </template>
     </unnnic-table>
   </div>
 </template>
 
 <script>
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
   export default {
     name: 'TableLoading',
+    components: { skeletonLoading },
     props: {
       headers: {
         type: Array,

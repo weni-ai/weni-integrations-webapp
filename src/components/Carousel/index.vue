@@ -25,11 +25,11 @@
       </template>
     </vueper-slides>
   </div>
-  <!-- <skeleton-loading /> -->
+  <skeleton-loading v-else />
 </template>
 
 <script>
-  // import skeletonLoading from '../loadings/Carousel.vue';
+  import skeletonLoading from '../loadings/Carousel.vue';
   import { VueperSlides, VueperSlide } from 'vueperslides';
   import 'vueperslides/dist/vueperslides.css';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -37,7 +37,7 @@
 
   export default {
     name: 'Carousel',
-    components: { VueperSlides, VueperSlide },
+    components: { VueperSlides, VueperSlide, skeletonLoading },
     async mounted() {
       await this.fetchFeatured();
     },

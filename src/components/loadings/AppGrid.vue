@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="title">
-      <unnnic-skeleton-loading tag="div" width="40px" height="40px" />
-      <unnnic-skeleton-loading tag="div" width="208px" height="40px" />
+      <skeleton-loading tag="div" width="40px" height="40px" />
+      <skeleton-loading tag="div" width="208px" height="40px" />
     </div>
     <div class="grid">
-      <unnnic-skeleton-loading
+      <skeleton-loading
         v-for="index in 4"
         :key="index"
         class="grid__item"
@@ -18,8 +18,10 @@
 </template>
 
 <script>
-  // import SkeletonLoading from '../Skeleton/SkeletonLoading.vue';
-  export default {};
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
+  export default {
+    components: { skeletonLoading },
+  };
 </script>
 
 <style lang="scss" scoped>

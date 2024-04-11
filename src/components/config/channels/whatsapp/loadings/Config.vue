@@ -2,19 +2,22 @@
   <div class="whatsapp-config-loading">
     <unnnic-tab></unnnic-tab>
     <div class="account">
-      <unnnic-skeleton-loading tag="div" width="100%" height="10vh" />
+      <skeleton-loading tag="div" width="100%" height="10vh" />
     </div>
     <div class="channel">
-      <unnnic-skeleton-loading tag="div" width="100%" height="30vh" />
+      <skeleton-loading tag="div" width="100%" height="30vh" />
     </div>
     <div class="waba">
-      <unnnic-skeleton-loading tag="div" width="100%" height="28vh" />
+      <skeleton-loading tag="div" width="100%" height="28vh" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {};
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
+  export default {
+    components: { skeletonLoading },
+  };
 </script>
 
 <style lang="scss" scoped>

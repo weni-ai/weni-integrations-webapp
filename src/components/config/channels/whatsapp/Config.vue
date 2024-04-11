@@ -73,7 +73,7 @@
           <ConversationsTab :app="app" @close="closeConfig" />
         </template>
       </unnnic-tab>
-      <!-- <skeleton-loading v-else /> -->
+      <skeleton-loading v-else />
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@
   import ProfileTab from './components/tabs/ProfileTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
-  // import skeletonLoading from './loadings/Config.vue';
+  import skeletonLoading from './loadings/Config.vue';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
@@ -98,6 +98,7 @@
       ProfileTab,
       ConversationsTab,
       WebhookTab,
+      skeletonLoading,
     },
     props: {
       app: {

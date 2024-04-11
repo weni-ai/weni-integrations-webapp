@@ -1,15 +1,14 @@
 <template>
   <div class="whatsapp-phone-number-loading">
-    <unnnic-skeleton-loading
-      class="whatsapp-phone-number-loading__content"
-      tag="div"
-      height="38px"
-    />
+    <skeleton-loading class="whatsapp-phone-number-loading__content" tag="div" height="38px" />
   </div>
 </template>
 
 <script>
-  export default {};
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
+  export default {
+    components: { skeletonLoading },
+  };
 </script>
 
 <style lang="scss" scoped>
