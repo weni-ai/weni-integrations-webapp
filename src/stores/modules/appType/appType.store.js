@@ -112,7 +112,7 @@ export const app_type = defineStore('appType', {
       this.errorCurrentApp = null;
       this.currentApp = null;
       try {
-        const { data } = await appType.getApp(code, appUuid);
+        const data = await appType.getApp(code, appUuid);
         this.currentApp = data;
         this.loadingCurrentApp = false;
       } catch (err) {
