@@ -15,8 +15,7 @@
   const backgroundValueRegex = /unnnicColorBackgroundSolo:\s*(.*)\;/;
   const match = backgroundValueRegex.exec(colors);
 
-  export const DEFAULT_BACKGROUND = match ? match[1] : '#EEFFFC';
-  // export const DEFAULT_BACKGROUND = backgroundValueRegex.exec(colors)[1];
+  export const DEFAULT_BACKGROUND = match ? match[1] : '#9CACCC';
   export const DEFAULT_HIGHLIGHT = 'rgba(255,255,255,0.375)';
   export const SkeletonStyle = {
     backgroundColor: DEFAULT_BACKGROUND,
