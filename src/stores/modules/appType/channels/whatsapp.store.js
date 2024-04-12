@@ -168,7 +168,7 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.loadingWhatsAppTemplates = true;
       this.errorWhatsAppTemplates = null;
       try {
-        const { data } = await whatsApp.getWhatsAppTemplates(appUuid, params);
+        const data = await whatsApp.getWhatsAppTemplates(appUuid, params);
         this.whatsAppTemplates = data;
         this.loadingWhatsAppTemplates = false;
       } catch (err) {
