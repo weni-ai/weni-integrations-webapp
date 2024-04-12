@@ -9,11 +9,14 @@
 
 <script>
   import { ref, provide } from 'vue';
-  import colors from './colors.scss?raw';
+  import colors from './colors.scss?inline';
 
   // eslint-disable-next-line no-useless-escape
   const backgroundValueRegex = /unnnicColorBackgroundSolo:\s*(.*)\;/;
-  export const DEFAULT_BACKGROUND = backgroundValueRegex.exec(colors)[1];
+  const match = backgroundValueRegex.exec(colors);
+
+  export const DEFAULT_BACKGROUND = match ? match[1] : '#EEFFFC';
+  // export const DEFAULT_BACKGROUND = backgroundValueRegex.exec(colors)[1];
   export const DEFAULT_HIGHLIGHT = 'rgba(255,255,255,0.375)';
   export const SkeletonStyle = {
     backgroundColor: DEFAULT_BACKGROUND,
@@ -27,10 +30,10 @@
   export default {
     name: 'unnnicSkeletonTheme',
     setup() {
-      // const themeStyle = ref(SkeletonStyle);
+      const themeStyle = ref(SkeletonStyle);
       const theme = ref({});
 
-      // provide('_themeStyle', themeStyle);
+      provide('_themeStyle', themeStyle);
       provide('_skeletonTheme', theme);
 
       return {
@@ -60,11 +63,11 @@
         default: undefined,
       },
     },
-    data() {
-      return {
-        themeStyle: { ...SkeletonStyle },
-      };
-    },
+    // data() {
+    //   return {
+    //     themeStyle: { ...SkeletonStyle },
+    //   };
+    // },
     mounted() {
       const { color, highlight, duration } = this;
       this.themeStyle.backgroundColor = color;
