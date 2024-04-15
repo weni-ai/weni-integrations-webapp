@@ -63,7 +63,6 @@
       v-if="showConnectModal"
       class="connect-modal"
       @close="showConnectModal = false"
-      @click.stop
       :closeIcon="false"
     >
       <ConnectCatalogModalContent

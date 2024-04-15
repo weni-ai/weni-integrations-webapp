@@ -9,7 +9,6 @@
       modal-icon="phone-3"
       :close-icon="false"
       @close="closePopUp"
-      @click.stop
     >
       <template #options>
         <div>

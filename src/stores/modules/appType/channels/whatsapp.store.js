@@ -85,7 +85,7 @@ export const whatsapp_store = defineStore('whatsapp', {
     },
     async fetchWppContactInfo({ code, appUuid }) {
       this.loadingContactInfo = true;
-      const { data } = await whatsApp.fetchWppContactInfo(code, appUuid);
+      const data = await whatsApp.fetchWppContactInfo(code, appUuid);
       this.contactInfo = data;
       this.fetchedContactInfo = true;
       this.loadingContactInfo = false;
@@ -192,10 +192,10 @@ export const whatsapp_store = defineStore('whatsapp', {
     },
     updateTemplateTranslationForm({ formName, fieldName, fieldValue }) {
       const updatedForms = this.templateTranslationForms;
-
       if (Array.isArray(fieldValue)) {
         updatedForms[formName][fieldName] = [...fieldValue];
       } else if (typeof fieldValue === 'object' && fieldValue !== null) {
+        updatedForms[formName] = { header: {} };
         updatedForms[formName][fieldName] = { ...fieldValue };
       } else {
         updatedForms[formName][fieldName] = fieldValue;
@@ -219,7 +219,7 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.loadingFetchWhatsAppTemplate = true;
       this.errorFetchWhatsAppTemplate = null;
       try {
-        const { data } = await whatsApp.fetchTemplateData(appUuid, templateUuid);
+        const data = await whatsApp.fetchTemplateData(appUuid, templateUuid);
         this.whatsAppTemplate = data;
         this.loadingFetchWhatsAppTemplate = false;
       } catch (err) {
@@ -232,7 +232,7 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.loadingFetchWhatsAppTemplateSelectLanguages = true;
       this.errorFetchWhatsAppTemplateSelectLanguages = null;
       try {
-        const { data } = await whatsApp.fetchSelectLanguages(appUuid);
+        const data = await whatsApp.fetchSelectLanguages(appUuid);
         const formattedData = [];
         for (const language in data) {
           formattedData.push({ value: language, text: data[language] });
