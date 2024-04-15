@@ -224,7 +224,6 @@
         this.updateTemplateForm({ fieldName: 'category', fieldValue: template.category });
       },
       buildTranslationForm(translation) {
-        console.log('AAAAAAAA');
         // if (
         //   translation.header &&
         //   translation.header.header_type.trim() &&

@@ -20,7 +20,7 @@ export const insights_store = defineStore('insights', {
       this.errorTemplateAnalytics = null;
       this.templateAnalytics = null;
       try {
-        let { data } = await insights.get_template_analytics(app_uuid, filters);
+        let data = await insights.get_template_analytics(app_uuid, filters);
         this.templateAnalytics = data;
         this.loadingTemplateAnalytics = false;
       } catch (err) {
