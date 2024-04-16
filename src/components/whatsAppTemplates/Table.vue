@@ -5,7 +5,7 @@
         <div class="whatsapp-templates-table__filters__date__label">
           {{ $t('WhatsApp.templates.table.filters.date.label') }}
         </div>
-        <unnnic-date-filter
+        <!-- <unnnic-date-filter
           class="whatsapp-templates-table__filters__date__selector"
           dateFormat="DD/MM/YYYY"
           @filter="showDateFilter = true"
@@ -27,10 +27,17 @@
             :clearLabel="$t('WhatsApp.templates.table.filters.date.clear')"
             :actionLabel="$t('WhatsApp.templates.table.filters.date.filter')"
           />
-        </div>
+        </div> -->
+        <unnnicInputDatePicker
+          v-model="datePickerDates"
+          :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
+          :months="months"
+          :options="options"
+          @submit="handleDateFilter"
+        />
       </div>
 
-      <unnnic-select
+      <!-- <unnnic-select
         class="whatsapp-templates-table__filters__category"
         :search="false"
         :value="selectedCategory"
@@ -45,7 +52,12 @@
         >
           {{ $t(category.translation) }}
         </option>
-      </unnnic-select>
+      </unnnic-select> -->
+      <unnnic-select-smart
+        class="whatsapp-templates-table__filters__category"
+        v-model="selectedCategory"
+        :options="categoryOptions"
+      />
       <unnnic-input
         v-model="searchTerm"
         class="whatsapp-templates-table__filters__search"
@@ -170,20 +182,20 @@
         dateSortDirection: 'NONE',
         categoryOptions: [
           {
-            type: 'ANY',
-            translation: 'WhatsApp.data.templates.category.any',
+            value: 'ANY',
+            label: this.$t('WhatsApp.data.templates.category.any'),
           },
           {
-            type: 'UTILITY',
-            translation: 'WhatsApp.data.templates.category.utility',
+            value: 'UTILITY',
+            label: this.$t('WhatsApp.data.templates.category.utility'),
           },
           {
-            type: 'MARKETING',
-            translation: 'WhatsApp.data.templates.category.marketing',
+            value: 'MARKETING',
+            label: this.$t('WhatsApp.data.templates.category.marketing'),
           },
           {
-            type: 'AUTHENTICATION',
-            translation: 'WhatsApp.data.templates.category.authentication',
+            value: 'AUTHENTICATION',
+            label: this.$t('WhatsApp.data.templates.category.authentication'),
           },
         ],
         tableHeaders: [
@@ -286,7 +298,7 @@
         return this.endDate && new Date(this.endDate.replace('-', ' '));
       },
       datePickerDates() {
-        return { startDate: this.startDateObject, endDate: this.endDateObject };
+        return { start: this.startDateObject, end: this.endDateObject };
       },
       filterState() {
         return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
