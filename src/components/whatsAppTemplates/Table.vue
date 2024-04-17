@@ -5,29 +5,6 @@
         <div class="whatsapp-templates-table__filters__date__label">
           {{ $t('WhatsApp.templates.table.filters.date.label') }}
         </div>
-        <!-- <unnnic-date-filter
-          class="whatsapp-templates-table__filters__date__selector"
-          dateFormat="DD/MM/YYYY"
-          @filter="showDateFilter = true"
-          :startDate="startDateObject"
-          :endDate="endDateObject"
-          placeholder="DD/MM/YYYY ~ DD/MM/YYYY"
-        />
-
-        <div class="whatsapp-templates-table__filters__date__dropdown-date">
-          <unnnic-date-picker
-            class="whatsapp-templates-table__filters__date__dropdown-date__picker"
-            v-show="showDateFilter"
-            size="large"
-            :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
-            :months="months"
-            :options="options"
-            @submit="handleDateFilter"
-            :value="datePickerDates"
-            :clearLabel="$t('WhatsApp.templates.table.filters.date.clear')"
-            :actionLabel="$t('WhatsApp.templates.table.filters.date.filter')"
-          />
-        </div> -->
         <unnnicInputDatePicker
           v-model="datePickerDates"
           :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
@@ -36,23 +13,6 @@
           @submit="handleDateFilter"
         />
       </div>
-
-      <!-- <unnnic-select
-        class="whatsapp-templates-table__filters__category"
-        :search="false"
-        :value="selectedCategory"
-        @input="handleCategoryChange"
-        :label="$t('WhatsApp.templates.table.filters.category')"
-      >
-        <option
-          v-for="(category, index) in categoryOptions"
-          :key="index"
-          :value="category.type"
-          :label="$t(category.translation)"
-        >
-          {{ $t(category.translation) }}
-        </option>
-      </unnnic-select> -->
       <unnnic-select-smart
         class="whatsapp-templates-table__filters__category"
         v-model="selectedCategory"
@@ -516,6 +476,7 @@
         flex: 1;
         min-width: 150px;
         max-width: 200px;
+        align-self: end;
       }
 
       &__search {
