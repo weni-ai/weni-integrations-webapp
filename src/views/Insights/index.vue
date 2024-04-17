@@ -257,7 +257,7 @@
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
-          appUuid: this.appUuid,
+          app_uuid: this.appUuid,
           filters: {
             start: this.period.start,
             end: this.period.end,
@@ -267,7 +267,7 @@
         this.getTemplateAnalytics(params);
       },
       fetchTemplates() {
-        this.getTemplates({ appUuid: this.appUuid });
+        this.getTemplates({ app_uuid: this.appUuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
