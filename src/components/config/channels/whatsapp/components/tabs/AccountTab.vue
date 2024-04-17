@@ -93,7 +93,6 @@
       v-if="showCreateCatalogModal || showConnectCatalogModal"
       class="catalog-modal"
       @close="showCreateCatalogModal = false"
-      @click.stop
       :closeIcon="false"
     >
       <CreateCatalogModalContent

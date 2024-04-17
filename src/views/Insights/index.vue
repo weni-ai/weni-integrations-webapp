@@ -185,7 +185,7 @@
     },
     computed: {
       ...mapState(insights_store, [
-        'app_uuid',
+        'appUuid',
         'errorTemplateAnalytics',
         'errorTemplates',
         'templateAnalytics',
@@ -257,7 +257,7 @@
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
-          app_uuid: this.app_uuid,
+          appUuid: this.appUuid,
           filters: {
             start: this.period.start,
             end: this.period.end,
@@ -267,7 +267,7 @@
         this.getTemplateAnalytics(params);
       },
       fetchTemplates() {
-        this.getTemplates({ app_uuid: this.app_uuid });
+        this.getTemplates({ appUuid: this.appUuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -303,7 +303,7 @@
       },
       async activeTemplate() {
         this.showModal = false;
-        await this.setActiveProject({ app_uuid: this.app_uuid });
+        await this.setActiveProject({ appUuid: this.appUuid });
       },
     },
   };

@@ -11,7 +11,7 @@
       @change="handleTranslationSelection"
     >
       <template slot="tab-head-add">
-        <div ref="add-translation-button" @click.stop="addTranslation">
+        <div ref="add-translation-button" @click="addTranslation">
           <unnnic-icon-svg icon="add-1" size="sm" />
           {{ $t('WhatsApp.templates.add_language') }}
         </div>
@@ -109,9 +109,8 @@
       this.dataProcessingLoading = false;
     },
     computed: {
-      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       ...mapState(whatsapp_store, [
-        'templateTranslationForms',
+        'templateTranslationCurrentForm',
         'loadingFetchWhatsAppTemplate',
         'errorFetchWhatsAppTemplate',
         'whatsAppTemplate',
@@ -125,7 +124,6 @@
         'createdTemplateTranslationData',
         'loadingWhatsAppTemplates',
         'errorUpdateTemplateTranslation',
-        '',
       ]),
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
@@ -226,14 +224,14 @@
         this.updateTemplateForm({ fieldName: 'category', fieldValue: template.category });
       },
       buildTranslationForm(translation) {
-        if (
-          translation.header &&
-          translation.header.header_type.trim() &&
-          translation.header.header_type !== 'TEXT'
-        ) {
-          translation.header.mediaType = translation.header.header_type;
-          translation.header.header_type = 'MEDIA';
-        }
+        // if (
+        //   translation.header &&
+        //   translation.header.header_type.trim() &&
+        //   translation.header.header_type !== 'TEXT'
+        // ) {
+        //   translation.header.mediaType = translation.header.header_type;
+        //   translation.header.header_type = 'MEDIA';
+        // }
 
         if (translation.buttons && translation.buttons.length > 0) {
           // force to have a max of two buttons if type is not quick_reply

@@ -5,7 +5,6 @@ import '@weni/unnnic-system/dist/style.css';
 import i18n from './utils/plugins/i18n';
 import * as vueUse from '@vueuse/components';
 import * as Sentry from '@sentry/vue';
-import LogRocket from 'logrocket';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
 
@@ -23,13 +22,6 @@ if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
     dsn: getEnv('VITE_APP_SENTRY_DSN'),
     integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
     logErrors: true,
-  });
-}
-
-if (getEnv('VITE_APP_LOGROCKET_ID')) {
-  LogRocket.init(getEnv('VITE_APP_LOGROCKET_ID'), {
-    mergeIframes: true,
-    parentDomain: getEnv('VITE_APP_PARENT_IFRAME_DOMAIN'),
   });
 }
 
