@@ -1,13 +1,13 @@
 <template>
   <div class="input-editor">
     <div v-click-outside="hideEmoji">
-      <VEmojiPicker
+      <!-- <VEmojiPicker
         v-show="displayEmoji"
         class="input-editor__emoji-picker"
         :emojiSize="22"
         :emojisByRow="7"
         @select="selectEmoji"
-      />
+      /> -->
       <unnnic-button
         class="input-editor__emoji-picker__button"
         type="tertiary"
@@ -63,14 +63,14 @@
 </template>
 
 <script>
-  import { VEmojiPicker } from 'v-emoji-picker';
+  // import { VEmojiPicker } from 'v-emoji-picker';
   import StrikeThroughIcon from '@/assets/svgs/strike-through.svg';
 
   export default {
     name: 'InputEditor',
-    components: {
-      VEmojiPicker,
-    },
+    // components: {
+    //   VEmojiPicker,
+    // },
     data() {
       return {
         displayEmoji: false,

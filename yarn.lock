@@ -2065,7 +2065,7 @@
     "@vue/compiler-dom" "3.4.23"
     "@vue/shared" "3.4.23"
 
-"@vue/devtools-api@^6.5.0", "@vue/devtools-api@^6.5.1":
+"@vue/devtools-api@^6.5.0":
   version "6.6.1"
   resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.6.1.tgz#7c14346383751d9f6ad4bea0963245b30220ef83"
   integrity sha512-LgPscpE3Vs0x96PzSSB4IGVSZXZBZHpfxs+ZA1d+VEPwHdOXowy/Y2CsvCAIFrf+ssVU1pD1jidj505EpUnfbA==
@@ -5202,14 +5202,6 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
-v-emoji-picker@^2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/v-emoji-picker/-/v-emoji-picker-2.3.3.tgz#afff5d9be2d9c949b395616bcffd4d74f753289f"
-  integrity sha512-GLuBowVCwKjGRVQ+DJvP6SVFhLIlyvQTBgwlrBuwPX7wt7xi+fdWxmFtyJDBEp/2/xI1aS6Y2lXvse9Cf2vIzA==
-  dependencies:
-    vue-class-component "^7.2.6"
-    vue-property-decorator "^9.1.2"
-
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -5233,11 +5225,6 @@ vue-avatar@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/vue-avatar/-/vue-avatar-2.3.3.tgz#e125bf4f4a6f4f9480da0c522020266a8609d2a8"
   integrity sha512-Z57ILRTkFIAuCH9JiFBxX74C5zua5ub/jRDM/KZ+QKXNfscvmUOgWBs3kA2+wrpZMowIvfLHIT0gvQu1z+zpLg==
-
-vue-class-component@^7.2.6:
-  version "7.2.6"
-  resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
-  integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
 
 vue-demi@>=0.14.5, vue-demi@>=0.14.7:
   version "0.14.7"
@@ -5266,17 +5253,12 @@ vue-i18n@9, vue-i18n@^9.9.1:
     "@intlify/shared" "9.12.0"
     "@vue/devtools-api" "^6.5.0"
 
-vue-property-decorator@^9.1.2:
-  version "9.1.2"
-  resolved "https://registry.yarnpkg.com/vue-property-decorator/-/vue-property-decorator-9.1.2.tgz#266a2eac61ba6527e2e68a6933cfb98fddab5457"
-  integrity sha512-xYA8MkZynPBGd/w5QFJ2d/NM0z/YeegMqYTphy7NJQXbZcuU6FC6AOdUAcy4SXP+YnkerC6AfH+ldg7PDk9ESQ==
-
-vue-router@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.3.0.tgz#d5913f27bf68a0a178ee798c3c88be471811a235"
-  integrity sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==
+vue-router@4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.2.5.tgz#b9e3e08f1bd9ea363fdd173032620bc50cf0e98a"
+  integrity sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==
   dependencies:
-    "@vue/devtools-api" "^6.5.1"
+    "@vue/devtools-api" "^6.5.0"
 
 vue-the-mask@^0.11.1:
   version "0.11.1"
