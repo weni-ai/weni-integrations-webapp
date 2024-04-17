@@ -11,9 +11,6 @@ export default defineConfig({
       template: {
         compilerOptions: {
           isCustomElement: (tag) => ['md-linedivider'].includes(tag),
-          compatConfig: {
-            MODE: 2,
-          },
         },
       },
     }),
@@ -21,7 +18,6 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      vue: '@vue/compat',
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },

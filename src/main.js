@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
 import Unnnic from '@weni/unnnic-system';
@@ -6,7 +5,6 @@ import '@weni/unnnic-system/dist/style.css';
 import i18n from './utils/plugins/i18n';
 import * as vueUse from '@vueuse/components';
 import * as Sentry from '@sentry/vue';
-import * as Integrations from '@sentry/integrations';
 import LogRocket from 'logrocket';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
@@ -16,8 +14,6 @@ import router from './router';
 
 const app = createApp(App);
 
-Vue.config.productionTip = false;
-
 if (getEnv('NODE_ENV') === 'development') {
   makeServer();
 }
@@ -25,12 +21,7 @@ if (getEnv('NODE_ENV') === 'development') {
 if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
   Sentry.init({
     dsn: getEnv('VITE_APP_SENTRY_DSN'),
-    integrations: [
-      new Integrations.Vue({
-        Vue,
-        attachProps: true,
-      }),
-    ],
+    integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
     logErrors: true,
   });
 }

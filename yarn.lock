@@ -1981,15 +1981,6 @@
     "@babel/parser" "^7.23.9"
     "@vue/compiler-sfc" "^3.4.15"
 
-"@vue/compat@^3.4.20":
-  version "3.4.21"
-  resolved "https://registry.yarnpkg.com/@vue/compat/-/compat-3.4.21.tgz#c15ac3f90eb30c2a0e4fc28251f8590f57a2280a"
-  integrity sha512-hKM6C5tTqduZcNOwp4oBa6qplAQ0NsMvGtLCTKmkhjVqrFzUfS9CyLN6ktzEfPwbgeC/wYYd7PtH+H8jNGvTjQ==
-  dependencies:
-    "@babel/parser" "^7.23.9"
-    estree-walker "^2.0.2"
-    source-map-js "^1.0.2"
-
 "@vue/compiler-core@3.4.21":
   version "3.4.21"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.4.21.tgz#868b7085378fc24e58c9aed14c8d62110a62be1a"
@@ -2113,10 +2104,10 @@
   dependencies:
     vue-demi ">=0.14.7"
 
-"@weni/unnnic-system@2.0.0-beta.7":
-  version "2.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.0-beta.7.tgz#f711f77ce7589c339d440c0fc7ac4b7cd7cacda4"
-  integrity sha512-dAy4rnWZwTe+BsZq/j1GUJV9tsBz/YWmcMaQ9J7jK96fg6tnvEwctiwU8iaa9+T7Ub/LXq8ggPzYVj/74xH7ug==
+"@weni/unnnic-system@2.0.0-beta.11":
+  version "2.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.0-beta.11.tgz#1ca4ec0b3843f05bb42b539356d284c8cd074fa2"
+  integrity sha512-USj1YPghCJjz5yPdWlp8ORxRu2NK8mZ2CyPG3hC9Zw3L/OGTYBcEzv84wxZoaLs3ZVXf3Ht2iPcU4+pgJy2UxQ==
   dependencies:
     "@vueuse/components" "^10.4.1"
     lodash "^4.17.21"
