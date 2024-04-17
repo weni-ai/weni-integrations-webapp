@@ -74,10 +74,6 @@
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
-
-      this.$root.$on('updateGrid', () => {
-        this.fetchCategories();
-      });
     },
     /* istanbul ignore next */
     beforeDestroy() {

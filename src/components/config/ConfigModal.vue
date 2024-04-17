@@ -8,7 +8,6 @@
           <component
             class="config-modal__component"
             :is="currentComponent"
-            :v-bind="$attrs"
             :app="currentApp"
             :isConfigured="isConfigured"
             @closeModal="closeModal"
