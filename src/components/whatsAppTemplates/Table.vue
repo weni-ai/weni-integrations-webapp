@@ -261,7 +261,7 @@
         return { start: this.startDateObject, end: this.endDateObject };
       },
       filterState() {
-        return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+        return `${this.selectedCategory[0]?.value}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
       },
     },
     methods: {
@@ -273,8 +273,8 @@
           page_size: this.pageSize,
         };
 
-        if (this.selectedCategory !== 'ANY') {
-          params.category = this.selectedCategory;
+        if (this.selectedCategory[0].value !== 'ANY') {
+          params.category = this.selectedCategory[0].value;
         }
 
         if (this.startDate) {
