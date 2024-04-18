@@ -12,18 +12,18 @@
         :message="input.message && $t(input.message)"
         @input="emitInput(index, input, $event)"
       />
-      <unnnic-select
-        v-else-if="input.type === 'select'"
-        ref="unnnic-select"
-        :placeholder="input.placeholder && $t(input.placeholder)"
-        :label="input.label && $t(input.label)"
-        :value="input.value"
-        @input="emitInput(index, input, $event)"
-      >
-        <option v-for="option in input.options" :key="option.key" :value="option.value">
+      <div @updateSelect="teste" v-if="input.type === 'select'">
+        <unnnic-select-smart
+          ref="unnnic-select"
+          :options="selectOptions"
+          v-model="selectedOption"
+          v-on:change="teste"
+        />
+      </div>
+      <!-- <option v-for="option in input.options" :key="option.key" :value="option.value">
           {{ option.text }}
         </option>
-      </unnnic-select>
+      </unnnic-select> -->
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="$t(input.label)" />
         <unnnic-upload-area
@@ -58,6 +58,24 @@
       inputs: {
         type: Array,
         default: /* istanbul ignore next */ () => [],
+      },
+    },
+    data() {
+      return {
+        selectedOption: [],
+      };
+    },
+    computed: {
+      selectOptions() {
+        if (this.inputs[0].options) {
+          return this.inputs[0].options.map((item) => {
+            return {
+              value: item.value,
+              label: item.text,
+            };
+          });
+        }
+        return [];
       },
     },
     methods: {

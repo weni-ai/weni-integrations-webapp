@@ -30,7 +30,7 @@ export const insights_store = defineStore('insights', {
     },
     async getTemplates({ app_uuid }) {
       try {
-        let { data } = await insights.get_templates(app_uuid);
+        let data = await insights.get_templates(app_uuid);
         this.errorTemplates = null;
         this.templates = data;
       } catch (err) {

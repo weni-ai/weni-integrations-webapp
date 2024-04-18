@@ -20,7 +20,7 @@ export const app_type = defineStore('appType', {
       errorAllAppTypes: false,
 
       currentAppType: null,
-      loadingCurrentAppType: true,
+      loadingCurrentAppType: false,
       errorCurrentAppType: false,
 
       postRatingResult: null,
@@ -91,7 +91,6 @@ export const app_type = defineStore('appType', {
         this.loadingCurrentAppType = false;
       } catch (err) {
         this.errorCurrentAppType = err;
-        this.loadingCurrentAppType = false;
       }
     },
     async postRating({ code, payload }) {

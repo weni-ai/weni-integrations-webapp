@@ -38,10 +38,10 @@
         </div>
         <div class="wpp_insights__filters__time__select">
           <unnnic-input-date-picker
-            :value="period"
+            v-model="period"
             size="md"
             format="MM-DD-YYYY"
-            @changed="setPeriod"
+            @submit="setPeriod"
           />
         </div>
       </div>
@@ -194,9 +194,9 @@
         'isActive',
       ]),
       modelOptions() {
-        if (this.templates?.length > 0) {
+        if (this.templates?.count > 0) {
           const templateList = [];
-          this.templates.forEach((item) => {
+          this.templates.results.forEach((item) => {
             item.translations.forEach((translation) => {
               const obj = {
                 value: translation.message_template_id,
@@ -266,8 +266,8 @@
         };
         this.getTemplateAnalytics(params);
       },
-      fetchTemplates() {
-        this.getTemplates({ app_uuid: this.appUuid });
+      async fetchTemplates() {
+        await this.getTemplates({ app_uuid: this.appUuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -280,7 +280,7 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
-        const data = this.templateAnalytics?.data.map((template) => {
+        const data = this.templateAnalytics?.data?.map((template) => {
           return {
             title: template.template_name || template.template_id,
             data: template.dates.map((item) => {
