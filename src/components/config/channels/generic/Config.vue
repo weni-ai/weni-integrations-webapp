@@ -9,7 +9,7 @@
           />
         </div>
         <div class="app-config-generic__header__title__name">
-          {{ app.config.channel_name }} - {{ loadingFormBuild }}
+          {{ app.config.channel_name }}
         </div>
       </div>
       <span class="app-config-generic__header__description" v-html="appDescription" />
@@ -185,7 +185,9 @@
         this.loadingFormBuild = false;
       },
       updateInputs(inputData) {
-        this.appFormInputs[inputData.index].value = inputData.value;
+        if (inputData?.value) {
+          this.appFormInputs[inputData.index].value = inputData.value;
+        }
       },
       async saveConfig() {
         let payloadConfig = {};
