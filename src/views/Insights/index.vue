@@ -89,22 +89,22 @@
           <unnnic-chart-multi-line
             :data="getChartSent"
             :title="$t('WhatsApp.insights.messages.sent')"
-            v-if="!hash"
+            v-if="!hash && getChartSent.length"
           />
           <unnnic-chart-multi-line
             :data="getChartDelivered"
             :title="$t('WhatsApp.insights.messages.delivered')"
-            v-if="!hash"
+            v-if="!hash && getChartDelivered.length"
           />
           <unnnic-chart-multi-line
             :data="getChartRead"
             :title="$t('WhatsApp.insights.messages.read')"
-            v-if="!hash"
+            v-if="!hash && getChartRead.length"
           />
           <unnnic-chart-multi-line
             :data="getChartByDay.data"
             :title="$t('WhatsApp.insights.messages.received')"
-            v-if="!!hash"
+            v-if="!!hash && getChartByDay.data.length"
             :fixedMaxValue="getChartByDay.maxValue"
           />
         </div>
