@@ -1,7 +1,6 @@
 <template>
   <div>
     <navigator class="navigator" :routes="navigatorHistory" />
-
     <div class="app-details" v-if="!loadingCurrentAppType">
       <app-images-banner
         class="app-details__section"

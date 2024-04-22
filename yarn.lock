@@ -2151,10 +2151,10 @@
   dependencies:
     vue-demi ">=0.14.7"
 
-"@weni/unnnic-system@2.0.0-beta.13":
-  version "2.0.0-beta.13"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.0-beta.13.tgz#af87c66e7124dd937bef005499ad175d7c7b1fb6"
-  integrity sha512-KBwY7Mh5z3AhJ1FXdsoHUKkV1KsWrMUzWcjZDMRKa4HdR+MhunQOnBeyWVYbqqC8tGnXVdnsCFUACL+P75K4Hw==
+"@weni/unnnic-system@2.0.0-beta.14":
+  version "2.0.0-beta.14"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.0-beta.14.tgz#03b0b92d694a958b531b6daa867ed118a588ccab"
+  integrity sha512-ZT2E2WE3ZskE1yKileEi6B0P442ElsRH1Qq9wj4wAB6754xBgmHZbk8CWiwv5elneZATyd/h4Bm9ndj5LyKSUQ==
   dependencies:
     "@vueuse/components" "^10.4.1"
     lodash "^4.17.21"
