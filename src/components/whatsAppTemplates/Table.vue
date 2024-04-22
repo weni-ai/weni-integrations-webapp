@@ -104,7 +104,7 @@
 
     <div class="whatsapp-templates-table__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination v-model="page" :max="pageCount" :show="5" />
+      <unnnic-pagination :value="page" @input="onPageChange" :max="pageCount" :show="5" />
     </div>
   </div>
 </template>
@@ -358,6 +358,9 @@
       handleDateSort(sortDirection) {
         this.dateSortDirection = sortDirection;
         this.nameSortDirection = 'NONE';
+      },
+      onPageChange(value) {
+        this.currentPage = value;
       },
     },
     watch: {
