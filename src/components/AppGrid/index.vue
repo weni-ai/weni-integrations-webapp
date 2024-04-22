@@ -85,7 +85,8 @@
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
         <unnnic-pagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
-          v-model="currentPage"
+          :value="currentPage"
+          @input="onPageChange"
           :max="maxGridPages"
           :show="6"
         />
@@ -344,6 +345,9 @@
           },
           seconds: 6,
         });
+      },
+      onPageChange(value) {
+        this.currentPage = value;
       },
     },
     watch: {
