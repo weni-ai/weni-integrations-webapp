@@ -1290,6 +1290,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/utilities/-/utilities-1.0.0.tgz#42f3c213f2fb929324d465684ab9f46a0febd4bb"
   integrity sha512-tAgvZQe/t2mlvpNosA4+CkMiZ2azISW5WPAcdSalZlEjQvUfghHxfQcrCiK/7/CrfAWVxyM88kGFYO82heIGDg==
 
+"@emoji-mart/data@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@emoji-mart/data/-/data-1.1.2.tgz#777c976f8f143df47cbb23a7077c9ca9fe5fc513"
+  integrity sha512-1HP8BxD2azjqWJvxIaWAMyTySeZY0Osr83ukYjltPVkNXeJvTz7yDrPLBtnrD5uqJ3tg4CcLuuBW09wahqL/fg==
+
 "@esbuild/aix-ppc64@0.20.2":
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.20.2.tgz#a70f4ac11c6a1dfc18b8bbb13284155d933b9537"
@@ -2151,12 +2156,14 @@
   dependencies:
     vue-demi ">=0.14.7"
 
-"@weni/unnnic-system@2.0.0-beta.14":
-  version "2.0.0-beta.14"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.0-beta.14.tgz#03b0b92d694a958b531b6daa867ed118a588ccab"
-  integrity sha512-ZT2E2WE3ZskE1yKileEi6B0P442ElsRH1Qq9wj4wAB6754xBgmHZbk8CWiwv5elneZATyd/h4Bm9ndj5LyKSUQ==
+"@weni/unnnic-system@2.0.0-beta.15":
+  version "2.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.0-beta.15.tgz#a6f21e712278ea451a475fc471e2ed330febd6a1"
+  integrity sha512-CsGUaDozF5c+HDbSH9oDMEe75EViQO9tSr4sHeY7Dg1tMpBbgm8NMi2h1P/d99bd72xL9ent56e4nKQa48zcwg==
   dependencies:
+    "@emoji-mart/data" "^1.1.2"
     "@vueuse/components" "^10.4.1"
+    emoji-mart "^5.5.2"
     lodash "^4.17.21"
     mime "^4.0.1"
     moment "^2.30.1"
@@ -2730,6 +2737,11 @@ electron-to-chromium@^1.4.668:
   version "1.4.735"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.735.tgz#c32914ef2cd0a3a545a3def841d253a31a8a93be"
   integrity sha512-pkYpvwg8VyOTQAeBqZ7jsmpCjko1Qc6We1ZtZCjRyYbT5v4AIUKDy5cQTRotQlSSZmMr8jqpEt6JtOj5k7lR7A==
+
+emoji-mart@^5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/emoji-mart/-/emoji-mart-5.5.2.tgz#3ddbaf053139cf4aa217650078bc1c50ca8381af"
+  integrity sha512-Sqc/nso4cjxhOwWJsp9xkVm8OF5c+mJLZJFoFfzRuKO+yWiN7K8c96xmtughYb0d/fZ8UC6cLIQ/p4BR6Pv3/A==
 
 emoji-regex@^8.0.0:
   version "8.0.0"

@@ -1,13 +1,12 @@
 <template>
   <div class="input-editor">
     <div v-click-outside="hideEmoji">
-      <!-- <VEmojiPicker
+      <unnnicEmojiPicker
+        class="input-editor__emoji-picker__list"
         v-show="displayEmoji"
-        class="input-editor__emoji-picker"
-        :emojiSize="22"
-        :emojisByRow="7"
-        @select="selectEmoji"
-      /> -->
+        @emojiSelected="selectEmoji"
+        @close="closeEmojiPicker"
+      />
       <unnnic-button
         class="input-editor__emoji-picker__button"
         type="tertiary"
@@ -146,6 +145,10 @@
 
       &__button {
         opacity: $unnnic-opacity-level-clarifying;
+      }
+
+      &__list {
+        transform: translateX(-150px);
       }
 
       ::v-deep .container-emoji {

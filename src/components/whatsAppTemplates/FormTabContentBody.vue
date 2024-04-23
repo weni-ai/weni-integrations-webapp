@@ -157,7 +157,7 @@
         if (this.disableInputs) {
           return;
         }
-        const result = (this.templateTranslationCurrentForm.body || '') + emoji.data;
+        const result = (this.templateTranslationCurrentForm.body || '') + emoji;
 
         this.emitInputChange(result);
       },
