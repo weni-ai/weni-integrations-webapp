@@ -10,6 +10,7 @@
       class="form-tab-content-body__input"
       :disabled="disableInputs"
       :value="bodyContent"
+      :modelValue="bodyContent"
       :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
       @input="onInput"
       :maxLength="1024"

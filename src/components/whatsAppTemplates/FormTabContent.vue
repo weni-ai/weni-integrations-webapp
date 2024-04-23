@@ -7,7 +7,8 @@
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
           :value="templateForm.name"
-          @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
+          :modelValue="templateFormName"
+          @update:modelValue="updateTemplateFormName"
           @keyup="formatTemplateName"
           @keydown="preventTemplateName"
           :label="$t('WhatsApp.templates.form_field.name')"
@@ -16,41 +17,31 @@
           :type="errorStates.name.value ? 'error' : 'normal'"
           :message="errorStates.name.message"
         />
-
-        <unnnic-multi-select
-          ref="categorySelect"
-          :class="{
-            'form-tab-content__selects--category': true,
-            'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
-          }"
-          :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
-          :hideGroupTitle="true"
-          :label="$t('WhatsApp.templates.form_field.category')"
-          :groups="categoryGroups"
-          @change="handleCategoryChange"
-        />
+        <div>
+          <unnnic-label :label="$t('WhatsApp.templates.form_field.category')" />
+          <unnnic-select-smart
+            ref="categorySelect"
+            :class="{
+              'form-tab-content__selects--category': true,
+              'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
+            }"
+            :options="categoryGroups[0].items"
+            :modelValue="categoryGroups[0].selected"
+            @update:modelValue="handleCategoryChange"
+          />
+        </div>
       </div>
 
       <div class="divider" />
-      <unnnic-select
-        :class="{ 'form-tab-content__selects__disabled': disableInputs }"
-        :key="languageKey"
-        :disabled="disableInputs"
-        :value="currentLanguage"
-        :search="true"
-        @input="handleLanguageSelection"
-        :label="$t('WhatsApp.templates.form_field.language')"
-        :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
-      >
-        <option
-          v-for="option in availableLanguages"
-          :key="option.value"
-          :value="option.value"
-          :label="option.text"
-        >
-          {{ option.text }}
-        </option>
-      </unnnic-select>
+      <div>
+        <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />
+        <unnnic-select-smart
+          :class="{ 'form-tab-content__selects__disabled': disableInputs }"
+          :options="availableLanguages"
+          :modelValue="currentLanguage"
+          @update:modelValue="handleLanguageSelection"
+        />
+      </div>
 
       <FormTabContentHeader
         class="form-tab-content__header"
@@ -142,28 +133,30 @@
     },
     data() {
       return {
+        currentLanguage: [],
+        templateFormName: '',
         languageKey: 0,
         categoryGroups: [
           {
             title: this.$t('WhatsApp.templates.form_field.category'),
-            selected: -1,
+            selected: [
+              {
+                value: 'UTILITY',
+                label: this.$t('WhatsApp.templates.category_options.utility'),
+              },
+            ],
             items: [
               {
                 value: 'UTILITY',
-                title: this.$t('WhatsApp.templates.category_options.utility'),
-                description: this.$t('WhatsApp.templates.category_options.utility_description'),
+                label: this.$t('WhatsApp.templates.category_options.utility'),
               },
               {
                 value: 'MARKETING',
-                title: this.$t('WhatsApp.templates.category_options.marketing'),
-                description: this.$t('WhatsApp.templates.category_options.marketing_description'),
+                label: this.$t('WhatsApp.templates.category_options.marketing'),
               },
               {
                 value: 'AUTHENTICATION',
-                title: this.$t('WhatsApp.templates.category_options.authentication'),
-                description: this.$t(
-                  'WhatsApp.templates.category_options.authentication_description',
-                ),
+                label: this.$t('WhatsApp.templates.category_options.authentication'),
               },
             ],
           },
@@ -208,9 +201,9 @@
           !this.canEdit
         );
       },
-      currentLanguage() {
-        return this.templateTranslationCurrentForm?.language;
-      },
+      // currentLanguage() {
+      //   return this.templateTranslationCurrentForm?.language;
+      // },
       currentCategory() {
         const category = this.categoryGroups[0].items.find(
           (item) => item.value === this.templateForm.category,
@@ -229,6 +222,10 @@
     },
     methods: {
       ...mapActions(whatsapp_store, ['updateTemplateForm', 'updateTemplateTranslationForm']),
+      updateTemplateFormName(value) {
+        this.templateFormName = value;
+        this.handleTemplateFormInput({ fieldName: 'name', fieldValue: value });
+      },
       preventTemplateName(event) {
         if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();
@@ -262,27 +259,28 @@
         });
       },
       handleCategoryChange(event) {
-        this.categoryGroups = event;
-        const selectedCategory = event[0].items[event[0].selected];
+        this.categoryGroups[0].selected = event;
+        const selectedCategory = event[0].value;
 
-        this.handleTemplateFormInput({ fieldName: 'category', fieldValue: selectedCategory.value });
+        this.handleTemplateFormInput({ fieldName: 'category', fieldValue: selectedCategory });
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
+        this.currentLanguage = value;
         const selectedLanguage = this.availableLanguages.find((item) => item.value === value);
 
         if (!selectedLanguage) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.templates.error.unexpected_language'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 6,
-          });
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.templates.error.unexpected_language'),
+          //     title: this.$t('general.error'),
+          //     icon: 'alert-circle-1-1',
+          //     scheme: 'feedback-red',
+          //     position: 'top-right',
+          //     closeText: this.$t('general.Close'),
+          //   },
+          //   seconds: 6,
+          // });
           return;
         }
 
@@ -290,17 +288,17 @@
           selectedLanguage.value !== this.templateTranslationCurrentForm.language &&
           this.removeLanguages.includes(selectedLanguage.text)
         ) {
-          unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.templates.error.language_already_exists'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
-            },
-            seconds: 6,
-          });
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.templates.error.language_already_exists'),
+          //     title: this.$t('general.error'),
+          //     icon: 'alert-circle-1-1',
+          //     scheme: 'feedback-red',
+          //     position: 'top-right',
+          //     closeText: this.$t('general.Close'),
+          //   },
+          //   seconds: 6,
+          // });
           return;
         }
 
@@ -408,6 +406,7 @@
 
       &--category {
         flex: 1;
+        align-content: end;
 
         ::v-deep {
           .select-permission-label {

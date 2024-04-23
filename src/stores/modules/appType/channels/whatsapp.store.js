@@ -80,6 +80,9 @@ export const whatsapp_store = defineStore('whatsapp', {
     },
   },
   actions: {
+    setTemplateTranslationCurrentFormFooter(value) {
+      this.templateTranslationCurrentForm.footer = value;
+    },
     resetWppFetchResults() {
       this.fetchedContactInfo = false;
     },

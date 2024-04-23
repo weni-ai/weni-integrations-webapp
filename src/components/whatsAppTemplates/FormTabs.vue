@@ -25,7 +25,7 @@
       :selectedForm="currentTab"
       :removeLanguages="tabs"
       :canEdit="canEditTab"
-      :availableLanguages="whatsAppTemplateSelectLanguages"
+      :availableLanguages="templateSelectLanguages"
       :loadingSave="loadingSave"
       @language-change="handleLanguageChange($event)"
       @manual-preview-update="$emit('manual-preview-update')"
@@ -125,6 +125,15 @@
         'loadingWhatsAppTemplates',
         'errorUpdateTemplateTranslation',
       ]),
+      templateSelectLanguages() {
+        return this.whatsAppTemplateSelectLanguages.map((item) => {
+          const { text, value } = item;
+          return {
+            label: text,
+            value: value,
+          };
+        });
+      },
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
       },
