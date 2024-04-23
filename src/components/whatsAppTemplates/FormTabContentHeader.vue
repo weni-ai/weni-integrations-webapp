@@ -18,8 +18,6 @@
           @update:modelValue="handleHeaderTypeChange"
         />
       </div>
-
-      <!-- TODO: Handle change in header.text  -->
       <unnnic-input
         class="form-tab-content-header__inputs__text-input"
         v-if="headerType[0].value === 'TEXT'"
@@ -30,7 +28,6 @@
         @update:modelValue="handleNewHeaderInput({ text: $event })"
         :maxlength="60"
       />
-      <!-- TODO: Set media type on button click -->
       <div v-else class="form-tab-content-header__inputs__buttons">
         <unnnic-button
           :type="buttonType('IMAGE')"

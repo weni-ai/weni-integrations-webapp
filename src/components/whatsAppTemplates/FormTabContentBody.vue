@@ -9,10 +9,9 @@
       :key="bodyKey"
       class="form-tab-content-body__input"
       :disabled="disableInputs"
-      :value="bodyContent"
       :modelValue="bodyContent"
       :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
-      @input="onInput"
+      @update:modelValue="onInput"
       :maxLength="1024"
       :type="hasErrors ? 'error' : 'normal'"
       :errors="errorsList"
@@ -147,6 +146,7 @@
       },
       /* istanbul ignore next */
       onInput(event) {
+        this.bodyContent = event;
         if (this.disableInputs) {
           return;
         }
