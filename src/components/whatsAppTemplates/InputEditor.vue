@@ -62,14 +62,10 @@
 </template>
 
 <script>
-  // import { VEmojiPicker } from 'v-emoji-picker';
   import StrikeThroughIcon from '@/assets/svgs/strike-through.svg';
 
   export default {
     name: 'InputEditor',
-    // components: {
-    //   VEmojiPicker,
-    // },
     data() {
       return {
         displayEmoji: false,

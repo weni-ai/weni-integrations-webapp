@@ -106,7 +106,7 @@
         let fieldValue;
         this.headerType = event;
 
-        if (event === 'TEXT') {
+        if (event[0].value === 'TEXT') {
           fieldValue = { header_type: 'TEXT', text: null };
         } else {
           fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };
