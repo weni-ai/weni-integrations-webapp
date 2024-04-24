@@ -6,7 +6,6 @@
           class="form-tab-content__input--name"
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
-          :value="templateForm.name"
           :modelValue="templateFormName"
           @update:modelValue="updateTemplateFormName"
           @keyup="formatTemplateName"
