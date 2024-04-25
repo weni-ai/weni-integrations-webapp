@@ -3,11 +3,8 @@
     <span class="form-tab-content-buttons__title">
       {{ $t('WhatsApp.templates.form_field.buttons') }}
     </span>
-
     <div>
-      <unnnic-label :label="$t('WhatsApp.templates.form_field.buttons__label')">{{
-        currentButtons
-      }}</unnnic-label>
+      <unnnic-label :label="$t('WhatsApp.templates.form_field.buttons__label')" />
       <unnnic-select-smart
         :disabled="disableInputs"
         :class="{
@@ -20,7 +17,7 @@
       />
     </div>
 
-    <!-- <div
+    <div
       ref="replies-wrapper"
       class="form-tab-content-buttons__replies"
       v-if="currentButtonsType === 'quick_reply'"
@@ -43,11 +40,25 @@
             @click="removeButton(index)"
           />
         </div>
+        <div>
+          <unnnic-label :label="$t('WhatsApp.templates.form_field.reply_label')" />
+          <unnnic-input
+            class="app-config-instagram__settings__content__inputs__id"
+            :type="errors[index] ? 'error' : 'normal'"
+            :disabled="disableInputs"
+            :modelValue="currentButtonText"
+            @update:modelValue="handleRepliesInput($event, index)"
+            :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
+            :maxlength="25"
+            :replaceRegex="EMOJI_REGEX"
+          />
+        </div>
+        <!-- 
 
         <base-input
           class="form-tab-content-buttons__replies__input"
           :disabled="disableInputs"
-          :value="currentButtons[index].text"
+          :value="currentButtonText"
           :label="$t('WhatsApp.templates.form_field.reply_label')"
           :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
           :maxlength="25"
@@ -55,9 +66,9 @@
           :message="errors[index] || null"
           :type="errors[index] ? 'error' : 'normal'"
           @input="handleRepliesInput($event, index)"
-        />
+        /> -->
       </div>
-    </div> -->
+    </div>
 
     <!-- <div
       class="form-tab-content-buttons__call-actions"
@@ -144,7 +155,7 @@
                 {{ option.text }}
               </option>
             </unnnic-select>
-
+            
             <unnnic-input
               class="form-tab-content-buttons__call-actions__number-input"
               :label="$t('WhatsApp.templates.form_field.phone_number')"
@@ -155,6 +166,7 @@
               :maxlength="20"
             />
           </div>
+
 
           <div v-if="currentButtons[index].button_type === 'URL'" class="url-input-group">
             <span
@@ -204,7 +216,6 @@
 
   export default {
     name: 'FormTabContentButtons',
-    // components: { BaseInput },
     props: {
       disableInputs: {
         type: Boolean,
@@ -214,6 +225,7 @@
     data() {
       return {
         buttonsType: [],
+        currentButtonText: '',
         EMOJI_REGEX: /\p{Emoji_Presentation}/gu,
         buttonOptions: [
           {
@@ -263,7 +275,7 @@
         return this.templateTranslationCurrentForm.buttonsType || '';
       },
       showAddButton() {
-        if (this.buttonsType === 'quick_reply') {
+        if (this.currentButtonsType === 'quick_reply') {
           return this.currentButtons.length < this.maxRepliesButtons;
         } else if (this.buttonsType === 'call_to_action') {
           return (
@@ -277,6 +289,9 @@
     watch: {
       /* istanbul ignore next */
       currentButtons(newValue) {
+        this.buttons = newValue;
+      },
+      currentButtonsType(newValue) {
         this.buttons = newValue;
       },
     },
