@@ -53,26 +53,12 @@
             :replaceRegex="EMOJI_REGEX"
           />
         </div>
-        <!-- 
-
-        <base-input
-          class="form-tab-content-buttons__replies__input"
-          :disabled="disableInputs"
-          :value="currentButtonText"
-          :label="$t('WhatsApp.templates.form_field.reply_label')"
-          :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
-          :maxlength="25"
-          :replaceRegex="EMOJI_REGEX"
-          :message="errors[index] || null"
-          :type="errors[index] ? 'error' : 'normal'"
-          @input="handleRepliesInput($event, index)"
-        /> -->
       </div>
     </div>
 
-    <!-- <div
+    <div
       class="form-tab-content-buttons__call-actions"
-      v-else-if="buttonsType === 'call_to_action'"
+      v-else-if="currentButtonsType === 'call_to_action'"
     >
       <div
         v-for="(button, index) in currentButtons"
@@ -94,25 +80,16 @@
           />
         </div>
 
-        <unnnic-select
+        <unnnic-select-smart
           :class="{
             'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
           }"
           :label="$t('WhatsApp.templates.form_field.type_of_action')"
           :disabled="disableInputs"
-          :value="currentButtons[index].button_type"
-          @input="handleCallToActionTypeChange($event, index)"
-        >
-          <option
-            v-for="option in callToActionOptions"
-            :key="option.value"
-            :value="option.value"
-            :label="option.text"
-          >
-            {{ option.text }}
-          </option>
-        </unnnic-select>
-
+          :options="callToActionOptions"
+          :modelValue="currentButtons[index].button_type"
+          @update:modelValue="handleCallToActionTypeChange($event, index)"
+        />
         <div
           :class="{
             'form-tab-content-buttons__call-actions__wrapper': true,
@@ -120,21 +97,20 @@
               currentButtons[index].button_type === 'URL',
           }"
         >
-          <base-input
+          <unnnic-input
             :label="$t('WhatsApp.templates.form_field.button_text')"
             :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
             :disabled="disableInputs"
-            :value="currentButtons[index].text"
+            :modelValue="currentButtons[index].text"
             :maxlength="25"
             :replaceRegex="EMOJI_REGEX"
-            @input="handleActionInput($event, 'text', index)"
+            @update:modelValue="handleActionInput($event, 'text', index)"
           />
-
           <div
             v-if="currentButtons[index].button_type === 'PHONE_NUMBER'"
             class="form-tab-content-buttons__call-actions--inline"
           >
-            <unnnic-select
+            <unnnic-select-smart
               :class="{
                 'form-tab-content-buttons__call-actions__country-select': true,
                 'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
@@ -142,20 +118,11 @@
               :key="currentButtons[index].button_type"
               :label="$t('WhatsApp.templates.form_field.country')"
               :disabled="disableInputs"
-              :value="currentButtons[index].country_code"
+              :options="countryOptions"
+              :modelValue="currentButtons[index].country_code"
               :search="true"
-              @input="handleCountryCodeSelection($event, index)"
-            >
-              <option
-                v-for="option in countryOptions"
-                :key="option.value"
-                :value="option.value"
-                :label="`${option.text} +${getCountryCallingCode(option.text)}`"
-              >
-                {{ option.text }}
-              </option>
-            </unnnic-select>
-            
+              @update:modelValue="handleCountryCodeSelection($event, index)"
+            />
             <unnnic-input
               class="form-tab-content-buttons__call-actions__number-input"
               :label="$t('WhatsApp.templates.form_field.phone_number')"
@@ -166,8 +133,6 @@
               :maxlength="20"
             />
           </div>
-
-
           <div v-if="currentButtons[index].button_type === 'URL'" class="url-input-group">
             <span
               :class="{
@@ -191,7 +156,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
 
     <unnnic-button
       v-if="showAddButton"
@@ -244,11 +209,11 @@
         callToActionOptions: [
           {
             value: 'PHONE_NUMBER',
-            text: this.$t('WhatsApp.templates.call_to_action_options.call_phone_number'),
+            label: this.$t('WhatsApp.templates.call_to_action_options.call_phone_number'),
           },
           {
             value: 'URL',
-            text: this.$t('WhatsApp.templates.call_to_action_options.visit_website'),
+            label: this.$t('WhatsApp.templates.call_to_action_options.visit_website'),
           },
         ],
         countryOptions: getCountries().map((country) => {
