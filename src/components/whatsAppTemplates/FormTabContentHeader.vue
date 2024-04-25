@@ -19,14 +19,13 @@
         />
       </div>
 
-      <!-- TODO: Handle change in header.text  -->
       <unnnic-input
         class="form-tab-content-header__inputs__text-input"
         v-if="headerType === 'TEXT'"
         :placeholder="$t('WhatsApp.templates.form_field.header_text_placeholder')"
         :disabled="disableInputs"
-        :value="headerText"
-        @input="handleNewHeaderInput({ text: $event })"
+        :modelValue="headerText"
+        @update:modelValue="handleNewHeaderInput({ text: $event })"
         :maxlength="60"
       />
       <!-- TODO: Set media type on button click -->
@@ -68,6 +67,7 @@
     },
     data() {
       return {
+        headerText: '',
         selectedHeaderType: [],
         headerTypeOptions: [
           {
@@ -83,6 +83,7 @@
     },
     mounted() {
       this.fillEmptyHeader();
+      this.headerText = this.templateTranslationCurrentForm.header?.text || null;
     },
     beforeUpdate() {
       this.fillEmptyHeader();
@@ -92,12 +93,13 @@
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
       },
-      headerText() {
-        return this.templateTranslationCurrentForm.header?.text || null;
-      },
+      // headerText() {
+      //   return this.templateTranslationCurrentForm.header?.text || null;
+      // },
     },
     methods: {
       handleNewHeaderInput(event) {
+        this.headerText = event.text;
         this.$emit('input-change', {
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
