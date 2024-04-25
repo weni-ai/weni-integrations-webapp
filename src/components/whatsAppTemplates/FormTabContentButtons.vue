@@ -20,7 +20,7 @@
     <div
       ref="replies-wrapper"
       class="form-tab-content-buttons__replies"
-      v-if="currentButtonsType === 'quick_reply'"
+      v-if="buttonsType[0].value === 'quick_reply'"
     >
       <div
         class="form-tab-content-buttons__replies__wrapper"
@@ -55,10 +55,9 @@
         </div>
       </div>
     </div>
-
     <div
       class="form-tab-content-buttons__call-actions"
-      v-else-if="currentButtonsType === 'call_to_action'"
+      v-if="buttonsType[0].modelValue === 'call_to_action'"
     >
       <div
         v-for="(button, index) in currentButtons"
@@ -189,7 +188,6 @@
     },
     data() {
       return {
-        buttonsType: [],
         currentButtonText: '',
         EMOJI_REGEX: /\p{Emoji_Presentation}/gu,
         buttonOptions: [
@@ -233,6 +231,30 @@
 
     computed: {
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      buttonsType() {
+        if (!this.templateTranslationCurrentForm.buttons?.length) {
+          return [
+            {
+              value: '',
+              label: this.$t('WhatsApp.templates.button_options.none'),
+            },
+          ];
+        } else if (this.templateTranslationCurrentForm.buttons[0]?.button_type === 'QUICK_REPLY') {
+          return [
+            {
+              value: 'quick_reply',
+              label: this.$t('WhatsApp.templates.button_options.quick_reply'),
+            },
+          ];
+        } else {
+          return [
+            {
+              value: 'call_to_action',
+              label: this.$t('WhatsApp.templates.button_options.call_to_action'),
+            },
+          ];
+        }
+      },
       currentButtons() {
         return this.templateTranslationCurrentForm.buttons || [];
       },
@@ -273,7 +295,6 @@
         return hasIssues;
       },
       handleButtonTypeChange(event) {
-        this.buttonsType = event;
         const buttonValue = event[0].value;
         this.buttons = [];
         if (buttonValue === 'quick_reply') {
