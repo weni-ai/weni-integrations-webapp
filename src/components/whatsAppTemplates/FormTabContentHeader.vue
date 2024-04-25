@@ -14,20 +14,22 @@
             'form-tab-content-header__inputs__selector__disabled': disableInputs,
           }"
           :options="headerTypeOptions"
-          :modelValue="headerType"
+          :modelValue="selectedHeaderType"
           @update:modelValue="handleHeaderTypeChange"
         />
       </div>
+
+      <!-- TODO: Handle change in header.text  -->
       <unnnic-input
         class="form-tab-content-header__inputs__text-input"
-        v-if="headerType[0].value === 'TEXT'"
+        v-if="headerType === 'TEXT'"
         :placeholder="$t('WhatsApp.templates.form_field.header_text_placeholder')"
         :disabled="disableInputs"
         :value="headerText"
-        :modelValue="headerText"
-        @update:modelValue="handleNewHeaderInput({ text: $event })"
+        @input="handleNewHeaderInput({ text: $event })"
         :maxlength="60"
       />
+      <!-- TODO: Set media type on button click -->
       <div v-else class="form-tab-content-header__inputs__buttons">
         <unnnic-button
           :type="buttonType('IMAGE')"
@@ -66,13 +68,7 @@
     },
     data() {
       return {
-        headerType: [
-          {
-            value: 'TEXT',
-            label: this.$t('WhatsApp.templates.header_type_options.text'),
-          },
-        ],
-        headerText: '',
+        selectedHeaderType: [],
         headerTypeOptions: [
           {
             value: 'TEXT',
@@ -93,18 +89,23 @@
     },
     computed: {
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      headerType() {
+        return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
+      },
+      headerText() {
+        return this.templateTranslationCurrentForm.header?.text || null;
+      },
     },
     methods: {
       handleNewHeaderInput(event) {
-        this.headerText = event.text;
         this.$emit('input-change', {
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
         });
       },
       handleHeaderTypeChange(event) {
+        this.selectedHeaderType = event;
         let fieldValue;
-        this.headerType = event;
 
         if (event[0].value === 'TEXT') {
           fieldValue = { header_type: 'TEXT', text: null };
