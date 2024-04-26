@@ -391,9 +391,9 @@
         });
       },
       addButton() {
-        if (this.buttonsType === 'quick_reply') {
+        if (this.currentButtonType === 'quick_reply') {
           this.buttons.push({ button_type: 'QUICK_REPLY', text: '' });
-        } else if (this.buttons[0].button_type === 'PHONE_NUMBER') {
+        } else if (this.buttons[0].button_type === 'URL') {
           this.buttons.push({ button_type: 'URL' });
         } else {
           this.buttons.push({ button_type: 'PHONE_NUMBER', country_code: 'BR' });
