@@ -122,34 +122,26 @@
             :replaceRegex="EMOJI_REGEX"
             @update:modelValue="handleActionInput($event, 'text', index)"
           />
-          <!-- <base-input
-            :label="$t('WhatsApp.templates.form_field.button_text')"
-            :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
-            :disabled="disableInputs"
-            :value="currentButtons[index].text"
-            :maxlength="25"
-
-            :replaceRegex="EMOJI_REGEX"
-            @input="handleActionInput($event, 'text', index)"
-          /> -->
-
           <div
             v-if="currentButtons[index].button_type === 'PHONE_NUMBER'"
             class="form-tab-content-buttons__call-actions--inline"
           >
-            <unnnic-select-smart
+            <div
               :class="{
                 'form-tab-content-buttons__call-actions__country-select': true,
                 'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
               }"
-              :key="currentButtons[index].button_type"
-              :label="$t('WhatsApp.templates.form_field.country')"
-              :disabled="disableInputs"
-              :options="countryOptions"
-              :modelValue="currentCountryCode"
-              :search="true"
-              @update:modelValue="handleCountryCodeSelection($event, index)"
-            />
+            >
+              <unnnic-label :label="$t('WhatsApp.templates.form_field.country')" />
+              <unnnic-select-smart
+                :key="currentButtons[index].button_type"
+                :disabled="disableInputs"
+                :options="countryOptions"
+                :modelValue="currentCountryCode"
+                :search="true"
+                @update:modelValue="handleCountryCodeSelection($event, index)"
+              />
+            </div>
 
             <unnnic-input
               class="form-tab-content-buttons__call-actions__number-input"
