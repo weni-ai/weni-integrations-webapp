@@ -8,15 +8,15 @@
       class="form-tab-content-footer__input"
       :disabled="disableInputs"
       :maxLength="60"
-      :modelValue="translationFooter"
-      @update:modelValue="updateTemplateTranslation"
+      :modelValue="textInput"
+      @update:modelValue="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
       :placeholder="$t('WhatsApp.templates.form_field.footer_text_placeholder')"
     />
   </div>
 </template>
 
 <script>
-  import { mapState, mapActions } from 'pinia';
+  import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
@@ -27,24 +27,11 @@
         default: false,
       },
     },
-    data() {
-      return {
-        translationFooter: '',
-      };
-    },
-    mounted() {
-      this.translationFooter = this.templateTranslationCurrentForm.footer;
-    },
-    methods: {
-      ...mapActions(whatsapp_store, ['setTemplateTranslationCurrentFormFooter']),
-      updateTemplateTranslation(e) {
-        this.translationFooter = e;
-        this.setTemplateTranslationCurrentFormFooter(e);
-        this.$emit('input-change', { fieldName: 'footer', fieldValue: e });
-      },
-    },
     computed: {
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      textInput() {
+        return this.templateTranslationCurrentForm.footer || '';
+      },
     },
   };
 </script>
