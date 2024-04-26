@@ -124,7 +124,7 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
 
@@ -140,7 +140,7 @@
 
         if (this.errorCurrentApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('vtex.errors.update_connected_catalog_status'),
           });
           return;
@@ -157,7 +157,7 @@
         await this.getApp(data);
 
         if (this.errorCurrentApp) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
           return;
         }
 
@@ -168,7 +168,7 @@
         if (this.wpp_uuid) {
           this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
         } else {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
         }
       },
       closeConfig() {
@@ -178,11 +178,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            title: type,
           },
           seconds: 6,
         });

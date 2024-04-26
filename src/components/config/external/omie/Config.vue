@@ -109,11 +109,11 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'Error', text: this.$t('omie.errors.configure') });
+          this.callModal({ type: 'error', text: this.$t('omie.errors.configure') });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('omie.success.configure') });
+        this.callModal({ type: 'success', text: this.$t('omie.success.configure') });
         this.$root.$emit('updateGrid');
         this.disabledForm = true;
       },
@@ -124,11 +124,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

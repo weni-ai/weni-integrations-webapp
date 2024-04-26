@@ -234,7 +234,7 @@
             !this.appKey.trim() ||
             !this.appToken.trim()
           ) {
-            this.callModal({ type: 'Error', text: this.$t('vtex.setup.error_missing_fields') });
+            this.callModal({ type: 'error', text: this.$t('vtex.setup.error_missing_fields') });
             return;
           }
           this.currentStep = 1;
@@ -263,14 +263,14 @@
             this.errorCreateApp.response.status === 400 &&
             this.errorCreateApp.response.data.detail === 'The credentials provided are invalid.'
           ) {
-            this.callModal({ type: 'Error', text: this.$t('vtex.setup.invalid_credentials') });
+            this.callModal({ type: 'error', text: this.$t('vtex.setup.invalid_credentials') });
             return;
           }
-          this.callModal({ type: 'Error', text: this.$t('vtex.setup.error') });
+          this.callModal({ type: 'error', text: this.$t('vtex.setup.error') });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('vtex.setup.success') });
+        this.callModal({ type: 'success', text: this.$t('vtex.setup.success') });
         this.$emit('closePopUp');
         this.$router.push({ name: 'Apps' });
       },
@@ -283,7 +283,7 @@
 
         if (this.errorConfiguredApps) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('apps.myApps.error.configured'),
           });
           this.closePopUp();
@@ -310,11 +310,7 @@
         unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 3,
         });
@@ -323,11 +319,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

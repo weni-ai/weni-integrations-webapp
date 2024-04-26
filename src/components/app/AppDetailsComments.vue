@@ -193,13 +193,9 @@
             unnnicCallAlert({
               props: {
                 text: this.$t('apps.details.status_error'),
-                title: this.$t('general.error'),
-                icon: 'check-circle-1-1',
-                scheme: 'feedback-red',
-                position: 'bottom-right',
-                closeText: this.$t('general.Close'),
+                type: 'error',
               },
-              seconds: 3,
+              seconds: 8,
             });
           } finally {
             this.resetFields();
@@ -232,25 +228,17 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.comments.remove.status_text'),
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'success',
             },
-            seconds: 3,
+            seconds: 8,
           });
         } catch (err) {
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
-            seconds: 3,
+            seconds: 8,
           });
         }
       },

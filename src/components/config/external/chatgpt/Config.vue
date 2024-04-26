@@ -264,7 +264,7 @@
         await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
         if (this.errorGetPrompts) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.get_prompts') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.get_prompts') });
         }
 
         this.availablePrompts = this.getPromptsResult || [];
@@ -322,7 +322,7 @@
         await this.updateApp(data);
 
         if (this.errorUpdateApp) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.configure') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.configure') });
           return true;
         }
       },
@@ -339,7 +339,7 @@
         await this.createPrompts(data);
 
         if (this.errorCreatePrompt) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.create_prompt') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.create_prompt') });
           return true;
         }
 
@@ -358,7 +358,7 @@
         await this.deletePrompts(data);
 
         if (this.errorDeletePrompts) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.delete_prompt') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.delete_prompt') });
           return true;
         }
 
@@ -386,7 +386,7 @@
           if (err) return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('ChatGPT.success.configure') });
+        this.callModal({ type: 'success', text: this.$t('ChatGPT.success.configure') });
         this.$root.$emit('updateGrid');
       },
       closeConfig() {
@@ -396,11 +396,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

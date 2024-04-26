@@ -185,7 +185,7 @@
         const urlInput = this.getUrlInputElement();
         if (!urlInput.checkValidity()) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('WhatsApp.config.error.invalid_url'),
           });
           return;
@@ -211,7 +211,7 @@
 
         if (this.errorUpdateWebhookInfo) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('WhatsApp.config.error.webhook_update'),
           });
 
@@ -219,7 +219,7 @@
         }
 
         this.callModal({
-          type: 'Success',
+          type: 'error',
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
@@ -229,11 +229,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

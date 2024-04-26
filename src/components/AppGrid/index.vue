@@ -247,13 +247,9 @@
         unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
-            title: this.$t('apps.details.status_success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
-          seconds: 3,
+          seconds: 8,
         });
         this.$emit('update');
       },
@@ -261,13 +257,9 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
-          seconds: 6,
+          seconds: 8,
         });
       },
       openAppDetails(code) {
@@ -337,11 +329,7 @@
         unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
-            title: this.$t('apps.details.status_success'),
-            icon: 'check-circle-1-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 6,
         });

@@ -150,7 +150,7 @@
 
         if (this.errorCurrentApp || this.errorAppForm) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('GenericApp.preview.errors.fetch_app'),
           });
         }
@@ -208,9 +208,9 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'Error', text: this.$t('apps.details.status_error') });
+          this.callModal({ type: 'error', text: this.$t('apps.details.status_error') });
         } else {
-          this.callModal({ type: 'Success', text: this.$t('apps.config.integration_success') });
+          this.callModal({ type: 'success', text: this.$t('apps.config.integration_success') });
 
           await this.fetchAppData();
           this.showCallback = true;
@@ -225,11 +225,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

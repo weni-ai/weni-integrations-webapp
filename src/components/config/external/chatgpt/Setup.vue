@@ -121,24 +121,20 @@
 
         if (this.errorCreateApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`ChatGPT.setup.create_app.error`),
           });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t(`ChatGPT.setup.success`) });
+        this.callModal({ type: 'success', text: this.$t(`ChatGPT.setup.success`) });
         this.$router.replace('/apps/my');
       },
       callModal({ text, type }) {
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

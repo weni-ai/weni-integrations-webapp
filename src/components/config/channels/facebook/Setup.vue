@@ -210,7 +210,7 @@
           this.pageList = res.data.data;
         } catch (error) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.account_data.error`),
           });
           return;
@@ -223,7 +223,7 @@
 
         if (!page) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.find_page.error`),
           });
           return;
@@ -235,7 +235,7 @@
         });
         if (this.errorCreateApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.create_app.error`),
           });
           return;
@@ -260,14 +260,14 @@
 
         if (this.errorUpdateAppConfig) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.update_app.error`),
           });
           await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t(`${this.integrationName}.setup.success`) });
+        this.callModal({ type: 'success', text: this.$t(`${this.integrationName}.setup.success`) });
         this.$router.replace('/apps/my');
       },
       closePopUp() {
@@ -277,11 +277,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

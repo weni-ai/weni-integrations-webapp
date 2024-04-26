@@ -209,12 +209,12 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callAlert({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callAlert({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
 
         this.showConnectCatalogModal = false;
-        this.callAlert({ type: 'Success', text: this.$t('vtex.success.connect_catalog') });
+        this.callAlert({ type: 'success', text: this.$t('vtex.success.connect_catalog') });
 
         await this.fetchVtexApp();
       },
@@ -234,11 +234,7 @@
         unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

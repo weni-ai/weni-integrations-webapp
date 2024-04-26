@@ -566,11 +566,7 @@
             unnnicCallAlert({
               props: {
                 text: error,
-                title: this.$t('general.error'),
-                icon: 'alert-circle-1-1',
-                scheme: 'feedback-red',
-                position: 'bottom-right',
-                closeText: this.$t('general.Close'),
+                type: 'error',
               },
               seconds: 3,
             });
@@ -627,11 +623,7 @@
               text: /* istanbul ignore next */ firstSave
                 ? this.$t('apps.config.first_integration_success')
                 : this.$t('apps.config.integration_success'),
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'success',
             },
             seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
@@ -639,11 +631,7 @@
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 3,
           });

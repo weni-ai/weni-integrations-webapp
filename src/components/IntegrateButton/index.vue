@@ -120,11 +120,7 @@
         unnnicCallAlert({
           props: {
             text,
-            title: this.$t('general.error'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 6,
         });
