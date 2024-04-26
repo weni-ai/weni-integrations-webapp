@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  // import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnicCallAlert from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -221,19 +221,19 @@
       closeConfig() {
         this.$emit('closeModal');
       },
-      // callModal({ text, type }) {
-      //   unnnicCallAlert({
-      //     props: {
-      //       text: text,
-      //       title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-      //       icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-      //       scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-      //       position: 'bottom-right',
-      //       closeText: this.$t('general.Close'),
-      //     },
-      //     seconds: 6,
-      //   });
-      // },
+      callModal({ text, type }) {
+        unnnicCallAlert({
+          props: {
+            text: text,
+            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
+            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
+            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
+          },
+          seconds: 6,
+        });
+      },
     },
   };
 </script>

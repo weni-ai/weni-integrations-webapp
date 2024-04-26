@@ -1,11 +1,11 @@
 <template>
   <div class="app-details-header" :style="cssVars">
     <div class="app-details-header__icon">
-      <img class="app-details-header__icon__src" :src="app.icon" />
+      <img class="app-details-header__icon__src" :src="app?.icon" />
     </div>
     <div class="app-details-header__content">
-      <div class="app-details-header__content__title">{{ app.name }}</div>
-      <div class="app-details-header__content__description">{{ $t(app.summary) }}</div>
+      <div class="app-details-header__content__title">{{ app?.name }}</div>
+      <div class="app-details-header__content__description">{{ $t(app?.summary) }}</div>
     </div>
     <integrate-button
       ref="unnnic-button-add"
@@ -14,7 +14,7 @@
       size="large"
       icon="add-1"
       :app="app"
-      :disabled="!app.can_add"
+      :disabled="!app?.can_add"
       :text="$t('apps.details.header.add')"
       loadingPosition="left"
     />
@@ -39,7 +39,7 @@
     computed: {
       cssVars() {
         return {
-          '--icon-bg-color': this.app.bg_color || 'white',
+          '--icon-bg-color': this.app?.bg_color || 'white',
         };
       },
     },
