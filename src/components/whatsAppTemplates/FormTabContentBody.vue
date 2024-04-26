@@ -146,7 +146,6 @@
       },
       /* istanbul ignore next */
       onInput(event) {
-        this.bodyContent = event;
         if (this.disableInputs) {
           return;
         }

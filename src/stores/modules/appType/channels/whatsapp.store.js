@@ -195,7 +195,9 @@ export const whatsapp_store = defineStore('whatsapp', {
     },
     updateTemplateTranslationForm({ formName, fieldName, fieldValue }) {
       const updatedForms = this.templateTranslationForms;
-      updatedForms[formName] = { header: {}, language: null };
+      if (!updatedForms[formName]) {
+        updatedForms[formName] = {}; // Initialize if it doesn't exist
+      }
       if (Array.isArray(fieldValue)) {
         updatedForms[formName][fieldName] = [...fieldValue];
       } else if (typeof fieldValue === 'object' && fieldValue !== null) {
