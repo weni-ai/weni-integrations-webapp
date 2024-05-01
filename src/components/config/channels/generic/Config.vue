@@ -8,7 +8,9 @@
             :src="app.config.channel_icon_url"
           />
         </div>
-        <div class="app-config-generic__header__title__name">{{ app.config.channel_name }}</div>
+        <div class="app-config-generic__header__title__name">
+          {{ app.config.channel_name }}
+        </div>
       </div>
       <span class="app-config-generic__header__description" v-html="appDescription" />
 
@@ -43,7 +45,7 @@
         :inputs="appFormInputs"
         @input="updateInputs"
       />
-      <unnnic-skeleton-loading
+      <skeleton-loading
         v-else
         class="app-config-generic__settings__content__form-loading"
         tag="div"
@@ -75,15 +77,19 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
+  import { mapActions, mapState } from 'pinia';
   import DynamicForm from '@/components/config/DynamicForm.vue';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { generic_store } from '@/stores/modules/appType/channels/generic.store';
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'generic-config',
     components: {
       DynamicForm,
+      skeletonLoading,
     },
     props: {
       app: {
@@ -119,19 +125,14 @@
       await this.fetchAppData();
     },
     computed: {
-      ...mapState({
-        currentApp: (state) => state.appType.currentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
-      ...mapState('Generic', [
-        'loadingAppForm',
-        'errorAppForm',
-        'genericAppForm',
-        'genericAppAttributes',
+      ...mapState(app_type, [
+        'currentApp',
+        'loadingCurrentApp',
+        'errorCurrentApp',
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
       ]),
+      ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
       appDescription() {
         const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
         return this.$te(i18nkey) ? this.$t(i18nkey) : this.app.config.channel_claim_blurb;
@@ -141,16 +142,16 @@
       },
     },
     methods: {
-      ...mapActions(['getApp', 'updateAppConfig']),
-      ...mapActions('Generic', ['getAppForm']),
+      ...mapActions(app_type, ['getApp', 'updateAppConfig']),
+      ...mapActions(generic_store, ['getAppForm']),
       async fetchAppData() {
         this.loadingFormBuild = true;
-        await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
-        await this.getAppForm({ channelCode: this.app.config.channel_code });
+        await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
+        await generic_store().getAppForm({ channelCode: this.app.config.channel_code });
 
         if (this.errorCurrentApp || this.errorAppForm) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('GenericApp.preview.errors.fetch_app'),
           });
         }
@@ -185,7 +186,9 @@
         this.loadingFormBuild = false;
       },
       updateInputs(inputData) {
-        this.appFormInputs[inputData.index].value = inputData.value;
+        if (inputData?.value) {
+          this.appFormInputs[inputData.index].value = inputData.value;
+        }
       },
       async saveConfig() {
         let payloadConfig = {};
@@ -206,9 +209,9 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'Error', text: this.$t('apps.details.status_error') });
+          this.callModal({ type: 'error', text: this.$t('apps.details.status_error') });
         } else {
-          this.callModal({ type: 'Success', text: this.$t('apps.config.integration_success') });
+          this.callModal({ type: 'success', text: this.$t('apps.config.integration_success') });
 
           await this.fetchAppData();
           this.showCallback = true;
@@ -220,7 +223,14 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),

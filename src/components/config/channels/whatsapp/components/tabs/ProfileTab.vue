@@ -37,12 +37,14 @@
 </template>
 
 <script>
-  import DynamicForm from '@/components/config/DynamicForm';
+  import DynamicForm from '@/components/config/DynamicForm.vue';
   import skeletonLoading from './loadings/ProfileTab.vue';
   import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
-  import { mapActions, mapState, mapGetters } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'ProfileTab',
@@ -69,7 +71,14 @@
         try {
           await this.fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
         } catch (err) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.error.data_fetch'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_fetch'),
               title: this.$t('general.error'),
@@ -199,15 +208,16 @@
       },
     },
     computed: {
-      ...mapState('WhatsApp', ['errorUpdateWhatsAppProfile', 'errorDeleteWhatsAppProfilePhoto']),
-      ...mapGetters({
-        loadingContactInfo: 'WhatsApp/loadingContactInfo',
-        fetchedContactInfo: 'WhatsApp/fetchedContactInfo',
-        contactInfo: 'WhatsApp/contactInfo',
-      }),
+      ...mapState(whatsapp_store, [
+        'errorUpdateWhatsAppProfile',
+        'errorDeleteWhatsAppProfilePhoto',
+        'loadingContactInfo',
+        'fetchedContactInfo',
+        'contactInfo',
+      ]),
     },
     methods: {
-      ...mapActions('WhatsApp', [
+      ...mapActions(whatsapp_store, [
         'updateWppProfile',
         'deleteWppProfilePhoto',
         'fetchWppContactInfo',
@@ -245,7 +255,14 @@
       async isValidPhotoSize(b64ProfilePhoto) {
         const { height, width } = await getHeightAndWidthFromDataUrl(b64ProfilePhoto);
         if (this.modifiedInitialPhoto && (height < 192 || width < 192)) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.error.invalid_photo_size'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_photo_size'),
               title: this.$t('general.error'),
@@ -309,7 +326,14 @@
 
           this.$emit('save');
 
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.success.profile_updated'),
+          //     type: 'success',
+          //   },
+          //   seconds: 3,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.success.profile_updated'),
               title: this.$t('general.success'),
@@ -321,7 +345,14 @@
             seconds: 3,
           });
         } catch (e) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.details.status_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 6,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               title: this.$t('general.error'),
@@ -336,7 +367,14 @@
       },
       async saveContactInfo() {
         if (this.contactInfoInputs.some((input) => input.error)) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.error.invalid_data'),
+          //     type: 'error',
+          //   },
+          //   seconds: 3,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_data'),
               title: this.$t('general.error'),
@@ -363,7 +401,14 @@
           const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
           await this.updateWppContactInfo(data);
 
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.success.contact_info_update'),
+          //     type: 'success',
+          //   },
+          //   seconds: 3,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.success.contact_info_update'),
               title: this.$t('general.success'),
@@ -375,7 +420,14 @@
             seconds: 3,
           });
         } catch (err) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.error.data_update'),
+          //     type: 'error',
+          //   },
+          //   seconds: 6,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_update'),
               title: this.$t('general.error'),

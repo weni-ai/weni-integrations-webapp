@@ -30,22 +30,23 @@
         :text="flowToken || ''"
         hoverText=""
       >
-        <unnnic-toolTip
-          slot="buttons"
-          :text="$t('PowerBi.config.token_input.tooltip')"
-          :enabled="true"
-          side="top"
-        >
-          <unnnic-button
-            class="app-config-power-bi__content__token-input__button"
-            type="secondary"
-            size="small"
-            iconCenter="copy-paste-1"
-            @click="copyToken"
-          />
-        </unnnic-toolTip>
+        <template #buttons>
+          <unnnic-toolTip
+            :text="$t('PowerBi.config.token_input.tooltip')"
+            :enabled="true"
+            side="top"
+          >
+            <unnnic-button
+              class="app-config-power-bi__content__token-input__button"
+              type="secondary"
+              size="small"
+              iconCenter="copy-paste-1"
+              @click="copyToken"
+            />
+          </unnnic-toolTip>
+        </template>
       </unnnic-data-area>
-      <unnnic-skeleton-loading v-else tag="div" width="100%" height="6rem" />
+      <skeleton-loading v-else tag="div" width="100%" height="6rem" />
 
       <div class="app-config-power-bi__content__download">
         <unnnic-label
@@ -91,13 +92,16 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import { mapState, mapActions } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'PowerBiConfig',
+    components: { skeletonLoading },
     props: {
       app: {
         type: Object,
@@ -119,7 +123,14 @@
       await this.getFlowToken();
 
       if (this.errorFlowToken) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('PowerBi.config.token_error'),
+        //     type: 'success',
+        //   },
+        //   seconds: 3,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('PowerBi.config.token_error'),
             title: this.$t('general.error'),
@@ -133,11 +144,7 @@
       }
     },
     computed: {
-      ...mapState({
-        flowToken: (state) => state.auth.flowToken,
-        errorFlowToken: (state) => state.auth.errorFlowToken,
-        loadingFlowToken: (state) => state.auth.loadingFlowToken,
-      }),
+      ...mapState(auth_store, ['flowToken', 'errorFlowToken', 'loadingFlowToken']),
       powerBiIcon() {
         return PowerBiIcon;
       },
@@ -146,7 +153,7 @@
       },
     },
     methods: {
-      ...mapActions(['getFlowToken']),
+      ...mapActions(auth_store, ['getFlowToken']),
       /* istanbul ignore next */
       async copyToken() {
         if (!this.flowToken) {
@@ -155,7 +162,14 @@
 
         navigator.clipboard.writeText(this.flowToken);
 
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.config.copy_success'),
+        //     type: 'success',
+        //   },
+        //   seconds: 3,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
             title: this.$t('general.success'),

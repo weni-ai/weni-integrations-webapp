@@ -70,8 +70,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'WebhookTab',
@@ -112,12 +114,10 @@
       }
     },
     computed: {
-      ...mapState('WhatsApp', ['loadingUpdateWebhookInfo', 'errorUpdateWebhookInfo']),
+      ...mapState(whatsapp_store, ['loadingUpdateWebhookInfo', 'errorUpdateWebhookInfo']),
     },
     methods: {
-      ...mapActions({
-        updateWppWebhookInfo: 'WhatsApp/updateWppWebhookInfo',
-      }),
+      ...mapActions(whatsapp_store, ['updateWppWebhookInfo']),
       /* istanbul ignore next */
       mountHeaders() {
         if (this.app.config?.webhook?.headers) {
@@ -186,7 +186,7 @@
         const urlInput = this.getUrlInputElement();
         if (!urlInput.checkValidity()) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('WhatsApp.config.error.invalid_url'),
           });
           return;
@@ -212,7 +212,7 @@
 
         if (this.errorUpdateWebhookInfo) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('WhatsApp.config.error.webhook_update'),
           });
 
@@ -220,14 +220,21 @@
         }
 
         this.callModal({
-          type: 'Success',
+          type: 'error',
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
         this.$root.$emit('updateGrid');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),

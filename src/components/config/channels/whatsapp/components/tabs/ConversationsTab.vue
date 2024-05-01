@@ -128,7 +128,7 @@
     <div class="conversations__buttons">
       <unnnic-button
         class="conversations__buttons__close"
-        type="secondary"
+        type="tertiary"
         size="large"
         :text="$t('general.Cancel')"
         @click="() => this.$emit('close')"
@@ -139,8 +139,12 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
+  import { mapActions, mapState } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { insights_store } from '@/stores/modules/insights.store';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import removeEmpty from '../../../../../../utils/clean';
 
   export default {
@@ -196,10 +200,8 @@
       });
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-      }),
-      ...mapState('WhatsApp', [
+      ...mapState(auth_store, ['project']),
+      ...mapState(whatsapp_store, [
         'whatsAppConversations',
         'loadingConversations',
         'errorConversations',
@@ -257,8 +259,8 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['getConversations', 'requestConversationsReport']),
-      ...mapActions('insights', ['setAppUuid']),
+      ...mapActions(whatsapp_store, ['getConversations', 'requestConversationsReport']),
+      ...mapActions(insights_store, ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -275,7 +277,14 @@
         });
 
         if (this.errorConversations) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.config.conversations.fetch_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 6,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.conversations.fetch_error'),
               title: this.$t('general.error'),
@@ -318,7 +327,14 @@
             errorTitle = this.$t('general.attention');
           }
 
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: errorText,
+          //     type: 'error',
+          //   },
+          //   seconds: 6,
+          // });
+          alert.callAlert({
             props: {
               text: errorText,
               title: errorTitle,
@@ -332,7 +348,14 @@
           return;
         }
 
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('WhatsApp.config.conversations.report_success'),
+        //     type: 'success',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('WhatsApp.config.conversations.report_success'),
             title: this.$t('general.success'),
@@ -343,6 +366,7 @@
           },
           seconds: 6,
         });
+        return;
       },
       navigateToInsights() {
         this.setAppUuid({ appUuid: this.app.uuid });

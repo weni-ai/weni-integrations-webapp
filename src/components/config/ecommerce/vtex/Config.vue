@@ -63,7 +63,6 @@
       v-if="showConnectModal"
       class="connect-modal"
       @close="showConnectModal = false"
-      @click.stop
       :closeIcon="false"
     >
       <ConnectCatalogModalContent
@@ -76,8 +75,11 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
 
   export default {
@@ -101,18 +103,15 @@
       };
     },
     computed: {
-      ...mapState({
-        currentApp: (state) => state.appType.currentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-      }),
-      ...mapState('ecommerce', ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      ...mapState(app_type, ['currentApp', 'errorCurrentApp']),
+      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
     },
     async mounted() {
       await this.fetchRelatedWppData();
     },
     methods: {
-      ...mapActions(['updateApp', 'getApp']),
-      ...mapActions('ecommerce', ['connectVtexCatalog']),
+      ...mapActions(app_type, ['updateApp', 'getApp']),
+      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -125,7 +124,7 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
 
@@ -141,7 +140,7 @@
 
         if (this.errorCurrentApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('vtex.errors.update_connected_catalog_status'),
           });
           return;
@@ -158,7 +157,7 @@
         await this.getApp(data);
 
         if (this.errorCurrentApp) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
           return;
         }
 
@@ -169,14 +168,21 @@
         if (this.wpp_uuid) {
           this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
         } else {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
         }
       },
       closeConfig() {
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     title: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),

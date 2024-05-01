@@ -172,8 +172,13 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
 
@@ -205,22 +210,18 @@
       this.getVtexAppUuid({ code: this.app.code });
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        configuredApps: (state) => state.myApps.configuredApps,
-        errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-      }),
-      ...mapState('ecommerce', ['generatedVtexAppUuid', 'errorVtexAppUuid']),
+      ...mapState(auth_store, ['project']),
+      ...mapState(my_apps, ['configuredApps', 'errorConfiguredApps']),
+      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
+      ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
       webhookUrl() {
         const backendUrl = getEnv('VUE_APP_API_BASE_URL');
         return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid}/products-update/api/notification/`;
       },
     },
     methods: {
-      ...mapActions(['createApp', 'getConfiguredApps']),
-      ...mapActions('ecommerce', ['getVtexAppUuid']),
+      ...mapActions(app_type, ['createApp', 'getConfiguredApps']),
+      ...mapActions(ecommerce_store, ['getVtexAppUuid']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -232,7 +233,7 @@
             !this.appKey.trim() ||
             !this.appToken.trim()
           ) {
-            this.callModal({ type: 'Error', text: this.$t('vtex.setup.error_missing_fields') });
+            this.callModal({ type: 'error', text: this.$t('vtex.setup.error_missing_fields') });
             return;
           }
           this.currentStep = 1;
@@ -261,14 +262,14 @@
             this.errorCreateApp.response.status === 400 &&
             this.errorCreateApp.response.data.detail === 'The credentials provided are invalid.'
           ) {
-            this.callModal({ type: 'Error', text: this.$t('vtex.setup.invalid_credentials') });
+            this.callModal({ type: 'error', text: this.$t('vtex.setup.invalid_credentials') });
             return;
           }
-          this.callModal({ type: 'Error', text: this.$t('vtex.setup.error') });
+          this.callModal({ type: 'error', text: this.$t('vtex.setup.error') });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('vtex.setup.success') });
+        this.callModal({ type: 'success', text: this.$t('vtex.setup.success') });
         this.$emit('closePopUp');
         this.$router.push({ name: 'Apps' });
       },
@@ -281,7 +282,7 @@
 
         if (this.errorConfiguredApps) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('apps.myApps.error.configured'),
           });
           this.closePopUp();
@@ -305,7 +306,14 @@
       async copyWebhookUrl() {
         navigator.clipboard.writeText(this.webhookUrl);
 
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.config.copy_success'),
+        //     type: 'success',
+        //   },
+        //   seconds: 3,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
             title: this.$t('general.success'),
@@ -318,7 +326,14 @@
         });
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),

@@ -49,8 +49,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'telegram-config',
@@ -71,15 +73,13 @@
       };
     },
     computed: {
-      ...mapState({
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-      }),
+      ...mapState(app_type, ['errorUpdateAppConfig']),
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig']),
+      ...mapActions(app_type, ['updateAppConfig']),
       async saveConfig() {
         const data = {
           code: this.app.code,
@@ -97,7 +97,14 @@
           if (this.errorUpdateAppConfig) {
             throw new Error(this.errorUpdateAppConfig);
           }
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.config.integration_success'),
+          //     type: 'success',
+          //   },
+          //   seconds: 3,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.config.integration_success'),
               title: this.$t('general.success'),
@@ -116,7 +123,14 @@
             errorMessage = this.$t('telegram.config.errors.invalidToken');
           }
 
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: errorMessage,
+          //     type: 'error',
+          //   },
+          //   seconds: 3,
+          // });
+          alert.callAlert({
             props: {
               text: errorMessage,
               title: this.$t('general.error'),

@@ -3,7 +3,6 @@
     ref="unnnic-chatgpt-modal"
     class="chatgpt-modal"
     @close="closePopUp"
-    @click.stop
     :closeIcon="false"
     :text="$t('ChatGPT.setup.title')"
     :description="$t('ChatGPT.setup.description')"
@@ -80,8 +79,11 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'ChatGPTModal',
@@ -100,14 +102,11 @@
       };
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-        loadingCreateApp: (state) => state.appType.loadingCreateApp,
-        errorCreateApp: (state) => state.appType.errorCreateApp,
-      }),
+      ...mapState(auth_store, ['project']),
+      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
     },
     methods: {
-      ...mapActions(['createApp']),
+      ...mapActions(app_type, ['createApp']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -123,17 +122,24 @@
 
         if (this.errorCreateApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`ChatGPT.setup.create_app.error`),
           });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t(`ChatGPT.setup.success`) });
+        this.callModal({ type: 'success', text: this.$t(`ChatGPT.setup.success`) });
         this.$router.replace('/apps/my');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),

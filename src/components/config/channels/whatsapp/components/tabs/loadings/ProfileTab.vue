@@ -1,39 +1,32 @@
 <template>
   <div class="profile-loading">
-    <unnnic-skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
-    <unnnic-skeleton-loading
-      class="profile-loading__upload"
-      tag="div"
-      width="100%"
-      height="160px"
-    />
-    <unnnic-skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
-    <unnnic-skeleton-loading class="profile-loading__desc" tag="div" width="100%" height="48px" />
-    <unnnic-skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
-    <unnnic-skeleton-loading
-      class="profile-loading__company"
-      tag="div"
-      width="100%"
-      height="48px"
-    />
-    <unnnic-skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
+    <skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
+    <skeleton-loading class="profile-loading__upload" tag="div" width="100%" height="160px" />
+    <skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
+    <skeleton-loading class="profile-loading__desc" tag="div" width="100%" height="48px" />
+    <skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
+    <skeleton-loading class="profile-loading__company" tag="div" width="100%" height="48px" />
+    <skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
     <div class="profile-loading__websites">
-      <unnnic-skeleton-loading tag="div" width="100%" height="48px" />
-      <unnnic-skeleton-loading tag="div" width="100%" height="48px" />
+      <skeleton-loading tag="div" width="100%" height="48px" />
+      <skeleton-loading tag="div" width="100%" height="48px" />
     </div>
-    <unnnic-skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
+    <skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
     <div class="profile-loading__email">
-      <unnnic-skeleton-loading tag="div" width="100%" height="48px" />
+      <skeleton-loading tag="div" width="100%" height="48px" />
     </div>
-    <unnnic-skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
+    <skeleton-loading class="profile-loading__title" tag="div" width="20%" height="22px" />
     <div class="profile-loading__address">
-      <unnnic-skeleton-loading tag="div" width="100%" height="48px" />
+      <skeleton-loading tag="div" width="100%" height="48px" />
     </div>
   </div>
 </template>
 
 <script>
-  export default {};
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
+  export default {
+    components: { skeletonLoading },
+  };
 </script>
 
 <style lang="scss" scoped>

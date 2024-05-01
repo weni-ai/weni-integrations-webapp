@@ -4,7 +4,7 @@
       <div class="app-config-wwc__header__icon-container">
         <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
       </div>
-      <div class="app-config-wwc__header__title">{{ app.name }}</div>
+      <div class="app-config-wwc__header__title">{{ selectedApp.name }}</div>
       <div class="app-config-wwc__header__close">
         <unnnic-button
           size="small"
@@ -288,8 +288,10 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
@@ -332,6 +334,7 @@
 
         avatarUploadState: false,
         avatarUploadProgress: 0,
+        selectedApp: this.app,
       };
     },
     watch: {
@@ -346,14 +349,14 @@
     },
     /* istanbul ignore next */
     async mounted() {
-      if (this.app.config.profileAvatar) {
-        this.avatarFile = await dataUrlToFile(this.app.config.profileAvatar, 'avatar.png');
+      if (this.selectedApp.config.profileAvatar) {
+        this.avatarFile = await dataUrlToFile(this.selectedApp.config.profileAvatar, 'avatar.png');
         setTimeout(() => {
           this.$emit('setConfirmation', false);
         }, 250);
       }
-      if (this.app.config.customCss) {
-        const file = await dataUrlToFile(this.app.config.customCss, 'style.css');
+      if (this.selectedApp.config.customCss) {
+        const file = await dataUrlToFile(this.selectedApp.config.customCss, 'style.css');
         if (file) {
           await this.handleNewCss([file]);
           setTimeout(() => {
@@ -363,13 +366,13 @@
       }
     },
     computed: {
-      ...mapState({
-        loadingUpdateAppConfig: (state) => state.appType.loadingUpdateAppConfig,
-        errorUpdateAppConfig: (state) => state.appType.errorUpdateAppConfig,
-        currentApp: (state) => state.appType.currentApp,
-        loadingCurrentApp: (state) => state.appType.loadingCurrentApp,
-        errorCurrentApp: (state) => state.appType.errorCurrentApp,
-      }),
+      ...mapState(app_type, [
+        'loadingUpdateAppConfig',
+        'errorUpdateAppConfig',
+        'currentApp',
+        'loadingCurrentApp',
+        'errorCurrentApp',
+      ]),
       avatarFiles: {
         get() {
           return this.avatarFile ? [this.avatarFile] : [];
@@ -408,9 +411,9 @@
     };
     k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
     h.parentNode.insertBefore(k, h);
-  })(document, 'script', '${this.app.config.script}');
+  })(document, 'script', '${this.selectedApp.config.script}');
 <${'/'}script>`;
-        return this.app.config.script ? code : '';
+        return this.selectedApp.config.script ? code : '';
       },
       cssForUpload() {
         return this.customCss;
@@ -438,7 +441,7 @@
       },
     },
     methods: {
-      ...mapActions(['updateAppConfig', 'getApp']),
+      ...mapActions(app_type, ['updateAppConfig', 'getApp']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -561,7 +564,14 @@
         Object.entries(this.$data).forEach(([key]) => {
           const error = this.errorFor(key);
           if (error) {
-            unnnicCallAlert({
+            // unnnicCallAlert({
+            //   props: {
+            //     text: error,
+            //     type: 'error',
+            //   },
+            //   seconds: 3,
+            // });
+            alert.callAlert({
               props: {
                 text: error,
                 title: this.$t('general.error'),
@@ -584,8 +594,8 @@
 
         /* istanbul ignore next */
         const reqData = removeEmpty({
-          code: this.app.code,
-          appUuid: this.app.uuid,
+          code: this.selectedApp.code,
+          appUuid: this.selectedApp.uuid,
           payload: {
             config: {
               title: this.title,
@@ -612,15 +622,24 @@
             throw new Error(this.errorUpdateAppConfig);
           }
 
-          await this.getApp({ code: this.app.code, appUuid: this.app.uuid });
+          await this.getApp({ code: this.selectedApp.code, appUuid: this.selectedApp.uuid });
 
           if (this.errorCurrentApp) {
             throw new Error(this.errorCurrentApp);
           }
 
-          this.app.config = this.currentApp.config;
+          this.selectedApp.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: /* istanbul ignore next */ firstSave
+          //       ? this.$t('apps.config.first_integration_success')
+          //       : this.$t('apps.config.integration_success'),
+          //     type: 'success',
+          //   },
+          //   seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
+          // });
+          alert.callAlert({
             props: {
               text: /* istanbul ignore next */ firstSave
                 ? this.$t('apps.config.first_integration_success')
@@ -634,7 +653,14 @@
             seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
         } catch (err) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.details.status_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 3,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               title: this.$t('general.error'),

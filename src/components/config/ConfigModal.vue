@@ -8,7 +8,6 @@
           <component
             class="config-modal__component"
             :is="currentComponent"
-            :v-bind="$attrs"
             :app="currentApp"
             :isConfigured="isConfigured"
             @closeModal="closeModal"
@@ -26,23 +25,25 @@
       modal-icon="alert-circle-1"
       @close="toggleConfirmationModal"
     >
-      <span slot="message" v-html="$t('apps.config.confirmation.description')"></span>
-      <unnnic-button
-        ref="unnnic-remove-modal-close-button"
-        slot="options"
-        type="tertiary"
-        @click="toggleConfirmationModal"
-      >
-        {{ $t('apps.config.confirmation.goBackToConfig') }}
-      </unnnic-button>
-      <unnnic-button
-        ref="unnnic-remove-modal-navigate-button"
-        slot="options"
-        type="primary"
-        @click="confirmClose()"
-      >
-        {{ $t('general.confirm') }}
-      </unnnic-button>
+      <template #message>
+        <span v-html="$t('apps.config.confirmation.description')"></span>
+      </template>
+      <template #options>
+        <unnnic-button
+          ref="unnnic-remove-modal-close-button"
+          type="tertiary"
+          @click="toggleConfirmationModal"
+        >
+          {{ $t('apps.config.confirmation.goBackToConfig') }}
+        </unnnic-button>
+        <unnnic-button
+          ref="unnnic-remove-modal-navigate-button"
+          type="primary"
+          @click="confirmClose()"
+        >
+          {{ $t('general.confirm') }}
+        </unnnic-button>
+      </template>
     </unnnic-modal>
   </div>
 </template>
@@ -59,6 +60,7 @@
   import omieConfig from '@/components/config/external/omie/Config.vue';
   import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
   import vtexConfig from '@/components/config/ecommerce/vtex/Config.vue';
+  import { markRaw } from 'vue';
 
   export default {
     name: 'Modal',
@@ -70,7 +72,7 @@
         isConfigured: false,
         showConfirmationModal: false,
         needConfirmation: false,
-        componentMapping: {
+        componentMapping: markRaw({
           wwc: wwcConfig,
           tg: telegramConfig,
           wpp: whatsappConfig,
@@ -82,7 +84,7 @@
           omie: omieConfig,
           chatgpt: chatGptConfig,
           vtex: vtexConfig,
-        },
+        }),
       };
     },
     methods: {
