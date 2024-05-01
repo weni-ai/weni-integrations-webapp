@@ -49,7 +49,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 
@@ -233,14 +233,14 @@
         this.updateTemplateForm({ fieldName: 'category', fieldValue: template.category });
       },
       buildTranslationForm(translation) {
-        // if (
-        //   translation.header &&
-        //   translation.header.header_type.trim() &&
-        //   translation.header.header_type !== 'TEXT'
-        // ) {
-        //   translation.header.mediaType = translation.header.header_type;
-        //   translation.header.header_type = 'MEDIA';
-        // }
+        if (
+          translation.header &&
+          translation.header.header_type.trim() &&
+          translation.header.header_type !== 'TEXT'
+        ) {
+          translation.header.mediaType = translation.header.header_type;
+          translation.header.header_type = 'MEDIA';
+        }
 
         if (translation.buttons && translation.buttons.length > 0) {
           // force to have a max of two buttons if type is not quick_reply
@@ -660,22 +660,22 @@
         }
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
-          props: {
-            text,
-            type: 'error',
-          },
-          seconds: 8,
-        });
+        // unnnicCallAlert({
+        //   props: {
+        //     text,
+        //     type: 'error',
+        //   },
+        //   seconds: 8,
+        // });
       },
       callSuccessModal({ text }) {
-        unnnicCallAlert({
-          props: {
-            text,
-            type: 'success',
-          },
-          seconds: 8,
-        });
+        // unnnicCallAlert({
+        //   props: {
+        //     text,
+        //     type: 'success',
+        //   },
+        //   seconds: 8,
+        // });
       },
     },
   };
