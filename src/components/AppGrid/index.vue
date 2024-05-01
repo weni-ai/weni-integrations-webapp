@@ -1,6 +1,6 @@
 <template>
   <div ref="appGrid">
-    <section v-if="!loading" id="app-grid">
+    <section v-if="!loading" id="app-grid" maxLength="255" disabled="false">
       <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon
           :icon="avatar.icon"
@@ -33,52 +33,51 @@
           :clickable="!app.generic || type !== 'add'"
           @openModal="openAppModal(app)"
         >
-          <integrate-button
-            :ref="`integrate-button-${app.code}`"
-            v-if="type === 'add'"
-            slot="actions"
-            :app="app"
-            :icon="action"
-            :disabled="!app.generic && !app.can_add"
-          />
+          <template #actions>
+            <integrate-button
+              :ref="`integrate-button-${app.code}`"
+              v-if="type === 'add'"
+              :app="app"
+              :icon="action"
+              :disabled="!app.generic && !app.can_add"
+            />
 
-          <unnnic-dropdown
-            v-else-if="type !== 'view'"
-            class="app-grid__content__item__dropdown"
-            slot="actions"
-          >
-            <unnnic-button slot="trigger" size="small" type="tertiary" :iconCenter="card" />
-            <unnnic-dropdown-item
-              class="app-grid__content__item__button--action"
-              @click="openAppModal(app)"
-            >
-              <unnnic-icon-svg :icon="action" size="sm" />
-              {{ $t(`apps.discovery.action.${type}`) }}
-            </unnnic-dropdown-item>
-            <unnnic-dropdown-item
-              v-if="app.code !== 'wpp'"
-              class="app-grid__content__item__button--details"
-              @click="openAppDetails(app.code)"
-            >
-              <unnnic-icon-svg icon="export-1" size="sm" />
-              {{ $t('apps.details.card.see_details') }}
-            </unnnic-dropdown-item>
-            <unnnic-dropdown-item
-              class="app-grid__content__item__button--details"
-              @click="copyToClipboard(app.uuid)"
-            >
-              <unnnic-icon-svg icon="copy-paste-1" size="sm" />
-              {{ $t('apps.details.card.copy_uuid') }}
-            </unnnic-dropdown-item>
-            <unnnic-dropdown-item
-              v-if="app.code !== 'wpp' && app.code !== 'wpp-cloud'"
-              class="app-grid__content__item__button--remove"
-              @click="toggleRemoveModal(app)"
-            >
-              <unnnic-icon-svg icon="bin-1-1" size="sm" scheme="feedback-red" />
-              {{ $t('general.Remove') }}
-            </unnnic-dropdown-item>
-          </unnnic-dropdown>
+            <unnnic-dropdown v-else-if="type !== 'view'" class="app-grid__content__item__dropdown">
+              <template #trigger>
+                <unnnic-button size="small" type="tertiary" :iconCenter="card" />
+              </template>
+              <unnnic-dropdown-item
+                class="app-grid__content__item__button--action"
+                @click="openAppModal(app)"
+              >
+                <unnnic-icon-svg :icon="action" size="sm" />
+                {{ $t(`apps.discovery.action.${type}`) }}
+              </unnnic-dropdown-item>
+              <unnnic-dropdown-item
+                v-if="app.code !== 'wpp'"
+                class="app-grid__content__item__button--details"
+                @click="openAppDetails(app.code)"
+              >
+                <unnnic-icon-svg icon="export-1" size="sm" />
+                {{ $t('apps.details.card.see_details') }}
+              </unnnic-dropdown-item>
+              <unnnic-dropdown-item
+                class="app-grid__content__item__button--details"
+                @click="copyToClipboard(app.uuid)"
+              >
+                <unnnic-icon-svg icon="copy-paste-1" size="sm" />
+                {{ $t('apps.details.card.copy_uuid') }}
+              </unnnic-dropdown-item>
+              <unnnic-dropdown-item
+                v-if="app.code !== 'wpp' && app.code !== 'wpp-cloud'"
+                class="app-grid__content__item__button--remove"
+                @click="toggleRemoveModal(app)"
+              >
+                <unnnic-icon-svg icon="bin-1-1" size="sm" scheme="feedback-red" />
+                {{ $t('general.Remove') }}
+              </unnnic-dropdown-item>
+            </unnnic-dropdown>
+          </template>
         </unnnic-card>
       </div>
 
@@ -86,7 +85,8 @@
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
         <unnnic-pagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
-          v-model="currentPage"
+          :value="currentPage"
+          @input="onPageChange"
           :max="maxGridPages"
           :show="6"
         />
@@ -102,24 +102,26 @@
       modal-icon="alert-circle-1"
       @close="toggleRemoveModal"
     >
-      <span slot="message" v-html="$t('apps.details.actions.remove.description')"></span>
-      <unnnic-button
-        ref="unnnic-remove-modal-close-button"
-        slot="options"
-        type="tertiary"
-        @click="toggleRemoveModal"
-        >{{ $t('general.Cancel') }}</unnnic-button
-      >
+      <template #message>
+        <span v-html="$t('apps.details.actions.remove.description')"></span>
+      </template>
+      <template #options>
+        <unnnic-button
+          ref="unnnic-remove-modal-close-button"
+          type="tertiary"
+          @click="toggleRemoveModal"
+          >{{ $t('general.Cancel') }}</unnnic-button
+        >
 
-      <LoadingButton
-        ref="unnnic-remove-modal-navigate-button"
-        slot="options"
-        type="primary"
-        :isLoading="loadingDeleteApp"
-        :loadingText="$t('general.loading')"
-        :text="$t('apps.details.actions.remove.remove')"
-        @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
-      />
+        <LoadingButton
+          ref="unnnic-remove-modal-navigate-button"
+          type="primary"
+          :isLoading="loadingDeleteApp"
+          :loadingText="$t('general.loading')"
+          :text="$t('apps.details.actions.remove.remove')"
+          @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
+        />
+      </template>
     </unnnic-modal>
 
     <config-modal ref="configModal" />
@@ -127,17 +129,21 @@
 </template>
 
 <script>
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'vuex';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
   import IntegrateButton from '../IntegrateButton/index.vue';
   import LoadingButton from '../LoadingButton/index.vue';
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
+  import { mapActions, mapState } from 'pinia';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { insights_store } from '@/stores/modules/insights.store';
+  import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',
-    components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
+    components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
     props: {
       section: {
         type: String,
@@ -183,6 +189,8 @@
         avatar: avatarIcons[this.section],
         action: actionIcons[this.type],
         card: cardIcons[this.type],
+        appType: storeToRefs(app_type()),
+        insights: storeToRefs(insights_store()),
       };
     },
     /* istanbul ignore next */
@@ -195,10 +203,7 @@
       window.removeEventListener('resize', this.updateGridSize);
     },
     computed: {
-      ...mapState({
-        loadingDeleteApp: (state) => state.appType.loadingDeleteApp,
-        errorDeleteApp: (state) => state.appType.errorDeleteApp,
-      }),
+      ...mapState(app_type, ['loadingDeleteApp', 'errorDeleteApp']),
       typeAction() {
         if (this.type === 'view') {
           return 'edit';
@@ -225,8 +230,8 @@
       },
     },
     methods: {
-      ...mapActions(['deleteApp']),
-      ...mapActions('insights', ['setHasInsights']),
+      ...mapActions(app_type, ['deleteApp']),
+      ...mapActions(insights_store, ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
         this.showRemoveModal = !this.showRemoveModal;
@@ -240,7 +245,14 @@
         }
 
         this.toggleRemoveModal();
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.details.actions.remove.status_text'),
+        //     type: 'success',
+        //   },
+        //   seconds: 8,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
             title: this.$t('apps.details.status_success'),
@@ -254,7 +266,14 @@
         this.$emit('update');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: 'error',
+        //   },
+        //   seconds: 8,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: this.$t('general.error'),
@@ -267,7 +286,7 @@
         });
       },
       openAppDetails(code) {
-        this.$router.push(`/apps/${code}/details`);
+        this.$router.push(`/${code}/details`);
       },
       openAppModal(app) {
         this.setHasInsights({ isActive: app.config?.has_insights });
@@ -330,7 +349,14 @@
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
 
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
+        //     type: 'success',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
             title: this.$t('apps.details.status_success'),
@@ -341,6 +367,9 @@
           },
           seconds: 6,
         });
+      },
+      onPageChange(value) {
+        this.currentPage = value;
       },
     },
     watch: {
