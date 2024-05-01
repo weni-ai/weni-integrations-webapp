@@ -70,7 +70,8 @@
 <script>
   import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
@@ -198,10 +199,21 @@
         this.$emit('close-modal');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text,
+        //     type: 'error',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text,
-            type: 'error',
+            title: this.$t('general.error'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 6,
         });

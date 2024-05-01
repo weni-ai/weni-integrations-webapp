@@ -78,7 +78,8 @@
   import { mapActions, mapState } from 'pinia';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
   import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
@@ -175,13 +176,24 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     title: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
-            title: type,
+            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
+            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
+            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 6,
-        });
+          });
       },
     },
   };

@@ -129,7 +129,8 @@
 </template>
 
 <script>
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
@@ -244,22 +245,44 @@
         }
 
         this.toggleRemoveModal();
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.details.actions.remove.status_text'),
+        //     type: 'success',
+        //   },
+        //   seconds: 8,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
-            type: 'success',
+            title: this.$t('apps.details.status_success'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
-          seconds: 8,
+          seconds: 3,
         });
         this.$emit('update');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: 'error',
+        //   },
+        //   seconds: 8,
+        // });
+        alert.callAlert({
           props: {
             text: text,
-            type: 'error',
+            title: this.$t('general.error'),
+            icon: 'alert-circle-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
-          seconds: 8,
+          seconds: 6,
         });
       },
       openAppDetails(code) {
@@ -326,10 +349,21 @@
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
 
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
+        //     type: 'success',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
-            type: 'success',
+            title: this.$t('apps.details.status_success'),
+            icon: 'check-circle-1-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 6,
         });

@@ -21,7 +21,8 @@
   import { mapActions, mapState } from 'pinia';
   import { insights_store } from '@/stores/modules/insights.store';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'TableActionButton',
@@ -87,10 +88,21 @@
                 if (responseError) {
                   errorMsg = this.$t(responseError);
                 }
-                unnnicCallAlert({
+                // unnnicCallAlert({
+                //   props: {
+                //     text: errorMsg,
+                //     type: 'error',
+                //   },
+                //   seconds: 6,
+                // });
+                alert.callAlert({
                   props: {
                     text: errorMsg,
-                    type: 'error',
+                    title: this.$t('general.error'),
+                    icon: 'alert-circle-1-1',
+                    scheme: 'feedback-red',
+                    position: 'bottom-right',
+                    closeText: this.$t('general.Close'),
                   },
                   seconds: 6,
                 });

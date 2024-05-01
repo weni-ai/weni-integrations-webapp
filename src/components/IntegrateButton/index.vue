@@ -21,7 +21,8 @@
 <script>
   import addModal from '../AddModal/index.vue';
   import configPopUp from '../config/ConfigPopUp.vue';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -117,10 +118,21 @@
         this.$refs.configPopUp.openPopUp(app, customData);
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text,
+        //     type: 'error',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text,
-            type: 'error',
+            title: this.$t('general.error'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 6,
         });

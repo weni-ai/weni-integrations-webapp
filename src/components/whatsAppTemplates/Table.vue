@@ -111,7 +111,8 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
@@ -308,10 +309,21 @@
         await this.getWhatsAppTemplates({ appUuid, params });
 
         if (this.errorWhatsAppTemplates) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.templates.error.fetch_templates'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
-              type: 'error',
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
             seconds: 8,
           });

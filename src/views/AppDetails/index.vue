@@ -37,7 +37,8 @@
   import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
   import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
   import skeletonLoading from '../loadings/AppDetails.vue';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { mapActions, mapState } from 'pinia';
   import millify from 'millify';
@@ -83,12 +84,23 @@
         await this.postRating(data);
 
         if (this.errorPostRating) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.details.status_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              type: 'error',
+              title: this.$t('general.error'),
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
-            seconds: 8,
+            seconds: 3,
           });
           return;
         }

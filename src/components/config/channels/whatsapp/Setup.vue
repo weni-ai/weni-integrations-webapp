@@ -41,7 +41,8 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { auth_store } from '@/stores/modules/auth.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../..//utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
@@ -171,10 +172,21 @@
         this.$emit('closePopUp');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: 'error',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
-            type: 'error',
+            title: this.$t('general.error'),
+            icon: 'alert-circle-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 6,
         });

@@ -92,7 +92,8 @@
 </template>
 
 <script>
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -122,10 +123,21 @@
       await this.getFlowToken();
 
       if (this.errorFlowToken) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('PowerBi.config.token_error'),
+        //     type: 'success',
+        //   },
+        //   seconds: 3,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('PowerBi.config.token_error'),
-            type: 'success',
+            title: this.$t('general.error'),
+            icon: 'alert-circle-1-1',
+            scheme: 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 3,
         });
@@ -150,10 +162,21 @@
 
         navigator.clipboard.writeText(this.flowToken);
 
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: this.$t('apps.config.copy_success'),
+        //     type: 'success',
+        //   },
+        //   seconds: 3,
+        // });
+        alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            type: 'success',
+            title: this.$t('general.success'),
+            icon: 'check-circle-1-1',
+            scheme: 'feedback-green',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 3,
         });

@@ -51,7 +51,7 @@
 <script>
   import wwcConfig from '@/components/config/channels//WWC/Config.vue';
   import telegramConfig from '@/components/config/channels//telegram/Config.vue';
-  import wppDemoPreview from '@/components/config/channels//wpp_demo/Preview.vue';
+  import wppDemoPreview from '@/components/config/channels//.vue';
   import whatsappConfig from '@/components/config/channels//whatsapp/Config.vue';
   import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
   import genericTypeConfig from '@/components/config/channels/generic/Config.vue';

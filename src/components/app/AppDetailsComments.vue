@@ -101,7 +101,8 @@
   import { mapActions, mapState } from 'pinia';
   import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
   import getRelativeTime from '../../utils/time.js';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import Avatar from 'vue-avatar';
 
   export default {
@@ -190,12 +191,23 @@
               throw new Error(this.errorListComments);
             }
           } catch (err) {
-            unnnicCallAlert({
+            // unnnicCallAlert({
+            //   props: {
+            //     text: this.$t('apps.details.status_error'),
+            //     type: 'error',
+            //   },
+            //   seconds: 8,
+            // });
+            alert.callAlert({
               props: {
                 text: this.$t('apps.details.status_error'),
-                type: 'error',
+                title: this.$t('general.error'),
+                icon: 'check-circle-1-1',
+                scheme: 'feedback-red',
+                position: 'bottom-right',
+                closeText: this.$t('general.Close'),
               },
-              seconds: 8,
+              seconds: 3,
             });
           } finally {
             this.resetFields();
@@ -225,20 +237,42 @@
             throw new Error(this.errorListComments);
           }
 
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.details.comments.remove.status_text'),
+          //     type: 'success',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.comments.remove.status_text'),
-              type: 'success',
+              title: this.$t('general.success'),
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
-            seconds: 8,
+            seconds: 3,
           });
         } catch (err) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.details.status_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              type: 'error',
+              title: this.$t('general.error'),
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
-            seconds: 8,
+            seconds: 3,
           });
         }
       },

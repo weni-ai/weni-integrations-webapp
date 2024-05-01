@@ -358,6 +358,17 @@
           //   },
           //   seconds: 6,
           // });
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.templates.error.invalid_fields'),
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 6,
+          });
           return;
         }
 

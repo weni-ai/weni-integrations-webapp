@@ -72,7 +72,8 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'WebhookTab',
@@ -226,10 +227,21 @@
         this.$root.$emit('updateGrid');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
-            type: type,
+            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
+            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
+            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
+            position: 'bottom-right',
+            closeText: this.$t('general.Close'),
           },
           seconds: 6,
         });

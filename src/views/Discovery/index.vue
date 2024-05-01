@@ -73,7 +73,8 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   export default {
     name: 'Discovery',
     components: {
@@ -192,10 +193,21 @@
         await app_type().getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.discovery.fetch_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 6,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.discovery.fetch_error'),
-              type: 'error',
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
             seconds: 6,
           });
