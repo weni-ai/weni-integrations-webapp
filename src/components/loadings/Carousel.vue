@@ -1,14 +1,12 @@
 <template>
   <div>
-    <SkeletonLoading class="carousel_loading" tag="div" width="100%" height="152px" />
+    <unnnic-skeleton-loading class="carousel_loading" tag="div" width="100%" height="152px" />
   </div>
 </template>
 
 <script>
-  import SkeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
   export default {
     name: 'CarouselLoading',
-    components: { SkeletonLoading },
   };
 </script>
 

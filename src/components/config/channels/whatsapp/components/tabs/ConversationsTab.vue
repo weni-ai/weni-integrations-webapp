@@ -365,9 +365,8 @@
             closeText: this.$t('general.Close'),
           },
           seconds: 6,
-          });
-          return;
-        }
+        });
+        return;
       },
       navigateToInsights() {
         this.setAppUuid({ appUuid: this.app.uuid });

@@ -43,7 +43,7 @@
               <td>{{ $t('vtex.config.wpp_number') }}</td>
               <td v-if="wpp_number">{{ wpp_number }}</td>
               <td v-else>
-                <skeleton-loading tag="div" width="100%" height="22px" />
+                <unnnic-skeleton-loading tag="div" width="100%" height="22px" />
               </td>
             </tr>
             <tr>
@@ -81,11 +81,10 @@
   // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
-  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'vtex-config',
-    components: { ConnectCatalogModalContent, skeletonLoading },
+    components: { ConnectCatalogModalContent },
     props: {
       app: {
         type: Object,
@@ -193,7 +192,7 @@
             closeText: this.$t('general.Close'),
           },
           seconds: 6,
-          });
+        });
       },
     },
   };

@@ -43,8 +43,8 @@
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-   // import unnnicCallAlert from '@weni/unnnic-system';
-   import alert from '@/utils/call';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'ProfileTab',

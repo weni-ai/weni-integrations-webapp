@@ -267,7 +267,6 @@
         const selectedLanguage = this.availableLanguages.find(
           (item) => item.value === value[0].value,
         );
-        console.log(selectedLanguage);
 
         if (!selectedLanguage) {
           // unnnicCallAlert({
@@ -294,7 +293,6 @@
           return;
         }
 
-        console.log(this.removeLanguages);
         if (
           selectedLanguage.value !== this.templateTranslationCurrentForm?.language &&
           this.removeLanguages.includes(selectedLanguage.label)
