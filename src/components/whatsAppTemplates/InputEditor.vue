@@ -1,12 +1,11 @@
 <template>
   <div class="input-editor">
     <div v-click-outside="hideEmoji">
-      <VEmojiPicker
+      <unnnicEmojiPicker
+        class="input-editor__emoji-picker__list"
         v-show="displayEmoji"
-        class="input-editor__emoji-picker"
-        :emojiSize="22"
-        :emojisByRow="7"
-        @select="selectEmoji"
+        @emojiSelected="selectEmoji"
+        @close="closeEmojiPicker"
       />
       <unnnic-button
         class="input-editor__emoji-picker__button"
@@ -63,14 +62,10 @@
 </template>
 
 <script>
-  import { VEmojiPicker } from 'v-emoji-picker';
   import StrikeThroughIcon from '@/assets/svgs/strike-through.svg';
 
   export default {
     name: 'InputEditor',
-    components: {
-      VEmojiPicker,
-    },
     data() {
       return {
         displayEmoji: false,
@@ -146,6 +141,10 @@
 
       &__button {
         opacity: $unnnic-opacity-level-clarifying;
+      }
+
+      &__list {
+        transform: translateX(-150px);
       }
 
       ::v-deep .container-emoji {

@@ -1,19 +1,21 @@
 <template>
   <unnnic-dropdown :position="position">
-    <div slot="trigger" class="template-language-dropdown">
-      <unnnic-icon-svg
-        class="template-language-dropdown__icon"
-        :icon="getTranslationStatusIcon(template.translations[0])"
-        size="sm"
-        :scheme="getTranslationStatusColor(template.translations[0])"
-      />
-      {{ templateDefaultLanguage }}
-      <unnnic-icon-svg
-        class="template-language-dropdown__icon"
-        icon="arrow-button-down-1"
-        size="sm"
-      />
-    </div>
+    <template #trigger>
+      <div class="template-language-dropdown">
+        <unnnic-icon-svg
+          class="template-language-dropdown__icon"
+          :icon="getTranslationStatusIcon(template.translations[0])"
+          size="sm"
+          :scheme="getTranslationStatusColor(template.translations[0])"
+        />
+        {{ templateDefaultLanguage }}
+        <unnnic-icon-svg
+          class="template-language-dropdown__icon"
+          icon="arrow-button-down-1"
+          size="sm"
+        />
+      </div>
+    </template>
     <unnnic-dropdown-item
       class="template-language-dropdown__item"
       v-for="(translation, index) in template.translations"

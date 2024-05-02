@@ -9,9 +9,9 @@
       :key="bodyKey"
       class="form-tab-content-body__input"
       :disabled="disableInputs"
-      :value="bodyContent"
+      :modelValue="bodyContent"
       :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
-      @input="onInput"
+      @update:modelValue="onInput"
       :maxLength="1024"
       :type="hasErrors ? 'error' : 'normal'"
       :errors="errorsList"
@@ -33,8 +33,9 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  import InputEditor from '@/components/whatsAppTemplates/InputEditor';
+  import { mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import InputEditor from '@/components/whatsAppTemplates/InputEditor.vue';
 
   import {
     countVariables,
@@ -62,7 +63,7 @@
       };
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       bodyContent() {
         return this.templateTranslationCurrentForm?.body || '';
       },
@@ -155,7 +156,7 @@
         if (this.disableInputs) {
           return;
         }
-        const result = (this.templateTranslationCurrentForm.body || '') + emoji.data;
+        const result = (this.templateTranslationCurrentForm.body || '') + emoji;
 
         this.emitInputChange(result);
       },

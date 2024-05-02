@@ -5,34 +5,27 @@
     </span>
 
     <div class="form-tab-content-header__inputs">
-      <unnnic-select
-        :disabled="disableInputs"
-        :class="{
-          'form-tab-content-header__inputs__selector': true,
-          'form-tab-content-header__inputs__selector__disabled': disableInputs,
-        }"
-        :value="headerType"
-        :label="$t('WhatsApp.templates.form_field.header__label')"
-        @input="handleHeaderTypeChange"
-      >
-        <option
-          v-for="option in headerTypeOptions"
-          :key="option.value"
-          :value="option.value"
-          :label="option.text"
-        >
-          {{ option.text }}
-        </option>
-      </unnnic-select>
+      <div>
+        <unnnic-label :label="$t('WhatsApp.templates.form_field.header__label')" />
+        <unnnic-select-smart
+          :disabled="disableInputs"
+          :class="{
+            'form-tab-content-header__inputs__selector': true,
+            'form-tab-content-header__inputs__selector__disabled': disableInputs,
+          }"
+          :options="headerTypeOptions"
+          :modelValue="selectedHeaderType"
+          @update:modelValue="handleHeaderTypeChange"
+        />
+      </div>
 
-      <!-- TODO: Handle change in header.text  -->
       <unnnic-input
         class="form-tab-content-header__inputs__text-input"
         v-if="headerType === 'TEXT'"
         :placeholder="$t('WhatsApp.templates.form_field.header_text_placeholder')"
         :disabled="disableInputs"
-        :value="headerText"
-        @input="handleNewHeaderInput({ text: $event })"
+        :modelValue="headerText"
+        @update:modelValue="handleNewHeaderInput({ text: $event })"
         :maxlength="60"
       />
       <!-- TODO: Set media type on button click -->
@@ -61,7 +54,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'FormTabContentHeader',
@@ -73,44 +67,49 @@
     },
     data() {
       return {
+        headerText: '',
+        selectedHeaderType: [],
         headerTypeOptions: [
           {
             value: 'TEXT',
-            text: this.$t('WhatsApp.templates.header_type_options.text'),
+            label: this.$t('WhatsApp.templates.header_type_options.text'),
           },
           {
             value: 'MEDIA',
-            text: this.$t('WhatsApp.templates.header_type_options.media'),
+            label: this.$t('WhatsApp.templates.header_type_options.media'),
           },
         ],
       };
     },
     mounted() {
       this.fillEmptyHeader();
+      this.headerText = this.templateTranslationCurrentForm.header?.text || null;
     },
     beforeUpdate() {
       this.fillEmptyHeader();
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
       },
-      headerText() {
-        return this.templateTranslationCurrentForm.header?.text || null;
-      },
+      // headerText() {
+      //   return this.templateTranslationCurrentForm.header?.text || null;
+      // },
     },
     methods: {
       handleNewHeaderInput(event) {
+        this.headerText = event.text;
         this.$emit('input-change', {
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
         });
       },
       handleHeaderTypeChange(event) {
+        this.selectedHeaderType = event;
         let fieldValue;
 
-        if (event === 'TEXT') {
+        if (event[0].value === 'TEXT') {
           fieldValue = { header_type: 'TEXT', text: null };
         } else {
           fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };

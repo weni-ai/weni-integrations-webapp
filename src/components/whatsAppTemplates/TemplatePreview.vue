@@ -71,7 +71,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapState } from 'vuex';
+  import { mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
     name: 'TemplatePreview',
@@ -90,10 +91,10 @@
       },
     },
     computed: {
-      ...mapGetters('WhatsApp', {
+      ...mapState(whatsapp_store, {
         currentForm: 'templateTranslationCurrentForm',
       }),
-      ...mapState('WhatsApp', ['loadingFetchWhatsAppTemplate']),
+      ...mapState(whatsapp_store, ['loadingFetchWhatsAppTemplate']),
       hasHeader() {
         if (!this.currentForm) {
           return false;

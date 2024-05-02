@@ -3,27 +3,21 @@
     <span class="form-tab-content-buttons__title">
       {{ $t('WhatsApp.templates.form_field.buttons') }}
     </span>
-
-    <unnnic-select
-      :disabled="disableInputs"
-      :class="{
-        'form-tab-content-buttons__type-select': true,
-        'form-tab-content-buttons__type-select__disabled': disableInputs,
-      }"
-      :value="buttonsType"
-      :label="$t('WhatsApp.templates.form_field.buttons__label')"
-      @input="handleButtonTypeChange"
-    >
-      <option
-        v-for="option in buttonOptions"
-        :key="option.value"
-        :value="option.value"
-        :label="option.text"
-      >
-        {{ option.text }}
-      </option>
-    </unnnic-select>
-
+    <!-- Select button type -->
+    <div>
+      <unnnic-label :label="$t('WhatsApp.templates.form_field.buttons__label')" />
+      <unnnic-select-smart
+        :disabled="disableInputs"
+        :class="{
+          'form-tab-content-buttons__type-select': true,
+          'form-tab-content-buttons__type-select__disabled': disableInputs,
+        }"
+        :options="buttonOptions"
+        :modelValue="currentButtonType"
+        @update:modelValue="handleButtonTypeChange"
+      />
+    </div>
+    <!-- quick reply -->
     <div
       ref="replies-wrapper"
       class="form-tab-content-buttons__replies"
@@ -48,8 +42,20 @@
             @click="removeButton(index)"
           />
         </div>
+        <unnnic-input
+          class="form-tab-content-buttons__replies__input"
+          :disabled="disableInputs"
+          :modelValue="currentButtons[index].text"
+          :label="$t('WhatsApp.templates.form_field.reply_label')"
+          :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
+          :maxlength="25"
+          :replaceRegex="EMOJI_REGEX"
+          :message="errors[index] || null"
+          :type="errors[index] ? 'error' : 'normal'"
+          @update:modelValue="handleRepliesInput($event, index)"
+        />
 
-        <base-input
+        <!-- <base-input
           class="form-tab-content-buttons__replies__input"
           :disabled="disableInputs"
           :value="currentButtons[index].text"
@@ -60,10 +66,11 @@
           :message="errors[index] || null"
           :type="errors[index] ? 'error' : 'normal'"
           @input="handleRepliesInput($event, index)"
-        />
+        /> -->
       </div>
     </div>
 
+    <!-- Call to action -->
     <div
       class="form-tab-content-buttons__call-actions"
       v-else-if="buttonsType === 'call_to_action'"
@@ -88,25 +95,17 @@
           />
         </div>
 
-        <unnnic-select
+        <unnnic-select-smart
           :class="{
             'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
           }"
           :label="$t('WhatsApp.templates.form_field.type_of_action')"
           :disabled="disableInputs"
-          :value="currentButtons[index].button_type"
-          @input="handleCallToActionTypeChange($event, index)"
-        >
-          <option
-            v-for="option in callToActionOptions"
-            :key="option.value"
-            :value="option.value"
-            :label="option.text"
-          >
-            {{ option.text }}
-          </option>
-        </unnnic-select>
-
+          :options="callToActionOptions"
+          :modelValue="currentButtonsSelect"
+          @update:modelValue="handleCallToActionTypeChange($event, index)"
+        />
+        <!-- WEBSITE -->
         <div
           :class="{
             'form-tab-content-buttons__call-actions__wrapper': true,
@@ -114,49 +113,43 @@
               currentButtons[index].button_type === 'URL',
           }"
         >
-          <base-input
+          <unnnic-input
             :label="$t('WhatsApp.templates.form_field.button_text')"
             :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
             :disabled="disableInputs"
-            :value="currentButtons[index].text"
+            :modelValue="currentButtons[index].text"
             :maxlength="25"
             :replaceRegex="EMOJI_REGEX"
-            @input="handleActionInput($event, 'text', index)"
+            @update:modelValue="handleActionInput($event, 'text', index)"
           />
-
           <div
             v-if="currentButtons[index].button_type === 'PHONE_NUMBER'"
             class="form-tab-content-buttons__call-actions--inline"
           >
-            <unnnic-select
+            <div
               :class="{
                 'form-tab-content-buttons__call-actions__country-select': true,
                 'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
               }"
-              :key="currentButtons[index].button_type"
-              :label="$t('WhatsApp.templates.form_field.country')"
-              :disabled="disableInputs"
-              :value="currentButtons[index].country_code"
-              :search="true"
-              @input="handleCountryCodeSelection($event, index)"
             >
-              <option
-                v-for="option in countryOptions"
-                :key="option.value"
-                :value="option.value"
-                :label="`${option.text} +${getCountryCallingCode(option.text)}`"
-              >
-                {{ option.text }}
-              </option>
-            </unnnic-select>
+              <unnnic-label :label="$t('WhatsApp.templates.form_field.country')" />
+              <unnnic-select-smart
+                :key="currentButtons[index].button_type"
+                :disabled="disableInputs"
+                :options="countryOptions"
+                :modelValue="currentCountryCode"
+                :search="true"
+                @update:modelValue="handleCountryCodeSelection($event, index)"
+              />
+            </div>
 
             <unnnic-input
               class="form-tab-content-buttons__call-actions__number-input"
               :label="$t('WhatsApp.templates.form_field.phone_number')"
               :placeholder="$t('WhatsApp.templates.form_field.phone_number_placeholder')"
               :disabled="disableInputs"
-              :value="currentButtons[index].phone_number"
-              @input="handleActionInput($event, 'phone_number', index)"
+              :modelValue="phoneNumber"
+              @update:modelValue="handleActionInput($event, 'phone_number', index)"
               :maxlength="20"
             />
           </div>
@@ -175,8 +168,8 @@
               :label="$t('WhatsApp.templates.form_field.website_url')"
               :placeholder="$t('WhatsApp.templates.form_field.url_placeholder')"
               :disabled="disableInputs"
-              :value="currentButtons[index].url"
-              @input="handleActionInput($event, 'url', index)"
+              :modelValue="url"
+              @update:modelValue="handleActionInput($event, 'url', index)"
               :maxlength="2000"
               @focus="handleUrlFocus"
               @blur="handleUrlBlur"
@@ -201,14 +194,13 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
   import { countVariables } from '@/utils/countTemplateVariables.js';
-  import BaseInput from '../BaseInput/index.vue';
 
   export default {
     name: 'FormTabContentButtons',
-    components: { BaseInput },
     props: {
       disableInputs: {
         type: Boolean,
@@ -218,34 +210,39 @@
     data() {
       return {
         EMOJI_REGEX: /\p{Emoji_Presentation}/gu,
+        currentButtonType: [],
+        currentButtonsSelect: [],
+        currentCountryCode: [],
+        phoneNumber: '',
+        url: '',
         buttonOptions: [
           {
             value: '',
-            text: this.$t('WhatsApp.templates.button_options.none'),
+            label: this.$t('WhatsApp.templates.button_options.none'),
           },
           {
             value: 'quick_reply',
-            text: this.$t('WhatsApp.templates.button_options.quick_reply'),
+            label: this.$t('WhatsApp.templates.button_options.quick_reply'),
           },
           {
             value: 'call_to_action',
-            text: this.$t('WhatsApp.templates.button_options.call_to_action'),
+            label: this.$t('WhatsApp.templates.button_options.call_to_action'),
           },
         ],
         callToActionOptions: [
           {
             value: 'PHONE_NUMBER',
-            text: this.$t('WhatsApp.templates.call_to_action_options.call_phone_number'),
+            label: this.$t('WhatsApp.templates.call_to_action_options.call_phone_number'),
           },
           {
             value: 'URL',
-            text: this.$t('WhatsApp.templates.call_to_action_options.visit_website'),
+            label: this.$t('WhatsApp.templates.call_to_action_options.visit_website'),
           },
         ],
         countryOptions: getCountries().map((country) => {
           return {
             value: country,
-            text: country,
+            label: country,
           };
         }),
 
@@ -257,7 +254,7 @@
       };
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       buttonsType() {
         if (!this.templateTranslationCurrentForm.buttons?.length) {
           return '';
@@ -301,14 +298,15 @@
         return hasIssues;
       },
       handleButtonTypeChange(event) {
-        if (event === this.buttonsType) {
+        this.currentButtonType = event;
+        if (event[0].value === this.buttonsType) {
           return;
         }
 
         this.buttons = [];
-        if (event === 'quick_reply') {
+        if (event[0].value === 'quick_reply') {
           this.buttons = [{ button_type: 'QUICK_REPLY', text: '' }];
-        } else if (event === 'call_to_action') {
+        } else if (event[0].value === 'call_to_action') {
           this.buttons = [
             { button_type: 'PHONE_NUMBER', country_code: 'BR', country_calling_code: '55' },
           ];
@@ -320,7 +318,7 @@
           fieldName: 'buttons',
           fieldValue: [...this.buttons],
         });
-        this.$emit('input-change', { fieldName: 'buttonsType', fieldValue: event });
+        this.$emit('input-change', { fieldName: 'buttonsType', fieldValue: event[0].value });
       },
       handleRepliesInput(event, index) {
         if (countVariables(event) > 0) {
@@ -328,7 +326,6 @@
         } else {
           this.errors[index] = null;
         }
-
         this.buttons[index].text = event;
         this.$emit('input-change', {
           fieldName: 'buttons',
@@ -337,18 +334,19 @@
         });
       },
       handleCallToActionTypeChange(event, index) {
+        this.currentButtonsSelect = event;
         if (
           this.buttons.length === this.maxActionButtons &&
           this.buttons[index]?.button_type &&
-          this.buttons[index].button_type !== event
+          this.buttons[index].button_type !== event[0].value
         ) {
           const indexToSwitch = this.buttons.length - index - 1;
           const currentValue = this.buttons[index];
           this.buttons[index] = this.buttons[indexToSwitch];
           this.buttons[indexToSwitch] = currentValue;
         } else {
-          const result = { button_type: event };
-          event === 'URL' ? null : (result.country_code = 'BR');
+          const result = { button_type: event[0].value };
+          event[0].value === 'URL' ? null : (result.country_code = 'BR');
           this.buttons[index] = result;
         }
 
@@ -358,6 +356,11 @@
         });
       },
       handleActionInput(event, inputName, index) {
+        if (inputName === 'phone_number') {
+          this.phoneNumber = event;
+        } else if (inputName === 'url') {
+          this.url = event;
+        }
         if (countVariables(event) > 0) {
           this.errors[index] = this.$t('WhatsApp.templates.form_field.error_has_variable');
         } else {
@@ -372,8 +375,9 @@
         });
       },
       handleCountryCodeSelection(event, index) {
-        this.buttons[index]['country_code'] = event;
-        this.buttons[index]['country_calling_code'] = getCountryCallingCode(event);
+        this.currentCountryCode = event;
+        this.buttons[index]['country_code'] = event[0].value;
+        this.buttons[index]['country_calling_code'] = getCountryCallingCode(event[0].value);
         this.$emit('input-change', {
           fieldName: 'buttons',
           fieldValue: [...this.buttons],
@@ -387,9 +391,9 @@
         });
       },
       addButton() {
-        if (this.buttonsType === 'quick_reply') {
+        if (this.currentButtonType === 'quick_reply') {
           this.buttons.push({ button_type: 'QUICK_REPLY', text: '' });
-        } else if (this.buttons[0].button_type === 'PHONE_NUMBER') {
+        } else if (this.buttons[0].button_type === 'URL') {
           this.buttons.push({ button_type: 'URL' });
         } else {
           this.buttons.push({ button_type: 'PHONE_NUMBER', country_code: 'BR' });

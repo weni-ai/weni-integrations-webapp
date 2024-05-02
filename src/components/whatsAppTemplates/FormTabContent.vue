@@ -6,8 +6,8 @@
           class="form-tab-content__input--name"
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
-          :value="templateForm.name"
-          @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
+          :modelValue="templateForm.name"
+          @update:modelValue="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
           @keyup="formatTemplateName"
           @keydown="preventTemplateName"
           :label="$t('WhatsApp.templates.form_field.name')"
@@ -26,31 +26,22 @@
           :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
           :hideGroupTitle="true"
           :label="$t('WhatsApp.templates.form_field.category')"
-          :groups="categoryGroups"
-          @change="handleCategoryChange"
+          v-model="categoryGroups"
+          @update:modelValue="handleCategoryChange"
         />
       </div>
 
       <div class="divider" />
-      <unnnic-select
-        :class="{ 'form-tab-content__selects__disabled': disableInputs }"
-        :key="languageKey"
-        :disabled="disableInputs"
-        :value="currentLanguage"
-        :search="true"
-        @input="handleLanguageSelection"
-        :label="$t('WhatsApp.templates.form_field.language')"
-        :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
-      >
-        <option
-          v-for="option in availableLanguages"
-          :key="option.value"
-          :value="option.value"
-          :label="option.text"
-        >
-          {{ option.text }}
-        </option>
-      </unnnic-select>
+      <div>
+        <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />
+        <unnnic-select-smart
+          :class="{ 'form-tab-content__selects__disabled': disableInputs }"
+          :disabled="disableInputs"
+          :options="availableLanguages"
+          :modelValue="templateLanguage"
+          @update:modelValue="handleLanguageSelection"
+        />
+      </div>
 
       <FormTabContentHeader
         class="form-tab-content__header"
@@ -98,8 +89,9 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import alert from '@/utils/call';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
@@ -142,10 +134,17 @@
     data() {
       return {
         languageKey: 0,
+        templateCategory: [],
+        templateLanguage: [
+          {
+            value: '',
+            label: '',
+          },
+        ],
         categoryGroups: [
           {
             title: this.$t('WhatsApp.templates.form_field.category'),
-            selected: -1,
+            selected: 0,
             items: [
               {
                 value: 'UTILITY',
@@ -192,8 +191,8 @@
       });
     },
     computed: {
-      ...mapGetters('WhatsApp', ['templateTranslationCurrentForm']),
-      ...mapState('WhatsApp', ['templateForm', 'whatsAppTemplates']),
+      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, ['templateForm', 'whatsAppTemplates']),
       disableInputs() {
         return !this.canEdit;
       },
@@ -224,7 +223,7 @@
       },
     },
     methods: {
-      ...mapActions('WhatsApp', ['updateTemplateForm', 'updateTemplateTranslationForm']),
+      ...mapActions(whatsapp_store, ['updateTemplateForm', 'updateTemplateTranslationForm']),
       preventTemplateName(event) {
         if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();
@@ -265,37 +264,31 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
-        const selectedLanguage = this.availableLanguages.find((item) => item.value === value);
+        if (this.templateLanguage === value) return;
+        this.templateLanguage = value;
+        const selectedLanguage = this.availableLanguages.find(
+          (item) => item.value === value[0].value,
+        );
 
         if (!selectedLanguage) {
-          unnnicCallAlert({
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
-            seconds: 6,
           });
           return;
         }
 
         if (
-          selectedLanguage.value !== this.templateTranslationCurrentForm.language &&
-          this.removeLanguages.includes(selectedLanguage.text)
+          selectedLanguage.value !== this.templateTranslationCurrentForm?.language &&
+          this.removeLanguages.includes(selectedLanguage.label)
         ) {
-          unnnicCallAlert({
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
-            seconds: 6,
           });
           return;
         }
@@ -305,7 +298,7 @@
           fieldName: 'language',
           fieldValue: selectedLanguage.value,
         });
-        this.$emit('language-change', selectedLanguage.text);
+        this.$emit('language-change', selectedLanguage.label);
         this.languageKey += 1;
       },
       closeEdit() {
@@ -324,14 +317,10 @@
         }
 
         if (!validFields) {
-          unnnicCallAlert({
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.invalid_fields'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });
