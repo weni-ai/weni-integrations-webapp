@@ -42,7 +42,7 @@
     </div>
     <div class="whatsapp-catalog-list__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination v-model="page" :max="pageCount" :show="5" />
+      <unnnic-pagination :value="page" @input="onPageChange" :max="pageCount" :show="5" />
     </div>
     <unnnic-modal-next
       v-if="openModal"
@@ -84,7 +84,8 @@
   import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
   import { mapActions, mapState } from 'pinia';
   import debounce from 'lodash.debounce';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
@@ -164,7 +165,14 @@
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
 
         if (this.errorWhatsAppCloudCatalogs) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
               title: this.$t('general.error'),
@@ -191,7 +199,14 @@
         await this.disableWhatsAppCloudCatalogs(data);
 
         if (this.errorDisableCatalog) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.catalog.error.disable_catalog'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.disable_catalog'),
               title: this.$t('general.error'),
@@ -228,7 +243,14 @@
         await this.enableWhatsAppCloudCatalogs(data);
 
         if (this.errorEnableCatalog) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.catalog.error.enable_catalog'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.enable_catalog'),
               title: this.$t('general.error'),
@@ -265,7 +287,14 @@
         await this.toggleCartVisibility(data);
 
         if (this.errorToggleCartVisibility) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
               title: this.$t('general.error'),
@@ -291,6 +320,9 @@
             catalogName,
           },
         });
+      },
+      onPageChange(value) {
+        this.currentPage = value;
       },
     },
     watch: {
