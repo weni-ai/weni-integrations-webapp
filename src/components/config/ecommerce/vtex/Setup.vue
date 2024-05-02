@@ -177,7 +177,6 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
@@ -305,42 +304,19 @@
       },
       async copyWebhookUrl() {
         navigator.clipboard.writeText(this.webhookUrl);
-
-        // unnnicCallAlert({
-        //   props: {
-        //     text: this.$t('apps.config.copy_success'),
-        //     type: 'success',
-        //   },
-        //   seconds: 3,
-        // });
         alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 3,
         });
       },
       callModal({ text, type }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text: text,
-        //     type: type,
-        //   },
-        //   seconds: 6,
-        // });
         alert.callAlert({
           props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            text,
+            type,
           },
           seconds: 6,
         });

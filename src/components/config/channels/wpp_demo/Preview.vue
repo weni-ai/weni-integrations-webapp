@@ -52,7 +52,6 @@
 </template>
 
 <script>
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
 
   export default {
@@ -82,22 +81,10 @@
       /* istanbul ignore next */
       copyUrl() {
         navigator.clipboard.writeText(this.url);
-
-        // unnnicCallAlert({
-        //   props: {
-        //     text: this.$t('apps.config.copy_success'),
-        //     type: 'success',
-        //   },
-        //   seconds: 3,
-        // });
         alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 3,
         });

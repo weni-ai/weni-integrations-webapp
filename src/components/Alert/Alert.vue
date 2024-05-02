@@ -1,6 +1,6 @@
 <template>
   <div v-if="version === '1.0'" :class="['unnnic-alert', `unnnic-alert-position--${position}`]">
-    <unnnic-icon :icon="icon" :scheme="scheme" size="sm" />
+    <unnnic-icon-svg :icon="icon" :scheme="scheme" size="sm" />
     <div class="unnnic-alert__content">
       <div class="unnnic-alert__title">
         {{ title.toUpperCase() }}
@@ -12,7 +12,14 @@
     <div v-if="closeText" class="unnnic-alert__close-text unnnic--clickable" @click="onClose()">
       {{ closeText.toUpperCase() }}
     </div>
-    <unnnic-icon v-else clickable icon="close" @click="onClose" />
+    <unnnic-icon-svg
+      v-else
+      clickable
+      icon="close-1"
+      scheme="brand-sec"
+      size="xs"
+      @click="onClose"
+    />
   </div>
 
   <component

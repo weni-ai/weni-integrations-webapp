@@ -92,7 +92,6 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import alert from '@/utils/call';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
@@ -275,11 +274,7 @@
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
           });
           return;
@@ -292,11 +287,7 @@
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
           });
           return;
@@ -326,25 +317,10 @@
         }
 
         if (!validFields) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.templates.error.invalid_fields'),
-          //     title: this.$t('general.error'),
-          //     icon: 'alert-circle-1-1',
-          //     scheme: 'feedback-red',
-          //     position: 'bottom-right',
-          //     closeText: this.$t('general.Close'),
-          //   },
-          //   seconds: 6,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.invalid_fields'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });

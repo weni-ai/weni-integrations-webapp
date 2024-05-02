@@ -49,7 +49,6 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
@@ -661,41 +660,19 @@
         }
       },
       callErrorModal({ text }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text,
-        //     type: 'error',
-        //   },
-        //   seconds: 8,
-        // });
         alert.callAlert({
           props: {
             text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 8,
         });
       },
       callSuccessModal({ text }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text,
-        //     type: 'success',
-        //   },
-        //   seconds: 8,
-        // });
         alert.callAlert({
           props: {
             text,
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 8,
         });

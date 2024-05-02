@@ -20,7 +20,7 @@
       </a>
 
       <div class="alert__close" @click="emitClose">
-        <unnnic-icon icon="close" size="sm" scheme="neutral-white" />
+        <unnnic-icon-svg icon="close" size="sm" scheme="neutral-white" />
       </div>
     </div>
   </div>
