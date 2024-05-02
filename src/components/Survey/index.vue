@@ -38,8 +38,10 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
+  import { survey_store } from '@/stores/modules/survey.store';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
 
   export default {
     name: 'Survey',
@@ -50,7 +52,7 @@
       };
     },
     computed: {
-      ...mapState('survey', [
+      ...mapState(survey_store, [
         'surveyStatus',
         'loadingSurveyAnswer',
         'errorSurveyAnswer',
@@ -61,7 +63,7 @@
       this.isOpen = this.surveyStatus === 'TO_ANSWER';
     },
     methods: {
-      ...mapActions('survey', ['setSurveyStatus', 'submitSurveyAnswer']),
+      ...mapActions(survey_store, ['setSurveyStatus', 'submitSurveyAnswer']),
       closeSurvey() {
         this.isOpen = false;
         this.setSurveyStatus({ status: 'CLOSED' });
@@ -75,7 +77,7 @@
 
         if (this.errorSurveyAnswer) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`survey.error_submit_answer`),
           });
           return;
@@ -86,7 +88,7 @@
         this.answer = '';
 
         this.callModal({
-          type: 'Success',
+          type: 'success',
           text: this.$t(`survey.success_submit_answer`),
         });
       },
@@ -98,7 +100,14 @@
         }
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: type,
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
