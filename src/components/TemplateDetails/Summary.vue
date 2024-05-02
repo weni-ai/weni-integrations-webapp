@@ -63,8 +63,10 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex';
+  import { mapState, mapActions } from 'pinia';
+  import { insights_store } from '@/stores/modules/insights.store';
   export default {
+    // eslint-disable-next-line vue/no-reserved-component-names
     name: 'Summary',
     mounted() {
       this.fetchTemplateAnalyticsWeek();
@@ -75,11 +77,7 @@
       };
     },
     computed: {
-      ...mapState({
-        templateAnalytics: (state) => state.insights.templateAnalytics,
-        appUuid: (state) => state.insights.appUuid,
-        selectedTemplate: (state) => state.insights.selectedTemplate,
-      }),
+      ...mapState(insights_store, ['templateAnalytics', 'appUuid', 'selectedTemplate']),
       weekValues() {
         return (
           this.templateAnalytics?.grand_totals || {
@@ -91,7 +89,7 @@
       },
     },
     methods: {
-      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates']),
+      ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates']),
       fetchTemplateAnalyticsWeek() {
         const params = {
           app_uuid: this.appUuid,
