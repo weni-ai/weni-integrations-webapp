@@ -36,11 +36,9 @@
         <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />
         <unnnic-select-smart
           :class="{ 'form-tab-content__selects__disabled': disableInputs }"
-          :key="languageKey"
           :disabled="disableInputs"
           :options="availableLanguages"
           :modelValue="templateLanguage"
-          :search="true"
           @update:modelValue="handleLanguageSelection"
         />
       </div>
@@ -267,23 +265,13 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
+        if (this.templateLanguage === value) return;
         this.templateLanguage = value;
         const selectedLanguage = this.availableLanguages.find(
           (item) => item.value === value[0].value,
         );
 
         if (!selectedLanguage) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.templates.error.unexpected_language'),
-          //     title: this.$t('general.error'),
-          //     icon: 'alert-circle-1-1',
-          //     scheme: 'feedback-red',
-          //     position: 'top-right',
-          //     closeText: this.$t('general.Close'),
-          //   },
-          //   seconds: 6,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
@@ -301,17 +289,6 @@
           selectedLanguage.value !== this.templateTranslationCurrentForm?.language &&
           this.removeLanguages.includes(selectedLanguage.label)
         ) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.templates.error.language_already_exists'),
-          //     title: this.$t('general.error'),
-          //     icon: 'alert-circle-1-1',
-          //     scheme: 'feedback-red',
-          //     position: 'top-right',
-          //     closeText: this.$t('general.Close'),
-          //   },
-          //   seconds: 6,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
