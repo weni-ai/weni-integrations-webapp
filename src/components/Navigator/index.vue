@@ -32,7 +32,7 @@
   .navigator {
     display: flex;
 
-    .navigator__container__divider {
+    &__container__divider {
       display: flex;
       height: auto;
       align-items: center;
