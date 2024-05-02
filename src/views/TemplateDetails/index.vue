@@ -20,14 +20,12 @@
     <!-- Tabs -->
     <div class="wpp_insights__tabs">
       <unnnic-tab initialTab="first" :tabs="['first', 'second']">
-        <template slot="tab-head-first">{{
-          $t('WhatsApp.template_details.summary.title')
-        }}</template>
-        <template slot="tab-panel-first">
+        <template #tab-head-first>{{ $t('WhatsApp.template_details.summary.title') }}</template>
+        <template #tab-panel-first>
           <Summary />
         </template>
-        <template slot="tab-head-second">{{ $t('WhatsApp.insights.insights') }}</template>
-        <template slot="tab-panel-second">
+        <template #tab-head-second>{{ $t('WhatsApp.insights.insights') }}</template>
+        <template #tab-panel-second>
           <Insights />
         </template>
       </unnnic-tab>
@@ -38,11 +36,13 @@
 <script>
   import Insights from '../Insights/index.vue';
   import Summary from '../../components/TemplateDetails/Summary.vue';
-  import { mapState } from 'vuex';
+  import { mapState } from 'pinia';
+  import { insights_store } from '@/stores/modules/insights.store';
   export default {
     name: 'AppDetails',
     components: {
       Insights,
+      // eslint-disable-next-line vue/no-reserved-component-names
       Summary,
     },
     data() {
@@ -52,10 +52,7 @@
       };
     },
     computed: {
-      ...mapState({
-        selectedTemplate: (state) => state.insights.selectedTemplate,
-        app_uuid: (state) => state.insights.appUuid,
-      }),
+      ...mapState(insights_store, ['selectedTemplate', 'app_uuid']),
     },
     methods: {
       redirectTo(crumb) {
@@ -76,5 +73,5 @@
   };
 </script>
 <style lang="scss">
-  @import './styles.scss';
+  @import './styles';
 </style>

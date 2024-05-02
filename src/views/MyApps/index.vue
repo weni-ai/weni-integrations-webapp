@@ -58,8 +58,11 @@
 <script>
   import AppGrid from '@/components/AppGrid/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
-  import { mapActions, mapState } from 'vuex';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
+  import { mapState, mapActions } from 'pinia';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'Apps',
@@ -72,27 +75,21 @@
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
-
-      this.$root.$on('updateGrid', () => {
-        this.fetchCategories();
-      });
     },
     /* istanbul ignore next */
     beforeDestroy() {
       this.$root.$off('updateGrid');
     },
     computed: {
-      ...mapState({
-        project: (state) => state.auth.project,
-      }),
-      ...mapState({
-        configuredApps: (state) => state.myApps.configuredApps,
-        loadingConfiguredApps: (state) => state.myApps.loadingConfiguredApps,
-        errorConfiguredApps: (state) => state.myApps.errorConfiguredApps,
-        installedApps: (state) => state.myApps.installedApps,
-        loadingInstalledApps: (state) => state.myApps.loadingInstalledApps,
-        errorInstalledApps: (state) => state.myApps.errorInstalledApps,
-      }),
+      ...mapState(auth_store, ['project']),
+      ...mapState(my_apps, [
+        'configuredApps',
+        'errorConfiguredApps',
+        'errorConfiguredApps',
+        'installedApps',
+        'loadingInstalledApps',
+        'errorInstalledApps',
+      ]),
       hasApps: function () {
         if (this.loadingConfiguredApps || this.loadingInstalledApps) {
           return true;
@@ -131,7 +128,7 @@
       },
     },
     methods: {
-      ...mapActions(['getConfiguredApps', 'getInstalledApps']),
+      ...mapActions(my_apps, ['getConfiguredApps', 'getInstalledApps']),
       filterByName(appList, search) {
         return appList.filter((app) => {
           const appMainName = app.generic ? app.config.channel_name : app.name;
@@ -169,7 +166,14 @@
         this.$router.replace('/apps/discovery');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        // unnnicCallAlert({
+        //   props: {
+        //     text: text,
+        //     type: 'error',
+        //   },
+        //   seconds: 6,
+        // });
+        alert.callAlert({
           props: {
             text: text,
             title: this.$t('general.error'),
@@ -186,5 +190,5 @@
 </script>
 
 <style lang="scss" scoped>
-  @import './styles.scss';
+  @import './styles';
 </style>

@@ -38,10 +38,10 @@
         </div>
         <div class="wpp_insights__filters__time__select">
           <unnnic-input-date-picker
-            :value="period"
+            v-model="period"
             size="md"
             format="MM-DD-YYYY"
-            @changed="setPeriod"
+            @submit="setPeriod"
           />
         </div>
       </div>
@@ -89,22 +89,22 @@
           <unnnic-chart-multi-line
             :data="getChartSent"
             :title="$t('WhatsApp.insights.messages.sent')"
-            v-if="!hash"
+            v-if="!hash && getChartSent.length"
           />
           <unnnic-chart-multi-line
             :data="getChartDelivered"
             :title="$t('WhatsApp.insights.messages.delivered')"
-            v-if="!hash"
+            v-if="!hash && getChartDelivered.length"
           />
           <unnnic-chart-multi-line
             :data="getChartRead"
             :title="$t('WhatsApp.insights.messages.read')"
-            v-if="!hash"
+            v-if="!hash && getChartRead.length"
           />
           <unnnic-chart-multi-line
             :data="getChartByDay.data"
             :title="$t('WhatsApp.insights.messages.received')"
-            v-if="!!hash"
+            v-if="!!hash && getChartByDay.data.length"
             :fixedMaxValue="getChartByDay.maxValue"
           />
         </div>
@@ -154,21 +154,10 @@
 </template>
 
 <script>
-  import {
-    unnnicBreadcrumb,
-    unnnicButton,
-    unnnicModal,
-    unnnicChartMultiLine,
-  } from '@weni/unnnic-system';
-  import { mapState, mapActions } from 'vuex';
+  import { insights_store } from '@/stores/modules/insights.store';
+  import { mapState, mapActions } from 'pinia';
   export default {
     name: 'Insights',
-    components: {
-      unnnicBreadcrumb,
-      unnnicButton,
-      unnnicModal,
-      unnnicChartMultiLine,
-    },
     data() {
       return {
         showModal: false,
@@ -195,19 +184,19 @@
       this.fetchTemplateAnalytics();
     },
     computed: {
-      ...mapState({
-        app_uuid: (state) => state.insights.appUuid,
-        errorTemplateAnalytics: (state) => state.insights.errorTemplateAnalytics,
-        errorTemplates: (state) => state.insights.errorTemplates,
-        templateAnalytics: (state) => state.insights.templateAnalytics,
-        selectedTemplate: (state) => state.insights.selectedTemplate,
-        templates: (state) => state.insights.templates.results?.map((item) => item),
-        isActive: (state) => !!state.insights.isActive,
-      }),
+      ...mapState(insights_store, [
+        'appUuid',
+        'errorTemplateAnalytics',
+        'errorTemplates',
+        'templateAnalytics',
+        'selectedTemplate',
+        'templates',
+        'isActive',
+      ]),
       modelOptions() {
-        if (this.templates?.length > 0) {
+        if (this.templates?.count > 0) {
           const templateList = [];
-          this.templates.forEach((item) => {
+          this.templates.results.forEach((item) => {
             item.translations.forEach((translation) => {
               const obj = {
                 value: translation.message_template_id,
@@ -264,11 +253,11 @@
       },
     },
     methods: {
-      ...mapActions('insights', ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
+      ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
-          app_uuid: this.app_uuid,
+          app_uuid: this.appUuid,
           filters: {
             start: this.period.start,
             end: this.period.end,
@@ -277,8 +266,8 @@
         };
         this.getTemplateAnalytics(params);
       },
-      fetchTemplates() {
-        this.getTemplates({ app_uuid: this.app_uuid });
+      async fetchTemplates() {
+        await this.getTemplates({ app_uuid: this.appUuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -291,7 +280,7 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
-        const data = this.templateAnalytics?.data.map((template) => {
+        const data = this.templateAnalytics?.data?.map((template) => {
           return {
             title: template.template_name || template.template_id,
             data: template.dates.map((item) => {
@@ -314,12 +303,12 @@
       },
       async activeTemplate() {
         this.showModal = false;
-        await this.setActiveProject({ app_uuid: this.app_uuid });
+        await this.setActiveProject({ appUuid: this.appUuid });
       },
     },
   };
 </script>
 
 <style lang="scss" scoped>
-  @import './styles.scss';
+  @import './styles';
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
     <navigator class="navigator" :routes="navigatorHistory" />
-
     <div class="app-details" v-if="!loadingCurrentAppType">
       <app-images-banner
         class="app-details__section"
@@ -36,12 +35,12 @@
   import AppImagesBanner from '../../components/app/AppImagesBanner.vue';
   import AppDetailsHeader from '../../components/app/AppDetailsHeader.vue';
   import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
-  // import AppDetailsRecommended from '../components/app/AppDetailsRecommended.vue';
   import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
   import skeletonLoading from '../loadings/AppDetails.vue';
-  import { unnnicCallAlert } from '@weni/unnnic-system';
-
-  import { mapActions, mapState } from 'vuex';
+  // import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { mapActions, mapState } from 'pinia';
   import millify from 'millify';
 
   export default {
@@ -67,7 +66,7 @@
       await this.fetchApp(this.$route.params.appCode);
     },
     methods: {
-      ...mapActions(['getAppType', 'postRating']),
+      ...mapActions(app_type, ['getAppType', 'postRating']),
       async fetchApp(appCode, shouldLoad = true) {
         await this.getAppType({ code: appCode, shouldLoad });
       },
@@ -85,7 +84,14 @@
         await this.postRating(data);
 
         if (this.errorPostRating) {
-          unnnicCallAlert({
+          // unnnicCallAlert({
+          //   props: {
+          //     text: this.$t('apps.details.status_error'),
+          //     type: 'error',
+          //   },
+          //   seconds: 8,
+          // });
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               title: this.$t('general.error'),
@@ -106,11 +112,7 @@
       },
     },
     computed: {
-      ...mapState({
-        currentAppType: (state) => state.appType.currentAppType,
-        loadingCurrentAppType: (state) => state.appType.loadingCurrentAppType,
-        errorPostRating: (state) => state.appType.errorPostRating,
-      }),
+      ...mapState(app_type, ['currentAppType', 'loadingCurrentAppType', 'appType.errorPostRating']),
       appRatingString() {
         return this.currentAppType?.rating?.average
           ? parseFloat(this.currentAppType.rating.average.toFixed(2)).toString()
@@ -162,5 +164,5 @@
 </script>
 
 <style scoped lang="scss">
-  @import './styles.scss';
+  @import './styles';
 </style>

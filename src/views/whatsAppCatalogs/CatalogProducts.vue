@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import ProductList from '@/components/whatsAppCatalogs/ProductList';
+  import ProductList from '@/components/whatsAppCatalogs/ProductList.vue';
 
   export default {
     name: 'CatalogProducts',
@@ -19,10 +19,10 @@
   };
 </script>
 
-<styles scoped lang="scss">
-.whatsapp-catalog-products {
-  display: flex;
-  overflow: hidden;
-  height: 100%;
-}
-</styles>
+<style scoped lang="scss">
+  .whatsapp-catalog-products {
+    display: flex;
+    overflow: hidden;
+    height: 100%;
+  }
+</style>
