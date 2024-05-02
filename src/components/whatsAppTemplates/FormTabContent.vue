@@ -26,8 +26,7 @@
           :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
           :hideGroupTitle="true"
           :label="$t('WhatsApp.templates.form_field.category')"
-          :groups="categoryGroups"
-          :modelValue="templateCategory"
+          v-model="categoryGroups"
           @update:modelValue="handleCategoryChange"
         />
       </div>
@@ -40,11 +39,9 @@
           :key="languageKey"
           :disabled="disableInputs"
           :options="availableLanguages"
-          :modelValue="currentLanguage"
+          :modelValue="templateLanguage"
           :search="true"
           @update:modelValue="handleLanguageSelection"
-          :label="$t('WhatsApp.templates.form_field.language')"
-          :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
         />
       </div>
 
@@ -141,6 +138,12 @@
       return {
         languageKey: 0,
         templateCategory: [],
+        templateLanguage: [
+          {
+            value: '',
+            label: '',
+          },
+        ],
         categoryGroups: [
           {
             title: this.$t('WhatsApp.templates.form_field.category'),
@@ -264,6 +267,7 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
+        this.templateLanguage = value;
         const selectedLanguage = this.availableLanguages.find(
           (item) => item.value === value[0].value,
         );
@@ -326,7 +330,7 @@
           fieldName: 'language',
           fieldValue: selectedLanguage.value,
         });
-        this.$emit('language-change', selectedLanguage.text);
+        this.$emit('language-change', selectedLanguage.label);
         this.languageKey += 1;
       },
       closeEdit() {
