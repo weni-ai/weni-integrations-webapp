@@ -28,7 +28,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import './styles.scss';
+  @import './styles';
   .navigator {
     display: flex;
 
