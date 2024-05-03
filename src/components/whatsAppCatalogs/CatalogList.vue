@@ -84,7 +84,6 @@
   import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
   import { mapActions, mapState } from 'pinia';
   import debounce from 'lodash.debounce';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
@@ -165,21 +164,10 @@
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
 
         if (this.errorWhatsAppCloudCatalogs) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
-          //     type: 'error',
-          //   },
-          //   seconds: 8,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -199,21 +187,10 @@
         await this.disableWhatsAppCloudCatalogs(data);
 
         if (this.errorDisableCatalog) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.catalog.error.disable_catalog'),
-          //     type: 'error',
-          //   },
-          //   seconds: 8,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.disable_catalog'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -243,21 +220,10 @@
         await this.enableWhatsAppCloudCatalogs(data);
 
         if (this.errorEnableCatalog) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.catalog.error.enable_catalog'),
-          //     type: 'error',
-          //   },
-          //   seconds: 8,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.enable_catalog'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -287,21 +253,10 @@
         await this.toggleCartVisibility(data);
 
         if (this.errorToggleCartVisibility) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
-          //     type: 'error',
-          //   },
-          //   seconds: 8,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
