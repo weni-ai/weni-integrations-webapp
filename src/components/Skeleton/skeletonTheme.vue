@@ -62,11 +62,6 @@
         default: undefined,
       },
     },
-    // data() {
-    //   return {
-    //     themeStyle: { ...SkeletonStyle },
-    //   };
-    // },
     mounted() {
       const { color, highlight, duration } = this;
       this.themeStyle.backgroundColor = color;

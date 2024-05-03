@@ -118,7 +118,7 @@
     },
     async mounted() {
       await this.fetchData();
-      // this.headerScrollBehavior();
+      this.headerScrollBehavior();
     },
     computed: {
       ...mapState(whatsapp_store, [
@@ -144,18 +144,18 @@
       ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
       ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
-      // headerScrollBehavior() {
-      //   const tabHeader = document.getElementsByClassName('tab-content')[0];
-      //   if (tabHeader) {
-      //     tabHeader.addEventListener('wheel', (event) => {
-      //       event.preventDefault();
+      headerScrollBehavior() {
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+        if (tabHeader) {
+          tabHeader.addEventListener('wheel', (event) => {
+            event.preventDefault();
 
-      //       tabHeader.scrollBy({
-      //         left: event.deltaY < 0 ? -30 : 30,
-      //       });
-      //     });
-      //   }
-      // },
+            tabHeader.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          });
+        }
+      },
       closeConfig() {
         this.$emit('closeModal');
       },

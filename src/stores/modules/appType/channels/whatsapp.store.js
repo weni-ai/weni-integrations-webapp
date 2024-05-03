@@ -86,8 +86,9 @@ export const whatsapp_store = defineStore('whatsapp', {
     resetWppFetchResults() {
       this.fetchedContactInfo = false;
     },
-    resettemplateTranslationCurrentForm() {
-      this.templateTranslationCurrentForm = null;
+    resetTemplates() {
+      this.templateTranslationForms = null;
+      this.templateForm = null;
     },
     async fetchWppContactInfo({ code, appUuid }) {
       this.loadingContactInfo = true;
