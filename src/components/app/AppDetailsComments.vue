@@ -101,7 +101,7 @@
   import { mapActions, mapState } from 'pinia';
   import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
   import getRelativeTime from '../../utils/time.js';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import alert from '@/utils/call';
   import Avatar from 'vue-avatar';
 
   export default {
@@ -190,14 +190,10 @@
               throw new Error(this.errorListComments);
             }
           } catch (err) {
-            unnnicCallAlert({
+            alert.callAlert({
               props: {
                 text: this.$t('apps.details.status_error'),
-                title: this.$t('general.error'),
-                icon: 'check-circle-1-1',
-                scheme: 'feedback-red',
-                position: 'bottom-right',
-                closeText: this.$t('general.Close'),
+                type: 'error',
               },
               seconds: 3,
             });
@@ -229,26 +225,18 @@
             throw new Error(this.errorListComments);
           }
 
-          unnnicCallAlert({
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.comments.remove.status_text'),
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'success',
             },
             seconds: 3,
           });
         } catch (err) {
-          unnnicCallAlert({
+          alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 3,
           });
