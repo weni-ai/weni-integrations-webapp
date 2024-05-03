@@ -144,7 +144,7 @@
         categoryGroups: [
           {
             title: this.$t('WhatsApp.templates.form_field.category'),
-            selected: 0,
+            selected: -1,
             items: [
               {
                 value: 'UTILITY',
@@ -178,6 +178,25 @@
         },
       };
     },
+    beforeMount() {
+      if (this.templateTranslationCurrentForm?.language) {
+        this.templateLanguage = this.availableLanguages.filter(
+          (item) => item.value === this.templateTranslationCurrentForm?.language,
+        );
+      } else {
+        this.languagesList = this.availableLanguages;
+        this.languagesList.push({
+          value: 'select',
+          label: 'New Language',
+        });
+        this.templateLanguage = [
+          {
+            label: 'New Language',
+            value: 'select',
+          },
+        ];
+      }
+    },
     mounted() {
       const nativeNameInput = this.$refs.nameInput.$el.querySelector('input');
 
@@ -190,8 +209,15 @@
           .toLowerCase();
       });
     },
+    beforeUnmount() {
+      this.resetTemplates();
+    },
     computed: {
-      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      ...mapState(whatsapp_store, [
+        'templateTranslationCurrentForm',
+        'templateTranslationForms',
+        'templateTranslationSelectedForm',
+      ]),
       ...mapState(whatsapp_store, ['templateForm', 'whatsAppTemplates']),
       disableInputs() {
         return !this.canEdit;
@@ -223,7 +249,11 @@
       },
     },
     methods: {
-      ...mapActions(whatsapp_store, ['updateTemplateForm', 'updateTemplateTranslationForm']),
+      ...mapActions(whatsapp_store, [
+        'updateTemplateForm',
+        'updateTemplateTranslationForm',
+        'resetTemplates',
+      ]),
       preventTemplateName(event) {
         if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();
@@ -293,6 +323,7 @@
           return;
         }
 
+        if (this.templateTranslationCurrentForm?.uuid) return;
         this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName: 'language',
@@ -332,6 +363,16 @@
         }
       },
     },
+    watch: {
+      templateTranslationCurrentForm(newval) {
+        if (newval?.language !== this.templateLanguage) {
+          const selectedLanguage = this.availableLanguages.filter(
+            (item) => item.value === newval.language,
+          );
+          this.templateLanguage = selectedLanguage;
+        }
+      },
+    },
   };
 </script>
 
@@ -357,7 +398,6 @@
 
     &--inline {
       display: flex;
-      // flex: 1;
       gap: $unnnic-spacing-inline-sm;
     }
 

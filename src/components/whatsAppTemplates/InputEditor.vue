@@ -123,6 +123,7 @@
         font-family: $unnnic-font-family-primary;
         font-size: $unnnic-font-size-body-lg;
         color: $unnnic-color-neutral-cleanest;
+        padding-top: 20px;
       }
 
       ::v-deep {

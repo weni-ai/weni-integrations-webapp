@@ -93,9 +93,6 @@
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
       },
-      // headerText() {
-      //   return this.templateTranslationCurrentForm.header?.text || null;
-      // },
     },
     methods: {
       handleNewHeaderInput(event) {
