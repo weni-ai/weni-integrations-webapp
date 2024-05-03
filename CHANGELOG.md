@@ -1,3 +1,10 @@
+1.34.2
+----------
+`2024-04-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: add business management permission to fb login
+
 1.34.1
 ----------
 `2024-02-14 · 1 🐛`
