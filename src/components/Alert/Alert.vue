@@ -12,14 +12,7 @@
     <div v-if="closeText" class="unnnic-alert__close-text unnnic--clickable" @click="onClose()">
       {{ closeText.toUpperCase() }}
     </div>
-    <unnnic-icon-svg
-      v-else
-      clickable
-      icon="close-1"
-      scheme="brand-sec"
-      size="xs"
-      @click="onClose"
-    />
+    <unnnic-icon icon="close-1" scheme="white" size="xs" @click="onClose" />
   </div>
 
   <component
