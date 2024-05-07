@@ -28,11 +28,11 @@
 </script>
 
 <style scoped lang="scss">
-  @import './styles';
+  @import './styles.scss';
   .navigator {
     display: flex;
 
-    &__container__divider {
+    .navigator__container__divider {
       display: flex;
       height: auto;
       align-items: center;
