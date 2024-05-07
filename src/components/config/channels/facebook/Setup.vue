@@ -98,7 +98,6 @@
 
 <script>
   import axios from 'axios';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
@@ -128,8 +127,8 @@
         onLogin: false,
         loadingPages: false,
         appScopes: {
-          ig: 'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
-          fba: 'pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
+          ig: 'business_management,instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
+          fba: 'business_management,pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
         },
       };
     },
@@ -172,18 +171,18 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
-        const fbAppId = getEnv('VUE_APP_FACEBOOK_APP_ID');
+      startFacebookLogin() {
+        const fbAppId = getEnv('VITE_APP_FACEBOOK_APP_ID');
 
         if (!fbAppId) {
           return;
         }
 
         /* eslint-disable no-undef */
-        const loginCallback = async () => {
+        const loginCallback = () => {
           this.changeLoginState(true);
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse && response.authResponse.grantedScopes) {
                 const accessToken = response.authResponse.accessToken;
                 this.startPageSelectionStage(accessToken);
@@ -275,21 +274,10 @@
         this.$emit('closePopUp');
       },
       callModal({ text, type }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text: text,
-        //     type: type,
-        //   },
-        //   seconds: 6,
-        // });
         alert.callAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

@@ -151,23 +151,27 @@
       </div>
     </div>
 
-    <unnnic-button
-      ref="unnnic-vtex-modal-close-button"
-      slot="options"
-      type="tertiary"
-      @click="closePopUp"
-    >
-      {{ $t('general.Cancel') }}
-    </unnnic-button>
-    <unnnic-button
-      ref="unnnic-vtex-modal-setup-button"
-      slot="options"
-      type="primary"
-      @click="continueSetup"
-      :loading="loadingCreateApp"
-    >
-      {{ $t('general.continue') }}
-    </unnnic-button>
+    <div class="vtex-modal__buttons">
+      <unnnic-button
+        ref="unnnic-vtex-modal-close-button"
+        class="vtex-modal__buttons__button"
+        slot="options"
+        type="tertiary"
+        @click="closePopUp"
+      >
+        {{ $t('general.Cancel') }}
+      </unnnic-button>
+      <unnnic-button
+        ref="unnnic-vtex-modal-setup-button"
+        class="vtex-modal__buttons__button"
+        slot="options"
+        type="primary"
+        @click="continueSetup"
+        :loading="loadingCreateApp"
+      >
+        {{ $t('general.continue') }}
+      </unnnic-button>
+    </div>
   </unnnic-modal>
 </template>
 
@@ -177,7 +181,6 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
@@ -199,7 +202,7 @@
         apiDomain: '',
         whatsappChannels: [],
         selectedChannel: [],
-        loadingChannels: true,
+        loadingChannels: false,
         appKey: null,
         appToken: null,
         currentStep: 0,
@@ -215,12 +218,13 @@
       ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
       ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
       webhookUrl() {
-        const backendUrl = getEnv('VUE_APP_API_BASE_URL');
-        return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid}/products-update/api/notification/`;
+        const backendUrl = getEnv('VITE_APP_API_BASE_URL');
+        return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid.uuid}/products-update/api/notification/`;
       },
     },
     methods: {
-      ...mapActions(app_type, ['createApp', 'getConfiguredApps']),
+      ...mapActions(app_type, ['createApp']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['getVtexAppUuid']),
       closePopUp() {
         this.$emit('closePopUp');
@@ -251,10 +255,9 @@
             app_key: this.appKey.trim(),
             app_token: this.appToken.trim(),
             wpp_cloud_uuid: this.selectedChannel[0].value,
-            uuid: this.generatedVtexAppUuid,
+            uuid: this.generatedVtexAppUuid.uuid,
           },
         };
-
         await this.createApp(data);
 
         if (this.errorCreateApp) {
@@ -279,7 +282,7 @@
           project_uuid: this.project,
         };
         await this.getConfiguredApps({ params });
-
+        this.loadingChannels = false;
         if (this.errorConfiguredApps) {
           this.callModal({
             type: 'error',
@@ -300,47 +303,22 @@
         if (this.whatsappChannels.length === 1) {
           this.selectedChannel = [this.whatsappChannels[0]];
         }
-
-        this.loadingChannels = false;
       },
       async copyWebhookUrl() {
         navigator.clipboard.writeText(this.webhookUrl);
-
-        // unnnicCallAlert({
-        //   props: {
-        //     text: this.$t('apps.config.copy_success'),
-        //     type: 'success',
-        //   },
-        //   seconds: 3,
-        // });
         alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 3,
         });
       },
       callModal({ text, type }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text: text,
-        //     type: type,
-        //   },
-        //   seconds: 6,
-        // });
         alert.callAlert({
           props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            text,
+            type,
           },
           seconds: 6,
         });
@@ -509,6 +487,18 @@
             }
           }
         }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: center;
+      padding-top: $unnnic-spacing-md;
+      gap: $unnnic-spacing-md;
+
+      &__button {
+        display: flex;
+        width: 221px;
       }
     }
   }

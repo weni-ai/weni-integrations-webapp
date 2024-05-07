@@ -89,7 +89,6 @@
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { dataUrlToFile } from '@/utils/files';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
 
   export default {
@@ -119,7 +118,7 @@
     },
     async mounted() {
       await this.fetchData();
-      // this.headerScrollBehavior();
+      this.headerScrollBehavior();
     },
     computed: {
       ...mapState(whatsapp_store, [
@@ -145,18 +144,18 @@
       ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
       ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
-      // headerScrollBehavior() {
-      //   const tabHeader = document.getElementsByClassName('tab-content')[0];
-      //   if (tabHeader) {
-      //     tabHeader.addEventListener('wheel', (event) => {
-      //       event.preventDefault();
+      headerScrollBehavior() {
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+        if (tabHeader) {
+          tabHeader.addEventListener('wheel', (event) => {
+            event.preventDefault();
 
-      //       tabHeader.scrollBy({
-      //         left: event.deltaY < 0 ? -30 : 30,
-      //       });
-      //     });
-      //   }
-      // },
+            tabHeader.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          });
+        }
+      },
       closeConfig() {
         this.$emit('closeModal');
       },
@@ -169,21 +168,10 @@
           await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
-          // unnnicCallAlert({
-          //   props: {
-          //     text: this.$t('WhatsApp.config.error.data_fetch'),
-          //     type: 'error',
-          //   },
-          //   seconds: 8,
-          // });
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_fetch'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });

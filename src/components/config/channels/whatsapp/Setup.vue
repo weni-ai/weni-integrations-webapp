@@ -41,7 +41,6 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { auth_store } from '@/stores/modules/auth.store';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../..//utils/env';
@@ -79,16 +78,16 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
-        const fbAppId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID');
-        const configId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
+      startFacebookLogin() {
+        const fbAppId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID');
+        const configId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
 
         if (!fbAppId) {
           return;
         }
 
         /* eslint-disable no-undef */
-        const loginCallback = async () => {
+        const loginCallback = () => {
           this.changeLoginState(true);
 
           const sessionInfoListener = (event) => {
@@ -126,10 +125,10 @@
             });
 
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse) {
                 const code = response.authResponse.code;
-                await this.createChannel(code);
+                this.createChannel(code);
               } else {
                 console.log('User cancelled login or did not fully authorize.');
               }
@@ -172,21 +171,10 @@
         this.$emit('closePopUp');
       },
       callErrorModal({ text }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text: text,
-        //     type: 'error',
-        //   },
-        //   seconds: 6,
-        // });
         alert.callAlert({
           props: {
             text: text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 6,
         });
