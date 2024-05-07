@@ -59,7 +59,7 @@
         :apps="featuredApps"
       />
     </div>
-    <OnboardModal />
+    <!-- <OnboardModal /> -->
   </div>
 </template>
 
@@ -67,7 +67,7 @@
   import { insights_store } from '@/stores/modules/insights.store';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import AppGrid from '@/components/AppGrid/index.vue';
-  import OnboardModal from '@/components/OnboardModal/index.vue';
+  // import OnboardModal from '@/components/OnboardModal/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -78,7 +78,7 @@
     name: 'Discovery',
     components: {
       AppGrid,
-      OnboardModal,
+      // OnboardModal,
       EmptyApps,
     },
     data() {
