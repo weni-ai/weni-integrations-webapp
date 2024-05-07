@@ -16,7 +16,7 @@
             type="tertiary"
             size="small"
             :text="$t('general.exit')"
-            @click="closeSurvey"
+            @click.native="closeSurvey"
           />
 
           <unnnic-button
@@ -25,7 +25,7 @@
             size="small"
             :text="$t('general.send')"
             :loading="loadingSurveyAnswer"
-            @click="sendSurvey"
+            @click.native="sendSurvey"
           />
         </div>
       </div>
@@ -40,7 +40,6 @@
 <script>
   import { mapState, mapActions } from 'pinia';
   import { survey_store } from '@/stores/modules/survey.store';
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
 
   export default {
@@ -100,21 +99,10 @@
         }
       },
       callModal({ text, type }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text: text,
-        //     type: type,
-        //   },
-        //   seconds: 6,
-        // });
         alert.callAlert({
           props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            text,
+            type,
           },
           seconds: 6,
         });
