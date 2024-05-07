@@ -1,11 +1,9 @@
 2.0.0
 ----------
 `2024-05-07 · 1 🔧 `
+
 ### 🔧 Improvements
 - Refactor: Upgrade vue version to Vue 3.
-
-### 🐛 Bug fixes
-- Fix: add business management permission to fb login
 
 1.34.2
 ----------

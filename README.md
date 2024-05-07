@@ -22,7 +22,7 @@ Through Integrations, users of the Weni platform will be able to connect their c
 
 # Main Technologies
 
-- [Vue 2](https://v2.vuejs.org/)
+- [Vue 3](https://v3.vuejs.org/)
 - [Sass](https://sass-lang.com/)
 - [i18n](https://www.i18next.com/)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
@@ -32,7 +32,7 @@ Through Integrations, users of the Weni platform will be able to connect their c
 
 Before running the application, make sure you have installed the following tools on your machine:
 
-- [Node.js 14.x](https://nodejs.org/en)
+- [Node.js 18.x](https://nodejs.org/en)
 - [NPM](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/) (recommended)
 
 # Set up
@@ -64,13 +64,13 @@ Before running the application, make sure you have installed the following tools
  
 | Variable | Type | Default | Description |
 |--|--|--|--|
-| VUE_APP_API_BASE_URL | `string` | Empty | URN of the backend environment to API requests. Without slash at the end.
-| VUE_APP_WHATSAPP_FACEBOOK_APP_ID  | `string` | Empty | WhatsApp Facebook App identifier
-| VUE_APP_FACEBOOK_APP_ID  | `string` | Empty | Facebook App identifier
-| VUE_APP_LOGROCKET_ID  | `string` | Empty | LogRocket identifier
-| VUE_APP_HELPHERO_ID | `string` | Empty | HelpHero identifier
-| VUE_APP_PARENT_IFRAME_DOMAIN | `string` | Empty | Weni Webapp URL
-| VUE_APP_FLOWS_IFRAME_URL | `string` | Empty | Flows module URL
+| VITE_APP_API_BASE_URL | `string` | Empty | URN of the backend environment to API requests. Without slash at the end.
+| VITE_APP_WHATSAPP_FACEBOOK_APP_ID  | `string` | Empty | WhatsApp Facebook App identifier
+| VITE_APP_FACEBOOK_APP_ID  | `string` | Empty | Facebook App identifier
+| VITE_APP_LOGROCKET_ID  | `string` | Empty | LogRocket identifier
+| VITE_APP_HELPHERO_ID | `string` | Empty | HelpHero identifier
+| VITE_APP_PARENT_IFRAME_DOMAIN | `string` | Empty | Weni Webapp URL
+| VITE_APP_FLOWS_IFRAME_URL | `string` | Empty | Flows module URL
 
 # Development
 
@@ -87,7 +87,7 @@ After that, it will be available at http://localhost:8080.
 | Command | Description |
 |--|--|
 | yarn | Install dependencies
-| yarn serve | serve with hot reload at localhost:8080
+| yarn dev | serve with hot reload at localhost:5173
 | yarn build | Build for production with minification
 | yarn build --report | Build for production and view the bundle analyzer report
 | yarn translations:build | Build translations for production
