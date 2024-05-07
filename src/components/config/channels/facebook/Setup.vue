@@ -182,7 +182,7 @@
         const loginCallback = () => {
           this.changeLoginState(true);
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse && response.authResponse.grantedScopes) {
                 const accessToken = response.authResponse.accessToken;
                 this.startPageSelectionStage(accessToken);
