@@ -1,8 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`TableHeaderLoading should be rendered properly 1`] = `
-<div class="loading">
-  <unnnicskeletonloading-stub width="40px" height="40px"></unnnicskeletonloading-stub>
-  <unnnicskeletonloading-stub width="120px" height="40px"></unnnicskeletonloading-stub>
-</div>
-`;
