@@ -5,8 +5,10 @@ const resource = '/api/v1/apptypes';
 const templatesResource = '/api/v1/apps';
 
 export default {
-  fetchWppContactInfo(appCode, appUuid) {
-    return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/contact/`);
+  async fetchWppContactInfo(appCode, appUuid) {
+    return await request.$http
+      .get(`${resource}/${appCode}/apps/${appUuid}/contact/`)
+      .then((r) => r.data);
   },
   updateWppContactInfo(appCode, appUuid, payload) {
     return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/contact/`, payload);
@@ -26,15 +28,21 @@ export default {
   deleteWppProfilePhoto(appCode, appUuid) {
     return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/profile/`);
   },
-  getWhatsAppTemplates(appUuid, params) {
+  async getWhatsAppTemplates(appUuid, params) {
     const queryString = qs.stringify(params);
-    return request.$http.get(`${templatesResource}/${appUuid}/templates/?${queryString}`);
+    return await request.$http
+      .get(`${templatesResource}/${appUuid}/templates/?${queryString}`)
+      .then((r) => r.data);
   },
-  fetchTemplateData(appUuid, templateUuid) {
-    return request.$http.get(`${templatesResource}/${appUuid}/templates/${templateUuid}/`);
+  async fetchTemplateData(appUuid, templateUuid) {
+    return await request.$http
+      .get(`${templatesResource}/${appUuid}/templates/${templateUuid}/`)
+      .then((r) => r.data);
   },
-  fetchSelectLanguages(appUuid) {
-    return request.$http.get(`${templatesResource}/${appUuid}/templates/languages/`);
+  async fetchSelectLanguages(appUuid) {
+    return await request.$http
+      .get(`${templatesResource}/${appUuid}/templates/languages/`)
+      .then((r) => r.data);
   },
   createTemplate(appUuid, data) {
     return request.$http.post(`${templatesResource}/${appUuid}/templates/`, data);
