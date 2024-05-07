@@ -78,7 +78,7 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
+      startFacebookLogin() {
         const fbAppId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID');
         const configId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
 

@@ -171,7 +171,7 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
+      startFacebookLogin() {
         const fbAppId = getEnv('VITE_APP_FACEBOOK_APP_ID');
 
         if (!fbAppId) {
@@ -182,7 +182,7 @@
         const loginCallback = () => {
           this.changeLoginState(true);
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse && response.authResponse.grantedScopes) {
                 const accessToken = response.authResponse.accessToken;
                 this.startPageSelectionStage(accessToken);
