@@ -6,6 +6,7 @@
       scheme="feedback-yellow"
       modal-icon="alert-circle-1"
       @close="closeSampleModal"
+      @click.stop
     >
       <template #message>
         <div>

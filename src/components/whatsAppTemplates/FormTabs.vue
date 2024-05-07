@@ -11,7 +11,7 @@
       @change="handleTranslationSelection"
     >
       <template #tab-head-add>
-        <div ref="add-translation-button" @click="addTranslation">
+        <div ref="add-translation-button" @click.stop="addTranslation">
           <unnnic-icon-svg icon="add-1" size="sm" />
           {{ $t('WhatsApp.templates.add_language') }}
         </div>

@@ -94,6 +94,7 @@
       class="catalog-modal"
       @close="showCreateCatalogModal = false"
       :closeIcon="false"
+      @click.stop
     >
       <CreateCatalogModalContent
         ref="createCatalogModalContent"
