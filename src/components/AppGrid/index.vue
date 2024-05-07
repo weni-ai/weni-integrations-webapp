@@ -324,17 +324,24 @@
       /* istanbul ignore next */
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
+        alert.callAlert({
+          props: {
+            text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
+            type: 'success',
+          },
+          seconds: 6,
+        });
       },
       onPageChange(value) {
         this.currentPage = value;
       },
-      watch: {
-        /* istanbul ignore next */
-        loading(newState) {
-          if (newState === false) {
-            this.updateGridSize();
-          }
-        },
+    },
+    watch: {
+      /* istanbul ignore next */
+      loading(newState) {
+        if (newState === false) {
+          this.updateGridSize();
+        }
       },
     },
   };

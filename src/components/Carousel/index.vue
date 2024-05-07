@@ -48,7 +48,7 @@
         return banner[0] ? banner[0].url : null;
       },
       openAppDetails(code) {
-        this.$router.push(`/apps/${code}/details`);
+        this.$router.push(`/${code}/details`);
       },
     },
     computed: {

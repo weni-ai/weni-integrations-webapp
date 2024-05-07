@@ -25,12 +25,12 @@ const router = createRouter({
           path: 'other-apps',
           component: () => import('@/views/OtherApps/index.vue'),
         },
-        {
-          name: 'App Details',
-          path: '/:appCode/details',
-          component: () => import('@/views/AppDetails/index.vue'),
-        },
       ],
+    },
+    {
+      name: 'App Details',
+      path: '/:appCode/details',
+      component: () => import('@/views/AppDetails/index.vue'),
     },
     {
       name: 'Insights',
@@ -110,11 +110,11 @@ const router = createRouter({
       path: '/loginexternal/:token/:project/:flowOrg',
       name: 'externalLogin',
       component: null,
-      beforeEnter: async (to, from, next) => {
+      beforeEnter: (to, from, next) => {
         const { token, project, flowOrg } = to.params;
         auth_store().externalLogin({ token: token.replace('+', ' ') });
         auth_store().selectedProject({ project });
-        auth_store().selectedFlowOrg({ flowOrg });
+        flowOrg ? auth_store().selectedFlowOrg({ flowOrg }) : auth_store().getFlowOrganization();
         if (to.query.next) {
           next(to.query.next);
         } else {
