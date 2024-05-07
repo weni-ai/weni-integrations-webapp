@@ -1,0 +1,1126 @@
+{
+  "general": {
+    "Cancel": "Cancel",
+    "Close": "Close",
+    "You": "You",
+    "confirm": "Confirm",
+    "loading": "Loading",
+    "Remove": "Remove",
+    "exit": "Exit",
+    "send": "Send",
+    "back": "Back",
+    "next": "Next",
+    "start": "Start",
+    "error": "Error",
+    "success": "Success",
+    "continue": "Continue",
+    "attention": "Attention"
+  },
+  "errors": {
+    "empty_input": "Required fields cannot be empty.",
+    "required_message": "This field is required."
+  },
+  "date": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "june": "June",
+      "may": "May",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "options": {
+      "seven_days": "Last 7 days",
+      "fourteen_days": "Last 14 days",
+      "thirty_days": "Last 30 days",
+      "twelve_months": "Last 12 months",
+      "current_month": "Current month",
+      "personalize": "Personalize"
+    }
+  },
+  "apps": {
+    "nav": {
+      "discovery": "Discovery",
+      "my_apps": "My Apps",
+      "other_apps": "Other Apps"
+    },
+    "discovery": {
+      "categories": {
+        "channel": "Communication Channels",
+        "ticket": "Attendance Managers",
+        "configured": "Configured Apps",
+        "installed": "Installed Apps",
+        "bi-tools": "BI Tools",
+        "external": "External Services",
+        "recommended": "Recommended channels",
+        "ecommerce": "Ecommerce"
+      },
+      "fetch_error": "Failed to fetch Application list, please try again later.",
+      "search": {
+        "placeholder": "Search",
+        "empty_title": "Wow, we couldn't find this thing called",
+        "empty_description": "But you can see all our integrations by clicking",
+        "empty_link": "here",
+        "results": "Results for"
+      },
+      "action": {
+        "edit": "Edit",
+        "config": "Configure"
+      }
+    },
+    "myApps": {
+      "empty": {
+        "no-integrations": "You haven't installed any integrations yet.",
+        "search": "Search for what you need",
+        "link": "here"
+      },
+      "error": {
+        "configured": "We were not able to fetch your configured apps, please try again later.",
+        "installed": "We were not able to fetch your installed apps, please try again later."
+      }
+    },
+    "details": {
+      "info": "Number of exchanged messages",
+      "integrated_into": "Integrated into",
+      "projects": "projects",
+      "rating": "Rating",
+      "status_error": "Unable to complete this action, please try again",
+      "status_success": "Success",
+      "navigator": {
+        "discovery": "Discovery"
+      },
+      "about": {
+        "about_the_app": "About the App",
+        "useful_links": "Useful Links"
+      },
+      "recommended": {
+        "title": "Recommended",
+        "comments": "comments"
+      },
+      "comments": {
+        "leave_a_comment": "Leave a comment",
+        "input_placeholder": "A good comment can help others that are learning :)",
+        "edit_comment": "Edit comment",
+        "delete_comment": "Delete comment",
+        "remove": {
+          "title": "Delete Comment",
+          "description": "Do you really want to delete your comment on learning? You will be able to insert another one.",
+          "remove": "Delete comment",
+          "status_text": "Successfully deleted comment"
+        }
+      },
+      "header": {
+        "add": "Add"
+      },
+      "card": {
+        "comments": "comments",
+        "see_details": "See details",
+        "copy_uuid": "Copy UUID"
+      },
+      "actions": {
+        "installed": {
+          "title": "Installed Application!",
+          "description": "You still need to configure the application by accessing the \"My apps\" area.",
+          "access_my_apps": "Access My Apps"
+        },
+        "remove": {
+          "title": "Remove Application",
+          "description": "Do you really want to delete this Application? This cannot be undone.",
+          "remove": "Remove Application",
+          "status_text": "Successfully removed the Application"
+        },
+        "copy": {
+          "sucess": "The UUID {uuid} was copied and sent to the clipboard."
+        }
+      }
+    },
+    "config": {
+      "first_integration_success": "To download the script for your website go to the Script Code tab.",
+      "integration_success": "Successfully updated application",
+      "copy_success": "Successfully copied!",
+      "configure_later": "Configure later",
+      "save_changes": "Save changes",
+      "cancel": "Cancel",
+      "validate": "Validate",
+      "copy": "Copy",
+      "confirmation": {
+        "title": "Cancel modifications",
+        "description": "Do you really want to cancel your changes? All unsaved changes will be lost.",
+        "goBackToConfig": "Go back to configuration"
+      }
+    }
+  },
+  "upload_area": {
+    "title": {
+      "text": "Drag your file here or",
+      "highlight": "search it"
+    },
+    "invalid": {
+      "text": "file, try again",
+      "highlight": "Invalid",
+      "subtitle": "The file you tried to upload is not supported."
+    },
+    "subtitle": "Supported formats:"
+  },
+  "import_card": {
+    "importing": "Importing"
+  },
+  "survey": {
+    "content": {
+      "question": "Do you miss any integration? If so, tell us which one"
+    },
+    "error_submit_answer": "Failed to submit feedback, please try again later.",
+    "success_submit_answer": "Feedback successfully sent!"
+  },
+  "weniWebChat": {
+    "data": {
+      "summary": "With Weni Web Chat, you can integrate your project as a chat on your website.",
+      "description": "Use Weni Web Chat to have a humanized automation experience of Weni Platform directly on your website or web platform. By integrating it, you can customize aspects of the Webchat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that Weni Platform has to offer with your's brand identity.",
+      "links": {
+        "create_channel": {
+          "label": "Adding a Web Channel",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
+        }
+      }
+    },
+    "config": {
+      "settings": "Settings",
+      "script": "Script Code",
+      "appearance": "Appearance",
+      "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
+      "custom_css": "Custom CSS",
+      "avatar_image": "Avatar image",
+      "show_fullscreen_button": "Show fullscreen button",
+      "unread_messages_indicator": "Unread messages indicator",
+      "keep_chat_history": "Keep chat history",
+      "time_between_messages": "Time between messages",
+      "main_color": "Main color",
+      "save_changes": "Save changes",
+      "script_placeholder": "Your script will be here",
+      "download": "Download",
+      "initPayloadToolTip": "When opening the chat on your website, a trigger with this value will be called automatically to start a chosen flow. You can configure it on Studio.",
+      "TitleInput": {
+        "label": "Chat Title",
+        "placeholder": "Ex.: Name of your chatbot"
+      },
+      "SubtitleInput": {
+        "label": "Chat Subtitle",
+        "placeholder": "Ex.: Name of your company"
+      },
+      "PlaceholderInput": {
+        "label": "Placeholder text",
+        "placeholder": "Ex.: Type your message"
+      },
+      "initPayloadInput": {
+        "label": "Trigger message",
+        "placeholder": "Ex.: Hello, welcome"
+      },
+      "TooltipInput": {
+        "label": "Chat notification message",
+        "placeholder": "Notification message when the user visits the website"
+      }
+    },
+    "simulator": {
+      "chatTitle": "Chat Title",
+      "chatSubtitle": "Chat Subtitle",
+      "chatPlaceholder": "Placeholder text",
+      "replies": {
+        "yes": "Yes",
+        "no": "No",
+        "maybe": "Maybe"
+      }
+    }
+  },
+  "telegram": {
+    "data": {
+      "summary": "Send and receive messages from Telegram users for free.",
+      "description": "By using Telegram, you are connecting one of the largest messaging applications as a channel available to your audience on the Weni Platform. Send and receive texts, videos and audio through this channel, ensuring the comfort and community of your audience, as well as the resources available on the platform.",
+      "links": {
+        "create_channel": {
+          "label": "Adding a Telegram channel",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel"
+        }
+      }
+    },
+    "config": {
+      "description": {
+        "text": "Learn more about how to integrate Telegram",
+        "link": "here."
+      },
+      "TokenInput": {
+        "label": "Token"
+      },
+      "errors": {
+        "invalidToken": "Provided token is not valid."
+      }
+    }
+  },
+  "WhatsAppDemo": {
+    "data": {
+      "summary": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project.",
+      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user",
+      "links": {
+        "create_channel": {
+          "label": "Adding a WhatsApp Demo Channel",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/how-to-create-a-channel-with-whats-app-demo"
+        }
+      }
+    },
+    "config": {
+      "title": "Almost there!",
+      "description": "To be able to use WhatsApp Demo you will be directed to a link.",
+      "continue_and_redirect": "Continue and Redirect"
+    },
+    "preview": {
+      "description": "With the URL below you can use WhatsApp Demo, test it on your project, or even share it with others.",
+      "UrlInput": {
+        "label": "URL"
+      }
+    }
+  },
+  "WhatsApp": {
+    "data": {
+      "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "description": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "templates": {
+        "category": {
+          "account_update": "Account Update",
+          "payment_update": "Payment Update",
+          "personal_finance_update": "Personal Finance Update",
+          "reservation_update": "Reservation Update",
+          "shipping_update": "Shipping Update",
+          "issue_resolution": "Issue Resolution",
+          "appointment_update": "Appointment Update",
+          "transportation_update": "Transportation Update",
+          "ticket_update": "Ticket Update",
+          "alert_update": "Alert Update",
+          "auto_reply": "Auto Reply",
+          "transactional": "Transactional",
+          "marketing": "Marketing",
+          "otp": "One Time Password",
+          "utility": "Utility",
+          "authentication": "Authentication",
+          "any": "Any"
+        }
+      }
+    },
+    "config": {
+      "tabs": {
+        "account": "General",
+        "profile": "Profile",
+        "contact_info": "Contact Information",
+        "conversations": "Conversations",
+        "templates": "Templates",
+        "webhook_info": "Webhook"
+      },
+      "description": {
+        "text": "Learn more about how to increase your daily message limit in WhatsApp",
+        "link": "here."
+      },
+      "account": {
+        "title": "Account",
+        "message_per_day_limit": "Message per day limit"
+      },
+      "billing": {
+        "title": "Billing Information"
+      },
+      "webhook_info": {
+        "input": {
+          "label": "Webhook URL"
+        },
+        "method": {
+          "label": "Method"
+        },
+        "headers": {
+          "label": "Headers"
+        },
+        "header_key": {
+          "placeholder": "Key"
+        },
+        "header_value": {
+          "placeholder": "Value"
+        }
+      },
+      "conversations": {
+        "title": "Conversations Information",
+        "filter": {
+          "label": "Filter by"
+        },
+        "conversations_count": {
+          "label": "Number of conversations",
+          "table": {
+            "user_messages": "Started by user",
+            "business_messages": "Started by business",
+            "total": "Total",
+            "started_by": "Started by",
+            "quantity": "Quantity",
+            "business": "Business",
+            "user": "User",
+            "marketing": "Marketing",
+            "utility": "Utility",
+            "authentication": "Authentication",
+            "service": "Service",
+            "category": "Category"
+          },
+          "before_label": "Data before price change",
+          "after_label": "Data after price change"
+        },
+        "fetch_error": "Failed to fetch conversations data. Please contact the support team.",
+        "report": {
+          "button": "Request report",
+          "description": "You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.",
+          "label": "Detailed conversation report",
+          "missing_dates": "A date range is required to be able to request a report"
+        },
+        "report_already_processing": "You already requested a detailed report a little while ago, you can request a new one after receiving the last one.",
+        "report_success": "You will receive your detailed report by email shortly",
+        "report_error": "Failed to request detailed report, please try again later"
+      },
+      "channel": {
+        "title": "WhatsApp Channel",
+        "fields": {
+          "phone_number": "Phone number",
+          "whatsapp_display_name": "WhatsApp Display Name",
+          "number_registration": "Number Registration",
+          "default_language_for_templates": "Default Language for templates",
+          "ivr_existing": "IVR existing",
+          "ivr_active": "IVR active",
+          "certificate": "Certificate",
+          "consent_status": "Consent Status"
+        }
+      },
+      "business_account": {
+        "title": "WhatsApp Business Account (WABA)",
+        "fields": {
+          "waba_name": "WABA Name",
+          "message_on_behalf_of": "Message on Behalf Name",
+          "timezone_id": "Timezone ID",
+          "waba_id": "WABA ID",
+          "namespace": "Namespace"
+        }
+      },
+      "profile": {
+        "profile_image": {
+          "label": "Profile image"
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Eg: Available for text only"
+        },
+        "description": {
+          "label": "Description",
+          "placeholder": "Describe your business or purpose of your chatbot"
+        },
+        "sector": {
+          "label": "Company Sector",
+          "placeholder": "Select"
+        },
+        "configure_later": "Configure later",
+        "save_changes": "Save changes"
+      },
+      "contact_info": {
+        "website_url": {
+          "label": "Websites:"
+        },
+        "email": {
+          "label": "Corporate Email:",
+          "placeholder": "Email that customers can contact"
+        },
+        "address": {
+          "label": "Address:",
+          "placeholder": "Your business address"
+        },
+        "configure_later": "Configure later",
+        "save_changes": "Save changes"
+      },
+      "success": {
+        "profile_updated": "WhatsApp profile updated successfully",
+        "contact_info_update": "WhatsApp contact info updated successfully",
+        "webhook_update": "Successfully updated Webhook configuration"
+      },
+      "error": {
+        "invalid_photo_size": "Imported photo must be at least 192x192 pixels",
+        "data_fetch": "Failed to fetch WhatsApp data. Please contact the support team.",
+        "data_update": "Failed to update WhatsApp data.",
+        "open_templates": "Could not open templates, please refresh the page and try again.",
+        "empty_url": "Provided Webhook URL cannot be empty",
+        "invalid_url": "Provided Webhook URL is invalid",
+        "webhook_update": "Error while trying to update webhook data",
+        "invalid_data": "Some fields are invalid, please fix them and try again"
+      },
+      "qr": {
+        "title": "WhatsApp Link",
+        "button": "Access link",
+        "info": "To access the link, scan the QR Code or click the button below"
+      },
+      "templates": {
+        "button": "See my templates",
+        "title": "Templates"
+      },
+      "catalog": {
+        "button": "View list of catalogs",
+        "title": "Catalog",
+        "button_create": "Create catalog",
+        "error": {
+          "missing_vtex_app": "You need to have a VTEX app configured to connect a catalog."
+        }
+      }
+    },
+    "catalog": {
+      "error": {
+        "fetch_catalogs": "Unable to load catalog list. Please try again later",
+        "disable_catalog": "Unable to disable the catalog at this time. Please try again later",
+        "enable_catalog": "The catalog could not be enabled at this time. Please try again later",
+        "toggle_cart_visibility": "Unable to enable cart at this time. Please try again later"
+      },
+      "list": {
+        "title": "Catalog list",
+        "description": "Add all the items you want to advertise or sell",
+        "advanced_settings": "Advanced Settings",
+        "identification": "Identification",
+        "actions": {
+          "active_cart": "Active cart",
+          "inactive_cart": "Inactive cart",
+          "active_catalog": "Active catalog",
+          "inactive_catalog": "Inactive"
+        },
+        "disable_modal": {
+          "title": "Are you really going to disable the catalogue?",
+          "title_active": "You already have another active catalog",
+          "description": "To continue sending your products on Whatsapp you need an active catalogue.",
+          "description_active": "This action will automatically deactivate the catalog “{name}”",
+          "label": "Type “{name}” to confirm",
+          "confirm": "Disable"
+        },
+        "advanced_configurations_modal": {
+          "title": "Advanced Settings",
+          "description": "Configure the level of accuracy for automatic shipping of your products",
+          "recommendation": "Recommended configuration: 1.55",
+          "confirm": "To save"
+        },
+        "search_placeholder": "Search for the catalog name"
+      },
+      "products": {
+        "title": "Products"
+      }
+    },
+    "templates": {
+      "table": {
+        "crumb_title": "Manage Templates",
+        "actions": {
+          "add_language": "Add language",
+          "duplicate_language": "Duplicate",
+          "delete_language": "Delete",
+          "see_details":"See details"
+        },
+        "headers": {
+          "name": "Name",
+          "month": "Month",
+          "category": "Category",
+          "preview": "Preview",
+          "language": "Language",
+          "actions": "Actions",
+          "date": "Date"
+        },
+        "new_template": "New Template",
+        "filters": {
+          "date": {
+            "label": "Date",
+            "clear": "Clear",
+            "filter": "Filter"
+          },
+          "search": "Search",
+          "category": "Category"
+        },
+        "header": {
+          "title": "WhatsApp Templates",
+          "description": "The following table shows the message templates currently configured for this number."
+        }
+      },
+      "form": {
+        "crumb_title": "Template"
+      },
+      "create_form": {
+        "crumb_title": "Create Template"
+      },
+      "edit_form": {
+        "crumb_title": "Edit Template"
+      },
+      "error": {
+        "fetch_template_data": "Error fetching template data, please try again later",
+        "validation": {
+          "empty_header": "Header cannot be empty",
+          "long_header": "Header cannot be greater than 60 characters",
+          "invalid_media_type": "Invalid media type",
+          "invalid_media_example": "Missing media example",
+          "empty_body": "Body cannot be empty",
+          "long_body": "Body cannot be greater than 1024 characters",
+          "missing_variables_example": "Missing variables example",
+          "empty_footer": "Footer cannot be empty",
+          "long_footer": "Footer cannot be greater than 60 characters",
+          "empty_button_text": "Button text cannot be empty",
+          "empty_button_phone_number": "Phone number cannot be empty",
+          "empty_button_country_code": "Phone country code cannot be empty",
+          "empty_button_url": "URL cannot be empty",
+          "invalid_button_url": "Invalid button URL"
+        },
+        "unexpected_language": "Unexpected language, please refresh",
+        "language_already_exists": "This language already exists",
+        "select_languages": "Error fetching languages data, please try again later...",
+        "invalid_app_uuid": "Invalid application identifier, please refresh the page.",
+        "invalid_name": "Invalid template name",
+        "invalid_category": "Invalid template category",
+        "invalid_language": "Invalid template language",
+        "create_template": "Could not create template, please try again later",
+        "create_translation": "Could not create template translation, please try again later",
+        "unknown_error": "Unknown error occurred, please refresh the page",
+        "fetch_templates": "Could not load template list, please try again later",
+        "delete_template": "Could not delete template, please try again later.",
+        "invalid_file_format": "Invalid file format",
+        "invalid_file_size": "Invalid file size, should be less than 16Mb",
+        "missing_variable_example": "Missing variable example",
+        "missing_media_example": "Missing media example",
+        "delete_sample": "Facebook generated templates cannot be deleted.",
+        "invalid_fields": "There are invalid fields, please fix them and try again.",
+        "start_or_end_with_variable": "The body text contains variable parameters at the beginning or end.",
+        "too_many_variables": "This template contains too many variable parameters relative to the message length. You need to decrease the number of variable parameters or increase the message length.",
+        "incomplete_bracket_variable": "This template contains variable parameters with incorrect formatting. Variable parameters must be whole numbers with two sets of curly brackets (for example, {{1}}, {{2}}).",
+        "update_translation": "Could not update the template, please try again later."
+      },
+      "new_language": "New Language",
+      "form_field": {
+        "name": "Name",
+        "category": "Category",
+        "language": "Language",
+        "body_text": "Body Text",
+        "buttons": "Buttons",
+        "type_of_action": "Type of Action",
+        "button_name": "Button name",
+        "country": "Country",
+        "website_url": "Website URL",
+        "phone_number": "Phone Number",
+        "add_another_button": "Add Another Button",
+        "footer_text": "Footer Text",
+        "header": "Header",
+        "header_text_placeholder": "Ex.: Type your message...",
+        "add_variable": "Add Variable to text body",
+        "save_language": "Save Language",
+        "name_exists": "This name already exists, please enter a different one.",
+        "category_placeholder": "Select the category",
+        "language__placeholder": "Select the language",
+        "header__label": "Format",
+        "body_text__placeholder": "Write the body text",
+        "buttons__label": "Buttons Type",
+        "reply_label": "Button text",
+        "button": "Button",
+        "button_text_placeholder": "Enter the button text",
+        "button_text": "Button text",
+        "phone_number_placeholder": "Enter the phone number",
+        "url_placeholder": "Enter the Website URL",
+        "footer_text_placeholder": "Enter the footer text",
+        "error_has_variable": "Template buttons cannot contain variables"
+      },
+      "category_options": {
+        "marketing": "Marketing",
+        "marketing_description": "Send promotions or information about your products, services or business.",
+        "authentication": "Authentication",
+        "authentication_description": "Send codes to verify a transaction or login.",
+        "utility": "Utility",
+        "utility_description": "Send messages about an existing order or account."
+      },
+      "button_options": {
+        "none": "None",
+        "quick_reply": "Quick Reply",
+        "call_to_action": "Call To Action"
+      },
+      "call_to_action_options": {
+        "call_phone_number": "Call Phone Number",
+        "visit_website": "Visit Website"
+      },
+      "header_type_options": {
+        "text": "Text",
+        "media": "Media"
+      },
+      "add_language": "Add Language",
+      "preview": "Preview",
+      "sample": {
+        "description": "You have the option to provide specific content examples for your template.",
+        "header": "Header",
+        "choose_file": "Choose File",
+        "preview": "Preview",
+        "body": "Body",
+        "send": "Send",
+        "info": "Make sure not to include any actual user or customer information, and provide only sample content in your examples.",
+        "title": "Add Sample Content"
+      },
+      "status": {
+        "APPROVED": "Approved",
+        "REJECTED": "Rejected",
+        "PENDING": "Pending"
+      },
+      "success": {
+        "create_translation": "Successfully created Template Translation",
+        "update_translation": "Successfully updated Template Translation"
+      }
+    },
+    "insights": {
+      "insights": "Insights",
+      "see_insights": "See insights",
+      "enable_insights": "Enable insights",
+      "disabled": "You haven't turned on insights",
+      "about_description": "See more detailed data related to sending, delivering and reading triggered message templates.",
+      "about_text_1": "We're introducing more performance insights to help you track, understand, and improve your messaging models. Marketing models will also show insights into button engagement. To migrate to the new insights framework, existing data for &quot sent messages &quot; will be deleted. Tracking will resume on the date you click Confirm.",
+      "about_text_2": " By clicking Confirm, you instruct Meta to add insights to your WhatsApp Business account. These insights include link tracking to report website clicks. You can disable link tracking for each message template.",
+      "about_text_3": " By clicking Confirm, you also instruct Meta to collect and anonymize data from your customer chats. Meta will anonymize this data to improve the services it provides to you and other companies.",
+      "messages": {
+        "sent": "Sent messages",
+        "delivered": "Delivered messages",
+        "read": "Read messages",
+        "received": "Received messages"
+      },
+      "filters": {
+        "period_of_time": "Period of time",
+        "message_templates": "Message templates"
+      },
+      "modal": {
+        "present_insights": "We present new insights"
+      }
+    },
+    "template_details": {
+      "crumbs": {
+        "my_apps": "My Apps",
+        "manage_templates": "Manage Templates",
+        "model_details": "Model Details",
+        "template_details": "Template Details"
+      },
+      "summary": {
+        "title": "Summary",
+        "marketing": "Marketing",
+        "performace_overview": "Performace overview",
+        "last_7_days": "last 7 days",
+        "sent_messages": "Sent messages",
+        "delivered_messages": "Delivered messages",
+        "read_messages": "Read messages",
+        "quality_overview": "Quality overview",
+        "current_level": "Current level",
+        "block_reason": "Main blocking reason"
+      },
+      "button": {
+        "edit_model": "Edit Model"
+      }
+    },
+    "product": {
+      "table": {
+        "headers": {
+          "name": "Name",
+          "availability": "Availability",
+          "price": "Price",
+          "sku": "SKU",
+          "facebook_id": "Facebook ID"
+        }
+      },
+      "list": {
+        "description": "Here you manage your inventory information. Add all the items you want to advertise or sell"
+      }
+    }
+  },
+  "WhatsAppCloud": {
+    "data": {
+      "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
+      "description": "WhatsApp is the largest messaging application in the world and one of the most preferred by users.<br/><br/>Its integration with the Weni Platform allows you to connect your business number to the application and create intelligent flows to meet the needs of your customers.<br/><br/>You can use this integration on the Weni Platform without having the verified business manager and start up to 50 conversations by the business with different numbers within 24h. Even without having the verified deal manager, you can have up to two numbers per WABA.<br/><br/>The first 1,000 conversations each month are free. That way, you can create experiences that customers will love before they pay for it. Each WhatsApp Business (WABA) account will receive 1,000 free conversations per month that can be initiated by the business (if you do not have the verified manager, you must pay attention to the limitation of 50 conversations with different numbers) or by the user. This benefit is provided at the WABA level. So even if the account has multiple numbers attached, the free chat limit will still be 1,000. The free conversations limit is reset each month according to the time zone associated with WABA.<br/><br/>Also, remembering that with the free plan of Weni Platform you can communicate with 200 active contacts (unique contacts in 1 month interval) at no cost.<br/><br/>By checking the business manager you can unlock even more the potential of your WhatsApp integration, such as increasing the conversation tier initiated by the business (1000, 10,000, 100,000 or unlimited), Possibility of acquiring the OBA (official account seal/green ticket) and having more than two numbers per WABA.<br/><br/>This version of the WhatsApp API through the Weni Platform it supports customizations, such as photos, videos, sending files, descriptions and message templates (conversations can be initiated by the user or by the business).",
+      "links": {
+        "verify_business": {
+          "label": "How to Verify my Business",
+          "url": "https://docs.weni.ai/l/en/channels/how-to-verify-my-business"
+        },
+        "express_signup": {
+          "label": "WhatsApp Express Signup",
+          "url": "https://docs.weni.ai/l/en/weni-integrations/whatsapp-weni-express-integration"
+        },
+        "rate_limit": {
+          "label": "Rate Limit limitations",
+          "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
+        }
+      }
+    },
+    "setup": {
+      "continue": "Continue",
+      "connect": "Connect",
+      "description": "Follow the steps and integrate with WhatsApp"
+    },
+    "config": {
+      "phone_numbers": {
+        "connect_later": "Connect later",
+        "create_channel": "Create channel",
+        "connect": "Connect",
+        "error": "An error occurred while trying to fetch Phone Number data, please try again later."
+      },
+      "configure_phone_number": {
+        "error": "An error occurred while trying to create the Channel, please try again later."
+      },
+      "debug_token": {
+        "error": "An error occurred while trying to communicate with Facebook, please try again later."
+      }
+    }
+  },
+  "PowerBi": {
+    "title": "Power BI",
+    "data": {
+      "summary": "Keep up with the growth of your project with the Power BI connector with the Weni Platform."
+    },
+    "config": {
+      "description": {
+        "text": "With the URL below you can connect the Weni platform to Power BI and start monitoring your project's metrics and growth more closely. Just follow the documentation at",
+        "link": "How to Install and Use Weni Data Connector for Power BI"
+      },
+      "download": {
+        "label": "Download connector"
+      },
+      "token_error": "Unable to fetch your Power BI Token, please try again later.",
+      "token_input": {
+        "tooltip": "Copy Token"
+      },
+      "download_model": {
+        "label": "Download dashboard model"
+      }
+    }
+  },
+  "GenericApp": {
+    "configuration_guide": {
+      "CT": "To connect a <a href=\"http://clickatell.com\">Clickatell</a> number, first create an HTTP integration for a two way number, then enter the number and API key below.",
+      "FCM": "You can to connect using a <a href=\"https://firebase.google.com/docs/cloud-messaging/\">Firebase Cloud Messaging App</a> to your workspace to automate sending notifications. You will need to create a new App on Firebase Console and get its key. To do so:",
+      "FC": "<p>You can connect a <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> Account to your account to automate sending and receiving messages via FreshChat. This will also support Apple Business Chat if it's been configured on your FreshChat account.<br/><br/>Each message sent to the channel will have a URN in the format <span class=\"highlight\">channel-uuid/user-uuid</span> where the channel UUID is the FreshChat channel's UUID.</p><ol><li>In the FreshChat web interface, under Settings, API Tokens, select Generate Token. Once the token is created you'll enter it below.</li><li>Under Settings again, select Webhooks and copy the Public Key and paste it below. This assures all webhook request from FreshChat will be authenticated.</li><li>Lastly, you'll need the UUID of the Agent that Weni will use when it sends FreshChat message. This is available via the <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Once you press Submit below with all the information configured, the confirmation page will give you the URL to use for the FreshChat Webhooks. Enter this URL on the Settings page, under Webhooks where the Public Key was copied from before.</li></ol>",
+      "IB": "You can connect your Infobip number by entering your number, username and password here.<br/><br/>After connecting your service we will provide URLs for the endpoints for InfoBip to call when they want to push a message to Rapidpro.",
+      "JC": "You can connect a <a href=\"https://jiochat.com\">JioChat Channel</a> to your workspace to automate sending and receiving JioChat messages.<br/><br/>To start copy the App ID and App Secret from the Developer Center into the form below and click Save.",
+      "JN": "Enter your credentials to add your number.",
+      "MB": "Enter your credentials to add your number.",
+      "SL": "You can connect a <a href=\"https://slack.com/app\">Slack Bot</a> to your workspace to automate sending and receiving messages.<br><br>To do it, you will need to create a new slack app and configure it.<br><ol><li>You'll need to create a <a href=\"https://api.slack.com/apps\">Slack app</a> if you haven't already, setup a bot to it, add the needed scopes and install app on your slack workspace. If you need help how to do this, read this guide <a href=\"https://api.slack.com/bot-users\">here</a>.",
+      "TM": "You can connect a Teams Bot to your Rapidpro workspace to automate sending and receiving Teams messages. For this, you will need to create and register a Bot-type application in Microsoft Azure.",
+      "TMS": "You can add your Twilio Messaging SID as a channel. You can get your messaging Service SID or create a new messaging service from <a href=\"https://www.twilio.com/user/account/messaging/services\">Twilio Console</a><br/><br/>After adding your Twilio Messaging Service SID we will provide you with the URL endpoint for Twilio to call when they want to push a message to Weni.",
+      "TW": "You can add a TwiML REST API as a channel using your TwiML instance.",
+      "VP": "In order to connect your public Viber page to Weni you will need to create a public channel and follow the steps necessary to get an authentication token. Please consult the <a href=\"https://developers.viber.com/?b_id=15145\">Viber developers documentation</a> on how to create your own public account.<br/><br/> Once you have your authentication token, enter it below to connect your public channel to Weni"
+    },
+    "preview": {
+      "errors": {
+        "fetch_app": "An error occured while trying to fetch application data, please try again later."
+      }
+    },
+    "description": {
+      "callback_url": "To finalize the channel configuration, you need to configure the Weni Platform channel's callback URL. The callback url for this channel is",
+      "callback_url_info_1": "For more information please follow",
+      "callback_url_info_2": "this documentation"
+    }
+  },
+  "instagram": {
+    "data": {
+      "summary": "Now you can raise the level and potential of your service by creating a channel that integrates your Instagram to Weni Platform",
+      "description": "Instagram has already reached the milestone of 1.4 billion active users, with more than 500 million browsing assiduously every day, seeking not only interaction, but looking for services and products.<br/><br/>Now, imagine if your institution is not present, active and efficient on this channel? This is no longer a mere social network to share photos and videos of the routine, but rather a showcase of doing business and important partnerships.<br/><br/>And now you can raise the level and potential of your service by creating a channel that integrates your Instagram to Weni Platform.<br/><br/>This creates more engagement and interaction with your followers and potential customers and partners, increasing the chances of closing new projects while reducing operational costs with service."
+    },
+    "setup": {
+      "title": "Connect",
+      "description": "Follow the steps in the <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentation</a> before proceeding with your <strong>Instagram</strong> integration",
+      "success": "Successfully created Instagram application",
+      "connect_later": "Connect later",
+      "connect": "Connect",
+      "create_channel": "Create channel",
+      "page_selection": {
+        "description": "Add a <strong>Instagram</strong> business account page"
+      },
+      "account_data": {
+        "error": "Failed to fetch Instagram pages data, please try again later."
+      },
+      "find_page": {
+        "error": "Please select an Instagram page to connect"
+      },
+      "create_app": {
+        "error": "Failed to create application, please try again later"
+      },
+      "update_app": {
+        "error": "Failed to setup application, please try again later"
+      }
+    },
+    "config": {
+      "connected_account": "Your Instagram account is connected"
+    }
+  },
+  "facebook": {
+    "data": {
+      "summary": "Add a Facebook bot to send and receive messages on behalf of one of your Facebook pages.",
+      "description": "Facebook has updated its integration policies, so now you can easily connect a Facebook page to create a Messenger channel in just a few moments. You will be automatically taken to your new channel page where you can view your channel record, then you can create a trigger that will reference a contact when a new conversation starts in Messenger."
+    },
+    "setup": {
+      "title": "Want to connect to Facebook?",
+      "description": "Follow the steps in the <a href=\"https://docs.weni.ai/l/en/settings/adding-a-facebook-channel\" target=\"_blank\" class=\"link\">documentation</a> before proceeding with your <strong>Facebook</strong> integration",
+      "success": "Successfully created Facebook application",
+      "connect_later": "Connect later",
+      "connect": "Connect",
+      "create_channel": "Create channel",
+      "page_selection": {
+        "description": "Add a <strong>Facebook</strong> business account page"
+      },
+      "account_data": {
+        "error": "Failed to fetch Facebook pages data, please try again later."
+      },
+      "find_page": {
+        "error": "Please select a Facebook page to connect"
+      },
+      "create_app": {
+        "error": "Failed to create application, please try again later"
+      },
+      "update_app": {
+        "error": "Failed to setup application, please try again later"
+      }
+    },
+    "config": {
+      "connected_account": "Your Facebook account is connected"
+    }
+  },
+  "omie": {
+    "data": {
+      "summary": "If you have a CRM at Omie, you can integrate with the Weni Platform and automate actions in your CRM through your chatbot",
+      "description": "If you have a CRM at Omie, you can integrate with the Weni Platform and automate actions in your CRM through your chatbot.<br><br>By integrating the weni platform with your CRM on Omie you will be able to perform actions such as:<br><br>- Include Opportunities in the CRM<br>- Search Title and Releases<br>- List customers<br><br>Here in the Integrations module, you must perform the Integration with Omie providing the API Key and API Secret data and then perform the integration.<br>After that, just go to the flows module, create a flow and then you will have a card available called External Services, in which you will be able to perform all the actions with Omie's CRM mentioned here."
+    },
+    "config": {
+      "description": "Learn more about integrating with Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">here</a>",
+      "connect": "Connect",
+      "tabs": {
+        "config": {
+          "title": "Configure",
+          "inputs": {
+            "name": {
+              "label": "Name"
+            },
+            "app_key": {
+              "label": "App Key"
+            },
+            "app_secret": {
+              "label": "App Secret"
+            }
+          }
+        }
+      }
+    },
+    "success": {
+      "configure": "Successfully configured service"
+    },
+    "errors": {
+      "configure": "An error occurred while trying to configure the service, please try again later"
+    }
+  },
+  "onboard": {
+    "modal": {
+      "app_selection": {
+        "title": "Integrate a channel to your project",
+        "description": "Choose the channel you want to use and follow the step by step to add it. It's fast and easy."
+      },
+      "whatsapp": {
+        "title": "How to integrate WhatsApp",
+        "descriptions": {
+          "first": "<ol><li>On the WhatsApp card, look for the \"+\" button and click on it.</li><li>Next, a window will appear asking if you want to connect your WhatsApp account with Facebook.</li><li>Log in to your Facebook and click \"Start\" to be redirected to the next page.</li><li>Oh, and don't worry about the requested permissions. They are needed so that we can help you even more!</li></ol>",
+          "second": "<ol start=\"5\"><li>Now it's time to fill in your company details.</li><li>Create or select a profile for your WhatsApp Bussines, this account will belong to your target business account .<li>Add the phone number that people will use to chat with you on WhatsApp.</li></li><li>After that enter your number and fill in the verification code field that will be sent to you.</li></ol>",
+          "third": "<ol start=\"9\"><li>After making these settings, a new Weni Platform screen will appear. Just click Create Channel.</li><li>Your channel is now integrated with WhatsApp and ready to be customized.</li><li>To customize, click on the WhatsApp card that displays your business number .</li><li>Then you can customize the name and description.</li></ol>"
+        }
+      },
+      "telegram": {
+        "descriptions": {
+          "first": "<ol><li>Let's go! Open your Telegram and search for \"{'@'}BotFather\".</li><li>Then send “/newbot”, choose a Username (usernames must always end with “_bot”, Eg:. test_bot).</li><li>With these steps completed, you will receive a token.</li><li>On the Weni Platform, access the integrations module, and click on the “+” on the telegram card, then you will be redirected to my applications.</li></ol>",
+          "second": "<ol start=\"5\"><li>Find the Telegram card and click on it. A sidebar will open on the right side of the page.</li><li>Paste the token {'@'}BotFather sent you in the field provided. Then click \"validate\".</li><li>Your bot will be created with the name you chose.</li><li>To access the bot in Telegram, just search for the name you defined in the search field. Done!</li></ol>"
+        },
+        "title": "How to integrate Telegram"
+      },
+      "wwc": {
+        "descriptions": {
+          "first": "<ol><li>Under communication channels, click Weni Web Chat.</li><li>Click the \"Add\" button in the upper right corner of the screen.</li><li>Now you can customize your bot, choosing the colors, the name and the messages it will send.</li><li>Finally, access the \"Script Code\" section and copy the code that appears there. Paste it above the &lt/body&gt tag on your site.</li></ol>"
+        },
+        "title": "How to Integrate Weni Web Chat"
+      }
+    }
+  },
+  "ChatGPT": {
+    "data": {
+      "summary": "Powerful integration: Weni + ChatGPT. Automated support with a human touch, instant responses, and personalized experience. Try it now!",
+      "description": "We present a powerful synergy between the Weni platform and ChatGPT - a perfect combination to transform your customer interactions into an unparalleled experience!<br><br>With the integration of Weni and ChatGPT, you have at your disposal an intelligent virtual assistant powered by OpenAI's advanced natural language technology. Imagine fully automated customer support that still feels human and personalized.<br><br>Our Weni platform, known for its intuitive interface and versatile features, now strengthens its capabilities with the presence of ChatGPT. With it, you can provide your customers with instant, accurate, and engaging responses to their questions and needs, anytime and anywhere.<br><br>ChatGPT understands the nuances of human language, continuously learning and adapting. It not only offers quick and efficient answers but also maintains natural and relevant conversations, establishing a genuine connection with your customers.<br><br>Take advantage of the benefits of this integration to enhance customer support, automate repetitive tasks, and deliver a personalized and pleasant experience. ChatGPT, powered by Weni, helps you increase efficiency, save time, and achieve exceptional customer satisfaction.<br><br>Try the Weni + ChatGPT integration now and enjoy intelligent, dynamic customer support tailored to your business needs. Join this revolution in customer interaction and watch your results reach new heights!"
+    },
+    "setup": {
+      "version": "Version",
+      "title": "Integrate with ChatGPT",
+      "description": "To integrate, create a name, insert your API-Token and select one of the available versions",
+      "name": "Name",
+      "name_placeholder": "Insert a name",
+      "token": "Token",
+      "token_placeholder": "Insert the Token",
+      "version_tooltip": "Changing the version of ChatGPT can change the way with that the AI ​​generates the answers based on the knowledge base and rules.",
+      "create_app": {
+        "error": "Failed to create ChatGPT integration, please try again later"
+      },
+      "success": "Successfully created ChatGPT integration"
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Flows",
+          "description": "Define how ChatGPT will behave when it responds to people in the Flows area.",
+          "inputs": {
+            "rules_label": "Rules",
+            "knowledge_label": "Knowledge base",
+            "prompt_label": "Insert prompts",
+            "prompt_placeholder": "Insert prompt text and press enter",
+            "conversation_style_label": "Conversation style",
+            "conversation_style_placeholder": "Select the conversation style",
+            "voice_tone_label": "Voice tone",
+            "voice_tone_placeholder": "Select the voice tone"
+          },
+          "selects": {
+            "necessary_label": "Necessary",
+            "necessary_description": "Objective and straight to the point answers",
+            "balanced_label": "Balanced",
+            "balanced_description": "Use a little creativity in the answers but still be objective",
+            "creative_label": "Creative",
+            "creative_description": "Responds creatively, less objectively",
+            "none_label": "None",
+            "neutral_label": "Neutral",
+            "happy_label": "Happy",
+            "trusting_label": "Trusting",
+            "formal_label": "Formal",
+            "humble_label": "Humble",
+            "informal_label": "Informal",
+            "helpful_label": "Helpful"
+          },
+          "prompts_list": "Prompt list"
+        },
+        "general": {
+          "title": "General"
+        }
+      },
+      "save_modifications": "Save modifications",
+      "description": "Configure how ChatGPT works in platform modules"
+    },
+    "errors": {
+      "configure": "Failed to update fields, please try again later",
+      "create_prompt": "Failed to create prompts, please try again later",
+      "delete_prompt": "Failed to delete prompts, please try again later",
+      "get_prompts": "Failed to fetch prompts, please try again later"
+    },
+    "success": {
+      "configure": "Successfully updated integration"
+    }
+  },
+  "vtex": {
+    "data": {
+      "summary": "With the VTEX app you connect your catalog and sell via Whatsapp",
+      "description": "The integration between Weni Plataforma and VTEX is redefining the way retailers grow their businesses online. Now, you can easily connect your product catalog, paving the way for direct sales through WhatsApp. This innovative solution promises an instant, agile and personalized sales experience, providing an effective way to boost your sales.<br><br>Main Features:<br><br>Integration with VTEX in an Uncomplicated Way:<br>- Connect your VTEX product catalog to Weni easily, automatically syncing your products.<br>- Quick updates ensure your store is always in line with the latest inventory and pricing changes.<br><br>Direct Selling Via WhatsApp :<br>- Turn conversations into transactions by allowing customers to browse, choose and buy products directly through WhatsApp.<br>- Increase convenience by reaching customers where they are already active.<br><br>Additional Benefits: <br><br>Global Scale:<br>- Reach a global audience through WhatsApp, expanding your sales opportunities internationally.<br><br>Simple Setup:<br>- Set up quickly, without the need for technical knowledge <br><br>Specialized Technical Support:<br>- Dedicated support to ensure smooth implementation and resolve any issues quickly.<br><br>Try it now and discover the potential to boost your sales efficiently!"
+    },
+    "setup": {
+      "title": "Connect your store",
+      "description": "Select WhatsApp number, enter subdomain, AppKey and AppToken",
+      "subdomain": "Subdomain",
+      "subdomain_placeholder": "Ex: shop.myvtex.com",
+      "whatsapp_channel": "WhatsApp Number",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Insert your AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Insert your AppToken",
+      "guide": {
+        "question": "Don't know your AppKey and AppToken?",
+        "question_end": "to access the documentation on VTEX and find out.",
+        "link": "Click here"
+      },
+      "invalid_credentials": "Invalid credentials for the given subdomain",
+      "error": "An error occurred while trying to integrate with VTEX, please try again later",
+      "success": "VTEX integration successfully completed",
+      "step1": "Connect your store",
+      "step2": "Setup affiliate",
+      "storeDomain": "Website Link",
+      "apiSubdomain": "API Subdomain",
+      "affiliate_title": "Setup an affiliate in VTEX",
+      "affiliate_description": "To setup an affiliate in VTEX follow the steps below",
+      "affiliate_step1": {
+        "title": "Access your admin panel in VTEX",
+        "description": "Go to <b>Store Settings > Orders > Settings,</b> or type <i>Orders</i> in the search bar on the top of the page and select <i>Store Settings / Orders</i>"
+      },
+      "affiliate_step2": {
+        "title": "Create a new affiliate",
+        "description": "In the Affiliates tab click on <span class='highlight'>+ New Affiliate</span>"
+      },
+      "affiliate_step3": {
+        "title": "Fill the form fields",
+        "description": "Following the description below, then click on <span class='highlight'>Save</span><ul><li><b>Name:</b>&nbsp;the new affiliate name</li><li><b>Trade policy:</b>&nbsp;the trade policy number that will define the catalog's sorting and items delivery strategy for the marketplace</li><li><b>Search endpoint:</b>&nbsp;application URL that will receive inventory products and price notifications, among others. You can copy Weni's URL in <i>Step 4<i/></li></ul>"
+      },
+      "affiliate_step4": {
+        "title": "Paste Weni's Search Endpoint",
+        "description": "Copy the URL below and paste it in the Search endpoint field"
+      },
+      "error_missing_fields": "All fields are mandatory",
+      "storedomain_placeholder": "Ex: myshop.com"
+    },
+    "config": {
+      "description": "Connect your VTEX catalog to send products via Whatsapp",
+      "catalog": "Catalog",
+      "connect_catalog": "Connect catalog",
+      "details": "Details",
+      "name": "Account name",
+      "environment": "Environment",
+      "view_catalog": "View catalog",
+      "wpp_number": "WhatsApp number"
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermarkets and Grocery Stores",
+        "clothes_store": "Clothes store",
+        "pharmacies_and_drugstores": "Pharmacies and Drugstores",
+        "restaurants_and_cafes": "Restaurants and Cafes",
+        "electronics_stores": "Electronics Stores",
+        "bookstores_and_stationery": "Bookstores and Stationery",
+        "furniture_and_decoration": "Furniture and Decoration Stores",
+        "building_materials_and_hardware": "Building Material and Hardware Stores",
+        "sporting_goods": "Sporting Goods Stores",
+        "shoe_stores": "Shoe stores",
+        "auto_parts": "Auto parts stores",
+        "other": "Other",
+        "placeholder": "Select a business type"
+      }
+    },
+    "connect_catalog": {
+      "title": "Basic informations",
+      "business_type": "Business type",
+      "name_placeholder": "Ex: Weekly offers",
+      "name": "Catalog name",
+      "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
+    },
+    "errors": {
+      "connect_catalog": "Could not connect VTEX catalog, please try again later",
+      "fetch_related_wpp_data": "Failed to fetch related WhatsApp Number information",
+      "redirect_to_wpp_catalog": "Failed to redirect to catalog, please refresh the page and try again",
+      "update_connected_catalog_status": "Failed to fetch catalog status, please try again later."
+    },
+    "success": {
+      "connect_catalog": "Successfully connected VTEX catalog"
+    }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "VTEX Catalog",
+          "description": "Automatically connect your catalog through integration with the VTEX app"
+        },
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Create a catalog on Meta's Facebook, a new tab will be opened."
+        }
+      },
+      "footer": "To connect your VTEX catalog you need to have integrated the VTEX app on the platform. If you haven't integrated yet, click here",
+      "title": "Create catalog",
+      "header": {
+        "title": "Sending method",
+        "description": "Choose the way you want to send your catalog to start selling products via Whatsapp"
+      }
+    }
+  }
+}
