@@ -1,12 +1,12 @@
-import window from 'global/window';
+import win from 'global/window';
 
 function setLocal(field, value) {
   /* istanbul ignore next */
-  if (window.localStorage) {
+  if (win.localStorage) {
     if (value) {
-      window.localStorage.setItem(field, value);
+      win.localStorage.setItem(field, value);
     } else {
-      window.localStorage.removeItem(field);
+      win.localStorage.removeItem(field);
     }
   }
 }
