@@ -67,7 +67,6 @@
     },
     data() {
       return {
-        headerText: '',
         selectedHeaderType: [],
         headerTypeOptions: [
           {
@@ -83,7 +82,6 @@
     },
     mounted() {
       this.fillEmptyHeader();
-      this.headerText = this.templateTranslationCurrentForm.header?.text || null;
     },
     beforeUpdate() {
       this.fillEmptyHeader();
@@ -92,6 +90,9 @@
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
+      },
+      headerText() {
+        return this.templateTranslationCurrentForm.header?.text || null;
       },
     },
     methods: {
