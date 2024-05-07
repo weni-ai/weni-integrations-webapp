@@ -8,6 +8,7 @@
       :modal-icon="this.integrationIcon"
       :close-icon="false"
       @close="closePopUp"
+      @click.stop
     >
       <template #message>
         <div>

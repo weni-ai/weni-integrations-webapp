@@ -7,6 +7,7 @@
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
     @close="toggleModal"
+    @click.stop
   >
     <template #message>
       <span v-html="$t('apps.details.actions.installed.description')"></span>
