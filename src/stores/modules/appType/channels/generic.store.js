@@ -18,7 +18,11 @@ export const generic_store = defineStore('generic', {
       this.genericAppAttributes = null;
       this.errorAppForm = null;
       try {
+<<<<<<< HEAD
         const { data } = await genericTypeApi.getAppForm(channelCode);
+=======
+        const data = await genericTypeApi.getAppForm(channelCode);
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.genericAppForm = data.form;
         this.genericAppAttributes = data.attributes;
         this.loadingAppForm = false;

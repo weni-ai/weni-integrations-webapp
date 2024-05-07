@@ -27,6 +27,7 @@ export const externals_store = defineStore('externals', {
       this.errorExternalServices = null;
       this.externalServicesList = null;
       try {
+<<<<<<< HEAD
         const { data } = await externalServices.getAllExternalServicesTypes();
         this.externalServicesList = data;
         this.loadingExternalServices = false;
@@ -34,13 +35,24 @@ export const externals_store = defineStore('externals', {
         this.errorExternalServices = err;
         this.loadingExternalServices = false;
       }
+=======
+        this.externalServicesList = await externalServices.getAllExternalServicesTypes();
+      } catch (err) {
+        this.errorExternalServices = err;
+      }
+      this.loadingExternalServices = false;
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
     },
     async createPrompts({ code, appUuid, payload }) {
       this.loadingCreatePrompts = true;
       this.errorCreatePrompts = null;
       this.createPromptsResult = null;
       try {
+<<<<<<< HEAD
         const { data } = await externalServices.createPrompts(code, appUuid, payload);
+=======
+        const data = await externalServices.createPrompts(code, appUuid, payload);
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.createPromptsResult = data;
         this.loadingCreatePrompts = false;
       } catch (err) {
@@ -53,7 +65,11 @@ export const externals_store = defineStore('externals', {
       this.errorGetPrompts = null;
       this.getPromptsResult = null;
       try {
+<<<<<<< HEAD
         const { data } = await externalServices.getPrompts(code, appUuid);
+=======
+        const data = await externalServices.getPrompts(code, appUuid);
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.getPromptsResult = data;
         this.loadingGetPrompts = false;
       } catch (err) {
@@ -66,7 +82,11 @@ export const externals_store = defineStore('externals', {
       this.errorDeletePrompts = null;
       this.deletePromptsResult = null;
       try {
+<<<<<<< HEAD
         const { data } = await externalServices.deletePrompts(code, appUuid, payload);
+=======
+        const data = await externalServices.deletePrompts(code, appUuid, payload);
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.deletePromptsResult = data;
         this.loadingDeletePrompts = false;
       } catch (err) {

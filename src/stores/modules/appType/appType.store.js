@@ -20,7 +20,11 @@ export const app_type = defineStore('appType', {
       errorAllAppTypes: false,
 
       currentAppType: null,
+<<<<<<< HEAD
       loadingCurrentAppType: true,
+=======
+      loadingCurrentAppType: false,
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
       errorCurrentAppType: false,
 
       postRatingResult: null,
@@ -55,9 +59,15 @@ export const app_type = defineStore('appType', {
       this.allAppTypes = null;
 
       try {
+<<<<<<< HEAD
         const { data: baseApps } = await appType.getAllAppTypes(params);
         const { data: genericAppsData } = await genericType.getAllGenericTypes();
         const { data: iconData } = await genericType.getIcons();
+=======
+        const baseApps = await appType.getAllAppTypes(params);
+        const genericAppsData = await genericType.getAllGenericTypes();
+        const iconData = await genericType.getIcons();
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
 
         const genericApps = [];
 
@@ -91,7 +101,10 @@ export const app_type = defineStore('appType', {
         this.loadingCurrentAppType = false;
       } catch (err) {
         this.errorCurrentAppType = err;
+<<<<<<< HEAD
         this.loadingCurrentAppType = false;
+=======
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
       }
     },
     async postRating({ code, payload }) {
@@ -112,7 +125,11 @@ export const app_type = defineStore('appType', {
       this.errorCurrentApp = null;
       this.currentApp = null;
       try {
+<<<<<<< HEAD
         const { data } = await appType.getApp(code, appUuid);
+=======
+        const data = await appType.getApp(code, appUuid);
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.currentApp = data;
         this.loadingCurrentApp = false;
       } catch (err) {
@@ -151,12 +168,19 @@ export const app_type = defineStore('appType', {
       this.errorFeaturedApps = null;
       this.featuredApps = null;
       try {
+<<<<<<< HEAD
         const { data } = await appType.fetchFeatured();
+=======
+        const data = await appType.fetchFeatured();
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.featuredApps = data;
         this.loadingFeaturedApps = false;
       } catch (err) {
         this.errorFeaturedApps = err;
+<<<<<<< HEAD
         this.loadingFeaturedApps = false;
+=======
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
       }
     },
     async updateAppConfig({ code, appUuid, payload }) {
@@ -166,12 +190,20 @@ export const app_type = defineStore('appType', {
       try {
         const { data } = await appType.updateAppConfig(code, appUuid, payload);
         this.updateAppConfigResult = data;
+<<<<<<< HEAD
         this.loadingUpdateAppConfig = false;
       } catch (err) {
         captureSentryException(err);
         this.errorUpdateAppConfig = err;
         this.loadingUpdateAppConfig = false;
       }
+=======
+      } catch (err) {
+        captureSentryException(err);
+        this.errorUpdateAppConfig = err;
+      }
+      this.loadingUpdateAppConfig = false;
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
     },
     async updateApp({ code, appUuid, payload }) {
       this.loadingUpdateApp = true;

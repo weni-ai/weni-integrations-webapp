@@ -21,7 +21,11 @@
 <script>
   import addModal from '../AddModal/index.vue';
   import configPopUp from '../config/ConfigPopUp.vue';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -65,8 +69,13 @@
         loadingCreateApp: false,
         hasFBLoginList: ['wpp-cloud', 'ig', 'fba'],
         appCodeToFBAppId: {
+<<<<<<< HEAD
           'wpp-cloud': getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID'),
           ig: getEnv('VUE_APP_FACEBOOK_APP_ID'),
+=======
+          'wpp-cloud': getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID'),
+          ig: getEnv('VITE_APP_FACEBOOK_APP_ID'),
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         },
       };
     },
@@ -117,6 +126,7 @@
         this.$refs.configPopUp.openPopUp(app, customData);
       },
       callErrorModal({ text }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text,
@@ -125,6 +135,12 @@
             scheme: 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text,
+            type: 'error',
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
           },
           seconds: 6,
         });

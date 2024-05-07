@@ -85,7 +85,12 @@
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
         <unnnic-pagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
+<<<<<<< HEAD
           v-model="currentPage"
+=======
+          :value="currentPage"
+          @input="onPageChange"
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
           :max="maxGridPages"
           :show="6"
         />
@@ -128,7 +133,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
 
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
@@ -141,7 +150,11 @@
   import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',
+<<<<<<< HEAD
     components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
+=======
+    components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
     props: {
       section: {
         type: String,
@@ -243,6 +256,7 @@
         }
 
         this.toggleRemoveModal();
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
@@ -251,12 +265,19 @@
             scheme: 'feedback-green',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: this.$t('apps.details.actions.remove.status_text'),
+            type: 'success',
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
           },
           seconds: 3,
         });
         this.$emit('update');
       },
       callErrorModal({ text }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: text,
@@ -265,6 +286,12 @@
             scheme: 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: text,
+            type: 'error',
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
           },
           seconds: 6,
         });
@@ -332,6 +359,7 @@
       /* istanbul ignore next */
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
+<<<<<<< HEAD
 
         unnnicCallAlert({
           props: {
@@ -341,10 +369,22 @@
             scheme: 'feedback-green',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
+            type: 'success',
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
           },
           seconds: 6,
         });
       },
+<<<<<<< HEAD
+=======
+      onPageChange(value) {
+        this.currentPage = value;
+      },
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
     },
     watch: {
       /* istanbul ignore next */
@@ -360,4 +400,7 @@
 <style lang="scss" scoped>
   @import '../styles/grid.scss';
 </style>
+<<<<<<< HEAD
 import { template } from '@babel/core';
+=======
+>>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
