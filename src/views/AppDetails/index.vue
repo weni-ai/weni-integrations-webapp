@@ -1,10 +1,6 @@
 <template>
   <div>
     <navigator class="navigator" :routes="navigatorHistory" />
-<<<<<<< HEAD
-
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     <div class="app-details" v-if="!loadingCurrentAppType">
       <app-images-banner
         class="app-details__section"
@@ -41,11 +37,7 @@
   import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
   import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
   import skeletonLoading from '../loadings/AppDetails.vue';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { mapActions, mapState } from 'pinia';
   import millify from 'millify';
@@ -57,10 +49,6 @@
       AppImagesBanner,
       AppDetailsHeader,
       AppDetailsAbout,
-<<<<<<< HEAD
-      // AppDetailsRecommended,
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       AppDetailsComments,
       skeletonLoading,
     },
@@ -94,21 +82,10 @@
         await this.postRating(data);
 
         if (this.errorPostRating) {
-<<<<<<< HEAD
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-=======
           alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 3,
           });

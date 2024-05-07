@@ -98,11 +98,7 @@
 
 <script>
   import axios from 'axios';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';

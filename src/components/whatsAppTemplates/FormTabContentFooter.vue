@@ -8,13 +8,8 @@
       class="form-tab-content-footer__input"
       :disabled="disableInputs"
       :maxLength="60"
-<<<<<<< HEAD
-      :value="templateTranslationCurrentForm.footer || ''"
-      @input="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
-=======
       :modelValue="textInput"
       @update:modelValue="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       :placeholder="$t('WhatsApp.templates.form_field.footer_text_placeholder')"
     />
   </div>
@@ -34,12 +29,9 @@
     },
     computed: {
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
-<<<<<<< HEAD
-=======
       textInput() {
         return this.templateTranslationCurrentForm.footer || '';
       },
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
   };
 </script>

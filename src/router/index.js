@@ -118,7 +118,7 @@ const router = createRouter({
         if (to.query.next) {
           next(to.query.next);
         } else {
-          next({path: '/'});
+          next({ path: '/' });
         }
       },
     },

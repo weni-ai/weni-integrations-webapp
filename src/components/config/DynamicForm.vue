@@ -6,26 +6,6 @@
         ref="unnnic-input"
         :class="[!input.label && 'dynamic-form__fields--top-margin', 'dynamic-form__fields__input']"
         :type="getType(input)"
-<<<<<<< HEAD
-        v-model="input.value"
-        :label="input.label && $t(input.label)"
-        :placeholder="input.placeholder && $t(input.placeholder)"
-        :message="input.message && $t(input.message)"
-        @input="emitInput(index, input, $event)"
-      />
-      <unnnic-select
-        v-else-if="input.type === 'select'"
-        ref="unnnic-select"
-        :placeholder="input.placeholder && $t(input.placeholder)"
-        :label="input.label && $t(input.label)"
-        :value="input.value"
-        @input="emitInput(index, input, $event)"
-      >
-        <option v-for="option in input.options" :key="option.key" :value="option.value">
-          {{ option.text }}
-        </option>
-      </unnnic-select>
-=======
         v-model="selectedInputs[index]"
         :label="input.label && $t(input.label)"
         :placeholder="input.placeholder && $t(input.placeholder)"
@@ -47,7 +27,6 @@
           "
         />
       </div>
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="$t(input.label)" />
         <unnnic-upload-area
@@ -61,25 +40,15 @@
           :canImport="input.props.canImport"
           :canDelete="input.props.canDelete"
           :shouldReplace="input.props.shouldReplace"
-<<<<<<< HEAD
-          @fileChange="emitInput(index, input, $event)"
-=======
           @fileChange="setInput(index, input)"
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         />
       </div>
       <unnnic-checkbox
         v-else-if="input.type === 'checkbox'"
         class="dynamic-form__fields--top-margin"
-<<<<<<< HEAD
-        :value="input.value || false"
-        :textRight="input.label"
-        @change="emitInput(index, input, $event)"
-=======
         v-model="selectedInputs[index]"
         :textRight="input.label"
         @change="emitInput"
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       />
     </div>
   </div>
@@ -94,20 +63,6 @@
         default: /* istanbul ignore next */ () => [],
       },
     },
-<<<<<<< HEAD
-    methods: {
-      emitInput(index, input, value) {
-        switch (input.type) {
-          case 'select':
-            // eslint-disable-next-line no-case-declarations
-            const option = input.options.find((option) => option.value === value);
-            this.$emit('input', { index, value: option.value });
-            break;
-          default:
-            this.$emit('input', { index, value });
-            break;
-        }
-=======
     data() {
       return {
         selectedInputs: [],
@@ -126,13 +81,10 @@
               break;
           }
         });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       },
       getType(input) {
         return input.error ? 'error' : 'normal';
       },
-<<<<<<< HEAD
-=======
       filterOptions(options) {
         return options.length
           ? options.map((item) => {
@@ -147,7 +99,6 @@
     setSelectedInput(index, value) {
       this.selectedInputs[index] = value;
       this.emitInput();
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
   };
 </script>

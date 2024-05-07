@@ -23,21 +23,11 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorEcommerceApps = null;
       this.ecommerceAppsList = null;
       try {
-<<<<<<< HEAD
-        const { data } = await ecommerce.getAllEcommerceTypes();
-        this.ecommerceAppsList = data;
-        this.loadingEcommerceApps = false;
-      } catch (err) {
-        this.errorEcommerceApps = err;
-        this.loadingEcommerceApps = false;
-      }
-=======
         this.ecommerceAppsList = await ecommerce.getAllEcommerceTypes();
       } catch (err) {
         this.errorEcommerceApps = err;
       }
       this.loadingEcommerceApps = false;
->>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
     },
     async connectVtexCatalog({ code, appUuid, payload }) {
       this.loadingConnectVtexCatalog = true;
@@ -57,11 +47,7 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorVtexAppUuid = null;
       this.generatedVtexAppUuid = null;
       try {
-<<<<<<< HEAD
-        const { data } = await ecommerce.getVtexAppUuid(code);
-=======
         const data = await ecommerce.getVtexAppUuid(code);
->>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.generatedVtexAppUuid = data;
         this.loadingVtexAppUuid = false;
       } catch (err) {

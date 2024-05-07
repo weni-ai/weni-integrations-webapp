@@ -929,13 +929,8 @@
       },
       "telegram": {
         "descriptions": {
-<<<<<<< HEAD
-          "first": "<ol><li>¡Vamos! Abra su Telegram y busque \"@BotFather\".</li><li>Luego envíe “/newbot”, elija un nombre de usuario (los nombres de usuario siempre deben terminar con “_bot”, por ejemplo: test_bot).</li> <li>Una vez completados estos pasos, recibirá un token.</li><li>En la plataforma Weni, acceda al módulo de integraciones y haga clic en el \"+\" en la tarjeta de Telegram, luego será redirigido a mi aplicaciones.</li></ol>",
-          "second": "<ol start=\"5\"><li>Busca la tarjeta de Telegram y haz clic en ella. Se abrirá una barra lateral en el lado derecho de la página.</li><li>Pegue el token que @BotFather le envió en el campo proporcionado. Luego haga clic en \"validar\".</li><li>Su bot se creará con el nombre que eligió.</li><li>Para acceder al bot en Telegram, simplemente busque el nombre que definió en la búsqueda campo y enviar un mensaje. Listo!</li></ol>"
-=======
           "first": "<ol><li>¡Vamos! Abra su Telegram y busque \"{'@'}BotFather\".</li><li>Luego envíe “/newbot”, elija un nombre de usuario (los nombres de usuario siempre deben terminar con “_bot”, por ejemplo: test_bot).</li> <li>Una vez completados estos pasos, recibirá un token.</li><li>En la plataforma Weni, acceda al módulo de integraciones y haga clic en el \"+\" en la tarjeta de Telegram, luego será redirigido a mi aplicaciones.</li></ol>",
           "second": "<ol start=\"5\"><li>Busca la tarjeta de Telegram y haz clic en ella. Se abrirá una barra lateral en el lado derecho de la página.</li><li>Pegue el token que {'@'}BotFather le envió en el campo proporcionado. Luego haga clic en \"validar\".</li><li>Su bot se creará con el nombre que eligió.</li><li>Para acceder al bot en Telegram, simplemente busque el nombre que definió en la búsqueda campo y enviar un mensaje. Listo!</li></ol>"
->>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         },
         "title": "Cómo integrar Telegram"
       },

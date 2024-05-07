@@ -93,10 +93,6 @@
       v-if="showCreateCatalogModal || showConnectCatalogModal"
       class="catalog-modal"
       @close="showCreateCatalogModal = false"
-<<<<<<< HEAD
-      @click.stop
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       :closeIcon="false"
     >
       <CreateCatalogModalContent
@@ -120,18 +116,11 @@
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
   import { mapActions, mapState } from 'pinia';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import { auth_store } from '@/stores/modules/auth.store';
-=======
   import alert from '@/utils/call';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'AccountTab',
@@ -160,11 +149,7 @@
       };
     },
     methods: {
-<<<<<<< HEAD
-      ...mapActions(app_type, ['getConfiguredApps']),
-=======
       ...mapActions(my_apps, ['getConfiguredApps']),
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
@@ -224,20 +209,12 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-<<<<<<< HEAD
-          this.callAlert({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
-=======
           this.callAlert({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return;
         }
 
         this.showConnectCatalogModal = false;
-<<<<<<< HEAD
-        this.callAlert({ type: 'Success', text: this.$t('vtex.success.connect_catalog') });
-=======
         this.callAlert({ type: 'success', text: this.$t('vtex.success.connect_catalog') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
         await this.fetchVtexApp();
       },
@@ -254,21 +231,10 @@
         this.vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
       },
       callAlert({ text, type }) {
-<<<<<<< HEAD
-        unnnicCallAlert({
-          props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text: text,
             type: type,
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

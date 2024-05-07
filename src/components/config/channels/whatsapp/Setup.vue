@@ -9,10 +9,6 @@
       modal-icon="phone-3"
       :close-icon="false"
       @close="closePopUp"
-<<<<<<< HEAD
-      @click.stop
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     >
       <template #options>
         <div>
@@ -45,11 +41,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { auth_store } from '@/stores/modules/auth.store';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../..//utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
@@ -86,26 +78,16 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-<<<<<<< HEAD
-      async startFacebookLogin() {
-        const fbAppId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID');
-        const configId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
-=======
       startFacebookLogin() {
         const fbAppId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID');
         const configId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
         if (!fbAppId) {
           return;
         }
 
         /* eslint-disable no-undef */
-<<<<<<< HEAD
-        const loginCallback = async () => {
-=======
         const loginCallback = () => {
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           this.changeLoginState(true);
 
           const sessionInfoListener = (event) => {
@@ -143,17 +125,10 @@
             });
 
           FB.login(
-<<<<<<< HEAD
-            async function (response) {
-              if (response.authResponse) {
-                const code = response.authResponse.code;
-                await this.createChannel(code);
-=======
             function (response) {
               if (response.authResponse) {
                 const code = response.authResponse.code;
                 this.createChannel(code);
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
               } else {
                 console.log('User cancelled login or did not fully authorize.');
               }
@@ -196,21 +171,10 @@
         this.$emit('closePopUp');
       },
       callErrorModal({ text }) {
-<<<<<<< HEAD
-        unnnicCallAlert({
-          props: {
-            text: text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text: text,
             type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

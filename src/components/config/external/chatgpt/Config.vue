@@ -56,11 +56,7 @@
               :label="$t('ChatGPT.config.tabs.flows.inputs.prompt_label')"
               :placeholder="$t('ChatGPT.config.tabs.flows.inputs.prompt_placeholder')"
               @keyup.enter="addPrompt"
-<<<<<<< HEAD
-              iconRight="keyboard-enter-1"
-=======
               iconRight="keyboard"
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             />
 
             <unnnic-label
@@ -163,11 +159,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -275,11 +267,7 @@
         await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
         if (this.errorGetPrompts) {
-<<<<<<< HEAD
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.get_prompts') });
-=======
           this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.get_prompts') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         }
 
         this.availablePrompts = this.getPromptsResult || [];
@@ -337,11 +325,7 @@
         await this.updateApp(data);
 
         if (this.errorUpdateApp) {
-<<<<<<< HEAD
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.configure') });
-=======
           this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.configure') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return true;
         }
       },
@@ -358,11 +342,7 @@
         await this.createPrompts(data);
 
         if (this.errorCreatePrompt) {
-<<<<<<< HEAD
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.create_prompt') });
-=======
           this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.create_prompt') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return true;
         }
 
@@ -381,11 +361,7 @@
         await this.deletePrompts(data);
 
         if (this.errorDeletePrompts) {
-<<<<<<< HEAD
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.delete_prompt') });
-=======
           this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.delete_prompt') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return true;
         }
 
@@ -413,32 +389,17 @@
           if (err) return;
         }
 
-<<<<<<< HEAD
-        this.callModal({ type: 'Success', text: this.$t('ChatGPT.success.configure') });
-=======
         this.callModal({ type: 'success', text: this.$t('ChatGPT.success.configure') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         this.$root.$emit('updateGrid');
       },
       closeConfig() {
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-<<<<<<< HEAD
-        unnnicCallAlert({
-          props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text,
             type,
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

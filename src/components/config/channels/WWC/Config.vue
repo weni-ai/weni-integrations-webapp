@@ -290,11 +290,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
@@ -567,21 +563,10 @@
         Object.entries(this.$data).forEach(([key]) => {
           const error = this.errorFor(key);
           if (error) {
-<<<<<<< HEAD
-            unnnicCallAlert({
-              props: {
-                text: error,
-                title: this.$t('general.error'),
-                icon: 'alert-circle-1-1',
-                scheme: 'feedback-red',
-                position: 'bottom-right',
-                closeText: this.$t('general.Close'),
-=======
             alert.callAlert({
               props: {
                 text: error,
                 type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
               },
               seconds: 3,
             });
@@ -633,43 +618,20 @@
 
           this.selectedApp.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
-<<<<<<< HEAD
-          unnnicCallAlert({
-=======
           alert.callAlert({
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             props: {
               text: /* istanbul ignore next */ firstSave
                 ? this.$t('apps.config.first_integration_success')
                 : this.$t('apps.config.integration_success'),
-<<<<<<< HEAD
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-=======
               type: 'success',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
         } catch (err) {
-<<<<<<< HEAD
-          unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
-=======
           alert.callAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 3,
           });

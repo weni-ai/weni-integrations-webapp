@@ -20,11 +20,7 @@ export const insights_store = defineStore('insights', {
       this.errorTemplateAnalytics = null;
       this.templateAnalytics = null;
       try {
-<<<<<<< HEAD
-        let { data } = await insights.get_template_analytics(app_uuid, filters);
-=======
         let data = await insights.get_template_analytics(app_uuid, filters);
->>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.templateAnalytics = data;
         this.loadingTemplateAnalytics = false;
       } catch (err) {
@@ -34,11 +30,7 @@ export const insights_store = defineStore('insights', {
     },
     async getTemplates({ app_uuid }) {
       try {
-<<<<<<< HEAD
-        let { data } = await insights.get_templates(app_uuid);
-=======
         let data = await insights.get_templates(app_uuid);
->>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
         this.errorTemplates = null;
         this.templates = data;
       } catch (err) {

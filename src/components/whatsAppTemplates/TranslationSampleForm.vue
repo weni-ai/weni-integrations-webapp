@@ -6,10 +6,6 @@
       scheme="feedback-yellow"
       modal-icon="alert-circle-1"
       @close="closeSampleModal"
-<<<<<<< HEAD
-      @click.stop
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     >
       <template #message>
         <div>
@@ -74,11 +70,7 @@
 <script>
   import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
@@ -206,21 +198,10 @@
         this.$emit('close-modal');
       },
       callErrorModal({ text }) {
-<<<<<<< HEAD
-        unnnicCallAlert({
-          props: {
-            text,
-            title: this.$t('general.error'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text,
             type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

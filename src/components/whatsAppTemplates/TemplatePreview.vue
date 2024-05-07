@@ -71,11 +71,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-  import { mapGetters, mapState } from 'pinia';
-=======
   import { mapState } from 'pinia';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
   export default {
@@ -95,11 +91,7 @@
       },
     },
     computed: {
-<<<<<<< HEAD
-      ...mapGetters(whatsapp_store, {
-=======
       ...mapState(whatsapp_store, {
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         currentForm: 'templateTranslationCurrentForm',
       }),
       ...mapState(whatsapp_store, ['loadingFetchWhatsAppTemplate']),

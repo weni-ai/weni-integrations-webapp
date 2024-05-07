@@ -8,13 +8,9 @@
             :src="app.config.channel_icon_url"
           />
         </div>
-<<<<<<< HEAD
-        <div class="app-config-generic__header__title__name">{{ app.config.channel_name }}</div>
-=======
         <div class="app-config-generic__header__title__name">
           {{ app.config.channel_name }}
         </div>
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       </div>
       <span class="app-config-generic__header__description" v-html="appDescription" />
 
@@ -49,11 +45,7 @@
         :inputs="appFormInputs"
         @input="updateInputs"
       />
-<<<<<<< HEAD
-      <unnnic-skeleton-loading
-=======
       <skeleton-loading
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         v-else
         class="app-config-generic__settings__content__form-loading"
         tag="div"
@@ -85,28 +77,18 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { mapActions, mapState } from 'pinia';
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { generic_store } from '@/stores/modules/appType/channels/generic.store';
-<<<<<<< HEAD
-=======
   import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'generic-config',
     components: {
       DynamicForm,
-<<<<<<< HEAD
-=======
       skeletonLoading,
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
     props: {
       app: {
@@ -168,11 +150,7 @@
 
         if (this.errorCurrentApp || this.errorAppForm) {
           this.callModal({
-<<<<<<< HEAD
-            type: 'Error',
-=======
             type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             text: this.$t('GenericApp.preview.errors.fetch_app'),
           });
         }
@@ -207,13 +185,9 @@
         this.loadingFormBuild = false;
       },
       updateInputs(inputData) {
-<<<<<<< HEAD
-        this.appFormInputs[inputData.index].value = inputData.value;
-=======
         if (inputData?.value) {
           this.appFormInputs[inputData.index].value = inputData.value;
         }
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       },
       async saveConfig() {
         let payloadConfig = {};
@@ -234,15 +208,9 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-<<<<<<< HEAD
-          this.callModal({ type: 'Error', text: this.$t('apps.details.status_error') });
-        } else {
-          this.callModal({ type: 'Success', text: this.$t('apps.config.integration_success') });
-=======
           this.callModal({ type: 'error', text: this.$t('apps.details.status_error') });
         } else {
           this.callModal({ type: 'success', text: this.$t('apps.config.integration_success') });
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
           await this.fetchAppData();
           this.showCallback = true;
@@ -254,21 +222,10 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-<<<<<<< HEAD
-        unnnicCallAlert({
-          props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text: text,
             type: type,
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

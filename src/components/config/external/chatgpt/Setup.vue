@@ -3,10 +3,6 @@
     ref="unnnic-chatgpt-modal"
     class="chatgpt-modal"
     @close="closePopUp"
-<<<<<<< HEAD
-    @click.stop
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     :closeIcon="false"
     :text="$t('ChatGPT.setup.title')"
     :description="$t('ChatGPT.setup.description')"
@@ -86,11 +82,7 @@
   import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'ChatGPTModal',
@@ -129,30 +121,12 @@
 
         if (this.errorCreateApp) {
           this.callModal({
-<<<<<<< HEAD
-            type: 'Error',
-=======
             type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             text: this.$t(`ChatGPT.setup.create_app.error`),
           });
           return;
         }
 
-<<<<<<< HEAD
-        this.callModal({ type: 'Success', text: this.$t(`ChatGPT.setup.success`) });
-        this.$router.replace('/apps/my');
-      },
-      callModal({ text, type }) {
-        unnnicCallAlert({
-          props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         this.callModal({ type: 'success', text: this.$t(`ChatGPT.setup.success`) });
         this.$router.replace('/apps/my');
       },
@@ -161,7 +135,6 @@
           props: {
             text,
             type,
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

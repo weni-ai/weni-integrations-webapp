@@ -52,11 +52,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'wpp-demo-preview',
@@ -85,22 +81,10 @@
       /* istanbul ignore next */
       copyUrl() {
         navigator.clipboard.writeText(this.url);
-<<<<<<< HEAD
-
-        unnnicCallAlert({
-          props: {
-            text: this.$t('apps.config.copy_success'),
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
             type: 'success',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 3,
         });

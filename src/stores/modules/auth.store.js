@@ -79,14 +79,11 @@ export const auth_store = defineStore('auth', {
         this.loadingFlowToken = false;
       }
     },
-<<<<<<< HEAD
-=======
     async getFlowOrganization() {
       if (!this.flowOrg) {
         const { data } = await auth.getFlowOrganization(this.project);
         this.flowOrg = data;
       }
     },
->>>>>>> 2b3650211d3352b076cdf8f0ba61d30be889da5b
   },
 });

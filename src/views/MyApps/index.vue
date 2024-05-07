@@ -59,11 +59,7 @@
   import AppGrid from '@/components/AppGrid/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapState, mapActions } from 'pinia';
-<<<<<<< HEAD
-  import unnnicCallAlert from '@weni/unnnic-system';
-=======
   import alert from '@/utils/call';
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
 
@@ -78,13 +74,6 @@
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
-<<<<<<< HEAD
-
-      this.$root.$on('updateGrid', () => {
-        this.fetchCategories();
-      });
-=======
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
     /* istanbul ignore next */
     beforeDestroy() {
@@ -176,21 +165,10 @@
         this.$router.replace('/apps/discovery');
       },
       callErrorModal({ text }) {
-<<<<<<< HEAD
-        unnnicCallAlert({
-          props: {
-            text: text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
-=======
         alert.callAlert({
           props: {
             text: text,
             type: 'error',
->>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });
