@@ -151,6 +151,7 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <unnnic-button
       ref="unnnic-vtex-modal-close-button"
       slot="options"
@@ -168,6 +169,29 @@
     >
       {{ $t('general.continue') }}
     </unnnic-button>
+=======
+    <div class="vtex-modal__buttons">
+      <unnnic-button
+        ref="unnnic-vtex-modal-close-button"
+        class="vtex-modal__buttons__button"
+        slot="options"
+        type="tertiary"
+        @click="closePopUp"
+      >
+        {{ $t('general.Cancel') }}
+      </unnnic-button>
+      <unnnic-button
+        ref="unnnic-vtex-modal-setup-button"
+        class="vtex-modal__buttons__button"
+        slot="options"
+        type="primary"
+        @click="continueSetup"
+        :loading="loadingCreateApp"
+      >
+        {{ $t('general.continue') }}
+      </unnnic-button>
+    </div>
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   </unnnic-modal>
 </template>
 
@@ -177,7 +201,11 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
 
@@ -198,7 +226,11 @@
         apiDomain: '',
         whatsappChannels: [],
         selectedChannel: [],
+<<<<<<< HEAD
         loadingChannels: true,
+=======
+        loadingChannels: false,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         appKey: null,
         appToken: null,
         currentStep: 0,
@@ -214,12 +246,22 @@
       ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
       ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
       webhookUrl() {
+<<<<<<< HEAD
         const backendUrl = getEnv('VUE_APP_API_BASE_URL');
         return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid}/products-update/api/notification/`;
       },
     },
     methods: {
       ...mapActions(app_type, ['createApp', 'getConfiguredApps']),
+=======
+        const backendUrl = getEnv('VITE_APP_API_BASE_URL');
+        return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid.uuid}/products-update/api/notification/`;
+      },
+    },
+    methods: {
+      ...mapActions(app_type, ['createApp']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       ...mapActions(ecommerce_store, ['getVtexAppUuid']),
       closePopUp() {
         this.$emit('closePopUp');
@@ -232,7 +274,11 @@
             !this.appKey.trim() ||
             !this.appToken.trim()
           ) {
+<<<<<<< HEAD
             this.callModal({ type: 'Error', text: this.$t('vtex.setup.error_missing_fields') });
+=======
+            this.callModal({ type: 'error', text: this.$t('vtex.setup.error_missing_fields') });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             return;
           }
           this.currentStep = 1;
@@ -250,10 +296,16 @@
             app_key: this.appKey.trim(),
             app_token: this.appToken.trim(),
             wpp_cloud_uuid: this.selectedChannel[0].value,
+<<<<<<< HEAD
             uuid: this.generatedVtexAppUuid,
           },
         };
 
+=======
+            uuid: this.generatedVtexAppUuid.uuid,
+          },
+        };
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         await this.createApp(data);
 
         if (this.errorCreateApp) {
@@ -261,6 +313,7 @@
             this.errorCreateApp.response.status === 400 &&
             this.errorCreateApp.response.data.detail === 'The credentials provided are invalid.'
           ) {
+<<<<<<< HEAD
             this.callModal({ type: 'Error', text: this.$t('vtex.setup.invalid_credentials') });
             return;
           }
@@ -269,6 +322,16 @@
         }
 
         this.callModal({ type: 'Success', text: this.$t('vtex.setup.success') });
+=======
+            this.callModal({ type: 'error', text: this.$t('vtex.setup.invalid_credentials') });
+            return;
+          }
+          this.callModal({ type: 'error', text: this.$t('vtex.setup.error') });
+          return;
+        }
+
+        this.callModal({ type: 'success', text: this.$t('vtex.setup.success') });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         this.$emit('closePopUp');
         this.$router.push({ name: 'Apps' });
       },
@@ -278,10 +341,17 @@
           project_uuid: this.project,
         };
         await this.getConfiguredApps({ params });
+<<<<<<< HEAD
 
         if (this.errorConfiguredApps) {
           this.callModal({
             type: 'Error',
+=======
+        this.loadingChannels = false;
+        if (this.errorConfiguredApps) {
+          this.callModal({
+            type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             text: this.$t('apps.myApps.error.configured'),
           });
           this.closePopUp();
@@ -299,6 +369,7 @@
         if (this.whatsappChannels.length === 1) {
           this.selectedChannel = [this.whatsappChannels[0]];
         }
+<<<<<<< HEAD
 
         this.loadingChannels = false;
       },
@@ -313,11 +384,21 @@
             scheme: 'feedback-green',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+      },
+      async copyWebhookUrl() {
+        navigator.clipboard.writeText(this.webhookUrl);
+        alert.callAlert({
+          props: {
+            text: this.$t('apps.config.copy_success'),
+            type: 'success',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 3,
         });
       },
       callModal({ text, type }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: text,
@@ -326,6 +407,12 @@
             scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text,
+            type,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });
@@ -496,5 +583,20 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+
+    &__buttons {
+      display: flex;
+      justify-content: center;
+      padding-top: $unnnic-spacing-md;
+      gap: $unnnic-spacing-md;
+
+      &__button {
+        display: flex;
+        width: 221px;
+      }
+    }
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   }
 </style>

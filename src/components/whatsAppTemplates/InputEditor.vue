@@ -1,12 +1,20 @@
 <template>
   <div class="input-editor">
     <div v-click-outside="hideEmoji">
+<<<<<<< HEAD
       <VEmojiPicker
         v-show="displayEmoji"
         class="input-editor__emoji-picker"
         :emojiSize="22"
         :emojisByRow="7"
         @select="selectEmoji"
+=======
+      <unnnicEmojiPicker
+        class="input-editor__emoji-picker__list"
+        v-show="displayEmoji"
+        @emojiSelected="selectEmoji"
+        @close="closeEmojiPicker"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       />
       <unnnic-button
         class="input-editor__emoji-picker__button"
@@ -63,14 +71,20 @@
 </template>
 
 <script>
+<<<<<<< HEAD
   import { VEmojiPicker } from 'v-emoji-picker';
+=======
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import StrikeThroughIcon from '@/assets/svgs/strike-through.svg';
 
   export default {
     name: 'InputEditor',
+<<<<<<< HEAD
     components: {
       VEmojiPicker,
     },
+=======
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     data() {
       return {
         displayEmoji: false,
@@ -128,6 +142,10 @@
         font-family: $unnnic-font-family-primary;
         font-size: $unnnic-font-size-body-lg;
         color: $unnnic-color-neutral-cleanest;
+<<<<<<< HEAD
+=======
+        padding-top: 20px;
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       }
 
       ::v-deep {
@@ -148,6 +166,13 @@
         opacity: $unnnic-opacity-level-clarifying;
       }
 
+<<<<<<< HEAD
+=======
+      &__list {
+        transform: translateX(-150px);
+      }
+
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       ::v-deep .container-emoji {
         height: 200px;
       }

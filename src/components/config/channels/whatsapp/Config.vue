@@ -89,16 +89,27 @@
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { dataUrlToFile } from '@/utils/files';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'whatsapp-config',
     components: {
+<<<<<<< HEAD
       skeletonLoading,
+=======
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       AccountTab,
       ProfileTab,
       ConversationsTab,
       WebhookTab,
+<<<<<<< HEAD
+=======
+      skeletonLoading,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
     props: {
       app: {
@@ -118,7 +129,11 @@
     },
     async mounted() {
       await this.fetchData();
+<<<<<<< HEAD
       // this.headerScrollBehavior();
+=======
+      this.headerScrollBehavior();
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
     computed: {
       ...mapState(whatsapp_store, [
@@ -144,6 +159,7 @@
       ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
       ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
+<<<<<<< HEAD
       // headerScrollBehavior() {
       //   const tabHeader = document.getElementsByClassName('tab-content')[0];
       //   if (tabHeader) {
@@ -156,6 +172,20 @@
       //     });
       //   }
       // },
+=======
+      headerScrollBehavior() {
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+        if (tabHeader) {
+          tabHeader.addEventListener('wheel', (event) => {
+            event.preventDefault();
+
+            tabHeader.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          });
+        }
+      },
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       closeConfig() {
         this.$emit('closeModal');
       },
@@ -168,6 +198,7 @@
           await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_fetch'),
@@ -176,6 +207,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_fetch'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 8,
           });

@@ -19,7 +19,11 @@
           },
           {
             name: this.$t('WhatsApp.template_details.crumbs.model_details'),
+<<<<<<< HEAD
             path: '/template-details',
+=======
+            path: '/',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             meta: 'myApps',
           },
         ],

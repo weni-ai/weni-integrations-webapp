@@ -8,7 +8,10 @@
           <component
             class="config-modal__component"
             :is="currentComponent"
+<<<<<<< HEAD
             :v-bind="$attrs"
+=======
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             :app="currentApp"
             :isConfigured="isConfigured"
             @closeModal="closeModal"
@@ -50,10 +53,17 @@
 </template>
 
 <script>
+<<<<<<< HEAD
   import wwcConfig from '@/components/config/channels//WWC/Config.vue';
   import telegramConfig from '@/components/config/channels//telegram/Config.vue';
   import wppDemoPreview from '@/components/config/channels//wpp_demo/Preview.vue';
   import whatsappConfig from '@/components/config/channels//whatsapp/Config.vue';
+=======
+  import wwcConfig from '@/components/config/channels/WWC/Config.vue';
+  import telegramConfig from '@/components/config/channels/telegram/Config.vue';
+  import wppDemoPreview from '@/components/config/channels/wpp_demo/Preview.vue';
+  import whatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import powerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
   import genericTypeConfig from '@/components/config/channels/generic/Config.vue';
   import instagramConfig from '@/components/config/channels/instagram/Config.vue';

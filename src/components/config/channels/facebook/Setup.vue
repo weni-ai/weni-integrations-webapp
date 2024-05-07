@@ -8,7 +8,6 @@
       :modal-icon="this.integrationIcon"
       :close-icon="false"
       @close="closePopUp"
-      @click.stop
     >
       <template #message>
         <div>
@@ -48,7 +47,6 @@
       :modal-icon="this.integrationIcon"
       :close-icon="false"
       @close="closePopUp"
-      @click.stop
     >
       <template #message>
         <div class="page-selection__select">
@@ -100,7 +98,11 @@
 
 <script>
   import axios from 'axios';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
@@ -173,18 +175,18 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
-        const fbAppId = getEnv('VUE_APP_FACEBOOK_APP_ID');
+      startFacebookLogin() {
+        const fbAppId = getEnv('VITE_APP_FACEBOOK_APP_ID');
 
         if (!fbAppId) {
           return;
         }
 
         /* eslint-disable no-undef */
-        const loginCallback = async () => {
+        const loginCallback = () => {
           this.changeLoginState(true);
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse && response.authResponse.grantedScopes) {
                 const accessToken = response.authResponse.accessToken;
                 this.startPageSelectionStage(accessToken);
@@ -212,7 +214,7 @@
           this.pageList = res.data.data;
         } catch (error) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.account_data.error`),
           });
           return;
@@ -225,7 +227,7 @@
 
         if (!page) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.find_page.error`),
           });
           return;
@@ -237,7 +239,7 @@
         });
         if (this.errorCreateApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.create_app.error`),
           });
           return;
@@ -262,28 +264,24 @@
 
         if (this.errorUpdateAppConfig) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.update_app.error`),
           });
           await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t(`${this.integrationName}.setup.success`) });
+        this.callModal({ type: 'success', text: this.$t(`${this.integrationName}.setup.success`) });
         this.$router.replace('/apps/my');
       },
       closePopUp() {
         this.$emit('closePopUp');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        alert.callAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

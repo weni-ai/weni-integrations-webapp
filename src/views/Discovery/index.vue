@@ -1,10 +1,19 @@
 <template>
   <div class="discovery-content">
+<<<<<<< HEAD
     <unnnic-input 
     v-model="searchTerm"
     class="discovery-content__search"
     placeholder="Search"
     icon-left="search-1"/>
+=======
+    <unnnic-input
+      v-model="searchTerm"
+      class="discovery-content__search"
+      :placeholder="$t('apps.discovery.search.placeholder')"
+      icon-left="search-1"
+    />
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
     <span v-if="searchTerm && searchTerm.trim()" class="discovery-content__search__results">
       {{ $t('apps.discovery.search.results') }}
@@ -72,7 +81,11 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   export default {
     name: 'Discovery',
     components: {
@@ -191,6 +204,7 @@
         await app_type().getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('apps.discovery.fetch_error'),
@@ -199,6 +213,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('apps.discovery.fetch_error'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 6,
           });
@@ -211,6 +231,7 @@
         await this.$refs.appGrid.manuallyCreateApp(appCode);
       },
       async fetchExternalServices() {
+<<<<<<< HEAD
         await externals_store().getExternalServicesTypes();
       },
       async fetchEcommerceApps() {
@@ -222,6 +243,14 @@
         console.log(old, ' - ', newVal)
       }
     }
+=======
+        await this.getExternalServicesTypes();
+      },
+      async fetchEcommerceApps() {
+        await this.getEcommerceTypes();
+      },
+    },
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   };
 </script>
 

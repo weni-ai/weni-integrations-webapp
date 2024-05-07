@@ -5,6 +5,7 @@
         <div class="whatsapp-templates-table__filters__date__label">
           {{ $t('WhatsApp.templates.table.filters.date.label') }}
         </div>
+<<<<<<< HEAD
         <unnnic-date-filter
           class="whatsapp-templates-table__filters__date__selector"
           dateFormat="DD/MM/YYYY"
@@ -46,6 +47,21 @@
           {{ $t(category.translation) }}
         </option>
       </unnnic-select>
+=======
+        <unnnicInputDatePicker
+          v-model="datePickerDates"
+          :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
+          :months="months"
+          :options="options"
+          @submit="handleDateFilter"
+        />
+      </div>
+      <unnnic-select-smart
+        class="whatsapp-templates-table__filters__category"
+        v-model="selectedCategory"
+        :options="categoryOptions"
+      />
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       <unnnic-input
         v-model="searchTerm"
         class="whatsapp-templates-table__filters__search"
@@ -132,14 +148,23 @@
 
     <div class="whatsapp-templates-table__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
+<<<<<<< HEAD
       <unnnic-pagination v-model="page" :max="pageCount" :show="5" />
+=======
+      <unnnic-pagination :value="page" @input="onPageChange" :max="pageCount" :show="5" />
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     </div>
   </div>
 </template>
 
 <script>
   import debounce from 'lodash.debounce';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
@@ -170,6 +195,7 @@
         dateSortDirection: 'NONE',
         categoryOptions: [
           {
+<<<<<<< HEAD
             type: 'ANY',
             translation: 'WhatsApp.data.templates.category.any',
           },
@@ -184,6 +210,22 @@
           {
             type: 'AUTHENTICATION',
             translation: 'WhatsApp.data.templates.category.authentication',
+=======
+            value: 'ANY',
+            label: this.$t('WhatsApp.data.templates.category.any'),
+          },
+          {
+            value: 'UTILITY',
+            label: this.$t('WhatsApp.data.templates.category.utility'),
+          },
+          {
+            value: 'MARKETING',
+            label: this.$t('WhatsApp.data.templates.category.marketing'),
+          },
+          {
+            value: 'AUTHENTICATION',
+            label: this.$t('WhatsApp.data.templates.category.authentication'),
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
         ],
         tableHeaders: [
@@ -286,10 +328,17 @@
         return this.endDate && new Date(this.endDate.replace('-', ' '));
       },
       datePickerDates() {
+<<<<<<< HEAD
         return { startDate: this.startDateObject, endDate: this.endDateObject };
       },
       filterState() {
         return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+=======
+        return { start: this.startDateObject, end: this.endDateObject };
+      },
+      filterState() {
+        return `${this.selectedCategory[0]?.value}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       },
     },
     methods: {
@@ -301,8 +350,13 @@
           page_size: this.pageSize,
         };
 
+<<<<<<< HEAD
         if (this.selectedCategory !== 'ANY') {
           params.category = this.selectedCategory;
+=======
+        if (this.selectedCategory[0].value !== 'ANY') {
+          params.category = this.selectedCategory[0].value;
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         }
 
         if (this.startDate) {
@@ -336,6 +390,7 @@
         await this.getWhatsAppTemplates({ appUuid, params });
 
         if (this.errorWhatsAppTemplates) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
@@ -344,6 +399,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.templates.error.fetch_templates'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 8,
           });
@@ -387,6 +448,12 @@
         this.dateSortDirection = sortDirection;
         this.nameSortDirection = 'NONE';
       },
+<<<<<<< HEAD
+=======
+      onPageChange(value) {
+        this.currentPage = value;
+      },
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     },
     watch: {
       page(page) {
@@ -504,6 +571,10 @@
         flex: 1;
         min-width: 150px;
         max-width: 200px;
+<<<<<<< HEAD
+=======
+        align-self: end;
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       }
 
       &__search {

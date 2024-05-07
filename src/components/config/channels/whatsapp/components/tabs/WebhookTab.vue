@@ -2,6 +2,7 @@
   <div class="webhook-info">
     <div class="webhook-info__content">
       <div class="webhook-info__content__inline">
+<<<<<<< HEAD
         <unnnic-select
           class="webhook-info__content__method"
           :search="false"
@@ -10,6 +11,18 @@
         >
           <option v-for="(method, index) in methodsList" :key="index">{{ method }}</option>
         </unnnic-select>
+=======
+        <div>
+          <unnnic-label :label="$t('WhatsApp.config.webhook_info.method.label')" />
+          <unnnic-select-smart
+            class="webhook-info__content__method"
+            v-model="selectedMethod"
+            :options="methodsList"
+          />
+        </div>
+        <!-- <option v-for="(method, index) in methodsList" :key="index">{{ method }}</option>
+        </unnnic-select> -->
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
         <unnnic-input
           class="webhook-info__content__url"
@@ -72,7 +85,11 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'WebhookTab',
@@ -85,14 +102,49 @@
     data() {
       return {
         webhookUrl: this.app.config?.webhook?.url || '',
+<<<<<<< HEAD
         selectedMethod: this.app.config?.webhook?.method || 'GET',
         headers: [],
         methodsList: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+=======
+        selectedMethod: [],
+        headers: [],
+        methodsList: [
+          {
+            value: 'GET',
+            label: 'GET',
+          },
+          {
+            value: 'POST',
+            label: 'POST',
+          },
+          {
+            value: 'PUT',
+            label: 'PUT',
+          },
+          {
+            value: 'PATCH',
+            label: 'PATCH',
+          },
+          {
+            value: 'DELETE',
+            label: 'DELETE',
+          },
+        ],
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         validUrl: true,
       };
     },
     /* istanbul ignore next */
     mounted() {
+<<<<<<< HEAD
+=======
+      if (this.app.config?.webhook?.method) {
+        this.selectedMethod = [
+          { value: this.app.config?.webhook?.method, label: this.app.config?.webhook?.method },
+        ];
+      }
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       this.mountHeaders();
 
       if (!this.hasEmptyHeader()) {
@@ -128,7 +180,11 @@
       /* istanbul ignore next */
       getUrlInputElement() {
         let urlInput;
+<<<<<<< HEAD
         this.$refs.webhookUrl.$children.forEach((firstLayer) => {
+=======
+        this.$refs.webhookUrl.$children?.forEach((firstLayer) => {
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           firstLayer.$children.forEach((secondLayer) => {
             if (secondLayer.$el.nodeName === 'INPUT') {
               urlInput = secondLayer.$el;
@@ -185,7 +241,11 @@
         const urlInput = this.getUrlInputElement();
         if (!urlInput.checkValidity()) {
           this.callModal({
+<<<<<<< HEAD
             type: 'Error',
+=======
+            type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             text: this.$t('WhatsApp.config.error.invalid_url'),
           });
           return;
@@ -211,7 +271,11 @@
 
         if (this.errorUpdateWebhookInfo) {
           this.callModal({
+<<<<<<< HEAD
             type: 'Error',
+=======
+            type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             text: this.$t('WhatsApp.config.error.webhook_update'),
           });
 
@@ -219,13 +283,18 @@
         }
 
         this.callModal({
+<<<<<<< HEAD
           type: 'Success',
+=======
+          type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
         this.$root.$emit('updateGrid');
       },
       callModal({ text, type }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: text,
@@ -234,6 +303,12 @@
             scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: text,
+            type: type,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

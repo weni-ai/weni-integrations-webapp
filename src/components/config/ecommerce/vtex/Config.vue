@@ -63,7 +63,10 @@
       v-if="showConnectModal"
       class="connect-modal"
       @close="showConnectModal = false"
+<<<<<<< HEAD
       @click.stop
+=======
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       :closeIcon="false"
     >
       <ConnectCatalogModalContent
@@ -79,7 +82,11 @@
   import { mapActions, mapState } from 'pinia';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
 
   export default {
@@ -124,7 +131,11 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
+<<<<<<< HEAD
           this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+=======
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return;
         }
 
@@ -140,7 +151,11 @@
 
         if (this.errorCurrentApp) {
           this.callModal({
+<<<<<<< HEAD
             type: 'Error',
+=======
+            type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             text: this.$t('vtex.errors.update_connected_catalog_status'),
           });
           return;
@@ -157,7 +172,11 @@
         await this.getApp(data);
 
         if (this.errorCurrentApp) {
+<<<<<<< HEAD
           this.callModal({ type: 'Error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+=======
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return;
         }
 
@@ -168,13 +187,18 @@
         if (this.wpp_uuid) {
           this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
         } else {
+<<<<<<< HEAD
           this.callModal({ type: 'Error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+=======
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         }
       },
       closeConfig() {
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: text,
@@ -183,6 +207,12 @@
             scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: text,
+            title: type,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

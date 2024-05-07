@@ -10,8 +10,13 @@
       :initialTab="initialTranslation"
       @change="handleTranslationSelection"
     >
+<<<<<<< HEAD
       <template slot="tab-head-add">
         <div ref="add-translation-button" @click.stop="addTranslation">
+=======
+      <template #tab-head-add>
+        <div ref="add-translation-button" @click="addTranslation">
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           <unnnic-icon-svg icon="add-1" size="sm" />
           {{ $t('WhatsApp.templates.add_language') }}
         </div>
@@ -25,7 +30,11 @@
       :selectedForm="currentTab"
       :removeLanguages="tabs"
       :canEdit="canEditTab"
+<<<<<<< HEAD
       :availableLanguages="whatsAppTemplateSelectLanguages"
+=======
+      :availableLanguages="templateSelectLanguages"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       :loadingSave="loadingSave"
       @language-change="handleLanguageChange($event)"
       @manual-preview-update="$emit('manual-preview-update')"
@@ -49,7 +58,11 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 
@@ -109,9 +122,14 @@
       this.dataProcessingLoading = false;
     },
     computed: {
+<<<<<<< HEAD
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       ...mapState(whatsapp_store, [
         'templateTranslationForms',
+=======
+      ...mapState(whatsapp_store, [
+        'templateTranslationCurrentForm',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         'loadingFetchWhatsAppTemplate',
         'errorFetchWhatsAppTemplate',
         'whatsAppTemplate',
@@ -125,8 +143,21 @@
         'createdTemplateTranslationData',
         'loadingWhatsAppTemplates',
         'errorUpdateTemplateTranslation',
+<<<<<<< HEAD
         '',
       ]),
+=======
+      ]),
+      templateSelectLanguages() {
+        return this.whatsAppTemplateSelectLanguages.map((item) => {
+          const { text, value } = item;
+          return {
+            label: text,
+            value: value,
+          };
+        });
+      },
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
       },
@@ -653,6 +684,7 @@
         }
       },
       callErrorModal({ text }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text,
@@ -661,11 +693,18 @@
             scheme: 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text,
+            type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 8,
         });
       },
       callSuccessModal({ text }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text,
@@ -674,6 +713,12 @@
             scheme: 'feedback-green',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text,
+            type: 'success',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 8,
         });

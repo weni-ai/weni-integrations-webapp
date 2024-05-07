@@ -9,9 +9,15 @@
       :key="bodyKey"
       class="form-tab-content-body__input"
       :disabled="disableInputs"
+<<<<<<< HEAD
       :value="bodyContent"
       :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
       @input="onInput"
+=======
+      :modelValue="bodyContent"
+      :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
+      @update:modelValue="onInput"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       :maxLength="1024"
       :type="hasErrors ? 'error' : 'normal'"
       :errors="errorsList"
@@ -156,7 +162,11 @@
         if (this.disableInputs) {
           return;
         }
+<<<<<<< HEAD
         const result = (this.templateTranslationCurrentForm.body || '') + emoji.data;
+=======
+        const result = (this.templateTranslationCurrentForm.body || '') + emoji;
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
         this.emitInputChange(result);
       },

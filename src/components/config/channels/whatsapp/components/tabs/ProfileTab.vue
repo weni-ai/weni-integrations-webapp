@@ -43,7 +43,11 @@
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'ProfileTab',
@@ -70,6 +74,7 @@
         try {
           await this.fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
         } catch (err) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_fetch'),
@@ -78,6 +83,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_fetch'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 8,
           });
@@ -247,6 +258,7 @@
       async isValidPhotoSize(b64ProfilePhoto) {
         const { height, width } = await getHeightAndWidthFromDataUrl(b64ProfilePhoto);
         if (this.modifiedInitialPhoto && (height < 192 || width < 192)) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_photo_size'),
@@ -255,6 +267,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.invalid_photo_size'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 8,
           });
@@ -311,6 +329,7 @@
 
           this.$emit('save');
 
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.profile_updated'),
@@ -319,10 +338,17 @@
               scheme: 'feedback-green',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.success.profile_updated'),
+              type: 'success',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 3,
           });
         } catch (e) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
@@ -331,6 +357,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('apps.details.status_error'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 6,
           });
@@ -338,6 +370,7 @@
       },
       async saveContactInfo() {
         if (this.contactInfoInputs.some((input) => input.error)) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_data'),
@@ -346,6 +379,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.invalid_data'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 3,
           });
@@ -365,6 +404,7 @@
           const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
           await this.updateWppContactInfo(data);
 
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.contact_info_update'),
@@ -373,10 +413,17 @@
               scheme: 'feedback-green',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.success.contact_info_update'),
+              type: 'success',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 3,
           });
         } catch (err) {
+<<<<<<< HEAD
           unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_update'),
@@ -385,6 +432,12 @@
               scheme: 'feedback-red',
               position: 'bottom-right',
               closeText: this.$t('general.Close'),
+=======
+          alert.callAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_update'),
+              type: 'error',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             },
             seconds: 6,
           });

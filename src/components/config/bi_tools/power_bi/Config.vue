@@ -46,7 +46,11 @@
           </unnnic-toolTip>
         </template>
       </unnnic-data-area>
+<<<<<<< HEAD
       <unnnic-skeleton-loading v-else tag="div" width="100%" height="6rem" />
+=======
+      <skeleton-loading v-else tag="div" width="100%" height="6rem" />
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
       <div class="app-config-power-bi__content__download">
         <unnnic-label
@@ -92,6 +96,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import { mapState, mapActions } from 'pinia';
@@ -99,6 +104,17 @@
 
   export default {
     name: 'PowerBiConfig',
+=======
+  import alert from '@/utils/call';
+  import PowerBiIcon from '@/assets/logos/power_bi.png';
+  import { mapState, mapActions } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
+
+  export default {
+    name: 'PowerBiConfig',
+    components: { skeletonLoading },
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
     props: {
       app: {
         type: Object,
@@ -120,6 +136,7 @@
       await this.getFlowToken();
 
       if (this.errorFlowToken) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: this.$t('PowerBi.config.token_error'),
@@ -128,6 +145,12 @@
             scheme: 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: this.$t('PowerBi.config.token_error'),
+            type: 'success',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 3,
         });
@@ -152,6 +175,7 @@
 
         navigator.clipboard.writeText(this.flowToken);
 
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
@@ -160,6 +184,12 @@
             scheme: 'feedback-green',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text: this.$t('apps.config.copy_success'),
+            type: 'success',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 3,
         });

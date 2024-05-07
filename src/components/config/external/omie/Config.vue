@@ -68,7 +68,11 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
+<<<<<<< HEAD
   import unnnicCallAlert from '@weni/unnnic-system';
+=======
+  import alert from '@/utils/call';
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
 
   export default {
     name: 'omie-config',
@@ -109,11 +113,19 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
+<<<<<<< HEAD
           this.callModal({ type: 'Error', text: this.$t('omie.errors.configure') });
           return;
         }
 
         this.callModal({ type: 'Success', text: this.$t('omie.success.configure') });
+=======
+          this.callModal({ type: 'error', text: this.$t('omie.errors.configure') });
+          return;
+        }
+
+        this.callModal({ type: 'success', text: this.$t('omie.success.configure') });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         this.$root.$emit('updateGrid');
         this.disabledForm = true;
       },
@@ -121,6 +133,7 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
+<<<<<<< HEAD
         unnnicCallAlert({
           props: {
             text: text,
@@ -129,6 +142,12 @@
             scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
             position: 'bottom-right',
             closeText: this.$t('general.Close'),
+=======
+        alert.callAlert({
+          props: {
+            text,
+            type,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
           seconds: 6,
         });

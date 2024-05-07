@@ -38,10 +38,17 @@
         </div>
         <div class="wpp_insights__filters__time__select">
           <unnnic-input-date-picker
+<<<<<<< HEAD
             :value="period"
             size="md"
             format="MM-DD-YYYY"
             @changed="setPeriod"
+=======
+            v-model="period"
+            size="md"
+            format="MM-DD-YYYY"
+            @submit="setPeriod"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           />
         </div>
       </div>
@@ -89,22 +96,38 @@
           <unnnic-chart-multi-line
             :data="getChartSent"
             :title="$t('WhatsApp.insights.messages.sent')"
+<<<<<<< HEAD
             v-if="!hash"
+=======
+            v-if="!hash && getChartSent.length"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           />
           <unnnic-chart-multi-line
             :data="getChartDelivered"
             :title="$t('WhatsApp.insights.messages.delivered')"
+<<<<<<< HEAD
             v-if="!hash"
+=======
+            v-if="!hash && getChartDelivered.length"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           />
           <unnnic-chart-multi-line
             :data="getChartRead"
             :title="$t('WhatsApp.insights.messages.read')"
+<<<<<<< HEAD
             v-if="!hash"
+=======
+            v-if="!hash && getChartRead.length"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           />
           <unnnic-chart-multi-line
             :data="getChartByDay.data"
             :title="$t('WhatsApp.insights.messages.received')"
+<<<<<<< HEAD
             v-if="!!hash"
+=======
+            v-if="!!hash && getChartByDay.data.length"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             :fixedMaxValue="getChartByDay.maxValue"
           />
         </div>
@@ -185,7 +208,11 @@
     },
     computed: {
       ...mapState(insights_store, [
+<<<<<<< HEAD
         'app_uuid',
+=======
+        'appUuid',
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         'errorTemplateAnalytics',
         'errorTemplates',
         'templateAnalytics',
@@ -194,9 +221,15 @@
         'isActive',
       ]),
       modelOptions() {
+<<<<<<< HEAD
         if (this.templates?.length > 0) {
           const templateList = [];
           this.templates.forEach((item) => {
+=======
+        if (this.templates?.count > 0) {
+          const templateList = [];
+          this.templates.results.forEach((item) => {
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
             item.translations.forEach((translation) => {
               const obj = {
                 value: translation.message_template_id,
@@ -257,7 +290,11 @@
       fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
+<<<<<<< HEAD
           app_uuid: this.app_uuid,
+=======
+          app_uuid: this.appUuid,
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           filters: {
             start: this.period.start,
             end: this.period.end,
@@ -266,8 +303,13 @@
         };
         this.getTemplateAnalytics(params);
       },
+<<<<<<< HEAD
       fetchTemplates() {
         this.getTemplates({ app_uuid: this.app_uuid });
+=======
+      async fetchTemplates() {
+        await this.getTemplates({ app_uuid: this.appUuid });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -280,7 +322,11 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
+<<<<<<< HEAD
         const data = this.templateAnalytics?.data.map((template) => {
+=======
+        const data = this.templateAnalytics?.data?.map((template) => {
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           return {
             title: template.template_name || template.template_id,
             data: template.dates.map((item) => {
@@ -303,7 +349,11 @@
       },
       async activeTemplate() {
         this.showModal = false;
+<<<<<<< HEAD
         await this.setActiveProject({ app_uuid: this.app_uuid });
+=======
+        await this.setActiveProject({ appUuid: this.appUuid });
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       },
     },
   };

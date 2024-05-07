@@ -6,7 +6,10 @@
     scheme="feedback-green"
     modal-icon="check-circle-1-1"
     @close="closePopUp"
+<<<<<<< HEAD
     @click.stop
+=======
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
   >
     <template #message>
       <span v-html="$t('WhatsAppDemo.config.description')"></span>

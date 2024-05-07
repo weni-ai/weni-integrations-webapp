@@ -5,6 +5,7 @@
     </span>
 
     <div class="form-tab-content-header__inputs">
+<<<<<<< HEAD
       <unnnic-select
         :disabled="disableInputs"
         :class="{
@@ -26,13 +27,34 @@
       </unnnic-select>
 
       <!-- TODO: Handle change in header.text  -->
+=======
+      <div>
+        <unnnic-label :label="$t('WhatsApp.templates.form_field.header__label')" />
+        <unnnic-select-smart
+          :disabled="disableInputs"
+          :class="{
+            'form-tab-content-header__inputs__selector': true,
+            'form-tab-content-header__inputs__selector__disabled': disableInputs,
+          }"
+          :options="headerTypeOptions"
+          :modelValue="selectedHeaderType"
+          @update:modelValue="handleHeaderTypeChange"
+        />
+      </div>
+
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
       <unnnic-input
         class="form-tab-content-header__inputs__text-input"
         v-if="headerType === 'TEXT'"
         :placeholder="$t('WhatsApp.templates.form_field.header_text_placeholder')"
         :disabled="disableInputs"
+<<<<<<< HEAD
         :value="headerText"
         @input="handleNewHeaderInput({ text: $event })"
+=======
+        :modelValue="headerText"
+        @update:modelValue="handleNewHeaderInput({ text: $event })"
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         :maxlength="60"
       />
       <!-- TODO: Set media type on button click -->
@@ -74,6 +96,7 @@
     },
     data() {
       return {
+<<<<<<< HEAD
         headerTypeOptions: [
           {
             value: 'TEXT',
@@ -82,6 +105,17 @@
           {
             value: 'MEDIA',
             text: this.$t('WhatsApp.templates.header_type_options.media'),
+=======
+        selectedHeaderType: [],
+        headerTypeOptions: [
+          {
+            value: 'TEXT',
+            label: this.$t('WhatsApp.templates.header_type_options.text'),
+          },
+          {
+            value: 'MEDIA',
+            label: this.$t('WhatsApp.templates.header_type_options.media'),
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           },
         ],
       };
@@ -103,15 +137,26 @@
     },
     methods: {
       handleNewHeaderInput(event) {
+<<<<<<< HEAD
+=======
+        this.headerText = event.text;
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
         this.$emit('input-change', {
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
         });
       },
       handleHeaderTypeChange(event) {
+<<<<<<< HEAD
         let fieldValue;
 
         if (event === 'TEXT') {
+=======
+        this.selectedHeaderType = event;
+        let fieldValue;
+
+        if (event[0].value === 'TEXT') {
+>>>>>>> 4e067734185eee6ee14ddd4329b9599b20178800
           fieldValue = { header_type: 'TEXT', text: null };
         } else {
           fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };
