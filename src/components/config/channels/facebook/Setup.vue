@@ -127,8 +127,8 @@
         onLogin: false,
         loadingPages: false,
         appScopes: {
-          ig: 'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
-          fba: 'pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
+          ig: 'business_management,instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
+          fba: 'business_management,pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
         },
       };
     },
