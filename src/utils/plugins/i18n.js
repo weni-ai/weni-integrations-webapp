@@ -1,7 +1,4 @@
-import Vue from 'vue';
-import VueI18n from 'vue-i18n';
-
-Vue.use(VueI18n);
+import * as VueI18n from 'vue-i18n';
 
 import en from '../../locales/en.json';
 import pt_br from '../../locales/pt_br.json';
@@ -15,7 +12,7 @@ const languages = {
 
 const messages = Object.assign(languages);
 
-const i18n = new VueI18n({
+const i18n = VueI18n.createI18n({
   locale: 'en-us',
   fallbackLocale: 'en-us',
   messages,
