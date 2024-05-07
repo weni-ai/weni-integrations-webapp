@@ -3,7 +3,7 @@
     <unnnic-input
       v-model="searchTerm"
       class="discovery-content__search"
-      placeholder="Search"
+      :placeholder="$t('apps.discovery.search.placeholder')"
       icon-left="search-1"
     />
 
