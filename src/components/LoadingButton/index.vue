@@ -7,7 +7,7 @@
     :text="isLoading ? loadingText : text"
     :iconLeft="loadingPosition === 'left' && isLoading ? 'loading-circle-1' : iconLeft"
     :iconCenter="loadingPosition === 'center' && isLoading ? 'loading-circle-1' : iconCenter"
-    @click="() => !isLoading && !disabled && $emit('clicked')"
+    @click.stop="() => !isLoading && !disabled && $emit('clicked')"
   ></unnnic-button>
 </template>
 
