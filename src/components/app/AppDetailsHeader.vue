@@ -5,7 +5,7 @@
     </div>
     <div class="app-details-header__content">
       <div class="app-details-header__content__title">{{ app?.name }}</div>
-      <div class="app-details-header__content__description">{{ $t(app?.summary) }}</div>
+      <div class="app-details-header__content__description">{{ $t(app?.summary || '') }}</div>
     </div>
     <integrate-button
       ref="unnnic-button-add"
