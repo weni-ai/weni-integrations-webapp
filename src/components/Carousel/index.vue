@@ -45,7 +45,7 @@
       ...mapActions(app_type, ['fetchFeatured']),
       appImageBanner(assets) {
         const banner = assets.filter((asset) => asset.type == 'IB');
-        return banner[0] ? banner[0].url : null;
+        return banner[0]?.url;
       },
       openAppDetails(code) {
         this.$router.push(`/${code}/details`);
