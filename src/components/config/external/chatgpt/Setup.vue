@@ -3,7 +3,6 @@
     ref="unnnic-chatgpt-modal"
     class="chatgpt-modal"
     @close="closePopUp"
-    @click.stop
     :closeIcon="false"
     :text="$t('ChatGPT.setup.title')"
     :description="$t('ChatGPT.setup.description')"
