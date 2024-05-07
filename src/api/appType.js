@@ -3,44 +3,46 @@ import request from './request';
 
 const resource = '/api/v1/apptypes';
 export default {
-  getAllAppTypes(filter) {
+  async getAllAppTypes(filter) {
     const queryString = qs.stringify(filter);
-    return request.$http.get(`${resource}/?${queryString}`);
+    return await request.$http.get(`${resource}/?${queryString}`).then((r) => r.data);
   },
-  getAppType(code) {
-    return request.$http.get(`${resource}/${code}/`);
+  async getAppType(code) {
+    return await request.$http.get(`${resource}/${code}/`);
   },
-  listComments(appCode) {
-    return request.$http.get(`${resource}/${appCode}/comments/`);
+  async listComments(appCode) {
+    return await request.$http.get(`${resource}/${appCode}/comments/`).then((r) => r.data);
   },
-  createComment(appCode, payload) {
-    return request.$http.post(`${resource}/${appCode}/comments/`, payload);
+  async createComment(appCode, payload) {
+    return await request.$http
+      .post(`${resource}/${appCode}/comments/`, payload)
+      .then((r) => r.data);
   },
-  updateComment(appCode, commentId, data) {
-    return request.$http.put(`${resource}/${appCode}/comments/${commentId}/`, data);
+  async updateComment(appCode, commentId, data) {
+    return await request.$http.put(`${resource}/${appCode}/comments/${commentId}/`, data);
   },
-  deleteComment(appCode, commentUuid) {
-    return request.$http.delete(`${resource}/${appCode}/comments/${commentUuid}/`);
+  async deleteComment(appCode, commentUuid) {
+    return await request.$http.delete(`${resource}/${appCode}/comments/${commentUuid}/`);
   },
-  postRating(appCode, payload) {
-    return request.$http.post(`${resource}/${appCode}/ratings/`, payload);
+  async postRating(appCode, payload) {
+    return await request.$http.post(`${resource}/${appCode}/ratings/`, payload);
   },
-  getApp(appCode, appUuid) {
-    return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/`);
+  async getApp(appCode, appUuid) {
+    return await request.$http.get(`${resource}/${appCode}/apps/${appUuid}/`).then((r) => r.data);
   },
-  createApp(appCode, data) {
-    return request.$http.post(`${resource}/${appCode}/apps/`, data);
+  async createApp(appCode, data) {
+    return await request.$http.post(`${resource}/${appCode}/apps/`, data);
   },
-  deleteApp(appCode, appUuid) {
-    return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/`);
+  async deleteApp(appCode, appUuid) {
+    return await request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/`);
   },
   fetchFeatured() {
-    return request.$http.get(`${resource}/featureds/`);
+    return request.$http.get(`${resource}/featureds/`).then((r) => r.data);
   },
-  updateAppConfig(appCode, appUuid, data) {
-    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);
+  async updateAppConfig(appCode, appUuid, data) {
+    return await request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/configure/`, data);
   },
-  updateApp(appCode, appUuid, data) {
-    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/`, data);
+  async updateApp(appCode, appUuid, data) {
+    return await request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/`, data);
   },
 };
