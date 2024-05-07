@@ -151,23 +151,27 @@
       </div>
     </div>
 
-    <unnnic-button
-      ref="unnnic-vtex-modal-close-button"
-      slot="options"
-      type="tertiary"
-      @click="closePopUp"
-    >
-      {{ $t('general.Cancel') }}
-    </unnnic-button>
-    <unnnic-button
-      ref="unnnic-vtex-modal-setup-button"
-      slot="options"
-      type="primary"
-      @click="continueSetup"
-      :loading="loadingCreateApp"
-    >
-      {{ $t('general.continue') }}
-    </unnnic-button>
+    <div class="vtex-modal__buttons">
+      <unnnic-button
+        ref="unnnic-vtex-modal-close-button"
+        class="vtex-modal__buttons__button"
+        slot="options"
+        type="tertiary"
+        @click="closePopUp"
+      >
+        {{ $t('general.Cancel') }}
+      </unnnic-button>
+      <unnnic-button
+        ref="unnnic-vtex-modal-setup-button"
+        class="vtex-modal__buttons__button"
+        slot="options"
+        type="primary"
+        @click="continueSetup"
+        :loading="loadingCreateApp"
+      >
+        {{ $t('general.continue') }}
+      </unnnic-button>
+    </div>
   </unnnic-modal>
 </template>
 
@@ -198,7 +202,7 @@
         apiDomain: '',
         whatsappChannels: [],
         selectedChannel: [],
-        loadingChannels: true,
+        loadingChannels: false,
         appKey: null,
         appToken: null,
         currentStep: 0,
@@ -219,7 +223,8 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['createApp', 'getConfiguredApps']),
+      ...mapActions(app_type, ['createApp']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['getVtexAppUuid']),
       closePopUp() {
         this.$emit('closePopUp');
@@ -278,7 +283,7 @@
           project_uuid: this.project,
         };
         await this.getConfiguredApps({ params });
-
+        this.loadingChannels = false;
         if (this.errorConfiguredApps) {
           this.callModal({
             type: 'error',
@@ -299,8 +304,6 @@
         if (this.whatsappChannels.length === 1) {
           this.selectedChannel = [this.whatsappChannels[0]];
         }
-
-        this.loadingChannels = false;
       },
       async copyWebhookUrl() {
         navigator.clipboard.writeText(this.webhookUrl);
@@ -485,6 +488,18 @@
             }
           }
         }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: center;
+      padding-top: $unnnic-spacing-md;
+      gap: $unnnic-spacing-md;
+
+      &__button {
+        display: flex;
+        width: 221px;
       }
     }
   }
