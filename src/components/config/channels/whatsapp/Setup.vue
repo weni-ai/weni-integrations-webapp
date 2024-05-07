@@ -125,10 +125,10 @@
             });
 
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse) {
                 const code = response.authResponse.code;
-                await this.createChannel(code);
+                this.createChannel(code);
               } else {
                 console.log('User cancelled login or did not fully authorize.');
               }
