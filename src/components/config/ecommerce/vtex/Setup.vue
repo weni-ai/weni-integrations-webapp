@@ -214,7 +214,7 @@
       ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
       ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
       webhookUrl() {
-        const backendUrl = getEnv('VUE_APP_API_BASE_URL');
+        const backendUrl = getEnv('VITE_APP_API_BASE_URL');
         return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid}/products-update/api/notification/`;
       },
     },
