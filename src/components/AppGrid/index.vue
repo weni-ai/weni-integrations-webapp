@@ -129,7 +129,6 @@
 </template>
 
 <script>
-  // import unnnicCallAlert from '@weni/unnnic-system';
   import alert from '@/utils/call';
 
   import configModal from '../config/ConfigModal.vue';
@@ -245,42 +244,20 @@
         }
 
         this.toggleRemoveModal();
-        // unnnicCallAlert({
-        //   props: {
-        //     text: this.$t('apps.details.actions.remove.status_text'),
-        //     type: 'success',
-        //   },
-        //   seconds: 8,
-        // });
         alert.callAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
-            title: this.$t('apps.details.status_success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 3,
         });
         this.$emit('update');
       },
       callErrorModal({ text }) {
-        // unnnicCallAlert({
-        //   props: {
-        //     text: text,
-        //     type: 'error',
-        //   },
-        //   seconds: 8,
-        // });
         alert.callAlert({
           props: {
             text: text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 6,
         });
@@ -348,22 +325,10 @@
       /* istanbul ignore next */
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
-
-        // unnnicCallAlert({
-        //   props: {
-        //     text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
-        //     type: 'success',
-        //   },
-        //   seconds: 6,
-        // });
         alert.callAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
-            title: this.$t('apps.details.status_success'),
-            icon: 'check-circle-1-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 6,
         });
