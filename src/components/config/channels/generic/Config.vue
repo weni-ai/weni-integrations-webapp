@@ -45,7 +45,7 @@
         :inputs="appFormInputs"
         @input="updateInputs"
       />
-      <skeleton-loading
+      <unnnic-skeleton-loading
         v-else
         class="app-config-generic__settings__content__form-loading"
         tag="div"
@@ -82,13 +82,11 @@
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { generic_store } from '@/stores/modules/appType/channels/generic.store';
-  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'generic-config',
     components: {
       DynamicForm,
-      skeletonLoading,
     },
     props: {
       app: {
