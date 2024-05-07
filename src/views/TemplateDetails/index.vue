@@ -73,5 +73,5 @@
   };
 </script>
 <style lang="scss">
-  @import './styles';
+  @import './styles.scss';
 </style>
