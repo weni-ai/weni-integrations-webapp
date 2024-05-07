@@ -153,5 +153,3 @@
     z-index: 9999;
   }
 </style>
-import { auth_store } from './stores/modules/auth.store'; import { mapActions } from 'pinia';
-auth_store, import { mapActions } from 'pinia';
