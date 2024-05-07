@@ -171,7 +171,7 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
+      startFacebookLogin() {
         const fbAppId = getEnv('VITE_APP_FACEBOOK_APP_ID');
 
         if (!fbAppId) {
