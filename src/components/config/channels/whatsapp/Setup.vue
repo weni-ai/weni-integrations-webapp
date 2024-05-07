@@ -79,8 +79,8 @@
       },
       /* istanbul ignore next */
       async startFacebookLogin() {
-        const fbAppId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID');
-        const configId = getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
+        const fbAppId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID');
+        const configId = getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID');
 
         if (!fbAppId) {
           return;

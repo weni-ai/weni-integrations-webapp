@@ -351,4 +351,3 @@
 <style lang="scss" scoped>
   @import '../styles/grid.scss';
 </style>
-import { template } from '@babel/core';
