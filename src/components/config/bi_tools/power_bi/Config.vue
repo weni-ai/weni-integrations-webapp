@@ -46,7 +46,7 @@
           </unnnic-toolTip>
         </template>
       </unnnic-data-area>
-      <skeleton-loading v-else tag="div" width="100%" height="6rem" />
+      <unnnic-skeleton-loading v-else tag="div" width="100%" height="6rem" />
 
       <div class="app-config-power-bi__content__download">
         <unnnic-label
@@ -96,11 +96,9 @@
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
-  import skeletonLoading from '@/components/Skeleton/SkeletonLoading.vue';
 
   export default {
     name: 'PowerBiConfig',
-    components: { skeletonLoading },
     props: {
       app: {
         type: Object,
