@@ -87,7 +87,7 @@
         }
 
         /* eslint-disable no-undef */
-        const loginCallback = async () => {
+        const loginCallback = () => {
           this.changeLoginState(true);
 
           const sessionInfoListener = (event) => {
