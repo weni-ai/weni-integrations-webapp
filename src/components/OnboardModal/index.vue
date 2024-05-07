@@ -15,12 +15,11 @@
         :key="index"
         :src="onboardIcons[app]"
         @click="() => (currentApp = app)"
-        alt=""
       />
     </div>
 
     <div v-if="currentApp" class="onboard__content">
-      <img class="onboard__gif" :src="onboardGifs[currentApp][page]" alt="" />
+      <img class="onboard__gif" :src="onboardGifs[currentApp][page]" />
 
       <span class="onboard__description" v-html="onboardDescriptions[currentApp][page]" />
     </div>
@@ -112,8 +111,7 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['setOnboardStatus']),
-      ...mapActions(my_apps, ['getConfiguredApps']),
+      ...mapActions(app_type, ['getConfiguredApps', 'setOnboardStatus']),
       async checkModalCondition() {
         const params = {
           project_uuid: this.project,

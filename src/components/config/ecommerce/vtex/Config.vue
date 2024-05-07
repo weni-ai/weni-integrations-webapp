@@ -64,6 +64,7 @@
       class="connect-modal"
       @close="showConnectModal = false"
       :closeIcon="false"
+      @click.stop
     >
       <ConnectCatalogModalContent
         ref="connectCatalogModalContent"

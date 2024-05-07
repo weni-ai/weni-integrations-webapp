@@ -54,19 +54,6 @@
           :type="errors[index] ? 'error' : 'normal'"
           @update:modelValue="handleRepliesInput($event, index)"
         />
-
-        <!-- <base-input
-          class="form-tab-content-buttons__replies__input"
-          :disabled="disableInputs"
-          :value="currentButtons[index].text"
-          :label="$t('WhatsApp.templates.form_field.reply_label')"
-          :placeholder="$t('WhatsApp.templates.form_field.button_text_placeholder')"
-          :maxlength="25"
-          :replaceRegex="EMOJI_REGEX"
-          :message="errors[index] || null"
-          :type="errors[index] ? 'error' : 'normal'"
-          @input="handleRepliesInput($event, index)"
-        /> -->
       </div>
     </div>
 

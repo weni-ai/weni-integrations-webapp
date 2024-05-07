@@ -13,9 +13,12 @@
       <span v-html="$t('apps.details.actions.installed.description')"></span>
     </template>
     <template #options>
-      <unnnic-button ref="unnnic-add-modal-close-button" type="tertiary" @click="toggleModal">{{
-        $t('general.Close')
-      }}</unnnic-button>
+      <unnnic-button
+        ref="unnnic-add-modal-close-button"
+        type="tertiary"
+        @click.stop="toggleModal"
+        >{{ $t('general.Close') }}</unnnic-button
+      >
       <unnnic-button
         ref="unnnic-add-modal-navigate-button"
         type="primary"

@@ -111,7 +111,6 @@
 
 <script>
   import debounce from 'lodash.debounce';
-
   import alert from '@/utils/call';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
