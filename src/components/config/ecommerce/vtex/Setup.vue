@@ -255,10 +255,9 @@
             app_key: this.appKey.trim(),
             app_token: this.appToken.trim(),
             wpp_cloud_uuid: this.selectedChannel[0].value,
-            uuid: this.generatedVtexAppUuid,
+            uuid: this.generatedVtexAppUuid.uuid,
           },
         };
-
         await this.createApp(data);
 
         if (this.errorCreateApp) {
