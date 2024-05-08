@@ -1,3 +1,17 @@
+2.0.1
+----------
+`2024-05-07 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: some slots usage.
+
+2.0.0
+----------
+`2024-05-07 · 1 🔧 `
+
+### 🔧 Improvements
+- Refactor: Upgrade vue version to Vue 3.
+
 1.34.2
 ----------
 `2024-04-25 · 1 🐛`

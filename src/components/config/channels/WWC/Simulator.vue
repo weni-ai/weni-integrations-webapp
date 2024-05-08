@@ -118,21 +118,12 @@
       },
       title: {
         type: String,
-        default: function () {
-          this.$t('weniWebChat.simulator.chatTitle');
-        },
       },
       subtitle: {
         type: String,
-        default: function () {
-          this.$t('weniWebChat.simulator.chatSubtitle');
-        },
       },
       placeholder: {
         type: String,
-        default: function () {
-          this.$t('weniWebChat.simulator.chatPlaceholder');
-        },
       },
       showFullScreenButton: {
         type: Boolean,
