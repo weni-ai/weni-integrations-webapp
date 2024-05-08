@@ -18,8 +18,8 @@
 
     <div class="app-config-wwc__content">
       <unnnic-tab class="app-config-wwc__tabs" :tabs="configTabs" initialTab="settings">
-        <template slot="tab-head-settings"> {{ $t('weniWebChat.config.settings') }} </template>
-        <template slot="tab-panel-settings">
+        <template #tab-head-settings> {{ $t('weniWebChat.config.settings') }} </template>
+        <template #tab-panel-settings>
           <div class="app-config-wwc__tabs__settings-content">
             <div class="app-config-wwc__tabs__settings-content__scroll">
               <unnnic-input
@@ -61,7 +61,7 @@
                   />
                   <unnnic-toolTip
                     class="app-config-wwc__tabs__settings-content__initPayload__tooltip"
-                    slot="buttons"
+                    #buttons
                     :text="$t('weniWebChat.config.initPayloadToolTip')"
                     :enabled="true"
                     side="right"
@@ -173,8 +173,8 @@
           </div>
         </template>
 
-        <template slot="tab-head-appearance"> {{ $t('weniWebChat.config.appearance') }} </template>
-        <template slot="tab-panel-appearance">
+        <template #tab-head-appearance> {{ $t('weniWebChat.config.appearance') }} </template>
+        <template #tab-panel-appearance>
           <div class="app-config-wwc__tabs__settings-content">
             <div class="app-config-wwc__tabs__settings-content__scroll">
               <div class="app-config-wwc__tabs__settings-content__files__content">
@@ -236,8 +236,8 @@
           </div>
         </template>
 
-        <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
-        <template slot="tab-panel-script">
+        <template #tab-head-script> {{ $t('weniWebChat.config.script') }} </template>
+        <template #tab-panel-script>
           <div class="app-config-wwc__tabs__script-content">
             <div
               class="app-config-wwc__tabs__script-content__text"
@@ -245,21 +245,22 @@
             />
 
             <unnnic-data-area :text="scriptCode" hoverText="">
-              <unnnic-toolTip
-                slot="buttons"
-                :text="$t('weniWebChat.config.download')"
-                :enabled="true"
-                side="top"
-              >
-                <unnnic-button
-                  class="app-config-wwc__tabs__script-content__download"
-                  type="secondary"
-                  size="large"
-                  iconCenter="download-bottom-1"
-                  @click="downloadScript"
-                  :disabled="scriptCode ? false : true"
-                ></unnnic-button>
-              </unnnic-toolTip>
+              <template #buttons>
+                <unnnic-toolTip
+                  :text="$t('weniWebChat.config.download')"
+                  :enabled="true"
+                  side="top"
+                >
+                  <unnnic-button
+                    class="app-config-wwc__tabs__script-content__download"
+                    type="secondary"
+                    size="large"
+                    iconCenter="download-bottom-1"
+                    @click="downloadScript"
+                    :disabled="scriptCode ? false : true"
+                  ></unnnic-button>
+                </unnnic-toolTip>
+              </template>
             </unnnic-data-area>
           </div>
         </template>

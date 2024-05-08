@@ -1,161 +1,166 @@
 <template>
   <unnnic-modal class="vtex-modal" @close="closePopUp" @click.stop :closeIcon="false">
-    <div slot="message" class="vtex-modal__content">
-      <StepIndicator :steps="['vtex.setup.step1', 'vtex.setup.step2']" :currentStep="currentStep" />
+    <template #message>
+      <div class="vtex-modal__content">
+        <StepIndicator
+          :steps="['vtex.setup.step1', 'vtex.setup.step2']"
+          :currentStep="currentStep"
+        />
 
-      <div v-if="currentStep == 0">
-        <header class="vtex-modal__header">
-          <span class="vtex-modal__header__title">
-            {{ $t('vtex.setup.title') }}
-          </span>
-          <span class="vtex-modal__header__description">
-            {{ $t('vtex.setup.description') }}
-          </span>
-        </header>
+        <div v-if="currentStep == 0">
+          <header class="vtex-modal__header">
+            <span class="vtex-modal__header__title">
+              {{ $t('vtex.setup.title') }}
+            </span>
+            <span class="vtex-modal__header__description">
+              {{ $t('vtex.setup.description') }}
+            </span>
+          </header>
 
-        <div class="vtex-modal__content__form">
-          <div>
-            <unnnic-label :label="$t('vtex.setup.whatsapp_channel')" />
-            <unnnic-select-smart
-              v-if="!loadingChannels"
-              ref="whatsappChannelSelect"
-              v-model="selectedChannel"
-              :options="whatsappChannels"
-            />
-            <unnnic-skeleton-loading v-else tag="div" width="100%" height="42px" />
-          </div>
+          <div class="vtex-modal__content__form">
+            <div>
+              <unnnic-label :label="$t('vtex.setup.whatsapp_channel')" />
+              <unnnic-select-smart
+                v-if="!loadingChannels"
+                ref="whatsappChannelSelect"
+                v-model="selectedChannel"
+                :options="whatsappChannels"
+              />
+              <unnnic-skeleton-loading v-else tag="div" width="100%" height="42px" />
+            </div>
 
-          <unnnic-input
-            class="vtex-modal__content__form__input"
-            v-model="storeDomain"
-            :label="$t('vtex.setup.storeDomain')"
-            :placeholder="$t('vtex.setup.storedomain_placeholder')"
-          />
-
-          <unnnic-input
-            class="vtex-modal__content__form__input"
-            v-model="apiDomain"
-            :label="$t('vtex.setup.apiSubdomain')"
-            :placeholder="$t('vtex.setup.subdomain_placeholder')"
-          />
-
-          <div class="vtex-modal__content__form__keys">
             <unnnic-input
               class="vtex-modal__content__form__input"
-              v-model="appKey"
-              :label="$t('vtex.setup.appKey')"
-              :placeholder="$t('vtex.setup.appKey_placeholder')"
+              v-model="storeDomain"
+              :label="$t('vtex.setup.storeDomain')"
+              :placeholder="$t('vtex.setup.storedomain_placeholder')"
             />
 
             <unnnic-input
               class="vtex-modal__content__form__input"
-              v-model="appToken"
-              :label="$t('vtex.setup.appToken')"
-              :placeholder="$t('vtex.setup.appToken_placeholder')"
+              v-model="apiDomain"
+              :label="$t('vtex.setup.apiSubdomain')"
+              :placeholder="$t('vtex.setup.subdomain_placeholder')"
             />
-          </div>
 
-          <span class="vtex-modal__content__form__guide">
-            {{ $t('vtex.setup.guide.question') }}
-            <a
-              href="https://help.vtex.com/en/tutorial/application-keys--2iffYzlvvz4BDMr6WGUtet"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {{ $t('vtex.setup.guide.link') }}
-            </a>
-            {{ $t('vtex.setup.guide.question_end') }}
-          </span>
+            <div class="vtex-modal__content__form__keys">
+              <unnnic-input
+                class="vtex-modal__content__form__input"
+                v-model="appKey"
+                :label="$t('vtex.setup.appKey')"
+                :placeholder="$t('vtex.setup.appKey_placeholder')"
+              />
+
+              <unnnic-input
+                class="vtex-modal__content__form__input"
+                v-model="appToken"
+                :label="$t('vtex.setup.appToken')"
+                :placeholder="$t('vtex.setup.appToken_placeholder')"
+              />
+            </div>
+
+            <span class="vtex-modal__content__form__guide">
+              {{ $t('vtex.setup.guide.question') }}
+              <a
+                href="https://help.vtex.com/en/tutorial/application-keys--2iffYzlvvz4BDMr6WGUtet"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ $t('vtex.setup.guide.link') }}
+              </a>
+              {{ $t('vtex.setup.guide.question_end') }}
+            </span>
+          </div>
         </div>
-      </div>
 
-      <div v-if="currentStep == 1" slot="message" class="vtex-modal__content">
-        <header class="vtex-modal__header">
-          <span class="vtex-modal__header__title">
-            {{ $t('vtex.setup.affiliate_title') }}
-          </span>
-          <span class="vtex-modal__header__description">
-            {{ $t('vtex.setup.affiliate_description') }}
-          </span>
-        </header>
+        <div v-if="currentStep == 1" class="vtex-modal__content">
+          <header class="vtex-modal__header">
+            <span class="vtex-modal__header__title">
+              {{ $t('vtex.setup.affiliate_title') }}
+            </span>
+            <span class="vtex-modal__header__description">
+              {{ $t('vtex.setup.affiliate_description') }}
+            </span>
+          </header>
 
-        <div class="vtex-modal__content__section_wrapper">
-          <section class="vtex-modal__content__section">
-            <span class="vtex-modal__content__section__number">1</span>
-            <div class="vtex-modal__content__section__content">
-              <span class="vtex-modal__content__section__content__title">
-                {{ $t('vtex.setup.affiliate_step1.title') }}
-              </span>
-              <p
-                class="vtex-modal__content__section__content__description"
-                v-html="$t('vtex.setup.affiliate_step1.description')"
-              ></p>
-            </div>
-          </section>
-
-          <section class="vtex-modal__content__section">
-            <span class="vtex-modal__content__section__number">2</span>
-            <div class="vtex-modal__content__section__content">
-              <span class="vtex-modal__content__section__content__title">
-                {{ $t('vtex.setup.affiliate_step2.title') }}
-              </span>
-              <p
-                class="vtex-modal__content__section__content__description"
-                v-html="$t('vtex.setup.affiliate_step2.description')"
-              ></p>
-            </div>
-          </section>
-
-          <section class="vtex-modal__content__section">
-            <span class="vtex-modal__content__section__number">3</span>
-            <div class="vtex-modal__content__section__content">
-              <span class="vtex-modal__content__section__content__title">
-                {{ $t('vtex.setup.affiliate_step3.title') }}
-              </span>
-              <p
-                class="vtex-modal__content__section__content__description"
-                v-html="$t('vtex.setup.affiliate_step3.description')"
-              ></p>
-            </div>
-          </section>
-
-          <section class="vtex-modal__content__section">
-            <span class="vtex-modal__content__section__number">4</span>
-            <div class="vtex-modal__content__section__content">
-              <span class="vtex-modal__content__section__content__title">
-                {{ $t('vtex.setup.affiliate_step4.title') }}
-              </span>
-              <p
-                class="vtex-modal__content__section__content__description"
-                v-html="$t('vtex.setup.affiliate_step4.description')"
-              ></p>
-
-              <div class="vtex-modal__content__section__content__url-wrapper">
-                <unnnic-input
-                  class="vtex-vtex-modal__content__section__content__url-input"
-                  :value="webhookUrl"
-                />
-
-                <unnnic-button
-                  ref="vtex-copy-button"
-                  class="vtex-modal__content__section__content__url-wrapper__button"
-                  type="secondary"
-                  iconLeft="content_copy"
-                  text="Copiar"
-                  @click="copyWebhookUrl"
-                />
+          <div class="vtex-modal__content__section_wrapper">
+            <section class="vtex-modal__content__section">
+              <span class="vtex-modal__content__section__number">1</span>
+              <div class="vtex-modal__content__section__content">
+                <span class="vtex-modal__content__section__content__title">
+                  {{ $t('vtex.setup.affiliate_step1.title') }}
+                </span>
+                <p
+                  class="vtex-modal__content__section__content__description"
+                  v-html="$t('vtex.setup.affiliate_step1.description')"
+                ></p>
               </div>
-            </div>
-          </section>
+            </section>
+
+            <section class="vtex-modal__content__section">
+              <span class="vtex-modal__content__section__number">2</span>
+              <div class="vtex-modal__content__section__content">
+                <span class="vtex-modal__content__section__content__title">
+                  {{ $t('vtex.setup.affiliate_step2.title') }}
+                </span>
+                <p
+                  class="vtex-modal__content__section__content__description"
+                  v-html="$t('vtex.setup.affiliate_step2.description')"
+                ></p>
+              </div>
+            </section>
+
+            <section class="vtex-modal__content__section">
+              <span class="vtex-modal__content__section__number">3</span>
+              <div class="vtex-modal__content__section__content">
+                <span class="vtex-modal__content__section__content__title">
+                  {{ $t('vtex.setup.affiliate_step3.title') }}
+                </span>
+                <p
+                  class="vtex-modal__content__section__content__description"
+                  v-html="$t('vtex.setup.affiliate_step3.description')"
+                ></p>
+              </div>
+            </section>
+
+            <section class="vtex-modal__content__section">
+              <span class="vtex-modal__content__section__number">4</span>
+              <div class="vtex-modal__content__section__content">
+                <span class="vtex-modal__content__section__content__title">
+                  {{ $t('vtex.setup.affiliate_step4.title') }}
+                </span>
+                <p
+                  class="vtex-modal__content__section__content__description"
+                  v-html="$t('vtex.setup.affiliate_step4.description')"
+                ></p>
+
+                <div class="vtex-modal__content__section__content__url-wrapper">
+                  <unnnic-input
+                    class="vtex-vtex-modal__content__section__content__url-input"
+                    :value="webhookUrl"
+                  />
+
+                  <unnnic-button
+                    ref="vtex-copy-button"
+                    class="vtex-modal__content__section__content__url-wrapper__button"
+                    type="secondary"
+                    iconLeft="content_copy"
+                    text="Copiar"
+                    @click="copyWebhookUrl"
+                  />
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </template>
 
     <div class="vtex-modal__buttons">
       <unnnic-button
         ref="unnnic-vtex-modal-close-button"
         class="vtex-modal__buttons__button"
-        slot="options"
+        #options
         type="tertiary"
         @click="closePopUp"
       >
@@ -164,7 +169,7 @@
       <unnnic-button
         ref="unnnic-vtex-modal-setup-button"
         class="vtex-modal__buttons__button"
-        slot="options"
+        #options
         type="primary"
         @click="continueSetup"
         :loading="loadingCreateApp"

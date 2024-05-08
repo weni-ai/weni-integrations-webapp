@@ -8,60 +8,62 @@
     :text="$t('ChatGPT.setup.title')"
     :description="$t('ChatGPT.setup.description')"
   >
-    <div slot="message" class="chatgpt-modal__content">
-      <div class="chatgpt-modal__content__form">
-        <unnnic-input
-          class="chatgpt-modal__content__form__input__name"
-          v-model="name"
-          :label="$t('ChatGPT.setup.name')"
-          :placeholder="$t('ChatGPT.setup.name_placeholder')"
-        />
+    <template #message>
+      <div class="chatgpt-modal__content">
+        <div class="chatgpt-modal__content__form">
+          <unnnic-input
+            class="chatgpt-modal__content__form__input__name"
+            v-model="name"
+            :label="$t('ChatGPT.setup.name')"
+            :placeholder="$t('ChatGPT.setup.name_placeholder')"
+          />
 
-        <unnnic-input
-          class="chatgpt-modal__content__form__input__token"
-          v-model="token"
-          :label="$t('ChatGPT.setup.token')"
-          :placeholder="$t('ChatGPT.setup.token_placeholder')"
-        />
+          <unnnic-input
+            class="chatgpt-modal__content__form__input__token"
+            v-model="token"
+            :label="$t('ChatGPT.setup.token')"
+            :placeholder="$t('ChatGPT.setup.token_placeholder')"
+          />
 
-        <div class="chatgpt-modal__content__form__version-wrapper">
-          <div>
-            {{ $t('ChatGPT.setup.version') }}
+          <div class="chatgpt-modal__content__form__version-wrapper">
+            <div>
+              {{ $t('ChatGPT.setup.version') }}
 
-            <unnnic-toolTip
-              class="chatgpt-modal__content__form__version__tooltip"
-              :text="$t('ChatGPT.setup.version_tooltip')"
-              :enabled="true"
-              side="right"
-              maxWidth="350px"
-            >
-              <unnnic-icon-svg
-                class="chatgpt-modal__content__form__version__icon"
-                icon="information-circle-4"
-                size="sm"
-                scheme="neutral-soft"
-              />
-            </unnnic-toolTip>
-          </div>
+              <unnnic-toolTip
+                class="chatgpt-modal__content__form__version__tooltip"
+                :text="$t('ChatGPT.setup.version_tooltip')"
+                :enabled="true"
+                side="right"
+                maxWidth="350px"
+              >
+                <unnnic-icon-svg
+                  class="chatgpt-modal__content__form__version__icon"
+                  icon="information-circle-4"
+                  size="sm"
+                  scheme="neutral-soft"
+                />
+              </unnnic-toolTip>
+            </div>
 
-          <div class="chatgpt-modal__content__form__version-wrapper__options">
-            <unnnic-radio
-              v-for="(version, index) in versions"
-              :key="index"
-              v-model="selectedVersion"
-              :options="versions"
-              :value="version"
-              :label="$t('ChatGPT.setup.version')"
-            >
-              {{ version }}
-            </unnnic-radio>
+            <div class="chatgpt-modal__content__form__version-wrapper__options">
+              <unnnic-radio
+                v-for="(version, index) in versions"
+                :key="index"
+                v-model="selectedVersion"
+                :options="versions"
+                :value="version"
+                :label="$t('ChatGPT.setup.version')"
+              >
+                {{ version }}
+              </unnnic-radio>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </template>
     <unnnic-button
       ref="unnnic-chatgpt-modal-close-button"
-      slot="options"
+      #options
       type="tertiary"
       @click="closePopUp"
     >
@@ -69,7 +71,7 @@
     </unnnic-button>
     <unnnic-button
       ref="unnnic-chatgpt-modal-navigate-button"
-      slot="options"
+      #options
       type="secondary"
       @click="setupChatGptService"
       :loading="loadingCreateApp"
