@@ -6,11 +6,8 @@
           {{ $t('WhatsApp.templates.table.filters.date.label') }}
         </div>
         <unnnicInputDatePicker
-          v-model="datePickerDates"
-          :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
-          :months="months"
-          :options="options"
-          @submit="handleDateFilter"
+          :modelValue="datePickerDates"
+          @update:modelValue="handleDateFilter"
         />
       </div>
       <unnnic-select-smart
@@ -341,12 +338,12 @@
       handleCategoryChange(event) {
         this.selectedCategory = event;
       },
-      handleDateFilter: debounce(async function (event) {
-        this.startDate = event.startDate;
+      handleDateFilter(event) {
+        this.startDate = event.start;
         this.endDate = event.endDate;
 
         this.showDateFilter = false;
-      }, 750),
+      },
       handleNameSort(sortDirection) {
         this.nameSortDirection = sortDirection;
         this.dateSortDirection = 'NONE';
