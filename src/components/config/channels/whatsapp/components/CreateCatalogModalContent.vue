@@ -73,7 +73,6 @@
       <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
         {{ $t('general.Cancel') }}
       </unnnic-button>
-      <!-- TODO: Check if VTEX app is enabled to enable this button -->
       <unnnic-button slot="options" ref="createButton" @click="createCatalog">
         {{ $t('general.continue') }}
       </unnnic-button>

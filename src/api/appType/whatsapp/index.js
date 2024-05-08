@@ -45,6 +45,7 @@ export default {
       .then((r) => r.data);
   },
   createTemplate(appUuid, data) {
+    console.log(data);
     return request.$http.post(`${templatesResource}/${appUuid}/templates/`, data);
   },
   deleteTemplateMessage(appUuid, templateUuid) {

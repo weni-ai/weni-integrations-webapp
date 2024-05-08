@@ -157,7 +157,7 @@
     </template>
 
     <div class="vtex-modal__buttons">
-      <template slot="öptions">
+      <template slot="options">
         <unnnic-button
           ref="unnnic-vtex-modal-close-button"
           class="vtex-modal__buttons__button"
