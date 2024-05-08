@@ -6,7 +6,7 @@
           class="form-tab-content__input--name"
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
-          :modelValue="templateForm.name"
+          :modelValue="templateForm?.name"
           @update:modelValue="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
           @keyup="formatTemplateName"
           @keydown="preventTemplateName"
@@ -192,9 +192,6 @@
           .toLowerCase();
       });
     },
-    beforeUnmount() {
-      this.resetTemplates();
-    },
     computed: {
       ...mapState(whatsapp_store, [
         'templateTranslationCurrentForm',
@@ -248,7 +245,6 @@
         event.srcElement.value = textValue;
       },
       handleTemplateFormInput({ fieldName, fieldValue }) {
-        console.log(fieldValue);
         if (fieldName === 'name') {
           const exists = this.verifyExistingName(fieldValue);
           this.errorStates.name.value = !!exists;
