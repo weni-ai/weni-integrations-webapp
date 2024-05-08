@@ -313,7 +313,7 @@
         this.languageKey += 1;
       },
       closeEdit() {
-        const tablePath = this.$router.currentRoute.path.split('templates')[0] + 'templates';
+        const tablePath = this.$router.currentRoute.value.path.split('templates')[0] + 'templates';
         this.$router.push(tablePath);
       },
       verifyExistingName(templateName) {
