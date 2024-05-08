@@ -248,7 +248,6 @@
         event.srcElement.value = textValue;
       },
       handleTemplateFormInput({ fieldName, fieldValue }) {
-        console.log(fieldValue);
         if (fieldName === 'name') {
           const exists = this.verifyExistingName(fieldValue);
           this.errorStates.name.value = !!exists;
