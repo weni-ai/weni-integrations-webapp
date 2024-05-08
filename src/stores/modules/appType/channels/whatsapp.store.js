@@ -262,7 +262,7 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.createdTemplateData = null;
       this.errorCreateTemplate = null;
       try {
-        const { data } = await whatsApp.createTemplate(appUuid, payload);
+        const data = await whatsApp.createTemplate(appUuid, payload);
         this.createdTemplateData = data;
         this.loadingCreateTemplate = false;
       } catch (err) {
@@ -276,7 +276,7 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.createdTemplateTranslationData = null;
       this.errorCreateTemplateTranslation = null;
       try {
-        const { data } = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
+        const data = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
         this.createdTemplateTranslationData = data;
         this.loadingCreateTemplateTranslation = false;
       } catch (err) {
