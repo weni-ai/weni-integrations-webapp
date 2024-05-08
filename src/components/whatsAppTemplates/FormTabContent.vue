@@ -135,12 +135,7 @@
       return {
         languageKey: 0,
         templateCategory: [],
-        templateLanguage: [
-          {
-            value: '',
-            label: '',
-          },
-        ],
+        templateLanguage: [],
         categoryGroups: [
           {
             title: this.$t('WhatsApp.templates.form_field.category'),
@@ -183,18 +178,6 @@
         this.templateLanguage = this.availableLanguages.filter(
           (item) => item.value === this.templateTranslationCurrentForm?.language,
         );
-      } else {
-        this.languagesList = this.availableLanguages;
-        this.languagesList.push({
-          value: 'select',
-          label: 'New Language',
-        });
-        this.templateLanguage = [
-          {
-            label: 'New Language',
-            value: 'select',
-          },
-        ];
       }
     },
     mounted() {
