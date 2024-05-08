@@ -192,7 +192,7 @@
           .toLowerCase();
       });
     },
-    beforeUnmount(){
+    beforeUnmount() {
       this.resetTemplates();
     },
     computed: {
