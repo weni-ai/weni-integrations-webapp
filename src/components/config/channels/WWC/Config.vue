@@ -61,7 +61,7 @@
                   />
                   <unnnic-toolTip
                     class="app-config-wwc__tabs__settings-content__initPayload__tooltip"
-                    #buttons
+                    slot="buttons"
                     :text="$t('weniWebChat.config.initPayloadToolTip')"
                     :enabled="true"
                     side="right"

@@ -61,23 +61,19 @@
         </div>
       </div>
     </template>
-    <unnnic-button
-      ref="unnnic-chatgpt-modal-close-button"
-      #options
-      type="tertiary"
-      @click="closePopUp"
-    >
-      {{ $t('general.Cancel') }}
-    </unnnic-button>
-    <unnnic-button
-      ref="unnnic-chatgpt-modal-navigate-button"
-      #options
-      type="secondary"
-      @click="setupChatGptService"
-      :loading="loadingCreateApp"
-    >
-      {{ $t('general.continue') }}
-    </unnnic-button>
+    <template #options>
+      <unnnic-button ref="unnnic-chatgpt-modal-close-button" type="tertiary" @click="closePopUp">
+        {{ $t('general.Cancel') }}
+      </unnnic-button>
+      <unnnic-button
+        ref="unnnic-chatgpt-modal-navigate-button"
+        type="secondary"
+        @click="setupChatGptService"
+        :loading="loadingCreateApp"
+      >
+        {{ $t('general.continue') }}
+      </unnnic-button>
+    </template>
   </unnnic-modal>
 </template>
 

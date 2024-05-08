@@ -27,7 +27,7 @@
               <span class="config-chatgpt__settings__content__description">
                 {{ $t('ChatGPT.config.tabs.flows.description') }}
               </span>
-  
+
               <unnnic-text-area
                 ref="rules-input"
                 v-model="rules"
@@ -59,7 +59,7 @@
                 @keyup.enter="addPrompt"
                 iconRight="keyboard"
               />
-  
+
               <unnnic-label
                 v-if="availablePrompts.length > 0 && !loadingGetPrompts"
                 :label="$t('ChatGPT.config.tabs.flows.prompts_list')"
@@ -90,7 +90,7 @@
                 </unnnic-toolTip>
               </div>
             </div>
-  
+
             <div class="config-chatgpt__settings__buttons">
               <unnnic-button
                 class="config-chatgpt__settings__buttons__cancel"
@@ -99,7 +99,7 @@
                 :text="$t('apps.config.cancel')"
                 @click="closeConfig"
               />
-  
+
               <unnnic-button
                 class="config-chatgpt__settings__buttons__save"
                 type="secondary"
@@ -119,7 +119,7 @@
             <div class="config-chatgpt__settings__content__version-wrapper">
               <div>
                 {{ $t('ChatGPT.setup.version') }}
-  
+
                 <unnnic-toolTip
                   class="config-chatgpt__settings__content__version__tooltip"
                   :text="$t('ChatGPT.setup.version_tooltip')"
@@ -135,7 +135,7 @@
                   />
                 </unnnic-toolTip>
               </div>
-  
+
               <div class="config-chatgpt__settings__content__version-wrapper__options">
                 <unnnic-radio
                   v-for="(version, index) in availableVersions"
@@ -149,7 +149,7 @@
                 </unnnic-radio>
               </div>
             </div>
-  
+
             <div class="config-chatgpt__general__field">
               <span>API-Token</span>
               <span> {{ token }}</span>

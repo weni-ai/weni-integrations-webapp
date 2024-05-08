@@ -157,25 +157,25 @@
     </template>
 
     <div class="vtex-modal__buttons">
-      <unnnic-button
-        ref="unnnic-vtex-modal-close-button"
-        class="vtex-modal__buttons__button"
-        #options
-        type="tertiary"
-        @click="closePopUp"
-      >
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button
-        ref="unnnic-vtex-modal-setup-button"
-        class="vtex-modal__buttons__button"
-        #options
-        type="primary"
-        @click="continueSetup"
-        :loading="loadingCreateApp"
-      >
-        {{ $t('general.continue') }}
-      </unnnic-button>
+      <template slot="öptions">
+        <unnnic-button
+          ref="unnnic-vtex-modal-close-button"
+          class="vtex-modal__buttons__button"
+          type="tertiary"
+          @click="closePopUp"
+        >
+          {{ $t('general.Cancel') }}
+        </unnnic-button>
+        <unnnic-button
+          ref="unnnic-vtex-modal-setup-button"
+          class="vtex-modal__buttons__button"
+          type="primary"
+          @click="continueSetup"
+          :loading="loadingCreateApp"
+        >
+          {{ $t('general.continue') }}
+        </unnnic-button>
+      </template>
     </div>
   </unnnic-modal>
 </template>
