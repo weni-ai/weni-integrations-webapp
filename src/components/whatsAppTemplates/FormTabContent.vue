@@ -192,6 +192,9 @@
           .toLowerCase();
       });
     },
+    beforeUnmount(){
+      this.resetTemplates();
+    },
     computed: {
       ...mapState(whatsapp_store, [
         'templateTranslationCurrentForm',
