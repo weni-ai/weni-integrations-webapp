@@ -61,7 +61,7 @@
       @click-action-secondary="closeModal"
       @click-action-primary="handleCatalogConfirmation"
     >
-      <template slot="description">
+      <template #description>
         <div v-if="catalogToEnable">
           {{
             $t('WhatsApp.catalog.list.disable_modal.description_active', {
