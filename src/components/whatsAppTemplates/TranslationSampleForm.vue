@@ -50,7 +50,8 @@
                   v-for="(variable, index) in variableCount"
                   :key="variable"
                   :placeholder="`Enter content for {{${variable}}}`"
-                  @input="handleVariableChange(index, $event)"
+                  :modelValue="textInput"
+                  @update:modelValue="handleVariableChange(index, $event)"
                 />
               </div>
             </div>
@@ -93,6 +94,7 @@
     data() {
       return {
         variablesData: [],
+        textInput: '',
         formattedBody: '',
         file: null,
         fileToPreview: null,
@@ -120,6 +122,7 @@
         this.$emit('close-modal');
       },
       handleVariableChange(index, event) {
+        this.textInput = event;
         this.variablesData[index] = event;
         let newBody = this.templateTranslationCurrentForm.body;
         this.variablesData.forEach((variable, index) => {
