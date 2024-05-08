@@ -93,8 +93,8 @@
     },
     data() {
       return {
-        variablesData: [],
         textInput: '',
+        variablesData: [],
         formattedBody: '',
         file: null,
         fileToPreview: null,
@@ -122,7 +122,6 @@
         this.$emit('close-modal');
       },
       handleVariableChange(index, event) {
-        this.textInput = event;
         this.variablesData[index] = event;
         let newBody = this.templateTranslationCurrentForm.body;
         this.variablesData.forEach((variable, index) => {

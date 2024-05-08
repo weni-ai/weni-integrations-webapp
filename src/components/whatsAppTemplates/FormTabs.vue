@@ -373,6 +373,7 @@
           }
 
           currentTemplateUuid = this.createdTemplateData.uuid;
+          this.loadingSave = false;
         }
 
         const translationPayload = this.buildPayload();

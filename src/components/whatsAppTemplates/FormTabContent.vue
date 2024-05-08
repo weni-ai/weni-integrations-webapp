@@ -6,7 +6,7 @@
           class="form-tab-content__input--name"
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
-          :modelValue="templateForm.name"
+          :modelValue="templateForm?.name"
           @update:modelValue="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
           @keyup="formatTemplateName"
           @keydown="preventTemplateName"
@@ -316,7 +316,7 @@
         this.languageKey += 1;
       },
       closeEdit() {
-        const tablePath = this.$router.currentRoute.path.split('templates')[0] + 'templates';
+        const tablePath = this.$router.currentRoute.value.path.split('templates')[0] + 'templates';
         this.$router.push(tablePath);
       },
       verifyExistingName(templateName) {
