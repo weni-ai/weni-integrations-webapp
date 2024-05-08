@@ -8,6 +8,7 @@
         <unnnicInputDatePicker
           :modelValue="datePickerDates"
           @update:modelValue="handleDateFilter"
+          format="MM-DD-YYYY"
         />
       </div>
       <unnnic-select-smart
@@ -340,7 +341,7 @@
       },
       handleDateFilter(event) {
         this.startDate = event.start;
-        this.endDate = event.endDate;
+        this.endDate = event.end;
 
         this.showDateFilter = false;
       },
