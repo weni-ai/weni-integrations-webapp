@@ -11,6 +11,7 @@
       :src="iframeSrc"
       allow="clipboard-read; clipboard-write;"
       title=""
+      style="border: 0"
     ></iframe>
   </div>
 </template>
@@ -52,4 +53,3 @@
     margin-bottom: 0 !important;
   }
 </style>
-import { auth_store } from '@/stores/modules/auth.store'; auth_store,
