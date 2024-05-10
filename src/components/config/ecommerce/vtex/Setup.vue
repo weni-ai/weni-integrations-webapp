@@ -156,8 +156,8 @@
       </div>
     </template>
 
+    <template #options>
     <div class="vtex-modal__buttons">
-      <template slot="options">
         <unnnic-button
           ref="unnnic-vtex-modal-close-button"
           class="vtex-modal__buttons__button"
@@ -175,8 +175,8 @@
         >
           {{ $t('general.continue') }}
         </unnnic-button>
-      </template>
-    </div>
+      </div>
+    </template>
   </unnnic-modal>
 </template>
 
