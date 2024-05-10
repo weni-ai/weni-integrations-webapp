@@ -40,6 +40,7 @@
           :options="availableLanguages"
           :modelValue="templateLanguage"
           @update:modelValue="handleLanguageSelection"
+          multiple
         />
       </div>
 
@@ -277,12 +278,20 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
-        if (this.templateLanguage === value) return;
+        if (value.length === 0) {
+          this.setTemplateTranslationCurrentForm = 'New Language';
+          this.updateTemplateTranslationForm({
+            formName: this.selectedForm,
+            fieldName: 'language',
+            fieldValue: '',
+          });
+          this.$emit('language-change', 'New Language');
+          return;
+        } else if (this.templateLanguage === value || value.length > 1) return;
         this.templateLanguage = value;
         const selectedLanguage = this.availableLanguages.find(
           (item) => item.value === value[0].value,
         );
-
         if (!selectedLanguage) {
           alert.callAlert({
             props: {
@@ -292,11 +301,7 @@
           });
           return;
         }
-
-        if (
-          selectedLanguage.value !== this.templateTranslationCurrentForm?.language &&
-          this.removeLanguages.includes(selectedLanguage.label)
-        ) {
+        if (this.removeLanguages.includes(selectedLanguage.label)) {
           alert.callAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
