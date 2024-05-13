@@ -366,13 +366,16 @@
           };
 
           await this.createTemplate({ appUuid, payload: templatePayload });
+
           if (this.errorCreateTemplate) {
-            this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_template') });
+            const errorText =
+              this.errorCreateTemplate?.error_user_msg || this.errorCreateTemplate.response;
+            this.callErrorModal({ text: errorText });
             this.loadingSave = false;
             return;
           }
 
-          currentTemplateUuid = this.createdTemplateData.uuid;
+          currentTemplateUuid = this.createdTemplateData?.uuid || '';
           this.loadingSave = false;
         }
 
