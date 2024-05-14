@@ -368,8 +368,9 @@
           await this.createTemplate({ appUuid, payload: templatePayload });
 
           if (this.errorCreateTemplate) {
-            const errorText =
-              this.errorCreateTemplate?.error_user_msg || this.errorCreateTemplate.response;
+            const errorText = this.errorCreateTemplate?.error_subcode
+              ? this.$t(`WhatsApp.config.error.${this.errorCreateTemplate?.error_subcode.text}`)
+              : this.errorCreateTemplate.response;
             this.callErrorModal({ text: errorText });
             this.loadingSave = false;
             return;

@@ -452,7 +452,11 @@
         "empty_url": "A URL do Webhook fornecida não pode estar vazia",
         "invalid_url": "A URL do Webhook fornecida é inválida",
         "webhook_update": "Erro ao tentar atualizar os dados do Webhook",
-        "invalid_data": "Alguns campos são inválidos, corrija-os e tente novamente"
+        "invalid_data": "Alguns campos são inválidos, corrija-os e tente novamente",
+        "2388072": {
+          "title": "O formato do título está incorreto",
+          "message": "O cabeçalho da mensagem não pode ter novas linhas, caracteres de formatação, emojis ou asteriscos."
+        }
       },
       "qr": {
         "title": "Link do WhatsApp",
