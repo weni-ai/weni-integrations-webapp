@@ -77,7 +77,7 @@
 </template>
 
 <script>
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -220,7 +220,7 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: type,

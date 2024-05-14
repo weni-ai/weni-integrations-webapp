@@ -100,7 +100,7 @@
 
 <script>
   import axios from 'axios';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
@@ -276,7 +276,7 @@
         this.$emit('closePopUp');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: type,

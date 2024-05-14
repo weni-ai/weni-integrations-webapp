@@ -68,7 +68,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'omie-config',
@@ -121,7 +121,7 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
             type,

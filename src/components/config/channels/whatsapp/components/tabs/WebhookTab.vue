@@ -74,7 +74,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'WebhookTab',
@@ -254,7 +254,7 @@
         this.$root.$emit('updateGrid');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: type,

@@ -37,7 +37,7 @@
   import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
   import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
   import skeletonLoading from '../loadings/AppDetails.vue';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { mapActions, mapState } from 'pinia';
   import millify from 'millify';
@@ -82,7 +82,7 @@
         await this.postRating(data);
 
         if (this.errorPostRating) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               type: 'error',

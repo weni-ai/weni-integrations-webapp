@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import alert from '../../utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     props: {
@@ -42,7 +42,7 @@
     },
     methods: {
       callAlert() {
-        alert.callAlert({ props: this.$props, seconds: this.seconds });
+        unnnic.unnnicCallAlert({ props: this.$props, seconds: this.seconds });
       },
     },
   };

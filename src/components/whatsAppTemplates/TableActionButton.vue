@@ -21,7 +21,7 @@
   import { mapActions, mapState } from 'pinia';
   import { insights_store } from '@/stores/modules/insights.store';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'TableActionButton',
@@ -87,7 +87,7 @@
                 if (responseError) {
                   errorMsg = this.$t(responseError);
                 }
-                alert.callAlert({
+                unnnic.unnnicCallAlert({
                   props: {
                     text: errorMsg,
                     type: 'error',

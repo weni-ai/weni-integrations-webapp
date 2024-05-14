@@ -92,7 +92,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
@@ -293,7 +293,7 @@
           (item) => item.value === value[0].value,
         );
         if (!selectedLanguage) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
               type: 'error',
@@ -302,7 +302,7 @@
           return;
         }
         if (this.removeLanguages.includes(selectedLanguage.label)) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
               type: 'error',
@@ -336,7 +336,7 @@
         }
 
         if (!validFields) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.invalid_fields'),
               type: 'error',

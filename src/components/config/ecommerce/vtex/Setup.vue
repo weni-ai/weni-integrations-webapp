@@ -157,7 +157,7 @@
     </template>
 
     <template #options>
-    <div class="vtex-modal__buttons">
+      <div class="vtex-modal__buttons">
         <unnnic-button
           ref="unnnic-vtex-modal-close-button"
           class="vtex-modal__buttons__button"
@@ -186,7 +186,7 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
 
@@ -311,7 +311,7 @@
       },
       async copyWebhookUrl() {
         navigator.clipboard.writeText(this.webhookUrl);
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
             type: 'success',
@@ -320,7 +320,7 @@
         });
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
             type,

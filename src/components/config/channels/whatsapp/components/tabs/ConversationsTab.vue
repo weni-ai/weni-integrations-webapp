@@ -139,7 +139,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { insights_store } from '@/stores/modules/insights.store';
@@ -276,7 +276,7 @@
         });
 
         if (this.errorConversations) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.conversations.fetch_error'),
               type: 'error',
@@ -310,7 +310,7 @@
           if (this.errorConversationsReport.response.status === 409) {
             errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
           }
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: errorText,
               type: 'error',
@@ -320,7 +320,7 @@
           return;
         }
 
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('WhatsApp.config.conversations.report_success'),
             type: 'success',

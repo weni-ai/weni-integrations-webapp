@@ -79,7 +79,7 @@
   import { mapActions, mapState } from 'pinia';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
 
   export default {
@@ -175,7 +175,7 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             title: type,

@@ -129,7 +129,7 @@
 </template>
 
 <script>
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
   import IntegrateButton from '../IntegrateButton/index.vue';
@@ -243,7 +243,7 @@
         }
 
         this.toggleRemoveModal();
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
             type: 'success',
@@ -253,7 +253,7 @@
         this.$emit('update');
       },
       callErrorModal({ text }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: 'error',
@@ -324,7 +324,7 @@
       /* istanbul ignore next */
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
             type: 'success',

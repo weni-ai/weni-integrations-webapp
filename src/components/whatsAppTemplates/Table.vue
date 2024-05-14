@@ -109,7 +109,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
@@ -306,7 +306,7 @@
         await this.getWhatsAppTemplates({ appUuid, params });
 
         if (this.errorWhatsAppTemplates) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
               type: 'error',

@@ -74,7 +74,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
     components: {
@@ -194,7 +194,7 @@
         await app_type().getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.discovery.fetch_error'),
               type: 'error',
