@@ -18,6 +18,7 @@
         ref="appGrid"
         section="channel"
         type="add"
+        :loading="loadingAllAppTypes"
         :apps="filteredApps"
         @update="fetchChannels"
       />
@@ -119,6 +120,7 @@
     computed: {
       ...mapState(app_type, [
         'allAppTypes',
+        'loadingAllAppTypes',
         'errorAllAppTypes',
         'featuredApps',
         'loadingFeaturedApps',
