@@ -67,7 +67,10 @@
 
       if (!this.fetchedContactInfo) {
         try {
-          await this.fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
+          await this.fetchWppContactInfo({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+          });
         } catch (err) {
           unnnicCallAlert({
             props: {
@@ -291,16 +294,20 @@
             return;
           }
 
-          const payload = {
+          let payload = this.removeEmptyProperties({
             photo: this.modifiedInitialPhoto ? b64ProfilePhoto : null,
             status: this.getProfileInputValue('status'),
             business: {
               description: this.getProfileInputValue('description'),
               vertical: this.getProfileInputValue('sector'),
             },
-          };
+          });
 
-          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          const data = removeEmpty({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            payload,
+          });
           await this.updateWppProfile(data);
 
           if (this.errorUpdateWhatsAppProfile) {
@@ -351,16 +358,20 @@
         }
 
         try {
-          const payload = {
+          let payload = this.removeEmptyProperties({
             websites: Array.of(
               this.getContactInfoInputValue('websites.0'),
               this.getContactInfoInputValue('websites.1'),
             ),
             email: this.getContactInfoInputValue('email'),
             address: this.getContactInfoInputValue('address'),
-          };
+          });
 
-          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          const data = removeEmpty({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            payload,
+          });
           await this.updateWppContactInfo(data);
 
           unnnicCallAlert({
@@ -387,6 +398,43 @@
             seconds: 6,
           });
         }
+      },
+      removeEmptyProperties(obj) {
+        for (let key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            let value = obj[key];
+
+            if (typeof value === 'object' && value !== null) {
+              this.removeEmptyProperties(value);
+              if (this.isEmpty(value)) {
+                delete obj[key];
+              }
+            } else if (Array.isArray(value)) {
+              value.forEach((item) => {
+                if (typeof item === 'object' && item !== null) {
+                  this.removeEmptyProperties(item);
+                }
+              });
+              if (value.length === 0 || value.every((item) => this.isEmpty(item))) {
+                delete obj[key];
+              }
+            } else {
+              if (this.isEmpty(value)) {
+                delete obj[key];
+              }
+            }
+          }
+        }
+        return obj;
+      },
+      isEmpty(value) {
+        return (
+          value === null ||
+          value === undefined ||
+          value === '' ||
+          (Array.isArray(value) && value.length === 0) ||
+          (typeof value === 'object' && value !== null && Object.keys(value).length === 0)
+        );
       },
     },
   };

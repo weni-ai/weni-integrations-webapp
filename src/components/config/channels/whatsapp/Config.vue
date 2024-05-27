@@ -160,6 +160,9 @@
           this.fetchProfile(options);
           this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
+          if (this.errorCurrentApp) {
+            throw new Error(this.errorCurrentApp);
+          }
         } catch (error) {
           unnnicCallAlert({
             props: {

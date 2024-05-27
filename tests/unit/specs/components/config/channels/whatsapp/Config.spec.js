@@ -141,7 +141,11 @@ describe('WhatsAppConfig.vue', () => {
     });
 
     it('should call unnnicCallAlert on request failure', async () => {
-      const { wrapper } = await mountComponent({ errorCurrentApp: true });
+      const { wrapper } = await mountComponent({
+        errorCurrentApp: true,
+        errorUpdateWhatsAppProfile: true,
+        errorDeleteWhatsAppProfilePhoto: true,
+      });
       jest.clearAllMocks();
       expect(mockUnnnicCallAlert).not.toHaveBeenCalled();
       await wrapper.vm.fetchData();
