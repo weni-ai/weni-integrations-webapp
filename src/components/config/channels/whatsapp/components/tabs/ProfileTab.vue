@@ -96,9 +96,9 @@
             type: 'upload',
             name: 'profile_image',
             label: 'WhatsApp.config.profile.profile_image.label',
-            value: Array.of(this.profile.photoFile).filter((e) => e),
+            value: Array.of(this.profile?.photoFile).filter((e) => e),
             props: {
-              files: Array.of(this.profile.photoFile).filter((e) => e),
+              files: Array.of(this.profile?.photoFile).filter((e) => e),
               acceptMultiple: false,
               supportedFormats: '.jpg,.jpeg,.png',
               maximumUploads: 1,
@@ -115,22 +115,22 @@
             name: 'status',
             label: 'WhatsApp.config.profile.status.label',
             placeholder: 'WhatsApp.config.profile.status.placeholder',
-            value: this.profile.status,
+            value: this.profile?.status,
           },
           {
             type: 'input',
             name: 'description',
             label: 'WhatsApp.config.profile.description.label',
             placeholder: 'WhatsApp.config.profile.description.placeholder',
-            value: this.profile.business?.description,
+            value: this.profile?.business?.description,
           },
           {
             type: 'select',
             name: 'sector',
             label: 'WhatsApp.config.profile.sector.label',
             placeholder: 'WhatsApp.config.profile.sector.placeholder',
-            value: this.profile.business?.vertical,
-            options: this.profile.business?.vertical_choices.map((value) => {
+            value: this.profile?.business?.vertical,
+            options: this.profile?.business?.vertical_choices.map((value) => {
               return {
                 value: value,
                 text: value,
@@ -183,7 +183,7 @@
             this.modifiedInputs = true;
           }
           const photoIndex = val.indexOf(val.find((input) => input.name === 'profile_image'));
-          if (val[photoIndex].value[0]?.lastModified !== this.profile.photoFile?.lastModified) {
+          if (val[photoIndex].value[0]?.lastModified !== this.profile?.photoFile?.lastModified) {
             this.modifiedInitialPhoto = true;
           }
         },
