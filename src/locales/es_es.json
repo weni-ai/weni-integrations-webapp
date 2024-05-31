@@ -419,7 +419,8 @@
         },
         "sector": {
           "label": "Sector de la empresa",
-          "placeholder": "Seleccione"
+          "placeholder": "Seleccione",
+          "empty": "El campo 'Sector de la Empresa' no puede estar vacío"
         },
         "configure_later": "Configurar más tarde",
         "save_changes": "Guardar los cambios"

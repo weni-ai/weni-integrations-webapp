@@ -132,7 +132,7 @@
             name: 'sector',
             label: 'WhatsApp.config.profile.sector.label',
             placeholder: 'WhatsApp.config.profile.sector.placeholder',
-            value: this.profile?.business?.vertical,
+            value: this.profile?.business?.vertical || '',
             options: this.profile?.business?.vertical_choices.map((value) => {
               return {
                 value: value,
@@ -302,6 +302,21 @@
               vertical: this.getProfileInputValue('sector'),
             },
           });
+
+          if (!this.getProfileInputValue('sector')) {
+            unnnicCallAlert({
+              props: {
+                text: this.$t('WhatsApp.config.profile.sector.empty'),
+                title: this.$t('general.error'),
+                icon: 'check-circle-1-1',
+                scheme: 'feedback-red',
+                position: 'bottom-right',
+                closeText: this.$t('general.Close'),
+              },
+              seconds: 3,
+            });
+            return;
+          }
 
           const data = removeEmpty({
             code: this.app.code,

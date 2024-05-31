@@ -419,7 +419,8 @@
         },
         "sector": {
           "label": "Company Sector",
-          "placeholder": "Select"
+          "placeholder": "Select",
+          "empty": "The field 'Company Sector' cannot be empty"
         },
         "configure_later": "Configure later",
         "save_changes": "Save changes"
