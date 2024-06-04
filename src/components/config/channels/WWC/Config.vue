@@ -914,7 +914,7 @@
         &__buttons {
           margin-top: $unnnic-spacing-stack-sm;
           display: flex;
-          width: 100%;
+          width: 95%;
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
