@@ -914,13 +914,17 @@
         &__buttons {
           margin-top: $unnnic-spacing-stack-sm;
           display: flex;
-          width: 95%;
+          width: 100%;
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
-          &__cancel &__save {
-            flex-grow: 1;
+          :deep(.unnnic-button){
             width: 250px;
+          }
+
+          &__cancel &__save {
+            display: flex;
+            flex-grow: 1;
             margin: $unnnic-spacing-inline-xs;
           }
         }

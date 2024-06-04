@@ -40,6 +40,7 @@
           :options="availableLanguages"
           :modelValue="templateLanguage"
           @update:modelValue="handleLanguageSelection"
+          :selectFirst="false"
           multiple
         />
       </div>
@@ -278,7 +279,7 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
-        if (value.length === 0) {
+        if (!value || value.length === 0) {
           this.setTemplateTranslationCurrentForm = 'New Language';
           this.updateTemplateTranslationForm({
             formName: this.selectedForm,
