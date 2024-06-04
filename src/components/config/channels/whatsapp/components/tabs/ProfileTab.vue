@@ -285,16 +285,35 @@
             return;
           }
 
-          const payload = {
+          let payload = this.removeEmptyProperties({
             photo: this.modifiedInitialPhoto ? b64ProfilePhoto : null,
             status: this.getProfileInputValue('status'),
             business: {
               description: this.getProfileInputValue('description'),
               vertical: this.getProfileInputValue('sector'),
             },
-          };
+          });
 
-          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          if (!this.getProfileInputValue('sector')) {
+            unnnicCallAlert({
+              props: {
+                text: this.$t('WhatsApp.config.profile.sector.empty'),
+                title: this.$t('general.error'),
+                icon: 'check-circle-1-1',
+                scheme: 'feedback-red',
+                position: 'bottom-right',
+                closeText: this.$t('general.Close'),
+              },
+              seconds: 3,
+            });
+            return;
+          }
+
+          const data = removeEmpty({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            payload,
+          });
           await this.updateWppProfile(data);
 
           if (this.errorUpdateWhatsAppProfile) {
@@ -303,22 +322,58 @@
 
           this.$emit('save');
 
-          unnnic.unnnicCallAlert({
+          unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.profile_updated'),
-              type: 'success',
+              title: this.$t('general.success'),
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
             seconds: 3,
           });
         } catch (e) {
-          unnnic.unnnicCallAlert({
+          unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              type: 'error',
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
             },
             seconds: 6,
           });
         }
+      },
+      removeEmptyProperties(obj) {
+        for (let key in obj) {
+          if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            let value = obj[key];
+
+            if (typeof value === 'object' && value !== null) {
+              this.removeEmptyProperties(value);
+              if (this.isEmpty(value)) {
+                delete obj[key];
+              }
+            } else if (Array.isArray(value)) {
+              value.forEach((item) => {
+                if (typeof item === 'object' && item !== null) {
+                  this.removeEmptyProperties(item);
+                }
+              });
+              if (value.length === 0 || value.every((item) => this.isEmpty(item))) {
+                delete obj[key];
+              }
+            } else {
+              if (this.isEmpty(value)) {
+                delete obj[key];
+              }
+            }
+          }
+        }
+        return obj;
       },
       async saveContactInfo() {
         if (this.contactInfoInputs.some((input) => input.error)) {
