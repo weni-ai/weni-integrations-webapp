@@ -347,6 +347,64 @@
           });
         }
       },
+      async saveContactInfo() {
+        if (this.contactInfoInputs.some((input) => input.error)) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.invalid_data'),
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+          return;
+        }
+
+        try {
+          let payload = this.removeEmptyProperties({
+            websites: Array.of(
+              this.getContactInfoInputValue('websites.0'),
+              this.getContactInfoInputValue('websites.1'),
+            ),
+            email: this.getContactInfoInputValue('email'),
+            address: this.getContactInfoInputValue('address'),
+          });
+
+          const data = removeEmpty({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            payload,
+          });
+          await this.updateWppContactInfo(data);
+
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.success.contact_info_update'),
+              title: this.$t('general.success'),
+              icon: 'check-circle-1-1',
+              scheme: 'feedback-green',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 3,
+          });
+        } catch (err) {
+          unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.config.error.data_update'),
+              title: this.$t('general.error'),
+              icon: 'alert-circle-1-1',
+              scheme: 'feedback-red',
+              position: 'bottom-right',
+              closeText: this.$t('general.Close'),
+            },
+            seconds: 6,
+          });
+        }
+      },
       removeEmptyProperties(obj) {
         for (let key in obj) {
           if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -374,48 +432,6 @@
           }
         }
         return obj;
-      },
-      async saveContactInfo() {
-        if (this.contactInfoInputs.some((input) => input.error)) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.error.invalid_data'),
-              type: 'error',
-            },
-            seconds: 3,
-          });
-          return;
-        }
-
-        try {
-          const payload = {
-            websites: Array.of(
-              this.getContactInfoInputValue('websites.0'),
-              this.getContactInfoInputValue('websites.1'),
-            ),
-            email: this.getContactInfoInputValue('email'),
-            address: this.getContactInfoInputValue('address'),
-          };
-
-          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
-          await this.updateWppContactInfo(data);
-
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.success.contact_info_update'),
-              type: 'success',
-            },
-            seconds: 3,
-          });
-        } catch (err) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.config.error.data_update'),
-              type: 'error',
-            },
-            seconds: 6,
-          });
-        }
       },
     },
   };
