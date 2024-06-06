@@ -279,7 +279,7 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
-        if (!value || value.length === 0) {
+        if (value.length === 0 && this.templateTranslationSelectedForm !== 'New Language') {
           this.setTemplateTranslationCurrentForm = 'New Language';
           this.updateTemplateTranslationForm({
             formName: this.selectedForm,
@@ -288,7 +288,9 @@
           });
           this.$emit('language-change', 'New Language');
           return;
-        } else if (this.templateLanguage === value || value.length > 1) return;
+        } else if (this.templateLanguage === value || value.length > 1) {
+          return;
+        }
         this.templateLanguage = value;
         const selectedLanguage = this.availableLanguages.find(
           (item) => item.value === value[0].value,
