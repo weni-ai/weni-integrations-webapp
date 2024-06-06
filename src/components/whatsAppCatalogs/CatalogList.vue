@@ -42,7 +42,12 @@
     </div>
     <div class="whatsapp-catalog-list__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination :value="page" @input="onPageChange" :max="pageCount" :show="5" />
+      <unnnic-pagination
+        :modelValue="page"
+        @update:modelValue="onPageChange"
+        :max="pageCount"
+        :show="5"
+      />
     </div>
     <unnnic-modal-next
       v-if="openModal"

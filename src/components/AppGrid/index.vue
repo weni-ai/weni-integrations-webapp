@@ -85,8 +85,8 @@
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
         <unnnic-pagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
-          :value="currentPage"
-          @input="onPageChange"
+          :modelValue="currentPage"
+          @update:modelValue="onPageChange"
           :max="maxGridPages"
           :show="6"
         />
