@@ -1096,7 +1096,8 @@
       "connect_catalog": "No se pudo conectar el catálogo VTEX, inténtelo nuevamente más tarde",
       "fetch_related_wpp_data": "No se pudo recuperar la información del número de WhatsApp relacionado",
       "redirect_to_wpp_catalog": "No se pudo redirigir al catálogo. Actualice la página e inténtelo nuevamente.",
-      "update_connected_catalog_status": "No se pudo recuperar el estado del catálogo. Vuelva a intentarlo más tarde."
+      "update_connected_catalog_status": "No se pudo recuperar el estado del catálogo. Vuelva a intentarlo más tarde.",
+      "select_five_sellers": "Por favor, seleccione hasta 5 vendedores."
     },
     "success": {
       "connect_catalog": "Catálogo VTEX conectado exitosamente"

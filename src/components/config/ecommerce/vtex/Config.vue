@@ -56,6 +56,17 @@
             </tr>
           </table>
         </div>
+        <div class="config-vtex__settings__content__details">
+          <span class="config-vtex__settings__content__details__label"> Sellers </span>
+
+          <unnnic-select-smart
+            :options="sellerOptions"
+            :modelValue="selectedSellers"
+            @update:modelValue="handleSelectSellers"
+            multiple
+            :selectFirst="false"
+          />
+        </div>
       </div>
     </div>
 
@@ -100,6 +111,33 @@
         showConnectModal: false,
         wpp_number: null,
         wpp_uuid: null,
+        selectedSellers: [],
+        sellerOptions: [
+          {
+            value: 'seller 1',
+            label: 'Seller 1',
+          },
+          {
+            value: 'seller 2',
+            label: 'Seller 2',
+          },
+          {
+            value: 'seller 3',
+            label: 'Seller 3',
+          },
+          {
+            value: 'seller 4',
+            label: 'Seller 4',
+          },
+          {
+            value: 'seller 5',
+            label: 'Seller 5',
+          },
+          {
+            value: 'seller 6',
+            label: 'Seller 6',
+          },
+        ],
       };
     },
     computed: {
@@ -182,6 +220,18 @@
           },
           seconds: 6,
         });
+      },
+      handleSelectSellers(value) {
+        if (value.length > 5) {
+          unnnic.unnnicCallAlert({
+            props: {
+              text: this.$t('vtex.errors.select_five_sellers'),
+              type: 'error',
+            },
+          });
+          return;
+        }
+        this.selectedSellers = value;
       },
     },
   };
