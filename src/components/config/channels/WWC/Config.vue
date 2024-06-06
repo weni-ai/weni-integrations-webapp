@@ -918,7 +918,7 @@
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
-          :deep(.unnnic-button){
+          :deep(.unnnic-button) {
             width: 250px;
           }
 
