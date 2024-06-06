@@ -57,7 +57,9 @@
           </table>
         </div>
         <div class="config-vtex__settings__content__details">
-          <span class="config-vtex__settings__content__details__label"> Sellers </span>
+          <span class="config-vtex__settings__content__details__label">
+            {{ $t('vtex.config.sellers') }}
+          </span>
 
           <unnnic-select-smart
             :options="sellerOptions"

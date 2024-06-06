@@ -1067,7 +1067,8 @@
       "name": "Account name",
       "environment": "Environment",
       "view_catalog": "View catalog",
-      "wpp_number": "WhatsApp number"
+      "wpp_number": "WhatsApp number",
+      "sellers": "Sellers"
     },
     "connect_modal": {
       "categories": {

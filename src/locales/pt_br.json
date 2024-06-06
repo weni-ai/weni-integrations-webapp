@@ -1071,7 +1071,8 @@
       "name": "Nome da conta",
       "environment": "Ambiente",
       "view_catalog": "Ver catálogo",
-      "wpp_number": "Número WhatsApp"
+      "wpp_number": "Número WhatsApp",
+      "sellers": "Vendedores"
     },
     "connect_modal": {
       "categories": {
