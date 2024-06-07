@@ -35,15 +35,15 @@
           >
             <unnnic-input
               class="webhook-info__content__headers-element--key"
-              @input="($event) => handleHeaderKeyChange(index, $event)"
+              @update:modelValue="($event) => handleHeaderKeyChange(index, $event)"
               :placeholder="$t('WhatsApp.config.webhook_info.header_key.placeholder')"
-              :value="header.key"
+              :modelValue="header.key"
             />
             <unnnic-input
               class="webhook-info__content__headers-element--value"
-              @input="($event) => handleHeaderValueChange(index, $event)"
+              @update:modelValue="($event) => handleHeaderValueChange(index, $event)"
               :placeholder="$t('WhatsApp.config.webhook_info.header_value.placeholder')"
-              :value="header.value"
+              :modelValue="header.value"
             />
           </div>
         </div>
