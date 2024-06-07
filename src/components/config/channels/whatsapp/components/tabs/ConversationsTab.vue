@@ -276,9 +276,12 @@
         });
 
         if (this.errorConversations) {
+          const err =
+            this.errorConversations?.error_user_msg ||
+            this.$t('WhatsApp.config.conversations.fetch_error');
           unnnic.unnnicCallAlert({
             props: {
-              text: this.$t('WhatsApp.config.conversations.fetch_error'),
+              text: err,
               type: 'error',
             },
             seconds: 6,
@@ -305,7 +308,9 @@
         });
 
         if (this.errorConversationsReport) {
-          let errorText = this.$t('WhatsApp.config.conversations.report_error');
+          let errorText =
+            this.errorConversationsReport?.error_user_msg ||
+            this.$t('WhatsApp.config.conversations.report_error');
 
           if (this.errorConversationsReport.response.status === 409) {
             errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
