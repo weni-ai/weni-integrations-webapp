@@ -65,7 +65,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingDebugToken = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorDebugToken = err;
+        this.errorDebugToken = err.response?.data.error || err;
         this.loadingDebugToken = false;
       }
     },
@@ -79,7 +79,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingPhoneNumbers = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorPhoneNumbers = err;
+        this.errorPhoneNumbers = err.response?.data.error || err;
         this.loadingPhoneNumbers = false;
       }
     },
@@ -91,7 +91,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingWhatsAppCloudConfigure = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCloudConfigure = err;
+        this.errorCloudConfigure = err.response?.data.error || err;
         this.loadingWhatsAppCloudConfigure = false;
       }
     },
@@ -107,7 +107,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingWhatsAppCloudCatalogs = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorWhatsAppCloudCatalogs = err;
+        this.errorWhatsAppCloudCatalogs = err.response?.data.error || err;
         this.loadingWhatsAppCloudCatalogs = false;
       }
     },
@@ -120,7 +120,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingFetchWhatsAppCloudCatalog = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorFetchWhatsAppCloudCatalog = err;
+        this.errorFetchWhatsAppCloudCatalog = err.response?.data.error || err;
         this.loadingFetchWhatsAppCloudCatalog = false;
       }
     },
@@ -134,7 +134,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingDisableCatalog = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorDisableCatalog = err;
+        this.errorDisableCatalog = err.response?.data.error || err;
         this.loadingDisableCatalog = false;
       }
     },
@@ -148,7 +148,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingEnableCatalog = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorEnableCatalog = err;
+        this.errorEnableCatalog = err.response?.data.error || err;
         this.loadingEnableCatalog = false;
       }
     },
@@ -162,7 +162,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingToggleCartVisibility = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorToggleCartVisibility = err;
+        this.errorToggleCartVisibility = err.response?.data.error || err;
         this.loadingToggleCartVisibility = false;
       }
     },
@@ -176,7 +176,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingToggleCatalogVisibility = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorToggleCatalogVisibility = err;
+        this.errorToggleCatalogVisibility = err.response?.data.error || err;
         this.loadingToggleCatalogVisibility = false;
       }
     },
@@ -190,7 +190,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingCommerceSettings = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCommerceSettings = err;
+        this.errorCommerceSettings = err.response?.data.error || err;
         this.loadingCommerceSettings = false;
       }
     },
@@ -203,7 +203,7 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingCatalogProducts = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCatalogProducts = err;
+        this.errorCatalogProducts = err.response?.data.error || err;
         this.loadingCatalogProducts = false;
       }
     },
