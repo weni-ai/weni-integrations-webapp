@@ -446,7 +446,10 @@
         });
 
         if (this.errorUpdateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.update_translation') });
+          const errorText =
+            this.errorUpdateTemplateTranslation?.error_user_msg ||
+            this.$t('WhatsApp.templates.error.update_translation');
+          this.callErrorModal({ text: errorText });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.update_translation') });
         }

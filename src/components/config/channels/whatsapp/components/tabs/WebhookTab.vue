@@ -238,9 +238,12 @@
         await this.updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
+          const err =
+            this.errorUpdateWebhookInfo?.error_user_msg ||
+            this.$t('WhatsApp.config.error.webhook_update');
           this.callModal({
             type: 'error',
-            text: this.$t('WhatsApp.config.error.webhook_update'),
+            text: err,
           });
 
           return;
