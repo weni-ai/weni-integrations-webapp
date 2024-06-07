@@ -368,9 +368,9 @@
           await this.createTemplate({ appUuid, payload: templatePayload });
 
           if (this.errorCreateTemplate) {
-            const errorText = this.errorCreateTemplate?.error_subcode
-              ? this.$t(`WhatsApp.config.error.${this.errorCreateTemplate?.error_subcode.text}`)
-              : this.errorCreateTemplate.response;
+            const errorText =
+              this.errorCreateTemplate?.error_user_msg ||
+              this.$t('WhatsApp.templates.error.create_translation');
             this.callErrorModal({ text: errorText });
             this.loadingSave = false;
             return;
@@ -409,7 +409,11 @@
         });
 
         if (this.errorCreateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_translation') });
+          this.callErrorModal({
+            text:
+              this.errorCreateTemplateTranslation?.error_user_msg ||
+              this.$t('WhatsApp.templates.error.create_translation'),
+          });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
         }

@@ -2180,10 +2180,10 @@
   dependencies:
     vue-demi ">=0.14.7"
 
-"@weni/unnnic-system@2.0.15":
-  version "2.0.15"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.15.tgz#14709bb28b4a1a6b361ca9aaf19b2ac417ec5ab7"
-  integrity sha512-n2dA74yrnXKLmFw7K9hFwyX2+Gd8j0eAekhI3gNlJb5ZqIqkObwtu7CPYCOVXF6T0+GeQsX6LhKujSDoq4uDmQ==
+"@weni/unnnic-system@2.0.16":
+  version "2.0.16"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.16.tgz#615b609fc035977be91f686dc38485a4ea1fd860"
+  integrity sha512-yLxfkZPvGTXXPZi9f5DMVwHVdQJeePuRbHfWM//yNesKG5k7E9DyzadWILvAUhW1o2RxogmUtgcX/HnV2XkQjA==
   dependencies:
     "@emoji-mart/data" "^1.1.2"
     "@vueuse/components" "^10.4.1"

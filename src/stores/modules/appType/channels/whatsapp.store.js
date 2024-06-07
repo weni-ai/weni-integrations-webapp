@@ -267,7 +267,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingCreateTemplate = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCreateTemplate = err;
+        this.errorCreateTemplate = err.response.data.error;
         this.loadingCreateTemplate = false;
       }
     },
@@ -281,7 +281,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingCreateTemplateTranslation = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCreateTemplateTranslation = err;
+        this.errorCreateTemplateTranslation = err.response.data.error;
         this.loadingCreateTemplateTranslation = false;
       }
     },
