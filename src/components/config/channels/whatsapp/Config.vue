@@ -168,9 +168,11 @@
           await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
+          let err =
+            err.response?.data.error?.error_user_msg || this.$t('WhatsApp.config.error.data_fetch');
           unnnic.unnnicCallAlert({
             props: {
-              text: this.$t('WhatsApp.config.error.data_fetch'),
+              text: err,
               type: 'error',
             },
             seconds: 8,
