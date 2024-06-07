@@ -211,9 +211,12 @@
           const res = await axios.get(fbAccountUrl);
           this.pageList = res.data.data;
         } catch (error) {
+          const err =
+            err.response?.data.error?.error_user_msg ||
+            this.$t(`${this.integrationName}.setup.account_data.error`);
           this.callModal({
             type: 'error',
-            text: this.$t(`${this.integrationName}.setup.account_data.error`),
+            text: err,
           });
           return;
         }
@@ -236,9 +239,12 @@
           payload: { project_uuid: this.project },
         });
         if (this.errorCreateApp) {
+          const err =
+            this.errorCreateApp?.error_user_msg ||
+            this.$t(`${this.integrationName}.setup.create_app.error`);
           this.callModal({
             type: 'error',
-            text: this.$t(`${this.integrationName}.setup.create_app.error`),
+            text: err,
           });
           return;
         }
@@ -261,9 +267,12 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
+          const err =
+            this.errorUpdateAppConfig?.error_user_msg ||
+            this.$t(`${this.integrationName}.setup.update_app.error`);
           this.callModal({
             type: 'error',
-            text: this.$t(`${this.integrationName}.setup.update_app.error`),
+            text: err,
           });
           await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
