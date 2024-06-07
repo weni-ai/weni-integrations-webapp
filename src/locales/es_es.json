@@ -1068,7 +1068,8 @@
       "environment": "Ambiente",
       "view_catalog": "Ver catálogo",
       "wpp_number": "Número de Whatsapp",
-      "sellers": "Vendedores"
+      "sellers": "Vendedores",
+      "processing": "En procesamiento. Enviaremos un correo electrónico cuando todo esté listo."
     },
     "connect_modal": {
       "categories": {

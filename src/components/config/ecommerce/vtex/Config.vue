@@ -56,18 +56,31 @@
             </tr>
           </table>
         </div>
-        <div class="config-vtex__settings__content__details">
-          <span class="config-vtex__settings__content__details__label">
+        <div class="config-vtex__settings__content__sellers">
+          <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
           </span>
 
           <unnnic-select-smart
+            class="config-vtex__settings__content__sellers__options"
             :options="sellerOptions"
             :modelValue="selectedSellers"
             @update:modelValue="handleSelectSellers"
             multiple
             :selectFirst="false"
+            :disabled="disableSellers"
           />
+
+          <div class="config-vtex__settings__content__sellers__alert" v-if="disableSellers">
+            <unnnic-icon
+              class="config-vtex__settings__content__sellers__alert__icon"
+              icon="alert-circle-1-1"
+              scheme="feedback-yellow"
+            />
+            <span class="config-vtex__settings__content__sellers__alert__text">
+              {{ $t('vtex.config.processing') }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -113,6 +126,7 @@
         showConnectModal: false,
         wpp_number: null,
         wpp_uuid: null,
+        disableSellers: true,
         selectedSellers: [],
         sellerOptions: [
           {
@@ -322,7 +336,8 @@
         margin: 0 $unnnic-spacing-lg $unnnic-spacing-lg $unnnic-spacing-lg;
 
         &__catalog,
-        &__details {
+        &__details,
+        &__sellers {
           display: flex;
           flex-direction: column;
           margin-bottom: $unnnic-spacing-sm;
@@ -333,6 +348,19 @@
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
             margin-bottom: $unnnic-spacing-sm;
+          }
+        }
+
+        &__sellers {
+          gap: $unnnic-spacing-xs;
+          &__alert {
+            display: flex;
+            background-color: $unnnic-color-background-lightest;
+            border: 1px solid $unnnic-color-neutral-soft;
+            border-radius: 4px;
+            align-items: center;
+            gap: $unnnic-spacing-xs;
+            padding: $unnnic-spacing-xs;
           }
         }
 

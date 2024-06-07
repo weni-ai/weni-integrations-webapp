@@ -1068,7 +1068,8 @@
       "environment": "Environment",
       "view_catalog": "View catalog",
       "wpp_number": "WhatsApp number",
-      "sellers": "Sellers"
+      "sellers": "Sellers",
+      "processing": "In processing. We will send an email when everything is ready."
     },
     "connect_modal": {
       "categories": {
