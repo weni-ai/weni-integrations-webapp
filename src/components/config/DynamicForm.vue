@@ -40,7 +40,7 @@
           :canImport="input.props.canImport"
           :canDelete="input.props.canDelete"
           :shouldReplace="input.props.shouldReplace"
-          @fileChange="setInput(index, input)"
+          @fileChange="emitInput"
         />
       </div>
       <unnnic-checkbox
@@ -71,7 +71,7 @@
     methods: {
       emitInput() {
         this.selectedInputs.forEach((item, index) => {
-          const type = this.inputs[index].type;
+          const type = this.inputs[index]?.type;
           switch (type) {
             case 'select':
               this.$emit('input', { index, value: item[0].value });
@@ -95,10 +95,6 @@
             })
           : [];
       },
-    },
-    setSelectedInput(index, value) {
-      this.selectedInputs[index] = value;
-      this.emitInput();
     },
   };
 </script>

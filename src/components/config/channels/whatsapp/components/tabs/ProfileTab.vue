@@ -212,14 +212,18 @@
         'updateWppContactInfo',
       ]),
       updateProfileInputs(inputData) {
-        this.profileInputs[inputData.index].value = inputData.value;
+        if (inputData?.value) {
+          this.profileInputs[inputData.index].value = inputData.value;
+        }
       },
       updateContactInfoInputs(inputData) {
         const input = this.contactInfoInputs[inputData.index];
-        if (input.validator) {
+        if (input?.validator) {
           this.contactInfoInputs[inputData.index].error = !input.validator(inputData.value);
         }
-        this.contactInfoInputs[inputData.index].value = inputData.value;
+        if (inputData.value) {
+          this.contactInfoInputs[inputData.index].value = inputData.value;
+        }
       },
       /* istanbul ignore next */
       setInitialInputs() {
