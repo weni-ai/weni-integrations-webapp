@@ -677,7 +677,7 @@
             text,
             type: 'error',
           },
-          seconds: 8,
+          seconds: 12,
         });
       },
       callSuccessModal({ text }) {
