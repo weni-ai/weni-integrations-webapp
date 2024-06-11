@@ -49,10 +49,9 @@ export default {
   async updateWppProfile({ commit }, { code, appUuid, payload }) {
     commit('UPDATE_WHATSAPP_PROFILE_REQUEST');
     try {
-      const { data } = await whatsApp.updateWppProfile(code, appUuid, payload);
+      const data = await whatsApp.updateWppProfile(code, appUuid, payload);
       commit('UPDATE_WHATSAPP_PROFILE_SUCCESS', data);
     } catch (err) {
-      captureSentryException(err);
       commit('UPDATE_WHATSAPP_PROFILE_ERROR', err);
     }
   },
@@ -141,11 +140,12 @@ export default {
   async createTemplateTranslation({ commit }, { appUuid, templateUuid, payload }) {
     commit('CREATE_TEMPLATE_TRANSLATION_REQUEST');
     try {
-      const { data } = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
+      const data = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
       commit('CREATE_TEMPLATE_TRANSLATION_SUCCESS', data);
     } catch (err) {
       captureSentryException(err);
-      commit('CREATE_TEMPLATE_TRANSLATION_ERROR', err);
+      const error = err.response?.data?.error;
+      commit('CREATE_TEMPLATE_TRANSLATION_ERROR', error || err);
     }
   },
 

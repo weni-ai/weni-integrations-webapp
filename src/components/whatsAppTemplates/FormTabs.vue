@@ -360,11 +360,10 @@
           await this.createTemplate({ appUuid, payload: templatePayload });
           if (this.errorCreateTemplate) {
             this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_template') });
-            this.loadingSave = false;
             return;
           }
-
           currentTemplateUuid = this.createdTemplateData.uuid;
+          this.loadingSave = false;
         }
 
         const translationPayload = this.buildPayload();
@@ -384,7 +383,6 @@
             translationPayload,
           });
         }
-
         this.loadingSave = false;
       },
       async createTranslation({ currentTemplateUuid, translationPayload }) {
@@ -396,7 +394,10 @@
         });
 
         if (this.errorCreateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_translation') });
+          const errorText =
+            this.errorCreateTemplateTranslation?.error_user_msg ||
+            this.$t('WhatsApp.templates.error.create_translation');
+          this.callErrorModal({ text: errorText });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
         }
@@ -717,9 +718,11 @@
         ::-webkit-scrollbar {
           height: $unnnic-border-width-thick;
         }
+
         ::-webkit-scrollbar-track {
           background: $unnnic-color-neutral-soft;
         }
+
         ::-webkit-scrollbar-thumb {
           background: $unnnic-color-neutral-clean;
           border-radius: $unnnic-border-radius-md;
