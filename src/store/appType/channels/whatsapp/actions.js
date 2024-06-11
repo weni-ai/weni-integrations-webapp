@@ -133,7 +133,8 @@ export default {
       commit('CREATE_TEMPLATE_SUCCESS', data);
     } catch (err) {
       captureSentryException(err);
-      commit('CREATE_TEMPLATE_ERROR', err);
+      const error = err.response?.data?.error || err;
+      commit('CREATE_TEMPLATE_ERROR', error);
     }
   },
 
