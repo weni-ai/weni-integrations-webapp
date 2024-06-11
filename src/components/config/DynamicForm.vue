@@ -40,7 +40,7 @@
           :canImport="input.props.canImport"
           :canDelete="input.props.canDelete"
           :shouldReplace="input.props.shouldReplace"
-          @fileChange="emitInput"
+          @fileChange="(e) => handleUpload(e, index)"
         />
       </div>
       <unnnic-checkbox
@@ -94,6 +94,9 @@
               };
             })
           : [];
+      },
+      handleUpload(value, index) {
+        (this.selectedInputs[index] = value), this.emitInput();
       },
     },
   };

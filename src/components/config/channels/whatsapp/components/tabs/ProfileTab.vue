@@ -304,7 +304,7 @@
                 text: this.$t('WhatsApp.config.profile.sector.empty'),
                 type: 'error',
               },
-              seconds: 3,
+              seconds: 6,
             });
             return;
           }
@@ -327,7 +327,7 @@
               text: this.$t('WhatsApp.config.success.profile_updated'),
               type: 'success',
             },
-            seconds: 3,
+            seconds: 6,
           });
         } catch (e) {
           unnnic.unnnicCallAlert({
@@ -346,7 +346,7 @@
               text: this.$t('WhatsApp.config.error.invalid_data'),
               type: 'error',
             },
-            seconds: 3,
+            seconds: 6,
           });
           return;
         }
@@ -371,9 +371,9 @@
           unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.contact_info_update'),
-              title: 'success',
+              type: 'success',
             },
-            seconds: 3,
+            seconds: 6,
           });
         } catch (err) {
           unnnic.unnnicCallAlert({
@@ -412,6 +412,15 @@
           }
         }
         return obj;
+      },
+      isEmpty(value) {
+        return (
+          value === null ||
+          value === undefined ||
+          value === '' ||
+          (Array.isArray(value) && value.length === 0) ||
+          (typeof value === 'object' && value !== null && Object.keys(value).length === 0)
+        );
       },
     },
   };
