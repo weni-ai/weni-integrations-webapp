@@ -377,7 +377,6 @@
           }
 
           currentTemplateUuid = this.createdTemplateData?.uuid || '';
-          this.loadingSave = false;
         }
 
         const translationPayload = this.buildPayload();
@@ -397,8 +396,6 @@
             translationPayload,
           });
         }
-
-        this.loadingSave = false;
       },
       async createTranslation({ currentTemplateUuid, translationPayload }) {
         const { appCode, appUuid } = this.$route.params;
@@ -414,13 +411,14 @@
               this.errorCreateTemplateTranslation?.error_user_msg ||
               this.$t('WhatsApp.templates.error.create_translation'),
           });
+          this.loadingSave = false;
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
         }
 
         if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
           this.$router.replace(
-            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData.uuid}`,
+            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData?.uuid}`,
           );
 
           this.currentFormMode = 'edit';
@@ -436,6 +434,7 @@
         }
 
         await this.fetchTemplateData({ appUuid, templateUuid: this.createdTemplateData.uuid });
+        this.loadingSave = false;
       },
       async updateTranslation({ currentTemplateUuid, translationPayload }) {
         const { appUuid } = this.$route.params;
@@ -453,6 +452,7 @@
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.update_translation') });
         }
+        this.loadingSave = false;
       },
       buildPayload() {
         try {
@@ -729,9 +729,11 @@
         ::-webkit-scrollbar {
           height: $unnnic-border-width-thick;
         }
+
         ::-webkit-scrollbar-track {
           background: $unnnic-color-neutral-soft;
         }
+
         ::-webkit-scrollbar-thumb {
           background: $unnnic-color-neutral-clean;
           border-radius: $unnnic-border-radius-md;
