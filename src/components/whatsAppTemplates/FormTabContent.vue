@@ -77,7 +77,6 @@
         :text="$t('apps.config.cancel')"
         @click="closeEdit"
       />
-      {{ loadingSave }}
       <unnnic-button
         class="form-tab-content__actions__save"
         type="secondary"

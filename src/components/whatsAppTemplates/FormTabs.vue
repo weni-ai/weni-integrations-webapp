@@ -414,13 +414,13 @@
           this.loadingSave = false;
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
+          this.loadingSave = false;
         }
 
         if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
           this.$router.replace(
             `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData?.uuid}`,
           );
-
           this.currentFormMode = 'edit';
         }
 
@@ -679,6 +679,7 @@
           },
           seconds: 12,
         });
+        return;
       },
       callSuccessModal({ text }) {
         unnnic.unnnicCallAlert({
@@ -688,6 +689,7 @@
           },
           seconds: 8,
         });
+        return;
       },
     },
   };
