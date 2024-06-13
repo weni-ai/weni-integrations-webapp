@@ -67,7 +67,6 @@
     },
     data() {
       return {
-        teste: 0,
         selectedHeaderType: [],
         headerTypeOptions: [
           {
@@ -103,7 +102,6 @@
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
         });
-        this.teste = this.teste + 1;
       },
       handleHeaderTypeChange(event) {
         this.selectedHeaderType = event;
@@ -120,7 +118,6 @@
           fieldValue,
         });
 
-        this.teste = this.teste + 1;
       },
       buttonType(type) {
         if (this.disableInputs) {
