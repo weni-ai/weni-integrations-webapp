@@ -67,6 +67,7 @@
     },
     data() {
       return {
+        teste: 0,
         selectedHeaderType: [],
         headerTypeOptions: [
           {
@@ -102,13 +103,14 @@
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
         });
+        this.teste = this.teste + 1;
       },
       handleHeaderTypeChange(event) {
         this.selectedHeaderType = event;
         let fieldValue;
 
         if (event[0].value === 'TEXT') {
-          fieldValue = { header_type: 'TEXT', text: null };
+          fieldValue = { header_type: 'TEXT', text: this.headerText || null };
         } else {
           fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };
         }
@@ -117,6 +119,8 @@
           fieldName: 'header',
           fieldValue,
         });
+
+        this.teste = this.teste + 1;
       },
       buttonType(type) {
         if (this.disableInputs) {
