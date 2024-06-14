@@ -177,7 +177,7 @@
             text: text,
             type: 'error',
           },
-          seconds: 6,
+          seconds: 15,
         });
       },
     },

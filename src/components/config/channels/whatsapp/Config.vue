@@ -175,7 +175,7 @@
               text: err,
               type: 'error',
             },
-            seconds: 8,
+            seconds: 15,
           });
         }
       },

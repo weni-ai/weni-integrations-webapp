@@ -677,7 +677,7 @@
             text,
             type: 'error',
           },
-          seconds: 12,
+          seconds: 15,
         });
         return;
       },
