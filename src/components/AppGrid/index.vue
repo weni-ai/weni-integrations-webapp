@@ -228,7 +228,7 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['deleteApp']),
+      ...mapActions(app_type, ['deleteApp', 'setAppUuid']),
       ...mapActions(insights_store, ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
@@ -265,6 +265,7 @@
         this.$router.push(`/${code}/details`);
       },
       openAppModal(app) {
+        this.setAppUuid(app.uuid);
         this.setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;

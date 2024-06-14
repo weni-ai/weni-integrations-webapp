@@ -117,7 +117,6 @@
           fieldName: 'header',
           fieldValue,
         });
-
       },
       buttonType(type) {
         if (this.disableInputs) {

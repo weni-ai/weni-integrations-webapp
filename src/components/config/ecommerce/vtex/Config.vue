@@ -56,7 +56,7 @@
             </tr>
           </table>
         </div>
-        <div class="config-vtex__settings__content__sellers">
+        <div class="config-vtex__settings__content__sellers" v-if="false">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
           </span>
@@ -107,6 +107,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import unnnic from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'vtex-config',
@@ -126,46 +127,30 @@
         showConnectModal: false,
         wpp_number: null,
         wpp_uuid: null,
-        disableSellers: true,
+        disableSellers: false,
         selectedSellers: [],
-        sellerOptions: [
-          {
-            value: 'seller 1',
-            label: 'Seller 1',
-          },
-          {
-            value: 'seller 2',
-            label: 'Seller 2',
-          },
-          {
-            value: 'seller 3',
-            label: 'Seller 3',
-          },
-          {
-            value: 'seller 4',
-            label: 'Seller 4',
-          },
-          {
-            value: 'seller 5',
-            label: 'Seller 5',
-          },
-          {
-            value: 'seller 6',
-            label: 'Seller 6',
-          },
-        ],
       };
     },
     computed: {
-      ...mapState(app_type, ['currentApp', 'errorCurrentApp']),
-      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      ...mapState(app_type, ['currentApp', 'errorCurrentApp', 'appUuid']),
+      ...mapState(auth_store, ['project']),
+      ...mapState(ecommerce_store, [
+        'loadingConnectVtexCatalog',
+        'errorConnectVtexCatalog',
+        'sellersList',
+        'errorSellersList',
+      ]),
+      sellerOptions() {
+        return this.sellersList || [];
+      },
     },
     async mounted() {
       await this.fetchRelatedWppData();
+      // await this.fetchSellersOptions();
     },
     methods: {
       ...mapActions(app_type, ['updateApp', 'getApp']),
-      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
+      ...mapActions(ecommerce_store, ['connectVtexCatalog', 'getSellersList', 'getVtexAppUuid']),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -217,6 +202,13 @@
 
         this.wpp_uuid = this.currentApp.uuid;
         this.wpp_number = this.currentApp.config.title;
+      },
+      async fetchSellersOptions() {
+        await this.getSellersList({ uuid: this.appUuid });
+
+        if (this.errorSellersLis) {
+          this.callModal({ type: 'error', text: 'Erro ao tentar conectar pipipipopopo' });
+        }
       },
       redirectToWppCatalog() {
         if (this.wpp_uuid) {

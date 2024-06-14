@@ -15,6 +15,10 @@ export const ecommerce_store = defineStore('ecommerce', {
       loadingVtexAppUuid: false,
       errorVtexAppUuid: null,
       generatedVtexAppUuid: null,
+
+      loadingSellersList: false,
+      sellersList: [],
+      errorSellersList: null,
     };
   },
   actions: {
@@ -53,6 +57,20 @@ export const ecommerce_store = defineStore('ecommerce', {
       } catch (err) {
         this.errorVtexAppUuid = err;
         this.loadingVtexAppUuid = false;
+      }
+    },
+    async getSellersList({ uuid }) {
+      this.loadingSellersList = true;
+      this.errorSellersList = null;
+      this.sellersList = [];
+
+      try {
+        const data = await ecommerce.getSellers(uuid);
+        this.sellersList = data;
+        this.loadingSellersList = false;
+      } catch (err) {
+        this.errorSellersList = err;
+        this.loadingSellersList = false;
       }
     },
   },
