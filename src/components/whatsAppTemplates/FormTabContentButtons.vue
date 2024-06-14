@@ -89,7 +89,7 @@
           :label="$t('WhatsApp.templates.form_field.type_of_action')"
           :disabled="disableInputs"
           :options="callToActionOptions"
-          :modelValue="currentButtonsSelect"
+          :modelValue="currentButtonsSelect[index]"
           @update:modelValue="handleCallToActionTypeChange($event, index)"
         />
         <!-- WEBSITE -->
@@ -124,7 +124,7 @@
                 :key="currentButtons[index].button_type"
                 :disabled="disableInputs"
                 :options="countryOptions"
-                :modelValue="currentCountryCode"
+                :modelValue="currentCountryCode[index]"
                 :search="true"
                 @update:modelValue="handleCountryCodeSelection($event, index)"
               />
@@ -135,7 +135,7 @@
               :label="$t('WhatsApp.templates.form_field.phone_number')"
               :placeholder="$t('WhatsApp.templates.form_field.phone_number_placeholder')"
               :disabled="disableInputs"
-              :modelValue="phoneNumber"
+              :modelValue="currentButtons[index].phone_number"
               @update:modelValue="handleActionInput($event, 'phone_number', index)"
               :maxlength="20"
             />
@@ -155,7 +155,7 @@
               :label="$t('WhatsApp.templates.form_field.website_url')"
               :placeholder="$t('WhatsApp.templates.form_field.url_placeholder')"
               :disabled="disableInputs"
-              :modelValue="url"
+              :modelValue="currentButtons[index].url"
               @update:modelValue="handleActionInput($event, 'url', index)"
               :maxlength="2000"
               @focus="handleUrlFocus"
@@ -321,7 +321,8 @@
         });
       },
       handleCallToActionTypeChange(event, index) {
-        this.currentButtonsSelect = event;
+        this.currentButtonsSelect[index] = event;
+        this.currentButtons[index] = event.value;
         if (
           this.buttons.length === this.maxActionButtons &&
           this.buttons[index]?.button_type &&
@@ -362,7 +363,8 @@
         });
       },
       handleCountryCodeSelection(event, index) {
-        this.currentCountryCode = event;
+        this.currentCountryCode[index] = event;
+        this.currentButtons[index].country_code = event.value;
         this.buttons[index]['country_code'] = event[0].value;
         this.buttons[index]['country_calling_code'] = getCountryCallingCode(event[0].value);
         this.$emit('input-change', {
