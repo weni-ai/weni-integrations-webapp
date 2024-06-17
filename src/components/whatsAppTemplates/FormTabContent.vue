@@ -40,6 +40,8 @@
           :options="availableLanguages"
           :modelValue="templateLanguage"
           @update:modelValue="handleLanguageSelection"
+          :selectFirst="false"
+          multiple
         />
       </div>
 
@@ -91,7 +93,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
@@ -277,14 +279,24 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
-        if (this.templateLanguage === value) return;
+        if (value.length === 0 && this.templateTranslationSelectedForm !== 'New Language') {
+          this.setTemplateTranslationCurrentForm = 'New Language';
+          this.updateTemplateTranslationForm({
+            formName: this.selectedForm,
+            fieldName: 'language',
+            fieldValue: '',
+          });
+          this.$emit('language-change', 'New Language');
+          return;
+        } else if (this.templateLanguage === value || value.length > 1) {
+          return;
+        }
         this.templateLanguage = value;
         const selectedLanguage = this.availableLanguages.find(
           (item) => item.value === value[0].value,
         );
-
         if (!selectedLanguage) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
               type: 'error',
@@ -292,12 +304,8 @@
           });
           return;
         }
-
-        if (
-          selectedLanguage.value !== this.templateTranslationCurrentForm?.language &&
-          this.removeLanguages.includes(selectedLanguage.label)
-        ) {
-          alert.callAlert({
+        if (this.removeLanguages.includes(selectedLanguage.label)) {
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
               type: 'error',
@@ -331,7 +339,7 @@
         }
 
         if (!validFields) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.invalid_fields'),
               type: 'error',

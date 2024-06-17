@@ -35,15 +35,15 @@
           >
             <unnnic-input
               class="webhook-info__content__headers-element--key"
-              @input="($event) => handleHeaderKeyChange(index, $event)"
+              @update:modelValue="($event) => handleHeaderKeyChange(index, $event)"
               :placeholder="$t('WhatsApp.config.webhook_info.header_key.placeholder')"
-              :value="header.key"
+              :modelValue="header.key"
             />
             <unnnic-input
               class="webhook-info__content__headers-element--value"
-              @input="($event) => handleHeaderValueChange(index, $event)"
+              @update:modelValue="($event) => handleHeaderValueChange(index, $event)"
               :placeholder="$t('WhatsApp.config.webhook_info.header_value.placeholder')"
-              :value="header.value"
+              :modelValue="header.value"
             />
           </div>
         </div>
@@ -74,7 +74,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'WebhookTab',
@@ -238,9 +238,12 @@
         await this.updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
+          const err =
+            this.errorUpdateWebhookInfo?.error_user_msg ||
+            this.$t('WhatsApp.config.error.webhook_update');
           this.callModal({
             type: 'error',
-            text: this.$t('WhatsApp.config.error.webhook_update'),
+            text: err,
           });
 
           return;
@@ -254,7 +257,7 @@
         this.$root.$emit('updateGrid');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: type,

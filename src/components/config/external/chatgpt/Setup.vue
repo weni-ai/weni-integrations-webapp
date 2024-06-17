@@ -81,7 +81,7 @@
   import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'ChatGPTModal',
@@ -130,7 +130,7 @@
         this.$router.replace('/apps/my');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
             type,

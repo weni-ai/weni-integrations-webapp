@@ -7,13 +7,15 @@
         @emojiSelected="selectEmoji"
         @close="closeEmojiPicker"
       />
-      <unnnic-button
-        class="input-editor__emoji-picker__button"
-        type="tertiary"
-        iconCenter="emoji"
-        size="small"
-        @click="toggleEmoji"
-      />
+      <unnnic-tool-tip side="top" text="Emoji" enabled>
+        <unnnic-button
+          class="input-editor__emoji-picker__button"
+          type="tertiary"
+          iconCenter="emoji"
+          size="small"
+          @click="toggleEmoji"
+        />
+      </unnnic-tool-tip>
     </div>
     <div v-if="formatter" class="input-editor__formatter">
       <unnnic-tool-tip side="top" text="Bold" enabled>
@@ -109,6 +111,7 @@
     &__button {
       width: $unnnic-icon-size-lg;
       height: $unnnic-icon-size-lg;
+      margin-top: 1px;
 
       &__strike {
         ::v-deep {
@@ -141,6 +144,7 @@
       top: -270px;
 
       &__button {
+        margin-top: 1px;
         opacity: $unnnic-opacity-level-clarifying;
       }
 

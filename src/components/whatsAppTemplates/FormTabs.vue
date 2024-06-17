@@ -49,7 +49,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 
@@ -366,14 +366,17 @@
           };
 
           await this.createTemplate({ appUuid, payload: templatePayload });
+
           if (this.errorCreateTemplate) {
-            this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_template') });
+            const errorText =
+              this.errorCreateTemplate?.error_user_msg ||
+              this.$t('WhatsApp.templates.error.create_translation');
+            this.callErrorModal({ text: errorText });
             this.loadingSave = false;
             return;
           }
 
-          currentTemplateUuid = this.createdTemplateData.uuid;
-          this.loadingSave = false;
+          currentTemplateUuid = this.createdTemplateData?.uuid || '';
         }
 
         const translationPayload = this.buildPayload();
@@ -393,8 +396,6 @@
             translationPayload,
           });
         }
-
-        this.loadingSave = false;
       },
       async createTranslation({ currentTemplateUuid, translationPayload }) {
         const { appCode, appUuid } = this.$route.params;
@@ -405,17 +406,21 @@
         });
 
         if (this.errorCreateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_translation') });
+          this.callErrorModal({
+            text:
+              this.errorCreateTemplateTranslation?.error_user_msg ||
+              this.$t('WhatsApp.templates.error.create_translation'),
+          });
+          this.loadingSave = false;
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
+          this.loadingSave = false;
         }
 
         if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
-          this.$router.replace(
-            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData.uuid}`,
-          );
-
           this.currentFormMode = 'edit';
+          //TODO: fix router for edit template
+          this.$router.push(`/apps/my/${appCode}/${appUuid}/templates/`);
         }
 
         if (!this.errorCreateTemplateTranslation) {
@@ -428,6 +433,7 @@
         }
 
         await this.fetchTemplateData({ appUuid, templateUuid: this.createdTemplateData.uuid });
+        this.loadingSave = false;
       },
       async updateTranslation({ currentTemplateUuid, translationPayload }) {
         const { appUuid } = this.$route.params;
@@ -438,10 +444,14 @@
         });
 
         if (this.errorUpdateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.update_translation') });
+          const errorText =
+            this.errorUpdateTemplateTranslation?.error_user_msg ||
+            this.$t('WhatsApp.templates.error.update_translation');
+          this.callErrorModal({ text: errorText });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.update_translation') });
         }
+        this.loadingSave = false;
       },
       buildPayload() {
         try {
@@ -661,22 +671,24 @@
         }
       },
       callErrorModal({ text }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
             type: 'error',
           },
-          seconds: 8,
+          seconds: 15,
         });
+        return;
       },
       callSuccessModal({ text }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
             type: 'success',
           },
           seconds: 8,
         });
+        return;
       },
     },
   };
@@ -718,9 +730,11 @@
         ::-webkit-scrollbar {
           height: $unnnic-border-width-thick;
         }
+
         ::-webkit-scrollbar-track {
           background: $unnnic-color-neutral-soft;
         }
+
         ::-webkit-scrollbar-thumb {
           background: $unnnic-color-neutral-clean;
           border-radius: $unnnic-border-radius-md;

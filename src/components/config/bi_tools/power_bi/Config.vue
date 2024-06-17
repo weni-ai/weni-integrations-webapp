@@ -92,7 +92,7 @@
 </template>
 
 <script>
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import { mapState, mapActions } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -120,7 +120,7 @@
       await this.getFlowToken();
 
       if (this.errorFlowToken) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('PowerBi.config.token_error'),
             type: 'success',
@@ -148,7 +148,7 @@
 
         navigator.clipboard.writeText(this.flowToken);
 
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
             type: 'success',

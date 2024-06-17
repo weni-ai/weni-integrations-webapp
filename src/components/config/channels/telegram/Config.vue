@@ -51,7 +51,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'telegram-config',
@@ -96,7 +96,7 @@
           if (this.errorUpdateAppConfig) {
             throw new Error(this.errorUpdateAppConfig);
           }
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.config.integration_success'),
               type: 'success',
@@ -111,7 +111,7 @@
             errorMessage = this.$t('telegram.config.errors.invalidToken');
           }
 
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: errorMessage,
               type: 'error',

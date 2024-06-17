@@ -56,6 +56,32 @@
             </tr>
           </table>
         </div>
+        <div class="config-vtex__settings__content__sellers" v-if="false">
+          <span class="config-vtex__settings__content__sellers__label">
+            {{ $t('vtex.config.sellers') }}
+          </span>
+
+          <unnnic-select-smart
+            class="config-vtex__settings__content__sellers__options"
+            :options="sellerOptions"
+            :modelValue="selectedSellers"
+            @update:modelValue="handleSelectSellers"
+            multiple
+            :selectFirst="false"
+            :disabled="disableSellers"
+          />
+
+          <div class="config-vtex__settings__content__sellers__alert" v-if="disableSellers">
+            <unnnic-icon
+              class="config-vtex__settings__content__sellers__alert__icon"
+              icon="alert-circle-1-1"
+              scheme="feedback-yellow"
+            />
+            <span class="config-vtex__settings__content__sellers__alert__text">
+              {{ $t('vtex.config.processing') }}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -79,8 +105,9 @@
   import { mapActions, mapState } from 'pinia';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'vtex-config',
@@ -100,18 +127,30 @@
         showConnectModal: false,
         wpp_number: null,
         wpp_uuid: null,
+        disableSellers: false,
+        selectedSellers: [],
       };
     },
     computed: {
-      ...mapState(app_type, ['currentApp', 'errorCurrentApp']),
-      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      ...mapState(app_type, ['currentApp', 'errorCurrentApp', 'appUuid']),
+      ...mapState(auth_store, ['project']),
+      ...mapState(ecommerce_store, [
+        'loadingConnectVtexCatalog',
+        'errorConnectVtexCatalog',
+        'sellersList',
+        'errorSellersList',
+      ]),
+      sellerOptions() {
+        return this.sellersList || [];
+      },
     },
     async mounted() {
       await this.fetchRelatedWppData();
+      // await this.fetchSellersOptions();
     },
     methods: {
       ...mapActions(app_type, ['updateApp', 'getApp']),
-      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
+      ...mapActions(ecommerce_store, ['connectVtexCatalog', 'getSellersList', 'getVtexAppUuid']),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -164,6 +203,13 @@
         this.wpp_uuid = this.currentApp.uuid;
         this.wpp_number = this.currentApp.config.title;
       },
+      async fetchSellersOptions() {
+        await this.getSellersList({ uuid: this.appUuid });
+
+        if (this.errorSellersLis) {
+          this.callModal({ type: 'error', text: 'Erro ao tentar conectar pipipipopopo' });
+        }
+      },
       redirectToWppCatalog() {
         if (this.wpp_uuid) {
           this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
@@ -175,13 +221,25 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             title: type,
           },
           seconds: 6,
         });
+      },
+      handleSelectSellers(value) {
+        if (value.length > 5) {
+          unnnic.unnnicCallAlert({
+            props: {
+              text: this.$t('vtex.errors.select_five_sellers'),
+              type: 'error',
+            },
+          });
+          return;
+        }
+        this.selectedSellers = value;
       },
     },
   };
@@ -270,7 +328,8 @@
         margin: 0 $unnnic-spacing-lg $unnnic-spacing-lg $unnnic-spacing-lg;
 
         &__catalog,
-        &__details {
+        &__details,
+        &__sellers {
           display: flex;
           flex-direction: column;
           margin-bottom: $unnnic-spacing-sm;
@@ -281,6 +340,19 @@
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
             margin-bottom: $unnnic-spacing-sm;
+          }
+        }
+
+        &__sellers {
+          gap: $unnnic-spacing-xs;
+          &__alert {
+            display: flex;
+            background-color: $unnnic-color-background-lightest;
+            border: 1px solid $unnnic-color-neutral-soft;
+            border-radius: 4px;
+            align-items: center;
+            gap: $unnnic-spacing-xs;
+            padding: $unnnic-spacing-xs;
           }
         }
 

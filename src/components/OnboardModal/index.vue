@@ -1,5 +1,5 @@
 <template lang="">
-  <unnnic-modal-next class="onboard" v-if="showModal" @close="closeModal" show-close-button>
+  <unnnic-modal class="onboard" v-if="showModal" @close="closeModal" show-close-button>
     <div class="onboard--title">
       {{ currentModalTitle }}
     </div>
@@ -33,7 +33,7 @@
         :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
       />
     </div>
-  </unnnic-modal-next>
+  </unnnic-modal>
 </template>
 
 <script>
