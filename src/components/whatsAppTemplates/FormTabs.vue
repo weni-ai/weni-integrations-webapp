@@ -418,10 +418,9 @@
         }
 
         if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
-          this.$router.replace(
-            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData?.uuid}`,
-          );
           this.currentFormMode = 'edit';
+          //TODO: fix router for edit template
+          this.$router.push(`/apps/my/${appCode}/${appUuid}/templates/`);
         }
 
         if (!this.errorCreateTemplateTranslation) {
