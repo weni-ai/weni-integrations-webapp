@@ -146,7 +146,7 @@
     },
     async mounted() {
       await this.fetchRelatedWppData();
-      await this.fetchSellersOptions();
+      // await this.fetchSellersOptions();
     },
     methods: {
       ...mapActions(app_type, ['updateApp', 'getApp']),
@@ -206,7 +206,7 @@
       async fetchSellersOptions() {
         await this.getSellersList({ uuid: this.appUuid });
 
-        if (this.errorSellersLis) {
+        if (this.errorSellersList) {
           this.callModal({ type: 'error', text: 'Erro ao tentar conectar pipipipopopo' });
         }
       },
