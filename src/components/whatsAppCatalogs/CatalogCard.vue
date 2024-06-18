@@ -20,7 +20,7 @@
       <div class="whatsapp-catalog-card__wrapper__actions" @click.stop>
         <unnnic-switch
           ref="catalogConnectSwitch"
-          :value="catalog.is_connected"
+          :modelValue="catalogStatus"
           use-v-model
           size="small"
           :textRight="
@@ -28,12 +28,12 @@
               ? $t('WhatsApp.catalog.list.actions.active_catalog')
               : $t('WhatsApp.catalog.list.actions.inactive_catalog')
           "
-          @input="toggleCatalogConnect($event)"
+          @update:modelValue="toggleCatalogConnect"
         />
         <unnnic-switch
           v-if="catalog.is_connected"
           ref="cartEnableSwitch"
-          :value="enabledCart"
+          :modelValue="cartStatus"
           use-v-model
           size="small"
           :textRight="
@@ -41,7 +41,7 @@
               ? $t('WhatsApp.catalog.list.actions.active_cart')
               : $t('WhatsApp.catalog.list.actions.inactive_cart')
           "
-          @click.native="toggleCart()"
+          @update:modelValue="toggleCart"
         />
       </div>
     </div>
@@ -78,13 +78,15 @@
     methods: {
       ...mapActions(whatsapp_cloud, ['disableWhatsAppCloudCatalogs']),
       toggleCatalogConnect(event) {
+        this.catalogStatus = event;
         if (event) {
           this.$emit('enable');
         } else {
           this.$emit('disable');
         }
       },
-      toggleCart() {
+      toggleCart(event) {
+        this.cartStatus = event;
         this.$emit('toggleCart');
       },
     },

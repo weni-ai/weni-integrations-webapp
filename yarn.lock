@@ -2180,7 +2180,7 @@
   dependencies:
     vue-demi ">=0.14.7"
 
-"@weni/unnnic-system@2.0.24":
+"@weni/unnnic-system@2.0.23":
   version "2.0.23"
   resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.23.tgz#9888dc9a2c1d80f03384bc7387a035caa4ef9845"
   integrity sha512-haaC/B3I1XAcfkoSKHY9Kh68naLP3DqhpNk4xvxWSmdK0rh00WivqukflrFu+v5Tpn5U3jiu23mHs89vUl3uFw==
