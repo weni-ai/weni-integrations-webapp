@@ -146,7 +146,7 @@
     },
     async mounted() {
       await this.fetchRelatedWppData();
-      // await this.fetchSellersOptions();
+      await this.fetchSellersOptions();
     },
     methods: {
       ...mapActions(app_type, ['updateApp', 'getApp']),

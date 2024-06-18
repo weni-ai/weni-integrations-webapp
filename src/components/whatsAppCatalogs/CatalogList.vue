@@ -122,7 +122,7 @@
         'errorToggleCartVisibility',
       ]),
       hasCommerceSetting() {
-        return this.commerceSettings ? this.commerceSettings.is_cart_enabled : false;
+        return this.commerceSettings ? this.commerceSettings?.is_cart_enabled : false;
       },
       listItems() {
         return this.whatsAppCloudCatalogs?.results || [];
@@ -208,7 +208,6 @@
         if (this.connectedCatalog) {
           this.catalogToEnable = catalog;
           this.openModal = true;
-          return;
         }
         this.enableCatalog(catalog);
       },
@@ -252,7 +251,7 @@
         const data = {
           appUuid,
           payload: {
-            enable: !this.commerceSettings.is_cart_enabled,
+            enable: !this.commerceSettings?.is_cart_enabled,
           },
         };
         await this.toggleCartVisibility(data);

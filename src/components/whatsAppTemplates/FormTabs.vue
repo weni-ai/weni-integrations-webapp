@@ -377,6 +377,7 @@
           }
 
           currentTemplateUuid = this.createdTemplateData?.uuid || '';
+          this.loadingSave = false;
         }
 
         const translationPayload = this.buildPayload();
@@ -396,6 +397,7 @@
             translationPayload,
           });
         }
+        this.loadingSave = false;
       },
       async createTranslation({ currentTemplateUuid, translationPayload }) {
         const { appCode, appUuid } = this.$route.params;
