@@ -10,6 +10,7 @@
       :maxLength="60"
       :modelValue="textInput"
       @update:modelValue="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
+      :placeholder="$t('WhatsApp.templates.form_field.footer_text_placeholder')"
     />
   </div>
 </template>

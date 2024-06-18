@@ -39,7 +39,6 @@
 <script>
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import skeletonLoading from './loadings/ProfileTab.vue';
-  import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
@@ -309,7 +308,7 @@
             return;
           }
 
-          const data = removeEmpty({
+          const data = this.removeEmptyProperties({
             code: this.app.code,
             appUuid: this.app.uuid,
             payload,
@@ -361,7 +360,7 @@
             address: this.getContactInfoInputValue('address'),
           });
 
-          const data = removeEmpty({
+          const data = this.removeEmptyProperties({
             code: this.app.code,
             appUuid: this.app.uuid,
             payload,

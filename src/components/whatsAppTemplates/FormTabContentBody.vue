@@ -14,6 +14,7 @@
       :maxLength="1024"
       :type="hasErrors ? 'error' : 'normal'"
       :errors="errorsList"
+      :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
     />
     <InputEditor
       :class="[
