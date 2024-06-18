@@ -96,7 +96,8 @@
           : [];
       },
       handleUpload(value, index) {
-        (this.selectedInputs[index] = value), this.emitInput();
+        this.selectedInputs[index] = value;
+        this.emitInput();
       },
     },
   };
