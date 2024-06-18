@@ -60,7 +60,7 @@
     <div class="whatsapp-product-list__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
       <unnnic-pagination
-        :value="page"
+        :modelValue="page"
         @update:modelValue="onPageChange"
         :max="pageCount"
         :show="5"
@@ -153,6 +153,7 @@
         await this.getCatalogProducts({ appUuid, catalogUuid, params });
       },
       onPageChange(value) {
+        this.page = value
         this.currentPage = value;
       },
     },
