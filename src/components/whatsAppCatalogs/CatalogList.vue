@@ -208,7 +208,6 @@
         if (this.connectedCatalog) {
           this.catalogToEnable = catalog;
           this.openModal = true;
-          return;
         }
         this.enableCatalog(catalog);
       },
