@@ -125,11 +125,16 @@
             name: 'sector',
             label: 'WhatsApp.config.profile.sector.label',
             placeholder: 'WhatsApp.config.profile.sector.placeholder',
-            value: this.profile.business?.vertical,
+            value: [
+              {
+                value: this.profile.business?.vertical,
+                label: this.profile.business?.vertical,
+              },
+            ],
             options: this.profile.business?.vertical_choices.map((value) => {
               return {
                 value: value,
-                text: value,
+                label: value,
               };
             }),
           },
@@ -293,7 +298,7 @@
             status: this.getProfileInputValue('status'),
             business: {
               description: this.getProfileInputValue('description'),
-              vertical: this.getProfileInputValue('sector'),
+              vertical: this.getProfileInputValue('sector')[0].value,
             },
           };
 

@@ -14,13 +14,10 @@
       />
 
       <div v-if="input.type === 'select'">
+        {{ input.value }}
+        {{ input.options }}
         <unnnic-label :label="$t(input.label)" />
-        <unnnic-select-smart
-          ref="unnnic-select"
-          :options="filterOptions(input.options)"
-          v-model="input.value"
-          @update:modelValue="(e) => emitInput(index, e)"
-        />
+        <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
       </div>
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="$t(input.label)" />
@@ -63,7 +60,7 @@
         const type = this.inputs[index]?.type;
         switch (type) {
           case 'select':
-            this.$emit('input', { index, value: event[0].value });
+            this.$emit('input', { index, value: event[0] });
             break;
           default:
             this.$emit('input', { index, value: event });
@@ -73,16 +70,16 @@
       getType(input) {
         return input.error ? 'error' : 'normal';
       },
-      filterOptions(options) {
-        return options.length
-          ? options.map((item) => {
-              return {
-                value: item.value,
-                label: item.text,
-              };
-            })
-          : [];
-      },
+      // filterOptions(options) {
+      //   return options.length
+      //     ? options.map((item) => {
+      //         return {
+      //           value: item.value,
+      //           label: item.text,
+      //         };
+      //       })
+      //     : [];
+      // },
       selectedOption(option) {
         return option;
       },

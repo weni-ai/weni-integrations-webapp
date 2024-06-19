@@ -16,13 +16,13 @@
           class="app-config-facebook__settings__content__inputs__name"
           type="normal"
           :disabled="true"
-          :value="app.config.page_name"
+          v-model="pageName"
         />
         <unnnic-input
           class="app-config-facebook__settings__content__inputs__id"
           type="normal"
           :disabled="true"
-          :value="`ID: ${app.config.page_id}`"
+          v-model="pageId"
         />
       </div>
     </div>
@@ -36,6 +36,16 @@
       app: {
         type: Object,
         default: /* istanbul ignore next */ () => {},
+      },
+    },
+    data() {
+      return {
+        pageName: this.app.config.page_name,
+      };
+    },
+    computed: {
+      pageId() {
+        return `ID: ${this.app.config.page_id}`;
       },
     },
   };
