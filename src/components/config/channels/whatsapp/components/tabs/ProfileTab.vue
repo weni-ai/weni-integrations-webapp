@@ -125,11 +125,16 @@
             name: 'sector',
             label: 'WhatsApp.config.profile.sector.label',
             placeholder: 'WhatsApp.config.profile.sector.placeholder',
-            value: this.profile.business?.vertical,
+            value: [
+              {
+                value: this.profile.business?.vertical,
+                label: this.profile.business?.vertical,
+              },
+            ],
             options: this.profile.business?.vertical_choices.map((value) => {
               return {
                 value: value,
-                text: value,
+                label: value,
               };
             }),
           },
@@ -288,12 +293,12 @@
             return;
           }
 
-          let payload = this.removeEmptyProperties({
+          let payload = {
             photo: this.modifiedInitialPhoto ? b64ProfilePhoto : null,
             status: this.getProfileInputValue('status'),
             business: {
               description: this.getProfileInputValue('description'),
-              vertical: this.getProfileInputValue('sector'),
+              vertical: this.getProfileInputValue('sector')[0].value,
             },
           });
 
@@ -385,14 +390,15 @@
         }
       },
       removeEmptyProperties(obj) {
-        for (let key in obj) {
-          if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            let value = obj[key];
+        let object = obj;
+        for (let key in object) {
+          if (Object.prototype.hasOwnProperty.call(object, key)) {
+            let value = object[key];
 
             if (typeof value === 'object' && value !== null) {
               this.removeEmptyProperties(value);
               if (this.isEmpty(value)) {
-                delete obj[key];
+                delete object[key];
               }
             } else if (Array.isArray(value)) {
               value.forEach((item) => {
@@ -401,16 +407,16 @@
                 }
               });
               if (value.length === 0 || value.every((item) => this.isEmpty(item))) {
-                delete obj[key];
+                delete object[key];
               }
             } else {
               if (this.isEmpty(value)) {
-                delete obj[key];
+                delete object[key];
               }
             }
           }
         }
-        return obj;
+        return object;
       },
       isEmpty(value) {
         return (

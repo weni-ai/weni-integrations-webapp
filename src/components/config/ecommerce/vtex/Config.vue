@@ -206,7 +206,7 @@
       async fetchSellersOptions() {
         await this.getSellersList({ uuid: this.appUuid });
 
-        if (this.errorSellersList) {
+        if (this.errorSellersLis) {
           this.callModal({ type: 'error', text: 'Erro ao tentar conectar pipipipopopo' });
         }
       },

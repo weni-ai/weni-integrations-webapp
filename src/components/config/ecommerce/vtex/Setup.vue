@@ -137,7 +137,7 @@
                 <div class="vtex-modal__content__section__content__url-wrapper">
                   <unnnic-input
                     class="vtex-vtex-modal__content__section__content__url-input"
-                    :value="webhookUrl"
+                    v-model="webhookUrl"
                   />
 
                   <unnnic-button
