@@ -153,7 +153,7 @@
         await this.getCatalogProducts({ appUuid, catalogUuid, params });
       },
       onPageChange(value) {
-        this.page = value
+        this.page = value;
         this.currentPage = value;
       },
     },

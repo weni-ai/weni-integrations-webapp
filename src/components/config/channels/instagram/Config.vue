@@ -16,7 +16,7 @@
           class="app-config-instagram__settings__content__inputs__name"
           type="normal"
           :disabled="true"
-          v-model="app.config.page_name"
+          v-model="pageName"
         />
         <unnnic-input
           class="app-config-instagram__settings__content__inputs__id"
@@ -38,11 +38,16 @@
         default: /* istanbul ignore next */ () => {},
       },
     },
+    data() {
+      return {
+        pageName: this.app.config.page_name,
+      };
+    },
     computed: {
-    formattedPageId() {
-      return `ID: ${this.app.config.page_id}`;
-    }
-  }
+      formattedPageId() {
+        return `ID: ${this.app.config.page_id}`;
+      },
+    },
   };
 </script>
 
