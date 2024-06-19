@@ -42,11 +42,12 @@
         this.templateUuid = templateUuid;
       }
     },
-    destroyed() {
+    unmounted() {
       this.clearAllTemplateFormData();
+      this.clearTemplateData();
     },
     methods: {
-      ...mapActions(whatsapp_store, ['clearAllTemplateFormData']),
+      ...mapActions(whatsapp_store, ['clearAllTemplateFormData', 'clearTemplateData']),
       /* istanbul ignore next */
       updatePreview() {
         this.previewKey += 1;
