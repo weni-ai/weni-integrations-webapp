@@ -300,7 +300,7 @@
               description: this.getProfileInputValue('description'),
               vertical: this.getProfileInputValue('sector')[0].value,
             },
-          });
+          };
 
           if (!this.getProfileInputValue('sector')) {
             unnnic.unnnicCallAlert({
