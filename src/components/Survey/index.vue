@@ -40,7 +40,7 @@
 <script>
   import { mapState, mapActions } from 'pinia';
   import { survey_store } from '@/stores/modules/survey.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'Survey',
@@ -99,7 +99,7 @@
         }
       },
       callModal({ text, type }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
             type,

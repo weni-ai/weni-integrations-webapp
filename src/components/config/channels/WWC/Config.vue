@@ -291,7 +291,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
@@ -564,7 +564,7 @@
         Object.entries(this.$data).forEach(([key]) => {
           const error = this.errorFor(key);
           if (error) {
-            alert.callAlert({
+            unnnic.unnnicCallAlert({
               props: {
                 text: error,
                 type: 'error',
@@ -619,7 +619,7 @@
 
           this.selectedApp.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: /* istanbul ignore next */ firstSave
                 ? this.$t('apps.config.first_integration_success')
@@ -629,7 +629,7 @@
             seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
         } catch (err) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               type: 'error',
@@ -918,9 +918,13 @@
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
-          &__cancel &__save {
-            flex-grow: 1;
+          :deep(.unnnic-button) {
             width: 250px;
+          }
+
+          &__cancel &__save {
+            display: flex;
+            flex-grow: 1;
             margin: $unnnic-spacing-inline-xs;
           }
         }

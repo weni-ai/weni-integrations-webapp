@@ -85,8 +85,8 @@
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
         <unnnic-pagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
-          :value="currentPage"
-          @input="onPageChange"
+          :modelValue="currentPage"
+          @update:modelValue="onPageChange"
           :max="maxGridPages"
           :show="6"
         />
@@ -129,7 +129,7 @@
 </template>
 
 <script>
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
   import IntegrateButton from '../IntegrateButton/index.vue';
@@ -228,7 +228,7 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['deleteApp']),
+      ...mapActions(app_type, ['deleteApp', 'setAppUuid']),
       ...mapActions(insights_store, ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
@@ -243,7 +243,7 @@
         }
 
         this.toggleRemoveModal();
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
             type: 'success',
@@ -253,7 +253,7 @@
         this.$emit('update');
       },
       callErrorModal({ text }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: 'error',
@@ -265,6 +265,7 @@
         this.$router.push(`/${code}/details`);
       },
       openAppModal(app) {
+        this.setAppUuid(app.uuid);
         this.setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;
@@ -324,7 +325,7 @@
       /* istanbul ignore next */
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
             type: 'success',

@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'wpp-demo-preview',
@@ -81,7 +81,7 @@
       /* istanbul ignore next */
       copyUrl() {
         navigator.clipboard.writeText(this.url);
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.config.copy_success'),
             type: 'success',

@@ -4,7 +4,7 @@
       {{ $t('WhatsApp.templates.form_field.footer_text') }}
     </span>
 
-    <unnnic-text-area
+    <unnnic-input
       class="form-tab-content-footer__input"
       :disabled="disableInputs"
       :maxLength="60"

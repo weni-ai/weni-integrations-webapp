@@ -101,7 +101,7 @@
   import { mapActions, mapState } from 'pinia';
   import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
   import getRelativeTime from '../../utils/time.js';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import Avatar from 'vue-avatar';
 
   export default {
@@ -190,7 +190,7 @@
               throw new Error(this.errorListComments);
             }
           } catch (err) {
-            alert.callAlert({
+            unnnic.unnnicCallAlert({
               props: {
                 text: this.$t('apps.details.status_error'),
                 type: 'error',
@@ -225,7 +225,7 @@
             throw new Error(this.errorListComments);
           }
 
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.comments.remove.status_text'),
               type: 'success',
@@ -233,7 +233,7 @@
             seconds: 3,
           });
         } catch (err) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
               type: 'error',
