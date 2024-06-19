@@ -171,8 +171,8 @@
       };
     },
     /* istanbul ignore next */
-    mounted() {
-      this.fetchTemplates();
+    async mounted() {
+      await this.fetchTemplates();
       if (this.hash) {
         this.model = [
           {
@@ -181,7 +181,7 @@
           },
         ];
       }
-      this.fetchTemplateAnalytics();
+      await this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState(insights_store, [
@@ -254,7 +254,7 @@
     },
     methods: {
       ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
-      fetchTemplateAnalytics() {
+      async fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
           app_uuid: this.appUuid,
@@ -264,7 +264,7 @@
             fba_template_ids: models,
           },
         };
-        this.getTemplateAnalytics(params);
+        await this.getTemplateAnalytics(params);
       },
       async fetchTemplates() {
         await this.getTemplates({ app_uuid: this.appUuid });
