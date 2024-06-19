@@ -10,9 +10,6 @@
             :options="methodsList"
           />
         </div>
-        <!-- <option v-for="(method, index) in methodsList" :key="index">{{ method }}</option>
-        </unnnic-select> -->
-
         <unnnic-input
           class="webhook-info__content__url"
           v-model="webhookUrl"

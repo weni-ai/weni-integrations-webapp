@@ -124,7 +124,7 @@
         stage: 'login',
         accessToken: null,
         pageList: [],
-        selectedPage: null,
+        selectedPage: 1,
         selectKey: 0,
         onLogin: false,
         loadingPages: false,
