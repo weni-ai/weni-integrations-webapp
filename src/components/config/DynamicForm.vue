@@ -10,12 +10,10 @@
         :label="input.label && $t(input.label)"
         :placeholder="input.placeholder && $t(input.placeholder)"
         :message="input.message && $t(input.message)"
-        @update:modelValue="($event) => emitInput(index, $event)"
+        @update:modelValue="(e) => emitInput(index, e)"
       />
 
       <div v-if="input.type === 'select'">
-        {{ input.value }}
-        {{ input.options }}
         <unnnic-label :label="$t(input.label)" />
         <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
       </div>
@@ -32,7 +30,7 @@
           :canImport="input.props.canImport"
           :canDelete="input.props.canDelete"
           :shouldReplace="input.props.shouldReplace"
-          @fileChange="(e) => handleUpload(e, index)"
+          @fileChange="(e) => emitInput(index, e)"
         />
       </div>
       <unnnic-checkbox
@@ -69,13 +67,6 @@
       },
       getType(input) {
         return input.error ? 'error' : 'normal';
-      },
-      selectedOption(option) {
-        return option;
-      },
-      handleUpload(value, index) {
-        this.selectedInputs[index] = value;
-        this.emitInput();
       },
     },
   };
