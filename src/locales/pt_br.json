@@ -452,7 +452,11 @@
         "empty_url": "A URL do Webhook fornecida não pode estar vazia",
         "invalid_url": "A URL do Webhook fornecida é inválida",
         "webhook_update": "Erro ao tentar atualizar os dados do Webhook",
-        "invalid_data": "Alguns campos são inválidos, corrija-os e tente novamente"
+        "invalid_data": "Alguns campos são inválidos, corrija-os e tente novamente",
+        "2388072": {
+          "title": "O formato do título está incorreto",
+          "message": "O cabeçalho da mensagem não pode ter novas linhas, caracteres de formatação, emojis ou asteriscos."
+        }
       },
       "qr": {
         "title": "Link do WhatsApp",
@@ -1067,7 +1071,8 @@
       "name": "Nome da conta",
       "environment": "Ambiente",
       "view_catalog": "Ver catálogo",
-      "wpp_number": "Número WhatsApp"
+      "wpp_number": "Número WhatsApp",
+      "sellers": "Lojistas"
     },
     "connect_modal": {
       "categories": {
@@ -1096,7 +1101,9 @@
       "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde",
       "fetch_related_wpp_data": "Falha ao buscar informações relacionadas ao número do WhatsApp",
       "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente",
-      "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde."
+      "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde.",
+      "select_five_sellers": "Por favor, selecione até 5 vendedores.",
+      "processing": "Em processamento. Enviaremos um email quando estiver tudo pronto."
     },
     "success": {
       "connect_catalog": "Catálogo VTEX conectado com sucesso"

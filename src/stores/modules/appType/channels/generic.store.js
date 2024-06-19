@@ -24,7 +24,7 @@ export const generic_store = defineStore('generic', {
         this.loadingAppForm = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorAppForm = err;
+        this.errorAppForm = err.response?.data.error || err;
         this.loadingAppForm = false;
       }
     },

@@ -114,7 +114,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingConversations = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorConversations = err;
+        this.errorConversations = err.response?.data.error || err;
         this.loadingConversations = false;
       }
     },
@@ -128,7 +128,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingConversationsReport = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorConversationsReport = err;
+        this.errorConversationsReport = err.response?.data.error || err;
         this.loadingConversationsReport = false;
       }
     },
@@ -142,7 +142,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingWhatsAppProfile = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorWhatsAppProfile = err;
+        this.errorWhatsAppProfile = err.response?.data.error || err;
         this.loadingWhatsAppProfile = false;
       }
     },
@@ -156,7 +156,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingUpdateWhatsAppProfile = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorUpdateWhatsAppProfile = err;
+        this.errorUpdateWhatsAppProfile = err.response?.data.error || err;
         this.loadingUpdateWhatsAppProfile = false;
       }
     },
@@ -170,7 +170,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingDeleteWhatsAppProfilePhoto = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorDeleteWhatsAppProfilePhoto = err;
+        this.errorDeleteWhatsAppProfilePhoto = err.response?.data.error || err;
         this.loadingDeleteWhatsAppProfilePhoto = false;
       }
     },
@@ -183,7 +183,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingWhatsAppTemplates = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorWhatsAppTemplates = err;
+        this.errorWhatsAppTemplates = err.response?.data.error || err;
         this.loadingWhatsAppTemplates = false;
       }
     },
@@ -236,7 +236,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingFetchWhatsAppTemplate = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorFetchWhatsAppTemplate = err;
+        this.errorFetchWhatsAppTemplate = err.response?.data.error || err;
         this.loadingFetchWhatsAppTemplate = false;
       }
     },
@@ -253,7 +253,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingFetchWhatsAppTemplateSelectLanguages = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorFetchWhatsAppTemplateSelectLanguages = err;
+        this.errorFetchWhatsAppTemplateSelectLanguages = err.response?.data.error || err;
         this.loadingFetchWhatsAppTemplateSelectLanguages = false;
       }
     },
@@ -262,12 +262,12 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.createdTemplateData = null;
       this.errorCreateTemplate = null;
       try {
-        const { data } = await whatsApp.createTemplate(appUuid, payload);
+        const data = await whatsApp.createTemplate(appUuid, payload);
         this.createdTemplateData = data;
         this.loadingCreateTemplate = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCreateTemplate = err;
+        this.errorCreateTemplate = err.response?.data.error || err;
         this.loadingCreateTemplate = false;
       }
     },
@@ -276,12 +276,12 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.createdTemplateTranslationData = null;
       this.errorCreateTemplateTranslation = null;
       try {
-        const { data } = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
+        const data = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
         this.createdTemplateTranslationData = data;
         this.loadingCreateTemplateTranslation = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorCreateTemplateTranslation = err;
+        this.errorCreateTemplateTranslation = err.response?.data.error || err;
         this.loadingCreateTemplateTranslation = false;
       }
     },
@@ -295,7 +295,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingUpdateTemplateTranslation = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorUpdateTemplateTranslation = err;
+        this.errorUpdateTemplateTranslation = err.response?.data.error || err;
         this.loadingUpdateTemplateTranslation = false;
       }
     },
@@ -309,7 +309,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingDeleteTemplateMessage = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorDeleteTemplateMessage = err;
+        this.errorDeleteTemplateMessage = err.response?.data.error || err;
         this.loadingDeleteTemplateMessage = false;
       }
     },
@@ -323,7 +323,7 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingUpdateWebhookInfo = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorUpdateWebhookInfo = err;
+        this.errorUpdateWebhookInfo = err.response?.data.error || err;
         this.loadingUpdateWebhookInfo = false;
       }
     },

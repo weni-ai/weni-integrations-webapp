@@ -44,17 +44,18 @@ export default {
       .get(`${templatesResource}/${appUuid}/templates/languages/`)
       .then((r) => r.data);
   },
-  createTemplate(appUuid, data) {
-    return request.$http.post(`${templatesResource}/${appUuid}/templates/`, data);
+  async createTemplate(appUuid, data) {
+    return request.$http
+      .post(`${templatesResource}/${appUuid}/templates/`, data)
+      .then((r) => r.data);
   },
   deleteTemplateMessage(appUuid, templateUuid) {
     return request.$http.delete(`${templatesResource}/${appUuid}/templates/${templateUuid}`);
   },
-  createTemplateTranslation(appUuid, templateUuid, data) {
-    return request.$http.post(
-      `${templatesResource}/${appUuid}/templates/${templateUuid}/translations/`,
-      data,
-    );
+  async createTemplateTranslation(appUuid, templateUuid, data) {
+    return await request.$http
+      .post(`${templatesResource}/${appUuid}/templates/${templateUuid}/translations/`, data)
+      .then((r) => r.data);
   },
   updateTemplateTranslation(appUuid, templateUuid, data) {
     return request.$http.patch(`${templatesResource}/${appUuid}/templates/${templateUuid}/`, data);

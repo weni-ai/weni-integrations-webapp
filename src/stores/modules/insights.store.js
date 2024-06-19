@@ -24,7 +24,7 @@ export const insights_store = defineStore('insights', {
         this.templateAnalytics = data;
         this.loadingTemplateAnalytics = false;
       } catch (err) {
-        this.errorTemplateAnalytics = err;
+        this.errorTemplateAnalytics = err.response?.data.error || err;
         this.loadingTemplateAnalytics = false;
       }
     },
@@ -34,7 +34,7 @@ export const insights_store = defineStore('insights', {
         this.errorTemplates = null;
         this.templates = data;
       } catch (err) {
-        this.errorTemplates = err;
+        this.errorTemplates = err.response?.data.error || err;
       }
     },
     async setActiveProject({ app_uuid }) {

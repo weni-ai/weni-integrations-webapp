@@ -14,4 +14,9 @@ export default {
   async getVtexAppUuid(code) {
     return await request.$http.get(`${resource}/${code}/apps/get-app-uuid/`).then((r) => r.data);
   },
+  async getSellers(uuid) {
+    return await request.$http
+      .get(`${resource}/vtex/apps/${uuid}/active-vtex-sellers/`)
+      .then((r) => r.data);
+  },
 };
