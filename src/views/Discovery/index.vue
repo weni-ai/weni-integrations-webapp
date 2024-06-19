@@ -18,6 +18,7 @@
         ref="appGrid"
         section="channel"
         type="add"
+        :loading="loadingAllAppTypes"
         :apps="filteredApps"
         @update="fetchChannels"
       />
@@ -59,7 +60,7 @@
         :apps="featuredApps"
       />
     </div>
-    <!-- <OnboardModal /> -->
+    <OnboardModal />
   </div>
 </template>
 
@@ -67,18 +68,18 @@
   import { insights_store } from '@/stores/modules/insights.store';
   import PowerBiIcon from '@/assets/logos/power_bi.png';
   import AppGrid from '@/components/AppGrid/index.vue';
-  // import OnboardModal from '@/components/OnboardModal/index.vue';
+  import OnboardModal from '@/components/OnboardModal/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
     components: {
       AppGrid,
-      // OnboardModal,
+      OnboardModal,
       EmptyApps,
     },
     data() {
@@ -119,6 +120,7 @@
     computed: {
       ...mapState(app_type, [
         'allAppTypes',
+        'loadingAllAppTypes',
         'errorAllAppTypes',
         'featuredApps',
         'loadingFeaturedApps',
@@ -192,7 +194,7 @@
         await app_type().getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
-          alert.callAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.discovery.fetch_error'),
               type: 'error',

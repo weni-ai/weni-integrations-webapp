@@ -59,7 +59,7 @@
   import AppGrid from '@/components/AppGrid/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapState, mapActions } from 'pinia';
-  import alert from '@/utils/call';
+  import unnnic from '@weni/unnnic-system';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
 
@@ -165,7 +165,7 @@
         this.$router.replace('/apps/discovery');
       },
       callErrorModal({ text }) {
-        alert.callAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
             type: 'error',

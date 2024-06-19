@@ -52,7 +52,7 @@
       };
     },
     computed: {
-      ...mapState(insights_store, ['selectedTemplate', 'app_uuid']),
+      ...mapState(insights_store, ['selectedTemplate', 'appUuid']),
     },
     methods: {
       redirectTo(crumb) {
@@ -66,7 +66,7 @@
       },
       redirectEdit() {
         this.$router.push({
-          path: `/apps/my/wpp-cloud/${this.app_uuid}/templates/edit/${this.selectedTemplate.uuid}`,
+          path: `/apps/my/wpp-cloud/${this.appUuid}/templates/edit/${this.selectedTemplate.uuid}`,
         });
       },
     },
