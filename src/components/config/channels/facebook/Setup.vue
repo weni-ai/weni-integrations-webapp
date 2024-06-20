@@ -111,9 +111,18 @@
     },
     data() {
       return {
-        stage: 'login',
+        stage: 'l',
         accessToken: null,
-        pageList: [],
+        pageList: [
+          {
+            id: '1',
+            name: '1',
+          },
+          {
+            id: '2',
+            name: '2',
+          },
+        ],
         selectedPage: [],
         selectKey: 0,
         onLogin: false,
@@ -222,7 +231,7 @@
         this.loadingPages = false;
       },
       async createChannel() {
-        const page = this.pageList.find((page) => page.id === this.selectedPage);
+        const page = this.pageList.find((page) => page.id === this.selectedPage[0].value);
 
         if (!page) {
           this.callModal({
