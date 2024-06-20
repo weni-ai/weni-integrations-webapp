@@ -53,23 +53,13 @@
       <template #message>
         <div class="page-selection__select">
           <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
-          <unnnic-select
+          <unnnic-select-smart
             ref="page-selection-input"
-            :search="false"
             size="sm"
-            :value="selectedPage"
-            @input="handlePageSelection"
-            :key="selectKey"
-          >
-            <option
-              v-for="(page, index) in pageList"
-              :key="index"
-              :value="page.id"
-              :label="page.name"
-            >
-              {{ page.name }}
-            </option>
-          </unnnic-select>
+            :options="pageListOptions"
+            v-model="selectedPage"
+            @update:modelValue="handlePageSelection"
+          />
         </div>
       </template>
 
@@ -124,7 +114,7 @@
         stage: 'login',
         accessToken: null,
         pageList: [],
-        selectedPage: 1,
+        selectedPage: [],
         selectKey: 0,
         onLogin: false,
         loadingPages: false,
@@ -161,6 +151,14 @@
           fba: 'social-media-facebook-1',
         };
         return iconMap[this.app.code];
+      },
+      pageListOptions() {
+        return this.pageList.map((item) => {
+          return {
+            value: item.id,
+            label: item.name,
+          };
+        });
       },
     },
     methods: {
