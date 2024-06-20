@@ -14,8 +14,6 @@
       />
 
       <div v-if="input.type === 'select'">
-        {{ input.value }}
-        {{ input.options }}
         <unnnic-label :label="$t(input.label)" />
         <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
       </div>
