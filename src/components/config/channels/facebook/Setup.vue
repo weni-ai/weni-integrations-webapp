@@ -111,18 +111,9 @@
     },
     data() {
       return {
-        stage: 'l',
+        stage: 'login',
         accessToken: null,
-        pageList: [
-          {
-            id: '1',
-            name: '1',
-          },
-          {
-            id: '2',
-            name: '2',
-          },
-        ],
+        pageList: [],
         selectedPage: [],
         selectKey: 0,
         onLogin: false,
