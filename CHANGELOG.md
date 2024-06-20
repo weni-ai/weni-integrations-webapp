@@ -1,3 +1,18 @@
+2.1.1
+----------
+`2024-06-19 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: whatsapp template quick-repliy buttons;
+- Fix: whatsapp config inputs;
+
+2.1.0
+----------
+`2024-06-19 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: vue3 migration pendencies.
+
 2.0.1
 ----------
 `2024-05-07 ·1 🐛 `
