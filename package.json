@@ -1,6 +1,6 @@
 {
   "name": "weni-integrations",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -19,7 +19,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/compiler-sfc": "^3.4.23",
     "@vueuse/components": "^10.9.0",
-    "@weni/unnnic-system": "2.0.23",
+    "@weni/unnnic-system": "2.0.26",
     "axios": "^1.6.7",
     "core-js": "^3.36.0",
     "global": "^4.4.0",
