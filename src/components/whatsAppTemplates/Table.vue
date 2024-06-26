@@ -359,7 +359,7 @@
         this.nameSortDirection = 'NONE';
       },
       onPageChange(value) {
-        this.currentPage = value;
+        this.page = value;
       },
     },
     watch: {
