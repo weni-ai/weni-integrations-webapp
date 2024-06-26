@@ -281,7 +281,7 @@
         });
       },
       onPageChange(value) {
-        this.currentPage = value;
+        this.page = value;
       },
     },
     watch: {
