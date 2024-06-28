@@ -19,4 +19,9 @@ export default {
       .get(`${resource}/vtex/apps/${uuid}/active-vtex-sellers/`)
       .then((r) => r.data);
   },
+  async syncSellers(uuid, payload) {
+    return await request.$http
+      .post(`${resource}/vtex/apps/${uuid}/sync-vtex-sellers/`, payload)
+      .then((r) => r.data);
+  },
 };

@@ -56,7 +56,7 @@
             </tr>
           </table>
         </div>
-        <div class="config-vtex__settings__content__sellers" v-if="false">
+        <div class="config-vtex__settings__content__sellers">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
           </span>
@@ -83,6 +83,24 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="config-vtex__buttons">
+      <unnnic-button
+        class="config-vtex__buttons__cancel"
+        type="tertiary"
+        size="large"
+        :text="$t('vtex.config.buttons.close')"
+        @click="() => this.$emit('close')"
+      />
+
+      <unnnic-button
+        class="config-vtex__buttons__save"
+        type="secondary"
+        size="large"
+        :disabled="disableSave"
+        :text="$t('vtex.config.buttons.confirm')"
+        @click="handleSave"
+      />
     </div>
 
     <unnnic-modal
@@ -139,9 +157,22 @@
         'errorConnectVtexCatalog',
         'sellersList',
         'errorSellersList',
+        'errorSyncSellers',
       ]),
       sellerOptions() {
-        return this.sellersList || [];
+        return [
+          {
+            value: '1',
+            label: '1',
+          },
+          {
+            value: '2',
+            label: '2',
+          },
+        ];
+      },
+      disableSave() {
+        return this.selectedSellers.length === 0;
       },
     },
     async mounted() {
@@ -150,7 +181,12 @@
     },
     methods: {
       ...mapActions(app_type, ['updateApp', 'getApp']),
-      ...mapActions(ecommerce_store, ['connectVtexCatalog', 'getSellersList', 'getVtexAppUuid']),
+      ...mapActions(ecommerce_store, [
+        'connectVtexCatalog',
+        'getSellersList',
+        'getVtexAppUuid',
+        'syncSellers',
+      ]),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -224,7 +260,7 @@
         unnnic.unnnicCallAlert({
           props: {
             text: text,
-            title: type,
+            type: type,
           },
           seconds: 6,
         });
@@ -240,6 +276,18 @@
           return;
         }
         this.selectedSellers = value;
+      },
+      async handleSave() {
+        const sellers = this.selectedSellers.map((item) => item.value);
+        const payload = {
+          uuid: this.appUuid,
+          sellers: sellers,
+        };
+        await this.syncSellers({ uuid: this.appUuid, payload: payload });
+
+        if (this.errorSyncSellers) {
+          this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
+        }
       },
     },
   };
@@ -382,6 +430,15 @@
           gap: $unnnic-spacing-stack-sm;
           margin-bottom: $unnnic-spacing-lg;
         }
+      }
+    }
+    &__buttons {
+      margin: $unnnic-spacing-stack-sm;
+      display: flex;
+
+      &__cancel,
+      &__save {
+        flex-grow: 1;
       }
     }
   }

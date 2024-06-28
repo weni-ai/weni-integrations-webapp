@@ -1072,7 +1072,11 @@
       "environment": "Ambiente",
       "view_catalog": "Ver catálogo",
       "wpp_number": "Número WhatsApp",
-      "sellers": "Lojistas"
+      "sellers": "Lojistas",
+      "buttons": {
+        "close": "Fechar",
+        "confirm": "Confirmar"
+      }
     },
     "connect_modal": {
       "categories": {
