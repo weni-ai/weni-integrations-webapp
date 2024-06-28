@@ -175,7 +175,7 @@
     },
     async mounted() {
       await this.fetchRelatedWppData();
-      // await this.fetchSellersOptions();
+      await this.fetchSellersOptions();
     },
     methods: {
       ...mapActions(app_type, ['updateApp', 'getApp']),
@@ -278,7 +278,7 @@
       async handleSave() {
         const sellers = this.selectedSellers.map((item) => item.value);
         const payload = {
-          uuid: this.appUuid,
+          project_uuid: this.appUuid,
           sellers: sellers,
         };
         await this.syncSellers({ uuid: this.appUuid, payload: payload });
