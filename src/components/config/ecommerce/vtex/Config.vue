@@ -178,6 +178,7 @@
       await this.fetchSellersOptions();
     },
     methods: {
+      ...mapActions(auth_store, ['project']),
       ...mapActions(app_type, ['updateApp', 'getApp']),
       ...mapActions(ecommerce_store, [
         'connectVtexCatalog',
@@ -278,7 +279,7 @@
       async handleSave() {
         const sellers = this.selectedSellers.map((item) => item.value);
         const payload = {
-          project_uuid: this.appUuid,
+          project_uuid: this.project,
           sellers: sellers,
         };
         await this.syncSellers({ uuid: this.appUuid, payload: payload });
