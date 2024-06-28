@@ -160,7 +160,14 @@
         'errorSyncSellers',
       ]),
       sellerOptions() {
-        return this.sellersList || [];
+        return (
+          this.sellersList.map((item) => {
+            return {
+              value: item,
+              label: item,
+            };
+          }) || []
+        );
       },
       disableSave() {
         return this.selectedSellers.length === 0;
@@ -233,8 +240,8 @@
       async fetchSellersOptions() {
         await this.getSellersList({ uuid: this.appUuid });
 
-        if (this.errorSellersLis) {
-          this.callModal({ type: 'error', text: 'Erro ao tentar conectar pipipipopopo' });
+        if (this.errorSellersList) {
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
         }
       },
       redirectToWppCatalog() {
