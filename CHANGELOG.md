@@ -1,6 +1,6 @@
 2.1.4
 ----------
-`2024-06-26 ·1 🐛 `
+`2024-07-01 ·1 🐛 `
 
 ### 🐛 Bug fixes
 - Fix: WWC config - upload new avatar;
