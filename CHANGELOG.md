@@ -1,9 +1,16 @@
+2.1.4
+----------
+`2024-06-26 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WWC config - upload new avatar;
+
 2.1.3
 ----------
 `2024-06-26 ·1 🐛 `
 
 ### 🐛 Bug fixes
-- Fix: pagination
+- Fix: pagination;
 
 2.1.2
 ----------
