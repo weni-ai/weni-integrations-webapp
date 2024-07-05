@@ -66,6 +66,7 @@
             :options="sellerOptions"
             :modelValue="selectedSellers"
             @update:modelValue="handleSelectSellers"
+            :placeholder="$t('vtex.config.placeholder.sellers')"
             multiple
             :selectFirst="false"
             :disabled="disableSellers"
@@ -83,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="config-vtex__buttons">
+    <section class="config-vtex__buttons">
       <unnnic-button
         class="config-vtex__buttons__cancel"
         type="tertiary"
@@ -100,7 +101,7 @@
         :text="$t('vtex.config.buttons.confirm')"
         @click="handleSave"
       />
-    </div>
+    </section>
 
     <unnnic-modal
       v-if="showConnectModal"
@@ -161,12 +162,10 @@
       ]),
       sellerOptions() {
         return (
-          this.sellersList.map((item) => {
-            return {
-              value: item,
-              label: item,
-            };
-          }) || []
+          this.sellersList.map((item) => ({
+            value: item,
+            label: item,
+          })) || []
         );
       },
       disableSave() {

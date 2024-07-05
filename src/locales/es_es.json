@@ -1073,6 +1073,9 @@
       "buttons": {
         "close": "Cerrar",
         "confirm": "Confirmar"
+      },
+      "placeholder": {
+        "sellers": "Seleccione hasta cinco vendedores..."
       }
     },
     "connect_modal": {

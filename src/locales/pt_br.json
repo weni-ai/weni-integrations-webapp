@@ -1077,6 +1077,9 @@
       "buttons": {
         "close": "Fechar",
         "confirm": "Confirmar"
+      },
+      "placeholder": {
+        "sellers": "Selecione até cinco lojistas..."
       }
     },
     "connect_modal": {
