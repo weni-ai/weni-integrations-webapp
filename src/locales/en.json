@@ -1069,7 +1069,7 @@
       "view_catalog": "View catalog",
       "wpp_number": "WhatsApp number",
       "sellers": "Sellers",
-      "processing": "Processing. We will send an email when everything is ready.",
+      "processing": "Synchronization in process. Please wait.",
       "buttons": {
         "close": "Close",
         "confirm": "Confirm"

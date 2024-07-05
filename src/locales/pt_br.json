@@ -1073,7 +1073,7 @@
       "view_catalog": "Ver catálogo",
       "wpp_number": "Número WhatsApp",
       "sellers": "Lojistas",
-      "processing": "Em processamento. Enviaremos um email quando estiver tudo pronto.",
+      "processing": "Sincronização em processamento. Por favor, aguarde.",
       "buttons": {
         "close": "Fechar",
         "confirm": "Confirmar"
