@@ -22,6 +22,8 @@ export const ecommerce_store = defineStore('ecommerce', {
 
       loadingSyncSellers: false,
       errorSyncSellers: null,
+
+      checkSellers: null,
     };
   },
   actions: {
@@ -74,6 +76,13 @@ export const ecommerce_store = defineStore('ecommerce', {
       } catch (err) {
         this.errorSellersList = err;
         this.loadingSellersList = false;
+      }
+    },
+    async checkSyncSellers({ uuid }) {
+      try {
+        await ecommerce.checkSellers(uuid);
+      } catch (err) {
+        this.checkSellers = err;
       }
     },
     async syncSellers({ uuid, payload }) {

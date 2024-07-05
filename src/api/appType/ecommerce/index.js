@@ -24,4 +24,9 @@ export default {
       .post(`${resource}/vtex/apps/${uuid}/sync-vtex-sellers/`, payload)
       .then((r) => r.data);
   },
+  async checkSellers(uuid) {
+    return await request.$http
+      .get(`${resource}/vtex/apps/${uuid}/check-sync-sellers/`)
+      .then((r) => r.data);
+  },
 };

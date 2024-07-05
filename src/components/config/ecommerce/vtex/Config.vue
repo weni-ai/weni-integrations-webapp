@@ -70,7 +70,6 @@
             :selectFirst="false"
             :disabled="disableSellers"
           />
-
           <div class="config-vtex__settings__content__sellers__alert" v-if="disableSellers">
             <unnnic-icon
               class="config-vtex__settings__content__sellers__alert__icon"
@@ -90,7 +89,7 @@
         type="tertiary"
         size="large"
         :text="$t('vtex.config.buttons.close')"
-        @click="() => this.$emit('close')"
+        @click="closeConfig"
       />
 
       <unnnic-button
@@ -158,6 +157,7 @@
         'sellersList',
         'errorSellersList',
         'errorSyncSellers',
+        'checkSellers',
       ]),
       sellerOptions() {
         return (
@@ -175,6 +175,11 @@
     },
     async mounted() {
       await this.fetchRelatedWppData();
+      await this.checkSyncSellers({ uuid: this.appUuid });
+      if (this.checkSellers) {
+        this.disableSellers = true;
+        return;
+      }
       await this.fetchSellersOptions();
     },
     methods: {
@@ -185,6 +190,7 @@
         'getSellersList',
         'getVtexAppUuid',
         'syncSellers',
+        'checkSyncSellers',
       ]),
       async connectCatalog(eventData) {
         const data = {
@@ -282,6 +288,14 @@
           project_uuid: this.project,
           sellers: sellers,
         };
+        await this.checkSyncSellers({ uuid: this.appUuid });
+        if (this.checkSellers) {
+          this.callModal({
+            type: 'error',
+            text: this.checkSellers.message,
+          });
+          return;
+        }
         await this.syncSellers({ uuid: this.appUuid, payload: payload });
 
         if (this.errorSyncSellers) {
