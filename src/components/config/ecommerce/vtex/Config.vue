@@ -56,7 +56,7 @@
             </tr>
           </table>
         </div>
-        <div class="config-vtex__settings__content__sellers">
+        <div class="config-vtex__settings__content__sellers" v-if="hasConnectedCatalog">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
           </span>
