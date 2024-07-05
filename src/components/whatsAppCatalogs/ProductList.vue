@@ -154,7 +154,6 @@
       },
       onPageChange(value) {
         this.page = value;
-        this.currentPage = value;
       },
     },
     watch: {

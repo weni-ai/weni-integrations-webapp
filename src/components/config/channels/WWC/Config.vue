@@ -204,6 +204,7 @@
                   :canImport="true"
                   :canDelete="true"
                   :maxFileSize="10"
+                  @fileChange="handleNewAvatar"
                 />
               </div>
               <div class="app-config-wwc__tabs__settings-content__files__content">

@@ -1,6 +1,27 @@
+2.1.4
+----------
+`2024-07-01 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WWC config - upload new avatar;
+
+2.1.3
+----------
+`2024-06-26 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: pagination;
+
+2.1.2
+----------
+`2024-06-20 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: facebook config page selection;
+
 2.1.1
 ----------
-`2024-06-19 ·1 🐛 `
+`2024-06-19 ·2 🐛 `
 
 ### 🐛 Bug fixes
 - Fix: whatsapp template quick-repliy buttons;
