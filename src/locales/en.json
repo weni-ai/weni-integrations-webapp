@@ -1069,7 +1069,14 @@
       "view_catalog": "View catalog",
       "wpp_number": "WhatsApp number",
       "sellers": "Sellers",
-      "processing": "In processing. We will send an email when everything is ready."
+      "processing": "Synchronization in process. Please wait.",
+      "buttons": {
+        "close": "Close",
+        "confirm": "Confirm"
+      },
+      "placeholder": {
+        "sellers": "Select up to five sellers..."
+      }
     },
     "connect_modal": {
       "categories": {
@@ -1100,10 +1107,13 @@
       "fetch_related_wpp_data": "Failed to fetch related WhatsApp Number information",
       "redirect_to_wpp_catalog": "Failed to redirect to catalog, please refresh the page and try again",
       "update_connected_catalog_status": "Failed to fetch catalog status, please try again later.",
-      "select_five_sellers": "Please select up to 5 sellers."
+      "select_five_sellers": "Please select up to 5 sellers.",
+      "sync_sellers": "Unable to synchronize sellers at the moment, please try again later."
+
     },
     "success": {
-      "connect_catalog": "Successfully connected VTEX catalog"
+      "connect_catalog": "Successfully connected VTEX catalog",
+      "sync_sellers": "Sellers synchronized successfully"
     }
   },
   "whatsapp": {

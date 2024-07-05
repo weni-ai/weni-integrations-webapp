@@ -56,7 +56,7 @@
             </tr>
           </table>
         </div>
-        <div class="config-vtex__settings__content__sellers" v-if="false">
+        <div class="config-vtex__settings__content__sellers" v-if="hasConnectedCatalog">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
           </span>
@@ -66,11 +66,11 @@
             :options="sellerOptions"
             :modelValue="selectedSellers"
             @update:modelValue="handleSelectSellers"
+            :placeholder="$t('vtex.config.placeholder.sellers')"
             multiple
             :selectFirst="false"
             :disabled="disableSellers"
           />
-
           <div class="config-vtex__settings__content__sellers__alert" v-if="disableSellers">
             <unnnic-icon
               class="config-vtex__settings__content__sellers__alert__icon"
@@ -84,6 +84,24 @@
         </div>
       </div>
     </div>
+    <section class="config-vtex__buttons">
+      <unnnic-button
+        class="config-vtex__buttons__cancel"
+        type="tertiary"
+        size="large"
+        :text="$t('vtex.config.buttons.close')"
+        @click="closeConfig"
+      />
+
+      <unnnic-button
+        class="config-vtex__buttons__save"
+        type="secondary"
+        size="large"
+        :disabled="disableSave"
+        :text="$t('vtex.config.buttons.confirm')"
+        @click="handleSave"
+      />
+    </section>
 
     <unnnic-modal
       v-if="showConnectModal"
@@ -139,18 +157,40 @@
         'errorConnectVtexCatalog',
         'sellersList',
         'errorSellersList',
+        'errorSyncSellers',
+        'checkSellers',
       ]),
       sellerOptions() {
-        return this.sellersList || [];
+        return (
+          this.sellersList.map((item) => ({
+            value: item,
+            label: item,
+          })) || []
+        );
+      },
+      disableSave() {
+        return this.selectedSellers.length === 0;
       },
     },
     async mounted() {
       await this.fetchRelatedWppData();
-      // await this.fetchSellersOptions();
+      await this.checkSyncSellers({ uuid: this.appUuid });
+      if (this.checkSellers) {
+        this.disableSellers = true;
+        return;
+      }
+      await this.fetchSellersOptions();
     },
     methods: {
+      ...mapActions(auth_store, ['project']),
       ...mapActions(app_type, ['updateApp', 'getApp']),
-      ...mapActions(ecommerce_store, ['connectVtexCatalog', 'getSellersList', 'getVtexAppUuid']),
+      ...mapActions(ecommerce_store, [
+        'connectVtexCatalog',
+        'getSellersList',
+        'getVtexAppUuid',
+        'syncSellers',
+        'checkSyncSellers',
+      ]),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -206,8 +246,8 @@
       async fetchSellersOptions() {
         await this.getSellersList({ uuid: this.appUuid });
 
-        if (this.errorSellersLis) {
-          this.callModal({ type: 'error', text: 'Erro ao tentar conectar pipipipopopo' });
+        if (this.errorSellersList) {
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
         }
       },
       redirectToWppCatalog() {
@@ -223,8 +263,8 @@
       callModal({ text, type }) {
         unnnic.unnnicCallAlert({
           props: {
-            text: text,
-            title: type,
+            text,
+            type,
           },
           seconds: 6,
         });
@@ -240,6 +280,21 @@
           return;
         }
         this.selectedSellers = value;
+      },
+      async handleSave() {
+        const sellers = this.selectedSellers.map((item) => item.value);
+        const payload = {
+          project_uuid: this.project,
+          sellers: sellers,
+        };
+        await this.syncSellers({ uuid: this.appUuid, payload: payload });
+
+        if (this.errorSyncSellers) {
+          this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
+          return;
+        }
+        this.callModal({ text: this.$t('vtex.success.sync_sellers'), type: 'success' });
+        this.disableSellers = true;
       },
     },
   };
@@ -382,6 +437,15 @@
           gap: $unnnic-spacing-stack-sm;
           margin-bottom: $unnnic-spacing-lg;
         }
+      }
+    }
+    &__buttons {
+      margin: $unnnic-spacing-stack-sm;
+      display: flex;
+
+      &__cancel,
+      &__save {
+        flex-grow: 1;
       }
     }
   }
