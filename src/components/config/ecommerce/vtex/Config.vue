@@ -264,8 +264,8 @@
       callModal({ text, type }) {
         unnnic.unnnicCallAlert({
           props: {
-            text: text,
-            type: type,
+            text,
+            type,
           },
           seconds: 6,
         });
