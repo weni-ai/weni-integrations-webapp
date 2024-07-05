@@ -1073,6 +1073,7 @@
       "view_catalog": "Ver catálogo",
       "wpp_number": "Número WhatsApp",
       "sellers": "Lojistas",
+      "processing": "Em processamento. Enviaremos um email quando estiver tudo pronto.",
       "buttons": {
         "close": "Fechar",
         "confirm": "Confirmar"
@@ -1107,10 +1108,11 @@
       "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente",
       "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde.",
       "select_five_sellers": "Por favor, selecione até 5 vendedores.",
-      "processing": "Em processamento. Enviaremos um email quando estiver tudo pronto."
+      "sync_sellers": "Não foi possível sincronizar os lojistas no momento, tente novamente mais tarde."
     },
     "success": {
-      "connect_catalog": "Catálogo VTEX conectado com sucesso"
+      "connect_catalog": "Catálogo VTEX conectado com sucesso",
+      "sync_sellers": "Lojistas sincronizados com sucesso"
     }
   },
   "whatsapp": {

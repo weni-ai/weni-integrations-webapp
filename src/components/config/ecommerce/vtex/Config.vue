@@ -288,19 +288,14 @@
           project_uuid: this.project,
           sellers: sellers,
         };
-        await this.checkSyncSellers({ uuid: this.appUuid });
-        if (this.checkSellers) {
-          this.callModal({
-            type: 'error',
-            text: this.checkSellers.message,
-          });
-          return;
-        }
         await this.syncSellers({ uuid: this.appUuid, payload: payload });
 
         if (this.errorSyncSellers) {
           this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
+          return;
         }
+        this.callModal({ text: this.$t('vtex.success.sync_sellers'), type: 'success' });
+        this.disableSellers = true;
       },
     },
   };
