@@ -1,3 +1,67 @@
+2.1.5
+----------
+`2024-07-05 · 1 🎉 `
+
+### 🎉 New Features
+- Feat: Sync VTEX Sellers
+
+2.1.4
+----------
+`2024-07-01 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WWC config - upload new avatar;
+
+2.1.3
+----------
+`2024-06-26 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: pagination;
+
+2.1.2
+----------
+`2024-06-20 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: facebook config page selection;
+
+2.1.1
+----------
+`2024-06-19 ·2 🐛 `
+
+### 🐛 Bug fixes
+- Fix: whatsapp template quick-repliy buttons;
+- Fix: whatsapp config inputs;
+
+2.1.0
+----------
+`2024-06-19 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: vue3 migration pendencies.
+
+2.0.1
+----------
+`2024-05-07 ·1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: some slots usage.
+
+2.0.0
+----------
+`2024-05-07 · 1 🔧 `
+
+### 🔧 Improvements
+- Refactor: Upgrade vue version to Vue 3.
+
+1.34.2
+----------
+`2024-04-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: add business management permission to fb login
+
 1.34.1
 ----------
 `2024-02-14 · 1 🐛`

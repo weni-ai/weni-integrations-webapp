@@ -50,7 +50,8 @@
                   v-for="(variable, index) in variableCount"
                   :key="variable"
                   :placeholder="`Enter content for {{${variable}}}`"
-                  @input="handleVariableChange(index, $event)"
+                  :modelValue="textInput"
+                  @update:modelValue="handleVariableChange(index, $event)"
                 />
               </div>
             </div>
@@ -71,7 +72,7 @@
 <script>
   import { mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
@@ -92,6 +93,7 @@
     },
     data() {
       return {
+        textInput: '',
         variablesData: [],
         formattedBody: '',
         file: null,
@@ -199,14 +201,10 @@
         this.$emit('close-modal');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
-            title: this.$t('general.error'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 6,
         });

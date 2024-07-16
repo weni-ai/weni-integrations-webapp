@@ -1,7 +1,6 @@
 <template>
   <div>
     <navigator class="navigator" :routes="navigatorHistory" />
-
     <div class="app-details" v-if="!loadingCurrentAppType">
       <app-images-banner
         class="app-details__section"
@@ -38,7 +37,7 @@
   import AppDetailsAbout from '../../components/app/AppDetailsAbout.vue';
   import AppDetailsComments from '../../components/app/AppDetailsComments.vue';
   import skeletonLoading from '../loadings/AppDetails.vue';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { mapActions, mapState } from 'pinia';
   import millify from 'millify';
@@ -50,7 +49,6 @@
       AppImagesBanner,
       AppDetailsHeader,
       AppDetailsAbout,
-      // AppDetailsRecommended,
       AppDetailsComments,
       skeletonLoading,
     },
@@ -84,14 +82,10 @@
         await this.postRating(data);
 
         if (this.errorPostRating) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 3,
           });

@@ -10,7 +10,7 @@
       :initialTab="initialTranslation"
       @change="handleTranslationSelection"
     >
-      <template slot="tab-head-add">
+      <template #tab-head-add>
         <div ref="add-translation-button" @click.stop="addTranslation">
           <unnnic-icon-svg icon="add-1" size="sm" />
           {{ $t('WhatsApp.templates.add_language') }}
@@ -25,7 +25,7 @@
       :selectedForm="currentTab"
       :removeLanguages="tabs"
       :canEdit="canEditTab"
-      :availableLanguages="whatsAppTemplateSelectLanguages"
+      :availableLanguages="templateSelectLanguages"
       :loadingSave="loadingSave"
       @language-change="handleLanguageChange($event)"
       @manual-preview-update="$emit('manual-preview-update')"
@@ -49,7 +49,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
   import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 
@@ -109,9 +109,8 @@
       this.dataProcessingLoading = false;
     },
     computed: {
-      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       ...mapState(whatsapp_store, [
-        'templateTranslationForms',
+        'templateTranslationCurrentForm',
         'loadingFetchWhatsAppTemplate',
         'errorFetchWhatsAppTemplate',
         'whatsAppTemplate',
@@ -125,8 +124,16 @@
         'createdTemplateTranslationData',
         'loadingWhatsAppTemplates',
         'errorUpdateTemplateTranslation',
-        '',
       ]),
+      templateSelectLanguages() {
+        return this.whatsAppTemplateSelectLanguages.map((item) => {
+          const { text, value } = item;
+          return {
+            label: text,
+            value: value,
+          };
+        });
+      },
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
       },
@@ -359,13 +366,18 @@
           };
 
           await this.createTemplate({ appUuid, payload: templatePayload });
+
           if (this.errorCreateTemplate) {
-            this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_template') });
+            const errorText =
+              this.errorCreateTemplate?.error_user_msg ||
+              this.$t('WhatsApp.templates.error.create_translation');
+            this.callErrorModal({ text: errorText });
             this.loadingSave = false;
             return;
           }
 
-          currentTemplateUuid = this.createdTemplateData.uuid;
+          currentTemplateUuid = this.createdTemplateData?.uuid || '';
+          this.loadingSave = false;
         }
 
         const translationPayload = this.buildPayload();
@@ -385,7 +397,6 @@
             translationPayload,
           });
         }
-
         this.loadingSave = false;
       },
       async createTranslation({ currentTemplateUuid, translationPayload }) {
@@ -397,17 +408,21 @@
         });
 
         if (this.errorCreateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.create_translation') });
+          this.callErrorModal({
+            text:
+              this.errorCreateTemplateTranslation?.error_user_msg ||
+              this.$t('WhatsApp.templates.error.create_translation'),
+          });
+          this.loadingSave = false;
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.create_translation') });
+          this.loadingSave = false;
         }
 
         if (this.currentFormMode === 'create' && !this.errorCreateTemplate) {
-          this.$router.replace(
-            `/apps/my/${appCode}/${appUuid}/templates/edit/${this.createdTemplateData.uuid}`,
-          );
-
           this.currentFormMode = 'edit';
+          //TODO: fix router for edit template
+          this.$router.push(`/apps/my/${appCode}/${appUuid}/templates/`);
         }
 
         if (!this.errorCreateTemplateTranslation) {
@@ -420,6 +435,7 @@
         }
 
         await this.fetchTemplateData({ appUuid, templateUuid: this.createdTemplateData.uuid });
+        this.loadingSave = false;
       },
       async updateTranslation({ currentTemplateUuid, translationPayload }) {
         const { appUuid } = this.$route.params;
@@ -430,10 +446,14 @@
         });
 
         if (this.errorUpdateTemplateTranslation) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.update_translation') });
+          const errorText =
+            this.errorUpdateTemplateTranslation?.error_user_msg ||
+            this.$t('WhatsApp.templates.error.update_translation');
+          this.callErrorModal({ text: errorText });
         } else {
           this.callSuccessModal({ text: this.$t('WhatsApp.templates.success.update_translation') });
         }
+        this.loadingSave = false;
       },
       buildPayload() {
         try {
@@ -653,30 +673,24 @@
         }
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
-          seconds: 8,
+          seconds: 15,
         });
+        return;
       },
       callSuccessModal({ text }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 8,
         });
+        return;
       },
     },
   };
@@ -718,9 +732,11 @@
         ::-webkit-scrollbar {
           height: $unnnic-border-width-thick;
         }
+
         ::-webkit-scrollbar-track {
           background: $unnnic-color-neutral-soft;
         }
+
         ::-webkit-scrollbar-thumb {
           background: $unnnic-color-neutral-clean;
           border-radius: $unnnic-border-radius-md;

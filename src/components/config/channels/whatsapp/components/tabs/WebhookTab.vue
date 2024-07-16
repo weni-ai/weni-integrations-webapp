@@ -2,15 +2,14 @@
   <div class="webhook-info">
     <div class="webhook-info__content">
       <div class="webhook-info__content__inline">
-        <unnnic-select
-          class="webhook-info__content__method"
-          :search="false"
-          v-model="selectedMethod"
-          :label="$t('WhatsApp.config.webhook_info.method.label')"
-        >
-          <option v-for="(method, index) in methodsList" :key="index">{{ method }}</option>
-        </unnnic-select>
-
+        <div>
+          <unnnic-label :label="$t('WhatsApp.config.webhook_info.method.label')" />
+          <unnnic-select-smart
+            class="webhook-info__content__method"
+            v-model="selectedMethod"
+            :options="methodsList"
+          />
+        </div>
         <unnnic-input
           class="webhook-info__content__url"
           v-model="webhookUrl"
@@ -33,15 +32,15 @@
           >
             <unnnic-input
               class="webhook-info__content__headers-element--key"
-              @input="($event) => handleHeaderKeyChange(index, $event)"
+              @update:modelValue="($event) => handleHeaderKeyChange(index, $event)"
               :placeholder="$t('WhatsApp.config.webhook_info.header_key.placeholder')"
-              :value="header.key"
+              :modelValue="header.key"
             />
             <unnnic-input
               class="webhook-info__content__headers-element--value"
-              @input="($event) => handleHeaderValueChange(index, $event)"
+              @update:modelValue="($event) => handleHeaderValueChange(index, $event)"
               :placeholder="$t('WhatsApp.config.webhook_info.header_value.placeholder')"
-              :value="header.value"
+              :modelValue="header.value"
             />
           </div>
         </div>
@@ -72,7 +71,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'WebhookTab',
@@ -85,14 +84,40 @@
     data() {
       return {
         webhookUrl: this.app.config?.webhook?.url || '',
-        selectedMethod: this.app.config?.webhook?.method || 'GET',
+        selectedMethod: [],
         headers: [],
-        methodsList: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        methodsList: [
+          {
+            value: 'GET',
+            label: 'GET',
+          },
+          {
+            value: 'POST',
+            label: 'POST',
+          },
+          {
+            value: 'PUT',
+            label: 'PUT',
+          },
+          {
+            value: 'PATCH',
+            label: 'PATCH',
+          },
+          {
+            value: 'DELETE',
+            label: 'DELETE',
+          },
+        ],
         validUrl: true,
       };
     },
     /* istanbul ignore next */
     mounted() {
+      if (this.app.config?.webhook?.method) {
+        this.selectedMethod = [
+          { value: this.app.config?.webhook?.method, label: this.app.config?.webhook?.method },
+        ];
+      }
       this.mountHeaders();
 
       if (!this.hasEmptyHeader()) {
@@ -128,7 +153,7 @@
       /* istanbul ignore next */
       getUrlInputElement() {
         let urlInput;
-        this.$refs.webhookUrl.$children.forEach((firstLayer) => {
+        this.$refs.webhookUrl.$children?.forEach((firstLayer) => {
           firstLayer.$children.forEach((secondLayer) => {
             if (secondLayer.$el.nodeName === 'INPUT') {
               urlInput = secondLayer.$el;
@@ -185,7 +210,7 @@
         const urlInput = this.getUrlInputElement();
         if (!urlInput.checkValidity()) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('WhatsApp.config.error.invalid_url'),
           });
           return;
@@ -210,30 +235,29 @@
         await this.updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
+          const err =
+            this.errorUpdateWebhookInfo?.error_user_msg ||
+            this.$t('WhatsApp.config.error.webhook_update');
           this.callModal({
-            type: 'Error',
-            text: this.$t('WhatsApp.config.error.webhook_update'),
+            type: 'error',
+            text: err,
           });
 
           return;
         }
 
         this.callModal({
-          type: 'Success',
+          type: 'error',
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
         this.$root.$emit('updateGrid');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

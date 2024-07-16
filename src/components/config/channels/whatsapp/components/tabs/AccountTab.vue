@@ -93,8 +93,8 @@
       v-if="showCreateCatalogModal || showConnectCatalogModal"
       class="catalog-modal"
       @close="showCreateCatalogModal = false"
-      @click.stop
       :closeIcon="false"
+      @click.stop
     >
       <CreateCatalogModalContent
         ref="createCatalogModalContent"
@@ -117,10 +117,11 @@
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
   import { mapActions, mapState } from 'pinia';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'AccountTab',
@@ -149,7 +150,7 @@
       };
     },
     methods: {
-      ...mapActions(app_type, ['getConfiguredApps']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['connectVtexCatalog']),
       emitClose() {
         this.$emit('close');
@@ -209,12 +210,12 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callAlert({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callAlert({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
 
         this.showConnectCatalogModal = false;
-        this.callAlert({ type: 'Success', text: this.$t('vtex.success.connect_catalog') });
+        this.callAlert({ type: 'success', text: this.$t('vtex.success.connect_catalog') });
 
         await this.fetchVtexApp();
       },
@@ -231,14 +232,10 @@
         this.vtexApp = this.configuredApps.find((app) => app.code === 'vtex');
       },
       callAlert({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

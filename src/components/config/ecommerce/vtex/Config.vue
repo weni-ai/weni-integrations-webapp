@@ -56,15 +56,59 @@
             </tr>
           </table>
         </div>
+        <div class="config-vtex__settings__content__sellers" v-if="hasConnectedCatalog">
+          <span class="config-vtex__settings__content__sellers__label">
+            {{ $t('vtex.config.sellers') }}
+          </span>
+
+          <unnnic-select-smart
+            class="config-vtex__settings__content__sellers__options"
+            :options="sellerOptions"
+            :modelValue="selectedSellers"
+            @update:modelValue="handleSelectSellers"
+            :placeholder="$t('vtex.config.placeholder.sellers')"
+            multiple
+            :selectFirst="false"
+            :disabled="disableSellers"
+          />
+          <div class="config-vtex__settings__content__sellers__alert" v-if="disableSellers">
+            <unnnic-icon
+              class="config-vtex__settings__content__sellers__alert__icon"
+              icon="alert-circle-1-1"
+              scheme="feedback-yellow"
+            />
+            <span class="config-vtex__settings__content__sellers__alert__text">
+              {{ $t('vtex.config.processing') }}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
+    <section class="config-vtex__buttons">
+      <unnnic-button
+        class="config-vtex__buttons__cancel"
+        type="tertiary"
+        size="large"
+        :text="$t('vtex.config.buttons.close')"
+        @click="closeConfig"
+      />
+
+      <unnnic-button
+        class="config-vtex__buttons__save"
+        type="secondary"
+        size="large"
+        :disabled="disableSave"
+        :text="$t('vtex.config.buttons.confirm')"
+        @click="handleSave"
+      />
+    </section>
 
     <unnnic-modal
       v-if="showConnectModal"
       class="connect-modal"
       @close="showConnectModal = false"
-      @click.stop
       :closeIcon="false"
+      @click.stop
     >
       <ConnectCatalogModalContent
         ref="connectCatalogModalContent"
@@ -79,8 +123,9 @@
   import { mapActions, mapState } from 'pinia';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
+  import { auth_store } from '@/stores/modules/auth.store';
 
   export default {
     name: 'vtex-config',
@@ -100,18 +145,52 @@
         showConnectModal: false,
         wpp_number: null,
         wpp_uuid: null,
+        disableSellers: false,
+        selectedSellers: [],
       };
     },
     computed: {
-      ...mapState(app_type, ['currentApp', 'errorCurrentApp']),
-      ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
+      ...mapState(app_type, ['currentApp', 'errorCurrentApp', 'appUuid']),
+      ...mapState(auth_store, ['project']),
+      ...mapState(ecommerce_store, [
+        'loadingConnectVtexCatalog',
+        'errorConnectVtexCatalog',
+        'sellersList',
+        'errorSellersList',
+        'errorSyncSellers',
+        'checkSellers',
+      ]),
+      sellerOptions() {
+        return (
+          this.sellersList.map((item) => ({
+            value: item,
+            label: item,
+          })) || []
+        );
+      },
+      disableSave() {
+        return this.selectedSellers.length === 0;
+      },
     },
     async mounted() {
       await this.fetchRelatedWppData();
+      await this.checkSyncSellers({ uuid: this.appUuid });
+      if (this.checkSellers) {
+        this.disableSellers = true;
+        return;
+      }
+      await this.fetchSellersOptions();
     },
     methods: {
+      ...mapActions(auth_store, ['project']),
       ...mapActions(app_type, ['updateApp', 'getApp']),
-      ...mapActions(ecommerce_store, ['connectVtexCatalog']),
+      ...mapActions(ecommerce_store, [
+        'connectVtexCatalog',
+        'getSellersList',
+        'getVtexAppUuid',
+        'syncSellers',
+        'checkSyncSellers',
+      ]),
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -124,7 +203,7 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
           return;
         }
 
@@ -140,7 +219,7 @@
 
         if (this.errorCurrentApp) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('vtex.errors.update_connected_catalog_status'),
           });
           return;
@@ -157,35 +236,65 @@
         await this.getApp(data);
 
         if (this.errorCurrentApp) {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
           return;
         }
 
         this.wpp_uuid = this.currentApp.uuid;
         this.wpp_number = this.currentApp.config.title;
       },
+      async fetchSellersOptions() {
+        await this.getSellersList({ uuid: this.appUuid });
+
+        if (this.errorSellersList) {
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+        }
+      },
       redirectToWppCatalog() {
         if (this.wpp_uuid) {
           this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
         } else {
-          this.callModal({ type: 'Error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
         }
       },
       closeConfig() {
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            text,
+            type,
           },
           seconds: 6,
         });
+      },
+      handleSelectSellers(value) {
+        if (value.length > 5) {
+          unnnic.unnnicCallAlert({
+            props: {
+              text: this.$t('vtex.errors.select_five_sellers'),
+              type: 'error',
+            },
+          });
+          return;
+        }
+        this.selectedSellers = value;
+      },
+      async handleSave() {
+        const sellers = this.selectedSellers.map((item) => item.value);
+        const payload = {
+          project_uuid: this.project,
+          sellers: sellers,
+        };
+        await this.syncSellers({ uuid: this.appUuid, payload: payload });
+
+        if (this.errorSyncSellers) {
+          this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
+          return;
+        }
+        this.callModal({ text: this.$t('vtex.success.sync_sellers'), type: 'success' });
+        this.disableSellers = true;
       },
     },
   };
@@ -274,7 +383,8 @@
         margin: 0 $unnnic-spacing-lg $unnnic-spacing-lg $unnnic-spacing-lg;
 
         &__catalog,
-        &__details {
+        &__details,
+        &__sellers {
           display: flex;
           flex-direction: column;
           margin-bottom: $unnnic-spacing-sm;
@@ -285,6 +395,19 @@
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
             margin-bottom: $unnnic-spacing-sm;
+          }
+        }
+
+        &__sellers {
+          gap: $unnnic-spacing-xs;
+          &__alert {
+            display: flex;
+            background-color: $unnnic-color-background-lightest;
+            border: 1px solid $unnnic-color-neutral-soft;
+            border-radius: 4px;
+            align-items: center;
+            gap: $unnnic-spacing-xs;
+            padding: $unnnic-spacing-xs;
           }
         }
 
@@ -314,6 +437,15 @@
           gap: $unnnic-spacing-stack-sm;
           margin-bottom: $unnnic-spacing-lg;
         }
+      }
+    }
+    &__buttons {
+      margin: $unnnic-spacing-stack-sm;
+      display: flex;
+
+      &__cancel,
+      &__save {
+        flex-grow: 1;
       }
     }
   }

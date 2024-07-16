@@ -2,7 +2,7 @@
   <unnnic-input
     ref="input"
     :disabled="disabled"
-    :value="value"
+    :modelValue="value"
     :label="label"
     :placeholder="placeholder"
     :maxlength="maxlength"

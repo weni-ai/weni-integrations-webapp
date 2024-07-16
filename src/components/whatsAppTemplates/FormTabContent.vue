@@ -6,8 +6,8 @@
           class="form-tab-content__input--name"
           ref="nameInput"
           :disabled="disableInputs || formMode !== 'create'"
-          :value="templateForm.name"
-          @input="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
+          :modelValue="templateForm?.name"
+          @update:modelValue="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
           @keyup="formatTemplateName"
           @keydown="preventTemplateName"
           :label="$t('WhatsApp.templates.form_field.name')"
@@ -26,31 +26,24 @@
           :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
           :hideGroupTitle="true"
           :label="$t('WhatsApp.templates.form_field.category')"
-          :groups="categoryGroups"
-          @change="handleCategoryChange"
+          v-model="categoryGroups"
+          @update:modelValue="handleCategoryChange"
         />
       </div>
 
       <div class="divider" />
-      <unnnic-select
-        :class="{ 'form-tab-content__selects__disabled': disableInputs }"
-        :key="languageKey"
-        :disabled="disableInputs"
-        :value="currentLanguage"
-        :search="true"
-        @input="handleLanguageSelection"
-        :label="$t('WhatsApp.templates.form_field.language')"
-        :placeholder="$t('WhatsApp.templates.form_field.language__placeholder')"
-      >
-        <option
-          v-for="option in availableLanguages"
-          :key="option.value"
-          :value="option.value"
-          :label="option.text"
-        >
-          {{ option.text }}
-        </option>
-      </unnnic-select>
+      <div>
+        <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />
+        <unnnic-select-smart
+          :class="{ 'form-tab-content__selects__disabled': disableInputs }"
+          :disabled="disableInputs"
+          :options="availableLanguages"
+          :modelValue="templateLanguage"
+          @update:modelValue="handleLanguageSelection"
+          :selectFirst="false"
+          multiple
+        />
+      </div>
 
       <FormTabContentHeader
         class="form-tab-content__header"
@@ -98,13 +91,13 @@
 </template>
 
 <script>
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import { mapActions, mapState } from 'pinia';
+  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+  import unnnic from '@weni/unnnic-system';
   import FormTabContentHeader from '@/components/whatsAppTemplates/FormTabContentHeader.vue';
   import FormTabContentBody from '@/components/whatsAppTemplates/FormTabContentBody.vue';
   import FormTabContentFooter from '@/components/whatsAppTemplates/FormTabContentFooter.vue';
   import FormTabContentButtons from '@/components/whatsAppTemplates/FormTabContentButtons.vue';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import { mapState, mapActions } from 'pinia';
 
   export default {
     name: 'FormTabContent',
@@ -143,6 +136,8 @@
     data() {
       return {
         languageKey: 0,
+        templateCategory: [],
+        templateLanguage: [],
         categoryGroups: [
           {
             title: this.$t('WhatsApp.templates.form_field.category'),
@@ -180,6 +175,13 @@
         },
       };
     },
+    beforeMount() {
+      if (this.templateTranslationCurrentForm?.language) {
+        this.templateLanguage = this.availableLanguages.filter(
+          (item) => item.value === this.templateTranslationCurrentForm?.language,
+        );
+      }
+    },
     mounted() {
       const nativeNameInput = this.$refs.nameInput.$el.querySelector('input');
 
@@ -192,12 +194,16 @@
           .toLowerCase();
       });
     },
+    beforeUnmount() {
+      this.resetTemplates();
+    },
     computed: {
       ...mapState(whatsapp_store, [
-        'templateForm',
-        'whatsAppTemplates',
         'templateTranslationCurrentForm',
+        'templateTranslationForms',
+        'templateTranslationSelectedForm',
       ]),
+      ...mapState(whatsapp_store, ['templateForm', 'whatsAppTemplates']),
       disableInputs() {
         return !this.canEdit;
       },
@@ -228,7 +234,11 @@
       },
     },
     methods: {
-      ...mapActions(whatsapp_store, ['updateTemplateForm', 'updateTemplateTranslationForm']),
+      ...mapActions(whatsapp_store, [
+        'updateTemplateForm',
+        'updateTemplateTranslationForm',
+        'resetTemplates',
+      ]),
       preventTemplateName(event) {
         if (!event.key.match(/[a-zA-Z0-9_]+/)) {
           event.preventDefault();
@@ -269,51 +279,52 @@
         this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
-        const selectedLanguage = this.availableLanguages.find((item) => item.value === value);
-
+        if (value.length === 0 && this.templateTranslationSelectedForm !== 'New Language') {
+          this.setTemplateTranslationCurrentForm = 'New Language';
+          this.updateTemplateTranslationForm({
+            formName: this.selectedForm,
+            fieldName: 'language',
+            fieldValue: '',
+          });
+          this.$emit('language-change', 'New Language');
+          return;
+        } else if (this.templateLanguage === value || value.length > 1) {
+          return;
+        }
+        this.templateLanguage = value;
+        const selectedLanguage = this.availableLanguages.find(
+          (item) => item.value === value[0].value,
+        );
         if (!selectedLanguage) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.unexpected_language'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
-            seconds: 6,
           });
           return;
         }
-
-        if (
-          selectedLanguage.value !== this.templateTranslationCurrentForm.language &&
-          this.removeLanguages.includes(selectedLanguage.text)
-        ) {
-          unnnicCallAlert({
+        if (this.removeLanguages.includes(selectedLanguage.label)) {
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.language_already_exists'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'top-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
-            seconds: 6,
           });
           return;
         }
 
+        if (this.templateTranslationCurrentForm?.uuid) return;
         this.updateTemplateTranslationForm({
           formName: this.selectedForm,
           fieldName: 'language',
           fieldValue: selectedLanguage.value,
         });
-        this.$emit('language-change', selectedLanguage.text);
+        this.$emit('language-change', selectedLanguage.label);
         this.languageKey += 1;
       },
       closeEdit() {
-        const tablePath = this.$router.currentRoute.path.split('templates')[0] + 'templates';
+        const tablePath = this.$router.currentRoute.value.path.split('templates')[0] + 'templates';
         this.$router.push(tablePath);
       },
       verifyExistingName(templateName) {
@@ -328,14 +339,10 @@
         }
 
         if (!validFields) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.invalid_fields'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });
@@ -344,6 +351,16 @@
 
         if (this.canSave) {
           this.$emit('save-changes');
+        }
+      },
+    },
+    watch: {
+      templateTranslationCurrentForm(newval) {
+        if (newval?.language !== this.templateLanguage) {
+          const selectedLanguage = this.availableLanguages.filter(
+            (item) => item.value === newval.language,
+          );
+          this.templateLanguage = selectedLanguage;
         }
       },
     },
@@ -372,7 +389,6 @@
 
     &--inline {
       display: flex;
-      // flex: 1;
       gap: $unnnic-spacing-inline-sm;
     }
 

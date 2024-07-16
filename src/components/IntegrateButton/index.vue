@@ -21,7 +21,7 @@
 <script>
   import addModal from '../AddModal/index.vue';
   import configPopUp from '../config/ConfigPopUp.vue';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -65,8 +65,8 @@
         loadingCreateApp: false,
         hasFBLoginList: ['wpp-cloud', 'ig', 'fba'],
         appCodeToFBAppId: {
-          'wpp-cloud': getEnv('VUE_APP_WHATSAPP_FACEBOOK_APP_ID'),
-          ig: getEnv('VUE_APP_FACEBOOK_APP_ID'),
+          'wpp-cloud': getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID'),
+          ig: getEnv('VITE_APP_FACEBOOK_APP_ID'),
         },
       };
     },
@@ -117,14 +117,10 @@
         this.$refs.configPopUp.openPopUp(app, customData);
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text,
-            title: this.$t('general.error'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 6,
         });

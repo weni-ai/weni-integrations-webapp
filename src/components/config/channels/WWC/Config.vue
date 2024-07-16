@@ -18,8 +18,8 @@
 
     <div class="app-config-wwc__content">
       <unnnic-tab class="app-config-wwc__tabs" :tabs="configTabs" initialTab="settings">
-        <template slot="tab-head-settings"> {{ $t('weniWebChat.config.settings') }} </template>
-        <template slot="tab-panel-settings">
+        <template #tab-head-settings> {{ $t('weniWebChat.config.settings') }} </template>
+        <template #tab-panel-settings>
           <div class="app-config-wwc__tabs__settings-content">
             <div class="app-config-wwc__tabs__settings-content__scroll">
               <unnnic-input
@@ -173,8 +173,8 @@
           </div>
         </template>
 
-        <template slot="tab-head-appearance"> {{ $t('weniWebChat.config.appearance') }} </template>
-        <template slot="tab-panel-appearance">
+        <template #tab-head-appearance> {{ $t('weniWebChat.config.appearance') }} </template>
+        <template #tab-panel-appearance>
           <div class="app-config-wwc__tabs__settings-content">
             <div class="app-config-wwc__tabs__settings-content__scroll">
               <div class="app-config-wwc__tabs__settings-content__files__content">
@@ -204,6 +204,7 @@
                   :canImport="true"
                   :canDelete="true"
                   :maxFileSize="10"
+                  @fileChange="handleNewAvatar"
                 />
               </div>
               <div class="app-config-wwc__tabs__settings-content__files__content">
@@ -236,8 +237,8 @@
           </div>
         </template>
 
-        <template slot="tab-head-script"> {{ $t('weniWebChat.config.script') }} </template>
-        <template slot="tab-panel-script">
+        <template #tab-head-script> {{ $t('weniWebChat.config.script') }} </template>
+        <template #tab-panel-script>
           <div class="app-config-wwc__tabs__script-content">
             <div
               class="app-config-wwc__tabs__script-content__text"
@@ -245,21 +246,22 @@
             />
 
             <unnnic-data-area :text="scriptCode" hoverText="">
-              <unnnic-toolTip
-                slot="buttons"
-                :text="$t('weniWebChat.config.download')"
-                :enabled="true"
-                side="top"
-              >
-                <unnnic-button
-                  class="app-config-wwc__tabs__script-content__download"
-                  type="secondary"
-                  size="large"
-                  iconCenter="download-bottom-1"
-                  @click="downloadScript"
-                  :disabled="scriptCode ? false : true"
-                ></unnnic-button>
-              </unnnic-toolTip>
+              <template #buttons>
+                <unnnic-toolTip
+                  :text="$t('weniWebChat.config.download')"
+                  :enabled="true"
+                  side="top"
+                >
+                  <unnnic-button
+                    class="app-config-wwc__tabs__script-content__download"
+                    type="secondary"
+                    size="large"
+                    iconCenter="download-bottom-1"
+                    @click="downloadScript"
+                    :disabled="scriptCode ? false : true"
+                  ></unnnic-button>
+                </unnnic-toolTip>
+              </template>
             </unnnic-data-area>
           </div>
         </template>
@@ -290,7 +292,7 @@
 <script>
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { dataUrlToFile, toBase64 } from '../../../../utils/files';
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
@@ -563,14 +565,10 @@
         Object.entries(this.$data).forEach(([key]) => {
           const error = this.errorFor(key);
           if (error) {
-            unnnicCallAlert({
+            unnnic.unnnicCallAlert({
               props: {
                 text: error,
-                title: this.$t('general.error'),
-                icon: 'alert-circle-1-1',
-                scheme: 'feedback-red',
-                position: 'bottom-right',
-                closeText: this.$t('general.Close'),
+                type: 'error',
               },
               seconds: 3,
             });
@@ -622,28 +620,20 @@
 
           this.selectedApp.config = this.currentApp.config;
           this.$emit('setConfirmation', false);
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: /* istanbul ignore next */ firstSave
                 ? this.$t('apps.config.first_integration_success')
                 : this.$t('apps.config.integration_success'),
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'success',
             },
             seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
           });
         } catch (err) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 3,
           });
@@ -929,9 +919,13 @@
           gap: $unnnic-spacing-inline-xs;
           justify-content: center;
 
-          &__cancel &__save {
-            flex-grow: 1;
+          :deep(.unnnic-button) {
             width: 250px;
+          }
+
+          &__cancel &__save {
+            display: flex;
+            flex-grow: 1;
             margin: $unnnic-spacing-inline-xs;
           }
         }

@@ -40,7 +40,7 @@
 <script>
   import { mapState, mapActions } from 'pinia';
   import { survey_store } from '@/stores/modules/survey.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'Survey',
@@ -76,7 +76,7 @@
 
         if (this.errorSurveyAnswer) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`survey.error_submit_answer`),
           });
           return;
@@ -87,7 +87,7 @@
         this.answer = '';
 
         this.callModal({
-          type: 'Success',
+          type: 'success',
           text: this.$t(`survey.success_submit_answer`),
         });
       },
@@ -99,14 +99,10 @@
         }
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            text,
+            type,
           },
           seconds: 6,
         });

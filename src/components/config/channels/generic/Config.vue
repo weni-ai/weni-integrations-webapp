@@ -8,7 +8,9 @@
             :src="app.config.channel_icon_url"
           />
         </div>
-        <div class="app-config-generic__header__title__name">{{ app.config.channel_name }}</div>
+        <div class="app-config-generic__header__title__name">
+          {{ app.config.channel_name }}
+        </div>
       </div>
       <span class="app-config-generic__header__description" v-html="appDescription" />
 
@@ -75,7 +77,7 @@
 </template>
 
 <script>
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -146,7 +148,7 @@
 
         if (this.errorCurrentApp || this.errorAppForm) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t('GenericApp.preview.errors.fetch_app'),
           });
         }
@@ -181,7 +183,9 @@
         this.loadingFormBuild = false;
       },
       updateInputs(inputData) {
-        this.appFormInputs[inputData.index].value = inputData.value;
+        if (inputData?.value) {
+          this.appFormInputs[inputData.index].value = inputData.value;
+        }
       },
       async saveConfig() {
         let payloadConfig = {};
@@ -202,9 +206,9 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'Error', text: this.$t('apps.details.status_error') });
+          this.callModal({ type: 'error', text: this.$t('apps.details.status_error') });
         } else {
-          this.callModal({ type: 'Success', text: this.$t('apps.config.integration_success') });
+          this.callModal({ type: 'success', text: this.$t('apps.config.integration_success') });
 
           await this.fetchAppData();
           this.showCallback = true;
@@ -216,14 +220,10 @@
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

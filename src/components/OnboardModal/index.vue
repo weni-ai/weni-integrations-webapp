@@ -1,5 +1,5 @@
 <template lang="">
-  <unnnic-modal-next class="onboard" v-if="showModal" @close="closeModal" show-close-button>
+  <unnnic-modal class="onboard" v-if="showModal" @close="closeModal" show-close-button>
     <div class="onboard--title">
       {{ currentModalTitle }}
     </div>
@@ -15,11 +15,12 @@
         :key="index"
         :src="onboardIcons[app]"
         @click="() => (currentApp = app)"
+        alt=""
       />
     </div>
 
     <div v-if="currentApp" class="onboard__content">
-      <img class="onboard__gif" :src="onboardGifs[currentApp][page]" />
+      <img class="onboard__gif" :src="onboardGifs[currentApp][page]" alt="" />
 
       <span class="onboard__description" v-html="onboardDescriptions[currentApp][page]" />
     </div>
@@ -32,7 +33,7 @@
         :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
       />
     </div>
-  </unnnic-modal-next>
+  </unnnic-modal>
 </template>
 
 <script>
@@ -111,7 +112,8 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['getConfiguredApps', 'setOnboardStatus']),
+      ...mapActions(app_type, ['setOnboardStatus']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       async checkModalCondition() {
         const params = {
           project_uuid: this.project,

@@ -59,7 +59,12 @@
     </unnnic-table>
     <div class="whatsapp-product-list__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination v-model="page" :max="pageCount" :show="5" />
+      <unnnic-pagination
+        :modelValue="page"
+        @update:modelValue="onPageChange"
+        :max="pageCount"
+        :show="5"
+      />
     </div>
   </div>
 </template>
@@ -146,6 +151,9 @@
         };
 
         await this.getCatalogProducts({ appUuid, catalogUuid, params });
+      },
+      onPageChange(value) {
+        this.page = value;
       },
     },
     watch: {

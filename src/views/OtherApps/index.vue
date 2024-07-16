@@ -11,6 +11,7 @@
       :src="iframeSrc"
       allow="clipboard-read; clipboard-write;"
       title=""
+      style="border: 0"
     ></iframe>
   </div>
 </template>
@@ -30,7 +31,7 @@
     computed: {
       ...mapState(auth_store, ['flowOrg']),
       iframeSrc() {
-        return `${getEnv('VUE_APP_FLOWS_IFRAME_URL')}/weni/${
+        return `${getEnv('VITE_APP_FLOWS_IFRAME_URL')}/weni/${
           this.flowOrg
         }/authenticate?next=/org/home/?flows_config_hide=configs`;
       },
@@ -52,4 +53,3 @@
     margin-bottom: 0 !important;
   }
 </style>
-import { auth_store } from '@/stores/modules/auth.store'; auth_store,

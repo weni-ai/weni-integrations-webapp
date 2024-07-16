@@ -4,12 +4,12 @@
       {{ $t('WhatsApp.templates.form_field.footer_text') }}
     </span>
 
-    <unnnic-text-area
+    <unnnic-input
       class="form-tab-content-footer__input"
       :disabled="disableInputs"
       :maxLength="60"
-      :value="templateTranslationCurrentForm.footer || ''"
-      @input="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
+      :modelValue="textInput"
+      @update:modelValue="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
       :placeholder="$t('WhatsApp.templates.form_field.footer_text_placeholder')"
     />
   </div>
@@ -29,6 +29,9 @@
     },
     computed: {
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+      textInput() {
+        return this.templateTranslationCurrentForm.footer || '';
+      },
     },
   };
 </script>

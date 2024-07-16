@@ -3,16 +3,24 @@ import request from '@/api/request.js';
 const resource = '/api/v1/apptypes';
 
 export default {
-  getAllExternalServicesTypes() {
-    return request.$http.get(`${resource}/?category=external`);
+  async getAllExternalServicesTypes() {
+    return await request.$http.get(`${resource}/?category=external`).then((r) => r.data);
   },
-  createPrompts(code, appUuid, payload) {
-    return request.$http.post(`${resource}/${code}/apps/${appUuid}/prompts/`, payload);
+  async createPrompts(code, appUuid, payload) {
+    return await request.$http
+      .post(`${resource}/${code}/apps/${appUuid}/prompts/`, payload)
+      .then((r) => r.data);
   },
-  getPrompts(code, appUuid) {
-    return request.$http.get(`${resource}/${code}/apps/${appUuid}/prompts/`);
+  async getPrompts(code, appUuid) {
+    return await request.$http
+      .get(`${resource}/${code}/apps/${appUuid}/prompts/`)
+      .then((r) => r.data);
   },
-  deletePrompts(code, appUuid, payload) {
-    return request.$http.delete(`${resource}/${code}/apps/${appUuid}/prompts/`, { data: payload });
+  async deletePrompts(code, appUuid, payload) {
+    return await request.$http
+      .delete(`${resource}/${code}/apps/${appUuid}/prompts/`, {
+        data: payload,
+      })
+      .then((r) => r.data);
   },
 };

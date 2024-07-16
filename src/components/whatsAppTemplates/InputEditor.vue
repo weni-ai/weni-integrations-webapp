@@ -1,20 +1,21 @@
 <template>
   <div class="input-editor">
     <div v-click-outside="hideEmoji">
-      <VEmojiPicker
+      <unnnicEmojiPicker
+        class="input-editor__emoji-picker__list"
         v-show="displayEmoji"
-        class="input-editor__emoji-picker"
-        :emojiSize="22"
-        :emojisByRow="7"
-        @select="selectEmoji"
+        @emojiSelected="selectEmoji"
+        @close="closeEmojiPicker"
       />
-      <unnnic-button
-        class="input-editor__emoji-picker__button"
-        type="tertiary"
-        iconCenter="emoji"
-        size="small"
-        @click="toggleEmoji"
-      />
+      <unnnic-tool-tip side="top" text="Emoji" enabled>
+        <unnnic-button
+          class="input-editor__emoji-picker__button"
+          type="tertiary"
+          iconCenter="emoji"
+          size="small"
+          @click="toggleEmoji"
+        />
+      </unnnic-tool-tip>
     </div>
     <div v-if="formatter" class="input-editor__formatter">
       <unnnic-tool-tip side="top" text="Bold" enabled>
@@ -63,14 +64,10 @@
 </template>
 
 <script>
-  import { VEmojiPicker } from 'v-emoji-picker';
   import StrikeThroughIcon from '@/assets/svgs/strike-through.svg';
 
   export default {
     name: 'InputEditor',
-    components: {
-      VEmojiPicker,
-    },
     data() {
       return {
         displayEmoji: false,
@@ -114,6 +111,7 @@
     &__button {
       width: $unnnic-icon-size-lg;
       height: $unnnic-icon-size-lg;
+      margin-top: 1px;
 
       &__strike {
         ::v-deep {
@@ -128,6 +126,7 @@
         font-family: $unnnic-font-family-primary;
         font-size: $unnnic-font-size-body-lg;
         color: $unnnic-color-neutral-cleanest;
+        padding-top: 20px;
       }
 
       ::v-deep {
@@ -145,7 +144,12 @@
       top: -270px;
 
       &__button {
+        margin-top: 1px;
         opacity: $unnnic-opacity-level-clarifying;
+      }
+
+      &__list {
+        transform: translateX(-150px);
       }
 
       ::v-deep .container-emoji {

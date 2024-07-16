@@ -30,8 +30,8 @@
       this.retriveSelectedOrg();
       this.retriveSelectedProject();
       this.retriveSelectedFlowOrg();
-      if (getEnv('VUE_APP_HELPHERO_ID')) {
-        const hlp = initHelpHero(getEnv('VUE_APP_HELPHERO_ID'));
+      if (getEnv('VITE_APP_HELPHERO_ID')) {
+        const hlp = initHelpHero(getEnv('VITE_APP_HELPHERO_ID'));
         hlp.anonymous();
       }
 
@@ -153,5 +153,3 @@
     z-index: 9999;
   }
 </style>
-import { auth_store } from './stores/modules/auth.store'; import { mapActions } from 'pinia';
-auth_store, import { mapActions } from 'pinia';

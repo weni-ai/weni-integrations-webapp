@@ -1,6 +1,6 @@
 <template>
   <div ref="appGrid">
-    <section v-if="!loading" id="app-grid">
+    <section v-if="!loading" id="app-grid" maxLength="255" disabled="false">
       <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon
           :icon="avatar.icon"
@@ -85,7 +85,8 @@
         <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ apps.length }}</span>
         <unnnic-pagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
-          v-model="currentPage"
+          :modelValue="currentPage"
+          @update:modelValue="onPageChange"
           :max="maxGridPages"
           :show="6"
         />
@@ -128,8 +129,7 @@
 </template>
 
 <script>
-  import unnnicCallAlert from '@weni/unnnic-system';
-
+  import unnnic from '@weni/unnnic-system';
   import configModal from '../config/ConfigModal.vue';
   import skeletonLoading from '../loadings/AppGrid.vue';
   import IntegrateButton from '../IntegrateButton/index.vue';
@@ -141,7 +141,7 @@
   import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',
-    components: { configModal, skeletonLoading, IntegrateButton, LoadingButton },
+    components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
     props: {
       section: {
         type: String,
@@ -228,7 +228,7 @@
       },
     },
     methods: {
-      ...mapActions(app_type, ['deleteApp']),
+      ...mapActions(app_type, ['deleteApp', 'setAppUuid']),
       ...mapActions(insights_store, ['setHasInsights']),
       toggleRemoveModal(app = null) {
         this.currentRemoval = app;
@@ -243,28 +243,20 @@
         }
 
         this.toggleRemoveModal();
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.remove.status_text'),
-            title: this.$t('apps.details.status_success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 3,
         });
         this.$emit('update');
       },
       callErrorModal({ text }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
-            title: this.$t('general.error'),
-            icon: 'alert-circle-1',
-            scheme: 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'error',
           },
           seconds: 6,
         });
@@ -273,6 +265,7 @@
         this.$router.push(`/${code}/details`);
       },
       openAppModal(app) {
+        this.setAppUuid(app.uuid);
         this.setHasInsights({ isActive: app.config?.has_insights });
         if (this.type === 'add' && app.generic) {
           return;
@@ -332,18 +325,16 @@
       /* istanbul ignore next */
       copyToClipboard(content) {
         navigator.clipboard.writeText(content);
-
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('apps.details.actions.copy.sucess', { uuid: content }),
-            title: this.$t('apps.details.status_success'),
-            icon: 'check-circle-1-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 6,
         });
+      },
+      onPageChange(value) {
+        this.currentPage = value;
       },
     },
     watch: {
@@ -360,4 +351,3 @@
 <style lang="scss" scoped>
   @import '../styles/grid.scss';
 </style>
-import { template } from '@babel/core';

@@ -9,12 +9,12 @@
       :key="bodyKey"
       class="form-tab-content-body__input"
       :disabled="disableInputs"
-      :value="bodyContent"
-      :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
-      @input="onInput"
+      :modelValue="bodyContent"
+      @update:modelValue="onInput"
       :maxLength="1024"
       :type="hasErrors ? 'error' : 'normal'"
       :errors="errorsList"
+      :placeholder="$t('WhatsApp.templates.form_field.body_text__placeholder')"
     />
     <InputEditor
       :class="[
@@ -156,7 +156,7 @@
         if (this.disableInputs) {
           return;
         }
-        const result = (this.templateTranslationCurrentForm.body || '') + emoji.data;
+        const result = (this.templateTranslationCurrentForm.body || '') + emoji;
 
         this.emitInputChange(result);
       },

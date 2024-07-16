@@ -5,47 +5,17 @@
         <div class="whatsapp-templates-table__filters__date__label">
           {{ $t('WhatsApp.templates.table.filters.date.label') }}
         </div>
-        <unnnic-date-filter
-          class="whatsapp-templates-table__filters__date__selector"
-          dateFormat="DD/MM/YYYY"
-          @filter="showDateFilter = true"
-          :startDate="startDateObject"
-          :endDate="endDateObject"
-          placeholder="DD/MM/YYYY ~ DD/MM/YYYY"
+        <unnnicInputDatePicker
+          :modelValue="datePickerDates"
+          @update:modelValue="handleDateFilter"
+          format="MM-DD-YYYY"
         />
-
-        <div class="whatsapp-templates-table__filters__date__dropdown-date">
-          <unnnic-date-picker
-            class="whatsapp-templates-table__filters__date__dropdown-date__picker"
-            v-show="showDateFilter"
-            size="large"
-            :days="['D', 'S', 'T', 'Q', 'Q', 'S', 'S']"
-            :months="months"
-            :options="options"
-            @submit="handleDateFilter"
-            :value="datePickerDates"
-            :clearLabel="$t('WhatsApp.templates.table.filters.date.clear')"
-            :actionLabel="$t('WhatsApp.templates.table.filters.date.filter')"
-          />
-        </div>
       </div>
-
-      <unnnic-select
+      <unnnic-select-smart
         class="whatsapp-templates-table__filters__category"
-        :search="false"
-        :value="selectedCategory"
-        @input="handleCategoryChange"
-        :label="$t('WhatsApp.templates.table.filters.category')"
-      >
-        <option
-          v-for="(category, index) in categoryOptions"
-          :key="index"
-          :value="category.type"
-          :label="$t(category.translation)"
-        >
-          {{ $t(category.translation) }}
-        </option>
-      </unnnic-select>
+        v-model="selectedCategory"
+        :options="categoryOptions"
+      />
       <unnnic-input
         v-model="searchTerm"
         class="whatsapp-templates-table__filters__search"
@@ -132,14 +102,19 @@
 
     <div class="whatsapp-templates-table__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination v-model="page" :max="pageCount" :show="5" />
+      <unnnic-pagination
+        :modelValue="page"
+        @update:modelValue="onPageChange"
+        :max="pageCount"
+        :show="5"
+      />
     </div>
   </div>
 </template>
 
 <script>
   import debounce from 'lodash.debounce';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import TableLoading from '@/components/whatsAppTemplates/loadings/TableLoading.vue';
@@ -170,20 +145,20 @@
         dateSortDirection: 'NONE',
         categoryOptions: [
           {
-            type: 'ANY',
-            translation: 'WhatsApp.data.templates.category.any',
+            value: 'ANY',
+            label: this.$t('WhatsApp.data.templates.category.any'),
           },
           {
-            type: 'UTILITY',
-            translation: 'WhatsApp.data.templates.category.utility',
+            value: 'UTILITY',
+            label: this.$t('WhatsApp.data.templates.category.utility'),
           },
           {
-            type: 'MARKETING',
-            translation: 'WhatsApp.data.templates.category.marketing',
+            value: 'MARKETING',
+            label: this.$t('WhatsApp.data.templates.category.marketing'),
           },
           {
-            type: 'AUTHENTICATION',
-            translation: 'WhatsApp.data.templates.category.authentication',
+            value: 'AUTHENTICATION',
+            label: this.$t('WhatsApp.data.templates.category.authentication'),
           },
         ],
         tableHeaders: [
@@ -286,10 +261,10 @@
         return this.endDate && new Date(this.endDate.replace('-', ' '));
       },
       datePickerDates() {
-        return { startDate: this.startDateObject, endDate: this.endDateObject };
+        return { start: this.startDateObject, end: this.endDateObject };
       },
       filterState() {
-        return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+        return `${this.selectedCategory[0]?.value}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
       },
     },
     methods: {
@@ -301,8 +276,8 @@
           page_size: this.pageSize,
         };
 
-        if (this.selectedCategory !== 'ANY') {
-          params.category = this.selectedCategory;
+        if (this.selectedCategory[0].value !== 'ANY') {
+          params.category = this.selectedCategory[0].value;
         }
 
         if (this.startDate) {
@@ -336,14 +311,10 @@
         await this.getWhatsAppTemplates({ appUuid, params });
 
         if (this.errorWhatsAppTemplates) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.templates.error.fetch_templates'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -373,12 +344,12 @@
       handleCategoryChange(event) {
         this.selectedCategory = event;
       },
-      handleDateFilter: debounce(async function (event) {
-        this.startDate = event.startDate;
-        this.endDate = event.endDate;
+      handleDateFilter(event) {
+        this.startDate = event.start;
+        this.endDate = event.end;
 
         this.showDateFilter = false;
-      }, 750),
+      },
       handleNameSort(sortDirection) {
         this.nameSortDirection = sortDirection;
         this.dateSortDirection = 'NONE';
@@ -386,6 +357,9 @@
       handleDateSort(sortDirection) {
         this.dateSortDirection = sortDirection;
         this.nameSortDirection = 'NONE';
+      },
+      onPageChange(value) {
+        this.page = value;
       },
     },
     watch: {
@@ -504,6 +478,7 @@
         flex: 1;
         min-width: 150px;
         max-width: 200px;
+        align-self: end;
       }
 
       &__search {

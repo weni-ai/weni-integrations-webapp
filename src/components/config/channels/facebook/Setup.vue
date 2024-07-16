@@ -53,23 +53,13 @@
       <template #message>
         <div class="page-selection__select">
           <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
-          <unnnic-select
+          <unnnic-select-smart
             ref="page-selection-input"
-            :search="false"
             size="sm"
-            :value="selectedPage"
-            @input="handlePageSelection"
-            :key="selectKey"
-          >
-            <option
-              v-for="(page, index) in pageList"
-              :key="index"
-              :value="page.id"
-              :label="page.name"
-            >
-              {{ page.name }}
-            </option>
-          </unnnic-select>
+            :options="pageListOptions"
+            v-model="selectedPage"
+            @update:modelValue="handlePageSelection"
+          />
         </div>
       </template>
 
@@ -100,7 +90,7 @@
 
 <script>
   import axios from 'axios';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../../utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
@@ -124,13 +114,13 @@
         stage: 'login',
         accessToken: null,
         pageList: [],
-        selectedPage: null,
+        selectedPage: [],
         selectKey: 0,
         onLogin: false,
         loadingPages: false,
         appScopes: {
-          ig: 'instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
-          fba: 'pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
+          ig: 'business_management,instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
+          fba: 'business_management,pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
         },
       };
     },
@@ -162,6 +152,14 @@
         };
         return iconMap[this.app.code];
       },
+      pageListOptions() {
+        return this.pageList.map((item) => {
+          return {
+            value: item.id,
+            label: item.name,
+          };
+        });
+      },
     },
     methods: {
       ...mapActions(app_type, ['createApp', 'updateAppConfig', 'deleteApp']),
@@ -173,18 +171,18 @@
         this.onLogin = state;
       },
       /* istanbul ignore next */
-      async startFacebookLogin() {
-        const fbAppId = getEnv('VUE_APP_FACEBOOK_APP_ID');
+      startFacebookLogin() {
+        const fbAppId = getEnv('VITE_APP_FACEBOOK_APP_ID');
 
         if (!fbAppId) {
           return;
         }
 
         /* eslint-disable no-undef */
-        const loginCallback = async () => {
+        const loginCallback = () => {
           this.changeLoginState(true);
           FB.login(
-            async function (response) {
+            function (response) {
               if (response.authResponse && response.authResponse.grantedScopes) {
                 const accessToken = response.authResponse.accessToken;
                 this.startPageSelectionStage(accessToken);
@@ -211,9 +209,12 @@
           const res = await axios.get(fbAccountUrl);
           this.pageList = res.data.data;
         } catch (error) {
+          const err =
+            err.response?.data.error?.error_user_msg ||
+            this.$t(`${this.integrationName}.setup.account_data.error`);
           this.callModal({
-            type: 'Error',
-            text: this.$t(`${this.integrationName}.setup.account_data.error`),
+            type: 'error',
+            text: err,
           });
           return;
         }
@@ -221,11 +222,11 @@
         this.loadingPages = false;
       },
       async createChannel() {
-        const page = this.pageList.find((page) => page.id === this.selectedPage);
+        const page = this.pageList.find((page) => page.id === this.selectedPage[0].value);
 
         if (!page) {
           this.callModal({
-            type: 'Error',
+            type: 'error',
             text: this.$t(`${this.integrationName}.setup.find_page.error`),
           });
           return;
@@ -236,9 +237,12 @@
           payload: { project_uuid: this.project },
         });
         if (this.errorCreateApp) {
+          const err =
+            this.errorCreateApp?.error_user_msg ||
+            this.$t(`${this.integrationName}.setup.create_app.error`);
           this.callModal({
-            type: 'Error',
-            text: this.$t(`${this.integrationName}.setup.create_app.error`),
+            type: 'error',
+            text: err,
           });
           return;
         }
@@ -261,29 +265,28 @@
         await this.updateAppConfig(data);
 
         if (this.errorUpdateAppConfig) {
+          const err =
+            this.errorUpdateAppConfig?.error_user_msg ||
+            this.$t(`${this.integrationName}.setup.update_app.error`);
           this.callModal({
-            type: 'Error',
-            text: this.$t(`${this.integrationName}.setup.update_app.error`),
+            type: 'error',
+            text: err,
           });
           await this.deleteApp({ code: this.app.code, appUuid: this.createAppResponse.uuid });
           return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t(`${this.integrationName}.setup.success`) });
+        this.callModal({ type: 'success', text: this.$t(`${this.integrationName}.setup.success`) });
         this.$router.replace('/apps/my');
       },
       closePopUp() {
         this.$emit('closePopUp');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: type,
           },
           seconds: 6,
         });

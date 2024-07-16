@@ -38,10 +38,10 @@
         </div>
         <div class="wpp_insights__filters__time__select">
           <unnnic-input-date-picker
-            :value="period"
+            v-model="period"
             size="md"
             format="MM-DD-YYYY"
-            @changed="setPeriod"
+            @submit="setPeriod"
           />
         </div>
       </div>
@@ -89,22 +89,22 @@
           <unnnic-chart-multi-line
             :data="getChartSent"
             :title="$t('WhatsApp.insights.messages.sent')"
-            v-if="!hash"
+            v-if="!hash && getChartSent.length"
           />
           <unnnic-chart-multi-line
             :data="getChartDelivered"
             :title="$t('WhatsApp.insights.messages.delivered')"
-            v-if="!hash"
+            v-if="!hash && getChartDelivered.length"
           />
           <unnnic-chart-multi-line
             :data="getChartRead"
             :title="$t('WhatsApp.insights.messages.read')"
-            v-if="!hash"
+            v-if="!hash && getChartRead.length"
           />
           <unnnic-chart-multi-line
             :data="getChartByDay.data"
             :title="$t('WhatsApp.insights.messages.received')"
-            v-if="!!hash"
+            v-if="!!hash && getChartByDay.data.length"
             :fixedMaxValue="getChartByDay.maxValue"
           />
         </div>
@@ -171,8 +171,8 @@
       };
     },
     /* istanbul ignore next */
-    mounted() {
-      this.fetchTemplates();
+    async mounted() {
+      await this.fetchTemplates();
       if (this.hash) {
         this.model = [
           {
@@ -181,11 +181,11 @@
           },
         ];
       }
-      this.fetchTemplateAnalytics();
+      await this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState(insights_store, [
-        'app_uuid',
+        'appUuid',
         'errorTemplateAnalytics',
         'errorTemplates',
         'templateAnalytics',
@@ -194,9 +194,9 @@
         'isActive',
       ]),
       modelOptions() {
-        if (this.templates?.length > 0) {
+        if (this.templates?.count > 0) {
           const templateList = [];
-          this.templates.forEach((item) => {
+          this.templates.results.forEach((item) => {
             item.translations.forEach((translation) => {
               const obj = {
                 value: translation.message_template_id,
@@ -254,20 +254,20 @@
     },
     methods: {
       ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
-      fetchTemplateAnalytics() {
+      async fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
-          app_uuid: this.app_uuid,
+          app_uuid: this.appUuid,
           filters: {
             start: this.period.start,
             end: this.period.end,
             fba_template_ids: models,
           },
         };
-        this.getTemplateAnalytics(params);
+        await this.getTemplateAnalytics(params);
       },
-      fetchTemplates() {
-        this.getTemplates({ app_uuid: this.app_uuid });
+      async fetchTemplates() {
+        await this.getTemplates({ app_uuid: this.appUuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -280,7 +280,7 @@
         return `${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()}`;
       },
       getChartByType(type) {
-        const data = this.templateAnalytics?.data.map((template) => {
+        const data = this.templateAnalytics?.data?.map((template) => {
           return {
             title: template.template_name || template.template_id,
             data: template.dates.map((item) => {
@@ -303,7 +303,7 @@
       },
       async activeTemplate() {
         this.showModal = false;
-        await this.setActiveProject({ app_uuid: this.app_uuid });
+        await this.setActiveProject({ appUuid: this.appUuid });
       },
     },
   };

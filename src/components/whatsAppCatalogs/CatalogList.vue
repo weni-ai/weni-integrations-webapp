@@ -42,7 +42,12 @@
     </div>
     <div class="whatsapp-catalog-list__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination v-model="page" :max="pageCount" :show="5" />
+      <unnnic-pagination
+        :modelValue="page"
+        @update:modelValue="onPageChange"
+        :max="pageCount"
+        :show="5"
+      />
     </div>
     <unnnic-modal-next
       v-if="openModal"
@@ -61,7 +66,7 @@
       @click-action-secondary="closeModal"
       @click-action-primary="handleCatalogConfirmation"
     >
-      <template slot="description">
+      <template #description>
         <div v-if="catalogToEnable">
           {{
             $t('WhatsApp.catalog.list.disable_modal.description_active', {
@@ -84,7 +89,7 @@
   import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
   import { mapActions, mapState } from 'pinia';
   import debounce from 'lodash.debounce';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
   export default {
@@ -117,7 +122,7 @@
         'errorToggleCartVisibility',
       ]),
       hasCommerceSetting() {
-        return this.commerceSettings ? this.commerceSettings.is_cart_enabled : false;
+        return this.commerceSettings ? this.commerceSettings?.is_cart_enabled : false;
       },
       listItems() {
         return this.whatsAppCloudCatalogs?.results || [];
@@ -164,14 +169,10 @@
         await this.getWhatsAppCloudCatalogs({ appUuid, params });
 
         if (this.errorWhatsAppCloudCatalogs) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -191,14 +192,10 @@
         await this.disableWhatsAppCloudCatalogs(data);
 
         if (this.errorDisableCatalog) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.disable_catalog'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -211,7 +208,6 @@
         if (this.connectedCatalog) {
           this.catalogToEnable = catalog;
           this.openModal = true;
-          return;
         }
         this.enableCatalog(catalog);
       },
@@ -228,14 +224,10 @@
         await this.enableWhatsAppCloudCatalogs(data);
 
         if (this.errorEnableCatalog) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.enable_catalog'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -259,20 +251,16 @@
         const data = {
           appUuid,
           payload: {
-            enable: !this.commerceSettings.is_cart_enabled,
+            enable: !this.commerceSettings?.is_cart_enabled,
           },
         };
         await this.toggleCartVisibility(data);
 
         if (this.errorToggleCartVisibility) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -291,6 +279,9 @@
             catalogName,
           },
         });
+      },
+      onPageChange(value) {
+        this.page = value;
       },
     },
     watch: {

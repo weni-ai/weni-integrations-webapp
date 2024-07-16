@@ -1,12 +1,12 @@
 <template>
   <div class="discovery-content">
-    <unnnic-autocomplete
+    <unnnic-input
       v-model="searchTerm"
       class="discovery-content__search"
-      placeholder="gdfgbfgbgbfg"
+      :placeholder="$t('apps.discovery.search.placeholder')"
       icon-left="search-1"
-      :data="[]"
     />
+
     <span v-if="searchTerm && searchTerm.trim()" class="discovery-content__search__results">
       {{ $t('apps.discovery.search.results') }}
       <span class="discovery-content__search__results__highlight">
@@ -18,6 +18,7 @@
         ref="appGrid"
         section="channel"
         type="add"
+        :loading="loadingAllAppTypes"
         :apps="filteredApps"
         @update="fetchChannels"
       />
@@ -73,7 +74,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Discovery',
     components: {
@@ -119,6 +120,7 @@
     computed: {
       ...mapState(app_type, [
         'allAppTypes',
+        'loadingAllAppTypes',
         'errorAllAppTypes',
         'featuredApps',
         'loadingFeaturedApps',
@@ -192,14 +194,10 @@
         await app_type().getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.discovery.fetch_error'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });
@@ -212,10 +210,10 @@
         await this.$refs.appGrid.manuallyCreateApp(appCode);
       },
       async fetchExternalServices() {
-        await externals_store().getExternalServicesTypes();
+        await this.getExternalServicesTypes();
       },
       async fetchEcommerceApps() {
-        await ecommerce_store().getEcommerceTypes();
+        await this.getEcommerceTypes();
       },
     },
   };

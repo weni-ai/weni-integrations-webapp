@@ -18,13 +18,13 @@ export const generic_store = defineStore('generic', {
       this.genericAppAttributes = null;
       this.errorAppForm = null;
       try {
-        const { data } = await genericTypeApi.getAppForm(channelCode);
+        const data = await genericTypeApi.getAppForm(channelCode);
         this.genericAppForm = data.form;
         this.genericAppAttributes = data.attributes;
         this.loadingAppForm = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorAppForm = err;
+        this.errorAppForm = err.response?.data.error || err;
         this.loadingAppForm = false;
       }
     },

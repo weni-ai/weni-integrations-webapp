@@ -20,21 +20,21 @@ export const insights_store = defineStore('insights', {
       this.errorTemplateAnalytics = null;
       this.templateAnalytics = null;
       try {
-        let { data } = await insights.get_template_analytics(app_uuid, filters);
+        let data = await insights.get_template_analytics(app_uuid, filters);
         this.templateAnalytics = data;
         this.loadingTemplateAnalytics = false;
       } catch (err) {
-        this.errorTemplateAnalytics = err;
+        this.errorTemplateAnalytics = err.response?.data.error || err;
         this.loadingTemplateAnalytics = false;
       }
     },
     async getTemplates({ app_uuid }) {
       try {
-        let { data } = await insights.get_templates(app_uuid);
+        let data = await insights.get_templates(app_uuid);
         this.errorTemplates = null;
         this.templates = data;
       } catch (err) {
-        this.errorTemplates = err;
+        this.errorTemplates = err.response?.data.error || err;
       }
     },
     async setActiveProject({ app_uuid }) {

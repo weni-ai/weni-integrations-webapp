@@ -7,6 +7,7 @@ import { clearHtmlTags } from '@/utils/clearHtmlTags';
 export const app_type = defineStore('appType', {
   state() {
     return {
+      appUuid: null,
       onboardStatus: true,
       loadingDeleteApp: false,
       errorDeleteApp: false,
@@ -20,7 +21,7 @@ export const app_type = defineStore('appType', {
       errorAllAppTypes: false,
 
       currentAppType: null,
-      loadingCurrentAppType: true,
+      loadingCurrentAppType: false,
       errorCurrentAppType: false,
 
       postRatingResult: null,
@@ -49,15 +50,18 @@ export const app_type = defineStore('appType', {
     setOnboardStatus(value) {
       this.onboardStatus = value;
     },
+    setAppUuid(value) {
+      this.appUuid = value;
+    },
     async getAllAppTypes({ params }) {
       this.loadingAllAppTypes = true;
       this.errorAllAppTypes = null;
       this.allAppTypes = null;
 
       try {
-        const { data: baseApps } = await appType.getAllAppTypes(params);
-        const { data: genericAppsData } = await genericType.getAllGenericTypes();
-        const { data: iconData } = await genericType.getIcons();
+        const baseApps = await appType.getAllAppTypes(params);
+        const genericAppsData = await genericType.getAllGenericTypes();
+        const iconData = await genericType.getIcons();
 
         const genericApps = [];
 
@@ -91,7 +95,6 @@ export const app_type = defineStore('appType', {
         this.loadingCurrentAppType = false;
       } catch (err) {
         this.errorCurrentAppType = err;
-        this.loadingCurrentAppType = false;
       }
     },
     async postRating({ code, payload }) {
@@ -112,7 +115,7 @@ export const app_type = defineStore('appType', {
       this.errorCurrentApp = null;
       this.currentApp = null;
       try {
-        const { data } = await appType.getApp(code, appUuid);
+        const data = await appType.getApp(code, appUuid);
         this.currentApp = data;
         this.loadingCurrentApp = false;
       } catch (err) {
@@ -151,12 +154,11 @@ export const app_type = defineStore('appType', {
       this.errorFeaturedApps = null;
       this.featuredApps = null;
       try {
-        const { data } = await appType.fetchFeatured();
+        const data = await appType.fetchFeatured();
         this.featuredApps = data;
         this.loadingFeaturedApps = false;
       } catch (err) {
         this.errorFeaturedApps = err;
-        this.loadingFeaturedApps = false;
       }
     },
     async updateAppConfig({ code, appUuid, payload }) {
@@ -166,12 +168,11 @@ export const app_type = defineStore('appType', {
       try {
         const { data } = await appType.updateAppConfig(code, appUuid, payload);
         this.updateAppConfigResult = data;
-        this.loadingUpdateAppConfig = false;
       } catch (err) {
         captureSentryException(err);
         this.errorUpdateAppConfig = err;
-        this.loadingUpdateAppConfig = false;
       }
+      this.loadingUpdateAppConfig = false;
     },
     async updateApp({ code, appUuid, payload }) {
       this.loadingUpdateApp = true;

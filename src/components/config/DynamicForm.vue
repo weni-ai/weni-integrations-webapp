@@ -10,20 +10,13 @@
         :label="input.label && $t(input.label)"
         :placeholder="input.placeholder && $t(input.placeholder)"
         :message="input.message && $t(input.message)"
-        @input="emitInput(index, input, $event)"
+        @update:modelValue="(e) => emitInput(index, e)"
       />
-      <unnnic-select
-        v-else-if="input.type === 'select'"
-        ref="unnnic-select"
-        :placeholder="input.placeholder && $t(input.placeholder)"
-        :label="input.label && $t(input.label)"
-        :value="input.value"
-        @input="emitInput(index, input, $event)"
-      >
-        <option v-for="option in input.options" :key="option.key" :value="option.value">
-          {{ option.text }}
-        </option>
-      </unnnic-select>
+
+      <div v-if="input.type === 'select'">
+        <unnnic-label :label="$t(input.label)" />
+        <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
+      </div>
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="$t(input.label)" />
         <unnnic-upload-area
@@ -37,15 +30,15 @@
           :canImport="input.props.canImport"
           :canDelete="input.props.canDelete"
           :shouldReplace="input.props.shouldReplace"
-          @fileChange="emitInput(index, input, $event)"
+          @fileChange="(e) => emitInput(index, e)"
         />
       </div>
       <unnnic-checkbox
         v-else-if="input.type === 'checkbox'"
         class="dynamic-form__fields--top-margin"
-        :value="input.value || false"
+        v-model="input.value"
         :textRight="input.label"
-        @change="emitInput(index, input, $event)"
+        @change="(e) => emitInput(index, e)"
       />
     </div>
   </div>
@@ -61,15 +54,14 @@
       },
     },
     methods: {
-      emitInput(index, input, value) {
-        switch (input.type) {
+      emitInput(index, event) {
+        const type = this.inputs[index]?.type;
+        switch (type) {
           case 'select':
-            // eslint-disable-next-line no-case-declarations
-            const option = input.options.find((option) => option.value === value);
-            this.$emit('input', { index, value: option.value });
+            this.$emit('input', { index, value: event[0] });
             break;
           default:
-            this.$emit('input', { index, value });
+            this.$emit('input', { index, value: event });
             break;
         }
       },
@@ -86,6 +78,7 @@
       &--top-margin {
         margin-top: $unnnic-spacing-stack-xs;
       }
+
       &__input {
         ::v-deep {
           .unnnic-form__message {

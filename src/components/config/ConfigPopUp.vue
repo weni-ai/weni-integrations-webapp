@@ -3,7 +3,6 @@
     <component
       class="config-popup__component"
       :is="currentComponent"
-      :v-bind="$attrs"
       :app="currentApp"
       :customData="currentCustomData"
       @closePopUp="closePopUp"

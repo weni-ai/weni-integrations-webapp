@@ -15,6 +15,15 @@ export const ecommerce_store = defineStore('ecommerce', {
       loadingVtexAppUuid: false,
       errorVtexAppUuid: null,
       generatedVtexAppUuid: null,
+
+      loadingSellersList: false,
+      sellersList: [],
+      errorSellersList: null,
+
+      loadingSyncSellers: false,
+      errorSyncSellers: null,
+
+      checkSellers: null,
     };
   },
   actions: {
@@ -23,13 +32,11 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorEcommerceApps = null;
       this.ecommerceAppsList = null;
       try {
-        const { data } = await ecommerce.getAllEcommerceTypes();
-        this.ecommerceAppsList = data;
-        this.loadingEcommerceApps = false;
+        this.ecommerceAppsList = await ecommerce.getAllEcommerceTypes();
       } catch (err) {
         this.errorEcommerceApps = err;
-        this.loadingEcommerceApps = false;
       }
+      this.loadingEcommerceApps = false;
     },
     async connectVtexCatalog({ code, appUuid, payload }) {
       this.loadingConnectVtexCatalog = true;
@@ -49,12 +56,44 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorVtexAppUuid = null;
       this.generatedVtexAppUuid = null;
       try {
-        const { data } = await ecommerce.getVtexAppUuid(code);
+        const data = await ecommerce.getVtexAppUuid(code);
         this.generatedVtexAppUuid = data;
         this.loadingVtexAppUuid = false;
       } catch (err) {
         this.errorVtexAppUuid = err;
         this.loadingVtexAppUuid = false;
+      }
+    },
+    async getSellersList({ uuid }) {
+      this.loadingSellersList = true;
+      this.errorSellersList = null;
+      this.sellersList = [];
+
+      try {
+        const data = await ecommerce.getSellers(uuid);
+        this.sellersList = data;
+        this.loadingSellersList = false;
+      } catch (err) {
+        this.errorSellersList = err;
+        this.loadingSellersList = false;
+      }
+    },
+    async checkSyncSellers({ uuid }) {
+      try {
+        await ecommerce.checkSellers(uuid);
+      } catch (err) {
+        this.checkSellers = err;
+      }
+    },
+    async syncSellers({ uuid, payload }) {
+      this.loadingSyncSellers = true;
+      this.errorSyncSellers = null;
+      try {
+        await ecommerce.syncSellers(uuid, payload);
+        this.loadingSyncSellers = false;
+      } catch (err) {
+        this.errorSyncSellers = err;
+        this.loadingSyncSellers = false;
       }
     },
   },

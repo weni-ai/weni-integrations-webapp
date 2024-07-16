@@ -20,138 +20,142 @@
 
     <div class="config-chatgpt__settings__content">
       <unnnic-tab class="config-chatgpt__tabs" :tabs="tabs" initialTab="flows">
-        <template slot="tab-head-flows"> {{ $t('ChatGPT.config.tabs.flows.title') }} </template>
-        <div slot="tab-panel-flows">
-          <div class="config-chatgpt__settings__content__scroll">
-            <span class="config-chatgpt__settings__content__description">
-              {{ $t('ChatGPT.config.tabs.flows.description') }}
-            </span>
+        <template #tab-head-flows> {{ $t('ChatGPT.config.tabs.flows.title') }} </template>
+        <template #tab-panel-flows>
+          <div>
+            <div class="config-chatgpt__settings__content__scroll">
+              <span class="config-chatgpt__settings__content__description">
+                {{ $t('ChatGPT.config.tabs.flows.description') }}
+              </span>
 
-            <unnnic-text-area
-              ref="rules-input"
-              v-model="rules"
-              class="config-chatgpt__settings__content__inputs__rules"
-              type="normal"
-              :label="$t('ChatGPT.config.tabs.flows.inputs.rules_label')"
-            />
-            <unnnic-text-area
-              ref="base-input"
-              v-model="knowledgeBase"
-              class="config-chatgpt__settings__content__inputs__knowledge"
-              type="normal"
-              :label="$t('ChatGPT.config.tabs.flows.inputs.knowledge_label')"
-            />
-            <unnnic-label
-              :label="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_label')"
-            />
-            <unnnic-select-smart v-model="selectedConversationStyle" :options="stylesList" />
-            <unnnic-label :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')" />
-            <unnnic-select-smart v-model="selectedVoiceTone" :options="voiceToneList">
-            </unnnic-select-smart>
-            <unnnic-input
-              ref="prompt-input"
-              v-model="prompt"
-              class="config-chatgpt__settings__content__inputs__prompt"
-              type="normal"
-              :label="$t('ChatGPT.config.tabs.flows.inputs.prompt_label')"
-              :placeholder="$t('ChatGPT.config.tabs.flows.inputs.prompt_placeholder')"
-              @keyup.enter="addPrompt"
-              iconRight="keyboard-enter-1"
-            />
+              <unnnic-text-area
+                ref="rules-input"
+                v-model="rules"
+                class="config-chatgpt__settings__content__inputs__rules"
+                type="normal"
+                :label="$t('ChatGPT.config.tabs.flows.inputs.rules_label')"
+              />
+              <unnnic-text-area
+                ref="base-input"
+                v-model="knowledgeBase"
+                class="config-chatgpt__settings__content__inputs__knowledge"
+                type="normal"
+                :label="$t('ChatGPT.config.tabs.flows.inputs.knowledge_label')"
+              />
+              <unnnic-label
+                :label="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_label')"
+              />
+              <unnnic-select-smart v-model="selectedConversationStyle" :options="stylesList" />
+              <unnnic-label :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')" />
+              <unnnic-select-smart v-model="selectedVoiceTone" :options="voiceToneList">
+              </unnnic-select-smart>
+              <unnnic-input
+                ref="prompt-input"
+                v-model="prompt"
+                class="config-chatgpt__settings__content__inputs__prompt"
+                type="normal"
+                :label="$t('ChatGPT.config.tabs.flows.inputs.prompt_label')"
+                :placeholder="$t('ChatGPT.config.tabs.flows.inputs.prompt_placeholder')"
+                @keyup.enter="addPrompt"
+                iconRight="keyboard"
+              />
 
-            <unnnic-label
-              v-if="availablePrompts.length > 0 && !loadingGetPrompts"
-              :label="$t('ChatGPT.config.tabs.flows.prompts_list')"
-            />
-            <unnnic-skeleton-loading
-              v-else-if="loadingGetPrompts"
-              tag="div"
-              height="25px"
-              width="75px"
-            />
-            <div class="config-chatgpt__settings__content__prompts-wrapper">
-              <unnnic-toolTip
-                v-for="(prompt, index) in availablePrompts"
-                :key="index"
-                class="config-chatgpt__settings__content__prompt config-chatgpt__settings__content__prompts__tooltip"
-                :text="prompt.text"
-                :enabled="true"
-                side="top"
-                maxWidth="350px"
-              >
-                <unnnic-tag
+              <unnnic-label
+                v-if="availablePrompts.length > 0 && !loadingGetPrompts"
+                :label="$t('ChatGPT.config.tabs.flows.prompts_list')"
+              />
+              <unnnic-skeleton-loading
+                v-else-if="loadingGetPrompts"
+                tag="div"
+                height="25px"
+                width="75px"
+              />
+              <div class="config-chatgpt__settings__content__prompts-wrapper">
+                <unnnic-toolTip
+                  v-for="(prompt, index) in availablePrompts"
+                  :key="index"
+                  class="config-chatgpt__settings__content__prompt config-chatgpt__settings__content__prompts__tooltip"
                   :text="prompt.text"
-                  scheme="neutral-cloudy"
-                  hasCloseIcon
-                  @close="removePrompt(prompt)"
-                  :ref="`tag-${index}`"
-                />
-              </unnnic-toolTip>
-            </div>
-          </div>
-
-          <div class="config-chatgpt__settings__buttons">
-            <unnnic-button
-              class="config-chatgpt__settings__buttons__cancel"
-              type="tertiary"
-              size="large"
-              :text="$t('apps.config.cancel')"
-              @click="closeConfig"
-            />
-
-            <unnnic-button
-              class="config-chatgpt__settings__buttons__save"
-              type="secondary"
-              size="large"
-              :text="$t('ChatGPT.config.save_modifications')"
-              :disabled="!hasChanges"
-              :loading="loadingUpdateApp"
-              @click="saveConfig"
-            />
-          </div>
-        </div>
-
-        <template slot="tab-head-general"> {{ $t('ChatGPT.config.tabs.general.title') }} </template>
-        <div slot="tab-panel-general" class="config-chatgpt__general">
-          <div class="config-chatgpt__settings__content__version-wrapper">
-            <div>
-              {{ $t('ChatGPT.setup.version') }}
-
-              <unnnic-toolTip
-                class="config-chatgpt__settings__content__version__tooltip"
-                :text="$t('ChatGPT.setup.version_tooltip')"
-                :enabled="true"
-                side="right"
-                maxWidth="350px"
-              >
-                <unnnic-icon-svg
-                  class="config-chatgpt__settings__content__version__icon"
-                  icon="information-circle-4"
-                  size="sm"
-                  scheme="neutral-soft"
-                />
-              </unnnic-toolTip>
+                  :enabled="true"
+                  side="top"
+                  maxWidth="350px"
+                >
+                  <unnnic-tag
+                    :text="prompt.text"
+                    scheme="neutral-cloudy"
+                    hasCloseIcon
+                    @close="removePrompt(prompt)"
+                    :ref="`tag-${index}`"
+                  />
+                </unnnic-toolTip>
+              </div>
             </div>
 
-            <div class="config-chatgpt__settings__content__version-wrapper__options">
-              <unnnic-radio
-                v-for="(version, index) in availableVersions"
-                :key="index"
-                v-model="selectedVersion"
-                :options="availableVersions"
-                :value="version"
-                :label="$t('ChatGPT.setup.version')"
-              >
-                {{ version }}
-              </unnnic-radio>
+            <div class="config-chatgpt__settings__buttons">
+              <unnnic-button
+                class="config-chatgpt__settings__buttons__cancel"
+                type="tertiary"
+                size="large"
+                :text="$t('apps.config.cancel')"
+                @click="closeConfig"
+              />
+
+              <unnnic-button
+                class="config-chatgpt__settings__buttons__save"
+                type="secondary"
+                size="large"
+                :text="$t('ChatGPT.config.save_modifications')"
+                :disabled="!hasChanges"
+                :loading="loadingUpdateApp"
+                @click="saveConfig"
+              />
             </div>
           </div>
+        </template>
 
-          <div class="config-chatgpt__general__field">
-            <span>API-Token</span>
-            <span> {{ token }}</span>
+        <template #tab-head-general> {{ $t('ChatGPT.config.tabs.general.title') }} </template>
+        <template #tab-panel-general>
+          <div class="config-chatgpt__general">
+            <div class="config-chatgpt__settings__content__version-wrapper">
+              <div>
+                {{ $t('ChatGPT.setup.version') }}
+
+                <unnnic-toolTip
+                  class="config-chatgpt__settings__content__version__tooltip"
+                  :text="$t('ChatGPT.setup.version_tooltip')"
+                  :enabled="true"
+                  side="right"
+                  maxWidth="350px"
+                >
+                  <unnnic-icon-svg
+                    class="config-chatgpt__settings__content__version__icon"
+                    icon="information-circle-4"
+                    size="sm"
+                    scheme="neutral-soft"
+                  />
+                </unnnic-toolTip>
+              </div>
+
+              <div class="config-chatgpt__settings__content__version-wrapper__options">
+                <unnnic-radio
+                  v-for="(version, index) in availableVersions"
+                  :key="index"
+                  v-model="selectedVersion"
+                  :options="availableVersions"
+                  :value="version"
+                  :label="$t('ChatGPT.setup.version')"
+                >
+                  {{ version }}
+                </unnnic-radio>
+              </div>
+            </div>
+
+            <div class="config-chatgpt__general__field">
+              <span>API-Token</span>
+              <span> {{ token }}</span>
+            </div>
           </div>
-        </div>
+        </template>
       </unnnic-tab>
     </div>
   </div>
@@ -159,7 +163,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
@@ -267,7 +271,7 @@
         await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
         if (this.errorGetPrompts) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.get_prompts') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.get_prompts') });
         }
 
         this.availablePrompts = this.getPromptsResult || [];
@@ -325,7 +329,7 @@
         await this.updateApp(data);
 
         if (this.errorUpdateApp) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.configure') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.configure') });
           return true;
         }
       },
@@ -342,7 +346,7 @@
         await this.createPrompts(data);
 
         if (this.errorCreatePrompt) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.create_prompt') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.create_prompt') });
           return true;
         }
 
@@ -361,7 +365,7 @@
         await this.deletePrompts(data);
 
         if (this.errorDeletePrompts) {
-          this.callModal({ type: 'Error', text: this.$t('ChatGPT.errors.delete_prompt') });
+          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.delete_prompt') });
           return true;
         }
 
@@ -389,21 +393,17 @@
           if (err) return;
         }
 
-        this.callModal({ type: 'Success', text: this.$t('ChatGPT.success.configure') });
+        this.callModal({ type: 'success', text: this.$t('ChatGPT.success.configure') });
         this.$root.$emit('updateGrid');
       },
       closeConfig() {
         this.$emit('closeModal');
       },
       callModal({ text, type }) {
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
-            text: text,
-            title: type === 'Success' ? this.$t('general.success') : this.$t('general.error'),
-            icon: type === 'Success' ? 'check-circle-1-1' : 'alert-circle-1',
-            scheme: type === 'Success' ? 'feedback-green' : 'feedback-red',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            text,
+            type,
           },
           seconds: 6,
         });

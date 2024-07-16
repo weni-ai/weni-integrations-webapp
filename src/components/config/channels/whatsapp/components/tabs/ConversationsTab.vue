@@ -139,7 +139,7 @@
 
 <script>
   import debounce from 'lodash.debounce';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { insights_store } from '@/stores/modules/insights.store';
@@ -276,14 +276,13 @@
         });
 
         if (this.errorConversations) {
-          unnnicCallAlert({
+          const err =
+            this.errorConversations?.error_user_msg ||
+            this.$t('WhatsApp.config.conversations.fetch_error');
+          unnnic.unnnicCallAlert({
             props: {
-              text: this.$t('WhatsApp.config.conversations.fetch_error'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              text: err,
+              type: 'error',
             },
             seconds: 6,
           });
@@ -309,41 +308,31 @@
         });
 
         if (this.errorConversationsReport) {
-          let errorText = this.$t('WhatsApp.config.conversations.report_error');
-          let errorColor = 'feedback-red';
-          let errorTitle = this.$t('general.error');
+          let errorText =
+            this.errorConversationsReport?.error_user_msg ||
+            this.$t('WhatsApp.config.conversations.report_error');
 
           if (this.errorConversationsReport.response.status === 409) {
             errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
-            errorColor = 'feedback-yellow';
-            errorTitle = this.$t('general.attention');
           }
-
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: errorText,
-              title: errorTitle,
-              icon: 'alert-circle-1-1',
-              scheme: errorColor,
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });
           return;
         }
 
-        unnnicCallAlert({
+        unnnic.unnnicCallAlert({
           props: {
             text: this.$t('WhatsApp.config.conversations.report_success'),
-            title: this.$t('general.success'),
-            icon: 'check-circle-1-1',
-            scheme: 'feedback-green',
-            position: 'bottom-right',
-            closeText: this.$t('general.Close'),
+            type: 'success',
           },
           seconds: 6,
         });
+        return;
       },
       navigateToInsights() {
         this.setAppUuid({ appUuid: this.app.uuid });

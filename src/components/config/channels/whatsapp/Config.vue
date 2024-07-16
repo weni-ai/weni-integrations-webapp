@@ -89,16 +89,16 @@
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { dataUrlToFile } from '@/utils/files';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'whatsapp-config',
     components: {
-      skeletonLoading,
       AccountTab,
       ProfileTab,
       ConversationsTab,
       WebhookTab,
+      skeletonLoading,
     },
     props: {
       app: {
@@ -118,7 +118,7 @@
     },
     async mounted() {
       await this.fetchData();
-      // this.headerScrollBehavior();
+      this.headerScrollBehavior();
     },
     computed: {
       ...mapState(whatsapp_store, [
@@ -144,18 +144,18 @@
       ...mapActions(whatsapp_store, ['fetchWppProfile', 'resetWppFetchResults']),
       ...mapActions(whatsapp_cloud, ['getWhatsAppCloudCatalogs']),
       /* istanbul ignore next */
-      // headerScrollBehavior() {
-      //   const tabHeader = document.getElementsByClassName('tab-content')[0];
-      //   if (tabHeader) {
-      //     tabHeader.addEventListener('wheel', (event) => {
-      //       event.preventDefault();
+      headerScrollBehavior() {
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+        if (tabHeader) {
+          tabHeader.addEventListener('wheel', (event) => {
+            event.preventDefault();
 
-      //       tabHeader.scrollBy({
-      //         left: event.deltaY < 0 ? -30 : 30,
-      //       });
-      //     });
-      //   }
-      // },
+            tabHeader.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          });
+        }
+      },
       closeConfig() {
         this.$emit('closeModal');
       },
@@ -168,16 +168,14 @@
           await this.getWhatsAppCloudCatalogs({ appUuid: this.app.uuid });
           this.skipLoad = false;
         } catch (error) {
-          unnnicCallAlert({
+          let err =
+            err.response?.data.error?.error_user_msg || this.$t('WhatsApp.config.error.data_fetch');
+          unnnic.unnnicCallAlert({
             props: {
-              text: this.$t('WhatsApp.config.error.data_fetch'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              text: err,
+              type: 'error',
             },
-            seconds: 8,
+            seconds: 15,
           });
         }
       },

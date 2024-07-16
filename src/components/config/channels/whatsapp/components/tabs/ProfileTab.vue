@@ -39,11 +39,10 @@
 <script>
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import skeletonLoading from './loadings/ProfileTab.vue';
-  import removeEmpty from '@/utils/clean.js';
   import { toBase64, getHeightAndWidthFromDataUrl } from '@/utils/files.js';
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnicCallAlert from '@weni/unnnic-system';
+  import unnnic from '@weni/unnnic-system';
 
   export default {
     name: 'ProfileTab',
@@ -70,14 +69,10 @@
         try {
           await this.fetchWppContactInfo({ code: this.app.code, appUuid: this.app.uuid });
         } catch (err) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_fetch'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -130,11 +125,16 @@
             name: 'sector',
             label: 'WhatsApp.config.profile.sector.label',
             placeholder: 'WhatsApp.config.profile.sector.placeholder',
-            value: this.profile.business?.vertical,
+            value: [
+              {
+                value: this.profile.business?.vertical,
+                label: this.profile.business?.vertical,
+              },
+            ],
             options: this.profile.business?.vertical_choices.map((value) => {
               return {
                 value: value,
-                text: value,
+                label: value,
               };
             }),
           },
@@ -216,14 +216,18 @@
         'updateWppContactInfo',
       ]),
       updateProfileInputs(inputData) {
-        this.profileInputs[inputData.index].value = inputData.value;
+        if (inputData?.value) {
+          this.profileInputs[inputData.index].value = inputData.value;
+        }
       },
       updateContactInfoInputs(inputData) {
         const input = this.contactInfoInputs[inputData.index];
-        if (input.validator) {
+        if (input?.validator) {
           this.contactInfoInputs[inputData.index].error = !input.validator(inputData.value);
         }
-        this.contactInfoInputs[inputData.index].value = inputData.value;
+        if (inputData.value) {
+          this.contactInfoInputs[inputData.index].value = inputData.value;
+        }
       },
       /* istanbul ignore next */
       setInitialInputs() {
@@ -247,14 +251,10 @@
       async isValidPhotoSize(b64ProfilePhoto) {
         const { height, width } = await getHeightAndWidthFromDataUrl(b64ProfilePhoto);
         if (this.modifiedInitialPhoto && (height < 192 || width < 192)) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_photo_size'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 8,
           });
@@ -293,16 +293,31 @@
             return;
           }
 
-          const payload = {
+          let payload = {
             photo: this.modifiedInitialPhoto ? b64ProfilePhoto : null,
             status: this.getProfileInputValue('status'),
             business: {
               description: this.getProfileInputValue('description'),
-              vertical: this.getProfileInputValue('sector'),
+              vertical: this.getProfileInputValue('sector')[0].value,
             },
           };
 
-          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          if (!this.getProfileInputValue('sector')) {
+            unnnic.unnnicCallAlert({
+              props: {
+                text: this.$t('WhatsApp.config.profile.sector.empty'),
+                type: 'error',
+              },
+              seconds: 6,
+            });
+            return;
+          }
+
+          const data = this.removeEmptyProperties({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            payload,
+          });
           await this.updateWppProfile(data);
 
           if (this.errorUpdateWhatsAppProfile) {
@@ -311,26 +326,18 @@
 
           this.$emit('save');
 
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.profile_updated'),
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'success',
             },
-            seconds: 3,
+            seconds: 6,
           });
         } catch (e) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('apps.details.status_error'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });
@@ -338,57 +345,87 @@
       },
       async saveContactInfo() {
         if (this.contactInfoInputs.some((input) => input.error)) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.invalid_data'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
-            seconds: 3,
+            seconds: 6,
           });
           return;
         }
 
         try {
-          const payload = {
+          let payload = this.removeEmptyProperties({
             websites: Array.of(
               this.getContactInfoInputValue('websites.0'),
               this.getContactInfoInputValue('websites.1'),
             ),
             email: this.getContactInfoInputValue('email'),
             address: this.getContactInfoInputValue('address'),
-          };
+          });
 
-          const data = removeEmpty({ code: this.app.code, appUuid: this.app.uuid, payload });
+          const data = this.removeEmptyProperties({
+            code: this.app.code,
+            appUuid: this.app.uuid,
+            payload,
+          });
           await this.updateWppContactInfo(data);
 
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.success.contact_info_update'),
-              title: this.$t('general.success'),
-              icon: 'check-circle-1-1',
-              scheme: 'feedback-green',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'success',
             },
-            seconds: 3,
+            seconds: 6,
           });
         } catch (err) {
-          unnnicCallAlert({
+          unnnic.unnnicCallAlert({
             props: {
               text: this.$t('WhatsApp.config.error.data_update'),
-              title: this.$t('general.error'),
-              icon: 'alert-circle-1-1',
-              scheme: 'feedback-red',
-              position: 'bottom-right',
-              closeText: this.$t('general.Close'),
+              type: 'error',
             },
             seconds: 6,
           });
         }
+      },
+      removeEmptyProperties(obj) {
+        let object = obj;
+        for (let key in object) {
+          if (Object.prototype.hasOwnProperty.call(object, key)) {
+            let value = object[key];
+
+            if (typeof value === 'object' && value !== null) {
+              this.removeEmptyProperties(value);
+              if (this.isEmpty(value)) {
+                delete object[key];
+              }
+            } else if (Array.isArray(value)) {
+              value.forEach((item) => {
+                if (typeof item === 'object' && item !== null) {
+                  this.removeEmptyProperties(item);
+                }
+              });
+              if (value.length === 0 || value.every((item) => this.isEmpty(item))) {
+                delete object[key];
+              }
+            } else {
+              if (this.isEmpty(value)) {
+                delete object[key];
+              }
+            }
+          }
+        }
+        return object;
+      },
+      isEmpty(value) {
+        return (
+          value === null ||
+          value === undefined ||
+          value === '' ||
+          (Array.isArray(value) && value.length === 0) ||
+          (typeof value === 'object' && value !== null && Object.keys(value).length === 0)
+        );
       },
     },
   };
