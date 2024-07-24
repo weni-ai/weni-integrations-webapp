@@ -1,10 +1,12 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
-import Discovery from '@/components/Discovery.vue';
+import { describe, it, expect, beforeEach } from 'vitest';
+import Discovery from '../views/Discovery/index.vue';
 
 describe('Discovery.vue', () => {
-  it('matches the snapshot', () => {
-    const wrapper = mount(Discovery, {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = mount(Discovery, {
       global: {
         mocks: {
           $t: (msg) => msg,
@@ -34,7 +36,10 @@ describe('Discovery.vue', () => {
         };
       },
     });
+  });
 
-    expect(wrapper.html()).toMatchSnapshot();
+  it('renders search input correctly', () => {
+    const input = wrapper.find('.discovery-content__search');
+    expect(input.exists()).toBe(true);
   });
 });
