@@ -134,7 +134,7 @@
 
       const urlInput = this.getUrlInputElement();
       if (urlInput !== undefined) {
-        this.validUrl = urlInput.checkValidity();
+        this.validUrl = urlInput?.checkValidity();
       }
     },
     computed: {
@@ -208,7 +208,7 @@
       },
       async saveWebhookInfo() {
         const urlInput = this.getUrlInputElement();
-        if (!urlInput.checkValidity()) {
+        if (!urlInput?.checkValidity()) {
           this.callModal({
             type: 'error',
             text: this.$t('WhatsApp.config.error.invalid_url'),
