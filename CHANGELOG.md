@@ -1,3 +1,10 @@
+2.1.6
+----------
+`2024-07-24 · 1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp config - Profile and Webhook tabs;
+
 2.1.5
 ----------
 `2024-07-05 · 1 🎉 `
