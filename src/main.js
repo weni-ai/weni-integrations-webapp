@@ -7,6 +7,7 @@ import * as vueUse from '@vueuse/components';
 import * as Sentry from '@sentry/vue';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
+import './utils/plugins/Hotjar';
 
 import App from './App.vue';
 import router from './router';
