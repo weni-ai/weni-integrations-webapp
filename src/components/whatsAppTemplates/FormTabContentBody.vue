@@ -39,8 +39,6 @@
 
   import {
     countVariables,
-    startsWithVariableRegex,
-    endsWithVariableRegex,
     singleBracketVariableRegex,
     incompleteStartBracketVariableRegex,
     incompleteEndBracketVariableRegex,
@@ -72,13 +70,6 @@
       },
       errorsList() {
         const errors = [];
-
-        if (
-          this.bodyContent.match(startsWithVariableRegex) ||
-          this.bodyContent.match(endsWithVariableRegex)
-        ) {
-          errors.push(this.$t('WhatsApp.templates.error.start_or_end_with_variable'));
-        }
 
         if (
           this.bodyContent.match(singleBracketVariableRegex) ||
