@@ -1,3 +1,17 @@
+2.1.7
+----------
+`2024-07-29 · 1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp template form - Allow the use of a variable at the beginning and the end of the body.
+
+2.1.6
+----------
+`2024-07-24 · 1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp config - Profile and Webhook tabs;
+
 2.1.5
 ----------
 `2024-07-05 · 1 🎉 `
