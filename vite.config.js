@@ -1,40 +1,33 @@
-import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
-import Discovery from '@/components/Discovery.vue';
+import { fileURLToPath, URL } from 'node:url';
 
-describe('Discovery.vue', () => {
-  it('matches the snapshot', () => {
-    const wrapper = mount(Discovery, {
-      global: {
-        mocks: {
-          $t: (msg) => msg,
-          $route: {
-            query: {}
-          }
-        }
-      },
-      data() {
-        return {
-          searchTerm: '',
-          channels: {
-            loading: true,
-            data: null,
-          },
-          biApps: [
-            {
-              code: 'power-bi',
-              name: 'Power BI',
-              category: 'bi-tools',
-              config_design: 'sidebar',
-              description: 'PowerBi.data.description',
-              summary: 'PowerBi.data.summary',
-              icon: '',
-            },
-          ],
-        };
-      },
-    });
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
-    expect(wrapper.html()).toMatchSnapshot();
-  });
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => ['md-linedivider'].includes(tag),
+        },
+      },
+    }),
+    vueJsx(),
+  ],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import '@weni/unnnic-system/src/assets/scss/unnnic.scss';
+        `,
+      },
+    },
+  },
 });
