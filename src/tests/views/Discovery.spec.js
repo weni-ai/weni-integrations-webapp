@@ -1,26 +1,18 @@
+// __tests__/HelloWorld.spec.js
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach } from 'vitest';
-import i18n from '../../utils/plugins/i18n';
+import { createTestingPinia } from '@pinia/testing';
 import Discovery from '../../views/Discovery/index.vue';
+import { describe, expect, it } from 'vitest';
+import i18n from '@/utils/plugins/i18n';
 
-function createWrapper(propsData) {
-  const wrapper = mount(Discovery, {
-    propsData,
-    global: {
-      plugins: [i18n],
-    },
+describe('HelloWorld', () => {
+  it('matches snapshot', () => {
+    const wrapper = mount(Discovery, {
+      global: {
+        plugins: [createTestingPinia(), i18n],
+      },
+      props: { msg: 'Hello Vitest' },
+    });
+    expect(wrapper.html()).toMatchSnapshot();
   });
-
-  return wrapper;
-}
-
-describe('Discovery', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = createWrapper();
-  });
-
-  it('should render properly', () => {
-    expect(wrapper.find('.discovery-content__search__results__highlight')).toBeDefined();
-  });
-})
+});

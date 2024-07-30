@@ -106,7 +106,7 @@
       insights_store().setHasInsights({ isActive: true });
       this.fetchChannels();
 
-      const createAppCode = this.$route.query.create_app;
+      const createAppCode = this.$route?.query.create_app;
       if (createAppCode) {
         this.callManuallyCreateApp(createAppCode);
       }
