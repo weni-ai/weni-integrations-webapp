@@ -4,6 +4,7 @@ import { createTestingPinia } from '@pinia/testing';
 import Discovery from '../../views/Discovery/index.vue';
 import { describe, expect, it, vi } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
+import { defineStore } from 'pinia';
 
 describe('Discovery', () => {
   it('matches snapshot', () => {
@@ -74,6 +75,37 @@ describe('Discovery', () => {
       });
       await wrapper.vm.$nextTick();
       expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('fetchChannels', () => {
+    it('should call getAllTypes', async () => {
+      const pinia = createTestingPinia({
+        stubActions: false,
+        createSpy: vi.fn,
+      });
+
+      const useAppTypeStore = defineStore('appType', {
+        state: () => ({
+          allAppTypes: [{ name: 'Test App' }],
+          errorAllAppTypes: false,
+        }),
+        actions: {
+          async getAllAppTypes() {
+            return Promise.resolve();
+          },
+        },
+      });
+
+      const wrapper = mount(Discovery, {
+        global: {
+          plugins: [pinia, i18n],
+        },
+      });
+      const appTypeStore = useAppTypeStore();
+
+      await wrapper.vm.fetchChannels();
+      expect(appTypeStore.getAllAppTypes).toHaveBeenCalledTimes(2);
     });
   });
 });

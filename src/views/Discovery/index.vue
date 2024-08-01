@@ -191,7 +191,7 @@
         const params = {
           category: 'channel',
         };
-        await app_type().getAllAppTypes({ params });
+        await this.getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
           unnnic.unnnicCallAlert({
