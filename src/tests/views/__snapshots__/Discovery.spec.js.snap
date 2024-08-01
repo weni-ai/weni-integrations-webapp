@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`HelloWorld > matches snapshot 1`] = `
-"<div data-v-223130b3="" class="discovery-content" msg="Hello Vitest">
+exports[`Discovery > matches snapshot 1`] = `
+"<div data-v-223130b3="" class="discovery-content">
   <unnnic-input data-v-223130b3="" modelvalue="" class="discovery-content__search" placeholder="Search" icon-left="search-1"></unnnic-input>
   <!--v-if-->
   <div data-v-223130b3="" class="discovery-content__grids">
