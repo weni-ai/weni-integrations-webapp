@@ -87,8 +87,9 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.loadingWhatsAppCloudConfigure = true;
       this.errorCloudConfigure = null;
       try {
-        await whatsAppCloud.configurePhoneNumber(data);
+        const response = await whatsAppCloud.configurePhoneNumber(data);
         this.loadingWhatsAppCloudConfigure = false;
+        return response;
       } catch (err) {
         captureSentryException(err);
         this.errorCloudConfigure = err.response?.data.error || err;
