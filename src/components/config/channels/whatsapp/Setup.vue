@@ -46,6 +46,7 @@
   import LoadingButton from '../../../LoadingButton/index.vue';
   import getEnv from '../../../..//utils/env';
   import { initFacebookSdk } from '../../../../utils/plugins/fb';
+  import { captureSentryManualError } from '../../../../utils/sentry';
 
   export default {
     name: 'WhatsAppSetup',
@@ -68,6 +69,7 @@
     async mounted() {
       window.createChannel = this.createChannel;
       window.changeLoginState = this.changeLoginState;
+      window.sendToSentry = this.sendToSentry;
     },
     computed: {
       ...mapState(auth_store, ['project']),
@@ -77,6 +79,10 @@
       ...mapActions(whatsapp_cloud, ['configurePhoneNumber']),
       changeLoginState(state) {
         this.onLogin = state;
+      },
+      sendToSentry(message, extra) {
+        const err = new Error(message);
+        captureSentryManualError(err, extra);
       },
       /* istanbul ignore next */
       startFacebookLogin() {
@@ -109,11 +115,22 @@
                     'Session info listener: User cancelled login or did not fully authorize.',
                     current_step,
                   );
+                  this.sendToSentry('User cancelled login or did not fully authorize.', {
+                    data: data,
+                    data_string: event.data,
+                    phone_number_id: this.phoneNumberId,
+                    waba_id: this.wabaId,
+                  });
                 }
               }
             } catch {
               // Don’t parse info that’s not a JSON
               console.log('Non JSON Response', event.data);
+              this.sendToSentry('Non JSON Response in event.data', {
+                data_string: event.data,
+                phone_number_id: this.phoneNumberId,
+                waba_id: this.wabaId,
+              });
             }
           };
 
@@ -131,7 +148,16 @@
                 const code = response.authResponse.code;
                 this.createChannel(code);
               } else {
-                console.log('User cancelled login or did not fully authorize.');
+                console.log('Login Callback: User cancelled login or did not fully authorize');
+                this.sendToSentry(
+                  'Login Callback: User cancelled login or did not fully authorize',
+                  {
+                    data: response,
+                    data_string: JSON.stringify(response),
+                    phone_number_id: this.phoneNumberId,
+                    waba_id: this.wabaId,
+                  },
+                );
               }
               this.changeLoginState(false);
             },
@@ -157,11 +183,20 @@
             auth_code: code,
           };
 
-          await this.configurePhoneNumber({ data });
+          const res = await this.configurePhoneNumber({ data });
 
           if (this.errorCloudConfigure) {
             this.callErrorModal({
               text: this.$t('WhatsAppCloud.config.configure_phone_number.error'),
+            });
+
+            this.sendToSentry('Error trying to create WAC channel', {
+              data: data,
+              data_string: JSON.stringify(data),
+              response: res,
+              response_string: JSON.stringify(res),
+              phone_number_id: this.phoneNumberId,
+              waba_id: this.wabaId,
             });
           } else {
             this.$router.replace('/apps/my');

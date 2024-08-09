@@ -11,4 +11,11 @@ function captureSentryException(error) {
     });
 }
 
-export { captureSentryException };
+function captureSentryManualError(error, extra) {
+  error &&
+    Sentry.captureException(error, {
+      extra,
+    });
+}
+
+export { captureSentryException, captureSentryManualError };
