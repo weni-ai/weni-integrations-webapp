@@ -1,3 +1,10 @@
+2.1.8
+----------
+`2024-08-09 · 1 🎉 `
+
+### 🎉 New Features
+- Feat: manually send errors that occurs on whatsapp signup process
+
 2.1.7
 ----------
 `2024-07-29 · 1 🐛 `
