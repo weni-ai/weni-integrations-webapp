@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Insights > matches snapshot 1`] = `
+"<div data-v-3d701f11="" class="wpp_insights">
+  <!-- Breadcrumb -->
+  <div data-v-3d701f11="" class="wpp_insights__breadcrumb">
+    <unnnic-breadcrumb data-v-3d701f11="" crumbs="[object Object],[object Object]"></unnnic-breadcrumb>
+  </div><!-- Header -->
+  <div data-v-3d701f11="" class="wpp_insights__header">
+    <div data-v-3d701f11="" class="wpp_insights__header__logo"><img data-v-3d701f11="" src="/src/assets/svgs/whatsapp-avatar.svg" alt=""></div>
+    <div data-v-3d701f11="" class="wpp_insights__header__about">
+      <div data-v-3d701f11="" class="wpp_insights__header__about__title">Insights</div>
+      <div data-v-3d701f11="" class="wpp_insights__header__about__description">See more detailed data related to sending, delivering and reading triggered message templates.</div>
+    </div>
+    <div data-v-3d701f11="" class="wpp_insights__header__button">
+      <unnnic-button data-v-3d701f11="" text="Enable insights" disabled="false"></unnnic-button>
+    </div>
+  </div><!-- Filters -->
+  <div data-v-3d701f11="" class="wpp_insights__filters">
+    <div data-v-3d701f11="" class="wpp_insights__filters__time">
+      <div data-v-3d701f11="" class="wpp_insights__filters__time__title">Period of time</div>
+      <div data-v-3d701f11="" class="wpp_insights__filters__time__select">
+        <unnnic-input-date-picker data-v-3d701f11="" modelvalue="[object Object]" size="md" format="MM-DD-YYYY"></unnnic-input-date-picker>
+      </div>
+    </div>
+    <div data-v-3d701f11="" class="wpp_insights__filters__model">
+      <div data-v-3d701f11="" class="wpp_insights__filters__model__title">Message templates</div>
+      <div data-v-3d701f11="" class="wpp_insights__filters__model__select">
+        <unnnic-select-smart data-v-3d701f11="" modelvalue="" options="" multiple="" disabled="false"></unnnic-select-smart>
+      </div>
+    </div>
+  </div><!-- Content -->
+  <div data-v-3d701f11="" class="wpp_insights__content">
+    <!-- If not active -->
+    <div data-v-3d701f11="" class="wpp_insights__content__empty">
+      <div data-v-3d701f11="" class="wpp_insights__content__empty__image"><img data-v-3d701f11="" src="/src/assets/svgs/empty-apps.svg" alt=""></div>
+      <div data-v-3d701f11="" class="wpp_insights__content__empty__text">
+        <div data-v-3d701f11="" class="wpp_insights__content__empty__text__title">You haven't turned on insights</div>
+        <div data-v-3d701f11="" class="wpp_insights__content__empty__text__description">See more detailed data related to sending, delivering and reading triggered message templates.</div>
+      </div>
+      <div data-v-3d701f11="" class="wpp_insights__content__empty__button">
+        <unnnic-button data-v-3d701f11="" text="Enable insights"></unnnic-button>
+      </div>
+    </div><!-- If active -->
+    <!--v-if-->
+  </div><!-- Modal -->
+  <div data-v-3d701f11="" class="wpp_insights__modal">
+    <unnnic-modal data-v-3d701f11="" showmodal="false">
+      <div data-v-3d701f11="" class="wpp_insights__modal__title"><img data-v-3d701f11="" src="/src/assets/svgs/amazoninha-heart.svg" alt="">
+        <p data-v-3d701f11="">We present new insights false</p>
+      </div>
+      <div data-v-3d701f11="" class="wpp_insights__modal__content">
+        <p data-v-3d701f11="" class="wpp_insights__modal__content__dark">We're introducing more performance insights to help you track, understand, and improve your messaging models. Marketing models will also show insights into button engagement. To migrate to the new insights framework, existing data for &amp;quot sent messages &amp;quot; will be deleted. Tracking will resume on the date you click Confirm.</p>
+        <p data-v-3d701f11=""> By clicking Confirm, you instruct Meta to add insights to your WhatsApp Business account. These insights include link tracking to report website clicks. You can disable link tracking for each message template.</p>
+        <p data-v-3d701f11=""> By clicking Confirm, you also instruct Meta to collect and anonymize data from your customer chats. Meta will anonymize this data to improve the services it provides to you and other companies.</p>
+      </div>
+      <div data-v-3d701f11="" class="wpp_insights__modal__buttons">
+        <unnnic-button data-v-3d701f11="" text="Close" type="secondary" style="width: 289px;"></unnnic-button>
+        <unnnic-button data-v-3d701f11="" text="Confirm" style="width: 289px;"></unnnic-button>
+      </div>
+    </unnnic-modal>
+  </div>
+</div>"
+`;

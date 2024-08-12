@@ -166,13 +166,13 @@
           start: this.formatDate(new Date(Date.now() - 604800000)),
           end: this.formatDate(new Date()),
         },
-        hash: this.$route.hash,
+        hash: this.$route?.hash || null,
         crumb_title: 'Insights',
       };
     },
     /* istanbul ignore next */
     async mounted() {
-      await this.fetchTemplates();
+      this.fetchTemplates();
       if (this.hash) {
         this.model = [
           {
@@ -181,7 +181,7 @@
           },
         ];
       }
-      await this.fetchTemplateAnalytics();
+      this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState(insights_store, [

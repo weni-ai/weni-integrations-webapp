@@ -1,4 +1,3 @@
-// __tests__/HelloWorld.spec.js
 import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import Discovery from '../../views/Discovery/index.vue';
@@ -108,4 +107,18 @@ describe('Discovery', () => {
       expect(appTypeStore.getAllAppTypes).toHaveBeenCalledTimes(2);
     });
   });
+
+  // describe('hasAnyVisibleApp', () => {
+  //   it('should return true if there are any visible app', async () => {
+  //     const wrapper = mount(Discovery, {
+  //       global: {
+  //         plugins: [i18n],
+  //       },
+  //     });
+
+  //     await wrapper.setData({ searchTerm: 'weni' });
+  //     await wrapper.vm.$nextTick();
+  //     expect(wrapper.vm.hasAnyVisibleApp).toBe(true);
+  //   });
+  // });
 });
