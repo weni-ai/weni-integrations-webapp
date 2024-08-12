@@ -98,7 +98,28 @@
           this.changeLoginState(true);
 
           const sessionInfoListener = (event) => {
-            if (event.origin !== 'https://www.facebook.com') return;
+            if (event.origin == null) {
+              console.log("Session info listener: Data doesn't have an origin", event.origin);
+              this.sendToSentry("Session info listener: Data doesn't have an origin", {
+                data: event,
+                data_string: JSON.stringify(event),
+              });
+              return;
+            }
+
+            // Make sure the data is coming from facebook.com
+            if (!event.origin.endsWith('facebook.com')) {
+              console.log(
+                'Session info listener: Data is not coming from facebook.com',
+                event.origin,
+              );
+              this.sendToSentry('Session info listener: Data is not coming from facebook.com', {
+                data: event,
+                data_string: JSON.stringify(event),
+              });
+              return;
+            }
+
             try {
               const data = JSON.parse(event.data);
               if (data.type === 'WA_EMBEDDED_SIGNUP') {
@@ -107,6 +128,23 @@
                   const { phone_number_id, waba_id } = data.data;
                   this.phoneNumberId = phone_number_id;
                   this.wabaId = waba_id;
+                }
+                // if user reports an error during the Embedded Signup flow
+                else if (data.event === 'ERROR') {
+                  const { error_message } = data.data;
+                  console.log(
+                    'Session info listener: Error during the Embedded Signup flow.',
+                    error_message,
+                  );
+                  this.sendToSentry(
+                    'Session info listener: Error during the Embedded Signup flow.',
+                    {
+                      data: data,
+                      data_string: event.data,
+                      phone_number_id: this.phoneNumberId,
+                      waba_id: this.wabaId,
+                    },
+                  );
                 }
                 // if user cancels the Embedded Signup flow
                 else {
