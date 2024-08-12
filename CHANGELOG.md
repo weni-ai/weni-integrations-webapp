@@ -1,3 +1,24 @@
+2.1.9
+----------
+`2024-08-12 · 1 🎉 `
+
+### 🎉 New Features
+- Feat: update session info listener handler
+
+2.1.8
+----------
+`2024-08-09 · 1 🎉 `
+
+### 🎉 New Features
+- Feat: manually send errors that occurs on whatsapp signup process
+
+2.1.7
+----------
+`2024-07-29 · 1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp template form - Allow the use of a variable at the beginning and the end of the body.
+
 2.1.6
 ----------
 `2024-07-24 · 1 🐛 `
