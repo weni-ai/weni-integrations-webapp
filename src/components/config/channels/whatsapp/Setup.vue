@@ -99,7 +99,8 @@
 
           const sessionInfoListener = (event) => {
             if (event.origin == null) {
-              this.sendToSentry('Session info listener: Data is not coming from facebook.com', {
+              console.log("Session info listener: Data doesn't have an origin", event.origin);
+              this.sendToSentry("Session info listener: Data doesn't have an origin", {
                 data: event,
                 data_string: JSON.stringify(event),
               });
@@ -108,6 +109,10 @@
 
             // Make sure the data is coming from facebook.com
             if (!event.origin.endsWith('facebook.com')) {
+              console.log(
+                'Session info listener: Data is not coming from facebook.com',
+                event.origin,
+              );
               this.sendToSentry('Session info listener: Data is not coming from facebook.com', {
                 data: event,
                 data_string: JSON.stringify(event),
