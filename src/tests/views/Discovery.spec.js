@@ -108,17 +108,4 @@ describe('Discovery', () => {
     });
   });
 
-  // describe('hasAnyVisibleApp', () => {
-  //   it('should return true if there are any visible app', async () => {
-  //     const wrapper = mount(Discovery, {
-  //       global: {
-  //         plugins: [i18n],
-  //       },
-  //     });
-
-  //     await wrapper.setData({ searchTerm: 'weni' });
-  //     await wrapper.vm.$nextTick();
-  //     expect(wrapper.vm.hasAnyVisibleApp).toBe(true);
-  //   });
-  // });
 });
