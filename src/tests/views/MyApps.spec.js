@@ -3,10 +3,6 @@ import { createTestingPinia } from '@pinia/testing';
 import MyApps from '../../views/MyApps/index.vue';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
-import { defineStore, setActivePinia, createPinia } from 'pinia';
-import { my_apps } from '@/stores/modules/myApps.store';
-import { wrap } from '@sentry/vue';
-
 describe('MyApps', () => {
   beforeEach(() => {
     vi.clearAllMocks();

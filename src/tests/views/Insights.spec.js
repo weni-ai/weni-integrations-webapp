@@ -18,7 +18,6 @@ describe('Insights', () => {
         },
       },
     });
-    // Wait for the next tick to ensure the component is fully mounted
     await wrapper.vm.$nextTick();
   });
 
@@ -34,8 +33,4 @@ describe('Insights', () => {
       expect(Insights.methods.fetchTemplateAnalytics).toHaveBeenCalledTimes(1);
     });
   });
-
-  describe('methods', () => {
-    it('should ')
-  })
 });

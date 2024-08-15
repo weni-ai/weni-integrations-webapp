@@ -107,5 +107,4 @@ describe('Discovery', () => {
       expect(appTypeStore.getAllAppTypes).toHaveBeenCalledTimes(2);
     });
   });
-
 });
