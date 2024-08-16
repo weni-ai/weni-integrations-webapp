@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import AddModal from '../../components/AddModal/index.vue';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { describe, expect, it, beforeEach } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
 describe('AddModal', () => {
   let wrapper;
@@ -20,7 +20,7 @@ describe('AddModal', () => {
   describe('methods', () => {
     it('should change showModal', async () => {
       expect(wrapper.vm.showAddModal).toBe(false);
-      wrapper.vm.toggleModal();
+      await wrapper.vm.toggleModal();
       expect(wrapper.vm.showAddModal).toBe(true);
     });
   });

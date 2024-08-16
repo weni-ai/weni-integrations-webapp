@@ -56,6 +56,7 @@
               <unnnic-dropdown-item
                 v-if="app.code !== 'wpp'"
                 class="app-grid__content__item__button--details"
+                id="openAppDetails"
                 @click="openAppDetails(app.code)"
               >
                 <unnnic-icon-svg icon="export-1" size="sm" />
