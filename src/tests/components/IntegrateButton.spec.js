@@ -2,11 +2,8 @@ import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import IntegrateButton from '@/components/IntegrateButton/index.vue';
 import { createTestingPinia } from '@pinia/testing';
-import { app_type } from '@/stores/modules/appType/appType.store';
-import { auth_store } from '@/stores/modules/auth.store';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
-import { unnnicCallAlert } from '@weni/unnnic-system';
 
 vi.mock('@/stores/modules/appType/appType.store', () => ({
   app_type: () => ({
