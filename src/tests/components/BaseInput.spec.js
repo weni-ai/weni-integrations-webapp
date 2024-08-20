@@ -79,14 +79,12 @@ describe('BaseInput', () => {
     const input = inputWrapper.find('input');
     expect(input.exists()).toBe(true);
 
-    // Trigger input event
     await input.setValue('test');
     expect(wrapper.emitted().input).toBeTruthy();
     expect(wrapper.emitted().input[0]).toEqual(['test']);
   });
 
   it('emits input event with correct value on paste', async () => {
-    // Re-mount the component to ensure the latest props are used
     wrapper = mount(BaseInput, {
       global: {
         plugins: [i18n, UnnnicSystem],
@@ -112,7 +110,6 @@ describe('BaseInput', () => {
     const input = inputWrapper.find('input');
     expect(input.exists()).toBe(true);
 
-    // Trigger paste event
     await input.trigger('paste');
     expect(wrapper.emitted().input).toBeTruthy();
   });
