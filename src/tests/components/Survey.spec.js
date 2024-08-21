@@ -4,8 +4,6 @@ import Survey from '@/components/Survey/index.vue';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { createTestingPinia } from '@pinia/testing';
-import { unnnicCallAlert } from '@weni/unnnic-system';
-import { survey_store } from '@/stores/modules/survey.store';
 
 vi.mock('@/stores/modules/survey.store', () => {
   return {
