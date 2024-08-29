@@ -1076,7 +1076,8 @@
       },
       "placeholder": {
         "sellers": "Select up to five sellers..."
-      }
+      },
+      "vtexADS": "Upon activation, your store will be able to display sponsored products in user searches."
     },
     "connect_modal": {
       "categories": {

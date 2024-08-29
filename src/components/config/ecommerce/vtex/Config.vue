@@ -56,6 +56,13 @@
             </tr>
           </table>
         </div>
+        <div class="config-vtex__settings__content__vtexADS">
+          <unnnic-switch v-model="vtexADS" />
+          <p>Vtex ADS</p>
+          <unnnicToolTip side="top" :text=" $t('vtex.config.vtexADS')" enabled>
+            <img class="logo" src="../../../../assets/svgs/info.svg" alt="" />
+          </unnnicToolTip>
+        </div>
         <div class="config-vtex__settings__content__sellers" v-if="hasConnectedCatalog">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
@@ -147,6 +154,7 @@
         wpp_uuid: null,
         disableSellers: false,
         selectedSellers: [],
+        vtexADS: false,
       };
     },
     computed: {
@@ -395,6 +403,19 @@
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
             margin-bottom: $unnnic-spacing-sm;
+          }
+        }
+
+        &__vtexADS {
+          display: flex;
+          font-family: $unnnic-font-family-secondary;
+          flex-direction: row;
+          align-items: center;
+          gap: $unnnic-spacing-inline-xs;
+
+          ::v-deep .unnnic-tooltip {
+            display: flex;
+            
           }
         }
 
