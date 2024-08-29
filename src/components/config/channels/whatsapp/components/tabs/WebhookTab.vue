@@ -134,7 +134,7 @@
 
       const urlInput = this.getUrlInputElement();
       if (urlInput !== undefined) {
-        this.validUrl = urlInput?.checkValidity();
+        this.validUrl = this.checkURLValidity(urlInput);
       }
     },
     computed: {
@@ -153,13 +153,7 @@
       /* istanbul ignore next */
       getUrlInputElement() {
         let urlInput;
-        this.$refs.webhookUrl.$children?.forEach((firstLayer) => {
-          firstLayer.$children.forEach((secondLayer) => {
-            if (secondLayer.$el.nodeName === 'INPUT') {
-              urlInput = secondLayer.$el;
-            }
-          });
-        });
+        urlInput = this.$refs.webhookUrl?.modelValue || '';
 
         return urlInput;
       },
@@ -208,7 +202,7 @@
       },
       async saveWebhookInfo() {
         const urlInput = this.getUrlInputElement();
-        if (!urlInput?.checkValidity()) {
+        if (!this.checkURLValidity(urlInput)) {
           this.callModal({
             type: 'error',
             text: this.$t('WhatsApp.config.error.invalid_url'),
@@ -252,6 +246,12 @@
         });
 
         this.$root.$emit('updateGrid');
+      },
+
+      checkURLValidity(value) {
+        const urlRegex = /^(https?:\/\/)?(www\.)?([^\s/$.?#].[^\s]*)$/i;
+
+        return urlRegex.test(value);
       },
       callModal({ text, type }) {
         unnnic.unnnicCallAlert({
