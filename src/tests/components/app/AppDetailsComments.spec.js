@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { setActivePinia, createPinia } from 'pinia';
+import { setActivePinia } from 'pinia';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import AppDetailsComments from '@/components/app/AppDetailsComments.vue';
 import { nextTick } from 'vue';
@@ -7,7 +7,6 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { createTestingPinia } from '@pinia/testing';
 import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
-
 
 describe('AppDetailsComments.vue', () => {
   let wrapper;
@@ -21,7 +20,7 @@ describe('AppDetailsComments.vue', () => {
     });
     setActivePinia(pinia);
 
-    commentsStore = comments_store()
+    commentsStore = comments_store();
 
     wrapper = mount(AppDetailsComments, {
       global: {
@@ -43,9 +42,8 @@ describe('AppDetailsComments.vue', () => {
     expect(wrapper.find('.app-details-comments__header').text()).toContain('Leave a comment');
   });
 
-
   it('calls listComments on mount', () => {
-    const commentsStore = comments_store()
+    const commentsStore = comments_store();
     expect(commentsStore.listComments).toHaveBeenCalledWith(appCode);
   });
 

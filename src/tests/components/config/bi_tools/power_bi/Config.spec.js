@@ -1,11 +1,10 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import PowerBiConfig from '@/components/config/bi_tools/power_bi/Config.vue';
 import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { auth_store } from '@/stores/modules/auth.store';
-
 
 describe('PowerBiConfig.vue', () => {
   let wrapper;
@@ -33,10 +32,10 @@ describe('PowerBiConfig.vue', () => {
             },
           }),
           i18n,
-          UnnnicSystem
+          UnnnicSystem,
         ],
         mocks: {
-          $t: (msg) => msg,  // Mock de internacionalização
+          $t: (msg) => msg,
           $i18n: {
             locale: 'en-us',
           },
@@ -50,12 +49,14 @@ describe('PowerBiConfig.vue', () => {
 
   it('renders the component with correct elements', () => {
     expect(wrapper.find('.app-config-power-bi__header__title__name').text()).toBe('Power BI');
-    expect(wrapper.find('.app-config-power-bi__header__description').text()).toContain(`With the URL below you can connect the Weni platform to Power BI and start monitoring your project's metrics and growth more closely. Just follow the documentation at How to Install and Use Weni Data Connector for Power BI`);
+    expect(wrapper.find('.app-config-power-bi__header__description').text()).toContain(
+      `With the URL below you can connect the Weni platform to Power BI and start monitoring your project's metrics and growth more closely. Just follow the documentation at How to Install and Use Weni Data Connector for Power BI`,
+    );
     expect(wrapper.find('img').attributes('src')).toBe(mockApp.icon);
   });
 
   it('calls getFlowToken on mount', () => {
-    const store = auth_store()
+    const store = auth_store();
     expect(store.getFlowToken).toHaveBeenCalled();
   });
 
@@ -65,9 +66,9 @@ describe('PowerBiConfig.vue', () => {
         writeText: vi.fn(),
       },
     });
-    const store = auth_store()
-    store.flowToken = '1234'
-    wrapper.vm.flowToken = '1234'
+    const store = auth_store();
+    store.flowToken = '1234';
+    wrapper.vm.flowToken = '1234';
     await wrapper.vm.copyToken();
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith('1234');
   });

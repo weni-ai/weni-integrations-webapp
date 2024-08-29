@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import AppDetailsHeader from '@/components/app/AppDetailsHeader.vue';
 import IntegrateButton from '@/components/IntegrateButton/index.vue';
 import addModal from '@/components/AddModal/index.vue';

@@ -31,11 +31,15 @@ describe('AppDetailsRecommended.vue', () => {
   });
 
   it('renders the current recommended app in the card', () => {
-    const card = wrapper.findComponent({ref: 'unnnic-card-marketplace'});
+    const card = wrapper.findComponent({ ref: 'unnnic-card-marketplace' });
     expect(card.exists()).toBe(true);
     expect(card.props('title')).toBe('Slack');
-    expect(card.props('description')).toBe('Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.');
-    expect(card.props('icon')).toBe('https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/slack+1.svg');
+    expect(card.props('description')).toBe(
+      'Ex enim voluptate mollit sit irure ut officia elit. Officia aliqua velit exercitation nisi et. Enim qui mollit ullamco eu occaecat nulla sunt velit eu proident ipsum veniam. Est enim magna nisi deserunt. Est fugiat enim cillum ipsum ipsum ex consequat cillum.',
+    );
+    expect(card.props('icon')).toBe(
+      'https://weni-sp-push-dev.s3.sa-east-1.amazonaws.com/svg/slack+1.svg',
+    );
     expect(card.props('comments')).toBe('2 comments');
     expect(card.props('rating')).toBe(4.1);
   });
@@ -54,8 +58,8 @@ describe('AppDetailsRecommended.vue', () => {
   });
 
   it('emits openModal event with correct ID when card is clicked', async () => {
-    const card = wrapper.findComponent({ref: 'unnnic-card-marketplace'});
-    expect(card.exists()).toBe(true)
+    const card = wrapper.findComponent({ ref: 'unnnic-card-marketplace' });
+    expect(card.exists()).toBe(true);
     await card.vm.$emit('openModal', 5);
     expect(wrapper.vm.$router.push).toHaveBeenCalledWith('/apps/5/details');
   });
