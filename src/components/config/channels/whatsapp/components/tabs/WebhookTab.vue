@@ -114,9 +114,7 @@
     /* istanbul ignore next */
     mounted() {
       if (this.app.config?.webhook?.method) {
-        this.selectedMethod = [
-          { value: this.app.config?.webhook?.method, label: this.app.config?.webhook?.method },
-        ];
+        this.selectedMethod = this.app.config?.webhook?.method;
       }
       this.mountHeaders();
 
@@ -241,7 +239,7 @@
         }
 
         this.callModal({
-          type: 'error',
+          type: 'success',
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
