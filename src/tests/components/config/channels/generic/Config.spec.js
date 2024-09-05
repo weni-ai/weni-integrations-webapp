@@ -1,5 +1,5 @@
-import { mount, shallowMount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
+import { shallowMount } from '@vue/test-utils';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import GenericConfig from '@/components/config/channels/generic/Config.vue';
 import DynamicForm from '@/components/config/DynamicForm.vue';
 import { createTestingPinia } from '@pinia/testing';
@@ -9,10 +9,6 @@ import { generic_store } from '@/stores/modules/appType/channels/generic.store';
 
 describe('GenericConfig.vue', () => {
   let wrapper;
-  const mockGenericAppForm = [
-    { type: 'text', label: 'Name' },
-    { type: 'email', label: 'Email' },
-  ];
   const pinia = createTestingPinia({
     initialState: {
       app_type: {
