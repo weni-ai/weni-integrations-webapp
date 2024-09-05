@@ -3,7 +3,6 @@ import { createTestingPinia } from '@pinia/testing';
 import { describe, it, beforeEach, afterEach, expect, vi } from 'vitest';
 import FacebookSetup from '@/components/config/channels/facebook/Setup.vue';
 import axios from 'axios';
-import unnnic from '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
