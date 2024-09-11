@@ -1,8 +1,22 @@
+2.1.13
+----------
+`2024-09-06·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Dynamic form select
+
+2.1.12
+----------
+`2024-09-03·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Webhook for WhatsApp Channel in Integrations Not Working.
+
 2.1.11
 ----------
 `2024-08-29 ·  1 🐛 `
 
-### 🎉 New Features
+### 🐛 Bug fixes
 - Fix: Webhook config - URL validation;
 
 2.1.10
