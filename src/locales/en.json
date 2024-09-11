@@ -1135,5 +1135,33 @@
         "description": "Choose the way you want to send your catalog to start selling products via Whatsapp"
       }
     }
+  },
+
+  "channels": {
+    "TWT": "Send and receive messages on Twitter using their Twitter Activity API. You will have to apply for Twitter API access and create a Twitter application.",
+    "SL": "Add a Slack bot to send and receive messages to Slack users.",
+    "AT": "You can purchase a short code from Africa's Talking and connect it in a few simple steps.",
+    "CM": "If you are based in Malawi or Ghana you can purchase a number from Click Mobile and connect it in a few simple steps.",
+    "CT": "Connect your Clickatell number, we'll walk you through the steps necessary to get your Clickatell connection working in a few minutes.",
+    "D3": "Activate your own enterprise WhatsApp account in 360Dialog to communicate with your contacts.",
+    "DS": "Add a Discord bot to send messages to Discord users for free. Your users will need a Discord account and a compatible device to send/recieve messages. This channel type is only available if your instance has been configured with the Discord proxy application, available here.",
+    "FC": "Connect your approved FreshChat channel",
+    "FCM": "Add a Firebase Cloud Messaging channel to send and receive messages. Your users will need an App to send and receive messages.",
+    "I2": "If you have a long number or short code with I2SMS you can connect it in a few easy steps.",
+    "IB": "Easily add a two way number you have configured with Infobip using their APIs.",
+    "JC": "Add a JioChat bot to send and receive messages to JioChat users for free. Your users will need an Android, Windows or iOS device and a JioChat account to send and receive messages.",
+    "JN": "Connect your Junebug instance that you have already set up and configured.",
+    "KWA": "Activate your own enterprise WhatsApp account in Kaleyra to communicate with your contacts. Learn more about Kaleyra WhatsApp",
+    "MB": "Easily add a two way number you have configured with Mblox using their APIs.",
+    "MG": "If you are based in Jamaica, you can purchase a short code from Messangi and connect it in a few simple steps.",
+    "PM": "If you are based in Uzbekistan, you can purchase a short code from Play Mobile and connect it in a few simple steps.",
+    "TM": "Add a Microsoft Teams bot to send and receive messages to Microsoft Teams users.",
+    "TMS": "You can connect a messaging service from your Twilio account to benefit from Twilio Copilot features.",
+    "TW": "Connect to a service that speaks TwiML. You can use this to connect to TwiML compatible services outside of Twilio.",
+    "VP": "Connect a Viber public channel to send and receive messages to Viber users for free. Your users will need an Android, Windows or iOS device and a Viber account to send and receive messages.",
+    "WC": "Add a WeChat bot to send and receive messages to WeChat users for free. Your users will need an Android, Windows or iOS device and a WeChat account to send and receive messages.",
+    "ZVS": "If you have a Zenvia SMS number, you can connect it to communicate with your contacts.",
+    "ZVW": "If you have a Zenvia WhatsApp number, you can connect it to communicate with your WhatsApp contacts."
   }
+    
 }

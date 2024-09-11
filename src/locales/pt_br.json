@@ -1138,5 +1138,32 @@
         "description": "Escolha a forma como deseja enviar seu catálogo para começar a vender produtos via Whatsapp"
       }
     }
+  },
+  "channels": {
+  "TWT": "Envie e receba mensagens no Twitter usando sua API de Atividade do Twitter. Você precisará solicitar acesso à API do Twitter e criar uma aplicação do Twitter.",
+  "SL": "Adicione um bot do Slack para enviar e receber mensagens dos usuários do Slack.",
+  "AT": "Você pode comprar um código curto da Africa's Talking e conectá-lo em alguns passos simples.",
+  "CM": "Se você estiver em Malawi ou Gana, pode comprar um número da Click Mobile e conectá-lo em alguns passos simples.",
+  "CT": "Conecte seu número da Clickatell. Vamos guiá-lo pelos passos necessários para que sua conexão com a Clickatell funcione em alguns minutos.",
+  "D3": "Ative sua própria conta empresarial do WhatsApp no 360Dialog para se comunicar com seus contatos.",
+  "DS": "Adicione um bot do Discord para enviar mensagens gratuitamente aos usuários do Discord. Seus usuários precisarão de uma conta do Discord e de um dispositivo compatível para enviar e receber mensagens. Esse tipo de canal só está disponível se sua instância tiver sido configurada com o aplicativo proxy do Discord, disponível aqui.",
+  "FC": "Conecte seu canal FreshChat aprovado.",
+  "FCM": "Adicione um canal de Firebase Cloud Messaging para enviar e receber mensagens. Seus usuários precisarão de um aplicativo para enviar e receber mensagens.",
+  "I2": "Se você tiver um número longo ou um código curto com a I2SMS, poderá conectá-lo em alguns passos simples.",
+  "IB": "Adicione facilmente um número bidirecional que você configurou com a Infobip usando suas APIs.",
+  "JC": "Adicione um bot do JioChat para enviar e receber mensagens gratuitamente aos usuários do JioChat. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e uma conta do JioChat para enviar e receber mensagens.",
+  "JN": "Conecte sua instância do Junebug que você já configurou.",
+  "KWA": "Ative sua própria conta empresarial do WhatsApp na Kaleyra para se comunicar com seus contatos. Saiba mais sobre o Kaleyra WhatsApp.",
+  "MB": "Adicione facilmente um número bidirecional que você configurou com o Mblox usando suas APIs.",
+  "MG": "Se você estiver na Jamaica, pode comprar um código curto da Messangi e conectá-lo em alguns passos simples.",
+  "PM": "Se você estiver no Uzbequistão, pode comprar um código curto da Play Mobile e conectá-lo em alguns passos simples.",
+  "TM": "Adicione um bot do Microsoft Teams para enviar e receber mensagens dos usuários do Microsoft Teams.",
+  "TMS": "Você pode conectar um serviço de mensagens da sua conta Twilio para aproveitar os recursos do Twilio Copilot.",
+  "TW": "Conecte-se a um serviço que usa TwiML. Você pode usar isso para conectar-se a serviços compatíveis com TwiML fora do Twilio.",
+  "VP": "Conecte um canal público do Viber para enviar e receber mensagens dos usuários do Viber gratuitamente. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e de uma conta Viber para enviar e receber mensagens.",
+  "WC": "Adicione um bot do WeChat para enviar e receber mensagens dos usuários do WeChat gratuitamente. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e de uma conta WeChat para enviar e receber mensagens.",
+  "ZVS": "Se você tem um número de SMS da Zenvia, pode conectá-lo para se comunicar com seus contatos.",
+  "ZVW": "Se você tem um número de WhatsApp da Zenvia, pode conectá-lo para se comunicar com seus contatos do WhatsApp."
   }
+
 }
