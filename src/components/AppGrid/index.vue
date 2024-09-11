@@ -1,5 +1,7 @@
 <template>
   <div ref="appGrid">
+
+    {{ currentGridApps }}
     <section v-if="!loading" id="app-grid" maxLength="255" disabled="false">
       <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon
@@ -338,11 +340,12 @@
       },
       //TODO: return app code
       getTranslation(app) {
+        const code = app?.code ?? app.config.channel_code
         let i18nkey =
-          app.code === 'generic'
-            ? `channels.${app.config.channel_code}`
+          (app.code === 'generic' || app.generic === true)
+            ? `channels.${code}`
             : `GenericApp.configuration_guide.${app.code}`;
-        return this.$t(i18nkey);
+        return this.$te(i18nkey) ? this.$t(i18nkey) : app.summary;
       },
     },
     watch: {
