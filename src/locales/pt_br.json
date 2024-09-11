@@ -812,14 +812,15 @@
     },
     "preview": {
       "errors": {
-        "fetch_app": "An error occured while trying to fetch application data, please try again later."
+        "fetch_app": "Ocorreu um erro ao tentar buscar os dados do aplicativo, por favor tente novamente mais tarde."
       }
     },
     "description": {
-      "callback_url": "To finalize the channel configuration, you need to configure the Weni Platform channel's callback URL. The callback url for this channel is",
-      "callback_url_info_1": "For more information please follow",
-      "callback_url_info_2": "this documentation"
+      "callback_url": "Para finalizar a configuração do canal, você precisa configurar a URL de callback do canal da Plataforma Weni. A URL de callback para este canal é",
+      "callback_url_info_1": "Para mais informações, por favor siga",
+      "callback_url_info_2": "esta documentação"
     }
+
   },
   "instagram": {
     "data": {
