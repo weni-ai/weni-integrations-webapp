@@ -9,7 +9,7 @@
     "exit": "Salir",
     "send": "Enviar",
     "back": "Volver",
-    "next": "Próximo",
+    "next": "Siguiente",
     "start": "Empezar",
     "error": "Error",
     "success": "Éxito",
@@ -70,8 +70,8 @@
         "placeholder": "Buscar"
       },
       "action": {
-        "edit": "Edit",
-        "config": "Configure"
+        "edit": "Editar",
+        "config": "Configurar"
       }
     },
     "myApps": {
@@ -197,8 +197,8 @@
       "custom_css": "CSS personalizado",
       "avatar_image": "Imagen del avatar",
       "show_fullscreen_button": "Mostrar el botón de pantalla completa",
-      "unread_messages_indicator": "Unread messages indicator",
-      "keep_chat_history": "Indicador de mensajes no leídos",
+      "unread_messages_indicator": "Indicador de mensajes no leídos",
+      "keep_chat_history": "Mantener historial de mensajes",
       "time_between_messages": "Tiempo entre mensajes",
       "main_color": "Color principal",
       "save_changes": "Guardar los cambios",
@@ -338,7 +338,7 @@
           "label": "Método"
         },
         "headers": {
-          "label": "Headers"
+          "label": "Encabezados"
         },
         "header_key": {
           "placeholder": "Llave"
@@ -391,7 +391,7 @@
           "default_language_for_templates": "Idioma predeterminado para plantillas",
           "ivr_existing": "IVR existente",
           "ivr_active": "IVR activo",
-          "certificate": "Certificate",
+          "certificate": "Certificado",
           "consent_status": "Estado de consentimiento"
         }
       },
@@ -399,10 +399,10 @@
         "title": "Cuenta comercial de WhatsApp (WABA)",
         "fields": {
           "waba_name": "Nombre WABA",
-          "message_on_behalf_of": "Message on Behalf Name",
+          "message_on_behalf_of": "Nombre del Mensaje en Nombre de.",
           "timezone_id": "ID de zona horaria",
           "waba_id": "WABA ID",
-          "namespace": "Namespace"
+          "namespace": "Espacio de nombres"
         }
       },
       "profile": {
@@ -574,8 +574,8 @@
         "language_already_exists": "Este idioma ya existe",
         "select_languages": "Error al obtener datos de idioma. Por favor, inténtelo de nuevo más tarde...",
         "invalid_app_uuid": "Identificador de aplicación no válido. Actualice la página.",
-        "invalid_name": "Nome do template inválido",
-        "invalid_category": "Nombre de plantilla no válido",
+        "invalid_name": "Nombre de la plantilla inválido.",
+        "invalid_category": "Categoría de plantilla inválida.",
         "invalid_language": "Idioma de la plantilla no válido",
         "create_template": "No se puede crear la plantilla. Por favor, inténtelo de nuevo más tarde.",
         "create_translation": "No se puede crear la traducción de la plantilla. Por favor, inténtelo de nuevo más tarde",
@@ -833,7 +833,7 @@
         "description": "Agregar una página de cuenta comercial de <strong>Instagram</strong>"
       },
       "account_data": {
-        "error": "Failed to fetch Instagram pages data, please try again later."
+        "error": "No se pudo obtener los datos de las páginas de Instagram, por favor inténtalo de nuevo más tarde."
       },
       "find_page": {
         "error": "Seleccione una página de Instagram para conectarse"
