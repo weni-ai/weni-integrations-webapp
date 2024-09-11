@@ -1161,7 +1161,469 @@
     "VP": "Connect a Viber public channel to send and receive messages to Viber users for free. Your users will need an Android, Windows or iOS device and a Viber account to send and receive messages.",
     "WC": "Add a WeChat bot to send and receive messages to WeChat users for free. Your users will need an Android, Windows or iOS device and a WeChat account to send and receive messages.",
     "ZVS": "If you have a Zenvia SMS number, you can connect it to communicate with your contacts.",
-    "ZVW": "If you have a Zenvia WhatsApp number, you can connect it to communicate with your WhatsApp contacts."
+    "ZVW": "If you have a Zenvia WhatsApp number, you can connect it to communicate with your WhatsApp contacts.",
+
+    "inputs":{
+      "KWA": {
+        "number": {
+          "label": "Your enterprise WhatsApp number", 
+          "message": "",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Country",
+          "message": "",
+          "placeholder": ""
+        },
+        "account_sid": {
+          "label": "Account SID",
+          "message": "Your Kaleyra Account SID",
+          "placeholder": ""
+        },
+        "api_key": {
+          "label": "API Key",
+          "message": "Your Kaleyra API Key",
+          "placeholder": ""
+        }
+      },
+      "MB": {
+        "country": {
+          "label": "Country",
+          "message": "The country this phone number is used in",
+          "placeholder": "Select a country"
+        },
+        "number": {
+          "label": "Number",
+          "message": "The phone number or short code you are connecting with country code. ex: +250788123124",
+          "placeholder": "Enter the number"
+        },
+        "username": {
+          "label": "Username",
+          "message": "The username provided by the provider to use their API",
+          "placeholder": "Enter your username"
+        },
+        "password": {
+          "label": "Password",
+          "message": "The password provided by the provider to use their API",
+          "placeholder": "Enter your password"
+        }
+      },
+      "MG": {
+        "shortcode": {
+        "label": "The Messangi short code",
+        "placeholder": "Enter the shortcode",
+        "message": null
+        },
+        "carrier_id": {
+        "label": "Carrier Id",
+        "placeholder": "Enter the carrier id",
+        "message": "The carrier id for the short code"
+        },
+        "public_key": {
+          "label": "Public Key",
+          "placeholder": "Enter the public key",
+          "message": "The public key provided by Messangi"
+        },
+        "private_key": {
+          "label": "Private Key",
+          "placeholder": "Enter the private key",
+          "message": "The private key provided by Messangi"
+        },
+        "instance_id": {
+          "label": "Instance Id",
+          "placeholder": "Enter the instance id",
+          "message": "The instance id provided by Messangi"
+        }
+      },
+      "PM": {
+        "base_url": {
+        "label": "Base URL",
+        "placeholder": "Enter the base URL",
+        "message": "The base URL for PlayMobile"
+        },
+        "shortcode": {
+          "label": "Shortcode",
+          "placeholder": "Enter the shortcode",
+          "message": "The short code you are connecting"
+        },
+        "username": {
+          "label": "Username",
+          "placeholder": "Enter your username",
+          "message": "The username for your API account"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Enter your password",
+          "message": "The password for your API account"
+        }
+      },
+      "TM": {
+        "bot_name": {
+          "label": "The name of bot",
+          "placeholder": "Enter the name of the bot",
+          "message": null
+        },
+        "bot_id": {
+          "label": "The ID of bot",
+          "placeholder": "Enter the ID of the bot",
+          "message": null
+        },
+        "app_id": {
+          "label": "The App ID",
+          "placeholder": "Enter the App ID",
+          "message": null
+        },
+        "app_password": {
+          "label": "The application password",
+          "placeholder": "Enter the application password",
+          "message": null
+        },
+        "tenant_id": {
+          "label": "The Tenant ID",
+          "placeholder": "Enter the Tenant ID",
+          "message": null
+        }
+      },
+      "TMS": {
+        "country": {
+          "label": "Country",
+          "placeholder": "Select your country",
+          "message": null
+        },
+        "messaging_service_sid": {
+          "label": "Messaging Service SID",
+          "placeholder": "Enter your Messaging Service SID",
+          "message": "The Twilio Messaging Service SID"
+        }
+      },
+      "TW": {
+        "country": {
+          "type": "select",
+          "label": "Country",
+          "message": "The country this phone number is used in"
+        },
+        "number": {
+          "type": "input",
+          "label": "Number",
+          "message": "The phone number without country code or short code you are connecting."
+        },
+        "url": {
+          "type": "input",
+          "label": "TwiML REST API Host",
+          "message": "The publicly accessible URL for your TwiML REST API instance ex: https://api.twilio.com"
+        },
+        "role": {
+          "type": "select",
+          "label": "Role",
+          "message": "Choose the role that this channel supports"
+        },
+        "account_sid": {
+          "type": "input",
+          "label": "The Account SID to use to authenticate to the TwiML REST API",
+          "message": null
+        },
+        "account_token": {
+          "type": "input",
+          "label": "The Account Token to use to authenticate to the TwiML REST API",
+          "message": null
+        },
+        "max_concurrent_events": {
+          "type": "input",
+          "label": "Max active calls at the same time",
+          "message": null
+        }
+      },
+      "VP": {
+        "auth_token": {
+          "type": "input",
+          "label": "The authentication token provided by Viber",
+          "message": null
+        }
+      },
+      "WC": {
+        "app_id": {
+          "type": "input",
+          "label": "The WeChat App ID",
+          "message": null
+        },
+        "app_secret": {
+          "type": "input",
+          "label": "The WeChat App secret",
+          "message": null
+        }
+      },
+      "ZVS": {
+        "country": {
+          "type": "select",
+          "label": "Country",
+          "message": "The country this phone number is used in"
+        },
+        "number": {
+          "type": "input",
+          "label": "Number",
+          "message": "The phone number with country code or short code you are connecting. ex: +250788123124 or 15543"
+        },
+        "token": {
+          "type": "input",
+          "label": "API Token",
+          "message": "The API token for your integration as provided by Zenvia"
+        }
+      },
+      "ZVW": {
+        "country": {
+          "label": "Country",
+          "message": "The country this phone number is used in",
+          "placeholder": ""
+        },
+        "number": {
+          "label": "Number",
+          "message": "The phone number with country code or short code you are connecting. ex: +250788123124 or 15543",
+          "placeholder": ""
+        },
+        "token": {
+          "label": "API Token",
+          "message": "The API token for your integration as provided by Zenvia",
+          "placeholder": ""
+        }
+      },
+      "SL": {
+        "user_token": {
+          "label": "User OAuth Token",
+          "message": "In https://api.slack.com/apps select your bot app and go to Features / OAuth & Permissions to see this information.",
+          "placeholder": ""
+        },
+        "bot_token": {
+          "label": "Bot User OAuth Token",
+          "message": "In https://api.slack.com/apps select your bot app and go to Features / OAuth & Permissions to see this information.",
+          "placeholder": ""
+        },
+        "verification_token": {
+          "label": "Verification Token",
+          "message": "In https://api.slack.com/apps go to Settings / Basic information, find in App Credentials and paste here.",
+          "placeholder": ""
+        }
+      },
+      "AT": {
+        "shortcode": {
+          "label": "Your short code on Africa's Talking",
+          "message": null,
+          "placeholder": ""
+        },
+        "country": {
+          "label": "country",
+          "message": null,
+          "placeholder": ""
+        },
+        "is_shared": {
+          "label": "Whether this short code is shared with others",
+          "message": null,
+          "placeholder": ""
+        },
+        "username": {
+          "label": "Your username on Africa's Talking",
+          "message": null,
+          "placeholder": ""
+        },
+        "api_key": {
+          "label": "Your api key, should be 64 characters",
+          "message": null,
+          "placeholder": ""
+        }
+      },
+      "CM": {
+        "number": {
+          "label": "Number",
+          "message": "The Click Mobile phone number or short code you are connecting with country code. ex: +250788123124",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "Country",
+          "message": "",
+          "placeholder": ""
+        },
+        "username": {
+          "label": "User ID",
+          "message": "Your user_id on Click Mobile",
+          "placeholder": ""
+        },
+        "password": {
+          "label": "Password",
+          "message": "Your password on Click Mobile",
+          "placeholder": ""
+        },
+        "app_id": {
+          "label": "App ID",
+          "message": "Your app_id on Click Mobile",
+          "placeholder": ""
+        },
+        "org_id": {
+          "label": "Org ID",
+          "message": "Your org_id on Click Mobile",
+          "placeholder": ""
+        }
+      },
+      "CT": {
+        "country": {
+          "type": "select",
+          "label": "Country",
+          "message": "The country this phone number is used in"
+        },
+        "number": {
+          "type": "input",
+          "label": "Number",
+          "message": "The phone number with country code or short code you are connecting. ex: +250788123124 or 15543"
+        },
+        "api_key": {
+          "type": "input",
+          "label": "API Key",
+          "message": "The API key for your integration as provided by Clickatell"
+        }
+      }, 
+      "D3": {
+        "number": {
+          "type": "input",
+          "label": "Your enterprise WhatsApp number",
+          "message": null
+        },
+        "country": {
+          "type": "select",
+          "label": "Country",
+          "message": "The country this phone number is used in"
+        },
+        "base_url": {
+          "type": "input",
+          "label": "The base URL for your 360 Dialog WhatsApp enterprise installation",
+          "message": null
+        },
+        "api_key": {
+          "type": "input",
+          "label": "The 360 Dialog API key generated after account registration",
+          "message": null
+        }
+      },
+      "DS": {
+        "auth_token": {
+          "type": "input",
+          "label": "Authentication Token",
+          "message": "The discord bot token"
+        },
+        "proxy_url": {
+          "type": "input",
+          "label": "Proxy URL",
+          "message": "The URL on which the discord proxy is running"
+        }
+      },
+      "FCM": {
+        "title": {
+          "label": "Notification Title",
+          "message": "",
+          "placeholder": "Enter the notification title"
+        },
+        "key": {
+          "label": "FCM Key",
+          "message": "The key provided on the Firebase Console when you created your app.",
+          "placeholder": "Enter your FCM key"
+        },
+        "send_notification": {
+          "label": "Send notification",
+          "message": "Check if you want this channel to send notifications to contacts.",
+          "placeholder": ""
+        }
+      },
+      "I2": {
+        "country": {
+          "label": "Country",
+          "message": "The country this phone number is used in",
+          "placeholder": "Select a country"
+        },
+        "number": {
+          "label": "Number",
+          "message": "The phone number or short code you are connecting with country code. ex: +250788123124",
+          "placeholder": "Enter the number"
+        },
+        "username": {
+          "label": "Username",
+          "message": "Your i2SMS username",
+          "placeholder": "Enter your username"
+        },
+        "password": {
+          "label": "Password",
+          "message": "Your i2SMS password",
+          "placeholder": "Enter your password"
+        },
+        "channel_hash": {
+          "label": "The hash of your i2SMS channel",
+          "message": null,
+          "placeholder": "Enter the channel hash"
+        }
+      },
+      "IB": {
+        "country": {
+          "label": "Country",
+          "message": "The country this phone number is used in",
+          "placeholder": "Select a country"
+        },
+        "number": {
+          "label": "Number",
+          "message": "The phone number or short code you are connecting with country code. ex: +250788123124",
+          "placeholder": "Enter the number"
+        },
+        "username": {
+          "label": "Username",
+          "message": "The username provided by the provider to use their API",
+          "placeholder": "Enter your username"
+        },
+        "password": {
+          "label": "Password",
+          "message": "The password provided by the provider to use their API",
+          "placeholder": "Enter your password"
+        }
+      },
+      "JC": {
+        "app_id": {
+          "label": "The JioChat App ID",
+          "message": "Enter your JioChat App ID",
+          "placeholder": "Enter the App ID"
+        },
+        "app_secret": {
+          "label": "The JioChat App secret",
+          "message": "Enter your JioChat App secret",
+          "placeholder": "Enter the App secret"
+        }
+      },
+      "JN": {
+        "country": {
+          "label": "Country",
+          "message": "The country this phone number is used in",
+          "placeholder": "Select a country"
+        },
+        "number": {
+          "label": "Number",
+          "message": "The short code or phone number you are connecting.",
+          "placeholder": "Enter the number"
+        },
+        "url": {
+          "label": "URL",
+          "message": "The URL for the Junebug channel. ex: https://junebug.praekelt.org/jb/channels/3853bb51-d38a-4bca-b332-8a57c00f2a48/messages.json",
+          "placeholder": "Enter the URL"
+        },
+        "username": {
+          "label": "Username",
+          "message": "The username to be used to authenticate to Junebug",
+          "placeholder": "Enter the username"
+        },
+        "password": {
+          "label": "Password",
+          "message": "The password to be used to authenticate to Junebug",
+          "placeholder": "Enter the password"
+        },
+        "secret": {
+          "label": "Secret",
+          "message": "The token Junebug should use to authenticate",
+          "placeholder": "Enter the secret"
+        }
+      }
+    }
   }
     
 }

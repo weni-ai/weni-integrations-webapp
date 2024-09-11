@@ -7,18 +7,24 @@
         :class="[!input.label && 'dynamic-form__fields--top-margin', 'dynamic-form__fields__input']"
         :type="getType(input)"
         v-model="input.value"
-        :label="input.label && $t(input.label)"
-        :placeholder="input.placeholder && $t(input.placeholder)"
-        :message="input.message && $t(input.message)"
+        :label="input.label && $t(`channels.inputs.${channelCode}.${input.name}.label`)"
+        :placeholder="
+          input.placeholder && $t(`channels.inputs.${channelCode}.${input.name}.placeholder`)
+        "
+        :message="input.message && $t(`channels.inputs.${channelCode}.${input.name}.message`)"
         @update:modelValue="(e) => emitInput(index, e)"
       />
 
       <div v-if="input.type === 'select'">
-        <unnnic-label :label="$t(input.label)" />
+        <unnnic-label
+          :label="input.label && $t(`channels.inputs.${channelCode}.${input.name}.label`)"
+        />
         <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
       </div>
       <div v-else-if="input.type === 'upload'">
-        <unnnic-label :label="$t(input.label)" />
+        <unnnic-label
+          :label="input.label && $t(`channels.inputs.${channelCode}.${input.name}.label`)"
+        />
         <unnnic-upload-area
           :files="input.props.files"
           :acceptMultiple="input.props.acceptMultiple"
@@ -37,7 +43,7 @@
         v-else-if="input.type === 'checkbox'"
         class="dynamic-form__fields--top-margin"
         v-model="input.value"
-        :textRight="input.label"
+        :textRight="input.label && $t(`channels.inputs.${channelCode}.${input.name}.label`)"
         @change="(e) => emitInput(index, e)"
       />
     </div>
@@ -51,6 +57,10 @@
       inputs: {
         type: Array,
         default: /* istanbul ignore next */ () => [],
+      },
+      channelCode: {
+        type: String,
+        default: '',
       },
     },
     methods: {

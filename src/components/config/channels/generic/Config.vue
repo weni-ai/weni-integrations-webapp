@@ -43,6 +43,7 @@
         v-if="!loadingCurrentApp && !loadingFormBuild"
         class="app-config-generic__settings__content__form"
         :inputs="appFormInputs"
+        :channelCode="app.config.channel_code"
         @input="updateInputs"
       />
       <unnnic-skeleton-loading
