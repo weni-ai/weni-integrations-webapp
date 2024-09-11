@@ -264,7 +264,7 @@
   "WhatsAppDemo": {
     "data": {
       "summary": "Con WhatsApp Demo puedes traer lo mejor de WhatsApp, la aplicación de chat más grande del mundo, gratis para validar tu proyecto.",
-      "description": "With WhatsApp Demo you can bring the best of WhatsApp, the biggest chat app in the world, for free to validate your project. With a free shared number you can test with up to 200 monthly users all the features available on the platform, as well as validate the operation and service of your business through this channel.<br>Obs.:<br>- Does not support customizations (photo, description, number, etc)<br>- Does not support template messages and all conversations must be initiated by the user",
+      "description": "Con WhatsApp Demo, puedes traer lo mejor de WhatsApp, la aplicación de chat más grande del mundo, de forma gratuita para validar tu proyecto. Con un número compartido gratuito, puedes probar con hasta 200 usuarios mensuales todas las funciones disponibles en la plataforma, así como validar la operación y el servicio de tu negocio a través de este canal.<br>Nota:<br>- No admite personalizaciones (foto, descripción, número, etc.)<br>- No admite mensajes de plantilla y todas las conversaciones deben ser iniciadas por el usuario.",
       "links": {
         "create_channel": {
           "label": "Agregar un canal de demostración de WhatsApp",
