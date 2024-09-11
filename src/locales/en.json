@@ -793,6 +793,17 @@
   },
   "GenericApp": {
     "configuration_guide": {
+      "I2": "If you have a long number or short code with <a href=\"https://www.i2sms.com/\">I2SMS</a> you can connect it in a few easy steps.",
+      "DS": "Add a <a href=\"https://discord.com/\">Discord</a> bot to send messages to Discord users for free. Your users will need a Discord account and a compatible device to send/recieve messages. This channel type is only available if your instance has been configured with the Discord proxy application, available <a href=\"https://github.com/releaseplatform/RapidPro-Discord-Proxy\">here</a>.",
+      "D3": "Activate your own enterprise WhatsApp account in <a href=\"https://www.360dialog.com/\">360Dialog</a> to communicate with your contacts.",
+      "CM": "If you are based in Malawi or Ghana you can purchase a number from <a href=\"https://www.click-mobile.com/\">Click Mobile</a> and connect it in a few simple steps.",
+      "AT": "You can purchase a short code from <a href=\"http://africastalking.com\">Africa's Talking</a> and connect it in a few simple steps.",
+      "ZVW": "If you have a <a href=\"https://www.zenvia.com/\">Zenvia WhatsApp</a> number, you can connect it to communicate with your WhatsApp contacts.",
+      "ZVS": " If you have a <a href=\"https://www.zenvia.com/\">Zenvia SMS</a> number, you can connect it to communicate with your contacts.",
+      "WC": "Add a <a href=\"https://wechat.com\">WeChat</a> bot to send and receive messages to WeChat users for free. Your users will need an Android, Windows or iOS device and a WeChat account to send and receive messages.",
+      "PM": "If you are based in Uzbekistan, you can purchase a short code from Play Mobile and connect it in a few simple steps.",
+      "MG": "If you are based in Jamaica, you can purchase a short code from <a href=\"http://www.messangi.com/\">Messangi</a> and connect it in a few simple steps.",
+      "KWA": "Activate your own enterprise WhatsApp account in Kaleyra to communicate with your contacts. <a href=\"https://www.kaleyra.com/whatsapp/\">Learn more about Kaleyra WhatsApp</a>\"",
       "CT": "To connect a <a href=\"http://clickatell.com\">Clickatell</a> number, first create an HTTP integration for a two way number, then enter the number and API key below.",
       "FCM": "You can to connect using a <a href=\"https://firebase.google.com/docs/cloud-messaging/\">Firebase Cloud Messaging App</a> to your workspace to automate sending notifications. You will need to create a new App on Firebase Console and get its key. To do so:",
       "FC": "<p>You can connect a <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> Account to your account to automate sending and receiving messages via FreshChat. This will also support Apple Business Chat if it's been configured on your FreshChat account.<br/><br/>Each message sent to the channel will have a URN in the format <span class=\"highlight\">channel-uuid/user-uuid</span> where the channel UUID is the FreshChat channel's UUID.</p><ol><li>In the FreshChat web interface, under Settings, API Tokens, select Generate Token. Once the token is created you'll enter it below.</li><li>Under Settings again, select Webhooks and copy the Public Key and paste it below. This assures all webhook request from FreshChat will be authenticated.</li><li>Lastly, you'll need the UUID of the Agent that Weni will use when it sends FreshChat message. This is available via the <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Once you press Submit below with all the information configured, the confirmation page will give you the URL to use for the FreshChat Webhooks. Enter this URL on the Settings page, under Webhooks where the Public Key was copied from before.</li></ol>",
@@ -1138,30 +1149,6 @@
   },
 
   "channels": {
-    "TWT": "Send and receive messages on Twitter using their Twitter Activity API. You will have to apply for Twitter API access and create a Twitter application.",
-    "SL": "Add a Slack bot to send and receive messages to Slack users.",
-    "AT": "You can purchase a short code from Africa's Talking and connect it in a few simple steps.",
-    "CM": "If you are based in Malawi or Ghana you can purchase a number from Click Mobile and connect it in a few simple steps.",
-    "CT": "Connect your Clickatell number, we'll walk you through the steps necessary to get your Clickatell connection working in a few minutes.",
-    "D3": "Activate your own enterprise WhatsApp account in 360Dialog to communicate with your contacts.",
-    "DS": "Add a Discord bot to send messages to Discord users for free. Your users will need a Discord account and a compatible device to send/recieve messages. This channel type is only available if your instance has been configured with the Discord proxy application, available here.",
-    "FC": "Connect your approved FreshChat channel",
-    "FCM": "Add a Firebase Cloud Messaging channel to send and receive messages. Your users will need an App to send and receive messages.",
-    "I2": "If you have a long number or short code with I2SMS you can connect it in a few easy steps.",
-    "IB": "Easily add a two way number you have configured with Infobip using their APIs.",
-    "JC": "Add a JioChat bot to send and receive messages to JioChat users for free. Your users will need an Android, Windows or iOS device and a JioChat account to send and receive messages.",
-    "JN": "Connect your Junebug instance that you have already set up and configured.",
-    "KWA": "Activate your own enterprise WhatsApp account in Kaleyra to communicate with your contacts. Learn more about Kaleyra WhatsApp",
-    "MB": "Easily add a two way number you have configured with Mblox using their APIs.",
-    "MG": "If you are based in Jamaica, you can purchase a short code from Messangi and connect it in a few simple steps.",
-    "PM": "If you are based in Uzbekistan, you can purchase a short code from Play Mobile and connect it in a few simple steps.",
-    "TM": "Add a Microsoft Teams bot to send and receive messages to Microsoft Teams users.",
-    "TMS": "You can connect a messaging service from your Twilio account to benefit from Twilio Copilot features.",
-    "TW": "Connect to a service that speaks TwiML. You can use this to connect to TwiML compatible services outside of Twilio.",
-    "VP": "Connect a Viber public channel to send and receive messages to Viber users for free. Your users will need an Android, Windows or iOS device and a Viber account to send and receive messages.",
-    "WC": "Add a WeChat bot to send and receive messages to WeChat users for free. Your users will need an Android, Windows or iOS device and a WeChat account to send and receive messages.",
-    "ZVS": "If you have a Zenvia SMS number, you can connect it to communicate with your contacts.",
-    "ZVW": "If you have a Zenvia WhatsApp number, you can connect it to communicate with your WhatsApp contacts.",
 
     "inputs":{
       "KWA": {
@@ -1431,37 +1418,37 @@
         }
       },
       "CM": {
-        "number": {
-          "label": "Number",
-          "message": "The Click Mobile phone number or short code you are connecting with country code. ex: +250788123124",
-          "placeholder": ""
-        },
-        "country": {
-          "label": "Country",
-          "message": "",
-          "placeholder": ""
-        },
-        "username": {
-          "label": "User ID",
-          "message": "Your user_id on Click Mobile",
-          "placeholder": ""
-        },
-        "password": {
-          "label": "Password",
-          "message": "Your password on Click Mobile",
-          "placeholder": ""
-        },
-        "app_id": {
-          "label": "App ID",
-          "message": "Your app_id on Click Mobile",
-          "placeholder": ""
-        },
-        "org_id": {
-          "label": "Org ID",
-          "message": "Your org_id on Click Mobile",
-          "placeholder": ""
-        }
+      "number": {
+        "label": "Número",
+        "message": "El número de teléfono o código corto de Click Mobile que estás conectando con el código de país. ej: +250788123124",
+        "placeholder": ""
       },
+      "country": {
+        "label": "País",
+        "message": "",
+        "placeholder": ""
+      },
+      "username": {
+        "label": "ID de Usuario",
+        "message": "Tu user_id en Click Mobile",
+        "placeholder": ""
+      },
+      "password": {
+        "label": "Contraseña",
+        "message": "Tu contraseña en Click Mobile",
+        "placeholder": ""
+      },
+      "app_id": {
+        "label": "ID de la Aplicación",
+        "message": "Tu app_id en Click Mobile",
+        "placeholder": ""
+      },
+      "org_id": {
+        "label": "ID de la Organización",
+        "message": "Tu org_id en Click Mobile",
+        "placeholder": ""
+      }
+    },
       "CT": {
         "country": {
           "type": "select",

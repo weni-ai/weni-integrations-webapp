@@ -338,10 +338,11 @@
       },
       //TODO: return app code
       getTranslation(app) {
-        if (app.code === 'generic') {
-          return `channels.${app.config.channel_code}`;
-        }
-        return `channels.${app.code}`;
+        let i18nkey =
+          app.code === 'generic'
+            ? `GenericApp.configuration_guide.${app.config.channel_code}`
+            : `GenericApp.configuration_guide.${app.code}`;
+        return this.$t(i18nkey);
       },
     },
     watch: {
