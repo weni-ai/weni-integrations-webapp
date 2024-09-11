@@ -461,7 +461,8 @@
       },
       "templates": {
         "button": "Ver mis plantillas",
-        "title": "Plantillas"
+        "title": "Plantillas",
+        "new_language":"Nuevo Idioma"
       },
       "catalog": {
         "button": "Ver lista de catálogos",

@@ -465,7 +465,8 @@
       },
       "templates": {
         "button": "Ver meus templates",
-        "title": "Templates"
+        "title": "Templates",
+        "new_language":"Nova linguagem"	
       },
       "catalog": {
         "button": "Ver lista de catálogos",

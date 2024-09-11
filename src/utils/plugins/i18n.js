@@ -13,7 +13,7 @@ const languages = {
 const messages = Object.assign(languages);
 
 const i18n = VueI18n.createI18n({
-  locale: 'es',
+  locale: 'pt-br',
   fallbackLocale: 'en-us',
   messages,
 });
