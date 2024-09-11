@@ -214,8 +214,8 @@
         "placeholder": "Ej.: Nombre de su empresa"
       },
       "PlaceholderInput": {
-        "label": "Placeholder text",
-        "placeholder": "Texto del marcador de posición"
+        "label": "Texto del marcador de posición",
+        "placeholder": "Ej.: Escribe tu mensaje."
       },
       "initPayloadInput": {
         "label": "Mensaje de activación",
