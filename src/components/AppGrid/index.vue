@@ -1,7 +1,5 @@
 <template>
   <div ref="appGrid">
-
-    {{ currentGridApps }}
     <section v-if="!loading" id="app-grid" maxLength="255" disabled="false">
       <div v-if="apps && apps.length" class="app-grid__header">
         <unnnic-avatar-icon
