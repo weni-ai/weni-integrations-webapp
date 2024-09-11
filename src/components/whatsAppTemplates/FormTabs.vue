@@ -10,6 +10,11 @@
       :initialTab="initialTranslation"
       @change="handleTranslationSelection"
     >
+    <template #tab-head-new>
+      <div ref="new-translation-button">
+        {{ $t('WhatsApp.templates.new_language') }}
+      </div>
+    </template>
       <template #tab-head-add>
         <div ref="add-translation-button" @click.stop="addTranslation">
           <unnnic-icon-svg icon="add-1" size="sm" />
