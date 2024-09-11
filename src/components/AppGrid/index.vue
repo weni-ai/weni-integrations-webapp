@@ -340,7 +340,7 @@
       getTranslation(app) {
         let i18nkey =
           app.code === 'generic'
-            ? `GenericApp.configuration_guide.${app.config.channel_code}`
+            ? `channels.${app.config.channel_code}`
             : `GenericApp.configuration_guide.${app.code}`;
         return this.$t(i18nkey);
       },
