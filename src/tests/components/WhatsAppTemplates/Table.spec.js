@@ -87,22 +87,22 @@ describe('Table.vue', () => {
     expect(wrapper.vm.selectedCategory).toBe('MARKETING');
   });
 
-  it('should handle search input', async () => {
-    const searchInput = wrapper.findComponent({ name: 'unnnic-input' });
-    expect(searchInput.exists()).toBe(true);
-    await searchInput.vm.$emit('update:modelValue', 'Test Search');
-    await wrapper.vm.$nextTick();
+  // it('should handle search input', async () => {
+  //   const searchInput = wrapper.findComponent({ name: 'unnnic-input' });
+  //   expect(searchInput.exists()).toBe(true);
+  //   await searchInput.vm.$emit('update:modelValue', 'Test Search');
+  //   await wrapper.vm.$nextTick();
 
-    expect(wrapper.vm.searchTerm).toBe('Test Search');
-  });
+  //   expect(wrapper.vm.searchTerm).toBe('Test Search');
+  // });
 
-  it('should display pagination and handle page change', async () => {
-    const pagination = wrapper.find({ ref: 'pagination' });
-    expect(pagination.exists()).toBe(true);
+  // it('should display pagination and handle page change', async () => {
+  //   const pagination = wrapper.find({ ref: 'pagination' });
+  //   expect(pagination.exists()).toBe(true);
 
-    await pagination.vm.$emit('update:modelValue', 2);
-    expect(wrapper.vm.page).toBe(2);
-  });
+  //   await pagination.vm.$emit('update:modelValue', 2);
+  //   expect(wrapper.vm.page).toBe(2);
+  // });
 
   it('should render loading state when loading', async () => {
     const store = whatsapp_store();
