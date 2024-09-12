@@ -32,6 +32,7 @@
 
     <div class="config-whatsapp__content">
       <unnnic-tab
+        ref="tab"
         v-if="
           skipLoad ||
           (!loadingWhatsAppProfile && !loadingCurrentApp && !loadingWhatsAppCloudCatalogs)
