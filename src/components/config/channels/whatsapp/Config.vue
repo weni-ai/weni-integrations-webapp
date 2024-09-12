@@ -12,6 +12,7 @@
         <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
 
         <unnnic-button
+          ref="close"
           class="config-whatsapp__header__title__close"
           type="tertiary"
           icon-center="close-1"
@@ -169,7 +170,8 @@
           this.skipLoad = false;
         } catch (error) {
           let err =
-            err.response?.data.error?.error_user_msg || this.$t('WhatsApp.config.error.data_fetch');
+            error.response?.data.error?.error_user_msg ||
+            this.$t('WhatsApp.config.error.data_fetch');
           unnnic.unnnicCallAlert({
             props: {
               text: err,
