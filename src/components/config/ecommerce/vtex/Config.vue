@@ -56,6 +56,13 @@
             </tr>
           </table>
         </div>
+        <div class="config-vtex__settings__content__vtexADS">
+          <unnnic-switch v-model="vtexADS" />
+          <p>Vtex ADS</p>
+          <unnnicToolTip side="top" :text="$t('vtex.config.vtexADS')" enabled>
+            <img class="logo" src="../../../../assets/svgs/info.svg" alt="" />
+          </unnnicToolTip>
+        </div>
         <div class="config-vtex__settings__content__sellers" v-if="hasConnectedCatalog">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
@@ -147,6 +154,7 @@
         wpp_uuid: null,
         disableSellers: false,
         selectedSellers: [],
+        vtexADS: false,
       };
     },
     computed: {
@@ -169,7 +177,7 @@
         );
       },
       disableSave() {
-        return this.selectedSellers.length === 0;
+        return this.hasConnectedCatalog && this.selectedSellers.length === 0;
       },
     },
     async mounted() {
@@ -189,6 +197,7 @@
         'getSellersList',
         'getVtexAppUuid',
         'syncSellers',
+        'syncADS',
         'checkSyncSellers',
       ]),
       async connectCatalog(eventData) {
@@ -283,11 +292,17 @@
       },
       async handleSave() {
         const sellers = this.selectedSellers.map((item) => item.value);
-        const payload = {
-          project_uuid: this.project,
-          sellers: sellers,
-        };
-        await this.syncSellers({ uuid: this.appUuid, payload: payload });
+        if (sellers.length) {
+          const payloadSync = {
+            project_uuid: this.project,
+            sellers: sellers,
+          };
+          await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
+        }
+        await this.syncADS({
+          uuid: this.appUuid,
+          payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
+        });
 
         if (this.errorSyncSellers) {
           this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
@@ -395,6 +410,18 @@
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
             margin-bottom: $unnnic-spacing-sm;
+          }
+        }
+
+        &__vtexADS {
+          display: flex;
+          font-family: $unnnic-font-family-secondary;
+          flex-direction: row;
+          align-items: center;
+          gap: $unnnic-spacing-inline-xs;
+
+          ::v-deep .unnnic-tooltip {
+            display: flex;
           }
         }
 
