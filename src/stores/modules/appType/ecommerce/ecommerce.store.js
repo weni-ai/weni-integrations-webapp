@@ -96,5 +96,16 @@ export const ecommerce_store = defineStore('ecommerce', {
         this.loadingSyncSellers = false;
       }
     },
+    async syncADS({ uuid, payload }) {
+      this.loadingSyncSellers = true;
+      this.errorSyncSellers = null;
+      try {
+        await ecommerce.syncADS(uuid, payload);
+        this.loadingSyncSellers = false;
+      } catch (err) {
+        this.errorSyncSellers = err;
+        this.loadingSyncSellers = false;
+      }
+    },
   },
 });
