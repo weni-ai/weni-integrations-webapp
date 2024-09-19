@@ -133,6 +133,7 @@
   import unnnic from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
   import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'vtex-config',
@@ -158,6 +159,7 @@
       };
     },
     computed: {
+      ...mapState(my_apps, ['configuredApps']),
       ...mapState(app_type, ['currentApp', 'errorCurrentApp', 'appUuid']),
       ...mapState(auth_store, ['project']),
       ...mapState(ecommerce_store, [
@@ -167,6 +169,7 @@
         'errorSellersList',
         'errorSyncSellers',
         'checkSellers',
+        'vtexADS',
       ]),
       sellerOptions() {
         return (
@@ -179,10 +182,14 @@
       disableSave() {
         return this.hasConnectedCatalog && this.selectedSellers.length === 0;
       },
+      appConfig() {
+        return this.configuredApps.find((item) => item.uuid === this.appUuid)?.config;
+      },
     },
     async mounted() {
       await this.fetchRelatedWppData();
       await this.checkSyncSellers({ uuid: this.appUuid });
+      this.vtexADS = this.appConfig ? this.appConfig.vtex_ads : false;
       if (this.checkSellers) {
         this.disableSellers = true;
         return;
@@ -198,6 +205,7 @@
         'getVtexAppUuid',
         'syncSellers',
         'syncADS',
+        'getADS',
         'checkSyncSellers',
       ]),
       async connectCatalog(eventData) {
