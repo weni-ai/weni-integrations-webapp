@@ -196,7 +196,14 @@
       }
       await this.fetchSellersOptions();
     },
+    async unmounted() {
+      const params = {
+        project_uuid: this.project,
+      };
+      await this.getConfiguredApps({ params });
+    },
     methods: {
+      ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(auth_store, ['project']),
       ...mapActions(app_type, ['updateApp', 'getApp']),
       ...mapActions(ecommerce_store, [
