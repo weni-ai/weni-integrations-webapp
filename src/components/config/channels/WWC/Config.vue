@@ -319,7 +319,7 @@
         scriptUrl: this.app.config.script ?? '',
         displayUnreadCount: !!this.app.config.displayUnreadCount,
         showFullScreenButton: !!this.app.config.showFullScreenButton,
-        keepHistory: !!this.app.config.keepHistory,
+        keepHistory: this.app.config.params.storage === 'local',
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,

@@ -74,7 +74,7 @@
       },
       getValue(input, type) {
         const key = `channels.inputs.${this.channelCode}.${input.name}.${type}`;
-        return this.$te(key) ? this.$t(key) : input[type];
+        return this.$te(key) ? this.$t(key) : this.$t(input[type]);
       },
     },
   };
