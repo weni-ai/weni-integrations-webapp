@@ -1088,7 +1088,8 @@
       },
       "placeholder": {
         "sellers": "Seleccione hasta cinco vendedores..."
-      }
+      },
+      "vtexADS": "Al activarse, su tienda podrá mostrar productos patrocinados en las búsquedas de los usuarios."
     },
     "connect_modal": {
       "categories": {

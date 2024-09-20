@@ -56,6 +56,13 @@
             </tr>
           </table>
         </div>
+        <div class="config-vtex__settings__content__vtexADS">
+          <unnnic-switch v-model="vtexADS" />
+          <p>Vtex ADS</p>
+          <unnnicToolTip side="top" :text="$t('vtex.config.vtexADS')" enabled>
+            <img class="logo" src="../../../../assets/svgs/info.svg" alt="" />
+          </unnnicToolTip>
+        </div>
         <div class="config-vtex__settings__content__sellers" v-if="hasConnectedCatalog">
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
@@ -126,6 +133,7 @@
   import unnnic from '@weni/unnnic-system';
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
   import { auth_store } from '@/stores/modules/auth.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
 
   export default {
     name: 'vtex-config',
@@ -147,9 +155,11 @@
         wpp_uuid: null,
         disableSellers: false,
         selectedSellers: [],
+        vtexADS: false,
       };
     },
     computed: {
+      ...mapState(my_apps, ['configuredApps']),
       ...mapState(app_type, ['currentApp', 'errorCurrentApp', 'appUuid']),
       ...mapState(auth_store, ['project']),
       ...mapState(ecommerce_store, [
@@ -159,6 +169,7 @@
         'errorSellersList',
         'errorSyncSellers',
         'checkSellers',
+        'vtexADS',
       ]),
       sellerOptions() {
         return (
@@ -169,19 +180,30 @@
         );
       },
       disableSave() {
-        return this.selectedSellers.length === 0;
+        return this.hasConnectedCatalog && this.selectedSellers.length === 0;
+      },
+      appConfig() {
+        return this.configuredApps.find((item) => item.uuid === this.appUuid)?.config;
       },
     },
     async mounted() {
       await this.fetchRelatedWppData();
       await this.checkSyncSellers({ uuid: this.appUuid });
+      this.vtexADS = this.appConfig ? this.appConfig.vtex_ads : false;
       if (this.checkSellers) {
         this.disableSellers = true;
         return;
       }
       await this.fetchSellersOptions();
     },
+    async unmounted() {
+      const params = {
+        project_uuid: this.project,
+      };
+      await this.getConfiguredApps({ params });
+    },
     methods: {
+      ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(auth_store, ['project']),
       ...mapActions(app_type, ['updateApp', 'getApp']),
       ...mapActions(ecommerce_store, [
@@ -189,6 +211,8 @@
         'getSellersList',
         'getVtexAppUuid',
         'syncSellers',
+        'syncADS',
+        'getADS',
         'checkSyncSellers',
       ]),
       async connectCatalog(eventData) {
@@ -283,11 +307,17 @@
       },
       async handleSave() {
         const sellers = this.selectedSellers.map((item) => item.value);
-        const payload = {
-          project_uuid: this.project,
-          sellers: sellers,
-        };
-        await this.syncSellers({ uuid: this.appUuid, payload: payload });
+        if (sellers.length) {
+          const payloadSync = {
+            project_uuid: this.project,
+            sellers: sellers,
+          };
+          await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
+        }
+        await this.syncADS({
+          uuid: this.appUuid,
+          payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
+        });
 
         if (this.errorSyncSellers) {
           this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
@@ -395,6 +425,18 @@
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
             margin-bottom: $unnnic-spacing-sm;
+          }
+        }
+
+        &__vtexADS {
+          display: flex;
+          font-family: $unnnic-font-family-secondary;
+          flex-direction: row;
+          align-items: center;
+          gap: $unnnic-spacing-inline-xs;
+
+          ::v-deep .unnnic-tooltip {
+            display: flex;
           }
         }
 

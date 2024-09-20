@@ -1093,7 +1093,8 @@
       },
       "placeholder": {
         "sellers": "Selecione até cinco lojistas..."
-      }
+      },
+      "vtexADS": "Ao ativar, sua loja poderá exibir produtos patrocinados nas pesquisas dos usuários."
     },
     "connect_modal": {
       "categories": {
