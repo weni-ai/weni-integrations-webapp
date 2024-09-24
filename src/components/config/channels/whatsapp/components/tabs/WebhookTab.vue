@@ -217,14 +217,15 @@
             config: {
               webhook: {
                 url: this.webhookUrl,
-                method: this.selectedMethod,
+                method: this.selectedMethod[0].value,
                 headers,
               },
             },
           },
         };
+        console.log(data);
 
-        await this.updateWppWebhookInfo(data);
+        // await this.updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
           const err =
