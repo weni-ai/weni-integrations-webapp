@@ -223,9 +223,8 @@
             },
           },
         };
-        console.log(data);
 
-        // await this.updateWppWebhookInfo(data);
+        await this.updateWppWebhookInfo(data);
 
         if (this.errorUpdateWebhookInfo) {
           const err =
