@@ -217,7 +217,7 @@
             config: {
               webhook: {
                 url: this.webhookUrl,
-                method: this.selectedMethod,
+                method: this.selectedMethod[0].value,
                 headers,
               },
             },
