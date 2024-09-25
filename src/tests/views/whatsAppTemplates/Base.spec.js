@@ -90,7 +90,7 @@ describe('Base.vue', () => {
             meta: { crumb_title: 'Test Title' },
             matched: [],
           },
-          $t: (msg) => msg, // mock de tradução
+          $t: (msg) => msg,
           $router: {
             push,
             go,
