@@ -49,7 +49,15 @@ describe('ConfigModal.vue', () => {
   });
 
   it('renders the correct component based on app type', async () => {
-    await wrapper.vm.openModal({ app: { code: 'tg' }, isConfigured: false });
+    await wrapper.vm.openModal({
+      app: {
+        code: 'tg',
+        config: {
+          token: '1234',
+        },
+      },
+      isConfigured: false,
+    });
     expect(wrapper.vm.currentComponent).toBe(telegramConfig);
 
     await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: false });
