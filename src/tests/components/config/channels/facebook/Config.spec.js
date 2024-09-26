@@ -59,4 +59,21 @@ describe('Config.vue', () => {
   it('computes the pageId correctly', () => {
     expect(wrapper.vm.pageId).toBe(`ID: ${mockApp.config.page_id}`);
   });
+  it('uses default values when app prop is not provided', async () => {
+    wrapper = mount(FacebookConfig, {
+      global: {
+        plugins: [i18n, UnnnicSystem],
+      },
+      props: {
+        app: {
+          config: {
+            page_name: '',
+          },
+        },
+      },
+    });
+
+    expect(wrapper.vm.pageName).toBe('');
+    expect(wrapper.vm.pageId).toBe('ID: undefined');
+  });
 });

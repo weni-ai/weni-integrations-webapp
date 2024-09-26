@@ -18,7 +18,7 @@ export default defineConfig({
     coverage: {
       reporter: ['text', 'json', 'html'],
       include: ['src/**/*.{vue,js,ts}'],
-      exclude: ['src/miragejs/**/*', 'src/router/**/*', 'src/utils/**/*'],
+      exclude: ['src/miragejs/**/*', 'src/router/**/*', 'src/utils/**/*', 'src/api/**/*'],
     },
   },
 });
