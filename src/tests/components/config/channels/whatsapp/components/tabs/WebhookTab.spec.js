@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils';
 import WebhookTab from '@/components/config/channels/whatsapp/components/tabs/WebhookTab.vue';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
