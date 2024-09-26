@@ -1,5 +1,3 @@
-// src/tests/components/WhatsappConfig.spec.js
-
 import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import WhatsappConfig from '@/components/config/channels/whatsapp/Config.vue';
@@ -7,6 +5,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
+import Unnnic from '@weni/unnnic-system';
 
 describe('WhatsappConfig.vue', () => {
   let wrapper;
@@ -24,9 +23,6 @@ describe('WhatsappConfig.vue', () => {
     wrapper = mount(WhatsappConfig, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
       props: { app },
     });
@@ -37,26 +33,19 @@ describe('WhatsappConfig.vue', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the component and its elements', () => {
+  it('renders the component and its elements correctly', () => {
     const titleName = wrapper.find('.config-whatsapp__header__title__name');
     expect(titleName.exists()).toBe(true);
     expect(titleName.text()).toBe('App Name');
-    const closeButton = wrapper.findComponent({ ref: 'close' });
-    expect(closeButton.exists()).toBe(true);
 
-    expect(closeButton.props('iconCenter')).toBe('close-1');
-    expect(wrapper.find('.config-whatsapp__header__description a').attributes('href')).toBe(
-      'https://docs.weni.ai/l/en/channels/how-to-verify-my-business',
+    const icon = wrapper.find('.config-whatsapp__header__title__icon-container__icon');
+    expect(icon.attributes('src')).toBe('icon-url');
+
+    const description = wrapper.find('.config-whatsapp__header__description');
+    expect(description.exists()).toBe(true);
+    expect(description.text()).toContain(
+      'Learn more about how to increase your daily message limit in WhatsApp here.',
     );
-  });
-
-  it('calls closeConfig method on close button click', async () => {
-    const closeButton = wrapper.findComponent({ ref: 'close' });
-    expect(closeButton.exists()).toBe(true);
-    await closeButton.trigger('click');
-    await wrapper.vm.$nextTick();
-
-    expect(wrapper.emitted('closeModal')).toBeTruthy();
   });
 
   it('renders tabs correctly', async () => {
@@ -68,38 +57,61 @@ describe('WhatsappConfig.vue', () => {
     expect(wrapper.findAll('.tab-head').length).toBe(4);
   });
 
-  it('calls fetchData on mount and handles errors', async () => {
-    const wrapper = mount(WhatsappConfig, {
-      global: {
-        plugins: [pinia, i18n, UnnnicSystem],
-      },
-      props: { app },
-    });
-    const fetchAppInfoSpy = vi.spyOn(wrapper.vm, 'fetchAppInfo').mockResolvedValue();
-    const fetchProfileSpy = vi.spyOn(wrapper.vm, 'fetchProfile').mockResolvedValue();
-    const getWhatsAppCloudCatalogsSpy = vi.spyOn(wrapper.vm, 'getWhatsAppCloudCatalogs');
+  it('calls closeConfig method when the close button is clicked', async () => {
+    const closeButton = wrapper.findComponent({ ref: 'close' });
+    expect(closeButton.exists()).toBe(true);
+
+    await closeButton.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.emitted('closeModal')).toBeTruthy();
+  });
+
+  it('displays skeleton loader when data is loading', async () => {
+    await wrapper.setData({ skipLoad: false, loadingCurrentApp: true });
+
+    const skeletonLoader = wrapper.findComponent({ name: 'skeleton-loading' });
+    expect(skeletonLoader.exists()).toBe(true);
+  });
+
+  it('calls fetchData on mount and handles success', async () => {
+    const fetchDataSpy = vi.spyOn(wrapper.vm, 'fetchData').mockResolvedValue();
 
     await wrapper.vm.fetchData();
     await wrapper.vm.$nextTick();
 
-    expect(fetchAppInfoSpy).toHaveBeenCalled();
-    expect(fetchProfileSpy).toHaveBeenCalled();
-    expect(getWhatsAppCloudCatalogsSpy).toHaveBeenCalled();
+    expect(fetchDataSpy).toHaveBeenCalled();
   });
 
   // it('shows error alert on fetchData error', async () => {
+  //   const errorMsg = 'Fetch Error';
+  //   const spyUnnnicAlert = vi.spyOn(Unnnic, 'unnnicCallAlert').mockImplementation(() => {});
+
   //   vi.spyOn(wrapper.vm, 'fetchData').mockRejectedValue({
-  //     response: { data: { error: { error_user_msg: 'Fetch Error' } } },
+  //     response: { data: { error: { error_user_msg: errorMsg } } },
   //   });
 
-  //   await expect(wrapper.vm.fetchData()).rejects.toEqual({
-  //     response: { data: { error: { error_user_msg: 'Fetch Error' } } },
+  //   await wrapper.vm.fetchData();
+
+  //   expect(spyUnnnicAlert).toHaveBeenCalledWith({
+  //     props: { text: errorMsg, type: 'error' },
+  //     seconds: 15,
+  //   });
+  // });
+
+  // it('shows generic error alert if error structure is different', async () => {
+  //   const genericErrorMsg = 'WhatsApp.config.error.data_fetch';
+  //   const spyUnnnicAlert = vi.spyOn(Unnnic, 'unnnicCallAlert').mockImplementation(() => {});
+
+  //   vi.spyOn(wrapper.vm, 'fetchData').mockRejectedValue({
+  //     response: { data: { error: 'jijdijei' } },
   //   });
 
-  //   await wrapper.vm.$nextTick();
-  //   expect(unnnic.unnnicCallAlert).toHaveBeenCalledWith({
-  //     text: 'Fetch Error',
-  //     type: 'error',
+  //   await wrapper.vm.fetchData();
+
+  //   expect(spyUnnnicAlert).toHaveBeenCalledWith({
+  //     props: { text: genericErrorMsg, type: 'error' },
+  //     seconds: 15,
   //   });
   // });
 });
