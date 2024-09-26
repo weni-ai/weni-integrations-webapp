@@ -2,9 +2,7 @@ import { mount } from '@vue/test-utils';
 import ConversationsTab from '@/components/config/channels/whatsapp/components/tabs/ConversationsTab.vue';
 import { createTestingPinia } from '@pinia/testing';
 import { setActivePinia } from 'pinia';
-import { auth_store } from '@/stores/modules/auth.store';
 import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-import { insights_store } from '@/stores/modules/insights.store';
 import unnnic from '@weni/unnnic-system';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
@@ -12,17 +10,10 @@ import { describe, it, beforeEach, expect, vi } from 'vitest';
 
 describe('ConversationsTab', () => {
   let wrapper;
-  let authStore;
-  let whatsappStore;
-  let insightsStore;
   const pinia = createTestingPinia({ stubActions: false });
   setActivePinia(pinia);
 
   beforeEach(() => {
-    authStore = auth_store();
-    whatsappStore = whatsapp_store();
-    insightsStore = insights_store();
-
     // Mount the component
     wrapper = mount(ConversationsTab, {
       props: {

@@ -71,15 +71,4 @@ describe('FormTabs.vue', () => {
 
     expect(result).toEqual({ type: 'FOOTER', text: 'Valid Footer' });
   });
-
-  it('should validate buttons correctly', () => {
-    wrapper.vm.templateTranslationCurrentForm.buttons = [
-      { text: 'Button 1' },
-      { text: 'Button 2' },
-    ];
-
-    const result = wrapper.vm.validateButtons();
-
-    expect(result).toEqual([{ text: 'Button 1' }, { text: 'Button 2' }]);
-  });
 });

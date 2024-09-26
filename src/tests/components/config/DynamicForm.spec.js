@@ -1,11 +1,10 @@
 import { mount } from '@vue/test-utils';
 import DynamicForm from '@/components/config/DynamicForm.vue';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
-import { unnnicCheckbox } from '@weni/unnnic-system';
 
 describe('DynamicForm.vue', () => {
   const pinia = createTestingPinia({ stubActions: false });
