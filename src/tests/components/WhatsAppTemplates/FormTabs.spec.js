@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import FormTabs from '@/components/whatsAppTemplates/FormTabs.vue';
 import { createTestingPinia } from '@pinia/testing';
 import { setActivePinia } from 'pinia';
@@ -24,6 +24,7 @@ describe('FormTabs.vue', () => {
         plugins: [pinia, i18n, UnnnicSystem, router],
       },
       mocks: {
+        formMode: 'create',
         $route: {
           params: {
             appUuid: '1234',
@@ -31,6 +32,29 @@ describe('FormTabs.vue', () => {
         },
       },
     });
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should mount the component correctly', () => {
+    const wrapper = mount(FormTabs, {
+      props: {
+        formMode: 'create',
+        templateUuid: null,
+      },
+      mocks: {
+        $route: {
+          params: {
+            appUuid: '1234',
+          },
+        },
+      },
+    });
+
+    expect(wrapper.exists()).toBe(true);
+    expect(wrapper.vm.dataProcessingLoading).toBe(true);
   });
 
   it('should validate a correct header', async () => {
@@ -70,5 +94,105 @@ describe('FormTabs.vue', () => {
     const result = wrapper.vm.validateFooter();
 
     expect(result).toEqual({ type: 'FOOTER', text: 'Valid Footer' });
+  });
+
+  it('should fetch languages on creation', async () => {
+    const spy = vi.spyOn(FormTabs.methods, 'fetchLanguages');
+    const wrapper = mount(FormTabs, {
+      global: {
+        plugins: [pinia, i18n, UnnnicSystem, router],
+      },
+      mocks: {
+        formMode: 'create',
+        $route: {
+          params: {
+            appUuid: '1234',
+          },
+        },
+      },
+    });
+    await wrapper.vm.$nextTick();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should handle adding a translation', async () => {
+    const wrapper = mount(FormTabs, {
+      global: {
+        plugins: [pinia, i18n, UnnnicSystem, router],
+      },
+      mocks: {
+        formMode: 'edit',
+        templateUuid: '123',
+        $route: {
+          params: {
+            appUuid: '1234',
+          },
+        },
+      },
+    });
+
+    await wrapper.vm.addTranslation();
+    expect(wrapper.vm.createdTabs).toContain('New Language');
+  });
+
+  it('should show error modal on invalid name', async () => {
+    const wrapper = mount(FormTabs, {
+      global: {
+        plugins: [pinia, i18n, UnnnicSystem, router],
+      },
+      mocks: {
+        formMode: 'create',
+        templateUuid: '123',
+        $route: {
+          params: {
+            appUuid: '1234',
+          },
+        },
+      },
+    });
+    wrapper.vm.templateForm.name = '';
+    const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
+    await wrapper.vm.$nextTick();
+
+    await wrapper.vm.handleSave();
+    expect(spy).toHaveBeenCalledWith({
+      text: expect.any(String),
+    });
+  });
+
+  it('should validate the form correctly', () => {
+    const wrapper = mount(FormTabs, {
+      props: {
+        formMode: 'edit',
+      },
+      mocks: {
+        $route: {
+          params: {
+            appUuid: '1234',
+          },
+        },
+      },
+    });
+
+    wrapper.vm.templateTranslationCurrentForm = {
+      header: { header_type: 'TEXT', text: 'Header' },
+      body: 'Body text',
+      footer: 'Footer text',
+      buttons: [],
+    };
+
+    const result = wrapper.vm.validateForm();
+    expect(result).toBeDefined();
+  });
+
+  it('should not call save if form is invalid', async () => {
+    const spyCreate = vi.spyOn(FormTabs.methods, 'createTemplate');
+    const spyUpdate = vi.spyOn(FormTabs.methods, 'updateTemplateForm');
+    wrapper.vm.templateForm.name = '';
+
+    await wrapper.vm.handleSave();
+
+    expect(spyCreate).not.toHaveBeenCalled();
+    expect(spyUpdate).not.toHaveBeenCalled();
   });
 });
