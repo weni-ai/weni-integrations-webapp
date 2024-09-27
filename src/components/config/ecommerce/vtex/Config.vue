@@ -57,7 +57,7 @@
           </table>
         </div>
         <div class="config-vtex__settings__content__vtexADS">
-          <unnnic-switch v-model="vtexADS" />
+          <unnnic-switch :modelValue="vtexADS" @update:modelValue="updateVtexADS" />
           <p>Vtex ADS</p>
           <unnnicToolTip side="top" :text="$t('vtex.config.vtexADS')" enabled>
             <img class="logo" src="../../../../assets/svgs/info.svg" alt="" />
@@ -156,6 +156,7 @@
         disableSellers: false,
         selectedSellers: [],
         vtexADS: false,
+        disableVtexADS: true,
       };
     },
     computed: {
@@ -180,7 +181,7 @@
         );
       },
       disableSave() {
-        return this.hasConnectedCatalog && this.selectedSellers.length === 0;
+        return this.hasConnectedCatalog && this.selectedSellers.length === 0 && this.disableVtexADS;
       },
       appConfig() {
         return this.configuredApps.find((item) => item.uuid === this.appUuid)?.config;
@@ -325,6 +326,12 @@
         }
         this.callModal({ text: this.$t('vtex.success.sync_sellers'), type: 'success' });
         this.disableSellers = true;
+      },
+      updateVtexADS(value) {
+        this.vtexADS = value;
+        if (this.disableVtexADS) {
+          this.disableVtexADS = false;
+        }
       },
     },
   };
