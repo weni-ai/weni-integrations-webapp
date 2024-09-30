@@ -691,6 +691,9 @@
       },
       "modal": {
         "present_insights": "We present new insights"
+      },
+      "errors": {
+        "active_template": "Unable to activate insights at this time, please try again later."
       }
     },
     "template_details": {
