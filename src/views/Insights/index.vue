@@ -197,7 +197,6 @@
           },
         ];
       }
-      await this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState(insights_store, [
@@ -285,13 +284,6 @@
         };
 
         if (models.length === 0) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: 'templates vazio',
-              type: 'error',
-            },
-            seconds: 3,
-          });
           return;
         }
 
