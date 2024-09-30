@@ -159,7 +159,6 @@
   import { insights_store } from '@/stores/modules/insights.store';
   import { my_apps } from '@/stores/modules/myApps.store';
   import { mapState, mapActions } from 'pinia';
-  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Insights',
     data() {
@@ -197,7 +196,6 @@
           },
         ];
       }
-      await this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState(insights_store, [
@@ -285,13 +283,6 @@
         };
 
         if (models.length === 0) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: 'templates vazio',
-              type: 'error',
-            },
-            seconds: 3,
-          });
           return;
         }
 
