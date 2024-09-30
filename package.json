@@ -1,6 +1,6 @@
 {
   "name": "weni-integrations",
-  "version": "2.1.16-alpha.2-staging",
+  "version": "2.2.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -31,6 +31,7 @@
     "logrocket": "^8.0.1",
     "millify": "^6.1.0",
     "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^4.0.2",
     "query-string": "^8.2.0",
     "vue": "^3.4.15",
     "vue-avatar": "^2.3.3",

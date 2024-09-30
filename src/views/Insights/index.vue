@@ -154,8 +154,12 @@
 </template>
 
 <script>
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/stores/modules/auth.store';
   import { insights_store } from '@/stores/modules/insights.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
   import { mapState, mapActions } from 'pinia';
+  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Insights',
     data() {
@@ -168,11 +172,23 @@
         },
         hash: this.$route.hash,
         crumb_title: 'Insights',
+        app_uuid: '',
       };
     },
     /* istanbul ignore next */
     async mounted() {
+      if (!this.appUuid) {
+        const params = {
+          project_uuid: this.project,
+        };
+        await this.getConfiguredApps({ params, skipLoading: true });
+        this.app_uuid = this.configuredApps.find((item) => item.code === 'wpp-cloud').uuid;
+      } else {
+        this.app_uuid = this.appUuid;
+      }
+
       await this.fetchTemplates();
+
       if (this.hash) {
         this.model = [
           {
@@ -185,7 +201,6 @@
     },
     computed: {
       ...mapState(insights_store, [
-        'appUuid',
         'errorTemplateAnalytics',
         'errorTemplates',
         'templateAnalytics',
@@ -193,6 +208,9 @@
         'templates',
         'isActive',
       ]),
+      ...mapState(app_type, ['appUuid']),
+      ...mapState(my_apps, ['configuredApps']),
+      ...mapState(auth_store, ['project']),
       modelOptions() {
         if (this.templates?.count > 0) {
           const templateList = [];
@@ -254,20 +272,33 @@
     },
     methods: {
       ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       async fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
-          app_uuid: this.appUuid,
+          app_uuid: this.app_uuid,
           filters: {
             start: this.period.start,
             end: this.period.end,
             fba_template_ids: models,
           },
         };
+
+        if (models.length === 0) {
+          unnnic.unnnicCallAlert({
+            props: {
+              text: 'templates vazio',
+              type: 'error',
+            },
+            seconds: 3,
+          });
+          return;
+        }
+
         await this.getTemplateAnalytics(params);
       },
       async fetchTemplates() {
-        await this.getTemplates({ app_uuid: this.appUuid });
+        await this.getTemplates({ app_uuid: this.app_uuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -303,7 +334,7 @@
       },
       async activeTemplate() {
         this.showModal = false;
-        await this.setActiveProject({ appUuid: this.appUuid });
+        await this.setActiveProject({ app_uuid: this.app_uuid });
       },
     },
   };

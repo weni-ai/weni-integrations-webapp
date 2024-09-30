@@ -1,3 +1,19 @@
+2.2.1
+----------
+`2024-09-24·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp webhook method
+
+2.2.0
+----------
+`2024-09-20 · 1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Fix: Weni Web Chat - Keep History option
+### 🎉 New Features
+- Feat: Vtex ADS
+
 2.1.15
 ----------
 `2024-09-12·  1 🐛 `

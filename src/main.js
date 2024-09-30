@@ -8,6 +8,7 @@ import * as Sentry from '@sentry/vue';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
 import './utils/plugins/Hotjar';
+import piniaPersistedstate from 'pinia-plugin-persistedstate';
 
 import App from './App.vue';
 import router from './router';
@@ -30,6 +31,8 @@ const pinia = createPinia();
 pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
+
+pinia.use(piniaPersistedstate);
 
 app.use(pinia).use(router).use(Unnnic).use(i18n).use(vueUse);
 
