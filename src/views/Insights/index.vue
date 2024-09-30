@@ -159,6 +159,7 @@
   import { insights_store } from '@/stores/modules/insights.store';
   import { my_apps } from '@/stores/modules/myApps.store';
   import { mapState, mapActions } from 'pinia';
+  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Insights',
     data() {
@@ -322,7 +323,17 @@
       },
       async activeTemplate() {
         this.showModal = false;
-        await this.setActiveProject({ app_uuid: this.app_uuid });
+        try {
+          await this.setActiveProject({ app_uuid: this.app_uuid });
+        } catch (err) {
+          unnnic.unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.insights.errors.active_template'),
+              type: 'error',
+            },
+            seconds: 6,
+          });
+        }
       },
     },
   };
