@@ -1,3 +1,11 @@
+2.2.2
+----------
+`2024-09-30·  2 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Enable Vtex ADS switch
+- Fix: Enable whatsApp insights
+
 2.2.1
 ----------
 `2024-09-24·  1 🐛 `
