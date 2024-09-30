@@ -174,7 +174,6 @@
         app_uuid: '',
       };
     },
-    /* istanbul ignore next */
     async mounted() {
       if (!this.appUuid) {
         const params = {
@@ -258,7 +257,6 @@
       },
     },
     watch: {
-      /* istanbul ignore next */
       model(newVal, oldVal) {
         if (newVal.length > 10) {
           this.model = this.model.slice(0, 10);
@@ -319,7 +317,6 @@
         return Math.max(...array.map(({ value }) => value));
       },
       redirectTo(crumb) {
-        /* istanbul ignore next */
         if (crumb.meta === this.$route.name) return;
         this.$router.push(crumb.path);
       },
