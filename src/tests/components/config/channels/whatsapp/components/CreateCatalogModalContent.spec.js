@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import CreateCatalogModalContent from '@/components/config/channels/whatsapp/components/CreateCatalogModalContent.vue';
-import unnnic from '@weni/unnnic-system';
 import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
