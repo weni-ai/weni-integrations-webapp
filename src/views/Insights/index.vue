@@ -87,16 +87,19 @@
       <div class="wpp_insights__content__active" v-if="isActive">
         <div class="wpp_insights__content__active__chart">
           <unnnic-chart-multi-line
+            ref="sent"
             :data="getChartSent"
             :title="$t('WhatsApp.insights.messages.sent')"
             v-if="!hash && getChartSent.length"
           />
           <unnnic-chart-multi-line
+            ref="delivered"
             :data="getChartDelivered"
             :title="$t('WhatsApp.insights.messages.delivered')"
             v-if="!hash && getChartDelivered.length"
           />
           <unnnic-chart-multi-line
+            ref="read"
             :data="getChartRead"
             :title="$t('WhatsApp.insights.messages.read')"
             v-if="!hash && getChartRead.length"

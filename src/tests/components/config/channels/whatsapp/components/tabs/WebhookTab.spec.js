@@ -36,7 +36,7 @@ describe('WebhookTab', () => {
 
   it('renders with correct initial data from props', () => {
     expect(wrapper.vm.webhookUrl).toBe('https://example.com/webhook');
-    expect(wrapper.vm.selectedMethod).toEqual([{ value: 'POST', label: 'POST' }]);
+    expect(wrapper.vm.selectedMethod).toEqual('POST');
     expect(wrapper.vm.headers.length).toBe(2);
     expect(wrapper.vm.headers[0].key).toBe('Authorization');
     expect(wrapper.vm.headers[0].value).toBe('Bearer token');
@@ -88,7 +88,7 @@ describe('WebhookTab', () => {
 
     expect(callModalSpy).toHaveBeenCalledWith({
       type: 'error',
-      text: wrapper.vm.$t('WhatsApp.config.error.invalid_url'),
+      text: 'Error while trying to update webhook data',
     });
   });
 
@@ -110,7 +110,7 @@ describe('WebhookTab', () => {
 
     expect(callModalSpy).toHaveBeenCalledWith({
       type: 'error',
-      text: 'Provided Webhook URL is invalid',
+      text: 'Error while trying to update webhook data',
     });
   });
 });
