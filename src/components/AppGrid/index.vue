@@ -24,7 +24,7 @@
           v-bind:key="index"
           type="marketplace"
           :title="appName(app)"
-          :description="app.generic ? app.summary : $t(app.summary)"
+          :description="app.generic ? $t(`${getTranslation(app)}`) : $t(app.summary)"
           :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
@@ -337,6 +337,15 @@
       },
       onPageChange(value) {
         this.currentPage = value;
+      },
+      //TODO: return app code
+      getTranslation(app) {
+        const code = app.code === 'generic' ? app.config.channel_code : app.code
+        let i18nkey =
+          (app.generic === true)
+            ? `channels.${code}`
+            : `GenericApp.configuration_guide.${app.code}`;
+        return this.$te(i18nkey) ? this.$t(i18nkey) : app.summary;
       },
     },
     watch: {

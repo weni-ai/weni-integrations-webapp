@@ -43,6 +43,7 @@
         v-if="!loadingCurrentApp && !loadingFormBuild"
         class="app-config-generic__settings__content__form"
         :inputs="appFormInputs"
+        :channelCode="app.config.channel_code"
         @input="updateInputs"
       />
       <unnnic-skeleton-loading
@@ -172,11 +173,15 @@
             let formattedOptions = input.choices.map((choice) => {
               return {
                 value: choice[0],
-                text: choice[1],
+                label: choice[1],
               };
             });
 
             formattedInput.options = formattedOptions;
+            formattedInput.value = [
+              formattedOptions.find((option) => option.value === formattedInput.value) ||
+                formattedOptions[0],
+            ];
           }
           return [formattedInput];
         });
@@ -192,6 +197,10 @@
         let payloadConfig = {};
 
         this.appFormInputs.forEach((input) => {
+          if (input.type === 'select') {
+            payloadConfig[input.name] = input.value[0].value;
+            return;
+          }
           payloadConfig[input.name] = input.value;
         });
 

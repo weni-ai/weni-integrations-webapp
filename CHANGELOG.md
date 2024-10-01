@@ -1,3 +1,69 @@
+2.2.2
+----------
+`2024-09-30·  2 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Enable Vtex ADS switch
+- Fix: Enable whatsApp insights
+
+2.2.1
+----------
+`2024-09-24·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp webhook method
+
+2.2.0
+----------
+`2024-09-20 · 1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Fix: Weni Web Chat - Keep History option
+### 🎉 New Features
+- Feat: Vtex ADS
+
+2.1.15
+----------
+`2024-09-12·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Dynamic form translations
+
+2.1.14
+----------
+`2024-09-11·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Translations
+
+2.1.13
+----------
+`2024-09-06·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Dynamic form select
+
+2.1.12
+----------
+`2024-09-03·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Webhook for WhatsApp Channel in Integrations Not Working.
+
+2.1.11
+----------
+`2024-08-29 ·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Webhook config - URL validation;
+
+2.1.10
+----------
+`2024-08-29 · 1 🎉 `
+
+### 🎉 New Features
+- Feat: Hotjar
+
 2.1.9
 ----------
 `2024-08-12 · 1 🎉 `

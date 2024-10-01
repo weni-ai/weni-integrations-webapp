@@ -2621,10 +2621,10 @@
   dependencies:
     vue-demi ">=0.14.7"
 
-"@weni/unnnic-system@2.0.26":
-  version "2.0.26"
-  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.0.26.tgz#190b2e678feb81b8e3a37746edf0fb08acb3ddac"
-  integrity sha512-WT3Ck5SkDeZyQ2A/ohFLgv+8/X9ivhO6iu2z/I4nmDBCLn64c0XW8ein1vMlUdiOmifDW6vYfm8qyZQFnRR6OQ==
+"@weni/unnnic-system@2.11.1":
+  version "2.11.1"
+  resolved "https://registry.yarnpkg.com/@weni/unnnic-system/-/unnnic-system-2.11.1.tgz#bc162517595ce377510eff6b7a1b7018cf296329"
+  integrity sha512-CDjX1CpSYqmZET8rI+IQvRAo0cq9NXbN23HGvHvxtsHZD9Sd9Fa9E8qOX1Fk8ZPDj2RNlddzYmguZxfI16zuhQ==
   dependencies:
     "@emoji-mart/data" "^1.1.2"
     "@vueuse/components" "^10.4.1"
