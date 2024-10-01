@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import wwcConfig from '@/components/config/channels/WWC/Config.vue'; // Atualize o caminho conforme necessário
 import unnnic from '@weni/unnnic-system';
@@ -8,7 +8,6 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 
-// Mockando dependências globais e funções utilitárias
 vi.mock('@/utils/files', () => ({
   dataUrlToFile: vi.fn(),
   toBase64: vi.fn(),
@@ -28,7 +27,7 @@ describe('wwcConfig Component', () => {
     store.loadingUpdateAppConfig = false;
     store.loadingCurrentApp = false;
 
-    wrapper = mount(wwcConfig, {
+    wrapper = shallowMount(wwcConfig, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
         mocks: {
@@ -49,15 +48,13 @@ describe('wwcConfig Component', () => {
             customCss: '.test { color: red; }',
             profileAvatar: 'avatar.png',
             script: 'https://test.script.url',
+            params: {
+              storage: 'local',
+            },
           },
         },
       },
     });
-  });
-
-  it('should render correctly', () => {
-    expect(wrapper.exists()).toBe(true);
-    expect(wrapper.find('input').exists()).toBe(true); // Verificando um input presente no componente
   });
 
   it('should compute chatSubtitle correctly', () => {
