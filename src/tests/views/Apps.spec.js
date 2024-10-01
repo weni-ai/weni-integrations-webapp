@@ -10,7 +10,7 @@ import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 
 const routes = [
-  { path: '/', redirect: { name: 'Discovery' } }, // Rota redireciona para Discovery
+  { path: '/', redirect: { name: 'Discovery' } },
   {
     path: '/apps',
     component: Apps,
