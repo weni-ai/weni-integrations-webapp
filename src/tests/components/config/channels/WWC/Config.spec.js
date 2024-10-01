@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import wwcConfig from '@/components/config/channels/WWC/Config.vue'; // Atualize o caminho conforme necessário
+import wwcConfig from '@/components/config/channels/WWC/Config.vue';
 import unnnic from '@weni/unnnic-system';
 import { app_type } from '@/stores/modules/appType/appType.store';
 import { createTestingPinia } from '@pinia/testing';
