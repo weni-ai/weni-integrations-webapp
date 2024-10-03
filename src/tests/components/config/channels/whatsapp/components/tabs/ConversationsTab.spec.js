@@ -14,7 +14,6 @@ describe('ConversationsTab', () => {
   setActivePinia(pinia);
 
   beforeEach(() => {
-    // Mount the component
     wrapper = mount(ConversationsTab, {
       props: {
         app: { code: 'app_code', uuid: 'app_uuid' },
@@ -28,6 +27,10 @@ describe('ConversationsTab', () => {
         },
       },
     });
+  });
+
+  it('matches the snapshot', () => {
+    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it('renders the filter label correctly', () => {
@@ -53,34 +56,16 @@ describe('ConversationsTab', () => {
     expect(requestReportSpy).toHaveBeenCalled();
   });
 
-  // it('navigates to insights when insights button is clicked', async () => {
-  //   const spy = vi.spyOn(wrapper.vm, 'navigateToInsights');
-  //   const insightsButton = wrapper.findComponent({ ref: 'insightsButton' });
-  //   expect(insightsButton.exists()).toBe(true);
-  //   expect(insightsButton.props().text).toBe('See insights');
-  //   await insightsButton.trigger('click');
+  it('navigates to insights when insights button is clicked', async () => {
+    const insightsButton = wrapper.findComponent({ ref: 'insightsButton' });
+    expect(insightsButton.exists()).toBe(true);
+    expect(insightsButton.props().text).toBe('See insights');
+    await insightsButton.trigger('click');
 
-  //   await wrapper.vm.$nextTick();
+    await wrapper.vm.$nextTick();
 
-  //   expect(spy).toHaveBeenCalled();
-  //   expect(wrapper.vm.$router.replace).toHaveBeenCalledWith('/insights');
-  // });
-
-  // it('shows alert on error during fetching conversations', async () => {
-  //   const spyCallAlert = vi.spyOn(unnnic, 'unnnicCallAlert');
-  //   const store = whatsapp_store();
-  //   store.errorConversations = { error_user_msg: 'Fetch Error' };
-  //   await wrapper.vm.handleDateFilter({ startDate: '2024-01-01', endDate: '2024-01-02' });
-  //   await wrapper.vm.$nextTick();
-
-  //   expect(spyCallAlert).toHaveBeenCalledWith({
-  //     props: {
-  //       text: 'Fetch Error',
-  //       type: 'error',
-  //     },
-  //     seconds: 6,
-  //   });
-  // });
+    expect(wrapper.vm.$router.replace).toHaveBeenCalledWith('/insights');
+  });
 
   it('shows alert on error during reporting', async () => {
     const spyCallAlert = vi.spyOn(unnnic, 'unnnicCallAlert');
@@ -115,22 +100,23 @@ describe('ConversationsTab', () => {
     });
   });
 
-  // it('shows success alert on successful report', async () => {
-  //   const spyCallAlert = vi.spyOn(unnnic, 'unnnicCallAlert');
-  //   const store = whatsapp_store();
-  //   store.errorConversationsReport = null;
-  //   expect(wrapper.vm.errorConversationsReport).toBe(null);
+  it('shows success alert on successful report', async () => {
+    const spyCallAlert = vi.spyOn(unnnic, 'unnnicCallAlert');
+    const store = whatsapp_store();
+    store.requestConversationsReport = vi.fn().mockResolvedValue();
+    store.errorConversationsReport = null;
+    expect(wrapper.vm.errorConversationsReport).toBe(null);
 
-  //   await wrapper.vm.requestReport();
+    await wrapper.vm.requestReport();
 
-  //   expect(spyCallAlert).toHaveBeenCalledWith({
-  //     props: {
-  //       text: 'Report Success',
-  //       type: 'success',
-  //     },
-  //     seconds: 6,
-  //   });
-  // });
+    expect(spyCallAlert).toHaveBeenCalledWith({
+      props: {
+        text: 'You will receive your detailed report by email shortly',
+        type: 'success',
+      },
+      seconds: 6,
+    });
+  });
 
   it('computes beforeItems correctly', () => {
     wrapper.vm.businessInitiated = 5;
