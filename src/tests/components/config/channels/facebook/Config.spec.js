@@ -30,13 +30,13 @@ describe('Config.vue', () => {
       },
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
     });
   });
 
+  it('matches the snapshot', () => {
+    expect(wrapper.html()).toMatchSnapshot();
+  });
   it('renders the component with correct elements', () => {
     expect(wrapper.find('.app-config-facebook__header__title__name').text()).toBe(mockApp.name);
     expect(wrapper.find('img').attributes('src')).toBe(mockApp.icon);
@@ -46,6 +46,12 @@ describe('Config.vue', () => {
     expect(
       wrapper.find('.app-config-facebook__settings__content__inputs__id input').element.value,
     ).toBe(`ID: ${mockApp.config.page_id}`);
+  });
+
+  it('renders the "Connected Account" label correctly', () => {
+    const label = wrapper.findComponent({ name: 'unnnic-label' });
+    expect(label.exists()).toBe(true);
+    expect(label.props('label')).toBe('Your Facebook account is connected');
   });
 
   it('disables the inputs', () => {
