@@ -16,30 +16,21 @@ describe('PowerBiConfig.vue', () => {
   const mockGetFlowToken = vi.fn();
 
   beforeEach(() => {
+    const pinia = createTestingPinia({
+      initialState: {
+        auth_store: {
+          flowToken: 'mock-token',
+          errorFlowToken: false,
+          loadingFlowToken: false,
+        },
+      },
+      actions: {
+        getFlowToken: mockGetFlowToken,
+      },
+    });
     wrapper = mount(PowerBiConfig, {
       global: {
-        plugins: [
-          createTestingPinia({
-            initialState: {
-              auth_store: {
-                flowToken: 'mock-token',
-                errorFlowToken: false,
-                loadingFlowToken: false,
-              },
-            },
-            actions: {
-              getFlowToken: mockGetFlowToken,
-            },
-          }),
-          i18n,
-          UnnnicSystem,
-        ],
-        mocks: {
-          $t: (msg) => msg,
-          $i18n: {
-            locale: 'en-us',
-          },
-        },
+        plugins: [pinia, i18n, UnnnicSystem],
       },
       props: {
         app: mockApp,
