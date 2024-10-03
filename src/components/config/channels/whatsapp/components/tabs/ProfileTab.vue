@@ -2,21 +2,24 @@
   <div class="profile-content">
     <div v-if="!loadingContactInfo" class="profile-content__wrapper">
       <dynamic-form
+        ref="contentForm"
         class="profile-content__form"
         :inputs="profileInputs"
         @input="updateProfileInputs"
       />
 
       <dynamic-form
+        ref="infoForm"
         class="contact-info__form"
         :inputs="contactInfoInputs"
         @input="updateContactInfoInputs"
       />
     </div>
-    <skeleton-loading v-else />
+    <skeleton-loading ref="skeleton" v-else />
 
     <div class="profile-content__buttons">
       <unnnic-button
+        ref="cancel"
         class="profile-content__buttons__cancel"
         type="tertiary"
         size="large"
@@ -25,6 +28,7 @@
       />
 
       <unnnic-button
+        ref="save"
         class="profile-content__buttons__save"
         type="secondary"
         size="large"

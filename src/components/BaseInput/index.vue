@@ -52,15 +52,15 @@
       },
     },
     mounted() {
-      const nativeInput = this.$refs.input.$el.querySelector('input');
+      const nativeInput = this.$refs.input.$el?.querySelector('input');
 
-      nativeInput.addEventListener('input', () => {
+      nativeInput?.addEventListener('input', () => {
         if (this.replaceRegex) {
           nativeInput.value = nativeInput.value.replace(this.replaceRegex, '');
         }
         this.$emit('input', nativeInput.value);
       });
-      nativeInput.addEventListener('paste', () => {
+      nativeInput?.addEventListener('paste', () => {
         if (this.replaceRegex) {
           nativeInput.value = nativeInput.value.replace(this.replaceRegex, '');
         }

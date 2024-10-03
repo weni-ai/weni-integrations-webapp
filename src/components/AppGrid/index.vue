@@ -56,6 +56,8 @@
               <unnnic-dropdown-item
                 v-if="app.code !== 'wpp'"
                 class="app-grid__content__item__button--details"
+                id="openAppDetails"
+                ref="openAppDetails"
                 @click="openAppDetails(app.code)"
               >
                 <unnnic-icon-svg icon="export-1" size="sm" />
@@ -136,8 +138,8 @@
   import LoadingButton from '../LoadingButton/index.vue';
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
   import { mapActions, mapState } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { insights_store } from '@/stores/modules/insights.store';
+  import { app_type } from '../../stores/modules/appType/appType.store';
+  import { insights_store } from '../../stores/modules/insights.store';
   import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',

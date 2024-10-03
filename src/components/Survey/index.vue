@@ -12,6 +12,7 @@
 
         <div class="survey__content__buttons">
           <unnnic-button
+            ref="exit-button"
             class="survey__content__buttons__exit"
             type="tertiary"
             size="small"
@@ -20,6 +21,7 @@
           />
 
           <unnnic-button
+            ref="send-button"
             class="survey__content__buttons__send"
             type="secondary"
             size="small"
@@ -31,7 +33,7 @@
       </div>
     </transition>
 
-    <div class="survey__toggle" @click="toggleContent">
+    <div class="survey__toggle" @click="toggleContent" ref="survey-toggle">
       <unnnic-icon-svg icon="question-circle-1" scheme="neutral-darkest" size="lg" />
     </div>
   </div>

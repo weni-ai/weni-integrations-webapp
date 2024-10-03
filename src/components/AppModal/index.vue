@@ -13,6 +13,7 @@
     <template #options>
       <unnnic-button
         ref="unnnic-remove-modal-close-button"
+        data-testid="remove-modal-button"
         type="tertiary"
         @click="toggleRemoveModal"
         >{{ $t('general.Cancel') }}</unnnic-button

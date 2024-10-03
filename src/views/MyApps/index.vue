@@ -7,6 +7,7 @@
       :placeholder="$t('apps.discovery.search.placeholder')"
       icon-left="search-1"
       :data="searchOptions"
+      id="search"
     />
 
     <span

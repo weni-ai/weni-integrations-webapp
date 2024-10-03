@@ -8,7 +8,7 @@
       @click="emitColor(color)"
     />
     <label class="color-picker__input">
-      <unnnic-icon-svg class="color-picker__input__icon" icon="add-circle-1" size="sm" />
+      <unnnic-icon-svg class="color-picker__input__icon" icon="add-circle-1" size="sm" ref="icon" />
       <input ref="color-picker__input" type="color" @change="addColor" />
     </label>
   </div>

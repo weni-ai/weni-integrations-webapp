@@ -1,13 +1,19 @@
 <template>
   <div>
-    <navigator class="navigator" :routes="navigatorHistory" />
+    <navigator ref="navigator" class="navigator" :routes="navigatorHistory" />
     <div class="app-details" v-if="!loadingCurrentAppType">
       <app-images-banner
+        ref="appImagesBanner"
         class="app-details__section"
         :images="currentAppType && currentAppType.banners"
       />
-      <app-details-header class="app-details__section" :app="currentAppType" />
+      <app-details-header
+        ref="appDetailsHeader"
+        class="app-details__section"
+        :app="currentAppType"
+      />
       <unnnic-banner
+        ref="banner"
         class="app-details__banner"
         :key="bannerKey"
         type="info"
@@ -22,11 +28,11 @@
         @ratingAction="handleRating"
       />
       <div class="app-details__section app-details__section__columns">
-        <app-details-about :description="appDescription" :links="appLinks" />
+        <app-details-about ref="appDetailsAbout" :description="appDescription" :links="appLinks" />
       </div>
-      <app-details-comments :appCode="appCode" />
+      <app-details-comments ref="appDetailsComments" :appCode="appCode" />
     </div>
-    <skeleton-loading v-else />
+    <skeleton-loading v-else ref="skeleton" />
   </div>
 </template>
 

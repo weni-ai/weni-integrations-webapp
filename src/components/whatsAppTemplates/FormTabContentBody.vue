@@ -99,17 +99,17 @@
           (child) => child.nodeName === 'TEXTAREA',
         );
 
-        const before = textArea.value.substring(0, textArea.selectionStart);
-        const selectionContent = textArea.value.substring(
-          textArea.selectionStart,
-          textArea.selectionEnd,
+        const before = textArea?.value.substring(0, textArea.selectionStart);
+        const selectionContent = textArea?.value.substring(
+          textArea?.selectionStart,
+          textArea?.selectionEnd,
         );
-        const after = textArea.value.substring(textArea.selectionEnd);
+        const after = textArea?.value.substring(textArea?.selectionEnd);
         const result = `${before}${eventCharacter}${selectionContent}${eventCharacter}${after}`;
 
         this.emitInputChange(result);
 
-        textArea.focus();
+        textArea?.focus();
       },
       addVariable() {
         if (this.disableInputs) {
@@ -133,7 +133,7 @@
         const textArea = Array.from(this.$refs.bodyText.$el.children).find(
           (child) => child.nodeName === 'TEXTAREA',
         );
-        textArea.focus();
+        textArea?.focus();
       },
       /* istanbul ignore next */
       onInput(event) {

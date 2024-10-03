@@ -6,6 +6,7 @@
           {{ $t('WhatsApp.templates.table.filters.date.label') }}
         </div>
         <unnnicInputDatePicker
+          ref="date-picker"
           :modelValue="datePickerDates"
           @update:modelValue="handleDateFilter"
           format="MM-DD-YYYY"
@@ -35,6 +36,7 @@
             <span class="break-text whatsapp-templates-table__table__header">
               {{ $t('WhatsApp.templates.table.headers.name') }}
               <table-sort
+                ref="header-name"
                 class="whatsapp-templates-table__table__header__name"
                 :sort-direction="nameSortDirection"
                 @sort="handleNameSort"
@@ -98,11 +100,12 @@
         </unnnic-table-row>
       </template>
     </unnnic-table>
-    <TableLoading v-else :headers="tableHeaders" />
+    <TableLoading ref="loading" v-else :headers="tableHeaders" />
 
     <div class="whatsapp-templates-table__pagination">
       <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
       <unnnic-pagination
+        ref="pagination"
         :modelValue="page"
         @update:modelValue="onPageChange"
         :max="pageCount"

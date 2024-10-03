@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AddModal > matches snapshot 1`] = `"<unnnic-modal data-v-abfb8ffe="" class="add-modal" showmodal="false" text="Installed Application!" scheme="feedback-green" modal-icon="check-circle-1-1"></unnnic-modal>"`;

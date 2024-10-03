@@ -66,6 +66,7 @@
 
       <unnnic-button
         class="app-config-generic__settings__buttons__save"
+        ref=""
         type="secondary"
         size="large"
         :text="$t('apps.config.save_changes')"
@@ -133,7 +134,7 @@
       ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
       appDescription() {
         const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
-        return this.$te(i18nkey) ? this.$t(i18nkey) : this.app.config.channel_claim_blurb;
+        return this.$t(i18nkey) ?? this.app.config.channel_claim_blurb;
       },
       shouldDisplayCallback() {
         return this.isConfigured || this.showCallback;

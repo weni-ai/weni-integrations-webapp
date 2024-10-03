@@ -101,6 +101,7 @@
           maxWidth="15rem"
         >
           <unnnic-button
+            ref="reportButton"
             class="conversations__content__report__button"
             type="secondary"
             size="small"
@@ -121,7 +122,11 @@
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <unnnic-button :text="$t('WhatsApp.insights.see_insights')" @click="navigateToInsights" />
+          <unnnic-button
+            ref="insightsButton"
+            :text="$t('WhatsApp.insights.see_insights')"
+            @click="navigateToInsights"
+          />
         </div>
       </div>
     </div>

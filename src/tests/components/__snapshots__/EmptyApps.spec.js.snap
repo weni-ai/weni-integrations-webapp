@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EmptyApps.vue > matches snapshot 1`] = `"<div data-v-dcc1e57e="" class="empty"><img data-v-dcc1e57e="" class="empty__image" src="/src/assets/svgs/empty-apps.svg"><span data-v-dcc1e57e="" class="empty__title">Wow, we couldn't find this thing called “test term”.</span><span data-v-dcc1e57e="" class="empty__description">But you can see all our integrations by clicking <span data-v-dcc1e57e="" class="empty__description__link">here</span></span></div>"`;

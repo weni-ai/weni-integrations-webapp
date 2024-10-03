@@ -1,14 +1,15 @@
 <template>
-  <unnnic-modal class="vtex-modal" @close="closePopUp" @click.stop :closeIcon="false">
+  <unnnic-modal ref="modal" class="vtex-modal" @close="closePopUp" @click.stop :closeIcon="false">
     <template #message>
       <div class="vtex-modal__content">
         <StepIndicator
+          ref="stepIndicator"
           :steps="['vtex.setup.step1', 'vtex.setup.step2']"
           :currentStep="currentStep"
         />
 
         <div v-if="currentStep == 0">
-          <header class="vtex-modal__header">
+          <header ref="headerTitle" class="vtex-modal__header">
             <span class="vtex-modal__header__title">
               {{ $t('vtex.setup.title') }}
             </span>

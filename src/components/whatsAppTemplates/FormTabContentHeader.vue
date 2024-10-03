@@ -31,6 +31,7 @@
       <!-- TODO: Set media type on button click -->
       <div v-else class="form-tab-content-header__inputs__buttons">
         <unnnic-button
+          ref="button"
           :type="buttonType('IMAGE')"
           iconCenter="common-file-horizontal-image-1"
           :disabled="disableInputs || isSelected('IMAGE')"

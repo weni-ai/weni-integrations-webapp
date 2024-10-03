@@ -96,7 +96,7 @@
           filters: {
             start: this.formatDate(new Date(Date.now() - this.sevenDays)),
             end: this.formatDate(new Date()),
-            fba_template_ids: this.selectedTemplate.translations.map(
+            fba_template_ids: this.selectedTemplate.translations?.map(
               (item) => item.message_template_id,
             ),
           },

@@ -1,6 +1,7 @@
 <template>
   <div class="whatsapp-phone-number-loading">
     <unnnic-skeleton-loading
+      ref="skeleton"
       class="whatsapp-phone-number-loading__content"
       tag="div"
       height="38px"
