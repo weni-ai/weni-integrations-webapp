@@ -84,6 +84,7 @@
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { generic_store } from '@/stores/modules/appType/channels/generic.store';
+  import eventBus from '../../../../../eventBus';
 
   export default {
     name: 'generic-config',
@@ -224,7 +225,7 @@
           this.showCallback = true;
         }
 
-        this.$root.$emit('updateGrid');
+        eventBus.emit('updateGrid');
       },
       closeConfig() {
         this.$emit('closeModal');

@@ -52,6 +52,7 @@
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import unnnic from '@weni/unnnic-system';
+  import eventBus from '../../../../../eventBus';
 
   export default {
     name: 'telegram-config',
@@ -119,7 +120,7 @@
             seconds: 3,
           });
         } finally {
-          this.$root.$emit('updateGrid');
+          eventBus.emit('updateGrid');
         }
       },
       closeConfig() {

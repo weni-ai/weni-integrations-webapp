@@ -74,6 +74,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import unnnic from '@weni/unnnic-system';
+  import eventBus from '../../../../../../../eventBus';
 
   export default {
     name: 'WebhookTab',
@@ -245,7 +246,7 @@
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
-        this.$root.$emit('updateGrid');
+        eventBus.emit('updateGrid');
       },
 
       checkURLValidity(value) {

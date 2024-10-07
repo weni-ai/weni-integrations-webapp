@@ -69,6 +69,7 @@
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import unnnic from '@weni/unnnic-system';
+  import eventBus from '../../../../../eventBus';
 
   export default {
     name: 'omie-config',
@@ -114,7 +115,7 @@
         }
 
         this.callModal({ type: 'success', text: this.$t('omie.success.configure') });
-        this.$root.$emit('updateGrid');
+        eventBus.emit('updateGrid');
         this.disabledForm = true;
       },
       closeConfig() {
