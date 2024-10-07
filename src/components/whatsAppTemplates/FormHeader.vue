@@ -7,6 +7,7 @@
       </div>
       <span class="form-header__title">{{ title }}</span>
       <unnnic-tag
+        ref="tag"
         v-if="templateTranslationCurrentForm.status"
         class="form-header__tag"
         :text="templateStatusTranslation"
@@ -55,7 +56,7 @@
     methods: {
       ...mapActions(app_type, ['getAppType']),
       fetchData() {
-        const { appCode } = this.$route.params;
+        const { appCode } = this.$route?.params || {};
         this.getAppType({ code: appCode, shouldLoad: true });
       },
     },

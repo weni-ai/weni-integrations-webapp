@@ -1,6 +1,12 @@
 <template lang="">
-  <unnnic-modal class="onboard" v-if="showModal" @close="closeModal" show-close-button>
-    <div class="onboard--title">
+  <unnnic-modal
+    class="onboard"
+    v-if="showModal"
+    @close="closeModal"
+    show-close-button
+    ref="onboard"
+  >
+    <div class="onboard--title" ref="title">
       {{ currentModalTitle }}
     </div>
 
@@ -26,9 +32,15 @@
     </div>
 
     <div v-if="currentApp" class="onboard__buttons">
-      <unnnic-button type="tertiary" @click.stop="previousPage" :text="$t('general.back')" />
+      <unnnic-button
+        type="tertiary"
+        @click.stop="previousPage"
+        :text="$t('general.back')"
+        ref="button-tertiary"
+      />
       <unnnic-button
         type="secondary"
+        ref="button-secondary"
         @click="nextPage"
         :text="page === appPageLimit[currentApp] ? $t('general.start') : $t('general.next')"
       />

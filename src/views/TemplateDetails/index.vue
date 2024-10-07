@@ -3,9 +3,9 @@
     <!-- Header -->
     <div class="wpp_template_details__header">
       <div class="wpp_template_details__header__title">
-        <div class="wpp_template_details__header__title__text">{{ selectedTemplate.name }}</div>
+        <div class="wpp_template_details__header__title__text">{{ selectedTemplate?.name }}</div>
         <div class="wpp_template_details__header__about__title__tag">
-          <unnnic-tag scheme="neutral-dark" :text="selectedTemplate.category" />
+          <unnnic-tag scheme="neutral-dark" :text="selectedTemplate?.category" />
         </div>
       </div>
       <div class="wpp_insights__header__button">
@@ -66,7 +66,7 @@
       },
       redirectEdit() {
         this.$router.push({
-          path: `/apps/my/wpp-cloud/${this.appUuid}/templates/edit/${this.selectedTemplate.uuid}`,
+          path: `/apps/my/wpp-cloud/${this.appUuid}/templates/edit/${this.selectedTemplate?.uuid}`,
         });
       },
     },

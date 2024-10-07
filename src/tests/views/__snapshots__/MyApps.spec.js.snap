@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MyApps > matches snapshot 1`] = `
+"<div data-v-d693ca5e="" class="my-apps">
+  <!--v-if-->
+  <!--v-if-->
+  <div data-v-d693ca5e="" class="my-apps__empty"><img data-v-d693ca5e="" class="my-apps__empty__image" src="/src/assets/svgs/empty-apps.svg">
+    <div data-v-d693ca5e="" class="my-apps__empty__description__main">You haven't installed any integrations yet.</div>
+    <div data-v-d693ca5e="" class="my-apps__empty__description__secondary">
+      <div data-v-d693ca5e="">Search for what you need</div>
+      <div data-v-d693ca5e="" class="my-apps__empty__description__secondary__link">here</div>
+    </div>
+  </div>
+</div>"
+`;

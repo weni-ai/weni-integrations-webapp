@@ -210,7 +210,7 @@
           this.pageList = res.data.data;
         } catch (error) {
           const err =
-            err.response?.data.error?.error_user_msg ||
+            error.response?.data.error?.error_user_msg ||
             this.$t(`${this.integrationName}.setup.account_data.error`);
           this.callModal({
             type: 'error',

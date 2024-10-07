@@ -167,6 +167,7 @@
     </div>
 
     <unnnic-button
+      ref="addButton"
       v-if="showAddButton"
       type="tertiary"
       :disabled="disableInputs"
