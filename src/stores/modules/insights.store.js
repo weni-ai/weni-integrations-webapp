@@ -14,6 +14,7 @@ export const insights_store = defineStore('insights', {
       errorTemplates: null,
     };
   },
+  persist: true,
   actions: {
     async getTemplateAnalytics({ app_uuid, filters }) {
       this.loadingTemplateAnalytics = true;

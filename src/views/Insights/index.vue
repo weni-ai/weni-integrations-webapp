@@ -154,8 +154,6 @@
 </template>
 
 <script>
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { auth_store } from '@/stores/modules/auth.store';
   import { insights_store } from '@/stores/modules/insights.store';
   import { my_apps } from '@/stores/modules/myApps.store';
   import { mapState, mapActions } from 'pinia';
@@ -172,20 +170,9 @@
         },
         hash: this.$route.hash,
         crumb_title: 'Insights',
-        app_uuid: '',
       };
     },
     async mounted() {
-      if (!this.appUuid) {
-        const params = {
-          project_uuid: this.project,
-        };
-        await this.getConfiguredApps({ params, skipLoading: true });
-        this.app_uuid = this.configuredApps.find((item) => item.code === 'wpp-cloud').uuid;
-      } else {
-        this.app_uuid = this.appUuid;
-      }
-
       await this.fetchTemplates();
 
       if (this.hash) {
@@ -205,10 +192,8 @@
         'selectedTemplate',
         'templates',
         'isActive',
+        'appUuid',
       ]),
-      ...mapState(app_type, ['appUuid']),
-      ...mapState(my_apps, ['configuredApps']),
-      ...mapState(auth_store, ['project']),
       modelOptions() {
         if (this.templates?.count > 0) {
           const templateList = [];
@@ -266,6 +251,11 @@
           this.fetchTemplateAnalytics();
         }
       },
+      period(newVal, oldVal) {
+        if (newVal != oldVal) {
+          this.fetchTemplateAnalytics();
+        }
+      },
     },
     methods: {
       ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
@@ -273,7 +263,7 @@
       async fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
-          app_uuid: this.app_uuid,
+          app_uuid: this.appUuid,
           filters: {
             start: this.period.start,
             end: this.period.end,
@@ -288,7 +278,7 @@
         await this.getTemplateAnalytics(params);
       },
       async fetchTemplates() {
-        await this.getTemplates({ app_uuid: this.app_uuid });
+        await this.getTemplates({ app_uuid: this.appUuid });
       },
       toggleOpenModal() {
         this.showModal = !this.showModal;
@@ -324,7 +314,7 @@
       async activeTemplate() {
         this.showModal = false;
         try {
-          await this.setActiveProject({ app_uuid: this.app_uuid });
+          await this.setActiveProject({ app_uuid: this.appUuid });
         } catch (err) {
           unnnic.unnnicCallAlert({
             props: {
