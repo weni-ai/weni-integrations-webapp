@@ -8,13 +8,11 @@ import * as Sentry from '@sentry/vue';
 import getEnv from '@/utils/env';
 import { makeServer } from '@/miragejs/server';
 import './utils/plugins/Hotjar';
-
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
 import router from './router';
 
 const app = createApp(App);
-const pinia = createPinia();
-
 app.config.productionTip = false;
 
 if (getEnv('NODE_ENV') === 'development') {
@@ -28,6 +26,9 @@ if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
     logErrors: true,
   });
 }
+
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
