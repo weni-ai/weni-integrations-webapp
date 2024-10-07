@@ -63,6 +63,7 @@
   import unnnic from '@weni/unnnic-system';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
+  import eventBus from '../../../eventBus';
 
   export default {
     name: 'Apps',
@@ -75,11 +76,11 @@
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
+      eventBus.on('updateGrid', () => {
+        this.fetchCategories();
+      });
     },
     /* istanbul ignore next */
-    beforeDestroy() {
-      this.$root.$off('updateGrid');
-    },
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(my_apps, [
