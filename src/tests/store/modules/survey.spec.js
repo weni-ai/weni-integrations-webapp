@@ -38,19 +38,6 @@ describe('survey_store', () => {
     expect(setLocal).toHaveBeenCalledWith('surveyStatus', mockStatus);
   });
 
-  // it('should retrieve survey status from local storage', () => {
-  //   const store = survey_store();
-  //   vi.spyOn(window.localStorage, 'getItem').mockReturnValue('ANSWERED');
-
-  //   store.retrieveSurveyStatus();
-
-  //   expect(store.surveyStatus).toBe('ANSWERED');
-
-  //   expect(setLocal).toHaveBeenCalledWith('surveyStatus', 'ANSWERED');
-
-  //   expect(window.localStorage.getItem).toHaveBeenCalledWith('surveyStatus');
-  // });
-
   it('should submit survey answer and update state', async () => {
     const store = survey_store();
     const mockPayload = { answer: 'Yes' };
