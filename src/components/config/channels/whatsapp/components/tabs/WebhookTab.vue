@@ -49,6 +49,7 @@
 
     <div class="webhook-info__buttons">
       <unnnic-button
+        ref="close"
         class="webhook-info__buttons__cancel"
         type="tertiary"
         size="large"
@@ -57,6 +58,7 @@
       />
 
       <unnnic-button
+        ref="save"
         class="webhook-info__buttons__save"
         type="secondary"
         size="large"

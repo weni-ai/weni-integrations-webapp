@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OtherApps > matches snapshot 1`] = `
+"<div data-v-e28c1cb5="" class="container">
+  <div data-v-e28c1cb5="" class="flows-iframe"><img data-v-e28c1cb5="" class="logo" src="/src/assets/svgs/LogoWeniAnimada4.svg" alt=""></div><iframe data-v-e28c1cb5="" class="flows-iframe" src="https://flows-staging.weni.ai/weni/null/authenticate?next=/org/home/?flows_config_hide=configs" allow="clipboard-read; clipboard-write;" title="" style="border: 0px; display: none;"></iframe>
+</div>"
+`;

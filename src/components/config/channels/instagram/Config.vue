@@ -5,12 +5,12 @@
         <div class="app-config-instagram__header__title__icon-container">
           <img class="app-config-instagram__header__title__icon-container__icon" :src="app.icon" />
         </div>
-        <div class="app-config-instagram__header__title__name">{{ app.name }}</div>
+        <div ref="title-name" class="app-config-instagram__header__title__name">{{ app.name }}</div>
       </div>
     </div>
 
     <div class="app-config-instagram__settings__content">
-      <unnnic-label :label="this.$t('instagram.config.connected_account')" />
+      <unnnic-label ref="label" :label="$t('instagram.config.connected_account')" />
       <div class="app-config-instagram__settings__content__inputs">
         <unnnic-input
           class="app-config-instagram__settings__content__inputs__name"
@@ -40,12 +40,12 @@
     },
     data() {
       return {
-        pageName: this.app.config.page_name,
+        pageName: this.app.config?.page_name,
       };
     },
     computed: {
       formattedPageId() {
-        return `ID: ${this.app.config.page_id}`;
+        return `ID: ${this.app.config?.page_id}`;
       },
     },
   };

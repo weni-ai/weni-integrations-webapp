@@ -1,6 +1,6 @@
 <template>
   <div class="whatsapp-catalogs-base">
-    <unnnic-breadcrumb :crumbs="crumbs" @crumbClick="handleCrumbClick" />
+    <unnnic-breadcrumb ref="breadcrumb" :crumbs="crumbs" @crumbClick="handleCrumbClick" />
     <router-view />
   </div>
 </template>

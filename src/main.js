@@ -13,6 +13,9 @@ import App from './App.vue';
 import router from './router';
 
 const app = createApp(App);
+const pinia = createPinia();
+
+app.config.productionTip = false;
 
 if (getEnv('NODE_ENV') === 'development') {
   makeServer();
@@ -25,12 +28,14 @@ if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
     logErrors: true,
   });
 }
-
-const pinia = createPinia();
 pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
 
-app.use(pinia).use(router).use(Unnnic).use(i18n).use(vueUse);
+app.use(Unnnic);
+app.use(pinia);
+app.use(router);
+app.use(i18n);
+app.use(vueUse);
 
 app.mount('#app');

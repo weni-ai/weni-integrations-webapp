@@ -1,6 +1,12 @@
 <template>
   <div class="carousel-container" v-if="!loadingFeaturedApps">
-    <vueper-slides :arrows="false" fixed-height="152px" :autoplay="hasAutoPlay" :duration="6000">
+    <vueper-slides
+      :arrows="false"
+      fixed-height="152px"
+      :autoplay="hasAutoPlay"
+      :duration="6000"
+      ref="vue-per-slides"
+    >
       <vueper-slide
         v-for="(app, index) in featuredApps"
         :key="index"
@@ -25,7 +31,7 @@
       </template>
     </vueper-slides>
   </div>
-  <skeleton-loading v-else />
+  <skeleton-loading ref="skeleton" v-else />
 </template>
 
 <script>

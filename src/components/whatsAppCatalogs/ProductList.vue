@@ -24,7 +24,7 @@
       <template v-slot:item="{ item }">
         <unnnic-table-row :headers="headers">
           <template v-slot:title>
-            <div class="whatsapp-product-list__table__title">
+            <div class="whatsapp-product-list__table__title" name="table-title">
               <img :src="item.image_link" class="whatsapp-product-list__table__title__image" />
               <span :data-title="item.title">{{ item.title }}</span>
             </div>
@@ -90,22 +90,22 @@
         headers: [
           {
             id: 'title',
-            text: this.$t('WhatsApp.product.table.headers.name'),
+            text: 'WhatsApp.product.table.headers.name',
             flex: 2,
           },
           {
             id: 'available',
-            text: this.$t('WhatsApp.product.table.headers.availability'),
+            text: 'WhatsApp.product.table.headers.availability',
             flex: 1,
           },
           {
             id: 'price',
-            text: this.$t('WhatsApp.product.table.headers.price'),
+            text: 'WhatsApp.product.table.headers.price',
             flex: 1,
           },
           {
             id: 'facebook_product_id',
-            text: this.$t('WhatsApp.product.table.headers.facebook_id'),
+            text: 'WhatsApp.product.table.headers.facebook_id',
             flex: 1,
           },
         ],
