@@ -13,8 +13,6 @@ import App from './App.vue';
 import router from './router';
 
 const app = createApp(App);
-const pinia = createPinia();
-
 app.config.productionTip = false;
 
 if (getEnv('NODE_ENV') === 'development') {
