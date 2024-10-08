@@ -106,7 +106,7 @@
       insights_store().setHasInsights({ isActive: true });
       this.fetchChannels();
 
-      const createAppCode = this.$route.query.create_app;
+      const createAppCode = this.$route?.query.create_app;
       if (createAppCode) {
         this.callManuallyCreateApp(createAppCode);
       }
@@ -191,7 +191,7 @@
         const params = {
           category: 'channel',
         };
-        await app_type().getAllAppTypes({ params });
+        await this.getAllAppTypes({ params });
 
         if (this.errorAllAppTypes) {
           unnnic.unnnicCallAlert({

@@ -13,6 +13,7 @@ import App from './App.vue';
 import router from './router';
 
 const app = createApp(App);
+app.config.productionTip = false;
 
 if (getEnv('NODE_ENV') === 'development') {
   makeServer();
@@ -32,6 +33,10 @@ pinia.use(({ store }) => {
   store.router = markRaw(router);
 });
 
-app.use(pinia).use(router).use(Unnnic).use(i18n).use(vueUse);
+app.use(Unnnic);
+app.use(pinia);
+app.use(router);
+app.use(i18n);
+app.use(vueUse);
 
 app.mount('#app');

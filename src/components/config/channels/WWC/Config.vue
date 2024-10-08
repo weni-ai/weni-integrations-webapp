@@ -297,6 +297,7 @@
   import ColorPicker from '../../../ColorPicker/index.vue';
   import wwcSimulator from './Simulator.vue';
   import removeEmpty from '../../../../utils/clean';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'wwc-config',
@@ -443,6 +444,7 @@
     },
     methods: {
       ...mapActions(app_type, ['updateAppConfig', 'getApp']),
+      ...mapActions(useEventStore, ['emit']),
       handleColorChange(color) {
         this.mainColor = color;
       },
@@ -638,7 +640,7 @@
             seconds: 3,
           });
         } finally {
-          this.$root.$emit('updateGrid');
+          this.emit('updateGrid');
         }
       },
       closeConfig() {

@@ -20,6 +20,7 @@
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="input.label && getValue(input, 'label')" />
         <unnnic-upload-area
+          ref="unnnic-upload"
           :files="input.props.files"
           :acceptMultiple="input.props.acceptMultiple"
           :supportedFormats="input.props.supportedFormats"
@@ -34,6 +35,7 @@
         />
       </div>
       <unnnic-checkbox
+        ref="unnnic-checkbox"
         v-else-if="input.type === 'checkbox'"
         class="dynamic-form__fields--top-margin"
         v-model="input.value"
