@@ -34,7 +34,6 @@
     "lodash.throttle": "^4.1.1",
     "logrocket": "^8.0.1",
     "millify": "^6.1.0",
-    "mitt": "^3.0.1",
     "pinia": "^2.2.0",
     "pinia-plugin-persistedstate": "^4.1.1",
     "query-string": "^8.2.0",

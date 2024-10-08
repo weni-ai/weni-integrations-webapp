@@ -84,7 +84,7 @@
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { generic_store } from '@/stores/modules/appType/channels/generic.store';
-  import eventBus from '../../../../../eventBus';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'generic-config',
@@ -144,6 +144,7 @@
     methods: {
       ...mapActions(app_type, ['getApp', 'updateAppConfig']),
       ...mapActions(generic_store, ['getAppForm']),
+      ...mapActions(useEventStore, ['emit']),
       async fetchAppData() {
         this.loadingFormBuild = true;
         await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
@@ -225,7 +226,7 @@
           this.showCallback = true;
         }
 
-        eventBus.emit('updateGrid');
+        this.emit('updateGrid');
       },
       closeConfig() {
         this.$emit('closeModal');

@@ -63,7 +63,6 @@
   import unnnic from '@weni/unnnic-system';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
-  import eventBus from '../../../eventBus';
   import { useEventStore } from '@/stores/event.store';
 
   export default {
@@ -78,12 +77,10 @@
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
-      const eventStore = useEventStore();
-      eventStore.on('updateGrid', this.fetchCategories);
+      this.on('updateGrid', this.fetchCategories);
     },
     beforeUnmount() {
-      const eventStore = useEventStore();
-      eventStore.off('updateGrid', this.fetchCategories);
+      this.off('updateGrid', this.fetchCategories);
     },
     /* istanbul ignore next */
     computed: {
@@ -135,6 +132,7 @@
     },
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps', 'getInstalledApps']),
+      ...mapActions(useEventStore, ['on', 'off']),
       filterByName(appList, search) {
         return appList.filter((app) => {
           const appMainName = app.generic ? app.config.channel_name : app.name;

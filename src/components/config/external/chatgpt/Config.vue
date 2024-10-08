@@ -168,7 +168,7 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
-  import eventBus from '../../../../../eventBus';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'chatgpt-config',
@@ -268,6 +268,7 @@
     methods: {
       ...mapActions(app_type, ['updateApp']),
       ...mapActions(externals_store, ['createPrompts', 'getPrompts', 'deletePrompts']),
+      ...mapActions(useEventStore, ['emit']),
       async reloadPrompts() {
         await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
@@ -395,7 +396,7 @@
         }
 
         this.callModal({ type: 'success', text: this.$t('ChatGPT.success.configure') });
-        eventBus.emit('updateGrid');
+        this.emit('updateGrid');
       },
       closeConfig() {
         this.$emit('closeModal');
@@ -416,7 +417,7 @@
           let err = await this.handleUpdateApp();
           if (!err) {
             this.callModal({ type: 'Success', text: this.$t('ChatGPT.success.configure') });
-            eventBus.emit('updateGrid');
+            this.emit('updateGrid');
           }
         }, 1000),
       },
