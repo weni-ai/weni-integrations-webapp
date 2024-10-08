@@ -64,6 +64,7 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
   import eventBus from '../../../eventBus';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'Apps',
@@ -71,14 +72,18 @@
     data() {
       return {
         searchTerm: '',
+        eventStore: useEventStore(),
       };
     },
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
-      eventBus.on('updateGrid', () => {
-        this.fetchCategories();
-      });
+      const eventStore = useEventStore();
+      eventStore.on('updateGrid', this.fetchCategories);
+    },
+    beforeUnmount() {
+      const eventStore = useEventStore();
+      eventStore.off('updateGrid', this.fetchCategories);
     },
     /* istanbul ignore next */
     computed: {
@@ -174,6 +179,10 @@
           },
           seconds: 6,
         });
+      },
+      handleEvent() {
+        console.log('chegou');
+        this.fetchCategories();
       },
     },
   };
