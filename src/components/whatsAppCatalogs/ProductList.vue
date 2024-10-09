@@ -90,22 +90,22 @@
         headers: [
           {
             id: 'title',
-            text: 'WhatsApp.product.table.headers.name',
+            text: this.$t('WhatsApp.product.table.headers.name'),
             flex: 2,
           },
           {
             id: 'available',
-            text: 'WhatsApp.product.table.headers.availability',
+            text: this.$t('WhatsApp.product.table.headers.availability'),
             flex: 1,
           },
           {
             id: 'price',
-            text: 'WhatsApp.product.table.headers.price',
+            text: this.$t('WhatsApp.product.table.headers.price'),
             flex: 1,
           },
           {
             id: 'facebook_product_id',
-            text: 'WhatsApp.product.table.headers.facebook_id',
+            text: this.$t('WhatsApp.product.table.headers.facebook_id'),
             flex: 1,
           },
         ],
