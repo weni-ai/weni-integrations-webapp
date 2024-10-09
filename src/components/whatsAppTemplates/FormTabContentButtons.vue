@@ -381,7 +381,6 @@
         });
       },
       addButton() {
-        console.log('ALOOOO');
         if (this.buttonsType === 'quick_reply') {
           this.buttons.push({ button_type: 'QUICK_REPLY', text: '' });
         } else if (this.buttons[0].button_type === 'URL') {
