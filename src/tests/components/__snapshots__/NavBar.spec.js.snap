@@ -1,3 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`NavBar.vue > matches snapshot 1`] = `"<div data-v-61681749="" id="topnav"><a data-v-61681749="" href="discovery" class="link">Discovery</a><a data-v-61681749="" href="my" class="link">My Apps</a><a data-v-61681749="" href="other-apps" class="link">Other Apps</a></div>"`;
