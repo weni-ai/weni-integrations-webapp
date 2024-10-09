@@ -16,7 +16,7 @@ vi.mock('@/utils/sentry', () => ({
 describe('generic_store', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
-    vi.clearAllMocks(); // Limpa todos os mocks antes de cada teste
+    vi.clearAllMocks();
   });
 
   it('should initialize with default state', () => {

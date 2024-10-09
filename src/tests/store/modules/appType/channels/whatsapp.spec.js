@@ -4,7 +4,6 @@ import whatsApp from '@/api/appType/whatsapp';
 import { captureSentryException } from '@/utils/sentry';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-// Mockando os módulos
 vi.mock('@/api/appType/whatsapp');
 vi.mock('@/utils/sentry');
 
@@ -198,7 +197,6 @@ describe('whatsapp_store actions', () => {
       const appUuid = 'abc';
       const payload = { url: 'https://example.com/webhook' };
 
-      // Simula a resposta bem-sucedida da API
       whatsApp.updateWppWebhookInfo.mockResolvedValueOnce(mockResponse);
 
       await store.updateWppWebhookInfo({ code, appUuid, payload });
@@ -215,7 +213,6 @@ describe('whatsapp_store actions', () => {
       const appUuid = 'abc';
       const payload = { url: 'https://example.com/webhook' };
 
-      // Simula a rejeição da API
       whatsApp.updateWppWebhookInfo.mockRejectedValueOnce(mockError);
 
       await store.updateWppWebhookInfo({ code, appUuid, payload });
@@ -232,7 +229,6 @@ describe('whatsapp_store actions', () => {
       const appUuid = 'abc';
       const payload = { url: 'https://example.com/webhook' };
 
-      // Simula a rejeição da API
       whatsApp.updateWppWebhookInfo.mockRejectedValueOnce(mockError);
 
       await store.updateWppWebhookInfo({ code, appUuid, payload });
@@ -263,7 +259,6 @@ describe('whatsapp_store actions', () => {
       const appUuid = 'app123';
       const templateUuid = 'template123';
 
-      // Simula uma resposta bem-sucedida da API
       whatsApp.deleteTemplateMessage.mockResolvedValueOnce(mockResponse);
 
       await store.deleteTemplateMessage({ appUuid, templateUuid });
@@ -279,7 +274,6 @@ describe('whatsapp_store actions', () => {
       const appUuid = 'app123';
       const templateUuid = 'template123';
 
-      // Simula uma rejeição da API
       whatsApp.deleteTemplateMessage.mockRejectedValueOnce(mockError);
 
       await store.deleteTemplateMessage({ appUuid, templateUuid });
@@ -295,7 +289,6 @@ describe('whatsapp_store actions', () => {
       const appUuid = 'app123';
       const templateUuid = 'template123';
 
-      // Simula uma rejeição da API
       whatsApp.deleteTemplateMessage.mockRejectedValueOnce(mockError);
 
       await store.deleteTemplateMessage({ appUuid, templateUuid });
@@ -395,7 +388,6 @@ describe('whatsapp_store actions', () => {
       const templateUuid = 'template123';
       const payload = { translation: 'New translation' };
 
-      // Simula uma resposta bem-sucedida da API
       whatsApp.createTemplateTranslation.mockResolvedValueOnce(mockResponse);
 
       await store.createTemplateTranslation({ appUuid, templateUuid, payload });
@@ -416,7 +408,6 @@ describe('whatsapp_store actions', () => {
       const templateUuid = 'template123';
       const payload = { translation: 'New translation' };
 
-      // Simula uma rejeição da API
       whatsApp.createTemplateTranslation.mockRejectedValueOnce(mockError);
 
       await store.createTemplateTranslation({ appUuid, templateUuid, payload });
@@ -433,7 +424,6 @@ describe('whatsapp_store actions', () => {
       const templateUuid = 'template123';
       const payload = { translation: 'New translation' };
 
-      // Simula uma rejeição da API
       whatsApp.createTemplateTranslation.mockRejectedValueOnce(mockError);
 
       await store.createTemplateTranslation({ appUuid, templateUuid, payload });
@@ -453,7 +443,6 @@ describe('whatsapp_store actions', () => {
       };
       const appUuid = 'app123';
 
-      // Simula uma resposta bem-sucedida da API
       whatsApp.fetchSelectLanguages.mockResolvedValueOnce(mockResponse);
 
       await store.fetchSelectLanguages({ appUuid });
@@ -471,7 +460,6 @@ describe('whatsapp_store actions', () => {
       const mockError = { response: { data: { error: 'Failed to fetch languages' } } };
       const appUuid = 'app123';
 
-      // Simula uma rejeição da API
       whatsApp.fetchSelectLanguages.mockRejectedValueOnce(mockError);
 
       await store.fetchSelectLanguages({ appUuid });
@@ -486,7 +474,6 @@ describe('whatsapp_store actions', () => {
       const mockError = new Error('Network error');
       const appUuid = 'app123';
 
-      // Simula uma rejeição da API
       whatsApp.fetchSelectLanguages.mockRejectedValueOnce(mockError);
 
       await store.fetchSelectLanguages({ appUuid });

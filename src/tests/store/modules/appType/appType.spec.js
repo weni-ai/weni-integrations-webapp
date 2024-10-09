@@ -46,7 +46,7 @@ describe('app_type store', () => {
 
       await store.getAllAppTypes({ params: {} });
 
-      expect(store.allAppTypes.length).toBe(2); // Base + generic
+      expect(store.allAppTypes.length).toBe(2);
       expect(store.allAppTypes[1].icon).toBe('icon1.png');
       expect(store.loadingAllAppTypes).toBe(false);
     });
