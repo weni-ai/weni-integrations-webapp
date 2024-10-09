@@ -166,7 +166,7 @@ describe('ConversationsTab', () => {
     const endDate = wrapper.vm.endDateObject;
 
     expect(startDate.getUTCFullYear()).toEqual(2024);
-    expect(startDate.getUTCMonth()).toEqual(0); // Janeiro é 0
+    expect(startDate.getUTCMonth()).toEqual(0);
     expect(startDate.getUTCDate()).toEqual(1);
 
     expect(endDate.getUTCFullYear()).toEqual(2024);

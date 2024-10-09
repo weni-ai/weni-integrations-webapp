@@ -5,7 +5,6 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
-// import Unnnic from '@weni/unnnic-system';
 
 describe('WhatsappConfig.vue', () => {
   let wrapper;
