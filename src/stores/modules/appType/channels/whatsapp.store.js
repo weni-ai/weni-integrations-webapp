@@ -95,10 +95,17 @@ export const whatsapp_store = defineStore('whatsapp', {
     },
     async fetchWppContactInfo({ code, appUuid }) {
       this.loadingContactInfo = true;
-      const data = await whatsApp.fetchWppContactInfo(code, appUuid);
-      this.contactInfo = data;
-      this.fetchedContactInfo = true;
-      this.loadingContactInfo = false;
+      this.fetchedContactInfo = false;
+      try {
+        const data = await whatsApp.fetchWppContactInfo(code, appUuid);
+        this.contactInfo = data;
+        this.fetchedContactInfo = true;
+      } catch (err) {
+        captureSentryException(err);
+        this.fetchedContactInfo = false;
+      } finally {
+        this.loadingContactInfo = false;
+      }
     },
     async updateWppContactInfo({ code, appUuid, payload }) {
       const { data } = await whatsApp.updateWppContactInfo(code, appUuid, payload);
