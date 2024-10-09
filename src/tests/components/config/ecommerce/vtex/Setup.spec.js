@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import VtexModal from '@/components/config/ecommerce/vtex/Setup.vue';
 import unnnic from '@weni/unnnic-system';
