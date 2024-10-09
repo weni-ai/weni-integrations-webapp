@@ -82,36 +82,4 @@ describe('WhatsappConfig.vue', () => {
 
     expect(fetchDataSpy).toHaveBeenCalled();
   });
-
-  // it('shows error alert on fetchData error', async () => {
-  //   const errorMsg = 'Fetch Error';
-  //   const spyUnnnicAlert = vi.spyOn(Unnnic, 'unnnicCallAlert').mockImplementation(() => {});
-
-  //   vi.spyOn(wrapper.vm, 'fetchData').mockRejectedValue({
-  //     response: { data: { error: { error_user_msg: errorMsg } } },
-  //   });
-
-  //   await wrapper.vm.fetchData();
-
-  //   expect(spyUnnnicAlert).toHaveBeenCalledWith({
-  //     props: { text: errorMsg, type: 'error' },
-  //     seconds: 15,
-  //   });
-  // });
-
-  // it('shows generic error alert if error structure is different', async () => {
-  //   const genericErrorMsg = 'WhatsApp.config.error.data_fetch';
-  //   const spyUnnnicAlert = vi.spyOn(Unnnic, 'unnnicCallAlert').mockImplementation(() => {});
-
-  //   vi.spyOn(wrapper.vm, 'fetchData').mockRejectedValue({
-  //     response: { data: { error: 'jijdijei' } },
-  //   });
-
-  //   await wrapper.vm.fetchData();
-
-  //   expect(spyUnnnicAlert).toHaveBeenCalledWith({
-  //     props: { text: genericErrorMsg, type: 'error' },
-  //     seconds: 15,
-  //   });
-  // });
 });

@@ -21,8 +21,6 @@ describe('wwcConfig Component', () => {
 
   beforeEach(() => {
     store = app_type();
-
-    // Mockando valores iniciais do Pinia
     store.currentApp = { config: { title: 'App Teste' } };
     store.loadingUpdateAppConfig = false;
     store.loadingCurrentApp = false;

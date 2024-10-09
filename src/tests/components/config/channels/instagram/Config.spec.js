@@ -61,7 +61,6 @@ describe('InstagramConfig.vue', () => {
     );
     expect(pageNameInput.element.value).toBe('Test Page');
 
-    // Check if the formatted page ID is rendered correctly
     const pageIdInput = wrapper.find('.app-config-instagram__settings__content__inputs__id input');
     expect(pageIdInput.element.value).toBe('ID: 123456789');
   });
