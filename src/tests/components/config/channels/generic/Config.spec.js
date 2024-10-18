@@ -101,43 +101,4 @@ describe('GenericConfig.vue', () => {
     const skeletonLoader = wrapper.findComponent({ name: 'unnnic-skeleton-loading' });
     expect(skeletonLoader.exists()).toBe(true);
   });
-
-  // it('calls closeConfig when the cancel button is clicked', async () => {
-  //   const closeConfigSpy = vi.spyOn(wrapper.vm, 'closeConfig');
-  //   const cancelButton = wrapper.find('.app-config-generic__settings__buttons__cancel');
-
-  //   await cancelButton.trigger('click');
-  //   await wrapper.vm.$nextTick();
-  //   expect(closeConfigSpy).toHaveBeenCalled();
-  // });
-
-  // it('calls saveConfig when the save button is clicked', async () => {
-  //   const saveConfigSpy = vi.spyOn(wrapper.vm, 'saveConfig');
-  //   const saveButton = wrapper.find('.app-config-generic__settings__buttons__save');
-
-  //   await saveButton.trigger('click');
-  //   expect(saveConfigSpy).toHaveBeenCalled();
-  // });
-
-  // it('renders save button with loading state when loadingUpdateAppConfig is true', async () => {
-  //   createComponent(
-  //     {},
-  //     {
-  //       global: {
-  //         plugins: [
-  //           createTestingPinia({
-  //             initialState: {
-  //               app_type: {
-  //                 loadingUpdateAppConfig: true,
-  //               },
-  //             },
-  //           }),
-  //         ],
-  //       },
-  //     },
-  //   );
-
-  //   const saveButton = wrapper.find('.app-config-generic__settings__buttons__save');
-  //   expect(saveButton.attributes('loading')).toBe('true');
-  // });
 });

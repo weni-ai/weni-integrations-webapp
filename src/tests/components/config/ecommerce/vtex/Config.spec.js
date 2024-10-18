@@ -116,7 +116,6 @@ describe('vtex-config Component', () => {
   });
 
   it('should render sellers list correctly when hasConnectedCatalog is true', async () => {
-    // Simulate sellers options in the store
     wrapper.vm.sellersList = ['Seller 1', 'Seller 2'];
     await wrapper.vm.$nextTick();
 

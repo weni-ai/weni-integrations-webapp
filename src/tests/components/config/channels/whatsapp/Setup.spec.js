@@ -72,43 +72,6 @@ describe('WhatsAppSetup.vue', () => {
     expect(wrapper.emitted('closePopUp')).toBeTruthy();
   });
 
-  // it('calls startFacebookLogin on button click', async () => {
-  //   await wrapper.setData({ onLogin: false });
-  //   const startFacebookLoginSpy = vi.spyOn(wrapper.vm, 'startFacebookLogin');
-  //   const button = wrapper.find('.whatsapp-setup__buttons__start');
-  //   await wrapper.vm.$nextTick();
-
-  //   expect(button.exists()).toBe(true);
-  //   expect(wrapper.vm.onLogin).toBe(false);
-
-  //   expect(button.attributes('disabled')).toBe(undefined);
-
-  //   await button.trigger('click');
-  //   await wrapper.vm.$nextTick();
-  //   expect(startFacebookLoginSpy).toHaveBeenCalled();
-  // });
-
-  // it('calls createChannel on successful Facebook login', async () => {
-  //   const mockAuthCode = 'mockAuthCode';
-
-  //   const fbLoginMock = vi.fn((callback) => {
-  //     callback({ authResponse: { code: mockAuthCode } });
-  //   });
-
-  //   window.FB = {
-  //     login: fbLoginMock,
-  //   };
-
-  //   const createChannelSpy = vi.spyOn(wrapper.vm, 'createChannel');
-
-  //   await wrapper.vm.startFacebookLogin();
-  //   await wrapper.vm.$nextTick();
-
-  //   expect(fbLoginMock).toHaveBeenCalled();
-
-  //   expect(createChannelSpy).toHaveBeenCalledWith(mockAuthCode);
-  // });
-
   it('handles Facebook login correctly', async () => {
     vi.mock('../../../../utils/plugins/fb', () => ({
       initFacebookSdk: vi.fn((appId, callback) => {

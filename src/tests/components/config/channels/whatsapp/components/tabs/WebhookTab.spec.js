@@ -67,17 +67,6 @@ describe('WebhookTab', () => {
     expect(wrapper.vm.headers[0].value).toBe('New-Value');
   });
 
-  // it('calls saveWebhookInfo when the save button is clicked and succeeds', async () => {
-  //   const saveSpy = vi.spyOn(wrapper.vm, 'saveWebhookInfo');
-
-  //   const saveButton = wrapper.findComponent({ ref: 'save' });
-  //   expect(saveButton.exists()).toBe(true);
-  //   await saveButton.trigger('click');
-
-  //   expect(saveSpy).toHaveBeenCalled();
-  //   expect(wrapper.vm.loadingUpdateWebhookInfo).toBeFalsy();
-  // });
-
   it('displays error modal when URL is invalid on save', async () => {
     const callModalSpy = vi.spyOn(wrapper.vm, 'callModal');
 
@@ -102,7 +91,6 @@ describe('WebhookTab', () => {
   it('displays error modal when webhook update fails', async () => {
     const callModalSpy = vi.spyOn(wrapper.vm, 'callModal');
 
-    // Simula erro na ação do Pinia
     wrapper.vm.updateWppWebhookInfo = vi.fn().mockResolvedValueOnce(false);
     wrapper.vm.errorUpdateWebhookInfo = { error_user_msg: 'Update Failed' };
 

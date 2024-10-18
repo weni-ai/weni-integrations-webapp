@@ -118,7 +118,6 @@ describe('DynamicForm.vue', () => {
 
   it('handles unsupported input types correctly', async () => {
     const wrapper = mountComponent();
-    // Garante que tipos não suportados não emitem eventos
     expect(wrapper.find('.dynamic-form__fields').exists()).toBe(true);
     expect(wrapper.emitted().input).toBeUndefined();
   });
