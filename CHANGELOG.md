@@ -1,3 +1,24 @@
+2.2.5
+----------
+`2024-10-08·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Configured Weni Chats card doesn't update.
+
+2.2.4
+----------
+`2024-10-07·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp Insights persisted state
+
+2.2.3
+----------
+`2024-10-02·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WWC Config modal
+
 2.2.2
 ----------
 `2024-09-30·  2 🐛 `
