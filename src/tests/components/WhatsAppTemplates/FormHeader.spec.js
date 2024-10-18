@@ -64,7 +64,6 @@ describe('FormHeader.vue', () => {
       icon: 'add',
     };
 
-    // Test 'APPROVED' status
     whatsappStore.templateTranslationCurrentForm = { status: 'APPROVED' };
     await wrapper.vm.$nextTick();
     const tagApproved = wrapper.findComponent({ ref: 'tag' });
@@ -72,7 +71,6 @@ describe('FormHeader.vue', () => {
     expect(tagApproved.props('text')).toBe('Approved');
     expect(tagApproved.props('scheme')).toBe('feedback-green');
 
-    // Test 'REJECTED' status
     whatsappStore.templateTranslationCurrentForm = { status: 'REJECTED' };
     await wrapper.vm.$nextTick();
     const tagRejected = wrapper.findComponent({ ref: 'tag' });
@@ -80,7 +78,6 @@ describe('FormHeader.vue', () => {
     expect(tagRejected.props('text')).toBe('Rejected');
     expect(tagRejected.props('scheme')).toBe('feedback-red');
 
-    // Test 'PENDING' or other status
     whatsappStore.templateTranslationCurrentForm = { status: 'PENDING' };
     await wrapper.vm.$nextTick();
     const tagPending = wrapper.findComponent({ ref: 'tag' });
