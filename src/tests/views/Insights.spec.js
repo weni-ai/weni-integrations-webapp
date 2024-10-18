@@ -48,7 +48,7 @@ describe('Insights.vue', () => {
     expect(button.exists()).toBe(true);
     await button.trigger('click');
 
-    expect(setActiveProjectSpy).toHaveBeenCalledWith({ app_uuid: '' });
+    expect(setActiveProjectSpy).toHaveBeenCalledWith({ app_uuid: null });
 
     expect(unnnicCallAlertSpy).toHaveBeenCalledWith({
       props: {
