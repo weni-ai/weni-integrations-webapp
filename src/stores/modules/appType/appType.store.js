@@ -78,9 +78,10 @@ export const app_type = defineStore('appType', {
         const fullList = baseApps.concat(genericApps);
 
         this.allAppTypes = fullList;
-        this.loadingAllAppTypes = false;
       } catch (err) {
         this.errorAllAppTypes = err;
+      } finally {
+        this.loadingAllAppTypes = false;
       }
     },
     async getAppType({ code, shouldLoad }) {
@@ -92,9 +93,10 @@ export const app_type = defineStore('appType', {
       try {
         const { data } = await appType.getAppType(code);
         this.currentAppType = data;
-        this.loadingCurrentAppType = false;
       } catch (err) {
         this.errorCurrentAppType = err;
+      } finally {
+        this.loadingCurrentAppType = false;
       }
     },
     async postRating({ code, payload }) {
@@ -131,9 +133,9 @@ export const app_type = defineStore('appType', {
       try {
         const { data } = await appType.createApp(code, payload);
         this.createAppResponse = data;
-        this.loadingCreateApp = false;
       } catch (err) {
         this.errorCreateApp = err;
+      } finally {
         this.loadingCreateApp = false;
       }
     },
@@ -156,9 +158,10 @@ export const app_type = defineStore('appType', {
       try {
         const data = await appType.fetchFeatured();
         this.featuredApps = data;
-        this.loadingFeaturedApps = false;
       } catch (err) {
         this.errorFeaturedApps = err;
+      } finally {
+        this.loadingFeaturedApps = false;
       }
     },
     async updateAppConfig({ code, appUuid, payload }) {
