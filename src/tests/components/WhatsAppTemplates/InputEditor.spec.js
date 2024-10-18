@@ -35,9 +35,17 @@ describe('InputEditor.vue', () => {
     await wrapper.vm.toggleEmoji();
     expect(wrapper.vm.displayEmoji).toBe(true);
 
+    // Simula o clique fora do emoji picker
     await wrapper.vm.hideEmoji();
     expect(wrapper.vm.displayEmoji).toBe(false);
   });
+
+  // it('should emit emoji-event with selected emoji', async () => {
+  //   const emojiPicker = wrapper.findComponent({ name: 'unnnic-emoji-picker' });
+  //   await emojiPicker.vm.$emit('emojiSelected', 'smile');
+
+  //   expect(wrapper.emitted('emoji-event')[0]).toEqual(['smile']);
+  // });
 
   it('should emit format-event with correct format on button click', async () => {
     const boldButton = wrapper.find('.input-editor__button');

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AppModal > matches snapshot 1`] = `
+"<transition-stub data-v-25061de5="" name="modal" appear="false" persisted="false" css="true">
+  <!---->
+</transition-stub>"
+`;

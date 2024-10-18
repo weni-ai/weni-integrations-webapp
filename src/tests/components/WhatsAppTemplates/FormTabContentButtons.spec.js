@@ -97,6 +97,18 @@ describe('FormTabContentButtons.vue', () => {
     expect(removeButtonSpy).toHaveBeenCalled();
   });
 
+  // it('should call addButton when the add button is clicked', async () => {
+  //   const addButtonSpy = vi.spyOn(wrapper.vm, 'addButton');
+  //   expect(wrapper.vm.showAddButton).toBe(true);
+  //   expect(wrapper.vm.disableInputs).toBe(false);
+  //   const addButton = wrapper.find('.form-tab-content-buttons__add-button');
+  //   expect(addButton.exists()).toBe(true);
+
+  //   await addButton.trigger('click');
+  //   await wrapper.vm.$nextTick();
+  //   expect(addButtonSpy).toHaveBeenCalled();
+  // });
+
   it('should handle call-to-action type change', async () => {
     const select = wrapper.findComponent({ name: 'unnnic-select-smart' });
     expect(wrapper.vm.disableInputs).toBe(false);

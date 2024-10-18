@@ -7,6 +7,7 @@ import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 
+// Mock components
 vi.mock('@/components/whatsAppTemplates/loadings/TableLoading.vue', () => ({ default: vi.fn() }));
 vi.mock('@/components/whatsAppTemplates/TableActionButton.vue', () => ({ default: vi.fn() }));
 vi.mock('@/components/whatsAppTemplates/TableLanguageDropdown.vue', () => ({ default: vi.fn() }));
@@ -62,12 +63,46 @@ describe('Table.vue', () => {
     expect(wrapper.vm.nameSortDirection).toBe('NONE');
   });
 
+  // it('should handle date picker filter update', async () => {
+  //   const wrapper = mount(Table, {
+  //     global: {
+  //       plugins: [pinia, i18n, UnnnicSystem],
+  //       mocks: {
+  //         $route: { params: { appUuid: '123' } },
+  //       },
+  //     },
+  //   });
+  //   const datePicker = wrapper.find({ ref: 'date-picker' });
+  //   expect(datePicker.exists()).toBe(true);
+  //   await datePicker.vm.$emit('update:modelValue', { start: '2023-09-01', end: '2023-09-10' });
+
+  //   expect(wrapper.vm.startDate).toBe('2023-09-01');
+  //   expect(wrapper.vm.endDate).toBe('2023-09-10');
+  // });
+
   it('should handle category selection change', async () => {
     const categorySelect = wrapper.findComponent({ name: 'unnnic-select-smart' });
     await categorySelect.vm.$emit('update:modelValue', 'MARKETING');
 
     expect(wrapper.vm.selectedCategory).toBe('MARKETING');
   });
+
+  // it('should handle search input', async () => {
+  //   const searchInput = wrapper.findComponent({ name: 'unnnic-input' });
+  //   expect(searchInput.exists()).toBe(true);
+  //   await searchInput.vm.$emit('update:modelValue', 'Test Search');
+  //   await wrapper.vm.$nextTick();
+
+  //   expect(wrapper.vm.searchTerm).toBe('Test Search');
+  // });
+
+  // it('should display pagination and handle page change', async () => {
+  //   const pagination = wrapper.find({ ref: 'pagination' });
+  //   expect(pagination.exists()).toBe(true);
+
+  //   await pagination.vm.$emit('update:modelValue', 2);
+  //   expect(wrapper.vm.page).toBe(2);
+  // });
 
   it('should render loading state when loading', async () => {
     const store = whatsapp_store();

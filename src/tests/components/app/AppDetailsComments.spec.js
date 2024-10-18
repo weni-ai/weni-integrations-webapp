@@ -70,6 +70,28 @@ describe('AppDetailsComments.vue', () => {
     expect(commentsStore.updateComment).toHaveBeenCalled();
   });
 
+  // it('displays error alert if createComment fails', async () => {
+  //   const commentsStore = comments_store();
+  //   commentsStore.errorCreateComment = 'Error';
+  //   wrapper.vm.currentComment = 'New comment';
+  //   await wrapper.vm.handleComment();
+  //   expect(unnnicCallAlert).toBeCalledTimes(1)
+  //   expect(spy).toHaveBeenCalledWith({
+  //     props: { text: 'apps.details.status_error', type: 'error' },
+  //     seconds: 3,
+  //   });
+  // });
+
+  // it('displays error alert if updateComment fails', async () => {
+  //   commentsStore.errorUpdateComment = 'Error';
+  //   wrapper.vm.currentComment = 'Updated comment';
+  //   await wrapper.vm.handleComment();
+  //   expect(unnnic.unnnicCallAlert).toHaveBeenCalledWith({
+  //     props: { text: 'apps.details.status_error', type: 'error' },
+  //     seconds: 3,
+  //   });
+  // });
+
   it('toggles remove modal visibility', async () => {
     expect(wrapper.vm.showRemoveModal).toBe(false);
     wrapper.vm.toggleRemoveModal();
@@ -85,4 +107,23 @@ describe('AppDetailsComments.vue', () => {
       commentUuid: 'uuid-123',
     });
   });
+
+  // it('displays success alert after successful delete', async () => {
+  //   wrapper.vm.currentRemovalUuid = 'uuid-123';
+  //   await wrapper.vm.handleDelete(wrapper.vm.currentRemovalUuid);
+  //   expect(unnnic.unnnicCallAlert).toHaveBeenCalledWith({
+  //     props: { text: 'apps.details.comments.remove.status_text', type: 'success' },
+  //     seconds: 3,
+  //   });
+  // });
+
+  // it('displays error alert if deleteComment fails', async () => {
+  //   commentsStore.errorDeleteComment = 'Error';
+  //   wrapper.vm.currentRemovalUuid = 'uuid-123';
+  //   await wrapper.vm.handleDelete(wrapper.vm.currentRemovalUuid);
+  //   expect(unnnic.unnnicCallAlert).toHaveBeenCalledWith({
+  //     props: { text: 'apps.details.status_error', type: 'error' },
+  //     seconds: 3,
+  //   });
+  // });
 });

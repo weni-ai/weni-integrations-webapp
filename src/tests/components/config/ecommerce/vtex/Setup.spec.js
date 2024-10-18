@@ -99,7 +99,6 @@ describe('VtexModal.vue', () => {
   });
 
   it('renders the second step correctly', async () => {
-    process.env.VITE_APP_API_BASE_URL = 'https://integrations-engine.stg.cloud.weni.ai';
     const store = ecommerce_store();
     store.generatedVtexAppUuid = {
       uuid: '1234',
