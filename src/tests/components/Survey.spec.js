@@ -94,13 +94,5 @@ describe('Survey.vue', () => {
 
     await sendButton.trigger('click');
     await wrapper.vm.$nextTick();
-
-    // expect(unnnicCallAlert).toHaveBeenCalledWith({
-    //   props: {
-    //     text: 'survey.error_submit_answer',
-    //     type: 'error',
-    //   },
-    //   seconds: 6,
-    // });
   });
 });

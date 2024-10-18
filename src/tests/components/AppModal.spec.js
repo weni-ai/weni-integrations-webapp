@@ -30,7 +30,6 @@ describe('AppModal', () => {
       await wrapper.setData({
         showRemoveModal: true,
       });
-      // const spyToggleRemoveModal = vi.spyOn(wrapper.vm, 'toggleRemoveModal');
 
       const button = wrapper.findComponent('.unnnic-button');
 
@@ -39,8 +38,6 @@ describe('AppModal', () => {
       expect(button.exists()).toBe(true);
 
       await button.trigger('click');
-
-      // expect(spyToggleRemoveModal).toHaveBeenCalledTimes(1);
     });
   });
 });

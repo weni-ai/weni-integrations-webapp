@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AppGrid > matches snapshot 1`] = `
+"<div data-v-deb56cf9="">
+  <section data-v-deb56cf9="" id="app-grid" maxlength="255" disabled="false">
+    <!--v-if-->
+    <div data-v-deb56cf9="" class="app-grid__content"></div>
+    <!--v-if-->
+  </section>
+  <unnnic-modal data-v-deb56cf9="" showmodal="false" text="Remove Application" scheme="feedback-red" modal-icon="alert-circle-1"></unnnic-modal>
+  <div data-v-7d3d5e15="" data-v-deb56cf9="">
+    <transition-stub data-v-7d3d5e15="" name="fade" appear="false" persisted="false" css="true">
+      <!--v-if-->
+    </transition-stub>
+    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Cancel modifications" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
+  </div>
+</div>"
+`;

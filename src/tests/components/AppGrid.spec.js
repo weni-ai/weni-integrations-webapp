@@ -81,15 +81,6 @@ describe('AppGrid', () => {
     });
 
     it('should call openAppDetails', async () => {
-      // const spyOpenAppDetails = vi.spyOn(wrapper.vm, 'openAppDetails');
-      // await wrapper.vm.$nextTick();
-      // const dropdownItem = wrapper.findAll('#openAppDetails')[0];
-      // expect(dropdownItem.exists()).toBe(true);
-
-      // await dropdownItem.trigger('click');
-
-      // expect(spyOpenAppDetails).toHaveBeenCalledTimes(1);
-
       await wrapper.vm.openAppDetails('1234');
       expect(pushMock).toHaveBeenCalledWith('/1234/details');
     });

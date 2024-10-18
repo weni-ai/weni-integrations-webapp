@@ -56,13 +56,7 @@ describe('Carousel.vue', () => {
 
     await wrapper.vm.$nextTick();
     expect(wrapper.vm.loadingFeaturedApps).toBe(false);
-    // expect(wrapper.findComponent({ name: 'vueper-slides' }).exists()).toBe(true);
   });
-
-  // it('calls fetchFeatured on mount', async () => {
-  //   const spy = vi.spyOn(Carousel.methods, 'fetchFeatured');
-  //   expect(spy).toHaveBeenCalledTimes(1);
-  // });
 
   it('navigates to the app details page on openAppDetails', () => {
     wrapper.vm.openAppDetails('appCode');
