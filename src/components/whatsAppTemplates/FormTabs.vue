@@ -95,6 +95,9 @@
     updated() {
       this.headerScrollBehavior();
     },
+    beforeDestroy() {
+      window.removeEventListener('wheel', this.handleWheelEvent);
+    },
     async created() {
       this.dataProcessingLoading = true;
       await this.fetchLanguages();
@@ -170,13 +173,17 @@
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
         if (tabHeader) {
-          tabHeader.addEventListener('wheel', (event) => {
-            event.preventDefault();
+          tabHeader.addEventListener(
+            'wheel',
+            (event) => {
+              event.preventDefault();
 
-            tabHeader.scrollBy({
-              left: event.deltaY < 0 ? -30 : 30,
-            });
-          });
+              tabHeader.scrollBy({
+                left: event.deltaY < 0 ? -30 : 30,
+              });
+            },
+            { passive: true },
+          );
         }
       },
       async fetchAllTemplates() {
