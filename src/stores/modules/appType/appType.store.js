@@ -60,6 +60,22 @@ export const app_type = defineStore('appType', {
 
       try {
         const baseApps = await appType.getAllAppTypes(params);
+        baseApps.push({
+          code: 'email',
+          name: 'Email',
+          description: 'weniWebChat.data.description',
+          summary: 'weniWebChat.data.summary',
+          category: 'channel',
+          icon: null,
+          bg_color: '#00DED333',
+          config_design: 'sidebar',
+          rating: { average: null, mine: null },
+          comments_count: 0,
+          integrations_count: 15,
+          metrics: 58602143,
+          can_add: true,
+          assets: [],
+        });
         const genericAppsData = await genericType.getAllGenericTypes();
         const iconData = await genericType.getIcons();
 
