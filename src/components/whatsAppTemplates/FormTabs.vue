@@ -173,18 +173,21 @@
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
         if (tabHeader) {
-          tabHeader.addEventListener(
-            'wheel',
-            (event) => {
-              event.preventDefault();
-
-              tabHeader.scrollBy({
-                left: event.deltaY < 0 ? -30 : 30,
-              });
-            },
-            { passive: true },
-          );
+          this.handleWheelEvent(tabHeader);
         }
+      },
+      handleWheelEvent(component) {
+        component.addEventListener(
+          'wheel',
+          (event) => {
+            event.preventDefault();
+
+            component.scrollBy({
+              left: event.deltaY < 0 ? -30 : 30,
+            });
+          },
+          { passive: true },
+        );
       },
       async fetchAllTemplates() {
         const { appUuid } = this.$route.params;

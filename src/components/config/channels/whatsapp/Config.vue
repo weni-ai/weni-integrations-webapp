@@ -120,6 +120,9 @@
       await this.fetchData();
       this.headerScrollBehavior();
     },
+    beforeDestroy() {
+      window.removeEventListener('wheel', this.handleWheelEvent);
+    },
     computed: {
       ...mapState(whatsapp_store, [
         'whatsAppProfile',
@@ -147,14 +150,21 @@
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
         if (tabHeader) {
-          tabHeader.addEventListener('wheel', (event) => {
+          this.handleWheelEvent(tabHeader);
+        }
+      },
+      handleWheelEvent(component) {
+        component.addEventListener(
+          'wheel',
+          (event) => {
             event.preventDefault();
 
-            tabHeader.scrollBy({
+            component.scrollBy({
               left: event.deltaY < 0 ? -30 : 30,
             });
-          });
-        }
+          },
+          { passive: true },
+        );
       },
       closeConfig() {
         this.$emit('closeModal');
