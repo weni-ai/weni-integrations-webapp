@@ -134,7 +134,7 @@
         'errorUpdateTemplateTranslation',
       ]),
       templateSelectLanguages() {
-        return this.whatsAppTemplateSelectLanguages.map((item) => {
+        return this.whatsAppTemplateSelectLanguages?.map((item) => {
           const { text, value } = item;
           return {
             label: text,
