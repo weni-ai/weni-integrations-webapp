@@ -22,7 +22,7 @@
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "@vue/compiler-sfc": "^3.4.23",
     "@vueuse/components": "^10.9.0",
-    "@weni/unnnic-system": "2.14.1-alpha.4",
+    "@weni/unnnic-system": "^2.14.2",
     "axios": "^1.6.7",
     "core-js": "^3.36.0",
     "esbuild": "^0.20.2",
