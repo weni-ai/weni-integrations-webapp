@@ -10,11 +10,11 @@
       :initialTab="initialTranslation"
       @change="handleTranslationSelection"
     >
-    <template #tab-head-new>
-      <div ref="new-translation-button">
-        {{ $t('WhatsApp.templates.new_language') }}
-      </div>
-    </template>
+      <template #tab-head-new>
+        <div ref="new-translation-button">
+          {{ $t('WhatsApp.templates.new_language') }}
+        </div>
+      </template>
       <template #tab-head-add>
         <div ref="add-translation-button" @click.stop="addTranslation">
           <unnnic-icon-svg icon="add-1" size="sm" />
@@ -100,6 +100,9 @@
     updated() {
       this.headerScrollBehavior();
     },
+    beforeDestroy() {
+      window.removeEventListener('wheel', this.handleWheelEvent);
+    },
     async created() {
       this.dataProcessingLoading = true;
       await this.fetchLanguages();
@@ -131,7 +134,7 @@
         'errorUpdateTemplateTranslation',
       ]),
       templateSelectLanguages() {
-        return this.whatsAppTemplateSelectLanguages.map((item) => {
+        return this.whatsAppTemplateSelectLanguages?.map((item) => {
           const { text, value } = item;
           return {
             label: text,
@@ -175,14 +178,21 @@
       headerScrollBehavior() {
         const tabHeader = document.getElementsByClassName('tab-content')[0];
         if (tabHeader) {
-          tabHeader.addEventListener('wheel', (event) => {
+          this.handleWheelEvent(tabHeader);
+        }
+      },
+      handleWheelEvent(component) {
+        component.addEventListener(
+          'wheel',
+          (event) => {
             event.preventDefault();
 
-            tabHeader.scrollBy({
+            component.scrollBy({
               left: event.deltaY < 0 ? -30 : 30,
             });
-          });
-        }
+          },
+          { passive: true },
+        );
       },
       async fetchAllTemplates() {
         const { appUuid } = this.$route.params;
