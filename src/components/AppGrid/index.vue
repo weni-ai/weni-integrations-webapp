@@ -340,11 +340,9 @@
       },
       //TODO: return app code
       getTranslation(app) {
-        const code = app.code === 'generic' ? app.config.channel_code : app.code
+        const code = app.code === 'generic' ? app.config.channel_code : app.code;
         let i18nkey =
-          (app.generic === true)
-            ? `channels.${code}`
-            : `GenericApp.configuration_guide.${app.code}`;
+          app.generic === true ? `channels.${code}` : `GenericApp.configuration_guide.${app.code}`;
         return this.$te(i18nkey) ? this.$t(i18nkey) : app.summary;
       },
     },
