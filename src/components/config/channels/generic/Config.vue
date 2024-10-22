@@ -43,6 +43,7 @@
         v-if="!loadingCurrentApp && !loadingFormBuild"
         class="app-config-generic__settings__content__form"
         :inputs="appFormInputs"
+        :channelCode="app.config.channel_code"
         @input="updateInputs"
       />
       <unnnic-skeleton-loading
@@ -65,6 +66,7 @@
 
       <unnnic-button
         class="app-config-generic__settings__buttons__save"
+        ref=""
         type="secondary"
         size="large"
         :text="$t('apps.config.save_changes')"
@@ -82,6 +84,7 @@
   import DynamicForm from '@/components/config/DynamicForm.vue';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { generic_store } from '@/stores/modules/appType/channels/generic.store';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'generic-config',
@@ -132,7 +135,7 @@
       ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
       appDescription() {
         const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
-        return this.$te(i18nkey) ? this.$t(i18nkey) : this.app.config.channel_claim_blurb;
+        return this.$t(i18nkey) ?? this.app.config.channel_claim_blurb;
       },
       shouldDisplayCallback() {
         return this.isConfigured || this.showCallback;
@@ -141,6 +144,7 @@
     methods: {
       ...mapActions(app_type, ['getApp', 'updateAppConfig']),
       ...mapActions(generic_store, ['getAppForm']),
+      ...mapActions(useEventStore, ['emit']),
       async fetchAppData() {
         this.loadingFormBuild = true;
         await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
@@ -171,11 +175,15 @@
             let formattedOptions = input.choices.map((choice) => {
               return {
                 value: choice[0],
-                text: choice[1],
+                label: choice[1],
               };
             });
 
             formattedInput.options = formattedOptions;
+            formattedInput.value = [
+              formattedOptions.find((option) => option.value === formattedInput.value) ||
+                formattedOptions[0],
+            ];
           }
           return [formattedInput];
         });
@@ -191,6 +199,10 @@
         let payloadConfig = {};
 
         this.appFormInputs.forEach((input) => {
+          if (input.type === 'select') {
+            payloadConfig[input.name] = input.value[0].value;
+            return;
+          }
           payloadConfig[input.name] = input.value;
         });
 
@@ -214,7 +226,7 @@
           this.showCallback = true;
         }
 
-        this.$root.$emit('updateGrid');
+        this.emit('updateGrid');
       },
       closeConfig() {
         this.$emit('closeModal');

@@ -7,19 +7,20 @@
         :class="[!input.label && 'dynamic-form__fields--top-margin', 'dynamic-form__fields__input']"
         :type="getType(input)"
         v-model="input.value"
-        :label="input.label && $t(input.label)"
-        :placeholder="input.placeholder && $t(input.placeholder)"
-        :message="input.message && $t(input.message)"
+        :label="input.label && getValue(input, 'label')"
+        :placeholder="input.placeholder && getValue(input, 'placeholder')"
+        :message="input.message && getValue(input, 'message')"
         @update:modelValue="(e) => emitInput(index, e)"
       />
 
       <div v-if="input.type === 'select'">
-        <unnnic-label :label="$t(input.label)" />
+        <unnnic-label :label="input.label && getValue(input, 'label')" />
         <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
       </div>
       <div v-else-if="input.type === 'upload'">
-        <unnnic-label :label="$t(input.label)" />
+        <unnnic-label :label="input.label && getValue(input, 'label')" />
         <unnnic-upload-area
+          ref="unnnic-upload"
           :files="input.props.files"
           :acceptMultiple="input.props.acceptMultiple"
           :supportedFormats="input.props.supportedFormats"
@@ -34,10 +35,11 @@
         />
       </div>
       <unnnic-checkbox
+        ref="unnnic-checkbox"
         v-else-if="input.type === 'checkbox'"
         class="dynamic-form__fields--top-margin"
         v-model="input.value"
-        :textRight="input.label"
+        :textRight="input.label && getValue(input, 'label')"
         @change="(e) => emitInput(index, e)"
       />
     </div>
@@ -51,6 +53,10 @@
       inputs: {
         type: Array,
         default: /* istanbul ignore next */ () => [],
+      },
+      channelCode: {
+        type: String,
+        default: '',
       },
     },
     methods: {
@@ -67,6 +73,10 @@
       },
       getType(input) {
         return input.error ? 'error' : 'normal';
+      },
+      getValue(input, type) {
+        const key = `channels.inputs.${this.channelCode}.${input.name}.${type}`;
+        return this.$te(key) ? this.$t(key) : this.$t(input[type]);
       },
     },
   };

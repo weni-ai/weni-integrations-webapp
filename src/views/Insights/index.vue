@@ -87,16 +87,19 @@
       <div class="wpp_insights__content__active" v-if="isActive">
         <div class="wpp_insights__content__active__chart">
           <unnnic-chart-multi-line
+            ref="sent"
             :data="getChartSent"
             :title="$t('WhatsApp.insights.messages.sent')"
             v-if="!hash && getChartSent.length"
           />
           <unnnic-chart-multi-line
+            ref="delivered"
             :data="getChartDelivered"
             :title="$t('WhatsApp.insights.messages.delivered')"
             v-if="!hash && getChartDelivered.length"
           />
           <unnnic-chart-multi-line
+            ref="read"
             :data="getChartRead"
             :title="$t('WhatsApp.insights.messages.read')"
             v-if="!hash && getChartRead.length"
@@ -155,7 +158,9 @@
 
 <script>
   import { insights_store } from '@/stores/modules/insights.store';
+  import { my_apps } from '@/stores/modules/myApps.store';
   import { mapState, mapActions } from 'pinia';
+  import unnnic from '@weni/unnnic-system';
   export default {
     name: 'Insights',
     data() {
@@ -166,13 +171,13 @@
           start: this.formatDate(new Date(Date.now() - 604800000)),
           end: this.formatDate(new Date()),
         },
-        hash: this.$route.hash,
+        hash: this.$route?.hash || null,
         crumb_title: 'Insights',
       };
     },
-    /* istanbul ignore next */
     async mounted() {
       await this.fetchTemplates();
+
       if (this.hash) {
         this.model = [
           {
@@ -181,17 +186,16 @@
           },
         ];
       }
-      await this.fetchTemplateAnalytics();
     },
     computed: {
       ...mapState(insights_store, [
-        'appUuid',
         'errorTemplateAnalytics',
         'errorTemplates',
         'templateAnalytics',
         'selectedTemplate',
         'templates',
         'isActive',
+        'appUuid',
       ]),
       modelOptions() {
         if (this.templates?.count > 0) {
@@ -242,7 +246,6 @@
       },
     },
     watch: {
-      /* istanbul ignore next */
       model(newVal, oldVal) {
         if (newVal.length > 10) {
           this.model = this.model.slice(0, 10);
@@ -251,9 +254,15 @@
           this.fetchTemplateAnalytics();
         }
       },
+      period(newVal, oldVal) {
+        if (newVal != oldVal) {
+          this.fetchTemplateAnalytics();
+        }
+      },
     },
     methods: {
       ...mapActions(insights_store, ['getTemplateAnalytics', 'getTemplates', 'setActiveProject']),
+      ...mapActions(my_apps, ['getConfiguredApps']),
       async fetchTemplateAnalytics() {
         let models = this.model.map((item) => item.value);
         const params = {
@@ -264,6 +273,11 @@
             fba_template_ids: models,
           },
         };
+
+        if (models.length === 0) {
+          return;
+        }
+
         await this.getTemplateAnalytics(params);
       },
       async fetchTemplates() {
@@ -297,13 +311,22 @@
         return Math.max(...array.map(({ value }) => value));
       },
       redirectTo(crumb) {
-        /* istanbul ignore next */
         if (crumb.meta === this.$route.name) return;
         this.$router.push(crumb.path);
       },
       async activeTemplate() {
         this.showModal = false;
-        await this.setActiveProject({ appUuid: this.appUuid });
+        try {
+          await this.setActiveProject({ app_uuid: this.appUuid });
+        } catch (err) {
+          unnnic.unnnicCallAlert({
+            props: {
+              text: this.$t('WhatsApp.insights.errors.active_template'),
+              type: 'error',
+            },
+            seconds: 6,
+          });
+        }
       },
     },
   };

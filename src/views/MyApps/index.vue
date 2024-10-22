@@ -7,6 +7,7 @@
       :placeholder="$t('apps.discovery.search.placeholder')"
       icon-left="search-1"
       :data="searchOptions"
+      id="search"
     />
 
     <span
@@ -62,6 +63,7 @@
   import unnnic from '@weni/unnnic-system';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'Apps',
@@ -69,16 +71,18 @@
     data() {
       return {
         searchTerm: '',
+        eventStore: useEventStore(),
       };
     },
     /* istanbul ignore next */
     mounted() {
       this.fetchCategories();
+      this.on('updateGrid', this.fetchCategories);
+    },
+    beforeUnmount() {
+      this.off('updateGrid', this.fetchCategories);
     },
     /* istanbul ignore next */
-    beforeDestroy() {
-      this.$root.$off('updateGrid');
-    },
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(my_apps, [
@@ -128,6 +132,7 @@
     },
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps', 'getInstalledApps']),
+      ...mapActions(useEventStore, ['on', 'off']),
       filterByName(appList, search) {
         return appList.filter((app) => {
           const appMainName = app.generic ? app.config.channel_name : app.name;

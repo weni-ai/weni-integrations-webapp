@@ -24,7 +24,7 @@
           v-bind:key="index"
           type="marketplace"
           :title="appName(app)"
-          :description="app.generic ? app.summary : $t(app.summary)"
+          :description="app.generic ? $t(`${getTranslation(app)}`) : $t(app.summary)"
           :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
@@ -56,6 +56,8 @@
               <unnnic-dropdown-item
                 v-if="app.code !== 'wpp'"
                 class="app-grid__content__item__button--details"
+                id="openAppDetails"
+                ref="openAppDetails"
                 @click="openAppDetails(app.code)"
               >
                 <unnnic-icon-svg icon="export-1" size="sm" />
@@ -136,8 +138,8 @@
   import LoadingButton from '../LoadingButton/index.vue';
   import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
   import { mapActions, mapState } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { insights_store } from '@/stores/modules/insights.store';
+  import { app_type } from '../../stores/modules/appType/appType.store';
+  import { insights_store } from '../../stores/modules/insights.store';
   import { storeToRefs } from 'pinia';
   export default {
     name: 'AppGrid',
@@ -335,6 +337,15 @@
       },
       onPageChange(value) {
         this.currentPage = value;
+      },
+      //TODO: return app code
+      getTranslation(app) {
+        const code = app.code === 'generic' ? app.config.channel_code : app.code
+        let i18nkey =
+          (app.generic === true)
+            ? `channels.${code}`
+            : `GenericApp.configuration_guide.${app.code}`;
+        return this.$te(i18nkey) ? this.$t(i18nkey) : app.summary;
       },
     },
     watch: {

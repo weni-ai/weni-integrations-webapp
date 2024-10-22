@@ -101,6 +101,7 @@
           maxWidth="15rem"
         >
           <unnnic-button
+            ref="reportButton"
             class="conversations__content__report__button"
             type="secondary"
             size="small"
@@ -121,7 +122,11 @@
           </p>
         </div>
         <div class="conversations__content__insights__button">
-          <unnnic-button :text="$t('WhatsApp.insights.see_insights')" @click="navigateToInsights" />
+          <unnnic-button
+            ref="insightsButton"
+            :text="$t('WhatsApp.insights.see_insights')"
+            @click="navigateToInsights"
+          />
         </div>
       </div>
     </div>
@@ -312,7 +317,7 @@
             this.errorConversationsReport?.error_user_msg ||
             this.$t('WhatsApp.config.conversations.report_error');
 
-          if (this.errorConversationsReport.response.status === 409) {
+          if (this.errorConversationsReport.response?.status === 409) {
             errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
           }
           unnnic.unnnicCallAlert({

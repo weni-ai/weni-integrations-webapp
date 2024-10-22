@@ -286,7 +286,7 @@
             fieldName: 'language',
             fieldValue: '',
           });
-          this.$emit('language-change', 'New Language');
+          this.$emit('language-change', 'new');
           return;
         } else if (this.templateLanguage === value || value.length > 1) {
           return;

@@ -49,6 +49,7 @@
 
     <div class="webhook-info__buttons">
       <unnnic-button
+        ref="close"
         class="webhook-info__buttons__cancel"
         type="tertiary"
         size="large"
@@ -57,6 +58,7 @@
       />
 
       <unnnic-button
+        ref="save"
         class="webhook-info__buttons__save"
         type="secondary"
         size="large"
@@ -72,6 +74,7 @@
   import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import unnnic from '@weni/unnnic-system';
+  import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'WebhookTab',
@@ -114,9 +117,7 @@
     /* istanbul ignore next */
     mounted() {
       if (this.app.config?.webhook?.method) {
-        this.selectedMethod = [
-          { value: this.app.config?.webhook?.method, label: this.app.config?.webhook?.method },
-        ];
+        this.selectedMethod = this.app.config?.webhook?.method;
       }
       this.mountHeaders();
 
@@ -134,7 +135,7 @@
 
       const urlInput = this.getUrlInputElement();
       if (urlInput !== undefined) {
-        this.validUrl = urlInput?.checkValidity();
+        this.validUrl = this.checkURLValidity(urlInput);
       }
     },
     computed: {
@@ -142,6 +143,7 @@
     },
     methods: {
       ...mapActions(whatsapp_store, ['updateWppWebhookInfo']),
+      ...mapActions(useEventStore, ['emit']),
       /* istanbul ignore next */
       mountHeaders() {
         if (this.app.config?.webhook?.headers) {
@@ -153,13 +155,7 @@
       /* istanbul ignore next */
       getUrlInputElement() {
         let urlInput;
-        this.$refs.webhookUrl.$children?.forEach((firstLayer) => {
-          firstLayer.$children.forEach((secondLayer) => {
-            if (secondLayer.$el.nodeName === 'INPUT') {
-              urlInput = secondLayer.$el;
-            }
-          });
-        });
+        urlInput = this.$refs.webhookUrl?.modelValue || '';
 
         return urlInput;
       },
@@ -208,7 +204,7 @@
       },
       async saveWebhookInfo() {
         const urlInput = this.getUrlInputElement();
-        if (!urlInput?.checkValidity()) {
+        if (!this.checkURLValidity(urlInput)) {
           this.callModal({
             type: 'error',
             text: this.$t('WhatsApp.config.error.invalid_url'),
@@ -225,7 +221,7 @@
             config: {
               webhook: {
                 url: this.webhookUrl,
-                method: this.selectedMethod,
+                method: this.selectedMethod[0].value,
                 headers,
               },
             },
@@ -247,11 +243,17 @@
         }
 
         this.callModal({
-          type: 'error',
+          type: 'success',
           text: this.$t('WhatsApp.config.success.webhook_update'),
         });
 
-        this.$root.$emit('updateGrid');
+        this.emit('updateGrid');
+      },
+
+      checkURLValidity(value) {
+        const urlRegex = /^(https?:\/\/)?(www\.)?([^\s/$.?#].[^\s]*)$/i;
+
+        return urlRegex.test(value);
       },
       callModal({ text, type }) {
         unnnic.unnnicCallAlert({
