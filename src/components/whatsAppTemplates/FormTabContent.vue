@@ -41,7 +41,7 @@
           :modelValue="templateLanguage"
           @update:modelValue="handleLanguageSelection"
           :selectFirst="false"
-          multiple
+          autocomplete
         />
       </div>
 
