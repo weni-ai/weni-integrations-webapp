@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DynamicForm.vue > should be rendered properly 1`] = `
+<div
+  class="dynamic-form"
+  data-v-bba834d0=""
+>
+  
+  <div
+    class="dynamic-form__fields"
+    data-v-bba834d0=""
+  >
+    <unnnic-input-stub
+      allowtogglepassword="false"
+      class="dynamic-form__fields__input"
+      data-v-bba834d0=""
+      hascloudycolor="false"
+      label="input"
+      mask=""
+      nativetype="text"
+      placeholder=""
+      size="md"
+      type="normal"
+    />
+    <!--v-if-->
+  </div>
+  <div
+    class="dynamic-form__fields"
+    data-v-bba834d0=""
+  >
+    <!--v-if-->
+    <div
+      data-v-bba834d0=""
+    >
+      <unnnic-label-stub
+        data-v-bba834d0=""
+        label="select"
+      />
+      <unnnic-select-smart-stub
+        autocomplete="false"
+        autocompleteclearonfocus="false"
+        autocompleteiconleft="false"
+        data-v-bba834d0=""
+        multiple="false"
+        multiplewithoutselectsmessage=""
+        options="[object Object],[object Object]"
+        orderedbyindex="false"
+        selectfirst="true"
+        size="md"
+        type="normal"
+      />
+    </div>
+  </div>
+  
+</div>
+`;

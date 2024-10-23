@@ -30,6 +30,7 @@ describe('FormTabs.vue', () => {
             appUuid: '1234',
           },
         },
+        $t: (e) => e,
       },
     });
   });

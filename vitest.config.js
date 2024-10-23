@@ -17,8 +17,16 @@ export default defineConfig({
     root: fileURLToPath(new URL('./', import.meta.url)),
     coverage: {
       reporter: ['text', 'json', 'html'],
-      include: ['src/**/*.{vue,js,ts}'],
-      exclude: ['src/miragejs/**/*', 'src/router/**/*', 'src/utils/**/*', 'src/api/**/*'],
+      include: ['src/**/*.{vue,js}'],
+      exclude: [
+        'src/miragejs/**/*',
+        'src/router/**',
+        'src/utils/**',
+        'src/api/**/*',
+        'src/App.vue',
+        'src/main.js',
+        'src/router.js',
+      ],
     },
   },
 });
