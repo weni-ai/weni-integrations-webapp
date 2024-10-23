@@ -10,21 +10,15 @@
     </div>
 
     <div class="app-config-email__settings__content">
-      <unnnic-label :label="this.$t('facebook.config.connected_account')" />
-      <div class="app-config-email__settings__content__inputs">
-        <unnnic-input
-          class="app-config-email__settings__content__inputs__name"
-          type="normal"
-          :disabled="true"
-          v-model="pageName"
-        />
-        <unnnic-input
-          class="app-config-email__settings__content__inputs__id"
-          type="normal"
-          :disabled="true"
-          v-model="pageId"
-        />
+      <unnnic-label
+        label="Conecte seu e-mail e automatize o atendimento ao cliente com mais facilidade."
+      />
+      <div class="app-config-email__settings__content__divider" />
+      <div class="app-config-email__settings__content__config">
+        <p class="app-config-email__settings__content__config__title">Configuração de Solução</p>
+        <unnnic-label label="Preencha os campos abaixo para integrar um e-mail" />
       </div>
+      <div class="app-config-email__settings__content__inputs"></div>
     </div>
   </div>
 </template>
@@ -105,6 +99,25 @@
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
+
+        &__divider {
+          box-sizing: border-box;
+          margin-top: $unnnic-spacing-stack-sm;
+          margin-bottom: $unnnic-spacing-stack-md;
+          border-top: 1px solid $unnnic-color-neutral-soft;
+        }
+
+        &__config {
+          display: flex;
+          flex-direction: column;
+          &__title {
+            margin: 0 !important;
+            font-family: $unnnic-font-family-secondary;
+            font-weight: $unnnic-font-weight-bold;
+            font-size: $unnnic-font-size-body-lg;
+            color: $unnnic-color-neutral-darkest;
+          }
+        }
 
         &__inputs {
           display: flex;
