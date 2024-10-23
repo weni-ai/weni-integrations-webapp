@@ -9,7 +9,7 @@ import { app_type } from '@/stores/modules/appType/appType.store';
 describe('AppDetails.vue', () => {
   let wrapper;
   const pinia = createTestingPinia({
-    stubActions: false, // Para testar as ações
+    stubActions: false,
   });
 
   beforeEach(() => {
@@ -102,9 +102,5 @@ describe('AppDetails.vue', () => {
       code: '1234',
       payload: { rate: 5 },
     });
-
-    // const reloadSectionSpy = vi.spyOn(wrapper.vm, 'reloadSection').mockResolvedValue();
-    // await wrapper.vm.$nextTick();
-    // expect(reloadSectionSpy).toHaveBeenCalled();
   });
 });

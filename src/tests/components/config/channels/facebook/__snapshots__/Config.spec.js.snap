@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Config.vue > matches the snapshot 1`] = `
+"<div data-v-e4619b51="" class="app-config-facebook">
+  <div data-v-e4619b51="" class="app-config-facebook__header">
+    <div data-v-e4619b51="" class="app-config-facebook__header__title">
+      <div data-v-e4619b51="" class="app-config-facebook__header__title__icon-container"><img data-v-e4619b51="" class="app-config-facebook__header__title__icon-container__icon" src="https://example.com/facebook-icon.png"></div>
+      <div data-v-e4619b51="" class="app-config-facebook__header__title__name">Facebook Page</div>
+    </div>
+  </div>
+  <div data-v-e4619b51="" class="app-config-facebook__settings__content">
+    <p data-v-e4619b51="" class="unnnic-label__label">Your Facebook account is connected</p>
+    <div data-v-e4619b51="" class="app-config-facebook__settings__content__inputs">
+      <div data-v-42852d93="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__name" disabled="true">
+        <!---->
+        <div data-v-a77f9c45="" data-v-42852d93="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__name unnnic-form-input" disabled="true" mask=""><input data-v-bdb91cfd="" data-v-a77f9c45="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text">
+          <!---->
+          <!---->
+        </div>
+        <!---->
+      </div>
+      <div data-v-42852d93="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__id" disabled="true">
+        <!---->
+        <div data-v-a77f9c45="" data-v-42852d93="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__id unnnic-form-input" disabled="true" mask=""><input data-v-bdb91cfd="" data-v-a77f9c45="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text">
+          <!---->
+          <!---->
+        </div>
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>"
+`;

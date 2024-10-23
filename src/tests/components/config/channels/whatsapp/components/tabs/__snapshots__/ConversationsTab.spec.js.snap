@@ -1,0 +1,132 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ConversationsTab > matches the snapshot 1`] = `
+"<div data-v-2b8fe4c5="" class="conversations">
+  <div data-v-2b8fe4c5="" class="conversations__content">
+    <div data-v-2b8fe4c5="" class="conversations__content__dropdown">
+      <div data-v-2b8fe4c5="" class="conversations__content__label">Filter by</div>
+      <div data-v-2b8fe4c5="" class="unnnic-date-filter conversations__content__dropdown-filter">
+        <div data-v-42852d93="" class="unnnic-form sm unnnic-date-filter__input" readonly="" value="">
+          <!---->
+          <div data-v-a77f9c45="" data-v-42852d93="" class="text-input size--sm text-input--icon-right-size-sm unnnic-date-filter__input unnnic-form-input" readonly="" mask="##/##/#### !~ ##/##/####" value=""><input data-v-bdb91cfd="" data-v-a77f9c45="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" readonly="" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconrightsize="sm" hascloudycolor="false" type="text"><svg data-v-76ceda5d="" data-v-a77f9c45="" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="unnnic-icon unnnic-icon__size--sm unnnic-icon-scheme--neutral-cloudy icon-left" data-testid="old-map-icons">
+              <path d="M8.75 35.0005C7.71625 35.0005 6.875 34.1592 6.875 33.1255V9.37549C6.875 8.34174 7.71625 7.50049 8.75 7.50049H11.875V5.62549C11.875 5.28049 12.155 5.00049 12.5 5.00049C12.845 5.00049 13.125 5.28049 13.125 5.62549V7.50049H16.875V5.62549C16.875 5.28049 17.155 5.00049 17.5 5.00049C17.845 5.00049 18.125 5.28049 18.125 5.62549V7.50049H21.875V5.62549C21.875 5.28049 22.155 5.00049 22.5 5.00049C22.845 5.00049 23.125 5.28049 23.125 5.62549V7.50049H26.875V5.62549C26.875 5.28049 27.155 5.00049 27.5 5.00049C27.845 5.00049 28.125 5.28049 28.125 5.62549V7.50049H31.25C32.2838 7.50049 33.125 8.34174 33.125 9.37549V33.1255C33.125 34.1592 32.2838 35.0005 31.25 35.0005H8.75ZM8.75 8.75049C8.405 8.75049 8.125 9.03049 8.125 9.37549V33.1255C8.125 33.4705 8.405 33.7505 8.75 33.7505H31.25C31.595 33.7505 31.875 33.4705 31.875 33.1255V9.37549C31.875 9.03049 31.595 8.75049 31.25 8.75049H28.125V10.6255C28.125 10.9705 27.845 11.2505 27.5 11.2505C27.155 11.2505 26.875 10.9705 26.875 10.6255V8.75049H23.125V10.6255C23.125 10.9705 22.845 11.2505 22.5 11.2505C22.155 11.2505 21.875 10.9705 21.875 10.6255V8.75049H18.125V10.6255C18.125 10.9705 17.845 11.2505 17.5 11.2505C17.155 11.2505 16.875 10.9705 16.875 10.6255V8.75049H13.125V10.6255C13.125 10.9705 12.845 11.2505 12.5 11.2505C12.155 11.2505 11.875 10.9705 11.875 10.6255V8.75049H8.75Z" fill="#3B414D" class="primary"></path>
+              <path d="M12.5 17.5005C12.155 17.5005 11.875 17.2205 11.875 16.8755C11.875 16.5305 12.155 16.2505 12.5 16.2505H27.5C27.845 16.2505 28.125 16.5305 28.125 16.8755C28.125 17.2205 27.845 17.5005 27.5 17.5005H12.5Z" fill="#3B414D" class="primary"></path>
+              <path d="M12.5 21.2505C12.155 21.2505 11.875 20.9705 11.875 20.6255C11.875 20.2805 12.155 20.0005 12.5 20.0005H27.5C27.845 20.0005 28.125 20.2805 28.125 20.6255C28.125 20.9705 27.845 21.2505 27.5 21.2505H12.5Z" fill="#3B414D" class="primary"></path>
+              <path d="M12.5 25.0005C12.155 25.0005 11.875 24.7205 11.875 24.3755C11.875 24.0305 12.155 23.7505 12.5 23.7505H27.5C27.845 23.7505 28.125 24.0305 28.125 24.3755C28.125 24.7205 27.845 25.0005 27.5 25.0005H12.5Z" fill="#3B414D" class="primary"></path>
+              <path d="M12.5 28.7505C12.155 28.7505 11.875 28.4705 11.875 28.1255C11.875 27.7805 12.155 27.5005 12.5 27.5005H21.25C21.595 27.5005 21.875 27.7805 21.875 28.1255C21.875 28.4705 21.595 28.7505 21.25 28.7505H12.5Z" fill="#3B414D" class="primary"></path>
+            </svg>
+            <!---->
+          </div>
+          <!---->
+        </div>
+      </div>
+      <div data-v-2b8fe4c5="" class="conversations__content__dropdown-data">
+        <!--v-if-->
+      </div>
+    </div>
+    <div data-v-2b8fe4c5="" class="conversations__content__tables">
+      <div data-v-2b8fe4c5="" class="conversations__content__label">Number of conversations</div>
+      <div data-v-2b8fe4c5="" class="conversations__content__tables__section">
+        <!--v-if-->
+        <!--v-if-->
+      </div>
+      <div data-v-2b8fe4c5="" class="conversations__content__tables__section">
+        <!--v-if-->
+        <div data-v-f7abae0e="" data-v-2b8fe4c5="" class="unnnic-table">
+          <div data-v-f7abae0e="" class="header">
+            <div data-v-fdf86ada="" data-v-2b8fe4c5="" class="table-row">
+              <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                <div data-v-fdf86ada="" class="break-text">Category</div>
+              </div>
+              <div data-v-fdf86ada="" class="divider"></div>
+              <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                <div data-v-fdf86ada="" class="break-text">Quantity</div>
+              </div>
+              <div data-v-fdf86ada="" class="divider" style="display: none;"></div>
+            </div>
+          </div>
+          <div data-v-f7abae0e="">
+            <div data-v-f7abae0e="" class="item-spacer"></div>
+          </div>
+          <div data-v-f7abae0e="" class="scroll">
+            <div data-v-f7abae0e="" class="item">
+              <div data-v-fdf86ada="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="Marketing" class="break-text">Marketing</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider"></div>
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider" style="display: none;"></div>
+              </div>
+            </div>
+            <div data-v-f7abae0e="" class="item">
+              <div data-v-fdf86ada="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="Utility" class="break-text">Utility</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider"></div>
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider" style="display: none;"></div>
+              </div>
+            </div>
+            <div data-v-f7abae0e="" class="item">
+              <div data-v-fdf86ada="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="Authentication" class="break-text">Authentication</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider"></div>
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider" style="display: none;"></div>
+              </div>
+            </div>
+            <div data-v-f7abae0e="" class="item">
+              <div data-v-fdf86ada="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="Service" class="break-text">Service</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider"></div>
+                <div data-v-fdf86ada="" class="col" style="flex: 1; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
+                </div>
+                <div data-v-fdf86ada="" class="divider" style="display: none;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div data-v-2b8fe4c5="" class="conversations__content__report"><span data-v-2b8fe4c5="" class="conversations__content__report__label">Detailed conversation report</span><span data-v-2b8fe4c5="" class="conversations__content__report__description">You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.</span>
+      <div data-v-5b8c172b="" data-v-2b8fe4c5="" class="unnnic-tooltip conversations__content__report__tooltip"><button data-v-ed84dbab="" data-v-2b8fe4c5="" class="conversations__content__report__button unnnic-button unnnic-button--size-small unnnic-button--secondary conversations__content__report__button" disabled="">
+          <!---->
+          <!---->
+          <!----><span data-v-ed84dbab="" class="unnnic-button__label" data-testid="button-label">Request report </span>
+          <!---->
+        </button><span data-v-5b8c172b="" class="unnnic-tooltip-label unnnic-tooltip-label-top" style="max-width: 15rem; left: 0px; top: -8px;" data-testid="tooltip-label">A date range is required to be able to request a report <br data-v-5b8c172b=""><!----></span></div>
+    </div>
+    <div data-v-2b8fe4c5="" class="conversations__content__insights">
+      <div data-v-2b8fe4c5="" class="conversations__content__insights__title">Insights</div>
+      <div data-v-2b8fe4c5="" class="conversations__content__insights__about">
+        <p data-v-2b8fe4c5="">See more detailed data related to sending, delivering and reading triggered message templates.</p>
+      </div>
+      <div data-v-2b8fe4c5="" class="conversations__content__insights__button"><button data-v-ed84dbab="" data-v-2b8fe4c5="" class="unnnic-button unnnic-button--size-large unnnic-button--primary">
+          <!---->
+          <!---->
+          <!----><span data-v-ed84dbab="" class="unnnic-button__label" data-testid="button-label"> See insights</span>
+          <!---->
+        </button></div>
+    </div>
+  </div>
+  <div data-v-2b8fe4c5="" class="conversations__buttons"><button data-v-ed84dbab="" data-v-2b8fe4c5="" class="conversations__buttons__close unnnic-button unnnic-button--size-large unnnic-button--tertiary conversations__buttons__close">
+      <!---->
+      <!---->
+      <!----><span data-v-ed84dbab="" class="unnnic-button__label" data-testid="button-label"> Cancel</span>
+      <!---->
+    </button></div>
+</div>"
+`;

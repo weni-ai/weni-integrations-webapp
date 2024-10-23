@@ -1,4 +1,3 @@
-// src/stores/eventStore.js
 import { defineStore } from 'pinia';
 
 export const useEventStore = defineStore('event', {

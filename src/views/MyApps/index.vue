@@ -178,10 +178,6 @@
           seconds: 6,
         });
       },
-      handleEvent() {
-        console.log('chegou');
-        this.fetchCategories();
-      },
     },
   };
 </script>

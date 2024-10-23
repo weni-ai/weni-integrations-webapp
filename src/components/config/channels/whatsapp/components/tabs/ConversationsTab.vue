@@ -317,7 +317,7 @@
             this.errorConversationsReport?.error_user_msg ||
             this.$t('WhatsApp.config.conversations.report_error');
 
-          if (this.errorConversationsReport.response.status === 409) {
+          if (this.errorConversationsReport.response?.status === 409) {
             errorText = this.$t('WhatsApp.config.conversations.report_already_processing');
           }
           unnnic.unnnicCallAlert({

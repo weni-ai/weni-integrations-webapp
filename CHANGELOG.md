@@ -1,3 +1,17 @@
+2.2.6
+----------
+`2024-10-22·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: WhatsApp template form language selection.
+  
+2.2.5
+----------
+`2024-10-08·  1 🐛 `
+
+### 🐛 Bug fixes
+- Fix: Configured Weni Chats card doesn't update.
+
 2.2.4
 ----------
 `2024-10-07·  1 🐛 `
