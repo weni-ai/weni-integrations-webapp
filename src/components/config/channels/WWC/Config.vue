@@ -131,12 +131,14 @@
                       :inititalState="false"
                       size="small"
                       :textRight="$t('weniWebChat.config.show_fullscreen_button')"
+                      :disabled="embedded"
                     />
                     <unnnic-switch
                       v-model="startFullScreen"
                       :inititalState="false"
                       size="small"
                       :textRight="$t('weniWebChat.config.start_with_fullscreen')"
+                      :disabled="embedded"
                     />
                   </div>
                   <unnnic-switch
@@ -364,6 +366,12 @@
       },
       configProperties() {
         this.$emit('setConfirmation', true);
+      },
+      embedded(newVal) {
+        if (newVal) {
+          this.startFullScreen = false;
+          this.showFullScreenButton = false;
+        }
       },
     },
     async mounted() {
