@@ -118,10 +118,10 @@
               <div class="app-config-wwc__tabs__settings-content__selectors">
                 <div class="app-config-wwc__tabs__settings-content__selectors__switches">
                   <unnnic-switch
-                    v-model="embeded"
+                    v-model="embedded"
                     :inititalState="false"
                     size="small"
-                    :textRight="$t('weniWebChat.config.embeded_mode')"
+                    :textRight="$t('weniWebChat.config.embedded_mode')"
                   />
                   <div
                     class="app-config-wwc__tabs__settings-content__selectors__switches__fullscreen"
@@ -337,7 +337,7 @@
         showFullScreenButton: !!this.app.config.showFullScreenButton,
         keepHistory: this.app.config.params?.storage === 'local',
         startFullScreen: !!this.app.config?.startFullScreen || false,
-        embeded: !!this.app.config?.embeded || false,
+        embedded: !!this.app.config?.embedded || false,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,
@@ -612,7 +612,7 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               startFullScreen: this.startFullScreen,
-              embeded: this.embeded,
+              embedded: this.embedded,
               mainColor: this.mainColor,
               profileAvatar: await this.imageForUpload(),
               customCss: this.cssForUpload,
