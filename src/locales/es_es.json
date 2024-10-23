@@ -196,7 +196,7 @@
       "script_tutorial": "Para instalar Weni Web Chat en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
       "custom_css": "CSS personalizado",
       "avatar_image": "Imagen del avatar",
-      "embeded_mode": "Modo incrustado",
+      "embedded_mode": "Modo incrustado",
       "start_with_fullscreen": "Iniciar chat en pantalla completa",
       "show_fullscreen_button": "Mostrar el botón de pantalla completa",
       "unread_messages_indicator": "Indicador de mensajes no leídos",
