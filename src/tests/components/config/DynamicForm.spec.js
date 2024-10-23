@@ -72,7 +72,7 @@ describe('DynamicForm.vue', () => {
     it('should emit option value if input type is select', async () => {
       const index = 1;
       const input = wrapper.props().inputs[index];
-      const event = 'select2';
+      const event = ['select2'];
       expect(wrapper.emitted('input')).toBeFalsy();
       wrapper.vm.emitInput(index, event);
       expect(wrapper.emitted('input')).toBeTruthy();
