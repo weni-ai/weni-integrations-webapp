@@ -118,11 +118,27 @@
               <div class="app-config-wwc__tabs__settings-content__selectors">
                 <div class="app-config-wwc__tabs__settings-content__selectors__switches">
                   <unnnic-switch
-                    v-model="showFullScreenButton"
+                    v-model="fullEmbeded"
                     :inititalState="false"
                     size="small"
-                    :textRight="$t('weniWebChat.config.show_fullscreen_button')"
+                    :textRight="$t('weniWebChat.config.embeded_mode')"
                   />
+                  <div
+                    class="app-config-wwc__tabs__settings-content__selectors__switches__fullscreen"
+                  >
+                    <unnnic-switch
+                      v-model="showFullScreenButton"
+                      :inititalState="false"
+                      size="small"
+                      :textRight="$t('weniWebChat.config.show_fullscreen_button')"
+                    />
+                    <unnnic-switch
+                      v-model="startFullScreen"
+                      :inititalState="false"
+                      size="small"
+                      :textRight="$t('weniWebChat.config.start_with_fullscreen')"
+                    />
+                  </div>
                   <unnnic-switch
                     v-model="displayUnreadCount"
                     :inititalState="false"
@@ -305,10 +321,9 @@
     props: {
       app: {
         type: Object,
-        default: /* istanbul ignore next */ () => {},
+        default: () => {},
       },
     },
-    /* istanbul ignore next */
     data() {
       return {
         enableSubtitle: !!this.app.config.subtitle,
@@ -321,6 +336,8 @@
         displayUnreadCount: !!this.app.config.displayUnreadCount,
         showFullScreenButton: !!this.app.config.showFullScreenButton,
         keepHistory: this.app.config.params?.storage === 'local',
+        startFullScreen: !!this.app.config?.startFullScreen || false,
+        fullEmbeded: !!this.app.config?.fullEmbeded || false,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,
@@ -599,6 +616,8 @@
               displayUnreadCount: this.displayUnreadCount,
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
+              startFullScreen: this.startFullScreen,
+              fullEmbeded: this.fullEmbeded,
               mainColor: this.mainColor,
               profileAvatar: await this.imageForUpload(),
               customCss: this.cssForUpload,
@@ -886,6 +905,11 @@
             display: flex;
             flex-direction: column;
             gap: $unnnic-spacing-stack-xs;
+
+            &__fullscreen {
+              display: flex;
+              flex-direction: row;
+            }
           }
 
           &__slider {
