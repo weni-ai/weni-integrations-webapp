@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import appType from '@/api/appType';
 import genericType from '@/api/appType/generic';
+import emailType from '@/api/appType/email';
 import { captureSentryException } from '@/utils/sentry';
 import { clearHtmlTags } from '@/utils/clearHtmlTags';
 
@@ -60,23 +61,8 @@ export const app_type = defineStore('appType', {
 
       try {
         const baseApps = await appType.getAllAppTypes(params);
-        baseApps.push({
-          code: 'email',
-          name: 'Email',
-          description: 'weniWebChat.data.description',
-          summary: 'weniWebChat.data.summary',
-          category: 'channel',
-          icon: null,
-          bg_color: '#00DED333',
-          config_design: 'sidebar',
-          rating: { average: null, mine: null },
-          comments_count: 0,
-          integrations_count: 15,
-          metrics: 58602143,
-          can_add: true,
-          assets: [],
-        });
         const genericAppsData = await genericType.getAllGenericTypes();
+        const emailAppsData = await emailType.getAllEmailTypes();
         const iconData = await genericType.getIcons();
 
         const genericApps = [];
@@ -91,7 +77,7 @@ export const app_type = defineStore('appType', {
             summary,
           });
         }
-        const fullList = baseApps.concat(genericApps);
+        const fullList = baseApps.concat(genericApps).concat(emailAppsData);
 
         this.allAppTypes = fullList;
       } catch (err) {

@@ -1,25 +1,25 @@
 <template>
-  <div class="app-config-facebook">
-    <div class="app-config-facebook__header">
-      <div class="app-config-facebook__header__title">
-        <div class="app-config-facebook__header__title__icon-container">
-          <img class="app-config-facebook__header__title__icon-container__icon" :src="app.icon" />
+  <div class="app-config-email">
+    <div class="app-config-email__header">
+      <div class="app-config-email__header__title">
+        <div class="app-config-email__header__title__icon-container">
+          <img class="app-config-email__header__title__icon-container__icon" :src="app.icon" />
         </div>
-        <div class="app-config-facebook__header__title__name">{{ app.name }}</div>
+        <div class="app-config-email__header__title__name">{{ app.name }}</div>
       </div>
     </div>
 
-    <div class="app-config-facebook__settings__content">
+    <div class="app-config-email__settings__content">
       <unnnic-label :label="this.$t('facebook.config.connected_account')" />
-      <div class="app-config-facebook__settings__content__inputs">
+      <div class="app-config-email__settings__content__inputs">
         <unnnic-input
-          class="app-config-facebook__settings__content__inputs__name"
+          class="app-config-email__settings__content__inputs__name"
           type="normal"
           :disabled="true"
           v-model="pageName"
         />
         <unnnic-input
-          class="app-config-facebook__settings__content__inputs__id"
+          class="app-config-email__settings__content__inputs__id"
           type="normal"
           :disabled="true"
           v-model="pageId"
@@ -52,7 +52,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .app-config-facebook {
+  .app-config-email {
     display: flex;
     flex-direction: column;
     height: -webkit-fill-available;
