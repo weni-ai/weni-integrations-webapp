@@ -118,7 +118,7 @@
               <div class="app-config-wwc__tabs__settings-content__selectors">
                 <div class="app-config-wwc__tabs__settings-content__selectors__switches">
                   <unnnic-switch
-                    v-model="fullEmbeded"
+                    v-model="embeded"
                     :inititalState="false"
                     size="small"
                     :textRight="$t('weniWebChat.config.embeded_mode')"
@@ -337,7 +337,7 @@
         showFullScreenButton: !!this.app.config.showFullScreenButton,
         keepHistory: this.app.config.params?.storage === 'local',
         startFullScreen: !!this.app.config?.startFullScreen || false,
-        fullEmbeded: !!this.app.config?.fullEmbeded || false,
+        embeded: !!this.app.config?.embeded || false,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
         initPayload: this.app.config.initPayload,
@@ -366,7 +366,6 @@
         this.$emit('setConfirmation', true);
       },
     },
-    /* istanbul ignore next */
     async mounted() {
       if (this.selectedApp.config.profileAvatar) {
         this.avatarFile = await dataUrlToFile(this.selectedApp.config.profileAvatar, 'avatar.png');
@@ -468,7 +467,6 @@
       async imageForUpload() {
         return await toBase64(this.avatarFile);
       },
-      /* istanbul ignore next */
       handleNewAvatar(files) {
         if (files.length < 1) {
           this.setNewAvatar(null, null, null);
@@ -483,7 +481,6 @@
 
         fileReader.readAsDataURL(file);
       },
-      /* istanbul ignore next */
       handleNewCss(files) {
         if (files.length < 1) {
           this.setNewCss(null, null);
@@ -554,7 +551,6 @@
       getFileType(b64File) {
         return b64File.split(';')[0].split(':')[1];
       },
-      /* istanbul ignore next */
       async downloadScript() {
         let element = document.createElement('a');
         element.setAttribute(
@@ -601,7 +597,6 @@
           return;
         }
 
-        /* istanbul ignore next */
         const reqData = removeEmpty({
           code: this.selectedApp.code,
           appUuid: this.selectedApp.uuid,
@@ -617,7 +612,7 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               startFullScreen: this.startFullScreen,
-              fullEmbeded: this.fullEmbeded,
+              embeded: this.embeded,
               mainColor: this.mainColor,
               profileAvatar: await this.imageForUpload(),
               customCss: this.cssForUpload,
@@ -643,12 +638,12 @@
           this.$emit('setConfirmation', false);
           unnnic.unnnicCallAlert({
             props: {
-              text: /* istanbul ignore next */ firstSave
+              text: firstSave
                 ? this.$t('apps.config.first_integration_success')
                 : this.$t('apps.config.integration_success'),
               type: 'success',
             },
-            seconds: /* istanbul ignore next */ firstSave ? 8 : 3,
+            seconds: firstSave ? 8 : 3,
           });
         } catch (err) {
           unnnic.unnnicCallAlert({
