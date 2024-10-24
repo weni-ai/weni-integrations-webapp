@@ -32,7 +32,7 @@
           >
             <unnnic-input
               class="server"
-              v-model="smtpServer"
+              v-model="smtp_host"
               size="md"
               type="normal"
               nativeType="normal"
@@ -42,7 +42,7 @@
           <unnnic-form-element label="Porta SMTP" message="Porta de comunicação do servidor SMTP.">
             <unnnic-input
               class="port"
-              v-model="smptPort"
+              v-model="smtp_port"
               size="md"
               type="normal"
               nativeType="normal"
@@ -57,7 +57,7 @@
           >
             <unnnic-input
               class="server"
-              v-model="imapServer"
+              v-model="imap_host"
               size="md"
               type="normal"
               nativeType="normal"
@@ -71,7 +71,7 @@
           >
             <unnnic-input
               class="port"
-              v-model="imapPort"
+              v-model="imap_port"
               size="md"
               type="normal"
               nativeType="normal"
@@ -141,12 +141,12 @@
       return {
         pageName: this.app.config.page_name,
         selectedType: '',
-        smtpServer: '',
-        smptPort: '',
-        imapServer: '',
-        imapPort: '',
-        username: '',
-        password: '',
+        smtp_host: this.app.config.smtp_host,
+        smtp_port: this.app.config.smtp_port,
+        imap_host: this.app.config.imap_host,
+        imap_port: this.app.config.imap_port,
+        username: this.app.config.username,
+        password: this.app.config.password,
       };
     },
     computed: {
@@ -163,10 +163,10 @@
           config: {
             username: this.username,
             password: this.password,
-            smtp_host: this.smtpServer,
-            smtp_port: this.smptPort,
-            imap_host: this.imapServer,
-            imap_port: this.imapPort,
+            smtp_host: this.smtp_host,
+            smtp_port: this.smtp_port,
+            imap_host: this.imap_host,
+            imap_port: this.imap_port,
           },
           channeltype_code: 'EM',
         };
@@ -292,13 +292,14 @@
 
             .server {
               ::v-deep .unnnic-form-input {
-                width: 364px;
+                display: flex;
+                max-width: 364px;
               }
             }
 
             .port {
               ::v-deep .unnnic-form-input {
-                width: 198px;
+                max-width: 198px;
               }
             }
           }
