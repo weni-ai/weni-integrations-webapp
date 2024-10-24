@@ -8,7 +8,16 @@
   <title>Integrations</title>
   <script>
     //CONFIGURATIONS_PLACEHOLDER
-  </script>
+    (function (d, s, u) {
+    let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
+    k.onload = function () {
+      let l = d.createElement(s); l.src = u; l.async = true;
+      h.parentNode.insertBefore(l, k.nextSibling);
+    };
+    k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+    h.parentNode.insertBefore(k, h);
+  })(document, 'script', 'https://weni-staging-integrations.s3.amazonaws.com/apptypes/wwc/2c8ec5c2-462b-45ed-93b7-77e47333c6bb/script.js');
+</script>
 </head>
 
 <body>
