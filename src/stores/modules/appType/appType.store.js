@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import appType from '@/api/appType';
 import genericType from '@/api/appType/generic';
+import emailType from '@/api/appType/email';
 import { captureSentryException } from '@/utils/sentry';
 import { clearHtmlTags } from '@/utils/clearHtmlTags';
 
@@ -61,6 +62,7 @@ export const app_type = defineStore('appType', {
       try {
         const baseApps = await appType.getAllAppTypes(params);
         const genericAppsData = await genericType.getAllGenericTypes();
+        const emailAppsData = await emailType.getAllEmailTypes();
         const iconData = await genericType.getIcons();
 
         const genericApps = [];
@@ -75,7 +77,7 @@ export const app_type = defineStore('appType', {
             summary,
           });
         }
-        const fullList = baseApps.concat(genericApps);
+        const fullList = baseApps.concat(genericApps).concat(emailAppsData);
 
         this.allAppTypes = fullList;
       } catch (err) {

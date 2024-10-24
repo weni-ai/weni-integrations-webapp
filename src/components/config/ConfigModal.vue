@@ -60,6 +60,7 @@
   import omieConfig from '@/components/config/external/omie/Config.vue';
   import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
   import vtexConfig from '@/components/config/ecommerce/vtex/Config.vue';
+  import emailConfig from '@/components/config/channels/email/Config.vue';
   import { markRaw } from 'vue';
 
   export default {
@@ -84,6 +85,7 @@
           omie: omieConfig,
           chatgpt: chatGptConfig,
           vtex: vtexConfig,
+          email: emailConfig,
         }),
       };
     },
