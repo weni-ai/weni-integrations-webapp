@@ -314,6 +314,7 @@
             sellers: sellers,
           };
           await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
+          this.disableSellers = true;
         }
         await this.syncADS({
           uuid: this.appUuid,
@@ -325,7 +326,6 @@
           return;
         }
         this.callModal({ text: this.$t('vtex.success.sync_sellers'), type: 'success' });
-        this.disableSellers = true;
       },
       updateVtexADS(value) {
         this.vtexADS = value;
