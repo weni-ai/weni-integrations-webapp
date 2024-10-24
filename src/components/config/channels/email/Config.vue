@@ -31,6 +31,7 @@
             message="Endereço do servidor SMTP para envio de e-mails."
           >
             <unnnic-input
+              class="server"
               v-model="smtpServer"
               size="md"
               type="normal"
@@ -40,6 +41,7 @@
           </unnnic-form-element>
           <unnnic-form-element label="Porta SMTP" message="Porta de comunicação do servidor SMTP.">
             <unnnic-input
+              class="port"
               v-model="smptPort"
               size="md"
               type="normal"
@@ -54,6 +56,7 @@
             message="Endereço do servidor IMAP para envio de e-mails."
           >
             <unnnic-input
+              class="server"
               v-model="imapServer"
               size="md"
               type="normal"
@@ -61,8 +64,13 @@
               placeholder="smtp.exemplo.com"
             />
           </unnnic-form-element>
-          <unnnic-form-element label="Porta IMAP" message="Porta de comunicação do servidor IMAP.">
+          <unnnic-form-element
+            class="port"
+            label="Porta IMAP"
+            message="Porta de comunicação do servidor IMAP."
+          >
             <unnnic-input
+              class="port"
               v-model="imapPort"
               size="md"
               type="normal"
@@ -93,16 +101,40 @@
         </div>
       </div>
     </div>
+
+    <div class="app-config-telegram__settings__buttons">
+      <unnnic-button
+        class="app-config-telegram__settings__buttons__cancel"
+        type="tertiary"
+        size="large"
+        :text="$t('apps.config.cancel')"
+        @click="closeConfig"
+      ></unnnic-button>
+
+      <unnnic-button
+        class="app-config-telegram__settings__buttons__save"
+        type="secondary"
+        size="large"
+        :text="$t('apps.config.validate')"
+        :disabled="this.app.config.token"
+        @click="saveConfig"
+      ></unnnic-button>
+    </div>
   </div>
 </template>
 
 <script>
+  import { app_type } from '@/stores/modules/appType/appType.store';
+  import { auth_store } from '@/stores/modules/auth.store';
+  import { mapActions, mapState } from 'pinia';
+  import unnnic from '@weni/unnnic-system';
+
   export default {
     name: 'emailConfig',
     props: {
       app: {
         type: Object,
-        default: /* istanbul ignore next */ () => {},
+        default: () => {},
       },
     },
     data() {
@@ -117,10 +149,50 @@
         password: '',
       };
     },
+    computed: {
+      ...mapState(auth_store, ['project']),
+    },
     methods: {
+      ...mapActions(app_type, ['updateAppConfig']),
       selectType(type) {
-        console.log('aloo', type);
         this.selectedType = type;
+      },
+      async saveConfig() {
+        const payloadGeneric = {
+          project_uuid: this.project,
+          config: {
+            username: this.username,
+            password: this.password,
+            smtp_host: this.smtpServer,
+            smtp_port: this.smptPort,
+            imap_host: this.imapServer,
+            imap_port: this.imapPort,
+          },
+          channeltype_code: 'EM',
+        };
+
+        const data = {
+          code: this.app.code,
+          appUuid: this.app.uuid,
+          payload: payloadGeneric,
+        };
+
+        if (this.selectedType === 'other') {
+          try {
+            await this.updateAppConfig(data);
+          } catch (error) {
+            unnnic.unnnicCallAlert({
+              props: {
+                text: 'Errooou',
+                type: 'error',
+              },
+              seconds: 3,
+            });
+          }
+        }
+      },
+      closeConfig() {
+        this.$emit('closeModal');
       },
     },
   };
@@ -206,12 +278,29 @@
           flex-direction: column;
           gap: $unnnic-spacing-inline-xs;
 
+          &__type {
+            font-family: $unnnic-font-family-secondary;
+            font-size: $unnnic-font-size-body-gt;
+          }
+
           &__SMPT,
           &__IMAP {
             display: flex;
             flex-direction: row;
             gap: $unnnic-spacing-inline-md;
             width: 100%;
+
+            .server {
+              ::v-deep .unnnic-form-input {
+                width: 364px;
+              }
+            }
+
+            .port {
+              ::v-deep .unnnic-form-input {
+                width: 198px;
+              }
+            }
           }
         }
       }
