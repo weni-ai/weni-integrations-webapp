@@ -18,7 +18,80 @@
         <p class="app-config-email__settings__content__config__title">Configuração de Solução</p>
         <unnnic-label label="Preencha os campos abaixo para integrar um e-mail" />
       </div>
-      <div class="app-config-email__settings__content__inputs"></div>
+      <div class="app-config-email__settings__content__inputs">
+        <div class="app-config-email__settings__content__inputs__type">
+          <p>Selecione o tipo de email</p>
+          <unnnic-radio value="gmail" v-model="selectedType">Gmail</unnnic-radio>
+          <unnnic-radio value="other" v-model="selectedType">Other</unnnic-radio>
+        </div>
+
+        <div class="app-config-email__settings__content__inputs__SMPT">
+          <unnnic-form-element
+            label="Servidor SMTP"
+            message="Endereço do servidor SMTP para envio de e-mails."
+          >
+            <unnnic-input
+              v-model="smtpServer"
+              size="md"
+              type="normal"
+              nativeType="normal"
+              placeholder="smtp.exemplo.com"
+            />
+          </unnnic-form-element>
+          <unnnic-form-element label="Porta SMTP" message="Porta de comunicação do servidor SMTP.">
+            <unnnic-input
+              v-model="smptPort"
+              size="md"
+              type="normal"
+              nativeType="normal"
+              placeholder="Ex:. 587 ou 465."
+            />
+          </unnnic-form-element>
+        </div>
+        <div class="app-config-email__settings__content__inputs__IMAP">
+          <unnnic-form-element
+            label="Servidor IMAP"
+            message="Endereço do servidor IMAP para envio de e-mails."
+          >
+            <unnnic-input
+              v-model="imapServer"
+              size="md"
+              type="normal"
+              nativeType="normal"
+              placeholder="smtp.exemplo.com"
+            />
+          </unnnic-form-element>
+          <unnnic-form-element label="Porta IMAP" message="Porta de comunicação do servidor IMAP.">
+            <unnnic-input
+              v-model="imapPort"
+              size="md"
+              type="normal"
+              nativeType="normal"
+              placeholder="Ex:. 993"
+            />
+          </unnnic-form-element>
+        </div>
+        <div class="app-config-email__settings__content__inputs__login">
+          <unnnic-form-element label="Username" message="O e-mail utilizado para ser autenticado.">
+            <unnnic-input
+              v-model="username"
+              size="md"
+              type="normal"
+              nativeType="normal"
+              placeholder="seu.email@exemplo.com"
+            />
+          </unnnic-form-element>
+          <unnnic-form-element label="Password">
+            <unnnic-input
+              v-model="password"
+              size="md"
+              type="normal"
+              nativeType="normal"
+              placeholder="Digite sua senha"
+            />
+          </unnnic-form-element>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -35,11 +108,19 @@
     data() {
       return {
         pageName: this.app.config.page_name,
+        selectedType: '',
+        smtpServer: '',
+        smptPort: '',
+        imapServer: '',
+        imapPort: '',
+        username: '',
+        password: '',
       };
     },
-    computed: {
-      pageId() {
-        return `ID: ${this.app.config.page_id}`;
+    methods: {
+      selectType(type) {
+        console.log('aloo', type);
+        this.selectedType = type;
       },
     },
   };
@@ -52,6 +133,7 @@
     height: -webkit-fill-available;
     height: -moz-available;
     padding: $unnnic-inset-lg;
+    overflow-y: scroll;
 
     &__header {
       display: flex;
@@ -121,12 +203,15 @@
 
         &__inputs {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           gap: $unnnic-spacing-inline-xs;
 
-          &__name,
-          &__id {
-            width: 50%;
+          &__SMPT,
+          &__IMAP {
+            display: flex;
+            flex-direction: row;
+            gap: $unnnic-spacing-inline-md;
+            width: 100%;
           }
         }
       }
