@@ -22,11 +22,11 @@ describe('WhatsappConfig.vue', () => {
     wrapper = mount(WhatsappConfig, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        mocks: {
+          $t: (msg) => msg,
+        },
       },
       props: { app },
-      mocks: {
-        $t: (e) => e,
-      },
     });
   });
 
