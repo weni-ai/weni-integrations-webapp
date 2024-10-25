@@ -22,6 +22,9 @@ describe('FormTabs.vue', () => {
     wrapper = mount(FormTabs, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
       },
       mocks: {
         formMode: 'create',
@@ -30,7 +33,6 @@ describe('FormTabs.vue', () => {
             appUuid: '1234',
           },
         },
-        $t: (e) => e,
       },
     });
   });
