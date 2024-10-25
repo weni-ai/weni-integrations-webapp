@@ -6,6 +6,17 @@ import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
 
+vi.mock('vue-i18n', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    createI18n: () => ({
+      t: (key) => key,
+      locale: 'pt-br',
+    }),
+  };
+});
+
 describe('WhatsappConfig.vue', () => {
   let wrapper;
   const pinia = createTestingPinia({ stubActions: false });
@@ -24,6 +35,9 @@ describe('WhatsappConfig.vue', () => {
         plugins: [pinia, i18n, UnnnicSystem],
         mocks: {
           $t: (msg) => msg,
+          $i18n: {
+            locale: 'pt-br',
+          },
         },
       },
       props: { app },
@@ -46,7 +60,7 @@ describe('WhatsappConfig.vue', () => {
     const description = wrapper.find('.config-whatsapp__header__description');
     expect(description.exists()).toBe(true);
     expect(description.text()).toContain(
-      'Learn more about how to increase your daily message limit in WhatsApp here.',
+      'WhatsApp.config.description.text WhatsApp.config.description.link',
     );
   });
 
