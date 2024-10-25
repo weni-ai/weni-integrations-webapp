@@ -185,7 +185,7 @@
         return this.hasConnectedCatalog && this.selectedSellers.length === 0 && this.disableVtexADS;
       },
       appConfig() {
-        return this.configuredApps.find((item) => item.uuid === this.appUuid)?.config;
+        return this.configuredApps?.find((item) => item.uuid === this.appUuid)?.config;
       },
     },
     async mounted() {

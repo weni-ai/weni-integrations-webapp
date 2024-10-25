@@ -11,6 +11,6 @@ beforeEach(() => {
 });
 
 config.global.plugins = [i18n];
-config.mocks = {
+config.global.mocks = {
   $t: (msg) => msg,
 };
