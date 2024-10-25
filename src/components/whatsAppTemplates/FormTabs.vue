@@ -209,14 +209,17 @@
         }
       },
       async fetchData() {
-        const { appUuid } = this.$route.params;
+        const appUuid = this.$route?.params.appUuid;
 
         if (!appUuid) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_app_uuid') });
           return;
         }
 
-        await this.fetchTemplateData({ appUuid, templateUuid: this.templateUuid });
+        await this.fetchTemplateData({
+          appUuid,
+          templateUuid: this.templateUuid,
+        });
         if (this.errorFetchWhatsAppTemplate) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.fetch_template_data') });
           return;

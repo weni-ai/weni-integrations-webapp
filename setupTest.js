@@ -9,8 +9,7 @@ beforeEach(() => {
   const pinia = createTestingPinia();
   setActivePinia(pinia);
 });
-
 config.global.plugins = [i18n];
-config.global.mocks = {
+config.mocks = {
   $t: (msg) => msg,
 };

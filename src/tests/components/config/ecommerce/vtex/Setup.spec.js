@@ -9,6 +9,18 @@ import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import StepIndicator from '@/components/StepIndicator.vue';
 import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
 
+vi.mock('vue-i18n', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    createI18n: () => ({
+      global: {
+        t: (key) => key,
+      },
+    }),
+  };
+});
+
 describe('VtexModal.vue', () => {
   let wrapper;
   const pinia = createTestingPinia({ stubActions: false });
@@ -46,13 +58,9 @@ describe('VtexModal.vue', () => {
     expect(wrapper.vm.currentStep).toBe(0);
     const headerTitle = wrapper.find({ ref: 'headerTitle' });
     expect(headerTitle.exists()).toBe(true);
-    expect(headerTitle.text()).toBe(
-      'Connect your storeSelect WhatsApp number, enter subdomain, AppKey and AppToken',
-    );
+    expect(headerTitle.text()).toBe('vtex.setup.titlevtex.setup.description');
     const headerDescription = wrapper.find('.vtex-modal__header__description');
-    expect(headerDescription.text()).toBe(
-      'Select WhatsApp number, enter subdomain, AppKey and AppToken',
-    );
+    expect(headerDescription.text()).toBe('vtex.setup.description');
   });
 
   it('displays WhatsApp channels when not loading', async () => {
@@ -78,7 +86,7 @@ describe('VtexModal.vue', () => {
     wrapper.setData({ currentStep: 0, storeDomain: '', apiDomain: '', appKey: '', appToken: '' });
     await wrapper.vm.continueSetup();
     expect(spy).toHaveBeenCalledWith({
-      props: { type: 'error', text: 'All fields are mandatory' },
+      props: { type: 'error', text: 'vtex.setup.error_missing_fields' },
       seconds: 6,
     });
   });
@@ -108,7 +116,7 @@ describe('VtexModal.vue', () => {
     wrapper.setData({ currentStep: 1 });
     await wrapper.vm.$nextTick();
     const headerTitle = wrapper.find('.vtex-modal__header__title');
-    expect(headerTitle.text()).toBe('Setup an affiliate in VTEX');
+    expect(headerTitle.text()).toBe('vtex.setup.affiliate_title');
     const webhookUrl = wrapper.vm.webhookUrl;
     expect(webhookUrl).toBe(
       'https://integrations-engine.stg.cloud.weni.ai/api/v1/webhook/vtex/1234/products-update/api/notification/',
@@ -129,7 +137,7 @@ describe('VtexModal.vue', () => {
     copyButton.trigger('click');
     expect(mockClipboard.writeText).toHaveBeenCalledWith(wrapper.vm.webhookUrl);
     expect(unnnic.unnnicCallAlert).toHaveBeenCalledWith({
-      props: { text: 'Successfully copied!', type: 'success' },
+      props: { text: 'apps.config.copy_success', type: 'success' },
       seconds: 3,
     });
   });
