@@ -324,6 +324,7 @@
             sellers: sellers,
           };
           await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
+          this.disableSellers = true;
         }
         await this.syncADS({
           uuid: this.appUuid,
