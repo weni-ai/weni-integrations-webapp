@@ -134,31 +134,31 @@ describe('vtex-config Component', () => {
     expect(wrapper.vm.disableSave).toBe(false);
   });
 
-  // it('renders view button when there is a connected catalog', async () => {
-  //   const app = {
-  //     icon: 'icon.png',
-  //     name: 'App Name',
-  //     config: {
-  //       name: 'Test Config',
-  //       api_credentials: { domain: 'test.domain' },
-  //       connected_catalog: false,
-  //       wpp_cloud_uuid: 'uuid-test',
-  //     },
-  //   };
-  //   const wrapper = mount(VtexConfig, {
-  //     props: { app },
-  //     global: {
-  //       plugins: [pinia, i18n, UnnnicSystem],
-  //     },
-  //     mocks: {
-  //       $t: (e) => e,
-  //     },
-  //   });
+  it('renders view button when there is a connected catalog', async () => {
+    const app = {
+      icon: 'icon.png',
+      name: 'App Name',
+      config: {
+        name: 'Test Config',
+        api_credentials: { domain: 'test.domain' },
+        connected_catalog: false,
+        wpp_cloud_uuid: 'uuid-test',
+      },
+    };
+    const wrapper = mount(VtexConfig, {
+      props: { app },
+      global: {
+        plugins: [pinia, i18n, UnnnicSystem],
+      },
+      mocks: {
+        $t: (e) => e,
+      },
+    });
 
-  //   const viewButton = wrapper.findComponent({ ref: 'viewButton' });
-  //   const connectButton = wrapper.findComponent({ ref: 'connectButton' });
+    const viewButton = wrapper.findComponent({ ref: 'viewButton' });
+    const connectButton = wrapper.findComponent({ ref: 'connectButton' });
 
-  //   expect(viewButton.exists()).toBe(false);
-  //   expect(connectButton.exists()).toBe(true);
-  // });
+    expect(viewButton.exists()).toBe(false);
+    expect(connectButton.exists()).toBe(true);
+  });
 });
