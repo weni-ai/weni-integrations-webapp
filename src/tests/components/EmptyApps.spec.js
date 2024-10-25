@@ -15,6 +15,9 @@ describe('EmptyApps.vue', () => {
       global: {
         plugins: [i18n, UnnnicSystem],
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

@@ -18,6 +18,9 @@ describe('ConfigModal.vue', () => {
       global: {
         plugins: [i18n, UnnnicSystem, pinia],
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

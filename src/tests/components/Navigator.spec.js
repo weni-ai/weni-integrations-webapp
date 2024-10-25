@@ -28,6 +28,9 @@ describe('Navigator.vue', () => {
           'unnnic-icon-svg': true,
         },
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

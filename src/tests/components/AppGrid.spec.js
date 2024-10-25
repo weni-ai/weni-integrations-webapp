@@ -41,6 +41,7 @@ describe('AppGrid', () => {
             ],
             avatar: avatarIcons.channel,
           },
+          $t: (e) => e,
         },
       },
     });

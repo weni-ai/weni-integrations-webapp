@@ -33,6 +33,7 @@ describe('Carousel.vue', () => {
           $router: {
             push: pushMock,
           },
+          $t: (e) => e,
         },
         methods: {
           fetchFeatured: vi.fn(),

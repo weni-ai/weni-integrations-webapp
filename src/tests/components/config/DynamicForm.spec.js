@@ -38,6 +38,9 @@ describe('DynamicForm.vue', () => {
       props: {
         inputs,
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

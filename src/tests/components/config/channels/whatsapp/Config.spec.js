@@ -24,6 +24,9 @@ describe('WhatsappConfig.vue', () => {
         plugins: [pinia, i18n, UnnnicSystem],
       },
       props: { app },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

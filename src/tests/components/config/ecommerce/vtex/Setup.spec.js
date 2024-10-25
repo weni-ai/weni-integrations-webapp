@@ -30,6 +30,7 @@ describe('VtexModal.vue', () => {
         mocks: {
           StepIndicator,
           unnnic,
+          $t: (e) => e,
         },
       },
     });
