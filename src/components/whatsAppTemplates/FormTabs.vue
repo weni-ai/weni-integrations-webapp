@@ -195,15 +195,13 @@
         );
       },
       async fetchAllTemplates() {
-        const { appUuid } = this.$route.params;
         const params = {
           page_size: 251,
         };
-        await this.getWhatsAppTemplates({ appUuid, params });
+        await this.getWhatsAppTemplates({ appUuid: this.$route?.params.appUuid, params });
       },
       async fetchLanguages() {
-        const { appUuid } = this.$route.params;
-        await this.fetchSelectLanguages({ appUuid });
+        await this.fetchSelectLanguages({ appUuid: this.$route?.params.appUuid });
 
         if (this.errorWhatsAppTemplateSelectLanguages) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.select_languages') });
@@ -211,14 +209,17 @@
         }
       },
       async fetchData() {
-        const { appUuid } = this.$route.params;
+        const appUuid = this.$route?.params.appUuid;
 
         if (!appUuid) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_app_uuid') });
           return;
         }
 
-        await this.fetchTemplateData({ appUuid, templateUuid: this.templateUuid });
+        await this.fetchTemplateData({
+          appUuid,
+          templateUuid: this.templateUuid,
+        });
         if (this.errorFetchWhatsAppTemplate) {
           this.callErrorModal({ text: this.$t('WhatsApp.templates.error.fetch_template_data') });
           return;

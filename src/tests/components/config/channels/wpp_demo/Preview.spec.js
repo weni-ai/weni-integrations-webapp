@@ -32,6 +32,7 @@ describe('wpp-demo-preview Component', () => {
         plugins: [pinia, i18n, UnnnicSystem],
         mocks: {
           unnnic,
+          $t: (e) => e,
         },
       },
     });
