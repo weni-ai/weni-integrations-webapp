@@ -31,6 +31,9 @@ describe('Config.vue', () => {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

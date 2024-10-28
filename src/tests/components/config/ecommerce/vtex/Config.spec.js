@@ -39,6 +39,7 @@ describe('vtex-config Component', () => {
           $router: {
             push: vi.fn(),
           },
+          $t: (e) => e,
         },
       },
     });
@@ -148,6 +149,9 @@ describe('vtex-config Component', () => {
       props: { app },
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+      },
+      mocks: {
+        $t: (e) => e,
       },
     });
 

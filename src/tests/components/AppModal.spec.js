@@ -18,6 +18,9 @@ describe('AppModal', () => {
           showRemoveModal: true,
         },
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
   it('matches snapshot', async () => {

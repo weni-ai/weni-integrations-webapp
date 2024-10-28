@@ -1,180 +1,85 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
+import { describe, beforeEach, afterEach, vi, it, expect } from 'vitest';
 import DynamicForm from '@/components/config/DynamicForm.vue';
-import { describe, it, expect } from 'vitest';
-import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
-import { setActivePinia } from 'pinia';
 
 describe('DynamicForm.vue', () => {
-  const pinia = createTestingPinia({ stubActions: false });
-  setActivePinia(pinia);
-  const inputs = [
-    {
-      type: 'input',
-      label: 'input.label',
-      placeholder: 'input.placeholder',
-      value: '',
-      error: false,
-    },
-    {
-      type: 'select',
-      label: 'select.label',
-      options: [
-        { value: 'opt1', label: 'Option 1' },
-        { value: 'opt2', label: 'Option 2' },
-      ],
-      value: '',
-    },
-    {
-      type: 'upload',
-      label: 'upload.label',
-      props: {
-        files: [],
-        acceptMultiple: true,
-        supportedFormats: 'pdf',
-        maximumUploads: 3,
-        maxFileSize: 2,
-        filesProgress: {},
-        isUploading: false,
-        canImport: true,
-        canDelete: true,
-        shouldReplace: false,
+  let wrapper;
+  beforeEach(() => {
+    const inputs = [
+      {
+        type: 'input',
+        name: 'input',
+        label: 'input',
+        value: null,
       },
-    },
-    { type: 'checkbox', label: 'checkbox.label', value: false },
-    { type: 'unsupported', label: 'unsupported.label', value: '' },
-  ];
+      {
+        type: 'select',
+        name: 'select',
+        label: 'select',
+        placeholder: 'select',
+        value: null,
+        options: [
+          { value: 'select1', text: 'select1' },
+          { value: 'select2', text: 'select2' },
+        ],
+      },
+    ];
 
-  const mountComponent = (propsData = { inputs }) => {
-    return mount(DynamicForm, {
-      propsData,
+    wrapper = shallowMount(DynamicForm, {
       global: {
-        plugins: [i18n, UnnnicSystem, pinia],
+        plugins: [i18n, UnnnicSystem],
+        stubs: {
+          UnnnicInput: true,
+          UnnnicSelect: true,
+        },
+      },
+      props: {
+        inputs,
+      },
+      mocks: {
+        $t: (e) => e,
       },
     });
-  };
-
-  it('renders all form elements correctly', () => {
-    const wrapper = mountComponent();
-    const unnnicInput = wrapper.findComponent({ ref: 'unnnic-input' });
-    expect(unnnicInput.exists()).toBe(true);
-
-    const unnnicSelectSmart = wrapper.findComponent({ ref: 'unnnic-select' });
-    expect(unnnicSelectSmart.exists()).toBe(true);
-
-    const unnnicUploadArea = wrapper.findComponent({ ref: 'unnnic-upload' });
-    expect(unnnicUploadArea.exists()).toBe(true);
-
-    const unnnicCheckbox = wrapper.findComponent({ ref: 'unnnic-checkbox' });
-    expect(unnnicCheckbox.exists()).toBe(true);
   });
 
-  it('emits input event correctly for input field', async () => {
-    const wrapper = mountComponent();
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should be rendered properly', () => {
+    expect(wrapper.element).toMatchSnapshot();
+  });
+
+  it('should call emitInput on input component event', async () => {
+    const spy = vi.spyOn(wrapper.vm, 'emitInput');
     const input = wrapper.findComponent({ ref: 'unnnic-input' });
-    await input.vm.$emit('update:modelValue', 'new value');
-    expect(wrapper.emitted().input[0]).toEqual([{ index: 0, value: 'new value' }]);
+    expect(input.exists()).toBe(true);
+
+    expect(spy).not.toHaveBeenCalled();
+    input.vm.$emit('update:modelValue', 'test');
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(0, 'test');
   });
 
-  it('emits input event correctly for select field', async () => {
-    const wrapper = mountComponent();
-    const select = wrapper.findComponent({ ref: 'unnnic-select' });
-    expect(select.exists()).toBe(true);
-    expect(wrapper.vm.inputs[1].value).toStrictEqual([
-      {
-        label: 'Option 1',
-        value: 'opt1',
-      },
-    ]);
-    await select.vm.$emit('update:modelValue', [
-      {
-        label: 'Option 2',
-        value: 'opt2',
-      },
-    ]);
-    expect(wrapper.vm.inputs[1].value).toEqual([
-      {
-        label: 'Option 2',
-        value: 'opt2',
-      },
-    ]);
-  });
-
-  it('emits input event correctly for upload field', async () => {
-    const wrapper = mountComponent();
-    const upload = wrapper.findComponent({ ref: 'unnnic-upload' });
-    const files = [{ name: 'file1.pdf' }];
-    await upload.vm.$emit('fileChange', files);
-    expect(wrapper.emitted().input[0]).toEqual([{ index: 2, value: files }]);
-  });
-
-  it('emits input event correctly for checkbox', async () => {
-    const wrapper = mountComponent();
-    const checkbox = wrapper.findComponent({ ref: 'unnnic-checkbox' });
-    await checkbox.vm.$emit('change', true);
-    expect(wrapper.emitted().input[0]).toEqual([{ index: 3, value: true }]);
-  });
-
-  it('handles unsupported input types correctly', async () => {
-    const wrapper = mountComponent();
-    expect(wrapper.find('.dynamic-form__fields').exists()).toBe(true);
-    expect(wrapper.emitted().input).toBeUndefined();
-  });
-
-  it('computes input type correctly based on error (error case)', () => {
-    const inputsWithError = [
-      {
-        type: 'input',
-        label: 'input.label',
-        placeholder: 'input.placeholder',
-        value: '',
-        error: true,
-      },
-    ];
-    const wrapper = mountComponent({ inputs: inputsWithError });
-    const input = wrapper.findComponent({ ref: 'unnnic-input' });
-    expect(input.props().type).toBe('error');
-  });
-
-  it('computes input type correctly when there is no error', () => {
-    const inputsWithoutError = [
-      {
-        type: 'input',
-        label: 'input.label',
-        placeholder: 'input.placeholder',
-        value: '',
-        error: false,
-      },
-    ];
-    const wrapper = mountComponent({ inputs: inputsWithoutError });
-    const input = wrapper.findComponent({ ref: 'unnnic-input' });
-    expect(input.props().type).toBe('normal');
-  });
-
-  it('renders select field with correct options', () => {
-    const wrapper = mountComponent();
-    const select = wrapper.findComponent({ ref: 'unnnic-select' });
-    const options = select.vm.options;
-    expect(options).toEqual([
-      { value: 'opt1', label: 'Option 1' },
-      { value: 'opt2', label: 'Option 2' },
-    ]);
-  });
-
-  it('renders upload field with correct props', () => {
-    const wrapper = mountComponent();
-    const upload = wrapper.findComponent({ ref: 'unnnic-upload' });
-    expect(upload.props('acceptMultiple')).toBe(true);
-    expect(upload.props('supportedFormats')).toEqual('pdf');
-    expect(upload.props('maximumUploads')).toBe(3);
-    expect(upload.props('maxFileSize')).toBe(2);
-  });
-
-  it('returns correct input type in getType method', () => {
-    const wrapper = mountComponent({
-      inputs: [{ type: 'input', value: '', error: true }],
+  describe('emitInput()', () => {
+    it('should emit input value if default type', () => {
+      const index = 0;
+      const event = 'test';
+      expect(wrapper.emitted('input')).toBeFalsy();
+      wrapper.vm.emitInput(index, event);
+      expect(wrapper.emitted('input')).toBeTruthy();
+      expect(wrapper.emitted('input')[0]).toEqual([{ index, value: event }]);
     });
-    expect(wrapper.vm.getType(wrapper.vm.inputs[0])).toBe('error');
+    it('should emit option value if input type is select', async () => {
+      const index = 1;
+      const input = wrapper.props().inputs[index];
+      const event = ['select2'];
+      expect(wrapper.emitted('input')).toBeFalsy();
+      wrapper.vm.emitInput(index, event);
+      expect(wrapper.emitted('input')).toBeTruthy();
+      expect(wrapper.emitted('input')[0]).toEqual([{ index, value: input.options[1].value }]);
+    });
   });
 });

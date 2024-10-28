@@ -52,7 +52,7 @@
     props: {
       inputs: {
         type: Array,
-        default: /* istanbul ignore next */ () => [],
+        default: () => [],
       },
       channelCode: {
         type: String,

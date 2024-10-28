@@ -33,6 +33,9 @@ describe('ProductList.vue', () => {
       props: {
         catalogName: 'Test Catalog',
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
 
     await flushPromises();

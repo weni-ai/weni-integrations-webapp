@@ -3,7 +3,7 @@
     <FormHeaderLoading v-if="loadingCurrentAppType" />
     <div v-else class="form-header__wrapper">
       <div class="form-header__icon">
-        <img :src="currentAppType.icon" />
+        <img :src="currentAppType?.icon" />
       </div>
       <span class="form-header__title">{{ title }}</span>
       <unnnic-tag
