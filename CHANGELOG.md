@@ -1,3 +1,12 @@
+2.2.7
+----------
+`2024-10-24·  1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Fix: VTEX Config - enable sellers selection after vtex ads option save.
+### 🎉 New Features
+- Feat: Added 2 Weni Web Chat new configuration options (startFullScreen and embedded mode).
+
 2.2.6
 ----------
 `2024-10-22·  1 🐛 `

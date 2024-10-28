@@ -316,10 +316,13 @@
           await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
           this.disableSellers = true;
         }
-        await this.syncADS({
-          uuid: this.appUuid,
-          payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
-        });
+
+        if ('vtex_ads' in this.appConfig) {
+          await this.syncADS({
+            uuid: this.appUuid,
+            payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
+          });
+        }
 
         if (this.errorSyncSellers) {
           this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
