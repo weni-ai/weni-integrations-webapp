@@ -22,6 +22,9 @@ describe('FormTabs.vue', () => {
     wrapper = mount(FormTabs, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
       },
       mocks: {
         formMode: 'create',
@@ -40,6 +43,12 @@ describe('FormTabs.vue', () => {
 
   it('should mount the component correctly', () => {
     const wrapper = mount(FormTabs, {
+      global: {
+        plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
+      },
       props: {
         formMode: 'create',
         templateUuid: null,
@@ -101,6 +110,9 @@ describe('FormTabs.vue', () => {
     const wrapper = mount(FormTabs, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
       },
       mocks: {
         formMode: 'create',
@@ -119,6 +131,9 @@ describe('FormTabs.vue', () => {
     const wrapper = mount(FormTabs, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
       },
       mocks: {
         formMode: 'edit',
@@ -139,6 +154,9 @@ describe('FormTabs.vue', () => {
     const wrapper = mount(FormTabs, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
       },
       mocks: {
         formMode: 'create',
@@ -162,6 +180,12 @@ describe('FormTabs.vue', () => {
 
   it('should validate the form correctly', () => {
     const wrapper = mount(FormTabs, {
+      global: {
+        plugins: [pinia, i18n, UnnnicSystem, router],
+        mocks: {
+          $t: (msg) => msg,
+        },
+      },
       props: {
         formMode: 'edit',
       },
@@ -171,6 +195,7 @@ describe('FormTabs.vue', () => {
             appUuid: '1234',
           },
         },
+        $t: (msg) => msg,
       },
     });
 

@@ -38,6 +38,9 @@ describe('IntegrateButton.vue', () => {
       methods: {
         unnnicCallAlert: vi.fn(),
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

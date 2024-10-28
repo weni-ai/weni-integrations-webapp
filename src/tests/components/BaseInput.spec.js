@@ -25,6 +25,9 @@ describe('BaseInput', () => {
         type: 'normal',
         replaceRegex: null,
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 

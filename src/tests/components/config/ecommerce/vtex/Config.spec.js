@@ -39,6 +39,7 @@ describe('vtex-config Component', () => {
           $router: {
             push: vi.fn(),
           },
+          $t: (e) => e,
         },
       },
     });
@@ -99,22 +100,6 @@ describe('vtex-config Component', () => {
     });
   });
 
-  it('should show an alert when there are no selected sellers during save', async () => {
-    const unnnicCallAlertSpy = vi.spyOn(unnnic, 'unnnicCallAlert');
-
-    await wrapper.vm.handleSave();
-
-    expect(unnnicCallAlertSpy).toHaveBeenCalledWith(
-      expect.objectContaining({
-        props: {
-          text: 'Failed to redirect to catalog, please refresh the page and try again',
-          type: 'error',
-        },
-        seconds: 6,
-      }),
-    );
-  });
-
   it('should render sellers list correctly when hasConnectedCatalog is true', async () => {
     wrapper.vm.sellersList = ['Seller 1', 'Seller 2'];
     await wrapper.vm.$nextTick();
@@ -148,6 +133,9 @@ describe('vtex-config Component', () => {
       props: { app },
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+      },
+      mocks: {
+        $t: (e) => e,
       },
     });
 

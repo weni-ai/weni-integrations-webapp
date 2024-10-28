@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import ConfigModal from '@/components/config/ConfigModal.vue';
 import wppConfig from '@/components/config/channels/whatsapp/Config.vue';
 import telegramConfig from '@/components/config/channels/telegram/Config.vue';
@@ -7,6 +7,17 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
+
+vi.mock('vue-i18n', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    createI18n: () => ({
+      t: (key) => key,
+      locale: 'pt-br',
+    }),
+  };
+});
 
 describe('ConfigModal.vue', () => {
   let wrapper;
@@ -17,6 +28,12 @@ describe('ConfigModal.vue', () => {
     wrapper = mount(ConfigModal, {
       global: {
         plugins: [i18n, UnnnicSystem, pinia],
+        mocks: {
+          $t: (msg) => msg,
+          $i18n: {
+            locale: 'pt-br',
+          },
+        },
       },
     });
   });

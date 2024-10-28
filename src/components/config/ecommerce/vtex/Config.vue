@@ -134,6 +134,7 @@
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
+  import i18n from '@/utils/plugins/i18n';
 
   export default {
     name: 'vtex-config',
@@ -184,7 +185,7 @@
         return this.hasConnectedCatalog && this.selectedSellers.length === 0 && this.disableVtexADS;
       },
       appConfig() {
-        return this.configuredApps.find((item) => item.uuid === this.appUuid)?.config;
+        return this.configuredApps?.find((item) => item.uuid === this.appUuid)?.config;
       },
     },
     async mounted() {
@@ -228,7 +229,7 @@
         await this.connectVtexCatalog(data);
 
         if (this.errorConnectVtexCatalog) {
-          this.callModal({ type: 'error', text: this.$t('vtex.errors.connect_catalog') });
+          this.callModal({ type: 'error', text: i18n.global.t('vtex.errors.connect_catalog') });
           return;
         }
 
@@ -245,7 +246,7 @@
         if (this.errorCurrentApp) {
           this.callModal({
             type: 'error',
-            text: this.$t('vtex.errors.update_connected_catalog_status'),
+            text: i18n.global.t('vtex.errors.update_connected_catalog_status'),
           });
           return;
         }
@@ -261,7 +262,10 @@
         await this.getApp(data);
 
         if (this.errorCurrentApp) {
-          this.callModal({ type: 'error', text: this.$t('vtex.errors.fetch_related_wpp_data') });
+          this.callModal({
+            type: 'error',
+            text: i18n.global.t('vtex.errors.fetch_related_wpp_data'),
+          });
           return;
         }
 
@@ -272,14 +276,20 @@
         await this.getSellersList({ uuid: this.appUuid });
 
         if (this.errorSellersList) {
-          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+          this.callModal({
+            type: 'error',
+            text: i18n.global.t('vtex.errors.redirect_to_wpp_catalog'),
+          });
         }
       },
       redirectToWppCatalog() {
         if (this.wpp_uuid) {
           this.$router.push({ path: `/apps/my/wpp-cloud/${this.wpp_uuid}/catalogs` });
         } else {
-          this.callModal({ type: 'error', text: this.$t('vtex.errors.redirect_to_wpp_catalog') });
+          this.callModal({
+            type: 'error',
+            text: i18n.global.t('vtex.errors.redirect_to_wpp_catalog'),
+          });
         }
       },
       closeConfig() {
@@ -307,6 +317,12 @@
         this.selectedSellers = value;
       },
       async handleSave() {
+        if (this.appConfig?.vtex_ads !== undefined) {
+          await this.syncADS({
+            uuid: this.appUuid,
+            payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
+          });
+        }
         const sellers = this.selectedSellers.map((item) => item.value);
         if (sellers.length) {
           const payloadSync = {
@@ -317,18 +333,15 @@
           this.disableSellers = true;
         }
 
-        if ('vtex_ads' in this.appConfig) {
-          await this.syncADS({
-            uuid: this.appUuid,
-            payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
-          });
-        }
-
         if (this.errorSyncSellers) {
-          this.callModal({ text: this.$t('vtex.errors.redirect_to_wpp_catalog'), type: 'error' });
+          this.callModal({
+            text: i18n.global.t('vtex.errors.redirect_to_wpp_catalog'),
+            type: 'error',
+          });
           return;
         }
-        this.callModal({ text: this.$t('vtex.success.sync_sellers'), type: 'success' });
+        this.callModal({ text: i18n.global.t('vtex.success.sync_sellers'), type: 'success' });
+        this.disableSellers = true;
       },
       updateVtexADS(value) {
         this.vtexADS = value;

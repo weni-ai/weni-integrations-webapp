@@ -14,6 +14,9 @@ describe('LoadingButton.vue', () => {
         text: 'Click Me',
         isLoading: false,
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
 
     expect(wrapper.text()).toBe('Click Me');
