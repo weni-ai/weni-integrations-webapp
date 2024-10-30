@@ -1,12 +1,8 @@
 <template>
   <div class="templates-form">
     <div class="templates-form__content">
-      <FormHeader />
-      <FormTabs
-        :formMode="this.formMode"
-        :templateUuid="templateUuid"
-        @manual-preview-update="updatePreview"
-      />
+      <FormHeader :formMode="formMode" :description="description" />
+      <FormCategory v-if="formMode === 'create'" @continue="continueToMarketing" />
     </div>
 
     <TemplatePreview :key="previewKey" class="templates-form__preview" />
@@ -17,14 +13,14 @@
   import { mapActions } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import FormHeader from '@/components/whatsAppTemplates/FormHeader.vue';
-  import FormTabs from '@/components/whatsAppTemplates/FormTabs.vue';
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
+  import FormCategory from '@/components/whatsAppTemplates/FormCategory.vue';
 
   export default {
     name: 'WhatsAppTemplatesForm',
     components: {
       FormHeader,
-      FormTabs,
+      FormCategory,
       TemplatePreview,
     },
     data() {
@@ -32,6 +28,7 @@
         formMode: 'create',
         templateUuid: '',
         previewKey: 0,
+        description: this.$t(`WhatsApp.templates.header.create.description`),
       };
     },
     created() {
@@ -40,6 +37,7 @@
       if (templateUuid) {
         this.formMode = 'edit';
         this.templateUuid = templateUuid;
+        this.description = 'Descrição do edit';
       }
     },
     unmounted() {
@@ -48,9 +46,11 @@
     },
     methods: {
       ...mapActions(whatsapp_store, ['clearAllTemplateFormData', 'clearTemplateData']),
-      /* istanbul ignore next */
       updatePreview() {
         this.previewKey += 1;
+      },
+      continueToMarketing() {
+        this.description = 'Fill in the fields below to create a new message template.';
       },
     },
   };
@@ -80,4 +80,3 @@
     }
   }
 </style>
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store'; whatsapp_store,

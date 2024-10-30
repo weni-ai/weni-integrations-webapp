@@ -3,7 +3,7 @@
     v-if="!loadingFetchWhatsAppTemplate && !loadingWhatsAppTemplates && !dataProcessingLoading"
     class="form-tabs"
   >
-    <FormCategory v-if="!selectedCategory" @continue="continueFromMarketing" />
+    <FormCategory v-if="formMode === 'create'" @continue="continueFromMarketing" />
   </div>
   <div v-else class="form-tabs__loading">
     <img class="logo" src="@/assets/svgs/LogoWeniAnimada4.svg" />

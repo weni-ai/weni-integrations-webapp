@@ -514,6 +514,12 @@
       }
     },
     "templates": {
+      "header": {
+        "create": {
+          "title": "Create new template",
+          "description": "Choose your template's category and edit its content. The template will be submitted for approval by Meta's regulations, and this process may take up to 24 hours."
+        }
+      },
       "table": {
         "crumb_title": "Manage Templates",
         "actions": {
@@ -560,7 +566,7 @@
             }
           }
         }
-    },
+      },
       "form": {
         "crumb_title": "Template"
       },

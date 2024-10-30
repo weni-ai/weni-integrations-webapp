@@ -2,10 +2,10 @@
   <div class="form-header">
     <FormHeaderLoading v-if="loadingCurrentAppType" />
     <div v-else class="form-header__wrapper">
-      <div class="form-header__icon">
-        <img :src="currentAppType?.icon" />
+      <div class="form-header__wrapper__title">
+        <span class="form-header__wrapper__title__main">{{ title }}</span>
+        <span class="form-header__wrapper__title__description">{{ description }}</span>
       </div>
-      <span class="form-header__title">{{ title }}</span>
       <unnnic-tag
         ref="tag"
         v-if="templateTranslationCurrentForm.status"
@@ -25,12 +25,22 @@
 
   export default {
     name: 'FormHeader',
+    props: {
+      formMode: {
+        type: String,
+        default: null,
+      },
+      description: {
+        type: String,
+        default: null,
+      },
+    },
     components: {
       FormHeaderLoading,
     },
     data() {
       return {
-        title: 'WhatsApp Templates',
+        title: this.$t(`WhatsApp.templates.header.${this.formMode}.title`),
       };
     },
     created() {
@@ -72,27 +82,21 @@
       display: flex;
       align-items: center;
       gap: $unnnic-spacing-inline-sm;
-    }
-
-    &__icon {
-      display: flex;
-      background-color: rgba(72, 172, 76, 0.2);
-      border-radius: $unnnic-border-radius-sm;
-      justify-content: center;
-
-      img {
-        height: $unnnic-icon-size-md;
-        width: $unnnic-icon-size-md;
-        padding: $unnnic-inset-nano;
+      &__title {
+        display: flex;
+        flex-direction: column;
+        color: $unnnic-color-neutral-darkest;
+        &__main {
+          font-family: $unnnic-font-family-primary;
+          font-weight: $unnnic-font-weight-bold;
+          font-size: $unnnic-font-size-title-md;
+          line-height: $unnnic-line-height-md + $unnnic-font-size-title-md;
+        }
+        &__description {
+          font-family: $unnnic-font-family-secondary;
+          font-size: $unnnic-font-size-body-gt;
+        }
       }
-    }
-
-    &__title {
-      font-family: $unnnic-font-family-primary;
-      font-weight: $unnnic-font-weight-regular;
-      font-size: $unnnic-font-size-title-md;
-      line-height: $unnnic-line-height-md + $unnnic-font-size-title-md;
-      color: $unnnic-color-neutral-darkest;
     }
 
     &__tag {
