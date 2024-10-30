@@ -546,6 +546,21 @@
           "description": "The following table shows the message templates currently configured for this number."
         }
       },
+      "category": {
+        "marketing": {
+          "title": "Marketing",
+          "options": {
+            "custom": {
+              "title": "Custom",
+              "description": "Send promotions or announcements to increase awareness and engagement."
+            },
+            "catalog": {
+              "title": "Catalog",
+              "description": "Send messages about the entire catalog or multiple products from it."
+            }
+          }
+        }
+    },
       "form": {
         "crumb_title": "Template"
       },
