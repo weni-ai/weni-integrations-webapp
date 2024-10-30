@@ -341,7 +341,6 @@
           return;
         }
         this.callModal({ text: i18n.global.t('vtex.success.sync_sellers'), type: 'success' });
-        this.disableSellers = true;
       },
       updateVtexADS(value) {
         this.vtexADS = value;
