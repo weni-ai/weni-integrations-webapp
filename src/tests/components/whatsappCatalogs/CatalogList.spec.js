@@ -21,6 +21,7 @@ describe('CatalogList.vue', () => {
           $router: {
             push: vi.fn(),
           },
+          $t: (e) => e,
         },
       },
     });

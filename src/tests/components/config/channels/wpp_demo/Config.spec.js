@@ -23,6 +23,9 @@ describe('Config.vue', () => {
           },
         },
       },
+      mocks: {
+        $t: (e) => e,
+      },
     });
   });
 
