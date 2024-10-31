@@ -1,36 +1,6 @@
 <template>
   <div class="form-tab-content">
     <div class="form-tab-content__scroll">
-      <div class="form-tab-content--inline">
-        <unnnic-input
-          class="form-tab-content__input--name"
-          ref="nameInput"
-          :disabled="disableInputs || formMode !== 'create'"
-          :modelValue="templateForm?.name"
-          @update:modelValue="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
-          @keyup="formatTemplateName"
-          @keydown="preventTemplateName"
-          :label="$t('WhatsApp.templates.form_field.name')"
-          :placeholder="$t('WhatsApp.templates.form_field.name')"
-          :maxlength="512"
-          :type="errorStates.name.value ? 'error' : 'normal'"
-          :message="errorStates.name.message"
-        />
-
-        <unnnic-multi-select
-          ref="categorySelect"
-          :class="{
-            'form-tab-content__selects--category': true,
-            'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
-          }"
-          :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
-          :hideGroupTitle="true"
-          :label="$t('WhatsApp.templates.form_field.category')"
-          v-model="categoryGroups"
-          @update:modelValue="handleCategoryChange"
-        />
-      </div>
-
       <div class="divider" />
       <div>
         <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />

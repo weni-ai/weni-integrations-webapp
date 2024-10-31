@@ -2,7 +2,8 @@
   <div class="templates-form">
     <div class="templates-form__content">
       <FormHeader :formMode="formMode" :description="description" />
-      <FormCategory v-if="formMode === 'create'" @continue="continueToMarketing" />
+      <FormCategory v-if="formMode === 'create' && !displayForm" @continue="continueToMarketing" />
+      <FormTabs v-if="displayForm" />
     </div>
 
     <TemplatePreview :key="previewKey" class="templates-form__preview" />
@@ -14,6 +15,7 @@
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import FormHeader from '@/components/whatsAppTemplates/FormHeader.vue';
   import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
+  import FormTabs from '@/components/whatsAppTemplates/FormTabs.vue';
   import FormCategory from '@/components/whatsAppTemplates/FormCategory.vue';
 
   export default {
@@ -22,6 +24,7 @@
       FormHeader,
       FormCategory,
       TemplatePreview,
+      FormTabs,
     },
     data() {
       return {
@@ -29,6 +32,7 @@
         templateUuid: '',
         previewKey: 0,
         description: this.$t(`WhatsApp.templates.header.create.description`),
+        displayForm: false,
       };
     },
     created() {
@@ -51,6 +55,7 @@
       },
       continueToMarketing() {
         this.description = 'Fill in the fields below to create a new message template.';
+        this.displayForm = true;
       },
     },
   };

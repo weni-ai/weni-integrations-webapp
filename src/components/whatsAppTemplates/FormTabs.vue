@@ -1,13 +1,77 @@
 <template>
-  <div
-    v-if="!loadingFetchWhatsAppTemplate && !loadingWhatsAppTemplates && !dataProcessingLoading"
-    class="form-tabs"
-  >
-    <FormCategory v-if="formMode === 'create'" @continue="continueFromMarketing" />
+  <div class="form-tabs">
+    <div class="form-tabs-content--inline">
+      <unnnic-input
+        class="form-tab-content__input--name"
+        ref="nameInput"
+        :disabled="disableInputs || formMode !== 'create'"
+        :modelValue="templateForm?.name"
+        @update:modelValue="handleTemplateFormInput({ fieldName: 'name', fieldValue: $event })"
+        @keyup="formatTemplateName"
+        @keydown="preventTemplateName"
+        :label="$t('WhatsApp.templates.form_field.name')"
+        :placeholder="$t('WhatsApp.templates.form_field.name')"
+        :maxlength="512"
+      />
+
+      <unnnic-multi-select
+        ref="categorySelect"
+        :class="{
+          'form-tab-content__selects--category': true,
+          'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
+        }"
+        :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
+        :hideGroupTitle="true"
+        :label="$t('WhatsApp.templates.form_field.category')"
+        v-model="categoryGroups"
+        @update:modelValue="handleCategoryChange"
+      />
+    </div>
+    <unnnic-tab
+      class="form-tabs__tab"
+      v-model="currentTab"
+      :tabs="tabs"
+      :initialTab="initialTranslation"
+      @change="handleTranslationSelection"
+    >
+      <template #tab-head-new>
+        <div ref="new-translation-button">
+          {{ $t('WhatsApp.templates.new_language') }}
+        </div>
+      </template>
+      <template #tab-head-add>
+        <div ref="add-translation-button" @click.stop="addTranslation">
+          <unnnic-icon-svg icon="add-1" size="sm" />
+          {{ $t('WhatsApp.templates.add_language') }}
+        </div>
+      </template>
+    </unnnic-tab>
+
+    <FormTabContent
+      ref="formContent"
+      class="form-tabs__content"
+      :formMode="currentFormMode"
+      :selectedForm="currentTab"
+      :removeLanguages="tabs"
+      :canEdit="canEditTab"
+      :availableLanguages="templateSelectLanguages"
+      :loadingSave="loadingSave"
+      @language-change="handleLanguageChange($event)"
+      @manual-preview-update="$emit('manual-preview-update')"
+      @save-changes="handleSave"
+    />
+
+    <TranslationSampleForm
+      v-if="showSampleModal"
+      :hasMedia="templateHasMedia()"
+      :hasVariables="templateHasVariables()"
+      @close-modal="closeSampleModal"
+      @sample-submission="handleSampleSubmission"
+    />
   </div>
-  <div v-else class="form-tabs__loading">
+  <!-- <div v-else class="form-tabs__loading">
     <img class="logo" src="@/assets/svgs/LogoWeniAnimada4.svg" />
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -15,10 +79,11 @@
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import { parsePhoneNumber } from 'libphonenumber-js';
   import unnnic from '@weni/unnnic-system';
+  import FormTabContent from '@/components/whatsAppTemplates/FormTabContent.vue';
+  import TranslationSampleForm from '@/components/whatsAppTemplates/TranslationSampleForm.vue';
 
   import { countVariables } from '@/utils/countTemplateVariables.js';
   import removeEmpty from '@/utils/clean';
-  import FormCategory from './FormCategory.vue';
 
   class ValidationError extends Error {
     constructor(msg) {
@@ -29,7 +94,8 @@
   export default {
     name: 'FormTabs',
     components: {
-      FormCategory,
+      FormTabContent,
+      TranslationSampleForm,
     },
     props: {
       formMode: {
@@ -53,7 +119,10 @@
         currentFormMode: this.formMode,
         sampleVariablesData: {},
         sampleFileData: null,
-        selectedCategory: null,
+        templateForm: {
+          name: '',
+        },
+        disableInputs: false,
       };
     },
     updated() {
@@ -666,10 +735,6 @@
           seconds: 8,
         });
         return;
-      },
-      continueFromMarketing() {
-        console.log('alo');
-        this.selectedCategory = 'marketing';
       },
     },
   };
