@@ -21,8 +21,13 @@
       <div class="app-config-email__settings__content__inputs">
         <div class="app-config-email__settings__content__inputs__type">
           <p>Selecione o tipo de email</p>
-          <unnnic-radio value="gmail" v-model="selectedType">Gmail</unnnic-radio>
-          <unnnic-radio value="other" v-model="selectedType">Other</unnnic-radio>
+          <unnnic-radio
+            v-for="option in typeOptions"
+            :key="option"
+            :value="option"
+            v-model="selectedType"
+            >{{ option }}</unnnic-radio
+          >
         </div>
 
         <div class="app-config-email__settings__content__inputs__SMPT">
@@ -34,9 +39,10 @@
               class="server"
               v-model="smtp_host"
               size="md"
-              type="normal"
               nativeType="normal"
               placeholder="smtp.exemplo.com"
+              :message="errorFor('smtp_host') || ''"
+              :type="errorFor('smtp_host') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
           <unnnic-form-element label="Porta SMTP" message="Porta de comunicação do servidor SMTP.">
@@ -44,9 +50,10 @@
               class="port"
               v-model="smtp_port"
               size="md"
-              type="normal"
               nativeType="normal"
               placeholder="Ex:. 587 ou 465."
+              :message="errorFor('smtp_port') || ''"
+              :type="errorFor('smtp_port') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
         </div>
@@ -59,9 +66,10 @@
               class="server"
               v-model="imap_host"
               size="md"
-              type="normal"
               nativeType="normal"
               placeholder="smtp.exemplo.com"
+              :message="errorFor('imap_host') || ''"
+              :type="errorFor('imap_host') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
           <unnnic-form-element
@@ -73,9 +81,10 @@
               class="port"
               v-model="imap_port"
               size="md"
-              type="normal"
               nativeType="normal"
               placeholder="Ex:. 993"
+              :message="errorFor('imap_port') || ''"
+              :type="errorFor('imap_port') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
         </div>
@@ -84,41 +93,53 @@
             <unnnic-input
               v-model="username"
               size="md"
-              type="normal"
               nativeType="normal"
               placeholder="seu.email@exemplo.com"
+              :message="errorFor('username') || ''"
+              :type="errorFor('username') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
           <unnnic-form-element label="Password">
             <unnnic-input
               v-model="password"
               size="md"
-              type="normal"
               nativeType="normal"
               placeholder="Digite sua senha"
+              :message="errorFor('password') || ''"
+              :type="errorFor('password') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
         </div>
       </div>
     </div>
 
-    <div class="app-config-telegram__settings__buttons">
+    <div class="app-config-email__settings__buttons">
       <unnnic-button
-        class="app-config-telegram__settings__buttons__cancel"
+        class="app-config-email__settings__buttons__cancel"
         type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="closeConfig"
-      ></unnnic-button>
+      />
 
       <unnnic-button
-        class="app-config-telegram__settings__buttons__save"
-        type="secondary"
+        v-if="selectedType === 'other'"
+        class="app-config-email__settings__buttons__save"
         size="large"
         :text="$t('apps.config.validate')"
         :disabled="this.app.config.token"
         @click="saveConfig"
-      ></unnnic-button>
+      />
+
+      <GoogleLogin v-else prompt auto-login :callback="googleCallback">
+        <unnnic-button
+          class="app-config-email__settings__buttons__save"
+          size="large"
+          :text="$t('apps.config.validate')"
+          :disabled="this.app.config.token"
+          @click="saveConfig"
+        />
+      </GoogleLogin>
     </div>
   </div>
 </template>
@@ -128,6 +149,7 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { mapActions, mapState } from 'pinia';
   import unnnic from '@weni/unnnic-system';
+  import { GoogleLogin } from 'vue3-google-login';
 
   export default {
     name: 'emailConfig',
@@ -137,16 +159,24 @@
         default: () => {},
       },
     },
+    components: {
+      GoogleLogin,
+    },
     data() {
       return {
         pageName: this.app.config.page_name,
-        selectedType: '',
-        smtp_host: this.app.config.smtp_host,
-        smtp_port: this.app.config.smtp_port,
-        imap_host: this.app.config.imap_host,
-        imap_port: this.app.config.imap_port,
-        username: this.app.config.username,
-        password: this.app.config.password,
+        typeOptions: ['other', 'gmail'],
+        selectedType: 'other',
+        smtp_host: this.app.config.smtp_host || null,
+        smtp_port: this.app.config.smtp_port || null,
+        imap_host: this.app.config.imap_host || null,
+        imap_port: this.app.config.imap_port || null,
+        username: this.app.config.username || null,
+        password: this.app.config.password || null,
+        enableLogin: false,
+        googleCallback: (response) => {
+          console.log('Response:', response);
+        },
       };
     },
     computed: {
@@ -193,6 +223,18 @@
       },
       closeConfig() {
         this.$emit('closeModal');
+      },
+      errorFor(key) {
+        const value = this.$data[key];
+        if (value === null) {
+          return;
+        }
+        if (!(value !== null && value.trim())) {
+          return this.$t('errors.empty_input');
+        }
+        if (value.length > 20) {
+          return 'By default, the maximum is 20 characters.';
+        }
       },
     },
   };
@@ -303,6 +345,16 @@
               }
             }
           }
+        }
+      }
+
+      &__buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: $unnnic-spacing-inline-sm 0;
+
+        ::v-deep .unnnic-button {
+          width: 100%;
         }
       }
     }
