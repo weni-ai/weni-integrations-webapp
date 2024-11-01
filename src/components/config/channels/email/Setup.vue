@@ -1,5 +1,5 @@
 <template>
-  <unnnic-modal :close-icon="false" @click.stop :text="$t(`gmail.setup.title`)">
+  <unnnic-modal class="gmail-setup" :close-icon="false" @click.stop :text="$t(`gmail.setup.title`)">
     <template #icon> <img class="logo" src="../../../../assets/svgs/gmail.svg" alt="" /></template>
     <template #message>
       <div>
@@ -8,24 +8,22 @@
     </template>
 
     <template #options>
-      <div>
-        <div class="facebook-setup__buttons">
-          <unnnic-button
-            class="facebook-setup__buttons__cancel"
-            type="tertiary"
-            size="large"
-            :text="$t('general.Cancel')"
-            @click="closePopUp"
-          />
+      <div class="gmail-setup__buttons">
+        <unnnic-button
+          class="gmail-setup__buttons__cancel"
+          type="tertiary"
+          size="large"
+          :text="$t('general.Cancel')"
+          @click="closePopUp"
+        />
 
-          <GoogleLogin prompt auto-login>
-            <unnnic-button
-              class="app-config-email__settings__buttons__save"
-              size="large"
-              :text="$t('gmail.setup.buttons.continue')"
-            />
-          </GoogleLogin>
-        </div>
+        <GoogleLogin prompt auto-login :callback="gmailCallback">
+          <unnnic-button
+            class="gmail-setup__buttons__continue"
+            size="large"
+            :text="$t('gmail.setup.buttons.continue')"
+          />
+        </GoogleLogin>
       </div>
     </template>
   </unnnic-modal>
@@ -50,3 +48,18 @@
     },
   };
 </script>
+<style lang="scss" scoped>
+  .gmail-setup {
+    &__buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: space-around;
+      gap: $unnnic-spacing-inline-xs;
+
+      &__cancel,
+      &__continue {
+        width: 100%;
+      }
+    }
+  }
+</style>
