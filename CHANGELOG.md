@@ -1,3 +1,12 @@
+2.2.8
+----------
+`2024-10-31·  1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Fix: VTEX Config - check vtex ADS prop.
+### 🎉 New Features
+- Feat: Added `Content-Security-Policy (CSP)` settings header.
+
 2.2.7
 ----------
 `2024-10-24·  1 🐛 · 1 🎉 `
