@@ -123,23 +123,12 @@
       />
 
       <unnnic-button
-        v-if="selectedType === 'other'"
         class="app-config-email__settings__buttons__save"
         size="large"
         :text="$t('apps.config.validate')"
         :disabled="this.app.config.token"
         @click="saveConfig"
       />
-
-      <GoogleLogin v-else prompt auto-login :callback="googleCallback">
-        <unnnic-button
-          class="app-config-email__settings__buttons__save"
-          size="large"
-          :text="$t('apps.config.validate')"
-          :disabled="this.app.config.token"
-          @click="saveConfig"
-        />
-      </GoogleLogin>
     </div>
   </div>
 </template>
@@ -149,7 +138,6 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { mapActions, mapState } from 'pinia';
   import unnnic from '@weni/unnnic-system';
-  import { GoogleLogin } from 'vue3-google-login';
 
   export default {
     name: 'emailConfig',
@@ -158,9 +146,6 @@
         type: Object,
         default: () => {},
       },
-    },
-    components: {
-      GoogleLogin,
     },
     data() {
       return {
@@ -174,9 +159,6 @@
         username: this.app.config.username || null,
         password: this.app.config.password || null,
         enableLogin: false,
-        googleCallback: (response) => {
-          console.log('Response:', response);
-        },
       };
     },
     computed: {

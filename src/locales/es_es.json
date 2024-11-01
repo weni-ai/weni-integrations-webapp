@@ -1639,6 +1639,44 @@
         }
       }
     }
+  },
+  "email": {
+  "config": {
+    "title": "Correo Electrónico",
+    "description": "Conecte su correo electrónico y automatice el servicio al cliente con mayor facilidad.",
+    "config_solution": "Configuración de la Solución",
+    "config_solution_subtitle": "Complete los campos a continuación para integrar un correo electrónico",
+    "select": "Seleccione el tipo de correo electrónico",
+    "smpt_server": {
+      "title": "Servidor SMTP",
+      "description": "Dirección del servidor SMTP para enviar correos electrónicos."
+    },
+    "smpt_port": {
+      "title": "Puerto SMTP",
+      "description": "Puerto de comunicación del servidor SMTP."
+    },
+    "imap_server": {
+      "title": "Servidor IMAP",
+      "description": "Dirección del servidor IMAP para enviar correos electrónicos."
+    },
+    "imap_port": {
+      "title": "Puerto IMAP",
+      "description": "Puerto de comunicación del servidor IMAP."
+    },
+    "username": "Usuario",
+    "username_description": "El correo electrónico utilizado para autenticarse.",
+    "password": "Contraseña"
   }
+},
+"gmail": {
+  "setup": {
+    "title": "Conectar a Gmail",
+    "description": "Haga clic en Continuar para abrir la página de inicio de sesión de Gmail. Después de iniciar sesión, su cuenta se integrará automáticamente.",
+    "buttons": {
+      "cancel": "Cancelar",
+      "continue": "Continuar"
+    }
+  }
+}
 
 }
