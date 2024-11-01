@@ -31,12 +31,17 @@
 <script>
   import { googleSdkLoaded } from 'vue3-google-login';
   import getEnv from '../../../..//utils/env';
+  import { mapState } from 'pinia';
+  import { auth_store } from '@/stores/modules/auth.store';
   export default {
     name: 'gmailSetup',
     data() {
       return {
         gmailCallback: (response) => console.log(response),
       };
+    },
+    computed: {
+      ...mapState(auth_store, ['project']),
     },
     methods: {
       closePopUp() {
@@ -49,7 +54,7 @@
             .initCodeClient({
               client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
               scope: 'email profile openid',
-              redirect_uri: this.$route,
+              redirect_uri: `https://dash.stg.cloud.weni.ai/projects/${this.project}/integrations/apps/discovery`,
               callback: (response) => {
                 console.log(response);
               },
