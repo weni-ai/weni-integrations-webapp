@@ -10,30 +10,19 @@
     </div>
 
     <div class="app-config-email__settings__content">
-      <unnnic-label
-        label="Conecte seu e-mail e automatize o atendimento ao cliente com mais facilidade."
-      />
+      <unnnic-label :label="`${$t('email.config.description')}`" />
       <div class="app-config-email__settings__content__divider" />
       <div class="app-config-email__settings__content__config">
-        <p class="app-config-email__settings__content__config__title">Configuração de Solução</p>
-        <unnnic-label label="Preencha os campos abaixo para integrar um e-mail" />
+        <p class="app-config-email__settings__content__config__title">
+          {{ $t('email.config.config_solution') }}
+        </p>
+        <unnnic-label :label="`${$t('email.config.config_solution_subtitle')}`" />
       </div>
       <div class="app-config-email__settings__content__inputs">
-        <div class="app-config-email__settings__content__inputs__type">
-          <p>Selecione o tipo de email</p>
-          <unnnic-radio
-            v-for="option in typeOptions"
-            :key="option"
-            :value="option"
-            v-model="selectedType"
-            >{{ option }}</unnnic-radio
-          >
-        </div>
-
         <div class="app-config-email__settings__content__inputs__SMPT">
           <unnnic-form-element
-            label="Servidor SMTP"
-            message="Endereço do servidor SMTP para envio de e-mails."
+            :label="$t('email.config.smpt_server.title')"
+            :message="$t('email.config.smpt_server.description')"
           >
             <unnnic-input
               class="server"
@@ -45,7 +34,10 @@
               :type="errorFor('smtp_host') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
-          <unnnic-form-element label="Porta SMTP" message="Porta de comunicação do servidor SMTP.">
+          <unnnic-form-element
+            :label="$t('email.config.smpt_port.title')"
+            :message="$t('email.config.smpt_port.description')"
+          >
             <unnnic-input
               class="port"
               v-model="smtp_port"
@@ -59,8 +51,8 @@
         </div>
         <div class="app-config-email__settings__content__inputs__IMAP">
           <unnnic-form-element
-            label="Servidor IMAP"
-            message="Endereço do servidor IMAP para envio de e-mails."
+            :label="$t('email.config.imap_server.title')"
+            :message="$t('email.config.imap_server.description')"
           >
             <unnnic-input
               class="server"
@@ -74,8 +66,8 @@
           </unnnic-form-element>
           <unnnic-form-element
             class="port"
-            label="Porta IMAP"
-            message="Porta de comunicação do servidor IMAP."
+            :label="$t('email.config.imap_port.title')"
+            :message="$t('email.config.imap_port.description')"
           >
             <unnnic-input
               class="port"
@@ -89,7 +81,10 @@
           </unnnic-form-element>
         </div>
         <div class="app-config-email__settings__content__inputs__login">
-          <unnnic-form-element label="Username" message="O e-mail utilizado para ser autenticado.">
+          <unnnic-form-element
+            :label="$t('email.config.username')"
+            :message="$t('email.config.username_description')"
+          >
             <unnnic-input
               v-model="username"
               size="md"
@@ -99,7 +94,7 @@
               :type="errorFor('username') ? 'error' : 'normal'"
             />
           </unnnic-form-element>
-          <unnnic-form-element label="Password">
+          <unnnic-form-element :label="$t('email.config.password')">
             <unnnic-input
               v-model="password"
               size="md"
