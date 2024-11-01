@@ -17,25 +17,22 @@
           @click="closePopUp"
         />
 
-        <GoogleLogin prompt auto-login :callback="gmailCallback">
-          <unnnic-button
-            class="gmail-setup__buttons__continue"
-            size="large"
-            :text="$t('gmail.setup.buttons.continue')"
-          />
-        </GoogleLogin>
+        <unnnic-button
+          class="gmail-setup__buttons__continue"
+          size="large"
+          :text="$t('gmail.setup.buttons.continue')"
+          @click="login"
+        />
       </div>
     </template>
   </unnnic-modal>
 </template>
 
 <script>
-  import { GoogleLogin } from 'vue3-google-login';
+  import { googleSdkLoaded } from 'vue3-google-login';
+  import getEnv from '../../../..//utils/env';
   export default {
     name: 'gmailSetup',
-    components: {
-      GoogleLogin,
-    },
     data() {
       return {
         gmailCallback: (response) => console.log(response),
@@ -44,6 +41,21 @@
     methods: {
       closePopUp() {
         this.$emit('closePopUp');
+      },
+      login() {
+        console.log('aloo');
+        googleSdkLoaded((google) => {
+          google.accounts.oauth2
+            .initCodeClient({
+              client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
+              scope: 'email profile openid',
+              redirect_uri: this.$route,
+              callback: (response) => {
+                console.log(response);
+              },
+            })
+            .requestCode();
+        });
       },
     },
   };
