@@ -40,7 +40,7 @@ app.use(router);
 app.use(i18n);
 app.use(vueUse);
 app.use(vue3GoogleLogin, {
-  clientId: '184411609543-jfhjjaskdfhdsakfhjsa.apps.googleusercontent.com',
+  clientId: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
 });
 
 app.mount('#app');

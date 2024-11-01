@@ -80,7 +80,11 @@
     methods: {
       ...mapActions(app_type, ['createApp']),
       async addApp(app) {
-        if (this.hasFBLoginList.includes(app.code) || app.config_design === 'pre-popup') {
+        if (
+          this.hasFBLoginList.includes(app.code) ||
+          app.config_design === 'pre-popup' ||
+          app.code === 'gmail'
+        ) {
           this.$refs.configPopUp.openPopUp(app);
           return;
         }
@@ -102,7 +106,7 @@
           return;
         }
 
-        if (app.config_design === 'popup') {
+        if (app.config_design === 'popup' || app.code === 'gmail') {
           app.config = this.createAppResponse.config;
           this.$refs.configPopUp.openPopUp(app);
         } else {

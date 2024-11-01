@@ -5,7 +5,7 @@
         <div class="app-config-email__header__title__icon-container">
           <img class="app-config-email__header__title__icon-container__icon" :src="app.icon" />
         </div>
-        <div class="app-config-email__header__title__name">{{ app.name }}</div>
+        <div class="app-config-email__header__title__name">{{ app.name }} - {{ app.code }}</div>
       </div>
     </div>
 
