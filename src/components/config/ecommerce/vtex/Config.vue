@@ -317,6 +317,12 @@
         this.selectedSellers = value;
       },
       async handleSave() {
+        if (this.appConfig?.vtex_ads !== undefined) {
+          await this.syncADS({
+            uuid: this.appUuid,
+            payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
+          });
+        }
         const sellers = this.selectedSellers.map((item) => item.value);
         if (sellers.length) {
           const payloadSync = {
@@ -326,10 +332,6 @@
           await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
           this.disableSellers = true;
         }
-        await this.syncADS({
-          uuid: this.appUuid,
-          payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
-        });
 
         if (this.errorSyncSellers) {
           this.callModal({
@@ -339,7 +341,6 @@
           return;
         }
         this.callModal({ text: i18n.global.t('vtex.success.sync_sellers'), type: 'success' });
-        this.disableSellers = true;
       },
       updateVtexADS(value) {
         this.vtexADS = value;
