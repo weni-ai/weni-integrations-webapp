@@ -11,6 +11,7 @@ export JSON_STRING='window.configs = { \
   "VITE_APP_HELPHERO_ID":"'${VITE_APP_HELPHERO_ID}'", \
   "VITE_APP_FLOWS_IFRAME_URL":"'${VITE_APP_FLOWS_IFRAME_URL}'", \
   "VITE_APP_HOTJAR_ID":"'${VITE_APP_HOTJAR_ID}'", \
+  "VITE_APP_GOOGLE_CLOUD_ID":"'${VITE_APP_GOOGLE_CLOUD_ID}'", \
 }'
 sed "s|//CONFIGURATIONS_PLACEHOLDER|${JSON_STRING}|" /usr/share/nginx/html/integrations/index.html.tmpl > /tmp/index.html
 
