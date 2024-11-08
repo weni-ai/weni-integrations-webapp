@@ -1643,7 +1643,10 @@
       }
     }
   },
-  "email": {
+  "email": { 
+    "data": {
+      "summary": "Connect your email and streamline customer service more easily."
+    },
   "config": {
     "title": "Email",
     "description": "Connect your email and automate customer support more easily.",

@@ -1646,6 +1646,9 @@
     }
   },
   "email": {
+    "data": {
+      "summary": "Conecte seu e-mail e automatize o atendimento ao cliente com mais facilidade."
+    },
     "config": {
       "title": "Email",
       "description": "Conecte seu e-mail e automatize o atendimento ao cliente com mais facilidade.",

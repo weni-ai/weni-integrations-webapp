@@ -30,7 +30,9 @@
           :rating="appRatingAverage(app)"
           :iconSrc="appIcon(app)"
           :typeAction="app.generic ? (type === 'add' ? 'edit' : typeAction) : typeAction"
-          :clickable="!app.generic || type !== 'add'"
+          :clickable="
+            (!app.generic && app.code !== 'email' && app.code !== 'gmail') || type !== 'add'
+          "
           @openModal="openAppModal(app)"
         >
           <template #actions>
@@ -280,7 +282,8 @@
         }
       },
       appRatingAverage(app) {
-        return app.rating
+        const email = app.code === 'email' || app.code === 'gmail';
+        return !email && app.rating
           ? app.rating.average
             ? parseFloat(app.rating.average.toFixed(2))
             : 0
