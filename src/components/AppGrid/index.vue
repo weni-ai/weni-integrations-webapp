@@ -275,15 +275,14 @@
           return;
         }
 
-        if (this.type === 'add') {
+        if (this.type === 'add' && app.code !== 'email' && app.code !== 'gmail') {
           this.openAppDetails(app.code);
         } else {
           this.$refs.configModal.openModal({ app, isConfigured: this.type === 'edit' });
         }
       },
       appRatingAverage(app) {
-        const email = app.code === 'email' || app.code === 'gmail';
-        return !email && app.rating
+        return app.rating
           ? app.rating.average
             ? parseFloat(app.rating.average.toFixed(2))
             : 0
