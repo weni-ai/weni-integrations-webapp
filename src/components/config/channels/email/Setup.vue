@@ -57,7 +57,7 @@
               redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
               callback: (response) => {
                 console.log('❤️', response);
-                const decoded = decodeCredential(response.credential);
+                const decoded = decodeCredential(response.code);
                 console.log('🛻', decoded);
               },
             })
