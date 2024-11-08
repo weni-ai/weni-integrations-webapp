@@ -30,7 +30,9 @@
           :rating="appRatingAverage(app)"
           :iconSrc="appIcon(app)"
           :typeAction="app.generic ? (type === 'add' ? 'edit' : typeAction) : typeAction"
-          :clickable="!app.generic || type !== 'add'"
+          :clickable="
+            (!app.generic && app.code !== 'email' && app.code !== 'gmail') || type !== 'add'
+          "
           @openModal="openAppModal(app)"
         >
           <template #actions>
@@ -273,7 +275,7 @@
           return;
         }
 
-        if (this.type === 'add') {
+        if (this.type === 'add' && app.code !== 'email' && app.code !== 'gmail') {
           this.openAppDetails(app.code);
         } else {
           this.$refs.configModal.openModal({ app, isConfigured: this.type === 'edit' });
