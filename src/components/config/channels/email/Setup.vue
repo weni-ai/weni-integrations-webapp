@@ -54,7 +54,7 @@
             .initCodeClient({
               client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
               scope: 'email profile openid',
-              redirect_uri: `https://dash.stg.cloud.weni.ai/projects/${this.project}/integrations/apps/discovery`,
+              redirect_uri: 'https://dash.stg.cloud.weni.ai/projects/callback',
               callback: (response) => {
                 console.log(response);
               },
