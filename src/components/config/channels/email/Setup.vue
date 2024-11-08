@@ -30,16 +30,12 @@
 
 <script>
   import { googleSdkLoaded, decodeCredential } from 'vue3-google-login';
+  import { OAuth2Client } from 'google-auth-library';
   import getEnv from '../../../..//utils/env';
   import { mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   export default {
     name: 'gmailSetup',
-    data() {
-      return {
-        gmailCallback: (response) => console.log(response),
-      };
-    },
     computed: {
       ...mapState(auth_store, ['project']),
     },
@@ -48,7 +44,6 @@
         this.$emit('closePopUp');
       },
       login() {
-        console.log('aloo');
         googleSdkLoaded((google) => {
           google.accounts.oauth2
             .initCodeClient({
@@ -56,13 +51,21 @@
               scope: 'https://mail.google.com',
               redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
               callback: (response) => {
-                console.log('❤️', response);
-                const decoded = decodeCredential(response.code);
-                console.log('🛻', decoded);
+                console.log('❤️', response.code);
+                this.verifyToken(response.code);
               },
             })
             .requestCode();
         });
+      },
+      async verifyToken(token) {
+        const client = new OAuth2Client();
+        client.setCredentials({ access_token: token });
+        const userinfo = await client.request({
+          url: 'https://www.googleapis.com/oauth2/v3/userinfo',
+        });
+        console.log('🚀', userinfo.data);
+        return userinfo.data;
       },
     },
   };
