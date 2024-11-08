@@ -27,6 +27,7 @@
     "core-js": "^3.36.0",
     "esbuild": "^0.20.2",
     "global": "^4.4.0",
+    "google-auth-library": "^9.14.2",
     "helphero": "^3.9.0",
     "libphonenumber-js": "^1.10.56",
     "lodash.debounce": "^4.0.8",
