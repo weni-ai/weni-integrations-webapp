@@ -53,8 +53,8 @@
           google.accounts.oauth2
             .initCodeClient({
               client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
-              scope: 'email profile openid',
-              redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
+              scope: 'https://mail.google.com',
+              redirect_uri: 'https://dash.stg.cloud.weni.ai/',
               callback: (response) => {
                 console.log(response);
               },
