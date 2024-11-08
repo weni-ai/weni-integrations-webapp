@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import { googleSdkLoaded } from 'vue3-google-login';
+  import { googleSdkLoaded, decodeCredential } from 'vue3-google-login';
   import getEnv from '../../../..//utils/env';
   import { mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -54,9 +54,11 @@
             .initCodeClient({
               client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
               scope: 'https://mail.google.com',
-              redirect_uri: 'https://dash.stg.cloud.weni.ai/',
+              redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
               callback: (response) => {
-                console.log(response);
+                console.log('❤️', response);
+                const decoded = decodeCredential(response.credential);
+                console.log('🛻', decoded);
               },
             })
             .requestCode();
