@@ -50,8 +50,9 @@
               scope: 'https://mail.google.com',
               redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
               callback: (response) => {
-                console.log('❤️', response.code);
-                this.verifyToken(response.code);
+                console.log('❤️', response);
+                this.closePopUp();
+                this.$router.push({ path: `/apps/my` });
               },
             })
             .requestCode();
