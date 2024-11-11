@@ -29,8 +29,7 @@
 </template>
 
 <script>
-  import { googleSdkLoaded, decodeCredential } from 'vue3-google-login';
-  import { OAuth2Client } from 'google-auth-library';
+  import { googleSdkLoaded } from 'vue3-google-login';
   import getEnv from '../../../..//utils/env';
   import { mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -57,15 +56,6 @@
             })
             .requestCode();
         });
-      },
-      async verifyToken(token) {
-        const client = new OAuth2Client();
-        client.setCredentials({ access_token: token });
-        const userinfo = await client.request({
-          url: 'https://www.googleapis.com/oauth2/v3/userinfo',
-        });
-        console.log('🚀', userinfo.data);
-        return userinfo.data;
       },
     },
   };
