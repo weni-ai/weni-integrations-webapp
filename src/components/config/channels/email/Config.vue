@@ -26,12 +26,13 @@
           >
             <unnnic-input
               class="server"
-              v-model="smtp_host"
+              :modelValue="smtp_host.value"
+              @update:modelValue="(value) => updateValue('smtp_host', value)"
               size="md"
               nativeType="normal"
               placeholder="smtp.exemplo.com"
-              :message="errorFor('smtp_host') || ''"
-              :type="errorFor('smtp_host') ? 'error' : 'normal'"
+              :message="smtp_host.error || ''"
+              :type="smtp_host.error ? 'error' : 'normal'"
             />
           </unnnic-form-element>
           <unnnic-form-element
@@ -40,12 +41,13 @@
           >
             <unnnic-input
               class="port"
-              v-model="smtp_port"
+              :modelValue="smtp_port.value"
+              @update:modelValue="(value) => updateValue('smtp_port', value)"
               size="md"
               nativeType="normal"
               placeholder="Ex:. 587 ou 465."
-              :message="errorFor('smtp_port') || ''"
-              :type="errorFor('smtp_port') ? 'error' : 'normal'"
+              :message="smtp_port.error || ''"
+              :type="smtp_port.error ? 'error' : 'normal'"
             />
           </unnnic-form-element>
         </div>
@@ -56,12 +58,13 @@
           >
             <unnnic-input
               class="server"
-              v-model="imap_host"
+              :modelValue="imap_host.value"
+              @update:modelValue="(value) => updateValue('imap_host', value)"
               size="md"
               nativeType="normal"
               placeholder="smtp.exemplo.com"
-              :message="errorFor('imap_host') || ''"
-              :type="errorFor('imap_host') ? 'error' : 'normal'"
+              :message="imap_host.error || ''"
+              :type="imap_host.error ? 'error' : 'normal'"
             />
           </unnnic-form-element>
           <unnnic-form-element
@@ -71,12 +74,13 @@
           >
             <unnnic-input
               class="port"
-              v-model="imap_port"
+              :modelValue="imap_port.value"
+              @update:modelValue="(value) => updateValue('imap_port', value)"
               size="md"
               nativeType="normal"
               placeholder="Ex:. 993"
-              :message="errorFor('imap_port') || ''"
-              :type="errorFor('imap_port') ? 'error' : 'normal'"
+              :message="imap_port.error || ''"
+              :type="imap_port.error ? 'error' : 'normal'"
             />
           </unnnic-form-element>
         </div>
@@ -86,28 +90,29 @@
             :message="$t('email.config.username_description')"
           >
             <unnnic-input
-              v-model="username"
+              :modelValue="username.value"
+              @update:modelValue="(value) => updateValue('username', value)"
               size="md"
               nativeType="normal"
               placeholder="seu.email@exemplo.com"
-              :message="errorFor('username') || ''"
-              :type="errorFor('username') ? 'error' : 'normal'"
+              :message="username.error || ''"
+              :type="username.error ? 'error' : 'normal'"
             />
           </unnnic-form-element>
           <unnnic-form-element :label="$t('email.config.password')">
             <unnnic-input
-              v-model="password"
+              :modelValue="password.value"
+              @update:modelValue="(value) => updateValue('password', value)"
               size="md"
               nativeType="normal"
               placeholder="Digite sua senha"
-              :message="errorFor('password') || ''"
-              :type="errorFor('password') ? 'error' : 'normal'"
+              :message="password.error || ''"
+              :type="password.error ? 'error' : 'normal'"
             />
           </unnnic-form-element>
         </div>
       </div>
     </div>
-
     <div class="app-config-email__settings__buttons">
       <unnnic-button
         class="app-config-email__settings__buttons__cancel"
@@ -121,7 +126,7 @@
         class="app-config-email__settings__buttons__save"
         size="large"
         :text="$t('apps.config.validate')"
-        :disabled="this.app.config.token"
+        :disabled="this.app.config.token || disableValidate"
         @click="saveConfig"
       />
     </div>
@@ -145,22 +150,43 @@
     data() {
       return {
         pageName: this.app.config.page_name,
-        typeOptions: ['other', 'gmail'],
-        selectedType: 'other',
-        smtp_host: this.app.config.smtp_host || null,
-        smtp_port: this.app.config.smtp_port || null,
-        imap_host: this.app.config.imap_host || null,
-        imap_port: this.app.config.imap_port || null,
-        username: this.app.config.username || null,
-        password: this.app.config.password || null,
-        enableLogin: false,
+        smtp_host: {
+          value: this.app.config.smtp_host || null,
+          error: null,
+        },
+
+        smtp_port: {
+          value: this.app.config.smtp_port || null,
+          error: null,
+        },
+
+        imap_host: {
+          value: this.app.config.imap_host || null,
+          error: null,
+        },
+
+        imap_port: {
+          value: this.app.config.imap_port || null,
+          error: null,
+        },
+
+        username: {
+          value: this.app.config.username || null,
+          error: null,
+        },
+
+        password: {
+          value: this.app.config.password || null,
+          error: null,
+        },
+        disableValidate: false,
       };
     },
     computed: {
       ...mapState(auth_store, ['project']),
     },
     methods: {
-      ...mapActions(app_type, ['updateAppConfig']),
+      ...mapActions(app_type, ['updateAppConfig', 'errorUpdateAppConfig']),
       selectType(type) {
         this.selectedType = type;
       },
@@ -168,16 +194,19 @@
         const payloadGeneric = {
           project_uuid: this.project,
           config: {
-            username: this.username,
-            password: this.password,
-            smtp_host: this.smtp_host,
-            smtp_port: this.smtp_port,
-            imap_host: this.imap_host,
-            imap_port: this.imap_port,
+            username: this.username.value,
+            password: this.password.value,
+            smtp_host: this.smtp_host.value,
+            smtp_port: this.smtp_port.value,
+            imap_host: this.imap_host.value,
+            imap_port: this.imap_port.value,
           },
           channeltype_code: 'EM',
         };
 
+        for (let key in payloadGeneric.config) {
+          this.errorFor(key);
+        }
         const data = {
           code: this.app.code,
           appUuid: this.app.uuid,
@@ -187,14 +216,33 @@
         if (this.selectedType === 'other') {
           try {
             await this.updateAppConfig(data);
-          } catch (error) {
+            if (this.errorUpdateAppConfig) {
+              throw new Error(this.errorUpdateAppConfig);
+            }
             unnnic.unnnicCallAlert({
               props: {
-                text: 'Errooou',
+                text: this.$t('apps.config.integration_success'),
+                type: 'success',
+              },
+              seconds: 3,
+            });
+          } catch (err) {
+            let errorMessage = this.$t('apps.details.status_error');
+
+            if (err.response?.status === 400) {
+              this.invalidToken = true;
+              errorMessage = this.$t('telegram.config.errors.invalidToken');
+            }
+
+            unnnic.unnnicCallAlert({
+              props: {
+                text: errorMessage,
                 type: 'error',
               },
               seconds: 3,
             });
+          } finally {
+            this.emit('updateGrid');
           }
         }
       },
@@ -202,16 +250,29 @@
         this.$emit('closeModal');
       },
       errorFor(key) {
-        const value = this.$data[key];
-        if (value === null) {
+        const item = this.$data[key];
+        if (item.value === null && this.disableValidate) {
           return;
         }
-        if (!(value !== null && value.trim())) {
-          return this.$t('errors.empty_input');
+        if (!(item.value !== null && item.value.trim())) {
+          this.$data[key].error = this.$t('errors.empty_input');
+          return;
         }
-        if (value.length > 20) {
-          return 'By default, the maximum is 20 characters.';
+        if (item.value.length > 20) {
+          this.$data[key].error = 'By default, the maximum is 20 characters.';
+          return;
         }
+        this.$data[key].error = null;
+        if (!this.app.config.token) {
+          this.disableValidate = false;
+        }
+      },
+      updateValue(key, value) {
+        this.$data[key].value = value;
+        if (value && !this.app.config.token) {
+          this.disableValidate = false;
+        }
+        this.errorFor(key);
       },
     },
   };
