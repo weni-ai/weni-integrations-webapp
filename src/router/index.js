@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
+import { email_store } from '@/stores/modules/appType/channels/email.store';
 
 const router = createRouter({
   mode: 'history',
@@ -119,6 +120,21 @@ const router = createRouter({
           next(to.query.next);
         } else {
           next('/');
+        }
+      },
+    },
+    {
+      path: '/callback',
+      name: 'Google Callback',
+      component: null,
+      beforeEnter: (to, from, next) => {
+        const { code } = to.params;
+        console.log('entrou na rota', code);
+        email_store().login({ code });
+        if (to.query.next) {
+          next(to.query.next);
+        } else {
+          next('/apps/my');
         }
       },
     },
