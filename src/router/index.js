@@ -128,13 +128,14 @@ const router = createRouter({
       name: 'Google Callback',
       component: null,
       beforeEnter: (to, from, next) => {
-        const { code } = to.params;
-        console.log('entrou na rota', JSON.stringify(to), JSON.stringify(from));
+        const { code } = to.query;
+        console.log('entrou na rota', JSON.stringify(to));
         email_store().login({ code });
         if (to.query.next) {
           next(to.query.next);
         } else {
-          next('/apps/my');
+          // next('/apps/my');
+          window.close();
         }
       },
     },
