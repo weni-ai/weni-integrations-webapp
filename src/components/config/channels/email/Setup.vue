@@ -35,11 +35,19 @@
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
+  import setLocal from '@/utils/storage';
   export default {
     name: 'gmailSetup',
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
+    },
+    mounted() {
+      setLocal('code', 'teste');
+      window.addEventListener('localStorage', this.onStorageChange);
+    },
+    beforeUnmount() {
+      window.removeEventListener('localStorage', this.onStorageChange);
     },
     methods: {
       ...mapActions(email_store, ['getTokens']),
@@ -66,17 +74,27 @@
         //     })
         //     .requestCode();
         // });
+        setLocal('code', 'login');
         const clientId = '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com';
         const redirectUri = 'https://integrations.stg.cloud.weni.ai/callback/';
         const scope = 'https://mail.google.com';
         const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
-        window.open(authUrl, '_blank');
+        const link = document.createElement('a');
+        link.href = authUrl;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer'; // Segurança extra
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       },
-    },
-    watch: {
-      code() {
-        console.log('chegou aqui', this.code);
+      callSucess() {
+        console.log('logado');
+      },
+      onStorageChange(event) {
+        if (event.key === 'code' && event.newValue) {
+          this.callSucess();
+        }
       },
     },
   };

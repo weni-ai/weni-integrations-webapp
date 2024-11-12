@@ -11,6 +11,7 @@ export const email_store = defineStore('email', {
       errorGetTokens: null,
     };
   },
+  persist: true,
   actions: {
     async getTokens({ code }) {
       this.loadingTokens = true;
