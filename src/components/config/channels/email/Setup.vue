@@ -39,7 +39,7 @@
     name: 'gmailSetup',
     computed: {
       ...mapState(auth_store, ['project']),
-      ...mapState(email_store, ['loadingTokens']),
+      ...mapState(email_store, ['loadingTokens', 'tokens']),
     },
     methods: {
       ...mapActions(email_store, ['getTokens']),
@@ -55,9 +55,10 @@
               redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
               callback: (response) => {
                 console.log('❤️', response);
-                this.getTokens(response.code);
-                this.closePopUp();
-                this.$router.push({ path: `/apps/my` });
+                this.getTokens({ code: response.code });
+                console.log('tokens:', this.tokens);
+                // this.closePopUp();
+                // this.$router.push({ path: `/apps/my` });
               },
             })
             .requestCode();
