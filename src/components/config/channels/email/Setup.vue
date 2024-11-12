@@ -58,7 +58,7 @@
         googleSdkLoaded((google) => {
           google.accounts.oauth2
             .initCodeClient({
-              client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
+              client_id: '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com',
               scope: 'https://mail.google.com',
               redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback/',
               auth_url: `https://accounts.google.com/o/oauth2/auth?`,
