@@ -71,7 +71,7 @@
         const scope = 'https://mail.google.com';
         const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
-        window.location.href = authUrl;
+        window.open(authUrl, '_blank');
       },
     },
   };
