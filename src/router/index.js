@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
-import { email_store } from '@/stores/modules/appType/channels/email.store';
 import setLocal from '@/utils/storage';
 
 const router = createRouter({
@@ -131,7 +130,6 @@ const router = createRouter({
       beforeEnter: (to, from, next) => {
         const { code } = to.query;
         setLocal('code', code);
-        email_store().login({ code });
         if (to.query.next) {
           next(to.query.next);
         } else {

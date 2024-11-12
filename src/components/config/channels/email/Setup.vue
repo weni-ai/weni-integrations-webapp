@@ -83,13 +83,14 @@
         const link = document.createElement('a');
         link.href = authUrl;
         link.target = '_blank';
-        link.rel = 'noopener noreferrer'; // Segurança extra
+        link.rel = 'noopener noreferrer';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       },
       callSucess() {
         console.log('logado');
+        this.getTokens({ code: this.code });
       },
       onStorageChange(event) {
         if (event.key === 'code' && event.newValue) {
