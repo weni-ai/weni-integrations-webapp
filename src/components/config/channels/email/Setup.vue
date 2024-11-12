@@ -52,8 +52,8 @@
             .initCodeClient({
               client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
               scope: 'https://mail.google.com',
-              redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
-              authUrl: `https://accounts.google.com/o/oauth2/auth?`,
+              redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback/',
+              auth_url: `https://accounts.google.com/o/oauth2/auth?`,
               response_type: 'code',
               prompt: 'consent',
               callback: (response) => {
