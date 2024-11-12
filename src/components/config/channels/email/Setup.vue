@@ -39,7 +39,7 @@
     name: 'gmailSetup',
     computed: {
       ...mapState(auth_store, ['project']),
-      ...mapState(email_store, ['loadingTokens', 'tokens']),
+      ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
     },
     methods: {
       ...mapActions(email_store, ['getTokens']),
@@ -72,6 +72,11 @@
         const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
         window.open(authUrl, '_blank');
+      },
+    },
+    watch: {
+      code() {
+        console.log('chegou aqui', this.code);
       },
     },
   };
