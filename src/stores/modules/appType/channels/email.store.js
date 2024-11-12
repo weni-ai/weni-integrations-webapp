@@ -5,6 +5,7 @@ import emailApi from '@/api/appType/email';
 export const email_store = defineStore('email', {
   state() {
     return {
+      code: null,
       tokens: null,
       loadingTokens: false,
       errorGetTokens: null,
@@ -21,6 +22,11 @@ export const email_store = defineStore('email', {
         this.errorGetTokens = err.response?.data.error || err;
         this.loadingTokens = false;
       }
+    },
+    async login({ code }) {
+      if (!code) return;
+      console.log('set code:', code);
+      this.code = code;
     },
   },
 });
