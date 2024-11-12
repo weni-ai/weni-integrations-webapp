@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  import { googleSdkLoaded } from 'vue3-google-login';
-  import getEnv from '../../../..//utils/env';
+  // import { googleSdkLoaded } from 'vue3-google-login';
+  // import getEnv from '../../../..//utils/env';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
@@ -47,31 +47,31 @@
         this.$emit('closePopUp');
       },
       login() {
-        googleSdkLoaded((google) => {
-          google.accounts.oauth2
-            .initCodeClient({
-              client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
-              scope: 'https://mail.google.com',
-              redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback/',
-              auth_url: `https://accounts.google.com/o/oauth2/auth?`,
-              response_type: 'code',
-              prompt: 'consent',
-              callback: (response) => {
-                console.log('❤️', response);
-                this.getTokens({ code: response.code });
-                console.log('tokens:', this.tokens);
-                // this.closePopUp();
-                // this.$router.push({ path: `/apps/my` });
-              },
-            })
-            .requestCode();
-        });
-        // const clientId = getEnv('VITE_APP_GOOGLE_CLOUD_ID');
-        // const redirectUri = encodeURIComponent('https://integrations.stg.cloud.weni.ai/callback');
-        // const scope = encodeURIComponent('https://mail.google.com');
-        // const oauthUrl = `https://accounts.google.com/o/oauth2/auth/oauthchooseaccount?access_type=offline&client_id=${clientId}&prompt=consent&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&service=lso&o2v=1&ddm=1&flowName=GeneralOAuthFlow`;
+        // googleSdkLoaded((google) => {
+        //   google.accounts.oauth2
+        //     .initCodeClient({
+        //       client_id: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
+        //       scope: 'https://mail.google.com',
+        //       redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback/',
+        //       auth_url: `https://accounts.google.com/o/oauth2/auth?`,
+        //       response_type: 'code',
+        //       prompt: 'consent',
+        //       callback: (response) => {
+        //         console.log('❤️', response);
+        //         this.getTokens({ code: response.code });
+        //         console.log('tokens:', this.tokens);
+        //         // this.closePopUp();
+        //         // this.$router.push({ path: `/apps/my` });
+        //       },
+        //     })
+        //     .requestCode();
+        // });
+        const clientId = '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com';
+        const redirectUri = 'https://integrations.stg.cloud.weni.ai/callback/';
+        const scope = 'https://mail.google.com';
+        const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
-        // window.location.href = oauthUrl;
+        window.location.href = authUrl;
       },
     },
   };
