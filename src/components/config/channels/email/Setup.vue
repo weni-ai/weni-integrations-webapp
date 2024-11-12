@@ -22,6 +22,7 @@
           size="large"
           :text="$t('gmail.setup.buttons.continue')"
           @click="login"
+          :loading="loadingTokens"
         />
       </div>
     </template>
@@ -31,14 +32,17 @@
 <script>
   import { googleSdkLoaded } from 'vue3-google-login';
   import getEnv from '../../../..//utils/env';
-  import { mapState } from 'pinia';
+  import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
+  import { email_store } from '@/stores/modules/appType/channels/email.store';
   export default {
     name: 'gmailSetup',
     computed: {
       ...mapState(auth_store, ['project']),
+      ...mapState(email_store, ['loadingTokens']),
     },
     methods: {
+      ...mapActions(email_store, ['getTokens']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -51,6 +55,7 @@
               redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback',
               callback: (response) => {
                 console.log('❤️', response);
+                this.getTokens(response.code);
                 this.closePopUp();
                 this.$router.push({ path: `/apps/my` });
               },
