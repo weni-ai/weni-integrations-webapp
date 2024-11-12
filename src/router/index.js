@@ -129,7 +129,7 @@ const router = createRouter({
       component: null,
       beforeEnter: (to, from, next) => {
         const { code } = to.params;
-        console.log('entrou na rota', JSON.stringify(to.params));
+        console.log('entrou na rota', JSON.stringify(to), JSON.stringify(from));
         email_store().login({ code });
         if (to.query.next) {
           next(to.query.next);
