@@ -34,6 +34,7 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
   import setLocal from '@/utils/storage';
+  import { getEnv } from '@babel/core';
   export default {
     name: 'gmailSetup',
     computed: {
@@ -45,9 +46,15 @@
       closePopUp() {
         this.$emit('closePopUp');
       },
+      mounted() {
+        window.addEventListener('storage', (event) => this.addTokens(event));
+      },
+      onUnmounted() {
+        window.removeEventListener('storage', (event) => this.addTokens(event));
+      },
       login() {
         setLocal('code', 'login');
-        const clientId = '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com';
+        const clientId = getEnv('VITE_APP_GOOGLE_CLOUD_ID');
         const redirectUri = 'https://integrations.stg.cloud.weni.ai/callback/';
         const scope = 'https://mail.google.com';
         const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
@@ -58,27 +65,13 @@
           alert('Por favor, permita pop-ups para este site.');
           return;
         }
-        window.addEventListener(
-          'message',
-          (event) => {
-            console.log('aquii', event);
-            if (event.origin !== window.location.origin) return;
-
-            const { code } = event.data;
-
-            if (code) {
-              this.getTokens({ code });
-              console.log('Código de autorização recebido:', code);
-              this.callSucess();
-              popup.close();
-            }
-          },
-          { once: true },
-        );
       },
       callSucess() {
         console.log('logado');
         this.getTokens({ code: this.code });
+      },
+      addTokens(event) {
+        console.log('storage atualizada', event);
       },
     },
   };
