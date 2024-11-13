@@ -39,16 +39,13 @@
     name: 'gmailSetup',
     data() {
       return {
-        code: localStorage.getItem('nomeDaChaveQueEuQuero'),
         intervalId: null,
       };
     },
     mounted() {
-      console.log('add o event listener');
       window.addEventListener('storage', this.addTokens);
     },
     beforeUnmount() {
-      console.log('removend o event listener...');
       window.removeEventListener('storage', this.addTokens);
     },
     computed: {
@@ -75,9 +72,12 @@
         }
       },
       addTokens(event) {
-        console.log('storage atualizada', event.newValue);
-        this.setCode({ code: event.newValue });
-        this.getTokens({ code: event.newValue });
+        console.log('storage atualizada', event);
+        const { key, newValue } = event;
+        if (key === 'code') {
+          this.setCode({ code: newValue });
+          this.getTokens({ code: newValue });
+        }
       },
     },
   };
