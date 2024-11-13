@@ -47,17 +47,17 @@
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
     },
+    mounted() {
+      console.log('setInterval foi configurado.');
+      this.intervalId = setInterval(this.checkStorageChange(), 1000);
+    },
+    beforeUnmount() {
+      clearInterval(this.intervalId);
+    },
     methods: {
       ...mapActions(email_store, ['getTokens']),
       closePopUp() {
         this.$emit('closePopUp');
-      },
-      mounted() {
-        console.log('setInterval foi configurado.');
-        this.intervalId = setInterval(this.checkStorageChange(), 1000);
-      },
-      beforeUnmount() {
-        clearInterval(this.intervalId);
       },
       login() {
         setLocal('code', '');
