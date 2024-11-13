@@ -37,15 +37,15 @@
   import getEnv from '@/utils/env';
   export default {
     name: 'gmailSetup',
+    data() {
+      return {
+        code: localStorage.getItem('nomeDaChaveQueEuQuero'),
+        intervalId: null,
+      };
+    },
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
-      getCode() {
-        if (window.localStorage) {
-          return window.localStorage.code;
-        }
-        return '';
-      },
     },
     methods: {
       ...mapActions(email_store, ['getTokens']),
@@ -53,10 +53,10 @@
         this.$emit('closePopUp');
       },
       mounted() {
-        window.addEventListener('storage', (event) => this.addTokens(event));
+        this.intervalId = setInterval(this.checkStorageChange, 1000);
       },
-      onUnmounted() {
-        window.removeEventListener('storage', (event) => this.addTokens(event));
+      beforeUnmount() {
+        clearInterval(this.intervalId);
       },
       login() {
         setLocal('code', 'login');
@@ -79,10 +79,13 @@
       addTokens(event) {
         console.log('storage atualizada', event);
       },
-    },
-    watch: {
-      getCode(newVal, oldVal) {
-        console.log('trocooou', oldVal, '-', newVal);
+      checkStorageChange() {
+        const valorAtual = localStorage.getItem('code');
+        console.log('checando...');
+        if (valorAtual !== this.code) {
+          this.code === valorAtual;
+          this.addTokens(valorAtual);
+        }
       },
     },
   };
