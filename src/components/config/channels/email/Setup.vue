@@ -34,7 +34,7 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
   import setLocal from '@/utils/storage';
-  import { getEnv } from '@babel/core';
+  import getEnv from '@/utils/env';
   export default {
     name: 'gmailSetup',
     computed: {
