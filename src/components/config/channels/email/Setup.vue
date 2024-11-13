@@ -40,6 +40,12 @@
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
+      getCode() {
+        if (window.localStorage) {
+          return window.localStorage.code;
+        }
+        return '';
+      },
     },
     methods: {
       ...mapActions(email_store, ['getTokens']),
@@ -72,6 +78,11 @@
       },
       addTokens(event) {
         console.log('storage atualizada', event);
+      },
+    },
+    watch: {
+      getCode(newVal, oldVal) {
+        console.log('trocooou', oldVal, '-', newVal);
       },
     },
   };
