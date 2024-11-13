@@ -60,7 +60,7 @@
       },
     },
     methods: {
-      ...mapActions(email_store, ['getTokens']),
+      ...mapActions(email_store, ['getTokens', 'setCode']),
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -78,21 +78,10 @@
           return;
         }
       },
-      callSucess() {
-        console.log('logado');
-        this.getTokens({ code: this.code });
-      },
       addTokens(event) {
-        console.log('storage atualizada', event);
+        console.log('storage atualizada', event.newValue);
+        this.setCode({ code: event.newValue });
         this.getTokens({ code: this.code });
-      },
-      checkStorageChange() {
-        const valorAtual = localStorage.getItem('code');
-        console.log('checando...');
-        if (valorAtual !== this.code) {
-          this.code === valorAtual;
-          this.addTokens(valorAtual);
-        }
       },
     },
   };

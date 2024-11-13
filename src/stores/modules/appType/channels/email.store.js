@@ -24,7 +24,7 @@ export const email_store = defineStore('email', {
         this.loadingTokens = false;
       }
     },
-    async login({ code }) {
+    async setCode({ code }) {
       if (!code) return;
       console.log('set code:', code);
       this.code = code;
