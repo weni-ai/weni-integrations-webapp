@@ -30,8 +30,6 @@
 </template>
 
 <script>
-  import { googleSdkLoaded } from 'vue3-google-login';
-  import getEnv from '../../../..//utils/env';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
@@ -42,58 +40,45 @@
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
     },
-    mounted() {
-      setLocal('code', 'teste');
-      window.addEventListener('localStorage', this.onStorageChange);
-    },
-    beforeUnmount() {
-      window.removeEventListener('localStorage', this.onStorageChange);
-    },
     methods: {
       ...mapActions(email_store, ['getTokens']),
       closePopUp() {
         this.$emit('closePopUp');
       },
       login() {
-        googleSdkLoaded((google) => {
-          google.accounts.oauth2
-            .initCodeClient({
-              client_id: '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com',
-              scope: 'https://mail.google.com',
-              redirect_uri: 'https://integrations.stg.cloud.weni.ai/callback/',
-              prompt: 'consent',
-              callback: (response) => {
-                console.log('❤️', response);
-                this.getTokens({ code: response.code });
-                console.log('tokens:', this.tokens);
-                this.closePopUp();
-                this.$router.push({ path: `/apps/my` });
-              },
-            })
-            .requestCode();
-        });
-        // setLocal('code', 'login');
-        // const clientId = '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com';
-        // const redirectUri = 'https://integrations.stg.cloud.weni.ai/callback/';
-        // const scope = 'https://mail.google.com';
-        // const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
+        setLocal('code', 'login');
+        const clientId = '744930724959-va8jvj4int13gas44abp0p8b3qkkuu9p.apps.googleusercontent.com';
+        const redirectUri = 'https://integrations.stg.cloud.weni.ai/callback/';
+        const scope = 'https://mail.google.com';
+        const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
-        // const link = document.createElement('a');
-        // link.href = authUrl;
-        // link.target = '_blank';
-        // link.rel = 'noopener noreferrer';
-        // document.body.appendChild(link);
-        // link.click();
-        // document.body.removeChild(link);
+        const popup = window.open(authUrl, 'GoogleAuthPopup', 'width=500,height=600');
+
+        if (!popup || popup.closed || typeof popup.closed == 'undefined') {
+          alert('Por favor, permita pop-ups para este site.');
+          return;
+        }
+        window.addEventListener(
+          'message',
+          (event) => {
+            console.log('aquii', event);
+            if (event.origin !== window.location.origin) return;
+
+            const { code } = event.data;
+
+            if (code) {
+              this.getTokens({ code });
+              console.log('Código de autorização recebido:', code);
+              this.callSucess();
+              popup.close();
+            }
+          },
+          { once: true },
+        );
       },
       callSucess() {
         console.log('logado');
         this.getTokens({ code: this.code });
-      },
-      onStorageChange(event) {
-        if (event.key === 'code' && event.newValue) {
-          this.callSucess();
-        }
       },
     },
   };
