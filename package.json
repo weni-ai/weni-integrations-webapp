@@ -1,6 +1,6 @@
 {
   "name": "weni-integrations",
-  "version": "2.3.0-alpha.45-staging",
+  "version": "2.3.0-alpha.46-staging",
   "private": true,
   "type": "module",
   "scripts": {
