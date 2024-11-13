@@ -18,6 +18,7 @@ export const email_store = defineStore('email', {
       try {
         const data = await emailApi.getTokens(code);
         this.tokens = data;
+        this.loadingTokens = false;
       } catch (err) {
         captureSentryException(err);
         this.errorGetTokens = err.response?.data.error || err;
