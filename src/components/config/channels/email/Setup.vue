@@ -53,13 +53,14 @@
         this.$emit('closePopUp');
       },
       mounted() {
-        this.intervalId = setInterval(this.checkStorageChange, 1000);
+        console.log('setInterval foi configurado.');
+        this.intervalId = setInterval(this.checkStorageChange(), 1000);
       },
       beforeUnmount() {
         clearInterval(this.intervalId);
       },
       login() {
-        setLocal('code', 'login');
+        setLocal('code', '');
         const clientId = getEnv('VITE_APP_GOOGLE_CLOUD_ID');
         const redirectUri = 'https://integrations.stg.cloud.weni.ai/callback/';
         const scope = 'https://mail.google.com';
