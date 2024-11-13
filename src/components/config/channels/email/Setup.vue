@@ -4,6 +4,7 @@
     <template #message>
       <div>
         <span v-html="$t(`gmail.setup.description`)"></span>
+        {{ teste }}
       </div>
     </template>
 
@@ -43,16 +44,20 @@
         intervalId: null,
       };
     },
+    mounted() {
+      console.log('add o event listener');
+      window.addEventListener('storage', this.addTokens);
+    },
+    beforeUnmount() {
+      console.log('removend o event listener...');
+      window.removeEventListener('storage', this.addTokens);
+    },
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
-    },
-    mounted() {
-      console.log('setInterval foi configurado.');
-      this.intervalId = setInterval(this.checkStorageChange(), 1000);
-    },
-    beforeUnmount() {
-      clearInterval(this.intervalId);
+      teste() {
+        return localStorage.getItem('code');
+      },
     },
     methods: {
       ...mapActions(email_store, ['getTokens']),
@@ -79,6 +84,7 @@
       },
       addTokens(event) {
         console.log('storage atualizada', event);
+        this.getTokens({ code: this.code });
       },
       checkStorageChange() {
         const valorAtual = localStorage.getItem('code');
