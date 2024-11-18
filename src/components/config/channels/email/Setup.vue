@@ -72,7 +72,6 @@
         }
       },
       addTokens(event) {
-        console.log('storage atualizada', event);
         const { key, newValue } = event;
         if (key === 'code') {
           this.setCode({ code: newValue });

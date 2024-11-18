@@ -27,7 +27,6 @@ export const email_store = defineStore('email', {
     },
     async setCode({ code }) {
       if (!code) return;
-      console.log('set code:', code);
       this.code = code;
     },
   },
