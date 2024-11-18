@@ -11,7 +11,6 @@ import './utils/plugins/Hotjar';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
 import router from './router';
-import vue3GoogleLogin from 'vue3-google-login';
 
 const app = createApp(App);
 app.config.productionTip = false;
@@ -39,8 +38,5 @@ app.use(pinia);
 app.use(router);
 app.use(i18n);
 app.use(vueUse);
-app.use(vue3GoogleLogin, {
-  clientId: getEnv('VITE_APP_GOOGLE_CLOUD_ID'),
-});
 
 app.mount('#app');

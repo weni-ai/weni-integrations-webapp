@@ -9,15 +9,21 @@ export const email_store = defineStore('email', {
       tokens: null,
       loadingTokens: false,
       errorGetTokens: null,
+      loggedIn: false,
     };
   },
   persist: true,
   actions: {
+    setLogin(value) {
+      this.loggedIn = value;
+    },
     async getTokens({ code }) {
       this.loadingTokens = true;
       try {
         const data = await emailApi.getTokens(code);
         this.tokens = data;
+        this.loadingTokens = false;
+        this.loggedIn = true;
       } catch (err) {
         captureSentryException(err);
         this.errorGetTokens = err.response?.data.error || err;
@@ -26,7 +32,6 @@ export const email_store = defineStore('email', {
     },
     async setCode({ code }) {
       if (!code) return;
-      console.log('set code:', code);
       this.code = code;
     },
   },
