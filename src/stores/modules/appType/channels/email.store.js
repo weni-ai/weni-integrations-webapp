@@ -16,6 +16,7 @@ export const email_store = defineStore('email', {
   actions: {
     setLogin(value) {
       this.loggedIn = value;
+      this.loadingTokens = false;
     },
     async getTokens({ code }) {
       this.loadingTokens = true;
