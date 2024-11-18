@@ -98,8 +98,8 @@
         if (this.loggedIn) {
           const payload = {
             tokens: this.tokens,
-            username: this.username,
-            password: this.password,
+            username: this.username.value,
+            password: this.password.value,
           };
           console.log('enviando pro back:', payload);
           return;
@@ -141,9 +141,6 @@
           return;
         }
         this.$data[key].error = null;
-        if (!this.app.config.token) {
-          this.disableValidate = false;
-        }
       },
       updateValue(key, value) {
         this.$data[key].value = value;
