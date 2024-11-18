@@ -5,6 +5,33 @@
       <div>
         <span v-html="$t(`gmail.setup.description`)"></span>
       </div>
+      <div v-if="loggedIn">
+        <unnnic-form-element
+          :label="$t('email.config.username')"
+          :message="$t('email.config.username_description')"
+        >
+          <unnnic-input
+            :modelValue="username.value"
+            @update:modelValue="(value) => updateValue('username', value)"
+            size="md"
+            nativeType="normal"
+            placeholder="seu.email@exemplo.com"
+            :message="username.error || ''"
+            :type="username.error ? 'error' : 'normal'"
+          />
+        </unnnic-form-element>
+        <unnnic-form-element :label="$t('email.config.password')">
+          <unnnic-input
+            :modelValue="password.value"
+            @update:modelValue="(value) => updateValue('password', value)"
+            size="md"
+            nativeType="normal"
+            placeholder="Digite sua senha"
+            :message="password.error || ''"
+            :type="password.error ? 'error' : 'normal'"
+          />
+        </unnnic-form-element>
+      </div>
     </template>
 
     <template #options>
@@ -21,7 +48,7 @@
           class="gmail-setup__buttons__continue"
           size="large"
           :text="$t('gmail.setup.buttons.continue')"
-          @click="login"
+          @click="saveConfig"
           :loading="loadingTokens"
         />
       </div>
@@ -40,22 +67,44 @@
     data() {
       return {
         intervalId: null,
+        username: {
+          value: null,
+          error: null,
+        },
+
+        password: {
+          value: null,
+          error: null,
+        },
       };
     },
     mounted() {
       window.addEventListener('storage', this.addTokens);
+      this.setLogin(false);
     },
     beforeUnmount() {
       window.removeEventListener('storage', this.addTokens);
     },
     computed: {
       ...mapState(auth_store, ['project']),
-      ...mapState(email_store, ['loadingTokens', 'tokens', 'code']),
+      ...mapState(email_store, ['loadingTokens', 'tokens', 'code', 'loggedIn']),
     },
     methods: {
-      ...mapActions(email_store, ['getTokens', 'setCode']),
+      ...mapActions(email_store, ['getTokens', 'setCode', 'setLogin']),
       closePopUp() {
         this.$emit('closePopUp');
+      },
+      saveConfig() {
+        if (this.loggedIn) {
+          const payload = {
+            tokens: this.tokens,
+            username: this.username,
+            password: this.password,
+          };
+          console.log('enviando pro back:', payload);
+          return;
+        }
+        this.login();
       },
       login() {
         setLocal('code', '');
@@ -77,6 +126,31 @@
           this.setCode({ code: newValue });
           this.getTokens({ code: newValue });
         }
+      },
+      errorFor(key) {
+        const item = this.$data[key];
+        if (item.value === null && this.disableValidate) {
+          return;
+        }
+        if (!(item.value !== null && item.value.trim())) {
+          this.$data[key].error = this.$t('errors.empty_input');
+          return;
+        }
+        if (item.value.length > 20) {
+          this.$data[key].error = 'By default, the maximum is 20 characters.';
+          return;
+        }
+        this.$data[key].error = null;
+        if (!this.app.config.token) {
+          this.disableValidate = false;
+        }
+      },
+      updateValue(key, value) {
+        this.$data[key].value = value;
+        if (value && !this.app.config.token) {
+          this.disableValidate = false;
+        }
+        this.errorFor(key);
       },
     },
   };
