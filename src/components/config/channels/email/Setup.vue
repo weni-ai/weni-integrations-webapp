@@ -5,33 +5,6 @@
       <div>
         <span v-html="$t(`gmail.setup.description`)"></span>
       </div>
-      <div v-if="loggedIn">
-        <unnnic-form-element
-          :label="$t('email.config.username')"
-          :message="$t('email.config.username_description')"
-        >
-          <unnnic-input
-            :modelValue="username.value"
-            @update:modelValue="(value) => updateValue('username', value)"
-            size="md"
-            nativeType="normal"
-            placeholder="seu.email@exemplo.com"
-            :message="username.error || ''"
-            :type="username.error ? 'error' : 'normal'"
-          />
-        </unnnic-form-element>
-        <unnnic-form-element :label="$t('email.config.password')">
-          <unnnic-input
-            :modelValue="password.value"
-            @update:modelValue="(value) => updateValue('password', value)"
-            size="md"
-            nativeType="normal"
-            placeholder="Digite sua senha"
-            :message="password.error || ''"
-            :type="password.error ? 'error' : 'normal'"
-          />
-        </unnnic-form-element>
-      </div>
     </template>
 
     <template #options>
@@ -88,6 +61,14 @@
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code', 'loggedIn']),
+    },
+    watch: {
+      loggedIn() {
+        if (this.loggedIn) {
+          this.closePopUp();
+          this.$emit('toggleIntegratedAppModal');
+        }
+      },
     },
     methods: {
       ...mapActions(email_store, ['getTokens', 'setCode', 'setLogin']),
