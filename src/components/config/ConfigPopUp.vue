@@ -6,11 +6,15 @@
       :app="currentApp"
       :customData="currentCustomData"
       @closePopUp="closePopUp"
+      @toggleIntegratedAppModal="toggleIntegratedAppModal"
     />
   </div>
+
+  <add-modal ref="addModal" />
 </template>
 
 <script>
+  import addModal from '../AddModal/index.vue';
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
   import wppCloudSetup from './channels/whatsapp/Setup.vue';
   import facebookSetup from './channels/facebook/Setup.vue';
@@ -20,6 +24,9 @@
 
   export default {
     name: 'Config-PopUp',
+    components: {
+      addModal,
+    },
     data() {
       return {
         show: false,
@@ -38,6 +45,9 @@
       };
     },
     methods: {
+      toggleIntegratedAppModal() {
+        this.$refs.addModal.toggleModal();
+      },
       closePopUp() {
         this.show = false;
       },
