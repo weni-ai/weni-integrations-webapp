@@ -25,6 +25,11 @@ export const email_store = defineStore('email', {
         this.tokens = data;
         this.loadingTokens = false;
         this.loggedIn = true;
+
+        await emailApi.integrateGmail({
+          accessToken: data.access_token,
+          refreshToken: data.refresh_token,
+        });
       } catch (err) {
         captureSentryException(err);
         this.errorGetTokens = err.response?.data.error || err;
