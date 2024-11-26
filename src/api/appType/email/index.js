@@ -15,7 +15,7 @@ export default {
   async integrateGmail({ accessToken, refreshToken }) {
     return await request.$http.post(`${resource}/gmail/apps/`, {
       project_uuid: auth_store().project,
-      token: accessToken,
+      access_token: accessToken,
       refresh_token: refreshToken,
     });
   },
