@@ -1642,5 +1642,46 @@
         }
       }
     }
+  },
+  "email": { 
+    "data": {
+      "summary": "Connect your email and streamline customer service more easily."
+    },
+  "config": {
+    "title": "Email",
+    "description": "Connect your email and automate customer support more easily.",
+    "config_solution": "Solution Configuration",
+    "config_solution_subtitle": "Fill in the fields below to integrate an email",
+    "select": "Select the email type",
+    "smpt_server": {
+      "title": "SMTP Server",
+      "description": "SMTP server address for sending emails."
+    },
+    "smpt_port": {
+      "title": "SMTP Port",
+      "description": "SMTP server communication port."
+    },
+    "imap_server": {
+      "title": "IMAP Server",
+      "description": "IMAP server address for sending emails."
+    },
+    "imap_port": {
+      "title": "IMAP Port",
+      "description": "IMAP server communication port."
+    },
+    "username": "Username",
+    "username_description": "The email used for authentication.",
+    "password": "Password"
   }
+},
+"gmail": {
+  "setup": {
+    "title": "Connect to Gmail",
+    "description": "Click Continue to open the Gmail login page. After logging in, your account will be automatically integrated.",
+    "buttons": {
+      "cancel": "Cancel",
+      "continue": "Continue"
+    }
+  }
+}
 }

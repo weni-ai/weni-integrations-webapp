@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
+import setLocal from '@/utils/storage';
 
 const router = createRouter({
   mode: 'history',
@@ -119,6 +120,20 @@ const router = createRouter({
           next(to.query.next);
         } else {
           next('/');
+        }
+      },
+    },
+    {
+      path: '/callback',
+      name: 'Google Callback',
+      component: null,
+      beforeEnter: (to, from, next) => {
+        const { code } = to.query;
+        setLocal('code', code);
+        if (to.query.next) {
+          next(to.query.next);
+        } else {
+          window.close();
         }
       },
     },
