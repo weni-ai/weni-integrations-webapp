@@ -6,19 +6,27 @@
       :app="currentApp"
       :customData="currentCustomData"
       @closePopUp="closePopUp"
+      @toggleIntegratedAppModal="toggleIntegratedAppModal"
     />
   </div>
+
+  <add-modal ref="addModal" />
 </template>
 
 <script>
+  import addModal from '../AddModal/index.vue';
   import wppDemoConfig from './channels/wpp_demo/Config.vue';
   import wppCloudSetup from './channels/whatsapp/Setup.vue';
   import facebookSetup from './channels/facebook/Setup.vue';
   import chatGptSetup from './external/chatgpt/Setup.vue';
   import vtexSetup from './ecommerce/vtex/Setup.vue';
+  import gmailSetup from './channels/email/Setup.vue';
 
   export default {
     name: 'Config-PopUp',
+    components: {
+      addModal,
+    },
     data() {
       return {
         show: false,
@@ -32,10 +40,14 @@
           fba: facebookSetup,
           chatgpt: chatGptSetup,
           vtex: vtexSetup,
+          gmail: gmailSetup,
         },
       };
     },
     methods: {
+      toggleIntegratedAppModal() {
+        this.$refs.addModal.toggleModal();
+      },
       closePopUp() {
         this.show = false;
       },

@@ -1,3 +1,11 @@
+2.2.13
+----------
+`2024-11-29·  1 🐛 · 1 🎉 `
+
+### 🐛 Bug fixes
+- Feat: Added Gmail login integration.
+- Fix: Security Policy.
+
 2.2.10
 ----------
 `2024-11-08·  1 🐛 `
