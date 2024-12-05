@@ -487,7 +487,8 @@
         fileReader.onprogress = (event) => this.updateAvatarUploadProgress(event);
         fileReader.onload = (event) => this.setNewAvatar(event.target.result, file.name);
 
-        fileReader.readAsDataURL(file);
+        const blob = new Blob([file], { type: file.type });
+        fileReader.readAsDataURL(blob);
       },
       handleNewCss(files) {
         if (files.length < 1) {
