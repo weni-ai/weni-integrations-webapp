@@ -21,7 +21,8 @@ async function toBase64(fileUrl) {
 
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.readAsDataURL(fileUrl);
+    const blob = new Blob([fileUrl], { type: fileUrl.type });
+    reader.readAsDataURL(blob);
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
