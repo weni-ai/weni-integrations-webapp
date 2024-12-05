@@ -473,7 +473,8 @@
         this.mainColor = color;
       },
       async imageForUpload() {
-        return await toBase64(this.avatarFile);
+        return await dataUrlToFile(this.avatarFile, 'avatar.png');
+        // return await toBase64(this.avatarFile);
       },
       handleNewAvatar(files) {
         if (files.length < 1) {
