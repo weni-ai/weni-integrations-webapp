@@ -82,7 +82,6 @@
             username: this.username.value,
             password: this.password.value,
           };
-          console.log('enviando pro back:', payload);
           return;
         }
         this.login();
