@@ -89,7 +89,7 @@
       login() {
         setLocal('code', '');
         const clientId = getEnv('VITE_APP_GOOGLE_CLOUD_ID');
-        const redirectUri = 'https://integrations.weni.ai/callback/';
+        const redirectUri = getEnv('VITE_APP_GOOGLE_REDIRECT_URI');
         const scope = 'https://mail.google.com';
         const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
