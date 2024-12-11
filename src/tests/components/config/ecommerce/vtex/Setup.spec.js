@@ -108,7 +108,7 @@ describe('VtexModal.vue', () => {
   });
 
   it('renders the second step correctly', async () => {
-    process.env.VITE_APP_API_BASE_URL = 'https://integrations-engine.stg.cloud.weni.ai';
+    process.env.VITE_APP_API_BASE_URL = 'https://integrations-engine.weni.ai';
     const store = ecommerce_store();
     store.generatedVtexAppUuid = {
       uuid: '1234',
@@ -119,7 +119,7 @@ describe('VtexModal.vue', () => {
     expect(headerTitle.text()).toBe('vtex.setup.affiliate_title');
     const webhookUrl = wrapper.vm.webhookUrl;
     expect(webhookUrl).toBe(
-      'https://integrations-engine.stg.cloud.weni.ai/api/v1/webhook/vtex/1234/products-update/api/notification/',
+      'https://integrations-engine.weni.ai/api/v1/webhook/vtex/1234/products-update/api/notification/',
     );
   });
 
