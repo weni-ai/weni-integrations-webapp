@@ -100,7 +100,9 @@ describe('wwcConfig Component', () => {
 
     global.FileReader = vi.fn(() => fileReader);
     await wrapper.vm.handleNewAvatar(files);
-    expect(fileReader.readAsDataURL).toHaveBeenCalledWith(files[0]);
+    const file = files[0];
+    const blob = new Blob([file], { type: file.type });
+    expect(fileReader.readAsDataURL).toHaveBeenCalledWith(blob);
   });
 
   it('should emit closeModal event when closing the config', () => {

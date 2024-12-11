@@ -1,3 +1,17 @@
+2.2.18
+----------
+`2024-12-05·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Security Policy
+
+2.2.17
+----------
+`2024-12-05·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Weni WebChat avatar upload
+
 2.2.13
 ----------
 `2024-11-29·  1 🐛 · 1 🎉 `

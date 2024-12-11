@@ -77,11 +77,6 @@
       },
       saveConfig() {
         if (this.loggedIn) {
-          const payload = {
-            tokens: this.tokens,
-            username: this.username.value,
-            password: this.password.value,
-          };
           return;
         }
         this.login();
