@@ -296,8 +296,13 @@
           this.buttons = [{ button_type: 'QUICK_REPLY', text: '' }];
         } else if (event[0].value === 'call_to_action') {
           this.buttons = [
-            { button_type: 'PHONE_NUMBER', country_code: 'BR', country_calling_code: '55' },
+            {
+              button_type: 'PHONE_NUMBER',
+              country_code: 'BR',
+              country_calling_code: '55',
+            },
           ];
+          this.currentButtonsSelect[0] = [...this.buttons];
         } else {
           this.buttons = [];
         }
@@ -306,7 +311,10 @@
           fieldName: 'buttons',
           fieldValue: [...this.buttons],
         });
-        this.$emit('input-change', { fieldName: 'buttonsType', fieldValue: event[0].value });
+        this.$emit('input-change', {
+          fieldName: 'buttonsType',
+          fieldValue: event[0].value,
+        });
       },
       handleRepliesInput(event, index) {
         if (countVariables(event) > 0) {
@@ -386,7 +394,10 @@
         } else if (this.buttons[0].button_type === 'URL') {
           this.buttons.push({ button_type: 'URL' });
         } else {
-          this.buttons.push({ button_type: 'PHONE_NUMBER', country_code: 'BR' });
+          this.buttons.push({
+            button_type: 'PHONE_NUMBER',
+            country_code: 'BR',
+          });
         }
 
         this.$emit('input-change', {
