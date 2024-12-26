@@ -267,6 +267,7 @@
             translation.buttons.length = 2;
           }
 
+          console.log('translation', translation);
           translation.buttons.forEach((button) => {
             if (button.button_type === 'PHONE_NUMBER') {
               button.country_calling_code = button.country_code;
