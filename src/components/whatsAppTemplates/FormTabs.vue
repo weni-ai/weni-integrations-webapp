@@ -284,7 +284,6 @@
             translation.buttons.length = 2;
           }
 
-          console.log('translation', translation);
           translation.buttons.forEach((button) => {
             if (button.button_type === 'PHONE_NUMBER') {
               button.country_calling_code = button.country_code;
@@ -682,14 +681,15 @@
           }
 
           if (button.button_type === 'URL') {
+            let buttonURL;
             if (button.url) {
               const trimmed = button.url.trim();
 
               if (trimmed.indexOf('https://') === -1 && trimmed.indexOf('http://') === -1) {
-                button.url = `https://${trimmed}`;
+                buttonURL = `https://${trimmed}`;
               }
 
-              if (!this.isValidUrl(button.url)) {
+              if (!this.isValidUrl(buttonURL)) {
                 errorMsg = this.$t('WhatsApp.templates.error.validation.invalid_button_url');
               }
             } else {
@@ -722,7 +722,8 @@
         return formattedButtons;
       },
       isValidUrl(urlString) {
-        const urlRegex = /^([\w-]+\.)+[\w-]+(\/[\w-]*)?$/;
+        const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)?$/;
+
         return urlRegex.test(urlString);
       },
       callErrorModal({ text }) {

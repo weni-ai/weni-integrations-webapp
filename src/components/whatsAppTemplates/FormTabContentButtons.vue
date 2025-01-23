@@ -290,7 +290,6 @@
         return hasIssues;
       },
       handleButtonTypeChange(event) {
-        console.log('ebvent', event);
         this.currentButtonType = event;
         if (event[0].value === this.buttonsType) {
           return;
