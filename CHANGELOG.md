@@ -1,3 +1,10 @@
+2.2.21
+----------
+`2025-01-24·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp template form buttons payload and icon
+
 2.2.20
 ----------
 `2024-12-23·  1 🐛`
