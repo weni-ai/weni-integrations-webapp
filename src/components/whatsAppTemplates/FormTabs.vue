@@ -512,6 +512,15 @@
         try {
           const validPayload = this.validateForm();
           validPayload.language = this.templateTranslationCurrentForm.language;
+          if (validPayload.buttons && Array.isArray(validPayload.buttons)) {
+            validPayload.buttons.forEach((button) => {
+              if (button.button_type === 'URL' && button.url) {
+                if (!/^https?:\/\//i.test(button.url)) {
+                  button.url = `https://${button.url}`;
+                }
+              }
+            });
+          }
           const fbMessageTemplateId = this.templateTranslationCurrentForm?.message_template_id;
           if (fbMessageTemplateId) {
             validPayload.message_template_id = fbMessageTemplateId;
