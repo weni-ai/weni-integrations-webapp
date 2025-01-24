@@ -356,8 +356,6 @@
             fieldName: 'buttons',
             fieldValue: [...this.buttons],
           });
-        } else {
-          console.log('current buttons', this.currentButtons);
         }
       },
       handleActionInput(event, inputName, index) {
@@ -399,8 +397,6 @@
       addButton() {
         if (this.buttonsType === 'quick_reply') {
           this.buttons.push({ button_type: 'QUICK_REPLY', text: '' });
-        } else if (this.buttons[0].button_type === 'URL') {
-          this.buttons.push({ button_type: 'URL' });
         } else {
           this.buttons.push({
             button_type: 'PHONE_NUMBER',
