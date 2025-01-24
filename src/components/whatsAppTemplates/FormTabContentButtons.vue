@@ -356,8 +356,6 @@
             fieldName: 'buttons',
             fieldValue: [...this.buttons],
           });
-        } else {
-          console.log('current buttons', this.currentButtons);
         }
       },
       handleActionInput(event, inputName, index) {
