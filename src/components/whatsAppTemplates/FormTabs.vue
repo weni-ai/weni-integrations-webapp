@@ -731,7 +731,7 @@
         return formattedButtons;
       },
       isValidUrl(urlString) {
-        const urlRegex = /^(https?:\/\/)?([\w-]+\.)+[\w-]+(\/[\w-]*)?$/;
+        const urlRegex = /^((https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,})(\/.*)?$/;
 
         return urlRegex.test(urlString);
       },
