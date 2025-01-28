@@ -735,7 +735,6 @@
 
         return urlRegex.test(urlString);
       },
-
       callErrorModal({ text }) {
         unnnic.unnnicCallAlert({
           props: {
