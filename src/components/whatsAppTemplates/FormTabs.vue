@@ -690,21 +690,23 @@
           }
 
           if (button.button_type === 'URL') {
-            let buttonURL = button.url?.trim();
+            if (!button.url) {
+              errorMsg = this.$t('WhatsApp.templates.error.validation.empty_button_url');
+            } else {
+              let buttonURL = button.url?.trim();
 
-            if (
-              buttonURL &&
-              buttonURL.indexOf('https://') === -1 &&
-              buttonURL.indexOf('http://') === -1
-            ) {
-              buttonURL = `https://${buttonURL}`;
-            }
+              if (
+                buttonURL &&
+                buttonURL.indexOf('https://') === -1 &&
+                buttonURL.indexOf('http://') === -1
+              ) {
+                buttonURL = `https://${buttonURL}`;
+              }
 
-            if (!this.isValidUrl(buttonURL)) {
-              errorMsg = this.$t('WhatsApp.templates.error.validation.invalid_button_url');
+              if (!this.isValidUrl(buttonURL)) {
+                errorMsg = this.$t('WhatsApp.templates.error.validation.invalid_button_url');
+              }
             }
-          } else {
-            errorMsg = this.$t('WhatsApp.templates.error.validation.empty_button_url');
           }
 
           if (errorMsg) {
