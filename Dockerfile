@@ -1,6 +1,6 @@
 ARG NODE_VERSION="18.14.0"
 ARG BASE_VERSION="alpine3.17"
-ARG OLD_IMAGE="chat-webapp:latest"
+ARG OLD_IMAGE="integrations-webapp:latest"
 ARG KEEP_DAYS=60
 
 FROM node:${NODE_VERSION}-${BASE_VERSION} AS builder
