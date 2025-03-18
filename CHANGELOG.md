@@ -1,3 +1,10 @@
+2.2.25
+----------
+`2025-03-18·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: added token and project_uuid into the generated url
+
 2.2.24
 ----------
 `2025-01-30·  1 🐛`
