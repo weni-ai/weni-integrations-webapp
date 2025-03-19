@@ -31,9 +31,11 @@
     computed: {
       ...mapState(auth_store, ['project', 'token']),
       iframeSrc() {
+        const token = this.token?.replace('Bearer ', '');
+
         return `${getEnv('VITE_APP_FLOWS_IFRAME_URL')}/weni/${
           this.project
-        }/authenticate?access_token=${this.token}&next=/org/home/?flows_config_hide=configs`;
+        }/authenticate?access_token=${token}&next=/org/home/?flows_config_hide=configs`;
       },
     },
     methods: {
@@ -45,7 +47,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import './styles.scss';
+  @import './styles.scss';w
 </style>
 
 <style lang="scss">
