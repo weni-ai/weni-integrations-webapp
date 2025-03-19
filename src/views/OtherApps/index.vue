@@ -47,7 +47,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import './styles.scss';w
+  @import './styles.scss';
 </style>
 
 <style lang="scss">
