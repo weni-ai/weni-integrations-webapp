@@ -23,17 +23,21 @@ ARG OLD_IMAGE=${OLD_IMAGE}
 ARG KEEP_DAYS=${KEEP_DAYS}
 
 COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
-# COPY --chown=nginx:nginx docker/nginx/headers /usr/share/nginx/html/headers
+COPY --chown=nginx:nginx docker/headers /usr/share/nginx/html/headers
 COPY --chown=nginx:nginx docker/file_handler.sh /
 COPY --from=builder --chown=nginx:nginx /app/dist /usr/share/nginx/html/integrations/
 COPY --from=old_css --chown=nginx:nginx /usr/share/nginx/html/integrations/assets/all.tx[t] /usr/share/nginx/html/integrations/assets/*.css /usr/share/nginx/html/integrations/assets/
 
 COPY docker-entrypoint.sh /
 
+RUN cd /usr/share/nginx/html/integrations/ \
+    && /file_handler.sh css
+
+COPY --from=builder --chown=nginx:nginx /app/dist /usr/share/nginx/html/integrations/
+
 RUN mv /usr/share/nginx/html/integrations/index.html /usr/share/nginx/html/integrations/index.html.tmpl \
     && cd /usr/share/nginx/html/integrations/ \
-    && ln -s /tmp/index.html \
-    && /file_handler.sh css
+    && ln -s /tmp/index.html
     
 EXPOSE 8080
 ENTRYPOINT ["bash","/docker-entrypoint.sh"]
