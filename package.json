@@ -1,6 +1,6 @@
 {
   "name": "weni-integrations",
-  "version": "2.2.24",
+  "version": "2.2.27",
   "private": true,
   "type": "module",
   "scripts": {
