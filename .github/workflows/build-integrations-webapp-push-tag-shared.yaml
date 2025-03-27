@@ -66,7 +66,7 @@ jobs:
         type=ref,event=tag
         type=raw,${{ needs.setup.outputs.image_tag_latest }}
       image_tag_prefix: "webapp-"
-      dockerfile: "docker/Dockerfile"
+      dockerfile: "Dockerfile"
       build_args: |
         OLD_IMAGE=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-${{ needs.setup.outputs.image_tag_latest }}
         ${{ needs.setup.outputs.extra_build_args }}
