@@ -51,7 +51,7 @@ jobs:
         run: |
           {
             echo 'BUILD_ENV_ARGS<<EOFenv'
-            cat webapp-secret/integrations/${{ steps.setup.outputs.MANIFEST_ENVIRONMENT }}/env || exit 1
+            cat webapp-secret/integrations/${{ steps.setup.outputs.MANIFESTS_ENVIRONMENT }}/env || exit 1
             echo EOFenv
           } | tee -a "$GITHUB_OUTPUT"
           rm -rf webapp-secret
