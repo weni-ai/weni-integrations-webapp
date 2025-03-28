@@ -8,133 +8,77 @@ on:
       - '*.*.*'
 
 jobs:
-  docker:
-    runs-on: ubuntu-latest 
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      image_latest: ${{ steps.setup.outputs.image_latest }}
+      image_tag_latest: ${{ steps.setup.outputs.image_tag_latest }}
+      extra_build_args: ${{ steps.extra_build_args.outputs.BUILD_ENV_ARGS}}
     steps:
-      - name: Set variables
+      - name: Set outputs
+        id: setup
         run: |
-            TAG="$( echo "${GITHUB_REF}" | cut -d'/' -f3 )"
-            if grep -qs -e '^.*.*-develop' <<< "${TAG}" ; then
-              echo "Found environment: DEVELOP - ${TAG}"
-              echo "MANIFESTS_ENVIRONMENT=develop" | tee -a "${GITHUB_ENV}"
-              export "MANIFESTS_ENVIRONMENT=develop"
-            elif grep -qs -e '^.*.*-staging' <<< "${TAG}" ; then
-              echo "Found environment: STAGING - ${TAG}"
-              echo "MANIFESTS_ENVIRONMENT=staging" | tee -a "${GITHUB_ENV}"
-              export "MANIFESTS_ENVIRONMENT=staging"
-            elif grep -qs -e '^.*.*' <<< "${TAG}" ; then
-              echo "No environment found, assuming: PRODUCTION - ${TAG}"
-              echo "MANIFESTS_ENVIRONMENT=production" | tee -a "${GITHUB_ENV}"
-              export "MANIFESTS_ENVIRONMENT=production"
-            else
-              echo 'Not a valid tag. Skipping...'
-              exit 1
-            fi
-            echo "TAG=$TAG" | tee -a "${GITHUB_ENV}"
-            VERSION="${TAG}"
-            echo "VERSION=${VERSION}" | tee -a "${GITHUB_ENV}"
-            echo "COMMIT_SHA=$GITHUB_SHA" | tee -a "${GITHUB_ENV}"
-            echo "IMAGE_TAG=${{ secrets.ECR }}/integrations:webapp-$TAG" | tee -a "${GITHUB_ENV}"
-            echo "OLD_IMAGE=${{ secrets.ECR }}/integrations:webapp-${MANIFESTS_ENVIRONMENT}" | tee -a "${GITHUB_ENV}"
-            echo "IMAGE_SOURCE_URL=https://github.com/weni-ai/weni-integrations-webapp" | tee -a "${GITHUB_ENV}"
-            echo "MANIFESTS_REPOSITORY=weni-ai/kubernetes-manifests-platform" | tee -a "${GITHUB_ENV}"
-            echo "MANIFESTS_APPLICATION=integrations-webapp" | tee -a "${GITHUB_ENV}"
-            echo "MANIFESTS_PATCH_TARGET=deployment-webapp.json" | tee -a "${GITHUB_ENV}"
-
-      - name: Check out the repo
-        uses: actions/checkout@v3
-        with:
-          ref: "${{env.GITHUB_SHA}}"
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Login to ECR
-        uses: docker/login-action@v2
-        with:
-          registry: ${{ secrets.ECR }}
-          username: ${{ secrets.AWS_ACCESS_KEY_ID_SHARED }}      
-          password: ${{ secrets.AWS_SECRET_ACCESS_KEY_SHARED }}
-
-      - name: Build and push - Integrations Engine Image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          labels: |
-            tag=${{env.TAG}}
-            commit=${{env.COMMIT_SHA}}
-            repository=${{env.IMAGE_SOURCE_URL}}
-          build-args: |
-            OLD_IMAGE=${{env.OLD_IMAGE}}
-          file: Dockerfile
-          push: true
-          tags: |
-            ${{env.IMAGE_TAG}}
-            ${{env.OLD_IMAGE}}
-          no-cache: true
-
-      - name: Check out Kubernetes Manifests
+          TAG="$( echo "${GITHUB_REF}" | cut -d'/' -f3 )"
+          if grep -qs -e '^.*.*-develop' <<< "${TAG}" ; then
+            echo "Found environment: DEVELOP - ${TAG}"
+            echo "MANIFESTS_ENVIRONMENT=develop" | tee "${GITHUB_OUTPUT}"
+            export "MANIFESTS_ENVIRONMENT=develop"
+          elif grep -qs -e '^.*.*-staging' <<< "${TAG}" ; then
+            echo "Found environment: STAGING - ${TAG}"
+            echo "MANIFESTS_ENVIRONMENT=staging" | tee -a "${GITHUB_OUTPUT}"
+            export "MANIFESTS_ENVIRONMENT=staging"
+          elif grep -qs -e '^.*.*' <<< "${TAG}" ; then
+            echo "No environment found, assuming: PRODUCTION - ${TAG}"
+            echo "MANIFESTS_ENVIRONMENT=production" | tee -a "${GITHUB_OUTPUT}"
+            export "MANIFESTS_ENVIRONMENT=production"
+          else
+            echo 'Not a valid tag. Skipping...'
+            exit 1
+          fi
+          echo "image_latest=${{ secrets.REGISTRY_ECR }}/integrations:latest-${MANIFESTS_ENVIRONMENT}" | tee -a "${GITHUB_OUTPUT}"
+          echo "image_tag_latest=latest-${MANIFESTS_ENVIRONMENT}" | tee -a "${GITHUB_OUTPUT}"
+      
+      - name: Download webapp secret
         uses: actions/checkout@master
         with:
           ref: main
-          repository: "${{ env.MANIFESTS_REPOSITORY }}"
+          repository: "weni-ai/webapp-secret"
           token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
-          path: ./kubernetes-manifests/
+          path: ./webapp-secret/  
 
-      - name: Update image on deployment
+      - name: Set variables
+        id: extra_build_args
         run: |
-            which jq > /dev/null 2>&1 || ( sudo apt update ; sudo apt install -y jq )
-            # Dep: coreutils
-            verlte() {
-              [ "$1" = "`echo -e "$1\n$2" | sort -V | head -n1`" ]
-            }
-            verlt(){
-              [ "$1" = "$2" ] && return 1 || verlte $1 $2
-            }
-            export PROJECT_DIR="${{ env.MANIFESTS_APPLICATION }}"
-            ENV_DIR="kubernetes-manifests/${{ env.MANIFESTS_APPLICATION }}/${MANIFESTS_ENVIRONMENT}"
-            for e in ${ENV_DIR}; do
-              echo "Update ${e}:"
-              if [ ! -d "${e}" ] ; then
-                echo "${e}: Does not exist, skipping"
-              elif [ ! -r "${e}/kustomization.yaml" ] ; then
-                echo "${e}/kustomization.yaml: Does not readable, skipping"
-              elif [ ! -r "${e}/${{ env.MANIFESTS_PATCH_TARGET }}" ] ; then
-                echo "${e}/${{ env.MANIFESTS_PATCH_TARGET }}: Does not readable, skipping"
-              else
-                OLD_IMAGE=$(
-                  cat "${e}/${{ env.MANIFESTS_PATCH_TARGET }}" \
-                    | jq '.[] | select(.path == "/spec/template/spec/containers/0/image") | .value'
-                )
-                echo "Old image to replace: ${OLD_IMAGE}"
-                OLD_VERSION=$(
-                  echo "${OLD_IMAGE}" \
-                    | sed s'/^.*[v:-]\([0-9]*\.[0-9]*\.[0-9]*\).*$/\1/'g \
-                    | head -n1
-                )
-                echo "Old image version to compare: ${OLD_VERSION}<=${{env.VERSION}}"
-                if verlte "${OLD_VERSION}" "${VERSION}" || [[ ! "${OLD_VERSION}" =~ [0-9]+\.[0-9]+\.[0-9]+ ]] ; then
-                  echo 'New configurations:'
-                  new_configuration=$(
-                    cat "${e}/${{ env.MANIFESTS_PATCH_TARGET }}" \
-                      | jq '(..|select(.path == "/spec/template/spec/containers/0/image")?) += {value: "'"${{env.IMAGE_TAG}}"'"}'
-                  )
-                  echo "${new_configuration}"
-                  echo "${new_configuration}" > "${e}/${{ env.MANIFESTS_PATCH_TARGET }}"
-                else
-                  echo "Version in file is greater than build, skipping update yaml"
-                fi
-              fi
-            done
+          {
+            echo 'BUILD_ENV_ARGS<<EOFenv'
+            cat webapp-secret/integrations/${{ steps.setup.outputs.MANIFESTS_ENVIRONMENT }}/env || exit 1
+            echo EOFenv
+          } | tee -a "$GITHUB_OUTPUT"
+          rm -rf webapp-secret
 
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
-          repository: "${{ env.MANIFESTS_REPOSITORY }}"
-          directory: ./kubernetes-manifests/
-          branch: main
-          message: "From Integrations WebApp Build (Push Tag ${{ env.MANIFESTS_ENVIRONMENT }})"
+  call-workflow:
+    uses: weni-ai/actions-workflows/.github/workflows/reusable-workflow.yaml@main
+    needs:
+      - setup
+    with:
+      image_repository: integrations
+      image_tags: |
+        type=ref,event=tag
+        type=raw,${{ needs.setup.outputs.image_tag_latest }}
+      image_tag_prefix: "webapp-"
+      dockerfile: "Dockerfile"
+      build_args: |
+        OLD_IMAGE=869898323958.dkr.ecr.us-east-1.amazonaws.com/integrations:webapp-${{ needs.setup.outputs.image_tag_latest }}
+        ${{ needs.setup.outputs.extra_build_args }}
+      target_repository: weni-ai/kubernetes-manifests-platform
+      target_repository_branch: main
+      target_application: integrations-webapp
+      target_patch_file: deployment-webapp.json
+      image_arch: | 
+        [ 
+          {
+            "platform": "linux/amd64",
+            "runner": "ubuntu-latest"
+          }
+        ]
+    secrets: inherit
