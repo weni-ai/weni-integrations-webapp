@@ -9,8 +9,23 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: ubuntu-latest
+            platform: linux/amd64
+          - runner: ubuntu-24.04-arm
+            platform: linux/arm64
+    runs-on: ${{ matrix.runner }}
     steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        if: github.event_name != 'pull_request'
+        with:
+          ref: "${{env.GITHUB_SHA}}"
+          token: ${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}
+
       - name: Set variables
         run: |
             TAG="$( echo "${GITHUB_REF}" | cut -d'/' -f3 )"
@@ -40,6 +55,8 @@ jobs:
             echo "MANIFESTS_REPOSITORY=weni-ai/kubernetes-manifests-platform" | tee -a "${GITHUB_ENV}"
             echo "MANIFESTS_APPLICATION=integrations-webapp" | tee -a "${GITHUB_ENV}"
             echo "MANIFESTS_PATCH_TARGET=deployment-webapp.json" | tee -a "${GITHUB_ENV}"
+            platform=${{ matrix.platform }}
+            echo "PLATFORM_PAIR=${platform//\//-}" | tee -a "${GITHUB_ENV}"
 
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -69,12 +86,89 @@ jobs:
             repository=${{env.IMAGE_SOURCE_URL}}
           build-args: |
             OLD_IMAGE=${{env.OLD_IMAGE}}
+          platforms: ${{ matrix.platform }}
           file: Dockerfile
-          push: true
-          tags: |
-            ${{env.IMAGE_TAG}}
-            ${{env.OLD_IMAGE}}
-          no-cache: true
+          # push: true
+          # tags: |
+          #   ${{env.IMAGE_TAG}}
+          #   ${{env.OLD_IMAGE}}
+          # no-cache: true
+          outputs: type=image,name=${{ secrets.ECR }}/integrations,push-by-digest=true,name-canonical=true,push=true
+
+      - name: Export digest
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.build.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"          
+        
+      - name: Upload digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ env.PLATFORM_PAIR }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    runs-on: ubuntu-latest
+    needs:
+      - docker
+    steps:
+      - name: Set variables
+        run: |
+            TAG="$( echo "${GITHUB_REF}" | cut -d'/' -f3 )"
+            if grep -qs -e '^.*.*-develop' <<< "${TAG}" ; then
+              echo "Found environment: DEVELOP - ${TAG}"
+              echo "MANIFESTS_ENVIRONMENT=develop" | tee "${GITHUB_ENV}"
+              export "MANIFESTS_ENVIRONMENT=develop"
+            elif grep -qs -e '^.*.*-staging' <<< "${TAG}" ; then
+              echo "Found environment: STAGING - ${TAG}"
+              echo "MANIFESTS_ENVIRONMENT=staging" | tee -a "${GITHUB_ENV}"
+              export "MANIFESTS_ENVIRONMENT=staging"
+            elif grep -qs -e '^.*.*' <<< "${TAG}" ; then
+              echo "No environment found, assuming: PRODUCTION - ${TAG}"
+              echo "MANIFESTS_ENVIRONMENT=production" | tee -a "${GITHUB_ENV}"
+              export "MANIFESTS_ENVIRONMENT=production"
+            else
+              echo 'Not a valid tag. Skipping...'
+              exit 1
+            fi
+            echo "TAG=$TAG" | tee -a "${GITHUB_ENV}"
+            VERSION="${TAG}"
+            echo "VERSION=${VERSION}" | tee -a "${GITHUB_ENV}"
+            echo "COMMIT_SHA=$GITHUB_SHA" | tee -a "${GITHUB_ENV}"
+            echo "IMAGE_TAG=${{ secrets.ECR }}/integrations:webapp-${TAG}" | tee -a "${GITHUB_ENV}"
+            echo "OLD_IMAGE=${{ secrets.ECR }}/integrations:webapp-${MANIFESTS_ENVIRONMENT}" | tee -a "${GITHUB_ENV}"
+            echo "IMAGE_SOURCE_URL=https://github.com/weni-ai/integrations-webapp" | tee -a "${GITHUB_ENV}"
+            echo "MANIFESTS_REPOSITORY=weni-ai/kubernetes-manifests-integrations" | tee -a "${GITHUB_ENV}"
+            echo "MANIFESTS_APPLICATION=integrations-webapp" | tee -a "${GITHUB_ENV}"
+            echo "MANIFESTS_PATCH_TARGET=deployment.json" | tee -a "${GITHUB_ENV}"
+            platform=${{ matrix.platform }}
+            echo "PLATFORM_PAIR=${platform//\//-}" | tee -a "${GITHUB_ENV}"
+      
+      - name: Download digests
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/digests
+          pattern: digests-*
+          merge-multiple: true
+  
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+  
+      - name: Login to ECR
+        uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
+        with:
+          registry: ${{ secrets.ECR }}
+          username: ${{ secrets.AWS_ACCESS_KEY_ID_SHARED }}
+          password: ${{ secrets.AWS_SECRET_ACCESS_KEY_SHARED }}
+
+      - name: Create manifest list and push
+        working-directory: /tmp/digests
+        run: |
+          docker buildx imagetools create -t "${{ env.IMAGE_TAG }}" \
+            $(printf '${{ secrets.ECR }}/integrations@sha256:%s ' *)
 
       - name: Check out Kubernetes Manifests
         uses: actions/checkout@master
