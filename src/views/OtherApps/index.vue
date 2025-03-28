@@ -29,11 +29,13 @@
       };
     },
     computed: {
-      ...mapState(auth_store, ['flowOrg']),
+      ...mapState(auth_store, ['project', 'token']),
       iframeSrc() {
+        const token = this.token?.replace('Bearer ', '');
+
         return `${getEnv('VITE_APP_FLOWS_IFRAME_URL')}/weni/${
-          this.flowOrg
-        }/authenticate?next=/org/home/?flows_config_hide=configs`;
+          this.project
+        }/authenticate?access_token=${token}&next=/org/home/?flows_config_hide=configs`;
       },
     },
     methods: {

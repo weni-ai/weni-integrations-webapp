@@ -1,3 +1,59 @@
+2.2.28
+----------
+`2025-03-19 ·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Flows iframe auth token 
+
+2.2.27
+----------
+`2025-03-19·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Dockerfile 
+
+2.2.26
+----------
+`2025-03-18·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: added token and project_uuid into the generated url
+
+2.2.24
+----------
+`2025-01-30·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: empty url validation
+
+2.2.23
+----------
+`2025-01-30·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Button URL initialization
+
+2.2.22
+----------
+`2025-01-28·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Button URL validation
+
+2.2.21
+----------
+`2025-01-24·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp template form buttons payload and icon
+
+2.2.20
+----------
+`2024-12-23·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: WhatsApp template form buttons
+
 2.2.18
 ----------
 `2024-12-05·  1 🐛`
