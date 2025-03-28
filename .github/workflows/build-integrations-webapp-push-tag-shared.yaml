@@ -74,4 +74,11 @@ jobs:
       target_repository_branch: main
       target_application: integrations-webapp
       target_patch_file: deployment.json
+      image_arch: | 
+        [ 
+          {
+            "platform": "linux/amd64",
+            "runner": "ubuntu-latest"
+          }
+        ]
     secrets: inherit
