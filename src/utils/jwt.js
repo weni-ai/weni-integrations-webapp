@@ -6,7 +6,7 @@ export function getJwtToken() {
 
     const eventHandler = (event) => {
       if (event.data.event === 'updateToken') {
-        localStorage.setItem('token', event.data.token);
+        localStorage.setItem('authToken', `Bearer ${event.data.token}`);
         window.removeEventListener('message', eventHandler);
         return resolve();
       }
