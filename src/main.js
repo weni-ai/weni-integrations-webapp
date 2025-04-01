@@ -14,8 +14,13 @@ import router from './router';
 import { getJwtToken } from './utils/jwt';
 import { auth_store } from './stores/modules/auth.store';
 
-getJwtToken().then((r) => {
-  auth_store().externalLogin({ token: r.replace('+', ' ') });
+getJwtToken().then(() => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    auth_store().externalLogin({ token });
+  } else {
+    console.log('no token');
+  }
   const app = createApp(App);
   app.config.productionTip = false;
 
