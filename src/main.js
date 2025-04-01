@@ -11,32 +11,37 @@ import './utils/plugins/Hotjar';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
 import router from './router';
+import { getJwtToken } from './utils/jwt';
+import { auth_store } from './stores/modules/auth.store';
 
-const app = createApp(App);
-app.config.productionTip = false;
+getJwtToken().then((r) => {
+  auth_store().externalLogin({ token: r.replace('+', ' ') });
+  const app = createApp(App);
+  app.config.productionTip = false;
 
-if (getEnv('NODE_ENV') === 'development') {
-  makeServer();
-}
+  if (getEnv('NODE_ENV') === 'development') {
+    makeServer();
+  }
 
-if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
-  Sentry.init({
-    dsn: getEnv('VITE_APP_SENTRY_DSN'),
-    integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
-    logErrors: true,
+  if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
+    Sentry.init({
+      dsn: getEnv('VITE_APP_SENTRY_DSN'),
+      integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
+      logErrors: true,
+    });
+  }
+
+  const pinia = createPinia();
+  pinia.use(piniaPluginPersistedstate);
+  pinia.use(({ store }) => {
+    store.router = markRaw(router);
   });
-}
 
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
-pinia.use(({ store }) => {
-  store.router = markRaw(router);
+  app.use(Unnnic);
+  app.use(pinia);
+  app.use(router);
+  app.use(i18n);
+  app.use(vueUse);
+
+  app.mount('#app');
 });
-
-app.use(Unnnic);
-app.use(pinia);
-app.use(router);
-app.use(i18n);
-app.use(vueUse);
-
-app.mount('#app');
