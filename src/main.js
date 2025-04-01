@@ -15,12 +15,6 @@ import { getJwtToken } from './utils/jwt';
 import { auth_store } from './stores/modules/auth.store';
 
 getJwtToken().then(() => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    auth_store().externalLogin({ token });
-  } else {
-    console.log('no token');
-  }
   const app = createApp(App);
   app.config.productionTip = false;
 
@@ -47,6 +41,14 @@ getJwtToken().then(() => {
   app.use(router);
   app.use(i18n);
   app.use(vueUse);
+
+  const token = localStorage.getItem('authToken');
+  if (token) {
+    console.log('token: ', token);
+    auth_store().externalLogin({ token });
+  } else {
+    console.log('no token');
+  }
 
   app.mount('#app');
 });
