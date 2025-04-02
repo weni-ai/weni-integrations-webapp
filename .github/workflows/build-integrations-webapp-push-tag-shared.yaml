@@ -46,15 +46,15 @@ jobs:
           token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
           path: ./webapp-secret/  
 
-      # - name: Set variables
-      #   id: extra_build_args
-      #   run: |
-      #     {
-      #       echo 'BUILD_ENV_ARGS<<EOFenv'
-      #       cat webapp-secret/integrations/${{ steps.setup.outputs.MANIFESTS_ENVIRONMENT }}/env || exit 1
-      #       echo EOFenv
-      #     } | tee -a "$GITHUB_OUTPUT"
-      #     rm -rf webapp-secret
+      - name: Set variables
+        id: extra_build_args
+        run: |
+          {
+            echo 'BUILD_ENV_ARGS<<EOFenv'
+            cat webapp-secret/integrations/${{ steps.setup.outputs.MANIFESTS_ENVIRONMENT }}/env || exit 1
+            echo EOFenv
+          } | tee -a "$GITHUB_OUTPUT"
+          rm -rf webapp-secret
 
   call-workflow:
     uses: weni-ai/actions-workflows/.github/workflows/reusable-workflow.yaml@main
