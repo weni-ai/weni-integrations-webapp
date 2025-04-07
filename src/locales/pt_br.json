@@ -1096,8 +1096,9 @@
         "close": "Fechar",
         "confirm": "Confirmar"
       },
+      "all": "Todos",
       "placeholder": {
-        "sellers": "Selecione até cinco lojistas..."
+        "sellers": "Selecione os lojistas..."
       },
       "vtexADS": "Ao ativar, sua loja poderá exibir produtos patrocinados nas pesquisas dos usuários."
     },
