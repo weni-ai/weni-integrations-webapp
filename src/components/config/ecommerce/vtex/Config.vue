@@ -225,7 +225,7 @@
           code: 'wpp-cloud',
           appUuid: this.app.config.wpp_cloud_uuid,
           payload: {
-            name: eventData.name,
+            catalog_id: eventData.name,
           },
         };
 

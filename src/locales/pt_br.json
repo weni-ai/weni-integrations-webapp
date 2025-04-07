@@ -1121,8 +1121,8 @@
     "connect_catalog": {
       "title": "Informações básica",
       "business_type": "Tipo de Negócio",
-      "name_placeholder": "Ex: ofertas semanais",
-      "name": "Nome do catálogo",
+      "name_placeholder": "",
+      "name": "ID do catálogo",
       "footer": "Ao criar um catálogo, você concorda com os <a class='link' target='_blank' href='https://google.com'><b>Termos do Gerenciador de Catálogos</b></a> e confirma que segue as <a class='link' target='_blank' href='https://google.com'><b>Políticas de Publicidade do Facebook</b></a>. Verifique essas políticas e confirme que os itens que você carregar no seu catálogo estejam em conformidade com elas."
     },
     "errors": {
