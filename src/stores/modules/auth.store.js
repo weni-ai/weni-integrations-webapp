@@ -25,7 +25,7 @@ export const auth_store = defineStore('auth', {
     async externalLogin({ token }) {
       if (!token) return;
       this.token = token;
-      setLocal('authToken', token);
+      this.authenticated = true;
     },
     async selectedOrg({ org }) {
       if (!org) return;
