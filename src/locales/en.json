@@ -1091,8 +1091,9 @@
         "close": "Close",
         "confirm": "Confirm"
       },
+      "all": "All",
       "placeholder": {
-        "sellers": "Select up to five sellers..."
+        "sellers": "Select the sellers..."
       },
       "vtexADS": "Upon activation, your store will be able to display sponsored products in user searches."
     },
@@ -1116,8 +1117,8 @@
     "connect_catalog": {
       "title": "Basic informations",
       "business_type": "Business type",
-      "name_placeholder": "Ex: Weekly offers",
-      "name": "Catalog name",
+      "name_placeholder": "",
+      "name": "Catalog ID",
       "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
     },
     "errors": {

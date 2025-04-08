@@ -1091,8 +1091,9 @@
         "close": "Cerrar",
         "confirm": "Confirmar"
       },
+      "all": "Todos",
       "placeholder": {
-        "sellers": "Seleccione hasta cinco vendedores..."
+        "sellers": "Seleccione a los vendedores..."
       },
       "vtexADS": "Al activarse, su tienda podrá mostrar productos patrocinados en las búsquedas de los usuarios."
     },
@@ -1115,8 +1116,8 @@
     "connect_catalog": {
       "title": "Información básica",
       "business_type": "Tipo de negocio",
-      "name_placeholder": "Ej: ofertas semanales",
-      "name": "Nombre del catálogo",
+      "name_placeholder": "",
+      "name": "ID de catálogo",
       "footer": "Al crear un catálogo, acepta los <a class='link' target='_blank' href='https://google.com'><b>Términos del Administrador de catálogos</b></a> y confirma que sigue las <a class='link' target='_blank' href='https://google.com'><b>Políticas publicitarias de Facebook</b></a>. Revise estas políticas y confirme que los artículos que cargue en su catálogo las cumplan."
     },
     "errors": {

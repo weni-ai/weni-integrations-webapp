@@ -203,7 +203,7 @@
           code: this.appInfo.code,
           appUuid: this.appInfo.uuid,
           payload: {
-            name: eventData.name,
+            catalog_id: eventData.name,
           },
         };
 
