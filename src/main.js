@@ -44,10 +44,7 @@ getJwtToken().then(() => {
 
   const token = localStorage.getItem('authToken');
   if (token) {
-    console.log('token: ', token);
     auth_store().externalLogin({ token });
-  } else {
-    console.log('no token');
   }
 
   app.mount('#app');
