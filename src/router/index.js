@@ -136,6 +136,10 @@ const router = createRouter({
         }
       },
     },
+    {
+      path: '/apps/connect-store',
+      component: () => import('@/components/config/ecommerce/vtex/ConnectStoreModal.vue'),
+    },
   ],
 });
 

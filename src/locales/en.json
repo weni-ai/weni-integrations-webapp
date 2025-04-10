@@ -1094,7 +1094,13 @@
       "placeholder": {
         "sellers": "Select up to five sellers..."
       },
-      "vtexADS": "Upon activation, your store will be able to display sponsored products in user searches."
+      "vtexADS": "Upon activation, your store will be able to display sponsored products in user searches.",
+      "store_type": "Store type",
+      "account": "Account",
+      "store_type_options": {
+        "normal": "Normal",
+        "marketplace": "Marketplace"
+      }
     },
     "connect_modal": {
       "categories": {
@@ -1114,11 +1120,16 @@
       }
     },
     "connect_catalog": {
-      "title": "Basic informations",
+      "title": "Connect the VTEX Catalog",
       "business_type": "Business type",
       "name_placeholder": "Ex: Weekly offers",
       "name": "Catalog name",
-      "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them."
+      "footer": "By creating a catalog, you agree to the <a class='link' target='_blank' href='https://google.com'><b>Catalog Manager Terms</b></a> and confirm that you follow <a class='link' target='_blank' href='https://google.com'><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them.",
+      "whatsapp_number": "WhatsApp number",
+      "website_link": "Website link",
+      "api_subdomain": "API Subdomain",
+      "app_key": "App Key",
+      "app_token": "App Token"
     },
     "errors": {
       "connect_catalog": "Could not connect VTEX catalog, please try again later",

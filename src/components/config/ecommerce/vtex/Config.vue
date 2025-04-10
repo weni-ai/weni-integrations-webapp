@@ -18,9 +18,19 @@
       </div>
       <span class="config-vtex__header__description" v-html="$t('vtex.config.description')" />
     </div>
-
     <div class="config-vtex__settings__content">
       <div class="config-vtex__settings__content__scroll">
+        <div class="config-vtex__settings__content__form">
+          <unnnic-input v-model="account" :label="$t('vtex.config.account')" />
+          <div class="config-vtex__settings__content__form__store-type">
+            <unnnic-label :label="$t('vtex.config.store_type')" />
+            <unnnic-select-smart
+              v-model="storeType"
+              :options="storeTypeOptions"
+              :label="$t('vtex.config.store_type')"
+            />
+          </div>
+        </div>
         <div class="config-vtex__settings__content__catalog">
           <span class="config-vtex__settings__content__catalog__label">
             {{ $t('vtex.config.catalog') }}</span
@@ -433,6 +443,15 @@
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 $unnnic-spacing-lg $unnnic-spacing-lg $unnnic-spacing-lg;
+
+        &__form {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          width: 100%;
+          flex-direction: row;
+          gap: $unnnic-spacing-xs;
+          align-items: center;
+        }
 
         &__catalog,
         &__details,

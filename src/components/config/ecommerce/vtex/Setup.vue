@@ -7,21 +7,22 @@
           <div class="vtex-modal__content__container__account">
             <div class="vtex-modal__content__container__account__title">
               <unnnic-input
-                v-model="storeDomain"
-                :placeholder="$t('vtex.setup.store_domain')"
-                label="Store Domain"
+                v-model="account"
+                :placeholder="$t('vtex.setup.account')"
+                label="Account"
               />
             </div>
             <div class="vtex-modal__content__container__account__storetype">
-              <unnnic-select-smart
-                label="Store Type"
-                v-model="storeType"
-                :options="storeTypeOptions"
-              />
+              <unnnic-label label="Store Type" />
+              <unnnic-select-smart v-model="storeType" :options="storeTypeOptions" />
             </div>
           </div>
         </div>
       </div>
+    </template>
+    <template #options>
+      <unnnic-button type="tertiary" @click="closePopUp">Cancel</unnnic-button>
+      <unnnic-button type="primary" @click="saveConfig">Confirm</unnnic-button>
     </template>
   </unnnic-modal>
 </template>
@@ -32,15 +33,10 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import unnnic from '@weni/unnnic-system';
-  import StepIndicator from '../../../StepIndicator.vue';
   import getEnv from '../../../../utils/env';
 
   export default {
     name: 'VtexModal',
-    components: {
-      StepIndicator,
-    },
     props: {
       app: {
         type: Object,
@@ -49,7 +45,7 @@
     },
     data() {
       return {
-        storeDomain: '',
+        account: '',
         storeType: '',
         storeTypeOptions: [
           { label: 'Layout', value: 'layout' },
@@ -57,10 +53,6 @@
           { label: 'Store', value: 'store' },
         ],
       };
-    },
-    mounted() {
-      this.getWhatsAppChannels();
-      this.getVtexAppUuid({ code: this.app.code });
     },
     computed: {
       ...mapState(auth_store, ['project']),
@@ -75,7 +67,11 @@
     methods: {
       ...mapActions(ecommerce_store, ['getVtexAppUuid']),
       closePopUp() {
-        this.$emit('close');
+        console.log('closePopUp');
+        this.$emit('closePopUp');
+      },
+      saveConfig() {
+        this.$emit('saveConfig');
       },
     },
   };
@@ -93,14 +89,7 @@
           display: flex;
           flex-direction: column;
           gap: 16px;
-
-          &__title {
-            margin-bottom: 16px;
-          }
-
-          &__storetype {
-            margin-top: 16px;
-          }
+          text-align: left;
         }
       }
     }
