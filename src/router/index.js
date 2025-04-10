@@ -140,6 +140,10 @@ const router = createRouter({
       path: '/apps/connect-store',
       component: () => import('@/components/config/ecommerce/vtex/ConnectStoreModal.vue'),
     },
+    {
+      path: '/apps/connect-store/affiliate',
+      component: () => import('@/components/config/ecommerce/vtex/AffiliateSetupModalContent.vue'),
+    },
   ],
 });
 

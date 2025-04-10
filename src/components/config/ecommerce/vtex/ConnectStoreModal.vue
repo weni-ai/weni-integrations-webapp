@@ -15,7 +15,8 @@
           </div>
         </aside>
         <div class="vtex-modal__content">
-          <ConnectCatalogModalContent />
+          <ConnectCatalogModalContent v-if="step === 1" @connectCatalog="connectCatalog" />
+          <AffiliateSetupModalContent v-if="step === 2" />
         </div>
       </div>
     </template>
@@ -24,21 +25,40 @@
 
 <script>
   import ConnectCatalogModalContent from './ConnectCatalogModalContent.vue';
+  import AffiliateSetupModalContent from './AffiliateSetupModalContent.vue';
 
   export default {
     name: 'ConnectStoreModal',
     components: {
       ConnectCatalogModalContent,
+      AffiliateSetupModalContent,
+    },
+    data() {
+      return {
+        step: 1,
+      };
+    },
+    methods: {
+      selectStep(step) {
+        this.step = step;
+      },
+      connectCatalog() {
+        this.step = 2;
+      },
     },
   };
 </script>
 
 <style lang="scss" scoped>
   :deep(.unnnic-modal-container-background) {
-    width: 800px;
+    width: 850px;
     margin: 0 !important;
     padding: 0 !important;
     border-radius: 8px;
+  }
+
+  :deep(.unnnic-modal-container-background-body-description) {
+    text-align: start;
   }
 
   :deep(.unnnic-modal-container-background-body-description-container) {
@@ -63,8 +83,9 @@
 
     &__menu {
       display: flex;
-      width: 250px;
       padding: 24px;
+      width: 250px;
+      flex-shrink: 0;
       flex-direction: column;
       align-items: center;
       gap: 16px;
@@ -127,7 +148,6 @@
     &__content {
       display: flex;
       flex-direction: column;
-      width: 100%;
     }
   }
 </style>

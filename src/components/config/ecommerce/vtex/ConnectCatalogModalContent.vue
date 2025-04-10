@@ -36,15 +36,6 @@
         </div>
       </div>
     </div>
-
-    <div class="modal__buttons">
-      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button slot="options" ref="connectButton" @click="connectCatalog" :loading="loading">
-        {{ $t('general.continue') }}
-      </unnnic-button>
-    </div>
   </div>
 </template>
 
