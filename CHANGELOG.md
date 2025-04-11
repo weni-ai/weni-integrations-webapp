@@ -1,8 +1,16 @@
+2.2.33
+----------
+`2025-04-11 · 2 🎉`
+
+### 🎉 New feature
+- Feat: Add 'instagram_manage_comments' scope to Facebook app permissions
+- Feat: Add dockerfile envs
+
 2.2.32
 ----------
 `2025-04-08 · 1 🎉`
 
-### 🐛 New feature
+### 🎉 New feature
 - Feat: Refactor token retrieval
 
 2.2.28
