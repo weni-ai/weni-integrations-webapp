@@ -8,7 +8,7 @@ export default {
   },
   connectVtexCatalog(code, appUuid, payload) {
     return request.$http
-      .post(`${resource}/${code}/${appUuid}/catalogs/`, payload)
+      .post(`${resource}/vtex/apps/${appUuid}/link-catalog/`, payload)
       .then((r) => r.data);
   },
   async getVtexAppUuid(code) {

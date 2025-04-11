@@ -175,10 +175,13 @@
       ]),
       sellerOptions() {
         return (
-          this.sellersList.map((item) => ({
+          [{
+            value: '#all',
+            label: this.$t('vtex.config.all'),
+          }].concat(this.sellersList.map((item) => ({
             value: item,
             label: item,
-          })) || []
+          })) || [])
         );
       },
       disableSave() {
@@ -222,7 +225,7 @@
           code: 'wpp-cloud',
           appUuid: this.app.config.wpp_cloud_uuid,
           payload: {
-            name: eventData.name,
+            catalog_id: eventData.name,
           },
         };
 
@@ -305,16 +308,19 @@
         });
       },
       handleSelectSellers(value) {
-        if (value.length > 5) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('vtex.errors.select_five_sellers'),
-              type: 'error',
-            },
-          });
-          return;
+        const isAllSelectedBefore = this.selectedSellers.find((item) => item.value === '#all');
+        const isAllSelectedNow = value.find((item) => item.value === '#all');
+        const anySellerSelectedNow = value.filter((item) => item.value !== '#all');
+
+        if (isAllSelectedNow && value.length === 1) {
+          this.selectedSellers = value;
+        } else if (!isAllSelectedBefore && isAllSelectedNow) {
+          this.selectedSellers = value.filter((item) => item.value === '#all');
+        } else if (isAllSelectedBefore && anySellerSelectedNow) {
+          this.selectedSellers = value.filter((item) => item.value !== '#all');
+        } else {
+          this.selectedSellers = value;
         }
-        this.selectedSellers = value;
       },
       async handleSave() {
         if (this.appConfig?.vtex_ads !== undefined) {
@@ -323,12 +329,21 @@
             payload: { project_uuid: this.project, vtex_ads: this.vtexADS },
           });
         }
+
+        const isAllSellersSelected = this.selectedSellers.find((item) => item.value === '#all');
         const sellers = this.selectedSellers.map((item) => item.value);
+
         if (sellers.length) {
           const payloadSync = {
             project_uuid: this.project,
-            sellers: sellers,
           };
+
+          if (isAllSellersSelected) {
+            payloadSync.sync_all_sellers = true;
+          } else {
+            payloadSync.sellers = sellers;
+          }
+
           await this.syncSellers({ uuid: this.appUuid, payload: payloadSync });
           this.disableSellers = true;
         }

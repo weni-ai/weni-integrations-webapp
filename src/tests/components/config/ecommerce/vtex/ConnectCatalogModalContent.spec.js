@@ -21,8 +21,8 @@ describe('ConnectCatalogModalContent.vue', () => {
 
     const input = wrapper.findComponent({ name: 'unnnic-input' });
     expect(input.exists()).toBe(true);
-    expect(input.props().label).toBe('Catalog name');
-    expect(input.props().placeholder).toBe('Ex: Weekly offers');
+    expect(input.props().label).toBe('Catalog ID');
+    expect(input.props().placeholder).toBe('');
 
     const footer = wrapper.find('.modal__content__form__footer');
     expect(footer.exists()).toBe(true);

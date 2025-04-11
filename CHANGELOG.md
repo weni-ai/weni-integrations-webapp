@@ -1,3 +1,31 @@
+2.2.32
+----------
+`2025-04-08 · 1 🎉`
+
+### 🐛 New feature
+- Feat: Refactor token retrieval
+
+2.2.28
+----------
+`2025-03-19 ·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Flows iframe auth token 
+
+2.2.27
+----------
+`2025-03-19·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Dockerfile 
+
+2.2.26
+----------
+`2025-03-18·  1 🐛`
+
+### 🐛 Bug fixes
+- Fix: added token and project_uuid into the generated url
+
 2.2.24
 ----------
 `2025-01-30·  1 🐛`
