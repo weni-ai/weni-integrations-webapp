@@ -119,7 +119,7 @@
         onLogin: false,
         loadingPages: false,
         appScopes: {
-          ig: 'business_management,instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list',
+          ig: 'business_management,instagram_basic,instagram_manage_messages,pages_manage_metadata,pages_messaging,pages_read_engagement,pages_show_list,instagram_manage_comments',
           fba: 'business_management,pages_messaging,pages_show_list,pages_manage_metadata,pages_read_engagement',
         },
       };

@@ -429,14 +429,14 @@
       },
       scriptCode() {
         const code = `<script>
-  (function (d, s, u) {
-    let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
-    k.onload = function () {
-      let l = d.createElement(s); l.src = u; l.async = true;
-      h.parentNode.insertBefore(l, k.nextSibling);
+  (function (weni_d, weni_s, weni_u) {
+    let weni_h = weni_d.getElementsByTagName(weni_s)[0], weni_k = weni_d.createElement(weni_s);
+    weni_k.onload = function () {
+      let weni_l = weni_d.createElement(weni_s); weni_l.src = weni_u; weni_l.async = true;
+      weni_h.parentNode.insertBefore(weni_l, weni_k.nextSibling);
     };
-    k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
-    h.parentNode.insertBefore(k, h);
+    weni_k.async = true; weni_k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+    weni_h.parentNode.insertBefore(weni_k, weni_h);
   })(document, 'script', '${this.selectedApp.config.script}');
 <${'/'}script>`;
         return this.selectedApp.config.script ? code : '';
