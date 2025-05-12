@@ -1,4 +1,4 @@
-import request from './request';
+import request from '@/api/request';
 
 const resource = '/api/v1';
 async function sleep(seconds) {

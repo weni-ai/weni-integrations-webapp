@@ -23,9 +23,9 @@ vi.mock('@/utils/env', async (importOriginal) => {
     ...actual,
     getEnv: vi.fn((key) => {
       switch (key) {
-        case 'VITE_APP_WHATSAPP_FACEBOOK_APP_ID':
+        case 'WHATSAPP_FACEBOOK_APP_ID':
           return 'mockFacebookAppId';
-        case 'VITE_APP_WHATSAPP_FACEBOOK_APP_CONFIG_ID':
+        case 'WHATSAPP_FACEBOOK_APP_CONFIG_ID':
           return 'mockConfigId';
         default:
           return null;

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import surveyApi from '@/api/survey';
-import window from 'global/window';
-import setLocal from '../../utils/storage';
+import window from 'global/window.js';
+import setLocal from '@/utils/storage';
 
 export const survey_store = defineStore('survey', {
   state() {
