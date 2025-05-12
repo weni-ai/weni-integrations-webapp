@@ -18,13 +18,9 @@ getJwtToken().then(() => {
   const app = createApp(App);
   app.config.productionTip = false;
 
-  if (getEnv('NODE_ENV') === 'development') {
-    makeServer();
-  }
-
-  if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
+  if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
-      dsn: getEnv('VITE_APP_SENTRY_DSN'),
+      dsn: getEnv('SENTRY_DSN'),
       integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
       logErrors: true,
     });

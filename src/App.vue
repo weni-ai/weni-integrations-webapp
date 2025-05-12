@@ -30,8 +30,8 @@
       this.retriveSelectedOrg();
       this.retriveSelectedProject();
       this.retriveSelectedFlowOrg();
-      if (getEnv('VITE_APP_HELPHERO_ID')) {
-        const hlp = initHelpHero(getEnv('VITE_APP_HELPHERO_ID'));
+      if (getEnv('HELPHERO_ID')) {
+        const hlp = initHelpHero(getEnv('HELPHERO_ID'));
         hlp.anonymous();
       }
 

@@ -65,8 +65,8 @@
         loadingCreateApp: false,
         hasFBLoginList: ['wpp-cloud', 'ig', 'fba'],
         appCodeToFBAppId: {
-          'wpp-cloud': getEnv('VITE_APP_WHATSAPP_FACEBOOK_APP_ID'),
-          ig: getEnv('VITE_APP_FACEBOOK_APP_ID'),
+          'wpp-cloud': getEnv('WHATSAPP_FACEBOOK_APP_ID'),
+          ig: getEnv('FACEBOOK_APP_ID'),
         },
       };
     },
