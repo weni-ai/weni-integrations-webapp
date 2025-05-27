@@ -82,6 +82,5 @@ exports[`Discovery > matches snapshot 1`] = `
     </div>
   </div>
   <!--v-if-->
-  <!--v-if-->
 </div>"
 `;
