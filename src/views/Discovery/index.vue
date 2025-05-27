@@ -198,9 +198,6 @@
 
         this.channels.data = this.allAppTypes;
       },
-      async callManuallyCreateApp(appCode) {
-        await this.$refs.appGrid.manuallyCreateApp(appCode);
-      },
       async fetchExternalServices() {
         await this.getExternalServicesTypes();
       },
