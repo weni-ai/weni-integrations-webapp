@@ -768,28 +768,6 @@
       }
     }
   },
-  "PowerBi": {
-    "title": "Power BI",
-    "data": {
-      "summary": "Manténgase al día con el crecimiento de su proyecto con el conector Power BI con la Plataforma Weni."
-    },
-    "config": {
-      "description": {
-        "text": "Con la URL a continuación, puede conectar la plataforma Weni a Power BI y comenzar a monitorear las métricas y el crecimiento de su proyecto más de cerca. Simplemente siga la documentación en",
-        "link": "Cómo instalar y usar Weni Data Connector para Power BI"
-      },
-      "download": {
-        "label": "Descargar conector"
-      },
-      "token_error": "No se pudo obtener su Token de Power BI, inténtelo de nuevo más tarde.",
-      "token_input": {
-        "tooltip": "Copiar Token"
-      },
-      "download_model": {
-        "label": "Descargar modelo de dashboard"
-      }
-    }
-  },
   "GenericApp": {
     "configuration_guide": {
       "I2": "Si tienes un número largo o código corto con <a href=\"https://www.i2sms.com/\">I2SMS</a>, puedes conectarlo en unos pocos pasos fáciles.",

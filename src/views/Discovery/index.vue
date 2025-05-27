@@ -38,17 +38,8 @@
         :apps="filteredExternalServices"
         @update="fetchExternalServices"
       />
-
-      <AppGrid section="bi-tools" type="view" :loading="false" :apps="filteredBiApps" />
     </div>
-    <div
-      v-else-if="
-        searchTerm &&
-        !filteredApps.length &&
-        !filteredExternalServices.length &&
-        !filteredBiApps.length
-      "
-    >
+    <div v-else-if="searchTerm && !filteredApps.length && !filteredExternalServices.length">
       <EmptyApps :term="searchTerm" />
     </div>
 
@@ -65,7 +56,6 @@
 
 <script>
   import { insights_store } from '@/stores/modules/insights.store';
-  import PowerBiIcon from '@/assets/logos/power_bi.png';
   import AppGrid from '@/components/AppGrid/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'pinia';
@@ -86,17 +76,6 @@
           loading: true,
           data: null,
         },
-        biApps: [
-          {
-            code: 'power-bi',
-            name: 'Power BI',
-            category: 'bi-tools',
-            config_design: 'sidebar',
-            description: 'PowerBi.data.description',
-            summary: 'PowerBi.data.summary',
-            icon: PowerBiIcon,
-          },
-        ],
       };
     },
     async mounted() {
@@ -122,7 +101,7 @@
       searchOptions() {
         if (!this.allAppTypes || !this.externalServicesList) return [];
 
-        const allApps = [...this.allAppTypes, ...this.externalServicesList, ...this.biApps];
+        const allApps = [...this.allAppTypes, ...this.externalServicesList];
 
         const filtered = allApps.filter((app) => {
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
@@ -159,16 +138,8 @@
           return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
         });
       },
-      filteredBiApps() {
-        if (!this.searchTerm || !this.searchTerm.trim()) return this.biApps;
-
-        return this.biApps.filter((app) => {
-          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
-        });
-      },
       hasAnyVisibleApp() {
         return (
-          this.filteredBiApps.length ||
           this.filteredExternalServices.length ||
           this.filteredEcommerceApps.length ||
           this.filteredApps.length
