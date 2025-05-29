@@ -1,3 +1,11 @@
+2.3.0
+----------
+`2025-05-29 · 2 🎉`
+
+### 🎉 New feature
+- Feat: remove powerbi integration
+- Feat: remove onboard and survey
+
 2.2.33
 ----------
 `2025-04-11 · 2 🎉`
