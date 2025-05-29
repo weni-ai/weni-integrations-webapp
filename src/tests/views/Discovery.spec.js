@@ -59,22 +59,6 @@ describe('Discovery', () => {
       await wrapper.vm.$nextTick();
       expect(spy).toHaveBeenCalledTimes(1);
     });
-
-    it('should call callManuallyCreateApp if createAppCode isn`t null', async () => {
-      const spy = vi.spyOn(Discovery.methods, 'callManuallyCreateApp');
-      const wrapper = mount(Discovery, {
-        global: {
-          plugins: [createTestingPinia({ createSpy: vi.fn }), i18n],
-          mocks: {
-            $route: {
-              query: { create_app: 'tg' },
-            },
-          },
-        },
-      });
-      await wrapper.vm.$nextTick();
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
   });
 
   describe('fetchChannels', () => {

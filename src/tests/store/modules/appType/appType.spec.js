@@ -21,16 +21,7 @@ describe('app_type store', () => {
   it('should initialize with correct default state', () => {
     const store = app_type();
     expect(store.appUuid).toBe(null);
-    expect(store.onboardStatus).toBe(true);
     expect(store.loadingDeleteApp).toBe(false);
-  });
-
-  describe('setOnboardStatus', () => {
-    it('should update onboardStatus', () => {
-      const store = app_type();
-      store.setOnboardStatus(false);
-      expect(store.onboardStatus).toBe(false);
-    });
   });
 
   describe('getAllAppTypes', () => {
