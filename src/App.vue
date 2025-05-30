@@ -1,15 +1,11 @@
 <template>
   <div class="app">
     <RouterView class="content" />
-    <div class="survey-container">
-      <Survey />
-    </div>
   </div>
 </template>
 
 <script>
   import '@weni/unnnic-system';
-  import Survey from '@/components/Survey/index.vue';
   import initHelpHero from 'helphero';
   import getEnv from '@/utils/env';
   import { auth_store } from '@/stores/modules/auth.store';
@@ -17,9 +13,6 @@
 
   export default {
     name: 'App',
-    components: {
-      Survey,
-    },
     data() {
       return {
         connectBaseURL: '',
@@ -117,19 +110,6 @@
 
   .content {
     margin: $unnnic-spacing-md;
-  }
-
-  .survey-container {
-    position: fixed;
-    bottom: 150px;
-    right: 18px;
-    z-index: 3;
-  }
-
-  @supports (-moz-appearance: none) {
-    .survey-container {
-      right: 23px;
-    }
   }
 </style>
 
