@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import auth from '@/api/auth';
-import window from 'global/window';
-import setLocal from '../../utils/storage';
+import window from 'global/window.js';
+import setLocal from '@/utils/storage';
 
 export const auth_store = defineStore('auth', {
   state() {

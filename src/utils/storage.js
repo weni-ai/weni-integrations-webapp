@@ -1,4 +1,4 @@
-import win from 'global/window';
+import win from 'global/window.js';
 
 function setLocal(field, value) {
   /* istanbul ignore next */

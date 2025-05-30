@@ -172,7 +172,7 @@
       },
       /* istanbul ignore next */
       startFacebookLogin() {
-        const fbAppId = getEnv('VITE_APP_FACEBOOK_APP_ID');
+        const fbAppId = getEnv('FACEBOOK_APP_ID');
 
         if (!fbAppId) {
           return;

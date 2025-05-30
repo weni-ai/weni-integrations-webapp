@@ -12,6 +12,9 @@ vi.mock('axios');
 vi.mock('@/utils/plugins/fb', () => ({
   initFacebookSdk: vi.fn(),
 }));
+vi.mock('@/utils/env', () => ({
+  default: vi.fn(),
+}));
 
 describe('FacebookSetup.vue', () => {
   let wrapper;
@@ -127,5 +130,20 @@ describe('FacebookSetup.vue', () => {
 
     spyCreateApp.mockRestore();
     alertSpy.mockRestore();
+  });
+
+  it('returns early when Facebook App ID is not available', async () => {
+    const getEnv = await import('@/utils/env');
+    const initFacebookSdk = await import('@/utils/plugins/fb');
+
+    getEnv.default.mockReturnValue(null);
+
+    const initFacebookSdkSpy = vi.spyOn(initFacebookSdk, 'initFacebookSdk');
+
+    wrapper.vm.startFacebookLogin();
+
+    expect(initFacebookSdkSpy).not.toHaveBeenCalled();
+
+    initFacebookSdkSpy.mockRestore();
   });
 });

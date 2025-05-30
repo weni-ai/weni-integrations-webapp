@@ -9,24 +9,24 @@ exports[`Config.vue > matches the snapshot 1`] = `
     </div><span data-v-30bfe664="" class="app-config-telegram__header__description">Learn more about how to integrate Telegram <a data-v-30bfe664="" href="https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel" target="_blank"><span data-v-30bfe664="">here.</span></a></span>
   </div>
   <div data-v-30bfe664="" class="app-config-telegram__settings__content">
-    <div data-v-42852d93="" data-v-30bfe664="" class="unnnic-form md" disabled="valid-token">
-      <p data-v-42852d93="" class="unnnic-form__label">Token</p>
-      <div data-v-a77f9c45="" data-v-42852d93="" class="text-input size--md text-input--icon-right-size-sm unnnic-form-input" disabled="valid-token" mask=""><input data-v-bdb91cfd="" data-v-a77f9c45="" disabled="" class="unnnic-form-input input-itself input size-md normal unnnic-form-input input-itself" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text">
+    <div data-v-24f2d284="" data-v-30bfe664="" class="unnnic-form md" disabled="valid-token">
+      <p data-v-24f2d284="" class="unnnic-form__label">Token</p>
+      <div data-v-c1401a33="" data-v-24f2d284="" class="text-input size--md text-input--icon-right-size-sm unnnic-form-input" disabled="valid-token" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" disabled="" class="unnnic-form-input input-itself input size-md normal unnnic-form-input input-itself" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="valid-token">
         <!---->
         <!---->
       </div>
       <!---->
     </div>
   </div>
-  <div data-v-30bfe664="" class="app-config-telegram__settings__buttons"><button data-v-ed84dbab="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary app-config-telegram__settings__buttons__cancel">
+  <div data-v-30bfe664="" class="app-config-telegram__settings__buttons"><button data-v-d127031e="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary app-config-telegram__settings__buttons__cancel">
       <!---->
       <!---->
-      <!----><span data-v-ed84dbab="" class="unnnic-button__label" data-testid="button-label"> Cancel</span>
+      <!----><span data-v-d127031e="" class="unnnic-button__label" data-testid="button-label"> Cancel</span>
       <!---->
-    </button><button data-v-ed84dbab="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary app-config-telegram__settings__buttons__save" disabled="">
+    </button><button data-v-d127031e="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary app-config-telegram__settings__buttons__save" disabled="">
       <!---->
       <!---->
-      <!----><span data-v-ed84dbab="" class="unnnic-button__label" data-testid="button-label"> Validate</span>
+      <!----><span data-v-d127031e="" class="unnnic-button__label" data-testid="button-label"> Validate</span>
       <!---->
     </button></div>
 </div>"

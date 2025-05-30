@@ -2,29 +2,24 @@ import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
 import Unnnic from '@weni/unnnic-system';
 import '@weni/unnnic-system/dist/style.css';
-import i18n from './utils/plugins/i18n';
+import i18n from '@/utils/plugins/i18n';
 import * as vueUse from '@vueuse/components';
 import * as Sentry from '@sentry/vue';
 import getEnv from '@/utils/env';
-import { makeServer } from '@/miragejs/server';
-import './utils/plugins/Hotjar';
+import '@/utils/plugins/Hotjar';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
-import router from './router';
-import { getJwtToken } from './utils/jwt';
-import { auth_store } from './stores/modules/auth.store';
+import router from '@/router';
+import { getJwtToken } from '@/utils/jwt';
+import { auth_store } from '@/stores/modules/auth.store';
 
 getJwtToken().then(() => {
   const app = createApp(App);
   app.config.productionTip = false;
 
-  if (getEnv('NODE_ENV') === 'development') {
-    makeServer();
-  }
-
-  if (getEnv('VITE_APP_USE_SENTRY') && getEnv('VITE_APP_SENTRY_DSN')) {
+  if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
-      dsn: getEnv('VITE_APP_SENTRY_DSN'),
+      dsn: getEnv('SENTRY_DSN'),
       integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
       logErrors: true,
     });

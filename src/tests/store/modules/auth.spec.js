@@ -2,7 +2,7 @@ import { setActivePinia, createPinia } from 'pinia';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { auth_store } from '@/stores/modules/auth.store';
 import auth from '@/api/auth';
-import window from 'global/window';
+import window from 'global/window.js';
 
 vi.mock('@/api/auth', () => ({
   default: {
