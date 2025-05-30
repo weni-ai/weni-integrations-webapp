@@ -22,7 +22,6 @@ module.exports = defineConfig({
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: process.env.PUBLIC_PATH_URL || '/',
-    clean: true,
     filename: 'assets/js/[name]-[contenthash].js',
     chunkFilename: 'assets/js/[name]-[contenthash].js',
     assetModuleFilename: 'assets/[name]-[hash][ext]',
