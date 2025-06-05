@@ -81,7 +81,7 @@ module.exports = defineConfig({
       __VUE_PROD_DEVTOOLS__: false,
       'process.env': JSON.stringify(process.env),
       'import.meta.env': JSON.stringify({
-        BASE_URL: process.env.PUBLIC_PATH_URL || '/',
+        BASE_URL:  '/',
       }),
     }),
     new VueLoaderPlugin(),
