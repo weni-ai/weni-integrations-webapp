@@ -1,5 +1,5 @@
-import template from './template';
-import translation from './translation';
+import template from './template.js';
+import translation from './translation.js';
 
 export default {
   ...template,

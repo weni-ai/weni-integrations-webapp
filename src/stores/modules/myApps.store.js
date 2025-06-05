@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import appType from '@/api/myApps';
-import { formatGenericApp } from '../utils';
+import { formatGenericApp } from '@/stores/utils';
 
 export const my_apps = defineStore('myApps', {
   state() {
