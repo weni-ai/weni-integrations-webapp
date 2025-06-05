@@ -4,6 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 const { resolve } = require('path');
 const path = require('path');
 const dotenv = require('dotenv');
+const pkg = require('./package.json');
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ module.exports = defineConfig({
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: process.env.PUBLIC_PATH_URL || '/',
+    publicPath: process.env.PUBLIC_PATH_URL,
     filename: 'assets/js/[name]-[contenthash].js',
     chunkFilename: 'assets/js/[name]-[contenthash].js',
     assetModuleFilename: 'assets/[name]-[hash][ext]',
@@ -81,10 +82,45 @@ module.exports = defineConfig({
       __VUE_PROD_DEVTOOLS__: false,
       'process.env': JSON.stringify(process.env),
       'import.meta.env': JSON.stringify({
-        BASE_URL:  '/',
+        BASE_URL: '/',
       }),
     }),
     new VueLoaderPlugin(),
+    new rspack.container.ModuleFederationPlugin({
+      name: 'integrations',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/main.js',
+      },
+      remotes: {},
+      shared: {
+        vue: {
+          singleton: true,
+          eager: true,
+          requiredVersion: pkg.dependencies.vue,
+        },
+        'vue-i18n': {
+          singleton: true,
+          requiredVersion: pkg.dependencies['vue-i18n'],
+          eager: true,
+        },
+        'vue-router': {
+          singleton: true,
+          requiredVersion: pkg.dependencies['vue-router'],
+          eager: true,
+        },
+        pinia: {
+          singleton: true,
+          requiredVersion: pkg.dependencies.pinia,
+          eager: true,
+        },
+        '@weni/unnnic-system': {
+          singleton: true,
+          requiredVersion: pkg.dependencies['@weni/unnnic-system'],
+          eager: false,
+        },
+      },
+    }),
   ],
   optimization: {
     minimizer: [
