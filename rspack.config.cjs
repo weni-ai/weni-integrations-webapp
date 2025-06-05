@@ -114,11 +114,6 @@ module.exports = defineConfig({
           requiredVersion: pkg.dependencies.pinia,
           eager: true,
         },
-        '@weni/unnnic-system': {
-          singleton: true,
-          requiredVersion: pkg.dependencies['@weni/unnnic-system'],
-          eager: false,
-        },
       },
     }),
   ],
