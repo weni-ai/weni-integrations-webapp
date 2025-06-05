@@ -90,7 +90,7 @@ module.exports = defineConfig({
       name: 'integrations',
       filename: 'remoteEntry.js',
       exposes: {
-        './App': './src/main.js',
+        './Main': './src/main.js',
       },
       remotes: {},
       shared: {
