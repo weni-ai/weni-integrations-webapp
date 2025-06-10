@@ -108,12 +108,11 @@ const router = createRouter({
       ],
     },
     {
-      path: '/loginexternal/:token/:project/:flowOrg',
+      path: '/:project/:flowOrg',
       name: 'externalLogin',
       component: null,
       beforeEnter: (to, from, next) => {
-        const { token, project, flowOrg } = to.params;
-        auth_store().externalLogin({ token: token.replace('+', ' ') });
+        const { project, flowOrg } = to.params;
         auth_store().selectedProject({ project });
         flowOrg ? auth_store().selectedFlowOrg({ flowOrg }) : auth_store().getFlowOrganization();
         if (to.query.next) {

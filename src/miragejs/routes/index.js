@@ -1,7 +1,7 @@
 import getEnv from '@/utils/env';
 
 export default function routes() {
-  this.urlPrefix = getEnv('VITE_APP_API_BASE_URL');
+  this.urlPrefix = getEnv('API_BASE_URL');
   this.namespace = '/api/v1';
   this.timing = 1500;
 
@@ -21,5 +21,5 @@ export default function routes() {
     };
   });
 
-  this.passthrough(`${getEnv('VITE_APP_API_BASE_URL')}/**`);
+  this.passthrough(`${getEnv('API_BASE_URL')}/**`);
 }

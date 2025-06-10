@@ -1,3 +1,26 @@
+2.3.0
+----------
+`2025-05-29 · 2 🎉`
+
+### 🎉 New feature
+- Feat: remove powerbi integration
+- Feat: remove onboard and survey
+
+2.2.33
+----------
+`2025-04-11 · 2 🎉`
+
+### 🎉 New feature
+- Feat: Add 'instagram_manage_comments' scope to Facebook app permissions
+- Feat: Add dockerfile envs
+
+2.2.32
+----------
+`2025-04-08 · 1 🎉`
+
+### 🎉 New feature
+- Feat: Refactor token retrieval
+
 2.2.28
 ----------
 `2025-03-19 ·  1 🐛`

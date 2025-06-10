@@ -1,4 +1,4 @@
-import request from './request';
+import request from '@/api/request';
 const resource = '/api/v1/apptypes/wpp-cloud/apps';
 const base = '/api/v1/apps';
 export default {
