@@ -38,13 +38,6 @@ export const insights_store = defineStore('insights', {
         this.errorTemplates = err.response?.data.error || err;
       }
     },
-    async setActiveProject({ app_uuid }) {
-      this.isActive = true;
-      await insights.set_active_project(app_uuid);
-    },
-    setHasInsights({ isActive }) {
-      this.isActive = isActive;
-    },
     setSelectedTemplate({ template }) {
       this.selectedTemplate = template;
     },

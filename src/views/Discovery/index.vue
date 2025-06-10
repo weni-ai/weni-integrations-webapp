@@ -55,7 +55,6 @@
 </template>
 
 <script>
-  import { insights_store } from '@/stores/modules/insights.store';
   import AppGrid from '@/components/AppGrid/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
   import { mapActions, mapState } from 'pinia';
@@ -79,7 +78,6 @@
       };
     },
     async mounted() {
-      insights_store().setHasInsights({ isActive: true });
       this.fetchChannels();
 
       this.fetchExternalServices();

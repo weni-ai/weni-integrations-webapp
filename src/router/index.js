@@ -34,11 +34,6 @@ const router = createRouter({
       component: () => import('@/views/AppDetails/index.vue'),
     },
     {
-      name: 'Insights',
-      path: '/insights',
-      component: () => import('@/views/Insights/index.vue'),
-    },
-    {
       path: '/apps/my/:appCode/:appUuid/templates',
       component: () => import('@/views/whatsAppTemplates/Base.vue'),
       children: [

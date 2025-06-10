@@ -112,23 +112,6 @@
           </unnnic-button>
         </unnnic-tool-tip>
       </div>
-      <div class="conversations__content__insights">
-        <div class="conversations__content__insights__title">
-          {{ $t('WhatsApp.insights.insights') }}
-        </div>
-        <div class="conversations__content__insights__about">
-          <p>
-            {{ $t('WhatsApp.insights.about_description') }}
-          </p>
-        </div>
-        <div class="conversations__content__insights__button">
-          <unnnic-button
-            ref="insightsButton"
-            :text="$t('WhatsApp.insights.see_insights')"
-            @click="navigateToInsights"
-          />
-        </div>
-      </div>
     </div>
     <div class="conversations__buttons">
       <unnnic-button
@@ -147,7 +130,6 @@
   import unnnic from '@weni/unnnic-system';
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
-  import { insights_store } from '@/stores/modules/insights.store';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import removeEmpty from '../../../../../../utils/clean';
 
@@ -264,7 +246,6 @@
     },
     methods: {
       ...mapActions(whatsapp_store, ['getConversations', 'requestConversationsReport']),
-      ...mapActions(insights_store, ['setAppUuid']),
       handleDateFilter: debounce(async function (event) {
         this.startDate = event.startDate;
         this.endDate = event.endDate;
@@ -339,10 +320,6 @@
         });
         return;
       },
-      navigateToInsights() {
-        this.setAppUuid({ appUuid: this.app.uuid });
-        this.$router.replace('/insights');
-      },
     },
   };
 </script>
@@ -359,33 +336,6 @@
       flex-direction: column;
       flex: 1;
       gap: $unnnic-spacing-stack-md;
-
-      &__insights {
-        display: flex;
-        flex: 1;
-        width: 100%;
-        flex-direction: column;
-        height: 100%;
-        font-family: $unnnic-font-family-secondary;
-
-        &__title {
-          font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-neutral-dark;
-          font-size: $unnnic-font-size-body-lg;
-        }
-
-        &__about {
-          color: $unnnic-color-neutral-cloudy;
-          font-size: $unnnic-font-size-body-gt;
-        }
-
-        &__button {
-          display: flex;
-          flex: 1;
-          width: 100%;
-          align-items: flex-start;
-        }
-      }
 
       &__dropdown {
         width: fit-content;

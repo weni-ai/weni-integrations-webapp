@@ -10,12 +10,12 @@ exports[`TemplateDetails > matches snapshot 1`] = `
         <unnnic-tag scheme="neutral-dark"></unnnic-tag>
       </div>
     </div>
-    <div class="wpp_insights__header__button">
+    <div class="wpp_template_details__header__button">
       <unnnic-button text="Edit Model" type="secondary"></unnnic-button>
     </div>
   </div><!-- Tabs -->
-  <div class="wpp_insights__tabs">
-    <unnnic-tab initialtab="first" tabs="first,second"></unnnic-tab>
+  <div class="wpp_template_details__tabs">
+    <unnnic-tab initialtab="first" tabs="first"></unnnic-tab>
   </div>
 </div>"
 `;
