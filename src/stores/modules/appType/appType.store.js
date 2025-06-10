@@ -9,7 +9,6 @@ export const app_type = defineStore('appType', {
   state() {
     return {
       appUuid: null,
-      onboardStatus: true,
       loadingDeleteApp: false,
       errorDeleteApp: false,
 
@@ -48,9 +47,6 @@ export const app_type = defineStore('appType', {
   },
 
   actions: {
-    setOnboardStatus(value) {
-      this.onboardStatus = value;
-    },
     setAppUuid(value) {
       this.appUuid = value;
     },

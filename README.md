@@ -64,13 +64,13 @@ Before running the application, make sure you have installed the following tools
  
 | Variable | Type | Default | Description |
 |--|--|--|--|
-| VITE_APP_API_BASE_URL | `string` | Empty | URN of the backend environment to API requests. Without slash at the end.
-| VITE_APP_WHATSAPP_FACEBOOK_APP_ID  | `string` | Empty | WhatsApp Facebook App identifier
-| VITE_APP_FACEBOOK_APP_ID  | `string` | Empty | Facebook App identifier
-| VITE_APP_LOGROCKET_ID  | `string` | Empty | LogRocket identifier
-| VITE_APP_HELPHERO_ID | `string` | Empty | HelpHero identifier
-| VITE_APP_PARENT_IFRAME_DOMAIN | `string` | Empty | Weni Webapp URL
-| VITE_APP_FLOWS_IFRAME_URL | `string` | Empty | Flows module URL
+| API_BASE_URL | `string` | Empty | URN of the backend environment to API requests. Without slash at the end.
+| WHATSAPP_FACEBOOK_APP_ID  | `string` | Empty | WhatsApp Facebook App identifier
+| FACEBOOK_APP_ID  | `string` | Empty | Facebook App identifier
+| LOGROCKET_ID  | `string` | Empty | LogRocket identifier
+| HELPHERO_ID | `string` | Empty | HelpHero identifier
+| PARENT_IFRAME_DOMAIN | `string` | Empty | Weni Webapp URL
+| FLOWS_IFRAME_URL | `string` | Empty | Flows module URL
 
 # Development
 

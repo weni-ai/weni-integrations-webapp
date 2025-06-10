@@ -33,7 +33,7 @@
       iframeSrc() {
         const token = this.token?.replace('Bearer ', '');
 
-        return `${getEnv('VITE_APP_FLOWS_IFRAME_URL')}/weni/${
+        return `${getEnv('FLOWS_IFRAME_URL')}/weni/${
           this.project
         }/authenticate?access_token=${token}&next=/org/home/?flows_config_hide=configs`;
       },
