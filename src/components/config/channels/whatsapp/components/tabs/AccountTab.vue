@@ -18,7 +18,10 @@
               {{ $t('WhatsApp.config.templates.button') }}
             </unnnic-button>
           </div>
-          <div class="account-tab__content__info__templates__buttons">
+          <div
+            v-if="hasCatalog || hasVtexCatalogConnected"
+            class="account-tab__content__info__templates__buttons"
+          >
             <div class="account-tab__content__info__templates__buttons__title">
               {{ $t('WhatsApp.config.catalog.title') }}
             </div>
@@ -30,11 +33,7 @@
               type="primary"
               size="small"
             >
-              {{
-                hasCatalog || hasVtexCatalogConnected
-                  ? $t('WhatsApp.config.catalog.button')
-                  : $t('WhatsApp.config.catalog.button_create')
-              }}
+              {{ $t('WhatsApp.config.catalog.button') }}
             </unnnic-button>
           </div>
         </div>
@@ -167,10 +166,6 @@
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
       handleCatalogButtonClick() {
-        if (!this.hasCatalog) {
-          this.showCreateCatalogModal = true;
-          return;
-        }
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
       },
