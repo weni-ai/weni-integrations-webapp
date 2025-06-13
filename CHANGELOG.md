@@ -1,3 +1,38 @@
+3.2.0
+----------
+`2025-06-13 · 1 🎉`
+
+### 🎉 New feature
+- Feat: remove whatsapp insights from the codebase
+
+3.1.2
+----------
+`2025-06-11 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: use vtex uuid instead of whatsapp uuid
+
+3.1.1
+----------
+`2025-06-10 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: hotjar
+
+3.1.0
+----------
+`2025-06-05 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add module federation
+
+3.0.0
+----------
+`2025-06-5 · 1 🎉`
+
+### 🎉 New feature
+- Chore: migrate to rspack
+
 2.3.0
 ----------
 `2025-05-29 · 2 🎉`
