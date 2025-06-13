@@ -223,7 +223,7 @@
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
-          appUuid: this.app.config.wpp_cloud_uuid,
+          appUuid: this.appUuid,
           payload: {
             catalog_id: eventData.name,
           },

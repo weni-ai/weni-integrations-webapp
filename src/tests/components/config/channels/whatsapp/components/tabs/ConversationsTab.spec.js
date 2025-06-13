@@ -56,17 +56,6 @@ describe('ConversationsTab', () => {
     expect(requestReportSpy).toHaveBeenCalled();
   });
 
-  it('navigates to insights when insights button is clicked', async () => {
-    const insightsButton = wrapper.findComponent({ ref: 'insightsButton' });
-    expect(insightsButton.exists()).toBe(true);
-    expect(insightsButton.props().text).toBe('See insights');
-    await insightsButton.trigger('click');
-
-    await wrapper.vm.$nextTick();
-
-    expect(wrapper.vm.$router.replace).toHaveBeenCalledWith('/insights');
-  });
-
   it('shows alert on error during reporting', async () => {
     const spyCallAlert = vi.spyOn(unnnic, 'unnnicCallAlert');
     const store = whatsapp_store();

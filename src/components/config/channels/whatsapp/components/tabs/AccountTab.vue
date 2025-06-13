@@ -18,7 +18,10 @@
               {{ $t('WhatsApp.config.templates.button') }}
             </unnnic-button>
           </div>
-          <div class="account-tab__content__info__templates__buttons">
+          <div
+            v-if="hasCatalog || hasVtexCatalogConnected"
+            class="account-tab__content__info__templates__buttons"
+          >
             <div class="account-tab__content__info__templates__buttons__title">
               {{ $t('WhatsApp.config.catalog.title') }}
             </div>
@@ -30,11 +33,7 @@
               type="primary"
               size="small"
             >
-              {{
-                hasCatalog || hasVtexCatalogConnected
-                  ? $t('WhatsApp.config.catalog.button')
-                  : $t('WhatsApp.config.catalog.button_create')
-              }}
+              {{ $t('WhatsApp.config.catalog.button') }}
             </unnnic-button>
           </div>
         </div>
@@ -87,6 +86,18 @@
           </div>
         </div>
       </div>
+
+      <div class="account-tab__content__mmlite">
+        <unnnic-button
+          class="account-tab__content__mmlite__button"
+          @click="enableMMLite"
+          :loading="loadingMMLite"
+          type="secondary"
+          size="small"
+        >
+          {{ $t('WhatsApp.config.mmlite.button') }}
+        </unnnic-button>
+      </div>
     </div>
 
     <unnnic-modal
@@ -122,6 +133,8 @@
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
+  import { initFacebookSdk } from '@/utils/plugins/fb';
+  import getEnv from '@/utils/env';
 
   export default {
     name: 'AccountTab',
@@ -140,10 +153,13 @@
       },
     },
     async mounted() {
+      window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
+
       await this.fetchVtexApp();
     },
     data() {
       return {
+        loadingMMLite: false,
         showCreateCatalogModal: false,
         showConnectCatalogModal: false,
         vtexApp: null,
@@ -167,10 +183,6 @@
         this.$router.push({ path: `/apps/my/${code}/${uuid}/templates` });
       },
       handleCatalogButtonClick() {
-        if (!this.hasCatalog) {
-          this.showCreateCatalogModal = true;
-          return;
-        }
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
       },
@@ -239,6 +251,32 @@
           },
           seconds: 6,
         });
+      },
+      changeMMLiteLoadingState(state) {
+        this.loadingMMLite = state;
+      },
+      async enableMMLite() {
+        const fbAppId = getEnv('WHATSAPP_FACEBOOK_APP_ID');
+        const configId = getEnv('WHATSAPP_MMLITE_CONFIG_ID');
+
+        const embeddedCallback = () => {
+          this.changeMMLiteLoadingState(true);
+
+          /* eslint-disable-next-line no-undef */
+          FB.login(
+            function () {
+              this.changeMMLiteLoadingState(false);
+            },
+            {
+              config_id: configId,
+              response_type: 'code',
+              override_default_response_type: true,
+              extras: { features: [{ name: 'marketing_messages_lite' }] },
+            },
+          );
+        };
+
+        initFacebookSdk(fbAppId, embeddedCallback);
       },
     },
     computed: {
@@ -473,6 +511,16 @@
               }
             }
           }
+        }
+      }
+
+      &__mmlite {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: $unnnic-spacing-stack-lg;
+
+        &__button {
+          width: 100%;
         }
       }
     }

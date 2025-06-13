@@ -109,18 +109,6 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
           <!---->
         </button><span data-v-8c61d974="" class="unnnic-tooltip-label unnnic-tooltip-label-top" style="max-width: 15rem; left: 0px; top: -8px;" data-testid="tooltip-label">A date range is required to be able to request a report <br data-v-8c61d974=""><!----></span></div>
     </div>
-    <div data-v-2b8fe4c5="" class="conversations__content__insights">
-      <div data-v-2b8fe4c5="" class="conversations__content__insights__title">Insights</div>
-      <div data-v-2b8fe4c5="" class="conversations__content__insights__about">
-        <p data-v-2b8fe4c5="">See more detailed data related to sending, delivering and reading triggered message templates.</p>
-      </div>
-      <div data-v-2b8fe4c5="" class="conversations__content__insights__button"><button data-v-d127031e="" data-v-2b8fe4c5="" class="unnnic-button unnnic-button--size-large unnnic-button--primary">
-          <!---->
-          <!---->
-          <!----><span data-v-d127031e="" class="unnnic-button__label" data-testid="button-label"> See insights</span>
-          <!---->
-        </button></div>
-    </div>
   </div>
   <div data-v-2b8fe4c5="" class="conversations__buttons"><button data-v-d127031e="" data-v-2b8fe4c5="" class="conversations__buttons__close unnnic-button unnnic-button--size-large unnnic-button--tertiary conversations__buttons__close">
       <!---->

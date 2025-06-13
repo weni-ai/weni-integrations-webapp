@@ -76,22 +76,6 @@ describe('insights_store', () => {
     expect(store.errorTemplates).toBe(mockError);
   });
 
-  it('should set active project', async () => {
-    const store = insights_store();
-
-    await store.setActiveProject({ app_uuid: 'test-uuid' });
-
-    expect(store.isActive).toBe(true);
-    expect(insights.set_active_project).toHaveBeenCalledWith('test-uuid');
-  });
-
-  it('should set has insights', () => {
-    const store = insights_store();
-    store.setHasInsights({ isActive: true });
-
-    expect(store.isActive).toBe(true);
-  });
-
   it('should set selected template', () => {
     const store = insights_store();
     const mockTemplate = { id: 1, name: 'Test Template' };
