@@ -20,7 +20,4 @@ export default {
       .get(`${base}/${app_uuid}/templates/?page=1&page_size=${count}`)
       .then((r) => r.data);
   },
-  set_active_project(app_uuid) {
-    return request.$http.post(`${resource}/${app_uuid}/enable-template-analytics/`);
-  },
 };

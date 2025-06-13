@@ -8,7 +8,7 @@
           <unnnic-tag scheme="neutral-dark" :text="selectedTemplate?.category" />
         </div>
       </div>
-      <div class="wpp_insights__header__button">
+      <div class="wpp_template_details__header__button">
         <unnnic-button
           :text="$t('WhatsApp.template_details.button.edit_model')"
           ref="wpp_template_details__button__edit"
@@ -18,15 +18,11 @@
       </div>
     </div>
     <!-- Tabs -->
-    <div class="wpp_insights__tabs">
-      <unnnic-tab initialTab="first" :tabs="['first', 'second']">
+    <div class="wpp_template_details__tabs">
+      <unnnic-tab initialTab="first" :tabs="['first']">
         <template #tab-head-first>{{ $t('WhatsApp.template_details.summary.title') }}</template>
         <template #tab-panel-first>
           <Summary />
-        </template>
-        <template #tab-head-second>{{ $t('WhatsApp.insights.insights') }}</template>
-        <template #tab-panel-second>
-          <Insights />
         </template>
       </unnnic-tab>
     </div>
@@ -34,14 +30,12 @@
 </template>
 
 <script>
-  import Insights from '../Insights/index.vue';
   import Summary from '../../components/TemplateDetails/Summary.vue';
   import { mapState } from 'pinia';
   import { insights_store } from '@/stores/modules/insights.store';
   export default {
     name: 'AppDetails',
     components: {
-      Insights,
       // eslint-disable-next-line vue/no-reserved-component-names
       Summary,
     },
