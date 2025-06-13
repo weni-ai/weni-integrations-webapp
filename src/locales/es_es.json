@@ -466,6 +466,9 @@
         "error": {
           "missing_vtex_app": "Es necesario tener configurada una aplicación VTEX para conectar un catálogo."
         }
+      },
+      "mmlite": {
+        "button": "Actualizar a API MM Lite de WhatsApp"
       }
     },
     "catalog": {
