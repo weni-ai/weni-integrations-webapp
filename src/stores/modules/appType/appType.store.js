@@ -110,8 +110,10 @@ export const app_type = defineStore('appType', {
         this.loadingPostRating = false;
       }
     },
-    async getApp({ code, appUuid }) {
-      this.loadingCurrentApp = true;
+    async getApp({ code, appUuid, loading = true }) {
+      if (loading) {
+        this.loadingCurrentApp = true;
+      }
       this.errorCurrentApp = null;
       this.currentApp = null;
       try {

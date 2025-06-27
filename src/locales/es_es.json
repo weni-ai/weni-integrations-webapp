@@ -468,7 +468,9 @@
         }
       },
       "mmlite": {
-        "button": "Actualizar a API MM Lite de WhatsApp"
+        "button": "Actualizar a API MM Lite de WhatsApp",
+        "button_updating": "Actualizando a API MM Lite de WhatsApp",
+        "disclaimer": "¡Buenas noticias! Ahora estás usando la API MM Lite."
       }
     },
     "catalog": {

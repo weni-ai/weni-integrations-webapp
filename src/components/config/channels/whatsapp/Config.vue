@@ -48,6 +48,7 @@
             :appInfo="currentApp"
             :hasCatalog="whatsAppCloudCatalogs && whatsAppCloudCatalogs.count > 0"
             @close="closeConfig"
+            @updateApp="() => fetchAppInfo({ code: app.code, appUuid: app.uuid, loading: false })"
           />
         </template>
 

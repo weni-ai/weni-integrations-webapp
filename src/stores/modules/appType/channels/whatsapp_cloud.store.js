@@ -208,5 +208,17 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         this.loadingCatalogProducts = false;
       }
     },
+    async updateMMLiteStatus({ appUuid, data }) {
+      this.loadingMMLiteStatus = true;
+      this.errorMMLiteStatus = null;
+      try {
+        await whatsAppCloud.updateMMLiteStatus(appUuid, data);
+        this.loadingMMLiteStatus = false;
+      } catch (err) {
+        captureSentryException(err);
+        this.errorMMLiteStatus = err.response?.data.error || err;
+        this.loadingMMLiteStatus = false;
+      }
+    },
   },
 });
