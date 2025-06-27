@@ -9,13 +9,32 @@ import getEnv from '@/utils/env';
 import '@/utils/plugins/Hotjar';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
-import router from '@/router';
+import { createRouter } from '@/router';
 import { getJwtToken } from '@/utils/jwt';
 import { auth_store } from '@/stores/modules/auth.store';
+import { safeImport } from '@/utils/moduleFederation';
 
-getJwtToken().then(() => {
+const { useSharedStore } = await safeImport(
+  () => import('connect/sharedStore'),
+  'connect/sharedStore',
+);
+
+const sharedStore = useSharedStore?.();
+
+const isRemoteModuleFederation = `${window.location.origin}/` !== getEnv('PUBLIC_PATH_URL');
+
+export default async function mountIntegrationsApp({ containerId = 'app', routerBase = '/' } = {}) {
+  let appRef = null;
+
+  if (!isRemoteModuleFederation) {
+    await getJwtToken();
+  }
+
   const app = createApp(App);
   app.config.productionTip = false;
+
+  const pinia = createPinia();
+  const router = createRouter(routerBase);
 
   if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
@@ -25,7 +44,6 @@ getJwtToken().then(() => {
     });
   }
 
-  const pinia = createPinia();
   pinia.use(piniaPluginPersistedstate);
   pinia.use(({ store }) => {
     store.router = markRaw(router);
@@ -37,10 +55,22 @@ getJwtToken().then(() => {
   app.use(i18n);
   app.use(vueUse);
 
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    auth_store().externalLogin({ token });
+  if (sharedStore && isRemoteModuleFederation) {
+    auth_store().externalLogin({ token: `Bearer ${sharedStore.auth.token}` });
+    auth_store().selectedProject({ project: sharedStore.current.project.uuid });
+  } else {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      auth_store().externalLogin({ token });
+    }
   }
 
-  app.mount('#app');
-});
+  app.mount(`#${containerId}`);
+  appRef = app;
+
+  return appRef;
+}
+
+if (!sharedStore && !isRemoteModuleFederation) {
+  mountIntegrationsApp();
+}
