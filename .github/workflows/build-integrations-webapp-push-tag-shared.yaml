@@ -148,11 +148,11 @@ jobs:
               fi
             done
 
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        with:
-          github_token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
-          repository: "${{ env.MANIFESTS_REPOSITORY }}"
-          directory: ./kubernetes-manifests/
-          branch: main
-          message: "From Integrations WebApp Build (Push Tag ${{ env.MANIFESTS_ENVIRONMENT }})"
+      # - name: Commit & Push changes
+      #   uses: actions-js/push@master
+      #   with:
+      #     github_token: "${{ secrets.DEVOPS_GITHUB_PERMANENT_TOKEN }}"
+      #     repository: "${{ env.MANIFESTS_REPOSITORY }}"
+      #     directory: ./kubernetes-manifests/
+      #     branch: main
+      #     message: "From Integrations WebApp Build (Push Tag ${{ env.MANIFESTS_ENVIRONMENT }})"
