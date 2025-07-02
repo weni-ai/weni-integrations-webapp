@@ -347,13 +347,15 @@
       hasVtexCatalogConnected() {
         return this.vtexApp?.config?.connected_catalog ?? false;
       },
-      disabledMMLite() {
+      inProgressMMLite() {
+        if (this.localMMLiteStatus === 'in_progress') return true;
+
         if (!this.appInfo?.config?.mmlite_status) return false;
 
         return this.appInfo?.config?.mmlite_status === 'in_progress';
       },
       activeMMLite() {
-        if (this.localMMLiteStatus === 'in_progress') return true;
+        if (this.localMMLiteStatus === 'in_progress') return false;
 
         if (!this.appInfo?.config?.mmlite_status) return false;
 
