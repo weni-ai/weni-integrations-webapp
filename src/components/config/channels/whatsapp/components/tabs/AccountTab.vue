@@ -107,6 +107,7 @@
 
         <unnnic-disclaimer
           v-if="activeMMLite"
+          class="account-tab__content__mmlite__disclaimer"
           :text="$t('WhatsApp.config.mmlite.disclaimer')"
           icon="alert-circle-1"
         />
@@ -563,10 +564,13 @@
 
       &__mmlite {
         display: flex;
-        justify-content: flex-end;
         margin-top: $unnnic-spacing-stack-lg;
 
         &__button {
+          width: 100%;
+        }
+
+        &__disclaimer {
           width: 100%;
         }
       }
