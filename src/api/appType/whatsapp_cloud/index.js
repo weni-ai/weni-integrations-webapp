@@ -45,6 +45,6 @@ export default {
     );
   },
   updateMMLiteStatus(appUuid, data) {
-    return request.$http.patch(`${appResource}/${appUuid}/update_mmlite_status/`, data);
+    return request.$http.patch(`${resource}/${appUuid}/update_mmlite_status/`, data);
   },
 };
