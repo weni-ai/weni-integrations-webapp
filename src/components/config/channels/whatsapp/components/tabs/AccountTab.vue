@@ -106,7 +106,7 @@
         </unnnic-button>
 
         <unnnic-disclaimer
-          v-if="!activeMMLite"
+          v-if="activeMMLite"
           :text="$t('WhatsApp.config.mmlite.disclaimer')"
           icon="alert-circle-1"
         />
