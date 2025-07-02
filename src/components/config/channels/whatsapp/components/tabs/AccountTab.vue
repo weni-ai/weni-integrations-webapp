@@ -89,14 +89,27 @@
 
       <div class="account-tab__content__mmlite">
         <unnnic-button
+          v-if="!activeMMLite"
           class="account-tab__content__mmlite__button"
           @click="enableMMLite"
           :loading="loadingMMLite"
+          :disabled="disabledMMLite"
           type="secondary"
           size="small"
         >
-          {{ $t('WhatsApp.config.mmlite.button') }}
+          <template v-if="mmliteStatus === 'in_progress'">
+            {{ $t('WhatsApp.config.mmlite.button_updating') }}
+          </template>
+          <template v-else>
+            {{ $t('WhatsApp.config.mmlite.button') }}
+          </template>
         </unnnic-button>
+
+        <unnnic-disclaimer
+          v-if="!activeMMLite"
+          :text="$t('WhatsApp.config.mmlite.disclaimer')"
+          icon="alert-circle-1"
+        />
       </div>
     </div>
 
@@ -131,6 +144,7 @@
   import unnnic from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
   import { initFacebookSdk } from '@/utils/plugins/fb';
@@ -154,6 +168,7 @@
     },
     async mounted() {
       window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
+      window.setMMLiteToInProgress = this.setMMLiteToInProgress;
 
       await this.fetchVtexApp();
     },
@@ -163,11 +178,13 @@
         showCreateCatalogModal: false,
         showConnectCatalogModal: false,
         vtexApp: null,
+        localMMLiteStatus: null,
       };
     },
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['connectVtexCatalog']),
+      ...mapActions(whatsapp_cloud, ['updateMMLiteStatus']),
       emitClose() {
         this.$emit('close');
       },
@@ -255,6 +272,21 @@
       changeMMLiteLoadingState(state) {
         this.loadingMMLite = state;
       },
+      async setMMLiteToInProgress() {
+        await this.updateMMLiteStatus({
+          appUuid: this.appInfo.uuid,
+          data: {
+            status: 'in_progress',
+          },
+        });
+
+        this.$emit('updateApp');
+        this.localMMLiteStatus = 'in_progress';
+
+        setTimeout(() => {
+          this.$emit('updateApp');
+        }, 10000);
+      },
       async enableMMLite() {
         const fbAppId = getEnv('WHATSAPP_FACEBOOK_APP_ID');
         const configId = getEnv('WHATSAPP_MMLITE_CONFIG_ID');
@@ -264,8 +296,11 @@
 
           /* eslint-disable-next-line no-undef */
           FB.login(
-            function () {
+            function (response) {
               this.changeMMLiteLoadingState(false);
+              if (response.authResponse) {
+                this.setMMLiteToInProgress();
+              }
             },
             {
               config_id: configId,
@@ -310,6 +345,18 @@
       },
       hasVtexCatalogConnected() {
         return this.vtexApp?.config?.connected_catalog ?? false;
+      },
+      disabledMMLite() {
+        if (!this.appInfo?.config?.mmlite_status) return false;
+
+        return this.appInfo?.config?.mmlite_status === 'in_progress';
+      },
+      activeMMLite() {
+        if (this.localMMLiteStatus === 'in_progress') return true;
+
+        if (!this.appInfo?.config?.mmlite_status) return false;
+
+        return this.appInfo?.config?.mmlite_status === 'active';
       },
       accountSections() {
         return [
