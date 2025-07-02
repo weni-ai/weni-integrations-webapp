@@ -93,7 +93,7 @@
           class="account-tab__content__mmlite__button"
           @click="enableMMLite"
           :loading="loadingMMLite"
-          :disabled="disabledMMLite"
+          :disabled="inProgressMMLite"
           type="secondary"
           size="small"
         >
@@ -360,6 +360,13 @@
         if (!this.appInfo?.config?.mmlite_status) return false;
 
         return this.appInfo?.config?.mmlite_status === 'active';
+      },
+      mmliteStatus() {
+        if (this.localMMLiteStatus === 'in_progress') return 'in_progress';
+
+        if (!this.appInfo?.config?.mmlite_status) return 'inactive';
+
+        return this.appInfo?.config?.mmlite_status;
       },
       accountSections() {
         return [
