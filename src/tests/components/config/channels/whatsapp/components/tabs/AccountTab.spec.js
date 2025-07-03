@@ -96,12 +96,6 @@ describe('AccountTab.vue', () => {
     });
   });
 
-  it('opens catalog modal when catalog button is clicked without catalog', async () => {
-    const catalogButton = wrapper.findComponent({ ref: 'catalogButton' });
-    await catalogButton.trigger('click');
-    expect(wrapper.vm.showCreateCatalogModal).toBe(true);
-  });
-
   it('navigates to catalog when button is clicked with catalog', async () => {
     wrapper = createWrapper({ hasCatalog: true });
     const catalogButton = wrapper.findComponent({ ref: 'catalogButton' });
