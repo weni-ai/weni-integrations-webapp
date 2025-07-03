@@ -1,3 +1,10 @@
+3.3.0
+----------
+`2025-07-03 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add mmlite feature to whatsapp cloud
+
 3.2.0
 ----------
 `2025-06-13 · 1 🎉`
