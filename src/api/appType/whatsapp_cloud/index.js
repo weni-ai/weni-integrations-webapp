@@ -2,7 +2,7 @@ import qs from 'query-string';
 import request from '@/api/request.js';
 
 const resource = '/api/v1/apptypes/wpp-cloud/apps';
-const catalogsResource = '/api/v1/apptypes/wpp-cloud';
+const appResource = '/api/v1/apptypes/wpp-cloud';
 
 export default {
   getDebugToken(params) {
@@ -18,30 +18,33 @@ export default {
   },
   getWhatsAppCloudCatalogs(appUuid, params) {
     const queryString = qs.stringify(params);
-    return request.$http.get(`${catalogsResource}/${appUuid}/catalogs/?${queryString}`);
+    return request.$http.get(`${appResource}/${appUuid}/catalogs/?${queryString}`);
   },
   fetchCatalogData(appUuid, catalogUuid) {
-    return request.$http.get(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/`);
+    return request.$http.get(`${appResource}/${appUuid}/catalogs/${catalogUuid}/`);
   },
   disableWhatsAppCloudCatalogs(appUuid, catalogUuid) {
-    return request.$http.post(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/disable/`);
+    return request.$http.post(`${appResource}/${appUuid}/catalogs/${catalogUuid}/disable/`);
   },
   enableWhatsAppCloudCatalogs(appUuid, catalogUuid) {
-    return request.$http.post(`${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/enable/`);
+    return request.$http.post(`${appResource}/${appUuid}/catalogs/${catalogUuid}/enable/`);
   },
   toggleCartVisibility(appUuid, data) {
-    return request.$http.post(`${catalogsResource}/${appUuid}/toggle-cart-visibility/`, data);
+    return request.$http.post(`${appResource}/${appUuid}/toggle-cart-visibility/`, data);
   },
   toggleCatalogVisibility(appUuid, data) {
-    return request.$http.post(`${catalogsResource}/${appUuid}/toggle-catalog-visibility/`, data);
+    return request.$http.post(`${appResource}/${appUuid}/toggle-catalog-visibility/`, data);
   },
   getCommerceSettings(appUuid) {
-    return request.$http.get(`${catalogsResource}/${appUuid}/commerce-settings/`);
+    return request.$http.get(`${appResource}/${appUuid}/commerce-settings/`);
   },
   getCatalogProducts(appUuid, catalogUuid, params) {
     const queryString = qs.stringify(params);
     return request.$http.get(
-      `${catalogsResource}/${appUuid}/catalogs/${catalogUuid}/products/?${queryString}`,
+      `${appResource}/${appUuid}/catalogs/${catalogUuid}/products/?${queryString}`,
     );
+  },
+  updateMMLiteStatus(appUuid, data) {
+    return request.$http.patch(`${resource}/${appUuid}/update_mmlite_status/`, data);
   },
 };

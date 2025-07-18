@@ -86,6 +86,32 @@
           </div>
         </div>
       </div>
+
+      <div class="account-tab__content__mmlite">
+        <unnnic-button
+          v-if="!activeMMLite"
+          class="account-tab__content__mmlite__button"
+          @click="enableMMLite"
+          :loading="loadingMMLite"
+          :disabled="inProgressMMLite"
+          type="secondary"
+          size="small"
+        >
+          <template v-if="mmliteStatus === 'in_progress'">
+            {{ $t('WhatsApp.config.mmlite.button_updating') }}
+          </template>
+          <template v-else>
+            {{ $t('WhatsApp.config.mmlite.button') }}
+          </template>
+        </unnnic-button>
+
+        <unnnic-disclaimer
+          v-if="activeMMLite"
+          class="account-tab__content__mmlite__disclaimer"
+          :text="$t('WhatsApp.config.mmlite.disclaimer')"
+          icon="alert-circle-1"
+        />
+      </div>
     </div>
 
     <unnnic-modal
@@ -119,8 +145,11 @@
   import unnnic from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
+  import { initFacebookSdk } from '@/utils/plugins/fb';
+  import getEnv from '@/utils/env';
 
   export default {
     name: 'AccountTab',
@@ -139,18 +168,24 @@
       },
     },
     async mounted() {
+      window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
+      window.setMMLiteToInProgress = this.setMMLiteToInProgress;
+
       await this.fetchVtexApp();
     },
     data() {
       return {
+        loadingMMLite: false,
         showCreateCatalogModal: false,
         showConnectCatalogModal: false,
         vtexApp: null,
+        localMMLiteStatus: null,
       };
     },
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['connectVtexCatalog']),
+      ...mapActions(whatsapp_cloud, ['updateMMLiteStatus']),
       emitClose() {
         this.$emit('close');
       },
@@ -235,6 +270,50 @@
           seconds: 6,
         });
       },
+      changeMMLiteLoadingState(state) {
+        this.loadingMMLite = state;
+      },
+      async setMMLiteToInProgress() {
+        await this.updateMMLiteStatus({
+          appUuid: this.appInfo.uuid,
+          data: {
+            status: 'in_progress',
+          },
+        });
+
+        this.$emit('updateApp');
+        this.localMMLiteStatus = 'in_progress';
+
+        setTimeout(() => {
+          this.$emit('updateApp');
+        }, 10000);
+      },
+      async enableMMLite() {
+        const fbAppId = getEnv('WHATSAPP_FACEBOOK_APP_ID');
+        const configId = getEnv('WHATSAPP_MMLITE_CONFIG_ID');
+
+        const embeddedCallback = () => {
+          this.changeMMLiteLoadingState(true);
+
+          /* eslint-disable-next-line no-undef */
+          FB.login(
+            function (response) {
+              this.changeMMLiteLoadingState(false);
+              if (response.authResponse) {
+                this.setMMLiteToInProgress();
+              }
+            },
+            {
+              config_id: configId,
+              response_type: 'code',
+              override_default_response_type: true,
+              extras: { features: [{ name: 'marketing_messages_lite' }] },
+            },
+          );
+        };
+
+        initFacebookSdk(fbAppId, embeddedCallback);
+      },
     },
     computed: {
       ...mapState(auth_store, ['project']),
@@ -267,6 +346,27 @@
       },
       hasVtexCatalogConnected() {
         return this.vtexApp?.config?.connected_catalog ?? false;
+      },
+      inProgressMMLite() {
+        if (this.localMMLiteStatus === 'in_progress') return true;
+
+        if (!this.appInfo?.config?.mmlite_status) return false;
+
+        return this.appInfo?.config?.mmlite_status === 'in_progress';
+      },
+      activeMMLite() {
+        if (this.localMMLiteStatus === 'in_progress') return false;
+
+        if (!this.appInfo?.config?.mmlite_status) return false;
+
+        return this.appInfo?.config?.mmlite_status === 'active';
+      },
+      mmliteStatus() {
+        if (this.localMMLiteStatus === 'in_progress') return 'in_progress';
+
+        if (!this.appInfo?.config?.mmlite_status) return 'inactive';
+
+        return this.appInfo?.config?.mmlite_status;
       },
       accountSections() {
         return [
@@ -468,6 +568,19 @@
               }
             }
           }
+        }
+      }
+
+      &__mmlite {
+        display: flex;
+        margin-top: $unnnic-spacing-stack-lg;
+
+        &__button {
+          width: 100%;
+        }
+
+        &__disclaimer {
+          width: 100%;
         }
       }
     }
