@@ -1,4 +1,5 @@
 import axios from 'axios';
+import '@/utils/pinia-setup';
 import { auth_store } from '@/stores/modules/auth.store';
 import getEnv from '@/utils/env';
 
