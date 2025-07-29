@@ -11,17 +11,17 @@ exports[`Config.vue > matches the snapshot 1`] = `
   <div data-v-e4619b51="" class="app-config-facebook__settings__content">
     <p data-v-e4619b51="" class="unnnic-label__label">Your Facebook account is connected</p>
     <div data-v-e4619b51="" class="app-config-facebook__settings__content__inputs">
-      <div data-v-24f2d284="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__name" disabled="true">
+      <div data-v-fefd47bc="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__name" disabled="true">
         <!---->
-        <div data-v-c1401a33="" data-v-24f2d284="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__name unnnic-form-input" disabled="true" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="Mock Page Name">
+        <div data-v-c1401a33="" data-v-fefd47bc="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__name unnnic-form-input" disabled="true" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="Mock Page Name">
           <!---->
           <!---->
         </div>
         <!---->
       </div>
-      <div data-v-24f2d284="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__id" disabled="true">
+      <div data-v-fefd47bc="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__id" disabled="true">
         <!---->
-        <div data-v-c1401a33="" data-v-24f2d284="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__id unnnic-form-input" disabled="true" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="ID: 1234567890">
+        <div data-v-c1401a33="" data-v-fefd47bc="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__id unnnic-form-input" disabled="true" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="ID: 1234567890">
           <!---->
           <!---->
         </div>

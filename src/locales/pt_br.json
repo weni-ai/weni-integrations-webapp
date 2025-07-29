@@ -219,7 +219,11 @@
       "TooltipInput": {
         "label": "Mensagem de notificação do chat",
         "placeholder": "Mensagem que aparecerá na notificação do chatbot"
-      }
+      },
+      "contactTimeoutInput": {
+        "label": "Reiniciar conversa por inatividade do contato"
+      },
+      "contactTimeoutToolTip": "Se o contato permanecer inativo pelo tempo definido, a conversa será encerrada automaticamente.\nUma nova conversa será iniciada caso ele volte a interagir."
     },
     "simulator": {
       "chatTitle": "Título do Chat",
