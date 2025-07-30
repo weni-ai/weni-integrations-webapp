@@ -384,7 +384,7 @@
         tooltipMessage: this.app.config.tooltipMessage,
         enableContactTimeout:
           !!this.app.config.contactTimeout || this.app.config.contactTimeout === '00:00',
-        contactTimeout: this.app.config.contactTimeout ?? '23:59',
+        contactTimeout: this.formatContactTimeout(this.app.config.contactTimeout) ?? '23:59',
 
         avatarFile: this.app.config.profileAvatar ?? null,
         customCssFile: this.app.config.customCss ?? null,
@@ -610,6 +610,16 @@
 
         const [hours, minutes] = this.contactTimeout.split(':');
         return parseInt(hours) * 60 + parseInt(minutes);
+      },
+      formatContactTimeout(contactTimeout) {
+        if (!contactTimeout) {
+          return '00:00';
+        }
+
+        // convert the minutes integer to 24h format
+        const hours = Math.floor(contactTimeout / 60);
+        const minutes = contactTimeout % 60;
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
       },
       clearAvatars() {
         this.simulatorAvatar = null;
