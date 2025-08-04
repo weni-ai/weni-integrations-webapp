@@ -219,7 +219,11 @@
       "TooltipInput": {
         "label": "Mensaje de notificación de chat",
         "placeholder": "Mensaje de notificación cuando el usuario visita el sitio web"
-      }
+      },
+      "contactTimeoutInput": {
+        "label": "Reiniciar conversación después de inactividad del contacto"
+      },
+      "contactTimeoutToolTip": "Si el contacto permanece inactivo durante el tiempo establecido, la conversación se cerrará automáticamente.\nUna nueva conversación comenzará si interactúan nuevamente."
     },
     "simulator": {
       "chatTitle": "Título del chat",

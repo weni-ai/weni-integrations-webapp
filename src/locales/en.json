@@ -219,7 +219,11 @@
       "TooltipInput": {
         "label": "Chat notification message",
         "placeholder": "Notification message when the user visits the website"
-      }
+      },
+      "contactTimeoutInput": {
+        "label": "Restart conversation after contact inactivity"
+      },
+      "contactTimeoutToolTip": "If the contact remains inactive for the set amount of time, the conversation will automatically end.\nA new conversation will start if they interact again."
     },
     "simulator": {
       "chatTitle": "Chat Title",
