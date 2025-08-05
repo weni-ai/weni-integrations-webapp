@@ -223,7 +223,8 @@
       "contactTimeoutInput": {
         "label": "Reiniciar conversa por inatividade do contato"
       },
-      "contactTimeoutToolTip": "Se o contato permanecer inativo pelo tempo definido, a conversa será encerrada automaticamente.\nUma nova conversa será iniciada caso ele volte a interagir."
+      "contactTimeoutToolTip": "Se o contato permanecer inativo pelo tempo definido, a conversa será encerrada automaticamente.\nUma nova conversa será iniciada caso ele volte a interagir.",
+      "contactTimeoutInvalidTime": "O valor deve ser um timer com um máximo de 24 horas no seguinte formato: HH:mm"
     },
     "simulator": {
       "chatTitle": "Título do Chat",

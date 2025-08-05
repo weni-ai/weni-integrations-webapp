@@ -178,13 +178,18 @@
                     </div>
 
                     <transition name="fade">
-                      <unnnic-select-time
+                      <unnnic-input
                         v-show="enableContactTimeout"
-                        :modelValue="contactTimeout"
-                        :options="[]"
+                        v-model="contactTimeout"
                         class="app-config-wwc__tabs__settings-content__input__contactTimeout"
-                        type="normal"
                         @update:modelValue="handleContactTimeoutChange"
+                        mask="##:##"
+                        :type="invalidTime('contactTimeout') ? 'error' : 'normal'"
+                        :message="
+                          invalidTime('contactTimeout')
+                            ? $t('weniWebChat.config.contactTimeoutInvalidTime')
+                            : ''
+                        "
                       />
                     </transition>
                   </div>
@@ -220,6 +225,7 @@
                 type="primary"
                 size="large"
                 :text="$t('apps.config.save_changes')"
+                :disabled="invalidTime('contactTimeout') || loadingSave"
                 :loading="loadingSave"
                 @click="saveConfig"
               ></unnnic-button>
@@ -620,6 +626,20 @@
         const hours = Math.floor(contactTimeout / 60);
         const minutes = contactTimeout % 60;
         return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+      },
+      invalidTime(key) {
+        if (!this.enableContactTimeout) {
+          return false;
+        }
+
+        const value = this.$data[key];
+
+        if (value === '00:00') {
+          return true;
+        }
+
+        const TIME_REGEX = /^([01]?[0-9]|2[0-3]):([0-5][0-9])$/;
+        return !value || value.length !== 5 || !TIME_REGEX.test(value);
       },
       clearAvatars() {
         this.simulatorAvatar = null;

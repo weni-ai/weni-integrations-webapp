@@ -1,3 +1,10 @@
+3.4.0
+----------
+`2025-08-04 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add contact timeout feature to weniwebchat
+
 3.3.0
 ----------
 `2025-07-03 · 1 🎉`
