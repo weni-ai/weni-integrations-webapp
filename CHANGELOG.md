@@ -1,3 +1,10 @@
+3.4.1
+----------
+`2025-08-06 · 1 🎉`
+
+### 🎉 New feature
+- feat: enhance contact timeout validation in WWC configuration
+
 3.4.0
 ----------
 `2025-08-04 · 1 🎉`
