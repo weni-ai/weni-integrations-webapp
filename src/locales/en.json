@@ -363,6 +363,7 @@
             "business": "Business",
             "user": "User",
             "marketing": "Marketing",
+            "marketing_lite": "Marketing Lite",
             "utility": "Utility",
             "authentication": "Authentication",
             "service": "Service",
