@@ -173,6 +173,7 @@
           type="primary"
           @click="continueSetup"
           :loading="loadingCreateApp"
+          :disabled="isContinueDisabled"
         >
           {{ $t('general.continue') }}
         </unnnic-button>
@@ -209,8 +210,8 @@
         whatsappChannels: [],
         selectedChannel: [],
         loadingChannels: false,
-        appKey: null,
-        appToken: null,
+        appKey: '',
+        appToken: '',
         currentStep: 0,
       };
     },
@@ -226,6 +227,20 @@
       webhookUrl() {
         const backendUrl = getEnv('API_BASE_URL');
         return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid.uuid}/products-update/api/notification/`;
+      },
+
+      isContinueDisabled() {
+        if (this.currentStep === 0) {
+          const isChannelSelected = this.selectedChannel.length > 0 && !!this.selectedChannel.at(0).value;
+          const isAPIDomainNotEmpty = !!this.apiDomain.trim();
+          const isStoreDomainNotEmpty = !!this.storeDomain.trim();
+          const isAppKeyNotEmpty = !!this.appKey.trim();
+          const isAppTokenNotEmpty = !!this.appToken.trim();
+
+          return !isChannelSelected || !isAPIDomainNotEmpty || !isStoreDomainNotEmpty || !isAppKeyNotEmpty || !isAppTokenNotEmpty;
+        }
+
+        return false;
       },
     },
     methods: {
@@ -260,7 +275,7 @@
             store_domain: this.storeDomain.trim(),
             app_key: this.appKey.trim(),
             app_token: this.appToken.trim(),
-            wpp_cloud_uuid: this.selectedChannel[0].value,
+            wpp_cloud_uuid: this.selectedChannel.at(0).value,
             uuid: this.generatedVtexAppUuid.uuid,
           },
         };
