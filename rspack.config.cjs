@@ -90,14 +90,14 @@ module.exports = defineConfig({
       name: 'integrations',
       filename: 'remoteEntry.js',
       exposes: {
-        './Main': './src/main.js',
+        './main': './src/main.js',
       },
-      remotes: {},
+      remotes: {
+        connect: `connect@${process.env.MODULE_FEDERATION_CONNECT_URL}/remoteEntry.js`,
+      },
       shared: {
         vue: {
-          singleton: true,
-          eager: true,
-          requiredVersion: pkg.dependencies.vue,
+          singleton: false,
         },
         'vue-i18n': {
           singleton: true,
@@ -110,9 +110,7 @@ module.exports = defineConfig({
           eager: true,
         },
         pinia: {
-          singleton: true,
-          requiredVersion: pkg.dependencies.pinia,
-          eager: true,
+          singleton: false,
         },
       },
     }),
