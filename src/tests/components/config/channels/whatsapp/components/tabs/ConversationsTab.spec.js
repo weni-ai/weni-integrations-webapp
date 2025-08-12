@@ -120,6 +120,7 @@ describe('ConversationsTab', () => {
   it('computes afterItems correctly', () => {
     wrapper.vm.afterData = {
       MARKETING: 3,
+      MARKETING_LITE: 5,
       UTILITY: 4,
       AUTHENTICATION: 2,
       SERVICE: 1,
@@ -127,6 +128,7 @@ describe('ConversationsTab', () => {
 
     expect(wrapper.vm.afterItems).toEqual([
       { category: 'Marketing', quantity: 3 },
+      { category: 'Marketing Lite', quantity: 5 },
       { category: 'Utility', quantity: 4 },
       { category: 'Authentication', quantity: 2 },
       { category: 'Service', quantity: 1 },

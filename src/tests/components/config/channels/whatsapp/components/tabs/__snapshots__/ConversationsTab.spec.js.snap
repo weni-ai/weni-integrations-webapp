@@ -64,6 +64,18 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
             <div data-v-b2229274="" class="item">
               <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
                 <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="Marketing Lite" class="break-text">Marketing Lite</div>
+                </div>
+                <div data-v-cb0c6b93="" class="divider"></div>
+                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                  <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
+                </div>
+                <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+              </div>
+            </div>
+            <div data-v-b2229274="" class="item">
+              <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="Utility" class="break-text">Utility</div>
                 </div>
                 <div data-v-cb0c6b93="" class="divider"></div>
