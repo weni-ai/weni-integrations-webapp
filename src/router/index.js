@@ -140,7 +140,7 @@ const router = createRouter({
   routes,
 });
 
-router.afterEach(() => {
+router.afterEach((router) => {
   window.dispatchEvent(
     new CustomEvent('updateRoute', {
       detail: { path: router.path, query: router.query },
