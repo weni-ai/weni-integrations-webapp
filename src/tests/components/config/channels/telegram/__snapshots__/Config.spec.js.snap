@@ -9,9 +9,9 @@ exports[`Config.vue > matches the snapshot 1`] = `
     </div><span data-v-30bfe664="" class="app-config-telegram__header__description">Learn more about how to integrate Telegram <a data-v-30bfe664="" href="https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel" target="_blank"><span data-v-30bfe664="">here.</span></a></span>
   </div>
   <div data-v-30bfe664="" class="app-config-telegram__settings__content">
-    <div data-v-24f2d284="" data-v-30bfe664="" class="unnnic-form md" disabled="valid-token">
-      <p data-v-24f2d284="" class="unnnic-form__label">Token</p>
-      <div data-v-c1401a33="" data-v-24f2d284="" class="text-input size--md text-input--icon-right-size-sm unnnic-form-input" disabled="valid-token" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" disabled="" class="unnnic-form-input input-itself input size-md normal unnnic-form-input input-itself" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="valid-token">
+    <div data-v-fefd47bc="" data-v-30bfe664="" class="unnnic-form md" disabled="valid-token">
+      <p data-v-fefd47bc="" class="unnnic-form__label">Token</p>
+      <div data-v-c1401a33="" data-v-fefd47bc="" class="text-input size--md text-input--icon-right-size-sm unnnic-form-input" disabled="valid-token" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" disabled="" class="unnnic-form-input input-itself input size-md normal unnnic-form-input input-itself" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="valid-token">
         <!---->
         <!---->
       </div>

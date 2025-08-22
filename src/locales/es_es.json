@@ -219,7 +219,12 @@
       "TooltipInput": {
         "label": "Mensaje de notificación de chat",
         "placeholder": "Mensaje de notificación cuando el usuario visita el sitio web"
-      }
+      },
+      "contactTimeoutInput": {
+        "label": "Reiniciar conversación después de inactividad del contacto"
+      },
+      "contactTimeoutToolTip": "Si el contacto permanece inactivo durante el tiempo establecido, la conversación se cerrará automáticamente.\nUna nueva conversación comenzará si interactúan nuevamente.",
+      "contactTimeoutInvalidTime": "El valor debe ser un temporizador con un máximo de 24 horas en el siguiente formato: HH:mm"
     },
     "simulator": {
       "chatTitle": "Título del chat",
@@ -359,6 +364,7 @@
             "user": "Usuario",
             "authentication": "Autenticación",
             "marketing": "Marketing",
+            "marketing_lite": "Marketing Lite",
             "service": "Servicio",
             "utility": "Utilidad",
             "category": "Categoría"
@@ -466,6 +472,11 @@
         "error": {
           "missing_vtex_app": "Es necesario tener configurada una aplicación VTEX para conectar un catálogo."
         }
+      },
+      "mmlite": {
+        "button": "Actualizar a API MM Lite de WhatsApp",
+        "button_updating": "Actualizando a API MM Lite de WhatsApp",
+        "disclaimer": "¡Buenas noticias! Ahora estás usando la API MM Lite."
       }
     },
     "catalog": {

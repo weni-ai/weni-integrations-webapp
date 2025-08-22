@@ -1,3 +1,32 @@
+3.4.2
+----------
+`2025-08-12 · 2 🎉`
+
+### 🎉 New feature
+- Feat: add marketing lite line to WhastApp conversations table
+- Feat: add logic to disable the Continue button in the VTEX setup flow
+
+3.4.1
+----------
+`2025-08-06 · 1 🎉`
+
+### 🎉 New feature
+- feat: enhance contact timeout validation in WWC configuration
+
+3.4.0
+----------
+`2025-08-04 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add contact timeout feature to weniwebchat
+
+3.3.0
+----------
+`2025-07-03 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add mmlite feature to whatsapp cloud
+
 3.2.0
 ----------
 `2025-06-13 · 1 🎉`

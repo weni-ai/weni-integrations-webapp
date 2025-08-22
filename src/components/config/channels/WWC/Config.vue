@@ -123,24 +123,22 @@
                     size="small"
                     :textRight="$t('weniWebChat.config.embedded_mode')"
                   />
-                  <div
-                    class="app-config-wwc__tabs__settings-content__selectors__switches__fullscreen"
-                  >
-                    <unnnic-switch
-                      v-model="showFullScreenButton"
-                      :inititalState="false"
-                      size="small"
-                      :textRight="$t('weniWebChat.config.show_fullscreen_button')"
-                      :disabled="embedded"
-                    />
-                    <unnnic-switch
-                      v-model="startFullScreen"
-                      :inititalState="false"
-                      size="small"
-                      :textRight="$t('weniWebChat.config.start_with_fullscreen')"
-                      :disabled="embedded"
-                    />
-                  </div>
+
+                  <unnnic-switch
+                    v-model="showFullScreenButton"
+                    :inititalState="false"
+                    size="small"
+                    :textRight="$t('weniWebChat.config.show_fullscreen_button')"
+                    :disabled="embedded"
+                  />
+                  <unnnic-switch
+                    v-model="startFullScreen"
+                    :inititalState="false"
+                    size="small"
+                    :textRight="$t('weniWebChat.config.start_with_fullscreen')"
+                    :disabled="embedded"
+                  />
+
                   <unnnic-switch
                     v-model="displayUnreadCount"
                     :inititalState="false"
@@ -153,7 +151,50 @@
                     size="small"
                     :textRight="$t('weniWebChat.config.keep_chat_history')"
                   />
+
+                  <div class="app-config-wwc__tabs__settings-content__contactTimeout">
+                    <div class="app-config-wwc__tabs__settings-content__contactTimeout__horizontal">
+                      <unnnic-switch
+                        v-model="enableContactTimeout"
+                        class="app-config-wwc__tabs__settings-content__switch"
+                        :inititalState="false"
+                        size="small"
+                        :textRight="$t('weniWebChat.config.contactTimeoutInput.label')"
+                      />
+                      <unnnic-toolTip
+                        class="app-config-wwc__tabs__settings-content__contactTimeout__tooltip"
+                        slot="buttons"
+                        :text="$t('weniWebChat.config.contactTimeoutToolTip')"
+                        :enabled="true"
+                        side="top"
+                      >
+                        <unnnic-icon-svg
+                          class="app-config-wwc__tabs__settings-content__contactTimeout__icon"
+                          icon="information-circle-4"
+                          size="sm"
+                          scheme="neutral-soft"
+                        />
+                      </unnnic-toolTip>
+                    </div>
+
+                    <transition name="fade">
+                      <unnnic-input
+                        v-show="enableContactTimeout"
+                        v-model="contactTimeout"
+                        class="app-config-wwc__tabs__settings-content__input__contactTimeout"
+                        @update:modelValue="handleContactTimeoutChange"
+                        mask="##:##"
+                        :type="invalidTime('contactTimeout') ? 'error' : 'normal'"
+                        :message="
+                          invalidTime('contactTimeout')
+                            ? $t('weniWebChat.config.contactTimeoutInvalidTime')
+                            : ''
+                        "
+                      />
+                    </transition>
+                  </div>
                 </div>
+
                 <div class="app-config-wwc__tabs__settings-content__selectors__slider">
                   <div class="app-config-wwc__tabs__settings-content__selectors__slider__label">
                     {{ $t('weniWebChat.config.time_between_messages') }}
@@ -184,6 +225,7 @@
                 type="primary"
                 size="large"
                 :text="$t('apps.config.save_changes')"
+                :disabled="invalidTime('contactTimeout') || loadingSave"
                 :loading="loadingSave"
                 @click="saveConfig"
               ></unnnic-button>
@@ -346,6 +388,9 @@
         enableInitPayload: !!this.app.config.initPayload,
         enableTooltipMessage: !!this.app.config.tooltipMessage,
         tooltipMessage: this.app.config.tooltipMessage,
+        enableContactTimeout:
+          !!this.app.config.contactTimeout || this.app.config.contactTimeout === '00:00',
+        contactTimeout: this.formatContactTimeout(this.app.config.contactTimeout) ?? '23:59',
 
         avatarFile: this.app.config.profileAvatar ?? null,
         customCssFile: this.app.config.customCss ?? null,
@@ -371,6 +416,13 @@
         if (newVal) {
           this.startFullScreen = false;
           this.showFullScreenButton = false;
+        }
+      },
+      enableContactTimeout(newVal) {
+        if (!newVal) {
+          this.contactTimeout = '00:00';
+        } else if (this.contactTimeout === '00:00') {
+          this.contactTimeout = '23:59';
         }
       },
     },
@@ -554,6 +606,41 @@
       handleSliderChange(value) {
         this.timeBetweenMessages = parseInt(value);
       },
+      handleContactTimeoutChange(value) {
+        this.contactTimeout = value;
+      },
+      contactTimeoutInMinutes() {
+        if (!this.enableContactTimeout) {
+          return 0;
+        }
+
+        const [hours, minutes] = this.contactTimeout.split(':');
+        return parseInt(hours) * 60 + parseInt(minutes);
+      },
+      formatContactTimeout(contactTimeout) {
+        if (!contactTimeout) {
+          return '00:00';
+        }
+
+        // convert the minutes integer to 24h format
+        const hours = Math.floor(contactTimeout / 60);
+        const minutes = contactTimeout % 60;
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+      },
+      invalidTime(key) {
+        if (!this.enableContactTimeout) {
+          return false;
+        }
+
+        const value = this.$data[key];
+
+        if (value === '00:00') {
+          return true;
+        }
+
+        const TIME_REGEX = /^([01]?[0-9]|2[0-3]):([0-5][0-9])$/;
+        return !value || value.length !== 5 || !TIME_REGEX.test(value);
+      },
       clearAvatars() {
         this.simulatorAvatar = null;
         this.avatarFile = {};
@@ -629,6 +716,7 @@
               embedded: this.embedded,
               mainColor: this.mainColor,
               profileAvatar: await this.imageForUpload(),
+              contactTimeout: this.contactTimeoutInMinutes(),
               customCss: this.cssForUpload,
             },
           },
@@ -864,6 +952,29 @@
           }
         }
 
+        &__contactTimeout {
+          display: flex;
+          flex-direction: column;
+          gap: $unnnic-spacing-stack-xs;
+
+          &__horizontal {
+            display: flex;
+          }
+
+          &__label {
+            font-family: $unnnic-font-family-secondary;
+            font-weight: $unnnic-font-weight-regular;
+            font-size: $unnnic-font-size-body-gt;
+            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+            color: $unnnic-color-neutral-cloudy;
+          }
+
+          &__icon {
+            margin-top: $unnnic-spacing-stack-nano;
+            margin-left: $unnnic-inline-nano;
+          }
+        }
+
         &__switch {
           ::v-deep .unnnic-switch__label {
             font-size: $unnnic-font-size-body-gt;
@@ -900,6 +1011,7 @@
 
         &__selectors {
           display: flex;
+          flex-direction: column;
           justify-content: space-between;
           gap: $unnnic-inline-sm;
           margin-top: $unnnic-spacing-stack-md;
@@ -922,6 +1034,8 @@
           }
 
           &__slider {
+            width: 50%;
+
             &__label {
               color: $unnnic-color-neutral-cloudy;
               font-family: $unnnic-font-family-secondary;

@@ -44,9 +44,9 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import unnnic from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
-  import getEnv from '../../../..//utils/env';
-  import { initFacebookSdk } from '../../../../utils/plugins/fb';
-  import { captureSentryManualError } from '../../../../utils/sentry';
+  import getEnv from '@/utils/env';
+  import { initFacebookSdk } from '@/utils/plugins/fb';
+  import { captureSentryManualError } from '@/utils/sentry';
 
   export default {
     name: 'WhatsAppSetup',

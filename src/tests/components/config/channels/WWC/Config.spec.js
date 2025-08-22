@@ -145,4 +145,15 @@ describe('wwcConfig Component', () => {
     await wrapper.vm.saveConfig();
     expect(spyUpdateAppConfig).toHaveBeenCalled();
   });
+
+  it('should have contactTimeout in minutes', () => {
+    wrapper.setData({ enableContactTimeout: true, contactTimeout: '00:00' });
+    expect(wrapper.vm.contactTimeoutInMinutes()).toBe(0);
+    wrapper.setData({ enableContactTimeout: true, contactTimeout: '00:01' });
+    expect(wrapper.vm.contactTimeoutInMinutes()).toBe(1);
+    wrapper.setData({ enableContactTimeout: true, contactTimeout: '01:00' });
+    expect(wrapper.vm.contactTimeoutInMinutes()).toBe(60);
+    wrapper.setData({ enableContactTimeout: true, contactTimeout: '12:30' });
+    expect(wrapper.vm.contactTimeoutInMinutes()).toBe(750);
+  });
 });

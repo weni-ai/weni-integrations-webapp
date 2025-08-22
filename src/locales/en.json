@@ -219,7 +219,12 @@
       "TooltipInput": {
         "label": "Chat notification message",
         "placeholder": "Notification message when the user visits the website"
-      }
+      },
+      "contactTimeoutInput": {
+        "label": "Restart conversation after contact inactivity"
+      },
+      "contactTimeoutToolTip": "If the contact remains inactive for the set amount of time, the conversation will automatically end.\nA new conversation will start if they interact again.",
+      "contactTimeoutInvalidTime": "Value must be a timer with a maximum of 24 hours with the following format: HH:mm"
     },
     "simulator": {
       "chatTitle": "Chat Title",
@@ -358,6 +363,7 @@
             "business": "Business",
             "user": "User",
             "marketing": "Marketing",
+            "marketing_lite": "Marketing Lite",
             "utility": "Utility",
             "authentication": "Authentication",
             "service": "Service",
@@ -457,7 +463,7 @@
       "templates": {
         "button": "See my templates",
         "title": "Templates",
-        "new_language":"New Language"	
+        "new_language": "New Language"
       },
       "catalog": {
         "button": "View list of catalogs",
@@ -466,6 +472,11 @@
         "error": {
           "missing_vtex_app": "You need to have a VTEX app configured to connect a catalog."
         }
+      },
+      "mmlite": {
+        "button": "Update to MM Lite WhatsApp API",
+        "button_updating": "Updating to MM Lite WhatsApp API",
+        "disclaimer": "Good news! You're now using the MM Lite API."
       }
     },
     "catalog": {
@@ -513,7 +524,7 @@
           "add_language": "Add language",
           "duplicate_language": "Duplicate",
           "delete_language": "Delete",
-          "see_details":"See details"
+          "see_details": "See details"
         },
         "headers": {
           "name": "Name",
@@ -1070,7 +1081,6 @@
       "update_connected_catalog_status": "Failed to fetch catalog status, please try again later.",
       "select_five_sellers": "Please select up to 5 sellers.",
       "sync_sellers": "Unable to synchronize sellers at the moment, please try again later."
-
     },
     "success": {
       "connect_catalog": "Successfully connected VTEX catalog",
@@ -1097,7 +1107,6 @@
       }
     }
   },
-
   "channels": {
     "TWT": "Send and receive messages on Twitter using their Twitter Activity API. You will have to apply for Twitter API access and create a Twitter application.",
     "SL": "Add a Slack bot to send and receive messages to Slack users.",
@@ -1123,11 +1132,10 @@
     "WC": "Add a WeChat bot to send and receive messages to WeChat users for free. Your users will need an Android, Windows or iOS device and a WeChat account to send and receive messages.",
     "ZVS": "If you have a Zenvia SMS number, you can connect it to communicate with your contacts.",
     "ZVW": "If you have a Zenvia WhatsApp number, you can connect it to communicate with your WhatsApp contacts.",
-
-    "inputs":{
+    "inputs": {
       "KWA": {
         "number": {
-          "label": "Your enterprise WhatsApp number", 
+          "label": "Your enterprise WhatsApp number",
           "message": "",
           "placeholder": ""
         },
@@ -1171,14 +1179,14 @@
       },
       "MG": {
         "shortcode": {
-        "label": "The Messangi short code",
-        "placeholder": "Enter the shortcode",
-        "message": null
+          "label": "The Messangi short code",
+          "placeholder": "Enter the shortcode",
+          "message": null
         },
         "carrier_id": {
-        "label": "Carrier Id",
-        "placeholder": "Enter the carrier id",
-        "message": "The carrier id for the short code"
+          "label": "Carrier Id",
+          "placeholder": "Enter the carrier id",
+          "message": "The carrier id for the short code"
         },
         "public_key": {
           "label": "Public Key",
@@ -1198,9 +1206,9 @@
       },
       "PM": {
         "base_url": {
-        "label": "Base URL",
-        "placeholder": "Enter the base URL",
-        "message": "The base URL for PlayMobile"
+          "label": "Base URL",
+          "placeholder": "Enter the base URL",
+          "message": "The base URL for PlayMobile"
         },
         "shortcode": {
           "label": "Shortcode",
@@ -1392,37 +1400,37 @@
         }
       },
       "CM": {
-      "number": {
-        "label": "Número",
-        "message": "El número de teléfono o código corto de Click Mobile que estás conectando con el código de país. ej: +250788123124",
-        "placeholder": ""
+        "number": {
+          "label": "Número",
+          "message": "El número de teléfono o código corto de Click Mobile que estás conectando con el código de país. ej: +250788123124",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "País",
+          "message": "",
+          "placeholder": ""
+        },
+        "username": {
+          "label": "ID de Usuario",
+          "message": "Tu user_id en Click Mobile",
+          "placeholder": ""
+        },
+        "password": {
+          "label": "Contraseña",
+          "message": "Tu contraseña en Click Mobile",
+          "placeholder": ""
+        },
+        "app_id": {
+          "label": "ID de la Aplicación",
+          "message": "Tu app_id en Click Mobile",
+          "placeholder": ""
+        },
+        "org_id": {
+          "label": "ID de la Organización",
+          "message": "Tu org_id en Click Mobile",
+          "placeholder": ""
+        }
       },
-      "country": {
-        "label": "País",
-        "message": "",
-        "placeholder": ""
-      },
-      "username": {
-        "label": "ID de Usuario",
-        "message": "Tu user_id en Click Mobile",
-        "placeholder": ""
-      },
-      "password": {
-        "label": "Contraseña",
-        "message": "Tu contraseña en Click Mobile",
-        "placeholder": ""
-      },
-      "app_id": {
-        "label": "ID de la Aplicación",
-        "message": "Tu app_id en Click Mobile",
-        "placeholder": ""
-      },
-      "org_id": {
-        "label": "ID de la Organización",
-        "message": "Tu org_id en Click Mobile",
-        "placeholder": ""
-      }
-    },
       "CT": {
         "country": {
           "type": "select",
@@ -1439,7 +1447,7 @@
           "label": "API Key",
           "message": "The API key for your integration as provided by Clickatell"
         }
-      }, 
+      },
       "D3": {
         "number": {
           "type": "input",
@@ -1586,45 +1594,45 @@
       }
     }
   },
-  "email": { 
+  "email": {
     "data": {
       "summary": "Connect your email and streamline customer service more easily."
     },
-  "config": {
-    "title": "Email",
-    "description": "Connect your email and automate customer support more easily.",
-    "config_solution": "Solution Configuration",
-    "config_solution_subtitle": "Fill in the fields below to integrate an email",
-    "select": "Select the email type",
-    "smpt_server": {
-      "title": "SMTP Server",
-      "description": "SMTP server address for sending emails."
-    },
-    "smpt_port": {
-      "title": "SMTP Port",
-      "description": "SMTP server communication port."
-    },
-    "imap_server": {
-      "title": "IMAP Server",
-      "description": "IMAP server address for sending emails."
-    },
-    "imap_port": {
-      "title": "IMAP Port",
-      "description": "IMAP server communication port."
-    },
-    "username": "Username",
-    "username_description": "The email used for authentication.",
-    "password": "Password"
-  }
-},
-"gmail": {
-  "setup": {
-    "title": "Connect to Gmail",
-    "description": "Click Continue to open the Gmail login page. After logging in, your account will be automatically integrated.",
-    "buttons": {
-      "cancel": "Cancel",
-      "continue": "Continue"
+    "config": {
+      "title": "Email",
+      "description": "Connect your email and automate customer support more easily.",
+      "config_solution": "Solution Configuration",
+      "config_solution_subtitle": "Fill in the fields below to integrate an email",
+      "select": "Select the email type",
+      "smpt_server": {
+        "title": "SMTP Server",
+        "description": "SMTP server address for sending emails."
+      },
+      "smpt_port": {
+        "title": "SMTP Port",
+        "description": "SMTP server communication port."
+      },
+      "imap_server": {
+        "title": "IMAP Server",
+        "description": "IMAP server address for sending emails."
+      },
+      "imap_port": {
+        "title": "IMAP Port",
+        "description": "IMAP server communication port."
+      },
+      "username": "Username",
+      "username_description": "The email used for authentication.",
+      "password": "Password"
+    }
+  },
+  "gmail": {
+    "setup": {
+      "title": "Connect to Gmail",
+      "description": "Click Continue to open the Gmail login page. After logging in, your account will be automatically integrated.",
+      "buttons": {
+        "cancel": "Cancel",
+        "continue": "Continue"
+      }
     }
   }
-}
 }
