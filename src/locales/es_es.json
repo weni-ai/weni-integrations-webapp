@@ -364,6 +364,7 @@
             "user": "Usuario",
             "authentication": "Autenticación",
             "marketing": "Marketing",
+            "marketing_lite": "Marketing Lite",
             "service": "Servicio",
             "utility": "Utilidad",
             "category": "Categoría"

@@ -219,6 +219,10 @@
             quantity: this.afterData?.MARKETING || 0,
           },
           {
+            category: this.$t('WhatsApp.config.conversations.conversations_count.table.marketing_lite'),
+            quantity: this.afterData?.MARKETING_LITE || 0,
+          },
+          {
             category: this.$t('WhatsApp.config.conversations.conversations_count.table.utility'),
             quantity: this.afterData?.UTILITY || 0,
           },

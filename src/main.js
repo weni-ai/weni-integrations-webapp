@@ -9,10 +9,10 @@ import getEnv from '@/utils/env';
 import '@/utils/plugins/Hotjar';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 import App from './App.vue';
-import { createRouter } from '@/router';
+import router from '@/router';
 import { getJwtToken } from '@/utils/jwt';
 import { auth_store } from '@/stores/modules/auth.store';
-import { safeImport } from '@/utils/moduleFederation';
+import { safeImport, isFederatedModule } from '@/utils/moduleFederation';
 
 const { useSharedStore } = await safeImport(
   () => import('connect/sharedStore'),
@@ -21,12 +21,10 @@ const { useSharedStore } = await safeImport(
 
 const sharedStore = useSharedStore?.();
 
-const isRemoteModuleFederation = `${window.location.origin}/` !== getEnv('PUBLIC_PATH_URL');
-
-export default async function mountIntegrationsApp({ containerId = 'app', routerBase = '/' } = {}) {
+export default async function mountIntegrationsApp({ containerId = 'app', initialRoute, } = {}) {
   let appRef = null;
 
-  if (!isRemoteModuleFederation) {
+  if (!isFederatedModule) {
     await getJwtToken();
   }
 
@@ -34,7 +32,6 @@ export default async function mountIntegrationsApp({ containerId = 'app', router
   app.config.productionTip = false;
 
   const pinia = createPinia();
-  const router = createRouter(routerBase);
 
   if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
@@ -55,7 +52,9 @@ export default async function mountIntegrationsApp({ containerId = 'app', router
   app.use(i18n);
   app.use(vueUse);
 
-  if (sharedStore && isRemoteModuleFederation) {
+  if (isFederatedModule && initialRoute) await router.replace(initialRoute);
+
+  if (sharedStore && isFederatedModule) {
     auth_store().externalLogin({ token: `Bearer ${sharedStore.auth.token}` });
     auth_store().selectedProject({ project: sharedStore.current.project.uuid });
   } else {
@@ -68,9 +67,9 @@ export default async function mountIntegrationsApp({ containerId = 'app', router
   app.mount(`#${containerId}`);
   appRef = app;
 
-  return appRef;
+  return { app: appRef, router };
 }
 
-if (!sharedStore && !isRemoteModuleFederation) {
+if (!sharedStore && !isFederatedModule) {
   mountIntegrationsApp();
 }
