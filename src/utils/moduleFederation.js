@@ -55,4 +55,4 @@ export async function safeImport(importFn, importPath) {
 }
 
 export const isFederatedModule =
-  `${window.location.origin}` !== env('PUBLIC_PATH_URL');
+  `${window.location.origin}` !== getEnv('PUBLIC_PATH_URL');
