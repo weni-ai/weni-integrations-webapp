@@ -12,10 +12,26 @@ import App from './App.vue';
 import router from '@/router';
 import { getJwtToken } from '@/utils/jwt';
 import { auth_store } from '@/stores/modules/auth.store';
+import { safeImport, isFederatedModule } from '@/utils/moduleFederation';
 
-getJwtToken().then(() => {
+const { useSharedStore } = await safeImport(
+  () => import('connect/sharedStore'),
+  'connect/sharedStore',
+);
+
+const sharedStore = useSharedStore?.();
+
+export default async function mountIntegrationsApp({ containerId = 'app', initialRoute, } = {}) {
+  let appRef = null;
+
+  if (!isFederatedModule) {
+    await getJwtToken();
+  }
+
   const app = createApp(App);
   app.config.productionTip = false;
+
+  const pinia = createPinia();
 
   if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
@@ -25,7 +41,6 @@ getJwtToken().then(() => {
     });
   }
 
-  const pinia = createPinia();
   pinia.use(piniaPluginPersistedstate);
   pinia.use(({ store }) => {
     store.router = markRaw(router);
@@ -37,10 +52,24 @@ getJwtToken().then(() => {
   app.use(i18n);
   app.use(vueUse);
 
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    auth_store().externalLogin({ token });
+  if (isFederatedModule && initialRoute) await router.replace(initialRoute);
+
+  if (sharedStore && isFederatedModule) {
+    auth_store().externalLogin({ token: `Bearer ${sharedStore.auth.token}` });
+    auth_store().selectedProject({ project: sharedStore.current.project.uuid });
+  } else {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      auth_store().externalLogin({ token });
+    }
   }
 
-  app.mount('#app');
-});
+  app.mount(`#${containerId}`);
+  appRef = app;
+
+  return { app: appRef, router };
+}
+
+if (!sharedStore && !isFederatedModule) {
+  mountIntegrationsApp();
+}

@@ -17,7 +17,7 @@ export default {
     if (project.organization) {
       return project.organization;
     } else {
-      sleep(3);
+      await sleep(3);
       return await this.getFlowOrganization(projectUuid);
     }
   },
