@@ -112,7 +112,7 @@ describe('EmailSetup.vue', () => {
 
   it('opens popup with correct URL when login is called', async () => {
     const getEnv = await import('@/utils/env');
-    const setLocal = await import('@/utils/storage');
+    const { moduleStorage } = await import('@/utils/storage');
 
     const mockClientId = 'test-client-id';
     const mockRedirectUri = 'http://localhost/redirect';
@@ -128,7 +128,7 @@ describe('EmailSetup.vue', () => {
 
     wrapper.vm.login();
 
-    expect(setLocal.default).toHaveBeenCalledWith('code', '');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith('code', '');
     expect(window.open).toHaveBeenCalledWith(
       expect.stringContaining(mockClientId),
       'GoogleAuthPopup',
