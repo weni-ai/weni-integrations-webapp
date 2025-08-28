@@ -1,20 +1,19 @@
 <template>
   <div class="templates-form">
+    <FormHeader v-if="showTitle" />
     <div class="templates-form__content">
-      <FormHeader />
       <FormTabs
         :formMode="this.formMode"
         :templateUuid="templateUuid"
         @manual-preview-update="updatePreview"
       />
+      <TemplatePreview v-if="!isLoading" :template="template" class="templates-form__preview" />
     </div>
-
-    <TemplatePreview :key="previewKey" class="templates-form__preview" />
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'pinia';
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import FormHeader from '@/components/whatsAppTemplates/FormHeader.vue';
   import FormTabs from '@/components/whatsAppTemplates/FormTabs.vue';
@@ -34,6 +33,12 @@
         previewKey: 0,
       };
     },
+    props: {
+      showTitle: {
+        type: Boolean,
+        default: true,
+      },
+    },
     created() {
       const { templateUuid } = this.$route.params;
 
@@ -45,6 +50,15 @@
     unmounted() {
       this.clearAllTemplateFormData();
       this.clearTemplateData();
+    },
+    computed: {
+      ...mapState(whatsapp_store, ['loadingFetchWhatsAppTemplate', 'loadingWhatsAppTemplates']),
+      isLoading() {
+        return this.loadingFetchWhatsAppTemplate || this.loadingWhatsAppTemplates;
+      },
+      gridColumns() {
+        return this.isLoading ? '1fr' : '9fr 3fr';
+      },
     },
     methods: {
       ...mapActions(whatsapp_store, ['clearAllTemplateFormData', 'clearTemplateData']),
@@ -58,26 +72,24 @@
 
 <style lang="scss" scoped>
   .templates-form {
-    display: flex;
+    display: grid;
+    gap: $unnnic-spacing-md;
     height: 100%;
+    overflow: hidden;
 
     &__content {
-      flex: 1;
-      max-width: calc(100vw - 310px);
-      overflow: auto;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: v-bind(gridColumns);
+      width: 100%;
+      height: 100%;
+      gap: $unnnic-spacing-md;
+      overflow: hidden;
     }
 
     &__preview {
-      position: fixed;
+      position: sticky;
       top: 0;
-      right: 0;
-      width: 270px;
-      flex: 0 0 270px;
-      height: 100vh;
-      overflow: auto;
+      height: auto;
     }
   }
 </style>
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store'; whatsapp_store,

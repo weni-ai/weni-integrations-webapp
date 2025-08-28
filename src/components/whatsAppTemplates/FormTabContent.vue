@@ -30,7 +30,6 @@
           @update:modelValue="handleCategoryChange"
         />
       </div>
-
       <div class="divider" />
       <div>
         <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />
@@ -44,7 +43,6 @@
           autocomplete
         />
       </div>
-
       <FormTabContentHeader
         class="form-tab-content__header"
         :disableInputs="disableContentInputs"
@@ -67,25 +65,24 @@
         :disableInputs="disableContentInputs"
         @input-change="handleGenericInput"
       />
-    </div>
-
-    <div class="form-tab-content__actions">
-      <unnnic-button
-        class="form-tab-content__actions__cancel"
-        type="tertiary"
-        size="large"
-        :text="$t('apps.config.cancel')"
-        @click="closeEdit"
-      />
-      <unnnic-button
-        class="form-tab-content__actions__save"
-        type="secondary"
-        size="large"
-        :loading="loadingSave"
-        :text="$t('WhatsApp.templates.form_field.save_language')"
-        :disabled="!canSave || disableContentInputs"
-        @click="saveTemplate"
-      />
+      <div class="form-tab-content__actions">
+        <unnnic-button
+          class="form-tab-content__actions__cancel"
+          type="tertiary"
+          size="large"
+          :text="$t('apps.config.cancel')"
+          @click="closeEdit"
+        />
+        <unnnic-button
+          class="form-tab-content__actions__save"
+          type="secondary"
+          size="large"
+          :loading="loadingSave"
+          :text="$t('WhatsApp.templates.form_field.save_language')"
+          :disabled="!canSave || disableContentInputs"
+          @click="saveTemplate"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -377,8 +374,6 @@
   .form-tab-content {
     display: flex;
     flex-direction: column;
-    overflow: auto;
-    height: 100%;
 
     &__scroll {
       display: flex;

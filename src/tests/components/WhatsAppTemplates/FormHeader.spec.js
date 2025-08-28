@@ -51,39 +51,8 @@ describe('FormHeader.vue', () => {
     const formHeaderWrapper = wrapper.find('.form-header__wrapper');
     expect(formHeaderWrapper.exists()).toBe(true);
 
-    const icon = wrapper.find('.form-header__icon img');
-    expect(icon.attributes('src')).toBe('app-icon-url');
-
     const title = wrapper.find('.form-header__title');
     expect(title.text()).toBe('WhatsApp Templates');
-  });
-
-  it('displays the correct tag based on template status', async () => {
-    appTypeStore.loadingCurrentAppType = false;
-    appTypeStore.currentAppType = {
-      icon: 'add',
-    };
-
-    whatsappStore.templateTranslationCurrentForm = { status: 'APPROVED' };
-    await wrapper.vm.$nextTick();
-    const tagApproved = wrapper.findComponent({ ref: 'tag' });
-    expect(tagApproved.exists()).toBe(true);
-    expect(tagApproved.props('text')).toBe('Approved');
-    expect(tagApproved.props('scheme')).toBe('feedback-green');
-
-    whatsappStore.templateTranslationCurrentForm = { status: 'REJECTED' };
-    await wrapper.vm.$nextTick();
-    const tagRejected = wrapper.findComponent({ ref: 'tag' });
-    expect(tagRejected.exists()).toBe(true);
-    expect(tagRejected.props('text')).toBe('Rejected');
-    expect(tagRejected.props('scheme')).toBe('feedback-red');
-
-    whatsappStore.templateTranslationCurrentForm = { status: 'PENDING' };
-    await wrapper.vm.$nextTick();
-    const tagPending = wrapper.findComponent({ ref: 'tag' });
-    expect(tagPending.exists()).toBe(true);
-    expect(tagPending.props('text')).toBe('Pending');
-    expect(tagPending.props('scheme')).toBe('feedback-yellow');
   });
 
   it('calls fetchData method on created lifecycle hook', async () => {

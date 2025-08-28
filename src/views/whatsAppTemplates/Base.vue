@@ -1,6 +1,6 @@
 <template>
   <div class="whatsapp-templates-base">
-    <unnnic-breadcrumb :crumbs="crumbs" @crumbClick="handleCrumbClick" />
+    <unnnic-breadcrumb v-if="showCrumbs" :crumbs="crumbs" @crumbClick="handleCrumbClick" />
     <router-view />
   </div>
 </template>
@@ -26,6 +26,9 @@
       };
     },
     computed: {
+      showCrumbs() {
+        return !['Create Template', 'Edit Template'].includes(this.$route.name);
+      },
       crumbs() {
         const routeCrumbs = this.$route.matched.slice(1);
 
@@ -58,7 +61,7 @@
   .whatsapp-templates-base {
     display: flex;
     flex-direction: column;
-    height: auto;
-    padding-bottom: $unnnic-spacing-sm;
+    height: 100vh;
+    overflow: hidden;
   }
 </style>

@@ -655,6 +655,7 @@
         "media": "Media"
       },
       "add_language": "Add Language",
+      "template_preview": "Template Preview",
       "preview": "Preview",
       "sample": {
         "description": "You have the option to provide specific content examples for your template.",
