@@ -148,7 +148,7 @@
   }
 
   .content {
-    margin: $unnnic-spacing-md;
+    padding: $unnnic-spacing-md;
   }
 </style>
 

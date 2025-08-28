@@ -467,7 +467,7 @@
       "templates": {
         "button": "Ver meus templates",
         "title": "Templates",
-        "new_language":"Nova linguagem"	
+        "new_language": "Nova linguagem"
       },
       "catalog": {
         "button": "Ver lista de catálogos",
@@ -528,7 +528,7 @@
           "add_language": "Adicionar Idioma",
           "duplicate_language": "Duplicar Idioma",
           "delete_language": "Deletar",
-          "see_details":"Ver detalhes"
+          "see_details": "Ver detalhes"
         },
         "headers": {
           "name": "Nome",
@@ -659,6 +659,7 @@
         "media": "Mídia"
       },
       "add_language": "Adicionar Idioma",
+      "template_preview": "Pré-visualização de template",
       "preview": "Pré-visualização",
       "sample": {
         "description": "Você tem a opção de fornecer exemplos de conteúdo específicos para seu modelo.",
@@ -703,7 +704,7 @@
         "present_insights": "Apresentamos novos insights"
       },
       "errors": {
-         "active_template": "Não foi possível ativar os insights no momento, tente novamente mais tarde."
+        "active_template": "Não foi possível ativar os insights no momento, tente novamente mais tarde."
       }
     },
     "template_details": {
@@ -819,7 +820,6 @@
       "callback_url_info_1": "Para mais informações, por favor siga",
       "callback_url_info_2": "esta documentação"
     }
-
   },
   "instagram": {
     "data": {
@@ -1136,11 +1136,10 @@
     "WC": "Adicione um bot do WeChat para enviar e receber mensagens dos usuários do WeChat gratuitamente. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e de uma conta WeChat para enviar e receber mensagens.",
     "ZVS": "Se você tem um número de SMS da Zenvia, pode conectá-lo para se comunicar com seus contatos.",
     "ZVW": "Se você tem um número de WhatsApp da Zenvia, pode conectá-lo para se comunicar com seus contatos do WhatsApp.",
-
-    "inputs":{
+    "inputs": {
       "KWA": {
         "number": {
-          "label": "Seu número de WhatsApp empresarial", 
+          "label": "Seu número de WhatsApp empresarial",
           "message": "",
           "placeholder": ""
         },
@@ -1640,5 +1639,4 @@
       }
     }
   }
-
 }

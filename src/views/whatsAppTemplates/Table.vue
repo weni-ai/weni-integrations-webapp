@@ -1,12 +1,12 @@
 <!-- eslint-disable vue/no-reserved-component-names -->
 <template>
-  <div class="whatsapp-templates">
-    <div class="whatsapp-templates__table" v-if="$route.name === 'WhatsApp Templates Table'">
+  <div class="whatsapp-templates" v-if="$route.name === 'WhatsApp Templates Table'">
+    <div class="whatsapp-templates__table">
       <Header />
       <Table />
     </div>
-    <router-view v-else />
   </div>
+  <router-view v-else />
 </template>
 <!-- eslint-disable vue/no-reserved-component-names -->
 <script>

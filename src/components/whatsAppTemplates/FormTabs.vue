@@ -764,8 +764,7 @@
 
 <style lang="scss" scoped>
   .form-tabs {
-    flex: 1;
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
     display: flex;
     flex-direction: column;
