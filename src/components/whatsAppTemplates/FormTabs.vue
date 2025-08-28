@@ -97,11 +97,18 @@
         sampleFileData: null,
       };
     },
-    updated() {
+    mounted() {
       this.headerScrollBehavior();
     },
-    beforeDestroy() {
-      window.removeEventListener('wheel', this.handleWheelEvent);
+    beforeUnmount() {
+      const tabHeader = document.getElementsByClassName('tab-content')[0];
+      if (tabHeader) {
+        tabHeader.removeEventListener(
+          'wheel',
+          this.listenToWheelEvent,
+          { passive: true },
+        );
+      }
     },
     async created() {
       this.dataProcessingLoading = true;
@@ -181,16 +188,17 @@
           this.handleWheelEvent(tabHeader);
         }
       },
+      listenToWheelEvent(event) {
+        event.preventDefault();
+
+        component.scrollBy({
+          left: event.deltaY < 0 ? -30 : 30,
+        });
+      },
       handleWheelEvent(component) {
         component.addEventListener(
           'wheel',
-          (event) => {
-            event.preventDefault();
-
-            component.scrollBy({
-              left: event.deltaY < 0 ? -30 : 30,
-            });
-          },
+          this.listenToWheelEvent,
           { passive: true },
         );
       },
