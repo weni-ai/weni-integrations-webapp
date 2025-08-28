@@ -11,9 +11,16 @@ vi.mock('@/utils/env', () => ({
   default: vi.fn(),
 }));
 
-vi.mock('@/utils/storage', () => ({
-  default: vi.fn(),
-}));
+vi.mock('@/utils/storage', async () => {
+  const actual = await import('@/utils/storage');
+  return {
+    ...actual,
+    moduleStorage: {
+      setItem: vi.fn(),
+      getItem: vi.fn(),
+    },
+  };
+});
 
 // Mock window.open
 Object.defineProperty(window, 'open', {

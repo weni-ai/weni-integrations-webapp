@@ -2,7 +2,7 @@ import { setActivePinia, createPinia } from 'pinia';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { auth_store } from '@/stores/modules/auth.store';
 import auth from '@/api/auth';
-import window from 'global/window.js';
+import { moduleStorage } from '@/utils/storage';
 
 vi.mock('@/api/auth', () => ({
   default: {
@@ -20,9 +20,16 @@ vi.mock('global/window', () => ({
   },
 }));
 
-vi.mock('../../utils/storage', () => ({
-  default: vi.fn(),
-}));
+vi.mock('@/utils/storage', async () => {
+  const actual = await import('@/utils/storage');
+  return {
+    ...actual,
+    moduleStorage: {
+      setItem: vi.fn(),
+      getItem: vi.fn(),
+    },
+  };
+});
 
 describe('auth_store', () => {
   beforeEach(() => {
