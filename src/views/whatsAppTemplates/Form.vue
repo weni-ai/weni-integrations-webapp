@@ -52,28 +52,9 @@
       this.clearTemplateData();
     },
     computed: {
-      ...mapState(whatsapp_store, [
-        'templateTranslationCurrentForm',
-        'loadingFetchWhatsAppTemplate',
-        'errorFetchWhatsAppTemplate',
-        'whatsAppTemplate',
-        'whatsAppTemplateSelectLanguages',
-        'loadingWhatsAppTemplateSelectLanguages',
-        'errorWhatsAppTemplateSelectLanguages',
-        'templateForm',
-        'errorCreateTemplate',
-        'createdTemplateData',
-        'errorCreateTemplateTranslation',
-        'createdTemplateTranslationData',
-        'loadingWhatsAppTemplates',
-        'errorUpdateTemplateTranslation',
-      ]),
+      ...mapState(whatsapp_store, ['loadingFetchWhatsAppTemplate', 'loadingWhatsAppTemplates']),
       isLoading() {
-        return (
-          this.loadingFetchWhatsAppTemplate ||
-          this.loadingWhatsAppTemplates ||
-          this.dataProcessingLoading
-        );
+        return this.loadingFetchWhatsAppTemplate || this.loadingWhatsAppTemplates;
       },
       gridColumns() {
         return this.isLoading ? '1fr' : '9fr 3fr';
