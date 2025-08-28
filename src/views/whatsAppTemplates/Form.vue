@@ -7,13 +7,13 @@
         :templateUuid="templateUuid"
         @manual-preview-update="updatePreview"
       />
-      <TemplatePreview :template="template" class="templates-form__preview" />
+      <TemplatePreview v-if="!isLoading" :template="template" class="templates-form__preview" />
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'pinia';
+  import { mapActions, mapState } from 'pinia';
   import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
   import FormHeader from '@/components/whatsAppTemplates/FormHeader.vue';
   import FormTabs from '@/components/whatsAppTemplates/FormTabs.vue';
@@ -51,6 +51,34 @@
       this.clearAllTemplateFormData();
       this.clearTemplateData();
     },
+    computed: {
+      ...mapState(whatsapp_store, [
+        'templateTranslationCurrentForm',
+        'loadingFetchWhatsAppTemplate',
+        'errorFetchWhatsAppTemplate',
+        'whatsAppTemplate',
+        'whatsAppTemplateSelectLanguages',
+        'loadingWhatsAppTemplateSelectLanguages',
+        'errorWhatsAppTemplateSelectLanguages',
+        'templateForm',
+        'errorCreateTemplate',
+        'createdTemplateData',
+        'errorCreateTemplateTranslation',
+        'createdTemplateTranslationData',
+        'loadingWhatsAppTemplates',
+        'errorUpdateTemplateTranslation',
+      ]),
+      isLoading() {
+        return (
+          this.loadingFetchWhatsAppTemplate ||
+          this.loadingWhatsAppTemplates ||
+          this.dataProcessingLoading
+        );
+      },
+      gridColumns() {
+        return this.isLoading ? '1fr' : '9fr 3fr';
+      },
+    },
     methods: {
       ...mapActions(whatsapp_store, ['clearAllTemplateFormData', 'clearTemplateData']),
       /* istanbul ignore next */
@@ -70,7 +98,7 @@
 
     &__content {
       display: grid;
-      grid-template-columns: 9fr 3fr;
+      grid-template-columns: v-bind(gridColumns);
       width: 100%;
       height: 100%;
       gap: $unnnic-spacing-md;
