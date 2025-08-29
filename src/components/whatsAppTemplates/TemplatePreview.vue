@@ -4,8 +4,12 @@
       <h1 class="template-preview__header__title">
         {{ $t('WhatsApp.templates.template_preview') }}
       </h1>
-      <!-- TODO: link template name on edit -->
-      <h1 class="template-preview__header__template-title" v-if="false">: {{ 'asdfasd' }}</h1>
+      <h1
+        class="template-preview__header__template-title"
+        v-if="templateForm.name && formMode === 'edit'"
+      >
+        : {{ templateForm.name }}
+      </h1>
     </header>
     <section class="template-preview__body">
       <unnnic-template-preview v-if="hasInitTemplateConfig" :template="templatePreview" />
@@ -29,18 +33,15 @@
         type: Boolean,
         default: true,
       },
-      bodyOverwrite: {
+      formMode: {
         type: String,
-        default: null,
-      },
-      headerOverwrite: {
-        type: String,
-        default: null,
+        default: 'create',
       },
     },
     computed: {
       ...mapState(whatsapp_store, {
         currentForm: 'templateTranslationCurrentForm',
+        templateForm: 'templateForm',
       }),
       ...mapState(whatsapp_store, ['loadingFetchWhatsAppTemplate']),
       hasHeader() {

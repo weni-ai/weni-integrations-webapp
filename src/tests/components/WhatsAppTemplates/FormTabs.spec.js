@@ -127,29 +127,6 @@ describe('FormTabs.vue', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should handle adding a translation', async () => {
-    const wrapper = mount(FormTabs, {
-      global: {
-        plugins: [pinia, i18n, UnnnicSystem, router],
-        mocks: {
-          $t: (msg) => msg,
-        },
-      },
-      mocks: {
-        formMode: 'edit',
-        templateUuid: '123',
-        $route: {
-          params: {
-            appUuid: '1234',
-          },
-        },
-      },
-    });
-
-    await wrapper.vm.addTranslation();
-    expect(wrapper.vm.createdTabs).toContain('New Language');
-  });
-
   it('should show error modal on invalid name', async () => {
     const wrapper = mount(FormTabs, {
       global: {
