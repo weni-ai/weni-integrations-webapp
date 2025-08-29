@@ -7,7 +7,11 @@
         :templateUuid="templateUuid"
         @manual-preview-update="updatePreview"
       />
-      <TemplatePreview v-if="!isLoading" :template="template" class="templates-form__preview" />
+      <TemplatePreview
+        v-if="!isLoading"
+        class="templates-form__preview"
+        :formMode="this.formMode"
+      />
     </div>
   </div>
 </template>

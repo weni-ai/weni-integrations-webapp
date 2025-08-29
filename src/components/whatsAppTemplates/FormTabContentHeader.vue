@@ -162,6 +162,7 @@
     &__inputs {
       display: flex;
       gap: $unnnic-spacing-inline-md;
+      align-items: end;
 
       &__selector {
         min-width: fit-content;
