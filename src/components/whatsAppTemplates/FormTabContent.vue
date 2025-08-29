@@ -87,14 +87,7 @@
     },
     data() {
       return {
-        // languageKey: 0,
-        // templateCategory: [],
-        // templateLanguage: [],
         errorStates: {
-          name: {
-            value: false,
-            message: '',
-          },
           buttons: {
             value: false,
             message: '',
@@ -192,17 +185,6 @@
           this.$emit('save-changes');
         }
       },
-    },
-    watch: {
-      // templateTranslationCurrentForm(newval) {
-      //   console.log({ newval });
-      //   if (newval?.language !== this.templateLanguage) {
-      //     const selectedLanguage = this.availableLanguages.filter(
-      //       (item) => item.value === newval.language,
-      //     );
-      //     this.templateLanguage = selectedLanguage;
-      //   }
-      // },
     },
   };
 </script>

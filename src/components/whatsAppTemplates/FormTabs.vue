@@ -120,7 +120,6 @@
       return {
         currentTabIndex: 0,
         selectedLanguages: [],
-        lastSelectedLanguages: {},
         existingTabs: [],
         createdTabs: [],
         dataProcessingLoading: true,
