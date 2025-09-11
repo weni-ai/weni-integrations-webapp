@@ -71,9 +71,9 @@
         size="large"
         :text="$t('apps.config.save_changes')"
         :loading="loadingUpdateAppConfig"
-        :disabled="isConfigured"
         @click="saveConfig"
-      ></unnnic-button>
+        ></unnnic-button>
+        <!-- :disabled="isConfigured" -->
     </div>
   </div>
 </template>
@@ -125,6 +125,9 @@
       await this.fetchAppData();
     },
     computed: {
+      channelCode() {
+        return this.app.config.channel_code;
+      },
       ...mapState(app_type, [
         'currentApp',
         'loadingCurrentApp',
@@ -134,7 +137,7 @@
       ]),
       ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
       appDescription() {
-        const i18nkey = `GenericApp.configuration_guide.${this.app.config.channel_code}`;
+        const i18nkey = `GenericApp.configuration_guide.${this.channelCode}`;
         return this.$t(i18nkey) ?? this.app.config.channel_claim_blurb;
       },
       shouldDisplayCallback() {
@@ -148,7 +151,7 @@
       async fetchAppData() {
         this.loadingFormBuild = true;
         await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
-        await generic_store().getAppForm({ channelCode: this.app.config.channel_code });
+        await generic_store().getAppForm({ channelCode: this.channelCode });
 
         if (this.errorCurrentApp || this.errorAppForm) {
           this.callModal({
@@ -211,7 +214,7 @@
           appUuid: this.app.uuid,
           payload: {
             config: payloadConfig,
-            channel_code: this.app.config.channel_code,
+            channel_code: this.channelCode,
           },
         };
 
