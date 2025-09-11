@@ -41,7 +41,7 @@
               v-if="type === 'add'"
               :app="app"
               :icon="action"
-              :disabled="!app.generic && !app.can_add && false"
+              :disabled="!app.generic && !app.can_add"
             />
 
             <unnnic-dropdown v-else-if="type !== 'view'" class="app-grid__content__item__dropdown">
