@@ -12,6 +12,7 @@ import App from './App.vue';
 import router from '@/router';
 import { getJwtToken } from '@/utils/jwt';
 import { auth_store } from '@/stores/modules/auth.store';
+import { moduleStorage } from '@/utils/storage';
 
 getJwtToken().then(() => {
   const app = createApp(App);
@@ -37,7 +38,7 @@ getJwtToken().then(() => {
   app.use(i18n);
   app.use(vueUse);
 
-  const token = localStorage.getItem('authToken');
+  const token = moduleStorage.getItem('authToken');
   if (token) {
     auth_store().externalLogin({ token });
   }
