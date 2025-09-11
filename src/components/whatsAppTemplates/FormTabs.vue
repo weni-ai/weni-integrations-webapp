@@ -191,9 +191,13 @@
       listenToWheelEvent(event) {
         event.preventDefault();
 
-        component.scrollBy({
-          left: event.deltaY < 0 ? -30 : 30,
-        });
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+
+        if (tabHeader) {
+          tabHeader.scrollBy({
+            left: event.deltaY < 0 ? -30 : 30,
+          });
+        }
       },
       handleWheelEvent(component) {
         component.addEventListener(
