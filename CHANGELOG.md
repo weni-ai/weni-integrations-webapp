@@ -1,3 +1,12 @@
+3.4.3
+----------
+`2025-09-11 · 3 🐛`
+
+### 🐛 Bug fixes
+- Fix: scroll on language select tab in templates
+- Fix: HTML unicode for the generated Weni Web Chat script
+- Fix: remove drawer details view for Gmail app
+
 3.4.2
 ----------
 `2025-08-12 · 2 🎉`
