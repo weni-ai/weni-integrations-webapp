@@ -71,9 +71,9 @@
         size="large"
         :text="$t('apps.config.save_changes')"
         :loading="loadingUpdateAppConfig"
-        :disabled="isConfigured"
         @click="saveConfig"
         ></unnnic-button>
+        <!-- :disabled="isConfigured" -->
     </div>
   </div>
 </template>
