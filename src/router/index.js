@@ -141,11 +141,22 @@ const router = createRouter({
 });
 
 router.afterEach((router) => {
-  window.dispatchEvent(
-    new CustomEvent('updateRoute', {
-      detail: { path: router.path, query: router.query },
-    }),
-  );
+  if (isFederatedModule) {
+    window.dispatchEvent(
+      new CustomEvent('updateRoute', {
+        detail: { path: router.path, query: router.query },
+      }),
+    );
+  } else {
+    window.parent.postMessage(
+      {
+        event: 'changePathname',
+        pathname: window.location.pathname,
+        query: router.query,
+      },
+      '*',
+    );
+  }
 });
 
 export { routes };
