@@ -97,20 +97,14 @@ module.exports = defineConfig({
       },
       shared: {
         vue: {
-          singleton: false,
+          singleton: true,
+          requiredVersion: '^3.0.0',
+          eager: true,
         },
         'vue-i18n': {
           singleton: true,
           requiredVersion: pkg.dependencies['vue-i18n'],
           eager: true,
-        },
-        'vue-router': {
-          singleton: true,
-          requiredVersion: pkg.dependencies['vue-router'],
-          eager: true,
-        },
-        pinia: {
-          singleton: false,
         },
       },
     }),
