@@ -97,7 +97,7 @@
       },
       addTokens(event) {
         const { key, newValue } = event;
-        if (key === 'code') {
+        if (key === 'integrations_code') {
           this.setCode({ code: newValue });
           this.getTokens({ code: newValue });
         }
