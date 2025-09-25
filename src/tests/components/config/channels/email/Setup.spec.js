@@ -171,7 +171,7 @@ describe('EmailSetup.vue', () => {
     const getTokensSpy = vi.spyOn(store, 'getTokens');
 
     const mockEvent = {
-      key: 'code',
+      key: 'integrations_code',
       newValue: 'test-auth-code',
     };
 
