@@ -1,5 +1,12 @@
 3.4.3
 ----------
+`2025-09-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Gmail app identification code key
+
+3.4.3
+----------
 `2025-09-11 · 3 🐛`
 
 ### 🐛 Bug fixes
