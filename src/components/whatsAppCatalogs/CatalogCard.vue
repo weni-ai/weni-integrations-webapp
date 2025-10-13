@@ -64,11 +64,14 @@
         type: Boolean,
         default: false,
       },
+      catalogStatus: {
+        type: Boolean,
+        default: false,
+      },
     },
     data() {
       return {
         currentDisable: null,
-        catalogStatus: this.catalog.is_connected,
         cartStatus: this.enabledCart,
       };
     },
@@ -78,7 +81,6 @@
     methods: {
       ...mapActions(whatsapp_cloud, ['disableWhatsAppCloudCatalogs']),
       toggleCatalogConnect(event) {
-        this.catalogStatus = event;
         if (event) {
           this.$emit('enable');
         } else {
