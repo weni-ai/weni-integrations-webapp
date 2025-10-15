@@ -1,4 +1,18 @@
-3.4.3
+3.4.6
+----------
+`2025-10-15 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: enabling catalog logic when catalog is not set previously
+
+3.4.5
+----------
+`2025-10-15 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: enabling catalog flow
+
+3.4.4
 ----------
 `2025-09-25 · 1 🐛`
 
