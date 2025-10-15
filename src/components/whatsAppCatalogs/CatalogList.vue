@@ -211,6 +211,8 @@
         if (this.connectedCatalog) {
           this.catalogToEnable = catalog;
           this.openModal = true;
+        } else {
+          this.enableCatalog(catalog);
         }
       },
       handleDisableCatalog() {
