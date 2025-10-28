@@ -5,7 +5,7 @@
   >
     <unnnic-tab
       class="form-tabs__tab"
-      v-model="currentTab"
+      :activeTab="currentTab"
       :tabs="tabs"
       :initialTab="initialTranslation"
       @change="handleTranslationSelection"
@@ -152,13 +152,8 @@
       tabs() {
         return this.existingTabs.concat(this.createdTabs.concat(['add']));
       },
-      currentTab: {
-        get() {
-          return this.tabs[this.currentTabIndex];
-        },
-        set(value) {
-          this.currentTabIndex = this.tabs.indexOf(value);
-        },
+      currentTab() {
+        return this.tabs[this.currentTabIndex];
       },
       initialTranslation() {
         return this.tabs[0];
@@ -323,16 +318,21 @@
         this.setTemplateTranslationSelectedForm({ formName: tab });
       },
       addTranslation() {
-        if (this.createdTabs.includes(this.$t('WhatsApp.templates.new_language'))) {
+        const newLanguageTabHeader = this.$t('WhatsApp.templates.new_language');
+
+        if (this.createdTabs.includes(newLanguageTabHeader)) {
           return;
         }
-        this.createdTabs.push(this.$t('WhatsApp.templates.new_language'));
-        this.currentTabIndex = this.existingTabs.length + this.createdTabs.length - 1;
+
+        this.createdTabs.push(newLanguageTabHeader);
+        this.handleTranslationSelection(newLanguageTabHeader);
+
         this.addNewTranslationForm({
-          formName: this.$t('WhatsApp.templates.new_language'),
+          formName: newLanguageTabHeader,
         });
+
         this.setTemplateTranslationSelectedForm({
-          formName: this.$t('WhatsApp.templates.new_language'),
+          formName: newLanguageTabHeader,
         });
       },
       handleLanguageChange(event) {

@@ -79,6 +79,7 @@
             label: this.$t('WhatsApp.templates.header_type_options.media'),
           },
         ],
+        headerText: '',
       };
     },
     mounted() {
@@ -92,8 +93,13 @@
       headerType() {
         return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
       },
-      headerText() {
-        return this.templateTranslationCurrentForm.header?.text || null;
+    },
+    watch: {
+      'templateTranslationCurrentForm.header.text': {
+        handler(newVal) {
+          this.headerText = newVal || '';
+        },
+        immediate: true,
       },
     },
     methods: {
