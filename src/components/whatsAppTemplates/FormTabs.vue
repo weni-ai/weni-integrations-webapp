@@ -106,7 +106,7 @@
         tabHeader.removeEventListener(
           'wheel',
           this.listenToWheelEvent,
-          { passive: true },
+            { passive: false },
         );
       }
     },
@@ -198,7 +198,7 @@
         component.addEventListener(
           'wheel',
           this.listenToWheelEvent,
-          { passive: true },
+          { passive: false },
         );
       },
       async fetchAllTemplates() {
@@ -325,14 +325,15 @@
         }
 
         this.createdTabs.push(newLanguageTabHeader);
-        this.handleTranslationSelection(newLanguageTabHeader);
-
         this.addNewTranslationForm({
           formName: newLanguageTabHeader,
         });
 
-        this.setTemplateTranslationSelectedForm({
-          formName: newLanguageTabHeader,
+        this.$nextTick(() => {
+          this.handleTranslationSelection(newLanguageTabHeader);
+          this.setTemplateTranslationSelectedForm({
+            formName: newLanguageTabHeader,
+          });
         });
       },
       handleLanguageChange(event) {
