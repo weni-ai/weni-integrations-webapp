@@ -11,9 +11,16 @@ vi.mock('@/utils/env', () => ({
   default: vi.fn(),
 }));
 
-vi.mock('@/utils/storage', () => ({
-  default: vi.fn(),
-}));
+vi.mock('@/utils/storage', async () => {
+  const actual = await import('@/utils/storage');
+  return {
+    ...actual,
+    moduleStorage: {
+      setItem: vi.fn(),
+      getItem: vi.fn(),
+    },
+  };
+});
 
 // Mock window.open
 Object.defineProperty(window, 'open', {
@@ -112,7 +119,7 @@ describe('EmailSetup.vue', () => {
 
   it('opens popup with correct URL when login is called', async () => {
     const getEnv = await import('@/utils/env');
-    const setLocal = await import('@/utils/storage');
+    const { moduleStorage } = await import('@/utils/storage');
 
     const mockClientId = 'test-client-id';
     const mockRedirectUri = 'http://localhost/redirect';
@@ -128,7 +135,7 @@ describe('EmailSetup.vue', () => {
 
     wrapper.vm.login();
 
-    expect(setLocal.default).toHaveBeenCalledWith('code', '');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith('code', '');
     expect(window.open).toHaveBeenCalledWith(
       expect.stringContaining(mockClientId),
       'GoogleAuthPopup',
@@ -164,7 +171,7 @@ describe('EmailSetup.vue', () => {
     const getTokensSpy = vi.spyOn(store, 'getTokens');
 
     const mockEvent = {
-      key: 'code',
+      key: 'integrations_code',
       newValue: 'test-auth-code',
     };
 

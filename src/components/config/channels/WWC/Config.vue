@@ -653,10 +653,12 @@
         return b64File.split(';')[0].split(':')[1];
       },
       async downloadScript() {
+        const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${this.scriptCode}\n</body>\n</html>`;
+
         let element = document.createElement('a');
         element.setAttribute(
           'href',
-          'data:text/plain;charset=utf-8, ' + encodeURIComponent(this.scriptCode),
+          'data:text/plain;charset=utf-8, ' + encodeURIComponent(htmlScript),
         );
         element.setAttribute('download', `wwc-script-${this.title}.html`);
         element.style.display = 'none';

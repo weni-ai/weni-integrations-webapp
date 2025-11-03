@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router'
 import { auth_store } from '@/stores/modules/auth.store';
 import setLocal from '@/utils/storage';
 import { isFederatedModule } from '@/utils/moduleFederation';
+import { moduleStorage } from '@/utils/storage';
 
 const routes = [
   { path: '/', alias: '/init', redirect: { name: 'Discovery' } },
@@ -121,7 +122,7 @@ const routes = [
     component: null,
     beforeEnter: (to, from, next) => {
       const { code } = to.query;
-      setLocal('code', code);
+      moduleStorage.setItem('code', code);
       if (to.query.next) {
         next(to.query.next);
       } else {
@@ -129,7 +130,7 @@ const routes = [
       }
     },
   },
-]
+];
 
 const history = isFederatedModule
   ? createMemoryHistory() // To isolate routing from parent app

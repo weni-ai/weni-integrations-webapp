@@ -2,7 +2,7 @@ import { setActivePinia, createPinia } from 'pinia';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { auth_store } from '@/stores/modules/auth.store';
 import auth from '@/api/auth';
-import window from 'global/window.js';
+import { moduleStorage } from '@/utils/storage';
 
 vi.mock('@/api/auth', () => ({
   default: {
@@ -20,9 +20,16 @@ vi.mock('global/window', () => ({
   },
 }));
 
-vi.mock('../../utils/storage', () => ({
-  default: vi.fn(),
-}));
+vi.mock('@/utils/storage', async () => {
+  const actual = await import('@/utils/storage');
+  return {
+    ...actual,
+    moduleStorage: {
+      setItem: vi.fn(),
+      getItem: vi.fn(),
+    },
+  };
+});
 
 describe('auth_store', () => {
   beforeEach(() => {
@@ -44,54 +51,54 @@ describe('auth_store', () => {
     const store = auth_store();
     await store.externalLogin({ token: 'test-token' });
     expect(store.token).toBe('test-token');
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('authToken', 'test-token');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith('authToken', 'test-token');
   });
 
   it('should set org and store it locally on selectedOrg', async () => {
     const store = auth_store();
     await store.selectedOrg({ org: 'test-org' });
     expect(store.org).toBe('test-org');
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('org', 'test-org');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith('org', 'test-org');
   });
 
   it('should set project and store it locally on selectedProject', async () => {
     const store = auth_store();
     await store.selectedProject({ project: 'test-project' });
     expect(store.project).toBe('test-project');
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('project', 'test-project');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith('project', 'test-project');
   });
 
   it('should set flowOrg and store it locally on selectedFlowOrg', async () => {
     const store = auth_store();
     await store.selectedFlowOrg({ flowOrg: 'test-flowOrg' });
     expect(store.flowOrg).toBe('test-flowOrg');
-    expect(window.localStorage.setItem).toHaveBeenCalledWith('flowOrg', 'test-flowOrg');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith('flowOrg', 'test-flowOrg');
   });
 
   it('should retrieve and set token from localStorage', () => {
     const store = auth_store();
-    window.localStorage.getItem.mockReturnValue('stored-token');
+    moduleStorage.getItem.mockReturnValue('stored-token');
     store.retriveAuthToken();
     expect(store.token).toBe('stored-token');
   });
 
   it('should retrieve and set org from localStorage', () => {
     const store = auth_store();
-    window.localStorage.getItem.mockReturnValue('stored-org');
+    moduleStorage.getItem.mockReturnValue('stored-org');
     store.retriveSelectedOrg();
     expect(store.org).toBe('stored-org');
   });
 
   it('should retrieve and set project from localStorage', () => {
     const store = auth_store();
-    window.localStorage.getItem.mockReturnValue('stored-project');
+    moduleStorage.getItem.mockReturnValue('stored-project');
     store.retriveSelectedProject();
     expect(store.project).toBe('stored-project');
   });
 
   it('should retrieve and set flowOrg from localStorage', () => {
     const store = auth_store();
-    window.localStorage.getItem.mockReturnValue('stored-flowOrg');
+    moduleStorage.getItem.mockReturnValue('stored-flowOrg');
     store.retriveSelectedFlowOrg();
     expect(store.flowOrg).toBe('stored-flowOrg');
   });

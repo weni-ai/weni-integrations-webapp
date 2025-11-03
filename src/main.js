@@ -13,6 +13,7 @@ import router from '@/router';
 import { getJwtToken } from '@/utils/jwt';
 import { auth_store } from '@/stores/modules/auth.store';
 import { safeImport, isFederatedModule } from '@/utils/moduleFederation';
+import { moduleStorage } from '@/utils/storage';
 
 const { useSharedStore } = await safeImport(
   () => import('connect/sharedStore'),
@@ -21,7 +22,7 @@ const { useSharedStore } = await safeImport(
 
 const sharedStore = useSharedStore?.();
 
-export default async function mountIntegrationsApp({ containerId = 'app', initialRoute, } = {}) {
+export default async function mountIntegrationsApp({ containerId = 'app', initialRoute } = {}) {
   let appRef = null;
 
   if (!isFederatedModule) {
@@ -58,7 +59,7 @@ export default async function mountIntegrationsApp({ containerId = 'app', initia
     auth_store().externalLogin({ token: `Bearer ${sharedStore.auth.token}` });
     auth_store().selectedProject({ project: sharedStore.current.project.uuid });
   } else {
-    const token = localStorage.getItem('authToken');
+    const token = moduleStorage.getItem('authToken');
     if (token) {
       auth_store().externalLogin({ token });
     }

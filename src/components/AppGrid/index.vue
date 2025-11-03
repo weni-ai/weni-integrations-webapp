@@ -31,7 +31,7 @@
           :iconSrc="appIcon(app)"
           :typeAction="app.generic ? (type === 'add' ? 'edit' : typeAction) : typeAction"
           :clickable="
-            (!app.generic && app.code !== 'email' && app.code !== 'gmail') || type !== 'add'
+            (!app.generic && app.code !== 'email' && app.code !== 'gmail') || (type !== 'add' && app.code !== 'gmail')
           "
           @openModal="openAppModal(app)"
         >
@@ -49,6 +49,7 @@
                 <unnnic-button size="small" type="tertiary" :iconCenter="card" />
               </template>
               <unnnic-dropdown-item
+                v-if="!['gmail'].includes(app.code)"
                 class="app-grid__content__item__button--action"
                 @click="openAppModal(app)"
               >
@@ -56,7 +57,7 @@
                 {{ $t(`apps.discovery.action.${type}`) }}
               </unnnic-dropdown-item>
               <unnnic-dropdown-item
-                v-if="app.code !== 'wpp'"
+                v-if="!['wpp', 'gmail'].includes(app.code)"
                 class="app-grid__content__item__button--details"
                 id="openAppDetails"
                 ref="openAppDetails"
@@ -267,7 +268,7 @@
       },
       openAppModal(app) {
         this.setAppUuid(app.uuid);
-        if (this.type === 'add' && app.generic) {
+        if ((this.type === 'add' && app.generic) || app.code === 'gmail') {
           return;
         }
 
