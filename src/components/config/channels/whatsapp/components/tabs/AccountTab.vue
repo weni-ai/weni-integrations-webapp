@@ -1,10 +1,13 @@
 <template>
   <div class="account-tab">
     <div class="account-tab__content">
-      <section :class="[
-        'account-tab__voice-calling',
-        { 'account-tab__voice-calling--disabled': updatingVoiceCallingStatus },
-      ]">
+      <section
+        v-if="isProjectWithVoiceCalling"
+        :class="[
+          'account-tab__voice-calling',
+          { 'account-tab__voice-calling--disabled': updatingVoiceCallingStatus },
+        ]"
+      >
         <unnnic-switch
           v-model="voiceCallingEnabled"
           :textRight="$t('WhatsApp.config.account.config.voice_calling.label')"
@@ -179,6 +182,8 @@
       },
     },
     async mounted() {
+      this.voiceCallingEnabled = this.appInfo?.config?.has_calling === true;
+      
       window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
       window.setMMLiteToInProgress = this.setMMLiteToInProgress;
 
@@ -474,6 +479,11 @@
             ],
           },
         ];
+      },
+
+      isProjectWithVoiceCalling() {
+        const projectsWithVoiceCalling = String(getEnv('PROJECTS_WITH_VOICE_CALLING')).split(',');
+        return projectsWithVoiceCalling.includes(this.project);
       },
     },
   };
