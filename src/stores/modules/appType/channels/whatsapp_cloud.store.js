@@ -50,6 +50,9 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       catalogProducts: null,
       loadingCatalogProducts: false,
       errorCatalogProducts: false,
+
+      updatingVoiceCallingStatus: false,
+      errorVoiceCallingStatus: false,
     };
   },
   actions: {
@@ -218,6 +221,23 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         captureSentryException(err);
         this.errorMMLiteStatus = err.response?.data.error || err;
         this.loadingMMLiteStatus = false;
+      }
+    },
+    async changeVoiceCallingStatus({ appUuid, data }) {
+      try {
+        this.updatingVoiceCallingStatus = true;
+        this.errorVoiceCallingStatus = null;
+        if (data.isEnabled) {
+          await whatsAppCloud.enableVoiceCalling(appUuid);
+        } else {
+          await whatsAppCloud.disableVoiceCalling(appUuid);
+        }
+      } catch (err) {
+        this.errorVoiceCallingStatus = err.response?.data?.error?.error_user_msg || err.response?.data?.error?.message || err.response?.data.error || err;
+        captureSentryException(err);
+        throw err;
+      } finally {
+        this.updatingVoiceCallingStatus = false;
       }
     },
   },
