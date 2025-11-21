@@ -47,4 +47,10 @@ export default {
   updateMMLiteStatus(appUuid, data) {
     return request.$http.patch(`${resource}/${appUuid}/update_mmlite_status/`, data);
   },
+  enableVoiceCalling(appUuid) {
+    return request.$http.post(`${resource}/${appUuid}/enable_calling/`);
+  },
+  disableVoiceCalling(appUuid) {
+    return request.$http.post(`${resource}/${appUuid}/disable_calling/`);
+  },
 };
