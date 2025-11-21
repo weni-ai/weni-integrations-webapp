@@ -233,8 +233,9 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
           await whatsAppCloud.disableVoiceCalling(appUuid);
         }
       } catch (err) {
+        console.log('err', err);
+        this.errorVoiceCallingStatus = err.response?.data?.error?.error_user_msg || err.response?.data?.error?.message || err.response?.data.error || err;
         captureSentryException(err);
-        this.errorVoiceCallingStatus = err.response?.data.error || err;
         throw err;
       } finally {
         this.updatingVoiceCallingStatus = false;
@@ -242,7 +243,3 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
     },
   },
 });
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
