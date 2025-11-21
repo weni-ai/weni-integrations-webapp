@@ -118,6 +118,13 @@
               <div class="app-config-wwc__tabs__settings-content__selectors">
                 <div class="app-config-wwc__tabs__settings-content__selectors__switches">
                   <unnnic-switch
+                    v-model="useConnectionOptimization"
+                    :inititalState="false"
+                    size="small"
+                    :textRight="$t('weniWebChat.config.use_connection_optimization')"
+                  />
+
+                  <unnnic-switch
                     v-model="embedded"
                     :inititalState="false"
                     size="small"
@@ -381,6 +388,7 @@
         showFullScreenButton: !!this.app.config.showFullScreenButton,
         keepHistory: this.app.config.params?.storage === 'local',
         startFullScreen: !!this.app.config?.startFullScreen || false,
+        useConnectionOptimization: !!this.app.config?.useConnectionOptimization || false,
         embedded: !!this.app.config?.embedded || false,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
@@ -715,6 +723,7 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               startFullScreen: this.startFullScreen,
+              useConnectionOptimization: this.useConnectionOptimization,
               embedded: this.embedded,
               mainColor: this.mainColor,
               profileAvatar: await this.imageForUpload(),
