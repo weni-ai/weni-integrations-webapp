@@ -380,6 +380,7 @@
         enableSubtitle: !!this.app.config.subtitle,
         simulatorAvatar: this.app.config.profileAvatar ?? null,
         mainColor: this.app.config.mainColor ?? '#009E96',
+        version: this.app.config.version ?? '1',
         title: this.app.config.title,
         subtitle: this.app.config.subtitle,
         inputTextFieldHint: this.app.config.inputTextFieldHint,
@@ -488,6 +489,12 @@
         return this.enableTooltipMessage ? this.tooltipMessage : null;
       },
       scriptCode() {
+        const version = this.selectedApp.config.version ?? '1';
+
+        const WebChatScriptUrl = version === '2'
+          ? 'https://cdn.cloud.weni.ai/webchat-latest.umd.js'
+          : 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+        
         const code = `<script>
   (function (d, s, u) {
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
@@ -495,7 +502,7 @@
       let l = d.createElement(s); l.src = u; l.async = true;
       h.parentNode.insertBefore(l, k.nextSibling);
     };
-    k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+    k.async = true; k.src = '${WebChatScriptUrl}';
     h.parentNode.insertBefore(k, h);
   })(document, 'script', '${this.selectedApp.config.script}');
 <${'/'}script>`;
@@ -729,6 +736,7 @@
               profileAvatar: await this.imageForUpload(),
               contactTimeout: this.contactTimeoutInMinutes(),
               customCss: this.cssForUpload,
+              version: this.version,
             },
           },
         });
