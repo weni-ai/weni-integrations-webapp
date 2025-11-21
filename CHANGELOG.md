@@ -1,3 +1,10 @@
+3.4.10
+----------
+`2025-11-21 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add WhatsApp voice calling config
+
 3.4.6
 ----------
 `2025-10-15 · 1 🐛`
