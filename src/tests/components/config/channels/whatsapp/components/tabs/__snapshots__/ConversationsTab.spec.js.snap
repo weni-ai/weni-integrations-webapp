@@ -6,10 +6,13 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
     <div data-v-2b8fe4c5="" class="conversations__content__dropdown">
       <div data-v-2b8fe4c5="" class="conversations__content__label">Filter by</div>
       <div data-v-2b8fe4c5="" class="unnnic-date-filter conversations__content__dropdown-filter">
-        <section data-v-363eb089="" data-v-27c59990="" class="unnnic-form-element unnnic-form sm unnnic-date-filter__input" data-testid="form-element" readonly="" value="">
+        <section data-v-2d5913d6="" data-v-b7baf9e5="" class="unnnic-form-element unnnic-form sm unnnic-date-filter__input" data-testid="form-element" value="">
           <!---->
-          <div data-v-964b1ff1="" data-v-27c59990="" class="text-input size--sm unnnic-date-filter__input unnnic-form-input" readonly="" hascloudycolor="false" mask="##/##/#### !~ ##/##/####" value=""><input data-v-5c6d9ab7="" data-v-964b1ff1="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" readonly="" hascloudycolor="false" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconright="" iconleftclickable="false" iconrightclickable="false" type="text" value=""><span data-v-10e3a145="" data-v-964b1ff1="" class="unnnic-icon material-symbols-rounded unnnic-icon-scheme--fg-base unnnic-icon-size--ant unnnic-icon__size--ant icon-left" data-testid="material-icon" translate="no">event_note</span>
-            <!---->
+          <div data-v-5345697c="" data-v-b7baf9e5="" class="text-input size--sm unnnic-date-filter__input unnnic-form-input" hascloudycolor="false" mask="##/##/#### !~ ##/##/####" value=""><input data-v-9833f838="" data-v-5345697c="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" hascloudycolor="false" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconright="" iconleftclickable="false" iconrightclickable="false" showclear="false" type="text" readonly="" value=""><span data-v-10e3a145="" data-v-5345697c="" class="unnnic-icon material-symbols-rounded unnnic-icon-scheme--fg-base unnnic-icon-size--ant unnnic-icon__size--ant icon-left" data-testid="material-icon" translate="no">event_note</span>
+            <section data-v-5345697c="" class="icon-right-container">
+              <!---->
+              <!---->
+            </section>
           </div>
           <!---->
         </section>
