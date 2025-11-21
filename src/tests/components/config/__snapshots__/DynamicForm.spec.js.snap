@@ -14,12 +14,21 @@ exports[`DynamicForm.vue > should be rendered properly 1`] = `
       allowtogglepassword="false"
       class="dynamic-form__fields__input"
       data-v-bba834d0=""
+      disabled="false"
+      errors=""
       hascloudycolor="false"
+      iconleft=""
+      iconleftclickable="false"
+      iconright=""
+      iconrightclickable="false"
       label="input"
       mask=""
+      message=""
       nativetype="text"
       placeholder=""
+      showmaxlengthcounter="false"
       size="md"
+      tooltip=""
       type="normal"
     />
     <!--v-if-->
@@ -35,6 +44,8 @@ exports[`DynamicForm.vue > should be rendered properly 1`] = `
       <unnnic-label-stub
         data-v-bba834d0=""
         label="select"
+        tooltip=""
+        usehtmltooltip="false"
       />
       <unnnic-select-smart-stub
         autocomplete="false"
