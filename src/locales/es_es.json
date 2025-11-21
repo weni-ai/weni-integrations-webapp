@@ -326,7 +326,22 @@
       },
       "account": {
         "title": "Cuenta",
-        "message_per_day_limit": "Límite diario de mensajes"
+        "message_per_day_limit": "Límite diario de mensajes",
+        "config": {
+          "voice_calling": {
+            "label": "Llamada de voz",
+            "feedback": {
+              "enabled": {
+                "success": "Llamada de voz habilitada correctamente",
+                "error": "Error al habilitar la llamada de voz"
+              },
+              "disabled": {
+                "success": "Llamada de voz deshabilitada correctamente",
+                "error": "Error al deshabilitar la llamada de voz"
+              }
+            }
+          }
+        }
       },
       "billing": {
         "title": "Datos de facturación"
