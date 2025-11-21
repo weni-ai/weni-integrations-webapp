@@ -213,7 +213,7 @@
     }
 
     &__input--name {
-      flex: 3;
+      flex: 5;
 
       ::v-deep .unnnic-form__message {
         color: $unnnic-color-feedback-red;
@@ -243,16 +243,16 @@
       }
 
       &--category {
-        flex: 1;
+        flex: 2;
 
-        ::v-deep {
-          .select-permission-label {
-            margin-top: $unnnic-spacing-stack-xs;
-          }
+        &__label {
+          margin-bottom: $unnnic-spacing-stack-nano;
+        }
+      }
 
-          .select-content {
-            z-index: 1;
-          }
+      &__language {
+        &__label {
+          margin-bottom: $unnnic-spacing-stack-nano;
         }
       }
     }

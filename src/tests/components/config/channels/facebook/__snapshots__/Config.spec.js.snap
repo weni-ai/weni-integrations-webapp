@@ -9,24 +9,33 @@ exports[`Config.vue > matches the snapshot 1`] = `
     </div>
   </div>
   <div data-v-e4619b51="" class="app-config-facebook__settings__content">
-    <p data-v-e4619b51="" class="unnnic-label__label">Your Facebook account is connected</p>
+    <section data-v-a4b997a0="" data-v-e4619b51="" class="unnnic-label">
+      <p data-v-a4b997a0="" class="unnnic-label__label">Your Facebook account is connected</p>
+      <!---->
+    </section>
     <div data-v-e4619b51="" class="app-config-facebook__settings__content__inputs">
-      <div data-v-fefd47bc="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__name" disabled="true">
+      <section data-v-2d5913d6="" data-v-b7baf9e5="" data-v-e4619b51="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md app-config-facebook__settings__content__inputs__name" data-testid="form-element">
         <!---->
-        <div data-v-c1401a33="" data-v-fefd47bc="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__name unnnic-form-input" disabled="true" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="Mock Page Name">
+        <div data-v-5345697c="" data-v-b7baf9e5="" class="text-input size--md app-config-facebook__settings__content__inputs__name unnnic-form-input" hascloudycolor="false" mask=""><input data-v-9833f838="" data-v-5345697c="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" showclear="false" type="text" value="Mock Page Name">
           <!---->
-          <!---->
+          <section data-v-5345697c="" class="icon-right-container">
+            <!---->
+            <!---->
+          </section>
         </div>
         <!---->
-      </div>
-      <div data-v-fefd47bc="" data-v-e4619b51="" class="unnnic-form md app-config-facebook__settings__content__inputs__id" disabled="true">
+      </section>
+      <section data-v-2d5913d6="" data-v-b7baf9e5="" data-v-e4619b51="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md app-config-facebook__settings__content__inputs__id" data-testid="form-element">
         <!---->
-        <div data-v-c1401a33="" data-v-fefd47bc="" class="text-input size--md text-input--icon-right-size-sm app-config-facebook__settings__content__inputs__id unnnic-form-input" disabled="true" mask=""><input data-v-0caa2ccb="" data-v-c1401a33="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" disabled="" placeholder="" iconrightsize="sm" hascloudycolor="false" type="text" value="ID: 1234567890">
+        <div data-v-5345697c="" data-v-b7baf9e5="" class="text-input size--md app-config-facebook__settings__content__inputs__id unnnic-form-input" hascloudycolor="false" mask=""><input data-v-9833f838="" data-v-5345697c="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" showclear="false" type="text" value="ID: 1234567890">
           <!---->
-          <!---->
+          <section data-v-5345697c="" class="icon-right-container">
+            <!---->
+            <!---->
+          </section>
         </div>
         <!---->
-      </div>
+      </section>
     </div>
   </div>
 </div>"
