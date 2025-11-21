@@ -325,7 +325,22 @@
       },
       "account": {
         "title": "Account",
-        "message_per_day_limit": "Message per day limit"
+        "message_per_day_limit": "Message per day limit",
+        "config": {
+          "voice_calling": {
+            "label": "Voice calling",
+            "feedback": {
+              "enabled": {
+                "success": "Voice callling enabled successfully",
+                "error": "Failed to enable voice callling"
+              },
+              "disabled": {
+                "success": "Voice callling disabled successfully",
+                "error": "Failed to disable voice callling"
+              }
+            }
+          }
+        }
       },
       "billing": {
         "title": "Billing Information"
