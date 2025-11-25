@@ -17,23 +17,30 @@
           :message="errorStates.name.message"
         />
 
-        <unnnic-multi-select
-          ref="categorySelect"
-          :class="{
-            'form-tab-content__selects--category': true,
-            'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
-          }"
-          :inputTitle="currentCategory || $t('WhatsApp.templates.form_field.category_placeholder')"
-          :hideGroupTitle="true"
-          :label="$t('WhatsApp.templates.form_field.category')"
-          v-model="categoryGroups"
-          @update:modelValue="handleCategoryChange"
-        />
+        <section class="form-tab-content__selects--category">
+          <unnnic-label
+            class="form-tab-content__selects--category__label"
+            :label="$t('WhatsApp.templates.form_field.category')"
+          />
+          <unnnic-select-smart
+            ref="categorySelect"
+            :class="{
+              'form-tab-content__selects__disabled': disableInputs || formMode !== 'create',
+            }"
+            :options="categoryGroups"
+            :modelValue="templateCategory"
+            :selectFirst="false"
+            @update:modelValue="handleCategoryChange"
+          />
+        </section>
       </div>
 
       <div class="divider" />
       <div>
-        <unnnic-label :label="$t('WhatsApp.templates.form_field.language')" />
+        <unnnic-label
+          class="form-tab-content__selects__language__label"
+          :label="$t('WhatsApp.templates.form_field.language')"
+        />
         <unnnic-select-smart
           :class="{ 'form-tab-content__selects__disabled': disableInputs }"
           :disabled="disableInputs"
@@ -140,27 +147,23 @@
         templateLanguage: [],
         categoryGroups: [
           {
-            title: this.$t('WhatsApp.templates.form_field.category'),
-            selected: -1,
-            items: [
-              {
-                value: 'UTILITY',
-                title: this.$t('WhatsApp.templates.category_options.utility'),
-                description: this.$t('WhatsApp.templates.category_options.utility_description'),
-              },
-              {
-                value: 'MARKETING',
-                title: this.$t('WhatsApp.templates.category_options.marketing'),
-                description: this.$t('WhatsApp.templates.category_options.marketing_description'),
-              },
-              {
-                value: 'AUTHENTICATION',
-                title: this.$t('WhatsApp.templates.category_options.authentication'),
-                description: this.$t(
-                  'WhatsApp.templates.category_options.authentication_description',
-                ),
-              },
-            ],
+            value: '',
+            label: this.$t('WhatsApp.templates.form_field.category_placeholder'),
+          },
+          {
+            value: 'UTILITY',
+            label: this.$t('WhatsApp.templates.category_options.utility'),
+            description: this.$t('WhatsApp.templates.category_options.utility_description'),
+          },
+          {
+            value: 'MARKETING',
+            label: this.$t('WhatsApp.templates.category_options.marketing'),
+            description: this.$t('WhatsApp.templates.category_options.marketing_description'),
+          },
+          {
+            value: 'AUTHENTICATION',
+            label: this.$t('WhatsApp.templates.category_options.authentication'),
+            description: this.$t('WhatsApp.templates.category_options.authentication_description'),
           },
         ],
         errorStates: {
@@ -272,11 +275,13 @@
         });
       },
       handleCategoryChange(event) {
-        this.categoryGroups = event;
-        const selectedCategory = event[0].items[event[0].selected];
+        const selectedCategory = event[0];
+        if (!selectedCategory || selectedCategory.value === this.templateCategory[0]?.value) {
+          return;
+        }
+        this.templateCategory = [selectedCategory];
 
         this.handleTemplateFormInput({ fieldName: 'category', fieldValue: selectedCategory.value });
-        this.$refs.categorySelect.active = false;
       },
       handleLanguageSelection(value) {
         if (value.length === 0 && this.templateTranslationSelectedForm !== 'New Language') {
@@ -393,7 +398,7 @@
     }
 
     &__input--name {
-      flex: 3;
+      flex: 5;
 
       ::v-deep .unnnic-form__message {
         color: $unnnic-color-feedback-red;
@@ -423,16 +428,16 @@
       }
 
       &--category {
-        flex: 1;
+        flex: 2;
 
-        ::v-deep {
-          .select-permission-label {
-            margin-top: $unnnic-spacing-stack-xs;
-          }
+        &__label {
+          margin-bottom: $unnnic-spacing-stack-nano;
+        }
+      }
 
-          .select-content {
-            z-index: 1;
-          }
+      &__language {
+        &__label {
+          margin-bottom: $unnnic-spacing-stack-nano;
         }
       }
     }

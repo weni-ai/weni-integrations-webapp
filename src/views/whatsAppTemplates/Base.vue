@@ -58,7 +58,7 @@
   .whatsapp-templates-base {
     display: flex;
     flex-direction: column;
-    height: auto;
+    height: 100%;
     padding-bottom: $unnnic-spacing-sm;
   }
 </style>
