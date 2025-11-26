@@ -526,7 +526,8 @@
             ${this.initPayload}|
             ${this.simulatorAvatar}|
             ${this.avatarFile}|
-            ${this.customCssFile}
+            ${this.customCssFile}|
+            ${this.useConnectionOptimization}
             `;
       },
       loadingSave() {
