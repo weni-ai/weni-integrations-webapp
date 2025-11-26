@@ -15,7 +15,7 @@
         />
       </section>
 
-      <div class="account-tab__content__info">        
+      <div class="account-tab__content__info">
         <div class="account-tab__content__info__templates">
           <div class="account-tab__content__info__templates__buttons">
             <div class="account-tab__content__info__templates__buttons__title">
@@ -183,7 +183,7 @@
     },
     async mounted() {
       this.voiceCallingEnabled = this.appInfo?.config?.has_calling === true;
-      
+
       window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
       window.setMMLiteToInProgress = this.setMMLiteToInProgress;
 
@@ -316,7 +316,7 @@
           FB.login(
             function (response) {
               this.changeMMLiteLoadingState(false);
-              if (response.authResponse) {
+              if (response.authResponse && response.authResponse.code) {
                 this.setMMLiteToInProgress();
               }
             },
@@ -324,7 +324,16 @@
               config_id: configId,
               response_type: 'code',
               override_default_response_type: true,
-              extras: { features: [{ name: 'marketing_messages_lite' }] },
+              extras: {
+                featureType: 'whatsapp_business_app_onboarding',
+                sessionInfoVersion: '3',
+                features: [
+                  {
+                    name: 'marketing_messages_lite',
+                  },
+                ],
+                version: 'v3',
+              },
             },
           );
         };
@@ -335,8 +344,12 @@
       async handleVoiceCallingChange(isEnabling) {
         const action = isEnabling ? 'enabled' : 'disabled';
 
-        let successText = this.$t(`WhatsApp.config.account.config.voice_calling.feedback.${action}.success`);
-        let defaultErrorText = this.$t(`WhatsApp.config.account.config.voice_calling.feedback.${action}.error`);
+        let successText = this.$t(
+          `WhatsApp.config.account.config.voice_calling.feedback.${action}.success`,
+        );
+        let defaultErrorText = this.$t(
+          `WhatsApp.config.account.config.voice_calling.feedback.${action}.error`,
+        );
 
         try {
           await this.changeVoiceCallingStatus({
