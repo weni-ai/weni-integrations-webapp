@@ -204,7 +204,7 @@ describe('app_type store', () => {
 
       appType.updateAppConfig.mockRejectedValueOnce(mockError);
 
-      await store.updateAppConfig({ code: 'code1', appUuid: 'uuid1', payload: {} });
+      await expect(store.updateAppConfig({ code: 'code1', appUuid: 'uuid1', payload: {} })).rejects.toThrow(mockError);
 
       expect(store.errorUpdateAppConfig).toBe(mockError);
       expect(store.loadingUpdateAppConfig).toBe(false);
