@@ -1,3 +1,10 @@
+3.5.1
+----------
+`2025-11-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: remove character limit validation in Email setup fields
+
 3.5.0
 ----------
 `2025-12-24 · 1 🎉`

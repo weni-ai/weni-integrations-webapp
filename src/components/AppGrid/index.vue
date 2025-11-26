@@ -294,7 +294,7 @@
         }
 
         return `${app.name}${
-          this.type === 'edit' ? ' - ' + (app.config.title || app.config.name) : ''
+          this.type === 'edit' ? ' - ' + (app.config.title || app.config.name || app.config.username) : ''
         }`;
       },
       /* istanbul ignore next */
