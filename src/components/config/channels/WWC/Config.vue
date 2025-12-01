@@ -496,7 +496,8 @@
           : 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
         
         const code = `<script>
-  (function (d, s, u) {
+  (function (d, s, u, w, v) {
+    if (w[v]) { return; } else { w[v] = !0; }
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
     k.onload = function () {
       let l = d.createElement(s); l.src = u; l.async = true;
@@ -504,7 +505,7 @@
     };
     k.async = true; k.src = '${WebChatScriptUrl}';
     h.parentNode.insertBefore(k, h);
-  })(document, 'script', '${this.selectedApp.config.script}');
+  })(document, 'script', '${this.selectedApp.config.script}', window, 'isWeniWebChatAlreadyInserted');
 <${'/'}script>`;
         return this.selectedApp.config.script ? code : '';
       },
