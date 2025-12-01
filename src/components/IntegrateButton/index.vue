@@ -93,6 +93,14 @@
         const payload = {
           project_uuid: this.project,
         };
+
+        if (code === 'wwc') {
+          payload.config = {
+            version: '2',
+            useConnectionOptimization: true,
+          };
+        }
+
         if (app.generic) {
           code = 'generic';
           payload.channel_code = app.code;

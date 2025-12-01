@@ -118,6 +118,13 @@
               <div class="app-config-wwc__tabs__settings-content__selectors">
                 <div class="app-config-wwc__tabs__settings-content__selectors__switches">
                   <unnnic-switch
+                    v-model="useConnectionOptimization"
+                    :inititalState="false"
+                    size="small"
+                    :textRight="$t('weniWebChat.config.use_connection_optimization')"
+                  />
+
+                  <unnnic-switch
                     v-model="embedded"
                     :inititalState="false"
                     size="small"
@@ -373,6 +380,7 @@
         enableSubtitle: !!this.app.config.subtitle,
         simulatorAvatar: this.app.config.profileAvatar ?? null,
         mainColor: this.app.config.mainColor ?? '#009E96',
+        version: this.app.config.version ?? '1',
         title: this.app.config.title,
         subtitle: this.app.config.subtitle,
         inputTextFieldHint: this.app.config.inputTextFieldHint,
@@ -381,6 +389,7 @@
         showFullScreenButton: !!this.app.config.showFullScreenButton,
         keepHistory: this.app.config.params?.storage === 'local',
         startFullScreen: !!this.app.config?.startFullScreen || false,
+        useConnectionOptimization: !!this.app.config?.useConnectionOptimization || false,
         embedded: !!this.app.config?.embedded || false,
         customCss: this.app.config.customCss ?? null,
         timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
@@ -480,6 +489,12 @@
         return this.enableTooltipMessage ? this.tooltipMessage : null;
       },
       scriptCode() {
+        const version = this.selectedApp.config.version ?? '1';
+
+        const WebChatScriptUrl = version === '2'
+          ? 'https://cdn.cloud.weni.ai/webchat-latest.umd.js'
+          : 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+        
         const code = `<script>
   (function (d, s, u) {
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
@@ -487,7 +502,7 @@
       let l = d.createElement(s); l.src = u; l.async = true;
       h.parentNode.insertBefore(l, k.nextSibling);
     };
-    k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
+    k.async = true; k.src = '${WebChatScriptUrl}';
     h.parentNode.insertBefore(k, h);
   })(document, 'script', '${this.selectedApp.config.script}');
 <${'/'}script>`;
@@ -511,7 +526,8 @@
             ${this.initPayload}|
             ${this.simulatorAvatar}|
             ${this.avatarFile}|
-            ${this.customCssFile}
+            ${this.customCssFile}|
+            ${this.useConnectionOptimization}
             `;
       },
       loadingSave() {
@@ -715,11 +731,13 @@
               timeBetweenMessages: this.timeBetweenMessages,
               keepHistory: this.keepHistory,
               startFullScreen: this.startFullScreen,
+              useConnectionOptimization: this.useConnectionOptimization,
               embedded: this.embedded,
               mainColor: this.mainColor,
               profileAvatar: await this.imageForUpload(),
               contactTimeout: this.contactTimeoutInMinutes(),
               customCss: this.cssForUpload,
+              version: this.version,
             },
           },
         });
