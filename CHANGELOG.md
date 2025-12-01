@@ -1,3 +1,17 @@
+3.6.0
+----------
+`2025-12-01 · 1 🐛 · 1 🔧 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: update URL in OtherApps to show all flows configs
+
+### 🔧 Improvements
+- Refactor: update mmlite embedded extra
+
+### 🎉 New feature
+- Feat: add Weni WebChat version 2
+- Feat: add a guard to the embedded WebChat script to prevent multiple injections
+
 3.5.1
 ----------
 `2025-11-25 · 1 🐛`
