@@ -35,7 +35,7 @@
 
         return `${getEnv('FLOWS_IFRAME_URL')}/weni/${
           this.project
-        }/authenticate?access_token=${token}&next=/org/home/?flows_config_hide=configs`;
+        }/authenticate?access_token=${token}&next=/org/home/`;
       },
     },
     methods: {

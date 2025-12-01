@@ -1,3 +1,24 @@
+3.5.1
+----------
+`2025-11-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: remove character limit validation in Email setup fields
+
+3.5.0
+----------
+`2025-12-24 · 1 🎉`
+
+### 🎉 New feature
+- Update Unnnic System to 3.11.0
+
+3.4.10
+----------
+`2025-11-21 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add WhatsApp voice calling config
+
 3.4.6
 ----------
 `2025-10-15 · 1 🐛`
