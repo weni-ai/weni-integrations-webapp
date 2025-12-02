@@ -64,7 +64,8 @@ describe('wwcConfig Component', () => {
 
   it('should compute scriptCode correctly', () => {
     const expectedScript = `<script>
-  (function (d, s, u) {
+  (function (d, s, u, w, v) {
+    if (w[v]) { return; } else { w[v] = !0; }
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
     k.onload = function () {
       let l = d.createElement(s); l.src = u; l.async = true;
@@ -72,7 +73,7 @@ describe('wwcConfig Component', () => {
     };
     k.async = true; k.src = 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
     h.parentNode.insertBefore(k, h);
-  })(document, 'script', 'https://test.script.url');
+  })(document, 'script', 'https://test.script.url', window, 'isWeniWebChatAlreadyInserted');
 </script>`;
     expect(wrapper.vm.scriptCode).toBe(expectedScript);
   });
