@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import PreferencesTab from '@/components/config/channels/WWC/components/tabs/PreferencesTab.vue';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
