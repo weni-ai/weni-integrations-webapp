@@ -1,3 +1,13 @@
+3.7.0
+----------
+`2025-12-11 · 1 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix(AccountTab.vue): update mmlite onboarding featureType and version
+
+### 🔧 Improvements
+- Feat: refactor and redesign wwc config
+
 3.6.1
 ----------
 `2025-12-01 · 1 🐛 · 1 🔧 · 2 🎉`
