@@ -80,7 +80,7 @@
           </div>
           <div class="wwc-simulator__content__input__button">
             <unnnic-icon-svg
-              :class="`wwc-simulator__content__input__button__icon`"
+              class="wwc-simulator__content__input__button__icon"
               icon="send-email-3-1"
               size="md"
               scheme="neutral-clean"
@@ -93,8 +93,8 @@
       <div v-if="displayUnreadCount && !isOpen" class="wwc-simulator__button__unread">{{ 2 }}</div>
       <div v-if="!avatar" class="wwc-simulator__button__content">
         <unnnic-icon-svg
-          :class="`wwc-simulator__button__content__icon`"
-          :icon="'single-neutral-2'"
+          class="wwc-simulator__button__content__icon"
+          icon="single-neutral-2"
           size="md"
           scheme="background-snow"
         />
@@ -104,80 +104,90 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'wwcSimulator',
-    props: {
-      mainColor: {
-        type: String,
-        default: '#009E96',
-      },
-      avatar: {
-        type: String,
-        default: null,
-      },
-      title: {
-        type: String,
-      },
-      subtitle: {
-        type: String,
-      },
-      placeholder: {
-        type: String,
-      },
-      showFullScreenButton: {
-        type: Boolean,
-        default: false,
-      },
-      displayUnreadCount: {
-        type: Boolean,
-        default: false,
-      },
+<script setup>
+  import { ref, computed } from 'vue';
+  import { useI18n } from 'vue-i18n';
+
+  const { t } = useI18n();
+
+  const props = defineProps({
+    mainColor: {
+      type: String,
+      default: '#009E96',
     },
-    data() {
-      return {
-        isOpen: true,
-        messages: [
-          {
-            direction: 'incoming',
-            text: `Curabitur vitae luctus felis, eget placerat est. In hac habitasse platea dictumst.
-              Phasellus ipsum sem, pulvinar eget ultrices nec, tristique non quam. Nulla ac sem ut
-              nisi fermentum luctus.`,
-            replies: [],
-          },
-          {
-            direction: 'outgoing',
-            text: `Vitae`,
-            replies: [],
-          },
-          {
-            direction: 'incoming',
-            text: `Curabitur porta, tortor sit amet laoreet posuere.`,
-            replies: [
-              { id: 1, text: this.$t('weniWebChat.simulator.replies.yes') },
-              { id: 2, text: this.$t('weniWebChat.simulator.replies.no') },
-              { id: 3, text: this.$t('weniWebChat.simulator.replies.maybe') },
-            ],
-          },
-        ],
-      };
+    avatar: {
+      type: String,
+      default: null,
     },
-    methods: {
-      toggleChat() {
-        this.isOpen = !this.isOpen;
-      },
+    title: {
+      type: String,
+      default: '',
     },
-    computed: {
-      cssVars() {
-        const validColor = this.mainColor || '#009E96';
-        return {
-          '--main-color': validColor,
-          '--main-color-opaque': validColor + '1C',
-          '--custom-avatar': `url(${this.avatar})`,
-        };
-      },
+    subtitle: {
+      type: String,
+      default: '',
     },
-  };
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    showFullScreenButton: {
+      type: Boolean,
+      default: false,
+    },
+    displayUnreadCount: {
+      type: Boolean,
+      default: false,
+    },
+  });
+
+  // State
+  const isOpen = ref(true);
+
+  const messages = ref([
+    {
+      direction: 'incoming',
+      text: `Curabitur vitae luctus felis, eget placerat est. In hac habitasse platea dictumst.
+      Phasellus ipsum sem, pulvinar eget ultrices nec, tristique non quam. Nulla ac sem ut
+      nisi fermentum luctus.`,
+      replies: [],
+    },
+    {
+      direction: 'outgoing',
+      text: `Vitae`,
+      replies: [],
+    },
+    {
+      direction: 'incoming',
+      text: `Curabitur porta, tortor sit amet laoreet posuere.`,
+      replies: [
+        { id: 1, text: t('weniWebChat.simulator.replies.yes') },
+        { id: 2, text: t('weniWebChat.simulator.replies.no') },
+        { id: 3, text: t('weniWebChat.simulator.replies.maybe') },
+      ],
+    },
+  ]);
+
+  // Computed
+  const cssVars = computed(() => {
+    const validColor = props.mainColor || '#009E96';
+    return {
+      '--main-color': validColor,
+      '--main-color-opaque': validColor + '1C',
+      '--custom-avatar': `url(${props.avatar})`,
+    };
+  });
+
+  // Methods
+  function toggleChat() {
+    isOpen.value = !isOpen.value;
+  }
+
+  // Expose for parent component
+  defineExpose({
+    isOpen,
+    toggleChat,
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -185,7 +195,8 @@
   .fade-leave-active {
     transition: opacity 0.3s;
   }
-  .fade-enter,
+
+  .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
   }
@@ -201,13 +212,9 @@
   }
 
   @mixin colorTransition {
-    -moz-transition: color 0.3s ease-in;
-    -o-transition: color 0.3s ease-in;
-    -webkit-transition: color 0.3s ease-in;
-
-    -moz-transition: background-color 0.3s ease-in;
-    -o-transition: background-color 0.3s ease-in;
-    -webkit-transition: background-color 0.3s ease-in;
+    transition:
+      color 0.3s ease-in,
+      background-color 0.3s ease-in;
   }
 
   .wwc-simulator {
@@ -216,6 +223,7 @@
     width: 100%;
     flex-direction: column;
     align-content: flex-end;
+
     &__content {
       display: flex;
       flex-direction: column;
@@ -251,6 +259,7 @@
             justify-items: center;
           }
         }
+
         &__text {
           flex-grow: 1;
           color: $unnnic-color-background-snow;
@@ -284,11 +293,13 @@
         flex: 1;
         overflow-y: auto;
         padding: $unnnic-spacing-inset-nano;
+
         &__message {
           &--incoming {
             min-height: min-content;
             margin: $unnnic-spacing-inset-nano 0;
             display: flex;
+
             &__icon-container {
               @include colorTransition;
               background-color: var(--main-color);
@@ -316,6 +327,7 @@
               display: flex;
               flex-direction: column;
               margin-top: $unnnic-spacing-stack-xs;
+
               &__text {
                 background-color: $unnnic-color-background-sky;
                 border-radius: 0px $unnnic-border-radius-sm $unnnic-border-radius-sm;
@@ -324,6 +336,7 @@
                 font-size: $unnnic-font-size-body-md;
                 line-height: $unnnic-font-size-body-md + $unnnic-line-height-md;
               }
+
               &__replies {
                 display: flex;
                 flex-wrap: wrap;
@@ -360,7 +373,6 @@
                 line-height: $unnnic-font-size-body-md + $unnnic-line-height-md;
                 color: $unnnic-color-background-snow;
                 border-radius: $unnnic-border-radius-sm;
-
                 padding: $unnnic-squish-nano;
               }
             }
@@ -372,6 +384,7 @@
         display: flex;
         align-items: center;
         background-color: $unnnic-color-background-sky;
+
         &__text {
           margin: $unnnic-inset-nano;
           font-family: $unnnic-font-family-secondary;
@@ -388,14 +401,14 @@
         }
       }
     }
+
     &__button {
       cursor: pointer;
-      justify-content: flex-end;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
-      margin-top: $unnnic-spacing-stack-sm;
       margin-top: auto;
+
       &__content {
         @include colorTransition;
         background-color: var(--main-color);
@@ -412,15 +425,12 @@
 
       &__unread {
         z-index: 1;
-
         color: $unnnic-color-background-snow;
         background-color: var(--main-color);
-
         margin-right: -$unnnic-spacing-inline-xs;
         height: $unnnic-icon-size-sm;
         width: $unnnic-icon-size-sm;
         border-radius: $unnnic-border-radius-pill;
-
         font-size: $unnnic-font-size-body-md;
         text-align: center;
       }
