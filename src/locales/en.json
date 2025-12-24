@@ -199,6 +199,8 @@
       "embedded_mode": "Embedded mode",
       "start_with_fullscreen": "Start chat in fullscreen",
       "show_fullscreen_button": "Show fullscreen button",
+      "show_voice_recording_button": "Show voice recording button",
+      "show_camera_button": "Show camera button",
       "unread_messages_indicator": "Unread messages indicator",
       "keep_chat_history": "Keep chat history",
       "time_between_messages": "Time between messages",
