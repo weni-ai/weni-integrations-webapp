@@ -25,7 +25,6 @@
               type="primary"
               size="large"
               iconCenter="copy-paste-1"
-              scheme="neutral-cloudy"
               @click="copyUrl"
             />
             <unnnic-button
