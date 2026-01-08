@@ -9,7 +9,7 @@
       v-show="!loading"
       class="flows-iframe"
       :src="iframeSrc"
-      allow="clipboard-read; clipboard-write;"
+      allow="clipboard-read; clipboard-write"
       title=""
       style="border: 0"
     ></iframe>
