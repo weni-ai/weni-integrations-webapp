@@ -1,3 +1,11 @@
+3.7.1
+----------
+`2026-01-08 · 2 🐛`
+
+### 🐛 Bug fixes
+- fix: wpp demo buttons colors
+- fix: handle null values for inputTextFieldHint and update iframe allow attribute
+
 3.7.0
 ----------
 `2025-12-11 · 1 🐛 · 1 🔧`
