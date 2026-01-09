@@ -31,6 +31,22 @@
           />
 
           <unnnic-switch
+            v-if="version === '2'"
+            v-model="showVoiceRecordingButton"
+            :inititalState="false"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_voice_recording_button')"
+          />
+
+          <unnnic-switch
+            v-if="version === '2'"
+            v-model="showCameraButton"
+            :inititalState="false"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_camera_button')"
+          />
+
+          <unnnic-switch
             v-model="displayUnreadCount"
             :inititalState="false"
             size="small"
@@ -136,9 +152,12 @@
   const { t } = useI18n();
 
   const props = defineProps({
+    version: { type: String, default: '1' },
     initialEmbedded: { type: Boolean, default: false },
     initialShowFullScreenButton: { type: Boolean, default: false },
     initialStartFullScreen: { type: Boolean, default: false },
+    initialShowVoiceRecordingButton: { type: Boolean, default: false },
+    initialShowCameraButton: { type: Boolean, default: false },
     initialDisplayUnreadCount: { type: Boolean, default: false },
     initialUseConnectionOptimization: { type: Boolean, default: false },
     initialKeepHistory: { type: Boolean, default: false },
@@ -152,6 +171,8 @@
     'update:embedded',
     'update:showFullScreenButton',
     'update:startFullScreen',
+    'update:showVoiceRecordingButton',
+    'update:showCameraButton',
     'update:displayUnreadCount',
     'update:useConnectionOptimization',
     'update:keepHistory',
@@ -166,6 +187,8 @@
   const embedded = ref(props.initialEmbedded);
   const showFullScreenButton = ref(props.initialShowFullScreenButton);
   const startFullScreen = ref(props.initialStartFullScreen);
+  const showVoiceRecordingButton = ref(props.initialShowVoiceRecordingButton);
+  const showCameraButton = ref(props.initialShowCameraButton);
   const displayUnreadCount = ref(props.initialDisplayUnreadCount);
   const useConnectionOptimization = ref(props.initialUseConnectionOptimization);
   const keepHistory = ref(props.initialKeepHistory);
@@ -209,6 +232,8 @@
 
   watch(showFullScreenButton, (value) => emit('update:showFullScreenButton', value));
   watch(startFullScreen, (value) => emit('update:startFullScreen', value));
+  watch(showVoiceRecordingButton, (value) => emit('update:showVoiceRecordingButton', value));
+  watch(showCameraButton, (value) => emit('update:showCameraButton', value));
   watch(displayUnreadCount, (value) => emit('update:displayUnreadCount', value));
   watch(useConnectionOptimization, (value) => emit('update:useConnectionOptimization', value));
   watch(keepHistory, (value) => emit('update:keepHistory', value));

@@ -52,9 +52,12 @@
         <template #tab-head-preferences> {{ $t('weniWebChat.config.preferences') }} </template>
         <template #tab-panel-preferences>
           <PreferencesTab
+            :version="config.version"
             :initialEmbedded="config.embedded"
             :initialShowFullScreenButton="config.showFullScreenButton"
             :initialStartFullScreen="config.startFullScreen"
+            :initialShowVoiceRecordingButton="config.showVoiceRecordingButton"
+            :initialShowCameraButton="config.showCameraButton"
             :initialDisplayUnreadCount="config.displayUnreadCount"
             :initialUseConnectionOptimization="config.useConnectionOptimization"
             :initialKeepHistory="config.keepHistory"
@@ -65,6 +68,8 @@
             @update:embedded="updateConfig('embedded', $event)"
             @update:showFullScreenButton="updateConfig('showFullScreenButton', $event)"
             @update:startFullScreen="updateConfig('startFullScreen', $event)"
+            @update:showVoiceRecordingButton="updateConfig('showVoiceRecordingButton', $event)"
+            @update:showCameraButton="updateConfig('showCameraButton', $event)"
             @update:displayUnreadCount="updateConfig('displayUnreadCount', $event)"
             @update:useConnectionOptimization="updateConfig('useConnectionOptimization', $event)"
             @update:keepHistory="updateConfig('keepHistory', $event)"
@@ -101,6 +106,8 @@
       :placeholder="config.inputTextFieldHint"
       :showFullScreenButton="config.showFullScreenButton"
       :displayUnreadCount="config.displayUnreadCount"
+      :showVoiceRecordingButton="config.showVoiceRecordingButton"
+      :showCameraButton="config.showCameraButton"
     />
   </div>
 </template>
@@ -159,6 +166,8 @@
     displayUnreadCount: !!props.app.config.displayUnreadCount,
     showFullScreenButton: !!props.app.config.showFullScreenButton,
     startFullScreen: !!props.app.config?.startFullScreen,
+    showVoiceRecordingButton: !!props.app.config?.showVoiceRecordingButton,
+    showCameraButton: !!props.app.config?.showCameraButton,
     useConnectionOptimization: !!props.app.config?.useConnectionOptimization,
     embedded: !!props.app.config?.embedded,
     keepHistory: props.app.config.params?.storage === 'local',
@@ -251,6 +260,8 @@
           timeBetweenMessages: config.timeBetweenMessages,
           keepHistory: config.keepHistory,
           startFullScreen: config.startFullScreen,
+          showVoiceRecordingButton: config.showVoiceRecordingButton,
+          showCameraButton: config.showCameraButton,
           useConnectionOptimization: config.useConnectionOptimization,
           embedded: config.embedded,
           mainColor: config.mainColor,

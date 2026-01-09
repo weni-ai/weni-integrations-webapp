@@ -199,6 +199,8 @@
       "embedded_mode": "Modo incrustado",
       "start_with_fullscreen": "Iniciar chat en pantalla completa",
       "show_fullscreen_button": "Mostrar el botón de pantalla completa",
+      "show_voice_recording_button": "Mostrar el botón de grabación de voz",
+      "show_camera_button": "Mostrar el botón de cámara",
       "unread_messages_indicator": "Indicador de mensajes no leídos",
       "keep_chat_history": "Mantener historial de mensajes",
       "time_between_messages": "Tiempo entre mensajes",
