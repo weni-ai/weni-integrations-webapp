@@ -9,14 +9,12 @@
 
           <unnnic-switch
             v-model="embedded"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.embedded_mode')"
           />
 
           <unnnic-switch
             v-model="showFullScreenButton"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.show_fullscreen_button')"
             :disabled="embedded"
@@ -24,16 +22,32 @@
 
           <unnnic-switch
             v-model="startFullScreen"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.start_with_fullscreen')"
             :disabled="embedded"
           />
 
           <unnnic-switch
+            v-model="displayUnreadCount"
+            size="small"
+            :textRight="$t('weniWebChat.config.unread_messages_indicator')"
+          />
+
+          <unnnic-switch
+            v-model="useConnectionOptimization"
+            size="small"
+            :textRight="$t('weniWebChat.config.use_connection_optimization')"
+          />
+        </section>
+
+        <section class="preferences-tab__section">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.media') }}
+          </h3>
+
+          <unnnic-switch
             v-if="version === '2'"
             v-model="showVoiceRecordingButton"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.show_voice_recording_button')"
           />
@@ -41,23 +55,8 @@
           <unnnic-switch
             v-if="version === '2'"
             v-model="showCameraButton"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.show_camera_button')"
-          />
-
-          <unnnic-switch
-            v-model="displayUnreadCount"
-            :inititalState="false"
-            size="small"
-            :textRight="$t('weniWebChat.config.unread_messages_indicator')"
-          />
-
-          <unnnic-switch
-            v-model="useConnectionOptimization"
-            :inititalState="false"
-            size="small"
-            :textRight="$t('weniWebChat.config.use_connection_optimization')"
           />
         </section>
 
@@ -68,7 +67,6 @@
 
           <unnnic-switch
             v-model="keepHistory"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.keep_chat_history')"
           />
@@ -77,7 +75,6 @@
             <div class="preferences-tab__contact-timeout-header">
               <unnnic-switch
                 v-model="enableContactTimeout"
-                :inititalState="false"
                 size="small"
                 :textRight="$t('weniWebChat.config.contactTimeoutInput.label')"
               />

@@ -189,6 +189,7 @@
       "appearance": "Appearance",
       "preferences": "Preferences",
       "behavior": "Behavior",
+      "media": "Media",
       "history": "Chat history & Inactivity",
       "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "script_disclaimer": "The script will be available once the required basic settings have been completed.",
