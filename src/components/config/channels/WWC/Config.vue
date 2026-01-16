@@ -254,7 +254,7 @@
           subtitle: config.subtitle || null,
           initPayload: config.initPayload || null,
           tooltipMessage: config.tooltipMessage || null,
-          inputTextFieldHint: config.inputTextFieldHint,
+          inputTextFieldHint: config.inputTextFieldHint || null,
           showFullScreenButton: config.showFullScreenButton,
           displayUnreadCount: config.displayUnreadCount,
           timeBetweenMessages: config.timeBetweenMessages,
