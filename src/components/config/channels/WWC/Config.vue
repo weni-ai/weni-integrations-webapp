@@ -64,6 +64,7 @@
             :initialEnableContactTimeout="config.enableContactTimeout"
             :initialContactTimeout="config.contactTimeout"
             :initialTimeBetweenMessages="config.timeBetweenMessages"
+            :initialNavigateIfSameDomain="config.navigateIfSameDomain"
             :loading="loadingSave"
             @update:embedded="updateConfig('embedded', $event)"
             @update:showFullScreenButton="updateConfig('showFullScreenButton', $event)"
@@ -76,6 +77,7 @@
             @update:enableContactTimeout="updateConfig('enableContactTimeout', $event)"
             @update:contactTimeout="updateConfig('contactTimeout', $event)"
             @update:timeBetweenMessages="updateConfig('timeBetweenMessages', $event)"
+            @update:navigateIfSameDomain="updateConfig('navigateIfSameDomain', $event)"
             @save="saveConfig"
             @cancel="closeConfig"
           />
@@ -169,6 +171,7 @@
     showVoiceRecordingButton: !!props.app.config?.showVoiceRecordingButton,
     showCameraButton: !!props.app.config?.showCameraButton,
     useConnectionOptimization: !!props.app.config?.useConnectionOptimization,
+    navigateIfSameDomain: !!props.app.config?.navigateIfSameDomain,
     embedded: !!props.app.config?.embedded,
     keepHistory: props.app.config.params?.storage === 'local',
     timeBetweenMessages: props.app.config.timeBetweenMessages ?? 1,
@@ -263,6 +266,7 @@
           showVoiceRecordingButton: config.showVoiceRecordingButton,
           showCameraButton: config.showCameraButton,
           useConnectionOptimization: config.useConnectionOptimization,
+          navigateIfSameDomain: config.navigateIfSameDomain,
           embedded: config.embedded,
           mainColor: config.mainColor,
           profileAvatar: await imageForUpload(),

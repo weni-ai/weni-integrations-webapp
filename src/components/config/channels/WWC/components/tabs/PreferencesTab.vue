@@ -8,6 +8,17 @@
           </h3>
 
           <unnnic-switch
+            v-model="navigateIfSameDomain"
+            size="small"
+            :textRight="$t('weniWebChat.config.navigate_if_same_domain.label')"
+            :helper="$t('weniWebChat.config.navigate_if_same_domain.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.beta') }}</p>
+            </template>
+          </unnnic-switch>
+
+          <unnnic-switch
             v-model="embedded"
             size="small"
             :textRight="$t('weniWebChat.config.embedded_mode')"
@@ -161,6 +172,7 @@
     initialEnableContactTimeout: { type: Boolean, default: false },
     initialContactTimeout: { type: String, default: '23:59' },
     initialTimeBetweenMessages: { type: Number, default: 1 },
+    initialNavigateIfSameDomain: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
   });
 
@@ -176,6 +188,7 @@
     'update:enableContactTimeout',
     'update:contactTimeout',
     'update:timeBetweenMessages',
+    'update:navigateIfSameDomain',
     'save',
     'cancel',
   ]);
@@ -192,6 +205,7 @@
   const enableContactTimeout = ref(props.initialEnableContactTimeout);
   const contactTimeout = ref(props.initialContactTimeout);
   const timeBetweenMessages = ref(props.initialTimeBetweenMessages);
+  const navigateIfSameDomain = ref(props.initialNavigateIfSameDomain);
 
   // Computed
   const timeBetweenMessagesOptions = computed(() => [
@@ -234,6 +248,7 @@
   watch(displayUnreadCount, (value) => emit('update:displayUnreadCount', value));
   watch(useConnectionOptimization, (value) => emit('update:useConnectionOptimization', value));
   watch(keepHistory, (value) => emit('update:keepHistory', value));
+  watch(navigateIfSameDomain, (value) => emit('update:navigateIfSameDomain', value));
 
   watch(enableContactTimeout, (value) => {
     emit('update:enableContactTimeout', value);
@@ -317,6 +332,18 @@
       :deep(.unnnic-button) {
         width: 100% !important;
       }
+    }
+
+    &__switch-suffix {
+      display: inline-block;
+      border-radius: $unnnic-radius-1;
+      background: $unnnic-color-teal-100;
+      padding: 0 $unnnic-space-1;
+      color: $unnnic-color-fg-active;
+      font: $unnnic-font-caption-1;
+      margin: 0;
+      border: $unnnic-border-width-thinner solid $unnnic-color-teal-100;
+      margin-left: $unnnic-space-1;
     }
   }
 </style>
