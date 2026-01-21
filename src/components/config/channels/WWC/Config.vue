@@ -1,14 +1,16 @@
 <template>
   <div class="app-config-wwc">
     <div class="app-config-wwc__header">
-      <div class="app-config-wwc__header__icon-container">
-        <img class="app-config-wwc__header__icon-container__icon" :src="app.icon" />
+      <div class="app-config-wwc__header__title-container">
+        <h1 class="app-config-wwc__header__title">{{ selectedApp.name }}</h1>
+        <p class="app-config-wwc__header__description">
+          {{ $t('weniWebChat.config.description') }}
+        </p>
       </div>
-      <div class="app-config-wwc__header__title">{{ selectedApp.name }}</div>
       <div class="app-config-wwc__header__close">
         <unnnic-button
           size="small"
-          iconLeft="close-1"
+          iconCenter="arrow_forward"
           type="tertiary"
           class="app-config-wwc__header__close__button"
           @click="closeConfig"
@@ -17,325 +19,71 @@
     </div>
 
     <div class="app-config-wwc__content">
-      <unnnic-tab class="app-config-wwc__tabs" :tabs="configTabs" initialTab="settings">
-        <template #tab-head-settings> {{ $t('weniWebChat.config.settings') }} </template>
-        <template #tab-panel-settings>
-          <div class="app-config-wwc__tabs__settings-content">
-            <div class="app-config-wwc__tabs__settings-content__scroll">
-              <unnnic-input
-                class="app-config-wwc__tabs__settings-content__input__title"
-                key="config-title"
-                v-model="title"
-                :type="errorFor('title') ? 'error' : 'normal'"
-                :label="`${$t('weniWebChat.config.TitleInput.label')}`"
-                :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
-                :message="errorFor('title') || ''"
-              />
-
-              <div class="app-config-wwc__tabs__settings-content__input__subtitle-container">
-                <unnnic-switch
-                  v-model="enableSubtitle"
-                  class="app-config-wwc__tabs__settings-content__switch"
-                  :inititalState="false"
-                  size="small"
-                  :textLeft="$t('weniWebChat.config.SubtitleInput.label')"
-                />
-
-                <unnnic-input
-                  v-model="subtitle"
-                  class="app-config-wwc__tabs__settings-content__input__subtitle"
-                  type="normal"
-                  :placeholder="$t('weniWebChat.config.SubtitleInput.placeholder')"
-                  :disabled="!enableSubtitle"
-                />
-              </div>
-
-              <div class="app-config-wwc__tabs__settings-content__initPayload">
-                <div class="app-config-wwc__tabs__settings-content__initPayload__horizontal">
-                  <unnnic-switch
-                    v-model="enableInitPayload"
-                    class="app-config-wwc__tabs__settings-content__switch"
-                    :inititalState="false"
-                    size="small"
-                    :textLeft="$t('weniWebChat.config.initPayloadInput.label')"
-                  />
-                  <unnnic-toolTip
-                    class="app-config-wwc__tabs__settings-content__initPayload__tooltip"
-                    slot="buttons"
-                    :text="$t('weniWebChat.config.initPayloadToolTip')"
-                    :enabled="true"
-                    side="right"
-                    maxWidth="300px"
-                  >
-                    <unnnic-icon-svg
-                      class="app-config-wwc__tabs__settings-content__initPayload__icon"
-                      icon="information-circle-4"
-                      size="sm"
-                      scheme="neutral-soft"
-                    />
-                  </unnnic-toolTip>
-                </div>
-
-                <transition name="fade">
-                  <unnnic-input
-                    v-if="enableInitPayload"
-                    v-model="initPayload"
-                    class="app-config-wwc__tabs__settings-content__input__payload"
-                    type="normal"
-                    :placeholder="$t('weniWebChat.config.initPayloadInput.placeholder')"
-                  />
-                </transition>
-              </div>
-
-              <div class="app-config-wwc__tabs__settings-content__input__tooltip-container">
-                <unnnic-switch
-                  v-model="enableTooltipMessage"
-                  class="app-config-wwc__tabs__settings-content__switch"
-                  :inititalState="false"
-                  size="small"
-                  :textLeft="$t('weniWebChat.config.TooltipInput.label')"
-                />
-
-                <transition name="fade">
-                  <unnnic-input
-                    v-if="enableTooltipMessage"
-                    v-model="tooltipMessage"
-                    class="app-config-wwc__tabs__settings-content__input__tooltip"
-                    type="normal"
-                    :placeholder="$t('weniWebChat.config.TooltipInput.placeholder')"
-                  />
-                </transition>
-              </div>
-
-              <unnnic-input
-                v-model="inputTextFieldHint"
-                class="app-config-wwc__tabs__settings-content__input"
-                type="normal"
-                :label="$t('weniWebChat.config.PlaceholderInput.label')"
-                :placeholder="$t('weniWebChat.config.PlaceholderInput.placeholder')"
-              />
-
-              <div class="app-config-wwc__tabs__settings-content__selectors">
-                <div class="app-config-wwc__tabs__settings-content__selectors__switches">
-                  <unnnic-switch
-                    v-model="useConnectionOptimization"
-                    :inititalState="false"
-                    size="small"
-                    :textRight="$t('weniWebChat.config.use_connection_optimization')"
-                  />
-
-                  <unnnic-switch
-                    v-model="embedded"
-                    :inititalState="false"
-                    size="small"
-                    :textRight="$t('weniWebChat.config.embedded_mode')"
-                  />
-
-                  <unnnic-switch
-                    v-model="showFullScreenButton"
-                    :inititalState="false"
-                    size="small"
-                    :textRight="$t('weniWebChat.config.show_fullscreen_button')"
-                    :disabled="embedded"
-                  />
-                  <unnnic-switch
-                    v-model="startFullScreen"
-                    :inititalState="false"
-                    size="small"
-                    :textRight="$t('weniWebChat.config.start_with_fullscreen')"
-                    :disabled="embedded"
-                  />
-
-                  <unnnic-switch
-                    v-model="displayUnreadCount"
-                    :inititalState="false"
-                    size="small"
-                    :textRight="$t('weniWebChat.config.unread_messages_indicator')"
-                  />
-                  <unnnic-switch
-                    v-model="keepHistory"
-                    :inititalState="false"
-                    size="small"
-                    :textRight="$t('weniWebChat.config.keep_chat_history')"
-                  />
-
-                  <div class="app-config-wwc__tabs__settings-content__contactTimeout">
-                    <div class="app-config-wwc__tabs__settings-content__contactTimeout__horizontal">
-                      <unnnic-switch
-                        v-model="enableContactTimeout"
-                        class="app-config-wwc__tabs__settings-content__switch"
-                        :inititalState="false"
-                        size="small"
-                        :textRight="$t('weniWebChat.config.contactTimeoutInput.label')"
-                      />
-                      <unnnic-toolTip
-                        class="app-config-wwc__tabs__settings-content__contactTimeout__tooltip"
-                        slot="buttons"
-                        :text="$t('weniWebChat.config.contactTimeoutToolTip')"
-                        :enabled="true"
-                        side="top"
-                      >
-                        <unnnic-icon-svg
-                          class="app-config-wwc__tabs__settings-content__contactTimeout__icon"
-                          icon="information-circle-4"
-                          size="sm"
-                          scheme="neutral-soft"
-                        />
-                      </unnnic-toolTip>
-                    </div>
-
-                    <transition name="fade">
-                      <unnnic-input
-                        v-show="enableContactTimeout"
-                        v-model="contactTimeout"
-                        class="app-config-wwc__tabs__settings-content__input__contactTimeout"
-                        @update:modelValue="handleContactTimeoutChange"
-                        mask="##:##"
-                        :type="invalidTime('contactTimeout') ? 'error' : 'normal'"
-                        :message="
-                          invalidTime('contactTimeout')
-                            ? $t('weniWebChat.config.contactTimeoutInvalidTime')
-                            : ''
-                        "
-                      />
-                    </transition>
-                  </div>
-                </div>
-
-                <div class="app-config-wwc__tabs__settings-content__selectors__slider">
-                  <div class="app-config-wwc__tabs__settings-content__selectors__slider__label">
-                    {{ $t('weniWebChat.config.time_between_messages') }}
-                  </div>
-                  <unnnic-slider
-                    :initialValue="timeBetweenMessages"
-                    :minValue="1"
-                    :maxValue="4"
-                    minLabel="1s"
-                    maxLabel="4s"
-                    @valueChange="handleSliderChange"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div class="app-config-wwc__tabs__settings-content__buttons">
-              <unnnic-button
-                class="app-config-wwc__tabs__settings-content__buttons__cancel"
-                type="tertiary"
-                size="large"
-                :text="$t('general.Cancel')"
-                @click="closeConfig"
-              ></unnnic-button>
-
-              <unnnic-button
-                class="app-config-wwc__tabs__settings-content__buttons__save"
-                type="primary"
-                size="large"
-                :text="$t('apps.config.save_changes')"
-                :disabled="invalidTime('contactTimeout') || loadingSave"
-                :loading="loadingSave"
-                @click="saveConfig"
-              ></unnnic-button>
-            </div>
-          </div>
-        </template>
-
+      <unnnic-tab class="app-config-wwc__tabs" :tabs="configTabs" initialTab="appearance">
         <template #tab-head-appearance> {{ $t('weniWebChat.config.appearance') }} </template>
         <template #tab-panel-appearance>
-          <div class="app-config-wwc__tabs__settings-content">
-            <div class="app-config-wwc__tabs__settings-content__scroll">
-              <div class="app-config-wwc__tabs__settings-content__files__content">
-                <unnnic-label :label="$t('weniWebChat.config.custom_css')" />
-                <unnnic-upload-area
-                  v-model="customCssFiles"
-                  :acceptMultiple="false"
-                  supportedFormats=".css"
-                  :maximumUploads="1"
-                  :filesProgress="[cssUploadProgress]"
-                  :isUploading="cssUploadState"
-                  :canImport="true"
-                  :canDelete="true"
-                  :maxFileSize="2"
-                  @fileChange="handleNewCss"
-                />
-              </div>
-              <div class="app-config-wwc__tabs__settings-content__files__content">
-                <unnnic-label :label="$t('weniWebChat.config.avatar_image')" />
-                <unnnic-upload-area
-                  v-model="avatarFiles"
-                  :acceptMultiple="false"
-                  supportedFormats=".png,.jpg,.jpeg"
-                  :maximumUploads="1"
-                  :filesProgress="[avatarUploadProgress]"
-                  :isUploading="avatarUploadState"
-                  :canImport="true"
-                  :canDelete="true"
-                  :maxFileSize="10"
-                  @fileChange="handleNewAvatar"
-                />
-              </div>
-              <div class="app-config-wwc__tabs__settings-content__files__content">
-                <unnnic-label :label="$t('weniWebChat.config.main_color')" />
-                <color-picker
-                  ref="color-picker"
-                  class="app-config-wwc__tabs__settings-content__colors__picker"
-                  @colorChange="handleColorChange"
-                />
-              </div>
-            </div>
-            <div class="app-config-wwc__tabs__settings-content__buttons">
-              <unnnic-button
-                class="app-config-wwc__tabs__settings-content__buttons__cancel"
-                type="tertiary"
-                size="large"
-                :text="$t('general.Cancel')"
-                @click="closeConfig"
-              ></unnnic-button>
-
-              <unnnic-button
-                class="app-config-wwc__tabs__settings-content__buttons__save"
-                type="primary"
-                size="large"
-                :text="$t('apps.config.save_changes')"
-                :loading="loadingSave"
-                @click="saveConfig"
-              ></unnnic-button>
-            </div>
-          </div>
+          <AppearanceTab
+            :initialTitle="config.title"
+            :initialSubtitle="config.subtitle"
+            :initialInitPayload="config.initPayload"
+            :initialTooltipMessage="config.tooltipMessage"
+            :initialInputTextFieldHint="config.inputTextFieldHint"
+            :initialMainColor="config.mainColor"
+            :initialAvatarFile="config.avatarFile"
+            :initialAvatarBase64="config.avatarBase64"
+            :initialCssFile="config.customCssFile"
+            :initialCustomCss="config.customCss"
+            :loading="loadingSave"
+            @update:title="updateConfig('title', $event)"
+            @update:subtitle="updateConfig('subtitle', $event)"
+            @update:initPayload="updateConfig('initPayload', $event)"
+            @update:tooltipMessage="updateConfig('tooltipMessage', $event)"
+            @update:inputTextFieldHint="updateConfig('inputTextFieldHint', $event)"
+            @update:mainColor="updateConfig('mainColor', $event)"
+            @update:avatarFile="updateConfig('avatarFile', $event)"
+            @update:avatarBase64="updateConfig('avatarBase64', $event)"
+            @update:cssFile="updateConfig('customCssFile', $event)"
+            @update:customCss="updateConfig('customCss', $event)"
+            @save="saveConfig"
+            @cancel="closeConfig"
+          />
         </template>
 
-        <template #tab-head-script> {{ $t('weniWebChat.config.script') }} </template>
-        <template #tab-panel-script>
-          <div class="app-config-wwc__tabs__script-content">
-            <div
-              class="app-config-wwc__tabs__script-content__text"
-              v-html="$t('weniWebChat.config.script_tutorial')"
-            />
+        <template #tab-head-preferences> {{ $t('weniWebChat.config.preferences') }} </template>
+        <template #tab-panel-preferences>
+          <PreferencesTab
+            :initialEmbedded="config.embedded"
+            :initialShowFullScreenButton="config.showFullScreenButton"
+            :initialStartFullScreen="config.startFullScreen"
+            :initialDisplayUnreadCount="config.displayUnreadCount"
+            :initialUseConnectionOptimization="config.useConnectionOptimization"
+            :initialKeepHistory="config.keepHistory"
+            :initialEnableContactTimeout="config.enableContactTimeout"
+            :initialContactTimeout="config.contactTimeout"
+            :initialTimeBetweenMessages="config.timeBetweenMessages"
+            :loading="loadingSave"
+            @update:embedded="updateConfig('embedded', $event)"
+            @update:showFullScreenButton="updateConfig('showFullScreenButton', $event)"
+            @update:startFullScreen="updateConfig('startFullScreen', $event)"
+            @update:displayUnreadCount="updateConfig('displayUnreadCount', $event)"
+            @update:useConnectionOptimization="updateConfig('useConnectionOptimization', $event)"
+            @update:keepHistory="updateConfig('keepHistory', $event)"
+            @update:enableContactTimeout="updateConfig('enableContactTimeout', $event)"
+            @update:contactTimeout="updateConfig('contactTimeout', $event)"
+            @update:timeBetweenMessages="updateConfig('timeBetweenMessages', $event)"
+            @save="saveConfig"
+            @cancel="closeConfig"
+          />
+        </template>
 
-            <unnnic-data-area :text="scriptCode" hoverText="">
-              <template #buttons>
-                <unnnic-toolTip
-                  :text="$t('weniWebChat.config.download')"
-                  :enabled="true"
-                  side="top"
-                >
-                  <unnnic-button
-                    class="app-config-wwc__tabs__script-content__download"
-                    type="secondary"
-                    size="large"
-                    iconCenter="download-bottom-1"
-                    @click="downloadScript"
-                    :disabled="scriptCode ? false : true"
-                  ></unnnic-button>
-                </unnnic-toolTip>
-              </template>
-            </unnnic-data-area>
-          </div>
+        <template #tab-head-integration> {{ $t('weniWebChat.config.script') }} </template>
+        <template #tab-panel-integration>
+          <IntegrationTab :appConfig="selectedApp.config" :title="config.title" />
         </template>
       </unnnic-tab>
     </div>
 
-    <div ref="simulator-switch" class="app-config-wwc__simulator-switch" @click="toggleSimulator">
+    <div ref="simulatorSwitchRef" class="app-config-wwc__simulator-switch" @click="toggleSimulator">
       <unnnic-icon-svg
         class="app-config-wwc__simulator-switch__icon"
         icon="view-1-1"
@@ -343,456 +91,245 @@
         scheme="brand-weni-soft"
       />
     </div>
-    <wwc-simulator
-      ref="simulator"
-      :avatar="simulatorAvatar"
-      :mainColor="mainColor"
-      :title="title"
+
+    <WwcSimulator
+      ref="simulatorRef"
+      :avatar="config.avatarBase64"
+      :mainColor="config.mainColor"
+      :title="config.title"
       :subtitle="chatSubtitle"
-      :placeholder="inputTextFieldHint"
-      :showFullScreenButton="showFullScreenButton"
-      :displayUnreadCount="displayUnreadCount"
+      :placeholder="config.inputTextFieldHint"
+      :showFullScreenButton="config.showFullScreenButton"
+      :displayUnreadCount="config.displayUnreadCount"
     />
   </div>
 </template>
 
-<script>
-  import { mapActions, mapState } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
+<script setup>
+  import { ref, reactive, computed, watch, onMounted } from 'vue';
+  import { storeToRefs } from 'pinia';
+  import { useI18n } from 'vue-i18n';
   import unnnic from '@weni/unnnic-system';
-  import { dataUrlToFile, toBase64 } from '../../../../utils/files';
-  import ColorPicker from '../../../ColorPicker/index.vue';
-  import wwcSimulator from './Simulator.vue';
-  import removeEmpty from '../../../../utils/clean';
+  import { app_type } from '@/stores/modules/appType/appType.store';
   import { useEventStore } from '@/stores/event.store';
+  import { dataUrlToFile, toBase64 } from '@/utils/files';
+  import removeEmpty from '@/utils/clean';
+  import { DEFAULT_COLOR, formatContactTimeout, parseContactTimeout } from './constants';
+  import AppearanceTab from './components/tabs/AppearanceTab.vue';
+  import PreferencesTab from './components/tabs/PreferencesTab.vue';
+  import IntegrationTab from './components/tabs/IntegrationTab.vue';
+  import WwcSimulator from './Simulator.vue';
 
-  export default {
-    name: 'wwc-config',
-    components: { ColorPicker, wwcSimulator },
-    props: {
-      app: {
-        type: Object,
-        default: () => {},
-      },
+  const { t } = useI18n();
+
+  const props = defineProps({
+    app: {
+      type: Object,
+      default: () => ({}),
     },
-    data() {
-      return {
-        enableSubtitle: !!this.app.config.subtitle,
-        simulatorAvatar: this.app.config.profileAvatar ?? null,
-        mainColor: this.app.config.mainColor ?? '#009E96',
-        version: this.app.config.version ?? '1',
-        title: this.app.config.title,
-        subtitle: this.app.config.subtitle,
-        inputTextFieldHint: this.app.config.inputTextFieldHint,
-        scriptUrl: this.app.config.script ?? '',
-        displayUnreadCount: !!this.app.config.displayUnreadCount,
-        showFullScreenButton: !!this.app.config.showFullScreenButton,
-        keepHistory: this.app.config.params?.storage === 'local',
-        startFullScreen: !!this.app.config?.startFullScreen || false,
-        useConnectionOptimization: !!this.app.config?.useConnectionOptimization || false,
-        embedded: !!this.app.config?.embedded || false,
-        customCss: this.app.config.customCss ?? null,
-        timeBetweenMessages: this.app.config.timeBetweenMessages ?? 1,
-        initPayload: this.app.config.initPayload,
-        enableInitPayload: !!this.app.config.initPayload,
-        enableTooltipMessage: !!this.app.config.tooltipMessage,
-        tooltipMessage: this.app.config.tooltipMessage,
-        enableContactTimeout:
-          !!this.app.config.contactTimeout || this.app.config.contactTimeout === '00:00',
-        contactTimeout: this.formatContactTimeout(this.app.config.contactTimeout) ?? '23:59',
+  });
 
-        avatarFile: this.app.config.profileAvatar ?? null,
-        customCssFile: this.app.config.customCss ?? null,
+  const emit = defineEmits(['closeModal', 'setConfirmation']);
 
-        cssUploadState: false,
-        cssUploadProgress: 0,
+  // Store
+  const appTypeStore = app_type();
+  const eventStore = useEventStore();
+  const {
+    loadingUpdateAppConfig,
+    errorUpdateAppConfig,
+    currentApp,
+    loadingCurrentApp,
+    errorCurrentApp,
+  } = storeToRefs(appTypeStore);
 
-        avatarUploadState: false,
-        avatarUploadProgress: 0,
-        selectedApp: this.app,
-      };
-    },
-    watch: {
-      displayUnreadCount: function (newDisplayUnreadCount) {
-        if (newDisplayUnreadCount && this.$refs.simulator.isOpen) {
-          this.$refs.simulator.toggleChat();
-        }
-      },
-      configProperties() {
-        this.$emit('setConfirmation', true);
-      },
-      embedded(newVal) {
-        if (newVal) {
-          this.startFullScreen = false;
-          this.showFullScreenButton = false;
-        }
-      },
-      enableContactTimeout(newVal) {
-        if (!newVal) {
-          this.contactTimeout = '00:00';
-        } else if (this.contactTimeout === '00:00') {
-          this.contactTimeout = '23:59';
-        }
-      },
-    },
-    async mounted() {
-      if (this.selectedApp.config.profileAvatar) {
-        this.avatarFile = await dataUrlToFile(this.selectedApp.config.profileAvatar, 'avatar.png');
-        setTimeout(() => {
-          this.$emit('setConfirmation', false);
-        }, 250);
+  // Refs
+  const simulatorRef = ref(null);
+  const simulatorSwitchRef = ref(null);
+  const selectedApp = ref(props.app);
+
+  // Config state
+  const config = reactive({
+    title: props.app.config.title || '',
+    subtitle: props.app.config.subtitle || '',
+    initPayload: props.app.config.initPayload || '',
+    tooltipMessage: props.app.config.tooltipMessage || '',
+    inputTextFieldHint: props.app.config.inputTextFieldHint || '',
+    mainColor: props.app.config.mainColor || DEFAULT_COLOR,
+    version: props.app.config.version || '1',
+    displayUnreadCount: !!props.app.config.displayUnreadCount,
+    showFullScreenButton: !!props.app.config.showFullScreenButton,
+    startFullScreen: !!props.app.config?.startFullScreen,
+    useConnectionOptimization: !!props.app.config?.useConnectionOptimization,
+    embedded: !!props.app.config?.embedded,
+    keepHistory: props.app.config.params?.storage === 'local',
+    timeBetweenMessages: props.app.config.timeBetweenMessages ?? 1,
+    enableContactTimeout:
+      !!props.app.config.contactTimeout || props.app.config.contactTimeout === '00:00',
+    contactTimeout: formatContactTimeout(props.app.config.contactTimeout) || '23:59',
+    avatarFile: null,
+    avatarBase64: props.app.config.profileAvatar || null,
+    customCssFile: null,
+    customCss: props.app.config.customCss || null,
+  });
+
+  // Computed
+  const configTabs = computed(() => ['appearance', 'preferences', 'integration']);
+
+  const chatSubtitle = computed(() => config.subtitle || ' ');
+
+  const loadingSave = computed(() => loadingUpdateAppConfig.value || loadingCurrentApp.value);
+
+  // Methods
+  function updateConfig(key, value) {
+    config[key] = value;
+    emit('setConfirmation', true);
+  }
+
+  function toggleSimulator() {
+    simulatorRef.value?.toggleChat();
+  }
+
+  async function imageForUpload() {
+    let avatar = config.avatarFile;
+    if (typeof config.avatarFile === 'string') {
+      avatar = await dataUrlToFile(config.avatarFile, 'avatar');
+    }
+    return toBase64(avatar);
+  }
+
+  function contactTimeoutInMinutes() {
+    if (!config.enableContactTimeout) return 0;
+    return parseContactTimeout(config.contactTimeout);
+  }
+
+  function errorFor(key) {
+    const value = config[key];
+    if (key === 'title') {
+      if (!(value && value.trim())) {
+        return t('errors.empty_input');
       }
-      if (this.selectedApp.config.customCss) {
-        const file = await dataUrlToFile(this.selectedApp.config.customCss, 'style.css');
-        if (file) {
-          await this.handleNewCss([file]);
-          setTimeout(() => {
-            this.$emit('setConfirmation', false);
-          }, 250);
-        }
+      if (value.length > 20) {
+        return 'By default, the maximum is 20 characters.';
+      }
+    }
+    return null;
+  }
+
+  function validConfig() {
+    let valid = true;
+    const keysToValidate = ['title'];
+
+    keysToValidate.forEach((key) => {
+      const error = errorFor(key);
+      if (error) {
+        unnnic.unnnicCallAlert({
+          props: { text: error, type: 'error' },
+          seconds: 3,
+        });
+        valid = false;
+      }
+    });
+
+    return valid;
+  }
+
+  async function saveConfig() {
+    if (!validConfig()) return;
+
+    const reqData = removeEmpty({
+      code: selectedApp.value.code,
+      appUuid: selectedApp.value.uuid,
+      payload: {
+        config: {
+          title: config.title,
+          subtitle: config.subtitle || null,
+          initPayload: config.initPayload || null,
+          tooltipMessage: config.tooltipMessage || null,
+          inputTextFieldHint: config.inputTextFieldHint || null,
+          showFullScreenButton: config.showFullScreenButton,
+          displayUnreadCount: config.displayUnreadCount,
+          timeBetweenMessages: config.timeBetweenMessages,
+          keepHistory: config.keepHistory,
+          startFullScreen: config.startFullScreen,
+          useConnectionOptimization: config.useConnectionOptimization,
+          embedded: config.embedded,
+          mainColor: config.mainColor,
+          profileAvatar: await imageForUpload(),
+          contactTimeout: contactTimeoutInMinutes(),
+          customCss: config.customCss,
+          version: config.version,
+        },
+      },
+    });
+
+    try {
+      const firstSave = !selectedApp.value.config.script;
+      await appTypeStore.updateAppConfig(reqData);
+
+      if (errorUpdateAppConfig.value) {
+        throw new Error(errorUpdateAppConfig.value);
+      }
+
+      await appTypeStore.getApp({ code: selectedApp.value.code, appUuid: selectedApp.value.uuid });
+
+      if (errorCurrentApp.value) {
+        throw new Error(errorCurrentApp.value);
+      }
+
+      selectedApp.value.config = currentApp.value.config;
+      emit('setConfirmation', false);
+
+      unnnic.unnnicCallAlert({
+        props: {
+          text: firstSave
+            ? t('apps.config.first_integration_success')
+            : t('apps.config.integration_success'),
+          type: 'success',
+        },
+        seconds: firstSave ? 8 : 3,
+      });
+    } catch (err) {
+      unnnic.unnnicCallAlert({
+        props: { text: t('apps.details.status_error'), type: 'error' },
+        seconds: 3,
+      });
+    } finally {
+      eventStore.emit('updateGrid');
+    }
+  }
+
+  function closeConfig() {
+    emit('closeModal');
+  }
+
+  // Initialize files on mount
+  onMounted(async () => {
+    if (selectedApp.value.config.profileAvatar) {
+      config.avatarFile = await dataUrlToFile(selectedApp.value.config.profileAvatar, 'avatar.png');
+      setTimeout(() => emit('setConfirmation', false), 250);
+    }
+
+    if (selectedApp.value.config.customCss) {
+      const file = await dataUrlToFile(selectedApp.value.config.customCss, 'style.css');
+      if (file) {
+        config.customCssFile = file;
+        setTimeout(() => emit('setConfirmation', false), 250);
+      }
+    }
+  });
+
+  // Watch displayUnreadCount to close simulator when enabled
+  watch(
+    () => config.displayUnreadCount,
+    (newValue) => {
+      if (newValue && simulatorRef.value?.isOpen) {
+        simulatorRef.value.toggleChat();
       }
     },
-    computed: {
-      ...mapState(app_type, [
-        'loadingUpdateAppConfig',
-        'errorUpdateAppConfig',
-        'currentApp',
-        'loadingCurrentApp',
-        'errorCurrentApp',
-      ]),
-      avatarFiles: {
-        get() {
-          return this.avatarFile ? [this.avatarFile] : [];
-        },
-        set(files) {
-          this.handleNewAvatar(files);
-        },
-      },
-      customCssFiles: {
-        get() {
-          return this.customCssFile ? [this.customCssFile] : [];
-        },
-        set(files) {
-          this.handleNewCss(files);
-        },
-      },
-      configTabs() {
-        return ['settings', 'appearance', 'script'];
-      },
-      chatSubtitle() {
-        return this.enableSubtitle ? this.subtitle : ' ';
-      },
-      chatInitPayload() {
-        return this.enableInitPayload ? this.initPayload : null;
-      },
-      chatTooltipMessage() {
-        return this.enableTooltipMessage ? this.tooltipMessage : null;
-      },
-      scriptCode() {
-        const version = this.selectedApp.config.version ?? '1';
-
-        const WebChatScriptUrl = version === '2'
-          ? 'https://cdn.cloud.weni.ai/webchat-latest.umd.js'
-          : 'https://storage.googleapis.com/push-webchat/wwc-latest.js';
-        
-        const code = `<script>
-  (function (weni_d, weni_s, weni_u) {
-    let weni_h = weni_d.getElementsByTagName(weni_s)[0], weni_k = weni_d.createElement(weni_s);
-    weni_k.onload = function () {
-      let weni_l = weni_d.createElement(weni_s); weni_l.src = weni_u; weni_l.async = true;
-      weni_h.parentNode.insertBefore(weni_l, weni_k.nextSibling);
-    };
-    weni_k.async = true; weni_k.src = '${WebChatScriptUrl}';
-    weni_h.parentNode.insertBefore(weni_k, weni_h);
-  })(document, 'script', '${this.selectedApp.config.script}');
-<${'/'}script>`;
-        return this.selectedApp.config.script ? code : '';
-      },
-      cssForUpload() {
-        return this.customCss;
-      },
-      configProperties() {
-        return `
-            ${this.mainColor}|
-            ${this.title}|
-            ${this.subtitle}|
-            ${this.inputTextFieldHint}|
-            ${this.tooltipMessage}|
-            ${this.displayUnreadCount}|
-            ${this.showFullScreenButton}|
-            ${this.keepHistory}|
-            ${this.customCss}|
-            ${this.timeBetweenMessages}|
-            ${this.initPayload}|
-            ${this.simulatorAvatar}|
-            ${this.avatarFile}|
-            ${this.customCssFile}
-            `;
-      },
-      loadingSave() {
-        return this.loadingUpdateAppConfig || this.loadingCurrentApp;
-      },
-    },
-    methods: {
-      ...mapActions(app_type, ['updateAppConfig', 'getApp']),
-      ...mapActions(useEventStore, ['emit']),
-      handleColorChange(color) {
-        this.mainColor = color;
-      },
-      async imageForUpload() {
-        let avatar = this.avatarFile;
-        if (typeof this.avatarFile === 'string') {
-          avatar = await dataUrlToFile(this.avatarFile, 'avatar');
-        }
-
-        return toBase64(avatar);
-      },
-      handleNewAvatar(files) {
-        if (files.length < 1) {
-          this.setNewAvatar(null, null, null);
-          return;
-        }
-
-        const file = files[0];
-        const fileReader = new FileReader();
-        FileReader.onloadstart = this.startAvatarUploadProgress();
-        fileReader.onprogress = (event) => this.updateAvatarUploadProgress(event);
-        fileReader.onload = (event) => this.setNewAvatar(event.target.result, file.name);
-
-        const blob = new Blob([file], { type: file.type });
-        fileReader.readAsDataURL(blob);
-      },
-      handleNewCss(files) {
-        if (files.length < 1) {
-          this.setNewCss(null, null);
-          return;
-        }
-
-        const file = files[0];
-        const fileReader = new FileReader();
-        FileReader.onloadstart = this.startCssUploadProgress();
-        fileReader.onprogress = (event) => this.updateCssUploadProgress(event);
-        fileReader.onload = (event) => this.setNewCss(event.target.result, file);
-
-        fileReader.readAsText(file);
-      },
-      startCssUploadProgress() {
-        this.cssUploadState = true;
-        this.cssUploadProgress = 0;
-      },
-      updateCssUploadProgress(event) {
-        this.cssUploadProgress = parseInt((event.loaded / event.total) * 100);
-      },
-      stopCssUploadProgress() {
-        this.cssUploadState = false;
-        this.cssUploadProgress = 0;
-      },
-      startAvatarUploadProgress() {
-        this.avatarUploadState = true;
-        this.avatarUploadProgress = 0;
-      },
-      updateAvatarUploadProgress(event) {
-        this.avatarUploadProgress = parseInt((event.loaded / event.total) * 100);
-      },
-      stopAvatarUploadProgress() {
-        this.avatarUploadState = false;
-        this.avatarUploadProgress = 0;
-      },
-      async setNewAvatar(b64Avatar, fileName) {
-        if (!b64Avatar) {
-          this.avatarFile = null;
-          this.simulatorAvatar = null;
-          return;
-        }
-
-        const fileType = this.getFileType(b64Avatar);
-        this.avatarFile = await dataUrlToFile(b64Avatar, fileName, fileType);
-        this.simulatorAvatar = b64Avatar;
-        this.stopAvatarUploadProgress();
-      },
-      setNewCss(customCss, file) {
-        this.customCssFile = file;
-        this.customCss = customCss;
-        this.stopCssUploadProgress();
-      },
-      toggleSimulator() {
-        this.$refs.simulator.toggleChat();
-      },
-      handleSliderChange(value) {
-        this.timeBetweenMessages = parseInt(value);
-      },
-      handleContactTimeoutChange(value) {
-        this.contactTimeout = value;
-      },
-      contactTimeoutInMinutes() {
-        if (!this.enableContactTimeout) {
-          return 0;
-        }
-
-        const [hours, minutes] = this.contactTimeout.split(':');
-        return parseInt(hours) * 60 + parseInt(minutes);
-      },
-      formatContactTimeout(contactTimeout) {
-        if (!contactTimeout) {
-          return '00:00';
-        }
-
-        // convert the minutes integer to 24h format
-        const hours = Math.floor(contactTimeout / 60);
-        const minutes = contactTimeout % 60;
-        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-      },
-      invalidTime(key) {
-        if (!this.enableContactTimeout) {
-          return false;
-        }
-
-        const value = this.$data[key];
-
-        if (value === '00:00') {
-          return true;
-        }
-
-        const TIME_REGEX = /^([01]?[0-9]|2[0-3]):([0-5][0-9])$/;
-        return !value || value.length !== 5 || !TIME_REGEX.test(value);
-      },
-      clearAvatars() {
-        this.simulatorAvatar = null;
-        this.avatarFile = {};
-      },
-      clearCssFile() {
-        this.customCss = null;
-        this.customCssFile = {};
-      },
-      getFileType(b64File) {
-        return b64File.split(';')[0].split(':')[1];
-      },
-      async downloadScript() {
-        const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${this.scriptCode}\n</body>\n</html>`;
-
-        let element = document.createElement('a');
-        element.setAttribute(
-          'href',
-          'data:text/plain;charset=utf-8, ' + encodeURIComponent(htmlScript),
-        );
-        element.setAttribute('download', `wwc-script-${this.title}.html`);
-        element.style.display = 'none';
-        document.body.appendChild(element);
-        element.click();
-        document.body.removeChild(element);
-      },
-      errorFor(key) {
-        const value = this.$data[key];
-        if (key === 'title') {
-          if (!(value && value.trim())) {
-            return this.$t('errors.empty_input');
-          }
-          if (value.length > 20) {
-            return 'By default, the maximum is 20 characters.';
-          }
-        }
-      },
-      validConfig() {
-        let valid = true;
-
-        Object.entries(this.$data).forEach(([key]) => {
-          const error = this.errorFor(key);
-          if (error) {
-            unnnic.unnnicCallAlert({
-              props: {
-                text: error,
-                type: 'error',
-              },
-              seconds: 3,
-            });
-            valid = false;
-          }
-        });
-        return valid;
-      },
-      async saveConfig() {
-        if (!this.validConfig()) {
-          return;
-        }
-
-        const reqData = removeEmpty({
-          code: this.selectedApp.code,
-          appUuid: this.selectedApp.uuid,
-          payload: {
-            config: {
-              title: this.title,
-              subtitle: this.enableSubtitle ? this.subtitle : null,
-              initPayload: this.chatInitPayload,
-              tooltipMessage: this.chatTooltipMessage,
-              inputTextFieldHint: this.inputTextFieldHint,
-              showFullScreenButton: this.showFullScreenButton,
-              displayUnreadCount: this.displayUnreadCount,
-              timeBetweenMessages: this.timeBetweenMessages,
-              keepHistory: this.keepHistory,
-              startFullScreen: this.startFullScreen,
-              useConnectionOptimization: this.useConnectionOptimization,
-              embedded: this.embedded,
-              mainColor: this.mainColor,
-              profileAvatar: await this.imageForUpload(),
-              contactTimeout: this.contactTimeoutInMinutes(),
-              customCss: this.cssForUpload,
-              version: this.version,
-            },
-          },
-        });
-
-        try {
-          const firstSave = !this.scriptCode;
-          await this.updateAppConfig(reqData);
-
-          if (this.errorUpdateAppConfig) {
-            throw new Error(this.errorUpdateAppConfig);
-          }
-
-          await this.getApp({ code: this.selectedApp.code, appUuid: this.selectedApp.uuid });
-
-          if (this.errorCurrentApp) {
-            throw new Error(this.errorCurrentApp);
-          }
-
-          this.selectedApp.config = this.currentApp.config;
-          this.$emit('setConfirmation', false);
-          unnnic.unnnicCallAlert({
-            props: {
-              text: firstSave
-                ? this.$t('apps.config.first_integration_success')
-                : this.$t('apps.config.integration_success'),
-              type: 'success',
-            },
-            seconds: firstSave ? 8 : 3,
-          });
-        } catch (err) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.status_error'),
-              type: 'error',
-            },
-            seconds: 3,
-          });
-        } finally {
-          this.emit('updateGrid');
-        }
-      },
-      closeConfig() {
-        this.$emit('closeModal');
-      },
-    },
-  };
+  );
 </script>
 
 <style lang="scss" scoped>
-  .fade-enter-active .fade-leave-active {
-    transition: opacity 0.5s;
-  }
-  .fade-enter .fade-leave-to {
-    opacity: 0;
-  }
-
   .app-config-wwc {
     display: flex;
     flex-direction: column;
@@ -801,60 +338,39 @@
     &__content {
       overflow: auto;
       display: flex;
-      width: 100%;
       flex-direction: column;
       flex: 1;
       color: $unnnic-color-neutral-cloudy;
       font-size: $unnnic-font-size-body-gt;
       line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-      margin: $unnnic-spacing-inset-lg;
-      margin-top: 0;
+      padding: 0 $unnnic-space-6;
     }
 
     &__header {
       display: flex;
-      width: 95%;
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
 
-      &__icon-container {
+      &__title-container {
         display: flex;
-        justify-self: flex-start;
-        width: $unnnic-avatar-size-sm;
-        height: $unnnic-avatar-size-sm;
-        border-radius: $unnnic-border-radius-sm;
-
-        background-color: rgba(0, 222, 211, 0.2);
-
-        &__icon {
-          margin: $unnnic-inline-nano;
-          width: 40px;
-        }
+        flex-direction: column;
+        gap: $unnnic-space-1;
       }
 
       &__title {
-        display: flex;
-        justify-self: flex-start;
-        align-self: center;
-        font-family: $unnnic-font-family-primary;
-        font-weight: $unnnic-font-weight-regular;
-        font-size: $unnnic-font-size-title-md;
-        line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
-        margin-left: $unnnic-inline-sm;
-        width: 432px;
+        font: $unnnic-font-display-2;
+        color: $unnnic-color-fg-emphasized;
+        margin: 0;
+      }
+
+      &__description {
+        font: $unnnic-font-body;
+        color: $unnnic-color-fg-base;
+        margin: 0;
       }
 
       &__close {
-        display: flex;
-        justify-content: flex-end;
-        justify-self: flex-end;
-        width: 100%;
-        padding-right: $unnnic-spacing-inline-xs;
-        &__button {
-          justify-self: flex-end;
-          display: flex;
-        }
+        margin-left: auto;
       }
     }
 
@@ -865,14 +381,14 @@
       overflow-y: hidden;
       width: 100%;
 
-      ::v-deep .tab-body {
+      :deep(.tab-body) {
         display: flex;
         height: 100%;
         overflow-y: auto;
       }
-      ::v-deep .tab-panel {
-        width: 100%;
 
+      :deep(.tab-panel) {
+        width: 100%;
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -883,239 +399,6 @@
           height: 100%;
         }
       }
-      &__settings-content {
-        padding-right: $unnnic-spacing-inline-lg;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 95%;
-        overflow: hidden;
-
-        &__scroll {
-          display: flex;
-          flex-direction: column;
-          overflow: auto;
-          padding-right: $unnnic-spacing-stack-sm;
-        }
-
-        ::v-deep .unnnic-form__message {
-          color: $unnnic-color-feedback-red;
-        }
-
-        &__input {
-          margin-top: $unnnic-spacing-stack-xs;
-
-          &__title {
-            ::v-deep .unnnic-form-input {
-              /* Chrome, Firefox, Opera, Safari 10.1+ */
-              ::placeholder {
-                color: $unnnic-color-feedback-red;
-                opacity: 1; /* Firefox */
-              }
-
-              /* Internet Explorer 10-11 */
-              :-ms-input-placeholder {
-                color: $unnnic-color-feedback-red;
-              }
-
-              /* Microsoft Edge */
-              ::-ms-input-placeholder {
-                color: $unnnic-color-feedback-red;
-              }
-            }
-          }
-
-          &__subtitle-container {
-            margin-top: $unnnic-spacing-stack-sm;
-          }
-
-          &__subtitle {
-            margin-top: $unnnic-spacing-stack-nano;
-          }
-
-          &__payload {
-            flex: 1;
-            margin-top: $unnnic-spacing-stack-xs;
-
-            ::v-deep .unnnic-form-input {
-              margin-top: $unnnic-spacing-stack-xs;
-            }
-          }
-
-          &__tooltip-container {
-            margin-top: $unnnic-spacing-stack-sm;
-          }
-
-          &__tooltip {
-            margin-top: $unnnic-spacing-stack-nano;
-          }
-        }
-
-        &__initPayload {
-          margin-top: $unnnic-spacing-stack-sm;
-
-          &__horizontal {
-            display: flex;
-          }
-          &__label {
-            font-family: $unnnic-font-family-secondary;
-            font-weight: $unnnic-font-weight-regular;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-cloudy;
-          }
-
-          &__icon {
-            margin-top: $unnnic-spacing-stack-nano;
-            margin-left: $unnnic-inline-nano;
-          }
-        }
-
-        &__contactTimeout {
-          display: flex;
-          flex-direction: column;
-          gap: $unnnic-spacing-stack-xs;
-
-          &__horizontal {
-            display: flex;
-          }
-
-          &__label {
-            font-family: $unnnic-font-family-secondary;
-            font-weight: $unnnic-font-weight-regular;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-cloudy;
-          }
-
-          &__icon {
-            margin-top: $unnnic-spacing-stack-nano;
-            margin-left: $unnnic-inline-nano;
-          }
-        }
-
-        &__switch {
-          ::v-deep .unnnic-switch__label {
-            font-size: $unnnic-font-size-body-gt;
-            color: $unnnic-color-neutral-cloudy;
-          }
-        }
-
-        &__horizontal-input {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: $unnnic-inline-sm;
-        }
-
-        &__files {
-          display: flex;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: $unnnic-inline-sm;
-          margin-top: $unnnic-spacing-stack-sm;
-
-          &__content {
-            flex-grow: 1;
-            color: $unnnic-color-neutral-cloudy;
-            font-family: $unnnic-font-family-secondary;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-
-            &__label {
-              margin-bottom: $unnnic-spacing-stack-xs;
-            }
-          }
-        }
-
-        &__selectors {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          gap: $unnnic-inline-sm;
-          margin-top: $unnnic-spacing-stack-md;
-          flex-wrap: wrap;
-          margin-bottom: auto;
-
-          &__switches &__slider {
-            flex-grow: 1;
-          }
-
-          &__switches {
-            display: flex;
-            flex-direction: column;
-            gap: $unnnic-spacing-stack-xs;
-
-            &__fullscreen {
-              display: flex;
-              flex-direction: row;
-            }
-          }
-
-          &__slider {
-            width: 50%;
-
-            &__label {
-              color: $unnnic-color-neutral-cloudy;
-              font-family: $unnnic-font-family-secondary;
-              font-size: $unnnic-font-size-body-gt;
-              line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            }
-          }
-        }
-
-        &__colors {
-          margin-top: $unnnic-spacing-stack-sm;
-
-          &__label {
-            color: $unnnic-color-neutral-cloudy;
-            font-family: $unnnic-font-family-secondary;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-          }
-
-          &__picker {
-            margin-top: $unnnic-spacing-stack-xs;
-            cursor: pointer;
-          }
-        }
-
-        &__buttons {
-          margin-top: $unnnic-spacing-stack-sm;
-          display: flex;
-          width: 95%;
-          gap: $unnnic-spacing-inline-xs;
-          justify-content: center;
-
-          :deep(.unnnic-button) {
-            width: 250px;
-          }
-
-          &__cancel &__save {
-            display: flex;
-            flex-grow: 1;
-            margin: $unnnic-spacing-inline-xs;
-          }
-        }
-      }
-
-      &__script-content {
-        display: flex;
-        width: 95%;
-        flex-direction: column;
-        gap: $unnnic-inline-xs;
-
-        &__text {
-          color: $unnnic-color-neutral-dark;
-          font-family: $unnnic-font-family-secondary;
-          font-size: $unnnic-font-size-body-lg;
-          line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        }
-
-        .data-area-container {
-          width: 95%;
-        }
-      }
     }
 
     &__simulator-switch {
@@ -1123,11 +406,11 @@
       position: fixed;
       z-index: 2;
       bottom: 50%;
-      right: calc(50% - 31px);
+      right: calc(50% - 25px);
       background-color: $unnnic-color-neutral-snow;
       border-radius: $unnnic-border-radius-pill;
-      width: 62px;
-      height: 62px;
+      width: 50px;
+      height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;

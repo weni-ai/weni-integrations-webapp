@@ -183,10 +183,16 @@
       }
     },
     "config": {
+      "description": "Aprenda más sobre cómo integrar Weni Web Chat aquí.",
       "settings": "Ajustes",
       "script": "Código Script",
       "appearance": "Apariencia",
+      "preferences": "Preferencias",
+      "behavior": "Comportamiento",
+      "history": "Historial de chat & Inactividad",
       "script_tutorial": "Para instalar Weni Web Chat en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
+      "script_disclaimer": "El script estará disponible una vez que se completen los ajustes básicos requeridos.",
+      "copy_code": "Copiar código",
       "custom_css": "CSS personalizado",
       "avatar_image": "Imagen del avatar",
       "use_connection_optimization": "Usar optimización de conexión",
@@ -196,6 +202,8 @@
       "unread_messages_indicator": "Indicador de mensajes no leídos",
       "keep_chat_history": "Mantener historial de mensajes",
       "time_between_messages": "Tiempo entre mensajes",
+      "time_between_messages_option": "{ count } segundo | { count } segundos",
+      "time_between_messages_message": "Intervalo entre mensajes del agente",
       "main_color": "Color principal",
       "save_changes": "Guardar los cambios",
       "script_placeholder": "Su Script estará aquí",
@@ -225,7 +233,9 @@
         "label": "Reiniciar conversación después de inactividad del contacto"
       },
       "contactTimeoutToolTip": "Si el contacto permanece inactivo durante el tiempo establecido, la conversación se cerrará automáticamente.\nUna nueva conversación comenzará si interactúan nuevamente.",
-      "contactTimeoutInvalidTime": "El valor debe ser un temporizador con un máximo de 24 horas en el siguiente formato: HH:mm"
+      "contactTimeoutInvalidTime": "El valor debe ser un temporizador con un máximo de 24 horas en el siguiente formato: HH:mm",
+      "add_field": "Más",
+      "customization": "Personalización"
     },
     "simulator": {
       "chatTitle": "Título del chat",

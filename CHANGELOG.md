@@ -1,3 +1,35 @@
+3.7.1
+----------
+`2026-01-08 · 2 🐛`
+
+### 🐛 Bug fixes
+- fix: wpp demo buttons colors
+- fix: handle null values for inputTextFieldHint and update iframe allow attribute
+
+3.7.0
+----------
+`2025-12-11 · 1 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix(AccountTab.vue): update mmlite onboarding featureType and version
+
+### 🔧 Improvements
+- Feat: refactor and redesign wwc config
+
+3.6.1
+----------
+`2025-12-01 · 1 🐛 · 1 🔧 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: update URL in OtherApps to show all flows configs
+
+### 🔧 Improvements
+- Refactor: update mmlite embedded extra
+
+### 🎉 New feature
+- Feat: add Weni WebChat version 2
+- Feat: add a guard to the embedded WebChat script to prevent multiple injections
+
 3.5.1
 ----------
 `2025-11-25 · 1 🐛`

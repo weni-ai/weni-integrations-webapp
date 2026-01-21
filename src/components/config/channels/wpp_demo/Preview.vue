@@ -174,6 +174,14 @@
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 $unnnic-spacing-inset-lg;
 
+        ::v-deep .unnnic-button--primary {
+          background-color: rgba(226, 230, 237, 0.4) !important;
+
+          span {
+            color: $unnnic-color-neutral-darkest !important;
+          }
+        }
+
         &__qr {
           align-self: center;
           margin: $unnnic-spacing-stack-sm 0;
@@ -208,14 +216,6 @@
           flex-grow: 1;
         }
       }
-    }
-  }
-
-  ::v-deep .unnnic-button--primary {
-    background-color: rgba(226, 230, 237, 0.4) !important;
-
-    svg > path {
-      fill: $unnnic-color-neutral-darkest;
     }
   }
 </style>

@@ -183,10 +183,16 @@
       }
     },
     "config": {
+      "description": "Learn more about how to integrate Weni Web Chat here.",
       "settings": "Settings",
       "script": "Script Code",
       "appearance": "Appearance",
+      "preferences": "Preferences",
+      "behavior": "Behavior",
+      "history": "Chat history & Inactivity",
       "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
+      "script_disclaimer": "The script will be available once the required basic settings have been completed.",
+      "copy_code": "Copy code",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
       "use_connection_optimization": "Use connection optimization",
@@ -196,6 +202,8 @@
       "unread_messages_indicator": "Unread messages indicator",
       "keep_chat_history": "Keep chat history",
       "time_between_messages": "Time between messages",
+      "time_between_messages_option": "{ count } second | { count } seconds",
+      "time_between_messages_message": "Interval between agent messages",
       "main_color": "Main color",
       "save_changes": "Save changes",
       "script_placeholder": "Your script will be here",
@@ -225,7 +233,9 @@
         "label": "Restart conversation after contact inactivity"
       },
       "contactTimeoutToolTip": "If the contact remains inactive for the set amount of time, the conversation will automatically end.\nA new conversation will start if they interact again.",
-      "contactTimeoutInvalidTime": "Value must be a timer with a maximum of 24 hours with the following format: HH:mm"
+      "contactTimeoutInvalidTime": "Value must be a timer with a maximum of 24 hours with the following format: HH:mm",
+      "add_field": "More",
+      "customization": "Customization"
     },
     "simulator": {
       "chatTitle": "Chat Title",
