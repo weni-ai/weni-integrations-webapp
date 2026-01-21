@@ -9,14 +9,12 @@
 
           <unnnic-switch
             v-model="embedded"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.embedded_mode')"
           />
 
           <unnnic-switch
             v-model="showFullScreenButton"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.show_fullscreen_button')"
             :disabled="embedded"
@@ -24,7 +22,6 @@
 
           <unnnic-switch
             v-model="startFullScreen"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.start_with_fullscreen')"
             :disabled="embedded"
@@ -32,16 +29,34 @@
 
           <unnnic-switch
             v-model="displayUnreadCount"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.unread_messages_indicator')"
           />
 
           <unnnic-switch
             v-model="useConnectionOptimization"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.use_connection_optimization')"
+          />
+        </section>
+
+        <section class="preferences-tab__section">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.media') }}
+          </h3>
+
+          <unnnic-switch
+            v-if="version === '2'"
+            v-model="showVoiceRecordingButton"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_voice_recording_button')"
+          />
+
+          <unnnic-switch
+            v-if="version === '2'"
+            v-model="showCameraButton"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_camera_button')"
           />
         </section>
 
@@ -52,7 +67,6 @@
 
           <unnnic-switch
             v-model="keepHistory"
-            :inititalState="false"
             size="small"
             :textRight="$t('weniWebChat.config.keep_chat_history')"
           />
@@ -61,7 +75,6 @@
             <div class="preferences-tab__contact-timeout-header">
               <unnnic-switch
                 v-model="enableContactTimeout"
-                :inititalState="false"
                 size="small"
                 :textRight="$t('weniWebChat.config.contactTimeoutInput.label')"
               />
@@ -136,9 +149,12 @@
   const { t } = useI18n();
 
   const props = defineProps({
+    version: { type: String, default: '1' },
     initialEmbedded: { type: Boolean, default: false },
     initialShowFullScreenButton: { type: Boolean, default: false },
     initialStartFullScreen: { type: Boolean, default: false },
+    initialShowVoiceRecordingButton: { type: Boolean, default: false },
+    initialShowCameraButton: { type: Boolean, default: false },
     initialDisplayUnreadCount: { type: Boolean, default: false },
     initialUseConnectionOptimization: { type: Boolean, default: false },
     initialKeepHistory: { type: Boolean, default: false },
@@ -152,6 +168,8 @@
     'update:embedded',
     'update:showFullScreenButton',
     'update:startFullScreen',
+    'update:showVoiceRecordingButton',
+    'update:showCameraButton',
     'update:displayUnreadCount',
     'update:useConnectionOptimization',
     'update:keepHistory',
@@ -166,6 +184,8 @@
   const embedded = ref(props.initialEmbedded);
   const showFullScreenButton = ref(props.initialShowFullScreenButton);
   const startFullScreen = ref(props.initialStartFullScreen);
+  const showVoiceRecordingButton = ref(props.initialShowVoiceRecordingButton);
+  const showCameraButton = ref(props.initialShowCameraButton);
   const displayUnreadCount = ref(props.initialDisplayUnreadCount);
   const useConnectionOptimization = ref(props.initialUseConnectionOptimization);
   const keepHistory = ref(props.initialKeepHistory);
@@ -209,6 +229,8 @@
 
   watch(showFullScreenButton, (value) => emit('update:showFullScreenButton', value));
   watch(startFullScreen, (value) => emit('update:startFullScreen', value));
+  watch(showVoiceRecordingButton, (value) => emit('update:showVoiceRecordingButton', value));
+  watch(showCameraButton, (value) => emit('update:showCameraButton', value));
   watch(displayUnreadCount, (value) => emit('update:displayUnreadCount', value));
   watch(useConnectionOptimization, (value) => emit('update:useConnectionOptimization', value));
   watch(keepHistory, (value) => emit('update:keepHistory', value));
