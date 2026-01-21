@@ -25,7 +25,7 @@
             <unnnic-button
               class="account-tab__content__info__templates__buttons__button"
               @click="navigateToTemplates"
-              type="alternative"
+              type="secondary"
               size="small"
               scheme="feedback-green"
             >
