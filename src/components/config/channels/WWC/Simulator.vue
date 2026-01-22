@@ -80,6 +80,18 @@
           </div>
           <div class="wwc-simulator__content__input__button">
             <unnnic-icon-svg
+              v-if="showCameraButton"
+              icon="photo_camera"
+              size="md"
+              scheme="neutral-clean"
+            />
+            <unnnic-icon-svg
+              v-if="showVoiceRecordingButton"
+              icon="microphone"
+              size="md"
+              scheme="neutral-clean"
+            />
+            <unnnic-icon-svg
               class="wwc-simulator__content__input__button__icon"
               icon="send-email-3-1"
               size="md"
@@ -136,6 +148,14 @@
       default: false,
     },
     displayUnreadCount: {
+      type: Boolean,
+      default: false,
+    },
+    showVoiceRecordingButton: {
+      type: Boolean,
+      default: false,
+    },
+    showCameraButton: {
       type: Boolean,
       default: false,
     },
@@ -398,6 +418,9 @@
         &__button {
           margin-left: auto;
           margin-right: $unnnic-inline-xs;
+          display: flex;
+          align-items: center;
+          gap: $unnnic-inline-xs;
         }
       }
     }
