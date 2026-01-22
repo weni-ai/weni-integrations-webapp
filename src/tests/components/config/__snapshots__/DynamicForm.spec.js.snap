@@ -26,10 +26,12 @@ exports[`DynamicForm.vue > should be rendered properly 1`] = `
       message=""
       nativetype="text"
       placeholder=""
+      showclear="false"
       showmaxlengthcounter="false"
       size="md"
       tooltip=""
       type="normal"
+      usefocusprop="false"
     />
     <!--v-if-->
   </div>

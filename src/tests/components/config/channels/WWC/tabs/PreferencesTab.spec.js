@@ -55,7 +55,7 @@ describe('PreferencesTab', () => {
     it('should render all behavior switches', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
       // embedded, showFullScreenButton, startFullScreen, displayUnreadCount, useConnectionOptimization, keepHistory, enableContactTimeout
-      expect(switches.length).toBe(7);
+      expect(switches.length).toBe(8);
     });
 
     it('should render form element for time between messages', () => {
@@ -79,14 +79,14 @@ describe('PreferencesTab', () => {
       expect(wrapper.find('.preferences-tab__switches').exists()).toBe(true);
     });
 
-    it('should render two sections (behavior and history)', () => {
+    it('should render three sections (behavior, media and history)', () => {
       const sections = wrapper.findAll('.preferences-tab__section');
-      expect(sections.length).toBe(2);
+      expect(sections.length).toBe(3);
     });
 
     it('should render section titles', () => {
       const sectionTitles = wrapper.findAll('.preferences-tab__section-title');
-      expect(sectionTitles.length).toBe(2);
+      expect(sectionTitles.length).toBe(3);
     });
 
     it('should render contact timeout section', () => {
@@ -119,8 +119,8 @@ describe('PreferencesTab', () => {
     it('should disable fullscreen switches when embedded is true', () => {
       wrapper = createWrapper({ initialEmbedded: true });
       const switches = wrapper.findAll('unnnic-switch-stub');
-      const fullscreenSwitch = switches[1];
-      const startFullscreenSwitch = switches[2];
+      const fullscreenSwitch = switches[2];
+      const startFullscreenSwitch = switches[3];
       expect(fullscreenSwitch.attributes('disabled')).toBeDefined();
       expect(startFullscreenSwitch.attributes('disabled')).toBeDefined();
     });
@@ -129,8 +129,8 @@ describe('PreferencesTab', () => {
       wrapper = createWrapper({ initialEmbedded: true });
       const switches = wrapper.findAll('unnnic-switch-stub');
       // The disabled attribute will be set (even if as "true" string)
-      expect(switches[1].attributes('disabled')).toBe('true');
       expect(switches[2].attributes('disabled')).toBe('true');
+      expect(switches[3].attributes('disabled')).toBe('true');
     });
   });
 
