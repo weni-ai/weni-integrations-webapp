@@ -1,3 +1,13 @@
+3.8.0
+----------
+`2026-01-22 · 1 🐛 · 1 🎉`
+
+### 🐛 Bug fixes
+- fix: change navigate templates button type from alternative to secondary
+
+### 🎉 New features
+- Feat: navigate if same domain switch
+
 3.7.1
 ----------
 `2026-01-08 · 2 🐛`

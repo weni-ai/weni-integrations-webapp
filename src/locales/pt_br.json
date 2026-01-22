@@ -14,7 +14,8 @@
     "error": "Erro",
     "success": "Sucesso",
     "continue": "Continuar",
-    "attention": "Atenção"
+    "attention": "Atenção",
+    "beta": "BETA"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
@@ -207,6 +208,10 @@
       "time_between_messages": "Tempo entre as mensagens",
       "time_between_messages_option": "{ count } segundo | { count } segundos",
       "time_between_messages_message": "Intervalo entre mensagens do agente",
+      "navigate_if_same_domain": {
+        "label": "Permitir que o Webchat redirecione automaticamente a página",
+        "helper": "Quando habilitado, o Webchat pode redirecionar automaticamente o usuário para outra página quando um link é enviado durante a conversa. Esta funcionalidade está atualmente em Beta e pode mudar."
+      },
       "main_color": "Cor principal",
       "save_changes": "Salvar alterações",
       "script_placeholder": "Seu script estará aqui",
