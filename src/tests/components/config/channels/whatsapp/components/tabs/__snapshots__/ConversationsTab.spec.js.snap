@@ -6,10 +6,13 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
     <div data-v-2b8fe4c5="" class="conversations__content__dropdown">
       <div data-v-2b8fe4c5="" class="conversations__content__label">Filter by</div>
       <div data-v-2b8fe4c5="" class="unnnic-date-filter conversations__content__dropdown-filter">
-        <section data-v-2d5913d6="" data-v-27c59990="" class="unnnic-form-element unnnic-form sm unnnic-date-filter__input" data-testid="form-element" readonly="" value="">
+        <section data-v-4569ccad="" data-v-25ad98eb="" class="unnnic-form-element unnnic-form sm unnnic-date-filter__input" data-testid="form-element" value="">
           <!---->
-          <div data-v-964b1ff1="" data-v-27c59990="" class="text-input size--sm unnnic-date-filter__input unnnic-form-input" readonly="" hascloudycolor="false" mask="##/##/#### !~ ##/##/####" value=""><input data-v-5c6d9ab7="" data-v-964b1ff1="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" readonly="" hascloudycolor="false" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconright="" iconleftclickable="false" iconrightclickable="false" type="text" value=""><span data-v-69390f82="" data-v-964b1ff1="" class="unnnic-icon material-symbols-rounded unnnic-icon-scheme--fg-base unnnic-icon-size--ant unnnic-icon__size--ant icon-left" data-testid="material-icon" translate="no">event_note</span>
-            <!---->
+          <div data-v-1a46ed8b="" data-v-25ad98eb="" class="text-input size--sm unnnic-date-filter__input unnnic-form-input" hascloudycolor="false" mask="##/##/#### !~ ##/##/####" value=""><input data-v-21958693="" data-v-1a46ed8b="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" hascloudycolor="false" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconright="" iconleftclickable="false" iconrightclickable="false" showclear="false" type="text" readonly="" value=""><span data-v-69390f82="" data-v-1a46ed8b="" class="unnnic-icon material-symbols-rounded unnnic-icon-scheme--fg-base unnnic-icon-size--ant unnnic-icon__size--ant icon-left" data-testid="material-icon" translate="no">event_note</span>
+            <section data-v-1a46ed8b="" class="icon-right-container">
+              <!---->
+              <!---->
+            </section>
           </div>
           <!---->
         </section>
@@ -108,12 +111,14 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
       </div>
     </div>
     <div data-v-2b8fe4c5="" class="conversations__content__report"><span data-v-2b8fe4c5="" class="conversations__content__report__label">Detailed conversation report</span><span data-v-2b8fe4c5="" class="conversations__content__report__description">You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.</span>
-      <div data-v-8c61d974="" data-v-2b8fe4c5="" class="unnnic-tooltip conversations__content__report__tooltip"><button data-v-aadba593="" data-v-2b8fe4c5="" class="conversations__content__report__button unnnic-button unnnic-button--size-small unnnic-button--secondary conversations__content__report__button" disabled="">
+      <div data-v-03fa3548="" class="unnnic-tooltip-trigger" data-testid="tooltip-trigger" data-state="closed" data-grace-area-trigger=""><button data-v-aadba593="" data-v-2b8fe4c5="" class="conversations__content__report__button unnnic-button unnnic-button--size-small unnnic-button--secondary conversations__content__report__button" disabled="">
           <!---->
           <!---->
           <!----><span data-v-aadba593="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label">Request report </span>
           <!---->
-        </button><span data-v-8c61d974="" class="unnnic-tooltip-label unnnic-tooltip-label-top" style="max-width: 15rem; left: 0px; top: -8px;" data-testid="tooltip-label">A date range is required to be able to request a report <br data-v-8c61d974=""><!----></span></div>
+        </button></div>
+      <!--teleport start-->
+      <!--teleport end-->
     </div>
   </div>
   <div data-v-2b8fe4c5="" class="conversations__buttons"><button data-v-aadba593="" data-v-2b8fe4c5="" class="conversations__buttons__close unnnic-button unnnic-button--size-large unnnic-button--tertiary conversations__buttons__close">

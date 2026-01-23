@@ -14,19 +14,25 @@ exports[`Config.vue > matches the snapshot 1`] = `
       <!---->
     </section>
     <div data-v-e4619b51="" class="app-config-facebook__settings__content__inputs">
-      <section data-v-2d5913d6="" data-v-27c59990="" data-v-e4619b51="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md app-config-facebook__settings__content__inputs__name" data-testid="form-element">
+      <section data-v-4569ccad="" data-v-25ad98eb="" data-v-e4619b51="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md app-config-facebook__settings__content__inputs__name" data-testid="form-element">
         <!---->
-        <div data-v-964b1ff1="" data-v-27c59990="" class="text-input size--md app-config-facebook__settings__content__inputs__name unnnic-form-input" hascloudycolor="false" mask=""><input data-v-5c6d9ab7="" data-v-964b1ff1="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" type="text" value="Mock Page Name">
+        <div data-v-1a46ed8b="" data-v-25ad98eb="" class="text-input size--md app-config-facebook__settings__content__inputs__name unnnic-form-input" hascloudycolor="false" mask=""><input data-v-21958693="" data-v-1a46ed8b="" class="app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__name unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" showclear="false" type="text" value="Mock Page Name">
           <!---->
-          <!---->
+          <section data-v-1a46ed8b="" class="icon-right-container">
+            <!---->
+            <!---->
+          </section>
         </div>
         <!---->
       </section>
-      <section data-v-2d5913d6="" data-v-27c59990="" data-v-e4619b51="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md app-config-facebook__settings__content__inputs__id" data-testid="form-element">
+      <section data-v-4569ccad="" data-v-25ad98eb="" data-v-e4619b51="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md app-config-facebook__settings__content__inputs__id" data-testid="form-element">
         <!---->
-        <div data-v-964b1ff1="" data-v-27c59990="" class="text-input size--md app-config-facebook__settings__content__inputs__id unnnic-form-input" hascloudycolor="false" mask=""><input data-v-5c6d9ab7="" data-v-964b1ff1="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" type="text" value="ID: 1234567890">
+        <div data-v-1a46ed8b="" data-v-25ad98eb="" class="text-input size--md app-config-facebook__settings__content__inputs__id unnnic-form-input" hascloudycolor="false" mask=""><input data-v-21958693="" data-v-1a46ed8b="" class="app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself input size-md normal app-config-facebook__settings__content__inputs__id unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" showclear="false" type="text" value="ID: 1234567890">
           <!---->
-          <!---->
+          <section data-v-1a46ed8b="" class="icon-right-container">
+            <!---->
+            <!---->
+          </section>
         </div>
         <!---->
       </section>
