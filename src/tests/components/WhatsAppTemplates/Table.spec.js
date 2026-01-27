@@ -23,7 +23,10 @@ describe('Table.vue', () => {
     store.getWhatsAppTemplates = vi.fn();
     store.loadingWhatsAppTemplates = false;
     store.errorWhatsAppTemplates = false;
-    store.whatsAppTemplates = { count: 10, results: [{ name: 'Test', created_on: '2023-09-10' }] };
+    store.whatsAppTemplates = {
+      count: 10,
+      results: [{ name: 'Test', created_on: '2023-09-10', translations: [{ language: 'en' }] }],
+    };
 
     wrapper = mount(Table, {
       global: {
@@ -81,5 +84,13 @@ describe('Table.vue', () => {
   it('should calculate pagination counts correctly', async () => {
     expect(wrapper.vm.currentPageStart).toBe(1);
     expect(wrapper.vm.currentPageCount).toBe(10);
+  });
+
+  it('should not render the table items if there are no translations', async () => {
+    const store = whatsapp_store();
+    store.whatsAppTemplates = { results: [{ translations: [] }] };
+    await wrapper.vm.$nextTick();
+    const rows = wrapper.findAll('.whatsapp-templates-table__item__month');
+    expect(rows.length).toBe(0);
   });
 });

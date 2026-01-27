@@ -240,7 +240,7 @@
       tableItems() {
         const templates = this.whatsAppTemplates?.results || [];
         // Filter out templates with no translations
-        return templates.filter((template) => template.translations.length > 0) || [];
+        return templates.filter((template) => template.translations?.length > 0) || [];
       },
       totalCount() {
         return this.whatsAppTemplates?.count || this.pageSize;
