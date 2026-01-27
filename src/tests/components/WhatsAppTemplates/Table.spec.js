@@ -88,7 +88,9 @@ describe('Table.vue', () => {
 
   it('should not render the table items if there are no translations', async () => {
     const store = whatsapp_store();
-    store.whatsAppTemplates = { results: [{ translations: [] }] };
+    store.whatsAppTemplates = {
+      results: [{ name: 'Test', created_on: '2023-09-10', translations: [] }],
+    };
     await wrapper.vm.$nextTick();
     const rows = wrapper.findAll('.whatsapp-templates-table__item__month');
     expect(rows.length).toBe(0);
