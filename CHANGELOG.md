@@ -1,3 +1,10 @@
+3.8.2
+----------
+`2026-01-29 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix: filter WhatsApp templates to include only those with translations
+
 3.8.1
 ----------
 `2026-01-23 · 1 🔧`
