@@ -1,3 +1,11 @@
+3.8.3
+----------
+`2026-02-13 · 2 🐛`
+
+### 🐛 Bug fixes
+- fix: unnnic disclaimer props
+- fix: rename copy functionality to download in IntegrationTab
+
 3.8.2
 ----------
 `2026-01-29 · 1 🐛`
