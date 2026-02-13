@@ -7,8 +7,8 @@
     <unnnic-disclaimer
       v-if="!scriptCode"
       class="integration-tab__disclaimer"
-      :text="$t('weniWebChat.config.script_disclaimer')"
-      icon="alert-circle-1"
+      :title="$t('weniWebChat.config.script_disclaimer')"
+      type="informational"
     />
 
     <unnnic-text-area
