@@ -23,10 +23,10 @@
       class="integration-tab__copy-button"
       type="secondary"
       size="large"
-      iconCenter="file_copy"
-      :text="$t('weniWebChat.config.copy_code')"
+      iconCenter="download"
+      :text="$t('weniWebChat.config.download_script')"
       :disabled="!scriptCode"
-      @click="copyScript"
+      @click="downloadScript"
     />
   </div>
 </template>
@@ -50,7 +50,7 @@
   const scriptCode = computed(() => generateScriptCode(props.appConfig));
 
   // Methods
-  function copyScript() {
+  function downloadScript() {
     const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${scriptCode.value}\n</body>\n</html>`;
 
     const element = document.createElement('a');
