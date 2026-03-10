@@ -85,7 +85,15 @@
 
         <template #tab-head-integration> {{ $t('weniWebChat.config.script') }} </template>
         <template #tab-panel-integration>
-          <IntegrationTab :appConfig="selectedApp.config" :title="config.title" />
+          <IntegrationTab
+            :appConfig="selectedApp.config"
+            :title="config.title"
+            @update:elevenLabsVoiceId="updateConfig('elevenLabsVoiceId', $event)"
+            @update:elevenLabsApiKey="updateConfig('elevenLabsApiKey', $event)"
+            :loading="loadingSave"
+            @save="saveConfig"
+            @cancel="closeConfig"
+          />
         </template>
       </unnnic-tab>
     </div>
@@ -182,6 +190,8 @@
     avatarBase64: props.app.config.profileAvatar || null,
     customCssFile: null,
     customCss: props.app.config.customCss || null,
+    elevenLabsVoiceId: props.app.config.voiceMode?.elevenLabs?.voiceId || null,
+    elevenLabsApiKey: props.app.config.voiceMode?.elevenLabs?.apiKey || null,
   });
 
   // Computed
@@ -273,6 +283,12 @@
           contactTimeout: contactTimeoutInMinutes(),
           customCss: config.customCss,
           version: config.version,
+          voiceMode: {
+            elevenLabs: {
+              voiceId: config.elevenLabsVoiceId,
+              apiKey: config.elevenLabsApiKey,
+            },
+          },
         },
       },
     });
