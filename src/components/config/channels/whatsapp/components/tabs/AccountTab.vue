@@ -122,8 +122,8 @@
         <unnnic-disclaimer
           v-if="activeMMLite"
           class="account-tab__content__mmlite__disclaimer"
-          :text="$t('WhatsApp.config.mmlite.disclaimer')"
-          icon="alert-circle-1"
+          :title="$t('WhatsApp.config.mmlite.disclaimer')"
+          type="neutral"
         />
       </div>
     </div>

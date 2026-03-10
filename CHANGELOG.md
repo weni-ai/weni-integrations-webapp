@@ -1,3 +1,32 @@
+3.8.4
+----------
+`2026-02-27 · 1 🔧`
+
+### 🔧 Improvements
+- feat: mmlite feature type
+
+3.8.3
+----------
+`2026-02-13 · 2 🐛`
+
+### 🐛 Bug fixes
+- fix: unnnic disclaimer props
+- fix: rename copy functionality to download in IntegrationTab
+
+3.8.2
+----------
+`2026-01-29 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix: filter WhatsApp templates to include only those with translations
+
+3.8.1
+----------
+`2026-01-23 · 1 🔧`
+
+### 🔧 Improvements
+- chore: update unnnic system to 3.17.1-alpha-teleports.0
+
 3.8.0
 ----------
 `2026-01-22 · 1 🐛 · 1 🎉`

@@ -194,7 +194,7 @@
       "history": "Chat history & Inactivity",
       "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "script_disclaimer": "The script will be available once the required basic settings have been completed.",
-      "copy_code": "Copy code",
+      "download_script": "Download Script",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
       "use_connection_optimization": "Use connection optimization",
@@ -243,7 +243,18 @@
       "contactTimeoutToolTip": "If the contact remains inactive for the set amount of time, the conversation will automatically end.\nA new conversation will start if they interact again.",
       "contactTimeoutInvalidTime": "Value must be a timer with a maximum of 24 hours with the following format: HH:mm",
       "add_field": "More",
-      "customization": "Customization"
+      "customization": "Customization",
+      "voice_mode": {
+        "title": "Voice Mode",
+        "elevenLabsVoiceId": {
+          "label": "ElevenLabs Voice ID",
+          "placeholder": "Paste your Voice ID here"
+        },
+        "elevenLabsApiKey": {
+          "label": "ElevenLabs Token",
+          "placeholder": "Paste your Token here"
+        }
+      }
     },
     "simulator": {
       "chatTitle": "Chat Title",

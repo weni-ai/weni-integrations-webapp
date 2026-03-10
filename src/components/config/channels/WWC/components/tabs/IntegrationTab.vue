@@ -7,8 +7,8 @@
     <unnnic-disclaimer
       v-if="!scriptCode"
       class="integration-tab__disclaimer"
-      :text="$t('weniWebChat.config.script_disclaimer')"
-      icon="alert-circle-1"
+      :title="$t('weniWebChat.config.script_disclaimer')"
+      type="informational"
     />
 
     <unnnic-text-area
@@ -23,16 +23,53 @@
       class="integration-tab__copy-button"
       type="secondary"
       size="large"
-      iconCenter="file_copy"
-      :text="$t('weniWebChat.config.copy_code')"
+      iconCenter="download"
+      :text="$t('weniWebChat.config.download_script')"
       :disabled="!scriptCode"
-      @click="copyScript"
+      @click="downloadScript"
     />
+
+    <section class="integration-tab__voice-mode-section">
+      <h3 class="integration-tab__voice-mode-title">
+        {{ $t('weniWebChat.config.voice_mode.title') }}
+      </h3>
+
+      <section class="integration-tab__voice-mode-fields">
+        <unnnic-input
+          class="integration-tab__voice-mode-field"
+          v-model="elevenLabsVoiceId"
+          :label="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.label')"
+          :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.placeholder')"
+        />
+        <unnnic-input
+          class="integration-tab__voice-mode-field"
+          v-model="elevenLabsApiKey"
+          :label="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.label')"
+          :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.placeholder')"
+        />
+      </section>
+    </section>
+
+    <div class="integration-tab__buttons">
+      <unnnic-button
+        type="tertiary"
+        size="large"
+        :text="$t('general.Cancel')"
+        @click="emit('cancel')"
+      />
+      <unnnic-button
+        type="primary"
+        size="large"
+        :text="$t('apps.config.save_changes')"
+        :loading="loading"
+        @click="emit('save')"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
-  import { computed } from 'vue';
+  import { computed, ref, watch } from 'vue';
   import { generateScriptCode } from '../../constants';
 
   const props = defineProps({
@@ -44,13 +81,21 @@
       type: String,
       default: '',
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   });
+
+  const emit = defineEmits(['update:elevenLabsVoiceId', 'update:elevenLabsApiKey']);
 
   // Computed
   const scriptCode = computed(() => generateScriptCode(props.appConfig));
+  const elevenLabsVoiceId = ref(props.appConfig.voiceMode?.elevenLabs?.voiceId);
+  const elevenLabsApiKey = ref(props.appConfig.voiceMode?.elevenLabs?.apiKey);
 
   // Methods
-  function copyScript() {
+  function downloadScript() {
     const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${scriptCode.value}\n</body>\n</html>`;
 
     const element = document.createElement('a');
@@ -64,6 +109,14 @@
     element.click();
     document.body.removeChild(element);
   }
+
+  // Watch
+  watch(elevenLabsVoiceId, (newValue) => {
+    emit('update:elevenLabsVoiceId', newValue);
+  });
+  watch(elevenLabsApiKey, (newValue) => {
+    emit('update:elevenLabsApiKey', newValue);
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -89,6 +142,40 @@
 
     &__copy-button {
       width: 100% !important;
+    }
+
+    &__voice-mode-title {
+      font: $unnnic-font-display-3;
+      margin: 0;
+      color: $unnnic-color-fg-emphasized;
+    }
+
+    &__voice-mode-section {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-space-3;
+    }
+
+    &__voice-mode-fields {
+      display: flex;
+      flex-direction: row;
+      gap: $unnnic-space-3;
+    }
+
+    &__voice-mode-field {
+      width: 100%;
+    }
+
+    &__buttons {
+      display: flex;
+      gap: $unnnic-space-3;
+      justify-content: center;
+      padding: $unnnic-space-6 0;
+      margin-top: auto;
+
+      :deep(.unnnic-button) {
+        width: 100% !important;
+      }
     }
   }
 </style>
