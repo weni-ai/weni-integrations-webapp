@@ -243,7 +243,18 @@
       "contactTimeoutToolTip": "If the contact remains inactive for the set amount of time, the conversation will automatically end.\nA new conversation will start if they interact again.",
       "contactTimeoutInvalidTime": "Value must be a timer with a maximum of 24 hours with the following format: HH:mm",
       "add_field": "More",
-      "customization": "Customization"
+      "customization": "Customization",
+      "voice_mode": {
+        "title": "Voice Mode",
+        "elevenLabsVoiceId": {
+          "label": "ElevenLabs Voice ID",
+          "placeholder": "Paste your Voice ID here"
+        },
+        "elevenLabsApiKey": {
+          "label": "ElevenLabs Token",
+          "placeholder": "Paste your Token here"
+        }
+      }
     },
     "simulator": {
       "chatTitle": "Chat Title",
