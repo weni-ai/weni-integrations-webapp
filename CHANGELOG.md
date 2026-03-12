@@ -1,3 +1,10 @@
+3.9.0
+----------
+`2026-03-12 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add voice mode configuration for ElevenLabs in IntegrationTab and update translations
+
 3.8.4
 ----------
 `2026-02-27 · 1 🔧`
