@@ -15,7 +15,8 @@
     "success": "Sucesso",
     "continue": "Continuar",
     "attention": "Atenção",
-    "beta": "BETA"
+    "beta": "BETA",
+    "new": "NOVO"
   },
   "errors": {
     "empty_input": "Campos obrigatórios não podem estar vazios.",
@@ -211,6 +212,10 @@
       "navigate_if_same_domain": {
         "label": "Permitir que o Webchat redirecione automaticamente a página",
         "helper": "Quando habilitado, o Webchat pode redirecionar automaticamente o usuário para outra página quando um link é enviado durante a conversa. Esta funcionalidade está atualmente em Beta e pode mudar."
+      },
+      "conversation_starters_pdp": {
+        "label": "Perguntas sugeridas por IA",
+        "helper": "Exibe botões de interação rápida na página do produto. A IA analisa o SKU para sugerir automaticamente as perguntas mais relevantes dos clientes."
       },
       "main_color": "Cor principal",
       "save_changes": "Salvar alterações",

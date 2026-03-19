@@ -65,6 +65,7 @@
             :initialContactTimeout="config.contactTimeout"
             :initialTimeBetweenMessages="config.timeBetweenMessages"
             :initialNavigateIfSameDomain="config.navigateIfSameDomain"
+            :initialConversationStartersPDP="config.conversationStartersPDP"
             :loading="loadingSave"
             @update:embedded="updateConfig('embedded', $event)"
             @update:showFullScreenButton="updateConfig('showFullScreenButton', $event)"
@@ -78,6 +79,7 @@
             @update:contactTimeout="updateConfig('contactTimeout', $event)"
             @update:timeBetweenMessages="updateConfig('timeBetweenMessages', $event)"
             @update:navigateIfSameDomain="updateConfig('navigateIfSameDomain', $event)"
+            @update:conversationStartersPDP="updateConfig('conversationStartersPDP', $event)"
             @save="saveConfig"
             @cancel="closeConfig"
           />
@@ -190,6 +192,7 @@
     avatarBase64: props.app.config.profileAvatar || null,
     customCssFile: null,
     customCss: props.app.config.customCss || null,
+    conversationStartersPDP: !!props.app.config.conversationStarters?.pdp,
     elevenLabsVoiceId: props.app.config.voiceMode?.elevenLabs?.voiceId || null,
     elevenLabsApiKey: props.app.config.voiceMode?.elevenLabs?.apiKey || null,
   });
@@ -277,6 +280,7 @@
           showCameraButton: config.showCameraButton,
           useConnectionOptimization: config.useConnectionOptimization,
           navigateIfSameDomain: config.navigateIfSameDomain,
+          conversationStartersPDP: config.conversationStartersPDP,
           embedded: config.embedded,
           mainColor: config.mainColor,
           profileAvatar: await imageForUpload(),
