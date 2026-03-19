@@ -15,7 +15,8 @@
     "success": "Success",
     "continue": "Continue",
     "attention": "Attention",
-    "beta": "BETA"
+    "beta": "BETA",
+    "new": "NEW"
   },
   "errors": {
     "empty_input": "Required fields cannot be empty.",
@@ -211,6 +212,10 @@
       "navigate_if_same_domain": {
         "label": "Allow Webchat to automatically redirect the page",
         "helper": "When enabled, Webchat can automatically redirect the user to another page when a link is sent during the conversation. This feature is currently in Beta and may change."
+      },
+      "conversation_starters_pdp": {
+        "label": "AI-Suggested Questions",
+        "helper": "Displays quick-interaction buttons in the product page. The AI analyzes the SKU to automatically suggest the most relevant customer inquiries."
       },
       "main_color": "Main color",
       "save_changes": "Save changes",
