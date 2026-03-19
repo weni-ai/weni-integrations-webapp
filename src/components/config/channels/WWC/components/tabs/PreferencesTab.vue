@@ -49,6 +49,17 @@
             size="small"
             :textRight="$t('weniWebChat.config.use_connection_optimization')"
           />
+
+          <unnnic-switch
+            v-model="conversationStartersPDP"
+            size="small"
+            :textRight="$t('weniWebChat.config.conversation_starters_pdp.label')"
+            :helper="$t('weniWebChat.config.conversation_starters_pdp.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.new') }}</p>
+            </template>
+          </unnnic-switch>
         </section>
 
         <section class="preferences-tab__section">
@@ -173,6 +184,7 @@
     initialContactTimeout: { type: String, default: '23:59' },
     initialTimeBetweenMessages: { type: Number, default: 1 },
     initialNavigateIfSameDomain: { type: Boolean, default: false },
+    initialConversationStartersPDP: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
   });
 
@@ -189,6 +201,7 @@
     'update:contactTimeout',
     'update:timeBetweenMessages',
     'update:navigateIfSameDomain',
+    'update:conversationStartersPDP',
     'save',
     'cancel',
   ]);
@@ -206,6 +219,7 @@
   const contactTimeout = ref(props.initialContactTimeout);
   const timeBetweenMessages = ref(props.initialTimeBetweenMessages);
   const navigateIfSameDomain = ref(props.initialNavigateIfSameDomain);
+  const conversationStartersPDP = ref(props.initialConversationStartersPDP);
 
   // Computed
   const timeBetweenMessagesOptions = computed(() => [
@@ -249,6 +263,7 @@
   watch(useConnectionOptimization, (value) => emit('update:useConnectionOptimization', value));
   watch(keepHistory, (value) => emit('update:keepHistory', value));
   watch(navigateIfSameDomain, (value) => emit('update:navigateIfSameDomain', value));
+  watch(conversationStartersPDP, (value) => emit('update:conversationStartersPDP', value));
 
   watch(enableContactTimeout, (value) => {
     emit('update:enableContactTimeout', value);

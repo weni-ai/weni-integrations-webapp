@@ -200,6 +200,13 @@ describe('wwcConfig Component', () => {
       await preferencesTab.vm.$emit('update:displayUnreadCount', false);
       expect(wrapper.emitted().setConfirmation).toBeTruthy();
     });
+
+    it('should emit setConfirmation when PreferencesTab emits update:conversationStartersPDP', async () => {
+      const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
+      await preferencesTab.vm.$emit('update:conversationStartersPDP', true);
+      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.emitted().setConfirmation[0]).toEqual([true]);
+    });
   });
 
   describe('AppearanceTab props', () => {
@@ -278,6 +285,17 @@ describe('wwcConfig Component', () => {
     it('should pass correct initialUseConnectionOptimization to PreferencesTab', () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       expect(preferencesTab.props('initialUseConnectionOptimization')).toBe(false);
+    });
+
+    it('should pass correct initialConversationStartersPDP to PreferencesTab', () => {
+      const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
+      expect(preferencesTab.props('initialConversationStartersPDP')).toBe(false);
+    });
+
+    it('should pass initialConversationStartersPDP as true when config has conversationStarters.pdp', () => {
+      wrapper = createWrapper({ config: { conversationStarters: { pdp: true } } });
+      const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
+      expect(preferencesTab.props('initialConversationStartersPDP')).toBe(true);
     });
   });
 
@@ -369,6 +387,23 @@ describe('wwcConfig Component', () => {
       expect(callArg.code).toBe('wwc');
       expect(callArg.appUuid).toBe('test-uuid');
       expect(callArg.payload.config.title).toBe('Test Title');
+    });
+
+    it('should include conversationStartersPDP in save payload', async () => {
+      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      vi.spyOn(store, 'getApp').mockResolvedValue();
+      store.currentApp = { config: { title: 'Test Title' } };
+
+      const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
+      await preferencesTab.vm.$emit('update:conversationStartersPDP', true);
+
+      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
+      await appearanceTab.vm.$emit('save');
+      await flushPromises();
+
+      expect(updateAppConfigSpy).toHaveBeenCalled();
+      const callArg = updateAppConfigSpy.mock.calls[0][0];
+      expect(callArg.payload.config.conversationStartersPDP).toBe(true);
     });
 
     it('should emit setConfirmation false on successful save', async () => {

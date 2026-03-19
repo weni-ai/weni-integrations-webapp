@@ -13,6 +13,7 @@ describe('PreferencesTab', () => {
     initialStartFullScreen: false,
     initialDisplayUnreadCount: false,
     initialUseConnectionOptimization: false,
+    initialConversationStartersPDP: false,
     initialKeepHistory: false,
     initialEnableContactTimeout: false,
     initialContactTimeout: '23:59',
@@ -54,8 +55,8 @@ describe('PreferencesTab', () => {
 
     it('should render all behavior switches', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      // embedded, showFullScreenButton, startFullScreen, displayUnreadCount, useConnectionOptimization, keepHistory, enableContactTimeout
-      expect(switches.length).toBe(8);
+      // navigateIfSameDomain, embedded, showFullScreenButton, startFullScreen, displayUnreadCount, useConnectionOptimization, conversationStartersPDP, keepHistory, enableContactTimeout
+      expect(switches.length).toBe(9);
     });
 
     it('should render form element for time between messages', () => {
@@ -212,6 +213,11 @@ describe('PreferencesTab', () => {
       expect(wrapper.props('initialUseConnectionOptimization')).toBe(true);
     });
 
+    it('should accept initialConversationStartersPDP prop', () => {
+      wrapper = createWrapper({ initialConversationStartersPDP: true });
+      expect(wrapper.props('initialConversationStartersPDP')).toBe(true);
+    });
+
     it('should accept initialKeepHistory prop', () => {
       wrapper = createWrapper({ initialKeepHistory: true });
       expect(wrapper.props('initialKeepHistory')).toBe(true);
@@ -304,14 +310,19 @@ describe('PreferencesTab', () => {
       expect(switches[4].exists()).toBe(true);
     });
 
+    it('should render switch for conversationStartersPDP', () => {
+      const switches = wrapper.findAll('unnnic-switch-stub');
+      expect(switches[6].exists()).toBe(true);
+    });
+
     it('should render switch for keepHistory', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[5].exists()).toBe(true);
+      expect(switches[7].exists()).toBe(true);
     });
 
     it('should render switch for enableContactTimeout', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[6].exists()).toBe(true);
+      expect(switches[8].exists()).toBe(true);
     });
   });
 
