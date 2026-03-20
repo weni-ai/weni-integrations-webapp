@@ -1,3 +1,10 @@
+3.10.0
+----------
+`2026-03-19 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add conversation starters configuration to PreferencesTab
+
 3.9.0
 ----------
 `2026-03-12 · 1 🎉`
