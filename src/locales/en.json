@@ -175,8 +175,8 @@
   },
   "weniWebChat": {
     "data": {
-      "summary": "With Weni Web Chat, you can integrate your project as a chat on your website.",
-      "description": "Use Weni Web Chat to have a humanized automation experience of Weni Platform directly on your website or web platform. By integrating it, you can customize aspects of the Webchat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that Weni Platform has to offer with your's brand identity.",
+      "summary": "With Web Chat, you can integrate your project as a chat on your website.",
+      "description": "Use Web Chat to have a humanized automation experience of VTEX Agentic CX directly on your website or web platform. By integrating it, you can customize aspects of the Web Chat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that VTEX Agentic CX Platform has to offer with your's brand identity.",
       "links": {
         "create_channel": {
           "label": "Adding a Web Channel",
@@ -185,7 +185,7 @@
       }
     },
     "config": {
-      "description": "Learn more about how to integrate Weni Web Chat here.",
+      "description": "Learn more about how to integrate Web Chat here.",
       "settings": "Settings",
       "script": "Script Code",
       "appearance": "Appearance",
@@ -193,7 +193,7 @@
       "behavior": "Behavior",
       "media": "Media",
       "history": "Chat history & Inactivity",
-      "script_tutorial": "To install Weni Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
+      "script_tutorial": "To install Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "script_disclaimer": "The script will be available once the required basic settings have been completed.",
       "download_script": "Download Script",
       "custom_css": "Custom CSS",
@@ -275,7 +275,7 @@
   "telegram": {
     "data": {
       "summary": "Send and receive messages from Telegram users for free.",
-      "description": "By using Telegram, you are connecting one of the largest messaging applications as a channel available to your audience on the Weni Platform. Send and receive texts, videos and audio through this channel, ensuring the comfort and community of your audience, as well as the resources available on the platform.",
+      "description": "By using Telegram, you are connecting one of the largest messaging applications as a channel available to your audience on the VTEX Agentic CX Platform. Send and receive texts, videos and audio through this channel, ensuring the comfort and community of your audience, as well as the resources available on the platform.",
       "links": {
         "create_channel": {
           "label": "Adding a Telegram channel",
@@ -794,7 +794,7 @@
   "WhatsAppCloud": {
     "data": {
       "summary": "If you have an enterprise WhatsApp account, you can connect it to communicate with your contacts",
-      "description": "WhatsApp is the largest messaging application in the world and one of the most preferred by users.<br/><br/>Its integration with the Weni Platform allows you to connect your business number to the application and create intelligent flows to meet the needs of your customers.<br/><br/>You can use this integration on the Weni Platform without having the verified business manager and start up to 50 conversations by the business with different numbers within 24h. Even without having the verified deal manager, you can have up to two numbers per WABA.<br/><br/>The first 1,000 conversations each month are free. That way, you can create experiences that customers will love before they pay for it. Each WhatsApp Business (WABA) account will receive 1,000 free conversations per month that can be initiated by the business (if you do not have the verified manager, you must pay attention to the limitation of 50 conversations with different numbers) or by the user. This benefit is provided at the WABA level. So even if the account has multiple numbers attached, the free chat limit will still be 1,000. The free conversations limit is reset each month according to the time zone associated with WABA.<br/><br/>Also, remembering that with the free plan of Weni Platform you can communicate with 200 active contacts (unique contacts in 1 month interval) at no cost.<br/><br/>By checking the business manager you can unlock even more the potential of your WhatsApp integration, such as increasing the conversation tier initiated by the business (1000, 10,000, 100,000 or unlimited), Possibility of acquiring the OBA (official account seal/green ticket) and having more than two numbers per WABA.<br/><br/>This version of the WhatsApp API through the Weni Platform it supports customizations, such as photos, videos, sending files, descriptions and message templates (conversations can be initiated by the user or by the business).",
+      "description": "WhatsApp is the largest messaging application in the world and one of the most preferred by users.<br/><br/>Its integration with the VTEX Agentic CX Platform allows you to connect your business number to the application and create intelligent flows to meet the needs of your customers.<br/><br/>You can use this integration on the VTEX Agentic CX Platform without having the verified business manager and start up to 50 conversations by the business with different numbers within 24h. Even without having the verified deal manager, you can have up to two numbers per WABA.<br/><br/>The first 1,000 conversations each month are free. That way, you can create experiences that customers will love before they pay for it. Each WhatsApp Business (WABA) account will receive 1,000 free conversations per month that can be initiated by the business (if you do not have the verified manager, you must pay attention to the limitation of 50 conversations with different numbers) or by the user. This benefit is provided at the WABA level. So even if the account has multiple numbers attached, the free chat limit will still be 1,000. The free conversations limit is reset each month according to the time zone associated with WABA.<br/><br/>Also, remembering that with the free plan of VTEX Agentic CX Platform you can communicate with 200 active contacts (unique contacts in 1 month interval) at no cost.<br/><br/>By checking the business manager you can unlock even more the potential of your WhatsApp integration, such as increasing the conversation tier initiated by the business (1000, 10,000, 100,000 or unlimited), Possibility of acquiring the OBA (official account seal/green ticket) and having more than two numbers per WABA.<br/><br/>This version of the WhatsApp API through the VTEX Agentic CX Platform it supports customizations, such as photos, videos, sending files, descriptions and message templates (conversations can be initiated by the user or by the business).",
       "links": {
         "verify_business": {
           "label": "How to Verify my Business",
@@ -845,16 +845,16 @@
       "KWA": "Activate your own enterprise WhatsApp account in Kaleyra to communicate with your contacts. <a href=\"https://www.kaleyra.com/whatsapp/\">Learn more about Kaleyra WhatsApp</a>\"",
       "CT": "To connect a <a href=\"http://clickatell.com\">Clickatell</a> number, first create an HTTP integration for a two way number, then enter the number and API key below.",
       "FCM": "You can to connect using a <a href=\"https://firebase.google.com/docs/cloud-messaging/\">Firebase Cloud Messaging App</a> to your workspace to automate sending notifications. You will need to create a new App on Firebase Console and get its key. To do so:",
-      "FC": "<p>You can connect a <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> Account to your account to automate sending and receiving messages via FreshChat. This will also support Apple Business Chat if it's been configured on your FreshChat account.<br/><br/>Each message sent to the channel will have a URN in the format <span class=\"highlight\">channel-uuid/user-uuid</span> where the channel UUID is the FreshChat channel's UUID.</p><ol><li>In the FreshChat web interface, under Settings, API Tokens, select Generate Token. Once the token is created you'll enter it below.</li><li>Under Settings again, select Webhooks and copy the Public Key and paste it below. This assures all webhook request from FreshChat will be authenticated.</li><li>Lastly, you'll need the UUID of the Agent that Weni will use when it sends FreshChat message. This is available via the <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Once you press Submit below with all the information configured, the confirmation page will give you the URL to use for the FreshChat Webhooks. Enter this URL on the Settings page, under Webhooks where the Public Key was copied from before.</li></ol>",
+      "FC": "<p>You can connect a <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> Account to your account to automate sending and receiving messages via FreshChat. This will also support Apple Business Chat if it's been configured on your FreshChat account.<br/><br/>Each message sent to the channel will have a URN in the format <span class=\"highlight\">channel-uuid/user-uuid</span> where the channel UUID is the FreshChat channel's UUID.</p><ol><li>In the FreshChat web interface, under Settings, API Tokens, select Generate Token. Once the token is created you'll enter it below.</li><li>Under Settings again, select Webhooks and copy the Public Key and paste it below. This assures all webhook request from FreshChat will be authenticated.</li><li>Lastly, you'll need the UUID of the Agent that VTEX Agentic CX will use when it sends FreshChat message. This is available via the <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Once you press Submit below with all the information configured, the confirmation page will give you the URL to use for the FreshChat Webhooks. Enter this URL on the Settings page, under Webhooks where the Public Key was copied from before.</li></ol>",
       "IB": "You can connect your Infobip number by entering your number, username and password here.<br/><br/>After connecting your service we will provide URLs for the endpoints for InfoBip to call when they want to push a message to Rapidpro.",
       "JC": "You can connect a <a href=\"https://jiochat.com\">JioChat Channel</a> to your workspace to automate sending and receiving JioChat messages.<br/><br/>To start copy the App ID and App Secret from the Developer Center into the form below and click Save.",
       "JN": "Enter your credentials to add your number.",
       "MB": "Enter your credentials to add your number.",
       "SL": "You can connect a <a href=\"https://slack.com/app\">Slack Bot</a> to your workspace to automate sending and receiving messages.<br><br>To do it, you will need to create a new slack app and configure it.<br><ol><li>You'll need to create a <a href=\"https://api.slack.com/apps\">Slack app</a> if you haven't already, setup a bot to it, add the needed scopes and install app on your slack workspace. If you need help how to do this, read this guide <a href=\"https://api.slack.com/bot-users\">here</a>.",
       "TM": "You can connect a Teams Bot to your Rapidpro workspace to automate sending and receiving Teams messages. For this, you will need to create and register a Bot-type application in Microsoft Azure.",
-      "TMS": "You can add your Twilio Messaging SID as a channel. You can get your messaging Service SID or create a new messaging service from <a href=\"https://www.twilio.com/user/account/messaging/services\">Twilio Console</a><br/><br/>After adding your Twilio Messaging Service SID we will provide you with the URL endpoint for Twilio to call when they want to push a message to Weni.",
+      "TMS": "You can add your Twilio Messaging SID as a channel. You can get your messaging Service SID or create a new messaging service from <a href=\"https://www.twilio.com/user/account/messaging/services\">Twilio Console</a><br/><br/>After adding your Twilio Messaging Service SID we will provide you with the URL endpoint for Twilio to call when they want to push a message to VTEX Agentic CX.",
       "TW": "You can add a TwiML REST API as a channel using your TwiML instance.",
-      "VP": "In order to connect your public Viber page to Weni you will need to create a public channel and follow the steps necessary to get an authentication token. Please consult the <a href=\"https://developers.viber.com/?b_id=15145\">Viber developers documentation</a> on how to create your own public account.<br/><br/> Once you have your authentication token, enter it below to connect your public channel to Weni"
+      "VP": "In order to connect your public Viber page to VTEX Agentic CX you will need to create a public channel and follow the steps necessary to get an authentication token. Please consult the <a href=\"https://developers.viber.com/?b_id=15145\">Viber developers documentation</a> on how to create your own public account.<br/><br/> Once you have your authentication token, enter it below to connect your public channel to VTEX Agentic CX"
     },
     "preview": {
       "errors": {
@@ -862,15 +862,15 @@
       }
     },
     "description": {
-      "callback_url": "To finalize the channel configuration, you need to configure the Weni Platform channel's callback URL. The callback url for this channel is",
+      "callback_url": "To finalize the channel configuration, you need to configure the VTEX Agentic CX Platform channel's callback URL. The callback url for this channel is",
       "callback_url_info_1": "For more information please follow",
       "callback_url_info_2": "this documentation"
     }
   },
   "instagram": {
     "data": {
-      "summary": "Now you can raise the level and potential of your service by creating a channel that integrates your Instagram to Weni Platform",
-      "description": "Instagram has already reached the milestone of 1.4 billion active users, with more than 500 million browsing assiduously every day, seeking not only interaction, but looking for services and products.<br/><br/>Now, imagine if your institution is not present, active and efficient on this channel? This is no longer a mere social network to share photos and videos of the routine, but rather a showcase of doing business and important partnerships.<br/><br/>And now you can raise the level and potential of your service by creating a channel that integrates your Instagram to Weni Platform.<br/><br/>This creates more engagement and interaction with your followers and potential customers and partners, increasing the chances of closing new projects while reducing operational costs with service."
+      "summary": "Now you can raise the level and potential of your service by creating a channel that integrates your Instagram to VTEX Agentic CX Platform",
+      "description": "Instagram has already reached the milestone of 1.4 billion active users, with more than 500 million browsing assiduously every day, seeking not only interaction, but looking for services and products.<br/><br/>Now, imagine if your institution is not present, active and efficient on this channel? This is no longer a mere social network to share photos and videos of the routine, but rather a showcase of doing business and important partnerships.<br/><br/>And now you can raise the level and potential of your service by creating a channel that integrates your Instagram to VTEX Agentic CX Platform.<br/><br/>This creates more engagement and interaction with your followers and potential customers and partners, increasing the chances of closing new projects while reducing operational costs with service."
     },
     "setup": {
       "title": "Connect",
@@ -933,8 +933,8 @@
   },
   "omie": {
     "data": {
-      "summary": "If you have a CRM at Omie, you can integrate with the Weni Platform and automate actions in your CRM through your chatbot",
-      "description": "If you have a CRM at Omie, you can integrate with the Weni Platform and automate actions in your CRM through your chatbot.<br><br>By integrating the weni platform with your CRM on Omie you will be able to perform actions such as:<br><br>- Include Opportunities in the CRM<br>- Search Title and Releases<br>- List customers<br><br>Here in the Integrations module, you must perform the Integration with Omie providing the API Key and API Secret data and then perform the integration.<br>After that, just go to the flows module, create a flow and then you will have a card available called External Services, in which you will be able to perform all the actions with Omie's CRM mentioned here."
+      "summary": "If you have a CRM at Omie, you can integrate with the VTEX Agentic CX Platform and automate actions in your CRM through your chatbot",
+      "description": "If you have a CRM at Omie, you can integrate with the VTEX Agentic CX Platform and automate actions in your CRM through your chatbot.<br><br>By integrating the VTEX Agentic CX platform with your CRM on Omie you will be able to perform actions such as:<br><br>- Include Opportunities in the CRM<br>- Search Title and Releases<br>- List customers<br><br>Here in the Integrations module, you must perform the Integration with Omie providing the API Key and API Secret data and then perform the integration.<br>After that, just go to the flows module, create a flow and then you will have a card available called External Services, in which you will be able to perform all the actions with Omie's CRM mentioned here."
     },
     "config": {
       "description": "Learn more about integrating with Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">here</a>",
@@ -965,8 +965,8 @@
   },
   "ChatGPT": {
     "data": {
-      "summary": "Powerful integration: Weni + ChatGPT. Automated support with a human touch, instant responses, and personalized experience. Try it now!",
-      "description": "We present a powerful synergy between the Weni platform and ChatGPT - a perfect combination to transform your customer interactions into an unparalleled experience!<br><br>With the integration of Weni and ChatGPT, you have at your disposal an intelligent virtual assistant powered by OpenAI's advanced natural language technology. Imagine fully automated customer support that still feels human and personalized.<br><br>Our Weni platform, known for its intuitive interface and versatile features, now strengthens its capabilities with the presence of ChatGPT. With it, you can provide your customers with instant, accurate, and engaging responses to their questions and needs, anytime and anywhere.<br><br>ChatGPT understands the nuances of human language, continuously learning and adapting. It not only offers quick and efficient answers but also maintains natural and relevant conversations, establishing a genuine connection with your customers.<br><br>Take advantage of the benefits of this integration to enhance customer support, automate repetitive tasks, and deliver a personalized and pleasant experience. ChatGPT, powered by Weni, helps you increase efficiency, save time, and achieve exceptional customer satisfaction.<br><br>Try the Weni + ChatGPT integration now and enjoy intelligent, dynamic customer support tailored to your business needs. Join this revolution in customer interaction and watch your results reach new heights!"
+      "summary": "Powerful integration: VTEX Agentic CX + ChatGPT. Automated support with a human touch, instant responses, and personalized experience. Try it now!",
+      "description": "We present a powerful synergy between the VTEX Agentic CX platform and ChatGPT - a perfect combination to transform your customer interactions into an unparalleled experience!<br><br>With the integration of VTEX Agentic CX and ChatGPT, you have at your disposal an intelligent virtual assistant powered by OpenAI's advanced natural language technology. Imagine fully automated customer support that still feels human and personalized.<br><br>Our VTEX Agentic CX platform, known for its intuitive interface and versatile features, now strengthens its capabilities with the presence of ChatGPT. With it, you can provide your customers with instant, accurate, and engaging responses to their questions and needs, anytime and anywhere.<br><br>ChatGPT understands the nuances of human language, continuously learning and adapting. It not only offers quick and efficient answers but also maintains natural and relevant conversations, establishing a genuine connection with your customers.<br><br>Take advantage of the benefits of this integration to enhance customer support, automate repetitive tasks, and deliver a personalized and pleasant experience. ChatGPT, powered by VTEX Agentic CX, helps you increase efficiency, save time, and achieve exceptional customer satisfaction.<br><br>Try the VTEX Agentic CX + ChatGPT integration now and enjoy intelligent, dynamic customer support tailored to your business needs. Join this revolution in customer interaction and watch your results reach new heights!"
     },
     "setup": {
       "version": "Version",
@@ -1035,7 +1035,7 @@
   "vtex": {
     "data": {
       "summary": "With the VTEX app you connect your catalog and sell via Whatsapp",
-      "description": "The integration between Weni Plataforma and VTEX is redefining the way retailers grow their businesses online. Now, you can easily connect your product catalog, paving the way for direct sales through WhatsApp. This innovative solution promises an instant, agile and personalized sales experience, providing an effective way to boost your sales.<br><br>Main Features:<br><br>Integration with VTEX in an Uncomplicated Way:<br>- Connect your VTEX product catalog to Weni easily, automatically syncing your products.<br>- Quick updates ensure your store is always in line with the latest inventory and pricing changes.<br><br>Direct Selling Via WhatsApp :<br>- Turn conversations into transactions by allowing customers to browse, choose and buy products directly through WhatsApp.<br>- Increase convenience by reaching customers where they are already active.<br><br>Additional Benefits: <br><br>Global Scale:<br>- Reach a global audience through WhatsApp, expanding your sales opportunities internationally.<br><br>Simple Setup:<br>- Set up quickly, without the need for technical knowledge <br><br>Specialized Technical Support:<br>- Dedicated support to ensure smooth implementation and resolve any issues quickly.<br><br>Try it now and discover the potential to boost your sales efficiently!"
+      "description": "The integration between VTEX Agentic CX Platform and VTEX is redefining the way retailers grow their businesses online. Now, you can easily connect your product catalog, paving the way for direct sales through WhatsApp. This innovative solution promises an instant, agile and personalized sales experience, providing an effective way to boost your sales.<br><br>Main Features:<br><br>Integration with VTEX in an Uncomplicated Way:<br>- Connect your VTEX product catalog to VTEX Agentic CX easily, automatically syncing your products.<br>- Quick updates ensure your store is always in line with the latest inventory and pricing changes.<br><br>Direct Selling Via WhatsApp :<br>- Turn conversations into transactions by allowing customers to browse, choose and buy products directly through WhatsApp.<br>- Increase convenience by reaching customers where they are already active.<br><br>Additional Benefits: <br><br>Global Scale:<br>- Reach a global audience through WhatsApp, expanding your sales opportunities internationally.<br><br>Simple Setup:<br>- Set up quickly, without the need for technical knowledge <br><br>Specialized Technical Support:<br>- Dedicated support to ensure smooth implementation and resolve any issues quickly.<br><br>Try it now and discover the potential to boost your sales efficiently!"
     },
     "setup": {
       "title": "Connect your store",
@@ -1071,10 +1071,10 @@
       },
       "affiliate_step3": {
         "title": "Fill the form fields",
-        "description": "Following the description below, then click on <span class='highlight'>Save</span><ul><li><b>Name:</b>&nbsp;the new affiliate name</li><li><b>Trade policy:</b>&nbsp;the trade policy number that will define the catalog's sorting and items delivery strategy for the marketplace</li><li><b>Search endpoint:</b>&nbsp;application URL that will receive inventory products and price notifications, among others. You can copy Weni's URL in <i>Step 4<i/></li></ul>"
+        "description": "Following the description below, then click on <span class='highlight'>Save</span><ul><li><b>Name:</b>&nbsp;the new affiliate name</li><li><b>Trade policy:</b>&nbsp;the trade policy number that will define the catalog's sorting and items delivery strategy for the marketplace</li><li><b>Search endpoint:</b>&nbsp;application URL that will receive inventory products and price notifications, among others. You can copy VTEX Agentic CX's URL in <i>Step 4<i/></li></ul>"
       },
       "affiliate_step4": {
-        "title": "Paste Weni's Search Endpoint",
+        "title": "Paste VTEX Agentic CX's Search Endpoint",
         "description": "Copy the URL below and paste it in the Search endpoint field"
       },
       "error_missing_fields": "All fields are mandatory",
