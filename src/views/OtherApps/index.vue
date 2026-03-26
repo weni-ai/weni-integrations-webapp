@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="loading" class="flows-iframe">
-      <img class="logo" src="../../assets/svgs/LogoWeniAnimada4.svg" alt="" />
+      <unnnic-icon-loading size="64px" />
     </div>
 
     <iframe

@@ -78,7 +78,7 @@
     />
   </section>
   <div v-else class="template-form__loading">
-    <img class="logo" src="@/assets/svgs/LogoWeniAnimada4.svg" />
+    <unnnic-icon-loading size="64px" />
   </div>
 </template>
 
@@ -160,11 +160,7 @@
     beforeUnmount() {
       const tabHeader = document.getElementsByClassName('tab-content')[0];
       if (tabHeader) {
-        tabHeader.removeEventListener(
-          'wheel',
-          this.listenToWheelEvent,
-          { passive: true },
-        );
+        tabHeader.removeEventListener('wheel', this.listenToWheelEvent, { passive: true });
       }
     },
     async created() {
@@ -331,11 +327,7 @@
         }
       },
       handleWheelEvent(component) {
-        component.addEventListener(
-          'wheel',
-          this.listenToWheelEvent,
-          { passive: true },
-        );
+        component.addEventListener('wheel', this.listenToWheelEvent, { passive: true });
       },
       async fetchAllTemplates() {
         const params = {
