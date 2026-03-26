@@ -288,11 +288,11 @@
           margin: 0 6px;
           border-radius: $unnnic-border-radius-pill;
           &.false {
-            background-color: $unnnic-color-aux-red-500;
+            background-color: $unnnic-color-bg-red-strong;
           }
 
           &.true {
-            background-color: $unnnic-color-aux-green-500;
+            background-color: $unnnic-color-bg-green-strong;
           }
         }
       }
