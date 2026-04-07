@@ -90,6 +90,7 @@
           <IntegrationTab
             :appConfig="selectedApp.config"
             :title="config.title"
+            @update:voiceModeEnabled="updateConfig('voiceModeEnabled', $event)"
             @update:elevenLabsVoiceId="updateConfig('elevenLabsVoiceId', $event)"
             @update:elevenLabsApiKey="updateConfig('elevenLabsApiKey', $event)"
             :loading="loadingSave"
@@ -193,6 +194,7 @@
     customCssFile: null,
     customCss: props.app.config.customCss || null,
     conversationStartersPDP: !!props.app.config.conversationStarters?.pdp,
+    voiceModeEnabled: !!props.app.config.voiceMode?.enabled,
     elevenLabsVoiceId: props.app.config.voiceMode?.elevenLabs?.voiceId || null,
     elevenLabsApiKey: props.app.config.voiceMode?.elevenLabs?.apiKey || null,
   });
@@ -288,6 +290,7 @@
           customCss: config.customCss,
           version: config.version,
           voiceMode: {
+            enabled: config.voiceModeEnabled,
             elevenLabs: {
               voiceId: config.elevenLabsVoiceId,
               apiKey: config.elevenLabsApiKey,
