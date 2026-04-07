@@ -29,7 +29,6 @@ exports[`DynamicForm.vue > should be rendered properly 1`] = `
       showclear="false"
       showmaxlengthcounter="false"
       size="md"
-      tooltip=""
       type="normal"
       usefocusprop="false"
     />
@@ -46,8 +45,6 @@ exports[`DynamicForm.vue > should be rendered properly 1`] = `
       <unnnic-label-stub
         data-v-bba834d0=""
         label="select"
-        tooltip=""
-        usehtmltooltip="false"
       />
       <unnnic-select-smart-stub
         autocomplete="false"

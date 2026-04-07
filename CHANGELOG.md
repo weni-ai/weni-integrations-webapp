@@ -1,3 +1,13 @@
+3.11.0
+----------
+`2026-03-26 · 4 🔧`
+
+### 🔧 Improvements
+- refactor(rebranding): update platform references from Weni to VTEX Agentic CX across the main integration texts in English, Spanish, and Portuguese
+- chore(ui): upgrade `@weni/unnnic-system` to `3.24.5-redesign.2` and migrate icon and color tokens to the redesign palette
+- refactor(loadings): replace animated Weni loading assets with `unnnic-icon-loading` in loading states
+- refactor(apps): remove the featured apps carousel from the integrations home view
+
 3.10.0
 ----------
 `2026-03-19 · 1 🎉`
