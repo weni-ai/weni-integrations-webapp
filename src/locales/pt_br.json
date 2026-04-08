@@ -251,8 +251,9 @@
       "customization": "Personalização",
       "voice_mode": {
         "title": "Modo de voz",
+        "enabled": "Ativar modo de voz",
         "elevenLabsVoiceId": {
-          "label": "ID de voz do ElevenLabs",
+          "label": "ID de voz do ElevenLabs (opcional)",
           "placeholder": "Cole seu Voice ID aqui"
         },
         "elevenLabsApiKey": {

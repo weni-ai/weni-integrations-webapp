@@ -34,18 +34,27 @@
         {{ $t('weniWebChat.config.voice_mode.title') }}
       </h3>
 
+      <unnnic-switch
+        v-model="voiceModeEnabled"
+        size="small"
+        :textRight="$t('weniWebChat.config.voice_mode.enabled')"
+      />
+
       <section class="integration-tab__voice-mode-fields">
+        <unnnic-input
+          nativeType="password"
+          class="integration-tab__voice-mode-field"
+          v-model="elevenLabsApiKey"
+          :label="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.label')"
+          :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.placeholder')"
+          :disabled="!voiceModeEnabled"
+        />
         <unnnic-input
           class="integration-tab__voice-mode-field"
           v-model="elevenLabsVoiceId"
           :label="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.label')"
           :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.placeholder')"
-        />
-        <unnnic-input
-          class="integration-tab__voice-mode-field"
-          v-model="elevenLabsApiKey"
-          :label="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.label')"
-          :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.placeholder')"
+          :disabled="!voiceModeEnabled"
         />
       </section>
     </section>
@@ -87,10 +96,15 @@
     },
   });
 
-  const emit = defineEmits(['update:elevenLabsVoiceId', 'update:elevenLabsApiKey']);
+  const emit = defineEmits([
+    'update:voiceModeEnabled',
+    'update:elevenLabsVoiceId',
+    'update:elevenLabsApiKey',
+  ]);
 
   // Computed
   const scriptCode = computed(() => generateScriptCode(props.appConfig));
+  const voiceModeEnabled = ref(!!props.appConfig.voiceMode?.enabled);
   const elevenLabsVoiceId = ref(props.appConfig.voiceMode?.elevenLabs?.voiceId);
   const elevenLabsApiKey = ref(props.appConfig.voiceMode?.elevenLabs?.apiKey);
 
@@ -111,6 +125,9 @@
   }
 
   // Watch
+  watch(voiceModeEnabled, (newValue) => {
+    emit('update:voiceModeEnabled', newValue);
+  });
   watch(elevenLabsVoiceId, (newValue) => {
     emit('update:elevenLabsVoiceId', newValue);
   });
@@ -154,12 +171,14 @@
       display: flex;
       flex-direction: column;
       gap: $unnnic-space-3;
+      margin-top: $unnnic-space-3;
     }
 
     &__voice-mode-fields {
       display: flex;
       flex-direction: row;
       gap: $unnnic-space-3;
+      margin-top: $unnnic-space-2;
     }
 
     &__voice-mode-field {
