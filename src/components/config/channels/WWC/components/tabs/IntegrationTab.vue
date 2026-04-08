@@ -42,17 +42,18 @@
 
       <section class="integration-tab__voice-mode-fields">
         <unnnic-input
-          class="integration-tab__voice-mode-field"
-          v-model="elevenLabsVoiceId"
-          :label="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.label')"
-          :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.placeholder')"
-          :disabled="!voiceModeEnabled"
-        />
-        <unnnic-input
+          nativeType="password"
           class="integration-tab__voice-mode-field"
           v-model="elevenLabsApiKey"
           :label="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.label')"
           :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsApiKey.placeholder')"
+          :disabled="!voiceModeEnabled"
+        />
+        <unnnic-input
+          class="integration-tab__voice-mode-field"
+          v-model="elevenLabsVoiceId"
+          :label="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.label')"
+          :placeholder="$t('weniWebChat.config.voice_mode.elevenLabsVoiceId.placeholder')"
           :disabled="!voiceModeEnabled"
         />
       </section>
@@ -170,12 +171,14 @@
       display: flex;
       flex-direction: column;
       gap: $unnnic-space-3;
+      margin-top: $unnnic-space-3;
     }
 
     &__voice-mode-fields {
       display: flex;
       flex-direction: row;
       gap: $unnnic-space-3;
+      margin-top: $unnnic-space-2;
     }
 
     &__voice-mode-field {

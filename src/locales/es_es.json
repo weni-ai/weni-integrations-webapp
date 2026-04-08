@@ -253,7 +253,7 @@
         "title": "Modo de voz",
         "enabled": "Activar modo de voz",
         "elevenLabsVoiceId": {
-          "label": "ID de voz del ElevenLabs",
+          "label": "ID de voz del ElevenLabs (opcional)",
           "placeholder": "Cole su ID de voz aquí"
         },
         "elevenLabsApiKey": {
