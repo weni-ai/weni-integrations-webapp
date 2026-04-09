@@ -192,6 +192,7 @@
       "preferences": "Preferences",
       "behavior": "Behavior",
       "media": "Media",
+      "retail": "Retail",
       "history": "Chat history & Inactivity",
       "script_tutorial": "To install Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "script_disclaimer": "The script will be available once the required basic settings have been completed.",
@@ -216,6 +217,10 @@
       "conversation_starters_pdp": {
         "label": "AI-Suggested Questions",
         "helper": "Displays quick-interaction buttons in the product page. The AI analyzes the SKU to automatically suggest the most relevant customer inquiries."
+      },
+      "add_to_cart": {
+        "label": "Add to cart on store",
+        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a Webchat-managed cart. Recommended for stores with custom cart or checkout flows."
       },
       "main_color": "Main color",
       "save_changes": "Save changes",
