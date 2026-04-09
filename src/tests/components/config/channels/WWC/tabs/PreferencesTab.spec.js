@@ -55,8 +55,8 @@ describe('PreferencesTab', () => {
 
     it('should render all behavior switches', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      // navigateIfSameDomain, embedded, showFullScreenButton, startFullScreen, displayUnreadCount, useConnectionOptimization, conversationStartersPDP, keepHistory, enableContactTimeout
-      expect(switches.length).toBe(9);
+      // navigateIfSameDomain, embedded, showFullScreenButton, startFullScreen, displayUnreadCount, useConnectionOptimization, conversationStartersPDP, keepHistory, enableContactTimeout, addToCart
+      expect(switches.length).toBe(10);
     });
 
     it('should render form element for time between messages', () => {
@@ -120,8 +120,8 @@ describe('PreferencesTab', () => {
     it('should disable fullscreen switches when embedded is true', () => {
       wrapper = createWrapper({ initialEmbedded: true });
       const switches = wrapper.findAll('unnnic-switch-stub');
-      const fullscreenSwitch = switches[2];
-      const startFullscreenSwitch = switches[3];
+      const fullscreenSwitch = switches[1];
+      const startFullscreenSwitch = switches[2];
       expect(fullscreenSwitch.attributes('disabled')).toBeDefined();
       expect(startFullscreenSwitch.attributes('disabled')).toBeDefined();
     });
@@ -130,8 +130,8 @@ describe('PreferencesTab', () => {
       wrapper = createWrapper({ initialEmbedded: true });
       const switches = wrapper.findAll('unnnic-switch-stub');
       // The disabled attribute will be set (even if as "true" string)
+      expect(switches[1].attributes('disabled')).toBe('true');
       expect(switches[2].attributes('disabled')).toBe('true');
-      expect(switches[3].attributes('disabled')).toBe('true');
     });
   });
 
