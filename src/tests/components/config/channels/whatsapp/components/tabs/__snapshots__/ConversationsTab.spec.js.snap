@@ -6,10 +6,10 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
     <div data-v-2b8fe4c5="" class="conversations__content__dropdown">
       <div data-v-2b8fe4c5="" class="conversations__content__label">Filter by</div>
       <div data-v-2b8fe4c5="" class="unnnic-date-filter conversations__content__dropdown-filter">
-        <section data-v-4569ccad="" data-v-25ad98eb="" class="unnnic-form-element unnnic-form sm unnnic-date-filter__input" data-testid="form-element" value="">
+        <section data-v-61d29f44="" data-v-2dd04313="" class="unnnic-form-element unnnic-form sm unnnic-date-filter__input" data-testid="form-element" value="">
           <!---->
-          <div data-v-1a46ed8b="" data-v-25ad98eb="" class="text-input size--sm unnnic-date-filter__input unnnic-form-input" hascloudycolor="false" mask="##/##/#### !~ ##/##/####" value=""><input data-v-21958693="" data-v-1a46ed8b="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" hascloudycolor="false" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconright="" iconleftclickable="false" iconrightclickable="false" showclear="false" type="text" readonly="" value=""><span data-v-69390f82="" data-v-1a46ed8b="" class="unnnic-icon material-symbols-rounded unnnic-icon-scheme--fg-base unnnic-icon-size--ant unnnic-icon__size--ant icon-left" data-testid="material-icon" translate="no">event_note</span>
-            <section data-v-1a46ed8b="" class="icon-right-container">
+          <div data-v-227e7338="" data-v-2dd04313="" class="text-input size--sm unnnic-date-filter__input unnnic-form-input" hascloudycolor="false" mask="##/##/#### !~ ##/##/####" value=""><input data-v-11e89257="" data-v-227e7338="" class="unnnic-date-filter__input unnnic-form-input input-itself input size-sm normal input--has-icon-left unnnic-date-filter__input unnnic-form-input input-itself" hascloudycolor="false" placeholder="DD/MM/YYYY ~ DD/MM/YYYY" iconleft="notes-1" iconright="" iconleftclickable="false" iconrightclickable="false" showclear="false" type="text" readonly="" value=""><span data-v-b593673c="" data-v-227e7338="" class="unnnic-icon material-symbols-rounded unnnic-icon-scheme--fg-base unnnic-icon-size--ant unnnic-icon__size--ant icon-left" data-testid="material-icon" translate="no">event_note</span>
+            <section data-v-227e7338="" class="icon-right-container">
               <!---->
               <!---->
             </section>
@@ -29,81 +29,81 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
       </div>
       <div data-v-2b8fe4c5="" class="conversations__content__tables__section">
         <!--v-if-->
-        <div data-v-b2229274="" data-v-2b8fe4c5="" class="unnnic-table">
-          <div data-v-b2229274="" class="header">
-            <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
-              <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
-                <div data-v-cb0c6b93="" class="break-text">Category</div>
+        <div data-v-4bd0f14c="" data-v-2b8fe4c5="" class="unnnic-table">
+          <div data-v-4bd0f14c="" class="header">
+            <div data-v-e163e6dd="" data-v-2b8fe4c5="" class="table-row">
+              <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="break-text">Category</div>
               </div>
-              <div data-v-cb0c6b93="" class="divider"></div>
-              <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
-                <div data-v-cb0c6b93="" class="break-text">Quantity</div>
+              <div data-v-e163e6dd="" class="divider"></div>
+              <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="break-text">Quantity</div>
               </div>
-              <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+              <div data-v-e163e6dd="" class="divider" style="display: none;"></div>
             </div>
           </div>
-          <div data-v-b2229274="">
-            <div data-v-b2229274="" class="item-spacer"></div>
+          <div data-v-4bd0f14c="">
+            <div data-v-4bd0f14c="" class="item-spacer"></div>
           </div>
-          <div data-v-b2229274="" class="scroll">
-            <div data-v-b2229274="" class="item">
-              <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+          <div data-v-4bd0f14c="" class="scroll">
+            <div data-v-4bd0f14c="" class="item">
+              <div data-v-e163e6dd="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="Marketing" class="break-text">Marketing</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider"></div>
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="divider"></div>
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+                <div data-v-e163e6dd="" class="divider" style="display: none;"></div>
               </div>
             </div>
-            <div data-v-b2229274="" class="item">
-              <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+            <div data-v-4bd0f14c="" class="item">
+              <div data-v-e163e6dd="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="Marketing Lite" class="break-text">Marketing Lite</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider"></div>
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="divider"></div>
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+                <div data-v-e163e6dd="" class="divider" style="display: none;"></div>
               </div>
             </div>
-            <div data-v-b2229274="" class="item">
-              <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+            <div data-v-4bd0f14c="" class="item">
+              <div data-v-e163e6dd="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="Utility" class="break-text">Utility</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider"></div>
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="divider"></div>
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+                <div data-v-e163e6dd="" class="divider" style="display: none;"></div>
               </div>
             </div>
-            <div data-v-b2229274="" class="item">
-              <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+            <div data-v-4bd0f14c="" class="item">
+              <div data-v-e163e6dd="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="Authentication" class="break-text">Authentication</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider"></div>
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="divider"></div>
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+                <div data-v-e163e6dd="" class="divider" style="display: none;"></div>
               </div>
             </div>
-            <div data-v-b2229274="" class="item">
-              <div data-v-cb0c6b93="" data-v-2b8fe4c5="" class="table-row">
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+            <div data-v-4bd0f14c="" class="item">
+              <div data-v-e163e6dd="" data-v-2b8fe4c5="" class="table-row">
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="Service" class="break-text">Service</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider"></div>
-                <div data-v-cb0c6b93="" class="col" style="flex: 1 1 0%; min-width: 0;">
+                <div data-v-e163e6dd="" class="divider"></div>
+                <div data-v-e163e6dd="" class="col" style="flex: 1 1 0%; min-width: 0;">
                   <div data-v-2b8fe4c5="" title="0" class="break-text">0</div>
                 </div>
-                <div data-v-cb0c6b93="" class="divider" style="display: none;"></div>
+                <div data-v-e163e6dd="" class="divider" style="display: none;"></div>
               </div>
             </div>
           </div>
@@ -111,20 +111,20 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
       </div>
     </div>
     <div data-v-2b8fe4c5="" class="conversations__content__report"><span data-v-2b8fe4c5="" class="conversations__content__report__label">Detailed conversation report</span><span data-v-2b8fe4c5="" class="conversations__content__report__description">You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.</span>
-      <div data-v-03fa3548="" class="unnnic-tooltip-trigger" data-testid="tooltip-trigger" data-state="closed" data-grace-area-trigger=""><button data-v-aadba593="" data-v-2b8fe4c5="" class="conversations__content__report__button unnnic-button unnnic-button--size-small unnnic-button--secondary conversations__content__report__button" disabled="">
+      <div data-v-03fa3548="" data-v-2e8bb3f0="" class="unnnic-tooltip-trigger unnnic-tooltip conversations__content__report__tooltip" data-testid="tooltip-trigger" data-state="closed" data-grace-area-trigger=""><button data-v-b3d77bce="" data-v-2b8fe4c5="" class="conversations__content__report__button unnnic-button unnnic-button--size-small unnnic-button--secondary conversations__content__report__button" disabled="">
           <!---->
           <!---->
-          <!----><span data-v-aadba593="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label">Request report </span>
+          <!----><span data-v-b3d77bce="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label">Request report </span>
           <!---->
         </button></div>
       <!--teleport start-->
       <!--teleport end-->
     </div>
   </div>
-  <div data-v-2b8fe4c5="" class="conversations__buttons"><button data-v-aadba593="" data-v-2b8fe4c5="" class="conversations__buttons__close unnnic-button unnnic-button--size-large unnnic-button--tertiary conversations__buttons__close">
+  <div data-v-2b8fe4c5="" class="conversations__buttons"><button data-v-b3d77bce="" data-v-2b8fe4c5="" class="conversations__buttons__close unnnic-button unnnic-button--size-large unnnic-button--tertiary conversations__buttons__close">
       <!---->
       <!---->
-      <!----><span data-v-aadba593="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label"> Cancel</span>
+      <!----><span data-v-b3d77bce="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label"> Cancel</span>
       <!---->
     </button></div>
 </div>"
