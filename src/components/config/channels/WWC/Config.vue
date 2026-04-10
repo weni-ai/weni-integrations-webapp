@@ -66,6 +66,7 @@
             :initialTimeBetweenMessages="config.timeBetweenMessages"
             :initialNavigateIfSameDomain="config.navigateIfSameDomain"
             :initialConversationStartersPDP="config.conversationStartersPDP"
+            :initialAddToCart="config.addToCart"
             :loading="loadingSave"
             @update:embedded="updateConfig('embedded', $event)"
             @update:showFullScreenButton="updateConfig('showFullScreenButton', $event)"
@@ -80,6 +81,7 @@
             @update:timeBetweenMessages="updateConfig('timeBetweenMessages', $event)"
             @update:navigateIfSameDomain="updateConfig('navigateIfSameDomain', $event)"
             @update:conversationStartersPDP="updateConfig('conversationStartersPDP', $event)"
+            @update:addToCart="updateConfig('addToCart', $event)"
             @save="saveConfig"
             @cancel="closeConfig"
           />
@@ -197,6 +199,7 @@
     voiceModeEnabled: !!props.app.config.voiceMode?.enabled,
     elevenLabsVoiceId: props.app.config.voiceMode?.elevenLabs?.voiceId || null,
     elevenLabsApiKey: props.app.config.voiceMode?.elevenLabs?.apiKey || null,
+    addToCart: !!props.app.config.addToCart,
   });
 
   // Computed
@@ -283,6 +286,7 @@
           useConnectionOptimization: config.useConnectionOptimization,
           navigateIfSameDomain: config.navigateIfSameDomain,
           conversationStartersPDP: config.conversationStartersPDP,
+          addToCart: config.addToCart,
           embedded: config.embedded,
           mainColor: config.mainColor,
           profileAvatar: await imageForUpload(),

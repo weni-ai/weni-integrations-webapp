@@ -8,17 +8,6 @@
           </h3>
 
           <unnnic-switch
-            v-model="navigateIfSameDomain"
-            size="small"
-            :textRight="$t('weniWebChat.config.navigate_if_same_domain.label')"
-            :helper="$t('weniWebChat.config.navigate_if_same_domain.helper')"
-          >
-            <template #suffix>
-              <p class="preferences-tab__switch-suffix">{{ $t('general.beta') }}</p>
-            </template>
-          </unnnic-switch>
-
-          <unnnic-switch
             v-model="embedded"
             size="small"
             :textRight="$t('weniWebChat.config.embedded_mode')"
@@ -49,6 +38,12 @@
             size="small"
             :textRight="$t('weniWebChat.config.use_connection_optimization')"
           />
+        </section>
+
+        <section class="preferences-tab__section">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.retail') }}
+          </h3>
 
           <unnnic-switch
             v-model="conversationStartersPDP"
@@ -60,22 +55,42 @@
               <p class="preferences-tab__switch-suffix">{{ $t('general.new') }}</p>
             </template>
           </unnnic-switch>
+
+          <unnnic-switch
+            v-model="navigateIfSameDomain"
+            size="small"
+            :textRight="$t('weniWebChat.config.navigate_if_same_domain.label')"
+            :helper="$t('weniWebChat.config.navigate_if_same_domain.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.beta') }}</p>
+            </template>
+          </unnnic-switch>
+
+          <unnnic-switch
+            v-model="addToCart"
+            size="small"
+            :textRight="$t('weniWebChat.config.add_to_cart.label')"
+            :helper="$t('weniWebChat.config.add_to_cart.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.beta') }}</p>
+            </template>
+          </unnnic-switch>
         </section>
 
-        <section class="preferences-tab__section">
+        <section class="preferences-tab__section" v-if="version === '2'">
           <h3 class="preferences-tab__section-title">
             {{ $t('weniWebChat.config.media') }}
           </h3>
 
           <unnnic-switch
-            v-if="version === '2'"
             v-model="showVoiceRecordingButton"
             size="small"
             :textRight="$t('weniWebChat.config.show_voice_recording_button')"
           />
 
           <unnnic-switch
-            v-if="version === '2'"
             v-model="showCameraButton"
             size="small"
             :textRight="$t('weniWebChat.config.show_camera_button')"
@@ -185,6 +200,7 @@
     initialTimeBetweenMessages: { type: Number, default: 1 },
     initialNavigateIfSameDomain: { type: Boolean, default: false },
     initialConversationStartersPDP: { type: Boolean, default: false },
+    initialAddToCart: { type: Boolean, default: false },
     loading: { type: Boolean, default: false },
   });
 
@@ -202,6 +218,7 @@
     'update:timeBetweenMessages',
     'update:navigateIfSameDomain',
     'update:conversationStartersPDP',
+    'update:addToCart',
     'save',
     'cancel',
   ]);
@@ -220,6 +237,7 @@
   const timeBetweenMessages = ref(props.initialTimeBetweenMessages);
   const navigateIfSameDomain = ref(props.initialNavigateIfSameDomain);
   const conversationStartersPDP = ref(props.initialConversationStartersPDP);
+  const addToCart = ref(props.initialAddToCart);
 
   // Computed
   const timeBetweenMessagesOptions = computed(() => [
@@ -264,6 +282,7 @@
   watch(keepHistory, (value) => emit('update:keepHistory', value));
   watch(navigateIfSameDomain, (value) => emit('update:navigateIfSameDomain', value));
   watch(conversationStartersPDP, (value) => emit('update:conversationStartersPDP', value));
+  watch(addToCart, (value) => emit('update:addToCart', value));
 
   watch(enableContactTimeout, (value) => {
     emit('update:enableContactTimeout', value);
