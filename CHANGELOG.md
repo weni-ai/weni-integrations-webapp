@@ -1,3 +1,10 @@
+3.11.2
+----------
+`2026-04-10 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add 'Add to Cart' option in WWC configuration
+
 3.11.1
 ----------
 `2026-04-08 · 1 🔧`
