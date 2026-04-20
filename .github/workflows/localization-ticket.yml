@@ -1,0 +1,132 @@
+# Localization Ticket Automation
+#
+# Automatically creates a Jira ticket for the Localization team whenever a PR
+# with changes to locale files (src/locales/**) is merged into main.
+#
+# The ticket includes PR details, a filtered diff of the locale changes, and
+# the PR description for context.
+#
+# PRs with the "localization" label are skipped to avoid creating tickets for
+# translation PRs opened by the Localization team itself.
+#
+# PRs that only remove locale keys (no additions or modifications) are also
+# skipped, since there is nothing for the Localization team to translate.
+#
+# Required GitHub Secrets (Settings > Secrets and variables > Actions):
+#
+#   JIRA_BASE_URL    - Jira instance URL (e.g. https://<your-org>.atlassian.net)
+#   JIRA_USER_EMAIL  - Service account email for Jira authentication
+#   JIRA_API_TOKEN   - API token generated at https://id.atlassian.com
+#   JIRA_PROJECT_KEY - Jira project key (e.g. LOC)
+
+name: Create Localization Ticket
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'src/locales/**'
+
+jobs:
+  create-jira-ticket:
+    if: >
+      github.event.pull_request.merged == true &&
+      !contains(github.event.pull_request.labels.*.name, 'localization')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Collect locale diff
+        id: locale_diff
+        run: |
+          DIFF=$(git diff \
+            ${{ github.event.pull_request.base.sha }} \
+            ${{ github.event.pull_request.merge_commit_sha }} \
+            -- src/locales/ \
+            | grep -E '^(diff --git|[+-].*".*":)' \
+            | sed 's/^diff --git a\/\(.*\) b\/.*/\n\1:/')
+
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          HAS_ADDITIONS=$(echo "$DIFF" | grep -c '^+' || true)
+          if [ "$HAS_ADDITIONS" -gt 0 ]; then
+            echo "has_additions=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_additions=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Jira ticket
+        if: steps.locale_diff.outputs.has_additions == 'true'
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_PROJECT_KEY: ${{ secrets.JIRA_PROJECT_KEY }}
+          LOCALE_DIFF: ${{ steps.locale_diff.outputs.content }}
+        run: |
+          PR_NUMBER=$(jq -r '.pull_request.number' "$GITHUB_EVENT_PATH")
+          PR_TITLE=$(jq -r '.pull_request.title' "$GITHUB_EVENT_PATH")
+          PR_URL=$(jq -r '.pull_request.html_url' "$GITHUB_EVENT_PATH")
+          PR_AUTHOR=$(jq -r '.pull_request.user.login' "$GITHUB_EVENT_PATH")
+          PR_BODY_RAW=$(jq -r '.pull_request.body // "No description provided."' "$GITHUB_EVENT_PATH")
+
+          PR_BODY=$(echo "$PR_BODY_RAW" | sed \
+            -e 's/^#### /h4. /' \
+            -e 's/^### /h3. /' \
+            -e 's/^## /h2. /' \
+            -e 's/^# /h1. /' \
+            -e 's/^- /* /' \
+            -e 's/`\([^`]*\)`/{{\1}}/g' \
+            -e 's/!\[.*\](\([^)]*\))/!\1!/g' \
+            -e 's/<img[^>]*src="\([^"]*\)"[^>]*>/!\1!/g')
+
+          PAYLOAD=$(jq -n \
+            --arg project "$JIRA_PROJECT_KEY" \
+            --arg pr_title "$PR_TITLE" \
+            --arg pr_number "$PR_NUMBER" \
+            --arg pr_url "$PR_URL" \
+            --arg pr_author "$PR_AUTHOR" \
+            --arg locale_diff "$LOCALE_DIFF" \
+            --arg pr_body "$PR_BODY" \
+            '{
+              fields: {
+                project: { key: $project },
+                summary: ("[Agentic CX] " + $pr_title),
+                description: (
+                  "h3. PR Details\n" +
+                  "||Field||Value||\n" +
+                  "|Author|" + $pr_author + "|\n" +
+                  "|PR|[#" + $pr_number + "|" + $pr_url + "]|\n\n" +
+                  "h3. Locale changes (diff)\n" +
+                  "{code}\n" +
+                  $locale_diff + "\n" +
+                  "{code}\n\n" +
+                  "h3. PR Description\n\n" +
+                  $pr_body
+                ),
+                issuetype: { name: "Task" }
+              }
+            }')
+
+          RESPONSE=$(curl -s -o response.json -w "%{http_code}" \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -u "${JIRA_USER_EMAIL}:${JIRA_API_TOKEN}" \
+            -d "$PAYLOAD" \
+            "${JIRA_BASE_URL}/rest/api/2/issue")
+
+          if [ "$RESPONSE" -eq 201 ]; then
+            TICKET=$(jq -r '.key' response.json)
+            echo "Ticket created: ${JIRA_BASE_URL}/browse/${TICKET}"
+          else
+            echo "Failed to create ticket (HTTP $RESPONSE)"
+            cat response.json
+            exit 1
+          fi
