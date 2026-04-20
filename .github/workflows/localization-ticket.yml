@@ -98,7 +98,7 @@ jobs:
             '{
               fields: {
                 project: { key: $project },
-                summary: ("[Agentic CX] " + $pr_title),
+                summary: ("[CX Platform] " + $pr_title),
                 description: (
                   "h3. PR Details\n" +
                   "||Field||Value||\n" +
