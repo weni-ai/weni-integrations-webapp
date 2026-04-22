@@ -5,15 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Node 18
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: 'npm'
       - name: Install dependencies
-        run: |
-              rm -rf node_modules package-lock.json
-              npm install
+        run: npm ci
       - name: Run lint
         run: npm run lint
       - name: Run coverage

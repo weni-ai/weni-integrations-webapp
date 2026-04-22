@@ -73,7 +73,7 @@
         :loading="loadingUpdateAppConfig"
         :disabled="isConfigured"
         @click="saveConfig"
-        ></unnnic-button>
+      ></unnnic-button>
     </div>
   </div>
 </template>

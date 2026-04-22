@@ -28,8 +28,7 @@ class ModuleStorage {
    */
   setItem(key, value, options = { useSession: false }) {
     const prefixedKey = this._getPrefixedKey(key);
-    const serializedValue =
-      typeof value === 'string' ? value : JSON.stringify(value);
+    const serializedValue = typeof value === 'string' ? value : JSON.stringify(value);
 
     if (options.useSession) {
       win.sessionStorage.setItem(prefixedKey, serializedValue);
@@ -80,9 +79,7 @@ class ModuleStorage {
   clear(options = { useSession: false }) {
     const keysToRemove = [];
     for (let i = 0; i < win.localStorage.length; i++) {
-      const key = options.useSession
-        ? win.sessionStorage.key(i)
-        : win.localStorage.key(i);
+      const key = options.useSession ? win.sessionStorage.key(i) : win.localStorage.key(i);
       if (key && key.startsWith(this.prefix)) {
         keysToRemove.push(key);
       }

@@ -231,13 +231,20 @@
 
       isContinueDisabled() {
         if (this.currentStep === 0) {
-          const isChannelSelected = this.selectedChannel.length > 0 && !!this.selectedChannel.at(0).value;
+          const isChannelSelected =
+            this.selectedChannel.length > 0 && !!this.selectedChannel.at(0).value;
           const isAPIDomainNotEmpty = !!this.apiDomain.trim();
           const isStoreDomainNotEmpty = !!this.storeDomain.trim();
           const isAppKeyNotEmpty = !!this.appKey.trim();
           const isAppTokenNotEmpty = !!this.appToken.trim();
 
-          return !isChannelSelected || !isAPIDomainNotEmpty || !isStoreDomainNotEmpty || !isAppKeyNotEmpty || !isAppTokenNotEmpty;
+          return (
+            !isChannelSelected ||
+            !isAPIDomainNotEmpty ||
+            !isStoreDomainNotEmpty ||
+            !isAppKeyNotEmpty ||
+            !isAppTokenNotEmpty
+          );
         }
 
         return false;
