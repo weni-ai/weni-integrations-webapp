@@ -205,8 +205,8 @@
     if (!title.value?.trim()) {
       return t('errors.empty_input');
     }
-    if (title.value.length > 20) {
-      return 'By default, the maximum is 20 characters.';
+    if (title.value.length > 25) {
+      return 'By default, the maximum is 25 characters.';
     }
     return '';
   });
