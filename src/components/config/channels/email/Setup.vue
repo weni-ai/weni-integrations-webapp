@@ -85,7 +85,8 @@
         moduleStorage.setItem('code', '');
         const clientId = getEnv('GOOGLE_CLOUD_ID');
         const redirectUri = getEnv('GOOGLE_REDIRECT_URI');
-        const scope = 'https://mail.google.com';
+        const scope =
+          'https://www.googleapis.com/auth/gmail.send https://www.googleapis.com/auth/gmail.readonly';
         const authUrl = `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&access_type=offline&prompt=consent`;
 
         const popup = window.open(authUrl, 'GoogleAuthPopup', 'width=500,height=600');
