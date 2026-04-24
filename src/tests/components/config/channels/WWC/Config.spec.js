@@ -444,6 +444,29 @@ describe('wwcConfig Component', () => {
       expect(callArg.payload.config.customCss).toBe('');
     });
 
+    it.each([
+      ['subtitle', 'update:subtitle'],
+      ['initPayload', 'update:initPayload'],
+      ['tooltipMessage', 'update:tooltipMessage'],
+      ['inputTextFieldHint', 'update:inputTextFieldHint'],
+    ])(
+      'should send empty %s when the user clears an existing value',
+      async (configKey, eventName) => {
+        const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+        vi.spyOn(store, 'getApp').mockResolvedValue();
+        store.currentApp = { config: { title: 'Test Title' } };
+
+        const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
+        await appearanceTab.vm.$emit(eventName, '');
+        await appearanceTab.vm.$emit('save');
+        await flushPromises();
+
+        expect(updateAppConfigSpy).toHaveBeenCalled();
+        const callArg = updateAppConfigSpy.mock.calls[0][0];
+        expect(callArg.payload.config[configKey]).toBe('');
+      },
+    );
+
     it('should emit setConfirmation false on successful save', async () => {
       vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
       vi.spyOn(store, 'getApp').mockResolvedValue();
