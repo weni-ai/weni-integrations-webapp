@@ -31,7 +31,8 @@
           :iconSrc="appIcon(app)"
           :typeAction="app.generic ? (type === 'add' ? 'edit' : typeAction) : typeAction"
           :clickable="
-            (!app.generic && app.code !== 'email' && app.code !== 'gmail') || (type !== 'add' && app.code !== 'gmail')
+            (!app.generic && app.code !== 'email' && app.code !== 'gmail') ||
+            (type !== 'add' && app.code !== 'gmail')
           "
           @openModal="openAppModal(app)"
         >
@@ -294,7 +295,9 @@
         }
 
         return `${app.name}${
-          this.type === 'edit' ? ' - ' + (app.config.title || app.config.name || app.config.username) : ''
+          this.type === 'edit'
+            ? ' - ' + (app.config.title || app.config.name || app.config.username)
+            : ''
         }`;
       },
       /* istanbul ignore next */

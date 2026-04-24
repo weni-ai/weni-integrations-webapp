@@ -1,8 +1,7 @@
 import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
-import setLocal from '@/utils/storage';
-import { isFederatedModule } from '@/utils/moduleFederation';
 import { moduleStorage } from '@/utils/storage';
+import { isFederatedModule } from '@/utils/moduleFederation';
 
 const routes = [
   { path: '/', alias: '/init', redirect: { name: 'Discovery' } },

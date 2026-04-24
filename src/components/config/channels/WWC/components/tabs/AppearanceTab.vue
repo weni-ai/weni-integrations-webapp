@@ -60,7 +60,7 @@
         <div class="appearance-tab__upload-section">
           <unnnic-label :label="$t('weniWebChat.config.avatar_image')" />
           <unnnic-upload-area
-            v-model="avatarFiles"
+            :files="avatarFiles"
             :acceptMultiple="false"
             supportedFormats=".png,.jpg,.jpeg"
             :maximumUploads="1"
@@ -76,7 +76,7 @@
         <div class="appearance-tab__upload-section">
           <unnnic-label :label="$t('weniWebChat.config.custom_css')" />
           <unnnic-upload-area
-            v-model="cssFiles"
+            :files="cssFiles"
             :acceptMultiple="false"
             supportedFormats=".css"
             :maximumUploads="1"
@@ -205,8 +205,8 @@
     if (!title.value?.trim()) {
       return t('errors.empty_input');
     }
-    if (title.value.length > 20) {
-      return 'By default, the maximum is 20 characters.';
+    if (title.value.length > 25) {
+      return 'By default, the maximum is 25 characters.';
     }
     return '';
   });

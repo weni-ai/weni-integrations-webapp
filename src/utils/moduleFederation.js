@@ -54,5 +54,7 @@ export async function safeImport(importFn, importPath) {
   }
 }
 
+const stripTrailingSlashes = (url = '') => url.replace(/\/+$/, '');
+
 export const isFederatedModule =
-  `${window.location.origin}` !== getEnv('PUBLIC_PATH_URL');
+  stripTrailingSlashes(window.location.origin) !== stripTrailingSlashes(getEnv('PUBLIC_PATH_URL'));

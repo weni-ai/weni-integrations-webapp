@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, flushPromises } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import AppearanceTab from '@/components/config/channels/WWC/components/tabs/AppearanceTab.vue';
 import i18n from '@/utils/plugins/i18n';
@@ -57,6 +57,9 @@ describe('AppearanceTab', () => {
       props: { ...defaultProps, ...props },
     });
   };
+
+  const findUploadAreas = (wrapperInstance) =>
+    wrapperInstance.findAllComponents({ name: 'UnnnicUploadArea' });
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -172,7 +175,7 @@ describe('AppearanceTab', () => {
       expect(input.attributes('type')).toBe('error');
     });
 
-    it('should show error for title exceeding 20 characters', async () => {
+    it('should show error for title exceeding 25 characters', async () => {
       wrapper = createWrapper({ initialTitle: 'This is a very long title exceeding limit' });
       await wrapper.vm.$nextTick();
       const input = wrapper.find('unnnic-input-stub');
@@ -186,8 +189,8 @@ describe('AppearanceTab', () => {
       expect(input.attributes('type')).toBe('normal');
     });
 
-    it('should show normal type for title with exactly 20 characters', async () => {
-      wrapper = createWrapper({ initialTitle: '12345678901234567890' });
+    it('should show normal type for title with exactly 25 characters', async () => {
+      wrapper = createWrapper({ initialTitle: '1234567890123456789012345' });
       await wrapper.vm.$nextTick();
       const input = wrapper.find('unnnic-input-stub');
       expect(input.attributes('type')).toBe('normal');
@@ -324,6 +327,40 @@ describe('AppearanceTab', () => {
       const avatarUpload = uploadAreas[0];
       expect(avatarUpload.attributes('candelete')).toBe('true');
     });
+
+    it('should pass the existing avatar to the upload area when initialAvatarBase64 is provided', async () => {
+      wrapper = createWrapper({
+        initialAvatarBase64: 'https://example.com/avatar.png',
+      });
+      await flushPromises();
+
+      const avatarUpload = findUploadAreas(wrapper)[0];
+      expect(avatarUpload.attributes('files')).toBe('[object File]');
+    });
+
+    it('should not populate the upload area when initialAvatarBase64 is missing', async () => {
+      wrapper = createWrapper({ initialAvatarBase64: null });
+      await flushPromises();
+
+      const avatarUpload = findUploadAreas(wrapper)[0];
+      expect(avatarUpload.attributes('files') || '').toBe('');
+    });
+
+    it('should emit null update:avatarFile and update:avatarBase64 when the upload area clears the file', async () => {
+      wrapper = createWrapper({
+        initialAvatarBase64: 'https://example.com/avatar.png',
+      });
+      await flushPromises();
+
+      const avatarUpload = findUploadAreas(wrapper)[0];
+      await avatarUpload.vm.$emit('fileChange', []);
+      await flushPromises();
+
+      expect(wrapper.emitted('update:avatarFile')).toBeTruthy();
+      expect(wrapper.emitted('update:avatarFile').at(-1)).toEqual([null]);
+      expect(wrapper.emitted('update:avatarBase64')).toBeTruthy();
+      expect(wrapper.emitted('update:avatarBase64').at(-1)).toEqual([null]);
+    });
   });
 
   describe('CSS upload', () => {
@@ -350,6 +387,30 @@ describe('AppearanceTab', () => {
       const uploadAreas = wrapper.findAll('unnnic-upload-area-stub');
       const cssUpload = uploadAreas[1];
       expect(cssUpload.attributes('acceptmultiple')).toBe('false');
+    });
+
+    it('should pass the existing CSS file to the upload area when initialCssFile is provided', async () => {
+      const existingCssFile = new File(['body {}'], 'style.css', { type: 'text/css' });
+      wrapper = createWrapper({ initialCssFile: existingCssFile });
+      await flushPromises();
+
+      const cssUpload = findUploadAreas(wrapper)[1];
+      expect(cssUpload.attributes('files')).toBe('[object File]');
+    });
+
+    it('should emit null update:cssFile and update:customCss when the upload area clears the file', async () => {
+      const existingCssFile = new File(['body {}'], 'style.css', { type: 'text/css' });
+      wrapper = createWrapper({ initialCssFile: existingCssFile });
+      await flushPromises();
+
+      const cssUpload = findUploadAreas(wrapper)[1];
+      await cssUpload.vm.$emit('fileChange', []);
+      await flushPromises();
+
+      expect(wrapper.emitted('update:cssFile')).toBeTruthy();
+      expect(wrapper.emitted('update:cssFile').at(-1)).toEqual([null]);
+      expect(wrapper.emitted('update:customCss')).toBeTruthy();
+      expect(wrapper.emitted('update:customCss').at(-1)).toEqual([null]);
     });
   });
 

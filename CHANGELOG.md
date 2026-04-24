@@ -1,3 +1,21 @@
+3.11.3
+----------
+`2026-04-24 · 1 🎉 · 2 🐛`
+
+### 🎉 New features
+- feat: increase WWC appearance title maximum to 25 characters
+
+### 🐛 Bug fixes
+- fix(wwc): show delete option for saved avatar and custom css
+- fix(ci): use npm ci and honor committed package-lock.json
+
+3.11.2
+----------
+`2026-04-10 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add 'Add to Cart' option in WWC configuration
+
 3.11.1
 ----------
 `2026-04-08 · 1 🔧`
