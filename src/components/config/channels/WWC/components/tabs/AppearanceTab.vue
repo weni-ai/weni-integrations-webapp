@@ -60,7 +60,7 @@
         <div class="appearance-tab__upload-section">
           <unnnic-label :label="$t('weniWebChat.config.avatar_image')" />
           <unnnic-upload-area
-            v-model="avatarFiles"
+            :files="avatarFiles"
             :acceptMultiple="false"
             supportedFormats=".png,.jpg,.jpeg"
             :maximumUploads="1"
@@ -76,7 +76,7 @@
         <div class="appearance-tab__upload-section">
           <unnnic-label :label="$t('weniWebChat.config.custom_css')" />
           <unnnic-upload-area
-            v-model="cssFiles"
+            :files="cssFiles"
             :acceptMultiple="false"
             supportedFormats=".css"
             :maximumUploads="1"

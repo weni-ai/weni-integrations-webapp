@@ -220,11 +220,15 @@
   }
 
   async function imageForUpload() {
-    let avatar = config.avatarFile;
-    if (typeof config.avatarFile === 'string') {
-      avatar = await dataUrlToFile(config.avatarFile, 'avatar');
+    const avatar = config.avatarFile;
+    if (!avatar) {
+      return '';
     }
-    return toBase64(avatar);
+    let file = avatar;
+    if (typeof avatar === 'string') {
+      file = await dataUrlToFile(avatar, 'avatar');
+    }
+    return toBase64(file);
   }
 
   function contactTimeoutInMinutes() {
@@ -291,7 +295,7 @@
           mainColor: config.mainColor,
           profileAvatar: await imageForUpload(),
           contactTimeout: contactTimeoutInMinutes(),
-          customCss: config.customCss,
+          customCss: config.customCss || '',
           version: config.version,
           voiceMode: {
             enabled: config.voiceModeEnabled,

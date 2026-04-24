@@ -406,6 +406,44 @@ describe('wwcConfig Component', () => {
       expect(callArg.payload.config.conversationStartersPDP).toBe(true);
     });
 
+    it('should send empty profileAvatar when the user clears an existing avatar', async () => {
+      wrapper = createWrapper({
+        config: { profileAvatar: 'https://example.com/avatar.png' },
+      });
+      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      vi.spyOn(store, 'getApp').mockResolvedValue();
+      store.currentApp = { config: { title: 'Test Title' } };
+
+      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
+      await appearanceTab.vm.$emit('update:avatarFile', null);
+      await appearanceTab.vm.$emit('update:avatarBase64', null);
+      await appearanceTab.vm.$emit('save');
+      await flushPromises();
+
+      expect(updateAppConfigSpy).toHaveBeenCalled();
+      const callArg = updateAppConfigSpy.mock.calls[0][0];
+      expect(callArg.payload.config.profileAvatar).toBe('');
+    });
+
+    it('should send empty customCss when the user clears existing custom css', async () => {
+      wrapper = createWrapper({
+        config: { customCss: 'https://example.com/custom.css' },
+      });
+      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      vi.spyOn(store, 'getApp').mockResolvedValue();
+      store.currentApp = { config: { title: 'Test Title' } };
+
+      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
+      await appearanceTab.vm.$emit('update:cssFile', null);
+      await appearanceTab.vm.$emit('update:customCss', null);
+      await appearanceTab.vm.$emit('save');
+      await flushPromises();
+
+      expect(updateAppConfigSpy).toHaveBeenCalled();
+      const callArg = updateAppConfigSpy.mock.calls[0][0];
+      expect(callArg.payload.config.customCss).toBe('');
+    });
+
     it('should emit setConfirmation false on successful save', async () => {
       vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
       vi.spyOn(store, 'getApp').mockResolvedValue();
