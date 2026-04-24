@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div :class="`app app-integrations-${!sharedStore ? 'dev' : 'prod'}`">
     <RouterView class="content" />
   </div>
 </template>
@@ -11,17 +11,29 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import { mapActions } from 'pinia';
 
+  import { safeImport } from '@/utils/moduleFederation';
+  const { useSharedStore } = await safeImport(
+    () => import('connect/sharedStore'),
+    'connect/sharedStore',
+  );
+
   export default {
     name: 'App',
     data() {
       return {
         connectBaseURL: '',
+        useSharedStore: null,
       };
     },
-    mounted() {
-      this.retriveAuthToken();
+    computed: {
+      sharedStore: () => useSharedStore?.(),
+    },
+    async mounted() {
+      if (!this.useSharedStore) {
+        this.retriveAuthToken();
+        this.retriveSelectedProject();
+      }
       this.retriveSelectedOrg();
-      this.retriveSelectedProject();
       this.retriveSelectedFlowOrg();
       if (getEnv('HELPHERO_ID')) {
         const hlp = initHelpHero(getEnv('HELPHERO_ID'));
@@ -47,7 +59,7 @@
           this.translateAllLinks();
         }
         if (eventName === 'setLanguage') {
-          this.$i18n.locale = event.data.language;
+          this.handlerSetLanguage(event.data.language);
         }
       });
     },
@@ -57,6 +69,7 @@
         'retriveSelectedOrg',
         'retriveSelectedProject',
         'retriveSelectedFlowOrg',
+        'externalLogin',
       ]),
       translateAllLinks() {
         if (!this.connectBaseURL) {
@@ -94,9 +107,31 @@
           );
         });
       },
+      handlerSetLanguage(newLanguage) {
+        this.$i18n.locale = newLanguage;
+      },
+      handlerSetToken(newToken) {
+        this.externalLogin({ token: `Bearer ${newToken}` });
+      },
     },
     updated() {
       this.translateAllLinks();
+    },
+    watch: {
+      'sharedStore.user.language': {
+        immediate: true,
+        handler(newLanguage) {
+          if (!newLanguage) return;
+          this.handlerSetLanguage(newLanguage);
+        },
+      },
+      'sharedStore.auth.token': {
+        immediate: true,
+        handler(newToken) {
+          if (!newToken) return;
+          this.handlerSetToken(newToken);
+        },
+      },
     },
   };
 </script>
@@ -105,6 +140,10 @@
   .app {
     display: flex;
     flex-direction: column;
+    height: 100%;
+  }
+
+  .app-integrations-dev {
     height: 100vh;
   }
 
