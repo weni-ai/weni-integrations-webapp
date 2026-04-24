@@ -5,7 +5,10 @@
     </span>
     <!-- Select button type -->
     <div>
-      <unnnic-label :label="$t('WhatsApp.templates.form_field.buttons__label')" />
+      <unnnic-label
+        class="form-tab-content-buttons__type-select__label"
+        :label="$t('WhatsApp.templates.form_field.buttons__label')"
+      />
       <unnnic-select-smart
         :disabled="disableInputs"
         :class="{
@@ -449,6 +452,10 @@
           background-color: $unnnic-color-neutral-light;
         }
       }
+
+      &__label {
+        margin-bottom: $unnnic-spacing-stack-nano;
+      }
     }
 
     &__replies {
@@ -553,10 +560,10 @@
     align-items: center;
 
     &__prefix {
-      margin-right: -$unnnic-border-width-thin;
+      margin-right: -4px;
       box-sizing: border-box;
-      height: $unnnic-font-size-h3;
-      margin-top: 2.4rem;
+      height: calc($unnnic-font-size-h3 - 3px);
+      margin-top: 1.5rem;
       padding: $unnnic-spacing-inline-ant $unnnic-spacing-inline-xs;
       border: 0.0625rem solid $unnnic-color-neutral-soft;
       border-right: none;
@@ -576,7 +583,7 @@
       margin-left: -$unnnic-border-width-thin;
       width: 100%;
 
-      ::v-deep .unnnic-form__label {
+      ::v-deep .unnnic-form-element__label {
         margin-left: -58px;
       }
     }

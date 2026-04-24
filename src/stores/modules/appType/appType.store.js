@@ -174,8 +174,10 @@ export const app_type = defineStore('appType', {
       } catch (err) {
         captureSentryException(err);
         this.errorUpdateAppConfig = err;
+        throw err;
+      } finally {
+        this.loadingUpdateAppConfig = false;
       }
-      this.loadingUpdateAppConfig = false;
     },
     async updateApp({ code, appUuid, payload }) {
       this.loadingUpdateApp = true;

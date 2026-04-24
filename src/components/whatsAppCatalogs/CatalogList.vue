@@ -34,6 +34,7 @@
         :key="index"
         :catalog="catalog"
         :enabledCart="hasCommerceSetting"
+        :catalogStatus="catalog.is_connected"
         @enable="handleEnableCatalog(catalog)"
         @disable="handleDisableCatalog()"
         @toggleCart="toggleCart"
@@ -63,6 +64,7 @@
       "
       :actionPrimaryLabel="$t('WhatsApp.catalog.list.disable_modal.confirm')"
       :actionSecondaryLabel="$t('general.Cancel')"
+      :actionPrimaryLoading="actionPrimaryLoading"
       @click-action-secondary="closeModal"
       @click-action-primary="handleCatalogConfirmation"
     >
@@ -106,6 +108,7 @@
         page: 1,
         pageSize: 15,
         searchTerm: '',
+        actionPrimaryLoading: false,
       };
     },
     mounted() {
@@ -208,8 +211,9 @@
         if (this.connectedCatalog) {
           this.catalogToEnable = catalog;
           this.openModal = true;
+        } else {
+          this.enableCatalog(catalog);
         }
-        this.enableCatalog(catalog);
       },
       handleDisableCatalog() {
         this.openModal = true;
@@ -236,10 +240,15 @@
         this.fetchData(this.page);
       },
       async handleCatalogConfirmation() {
-        await this.disableCatalog();
-        if (!this.errorDisableCatalog && this.catalogToEnable) {
-          await this.enableCatalog(this.catalogToEnable);
-          this.catalogToEnable = null;
+        this.actionPrimaryLoading = true;
+        try {
+          await this.disableCatalog();
+          if (!this.errorDisableCatalog && this.catalogToEnable) {
+            await this.enableCatalog(this.catalogToEnable);
+            this.catalogToEnable = null;
+          }
+        } finally {
+          this.actionPrimaryLoading = false;
         }
       },
       closeModal() {

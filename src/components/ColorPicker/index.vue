@@ -42,5 +42,34 @@
 </script>
 
 <style lang="scss" scoped>
-  @import './styles.scss';
+  $color-picker-size: 22.5px;
+
+  .color-picker {
+    display: flex;
+    gap: $unnnic-space-4;
+
+    &__color {
+      width: $color-picker-size;
+      height: $color-picker-size;
+      border-radius: $unnnic-border-radius-pill;
+    }
+
+    &__input {
+      width: $color-picker-size;
+      height: $color-picker-size;
+      border-radius: $unnnic-border-radius-pill;
+
+      &__icon {
+        font-size: 28px;
+        top: -2px;
+        left: -4px;
+      }
+
+      input {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+      }
+    }
+  }
 </style>

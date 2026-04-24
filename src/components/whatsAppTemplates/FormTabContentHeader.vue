@@ -6,7 +6,10 @@
 
     <div class="form-tab-content-header__inputs">
       <div>
-        <unnnic-label :label="$t('WhatsApp.templates.form_field.header__label')" />
+        <unnnic-label
+          class="form-tab-content-header__inputs__selector__label"
+          :label="$t('WhatsApp.templates.form_field.header__label')"
+        />
         <unnnic-select-smart
           :disabled="disableInputs"
           :class="{
@@ -20,7 +23,10 @@
       </div>
 
       <unnnic-input
-        class="form-tab-content-header__inputs__text-input"
+        :class="{
+          'form-tab-content-header__inputs__text-input': true,
+          'form-tab-content-header__inputs__text-input__disabled': disableInputs,
+        }"
         v-if="headerType === 'TEXT'"
         :placeholder="$t('WhatsApp.templates.form_field.header_text_placeholder')"
         :disabled="disableInputs"
@@ -98,7 +104,6 @@
     },
     methods: {
       handleNewHeaderInput(event) {
-        this.headerText = event.text;
         this.$emit('input-change', {
           fieldName: 'header',
           fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
@@ -167,6 +172,10 @@
         min-width: fit-content;
         width: 25%;
 
+        &__label {
+          margin-bottom: $unnnic-spacing-stack-nano;
+        }
+
         &__disabled {
           cursor: default;
 
@@ -184,7 +193,7 @@
 
       &__text-input {
         flex: 1;
-        margin-top: calc($unnnic-spacing-stack-lg + 6px);
+        margin-top: calc($unnnic-spacing-stack-md + 1px);
       }
 
       &__buttons {

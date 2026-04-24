@@ -46,7 +46,7 @@
     />
   </div>
   <div v-else class="form-tabs__loading">
-    <img class="logo" src="@/assets/svgs/LogoWeniAnimada4.svg" />
+    <unnnic-icon-loading size="64px" />
   </div>
 </template>
 
@@ -97,11 +97,14 @@
         sampleFileData: null,
       };
     },
-    updated() {
+    mounted() {
       this.headerScrollBehavior();
     },
-    beforeDestroy() {
-      window.removeEventListener('wheel', this.handleWheelEvent);
+    beforeUnmount() {
+      const tabHeader = document.getElementsByClassName('tab-content')[0];
+      if (tabHeader) {
+        tabHeader.removeEventListener('wheel', this.listenToWheelEvent, { passive: true });
+      }
     },
     async created() {
       this.dataProcessingLoading = true;
@@ -181,18 +184,19 @@
           this.handleWheelEvent(tabHeader);
         }
       },
-      handleWheelEvent(component) {
-        component.addEventListener(
-          'wheel',
-          (event) => {
-            event.preventDefault();
+      listenToWheelEvent(event) {
+        event.preventDefault();
 
-            component.scrollBy({
-              left: event.deltaY < 0 ? -30 : 30,
-            });
-          },
-          { passive: true },
-        );
+        const tabHeader = document.getElementsByClassName('tab-content')[0];
+
+        if (tabHeader) {
+          tabHeader.scrollBy({
+            left: event.deltaY < 0 ? -30 : 30,
+          });
+        }
+      },
+      handleWheelEvent(component) {
+        component.addEventListener('wheel', this.listenToWheelEvent, { passive: true });
       },
       async fetchAllTemplates() {
         const params = {

@@ -205,6 +205,11 @@
               override_default_response_type: true,
               extras: {
                 sessionInfoVersion: 2,
+                features: [
+                  {
+                    name: 'marketing_messages_lite',
+                  },
+                ],
               },
             },
           );

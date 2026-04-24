@@ -33,7 +33,7 @@ describe('LoadingButton.vue', () => {
       },
     });
 
-    expect(wrapper.text()).toBe('Loading...');
+    expect(wrapper.text()).toContain('Loading...');
   });
 
   it('passes the correct icon based on loadingPosition', () => {

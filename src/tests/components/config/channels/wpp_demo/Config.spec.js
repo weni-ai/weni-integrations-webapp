@@ -53,10 +53,12 @@ describe('Config.vue', () => {
 
   it('should correctly render modal title and description', () => {
     expect(wrapper.find('.wpp-demo-modal').exists()).toBe(true);
-    expect(wrapper.find('span').text()).toContain(
+    expect(wrapper.find('.wpp-demo-modal').text()).toContain(
       wrapper.vm.$t('To be able to use WhatsApp Demo you will be directed to a link.'),
     );
-    expect(wrapper.find('span').text()).toContain(wrapper.vm.$t('WhatsAppDemo.config.description'));
+    expect(wrapper.find('.wpp-demo-modal').text()).toContain(
+      wrapper.vm.$t('WhatsAppDemo.config.description'),
+    );
   });
 
   it('should have buttons that trigger correct methods on click', async () => {

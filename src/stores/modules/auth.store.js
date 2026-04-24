@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import auth from '@/api/auth';
-import window from 'global/window.js';
-import setLocal from '@/utils/storage';
+import { moduleStorage } from '@/utils/storage';
 
 export const auth_store = defineStore('auth', {
   state() {
@@ -25,45 +24,45 @@ export const auth_store = defineStore('auth', {
     async externalLogin({ token }) {
       if (!token) return;
       this.token = token;
-      setLocal('authToken', token);
+      moduleStorage.setItem('authToken', token);
     },
     async selectedOrg({ org }) {
       if (!org) return;
       this.org = org;
-      setLocal('org', org);
+      moduleStorage.setItem('org', org);
     },
     async selectedProject({ project }) {
       if (!project) return;
       this.project = project;
-      setLocal('project', project);
+      moduleStorage.setItem('project', project);
     },
     async selectedFlowOrg({ flowOrg }) {
       if (!flowOrg) return;
       this.flowOrg = flowOrg;
-      setLocal('flowOrg', flowOrg);
+      moduleStorage.setItem('flowOrg', flowOrg);
     },
     retriveAuthToken() {
-      if (window.localStorage) {
-        this.token = window.localStorage.getItem('authToken');
-        setLocal('authToken', window.localStorage.getItem('authToken'));
+      if (moduleStorage.getItem('authToken')) {
+        this.token = moduleStorage.getItem('authToken');
+        moduleStorage.setItem('authToken', moduleStorage.getItem('authToken'));
       }
     },
     retriveSelectedOrg() {
-      if (window.localStorage) {
-        this.org = window.localStorage.getItem('org');
-        setLocal('org', window.localStorage.getItem('org'));
+      if (moduleStorage.getItem('org')) {
+        this.org = moduleStorage.getItem('org');
+        moduleStorage.setItem('org', moduleStorage.getItem('org'));
       }
     },
     retriveSelectedProject() {
-      if (window.localStorage) {
-        this.project = window.localStorage.getItem('project');
-        setLocal('project', window.localStorage.getItem('project'));
+      if (moduleStorage.getItem('project')) {
+        this.project = moduleStorage.getItem('project');
+        moduleStorage.setItem('project', moduleStorage.getItem('project'));
       }
     },
     retriveSelectedFlowOrg() {
-      if (window.localStorage) {
-        this.flowOrg = window.localStorage.getItem('flowOrg');
-        setLocal('flowOrg', window.localStorage.getItem('flowOrg'));
+      if (moduleStorage.getItem('flowOrg')) {
+        this.flowOrg = moduleStorage.getItem('flowOrg');
+        moduleStorage.setItem('flowOrg', moduleStorage.getItem('flowOrg'));
       }
     },
     async getFlowToken() {

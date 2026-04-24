@@ -33,7 +33,7 @@
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
-  import setLocal from '@/utils/storage';
+  import { moduleStorage } from '@/utils/storage';
   import getEnv from '@/utils/env';
   export default {
     name: 'gmailSetup',
@@ -82,7 +82,7 @@
         this.login();
       },
       login() {
-        setLocal('code', '');
+        moduleStorage.setItem('code', '');
         const clientId = getEnv('GOOGLE_CLOUD_ID');
         const redirectUri = getEnv('GOOGLE_REDIRECT_URI');
         const scope = 'https://mail.google.com';
@@ -97,7 +97,7 @@
       },
       addTokens(event) {
         const { key, newValue } = event;
-        if (key === 'code') {
+        if (key === 'integrations_code') {
           this.setCode({ code: newValue });
           this.getTokens({ code: newValue });
         }

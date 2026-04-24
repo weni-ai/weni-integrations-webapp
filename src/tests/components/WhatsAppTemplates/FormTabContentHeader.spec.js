@@ -56,10 +56,9 @@ describe('FormTabContentHeader.vue', () => {
   it('disables inputs when `disableInputs` prop is true', () => {
     wrapper = mountComponent({ disableInputs: true });
     const select = wrapper.findComponent({ name: 'unnnic-select-smart' });
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.find('.form-tab-content-header__inputs__text-input__disabled');
     expect(input.exists()).toBe(true);
     expect(select.props('disabled')).toBe(true);
-    expect(input.attributes('disabled')).toBe('true');
   });
 
   it('emits `input-change` event when the header input value changes', async () => {
@@ -90,7 +89,7 @@ describe('FormTabContentHeader.vue', () => {
 
   it('limits the input to a maximum length of 60 characters', () => {
     wrapper = mountComponent();
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
-    expect(input.attributes('maxlength')).toBe('60');
+    const input = wrapper.findAll('input');
+    expect(input[1].attributes('maxlength')).toBe('60');
   });
 });

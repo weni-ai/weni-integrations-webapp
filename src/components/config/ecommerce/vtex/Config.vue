@@ -174,14 +174,16 @@
         'vtexADS',
       ]),
       sellerOptions() {
-        return (
-          [{
+        return [
+          {
             value: '#all',
             label: this.$t('vtex.config.all'),
-          }].concat(this.sellersList.map((item) => ({
+          },
+        ].concat(
+          this.sellersList.map((item) => ({
             value: item,
             label: item,
-          })) || [])
+          })) || [],
         );
       },
       disableSave() {

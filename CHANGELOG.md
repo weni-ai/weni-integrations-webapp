@@ -1,3 +1,174 @@
+3.11.3
+----------
+`2026-04-24 · 1 🎉 · 2 🐛`
+
+### 🎉 New features
+- feat: increase WWC appearance title maximum to 25 characters
+
+### 🐛 Bug fixes
+- fix(wwc): show delete option for saved avatar and custom css
+- fix(ci): use npm ci and honor committed package-lock.json
+
+3.11.2
+----------
+`2026-04-10 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add 'Add to Cart' option in WWC configuration
+
+3.11.1
+----------
+`2026-04-08 · 1 🔧`
+
+### 🔧 Improvements
+- feat(wwc): add voice mode switch for ElevenLabs in IntegrationTab and update translations
+
+3.11.0
+----------
+`2026-03-26 · 4 🔧`
+
+### 🔧 Improvements
+- refactor(rebranding): update platform references from Weni to VTEX Agentic CX across the main integration texts in English, Spanish, and Portuguese
+- chore(ui): upgrade `@weni/unnnic-system` to `3.24.5-redesign.2` and migrate icon and color tokens to the redesign palette
+- refactor(loadings): replace animated Weni loading assets with `unnnic-icon-loading` in loading states
+- refactor(apps): remove the featured apps carousel from the integrations home view
+
+3.10.0
+----------
+`2026-03-19 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add conversation starters configuration to PreferencesTab
+
+3.9.0
+----------
+`2026-03-12 · 1 🎉`
+
+### 🎉 New features
+- feat(wwc): add voice mode configuration for ElevenLabs in IntegrationTab and update translations
+
+3.8.4
+----------
+`2026-02-27 · 1 🔧`
+
+### 🔧 Improvements
+- feat: mmlite feature type
+
+3.8.3
+----------
+`2026-02-13 · 2 🐛`
+
+### 🐛 Bug fixes
+- fix: unnnic disclaimer props
+- fix: rename copy functionality to download in IntegrationTab
+
+3.8.2
+----------
+`2026-01-29 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix: filter WhatsApp templates to include only those with translations
+
+3.8.1
+----------
+`2026-01-23 · 1 🔧`
+
+### 🔧 Improvements
+- chore: update unnnic system to 3.17.1-alpha-teleports.0
+
+3.8.0
+----------
+`2026-01-22 · 1 🐛 · 1 🎉`
+
+### 🐛 Bug fixes
+- fix: change navigate templates button type from alternative to secondary
+
+### 🎉 New features
+- Feat: navigate if same domain switch
+
+3.7.1
+----------
+`2026-01-08 · 2 🐛`
+
+### 🐛 Bug fixes
+- fix: wpp demo buttons colors
+- fix: handle null values for inputTextFieldHint and update iframe allow attribute
+
+3.7.0
+----------
+`2025-12-11 · 1 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix(AccountTab.vue): update mmlite onboarding featureType and version
+
+### 🔧 Improvements
+- Feat: refactor and redesign wwc config
+
+3.6.1
+----------
+`2025-12-01 · 1 🐛 · 1 🔧 · 2 🎉`
+
+### 🐛 Bug fixes
+- Fix: update URL in OtherApps to show all flows configs
+
+### 🔧 Improvements
+- Refactor: update mmlite embedded extra
+
+### 🎉 New feature
+- Feat: add Weni WebChat version 2
+- Feat: add a guard to the embedded WebChat script to prevent multiple injections
+
+3.5.1
+----------
+`2025-11-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: remove character limit validation in Email setup fields
+
+3.5.0
+----------
+`2025-12-24 · 1 🎉`
+
+### 🎉 New feature
+- Update Unnnic System to 3.11.0
+
+3.4.10
+----------
+`2025-11-21 · 1 🎉`
+
+### 🎉 New feature
+- Feat: add WhatsApp voice calling config
+
+3.4.6
+----------
+`2025-10-15 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: enabling catalog logic when catalog is not set previously
+
+3.4.5
+----------
+`2025-10-15 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: enabling catalog flow
+
+3.4.4
+----------
+`2025-09-25 · 1 🐛`
+
+### 🐛 Bug fixes
+- Fix: Gmail app identification code key
+
+3.4.3
+----------
+`2025-09-11 · 3 🐛`
+
+### 🐛 Bug fixes
+- Fix: scroll on language select tab in templates
+- Fix: HTML unicode for the generated Weni Web Chat script
+- Fix: remove drawer details view for Gmail app
+
 3.4.2
 ----------
 `2025-08-12 · 2 🎉`

@@ -1,6 +1,20 @@
 <template>
   <div class="account-tab">
     <div class="account-tab__content">
+      <section
+        v-if="isProjectWithVoiceCalling"
+        :class="[
+          'account-tab__voice-calling',
+          { 'account-tab__voice-calling--disabled': updatingVoiceCallingStatus },
+        ]"
+      >
+        <unnnic-switch
+          v-model="voiceCallingEnabled"
+          :textRight="$t('WhatsApp.config.account.config.voice_calling.label')"
+          @update:modelValue="handleVoiceCallingChange"
+        />
+      </section>
+
       <div class="account-tab__content__info">
         <div class="account-tab__content__info__templates">
           <div class="account-tab__content__info__templates__buttons">
@@ -11,7 +25,7 @@
             <unnnic-button
               class="account-tab__content__info__templates__buttons__button"
               @click="navigateToTemplates"
-              type="alternative"
+              type="secondary"
               size="small"
               scheme="feedback-green"
             >
@@ -108,8 +122,8 @@
         <unnnic-disclaimer
           v-if="activeMMLite"
           class="account-tab__content__mmlite__disclaimer"
-          :text="$t('WhatsApp.config.mmlite.disclaimer')"
-          icon="alert-circle-1"
+          :title="$t('WhatsApp.config.mmlite.disclaimer')"
+          type="neutral"
         />
       </div>
     </div>
@@ -168,6 +182,8 @@
       },
     },
     async mounted() {
+      this.voiceCallingEnabled = this.appInfo?.config?.has_calling === true;
+
       window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
       window.setMMLiteToInProgress = this.setMMLiteToInProgress;
 
@@ -175,6 +191,7 @@
     },
     data() {
       return {
+        voiceCallingEnabled: false,
         loadingMMLite: false,
         showCreateCatalogModal: false,
         showConnectCatalogModal: false,
@@ -185,7 +202,7 @@
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps']),
       ...mapActions(ecommerce_store, ['connectVtexCatalog']),
-      ...mapActions(whatsapp_cloud, ['updateMMLiteStatus']),
+      ...mapActions(whatsapp_cloud, ['updateMMLiteStatus', 'changeVoiceCallingStatus']),
       emitClose() {
         this.$emit('close');
       },
@@ -299,7 +316,7 @@
           FB.login(
             function (response) {
               this.changeMMLiteLoadingState(false);
-              if (response.authResponse) {
+              if (response.authResponse && response.authResponse.code) {
                 this.setMMLiteToInProgress();
               }
             },
@@ -307,16 +324,47 @@
               config_id: configId,
               response_type: 'code',
               override_default_response_type: true,
-              extras: { features: [{ name: 'marketing_messages_lite' }] },
+              extras: {
+                sessionInfoVersion: '3',
+                features: [
+                  {
+                    name: 'marketing_messages_lite',
+                  },
+                ],
+                version: 'v2',
+              },
             },
           );
         };
 
         initFacebookSdk(fbAppId, embeddedCallback);
       },
+
+      async handleVoiceCallingChange(isEnabling) {
+        const action = isEnabling ? 'enabled' : 'disabled';
+
+        let successText = this.$t(
+          `WhatsApp.config.account.config.voice_calling.feedback.${action}.success`,
+        );
+        let defaultErrorText = this.$t(
+          `WhatsApp.config.account.config.voice_calling.feedback.${action}.error`,
+        );
+
+        try {
+          await this.changeVoiceCallingStatus({
+            appUuid: this.appInfo.uuid,
+            data: { isEnabled: isEnabling },
+          });
+          this.callAlert({ type: 'success', text: successText });
+        } catch (error) {
+          this.callAlert({ type: 'error', text: this.errorVoiceCallingStatus || defaultErrorText });
+          this.voiceCallingEnabled = !isEnabling;
+        }
+      },
     },
     computed: {
       ...mapState(auth_store, ['project']),
+      ...mapState(whatsapp_cloud, ['updatingVoiceCallingStatus', 'errorVoiceCallingStatus']),
       ...mapState(app_type, ['configuredApps']),
       ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
       QRCodeUrl() {
@@ -444,6 +492,11 @@
           },
         ];
       },
+
+      isProjectWithVoiceCalling() {
+        const projectsWithVoiceCalling = String(getEnv('PROJECTS_WITH_VOICE_CALLING')).split(',');
+        return projectsWithVoiceCalling.includes(this.project);
+      },
     },
   };
 </script>
@@ -453,6 +506,14 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+
+    &__voice-calling {
+      margin-bottom: $unnnic-spacing-stack-sm;
+
+      &--disabled {
+        pointer-events: none;
+      }
+    }
 
     &__content {
       display: flex;

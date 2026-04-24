@@ -5,7 +5,10 @@
     </span>
 
     <unnnic-input
-      class="form-tab-content-footer__input"
+      :class="{
+        'form-tab-content-footer__input': true,
+        'form-tab-content-footer__input__disabled': disableInputs,
+      }"
       :disabled="disableInputs"
       :maxLength="60"
       :modelValue="textInput"

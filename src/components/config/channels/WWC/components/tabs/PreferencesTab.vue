@@ -1,0 +1,383 @@
+<template>
+  <div class="preferences-tab">
+    <div class="preferences-tab__scroll">
+      <div class="preferences-tab__switches">
+        <section class="preferences-tab__section">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.behavior') }}
+          </h3>
+
+          <unnnic-switch
+            v-model="embedded"
+            size="small"
+            :textRight="$t('weniWebChat.config.embedded_mode')"
+          />
+
+          <unnnic-switch
+            v-model="showFullScreenButton"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_fullscreen_button')"
+            :disabled="embedded"
+          />
+
+          <unnnic-switch
+            v-model="startFullScreen"
+            size="small"
+            :textRight="$t('weniWebChat.config.start_with_fullscreen')"
+            :disabled="embedded"
+          />
+
+          <unnnic-switch
+            v-model="displayUnreadCount"
+            size="small"
+            :textRight="$t('weniWebChat.config.unread_messages_indicator')"
+          />
+
+          <unnnic-switch
+            v-model="useConnectionOptimization"
+            size="small"
+            :textRight="$t('weniWebChat.config.use_connection_optimization')"
+          />
+        </section>
+
+        <section class="preferences-tab__section">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.retail') }}
+          </h3>
+
+          <unnnic-switch
+            v-model="conversationStartersPDP"
+            size="small"
+            :textRight="$t('weniWebChat.config.conversation_starters_pdp.label')"
+            :helper="$t('weniWebChat.config.conversation_starters_pdp.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.new') }}</p>
+            </template>
+          </unnnic-switch>
+
+          <unnnic-switch
+            v-model="navigateIfSameDomain"
+            size="small"
+            :textRight="$t('weniWebChat.config.navigate_if_same_domain.label')"
+            :helper="$t('weniWebChat.config.navigate_if_same_domain.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.beta') }}</p>
+            </template>
+          </unnnic-switch>
+
+          <unnnic-switch
+            v-model="addToCart"
+            size="small"
+            :textRight="$t('weniWebChat.config.add_to_cart.label')"
+            :helper="$t('weniWebChat.config.add_to_cart.helper')"
+          >
+            <template #suffix>
+              <p class="preferences-tab__switch-suffix">{{ $t('general.beta') }}</p>
+            </template>
+          </unnnic-switch>
+        </section>
+
+        <section class="preferences-tab__section" v-if="version === '2'">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.media') }}
+          </h3>
+
+          <unnnic-switch
+            v-model="showVoiceRecordingButton"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_voice_recording_button')"
+          />
+
+          <unnnic-switch
+            v-model="showCameraButton"
+            size="small"
+            :textRight="$t('weniWebChat.config.show_camera_button')"
+          />
+        </section>
+
+        <section class="preferences-tab__section">
+          <h3 class="preferences-tab__section-title">
+            {{ $t('weniWebChat.config.history') }}
+          </h3>
+
+          <unnnic-switch
+            v-model="keepHistory"
+            size="small"
+            :textRight="$t('weniWebChat.config.keep_chat_history')"
+          />
+
+          <div class="preferences-tab__contact-timeout">
+            <div class="preferences-tab__contact-timeout-header">
+              <unnnic-switch
+                v-model="enableContactTimeout"
+                size="small"
+                :textRight="$t('weniWebChat.config.contactTimeoutInput.label')"
+              />
+              <unnnic-toolTip
+                class="preferences-tab__contact-timeout-tooltip"
+                :text="$t('weniWebChat.config.contactTimeoutToolTip')"
+                :enabled="true"
+                side="top"
+              >
+                <unnnic-icon-svg
+                  class="preferences-tab__contact-timeout-icon"
+                  icon="help"
+                  size="sm"
+                  scheme="neutral-cloudy"
+                />
+              </unnnic-toolTip>
+            </div>
+
+            <transition name="fade">
+              <unnnic-input
+                v-show="enableContactTimeout"
+                v-model="contactTimeout"
+                class="preferences-tab__contact-timeout-input"
+                mask="##:##"
+                :type="contactTimeoutError ? 'error' : 'normal'"
+                :message="
+                  contactTimeoutError ? $t('weniWebChat.config.contactTimeoutInvalidTime') : ''
+                "
+              />
+            </transition>
+          </div>
+
+          <unnnic-form-element
+            :label="$t('weniWebChat.config.time_between_messages')"
+            :message="$t('weniWebChat.config.time_between_messages_message')"
+          >
+            <unnnic-select-smart
+              :modelValue="timeBetweenMessagesValue"
+              :options="timeBetweenMessagesOptions"
+              :placeholder="$t('weniWebChat.config.time_between_messages_placeholder')"
+              @update:modelValue="handleTimeBetweenMessagesChange"
+            />
+          </unnnic-form-element>
+        </section>
+      </div>
+    </div>
+
+    <div class="preferences-tab__buttons">
+      <unnnic-button
+        type="tertiary"
+        size="large"
+        :text="$t('general.Cancel')"
+        @click="emit('cancel')"
+      />
+      <unnnic-button
+        type="primary"
+        size="large"
+        :text="$t('apps.config.save_changes')"
+        :disabled="contactTimeoutError || loading"
+        :loading="loading"
+        @click="emit('save')"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup>
+  import { ref, computed, watch } from 'vue';
+  import { useI18n } from 'vue-i18n';
+  import { isInvalidTime } from '../../constants';
+
+  const { t } = useI18n();
+
+  const props = defineProps({
+    version: { type: String, default: '1' },
+    initialEmbedded: { type: Boolean, default: false },
+    initialShowFullScreenButton: { type: Boolean, default: false },
+    initialStartFullScreen: { type: Boolean, default: false },
+    initialShowVoiceRecordingButton: { type: Boolean, default: false },
+    initialShowCameraButton: { type: Boolean, default: false },
+    initialDisplayUnreadCount: { type: Boolean, default: false },
+    initialUseConnectionOptimization: { type: Boolean, default: false },
+    initialKeepHistory: { type: Boolean, default: false },
+    initialEnableContactTimeout: { type: Boolean, default: false },
+    initialContactTimeout: { type: String, default: '23:59' },
+    initialTimeBetweenMessages: { type: Number, default: 1 },
+    initialNavigateIfSameDomain: { type: Boolean, default: false },
+    initialConversationStartersPDP: { type: Boolean, default: false },
+    initialAddToCart: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false },
+  });
+
+  const emit = defineEmits([
+    'update:embedded',
+    'update:showFullScreenButton',
+    'update:startFullScreen',
+    'update:showVoiceRecordingButton',
+    'update:showCameraButton',
+    'update:displayUnreadCount',
+    'update:useConnectionOptimization',
+    'update:keepHistory',
+    'update:enableContactTimeout',
+    'update:contactTimeout',
+    'update:timeBetweenMessages',
+    'update:navigateIfSameDomain',
+    'update:conversationStartersPDP',
+    'update:addToCart',
+    'save',
+    'cancel',
+  ]);
+
+  // Refs
+  const embedded = ref(props.initialEmbedded);
+  const showFullScreenButton = ref(props.initialShowFullScreenButton);
+  const startFullScreen = ref(props.initialStartFullScreen);
+  const showVoiceRecordingButton = ref(props.initialShowVoiceRecordingButton);
+  const showCameraButton = ref(props.initialShowCameraButton);
+  const displayUnreadCount = ref(props.initialDisplayUnreadCount);
+  const useConnectionOptimization = ref(props.initialUseConnectionOptimization);
+  const keepHistory = ref(props.initialKeepHistory);
+  const enableContactTimeout = ref(props.initialEnableContactTimeout);
+  const contactTimeout = ref(props.initialContactTimeout);
+  const timeBetweenMessages = ref(props.initialTimeBetweenMessages);
+  const navigateIfSameDomain = ref(props.initialNavigateIfSameDomain);
+  const conversationStartersPDP = ref(props.initialConversationStartersPDP);
+  const addToCart = ref(props.initialAddToCart);
+
+  // Computed
+  const timeBetweenMessagesOptions = computed(() => [
+    { label: t('weniWebChat.config.time_between_messages_option', { count: 1 }), value: '1' },
+    { label: t('weniWebChat.config.time_between_messages_option', { count: 2 }), value: '2' },
+    { label: t('weniWebChat.config.time_between_messages_option', { count: 3 }), value: '3' },
+    { label: t('weniWebChat.config.time_between_messages_option', { count: 4 }), value: '4' },
+  ]);
+
+  const timeBetweenMessagesValue = computed(() => {
+    const option = timeBetweenMessagesOptions.value.find(
+      (opt) => parseInt(opt.value) === timeBetweenMessages.value,
+    );
+    return option ? [option] : [];
+  });
+
+  const contactTimeoutError = computed(() => {
+    if (!enableContactTimeout.value) return false;
+    return isInvalidTime(contactTimeout.value);
+  });
+
+  // Methods
+  function handleTimeBetweenMessagesChange(value) {
+    timeBetweenMessages.value = parseInt(value[0]?.value) || 1;
+  }
+
+  // Watchers
+  watch(embedded, (value) => {
+    emit('update:embedded', value);
+    if (value) {
+      startFullScreen.value = false;
+      showFullScreenButton.value = false;
+    }
+  });
+
+  watch(showFullScreenButton, (value) => emit('update:showFullScreenButton', value));
+  watch(startFullScreen, (value) => emit('update:startFullScreen', value));
+  watch(showVoiceRecordingButton, (value) => emit('update:showVoiceRecordingButton', value));
+  watch(showCameraButton, (value) => emit('update:showCameraButton', value));
+  watch(displayUnreadCount, (value) => emit('update:displayUnreadCount', value));
+  watch(useConnectionOptimization, (value) => emit('update:useConnectionOptimization', value));
+  watch(keepHistory, (value) => emit('update:keepHistory', value));
+  watch(navigateIfSameDomain, (value) => emit('update:navigateIfSameDomain', value));
+  watch(conversationStartersPDP, (value) => emit('update:conversationStartersPDP', value));
+  watch(addToCart, (value) => emit('update:addToCart', value));
+
+  watch(enableContactTimeout, (value) => {
+    emit('update:enableContactTimeout', value);
+    if (!value) {
+      contactTimeout.value = '00:00';
+    } else if (contactTimeout.value === '00:00') {
+      contactTimeout.value = '23:59';
+    }
+  });
+
+  watch(contactTimeout, (value) => emit('update:contactTimeout', value));
+  watch(timeBetweenMessages, (value) => emit('update:timeBetweenMessages', value));
+</script>
+
+<style lang="scss" scoped>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
+  .preferences-tab {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__scroll {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      scrollbar-gutter: stable;
+      padding-bottom: $unnnic-space-6;
+      flex: 1;
+    }
+
+    &__switches {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-space-4;
+    }
+
+    &__section {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-space-3;
+    }
+
+    &__section-title {
+      font: $unnnic-font-display-3;
+      margin: 0;
+      margin-bottom: $unnnic-space-1;
+      color: $unnnic-color-fg-emphasized;
+    }
+
+    &__contact-timeout {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-spacing-stack-xs;
+    }
+
+    &__contact-timeout-header {
+      display: flex;
+      align-items: center;
+    }
+
+    &__contact-timeout-icon {
+      margin-left: $unnnic-space-1;
+    }
+
+    &__buttons {
+      display: flex;
+      gap: $unnnic-space-3;
+      justify-content: center;
+      padding: $unnnic-space-6 0;
+      margin-top: auto;
+
+      :deep(.unnnic-button) {
+        width: 100% !important;
+      }
+    }
+
+    &__switch-suffix {
+      display: inline-block;
+      border-radius: $unnnic-radius-1;
+      background: $unnnic-color-teal-100;
+      padding: 0 $unnnic-space-1;
+      color: $unnnic-color-fg-active;
+      font: $unnnic-font-caption-1;
+      margin: 0;
+      border: $unnnic-border-width-thinner solid $unnnic-color-teal-100;
+      margin-left: $unnnic-space-1;
+    }
+  }
+</style>

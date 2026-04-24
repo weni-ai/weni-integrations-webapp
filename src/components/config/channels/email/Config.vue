@@ -137,6 +137,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { auth_store } from '@/stores/modules/auth.store';
   import { mapActions, mapState } from 'pinia';
+  import { useEventStore } from '@/stores/event.store';
   import unnnic from '@weni/unnnic-system';
 
   export default {
@@ -156,7 +157,7 @@
         },
 
         smtp_port: {
-          value: this.app.config.smtp_port || null,
+          value: this.app.config.smtp_port ? String(this.app.config.smtp_port) : null,
           error: null,
         },
 
@@ -166,7 +167,7 @@
         },
 
         imap_port: {
-          value: this.app.config.imap_port || null,
+          value: this.app.config.imap_port ? String(this.app.config.imap_port) : null,
           error: null,
         },
 
@@ -187,6 +188,7 @@
     },
     methods: {
       ...mapActions(app_type, ['updateAppConfig', 'errorUpdateAppConfig']),
+      ...mapActions(useEventStore, ['emit']),
       selectType(type) {
         this.selectedType = type;
       },
@@ -204,45 +206,62 @@
           channeltype_code: 'EM',
         };
 
+        let thereIsError = false;
+
         for (let key in payloadGeneric.config) {
           this.errorFor(key);
+          if (this.$data[key].error) {
+            thereIsError = true;
+          }
         }
+
         const data = {
           code: this.app.code,
           appUuid: this.app.uuid,
           payload: payloadGeneric,
         };
 
-        if (this.selectedType === 'other') {
-          try {
-            await this.updateAppConfig(data);
-            if (this.errorUpdateAppConfig) {
-              throw new Error(this.errorUpdateAppConfig);
-            }
-            unnnic.unnnicCallAlert({
-              props: {
-                text: this.$t('apps.config.integration_success'),
-                type: 'success',
-              },
-              seconds: 3,
-            });
-          } catch (err) {
-            let errorMessage = this.$t('apps.details.status_error');
+        if (thereIsError) {
+          return;
+        }
 
-            if (err.response?.status === 400) {
-              this.invalidToken = true;
-              errorMessage = this.$t('telegram.config.errors.invalidToken');
-            }
+        try {
+          await this.updateAppConfig(data);
 
-            unnnic.unnnicCallAlert({
-              props: {
-                text: errorMessage,
-                type: 'error',
-              },
-              seconds: 3,
-            });
-          } finally {
-            this.emit('updateGrid');
+          unnnic.unnnicCallAlert({
+            props: {
+              text: this.$t('apps.config.integration_success'),
+              type: 'success',
+            },
+            seconds: 3,
+          });
+
+          this.emit('updateGrid');
+        } catch (err) {
+          let errorMessage = this.$t('apps.details.status_error');
+
+          if (err.response?.status === 400) {
+            this.invalidToken = true;
+            errorMessage = this.$t('telegram.config.errors.invalidToken');
+          }
+
+          unnnic.unnnicCallAlert({
+            props: {
+              text: errorMessage,
+              type: 'error',
+            },
+            seconds: 3,
+          });
+
+          const errors = err.response?.data?.config;
+
+          if (errors && typeof errors === 'object') {
+            for (let key in errors) {
+              const value = errors[key];
+              if (typeof value?.[0] === 'string') {
+                this.$data[key].error = value[0];
+              }
+            }
           }
         }
       },
@@ -254,14 +273,12 @@
         if (item.value === null && this.disableValidate) {
           return;
         }
+
         if (!(item.value !== null && item.value.trim())) {
           this.$data[key].error = this.$t('errors.empty_input');
           return;
         }
-        if (item.value.length > 20) {
-          this.$data[key].error = 'By default, the maximum is 20 characters.';
-          return;
-        }
+
         this.$data[key].error = null;
         if (!this.app.config.token) {
           this.disableValidate = false;

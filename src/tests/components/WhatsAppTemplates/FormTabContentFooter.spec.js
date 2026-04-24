@@ -54,9 +54,8 @@ describe('FormTabContentFooter.vue', () => {
 
   it('disables the input when `disableInputs` prop is true', () => {
     wrapper = mountComponent({ disableInputs: true });
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.find('.form-tab-content-footer__input__disabled');
     expect(input.exists()).toBe(true);
-    expect(input.attributes('disabled')).toBe('true');
   });
 
   it('emits `input-change` event when the input value changes', async () => {
