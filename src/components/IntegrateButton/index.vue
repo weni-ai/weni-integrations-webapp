@@ -96,7 +96,7 @@
 
         if (code === 'wwc') {
           payload.config = {
-            version: '2',
+            version: '3',
             useConnectionOptimization: true,
           };
         }
