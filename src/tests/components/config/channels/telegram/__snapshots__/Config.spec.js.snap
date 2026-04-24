@@ -14,7 +14,7 @@ exports[`Config.vue > matches the snapshot 1`] = `
         <p data-v-b52fcb11="" class="unnnic-label__label">Token</p>
         <!---->
       </section>
-      <div data-v-227e7338="" data-v-2dd04313="" class="text-input size--md unnnic-form-input" hascloudycolor="false" mask=""><input data-v-11e89257="" data-v-227e7338="" class="unnnic-form-input input-itself input size-md normal unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" showclear="false" type="text" value="valid-token">
+      <div data-v-227e7338="" data-v-2dd04313="" class="text-input size--md unnnic-form-input" hascloudycolor="false" mask=""><input data-v-043812be="" data-v-227e7338="" class="unnnic-form-input input-itself input size-md normal unnnic-form-input input-itself" hascloudycolor="false" placeholder="" iconleft="" iconright="" iconleftclickable="false" iconrightclickable="false" disabled="" showclear="false" type="text" value="valid-token">
         <!---->
         <section data-v-227e7338="" class="icon-right-container">
           <!---->
@@ -24,15 +24,15 @@ exports[`Config.vue > matches the snapshot 1`] = `
       <!---->
     </section>
   </div>
-  <div data-v-30bfe664="" class="app-config-telegram__settings__buttons"><button data-v-b3d77bce="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary app-config-telegram__settings__buttons__cancel">
+  <div data-v-30bfe664="" class="app-config-telegram__settings__buttons"><button data-v-fb18c550="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__cancel unnnic-button unnnic-button--size-large unnnic-button--tertiary app-config-telegram__settings__buttons__cancel">
       <!---->
       <!---->
-      <!----><span data-v-b3d77bce="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label"> Cancel</span>
+      <!----><span data-v-fb18c550="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label"> Cancel</span>
       <!---->
-    </button><button data-v-b3d77bce="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary app-config-telegram__settings__buttons__save" disabled="">
+    </button><button data-v-fb18c550="" data-v-30bfe664="" class="app-config-telegram__settings__buttons__save unnnic-button unnnic-button--size-large unnnic-button--secondary app-config-telegram__settings__buttons__save" disabled="">
       <!---->
       <!---->
-      <!----><span data-v-b3d77bce="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label"> Validate</span>
+      <!----><span data-v-fb18c550="" class="unnnic-button__label" style="visibility: visible;" data-testid="button-label"> Validate</span>
       <!---->
     </button></div>
 </div>"
