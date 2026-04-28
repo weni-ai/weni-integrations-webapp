@@ -1,3 +1,10 @@
+3.11.4
+----------
+`2026-04-24 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix(wwc): send empty string when clearing subtitle and other appearance text fields
+
 3.11.3
 ----------
 `2026-04-24 · 1 🎉 · 2 🐛`
