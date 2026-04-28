@@ -79,7 +79,7 @@
           </unnnic-switch>
         </section>
 
-        <section class="preferences-tab__section" v-if="version === '2'">
+        <section class="preferences-tab__section" v-if="isVersionTwoOrAbove">
           <h3 class="preferences-tab__section-title">
             {{ $t('weniWebChat.config.media') }}
           </h3>
@@ -258,6 +258,8 @@
     if (!enableContactTimeout.value) return false;
     return isInvalidTime(contactTimeout.value);
   });
+
+  const isVersionTwoOrAbove = computed(() => Number(props.version) >= 2);
 
   // Methods
   function handleTimeBetweenMessagesChange(value) {
