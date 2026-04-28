@@ -276,10 +276,10 @@
       payload: {
         config: {
           title: config.title,
-          subtitle: config.subtitle || null,
-          initPayload: config.initPayload || null,
-          tooltipMessage: config.tooltipMessage || null,
-          inputTextFieldHint: config.inputTextFieldHint || null,
+          subtitle: config.subtitle || '',
+          initPayload: config.initPayload || '',
+          tooltipMessage: config.tooltipMessage || '',
+          inputTextFieldHint: config.inputTextFieldHint || '',
           showFullScreenButton: config.showFullScreenButton,
           displayUnreadCount: config.displayUnreadCount,
           timeBetweenMessages: config.timeBetweenMessages,

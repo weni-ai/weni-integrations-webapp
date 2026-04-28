@@ -1,3 +1,17 @@
+3.11.5
+----------
+`2026-04-28 · 1 🔧`
+
+### 🔧 Improvements
+- feat(wwc): add v3 webchat script URL and make it default for new apps
+
+3.11.4
+----------
+`2026-04-24 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix(wwc): send empty string when clearing subtitle and other appearance text fields
+
 3.11.3
 ----------
 `2026-04-24 · 1 🎉 · 2 🐛`

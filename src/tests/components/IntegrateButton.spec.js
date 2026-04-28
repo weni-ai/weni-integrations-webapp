@@ -67,6 +67,22 @@ describe('IntegrateButton.vue', () => {
     expect(wrapper.vm.loadingCreateApp).toBe(false);
   });
 
+  it('creates wwc apps with v3 default config', async () => {
+    const createAppSpy = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue({});
+
+    await wrapper.vm.addApp({ code: 'wwc', config_design: 'popup' });
+    expect(createAppSpy).toHaveBeenCalledWith({
+      code: 'wwc',
+      payload: {
+        project_uuid: 'test-project',
+        config: {
+          version: '3',
+          useConnectionOptimization: true,
+        },
+      },
+    });
+  });
+
   it('calls callErrorModal when errorCreateApp is present', async () => {
     const errorModalSpy = vi.spyOn(wrapper.vm, 'callErrorModal');
     Object.defineProperty(wrapper.vm, 'errorCreateApp', {

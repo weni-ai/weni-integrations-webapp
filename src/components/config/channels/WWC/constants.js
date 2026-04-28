@@ -3,6 +3,7 @@ export const DEFAULT_COLOR = '#009E96';
 export const WEBCHAT_SCRIPT_URLS = {
   v1: 'https://storage.googleapis.com/push-webchat/wwc-latest.js',
   v2: 'https://cdn.cloud.weni.ai/webchat-latest.umd.js',
+  v3: 'https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js',
 };
 
 export const TIME_BETWEEN_MESSAGES_OPTIONS = [
@@ -50,7 +51,7 @@ export function generateScriptCode(config) {
   if (!config?.script) return '';
 
   const version = config.version ?? '1';
-  const scriptUrl = version === '2' ? WEBCHAT_SCRIPT_URLS.v2 : WEBCHAT_SCRIPT_URLS.v1;
+  const scriptUrl = WEBCHAT_SCRIPT_URLS[`v${version}`] || WEBCHAT_SCRIPT_URLS.v1;
 
   return `<script>
   (function (d, s, u, w, v) {
