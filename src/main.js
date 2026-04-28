@@ -37,7 +37,7 @@ export default async function mountIntegrationsApp({ containerId = 'app', initia
   if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
       dsn: getEnv('SENTRY_DSN'),
-      integrations: [Sentry.browserTracingIntegration({ router }), Sentry.replayIntegration()],
+      integrations: [Sentry.browserTracingIntegration({ router })],
       logErrors: true,
     });
   }
