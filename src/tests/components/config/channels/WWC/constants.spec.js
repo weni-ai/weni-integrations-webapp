@@ -19,11 +19,12 @@ describe('WWC constants', () => {
   });
 
   describe('WEBCHAT_SCRIPT_URLS', () => {
-    it('should have v1 and v2 URLs', () => {
+    it('should have v1, v2 and v3 URLs', () => {
       expect(WEBCHAT_SCRIPT_URLS.v1).toBe(
         'https://storage.googleapis.com/push-webchat/wwc-latest.js',
       );
       expect(WEBCHAT_SCRIPT_URLS.v2).toBe('https://cdn.cloud.weni.ai/webchat-latest.umd.js');
+      expect(WEBCHAT_SCRIPT_URLS.v3).toBe('https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js');
     });
   });
 
@@ -98,8 +99,23 @@ describe('WWC constants', () => {
       expect(result).toContain('https://test.script.url');
     });
 
+    it('should generate script code for v3', () => {
+      const config = { script: 'https://test.script.url', version: '3' };
+      const result = generateScriptCode(config);
+
+      expect(result).toContain('https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js');
+      expect(result).toContain('https://test.script.url');
+    });
+
     it('should default to v1 if version is not specified', () => {
       const config = { script: 'https://test.script.url' };
+      const result = generateScriptCode(config);
+
+      expect(result).toContain('https://storage.googleapis.com/push-webchat/wwc-latest.js');
+    });
+
+    it('should fall back to v1 for unknown versions', () => {
+      const config = { script: 'https://test.script.url', version: '99' };
       const result = generateScriptCode(config);
 
       expect(result).toContain('https://storage.googleapis.com/push-webchat/wwc-latest.js');

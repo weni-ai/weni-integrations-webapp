@@ -80,7 +80,7 @@ describe('PreferencesTab', () => {
       expect(wrapper.find('.preferences-tab__switches').exists()).toBe(true);
     });
 
-    it('should render three sections (behavior, media and history)', () => {
+    it('should render three sections when version is v1 (behavior, retail, history)', () => {
       const sections = wrapper.findAll('.preferences-tab__section');
       expect(sections.length).toBe(3);
     });
@@ -329,6 +329,38 @@ describe('PreferencesTab', () => {
   describe('contact timeout header', () => {
     it('should render contact timeout header', () => {
       expect(wrapper.find('.preferences-tab__contact-timeout-header').exists()).toBe(true);
+    });
+  });
+
+  describe('version-based media section', () => {
+    it('should not render media section when version is v1', () => {
+      wrapper = createWrapper({ version: '1' });
+      const sections = wrapper.findAll('.preferences-tab__section');
+      expect(sections.length).toBe(3);
+      const switches = wrapper.findAll('unnnic-switch-stub');
+      expect(switches.length).toBe(10);
+    });
+
+    it('should render media section when version is v2', () => {
+      wrapper = createWrapper({ version: '2' });
+      const sections = wrapper.findAll('.preferences-tab__section');
+      expect(sections.length).toBe(4);
+      const switches = wrapper.findAll('unnnic-switch-stub');
+      expect(switches.length).toBe(12);
+    });
+
+    it('should render media section when version is v3', () => {
+      wrapper = createWrapper({ version: '3' });
+      const sections = wrapper.findAll('.preferences-tab__section');
+      expect(sections.length).toBe(4);
+      const switches = wrapper.findAll('unnnic-switch-stub');
+      expect(switches.length).toBe(12);
+    });
+
+    it('should fall back to hiding media section when version is not numeric', () => {
+      wrapper = createWrapper({ version: 'not-a-number' });
+      const sections = wrapper.findAll('.preferences-tab__section');
+      expect(sections.length).toBe(3);
     });
   });
 });
