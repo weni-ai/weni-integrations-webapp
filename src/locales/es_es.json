@@ -28,8 +28,8 @@
       "february": "Febrero",
       "march": "Marzo",
       "april": "Abril",
-      "may": "Mayo",
       "june": "Junio",
+      "may": "Mayo",
       "july": "Julio",
       "august": "Agosto",
       "september": "Septiembre",
@@ -65,11 +65,11 @@
       },
       "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde.",
       "search": {
+        "placeholder": "Buscar",
         "empty_title": "Wow, no pudimos encontrar esta cosa de",
         "empty_description": "Pero puedes ver todas nuestras integraciones pinchando",
         "empty_link": "aquí",
-        "results": "Resultados para",
-        "placeholder": "Buscar"
+        "results": "Resultados para"
       },
       "action": {
         "edit": "Editar",
@@ -217,6 +217,10 @@
       "conversation_starters_pdp": {
         "label": "Preguntas sugeridas por IA",
         "helper": "Muestra botones de interacción rápida en la página del producto. La IA analiza el SKU para sugerir automáticamente las consultas más relevantes de los clientes."
+      },
+      "add_to_cart": {
+        "label": "Add to cart on store",
+        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a Webchat-managed cart. Recommended for stores with custom cart or checkout flows."
       },
       "main_color": "Color principal",
       "save_changes": "Guardar los cambios",
@@ -414,15 +418,15 @@
             "quantity": "Cantidad",
             "business": "Negocio",
             "user": "Usuario",
-            "authentication": "Autenticación",
             "marketing": "Marketing",
             "marketing_lite": "Marketing Lite",
-            "service": "Servicio",
             "utility": "Utilidad",
+            "authentication": "Autenticación",
+            "service": "Servicio",
             "category": "Categoría"
           },
-          "after_label": "Datos después del cambio de precio",
-          "before_label": "Datos antes del cambio de precio"
+          "before_label": "Datos antes del cambio de precio",
+          "after_label": "Datos después del cambio de precio"
         },
         "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte.",
         "report": {
@@ -598,8 +602,8 @@
           "category": "Categoría"
         },
         "header": {
-          "description": "La siguiente tabla muestra las plantillas de mensajes configuradas actualmente para este número.",
-          "title": "Plantillas de WhatsApp"
+          "title": "Plantillas de WhatsApp",
+          "description": "La siguiente tabla muestra las plantillas de mensajes configuradas actualmente para este número."
         }
       },
       "form": {
@@ -1043,15 +1047,15 @@
       "description": "Seleccione el número de WhatsApp, ingrese el subdominio, AppKey y AppToken",
       "subdomain": "Subdominio",
       "subdomain_placeholder": "Ej: tienda.myvtex.com",
+      "whatsapp_channel": "Numero WhatsApp",
       "appKey": "AppKey",
       "appKey_placeholder": "Inserta tu AppKey",
       "appToken": "AppToken",
       "appToken_placeholder": "Inserta tu AppToken",
-      "whatsapp_channel": "Numero WhatsApp",
       "guide": {
         "question": "¿No conoces tu AppKey y AppToken?",
-        "link": "haga clic aquí",
-        "question_end": "para acceder a la documentación sobre VTEX y descubrirlo."
+        "question_end": "para acceder a la documentación sobre VTEX y descubrirlo.",
+        "link": "haga clic aquí"
       },
       "invalid_credentials": "Credenciales no válidas para el subdominio dado",
       "error": "Ocurrió un error al intentar integrar con VTEX, inténtelo nuevamente más tarde",
@@ -1115,7 +1119,8 @@
         "sporting_goods": "Tiendas de artículos deportivos",
         "shoe_stores": "Tiendas de zapatos",
         "auto_parts": "Tiendas de autopartes",
-        "other": "Otro"
+        "other": "Otro",
+        "placeholder": "Select a business type"
       }
     },
     "connect_catalog": {
@@ -1183,7 +1188,6 @@
     "WC": "Agregue un bot de WeChat para enviar y recibir mensajes a los usuarios de WeChat de forma gratuita. Sus usuarios necesitarán un dispositivo Android, Windows o iOS y una cuenta de WeChat para enviar y recibir mensajes.",
     "ZVS": "Si tiene un número de SMS de Zenvia, puede conectarlo para comunicarse con sus contactos.",
     "ZVW": "Si tiene un número de WhatsApp de Zenvia, puede conectarlo para comunicarse con sus contactos de WhatsApp.",
-
     "inputs": {
       "KWA": {
         "number": {
