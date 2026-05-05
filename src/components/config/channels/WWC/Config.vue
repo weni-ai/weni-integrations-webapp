@@ -87,14 +87,28 @@
           />
         </template>
 
+        <template v-if="isVoiceModeAvailable" #tab-head-voice-mode>
+          {{ $t('weniWebChat.config.voice_mode.title') }}
+        </template>
+        <template v-if="isVoiceModeAvailable" #tab-panel-voice-mode>
+          <VoiceModeTab
+            :initialVoiceModeEnabled="config.voiceModeEnabled"
+            :initialElevenLabsVoiceId="config.elevenLabsVoiceId"
+            :initialElevenLabsApiKey="config.elevenLabsApiKey"
+            :loading="loadingSave"
+            @update:voiceModeEnabled="updateConfig('voiceModeEnabled', $event)"
+            @update:elevenLabsVoiceId="updateConfig('elevenLabsVoiceId', $event)"
+            @update:elevenLabsApiKey="updateConfig('elevenLabsApiKey', $event)"
+            @save="saveConfig"
+            @cancel="closeConfig"
+          />
+        </template>
+
         <template #tab-head-integration> {{ $t('weniWebChat.config.script') }} </template>
         <template #tab-panel-integration>
           <IntegrationTab
             :appConfig="selectedApp.config"
             :title="config.title"
-            @update:voiceModeEnabled="updateConfig('voiceModeEnabled', $event)"
-            @update:elevenLabsVoiceId="updateConfig('elevenLabsVoiceId', $event)"
-            @update:elevenLabsApiKey="updateConfig('elevenLabsApiKey', $event)"
             :loading="loadingSave"
             @save="saveConfig"
             @cancel="closeConfig"
@@ -139,6 +153,7 @@
   import { DEFAULT_COLOR, formatContactTimeout, parseContactTimeout } from './constants';
   import AppearanceTab from './components/tabs/AppearanceTab.vue';
   import PreferencesTab from './components/tabs/PreferencesTab.vue';
+  import VoiceModeTab from './components/tabs/VoiceModeTab.vue';
   import IntegrationTab from './components/tabs/IntegrationTab.vue';
   import WwcSimulator from './Simulator.vue';
 
@@ -203,7 +218,14 @@
   });
 
   // Computed
-  const configTabs = computed(() => ['appearance', 'preferences', 'integration']);
+  const isVoiceModeAvailable = computed(() => Number(config.version) >= 2);
+
+  const configTabs = computed(() => {
+    const tabs = ['appearance', 'preferences'];
+    if (isVoiceModeAvailable.value) tabs.push('voice-mode');
+    tabs.push('integration');
+    return tabs;
+  });
 
   const chatSubtitle = computed(() => config.subtitle || ' ');
 
