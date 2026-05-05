@@ -43,6 +43,7 @@
             :disabled="!voiceModeEnabled"
             :options="PREDEFINED_VOICES"
             :value="voice.id"
+            :data-testid="`voice-radio-${voice.id}`"
           >
             <section
               class="voice-mode-tab__voice-row-content"
@@ -77,6 +78,7 @@
             :disabled="!voiceModeEnabled"
             :options="PREDEFINED_VOICES"
             value="other"
+            data-testid="voice-radio-other"
           >
             <section
               class="voice-mode-tab__voice-row-content"
