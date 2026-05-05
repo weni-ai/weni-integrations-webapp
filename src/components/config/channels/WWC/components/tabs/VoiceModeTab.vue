@@ -301,6 +301,10 @@
       border-radius: $unnnic-border-radius-md;
       border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
 
+      &:hover {
+        border-color: $unnnic-color-border-emphasized;
+      }
+
       &--disabled {
         cursor: not-allowed;
       }
