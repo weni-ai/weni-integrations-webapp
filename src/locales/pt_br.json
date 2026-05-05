@@ -253,13 +253,24 @@
       "voice_mode": {
         "title": "Modo de voz",
         "enabled": "Ativar modo de voz",
+        "elevenLabsApiKey": {
+          "label": "Token do ElevenLabs",
+          "placeholder": "Cole seu Token aqui"
+        },
         "elevenLabsVoiceId": {
           "label": "ID de voz do ElevenLabs (opcional)",
           "placeholder": "Cole seu Voice ID aqui"
         },
-        "elevenLabsApiKey": {
-          "label": "Token do ElevenLabs",
-          "placeholder": "Cole seu Token aqui"
+        "get_token_here": "Obtenha seu token aqui.",
+        "no_key_text": "Não tem uma chave?",
+        "other_voice": "Outro",
+        "other_voice_placeholder": "Cole o ID da voz",
+        "select_voice": "Selecionar uma voz",
+        "voice_category": {
+          "default_portuguese": "Padrão – Português",
+          "english": "Inglês",
+          "portuguese": "Português",
+          "spanish": "Espanhol"
         }
       }
     },
