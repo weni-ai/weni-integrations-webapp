@@ -257,13 +257,24 @@
       "voice_mode": {
         "title": "Voice Mode",
         "enabled": "Activate voice mode",
+        "elevenLabsApiKey": {
+          "label": "ElevenLabs Token",
+          "placeholder": "Paste your Token here"
+        },
         "elevenLabsVoiceId": {
           "label": "ElevenLabs Voice ID (optional)",
           "placeholder": "Paste your Voice ID here"
         },
-        "elevenLabsApiKey": {
-          "label": "ElevenLabs Token",
-          "placeholder": "Paste your Token here"
+        "get_token_here": "Get your token here.",
+        "no_key_text": "Don't have a key?",
+        "other_voice": "Other",
+        "other_voice_placeholder": "Paste voice ID",
+        "select_voice": "Select a voice",
+        "voice_category": {
+          "default_portuguese": "Default – Portuguese",
+          "english": "English",
+          "portuguese": "Portuguese",
+          "spanish": "Spanish"
         }
       }
     },

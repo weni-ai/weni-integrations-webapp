@@ -17,7 +17,7 @@ module.exports = defineConfig({
     port: 5173,
     historyApiFallback: true,
     hot: true,
-    liveReload: false,
+    liveReload: true,
     compress: true,
   },
   output: {
