@@ -1,3 +1,13 @@
+3.12.0
+----------
+`2026-05-07 · 1 🔧 · 1 🎉`
+
+### 🎉 New features
+- Introduce Dedicated Voice Mode Configuration Tab
+
+### 🔧 Improvements
+- Feat: integrations module federation
+
 3.11.5
 ----------
 `2026-04-28 · 1 🔧`
