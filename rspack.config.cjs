@@ -22,7 +22,7 @@ module.exports = defineConfig({
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: process.env.PUBLIC_PATH_URL,
+    publicPath: (process.env.PUBLIC_PATH_URL || '/').replace(/\/*$/, '/'),
     filename: 'assets/js/[name]-[contenthash].js',
     chunkFilename: 'assets/js/[name]-[contenthash].js',
     assetModuleFilename: 'assets/[name]-[hash][ext]',
@@ -90,28 +90,20 @@ module.exports = defineConfig({
       name: 'integrations',
       filename: 'remoteEntry.js',
       exposes: {
-        './Main': './src/main.js',
+        './main': './src/main.js',
       },
-      remotes: {},
+      remotes: {
+        connect: `connect@${process.env.MODULE_FEDERATION_CONNECT_URL}/remoteEntry.js`,
+      },
       shared: {
         vue: {
           singleton: true,
+          requiredVersion: '^3.0.0',
           eager: true,
-          requiredVersion: pkg.dependencies.vue,
         },
         'vue-i18n': {
           singleton: true,
           requiredVersion: pkg.dependencies['vue-i18n'],
-          eager: true,
-        },
-        'vue-router': {
-          singleton: true,
-          requiredVersion: pkg.dependencies['vue-router'],
-          eager: true,
-        },
-        pinia: {
-          singleton: true,
-          requiredVersion: pkg.dependencies.pinia,
           eager: true,
         },
       },
