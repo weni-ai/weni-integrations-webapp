@@ -53,24 +53,29 @@
         </div>
       </div>
     </div>
+
+    <config-modal ref="directConfigModal" @close="onDirectConfigModalClose" />
   </div>
 </template>
 
 <script>
   import AppGrid from '@/components/AppGrid/index.vue';
   import EmptyApps from '@/components/EmptyApps/index.vue';
+  import ConfigModal from '@/components/config/ConfigModal.vue';
   import { mapState, mapActions } from 'pinia';
   import unnnic from '@weni/unnnic-system';
   import { auth_store } from '@/stores/modules/auth.store';
   import { my_apps } from '@/stores/modules/myApps.store';
+  import { app_type } from '@/stores/modules/appType/appType.store';
   import { useEventStore } from '@/stores/event.store';
 
   export default {
     name: 'Apps',
-    components: { AppGrid, EmptyApps },
+    components: { AppGrid, EmptyApps, ConfigModal },
     data() {
       return {
         searchTerm: '',
+        isFetchingApp: false,
         eventStore: useEventStore(),
       };
     },
@@ -87,12 +92,13 @@
       ...mapState(auth_store, ['project']),
       ...mapState(my_apps, [
         'configuredApps',
-        'errorConfiguredApps',
+        'loadingConfiguredApps',
         'errorConfiguredApps',
         'installedApps',
         'loadingInstalledApps',
         'errorInstalledApps',
       ]),
+      ...mapState(app_type, ['currentApp', 'loadingCurrentApp', 'errorCurrentApp']),
       hasApps: function () {
         if (this.loadingConfiguredApps || this.loadingInstalledApps) {
           return true;
@@ -130,9 +136,57 @@
         return this.filterByName(this.installedApps, this.searchTerm);
       },
     },
+    watch: {
+      '$route.params.appUuid': {
+        handler(appUuid) {
+          if (!appUuid) return;
+          const app = this.configuredApps?.find((a) => a.uuid === this.$route.params.appUuid);
+          if (app) {
+            this.openConfigFromRoute(app);
+          } else {
+            this.fetchAppFromRoute();
+          }
+        },
+        immediate: true,
+      },
+    },
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps', 'getInstalledApps']),
+      ...mapActions(app_type, ['getApp']),
       ...mapActions(useEventStore, ['on', 'off']),
+      openConfigFromRoute(app) {
+        this.$nextTick(() => {
+          this.$refs.directConfigModal?.openModal({ app, isConfigured: true });
+        });
+      },
+      async fetchAppFromRoute() {
+        if (this.isFetchingApp) return;
+        const { appCode, appUuid } = this.$route.params;
+        if (!appCode || !appUuid) return;
+
+        this.isFetchingApp = true;
+        await this.getApp({ code: appCode, appUuid });
+        this.isFetchingApp = false;
+
+        if (this.errorCurrentApp) {
+          unnnic.unnnicCallAlert({
+            props: { text: this.$t('apps.details.status_error'), type: 'error' },
+            seconds: 3,
+          });
+          return;
+        }
+
+        if (this.currentApp) {
+          this.$refs.directConfigModal?.openModal({ app: this.currentApp, isConfigured: true });
+        }
+      },
+      onDirectConfigModalClose() {
+        if (window.history.state?.back) {
+          this.$router.back();
+        } else {
+          this.$router.replace('/apps/my');
+        }
+      },
       filterByName(appList, search) {
         return appList.filter((app) => {
           const appMainName = app.generic ? app.config.channel_name : app.name;
