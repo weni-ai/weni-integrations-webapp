@@ -218,7 +218,7 @@
   });
 
   // Computed
-  const isVoiceModeAvailable = computed(() => Number(config.version) >= 2);
+  const isVoiceModeAvailable = computed(() => Number(config.version) >= 3);
 
   const configTabs = computed(() => {
     const tabs = ['appearance', 'preferences'];

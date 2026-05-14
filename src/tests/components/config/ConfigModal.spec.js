@@ -99,4 +99,25 @@ describe('ConfigModal.vue', () => {
     await wrapper.vm.setConfirmation(true);
     expect(wrapper.vm.needConfirmation).toBe(true);
   });
+
+  describe('close event', () => {
+    it('emits close when closeModal is called and needConfirmation is false', async () => {
+      wrapper.vm.needConfirmation = false;
+      await wrapper.vm.closeModal();
+      expect(wrapper.emitted('close')).toHaveLength(1);
+    });
+
+    it('does not emit close when closeModal is called and needConfirmation is true', async () => {
+      wrapper.vm.needConfirmation = true;
+      await wrapper.vm.closeModal();
+      expect(wrapper.emitted('close')).toBeFalsy();
+    });
+
+    it('emits close when confirmClose is called', async () => {
+      wrapper.vm.needConfirmation = true;
+      await wrapper.vm.closeModal();
+      await wrapper.vm.confirmClose();
+      expect(wrapper.emitted('close')).toHaveLength(1);
+    });
+  });
 });
