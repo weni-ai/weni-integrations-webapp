@@ -1,5 +1,5 @@
 import { createApp, markRaw } from 'vue';
-import { createPinia } from 'pinia';
+import { createPinia, setActivePinia } from 'pinia';
 import Unnnic from '@weni/unnnic-system';
 import '@weni/unnnic-system/dist/style.css';
 import i18n from '@/utils/plugins/i18n';
@@ -33,6 +33,7 @@ export default async function mountIntegrationsApp({ containerId = 'app', initia
   app.config.productionTip = false;
 
   const pinia = createPinia();
+  setActivePinia(pinia);
 
   if (getEnv('USE_SENTRY') && getEnv('SENTRY_DSN')) {
     Sentry.init({
