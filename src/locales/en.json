@@ -369,7 +369,7 @@
         "contact_info": "Contact Information",
         "conversations": "Conversations",
         "templates": "Templates",
-        "webhook_info": "Webhook"
+        "account_verification": "Account verification",        "webhook_info": "Webhook"
       },
       "description": {
         "text": "Learn more about how to increase your daily message limit in WhatsApp",
@@ -396,6 +396,24 @@
       },
       "billing": {
         "title": "Billing Information"
+      },
+      "account_verification": {
+        "disclaimer": {
+          "description": "Your account hasn't reached the minimum usage required to request verification. Keep using the channel, account verification will be available automatically once you reach 50 conversations or 50 templates sent.",
+          "title": "Verification not available yet"
+        },
+        "disclaimer_limit_reached": {
+          "description": "You've reached the maximum number of verification attempts. Please contact our support team for assistance.",
+          "title": "Submission limit reached"
+        },
+        "disclaimer_reviewing": {
+          "description": "This process takes an average of 48 hours. You'll receive an email as soon as the result is available.",
+          "title": "Your documents are being reviewed by Meta"
+        },
+        "disclaimer_verified": {
+          "description": "Your business has been verified by Meta. You can now access WhatsApp's advanced features and grow your presence on the channel.",
+          "title": "Your account is verified"
+        }
       },
       "webhook_info": {
         "input": {

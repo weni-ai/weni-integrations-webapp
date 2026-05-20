@@ -365,6 +365,7 @@
         "contact_info": "Informações de Contato",
         "conversations": "Conversas",
         "templates": "Templates",
+        "account_verification": "Verificação de conta",
         "webhook_info": "Webhook"
       },
       "description": {
@@ -392,6 +393,24 @@
       },
       "billing": {
         "title": "Informações de pagamento"
+      },
+      "account_verification": {
+        "disclaimer": {
+          "description": "Sua conta ainda não atingiu o uso mínimo necessário para solicitar a verificação. Continue usando o canal, a verificação de conta estará disponível automaticamente quando você atingir 50 conversas ou 50 templates enviados.",
+          "title": "Verificação não disponível ainda"
+        },
+        "disclaimer_limit_reached": {
+          "description": "Você atingiu o número máximo de tentativas de verificação. Entre em contato com nossa equipe de suporte para obter assistência.",
+          "title": "Limite de envios atingido"
+        },
+        "disclaimer_reviewing": {
+          "description": "Este processo leva em média 48 horas. Você receberá um e-mail assim que o resultado estiver disponível.",
+          "title": "Seus documentos estão sendo analisados pela Meta"
+        },
+        "disclaimer_verified": {
+          "description": "Seu negócio foi verificado pela Meta. Agora você pode acessar os recursos avançados do WhatsApp e ampliar sua presença no canal.",
+          "title": "Sua conta está verificada"
+        }
       },
       "webhook_info": {
         "input": {
