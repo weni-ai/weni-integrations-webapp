@@ -20,6 +20,11 @@ const routes = [
         component: () => import('@/views/MyApps/index.vue'),
       },
       {
+        name: 'App Config Direct',
+        path: 'my/configured/:appCode/:appUuid',
+        component: () => import('@/views/MyApps/index.vue'),
+      },
+      {
         name: 'Other Apps',
         path: 'other-apps',
         component: () => import('@/views/OtherApps/index.vue'),

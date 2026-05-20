@@ -11,5 +11,11 @@ exports[`MyApps > matches snapshot 1`] = `
       <div data-v-d693ca5e="" class="my-apps__empty__description__secondary__link">here</div>
     </div>
   </div>
+  <div data-v-7d3d5e15="" data-v-d693ca5e="">
+    <transition-stub data-v-7d3d5e15="" name="fade" appear="false" persisted="false" css="true">
+      <!--v-if-->
+    </transition-stub>
+    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Cancel modifications" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
+  </div>
 </div>"
 `;

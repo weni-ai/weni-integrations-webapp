@@ -275,8 +275,10 @@
 
         if (this.type === 'add' && app.code !== 'email' && app.code !== 'gmail') {
           this.openAppDetails(app.code);
+        } else if (this.type === 'edit') {
+          this.$router.push(`/apps/my/configured/${app.code}/${app.uuid}`);
         } else {
-          this.$refs.configModal.openModal({ app, isConfigured: this.type === 'edit' });
+          this.$refs.configModal.openModal({ app, isConfigured: false });
         }
       },
       appRatingAverage(app) {

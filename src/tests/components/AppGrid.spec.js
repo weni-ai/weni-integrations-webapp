@@ -85,5 +85,71 @@ describe('AppGrid', () => {
       await wrapper.vm.openAppDetails('1234');
       expect(pushMock).toHaveBeenCalledWith('/1234/details');
     });
+
+    describe('openAppModal', () => {
+      const configuredApp = {
+        uuid: 'app-uuid-123',
+        code: 'wwc',
+        name: 'Weni Web Chat',
+        generic: false,
+        icon: null,
+        summary: 'weniWebChat.data.summary',
+        config: {},
+        rating: { average: null },
+        comments_count: 0,
+      };
+
+      const mountForOpenAppModal = (type) =>
+        mount(AppGrid, {
+          props: { section: 'configured', type, apps: [configuredApp] },
+          global: {
+            plugins: [pinia, i18n],
+            mocks: {
+              $router: { push: pushMock },
+              $t: (e) => e,
+            },
+          },
+        });
+
+      it('pushes route to configured app URL when type is "edit"', async () => {
+        pushMock.mockClear();
+        const w = mountForOpenAppModal('edit');
+        await w.vm.openAppModal(configuredApp);
+        expect(pushMock).toHaveBeenCalledWith(
+          `/apps/my/configured/${configuredApp.code}/${configuredApp.uuid}`,
+        );
+      });
+
+      it('calls configModal.openModal when type is "config"', async () => {
+        pushMock.mockClear();
+        const w = mountForOpenAppModal('config');
+        await w.vm.$nextTick();
+
+        const openModalSpy = vi
+          .spyOn(w.vm.$refs.configModal, 'openModal')
+          .mockImplementation(() => {});
+
+        await w.vm.openAppModal(configuredApp);
+
+        expect(openModalSpy).toHaveBeenCalledWith({ app: configuredApp, isConfigured: false });
+        expect(pushMock).not.toHaveBeenCalledWith(
+          expect.stringContaining('/apps/my/configured/'),
+        );
+      });
+
+      it('does nothing when type is "add" and app is generic', async () => {
+        pushMock.mockClear();
+        const genericApp = { ...configuredApp, generic: true };
+        const w = mount(AppGrid, {
+          props: { section: 'configured', type: 'add', apps: [genericApp] },
+          global: {
+            plugins: [pinia, i18n],
+            mocks: { $router: { push: pushMock }, $t: (e) => e },
+          },
+        });
+        await w.vm.openAppModal(genericApp);
+        expect(pushMock).not.toHaveBeenCalled();
+      });
+    });
   });
 });

@@ -87,6 +87,7 @@
         }),
       };
     },
+    emits: ['close'],
     methods: {
       closeModal() {
         if (this.needConfirmation) {
@@ -94,6 +95,7 @@
           return;
         }
         this.show = false;
+        this.$emit('close');
       },
       openModal({ app, isConfigured }) {
         this.type = app.code;
@@ -111,6 +113,7 @@
         this.needConfirmation = false;
         this.showConfirmationModal = false;
         this.show = false;
+        this.$emit('close');
       },
     },
     computed: {
