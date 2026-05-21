@@ -1,0 +1,23 @@
+{
+    "weniWebChat": {
+        "config": {
+            "voice_mode": {
+                "elevenLabsApiKey": {
+                    "label": "Token ElevenLabs",
+                    "placeholder": "Lipește tokenul aici"
+                },
+                "get_token_here": "Obține tokenul aici",
+                "no_key_text": "Nu ai o cheie?",
+                "other_voice": "Altele",
+                "other_voice_placeholder": "Lipește ID-ul vocii",
+                "select_voice": "Selectează o voce",
+                "voice_category": {
+                    "default_portuguese": "Implicit – Portugheză",
+                    "english": "Engleză",
+                    "portuguese": "Portugheză",
+                    "spanish": "Spaniolă"
+                }
+            }
+        }
+    }
+}
