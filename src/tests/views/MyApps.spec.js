@@ -273,9 +273,7 @@ describe('MyApps', () => {
       });
 
       it('calls fetchAppFromRoute when appUuid is in route but app is not in configuredApps', async () => {
-        const fetchSpy = vi
-          .spyOn(MyApps.methods, 'fetchAppFromRoute')
-          .mockImplementation(() => {});
+        const fetchSpy = vi.spyOn(MyApps.methods, 'fetchAppFromRoute').mockImplementation(() => {});
 
         mount(MyApps, {
           global: {

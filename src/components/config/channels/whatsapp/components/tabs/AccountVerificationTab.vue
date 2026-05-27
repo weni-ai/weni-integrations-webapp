@@ -23,7 +23,9 @@
         v-else-if="showDisclaimerBlocked"
         type="error"
         :title="$t('WhatsApp.config.account_verification.disclaimer_limit_reached.title')"
-        :description="$t('WhatsApp.config.account_verification.disclaimer_limit_reached.description')"
+        :description="
+          $t('WhatsApp.config.account_verification.disclaimer_limit_reached.description')
+        "
       />
 
       <unnnic-disclaimer
@@ -51,10 +53,7 @@
           />
         </section>
 
-        <p
-          v-if="hasRejectionReasons"
-          class="account-verification__rejection-reasons"
-        >
+        <p v-if="hasRejectionReasons" class="account-verification__rejection-reasons">
           <span class="account-verification__rejection-reasons__label">
             {{ $t('WhatsApp.config.account_verification.rejection_reasons_label') }}:
           </span>
@@ -91,12 +90,7 @@
             @change="handleFileInputChange"
           />
 
-          <unnnic-button
-            iconLeft="add"
-            type="secondary"
-            size="large"
-            @click="openFilePicker"
-          >
+          <unnnic-button iconLeft="add" type="secondary" size="large" @click="openFilePicker">
             {{ $t('WhatsApp.config.account_verification.upload_files') }}
           </unnnic-button>
 
@@ -106,9 +100,17 @@
           >
             <template #description>
               <ul>
-                <li>{{ $t('WhatsApp.config.account_verification.suggested_documents.item_registration') }}</li>
-                <li>{{ $t('WhatsApp.config.account_verification.suggested_documents.item_articles') }}</li>
-                <li>{{ $t('WhatsApp.config.account_verification.suggested_documents.item_tax') }}</li>
+                <li>
+                  {{
+                    $t('WhatsApp.config.account_verification.suggested_documents.item_registration')
+                  }}
+                </li>
+                <li>
+                  {{ $t('WhatsApp.config.account_verification.suggested_documents.item_articles') }}
+                </li>
+                <li>
+                  {{ $t('WhatsApp.config.account_verification.suggested_documents.item_tax') }}
+                </li>
               </ul>
 
               <span>{{ $t('WhatsApp.config.account_verification.supported_file_types') }}</span>
@@ -203,8 +205,7 @@
       },
       meetsUsageThreshold() {
         return (
-          this.conversationsSum >= USAGE_THRESHOLD ||
-          this.serviceTemplatesCount >= USAGE_THRESHOLD
+          this.conversationsSum >= USAGE_THRESHOLD || this.serviceTemplatesCount >= USAGE_THRESHOLD
         );
       },
       showDisclaimerApproved() {
@@ -272,10 +273,7 @@
 
         const { start, end } = getLastNDaysRange(CONVERSATION_DAYS_RANGE);
 
-        await Promise.all([
-          this.fetchVerification(),
-          this.fetchConversations({ start, end }),
-        ]);
+        await Promise.all([this.fetchVerification(), this.fetchConversations({ start, end })]);
       },
       async fetchVerification() {
         await this.fetchAccountVerification({ appUuid: this.app.uuid });

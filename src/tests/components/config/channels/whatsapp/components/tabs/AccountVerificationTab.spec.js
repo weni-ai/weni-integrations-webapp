@@ -156,10 +156,7 @@ describe('AccountVerificationTab', () => {
   it('lists selected files and removes them from documents', async () => {
     await mountComponent();
 
-    wrapper.vm.documentFiles = [
-      new File(['a'], 'contract.pdf'),
-      new File(['b'], 'cnpj.png'),
-    ];
+    wrapper.vm.documentFiles = [new File(['a'], 'contract.pdf'), new File(['b'], 'cnpj.png')];
     await wrapper.vm.$nextTick();
 
     expect(wrapper.text()).toContain('contract.pdf');
