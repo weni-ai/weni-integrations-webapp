@@ -369,7 +369,8 @@
         "contact_info": "Contact Information",
         "conversations": "Conversations",
         "templates": "Templates",
-        "account_verification": "Account verification",        "webhook_info": "Webhook"
+        "account_verification": "Account verification",
+        "webhook_info": "Webhook"
       },
       "description": {
         "text": "Learn more about how to increase your daily message limit in WhatsApp",
