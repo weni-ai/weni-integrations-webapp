@@ -70,7 +70,7 @@ describe('WhatsappConfig.vue', () => {
     const tabComponent = wrapper.findComponent({ ref: 'tab' });
     expect(tabComponent.exists()).toBe(true);
 
-    expect(wrapper.findAll('.tab-head').length).toBe(4);
+    expect(wrapper.findAll('.tab-head').length).toBe(5);
   });
 
   it('calls closeConfig method when the close button is clicked', async () => {
