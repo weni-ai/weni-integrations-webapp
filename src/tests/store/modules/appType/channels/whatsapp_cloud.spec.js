@@ -17,6 +17,8 @@ vi.mock('@/api/appType/whatsapp_cloud/index', () => ({
     toggleCatalogVisibility: vi.fn(),
     getCommerceSettings: vi.fn(),
     getCatalogProducts: vi.fn(),
+    getAccountVerification: vi.fn(),
+    submitAccountVerification: vi.fn(),
   },
 }));
 
@@ -91,6 +93,77 @@ describe('whatsapp_cloud store', () => {
     expect(store.whatsAppPhoneNumbers).toBeNull();
     expect(store.loadingPhoneNumbers).toBe(false);
     expect(store.errorPhoneNumbers).toBe('Some error');
+    expect(captureSentryException).toHaveBeenCalledWith(mockError);
+  });
+
+  it('should fetch account verification and update state', async () => {
+    const store = whatsapp_cloud();
+    const mockData = {
+      data: {
+        ui_state: 'not_started',
+        can_submit: true,
+        rejection_reasons: [],
+      },
+    };
+    whatsAppCloud.getAccountVerification.mockResolvedValue(mockData);
+
+    await store.fetchAccountVerification({ appUuid: 'app-uuid' });
+
+    expect(store.accountVerification).toEqual(mockData.data);
+    expect(store.loadingAccountVerification).toBe(false);
+    expect(store.errorAccountVerification).toBeNull();
+    expect(whatsAppCloud.getAccountVerification).toHaveBeenCalledWith('app-uuid');
+  });
+
+  it('should handle error when fetching account verification', async () => {
+    const store = whatsapp_cloud();
+    const mockError = new Error('Test Error');
+    mockError.response = { data: { error: 'Some error' } };
+    whatsAppCloud.getAccountVerification.mockRejectedValue(mockError);
+
+    await store.fetchAccountVerification({ appUuid: 'app-uuid' });
+
+    expect(store.accountVerification).toBeNull();
+    expect(store.loadingAccountVerification).toBe(false);
+    expect(store.errorAccountVerification).toBe('Some error');
+    expect(captureSentryException).toHaveBeenCalledWith(mockError);
+  });
+
+  it('should submit account verification documents and refetch status', async () => {
+    const store = whatsapp_cloud();
+    const file = new File(['content'], 'doc.pdf', { type: 'application/pdf' });
+    const verificationResponse = {
+      data: { ui_state: 'pending', can_submit: false },
+    };
+    whatsAppCloud.submitAccountVerification.mockResolvedValue({});
+    whatsAppCloud.getAccountVerification.mockResolvedValue(verificationResponse);
+
+    await store.submitAccountVerification({ appUuid: 'app-uuid', documents: [file] });
+
+    expect(whatsAppCloud.submitAccountVerification).toHaveBeenCalledWith(
+      'app-uuid',
+      expect.any(FormData),
+    );
+    expect(whatsAppCloud.getAccountVerification).toHaveBeenCalledWith('app-uuid');
+    expect(store.accountVerification).toEqual(verificationResponse.data);
+    expect(store.submittingAccountVerification).toBe(false);
+  });
+
+  it('should handle error when submitting account verification', async () => {
+    const store = whatsapp_cloud();
+    const mockError = new Error('Submit Error');
+    mockError.response = { data: { error: 'Submit failed' } };
+    whatsAppCloud.submitAccountVerification.mockRejectedValue(mockError);
+
+    await expect(
+      store.submitAccountVerification({
+        appUuid: 'app-uuid',
+        documents: [new File(['x'], 'a.pdf')],
+      }),
+    ).rejects.toThrow('Submit Error');
+
+    expect(store.submittingAccountVerification).toBe(false);
+    expect(store.errorSubmitAccountVerification).toBe('Submit failed');
     expect(captureSentryException).toHaveBeenCalledWith(mockError);
   });
 });

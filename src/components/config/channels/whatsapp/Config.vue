@@ -69,18 +69,18 @@
           <WebhookTab :app="app" @close="closeConfig" />
         </template>
 
-        <template #tab-head-account_verification>
-          {{ $t('WhatsApp.config.tabs.account_verification') }}
-        </template>
-        <template #tab-panel-account_verification>
-          <AccountVerificationTab :app="app" />
-        </template>
-
         <template #tab-head-conversations>
           {{ $t('WhatsApp.config.tabs.conversations') }}
         </template>
         <template #tab-panel-conversations>
           <ConversationsTab :app="app" @close="closeConfig" />
+        </template>
+
+        <template #tab-head-account_verification>
+          {{ $t('WhatsApp.config.tabs.account_verification') }}
+        </template>
+        <template #tab-panel-account_verification>
+          <AccountVerificationTab :app="app" />
         </template>
       </unnnic-tab>
       <skeleton-loading v-else />
@@ -148,7 +148,7 @@
       ]),
       ...mapState(app_type, ['currentApp', 'loadingCurrentApp', 'errorCurrentApp']),
       configTabs() {
-        return ['account', 'profile', 'webhook_info', 'account_verification', 'conversations'];
+        return ['account', 'profile', 'webhook_info', 'conversations', 'account_verification'];
       },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];

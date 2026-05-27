@@ -395,6 +395,10 @@
         "title": "Informações de pagamento"
       },
       "account_verification": {
+        "checkbox_compliance": "A empresa está em conformidade com a Política Comercial do WhatsApp",
+        "checkbox_legal_entity": "A empresa é uma entidade legal",
+        "checkbox_representative": "O titular da conta é um representante da empresa",
+        "confirm_section_title": "Confirme que você verificou:",
         "disclaimer": {
           "description": "Sua conta ainda não atingiu o uso mínimo necessário para solicitar a verificação. Continue usando o canal, a verificação de conta estará disponível automaticamente quando você atingir 50 conversas ou 50 templates enviados.",
           "title": "Verificação não disponível ainda"
@@ -410,7 +414,25 @@
         "disclaimer_verified": {
           "description": "Seu negócio foi verificado pela Meta. Agora você pode acessar os recursos avançados do WhatsApp e ampliar sua presença no canal.",
           "title": "Sua conta está verificada"
-        }
+        },
+        "documentation_link": "Ver boas práticas de documentação",
+        "fetch_error": "Não foi possível carregar a verificação de conta devido a um problema técnico",
+        "file_too_large": "Cada arquivo deve ter no máximo 5 MB",
+        "invalid_file_type": "Selecione um arquivo PDF, JPEG, JPG ou PNG",
+        "rejection_reasons_label": "Motivos da rejeição",
+        "send": "Enviar",
+        "submit_error": "Não foi possível enviar os documentos devido a um problema técnico",
+        "submit_success": "Documentos enviados com sucesso",
+        "supported_file_types": "Tipos de arquivo compatíveis: PDF, JPEG, JPG, PNG. Tamanho máximo de 5 MB",
+        "suggested_documents": {
+          "item_articles": "Contrato social ou estatuto (ex.: MEI)",
+          "item_registration": "Documento de registro ou licença da empresa (ex.: CNPJ)",
+          "item_tax": "Documento fiscal, conta de consumo ou extrato bancário da empresa",
+          "title": "Documentos sugeridos para o Brasil:"
+        },
+        "upload_files": "Enviar arquivos",
+        "upload_section_description": "Adicione os documentos usados para verificar a empresa, com o nome \"Nome da conta\" visível",
+        "upload_section_title": "Enviar documentos comprobatórios"
       },
       "webhook_info": {
         "input": {

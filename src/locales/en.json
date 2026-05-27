@@ -398,6 +398,10 @@
         "title": "Billing Information"
       },
       "account_verification": {
+        "checkbox_compliance": "The company is in compliance with the WhatsApp Business Policy",
+        "checkbox_legal_entity": "The company is a legal entity",
+        "checkbox_representative": "The account owner is a company representative",
+        "confirm_section_title": "Confirm that you verified:",
         "disclaimer": {
           "description": "Your account hasn't reached the minimum usage required to request verification. Keep using the channel, account verification will be available automatically once you reach 50 conversations or 50 templates sent.",
           "title": "Verification not available yet"
@@ -413,7 +417,25 @@
         "disclaimer_verified": {
           "description": "Your business has been verified by Meta. You can now access WhatsApp's advanced features and grow your presence on the channel.",
           "title": "Your account is verified"
-        }
+        },
+        "documentation_link": "View documentation best practices",
+        "fetch_error": "Account verification couldn't be loaded due to a technical issue",
+        "file_too_large": "Each file must be 5 MB or smaller",
+        "invalid_file_type": "Select a PDF, JPEG, JPG, or PNG file",
+        "rejection_reasons_label": "Rejection reasons",
+        "send": "Send",
+        "submit_error": "Documents couldn't be submitted due to a technical issue",
+        "submit_success": "Documents submitted successfully",
+        "supported_file_types": "Supported file types: PDF, JPEG, JPG, PNG. Maximum size 5 MB",
+        "suggested_documents": {
+          "item_articles": "Articles of association or social contract (e.g., MEI)",
+          "item_registration": "Company registration document or license (e.g., CNPJ)",
+          "item_tax": "Tax document, utility bill, or company bank statement",
+          "title": "Suggested documents for Brazil include:"
+        },
+        "upload_files": "Upload files",
+        "upload_section_description": "Add the documents used to verify the company, with the name \"Account name\" visible",
+        "upload_section_title": "Upload supporting documents"
       },
       "webhook_info": {
         "input": {
