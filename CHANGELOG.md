@@ -1,3 +1,10 @@
+3.13.0
+----------
+`2026-05-28 · 1 🎉`
+
+### 🎉 New features
+- Introduce WhatsApp Product Led Business Verification Configuration Tab
+
 3.12.1
 ----------
 `2026-05-28 · 1 🐛`

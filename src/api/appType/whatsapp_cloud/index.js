@@ -53,4 +53,12 @@ export default {
   disableVoiceCalling(appUuid) {
     return request.$http.patch(`${resource}/${appUuid}/disable_calling/`);
   },
+  getAccountVerification(appUuid) {
+    return request.$http.get(`${resource}/${appUuid}/account-verification/`);
+  },
+  submitAccountVerification(appUuid, formData) {
+    return request.$http.post(`${resource}/${appUuid}/account-verification/`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
 };

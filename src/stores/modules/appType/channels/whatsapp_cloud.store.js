@@ -53,6 +53,13 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
 
       updatingVoiceCallingStatus: false,
       errorVoiceCallingStatus: false,
+
+      accountVerification: null,
+      loadingAccountVerification: false,
+      errorAccountVerification: null,
+
+      submittingAccountVerification: false,
+      errorSubmitAccountVerification: null,
     };
   },
   actions: {
@@ -242,6 +249,39 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
         throw err;
       } finally {
         this.updatingVoiceCallingStatus = false;
+      }
+    },
+    async fetchAccountVerification({ appUuid }) {
+      this.loadingAccountVerification = true;
+      this.errorAccountVerification = null;
+      try {
+        const { data } = await whatsAppCloud.getAccountVerification(appUuid);
+        this.accountVerification = data;
+        this.loadingAccountVerification = false;
+      } catch (err) {
+        captureSentryException(err);
+        this.errorAccountVerification = err.response?.data?.error || err;
+        this.accountVerification = null;
+        this.loadingAccountVerification = false;
+      }
+    },
+    async submitAccountVerification({ appUuid, documents }) {
+      this.submittingAccountVerification = true;
+      this.errorSubmitAccountVerification = null;
+      try {
+        const formData = new FormData();
+        documents.forEach((file) => {
+          formData.append('documents', file);
+        });
+        await whatsAppCloud.submitAccountVerification(appUuid, formData);
+        await this.fetchAccountVerification({ appUuid });
+        this.submittingAccountVerification = false;
+      } catch (err) {
+        console.dir(err);
+        captureSentryException(err);
+        this.errorSubmitAccountVerification = err.response?.data?.error || err;
+        this.submittingAccountVerification = false;
+        throw err;
       }
     },
   },
