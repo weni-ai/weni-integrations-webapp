@@ -127,6 +127,16 @@ const routes = [
     beforeEnter: (to, from, next) => {
       const { code } = to.query;
       moduleStorage.setItem('code', code);
+
+      // When opened as a popup (OAuth flow), the host app may be on a
+      // different origin than this callback (e.g. when integrations is
+      // loaded via Module Federation). localStorage/`storage` events do
+      // not cross origins, so we hand the code back through postMessage.
+      // The receiver validates `event.origin` and the `source` field.
+      if (window.opener) {
+        window.opener.postMessage({ source: 'weni-gmail-oauth', code }, '*');
+      }
+
       if (to.query.next) {
         next(to.query.next);
       } else {
