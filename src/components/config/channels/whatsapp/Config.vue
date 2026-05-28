@@ -75,6 +75,13 @@
         <template #tab-panel-conversations>
           <ConversationsTab :app="app" @close="closeConfig" />
         </template>
+
+        <template #tab-head-account_verification>
+          {{ $t('WhatsApp.config.tabs.account_verification') }}
+        </template>
+        <template #tab-panel-account_verification>
+          <AccountVerificationTab :app="app" />
+        </template>
       </unnnic-tab>
       <skeleton-loading v-else />
     </div>
@@ -83,8 +90,9 @@
 
 <script>
   import AccountTab from './components/tabs/AccountTab.vue';
-  import ProfileTab from './components/tabs/ProfileTab.vue';
+  import AccountVerificationTab from './components/tabs/AccountVerificationTab.vue';
   import ConversationsTab from './components/tabs/ConversationsTab.vue';
+  import ProfileTab from './components/tabs/ProfileTab.vue';
   import WebhookTab from './components/tabs/WebhookTab.vue';
   import skeletonLoading from './loadings/Config.vue';
   import { mapActions, mapState } from 'pinia';
@@ -98,8 +106,9 @@
     name: 'whatsapp-config',
     components: {
       AccountTab,
-      ProfileTab,
+      AccountVerificationTab,
       ConversationsTab,
+      ProfileTab,
       WebhookTab,
       skeletonLoading,
     },
@@ -139,7 +148,7 @@
       ]),
       ...mapState(app_type, ['currentApp', 'loadingCurrentApp', 'errorCurrentApp']),
       configTabs() {
-        return ['account', 'profile', 'webhook_info', 'conversations'];
+        return ['account', 'profile', 'webhook_info', 'conversations', 'account_verification'];
       },
       documentationLink() {
         return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];

@@ -1,3 +1,17 @@
+3.13.0
+----------
+`2026-05-28 · 1 🎉`
+
+### 🎉 New features
+- Introduce WhatsApp Product Led Business Verification Configuration Tab
+
+3.12.1
+----------
+`2026-05-28 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix(gmail): handle OAuth callback postMessage for Module Federation
+
 3.12.0
 ----------
 `2026-05-07 · 1 🔧 · 1 🎉`
