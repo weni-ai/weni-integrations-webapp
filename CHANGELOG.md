@@ -1,3 +1,10 @@
+3.13.1
+----------
+`2026-05-29 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix(nav): use named routes in header tabs to prevent incorrect navigation from configured app routes
+
 3.13.0
 ----------
 `2026-05-28 · 1 🎉`

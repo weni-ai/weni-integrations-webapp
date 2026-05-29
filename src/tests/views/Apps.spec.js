@@ -19,6 +19,21 @@ const routes = [
         path: 'discovery',
         component: Discovery,
       },
+      {
+        name: 'Apps',
+        path: 'my',
+        component: { template: '<div />' },
+      },
+      {
+        name: 'App Config Direct',
+        path: 'my/configured/:appCode/:appUuid',
+        component: { template: '<div />' },
+      },
+      {
+        name: 'Other Apps',
+        path: 'other-apps',
+        component: { template: '<div />' },
+      },
     ],
   },
 ];
