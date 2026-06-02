@@ -1,3 +1,10 @@
+3.13.2
+----------
+`2026-06-02 · 1 🐛`
+
+### 🐛 Bug fixes
+- fix(templates): fix broken WhatsApp template UI
+
 3.13.1
 ----------
 `2026-05-29 · 1 🐛`
