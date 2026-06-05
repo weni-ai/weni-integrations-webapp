@@ -21,7 +21,6 @@ describe('ConversationsTab', () => {
       global: {
         plugins: [i18n, UnnnicSystem, pinia],
         mocks: {
-          $t: (key) => key,
           $router: { replace: vi.fn() },
           unnnic,
         },

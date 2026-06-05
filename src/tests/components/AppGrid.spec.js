@@ -41,7 +41,6 @@ describe('AppGrid', () => {
             ],
             avatar: avatarIcons.channel,
           },
-          $t: (e) => e,
         },
       },
     });
@@ -106,7 +105,6 @@ describe('AppGrid', () => {
             plugins: [pinia, i18n],
             mocks: {
               $router: { push: pushMock },
-              $t: (e) => e,
             },
           },
         });
@@ -142,7 +140,7 @@ describe('AppGrid', () => {
           props: { section: 'configured', type: 'add', apps: [genericApp] },
           global: {
             plugins: [pinia, i18n],
-            mocks: { $router: { push: pushMock }, $t: (e) => e },
+            mocks: { $router: { push: pushMock } },
           },
         });
         await w.vm.openAppModal(genericApp);

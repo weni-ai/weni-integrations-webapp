@@ -26,9 +26,6 @@ describe('Summary.vue', () => {
     wrapper = mount(Summary, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
         methods: {
           fetchTemplateAnalyticsWeek: vi.fn(),
         },
@@ -62,9 +59,6 @@ describe('Summary.vue', () => {
     wrapper = mount(Summary, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
         methods: {
           fetchTemplateAnalyticsWeek: vi.fn(),
         },

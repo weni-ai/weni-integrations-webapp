@@ -12,7 +12,6 @@ describe('AddModal', () => {
           $router: {
             replace: vi.fn(),
           },
-          $t: (e) => e,
         },
       },
     });

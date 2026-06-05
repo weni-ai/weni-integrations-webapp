@@ -131,9 +131,6 @@ describe('FormTabs.vue', () => {
     const wrapper = mount(FormTabs, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem, router],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
       mocks: {
         formMode: 'edit',
