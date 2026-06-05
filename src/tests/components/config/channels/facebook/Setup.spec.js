@@ -31,7 +31,6 @@ describe('FacebookSetup.vue', () => {
         plugins: [pinia, i18n, UnnnicSystem],
         mocks: {
           $router: { replace: vi.fn() },
-          $t: (e) => e,
         },
       },
       props: { app: mockApp },

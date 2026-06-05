@@ -79,21 +79,21 @@
     display: grid;
     gap: $unnnic-spacing-md;
     height: 100%;
-    overflow: hidden;
+    align-items: stretch;
+    gap: $unnnic-space-4;
 
     &__content {
-      display: grid;
-      grid-template-columns: v-bind(gridColumns);
-      width: 100%;
-      height: 100%;
-      gap: $unnnic-spacing-md;
-      overflow: hidden;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     &__preview {
-      position: sticky;
       top: 0;
-      height: auto;
+      right: 0;
+      width: 270px;
+      flex: 0 0 270px;
+      overflow: auto;
     }
   }
 </style>

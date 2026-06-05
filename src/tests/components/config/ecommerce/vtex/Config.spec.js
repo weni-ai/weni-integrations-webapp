@@ -39,7 +39,6 @@ describe('vtex-config Component', () => {
           $router: {
             push: vi.fn(),
           },
-          $t: (e) => e,
         },
       },
     });

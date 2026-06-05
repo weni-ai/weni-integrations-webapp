@@ -1,6 +1,6 @@
 {
   "name": "weni-integrations",
-  "version": "3.12.1",
+  "version": "3.13.2",
   "private": true,
   "type": "module",
   "scripts": {
@@ -29,6 +29,7 @@
     "esbuild": "^0.20.2",
     "global": "^4.4.0",
     "helphero": "^3.9.0",
+    "intl-messageformat": "^11.2.8",
     "libphonenumber-js": "^1.10.56",
     "lodash.debounce": "^4.0.8",
     "lodash.snakecase": "^4.1.1",

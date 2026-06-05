@@ -48,7 +48,6 @@ describe('WhatsAppSetup.vue', () => {
           $router: {
             replace: vi.fn(),
           },
-          $t: (e) => e,
         },
       },
     });

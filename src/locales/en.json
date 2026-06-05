@@ -208,7 +208,7 @@
       "unread_messages_indicator": "Unread messages indicator",
       "keep_chat_history": "Keep chat history",
       "time_between_messages": "Time between messages",
-      "time_between_messages_option": "{ count } second | { count } seconds",
+      "time_between_messages_option": "{count, plural, one {{count} second} other {{count} seconds}}",
       "time_between_messages_message": "Interval between agent messages",
       "navigate_if_same_domain": {
         "label": "Allow Webchat to automatically redirect the page",

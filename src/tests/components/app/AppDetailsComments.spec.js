@@ -25,9 +25,6 @@ describe('AppDetailsComments.vue', () => {
     wrapper = mount(AppDetailsComments, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
       props: {
         appCode,
