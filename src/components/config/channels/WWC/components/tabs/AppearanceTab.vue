@@ -168,6 +168,22 @@
   const cssFiles = ref([]);
   const avatarBase64 = ref(props.initialAvatarBase64);
 
+  function isFetchableCssValue(value) {
+    return (
+      value.startsWith('data:') || value.startsWith('http://') || value.startsWith('https://')
+    );
+  }
+
+  async function customCssToFile(cssValue) {
+    if (!cssValue) return null;
+
+    if (isFetchableCssValue(cssValue)) {
+      return dataUrlToFile(cssValue, 'style.css');
+    }
+
+    return new File([cssValue], 'style.css', { type: 'text/css' });
+  }
+
   // Initialize displayed fields based on initial values
   onMounted(async () => {
     APPEARANCE_FIELDS.forEach((field) => {
@@ -187,6 +203,11 @@
     // Initialize CSS file
     if (props.initialCssFile) {
       cssFiles.value = [props.initialCssFile];
+    } else if (props.initialCustomCss) {
+      const file = await customCssToFile(props.initialCustomCss);
+      if (file) {
+        cssFiles.value = [file];
+      }
     }
   });
 

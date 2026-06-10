@@ -376,14 +376,6 @@
       config.avatarFile = await dataUrlToFile(selectedApp.value.config.profileAvatar, 'avatar.png');
       setTimeout(() => emit('setConfirmation', false), 250);
     }
-
-    if (selectedApp.value.config.customCss) {
-      const file = await dataUrlToFile(selectedApp.value.config.customCss, 'style.css');
-      if (file) {
-        config.customCssFile = file;
-        setTimeout(() => emit('setConfirmation', false), 250);
-      }
-    }
   });
 
   // Watch displayUnreadCount to close simulator when enabled

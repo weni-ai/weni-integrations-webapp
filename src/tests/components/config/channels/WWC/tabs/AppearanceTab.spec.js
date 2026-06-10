@@ -398,6 +398,34 @@ describe('AppearanceTab', () => {
       expect(cssUpload.attributes('files')).toBe('[object File]');
     });
 
+    it('should pass the existing CSS file to the upload area when initialCustomCss is a URL', async () => {
+      wrapper = createWrapper({
+        initialCustomCss: 'https://example.com/custom.css',
+      });
+      await flushPromises();
+
+      const cssUpload = findUploadAreas(wrapper)[1];
+      expect(cssUpload.attributes('files')).toBe('[object File]');
+    });
+
+    it('should pass the existing CSS file to the upload area when initialCustomCss is plain text', async () => {
+      wrapper = createWrapper({
+        initialCustomCss: '.test { color: red; }',
+      });
+      await flushPromises();
+
+      const cssUpload = findUploadAreas(wrapper)[1];
+      expect(cssUpload.attributes('files')).toBe('[object File]');
+    });
+
+    it('should not populate the upload area when initialCustomCss and initialCssFile are missing', async () => {
+      wrapper = createWrapper({ initialCustomCss: null, initialCssFile: null });
+      await flushPromises();
+
+      const cssUpload = findUploadAreas(wrapper)[1];
+      expect(cssUpload.attributes('files') || '').toBe('');
+    });
+
     it('should emit null update:cssFile and update:customCss when the upload area clears the file', async () => {
       const existingCssFile = new File(['body {}'], 'style.css', { type: 'text/css' });
       wrapper = createWrapper({ initialCssFile: existingCssFile });
