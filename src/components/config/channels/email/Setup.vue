@@ -33,8 +33,10 @@
   import { mapActions, mapState } from 'pinia';
   import { auth_store } from '@/stores/modules/auth.store';
   import { email_store } from '@/stores/modules/appType/channels/email.store';
-  import { moduleStorage } from '@/utils/storage';
   import getEnv from '@/utils/env';
+
+  const OAUTH_MESSAGE_SOURCE = 'weni-gmail-oauth';
+
   export default {
     name: 'gmailSetup',
     data() {
@@ -52,15 +54,25 @@
       };
     },
     mounted() {
-      window.addEventListener('storage', this.addTokens);
+      window.addEventListener('message', this.handleAuthMessage);
       this.setLogin(false);
     },
     beforeUnmount() {
-      window.removeEventListener('storage', this.addTokens);
+      window.removeEventListener('message', this.handleAuthMessage);
     },
     computed: {
       ...mapState(auth_store, ['project']),
       ...mapState(email_store, ['loadingTokens', 'tokens', 'code', 'loggedIn']),
+      // Origin of the OAuth callback page. The popup runs on this origin,
+      // which may differ from the host app's origin under Module Federation.
+      // We use it to validate inbound postMessage events.
+      callbackOrigin() {
+        try {
+          return new URL(getEnv('GOOGLE_REDIRECT_URI')).origin;
+        } catch {
+          return null;
+        }
+      },
     },
     watch: {
       loggedIn() {
@@ -82,7 +94,6 @@
         this.login();
       },
       login() {
-        moduleStorage.setItem('code', '');
         const clientId = getEnv('GOOGLE_CLOUD_ID');
         const redirectUri = getEnv('GOOGLE_REDIRECT_URI');
         const scope = 'https://mail.google.com';
@@ -95,12 +106,16 @@
           return;
         }
       },
-      addTokens(event) {
-        const { key, newValue } = event;
-        if (key === 'integrations_code') {
-          this.setCode({ code: newValue });
-          this.getTokens({ code: newValue });
+      handleAuthMessage(event) {
+        if (!this.callbackOrigin || event.origin !== this.callbackOrigin) {
+          return;
         }
+        const data = event.data;
+        if (!data || data.source !== OAUTH_MESSAGE_SOURCE || !data.code) {
+          return;
+        }
+        this.setCode({ code: data.code });
+        this.getTokens({ code: data.code });
       },
       errorFor(key) {
         const item = this.$data[key];

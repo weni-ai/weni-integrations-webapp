@@ -132,9 +132,7 @@ describe('AppGrid', () => {
         await w.vm.openAppModal(configuredApp);
 
         expect(openModalSpy).toHaveBeenCalledWith({ app: configuredApp, isConfigured: false });
-        expect(pushMock).not.toHaveBeenCalledWith(
-          expect.stringContaining('/apps/my/configured/'),
-        );
+        expect(pushMock).not.toHaveBeenCalledWith(expect.stringContaining('/apps/my/configured/'));
       });
 
       it('does nothing when type is "add" and app is generic', async () => {

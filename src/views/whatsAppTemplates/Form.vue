@@ -60,24 +60,21 @@
   .templates-form {
     display: flex;
     height: 100%;
+    align-items: stretch;
+    gap: $unnnic-space-4;
 
     &__content {
       flex: 1;
-      max-width: calc(100vw - 310px);
-      overflow: auto;
       display: flex;
       flex-direction: column;
     }
 
     &__preview {
-      position: fixed;
       top: 0;
       right: 0;
       width: 270px;
       flex: 0 0 270px;
-      height: 100vh;
       overflow: auto;
     }
   }
 </style>
-import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store'; whatsapp_store,

@@ -11,16 +11,8 @@ vi.mock('@/utils/env', () => ({
   default: vi.fn(),
 }));
 
-vi.mock('@/utils/storage', async () => {
-  const actual = await import('@/utils/storage');
-  return {
-    ...actual,
-    moduleStorage: {
-      setItem: vi.fn(),
-      getItem: vi.fn(),
-    },
-  };
-});
+const MOCK_REDIRECT_URI = 'http://localhost/redirect';
+const MOCK_CALLBACK_ORIGIN = 'http://localhost';
 
 // Mock window.open
 Object.defineProperty(window, 'open', {
@@ -42,7 +34,13 @@ describe('EmailSetup.vue', () => {
   });
   setActivePinia(pinia);
 
-  beforeEach(() => {
+  beforeEach(async () => {
+    const getEnv = await import('@/utils/env');
+    getEnv.default.mockImplementation((key) => {
+      if (key === 'GOOGLE_REDIRECT_URI') return MOCK_REDIRECT_URI;
+      return null;
+    });
+
     wrapper = mount(EmailSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
@@ -56,9 +54,6 @@ describe('EmailSetup.vue', () => {
         },
       },
     });
-
-    // Clear all mocks
-    vi.clearAllMocks();
   });
 
   afterEach(() => {
@@ -119,14 +114,12 @@ describe('EmailSetup.vue', () => {
 
   it('opens popup with correct URL when login is called', async () => {
     const getEnv = await import('@/utils/env');
-    const { moduleStorage } = await import('@/utils/storage');
 
     const mockClientId = 'test-client-id';
-    const mockRedirectUri = 'http://localhost/redirect';
 
     getEnv.default.mockImplementation((key) => {
       if (key === 'GOOGLE_CLOUD_ID') return mockClientId;
-      if (key === 'GOOGLE_REDIRECT_URI') return mockRedirectUri;
+      if (key === 'GOOGLE_REDIRECT_URI') return MOCK_REDIRECT_URI;
       return null;
     });
 
@@ -135,14 +128,13 @@ describe('EmailSetup.vue', () => {
 
     wrapper.vm.login();
 
-    expect(moduleStorage.setItem).toHaveBeenCalledWith('code', '');
     expect(window.open).toHaveBeenCalledWith(
       expect.stringContaining(mockClientId),
       'GoogleAuthPopup',
       'width=500,height=600',
     );
     expect(window.open).toHaveBeenCalledWith(
-      expect.stringContaining(mockRedirectUri),
+      expect.stringContaining(MOCK_REDIRECT_URI),
       'GoogleAuthPopup',
       'width=500,height=600',
     );
@@ -165,33 +157,71 @@ describe('EmailSetup.vue', () => {
     expect(window.alert).toHaveBeenCalledWith('Por favor, permita pop-ups para este site.');
   });
 
-  it('processes storage events correctly in addTokens', () => {
+  it('processes valid OAuth messages in handleAuthMessage', () => {
     const store = email_store();
     const setCodeSpy = vi.spyOn(store, 'setCode');
     const getTokensSpy = vi.spyOn(store, 'getTokens');
 
-    const mockEvent = {
-      key: 'integrations_code',
-      newValue: 'test-auth-code',
-    };
-
-    wrapper.vm.addTokens(mockEvent);
+    wrapper.vm.handleAuthMessage({
+      origin: MOCK_CALLBACK_ORIGIN,
+      data: { source: 'weni-gmail-oauth', code: 'test-auth-code' },
+    });
 
     expect(setCodeSpy).toHaveBeenCalledWith({ code: 'test-auth-code' });
     expect(getTokensSpy).toHaveBeenCalledWith({ code: 'test-auth-code' });
   });
 
-  it('ignores non-code storage events', () => {
+  it('ignores messages from a different origin', () => {
     const store = email_store();
     const setCodeSpy = vi.spyOn(store, 'setCode');
     const getTokensSpy = vi.spyOn(store, 'getTokens');
 
-    const mockEvent = {
-      key: 'other-key',
-      newValue: 'some-value',
-    };
+    wrapper.vm.handleAuthMessage({
+      origin: 'http://evil.example',
+      data: { source: 'weni-gmail-oauth', code: 'test-auth-code' },
+    });
 
-    wrapper.vm.addTokens(mockEvent);
+    expect(setCodeSpy).not.toHaveBeenCalled();
+    expect(getTokensSpy).not.toHaveBeenCalled();
+  });
+
+  it('ignores messages with an unknown source', () => {
+    const store = email_store();
+    const setCodeSpy = vi.spyOn(store, 'setCode');
+    const getTokensSpy = vi.spyOn(store, 'getTokens');
+
+    wrapper.vm.handleAuthMessage({
+      origin: MOCK_CALLBACK_ORIGIN,
+      data: { source: 'unrelated-app', code: 'test-auth-code' },
+    });
+
+    expect(setCodeSpy).not.toHaveBeenCalled();
+    expect(getTokensSpy).not.toHaveBeenCalled();
+  });
+
+  it('ignores messages without a code', () => {
+    const store = email_store();
+    const setCodeSpy = vi.spyOn(store, 'setCode');
+    const getTokensSpy = vi.spyOn(store, 'getTokens');
+
+    wrapper.vm.handleAuthMessage({
+      origin: MOCK_CALLBACK_ORIGIN,
+      data: { source: 'weni-gmail-oauth' },
+    });
+
+    expect(setCodeSpy).not.toHaveBeenCalled();
+    expect(getTokensSpy).not.toHaveBeenCalled();
+  });
+
+  it('ignores messages with no data payload', () => {
+    const store = email_store();
+    const setCodeSpy = vi.spyOn(store, 'setCode');
+    const getTokensSpy = vi.spyOn(store, 'getTokens');
+
+    wrapper.vm.handleAuthMessage({
+      origin: MOCK_CALLBACK_ORIGIN,
+      data: null,
+    });
 
     expect(setCodeSpy).not.toHaveBeenCalled();
     expect(getTokensSpy).not.toHaveBeenCalled();
@@ -272,7 +302,6 @@ describe('EmailSetup.vue', () => {
     const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
-    // Create a new wrapper to test mount
     const newWrapper = mount(EmailSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
@@ -282,11 +311,10 @@ describe('EmailSetup.vue', () => {
       },
     });
 
-    expect(addEventListenerSpy).toHaveBeenCalledWith('storage', newWrapper.vm.addTokens);
+    expect(addEventListenerSpy).toHaveBeenCalledWith('message', newWrapper.vm.handleAuthMessage);
 
-    // Test unmount
     newWrapper.unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('storage', newWrapper.vm.addTokens);
+    expect(removeEventListenerSpy).toHaveBeenCalledWith('message', newWrapper.vm.handleAuthMessage);
   });
 });
