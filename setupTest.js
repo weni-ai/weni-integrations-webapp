@@ -10,6 +10,3 @@ beforeEach(() => {
   setActivePinia(pinia);
 });
 config.global.plugins = [i18n];
-config.mocks = {
-  $t: (msg) => msg,
-};

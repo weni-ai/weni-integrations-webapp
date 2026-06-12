@@ -12,7 +12,6 @@ describe('AppDetailsRecommended.vue', () => {
       global: {
         plugins: [i18n, UnnnicSystem],
         mocks: {
-          $t: (msg) => msg,
           $router: {
             push: vi.fn(),
           },

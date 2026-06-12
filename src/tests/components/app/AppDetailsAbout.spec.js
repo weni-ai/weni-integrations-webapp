@@ -15,9 +15,6 @@ describe('AppDetailsAbout.vue', () => {
     wrapper = mount(AppDetailsAbout, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
       props: {
         description: 'This is a sample app description.',
@@ -53,9 +50,6 @@ describe('AppDetailsAbout.vue', () => {
     wrapper = mount(AppDetailsAbout, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
       props: {
         description: 'This is a sample app description.',

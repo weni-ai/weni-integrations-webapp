@@ -33,9 +33,6 @@ describe('NavBar.vue', () => {
     wrapper = mount(NavBar, {
       global: {
         plugins: [i18n, UnnnicSystem, router],
-        mocks: {
-          $t: (msg) => msg,
-        },
       },
     });
   });
