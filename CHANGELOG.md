@@ -1,3 +1,14 @@
+3.13.3
+----------
+`2026-06-12 · 1 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix WWC custom CSS not loading in config drawer
+
+### 🔧 Improvements
+- feat: Add ICU MessageFormat support
+- LOC-24942 - Weni's Integrations Dedicated Voice Mode Configuration Tab messages localization
+
 3.13.2
 ----------
 `2026-06-02 · 1 🐛`
