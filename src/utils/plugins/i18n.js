@@ -4,11 +4,12 @@ import icuMessageCompiler from '@/utils/plugins/icuMessageCompiler';
 import en from '../../locales/en.json';
 import pt_br from '../../locales/pt_br.json';
 import es_es from '../../locales/es_es.json';
-
+import ro_ro from '../../locales/ro_ro.json';
 const languages = {
   'en-us': en,
   'pt-br': pt_br,
   es: es_es,
+  'ro-ro': ro_ro,
 };
 
 const messages = Object.assign(languages);

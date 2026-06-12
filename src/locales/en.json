@@ -258,17 +258,17 @@
         "title": "Voice Mode",
         "enabled": "Activate voice mode",
         "elevenLabsApiKey": {
-          "label": "ElevenLabs Token",
-          "placeholder": "Paste your Token here"
+          "label": "ElevenLabs token",
+          "placeholder": "Paste your token here"
         },
         "elevenLabsVoiceId": {
           "label": "ElevenLabs Voice ID (optional)",
           "placeholder": "Paste your Voice ID here"
         },
-        "get_token_here": "Get your token here.",
+        "get_token_here": "Get your token here",
         "no_key_text": "Don't have a key?",
         "other_voice": "Other",
-        "other_voice_placeholder": "Paste voice ID",
+        "other_voice_placeholder": "Paste the voice ID",
         "select_voice": "Select a voice",
         "voice_category": {
           "default_portuguese": "Default – Portuguese",
