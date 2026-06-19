@@ -169,9 +169,7 @@
   const avatarBase64 = ref(props.initialAvatarBase64);
 
   function isFetchableCssValue(value) {
-    return (
-      value.startsWith('data:') || value.startsWith('http://') || value.startsWith('https://')
-    );
+    return value.startsWith('data:') || value.startsWith('http://') || value.startsWith('https://');
   }
 
   async function customCssToFile(cssValue) {
