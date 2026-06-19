@@ -107,7 +107,7 @@ describe('wwcConfig Component', () => {
   describe('rendering', () => {
     it('should render the component correctly', () => {
       expect(wrapper.find('.app-config-wwc').exists()).toBe(true);
-      expect(wrapper.find('.app-config-wwc__header__title').text()).toBe('Test App');
+      expect(wrapper.find('.app-config-wwc__header__title').text()).toBe('Shopping Assistant');
     });
 
     it('should render AppearanceTab component', () => {
