@@ -1,7 +1,7 @@
 const singleApp = {
   uuid: '123',
   code: 'wwc',
-  name: 'Weni Web Chat',
+  name: 'Shopping Assistant',
   description:
     'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
   summary: 'Ullamco occaecat et id cillum.',
@@ -39,7 +39,7 @@ const singleApp = {
 const communicationApps = [
   {
     id: 1,
-    name: 'Weni Web Chat',
+    name: 'Shopping Assistant',
     description:
       'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
     usersCount: 25,
@@ -141,7 +141,7 @@ const attendanceApps = [
 const configuredApps = [
   {
     code: 'wwc',
-    name: 'Weni Web Chat',
+    name: 'Shopping Assistant',
     description:
       'Ullamco occaecat et id cillum. Amet exercitation nisi amet fugiat mollit minim est. Officia in enim amet ipsum Lorem velit sint pariatur sunt magna cupidatat. Magna non ea qui nisi ut.s',
     summary: 'Ullamco occaecat et id cillum.',

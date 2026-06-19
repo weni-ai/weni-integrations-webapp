@@ -175,17 +175,18 @@
   },
   "weniWebChat": {
     "data": {
-      "summary": "With Web Chat, you can integrate your project as a chat on your website.",
-      "description": "Use Web Chat to have a humanized automation experience of VTEX Agentic CX directly on your website or web platform. By integrating it, you can customize aspects of the Web Chat such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that VTEX Agentic CX Platform has to offer with your's brand identity.",
+      "name": "Shopping Assistant",
+      "summary": "With Shopping Assistant, you can integrate your project as a chat on your website.",
+      "description": "Use Shopping Assistant to have a humanized automation experience of VTEX Agentic CX directly on your website or web platform. By integrating it, you can customize aspects of the Shopping Assistant such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that VTEX Agentic CX Platform has to offer with your's brand identity.",
       "links": {
         "create_channel": {
-          "label": "Adding a Web Channel",
+          "label": "Adding a Shopping Assistant channel",
           "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
         }
       }
     },
     "config": {
-      "description": "Learn more about how to integrate Web Chat here.",
+      "description": "Learn more about how to integrate Shopping Assistant here.",
       "settings": "Settings",
       "script": "Script Code",
       "appearance": "Appearance",
@@ -194,7 +195,7 @@
       "media": "Media",
       "retail": "Retail",
       "history": "Chat history & Inactivity",
-      "script_tutorial": "To install Web Chat on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
+      "script_tutorial": "To install Shopping Assistant on your website, copy and paste this code above the last <<strong>/body</strong>> on your website.",
       "script_disclaimer": "The script will be available once the required basic settings have been completed.",
       "download_script": "Download Script",
       "custom_css": "Custom CSS",
@@ -211,8 +212,8 @@
       "time_between_messages_option": "{count, plural, one {{count} second} other {{count} seconds}}",
       "time_between_messages_message": "Interval between agent messages",
       "navigate_if_same_domain": {
-        "label": "Allow Webchat to automatically redirect the page",
-        "helper": "When enabled, Webchat can automatically redirect the user to another page when a link is sent during the conversation. This feature is currently in Beta and may change."
+        "label": "Allow Shopping Assistant to automatically redirect the page",
+        "helper": "When enabled, Shopping Assistant can automatically redirect the user to another page when a link is sent during the conversation. This feature is currently in Beta and may change."
       },
       "conversation_starters_pdp": {
         "label": "AI-Suggested Questions",
@@ -220,7 +221,7 @@
       },
       "add_to_cart": {
         "label": "Add to cart on store",
-        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a Webchat-managed cart. Recommended for stores with custom cart or checkout flows."
+        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a Shopping Assistant-managed cart. Recommended for stores with custom cart or checkout flows."
       },
       "main_color": "Main color",
       "save_changes": "Save changes",

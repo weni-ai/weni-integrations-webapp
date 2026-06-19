@@ -47,6 +47,7 @@
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { mapActions, mapState } from 'pinia';
   import millify from 'millify';
+  import { getAppDisplayName } from '@/utils/apps';
 
   export default {
     name: 'AppPage',
@@ -128,7 +129,7 @@
         ];
         if (this.currentAppType?.name) {
           history.push({
-            name: this.currentAppType.name,
+            name: getAppDisplayName(this.currentAppType, this.$t.bind(this)),
             path: '',
           });
         }

@@ -62,6 +62,7 @@
   import { externals_store } from '@/stores/modules/appType/externals/externals.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import unnnic from '@weni/unnnic-system';
+  import { getAppDisplayName, appMatchesSearch } from '@/utils/apps';
   export default {
     name: 'Discovery',
     components: {
@@ -102,11 +103,11 @@
         const allApps = [...this.allAppTypes, ...this.externalServicesList];
 
         const filtered = allApps.filter((app) => {
-          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
+          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
         });
 
         return filtered.map((app) => {
-          return app.name;
+          return getAppDisplayName(app, this.$t.bind(this));
         });
       },
       filteredApps() {
@@ -115,7 +116,7 @@
         if (!this.searchTerm || !this.searchTerm.trim()) return this.allAppTypes;
 
         return this.allAppTypes.filter((app) => {
-          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
+          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
         });
       },
       filteredExternalServices() {
@@ -124,7 +125,7 @@
         if (!this.searchTerm || !this.searchTerm.trim()) return this.externalServicesList;
 
         return this.externalServicesList.filter((app) => {
-          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
+          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
         });
       },
       filteredEcommerceApps() {
@@ -133,7 +134,7 @@
         if (!this.searchTerm || !this.searchTerm.trim()) return this.ecommerceAppsList;
 
         return this.ecommerceAppsList.filter((app) => {
-          return app.name.toLowerCase().includes(this.searchTerm.trim().toLowerCase());
+          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
         });
       },
       hasAnyVisibleApp() {
