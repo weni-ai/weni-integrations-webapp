@@ -68,6 +68,7 @@
   import { my_apps } from '@/stores/modules/myApps.store';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { useEventStore } from '@/stores/event.store';
+  import { getAppDisplayName, appMatchesSearch } from '@/utils/apps';
 
   export default {
     name: 'Apps',
@@ -114,7 +115,9 @@
         const filtered = this.filterByName(allApps, this.searchTerm);
 
         return filtered.map((app) => {
-          let name = app.generic ? app.config.channel_name : app.name;
+          let name = app.generic
+            ? app.config.channel_name
+            : getAppDisplayName(app, this.$t.bind(this));
           if (app.config?.title) {
             name += ` - ${app.config?.title}`;
           }
@@ -189,11 +192,17 @@
       },
       filterByName(appList, search) {
         return appList.filter((app) => {
-          const appMainName = app.generic ? app.config.channel_name : app.name;
+          const appMainName = app.generic
+            ? app.config.channel_name
+            : getAppDisplayName(app, this.$t.bind(this));
           const appName = app.config?.title || app.config?.channel_name;
 
           const name = appMainName + appName;
-          return name.toLowerCase().includes(search.toLowerCase());
+          const matchesName = name.toLowerCase().includes(search.toLowerCase());
+          const matchesLegacyName =
+            !app.generic && appMatchesSearch(app, search, this.$t.bind(this));
+
+          return matchesName || matchesLegacyName;
         });
       },
       fetchCategories() {

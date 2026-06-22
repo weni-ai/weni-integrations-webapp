@@ -175,17 +175,18 @@
   },
   "weniWebChat": {
     "data": {
-      "summary": "Con Web Chat, puede integrar su proyecto como un chat en su sitio web.",
-      "description": "Utilice Web Chat para brindar una experiencia de automatización humanizada de VTEX Agentic CX directamente en su sitio web o plataforma web. Al integrarlo, puede personalizar aspectos del Web Chat como el color, el tiempo entre mensajes, los indicadores de mensajes, el avatar ¡y más! Así, garantiza todo lo que VTEX Agentic CX tiene para ofrecer con la identidad de su marca.",
+      "name": "Shopping Assistant",
+      "summary": "Con Shopping Assistant, puede integrar su proyecto como un chat en su sitio web.",
+      "description": "Utilice Shopping Assistant para brindar una experiencia de automatización humanizada de VTEX Agentic CX directamente en su sitio web o plataforma web. Al integrarlo, puede personalizar aspectos del Shopping Assistant como el color, el tiempo entre mensajes, los indicadores de mensajes, el avatar ¡y más! Así, garantiza todo lo que VTEX Agentic CX tiene para ofrecer con la identidad de su marca.",
       "links": {
         "create_channel": {
-          "label": "Agregar un Canal Web",
+          "label": "Agregar un canal Shopping Assistant",
           "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
         }
       }
     },
     "config": {
-      "description": "Aprenda más sobre cómo integrar Web Chat aquí.",
+      "description": "Aprenda más sobre cómo integrar Shopping Assistant aquí.",
       "settings": "Ajustes",
       "script": "Código Script",
       "appearance": "Apariencia",
@@ -194,7 +195,7 @@
       "media": "Medios",
       "retail": "Minorista",
       "history": "Historial de chat & Inactividad",
-      "script_tutorial": "Para instalar Web Chat en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
+      "script_tutorial": "Para instalar Shopping Assistant en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
       "script_disclaimer": "El script estará disponible una vez que se completen los ajustes básicos requeridos.",
       "download_script": "Descargar Script",
       "custom_css": "CSS personalizado",
@@ -211,8 +212,8 @@
       "time_between_messages_option": "{count, plural, one {{count} segundo} other {{count} segundos}}",
       "time_between_messages_message": "Intervalo entre mensajes del agente",
       "navigate_if_same_domain": {
-        "label": "Permitir que el Webchat redirija automáticamente la página",
-        "helper": "Cuando está habilitado, el Webchat puede redirigir automáticamente al usuario a otra página cuando se envía un enlace durante la conversación. Esta funcionalidad está actualmente en Beta y puede cambiar."
+        "label": "Permitir que Shopping Assistant redirija automáticamente la página",
+        "helper": "Cuando está habilitado, Shopping Assistant puede redirigir automáticamente al usuario a otra página cuando se envía un enlace durante la conversación. Esta funcionalidad está actualmente en Beta y puede cambiar."
       },
       "conversation_starters_pdp": {
         "label": "Preguntas sugeridas por IA",

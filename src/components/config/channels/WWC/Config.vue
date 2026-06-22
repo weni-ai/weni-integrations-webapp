@@ -2,7 +2,7 @@
   <div class="app-config-wwc">
     <div class="app-config-wwc__header">
       <div class="app-config-wwc__header__title-container">
-        <h1 class="app-config-wwc__header__title">{{ selectedApp.name }}</h1>
+        <h1 class="app-config-wwc__header__title">{{ appDisplayName }}</h1>
         <p class="app-config-wwc__header__description">
           {{ $t('weniWebChat.config.description') }}
         </p>
@@ -150,6 +150,7 @@
   import { useEventStore } from '@/stores/event.store';
   import { dataUrlToFile, toBase64 } from '@/utils/files';
   import removeEmpty from '@/utils/clean';
+  import { getAppDisplayName } from '@/utils/apps';
   import { DEFAULT_COLOR, formatContactTimeout, parseContactTimeout } from './constants';
   import AppearanceTab from './components/tabs/AppearanceTab.vue';
   import PreferencesTab from './components/tabs/PreferencesTab.vue';
@@ -228,6 +229,8 @@
   });
 
   const chatSubtitle = computed(() => config.subtitle || ' ');
+
+  const appDisplayName = computed(() => getAppDisplayName(selectedApp.value, t));
 
   const loadingSave = computed(() => loadingUpdateAppConfig.value || loadingCurrentApp.value);
 

@@ -89,7 +89,7 @@ describe('AppGrid', () => {
       const configuredApp = {
         uuid: 'app-uuid-123',
         code: 'wwc',
-        name: 'Weni Web Chat',
+        name: 'Shopping Assistant',
         generic: false,
         icon: null,
         summary: 'weniWebChat.data.summary',

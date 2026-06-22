@@ -144,6 +144,7 @@
   import { mapActions, mapState } from 'pinia';
   import { app_type } from '../../stores/modules/appType/appType.store';
   import { storeToRefs } from 'pinia';
+  import { getAppDisplayName } from '@/utils/apps';
   export default {
     name: 'AppGrid',
     components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
@@ -296,7 +297,7 @@
           }`;
         }
 
-        return `${app.name}${
+        return `${getAppDisplayName(app, this.$t.bind(this))}${
           this.type === 'edit'
             ? ' - ' + (app.config.title || app.config.name || app.config.username)
             : ''

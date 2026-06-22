@@ -8,7 +8,7 @@ import { app_type } from '@/stores/modules/appType/appType.store';
 const mockApp = {
   uuid: 'app-uuid-123',
   code: 'wwc',
-  name: 'Weni Web Chat',
+  name: 'Shopping Assistant',
   generic: false,
   icon: null,
   summary: 'weniWebChat.data.summary',

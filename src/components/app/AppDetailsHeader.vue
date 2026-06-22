@@ -4,7 +4,7 @@
       <img class="app-details-header__icon__src" :src="app?.icon" />
     </div>
     <div class="app-details-header__content">
-      <div class="app-details-header__content__title">{{ app?.name }}</div>
+      <div class="app-details-header__content__title">{{ displayName }}</div>
       <div class="app-details-header__content__description">{{ $t(app?.summary || '') }}</div>
     </div>
     <integrate-button
@@ -26,6 +26,7 @@
 <script>
   import addModal from '../AddModal/index.vue';
   import IntegrateButton from '../IntegrateButton/index.vue';
+  import { getAppDisplayName } from '@/utils/apps';
 
   export default {
     name: 'AppDetailsHeader',
@@ -37,6 +38,9 @@
       },
     },
     computed: {
+      displayName() {
+        return getAppDisplayName(this.app, this.$t.bind(this));
+      },
       cssVars() {
         return {
           '--icon-bg-color': this.app?.bg_color || 'white',
