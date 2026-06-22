@@ -1,3 +1,10 @@
+3.14.0
+----------
+`2026-06-22 · 1 🔧`
+
+### 🔧 Improvements
+- Rename Web Chat to Shopping Assistant in UI copy and app display names
+
 3.13.3
 ----------
 `2026-06-12 · 1 🐛 · 1 🔧`
