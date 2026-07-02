@@ -7,7 +7,6 @@
         </div>
         <div class="app-config-omie__header__title__name">{{ app.name }}</div>
       </div>
-      <span class="app-config-omie__header__description" v-html="$t('omie.config.description')" />
     </div>
 
     <div class="app-config-omie__settings__content">
@@ -175,22 +174,6 @@
           color: $unnnic-color-neutral-darkest;
 
           margin-left: $unnnic-inline-sm;
-        }
-      }
-
-      &__description {
-        margin-top: $unnnic-inline-sm;
-        font-family: $unnnic-font-family-secondary;
-        font-weight: $unnnic-font-weight-regular;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
-
-        ::v-deep {
-          a {
-            font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-neutral-cloudy;
-          }
         }
       }
     }
