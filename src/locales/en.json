@@ -177,7 +177,7 @@
     "data": {
       "name": "Shopping Assistant",
       "summary": "With Shopping Assistant, you can integrate your project as a chat on your website.",
-      "description": "Use Shopping Assistant to have a humanized automation experience of VTEX Agentic CX directly on your website or web platform. By integrating it, you can customize aspects of the Shopping Assistant such as Color, the timing between messages, message indicators, avatar, and more! Thus, guaranteeing everything that VTEX Agentic CX Platform has to offer with your's brand identity.",
+      "description": "Use Shopping Assistant to have a humanized automation experience of VTEX CX Platform directly on your website or web platform. This integration allows you to customize different aspects of Shopping Assistant such as color, timing between messages, message indicators, avatar, and more. This way you can take advantage of everything that VTEX CX Platform has to offer with your brand identity.",
       "links": {
         "create_channel": {
           "label": "Adding a Shopping Assistant channel",
@@ -213,7 +213,7 @@
       "time_between_messages_message": "Interval between agent messages",
       "navigate_if_same_domain": {
         "label": "Allow Shopping Assistant to automatically redirect the page",
-        "helper": "When enabled, Shopping Assistant can automatically redirect the user to another page when a link is sent during the conversation. This feature is currently in Beta and may change."
+        "helper": "When enabled, Shopping Assistant can automatically redirect the user to another page when a link is sent during the conversation. This feature is currently in beta and may change."
       },
       "conversation_starters_pdp": {
         "label": "AI-Suggested Questions",
@@ -221,7 +221,7 @@
       },
       "add_to_cart": {
         "label": "Add to cart on store",
-        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a Shopping Assistant-managed cart. Recommended for stores with custom cart or checkout flows."
+        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a cart managed by Shopping Assistant. Recommended for stores with custom cart or checkout flows."
       },
       "main_color": "Main color",
       "save_changes": "Save changes",

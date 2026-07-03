@@ -175,18 +175,18 @@
   },
   "weniWebChat": {
     "data": {
-      "name": "Asistent cumpărături",
-      "summary": "Cu asistentul de cumpărături, puteți integra proiectul ca chat pe site-ul dvs.",
-      "description": "Utilizați asistentul de cumpărături pentru a avea o experiență de automatizare umanizată a VTEX Agentic CX direct pe site-ul sau platforma dvs. web. Prin integrare, puteți personaliza aspecte ale asistentului de cumpărături precum culoarea, sincronizarea între mesaje, indicatorii de mesaje, avatarul și multe altele! Astfel, garantând tot ceea ce oferă platforma VTEX Agentic CX cu identitatea mărcii dvs.",
+      "name": "Shopping Assistant",
+      "summary": "Cu Shopping Assistant, poți integra proiectul tău ca un chat pe site-ul tău.",
+      "description": "Folosește Shopping Assistant pentru a beneficia de o experiență de automatizare umanizată a VTEX CX Platform direct pe site-ul tău web sau pe platforma web. Această integrare îți permite să personalizezi diferite aspecte ale Shopping Assistant, cum ar fi culoarea, intervalul dintre mesaje, indicatorii de mesaje, avatarul și multe altele. Astfel, poți profita de tot ceea ce oferă VTEX CX Platform, păstrând identitatea brandului tău.",
       "links": {
         "create_channel": {
-          "label": "Adăugarea unui canal de asistent de cumpărături",
+          "label": "Adăugare canal Shopping Assistant",
           "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
         }
       }
     },
     "config": {
-      "description": "Aflați mai multe despre cum să integrați asistentul de cumpărături aici.",
+      "description": "Află mai multe despre cum să integrezi Shopping Assistant aici.",
       "settings": "Setări",
       "script": "Cod Script",
       "appearance": "Aspect",
@@ -195,7 +195,7 @@
       "media": "Media",
       "retail": "Retail",
       "history": "Istoric chat și inactivitate",
-      "script_tutorial": "Pentru a instala asistentul de cumpărături pe site-ul dvs., copiați și lipiți acest cod deasupra ultimului <<strong>/body</strong>> de pe site-ul dvs.",
+      "script_tutorial": "Pentru a instala Shopping Assistant pe site-ul tău, copiază și lipește acest cod deasupra ultimului <<strong>/body</strong>> de pe site.",
       "script_disclaimer": "Scriptul va fi disponibil după finalizarea setărilor de bază necesare.",
       "download_script": "Descarcă scriptul",
       "custom_css": "CSS personalizat",
@@ -212,8 +212,8 @@
       "time_between_messages_option": "{count, plural, one {{count} secundă} few {{count} secunde} other {{count} de secunde}}",
       "time_between_messages_message": "Interval între mesajele agentului",
       "navigate_if_same_domain": {
-        "label": "Permite asistentului de cumpărături să redirecționeze automat pagina",
-        "helper": "Când este activat, asistentul de cumpărături poate redirecționa automat utilizatorul către o altă pagină când se trimite un link în timpul conversației. Această funcție este în prezent în Beta și se poate modifica."
+        "label": "Permite Shopping Assistant să redirecționeze automat pagina",
+        "helper": "Când este activată, Shopping Assistant poate redirecționa automat utilizatorul către o altă pagină atunci când un link este trimis în timpul conversației. Această funcție este în prezent în versiune beta și poate suferi modificări."
       },
       "conversation_starters_pdp": {
         "label": "Întrebări sugerate de AI",
@@ -221,7 +221,7 @@
       },
       "add_to_cart": {
         "label": "Adaugă în coș pe magazin",
-        "helper": "Cumpărătorii pot adăuga produsele sugerate de AI direct în coșul nativ al magazinului în loc de un coș gestionat de asistentul de cumpărături. Recomandat pentru magazinele cu fluxuri personalizate de coș sau checkout."
+        "helper": "Cumpărătorii pot adăuga produse sugerate de IA direct în coșul nativ al magazinului, în loc de un coș gestionat de Shopping Assistant. Recomandat pentru magazinele cu coș personalizat sau fluxuri de finalizare a comenzii personalizate."
       },
       "main_color": "Culoare principală",
       "save_changes": "Salvează modificările",
