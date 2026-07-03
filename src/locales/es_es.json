@@ -400,44 +400,44 @@
         "title": "Datos de facturación"
       },
       "account_verification": {
-        "checkbox_compliance": "La empresa cumple con la Política Comercial de WhatsApp",
-        "checkbox_legal_entity": "La empresa es una entidad legal",
-        "checkbox_representative": "El titular de la cuenta es un representante de la empresa",
+        "checkbox_compliance": "La empresa cumple con la Política comercial de WhatsApp Business",
+        "checkbox_legal_entity": "La empresa es una persona jurídica",
+        "checkbox_representative": "El propietario de la cuenta es un representante de la empresa",
         "confirm_section_title": "Confirma que verificaste:",
         "disclaimer": {
-          "description": "Tu cuenta no ha alcanzado el uso mínimo requerido para solicitar la verificación. Sigue usando el canal, la verificación de cuenta estará disponible automáticamente cuando alcances 50 conversaciones o 50 plantillas enviadas.",
-          "title": "Verificación no disponible aún"
+          "description": "Tu cuenta aún no alcanzó el uso mínimo requerido para solicitar la verificación. Sigue usando el canal y la verificación de cuenta estará disponible automáticamente cuando alcances 50 conversaciones o 50 plantillas enviadas.",
+          "title": "Verificación aún no disponible"
         },
         "disclaimer_limit_reached": {
-          "description": "Has alcanzado el número máximo de intentos de verificación. Comunícate con nuestro equipo de soporte para obtener ayuda.",
-          "title": "Límite de envíos alcanzado"
+          "description": "Has alcanzado el número máximo de intentos de verificación. Ponte en contacto con nuestro Soporte para obtener ayuda.",
+          "title": "Límite de verificación alcanzado"
         },
         "disclaimer_reviewing": {
-          "description": "Este proceso tarda un promedio de 48 horas. Recibirás un correo electrónico en cuanto el resultado esté disponible.",
-          "title": "Tus documentos están siendo revisados por Meta"
+          "description": "Este proceso tarda aproximadamente 48 horas. Recibirás un email en cuanto el resultado esté disponible.",
+          "title": "Meta está revisando tus documentos"
         },
         "disclaimer_verified": {
-          "description": "Tu negocio ha sido verificado por Meta. Ahora puedes acceder a las funciones avanzadas de WhatsApp y ampliar tu presencia en el canal.",
+          "description": "Tu empresa ha sido verificada por Meta. Ahora puedes acceder a funcionalidades avanzadas de WhatsApp y ampliar tu presencia en el canal.",
           "title": "Tu cuenta está verificada"
         },
-        "documentation_link": "Ver buenas prácticas de documentación",
-        "fetch_error": "No se pudo cargar la verificación de cuenta debido a un problema técnico",
-        "file_too_large": "Cada archivo debe tener un máximo de 5 MB",
+        "documentation_link": "Ver mejores prácticas de documentos",
+        "fetch_error": "No se pudo cargar la verificación de la cuenta debido a un problema técnico",
+        "file_too_large": "Cada archivo debe tener 5 MB como máximo",
         "invalid_file_type": "Selecciona un archivo PDF, JPEG, JPG o PNG",
-        "rejection_reasons_label": "Motivos del rechazo",
+        "rejection_reasons_label": "Motivos de rechazo",
         "send": "Enviar",
         "submit_error": "No se pudieron enviar los documentos debido a un problema técnico",
         "submit_success": "Documentos enviados con éxito",
-        "supported_file_types": "Tipos de archivo compatibles: PDF, JPEG, JPG, PNG. Tamaño máximo de 5 MB",
+        "supported_file_types": "Tipos de archivo compatibles: PDF, JPEG, JPG, PNG. Tamaño máximo: 5 MB.",
         "suggested_documents": {
-          "item_articles": "Contrato social o estatutos (ej.: MEI)",
-          "item_registration": "Documento de registro o licencia de la empresa (ej.: CNPJ)",
-          "item_tax": "Documento fiscal, factura de servicios o extracto bancario de la empresa",
-          "title": "Documentos sugeridos para Brasil:"
+          "item_articles": "Acta constitutiva, contrato social o documento equivalente de constitución de la empresa (por ejemplo, registro de nombre comercial o de empresa unipersonal)",
+          "item_registration": "Documento de registro o licencia de la empresa (por ejemplo, número de identificación fiscal)",
+          "item_tax": "Documento fiscal, factura de servicios públicos o estado de cuenta bancario de la empresa",
+          "title": "Los documentos sugeridos para Brasil incluyen:"
         },
-        "upload_files": "Subir archivos",
-        "upload_section_description": "Agrega los documentos usados para verificar la empresa, con el nombre \"Nombre de la cuenta\" visible",
-        "upload_section_title": "Subir documentos de respaldo"
+        "upload_files": "Cargar archivos",
+        "upload_section_description": "Registra los documentos utilizados para verificar la empresa con el \"Nombre de cuenta\" visible",
+        "upload_section_title": "Carga los documentos necesarios para la verificación"
       },
       "webhook_info": {
         "input": {

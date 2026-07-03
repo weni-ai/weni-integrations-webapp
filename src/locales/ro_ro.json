@@ -400,44 +400,44 @@
         "title": "Informații de facturare"
       },
       "account_verification": {
-        "checkbox_compliance": "Compania respectă politica WhatsApp Business",
+        "checkbox_compliance": "Compania respectă Politica WhatsApp Business",
         "checkbox_legal_entity": "Compania este o entitate juridică",
         "checkbox_representative": "Proprietarul contului este un reprezentant al companiei",
-        "confirm_section_title": "Confirmați că ați verificat:",
+        "confirm_section_title": "Confirmă că ai verificat:",
         "disclaimer": {
-          "description": "Contul dvs. nu a atins utilizarea minimă necesară pentru a solicita verificarea. Continuați să utilizați canalul, verificarea contului va fi disponibilă automat odată ce atingeți 50 de conversații sau 50 de șabloane trimise.",
-          "title": "Verificarea nu este încă disponibilă"
+          "description": "Contul tău nu a atins utilizarea minimă necesară pentru a solicita verificarea. Continuă să utilizezi canalul și verificarea contului va deveni disponibilă automat odată ce atingi 50 de conversații sau 50 de șabloane trimise.",
+          "title": "Verificarea nu este disponibilă încă"
         },
         "disclaimer_limit_reached": {
-          "description": "Ați atins numărul maxim de încercări de verificare. Contactați echipa noastră de asistență pentru ajutor.",
-          "title": "Limită de trimitere atinsă"
+          "description": "Ai atins numărul maxim de încercări de verificare. Contactează echipa noastră de asistență pentru ajutor.",
+          "title": "Limita de verificare a fost atinsă"
         },
         "disclaimer_reviewing": {
-          "description": "Acest proces durează în medie 48 de ore. Veți primi un e-mail de îndată ce rezultatul este disponibil.",
-          "title": "Documentele dvs. sunt revizuite de Meta"
+          "description": "Acest proces durează în medie 48 de ore. Vei primi un e-mail imediat ce rezultatul este disponibil.",
+          "title": "Documentele tale sunt revizuite de Meta"
         },
         "disclaimer_verified": {
-          "description": "Afacerea dvs. a fost verificată de Meta. Puteți accesa acum funcțiile avansate ale WhatsApp și să vă dezvoltați prezența pe canal.",
-          "title": "Contul dvs. este verificat"
+          "description": "Afacerea ta a fost verificată de Meta. Acum poți accesa funcții avansate WhatsApp și îți poți extinde prezența pe canal.",
+          "title": "Contul tău este verificat"
         },
-        "documentation_link": "Vizualizați cele mai bune practici din documentație",
-        "fetch_error": "Verificarea contului nu a putut fi încărcată din cauza unei probleme tehnice",
+        "documentation_link": "Vizualizează cele mai bune practici pentru documente",
+        "fetch_error": "Nu s-a putut încărca verificarea contului din cauza unei probleme tehnice",
         "file_too_large": "Fiecare fișier trebuie să fie de 5 MB sau mai mic",
-        "invalid_file_type": "Selectați un fișier PDF, JPEG, JPG sau PNG",
+        "invalid_file_type": "Selectează un fișier PDF, JPEG, JPG sau PNG",
         "rejection_reasons_label": "Motive de respingere",
         "send": "Trimite",
         "submit_error": "Documentele nu au putut fi trimise din cauza unei probleme tehnice",
-        "submit_success": "Documente trimise cu succes",
-        "supported_file_types": "Tipuri de fișiere acceptate: PDF, JPEG, JPG, PNG. Dimensiune maximă 5 MB",
+        "submit_success": "Documentele au fost trimise cu succes",
+        "supported_file_types": "Tipuri de fișiere acceptate: PDF, JPEG, JPG, PNG. Dimensiune maximă: 5 MB.",
         "suggested_documents": {
-          "item_articles": "Acte constitutive sau contract social (de ex., MEI)",
-          "item_registration": "Document de înregistrare a companiei sau licență (de ex., CNPJ)",
-          "item_tax": "Document fiscal, factură de utilități sau extras bancar al companiei",
+          "item_articles": "Actele de constituire sau acordul de funcționare (exemplu: înregistrare DBA sau ca persoană fizică autorizată)",
+          "item_registration": "Document de înregistrare a companiei sau licență (exemplu: CIF)",
+          "item_tax": "Document fiscal, factură de utilități sau extras de cont bancar al companiei",
           "title": "Documentele sugerate pentru Brazilia includ:"
         },
-        "upload_files": "Încarcă fișiere",
-        "upload_section_description": "Adăugați documentele utilizate pentru verificarea companiei, cu numele \"Numele contului\" vizibil",
-        "upload_section_title": "Încărcați documente justificative"
+        "upload_files": "Încarcă fișierele",
+        "upload_section_description": "Adaugă documentele utilizate pentru verificarea companiei cu \"Numele contului\" vizibil",
+        "upload_section_title": "Încarcă documente justificative"
       },
       "webhook_info": {
         "input": {
