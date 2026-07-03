@@ -28,8 +28,8 @@
       "february": "February",
       "march": "March",
       "april": "April",
-      "june": "June",
       "may": "May",
+      "june": "June",
       "july": "July",
       "august": "August",
       "september": "September",
@@ -562,7 +562,11 @@
         "empty_url": "Provided Webhook URL cannot be empty",
         "invalid_url": "Provided Webhook URL is invalid",
         "webhook_update": "Error while trying to update webhook data",
-        "invalid_data": "Some fields are invalid, please fix them and try again"
+        "invalid_data": "Some fields are invalid, please fix them and try again",
+        "2388072": {
+          "title": "Incorrect title format",
+          "message": "The message header cannot have new lines, formatting characters, emojis, or asterisks."
+        }
       },
       "qr": {
         "title": "WhatsApp Link",
