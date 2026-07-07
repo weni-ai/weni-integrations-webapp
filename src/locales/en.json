@@ -28,8 +28,8 @@
       "february": "February",
       "march": "March",
       "april": "April",
-      "june": "June",
       "may": "May",
+      "june": "June",
       "july": "July",
       "august": "August",
       "september": "September",
@@ -405,38 +405,38 @@
         "checkbox_representative": "The account owner is a company representative",
         "confirm_section_title": "Confirm that you verified:",
         "disclaimer": {
-          "description": "Your account hasn't reached the minimum usage required to request verification. Keep using the channel, account verification will be available automatically once you reach 50 conversations or 50 templates sent.",
+          "description": "Your account hasn't reached the minimum usage required to request verification. Keep using the channel and account verification will become automatically available once you reach 50 conversations or 50 sent templates.",
           "title": "Verification not available yet"
         },
         "disclaimer_limit_reached": {
-          "description": "You've reached the maximum number of verification attempts. Please contact our support team for assistance.",
-          "title": "Submission limit reached"
+          "description": "You've reached the maximum number of verification attempts. Contact our support team for assistance.",
+          "title": "Verification limit reached"
         },
         "disclaimer_reviewing": {
           "description": "This process takes an average of 48 hours. You'll receive an email as soon as the result is available.",
           "title": "Your documents are being reviewed by Meta"
         },
         "disclaimer_verified": {
-          "description": "Your business has been verified by Meta. You can now access WhatsApp's advanced features and grow your presence on the channel.",
+          "description": "Your business has been verified by Meta. You can now access advanced WhatsApp features and grow your presence on the channel.",
           "title": "Your account is verified"
         },
-        "documentation_link": "View documentation best practices",
-        "fetch_error": "Account verification couldn't be loaded due to a technical issue",
+        "documentation_link": "View document best practices",
+        "fetch_error": "Couldn't load account verification due to a technical issue",
         "file_too_large": "Each file must be 5 MB or smaller",
         "invalid_file_type": "Select a PDF, JPEG, JPG, or PNG file",
         "rejection_reasons_label": "Rejection reasons",
-        "send": "Send",
+        "send": "Submit",
         "submit_error": "Documents couldn't be submitted due to a technical issue",
         "submit_success": "Documents submitted successfully",
-        "supported_file_types": "Supported file types: PDF, JPEG, JPG, PNG. Maximum size 5 MB",
+        "supported_file_types": "Supported file types: PDF, JPEG, JPG, PNG. Maximum size: 5 MB.",
         "suggested_documents": {
-          "item_articles": "Articles of association or social contract (e.g., MEI)",
-          "item_registration": "Company registration document or license (e.g., CNPJ)",
+          "item_articles": "Articles of organization or operating agreement (example: DBA or sole proprietorship registration)",
+          "item_registration": "Company registration document or license (example: EIN)",
           "item_tax": "Tax document, utility bill, or company bank statement",
           "title": "Suggested documents for Brazil include:"
         },
         "upload_files": "Upload files",
-        "upload_section_description": "Add the documents used to verify the company, with the name \"Account name\" visible",
+        "upload_section_description": "Add the documents used to verify the company with \"Account name\" visible",
         "upload_section_title": "Upload supporting documents"
       },
       "webhook_info": {
@@ -562,7 +562,11 @@
         "empty_url": "Provided Webhook URL cannot be empty",
         "invalid_url": "Provided Webhook URL is invalid",
         "webhook_update": "Error while trying to update webhook data",
-        "invalid_data": "Some fields are invalid, please fix them and try again"
+        "invalid_data": "Some fields are invalid, please fix them and try again",
+        "2388072": {
+          "title": "Incorrect title format",
+          "message": "The message header cannot have new lines, formatting characters, emojis, or asterisks."
+        }
       },
       "qr": {
         "title": "WhatsApp Link",

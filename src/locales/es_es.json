@@ -65,11 +65,11 @@
       },
       "fetch_error": "No se pudo cargar la lista de aplicaciones, inténtelo de nuevo más tarde.",
       "search": {
+        "placeholder": "Buscar",
         "empty_title": "Wow, no pudimos encontrar esta cosa de",
         "empty_description": "Pero puedes ver todas nuestras integraciones pinchando",
         "empty_link": "aquí",
-        "results": "Resultados para",
-        "placeholder": "Buscar"
+        "results": "Resultados para"
       },
       "action": {
         "edit": "Editar",
@@ -78,7 +78,7 @@
     },
     "myApps": {
       "empty": {
-        "no-integrations": "odavía no has instalado ninguna",
+        "no-integrations": "Todavía no has instalado ninguna",
         "search": "Busque lo que necesita",
         "link": "aquí"
       },
@@ -218,6 +218,10 @@
       "conversation_starters_pdp": {
         "label": "Preguntas sugeridas por IA",
         "helper": "Muestra botones de interacción rápida en la página del producto. La IA analiza el SKU para sugerir automáticamente las consultas más relevantes de los clientes."
+      },
+      "add_to_cart": {
+        "label": "Agregar al carrito en la tienda",
+        "helper": "Los compradores pueden agregar productos sugeridos por IA directamente al carrito nativo de la tienda en lugar de un carrito gestionado por Shopping Assistant. Recomendado para tiendas con flujos de carrito o checkout personalizados."
       },
       "main_color": "Color principal",
       "save_changes": "Guardar los cambios",
@@ -396,44 +400,44 @@
         "title": "Datos de facturación"
       },
       "account_verification": {
-        "checkbox_compliance": "La empresa cumple con la Política Comercial de WhatsApp",
-        "checkbox_legal_entity": "La empresa es una entidad legal",
-        "checkbox_representative": "El titular de la cuenta es un representante de la empresa",
+        "checkbox_compliance": "La empresa cumple con la Política comercial de WhatsApp Business",
+        "checkbox_legal_entity": "La empresa es una persona jurídica",
+        "checkbox_representative": "El propietario de la cuenta es un representante de la empresa",
         "confirm_section_title": "Confirma que verificaste:",
         "disclaimer": {
-          "description": "Tu cuenta no ha alcanzado el uso mínimo requerido para solicitar la verificación. Sigue usando el canal, la verificación de cuenta estará disponible automáticamente cuando alcances 50 conversaciones o 50 plantillas enviadas.",
-          "title": "Verificación no disponible aún"
+          "description": "Tu cuenta aún no alcanzó el uso mínimo requerido para solicitar la verificación. Sigue usando el canal y la verificación de cuenta estará disponible automáticamente cuando alcances 50 conversaciones o 50 plantillas enviadas.",
+          "title": "Verificación aún no disponible"
         },
         "disclaimer_limit_reached": {
-          "description": "Has alcanzado el número máximo de intentos de verificación. Comunícate con nuestro equipo de soporte para obtener ayuda.",
-          "title": "Límite de envíos alcanzado"
+          "description": "Has alcanzado el número máximo de intentos de verificación. Ponte en contacto con nuestro Soporte para obtener ayuda.",
+          "title": "Límite de verificación alcanzado"
         },
         "disclaimer_reviewing": {
-          "description": "Este proceso tarda un promedio de 48 horas. Recibirás un correo electrónico en cuanto el resultado esté disponible.",
-          "title": "Tus documentos están siendo revisados por Meta"
+          "description": "Este proceso tarda aproximadamente 48 horas. Recibirás un email en cuanto el resultado esté disponible.",
+          "title": "Meta está revisando tus documentos"
         },
         "disclaimer_verified": {
-          "description": "Tu negocio ha sido verificado por Meta. Ahora puedes acceder a las funciones avanzadas de WhatsApp y ampliar tu presencia en el canal.",
+          "description": "Tu empresa ha sido verificada por Meta. Ahora puedes acceder a funcionalidades avanzadas de WhatsApp y ampliar tu presencia en el canal.",
           "title": "Tu cuenta está verificada"
         },
-        "documentation_link": "Ver buenas prácticas de documentación",
-        "fetch_error": "No se pudo cargar la verificación de cuenta debido a un problema técnico",
-        "file_too_large": "Cada archivo debe tener un máximo de 5 MB",
+        "documentation_link": "Ver mejores prácticas de documentos",
+        "fetch_error": "No se pudo cargar la verificación de la cuenta debido a un problema técnico",
+        "file_too_large": "Cada archivo debe tener 5 MB como máximo",
         "invalid_file_type": "Selecciona un archivo PDF, JPEG, JPG o PNG",
-        "rejection_reasons_label": "Motivos del rechazo",
+        "rejection_reasons_label": "Motivos de rechazo",
         "send": "Enviar",
         "submit_error": "No se pudieron enviar los documentos debido a un problema técnico",
         "submit_success": "Documentos enviados con éxito",
-        "supported_file_types": "Tipos de archivo compatibles: PDF, JPEG, JPG, PNG. Tamaño máximo de 5 MB",
+        "supported_file_types": "Tipos de archivo compatibles: PDF, JPEG, JPG, PNG. Tamaño máximo: 5 MB.",
         "suggested_documents": {
-          "item_articles": "Contrato social o estatutos (ej.: MEI)",
-          "item_registration": "Documento de registro o licencia de la empresa (ej.: CNPJ)",
-          "item_tax": "Documento fiscal, factura de servicios o extracto bancario de la empresa",
-          "title": "Documentos sugeridos para Brasil:"
+          "item_articles": "Acta constitutiva, contrato social o documento equivalente de constitución de la empresa (por ejemplo, registro de nombre comercial o de empresa unipersonal)",
+          "item_registration": "Documento de registro o licencia de la empresa (por ejemplo, número de identificación fiscal)",
+          "item_tax": "Documento fiscal, factura de servicios públicos o estado de cuenta bancario de la empresa",
+          "title": "Los documentos sugeridos para Brasil incluyen:"
         },
-        "upload_files": "Subir archivos",
-        "upload_section_description": "Agrega los documentos usados para verificar la empresa, con el nombre \"Nombre de la cuenta\" visible",
-        "upload_section_title": "Subir documentos de respaldo"
+        "upload_files": "Cargar archivos",
+        "upload_section_description": "Registra los documentos utilizados para verificar la empresa con el \"Nombre de cuenta\" visible",
+        "upload_section_title": "Carga los documentos necesarios para la verificación"
       },
       "webhook_info": {
         "input": {
@@ -467,15 +471,15 @@
             "quantity": "Cantidad",
             "business": "Negocio",
             "user": "Usuario",
-            "authentication": "Autenticación",
             "marketing": "Marketing",
             "marketing_lite": "Marketing Lite",
-            "service": "Servicio",
             "utility": "Utilidad",
+            "authentication": "Autenticación",
+            "service": "Servicio",
             "category": "Categoría"
           },
-          "after_label": "Datos después del cambio de precio",
-          "before_label": "Datos antes del cambio de precio"
+          "before_label": "Datos antes del cambio de precio",
+          "after_label": "Datos después del cambio de precio"
         },
         "fetch_error": "Error al obtener los datos del chat. Por favor contacte a soporte.",
         "report": {
@@ -558,7 +562,11 @@
         "empty_url": "La URL proporcionada del webhook no puede estar vacía",
         "invalid_url": "La URL proporcionada del webhook no es válida",
         "webhook_update": "Error al intentar actualizar los datos del webhook",
-        "invalid_data": "Algunos campos no son válidos, corríjalos y vuelva a intentarlo"
+        "invalid_data": "Algunos campos no son válidos, corríjalos y vuelva a intentarlo",
+        "2388072": {
+          "title": "El formato del título es incorrecto",
+          "message": "El encabezado del mensaje no puede tener líneas nuevas, caracteres de formato, emojis ni asteriscos."
+        }
       },
       "qr": {
         "title": "Enlace de WhatsApp",
@@ -651,8 +659,8 @@
           "category": "Categoría"
         },
         "header": {
-          "description": "La siguiente tabla muestra las plantillas de mensajes configuradas actualmente para este número.",
-          "title": "Plantillas de WhatsApp"
+          "title": "Plantillas de WhatsApp",
+          "description": "La siguiente tabla muestra las plantillas de mensajes configuradas actualmente para este número."
         }
       },
       "form": {
@@ -1095,15 +1103,15 @@
       "description": "Seleccione el número de WhatsApp, ingrese el subdominio, AppKey y AppToken",
       "subdomain": "Subdominio",
       "subdomain_placeholder": "Ej: tienda.myvtex.com",
+      "whatsapp_channel": "Numero WhatsApp",
       "appKey": "AppKey",
       "appKey_placeholder": "Inserta tu AppKey",
       "appToken": "AppToken",
       "appToken_placeholder": "Inserta tu AppToken",
-      "whatsapp_channel": "Numero WhatsApp",
       "guide": {
         "question": "¿No conoces tu AppKey y AppToken?",
-        "link": "haga clic aquí",
-        "question_end": "para acceder a la documentación sobre VTEX y descubrirlo."
+        "question_end": "para acceder a la documentación sobre VTEX y descubrirlo.",
+        "link": "haga clic aquí"
       },
       "invalid_credentials": "Credenciales no válidas para el subdominio dado",
       "error": "Ocurrió un error al intentar integrar con VTEX, inténtelo nuevamente más tarde",
@@ -1167,7 +1175,8 @@
         "sporting_goods": "Tiendas de artículos deportivos",
         "shoe_stores": "Tiendas de zapatos",
         "auto_parts": "Tiendas de autopartes",
-        "other": "Otro"
+        "other": "Otro",
+        "placeholder": "Selecciona un tipo de negocio"
       }
     },
     "connect_catalog": {
@@ -1183,7 +1192,7 @@
       "redirect_to_wpp_catalog": "No se pudo redirigir al catálogo. Actualice la página e inténtelo nuevamente.",
       "update_connected_catalog_status": "No se pudo recuperar el estado del catálogo. Vuelva a intentarlo más tarde.",
       "select_five_sellers": "Por favor, seleccione hasta 5 vendedores.",
-      "sync_sellers": "Comerciantes sincronizados con éxito"
+      "sync_sellers": "No se pudieron sincronizar los vendedores en este momento. Vuelve a intentarlo más tarde."
     },
     "success": {
       "connect_catalog": "Catálogo VTEX conectado exitosamente",
@@ -1235,7 +1244,6 @@
     "WC": "Agregue un bot de WeChat para enviar y recibir mensajes a los usuarios de WeChat de forma gratuita. Sus usuarios necesitarán un dispositivo Android, Windows o iOS y una cuenta de WeChat para enviar y recibir mensajes.",
     "ZVS": "Si tiene un número de SMS de Zenvia, puede conectarlo para comunicarse con sus contactos.",
     "ZVW": "Si tiene un número de WhatsApp de Zenvia, puede conectarlo para comunicarse con sus contactos de WhatsApp.",
-
     "inputs": {
       "KWA": {
         "number": {
