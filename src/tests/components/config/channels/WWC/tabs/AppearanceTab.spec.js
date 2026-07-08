@@ -175,8 +175,8 @@ describe('AppearanceTab', () => {
       expect(input.attributes('type')).toBe('error');
     });
 
-    it('should show error for title exceeding 25 characters', async () => {
-      wrapper = createWrapper({ initialTitle: 'This is a very long title exceeding limit' });
+    it('should show error for title exceeding 1000 characters', async () => {
+      wrapper = createWrapper({ initialTitle: 'a'.repeat(1001) });
       await wrapper.vm.$nextTick();
       const input = wrapper.find('unnnic-input-stub');
       expect(input.attributes('type')).toBe('error');
@@ -189,8 +189,8 @@ describe('AppearanceTab', () => {
       expect(input.attributes('type')).toBe('normal');
     });
 
-    it('should show normal type for title with exactly 25 characters', async () => {
-      wrapper = createWrapper({ initialTitle: '1234567890123456789012345' });
+    it('should show normal type for title with exactly 1000 characters', async () => {
+      wrapper = createWrapper({ initialTitle: 'a'.repeat(1000) });
       await wrapper.vm.$nextTick();
       const input = wrapper.find('unnnic-input-stub');
       expect(input.attributes('type')).toBe('normal');

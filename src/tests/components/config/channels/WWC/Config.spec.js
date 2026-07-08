@@ -345,11 +345,11 @@ describe('wwcConfig Component', () => {
       );
     });
 
-    it('should show error alert if title exceeds 20 characters', async () => {
+    it('should show error alert if title exceeds 1000 characters', async () => {
       const alertSpy = vi.spyOn(unnnic, 'unnnicCallAlert');
 
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('update:title', 'This title is way too long');
+      await appearanceTab.vm.$emit('update:title', 'a'.repeat(1001));
       await appearanceTab.vm.$emit('save');
 
       expect(alertSpy).toHaveBeenCalledWith(
