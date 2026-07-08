@@ -230,6 +230,7 @@
       "initPayloadToolTip": "Al abrir el chat en su sitio web, un disparador con este valor será llamado automáticamente para iniciar un flujo elegido. Puede configurarlo en Studio.",
       "TitleInput": {
         "label": "Título del chat",
+        "max_length": "Por defecto, el máximo es {max} caracteres.",
         "placeholder": "Ej.: Nombre de su chatbot"
       },
       "SubtitleInput": {

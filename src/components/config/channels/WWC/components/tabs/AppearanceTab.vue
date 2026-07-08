@@ -225,7 +225,7 @@
       return t('errors.empty_input');
     }
     if (title.value.length > TITLE_MAX_LENGTH) {
-      return `By default, the maximum is ${TITLE_MAX_LENGTH} characters.`;
+      return t('weniWebChat.config.TitleInput.max_length', { max: TITLE_MAX_LENGTH });
     }
     return '';
   });
