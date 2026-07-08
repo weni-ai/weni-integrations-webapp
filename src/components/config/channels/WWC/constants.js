@@ -1,5 +1,7 @@
 export const DEFAULT_COLOR = '#009E96';
 
+export const TITLE_MAX_LENGTH = 1000;
+
 export const WEBCHAT_SCRIPT_URLS = {
   v1: 'https://storage.googleapis.com/push-webchat/wwc-latest.js',
   v2: 'https://cdn.cloud.weni.ai/webchat-latest.umd.js',

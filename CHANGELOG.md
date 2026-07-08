@@ -1,3 +1,11 @@
+3.14.1
+----------
+`2026-07-08 · 2 🔧`
+
+### 🔧 Improvements
+- Remove Omie configuration description
+- Update WebChat title character limit to match backend validation
+
 3.14.0
 ----------
 `2026-06-22 · 1 🔧`

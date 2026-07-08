@@ -230,6 +230,7 @@
       "initPayloadToolTip": "Al abrir el chat en su sitio web, un disparador con este valor será llamado automáticamente para iniciar un flujo elegido. Puede configurarlo en Studio.",
       "TitleInput": {
         "label": "Título del chat",
+        "max_length": "Por defecto, el máximo es {max} caracteres.",
         "placeholder": "Ej.: Nombre de su chatbot"
       },
       "SubtitleInput": {
@@ -999,7 +1000,6 @@
       "description": "Si tienes un CRM en Omie, puedes integrarte con la Plataforma VTEX Agentic CX y automatizar acciones en tu CRM a través de tu chatbot.<br><br>Al integrar la plataforma VTEX Agentic CX con tu CRM en Omie podrás realizar acciones como :<br><br>- Incluir Oportunidades en el CRM<br>- Buscar Título y Lanzamientos<br>- Listar clientes<br><br>Aquí en el módulo de Integraciones, debes realizar la Integración con Omie proporcionando la API Key y datos secretos de API y luego realice la integración.<br>Después de eso, simplemente vaya al módulo de flujos, cree un flujo y luego tendrá una tarjeta disponible llamada Servicios externos, en la que podrá realizar todas las acciones con CRM de Omie mencionado aquí."
     },
     "config": {
-      "description": "Obtenga más información sobre la integración con Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">aquí</a>",
       "connect": "Conectar",
       "tabs": {
         "config": {
