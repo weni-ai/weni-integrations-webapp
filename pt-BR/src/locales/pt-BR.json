@@ -1,0 +1,1751 @@
+{
+  "general": {
+    "Cancel": "Cancelar",
+    "Close": "Fechar",
+    "You": "Você",
+    "confirm": "Confirmar",
+    "loading": "Carregando",
+    "Remove": "Remover",
+    "exit": "Sair",
+    "send": "Enviar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "start": "Começar",
+    "error": "Erro",
+    "success": "Sucesso",
+    "continue": "Continuar",
+    "attention": "Atenção",
+    "beta": "BETA",
+    "new": "NOVO"
+  },
+  "errors": {
+    "empty_input": "Campos obrigatórios não podem estar vazios.",
+    "required_message": "Este campo é obrigatório."
+  },
+  "date": {
+    "months": {
+      "january": "Janeiro",
+      "february": "Fevereiro",
+      "march": "Março",
+      "april": "Abril",
+      "may": "Maio",
+      "june": "Junho",
+      "july": "Julho",
+      "august": "Agosto",
+      "september": "Setembro",
+      "october": "Outubro",
+      "november": "Novembro",
+      "december": "Dezembro"
+    },
+    "options": {
+      "seven_days": "Últimos 7 dias",
+      "fourteen_days": "Últimos 14 dias",
+      "thirty_days": "Últimos 30 dias",
+      "twelve_months": "Últimos 12 meses",
+      "current_month": "Mês Atual",
+      "personalize": "Personalizar"
+    }
+  },
+  "apps": {
+    "nav": {
+      "discovery": "Descoberta",
+      "my_apps": "Meus Aplicativos",
+      "other_apps": "Outras Aplicações"
+    },
+    "discovery": {
+      "categories": {
+        "channel": "Canais de Comunicação",
+        "ticket": "Gerenciadores de Atendimento",
+        "configured": "Aplicativos configurados",
+        "installed": "Aplicativos instalados",
+        "bi-tools": "Ferramentas de BI",
+        "external": "Serviços Externos",
+        "recommended": "Canais recomendados",
+        "ecommerce": "Comércio Eletrônico"
+      },
+      "fetch_error": "Falha ao carregar lista de aplicações, por favor tente novamente mais tarde.",
+      "search": {
+        "placeholder": "Buscar",
+        "empty_title": "Poxa, não encontramos esse tal de",
+        "empty_description": "Mas você pode ver todas as nossas integrações clicando",
+        "empty_link": "aqui",
+        "results": "Resultados para"
+      },
+      "action": {
+        "edit": "Editar",
+        "config": "Configurar"
+      }
+    },
+    "myApps": {
+      "empty": {
+        "no-integrations": "Você ainda não instalou nenhuma integração.",
+        "search": "Procure o que você precisa",
+        "link": "aqui"
+      },
+      "error": {
+        "configured": "Não foi possível carregar os aplicativos configurados, tente novamente mais tarde.",
+        "installed": "Não foi possível carregar os aplicativos instalados, tente novamente mais tarde."
+      }
+    },
+    "details": {
+      "info": "Número de mensagens trocadas",
+      "integrated_into": "Integrado em",
+      "projects": "projetos",
+      "rating": "Avaliação",
+      "status_error": "Não foi possível completar a ação, tente novamente",
+      "status_success": "Sucesso",
+      "navigator": {
+        "discovery": "Descoberta"
+      },
+      "about": {
+        "about_the_app": "Sobre o App",
+        "useful_links": "Links Úteis"
+      },
+      "recommended": {
+        "title": "Recomendados",
+        "comments": "comentários"
+      },
+      "comments": {
+        "leave_a_comment": "Deixe um comentário",
+        "input_placeholder": "Um bom comentário pode ajudar outras pessoas que estão aprendendo :)",
+        "edit_comment": "Editar comentário",
+        "delete_comment": "Deletar comentário",
+        "remove": {
+          "title": "Deletar comentário",
+          "description": "Deseja mesmo excluir o seu comentário no aprendizado? Você poderá inserir outro novamente.",
+          "remove": "Deletar comentário",
+          "status_text": "Comentário removido com sucesso"
+        }
+      },
+      "header": {
+        "add": "Adicionar"
+      },
+      "card": {
+        "comments": "comentários",
+        "see_details": "Ver detalhes",
+        "copy_uuid": "Copiar UUID"
+      },
+      "actions": {
+        "installed": {
+          "title": "Aplicativo adicionado!",
+          "description": "Você ainda precisa configurar o aplicativo acessando a área \"Meus aplicativos\".",
+          "access_my_apps": "Acessar meus aplicativos"
+        },
+        "remove": {
+          "title": "Remover Aplicativo",
+          "description": "Você realmente deseja remover esse Aplicativo? Isso não pode ser desfeito.",
+          "remove": "Remover Aplicativo",
+          "status_text": "Aplicativo removido com sucesso"
+        },
+        "copy": {
+          "sucess": "O UUID {uuid} foi copiado e enviado para a área de transferência."
+        }
+      }
+    },
+    "config": {
+      "first_integration_success": "Para baixar o código para colocar em seu website vá para a aba Código Script.",
+      "integration_success": "Aplicação instalada com sucesso!",
+      "copy_success": "Copiado com sucesso!",
+      "configure_later": "Configurar depois",
+      "save_changes": "Salvar alterações",
+      "cancel": "Cancelar",
+      "validate": "Validar",
+      "copy": "Copiar",
+      "confirmation": {
+        "title": "Cancelar alterações",
+        "description": "Deseja mesmo cancelar as alterações? Você perderá o que não foi salvo.",
+        "goBackToConfig": "Voltar para configuração"
+      }
+    }
+  },
+  "upload_area": {
+    "title": {
+      "text": "Arraste seu arquivo aqui, ou",
+      "highlight": "procure-o"
+    },
+    "invalid": {
+      "text": ", tente novamente",
+      "highlight": "Arquivo inválido",
+      "subtitle": "O arquivo não é suportado."
+    },
+    "subtitle": "Formatos suportados:"
+  },
+  "import_card": {
+    "importing": "Importando"
+  },
+  "weniWebChat": {
+    "data": {
+      "name": "Shopping Assistant",
+      "summary": "Com o Shopping Assistant, você pode integrar seu projeto como um chat em seu site.",
+      "description": "Use Shopping Assistant to have a humanized automation experience of VTEX CX Platform directly on your website or web platform. This integration allows you to customize different aspects of Shopping Assistant such as color, timing between messages, message indicators, avatar, and more. This way you can take advantage of everything that VTEX CX Platform has to offer with your brand identity.",
+      "links": {
+        "create_channel": {
+          "label": "Como criar um canal Shopping Assistant",
+          "url": "https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-web"
+        }
+      }
+    },
+    "config": {
+      "description": "Saiba mais sobre como integrar o Shopping Assistant aqui.",
+      "settings": "Configurações",
+      "script": "Código Script",
+      "appearance": "Aparência",
+      "preferences": "Preferências",
+      "behavior": "Comportamento",
+      "media": "Mídia",
+      "retail": "Varejo",
+      "history": "Histórico de chat & Inatividade",
+      "script_tutorial": "Para instalar o Shopping Assistant no seu site, copie e cole este código acima da última tag <<strong>/body</strong>> no seu site",
+      "script_disclaimer": "O script estará disponível uma vez que os ajustes básicos necessários forem completados.",
+      "download_script": "Baixar Script",
+      "custom_css": "CSS Customizado",
+      "avatar_image": "Imagem do Avatar",
+      "use_connection_optimization": "Usar otimização de conexão",
+      "embedded_mode": "Modo incorporado",
+      "start_with_fullscreen": "Iniciar chat em tela cheia",
+      "show_fullscreen_button": "Mostrar botão de tela cheia",
+      "show_voice_recording_button": "Mostrar botão de gravação de voz",
+      "show_camera_button": "Mostrar botão de câmera",
+      "unread_messages_indicator": "Indicador de mensagens não lidas",
+      "keep_chat_history": "Manter histórico de mensagens",
+      "time_between_messages": "Tempo entre as mensagens",
+      "time_between_messages_option": "{count, plural, one {{count} segundo} other {{count} segundos}}",
+      "time_between_messages_message": "Intervalo entre mensagens do agente",
+      "navigate_if_same_domain": {
+        "label": "Permitir que o Shopping Assistant redirecione automaticamente a página",
+        "helper": "When enabled, Shopping Assistant can automatically redirect the user to another page when a link is sent during the conversation. This feature is currently in beta and may change."
+      },
+      "conversation_starters_pdp": {
+        "label": "Perguntas sugeridas por IA",
+        "helper": "Exibe botões de interação rápida na página do produto. A IA analisa o SKU para sugerir automaticamente as perguntas mais relevantes dos clientes."
+      },
+      "add_to_cart": {
+        "label": "Adicionar ao carrinho da loja",
+        "helper": "Shoppers can add AI-suggested products directly to the store's native cart instead of a cart managed by Shopping Assistant. Recommended for stores with custom cart or checkout flows."
+      },
+      "main_color": "Cor principal",
+      "save_changes": "Salvar alterações",
+      "script_placeholder": "Seu script estará aqui",
+      "download": "Baixar",
+      "initPayloadToolTip": "Ao abrir o chat em seu site, uma trigger com este valor sera chamada automaticamente para iniciar um fluxo escolhido. Voce pode configura-la em Estúdio.",
+      "TitleInput": {
+        "label": "Título do Chat",
+        "max_length": "By default, the maximum is {max} characters.",
+        "placeholder": "Ex.: Nome do seu chatbot"
+      },
+      "SubtitleInput": {
+        "label": "Subtítulo do Chat",
+        "placeholder": "Ex.: Nome da empresa"
+      },
+      "PlaceholderInput": {
+        "label": "Texto do placeholder",
+        "placeholder": "Ex.: Digite sua mensagem"
+      },
+      "initPayloadInput": {
+        "label": "Mensagem de disparo",
+        "placeholder": "Ex.: Olá, seja bem vindo"
+      },
+      "TooltipInput": {
+        "label": "Mensagem de notificação do chat",
+        "placeholder": "Mensagem que aparecerá na notificação do chatbot"
+      },
+      "contactTimeoutInput": {
+        "label": "Reiniciar conversa por inatividade do contato"
+      },
+      "contactTimeoutToolTip": "Se o contato permanecer inativo pelo tempo definido, a conversa será encerrada automaticamente.\nUma nova conversa será iniciada caso ele volte a interagir.",
+      "contactTimeoutInvalidTime": "O valor deve ser um timer com um máximo de 24 horas no seguinte formato: HH:mm",
+      "add_field": "Mais",
+      "customization": "Personalização",
+      "voice_mode": {
+        "title": "Modo de voz",
+        "enabled": "Ativar modo de voz",
+        "elevenLabsApiKey": {
+          "label": "Token do ElevenLabs",
+          "placeholder": "Cole seu token aqui"
+        },
+        "elevenLabsVoiceId": {
+          "label": "ID de voz do ElevenLabs (opcional)",
+          "placeholder": "Cole seu Voice ID aqui"
+        },
+        "get_token_here": "Obtenha seu token aqui",
+        "no_key_text": "Não tem uma chave?",
+        "other_voice": "Outra",
+        "other_voice_placeholder": "Cole o ID da voz",
+        "select_voice": "Selecione uma voz",
+        "voice_category": {
+          "default_portuguese": "Padrão – Português",
+          "english": "Inglês",
+          "portuguese": "Português",
+          "spanish": "Espanhol"
+        }
+      }
+    },
+    "simulator": {
+      "chatTitle": "Título do Chat",
+      "chatSubtitle": "Subtítulo do Chat",
+      "chatPlaceholder": "Digite sua mensagem",
+      "replies": {
+        "yes": "Sim",
+        "no": "Não",
+        "maybe": "Talvez"
+      }
+    }
+  },
+  "telegram": {
+    "data": {
+      "summary": "Envie e receba mensagens de usuários do Telegram gratuitamente.",
+      "description": "Ao utilizar o Telegram, você está conectando um dos maiores aplicativos de troca de mensagem como um canal disponível para o seu público na VTEX Agentic CX. Envie e receba textos, vídeos e áudios através desse canal, garantindo o conforto e comunidade da sua audiência, bem como os recursos disponíveis na plataforma.",
+      "links": {
+        "create_channel": {
+          "label": "Como criar um Canal no Telegram",
+          "url": "https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-no-telegram"
+        }
+      }
+    },
+    "config": {
+      "description": {
+        "text": "Saiba mais sobre como integrar o telegram",
+        "link": "aqui."
+      },
+      "TokenInput": {
+        "label": "Token"
+      },
+      "errors": {
+        "invalidToken": "Token provido não é válido."
+      }
+    }
+  },
+  "WhatsAppDemo": {
+    "data": {
+      "summary": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto.",
+      "description": "Com o WhatsApp Demo você pode trazer o melhor do WhatsApp, maior aplicativo de conversas do mundo, de graça para validar o seu projeto. Com um número compartilhado gratuito você consegue testar com até 200 usuários mensais todas a features disponíveis na plataforma, bem como validar o funcionamento e atendimento do seu negócio por esse canal.<br>Obs.:<br>- Não suporta personalizações (foto, descrição, número, etc)<br>- Não suporta template messages, ou seja, todas as conversas devem ser iniciadas pelo usuário",
+      "links": {
+        "create_channel": {
+          "label": "Como criar um Canal do WhatsApp Demo",
+          "url": "https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-no-whats-app-demo"
+        }
+      }
+    },
+    "config": {
+      "title": "Quase lá!",
+      "description": "Para utilziar o WhatsApp Demo você será direcionado para um link.",
+      "continue_and_redirect": "Continuar e Redirecionar"
+    },
+    "preview": {
+      "description": "Com a URL abaixo vc pode utilizar o WhatsApp Demo, testar no seu projeto, ou até mesmo compartilhar com outras pessoas.",
+      "UrlInput": {
+        "label": "URL"
+      }
+    }
+  },
+  "WhatsApp": {
+    "data": {
+      "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "description": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "templates": {
+        "category": {
+          "account_update": "Atualização da conta",
+          "payment_update": "Atualização de pagamento",
+          "personal_finance_update": "Atualização de finanças pessoais",
+          "reservation_update": "Atualização de reserva",
+          "shipping_update": "Atualização de envio",
+          "issue_resolution": "Resolução do problema",
+          "appointment_update": "Atualização de agendamento",
+          "transportation_update": "Atualização de transporte",
+          "ticket_update": "Atualização do ticket",
+          "alert_update": "Atualização de alerta",
+          "auto_reply": "Resposta Automática",
+          "transactional": "Transacional",
+          "marketing": "Marketing",
+          "otp": "Senha única",
+          "utility": "Utilitário",
+          "authentication": "Autenticação",
+          "any": "Qualquer"
+        }
+      }
+    },
+    "config": {
+      "tabs": {
+        "account": "Geral",
+        "profile": "Perfil",
+        "contact_info": "Informações de Contato",
+        "conversations": "Conversas",
+        "templates": "Templates",
+        "account_verification": "Verificação da conta",
+        "webhook_info": "Webhook"
+      },
+      "description": {
+        "text": "Saiba mais sobre como aumentar o seu limite de mensagens no WhatsApp",
+        "link": "aqui."
+      },
+      "account": {
+        "title": "Conta",
+        "message_per_day_limit": "Limite de diário de mensagens",
+        "config": {
+          "voice_calling": {
+            "label": "Chamada de voz",
+            "feedback": {
+              "enabled": {
+                "success": "Chamada de voz habilitada com sucesso",
+                "error": "Falha ao habilitar a chamada de voz"
+              },
+              "disabled": {
+                "success": "Chamada de voz desabilitada com sucesso",
+                "error": "Falha ao desabilitar a chamada de voz"
+              }
+            }
+          }
+        }
+      },
+      "billing": {
+        "title": "Informações de pagamento"
+      },
+      "account_verification": {
+        "checkbox_compliance": "A empresa está em conformidade com a Política de Pessoa Jurídica do WhatsApp",
+        "checkbox_legal_entity": "A empresa é uma pessoa jurídica",
+        "checkbox_representative": "O dono da conta é um atendente da empresa",
+        "confirm_section_title": "Confirme que você verificou:",
+        "disclaimer": {
+          "description": "Sua conta ainda não atingiu o uso mínimo necessário para contratar a verificação. Continue usando o canal e a verificação da conta ficará disponível automaticamente quando você atingir 50 conversas ou 50 templates enviados.",
+          "title": "Verificação ainda não disponível"
+        },
+        "disclaimer_limit_reached": {
+          "description": "Você atingiu o número máximo de tentativas de verificação. Entre em contato com nosso time de suporte para obter ajuda.",
+          "title": "Limite de verificação atingido"
+        },
+        "disclaimer_reviewing": {
+          "description": "Este processo leva em média 48 horas. Você receberá um email assim que o resultado estiver disponível.",
+          "title": "Seus documentos estão sendo analisados pela Meta"
+        },
+        "disclaimer_verified": {
+          "description": "Sua empresa foi verificada pela Meta. Agora você pode acessar funcionalidades avançadas do WhatsApp e aumentar sua presença no canal.",
+          "title": "Sua conta está verificada"
+        },
+        "documentation_link": "Ver melhores práticas de documentos",
+        "fetch_error": "Não foi possível carregar a verificação da conta devido a um problema técnico",
+        "file_too_large": "Cada arquivo deve ter no máximo 5 MB",
+        "invalid_file_type": "Selecione um arquivo PDF, JPEG, JPG ou PNG",
+        "rejection_reasons_label": "Motivos da recusa",
+        "send": "Enviar",
+        "submit_error": "Não foi possível enviar os documentos devido a um problema técnico",
+        "submit_success": "Documentos enviados com sucesso",
+        "supported_file_types": "Tipos de arquivo suportados: PDF, JPEG, JPG, PNG. Tamanho máximo: 5 MB.",
+        "suggested_documents": {
+          "item_articles": "Contrato social ou acordo operacional (exemplo: registro de DBA ou empresa individual)",
+          "item_registration": "Documento de registro ou licença da empresa (exemplo: CNPJ)",
+          "item_tax": "Documento fiscal, conta de serviço público ou extrato bancário da empresa",
+          "title": "Documentos sugeridos para o Brasil incluem:"
+        },
+        "upload_files": "Enviar arquivos",
+        "upload_section_description": "Adicione os documentos usados para verificar a empresa com \"Nome da conta\" visível",
+        "upload_section_title": "Faça upload dos documentos comprobatórios"
+      },
+      "webhook_info": {
+        "input": {
+          "label": "URL do Webhook"
+        },
+        "method": {
+          "label": "Método"
+        },
+        "headers": {
+          "label": "Cabeçalhos"
+        },
+        "header_key": {
+          "placeholder": "Chave"
+        },
+        "header_value": {
+          "placeholder": "Valor"
+        }
+      },
+      "conversations": {
+        "title": "Informações de conversa",
+        "filter": {
+          "label": "Filtrar por"
+        },
+        "conversations_count": {
+          "label": "Número de conversas",
+          "table": {
+            "user_messages": "Iniciadas pelo usuário",
+            "business_messages": "Iniciadas pelo negócio",
+            "total": "Total",
+            "started_by": "Iniciadas por",
+            "quantity": "Quantidade",
+            "business": "Negócio",
+            "user": "Usuário",
+            "marketing": "Marketing",
+            "marketing_lite": "Marketing Lite",
+            "utility": "Utilidade",
+            "authentication": "Autenticação",
+            "service": "Serviço",
+            "category": "Categoria"
+          },
+          "before_label": "Dados antes da alteração de preço",
+          "after_label": "Dados depois da alteração de preço"
+        },
+        "fetch_error": "Falha ao buscar dados de conversas. Entre em contato com o suporte.",
+        "report": {
+          "button": "Solicitar relatório",
+          "description": "Você pode receber por email o detalhamento de mensagens de no máximo 6 meses atrás. É possível que algumas informações do relatório estejam imprecisas, em caso de dúvida entre em contato com o seu gerente de conta.",
+          "label": "Relatório detalhado de conversas",
+          "missing_dates": " Um intervalo de datas é necessário para poder solicitar um relatório"
+        },
+        "report_already_processing": "Você já solicitou um relatório detalhado há pouco tempo, você pode solicitar um novo após receber o último.",
+        "report_success": "Você vai receber seu relatório detalhado por email em breve",
+        "report_error": "Falha ao solicitar relatório detalhado, tente novamente mais tarde"
+      },
+      "channel": {
+        "title": "Canal do WhatsApp",
+        "fields": {
+          "phone_number": "Número de telefone",
+          "whatsapp_display_name": "Nome de exibição do WhatsApp",
+          "number_registration": "Registro do número",
+          "default_language_for_templates": "Idioma padrão para templates",
+          "ivr_existing": "IVR existente",
+          "ivr_active": "IVR ativo",
+          "certificate": "Certificado",
+          "consent_status": "Status de consentimento"
+        }
+      },
+      "business_account": {
+        "title": "Conta do WhatsApp Business (WABA)",
+        "fields": {
+          "waba_name": "Nome WABA",
+          "message_on_behalf_of": "Mensagens em nome de",
+          "timezone_id": "ID do fuso-horário",
+          "waba_id": "WABA ID",
+          "namespace": "Namespace"
+        }
+      },
+      "profile": {
+        "profile_image": {
+          "label": "Imagem de perfil"
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Ex.: Disponível apenas para texto"
+        },
+        "description": {
+          "label": "Descrição",
+          "placeholder": "Descreva o seu negócio ou objetivo do seu chat bot"
+        },
+        "sector": {
+          "label": "Setor da Empresa",
+          "placeholder": "Selecionar"
+        },
+        "configure_later": "Configurar depois",
+        "save_changes": "Salvar alterações"
+      },
+      "contact_info": {
+        "website_url": {
+          "label": "Websites:"
+        },
+        "email": {
+          "label": "Email Corporativo:",
+          "placeholder": "E-mail que os clientes podem entrar em contato"
+        },
+        "address": {
+          "label": "Endereço:",
+          "placeholder": "Seu endereço comercial"
+        },
+        "configure_later": "Configurar depois",
+        "save_changes": "Salvar alterações"
+      },
+      "success": {
+        "profile_updated": "Perfil do WhatsApp atualizado com sucesso",
+        "contact_info_update": "Informações de contato do WhatsApp atualizadas com sucesso",
+        "webhook_update": "Configuração do Webhook atualizada com sucesso"
+      },
+      "error": {
+        "invalid_photo_size": "A foto importada deve ter pelo menos 192 x 192 pixels",
+        "data_fetch": "Falha ao buscar dados do WhatsApp. Por favor entre em contato com a equipe de apoio.",
+        "data_update": "Falha ao atualizar os dados do WhatsApp.",
+        "open_templates": "Não foi possível abrir os templates, por favor atualize a página e tente novamente.",
+        "empty_url": "A URL do Webhook fornecida não pode estar vazia",
+        "invalid_url": "A URL do Webhook fornecida é inválida",
+        "webhook_update": "Erro ao tentar atualizar os dados do Webhook",
+        "invalid_data": "Alguns campos são inválidos, corrija-os e tente novamente",
+        "2388072": {
+          "title": "Formato de título incorreto",
+          "message": "O cabeçalho da mensagem não pode ter quebras de linha, caracteres de formatação, emojis ou asteriscos."
+        }
+      },
+      "qr": {
+        "title": "Link do WhatsApp",
+        "button": "Acessar Link",
+        "info": "Para acessar o link, escaneie o QR Code ou clique no botão abaixo"
+      },
+      "templates": {
+        "button": "Ver meus templates",
+        "title": "Templates",
+        "new_language": "Nova linguagem"
+      },
+      "catalog": {
+        "button": "Ver lista de catálogos",
+        "title": "Catálogo",
+        "button_create": "Criar catálogo",
+        "error": {
+          "missing_vtex_app": "É necessário ter um app VTEX configurado para conectar um catálogo."
+        }
+      },
+      "mmlite": {
+        "button": "Atualizar para API MM Lite do WhatsApp",
+        "button_updating": "Atualizando para API MM Lite do WhatsApp",
+        "disclaimer": "Boas notícias! Você está usando a API MM Lite."
+      }
+    },
+    "catalog": {
+      "error": {
+        "fetch_catalogs": "Não foi possível carregar a lista de catálogos. Por favor tente novamente mais tarde",
+        "disable_catalog": "Não foi possível desativar o catálogo no momento. Por favor tente novamente mais tarde",
+        "enable_catalog": "Não foi possível ativar o catálogo no momento. Por favor tente novamente mais tarde",
+        "toggle_cart_visibility": "Não foi possível ativar o carrinho no momento. Por favor tente novamente mais tarde"
+      },
+      "list": {
+        "title": "Lista de catálogos",
+        "description": "Adicione todos os itens que você quer anunciar ou vender",
+        "advanced_settings": "Configurações avançadas",
+        "identification": "Identificação",
+        "actions": {
+          "active_cart": "Carrinho ativo",
+          "inactive_cart": "Carrinho inativo",
+          "active_catalog": "Catálogo ativo",
+          "inactive_catalog": "Inativo"
+        },
+        "disable_modal": {
+          "title": "Vai mesmo desativar o catálogo?",
+          "title_active": "Você já tem outro catálogo ativo",
+          "description": "Para continuar enviando seus produtos no Whatsapp você precisa de um catálogo ativo.",
+          "description_active": "Essa ação vai desativar automaticamente o catálogo “{name}”",
+          "label": "Digite “{name}” para confirmar",
+          "confirm": "Desativar"
+        },
+        "advanced_configurations_modal": {
+          "title": "Configurações avançadas",
+          "description": "Configure o nível de precisão do envio automático dos seus produtos",
+          "recommendation": "Configuração recomendada: 1.55",
+          "confirm": "Salvar"
+        },
+        "search_placeholder": "Busque pelo nome do Catálogo"
+      },
+      "products": {
+        "title": "Produtos"
+      }
+    },
+    "templates": {
+      "table": {
+        "crumb_title": "Gerenciar Templates",
+        "actions": {
+          "add_language": "Adicionar Idioma",
+          "duplicate_language": "Duplicar Idioma",
+          "delete_language": "Deletar",
+          "see_details": "Ver detalhes"
+        },
+        "headers": {
+          "name": "Nome",
+          "month": "Mês",
+          "category": "Categoria",
+          "preview": "Pré-visualização",
+          "language": "Idioma",
+          "actions": "Ações",
+          "date": "Data"
+        },
+        "new_template": "Novo Template",
+        "filters": {
+          "date": {
+            "label": "Data",
+            "clear": "Limpar",
+            "filter": "Filtrar"
+          },
+          "search": "Buscar",
+          "category": "Categoria"
+        },
+        "header": {
+          "title": "Templates de WhatsApp",
+          "description": "Na seguinte tabela se visualizam os templates de mensagens atualmente configurados para este número."
+        }
+      },
+      "form": {
+        "crumb_title": "Template"
+      },
+      "create_form": {
+        "crumb_title": "Criar Template"
+      },
+      "edit_form": {
+        "crumb_title": "Editar Template"
+      },
+      "error": {
+        "fetch_template_data": "Erro ao buscar os dados de template. Tente novamente mais tarde",
+        "validation": {
+          "empty_header": "Cabeçalho não pode estar vazio",
+          "long_header": "Cabeçalho não pode ter mais de 60 caracteres.",
+          "invalid_media_type": "Tipo de mídia inválida",
+          "invalid_media_example": "Exemplo de mídia ausente",
+          "empty_body": "Corpo não pode estar vazio",
+          "long_body": "Corpo não pode ter mais de 1024 caracteres",
+          "missing_variables_example": "Exemplo de variáveis ausente",
+          "empty_footer": "O rodapé não pode estar vazio",
+          "long_footer": "O rodapé não pode ter mais de 60 caracteres",
+          "empty_button_text": "O texto do botão não pode estar vazio",
+          "empty_button_phone_number": "O número de telefone não pode estar vazio",
+          "empty_button_country_code": "O código do país do telefone não pode estar vazio",
+          "empty_button_url": "O URL não pode estar vazio",
+          "invalid_button_url": "O botao possui uma URL inválida"
+        },
+        "unexpected_language": "Idioma inesperado, por favor atualize a página",
+        "language_already_exists": "Este idioma já existe",
+        "select_languages": "Erro ao buscar dados de idiomas. Por favor tente novamente mais tarde...",
+        "invalid_app_uuid": "Identificador de aplicativo inválido. Por favor atualize a página.",
+        "invalid_name": "Nome do template inválido",
+        "invalid_category": "Categoria de template inválida",
+        "invalid_language": "Idioma de template inválido",
+        "create_template": "Não foi possível criar o template. Por favor tente novamente mais tarde.",
+        "create_translation": "Não foi possível criar a tradução do template. Por favor tente novamente mais tarde",
+        "unknown_error": "Ocorreu um erro desconhecido, por favor atualize a página.",
+        "fetch_templates": "Não foi possível carregar a lista de templates. Por favor tente novamente mais tarde",
+        "delete_template": "Não foi possível excluir o modelo. Por favor tente novamente mais tarde.",
+        "invalid_file_format": "Formato de arquivo inválido",
+        "invalid_file_size": "Tamanho de arquivo inválido, deve ser menor que 16Mb",
+        "missing_variable_example": "Exemplo de variável ausente",
+        "missing_media_example": "Exemplo de mídia ausente",
+        "delete_sample": "Templates gerados pelo facebook não podem ser excluídos.",
+        "invalid_fields": "Existem campos inválidos, corrija-os e tente novamente.",
+        "start_or_end_with_variable": "O corpo do texto contém parâmetros variáveis ​​no início ou no final.",
+        "too_many_variables": "Este modelo contém muitos parâmetros variáveis ​​relativos ao comprimento da mensagem. Você precisa diminuir o número de parâmetros variáveis ​​ou aumentar o tamanho da mensagem.",
+        "incomplete_bracket_variable": "Este modelo contém parâmetros variáveis ​​com formatação incorreta. Os parâmetros variáveis ​​devem ser números inteiros com dois conjuntos de chaves (por exemplo, {{1}}, {{2}}).",
+        "update_translation": "Não foi possível atualizar o template. Por favor tente novamente mais tarde."
+      },
+      "new_language": "Nova linguagem",
+      "form_field": {
+        "name": "Nome",
+        "category": "Categoria",
+        "language": "Idioma",
+        "body_text": "Texto do Corpo",
+        "buttons": "Botões",
+        "type_of_action": "Tipo de Ação",
+        "button_name": "Nome do Botão",
+        "country": "País",
+        "website_url": "URL do Website",
+        "phone_number": "Número de telefone",
+        "add_another_button": "Adicionar outro botão",
+        "footer_text": "Texto do rodapé",
+        "header": "Cabeçalho",
+        "header_text_placeholder": "Ex.: Digite sua mensagem...",
+        "add_variable": "Adicionar variável ao corpo do texto",
+        "save_language": "Salvar Idioma",
+        "name_exists": "Este nome já existe, por favor digite outro.",
+        "category_placeholder": "Selecione a categoria",
+        "language__placeholder": "Selecione o idioma",
+        "header__label": "Formato",
+        "body_text__placeholder": "Escreva o texto do corpo",
+        "buttons__label": "Tipo de botão",
+        "reply_label": "Texto do botão",
+        "button": "Botão",
+        "button_text_placeholder": "Escreva o texto do botão",
+        "button_text": "Texto do botão",
+        "phone_number_placeholder": "Escreva o número de telefone",
+        "url_placeholder": "Escreva a URL do website",
+        "footer_text_placeholder": "Escreva o texto do rodapé",
+        "error_has_variable": "Os botões de modelo não podem conter variáveis"
+      },
+      "category_options": {
+        "marketing": "Marketing",
+        "marketing_description": "Envie promoções ou informações sobre seus produtos, serviços ou negócios.",
+        "authentication": "Autenticação",
+        "authentication_description": "Envie códigos para verificar uma transação ou login.",
+        "utility": "Utilitário",
+        "utility_description": "Envie mensagens sobre um pedido ou conta existente."
+      },
+      "button_options": {
+        "none": "Nenhum",
+        "quick_reply": "Resposta rápida",
+        "call_to_action": "Chamada à ação"
+      },
+      "call_to_action_options": {
+        "call_phone_number": "Ligar para número",
+        "visit_website": "Visitar Website"
+      },
+      "header_type_options": {
+        "text": "Texto",
+        "media": "Mídia"
+      },
+      "add_language": "Adicionar Idioma",
+      "preview": "Pré-visualização",
+      "sample": {
+        "description": "Você tem a opção de fornecer exemplos de conteúdo específicos para seu modelo.",
+        "header": "Cabeçalho",
+        "choose_file": "Escolher Arquivo",
+        "preview": "Pré-visualização",
+        "body": "Corpo",
+        "send": "Enviar",
+        "info": "Certifique-se de não incluir nenhuma informação real de usuário ou cliente e forneça apenas conteúdo de amostra em seus exemplos.",
+        "title": "Adicionar conteúdo de exemplo"
+      },
+      "status": {
+        "APPROVED": "Aprovado",
+        "REJECTED": "Rejeitado",
+        "PENDING": "Pendente"
+      },
+      "success": {
+        "create_translation": "Tradução de template criada com sucesso",
+        "update_translation": "Tradução de template atualizada com sucesso"
+      }
+    },
+    "insights": {
+      "insights": "Insights",
+      "see_insights": "Ver insights",
+      "enable_insights": "Ativar insights",
+      "disabled": "Você não ativou os insights",
+      "about_description": "Veja dados mais detalhados relacionados a envio, entrega e leitura dos modelos de mensagem disparados",
+      "about_text_1": "Estamos apresentando mais insights sobre o desempenho para ajudar você a rastrear, entender e aprimorar seus modelos de mensagens. Os modelos de marketing também mostrarão insights sobre o engajamento com o botão. Para migrar para a nova estrutura de insights, os dados existentes para &quot mensagens enviadas &quot; serão apagados. O rastreamento recomeçará na data em que você clicar em Confirmar.",
+      "about_text_2": " Ao clicar em Confirmar, você instrui a Meta a adicionar insights à sua conta do WhatsApp Business. Esses insights incluem rastreamento de link para relatar os cliques no site. Você pode desativar o rastreamento de link em cada modelo de mensagem.",
+      "about_text_3": " Ao clicar em Confirmar, você também instrui a Meta a coletar e anonimizar dados dos seus bate-papos com clientes. A Meta anonimizará esses dados para melhorar os serviços que presta a você e a outras empresas.",
+      "messages": {
+        "sent": "Mensagens enviadas",
+        "delivered": "Mensagens entregues",
+        "read": "Mensagens lidas",
+        "received": "Mensagens recebidas"
+      },
+      "filters": {
+        "period_of_time": "Período de tempo",
+        "message_templates": "Modelos de mensagem"
+      },
+      "modal": {
+        "present_insights": "Apresentamos novos insights"
+      },
+      "errors": {
+        "active_template": "Não foi possível ativar os insights no momento, tente novamente mais tarde."
+      }
+    },
+    "template_details": {
+      "crumbs": {
+        "my_apps": "Meus Aplicativos",
+        "manage_templates": "Gerenciar Templates",
+        "model_details": "Detalhes do Modelo",
+        "template_details": "Detalhes do template"
+      },
+      "summary": {
+        "title": "Resumo",
+        "marketing": "Marketing",
+        "performace_overview": "Visão geral do desempenho",
+        "last_7_days": "últimos 7 dias",
+        "sent_messages": "Mensagens enviadas",
+        "delivered_messages": "Mensagens entregues",
+        "read_messages": "Mensagens lidas",
+        "quality_overview": "Visão geral da qualidade",
+        "current_level": "Nível atual",
+        "block_reason": "Principal motivo do bloqueio"
+      },
+      "button": {
+        "edit_model": "Editar Modelo"
+      }
+    },
+    "product": {
+      "table": {
+        "headers": {
+          "name": "Nome",
+          "availability": "Disponibilidade",
+          "price": "Preço",
+          "sku": "SKU",
+          "facebook_id": "Facebook ID"
+        }
+      },
+      "list": {
+        "description": "Aqui você gerencia as informações do seu inventário. Adicione todos os itens que deseja anunciar ou vender"
+      }
+    }
+  },
+  "WhatsAppCloud": {
+    "data": {
+      "summary": "Se você tiver uma conta corporativa do WhatsApp, poderá conectá-la para se comunicar com seus contatos",
+      "description": "O WhatsApp é o maior aplicativo de mensagens do mundo e um dos mais preferidos pelos usuários.<br/><br/>A sua integração com a plataforma VTEX Agentic CX permite que você conecte o seu número comercial do aplicativo e crie fluxos inteligentes para atender os seus clientes.<br/><br/>Você pode usar essa integração na Plataforma VTEX Agentic CX sem possuir o gerenciador de negócios verificado e iniciar até 50 conversas pelo negócio com números diferentes no intervalo de 24h. Ainda sem possuir o gerenciador de negócios verificado, você pode possuir até dois números por WABA.<br/><br/>As primeiras 1.000 conversas de cada mês são gratuitas. Dessa forma, é possível criar experiências que os clientes adorarão antes de pagar por isso. Cada conta do WhatsApp Business (WABA) receberá 1.000 conversas grátis por mês que podem ser iniciadas pela empresa (se você não possuir o gerenciador verificado deve se atentar a limitação de 50 conversas com número distintos) ou pelo usuário. Esse benefício é fornecido no nível da WABA. Por isso, mesmo que a conta tenha diversos números anexados, o limite de conversas gratuitas ainda será 1.000. O limite de conversas gratuitas é restaurado a cada mês de acordo com o fuso horário associado à WABA.<br/><br/>Lembrando ainda que com o plano gratuito da VTEX Agentic CX Plataforma você pode se comunicar com 200 contatos ativos (contatos únicos no intervalo de 1 mês) sem custo.<br/><br/>Verificando o gerenciador de negócios você pode liberar mais ainda o potencial da sua integração com o WhatsApp, como, por exemplo aumento do tier de conversas iniciadas pelo negócio (1000, 10.000, 100.000 ou ilimitado), Possibilidade de adquirir o OBA (selo de conta oficial/green ticket) e ter mais de dois números por WABA.<br/><br/>Essa versão da API do WhatsApp através da Plataforma VTEX Agentic CX suporta personalizações, como fotos, vídeos, envio de arquivos, descrições e templates messages (as conversas podem ser iniciadas pelo usuário ou pela empresa).",
+      "links": {
+        "verify_business": {
+          "label": "Como Verificar o meu Negócio",
+          "url": "https://docs.weni.ai/l/pt/canais/como-verificar-o-meu-neg-cio"
+        },
+        "express_signup": {
+          "label": "WhatsApp Integração Expressa",
+          "url": "https://docs.weni.ai/l/pt/m-dulo-integra-es/whatsapp-integra-o-expressa-weni"
+        },
+        "rate_limit": {
+          "label": "Limitação de Disparos em Massa",
+          "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
+        }
+      }
+    },
+    "setup": {
+      "continue": "Continuar",
+      "connect": "Conectar",
+      "description": "Siga os passos para integrar com o WhatsApp"
+    },
+    "config": {
+      "phone_numbers": {
+        "connect_later": "Conectar depois",
+        "create_channel": "Criar canal",
+        "connect": "Conectar",
+        "error": "Ocorreu um erro ao tentar buscar os dados do número de telefone. Tente novamente mais tarde."
+      },
+      "configure_phone_number": {
+        "error": "Ocorreu um erro ao tentar criar o Canal, tente novamente mais tarde."
+      },
+      "debug_token": {
+        "error": "Ocorreu um erro ao tentar se comunicar com o Facebook, tente novamente mais tarde."
+      }
+    }
+  },
+  "GenericApp": {
+    "configuration_guide": {
+      "I2": "Se você tiver um número longo ou código curto com <a href=\"https://www.i2sms.com/\">I2SMS</a>, você pode conectá-lo em poucos passos fáceis.",
+      "DS": "Adicione um <a href=\"https://discord.com/\">bot Discord</a> para enviar mensagens para usuários do Discord gratuitamente. Seus usuários precisarão de uma conta Discord e de um dispositivo compatível para enviar/receber mensagens. Este tipo de canal está disponível apenas se sua instância foi configurada com o aplicativo de proxy Discord, disponível <a href=\"https://github.com/releaseplatform/RapidPro-Discord-Proxy\">aqui</a>.",
+      "D3": "Ative sua própria conta empresarial de WhatsApp em <a href=\"https://www.360dialog.com/\">360Dialog</a> para se comunicar com seus contatos.",
+      "CM": "Se você está localizado no Malawi ou em Gana, pode comprar um número de <a href=\"https://www.click-mobile.com/\">Click Mobile</a> e conectá-lo em poucos passos simples.",
+      "AT": "Você pode comprar um código curto de <a href=\"http://africastalking.com\">Africa's Talking</a> e conectá-lo em poucos passos simples.",
+      "ZVW": "Se você tiver um número <a href=\"https://www.zenvia.com/\">Zenvia WhatsApp</a>, você pode conectá-lo para se comunicar com seus contatos do WhatsApp.",
+      "ZVS": "Se você tiver um número <a href=\"https://www.zenvia.com/\">Zenvia SMS</a>, você pode conectá-lo para se comunicar com seus contatos.",
+      "WC": "Adicione um <a href=\"https://wechat.com\">bot WeChat</a> para enviar e receber mensagens para usuários do WeChat gratuitamente. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e uma conta WeChat para enviar e receber mensagens.",
+      "PM": "Se você está localizado no Uzbequistão, pode comprar um código curto da Play Mobile e conectá-lo em poucos passos simples.",
+      "MG": "Se você está localizado na Jamaica, pode comprar um código curto de <a href=\"http://www.messangi.com/\">Messangi</a> e conectá-lo em poucos passos simples.",
+      "KWA": "Ative sua própria conta empresarial de WhatsApp na Kaleyra para se comunicar com seus contatos. <a href=\"https://www.kaleyra.com/whatsapp/\">Saiba mais sobre o WhatsApp da Kaleyra</a>",
+      "CT": "Para conectar um número <a href=\"http://clickatell.com\">Clickatell</a>, primeiro crie uma integração HTTP para um número bidirecional e insira o número e a chave de API abaixo.",
+      "FCM": "Você pode se conectar usando um <a href=\"https://firebase.google.com/docs/cloud-messaging/\">Firebase Cloud Messaging App</a> ao seu espaço de trabalho para automatizar o envio de notificações. Você precisará criar um novo aplicativo no Firebase Console e obter sua chave. Para fazer isso:",
+      "FC": "<p>Você pode conectar uma conta <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> à sua conta para automatizar o envio e o recebimento de mensagens via FreshChat. Isso também oferecerá suporte ao Apple Business Chat se tiver sido configurado em sua conta do FreshChat.<br/><br/>Cada mensagem enviada ao canal terá um URN no formato <span class=\"highlight\">channel-uuid /user-uuid</span> onde o UUID do canal é o UUID do canal do FreshChat.</p><ol><li>Na interface da Web do FreshChat, em Configurações, Tokens de API, selecione Gerar token. Depois que o token for criado, você o inserirá abaixo.</li><li>Em Configurações novamente, selecione Webhooks e copie a Chave pública e cole-a abaixo. Isso garante que todas as solicitações de webhook do FreshChat serão autenticadas.</li><li>Por fim, você precisará do UUID do Agente que o VTEX Agentic CX usará ao enviar a mensagem do FreshChat. Isso está disponível por meio da <a href=\"https://developers.freshchat.com/api/#agent\">FreshChat API</a>.</li><li>Depois de pressionar Enviar abaixo com todos os informações configuradas, a página de confirmação fornecerá a URL a ser usada para os Webhooks do FreshChat. Insira este URL na página Configurações, em Webhooks de onde a Chave Pública foi copiada anteriormente.</li></ol>",
+      "IB": "Você pode conectar seu número Infobip inserindo seu número, nome de usuário e senha aqui.<br/><br/>Depois de conectar seu serviço, forneceremos URLs para os terminais para que o InfoBip ligue quando quiser enviar uma mensagem para o Rapidpro.",
+      "JC": "Você pode conectar um <a href=\"https://jiochat.com\">canal do JioChat</a> ao seu espaço de trabalho para automatizar o envio e recebimento de mensagens do JioChat.<br/><br/>Para iniciar, copie o aplicativo ID e App Secret do Developer Center no formulário abaixo e clique em Save.",
+      "JN": "Insira suas credenciais para adicionar seu número.",
+      "MB": "Insira suas credenciais para adicionar seu número.",
+      "SL": "Você pode conectar um <a href=\"https://slack.com/app\">Slack Bot</a> ao seu espaço de trabalho para automatizar o envio e recebimento de mensagens.<br><br>Para fazer isso, você vai precisa criar um novo aplicativo Slack e configurá-lo.<br><ol><li>Você precisará criar um <a href=\"https://api.slack.com/apps\">aplicativo Slack< /a> se ainda não o fez, configure um bot para ele, adicione os escopos necessários e instale o aplicativo em seu espaço de trabalho slack. Se precisar de ajuda para fazer isso, leia este guia <a href=\"https://api.slack.com/bot-users\">aqui</a>.",
+      "TM": "You can connect a Teams Bot to your Rapidpro workspace to automate sending and receiving Teams messages. For this, you will need to create and register a Bot-type application in Microsoft Azure.",
+      "TMS": "Você pode adicionar seu Twilio Messaging SID como um canal. Você pode obter o SID do serviço de mensagens ou criar um novo serviço de mensagens no <a href=\"https://www.twilio.com/user/account/messaging/services\">Twilio Console</a><br/> <br/>Depois de adicionar seu SID do Twilio Messaging Service, forneceremos a você o endpoint de URL para Twilio chamar quando quiser enviar uma mensagem para VTEX Agentic CX.",
+      "TW": "Você pode adicionar uma API TwiML REST como um canal usando sua instância TwiML.",
+      "VP": "Para conectar sua página pública do Viber ao VTEX Agentic CX, você precisará criar um canal público e seguir as etapas necessárias para obter um token de autenticação. Consulte a <a href=\"https://developers.viber.com/?b_id=15145\">documentação para desenvolvedores do Viber</a> sobre como criar sua própria conta pública.<br/><br/> Assim que tiver seu token de autenticação, insira-o abaixo para conectar seu canal público ao VTEX Agentic CX"
+    },
+    "preview": {
+      "errors": {
+        "fetch_app": "Ocorreu um erro ao tentar buscar os dados do aplicativo, por favor tente novamente mais tarde."
+      }
+    },
+    "description": {
+      "callback_url": "Para finalizar a configuração do canal, você precisa configurar a URL de callback do canal da Plataforma VTEX Agentic CX. A URL de callback para este canal é",
+      "callback_url_info_1": "Para mais informações, por favor siga",
+      "callback_url_info_2": "esta documentação"
+    }
+  },
+  "instagram": {
+    "data": {
+      "summary": "Agora você pode elevar o nível e o potencial do seu atendimento criando um canal que integra o seu Instagram à VTEX Agentic CX Plataforma.",
+      "description": "O instagram já atingiu o marco de 1.4 bilhão de usuários ativos, sendo que mais de 500 milhões navegam assiduamente todos os dias, buscando não somente a interação, mas procurando por serviços e produtos.<br/><br/>Agora, imagine se sua instituição não é presente, ativa e eficiente nesse canal? Essa não é mais uma mera rede social para compartilhar fotos e vídeos da rotina, mas sim uma vitrine de fazer negócios e parcerias importantes.<br/><br/>E agora você pode elevar o nível e o potencial do seu atendimento criando um canal que integra o seu Instagram à VTEX Agentic CX Plataforma.<br/><br/>Dessa forma, você cria mais engajamento e interação com seus seguidores e potenciais clientes e parceiros, aumentando as chances de fechar novos projetos enquanto reduz custos operacionais com atendimento."
+    },
+    "setup": {
+      "title": "Conectar",
+      "description": "Siga os passos na <a href=\"https://docs.weni.ai/l/pt/configura-es/como-criar-um-canal-no-instagram\" target=\"_blank\" class=\"link\">documentação</a> antes de fazer sua integração com o <strong>Instagram</strong>",
+      "success": "Aplicativo Instagram criado com sucesso",
+      "connect_later": "Conectar depois",
+      "connect": "Conectar",
+      "create_channel": "Criar canal",
+      "page_selection": {
+        "description": "Adicionar uma página de conta comercial do <strong>Instagram</strong>"
+      },
+      "account_data": {
+        "error": "Falha ao buscar os dados das páginas do Instagram. Tente novamente mais tarde."
+      },
+      "find_page": {
+        "error": "Por favor selecione uma página do Instagram para conectar"
+      },
+      "create_app": {
+        "error": "Falha ao criar aplicativo, tente novamente mais tarde"
+      },
+      "update_app": {
+        "error": "Falha ao configurar o aplicativo, tente novamente mais tarde"
+      }
+    },
+    "config": {
+      "connected_account": "Sua conta do Instagram está conectada"
+    }
+  },
+  "facebook": {
+    "data": {
+      "summary": "Adicione um bot no Facebook para enviar e receber mensagens em nome de uma de suas páginas do Facebook.",
+      "description": "O Facebook atualizou suas políticas de integração, então agora você pode conectar facilmente uma página do Facebook para criar um canal do Messenger em apenas alguns instantes. Você será direcionado automaticamente para a página do novo canal, onde poderá visualizar o registro do canal e criar um gatilho que fará referência a um contato quando uma nova conversa começar no Messenger."
+    },
+    "setup": {
+      "title": "Quer se conectar ao Facebook?",
+      "description": "Siga as etapas no <a href=\"https://docs.weni.ai/l/pt/configura-es/como-criar-um-canal-no-facebook\" target=\"_blank\" class=\"link\" >documentação</a> antes de prosseguir com a integração do <strong>Facebook</strong>",
+      "success": "Aplicativo do Facebook criado com sucesso",
+      "connect_later": "Conectar depois",
+      "connect": "Conectar",
+      "create_channel": "Criar canal",
+      "page_selection": {
+        "description": "Adicionar uma página de conta comercial do <strong>Facebook</strong>"
+      },
+      "account_data": {
+        "error": "Falha ao buscar os dados das páginas do Facebook. Tente novamente mais tarde."
+      },
+      "find_page": {
+        "error": "Por favor selecione uma página do Facebook para se conectar"
+      },
+      "create_app": {
+        "error": "Falha ao criar aplicativo, tente novamente mais tarde"
+      },
+      "update_app": {
+        "error": "Falha ao configurar o aplicativo, tente novamente mais tarde"
+      }
+    },
+    "config": {
+      "connected_account": "Sua conta do Facebook está conectada"
+    }
+  },
+  "omie": {
+    "data": {
+      "summary": "Se você possui um CRM na Omie, você pode integrar com a Plataforma VTEX Agentic CX e automatizar ações no seu CRM através do seu chatbot",
+      "description": "Se você possui um CRM na Omie, você pode integrar com a Plataforma VTEX Agentic CX e automatizar ações no seu CRM através do seu chatbot.<br><br>Integrando a plataforma VTEX Agentic CX com seu CRM na Omie você será capaz de realizar ações como:<br><br>- Incluir Oportunidades no CRM<br>- Pesquisar Titulo e Lançamentos<br>- Listar cliente<br><br>Por aqui no módulo de Integrações, você deve realizar a Integração com a Omie fornecendo os dados de API Key e API Secret e então realizar a integração.<br>Após isso, basta ir no módulo de flows, criar um fluxo e então você terá um card disponível chamada para Serviços Externos, nele você será capaz de realizar todas as ações com o CRM da Omie mencionadas aqui."
+    },
+    "config": {
+      "connect": "Conectar",
+      "tabs": {
+        "config": {
+          "title": "Configuração",
+          "inputs": {
+            "name": {
+              "label": "Nome"
+            },
+            "app_key": {
+              "label": "App Key"
+            },
+            "app_secret": {
+              "label": "App Secret"
+            }
+          }
+        }
+      }
+    },
+    "success": {
+      "configure": "Serviço configurado com sucesso"
+    },
+    "errors": {
+      "configure": "Ocorreu um erro ao tentar configurar o serviço, por favor tente novamente"
+    }
+  },
+  "ChatGPT": {
+    "data": {
+      "summary": "Integração poderosa: VTEX Agentic CX + ChatGPT. Atendimento automatizado com toque humano, respostas instantâneas e experiência personalizada. Experimente agora!",
+      "description": "Apresentamos uma poderosa sinergia entre a plataforma VTEX Agentic CX e o ChatGPT - uma combinação perfeita para transformar suas interações com clientes em uma experiência inigualável!<br><br>Com a integração do VTEX Agentic CX com o ChatGPT, você tem à sua disposição um assistente virtual inteligente, alimentado pela avançada tecnologia de linguagem natural da OpenAI. Imagine um atendimento ao cliente totalmente automatizado, porém, com um toque humano e personalizado.<br><br>Nossa plataforma VTEX Agentic CX, conhecida por sua interface intuitiva e recursos versáteis, agora se fortalece com a presença do ChatGPT. Com ele, você pode proporcionar aos seus clientes respostas instantâneas, precisas e envolventes para suas perguntas e necessidades, a qualquer hora e em qualquer lugar.<br><br>O ChatGPT é capaz de compreender nuances da linguagem humana, aprendendo e adaptando-se constantemente. Ele não apenas oferece respostas rápidas e eficientes, mas também é capaz de manter conversas naturais e relevantes, estabelecendo uma conexão genuína com seus clientes.<br><br>Aproveite os benefícios dessa integração para aprimorar o suporte ao cliente, automatizar tarefas repetitivas e proporcionar uma experiência personalizada e agradável. O ChatGPT, impulsionado pelo VTEX Agentic CX, ajuda você a aumentar a eficiência, economizar tempo e conquistar a satisfação dos clientes de forma excepcional.<br><br>Experimente agora mesmo a integração VTEX Agentic CX + ChatGPT e desfrute de um atendimento ao cliente inteligente, dinâmico e totalmente adaptado às necessidades do seu negócio. Faça parte dessa revolução na interação com clientes e veja seus resultados alcançarem novos patamares!"
+    },
+    "setup": {
+      "version": "Versão",
+      "title": "Integrar com ChatGPT",
+      "description": "Para fazer a integração crie um nome, insira sua API-Token e selecione uma das versões disponíveis",
+      "name": "Nome",
+      "name_placeholder": "Insira um nome",
+      "token": "Token",
+      "token_placeholder": "Insira o Token",
+      "version_tooltip": "Mudar a versão do ChatGPT pode mudar a forma com que a IA gera as respostas baseadas na base de conhecimento e regras.",
+      "create_app": {
+        "error": "Falha ao criar a integração do ChatGPT, tente novamente mais tarde"
+      },
+      "success": "Integração ChatGPT criada com sucesso"
+    },
+    "config": {
+      "tabs": {
+        "flows": {
+          "title": "Fluxos",
+          "description": "Defina como o ChatGPT vai se comportar quando for responder as pessoas na área de fluxos.",
+          "inputs": {
+            "rules_label": "Regras",
+            "knowledge_label": "Base de conhecimento",
+            "prompt_label": "Inserir prompts",
+            "prompt_placeholder": "Insira o texto do prompt e pressione enter",
+            "conversation_style_label": "Estilo de conversa",
+            "conversation_style_placeholder": "Selecione o estilo de conversa",
+            "voice_tone_label": "Tom de voz",
+            "voice_tone_placeholder": "Selecione o tom de voz"
+          },
+          "selects": {
+            "necessary_label": "Preciso",
+            "necessary_description": "Respostas objetivas e direto ao ponto",
+            "balanced_label": "Balanceado",
+            "balanced_description": "Usa um pouco de criatividade nas respostas mas ainda é objetiva",
+            "creative_label": "Criativo",
+            "creative_description": "Responde de forma criativa, menos objetiva",
+            "none_label": "Nenhum",
+            "neutral_label": "Neutro",
+            "happy_label": "Alegre",
+            "trusting_label": "Confiante",
+            "formal_label": "Formal",
+            "humble_label": "Humilde",
+            "informal_label": "Informal",
+            "helpful_label": "Prestativo"
+          },
+          "prompts_list": "Lista de prompts"
+        },
+        "general": {
+          "title": "Geral"
+        }
+      },
+      "save_modifications": "Salvar alterações",
+      "description": "Configure o funcionamento do ChatGPT nos módulos da plataforma"
+    },
+    "errors": {
+      "configure": "Falha ao atualizar os campos, tente novamente mais tarde",
+      "create_prompt": "Falha ao criar prompts, tente novamente mais tarde",
+      "delete_prompt": "Falha ao excluir as solicitações. Tente novamente mais tarde",
+      "get_prompts": "Falha ao buscar prompts, tente novamente mais tarde"
+    },
+    "success": {
+      "configure": "Integração atualizada com sucesso"
+    }
+  },
+  "vtex": {
+    "data": {
+      "summary": "Com o aplicativo VTEX você conecta seu catálogo e vende pelo Whatsapp",
+      "description": "A integração entre a plataforma VTEX Agentic CX e a VTEX está redefinindo a maneira como os varejistas expandem seus negócios online. Agora, você pode conectar facilmente o catálogo de produtos, abrindo caminho para vendas diretas por meio do WhatsApp. Essa solução inovadora promete uma experiência de venda instantânea, ágil e personalizada, proporcionando uma maneira eficaz de impulsionar suas vendas.<br><br>Principais Características:<br><br>Integração com a VTEX de Forma Descomplicada:<br>- Conecte o catálogo de produtos da VTEX à VTEX Agentic CX de maneira fácil, sincronizando automaticamente seus produtos.<br>- Atualizações rápidas garantem que sua loja esteja sempre alinhada com as últimas mudanças de inventário e preços.<br><br>Venda Direta Pelo WhatsApp:<br>- Transforme conversas em transações, permitindo que os clientes naveguem, escolham e comprem produtos diretamente pelo WhatsApp.<br>- Aumente a conveniência, alcançando os clientes onde eles já estão ativos.<br><br>Benefícios Adicionais:<br><br>Escala Global:<br>- Alcance uma audiência global através do WhatsApp, ampliando suas oportunidades de vendas internacionalmente.<br><br>Configuração Simples:<br>- Configure rapidamente, sem a necessidade de conhecimentos técnicos avançados.<br><br>Suporte Técnico Especializado:<br>- Suporte dedicado para garantir uma implementação tranquila e resolver quaisquer problemas rapidamente.<br><br>Experimente agora e descubra o potencial de impulsionar suas vendas de maneira eficiente!"
+    },
+    "setup": {
+      "title": "Conecte sua loja",
+      "description": " Selecione o número do WhatsApp, insira o subdomínio, AppKey e AppToken",
+      "subdomain": "Subdomínio",
+      "subdomain_placeholder": "Ex: lojaweni.myvtex.com",
+      "whatsapp_channel": "Número do WhatsApp",
+      "appKey": "AppKey",
+      "appKey_placeholder": "Insira sua AppKey",
+      "appToken": "AppToken",
+      "appToken_placeholder": "Insira seu AppToken",
+      "guide": {
+        "question": "Não conhece seu AppKey e AppToken?",
+        "question_end": "para acessar a documentação da VTEX e descobrir.",
+        "link": "Clique aqui"
+      },
+      "invalid_credentials": "Credenciais inválidas para o subdomínio fornecido",
+      "error": "Ocorreu um erro ao tentar integrar com a VTEX, tente novamente mais tarde",
+      "success": "Integração VTEX concluída com sucesso",
+      "step1": "Conecte sua loja",
+      "step2": "Configurando afiliados",
+      "storeDomain": "Link do website",
+      "apiSubdomain": "Subdomínio da API",
+      "affiliate_title": "Configure um afiliado na VTEX",
+      "affiliate_description": "Para configurar um afiliado na VTEX siga os passos abaixo",
+      "affiliate_step1": {
+        "title": "Acesse seu painel de Admin na VTEX",
+        "description": "Vá para <b>Configurações da loja > Pedidos > Configurações</b> ou digite <i>Pedidos</i> na barra de pesquisa na parte superior da página e selecione <i>Configurações da loja/Pedidos</i>"
+      },
+      "affiliate_step2": {
+        "title": "Crie um novo afiliado",
+        "description": "Na aba Afiliados clique em <span class='highlight'>+ Novo Afiliado</span>"
+      },
+      "affiliate_step3": {
+        "title": "Preencha os campos",
+        "description": "Seguindo a descrição abaixo, clique em <span class='highlight'>Salvar</span><ul><li><b>Nome:</b>&nbsp;o novo nome do afiliado</li><li> <b>Política comercial:</b>&nbsp;o número da política comercial que definirá a estratégia de classificação do catálogo e entrega de itens para o marketplace.</li><li><b>Endpoint de pesquisa:</b>&nbsp;URL do aplicativo que receberá produtos de estoque e notificações de preços, entre outros. Você pode copiar o URL de VTEX Agentic CX na <i>Etapa 4<i/></li></ul>"
+      },
+      "affiliate_step4": {
+        "title": "Colar o Endpoint de Pesquisa da VTEX Agentic CX",
+        "description": "Copie o URL abaixo e cole-o no campo Endpoint de Pesquisa"
+      },
+      "error_missing_fields": "Todos os campos são obrigatórios",
+      "storedomain_placeholder": "Ex: minhaloja.com"
+    },
+    "config": {
+      "description": "Conecte seu catálogo VTEX para enviar produtos pelo WhatsApp",
+      "catalog": "Catálogo",
+      "connect_catalog": "Conectar catálogo",
+      "details": "Detalhes",
+      "name": "Nome da conta",
+      "environment": "Ambiente",
+      "view_catalog": "Ver catálogo",
+      "wpp_number": "Número WhatsApp",
+      "sellers": "Lojistas",
+      "processing": "Sincronização em processamento. Por favor, aguarde.",
+      "buttons": {
+        "close": "Fechar",
+        "confirm": "Confirmar"
+      },
+      "all": "Todos",
+      "placeholder": {
+        "sellers": "Selecione os lojistas..."
+      },
+      "vtexADS": "Ao ativar, sua loja poderá exibir produtos patrocinados nas pesquisas dos usuários."
+    },
+    "connect_modal": {
+      "categories": {
+        "supermarket_and_groceries": "Supermercados e mercearias",
+        "clothes_store": "Loja de roupas",
+        "pharmacies_and_drugstores": "Farmácias e Drogarias",
+        "restaurants_and_cafes": "Restaurantes e Cafés",
+        "electronics_stores": "Lojas de eletrônicos",
+        "bookstores_and_stationery": "Livrarias e papelarias",
+        "furniture_and_decoration": "Lojas de Móveis e Decoração",
+        "building_materials_and_hardware": "Lojas de materiais de construção e ferragens",
+        "sporting_goods": "Lojas de artigos esportivos",
+        "shoe_stores": "Lojas de calçados",
+        "auto_parts": "Lojas de peças de automóveis",
+        "other": "Outro",
+        "placeholder": "Selecione um tipo de negócio"
+      }
+    },
+    "connect_catalog": {
+      "title": "Informações básica",
+      "business_type": "Tipo de Negócio",
+      "name_placeholder": "",
+      "name": "ID do catálogo",
+      "footer": "Ao criar um catálogo, você concorda com os <a class='link' target='_blank' href='https://google.com'><b>Termos do Gerenciador de Catálogos</b></a> e confirma que segue as <a class='link' target='_blank' href='https://google.com'><b>Políticas de Publicidade do Facebook</b></a>. Verifique essas políticas e confirme que os itens que você carregar no seu catálogo estejam em conformidade com elas."
+    },
+    "errors": {
+      "connect_catalog": "Não foi possível conectar o catálogo VTEX, tente novamente mais tarde",
+      "fetch_related_wpp_data": "Falha ao buscar informações relacionadas ao número do WhatsApp",
+      "redirect_to_wpp_catalog": "Falha ao redirecionar para o catálogo. Atualize a página e tente novamente",
+      "update_connected_catalog_status": "Falha ao buscar o status do catálogo. Tente novamente mais tarde.",
+      "select_five_sellers": "Por favor, selecione até 5 vendedores.",
+      "sync_sellers": "Não foi possível sincronizar os lojistas no momento, tente novamente mais tarde."
+    },
+    "success": {
+      "connect_catalog": "Catálogo VTEX conectado com sucesso",
+      "sync_sellers": "Lojistas sincronizados com sucesso"
+    }
+  },
+  "whatsapp": {
+    "create_catalog": {
+      "option": {
+        "vtex": {
+          "title": "Catálogo VTEX",
+          "description": "Conecte seu catálogo automaticamente através da integração com o app VTEX"
+        },
+        "meta": {
+          "title": "Facebook Meta",
+          "description": "Crie um catálogo no Facebook do Meta, uma nova aba será aberta."
+        }
+      },
+      "footer": "Para conectar seu catálogo VTEX você precisa ter integrado o app VTEX na plataforma. \nSe você ainda não integrou, clique aqui",
+      "title": "Criar catálogo",
+      "header": {
+        "title": "Método de envio",
+        "description": "Escolha a forma como deseja enviar seu catálogo para começar a vender produtos via Whatsapp"
+      }
+    }
+  },
+  "channels": {
+    "TWT": "Envie e receba mensagens no Twitter usando sua API de Atividade do Twitter. Você precisará solicitar acesso à API do Twitter e criar uma aplicação do Twitter.",
+    "SL": "Adicione um bot do Slack para enviar e receber mensagens dos usuários do Slack.",
+    "AT": "Você pode comprar um código curto da Africa's Talking e conectá-lo em alguns passos simples.",
+    "CM": "Se você estiver em Malawi ou Gana, pode comprar um número da Click Mobile e conectá-lo em alguns passos simples.",
+    "CT": "Conecte seu número da Clickatell. Vamos guiá-lo pelos passos necessários para que sua conexão com a Clickatell funcione em alguns minutos.",
+    "D3": "Ative sua própria conta empresarial do WhatsApp no 360Dialog para se comunicar com seus contatos.",
+    "DS": "Adicione um bot do Discord para enviar mensagens gratuitamente aos usuários do Discord. Seus usuários precisarão de uma conta do Discord e de um dispositivo compatível para enviar e receber mensagens. Esse tipo de canal só está disponível se sua instância tiver sido configurada com o aplicativo proxy do Discord, disponível aqui.",
+    "FC": "Conecte seu canal FreshChat aprovado.",
+    "FCM": "Adicione um canal de Firebase Cloud Messaging para enviar e receber mensagens. Seus usuários precisarão de um aplicativo para enviar e receber mensagens.",
+    "I2": "Se você tiver um número longo ou um código curto com a I2SMS, poderá conectá-lo em alguns passos simples.",
+    "IB": "Adicione facilmente um número bidirecional que você configurou com a Infobip usando suas APIs.",
+    "JC": "Adicione um bot do JioChat para enviar e receber mensagens gratuitamente aos usuários do JioChat. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e uma conta do JioChat para enviar e receber mensagens.",
+    "JN": "Conecte sua instância do Junebug que você já configurou.",
+    "KWA": "Ative sua própria conta empresarial do WhatsApp na Kaleyra para se comunicar com seus contatos. Saiba mais sobre o Kaleyra WhatsApp.",
+    "MB": "Adicione facilmente um número bidirecional que você configurou com o Mblox usando suas APIs.",
+    "MG": "Se você estiver na Jamaica, pode comprar um código curto da Messangi e conectá-lo em alguns passos simples.",
+    "PM": "Se você estiver no Uzbequistão, pode comprar um código curto da Play Mobile e conectá-lo em alguns passos simples.",
+    "TM": "Adicione um bot do Microsoft Teams para enviar e receber mensagens dos usuários do Microsoft Teams.",
+    "TMS": "Você pode conectar um serviço de mensagens da sua conta Twilio para aproveitar os recursos do Twilio Copilot.",
+    "TW": "Conecte-se a um serviço que usa TwiML. Você pode usar isso para conectar-se a serviços compatíveis com TwiML fora do Twilio.",
+    "VP": "Conecte um canal público do Viber para enviar e receber mensagens dos usuários do Viber gratuitamente. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e de uma conta Viber para enviar e receber mensagens.",
+    "WC": "Adicione um bot do WeChat para enviar e receber mensagens dos usuários do WeChat gratuitamente. Seus usuários precisarão de um dispositivo Android, Windows ou iOS e de uma conta WeChat para enviar e receber mensagens.",
+    "ZVS": "Se você tem um número de SMS da Zenvia, pode conectá-lo para se comunicar com seus contatos.",
+    "ZVW": "Se você tem um número de WhatsApp da Zenvia, pode conectá-lo para se comunicar com seus contatos do WhatsApp.",
+    "inputs": {
+      "KWA": {
+        "number": {
+          "label": "Seu número de WhatsApp empresarial",
+          "message": "",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "País",
+          "message": "",
+          "placeholder": ""
+        },
+        "account_sid": {
+          "label": "Account SID",
+          "message": "Seu Account SID da Kaleyra",
+          "placeholder": ""
+        },
+        "api_key": {
+          "label": "Chave API",
+          "message": "Sua Chave API da Kaleyra",
+          "placeholder": ""
+        }
+      },
+      "MB": {
+        "country": {
+          "label": "País",
+          "message": "O país onde este número de telefone é utilizado",
+          "placeholder": "Selecione um país"
+        },
+        "number": {
+          "label": "Número",
+          "message": "O número de telefone ou código curto que você está conectando com o código do país. ex: +250788123124",
+          "placeholder": "Digite o número"
+        },
+        "username": {
+          "label": "Nome de usuário",
+          "message": "O nome de usuário fornecido pelo provedor para usar sua API",
+          "placeholder": "Digite seu nome de usuário"
+        },
+        "password": {
+          "label": "Senha",
+          "message": "A senha fornecida pelo provedor para usar sua API",
+          "placeholder": "Digite sua senha"
+        }
+      },
+      "MG": {
+        "shortcode": {
+          "label": "O código curto do Messangi",
+          "placeholder": "Digite o código curto",
+          "message": null
+        },
+        "carrier_id": {
+          "label": "ID do Transportador",
+          "placeholder": "Digite o ID do transportador",
+          "message": "O ID do transportador para o código curto"
+        },
+        "public_key": {
+          "label": "Chave Pública",
+          "placeholder": "Digite a chave pública",
+          "message": "A chave pública fornecida pelo Messangi"
+        },
+        "private_key": {
+          "label": "Chave Privada",
+          "placeholder": "Digite a chave privada",
+          "message": "A chave privada fornecida pelo Messangi"
+        },
+        "instance_id": {
+          "label": "ID da Instância",
+          "placeholder": "Digite o ID da instância",
+          "message": "O ID da instância fornecido pelo Messangi"
+        }
+      },
+      "PM": {
+        "base_url": {
+          "label": "URL Base",
+          "placeholder": "Digite a URL base",
+          "message": "A URL base para o PlayMobile"
+        },
+        "shortcode": {
+          "label": "Código Curto",
+          "placeholder": "Digite o código curto",
+          "message": "O código curto que você está conectando"
+        },
+        "username": {
+          "label": "Nome de Usuário",
+          "placeholder": "Digite seu nome de usuário",
+          "message": "O nome de usuário para sua conta de API"
+        },
+        "password": {
+          "label": "Senha",
+          "placeholder": "Digite sua senha",
+          "message": "A senha para sua conta de API"
+        }
+      },
+      "TM": {
+        "bot_name": {
+          "label": "O nome do bot",
+          "placeholder": "Digite o nome do bot",
+          "message": null
+        },
+        "bot_id": {
+          "label": "O ID do bot",
+          "placeholder": "Digite o ID do bot",
+          "message": null
+        },
+        "app_id": {
+          "label": "O ID do Aplicativo",
+          "placeholder": "Digite o ID do aplicativo",
+          "message": null
+        },
+        "app_password": {
+          "label": "A senha do aplicativo",
+          "placeholder": "Digite a senha do aplicativo",
+          "message": null
+        },
+        "tenant_id": {
+          "label": "O ID do Tenant",
+          "placeholder": "Digite o ID do tenant",
+          "message": null
+        }
+      },
+      "TMS": {
+        "country": {
+          "label": "País",
+          "placeholder": "Selecione seu país",
+          "message": null
+        },
+        "messaging_service_sid": {
+          "label": "Messaging Service SID",
+          "placeholder": "Digite seu Messaging Service SID",
+          "message": "O SID do Serviço de Mensagens do Twilio"
+        }
+      },
+      "TW": {
+        "country": {
+          "type": "select",
+          "label": "País",
+          "message": "O país onde este número de telefone é utilizado"
+        },
+        "number": {
+          "type": "input",
+          "label": "Número",
+          "message": "O número de telefone sem código do país ou código curto que você está conectando."
+        },
+        "url": {
+          "type": "input",
+          "label": "Host da API TwiML REST",
+          "message": "A URL acessível publicamente para sua instância da API TwiML REST, ex: https://api.twilio.com"
+        },
+        "role": {
+          "type": "select",
+          "label": "Função",
+          "message": "Escolha a função que este canal suporta"
+        },
+        "account_sid": {
+          "type": "input",
+          "label": "O Account SID para autenticação na API TwiML REST",
+          "message": null
+        },
+        "account_token": {
+          "type": "input",
+          "label": "O Account Token para autenticação na API TwiML REST",
+          "message": null
+        },
+        "max_concurrent_events": {
+          "type": "input",
+          "label": "Máx. chamadas ativas ao mesmo tempo",
+          "message": null
+        }
+      },
+      "VP": {
+        "auth_token": {
+          "type": "input",
+          "label": "O token de autenticação fornecido pelo Viber",
+          "message": null
+        }
+      },
+      "WC": {
+        "app_id": {
+          "type": "input",
+          "label": "O App ID do WeChat",
+          "message": null
+        },
+        "app_secret": {
+          "type": "input",
+          "label": "O segredo do App do WeChat",
+          "message": null
+        }
+      },
+      "ZVS": {
+        "country": {
+          "type": "select",
+          "label": "País",
+          "message": "O país onde este número de telefone é utilizado"
+        },
+        "number": {
+          "type": "input",
+          "label": "Número",
+          "message": "O número de telefone com código do país ou código curto que você está conectando. ex: +250788123124 ou 15543"
+        },
+        "token": {
+          "type": "input",
+          "label": "Token da API",
+          "message": "O token da API para sua integração fornecido pela Zenvia"
+        }
+      },
+      "ZVW": {
+        "country": {
+          "label": "País",
+          "message": "O país onde este número de telefone é utilizado",
+          "placeholder": ""
+        },
+        "number": {
+          "label": "Número",
+          "message": "O número de telefone com código do país ou código curto que você está conectando. ex: +250788123124 ou 15543",
+          "placeholder": ""
+        },
+        "token": {
+          "label": "Token da API",
+          "message": "O token da API para sua integração fornecido pela Zenvia",
+          "placeholder": ""
+        }
+      },
+      "SL": {
+        "user_token": {
+          "label": "Token OAuth do Usuário",
+          "message": "Em https://api.slack.com/apps selecione seu aplicativo de bot e vá para Recursos / OAuth & Permissões para ver esta informação.",
+          "placeholder": ""
+        },
+        "bot_token": {
+          "label": "Token OAuth do Bot",
+          "message": "Em https://api.slack.com/apps selecione seu aplicativo de bot e vá para Recursos / OAuth & Permissões para ver esta informação.",
+          "placeholder": ""
+        },
+        "verification_token": {
+          "label": "Token de Verificação",
+          "message": "Em https://api.slack.com/apps vá para Configurações / Informações Básicas, encontre em Credenciais do Aplicativo e cole aqui.",
+          "placeholder": ""
+        }
+      },
+      "AT": {
+        "shortcode": {
+          "label": "Seu código curto no Africa's Talking",
+          "message": null,
+          "placeholder": ""
+        },
+        "country": {
+          "label": "País",
+          "message": null,
+          "placeholder": ""
+        },
+        "is_shared": {
+          "label": "Se este código curto é compartilhado com outros",
+          "message": null,
+          "placeholder": ""
+        },
+        "username": {
+          "label": "Seu nome de usuário no Africa's Talking",
+          "message": null,
+          "placeholder": ""
+        },
+        "api_key": {
+          "label": "Sua chave de API, deve ter 64 caracteres",
+          "message": null,
+          "placeholder": ""
+        }
+      },
+      "CM": {
+        "number": {
+          "label": "Número",
+          "message": "O número de telefone ou código curto do Click Mobile com o código do país. ex: +250788123124",
+          "placeholder": ""
+        },
+        "country": {
+          "label": "País",
+          "message": "",
+          "placeholder": ""
+        },
+        "username": {
+          "label": "ID do Usuário",
+          "message": "Seu user_id no Click Mobile",
+          "placeholder": ""
+        },
+        "password": {
+          "label": "Senha",
+          "message": "Sua senha no Click Mobile",
+          "placeholder": ""
+        },
+        "app_id": {
+          "label": "App ID",
+          "message": "Seu app_id no Click Mobile",
+          "placeholder": ""
+        },
+        "org_id": {
+          "label": "Org ID",
+          "message": "Seu org_id no Click Mobile",
+          "placeholder": ""
+        }
+      },
+      "CT": {
+        "country": {
+          "type": "select",
+          "label": "País",
+          "message": "O país em que este número de telefone é usado"
+        },
+        "number": {
+          "type": "input",
+          "label": "Número",
+          "message": "O número de telefone com código do país ou código curto que você está conectando. ex: +250788123124 ou 15543"
+        },
+        "api_key": {
+          "type": "input",
+          "label": "Chave API",
+          "message": "A chave da API para sua integração conforme fornecido pela Clickatell"
+        }
+      },
+      "D3": {
+        "number": {
+          "type": "input",
+          "label": "Seu número de WhatsApp empresarial",
+          "message": null
+        },
+        "country": {
+          "type": "select",
+          "label": "País",
+          "message": "O país em que este número de telefone é usado"
+        },
+        "base_url": {
+          "type": "input",
+          "label": "A URL base para sua instalação empresarial do WhatsApp 360 Dialog",
+          "message": null
+        },
+        "api_key": {
+          "type": "input",
+          "label": "A chave da API do 360 Dialog gerada após o registro da conta",
+          "message": null
+        }
+      },
+      "DS": {
+        "auth_token": {
+          "type": "input",
+          "label": "Token de Autenticação",
+          "message": "O token do bot do Discord"
+        },
+        "proxy_url": {
+          "type": "input",
+          "label": "URL do Proxy",
+          "message": "A URL onde o proxy do Discord está rodando"
+        }
+      },
+      "FCM": {
+        "title": {
+          "label": "Título da Notificação",
+          "message": "",
+          "placeholder": "Digite o título da notificação"
+        },
+        "key": {
+          "label": "Chave FCM",
+          "message": "A chave fornecida no Firebase Console quando você criou seu aplicativo.",
+          "placeholder": "Digite sua chave FCM"
+        },
+        "send_notification": {
+          "label": "Enviar notificação",
+          "message": "Marque se você deseja que este canal envie notificações para os contatos.",
+          "placeholder": ""
+        }
+      },
+      "I2": {
+        "country": {
+          "label": "País",
+          "message": "O país em que este número de telefone é usado",
+          "placeholder": "Selecione um país"
+        },
+        "number": {
+          "label": "Número",
+          "message": "O número de telefone ou código curto que você está conectando com o código do país. ex: +250788123124",
+          "placeholder": "Digite o número"
+        },
+        "username": {
+          "label": "Nome de usuário",
+          "message": "Seu nome de usuário i2SMS",
+          "placeholder": "Digite seu nome de usuário"
+        },
+        "password": {
+          "label": "Senha",
+          "message": "Sua senha i2SMS",
+          "placeholder": "Digite sua senha"
+        },
+        "channel_hash": {
+          "label": "O hash do seu canal i2SMS",
+          "message": null,
+          "placeholder": "Digite o hash do canal"
+        }
+      },
+      "IB": {
+        "country": {
+          "label": "País",
+          "message": "O país em que este número de telefone é usado",
+          "placeholder": "Selecione um país"
+        },
+        "number": {
+          "label": "Número",
+          "message": "O número de telefone ou código curto que você está conectando com o código do país. ex: +250788123124",
+          "placeholder": "Digite o número"
+        },
+        "username": {
+          "label": "Nome de usuário",
+          "message": "O nome de usuário fornecido pelo provedor para usar sua API",
+          "placeholder": "Digite seu nome de usuário"
+        },
+        "password": {
+          "label": "Senha",
+          "message": "A senha fornecida pelo provedor para usar sua API",
+          "placeholder": "Digite sua senha"
+        }
+      },
+      "JC": {
+        "app_id": {
+          "label": "O ID do Aplicativo JioChat",
+          "message": "Digite o ID do seu Aplicativo JioChat",
+          "placeholder": "Digite o ID do Aplicativo"
+        },
+        "app_secret": {
+          "label": "O segredo do Aplicativo JioChat",
+          "message": "Digite o segredo do seu Aplicativo JioChat",
+          "placeholder": "Digite o segredo do Aplicativo"
+        }
+      },
+      "JN": {
+        "country": {
+          "label": "País",
+          "message": "O país em que este número de telefone é usado",
+          "placeholder": "Selecione um país"
+        },
+        "number": {
+          "label": "Número",
+          "message": "O código curto ou número de telefone que você está conectando.",
+          "placeholder": "Digite o número"
+        },
+        "url": {
+          "label": "URL",
+          "message": "A URL para o canal Junebug. ex: https://junebug.praekelt.org/jb/channels/3853bb51-d38a-4bca-b332-8a57c00f2a48/messages.json",
+          "placeholder": "Digite a URL"
+        },
+        "username": {
+          "label": "Nome de usuário",
+          "message": "O nome de usuário a ser usado para autenticar no Junebug",
+          "placeholder": "Digite o nome de usuário"
+        },
+        "password": {
+          "label": "Senha",
+          "message": "A senha a ser usada para autenticar no Junebug",
+          "placeholder": "Digite a senha"
+        },
+        "secret": {
+          "label": "Segredo",
+          "message": "O token que o Junebug deve usar para autenticar",
+          "placeholder": "Digite o segredo"
+        }
+      }
+    }
+  },
+  "email": {
+    "data": {
+      "summary": "Conecte seu e-mail e automatize o atendimento ao cliente com mais facilidade."
+    },
+    "config": {
+      "title": "Email",
+      "description": "Conecte seu e-mail e automatize o atendimento ao cliente com mais facilidade.",
+      "config_solution": "Configuração de Solução",
+      "config_solution_subtitle": "Preencha os campos abaixo para integrar um e-mail",
+      "select": "Selecione o tipo de email",
+      "smpt_server": {
+        "title": "Servidor SMTP",
+        "description": "Endereço do servidor SMTP para envio de e-mails."
+      },
+      "smpt_port": {
+        "title": "Porta SMTP",
+        "description": "Porta de comunicação do servidor SMTP."
+      },
+      "imap_server": {
+        "title": "Servidor IMAP",
+        "description": "Endereço do servidor IMAP para envio de e-mails."
+      },
+      "imap_port": {
+        "title": "Porta IMAP",
+        "description": "Porta de comunicação do servidor IMAP."
+      },
+      "username": "Usuário",
+      "username_description": "O e-mail utilizado para ser autenticado.",
+      "password": "Senha"
+    }
+  },
+  "gmail": {
+    "setup": {
+      "title": "Conectar ao Gmail",
+      "description": "Clique em Continuar para abrir a página de login do Gmail. Depois de fazer login, sua conta será integrada automaticamente.",
+      "buttons": {
+        "cancel": "Cancelar",
+        "continue": "Continuar"
+      }
+    }
+  }
+}
