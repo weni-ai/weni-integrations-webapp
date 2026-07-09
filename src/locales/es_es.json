@@ -176,17 +176,17 @@
   "weniWebChat": {
     "data": {
       "name": "Shopping Assistant",
-      "summary": "Con Shopping Assistant, puede integrar su proyecto como un chat en su sitio web.",
-      "description": "Utilice Shopping Assistant para brindar una experiencia de automatización humanizada de VTEX Agentic CX directamente en su sitio web o plataforma web. Al integrarlo, puede personalizar aspectos del Shopping Assistant como el color, el tiempo entre mensajes, los indicadores de mensajes, el avatar ¡y más! Así, garantiza todo lo que VTEX Agentic CX tiene para ofrecer con la identidad de su marca.",
+      "summary": "Con Shopping Assistant puedes agregar tu proyecto a tu sitio web en formato de chat.",
+      "description": "Utiliza Shopping Assistant para ofrecer una experiencia automatizada y humanizada de VTEX CX Platform directamente en tu sitio o plataforma web. Con esta integración puedes personalizar distintos aspectos de Shopping Assistant, como el color, el intervalo entre mensajes, los indicadores de mensaje, el avatar, entre otras opciones. Así, aprovechas los recursos de VTEX CX Platform en una experiencia alineada con la identidad de tu marca.",
       "links": {
         "create_channel": {
-          "label": "Agregar un canal Shopping Assistant",
+          "label": "Agregar un canal de Shopping Assistant",
           "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
         }
       }
     },
     "config": {
-      "description": "Aprenda más sobre cómo integrar Shopping Assistant aquí.",
+      "description": "Consulta más información sobre cómo integrar Shopping Assistant aquí.",
       "settings": "Ajustes",
       "script": "Código Script",
       "appearance": "Apariencia",
@@ -195,7 +195,7 @@
       "media": "Medios",
       "retail": "Minorista",
       "history": "Historial de chat & Inactividad",
-      "script_tutorial": "Para instalar Shopping Assistant en su sitio web, copie y pegue este código encima del último <<strong>/body</strong>> en su sitio web.",
+      "script_tutorial": "Para instalar Shopping Assistant copia y pega este código antes del último <<strong>/body</strong>> en tu sitio web.",
       "script_disclaimer": "El script estará disponible una vez que se completen los ajustes básicos requeridos.",
       "download_script": "Descargar Script",
       "custom_css": "CSS personalizado",
@@ -212,8 +212,8 @@
       "time_between_messages_option": "{count, plural, one {{count} segundo} other {{count} segundos}}",
       "time_between_messages_message": "Intervalo entre mensajes del agente",
       "navigate_if_same_domain": {
-        "label": "Permitir que Shopping Assistant redirija automáticamente la página",
-        "helper": "Cuando está habilitado, Shopping Assistant puede redirigir automáticamente al usuario a otra página cuando se envía un enlace durante la conversación. Esta funcionalidad está actualmente en Beta y puede cambiar."
+        "label": "Permitir que Shopping Assistant redirija a la página directamente",
+        "helper": "Cuando está activo, Shopping Assistant puede redirigir automáticamente al usuario a otra página si se comparte un link durante la conversación. Esta funcionalidad se encuentra actualmente en beta y puede cambiar."
       },
       "conversation_starters_pdp": {
         "label": "Preguntas sugeridas por IA",
@@ -221,7 +221,7 @@
       },
       "add_to_cart": {
         "label": "Agregar al carrito en la tienda",
-        "helper": "Los compradores pueden agregar productos sugeridos por IA directamente al carrito nativo de la tienda en lugar de un carrito gestionado por Shopping Assistant. Recomendado para tiendas con flujos de carrito o checkout personalizados."
+        "helper": "Los compradores pueden registrar productos sugeridos por IA directamente en el carrito nativo de la tienda en lugar de un carrito gestionado por Shopping Assistant. Recomendado para tiendas con carrito o procesos de checkout personalizados."
       },
       "main_color": "Color principal",
       "save_changes": "Guardar los cambios",

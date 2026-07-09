@@ -176,11 +176,11 @@
   "weniWebChat": {
     "data": {
       "name": "Shopping Assistant",
-      "summary": "Com o Shopping Assistant, você pode integrar seu projeto como um chat em seu site.",
-      "description": "Use o Shopping Assistant para ter a experiência de automação humanizada da VTEX Agentic CX diretamente no seu site ou plataforma web. Ao integrar o canal, você consegue customizar aspectos do Shopping Assistant como: Cor, espaçamento entre mensagens, indicadores de mensagem, avatar, e muito mais! Assim, garantindo tudo que VTEX Agentic CX tem a oferecer, com a cara da sua marca.",
+      "summary": "Com o Shopping Assistant, você pode integrar seu projeto como um chat no seu site.",
+      "description": "Use o Shopping Assistant para oferecer uma experiência automatizada e humanizada da VTEX CX Platform diretamente no seu site ou plataforma web. Com essa integração, você pode personalizar diversos aspectos do Shopping Assistant, como as cores, o intervalo entre mensagens, os indicadores de mensagem, o avatar, entre outros. Assim, você aproveita os recursos da VTEX CX Platform em uma experiência alinhada à identidade da sua marca.",
       "links": {
         "create_channel": {
-          "label": "Como criar um canal Shopping Assistant",
+          "label": "Adicionar um canal do Shopping Assistant",
           "url": "https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-web"
         }
       }
@@ -195,7 +195,7 @@
       "media": "Mídia",
       "retail": "Varejo",
       "history": "Histórico de chat & Inatividade",
-      "script_tutorial": "Para instalar o Shopping Assistant no seu site, copie e cole este código acima da última tag <<strong>/body</strong>> no seu site",
+      "script_tutorial": "Para instalar o Shopping Assistant no seu site, copie e cole o código acima da última tag <<strong>/body</strong>> no seu site.",
       "script_disclaimer": "O script estará disponível uma vez que os ajustes básicos necessários forem completados.",
       "download_script": "Baixar Script",
       "custom_css": "CSS Customizado",
@@ -213,7 +213,7 @@
       "time_between_messages_message": "Intervalo entre mensagens do agente",
       "navigate_if_same_domain": {
         "label": "Permitir que o Shopping Assistant redirecione automaticamente a página",
-        "helper": "Quando habilitado, o Shopping Assistant pode redirecionar automaticamente o usuário para outra página quando um link é enviado durante a conversa. Esta funcionalidade está atualmente em Beta e pode mudar."
+        "helper": "Quando ativado, o Shopping Assistant pode redirecionar automaticamente o usuário para outra página caso um link seja compartilhado durante a conversa. Esse recurso está atualmente em beta e pode sofrer alterações."
       },
       "conversation_starters_pdp": {
         "label": "Perguntas sugeridas por IA",
@@ -221,7 +221,7 @@
       },
       "add_to_cart": {
         "label": "Adicionar ao carrinho da loja",
-        "helper": "Os compradores podem adicionar produtos sugeridos pela IA diretamente ao carrinho nativo da loja, em vez de um carrinho gerenciado pelo Shopping Assistant. Recomendado para lojas com fluxos personalizados de carrinho ou checkout."
+        "helper": "Os compradores podem adicionar produtos sugeridos pela IA diretamente ao carrinho nativo da loja, em vez de usar um carrinho gerenciado pelo Shopping Assistant. Recomendado para lojas com carrinho ou fluxos de checkout personalizados."
       },
       "main_color": "Cor principal",
       "save_changes": "Salvar alterações",
