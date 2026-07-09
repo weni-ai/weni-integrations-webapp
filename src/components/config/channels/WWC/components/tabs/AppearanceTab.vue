@@ -114,7 +114,7 @@
   import { useI18n } from 'vue-i18n';
   import ColorPicker from '@/components/ColorPicker/index.vue';
   import { useFileUpload } from '@/composables/useFileUpload';
-  import { APPEARANCE_FIELDS } from '../../constants';
+  import { APPEARANCE_FIELDS, TITLE_MAX_LENGTH } from '../../constants';
   import { dataUrlToFile } from '@/utils/files';
 
   const { t } = useI18n();
@@ -224,8 +224,8 @@
     if (!title.value?.trim()) {
       return t('errors.empty_input');
     }
-    if (title.value.length > 25) {
-      return 'By default, the maximum is 25 characters.';
+    if (title.value.length > TITLE_MAX_LENGTH) {
+      return t('weniWebChat.config.TitleInput.max_length', { max: TITLE_MAX_LENGTH });
     }
     return '';
   });

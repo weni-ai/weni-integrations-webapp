@@ -230,6 +230,7 @@
       "initPayloadToolTip": "La deschiderea chat-ului pe site-ul dvs., un trigger cu această valoare va fi apelat automat pentru a începe un flux ales. Puteți configura în Studio.",
       "TitleInput": {
         "label": "Titlu chat",
+        "max_length": "În mod implicit, maximul este de {max} caractere.",
         "placeholder": "Ex.: Numele chatbot-ului dvs."
       },
       "SubtitleInput": {

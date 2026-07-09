@@ -151,7 +151,12 @@
   import { dataUrlToFile, toBase64 } from '@/utils/files';
   import removeEmpty from '@/utils/clean';
   import { getAppDisplayName } from '@/utils/apps';
-  import { DEFAULT_COLOR, formatContactTimeout, parseContactTimeout } from './constants';
+  import {
+    DEFAULT_COLOR,
+    TITLE_MAX_LENGTH,
+    formatContactTimeout,
+    parseContactTimeout,
+  } from './constants';
   import AppearanceTab from './components/tabs/AppearanceTab.vue';
   import PreferencesTab from './components/tabs/PreferencesTab.vue';
   import VoiceModeTab from './components/tabs/VoiceModeTab.vue';
@@ -267,8 +272,8 @@
       if (!(value && value.trim())) {
         return t('errors.empty_input');
       }
-      if (value.length > 20) {
-        return 'By default, the maximum is 20 characters.';
+      if (value.length > TITLE_MAX_LENGTH) {
+        return t('weniWebChat.config.TitleInput.max_length', { max: TITLE_MAX_LENGTH });
       }
     }
     return null;

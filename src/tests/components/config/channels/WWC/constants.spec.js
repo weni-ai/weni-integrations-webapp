@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   DEFAULT_COLOR,
+  TITLE_MAX_LENGTH,
   WEBCHAT_SCRIPT_URLS,
   TIME_BETWEEN_MESSAGES_OPTIONS,
   APPEARANCE_FIELDS,
@@ -12,6 +13,12 @@ import {
 } from '@/components/config/channels/WWC/constants';
 
 describe('WWC constants', () => {
+  describe('TITLE_MAX_LENGTH', () => {
+    it('should be 1000 characters', () => {
+      expect(TITLE_MAX_LENGTH).toBe(1000);
+    });
+  });
+
   describe('DEFAULT_COLOR', () => {
     it('should be the correct default color', () => {
       expect(DEFAULT_COLOR).toBe('#009E96');
