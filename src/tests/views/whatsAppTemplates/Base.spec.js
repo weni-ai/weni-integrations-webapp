@@ -60,12 +60,12 @@ describe('Base.vue', () => {
 
     expect(wrapper.vm.crumbs).toEqual([
       {
-        name: 'My Apps',
+        name: 'My apps',
         path: '/apps/my',
         meta: 'myApps',
       },
       {
-        name: 'Model Details',
+        name: 'Template details',
         path: '/',
         meta: 'myApps',
       },

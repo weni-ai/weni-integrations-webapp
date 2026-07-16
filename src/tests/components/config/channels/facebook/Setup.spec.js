@@ -70,7 +70,7 @@ describe('FacebookSetup.vue', () => {
     await wrapper.vm.startPageSelectionStage('mockAccessToken');
 
     expect(spy).toHaveBeenCalledWith({
-      text: 'Failed to fetch Facebook pages data, please try again later.',
+      text: 'Error fetching Facebook page information. Try again later.',
       type: 'error',
     });
   });
@@ -123,7 +123,7 @@ describe('FacebookSetup.vue', () => {
     await wrapper.vm.createChannel();
     wrapper.vm.$nextTick();
     expect(alertSpy).toHaveBeenCalledWith({
-      text: 'Failed to create application, please try again later',
+      text: 'Error creating the app. Try again later.',
       type: 'error',
     });
 

@@ -1,16 +1,16 @@
 {
   "general": {
     "Cancel": "Anulează",
-    "Close": "Închide",
+    "Close": "Închidere",
     "You": "Tu",
     "confirm": "Confirmă",
     "loading": "Se încarcă",
     "Remove": "Elimină",
-    "exit": "Ieșire",
+    "exit": "Ieși",
     "send": "Trimite",
     "back": "Înapoi",
-    "next": "Următorul",
-    "start": "Start",
+    "next": "Înainte",
+    "start": "Inițiere",
     "error": "Eroare",
     "success": "Succes",
     "continue": "Continuă",
@@ -19,8 +19,8 @@
     "new": "NOU"
   },
   "errors": {
-    "empty_input": "Câmpurile obligatorii nu pot fi goale.",
-    "required_message": "Acest câmp este obligatoriu."
+    "empty_input": "Câmpurile obligatorii nu pot fi necompletate",
+    "required_message": "Câmp obligatoriu"
   },
   "date": {
     "months": {
@@ -40,7 +40,7 @@
     "options": {
       "seven_days": "Ultimele 7 zile",
       "fourteen_days": "Ultimele 14 zile",
-      "thirty_days": "Ultimele 30 de zile",
+      "thirty_days": "Ultimele 30 zile",
       "twelve_months": "Ultimele 12 luni",
       "current_month": "Luna curentă",
       "personalize": "Personalizează"
@@ -63,11 +63,11 @@
         "recommended": "Canale recomandate",
         "ecommerce": "Comerț electronic"
       },
-      "fetch_error": "Eșec la încărcarea listei de aplicații, vă rugăm încercați din nou mai târziu.",
+      "fetch_error": "Eroare la încărcarea listei de aplicații. Încearcă din nou mai târziu.",
       "search": {
         "placeholder": "Căutare",
-        "empty_title": "Nu am putut găsi acest lucru numit",
-        "empty_description": "Dar puteți vedea toate integrările noastre făcând clic",
+        "empty_title": "Din păcate, nu am putut găsi",
+        "empty_description": "Dar poți vedea toate integrările noastre făcând click",
         "empty_link": "aici",
         "results": "Rezultate pentru"
       },
@@ -78,28 +78,28 @@
     },
     "myApps": {
       "empty": {
-        "no-integrations": "Nu ați instalat încă nicio integrare.",
-        "search": "Căutați ceea ce aveți nevoie",
+        "no-integrations": "Nu există integrări instalate încă",
+        "search": "Găsește ce ai nevoie",
         "link": "aici"
       },
       "error": {
-        "configured": "Nu am putut încărca aplicațiile configurate, vă rugăm încercați din nou mai târziu.",
-        "installed": "Nu am putut încărca aplicațiile instalate, vă rugăm încercați din nou mai târziu."
+        "configured": "Nu s-au putut încărca aplicațiile configurate. Încearcă din nou mai târziu.",
+        "installed": "Nu s-au putut încărca aplicațiile instalate. Încearcă din nou mai târziu."
       }
     },
     "details": {
-      "info": "Număr de mesaje schimbate",
+      "info": "Numărul de mesaje schimbate",
       "integrated_into": "Integrat în",
       "projects": "proiecte",
-      "rating": "Evaluare",
-      "status_error": "Nu s-a putut finaliza această acțiune, vă rugăm încercați din nou",
+      "rating": "Recenzii",
+      "status_error": "Acțiunea nu a putut fi finalizată. Încearcă din nou.",
       "status_success": "Succes",
       "navigator": {
         "discovery": "Descoperire"
       },
       "about": {
         "about_the_app": "Despre aplicație",
-        "useful_links": "Link-uri utile"
+        "useful_links": "Linkuri utile"
       },
       "recommended": {
         "title": "Recomandate",
@@ -107,14 +107,14 @@
       },
       "comments": {
         "leave_a_comment": "Lasă un comentariu",
-        "input_placeholder": "Un comentariu bun poate ajuta pe alții care învață :)",
+        "input_placeholder": "Comentariile îi pot ajuta pe alții care sunt la început",
         "edit_comment": "Editează comentariul",
         "delete_comment": "Șterge comentariul",
         "remove": {
           "title": "Șterge comentariul",
-          "description": "Doriți cu adevărat să ștergeți comentariul despre învățare? Veți putea insera altul.",
+          "description": "Sigur vrei să-ți ștergi comentariul? Poți adăuga altul mai târziu.",
           "remove": "Șterge comentariul",
-          "status_text": "Comentariu șters cu succes"
+          "status_text": "Comentariul a fost șters cu succes"
         }
       },
       "header": {
@@ -122,51 +122,51 @@
       },
       "card": {
         "comments": "comentarii",
-        "see_details": "Vezi detalii",
+        "see_details": "Detalii",
         "copy_uuid": "Copiază UUID"
       },
       "actions": {
         "installed": {
-          "title": "Aplicație instalată!",
-          "description": "Trebuie să configurați aplicația accesând zona \"Aplicațiile mele\".",
-          "access_my_apps": "Accesează aplicațiile mele"
+          "title": "Aplicație adăugată",
+          "description": "Trebuie să configurezi în continuare aplicația accesând secțiunea „Aplicațiile mele”",
+          "access_my_apps": "Accesează Aplicațiile mele"
         },
         "remove": {
-          "title": "Elimină aplicația",
-          "description": "Doriți cu adevărat să ștergeți această aplicație? Acțiunea nu poate fi anulată.",
-          "remove": "Elimină aplicația",
-          "status_text": "Aplicație eliminată cu succes"
+          "title": "Șterge aplicația",
+          "description": "Sigur vrei să ștergi această aplicație? Această acțiune nu poate fi anulată.",
+          "remove": "Șterge aplicația",
+          "status_text": "Aplicația a fost ștearsă cu succes"
         },
         "copy": {
-          "sucess": "UUID-ul {uuid} a fost copiat și trimis în clipboard."
+          "sucess": "UUID-ul {uuid} a fost copiat și trimis în clipboard"
         }
       }
     },
     "config": {
-      "first_integration_success": "Pentru a descărca scriptul pentru site-ul dvs., accesați fila Cod Script.",
-      "integration_success": "Aplicație actualizată cu succes",
-      "copy_success": "Copiat cu succes!",
+      "first_integration_success": "Pentru a descărca codul și a-l utiliza pe site-ul tău, accesează fila Cod script.",
+      "integration_success": "Aplicația a fost instalată cu succes",
+      "copy_success": "Copiere efectuată cu succes",
       "configure_later": "Configurează mai târziu",
       "save_changes": "Salvează modificările",
       "cancel": "Anulează",
-      "validate": "Validează",
-      "copy": "Copiază",
+      "validate": "Validare",
+      "copy": "Copiere",
       "confirmation": {
-        "title": "Anulează modificările",
-        "description": "Doriți cu adevărat să anulați modificările? Toate modificările nesalvate vor fi pierdute.",
-        "goBackToConfig": "Înapoi la configurare"
+        "title": "Renunță la modificări",
+        "description": "Sigur vrei să renunți la modificări? Vei pierde orice conținut nesalvat.",
+        "goBackToConfig": "Înapoi la setări"
       }
     }
   },
   "upload_area": {
     "title": {
-      "text": "Trageți fișierul aici sau",
-      "highlight": "căutați-l"
+      "text": "Trage fișierul aici sau",
+      "highlight": "alege un fișier"
     },
     "invalid": {
-      "text": "fișier, încercați din nou",
-      "highlight": "Nevalid",
-      "subtitle": "Fișierul pe care ați încercat să-l încărcați nu este acceptat."
+      "text": ". Încearcă din nou",
+      "highlight": "Fișier nevalid",
+      "subtitle": "Fișier neacceptat."
     },
     "subtitle": "Formate acceptate:"
   },
@@ -177,47 +177,47 @@
     "data": {
       "name": "Shopping Assistant",
       "summary": "Cu Shopping Assistant, poți integra proiectul tău ca un chat pe site-ul tău.",
-      "description": "Folosește Shopping Assistant pentru a beneficia de o experiență de automatizare umanizată a VTEX CX Platform direct pe site-ul tău web sau pe platforma web. Această integrare îți permite să personalizezi diferite aspecte ale Shopping Assistant, cum ar fi culoarea, intervalul dintre mesaje, indicatorii de mesaje, avatarul și multe altele. Astfel, poți profita de tot ceea ce oferă VTEX CX Platform, păstrând identitatea brandului tău.",
+      "description": "Folosește Shopping Assistant pentru a oferi o experiență automatizată și personalizată clienților, bazată pe VTEX CX Platform, direct pe site-ul sau platforma ta web. După integrarea canalului, poți personaliza elemente precum culoarea, spațierea mesajelor, indicatorii de mesaj și avatarul, astfel încât să se potrivească identității vizuale a brandului tău.",
       "links": {
         "create_channel": {
-          "label": "Adăugare canal Shopping Assistant",
-          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-web-channel"
+          "label": "Cum să creezi un canal pentru Shopping Assistant",
+          "url": "https://help.vtex.com/docs/tutorials/how-to-create-a-web-channel"
         }
       }
     },
     "config": {
-      "description": "Află mai multe despre cum să integrezi Shopping Assistant aici.",
+      "description": "Află mai multe despre cum să integrezi Shopping Assistant aici",
       "settings": "Setări",
       "script": "Cod Script",
       "appearance": "Aspect",
       "preferences": "Preferințe",
       "behavior": "Comportament",
       "media": "Media",
-      "retail": "Retail",
-      "history": "Istoric chat și inactivitate",
-      "script_tutorial": "Pentru a instala Shopping Assistant pe site-ul tău, copiază și lipește acest cod deasupra ultimului <<strong>/body</strong>> de pe site.",
-      "script_disclaimer": "Scriptul va fi disponibil după finalizarea setărilor de bază necesare.",
+      "retail": "Comerț cu amănuntul",
+      "history": "Istoricul chatului și al inactivității",
+      "script_tutorial": "Pentru a instala Shopping Assistant pe site-ul tău, copiază și lipește acest cod deasupra etichetei de închidere <strong>/body</strong> de pe site.",
+      "script_disclaimer": "Scriptul va fi disponibil imediat ce ajustările de bază necesare sunt finalizate.",
       "download_script": "Descarcă scriptul",
       "custom_css": "CSS personalizat",
-      "avatar_image": "Imagine avatar",
-      "use_connection_optimization": "Utilizați optimizarea conexiunii",
+      "avatar_image": "Avatar",
+      "use_connection_optimization": "Utilizează optimizarea conexiunii",
       "embedded_mode": "Mod încorporat",
-      "start_with_fullscreen": "Pornește chat-ul pe ecran complet",
+      "start_with_fullscreen": "Inițiază chatul în ecran complet",
       "show_fullscreen_button": "Afișează butonul de ecran complet",
       "show_voice_recording_button": "Afișează butonul de înregistrare vocală",
       "show_camera_button": "Afișează butonul camerei",
       "unread_messages_indicator": "Indicator mesaje necitite",
-      "keep_chat_history": "Păstrează istoricul chat-ului",
+      "keep_chat_history": "Păstrează istoricul mesajelor",
       "time_between_messages": "Timp între mesaje",
       "time_between_messages_option": "{count, plural, one {{count} secundă} few {{count} secunde} other {{count} de secunde}}",
-      "time_between_messages_message": "Interval între mesajele agentului",
+      "time_between_messages_message": "Intervalul dintre mesajele agentului",
       "navigate_if_same_domain": {
         "label": "Permite Shopping Assistant să redirecționeze automat pagina",
         "helper": "Când este activată, Shopping Assistant poate redirecționa automat utilizatorul către o altă pagină atunci când un link este trimis în timpul conversației. Această funcție este în prezent în versiune beta și poate suferi modificări."
       },
       "conversation_starters_pdp": {
-        "label": "Întrebări sugerate de AI",
-        "helper": "Afișează butoane de interacțiune rapidă pe pagina produsului. AI analizează SKU-ul pentru a sugera automat cele mai relevante întrebări ale clienților."
+        "label": "Întrebări sugerate de IA",
+        "helper": "Afișează butoane de interacțiune rapidă pe pagina produsului. IA analizează SKU-ul pentru a sugera automat cele mai relevante întrebări ale clienților."
       },
       "add_to_cart": {
         "label": "Adaugă în coș pe magazin",
@@ -225,35 +225,35 @@
       },
       "main_color": "Culoare principală",
       "save_changes": "Salvează modificările",
-      "script_placeholder": "Scriptul dvs. va fi aici",
+      "script_placeholder": "Scriptul tău va fi aici",
       "download": "Descarcă",
-      "initPayloadToolTip": "La deschiderea chat-ului pe site-ul dvs., un trigger cu această valoare va fi apelat automat pentru a începe un flux ales. Puteți configura în Studio.",
+      "initPayloadToolTip": "Când deschizi chatul pe site, un declanșator cu această valoare va porni automat pentru a începe fluxul selectat. Îl poți configura în Studio.",
       "TitleInput": {
-        "label": "Titlu chat",
+        "label": "Titlul chatului",
         "max_length": "În mod implicit, maximul este de {max} caractere.",
-        "placeholder": "Ex.: Numele chatbot-ului dvs."
+        "placeholder": "Ex.: Numele chatbot-ului tău"
       },
       "SubtitleInput": {
-        "label": "Subtitlu chat",
-        "placeholder": "Ex.: Numele companiei dvs."
+        "label": "Subtitlul chatului",
+        "placeholder": "Ex.: Denumire juridică"
       },
       "PlaceholderInput": {
-        "label": "Text substituent",
-        "placeholder": "Ex.: Tastați mesajul dvs."
+        "label": "Substituent de text",
+        "placeholder": "Ex.: Introdu mesajul tău"
       },
       "initPayloadInput": {
-        "label": "Mesaj trigger",
-        "placeholder": "Ex.: Bună ziua, bun venit"
+        "label": "Mesaj de declanșare",
+        "placeholder": "Ex.: Salut, bine ai venit"
       },
       "TooltipInput": {
         "label": "Mesaj de notificare chat",
-        "placeholder": "Mesaj de notificare când utilizatorul vizitează site-ul"
+        "placeholder": "Mesaj care va fi afișat în notificarea chatbot-ului"
       },
       "contactTimeoutInput": {
-        "label": "Repornește conversația după inactivitatea contactului"
+        "label": "Repornește conversația din cauza inactivității contactului"
       },
-      "contactTimeoutToolTip": "Dacă contactul rămâne inactiv pentru perioada stabilită, conversația se va încheia automat.\nO conversație nouă va începe dacă interacționează din nou.",
-      "contactTimeoutInvalidTime": "Valoarea trebuie să fie un cronometru cu maximum 24 de ore în următorul format: HH:mm",
+      "contactTimeoutToolTip": "Dacă contactul rămâne inactiv pentru o perioadă definită, conversația va fi închisă automat.\nO nouă conversație va începe dacă acesta interacționează din nou.",
+      "contactTimeoutInvalidTime": "Valoarea trebuie să fie un cronometru cu maximum 24 de ore în formatul: HH:mm",
       "add_field": "Mai mult",
       "customization": "Personalizare",
       "voice_mode": {
@@ -261,17 +261,17 @@
         "enabled": "Activează modul voce",
         "elevenLabsApiKey": {
           "label": "Token ElevenLabs",
-          "placeholder": "Lipiți token-ul aici"
+          "placeholder": "Lipește tokenul aici"
         },
         "elevenLabsVoiceId": {
           "label": "ID voce ElevenLabs (opțional)",
-          "placeholder": "Lipiți ID-ul vocii aici"
+          "placeholder": "Inserează ID-ul vocii tale aici"
         },
-        "get_token_here": "Obțineți token-ul aici",
-        "no_key_text": "Nu aveți o cheie?",
-        "other_voice": "Altă voce",
-        "other_voice_placeholder": "Lipiți ID-ul vocii",
-        "select_voice": "Selectați o voce",
+        "get_token_here": "Obține tokenul aici",
+        "no_key_text": "Nu ai o cheie?",
+        "other_voice": "Altele",
+        "other_voice_placeholder": "Lipește ID-ul vocii",
+        "select_voice": "Selectează o voce",
         "voice_category": {
           "default_portuguese": "Implicit – Portugheză",
           "english": "Engleză",
@@ -281,9 +281,9 @@
       }
     },
     "simulator": {
-      "chatTitle": "Titlu chat",
-      "chatSubtitle": "Subtitlu chat",
-      "chatPlaceholder": "Text substituent",
+      "chatTitle": "Titlul chatului",
+      "chatSubtitle": "Subtitlul chatului",
+      "chatPlaceholder": "Scrie mesajul tău",
       "replies": {
         "yes": "Da",
         "no": "Nu",
@@ -293,46 +293,46 @@
   },
   "telegram": {
     "data": {
-      "summary": "Trimiteți și primiți mesaje de la utilizatorii Telegram gratuit.",
-      "description": "Folosind Telegram, conectați una dintre cele mai mari aplicații de mesagerie ca canal disponibil publicului pe platforma VTEX Agentic CX. Trimiteți și primiți texte, videoclipuri și audio prin acest canal, asigurând confortul și comunitatea publicului dvs., precum și resursele disponibile pe platformă.",
+      "summary": "Trimite și primește mesaje de la utilizatorii Telegram gratuit.",
+      "description": "Conectează Telegram ca un canal VTEX CX Platform și ajungi la publicul tău pe una dintre cele mai utilizate aplicații de mesagerie din lume. Trimite și primește mesaje text, videoclipuri și fișiere audio, oferindu-le clienților o modalitate familiară și convenabilă de a interacționa cu brandul tău, valorificând în același timp funcționalitățile disponibile ale platformei.",
       "links": {
         "create_channel": {
-          "label": "Adăugarea unui canal Telegram",
-          "url": "https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel"
+          "label": "Cum să creezi un canal Telegram",
+          "url": "https://help.vtex.com/en/docs/tutorials/adding-a-telegram-channel"
         }
       }
     },
     "config": {
       "description": {
-        "text": "Aflați mai multe despre cum să integrați Telegram",
-        "link": "aici."
+        "text": "Află mai multe despre cum să integrezi Telegram",
+        "link": "aici"
       },
       "TokenInput": {
         "label": "Token"
       },
       "errors": {
-        "invalidToken": "Token-ul furnizat nu este valid."
+        "invalidToken": "Tokenul introdus nu este valid"
       }
     }
   },
   "WhatsAppDemo": {
     "data": {
-      "summary": "Cu WhatsApp Demo puteți aduce ce e mai bun din WhatsApp, cea mai mare aplicație de chat din lume, gratuit pentru a valida proiectul.",
-      "description": "Cu WhatsApp Demo puteți aduce ce e mai bun din WhatsApp, cea mai mare aplicație de chat din lume, gratuit pentru a valida proiectul. Cu un număr partajat gratuit puteți testa cu până la 200 de utilizatori lunari toate funcțiile disponibile pe platformă, precum și valida operarea și serviciul afacerii prin acest canal.<br>Obs.:<br>- Nu acceptă personalizări (fotografie, descriere, număr etc.)<br>- Nu acceptă mesaje șablon și toate conversațiile trebuie inițiate de utilizator",
+      "summary": "Utilizează WhatsApp Demo pentru a testa funcțiile celei mai populare aplicații de mesagerie din lume gratuit și pentru a-ți valida proiectul înainte de lansare.",
+      "description": "Folosește WhatsApp Demo pentru a testa gratuit funcționalitățile celei mai populare aplicații de mesagerie din lume și pentru a-ți valida proiectul. Cu un număr partajat, poți testa toate funcționalitățile platformei cu până la 200 de utilizatori pe lună și îți poți valida operațiunile și serviciile prin acest canal.<br>Notă:<br>- Nu acceptă personalizări (fotografie, descriere, număr etc.).<br>- Nu acceptă mesaje șablon; utilizatorul trebuie să inițieze toate conversațiile.",
       "links": {
         "create_channel": {
-          "label": "Adăugarea unui canal WhatsApp Demo",
-          "url": "https://docs.weni.ai/l/en/weni-integrations/how-to-create-a-channel-with-whats-app-demo"
+          "label": "Cum să creezi un canal Demo WhatsApp",
+          "url": "https://help.vtex.com/en/docs/tutorials/how-to-create-a-channel-with-whatsapp-demo"
         }
       }
     },
     "config": {
       "title": "Aproape gata!",
-      "description": "Pentru a putea utiliza WhatsApp Demo veți fi redirecționat către un link.",
+      "description": "Pentru a utiliza WhatsApp Demo, vei fi redirecționat către un link",
       "continue_and_redirect": "Continuă și redirecționează"
     },
     "preview": {
-      "description": "Cu URL-ul de mai jos puteți utiliza WhatsApp Demo, testați-l pe proiectul dvs. sau chiar distribuiți-l cu alții.",
+      "description": "Folosește URL-ul de mai jos pentru a încerca WhatsApp Demo în proiectul tău sau distribuie-l altor persoane",
       "UrlInput": {
         "label": "URL"
       }
@@ -340,8 +340,8 @@
   },
   "WhatsApp": {
     "data": {
-      "summary": "Dacă aveți un cont WhatsApp enterprise, îl puteți conecta pentru a comunica cu contactele dvs.",
-      "description": "Dacă aveți un cont WhatsApp enterprise, îl puteți conecta pentru a comunica cu contactele dvs.",
+      "summary": "Dacă ai un cont WhatsApp Business, îl poți conecta pentru a comunica cu contactele tale.",
+      "description": "Dacă ai un cont WhatsApp Business, îl poți conecta pentru a comunica cu contactele tale.",
       "templates": {
         "category": {
           "account_update": "Actualizare cont",
@@ -349,18 +349,18 @@
           "personal_finance_update": "Actualizare finanțe personale",
           "reservation_update": "Actualizare rezervare",
           "shipping_update": "Actualizare livrare",
-          "issue_resolution": "Rezolvare problemă",
+          "issue_resolution": "Rezolvarea problemei",
           "appointment_update": "Actualizare programare",
           "transportation_update": "Actualizare transport",
-          "ticket_update": "Actualizare bilet",
+          "ticket_update": "Actualizare tichet",
           "alert_update": "Actualizare alertă",
           "auto_reply": "Răspuns automat",
           "transactional": "Tranzacțional",
           "marketing": "Marketing",
-          "otp": "Parolă unică",
+          "otp": "Parolă de unică folosință",
           "utility": "Utilitate",
           "authentication": "Autentificare",
-          "any": "Orice"
+          "any": "Oricare"
         }
       }
     },
@@ -375,30 +375,30 @@
         "webhook_info": "Webhook"
       },
       "description": {
-        "text": "Aflați mai multe despre cum să creșteți limita zilnică de mesaje în WhatsApp",
-        "link": "aici."
+        "text": "Află mai multe despre cum să-ți crești limita de mesaje WhatsApp",
+        "link": "aici"
       },
       "account": {
         "title": "Cont",
-        "message_per_day_limit": "Limită mesaje pe zi",
+        "message_per_day_limit": "Limita zilnică de mesaje",
         "config": {
           "voice_calling": {
-            "label": "Apelare vocală",
+            "label": "Apel vocal",
             "feedback": {
               "enabled": {
-                "success": "Apelare vocală activată cu succes",
-                "error": "Eșec la activarea apelării vocale"
+                "success": "Apelul vocal a fost activat cu succes",
+                "error": "Eroare la activarea apelului vocal"
               },
               "disabled": {
-                "success": "Apelare vocală dezactivată cu succes",
-                "error": "Eșec la dezactivarea apelării vocale"
+                "success": "Apelul vocal a fost dezactivat cu succes",
+                "error": "Eroare la dezactivarea apelului vocal"
               }
             }
           }
         }
       },
       "billing": {
-        "title": "Informații de facturare"
+        "title": "Informații de plată"
       },
       "account_verification": {
         "checkbox_compliance": "Compania respectă Politica WhatsApp Business",
@@ -442,7 +442,7 @@
       },
       "webhook_info": {
         "input": {
-          "label": "URL Webhook"
+          "label": "URL webhook"
         },
         "method": {
           "label": "Metodă"
@@ -458,40 +458,40 @@
         }
       },
       "conversations": {
-        "title": "Informații conversații",
+        "title": "Informații despre conversație",
         "filter": {
-          "label": "Filtrează după"
+          "label": "Filtrare după"
         },
         "conversations_count": {
-          "label": "Număr de conversații",
+          "label": "Numărul de conversații",
           "table": {
             "user_messages": "Inițiate de utilizator",
             "business_messages": "Inițiate de afacere",
             "total": "Total",
             "started_by": "Inițiate de",
             "quantity": "Cantitate",
-            "business": "Afacere",
+            "business": "Organizație",
             "user": "Utilizator",
             "marketing": "Marketing",
             "marketing_lite": "Marketing Lite",
             "utility": "Utilitate",
             "authentication": "Autentificare",
-            "service": "Serviciu",
+            "service": "Service",
             "category": "Categorie"
           },
-          "before_label": "Date înainte de schimbarea prețului",
-          "after_label": "Date după schimbarea prețului"
+          "before_label": "Data înainte de modificarea prețului",
+          "after_label": "Data după modificarea prețului"
         },
-        "fetch_error": "Eșec la preluarea datelor conversațiilor. Contactați echipa de asistență.",
+        "fetch_error": "Eroare la preluarea datelor conversației. Contactează Asistența.",
         "report": {
-          "button": "Solicitați raport",
-          "description": "Puteți primi detalii despre mesaje pe e-mail de nu mai mult de 6 luni în urmă. Este posibil ca unele informații din raport să fie inexacte. Dacă aveți îndoieli, contactați managerul de cont.",
-          "label": "Raport detaliat de conversații",
-          "missing_dates": "Este necesară o perioadă de timp pentru a putea solicita un raport"
+          "button": "Solicită raport",
+          "description": "Poți primi defalcări ale mesajelor pe e-mail pentru ultimele 6 luni. Unele informații din raport pot fi inexacte. Dacă ai nelămuriri, contactează managerul de cont.",
+          "label": "Raport detaliat al conversației",
+          "missing_dates": " Selectează un interval pentru a solicita raportul"
         },
-        "report_already_processing": "Ați solicitat deja un raport detaliat cu puțin timp în urmă, puteți solicita unul nou după primirea celui anterior.",
-        "report_success": "Veți primi raportul detaliat pe e-mail în curând",
-        "report_error": "Eșec la solicitarea raportului detaliat, vă rugăm încercați din nou mai târziu"
+        "report_already_processing": "Ai solicitat recent un raport detaliat. Poți solicita unul nou după ce îl primești pe cel anterior.",
+        "report_success": "Vei primi în curând raportul detaliat pe e-mail",
+        "report_error": "Eroare la solicitarea raportului detaliat. Încearcă din nou mai târziu."
       },
       "channel": {
         "title": "Canal WhatsApp",
@@ -499,7 +499,7 @@
           "phone_number": "Număr de telefon",
           "whatsapp_display_name": "Nume afișat WhatsApp",
           "number_registration": "Înregistrare număr",
-          "default_language_for_templates": "Limbă implicită pentru șabloane",
+          "default_language_for_templates": "Limba implicită pentru șabloane",
           "ivr_existing": "IVR existent",
           "ivr_active": "IVR activ",
           "certificate": "Certificat",
@@ -510,99 +510,99 @@
         "title": "Cont WhatsApp Business (WABA)",
         "fields": {
           "waba_name": "Nume WABA",
-          "message_on_behalf_of": "Mesaj în numele",
+          "message_on_behalf_of": "Mesaje în numele",
           "timezone_id": "ID fus orar",
           "waba_id": "ID WABA",
-          "namespace": "Spațiu de nume"
+          "namespace": "Namespace"
         }
       },
       "profile": {
         "profile_image": {
-          "label": "Imagine profil"
+          "label": "Imagine de profil"
         },
         "status": {
-          "label": "Stare",
-          "placeholder": "Ex.: Disponibil doar pentru text"
+          "label": "Status",
+          "placeholder": "Ex.: Nu pot vorbi, doar WhatsApp"
         },
         "description": {
           "label": "Descriere",
-          "placeholder": "Descrieți afacerea sau scopul chatbot-ului"
+          "placeholder": "Descrie organizația sau scopul chatbot-ului tău"
         },
         "sector": {
-          "label": "Sector companie",
-          "placeholder": "Selectați"
+          "label": "Departament organizație",
+          "placeholder": "Selectează"
         },
         "configure_later": "Configurează mai târziu",
         "save_changes": "Salvează modificările"
       },
       "contact_info": {
         "website_url": {
-          "label": "Site-uri web:"
+          "label": "Site-uri:"
         },
         "email": {
-          "label": "E-mail corporativ:",
-          "placeholder": "E-mail la care clienții pot contacta"
+          "label": "E-mail companie:",
+          "placeholder": "Adresa de e-mail pe care clienții o pot folosi pentru a te contacta"
         },
         "address": {
           "label": "Adresă:",
-          "placeholder": "Adresa afacerii dvs."
+          "placeholder": "Adresa comercială"
         },
         "configure_later": "Configurează mai târziu",
         "save_changes": "Salvează modificările"
       },
       "success": {
-        "profile_updated": "Profil WhatsApp actualizat cu succes",
-        "contact_info_update": "Informații de contact WhatsApp actualizate cu succes",
-        "webhook_update": "Configurare Webhook actualizată cu succes"
+        "profile_updated": "Profilul WhatsApp a fost actualizat cu succes",
+        "contact_info_update": "Informațiile de contact WhatsApp au fost actualizate cu succes",
+        "webhook_update": "Configurația webhook a fost actualizată cu succes"
       },
       "error": {
-        "invalid_photo_size": "Fotografia importată trebuie să fie de cel puțin 192x192 pixeli",
-        "data_fetch": "Eșec la preluarea datelor WhatsApp. Contactați echipa de asistență.",
-        "data_update": "Eșec la actualizarea datelor WhatsApp.",
-        "open_templates": "Nu s-au putut deschide șabloanele, reîmprospătați pagina și încercați din nou.",
-        "empty_url": "URL-ul Webhook furnizat nu poate fi gol",
-        "invalid_url": "URL-ul Webhook furnizat este nevalid",
-        "webhook_update": "Eroare la încercarea de actualizare a datelor webhook",
-        "invalid_data": "Unele câmpuri sunt nevalide, corectați-le și încercați din nou",
+        "invalid_photo_size": "Fotografia încărcată trebuie să aibă cel puțin 192 x 192 pixeli",
+        "data_fetch": "Eroare la preluarea datelor WhatsApp. Contactează Asistența.",
+        "data_update": "Eroare la actualizarea datelor WhatsApp",
+        "open_templates": "Nu s-au putut deschide șabloanele. Reîncarcă pagina și încearcă din nou.",
+        "empty_url": "URL-ul webhook furnizat nu poate fi necompletat",
+        "invalid_url": "URL-ul webhook furnizat este nevalid",
+        "webhook_update": "Actualizarea datelor webhook nu a reușit",
+        "invalid_data": "Unele câmpuri sunt nevalide. Verifică-le și încearcă din nou.",
         "2388072": {
           "title": "Formatul titlului este incorect",
-          "message": "Antetul mesajului nu poate conține rânduri noi, caractere de formatare, emoji sau asteriscuri."
+          "message": "Antetul mesajului nu poate conține linii noi, caractere de formatare, emoji sau asteriscuri."
         }
       },
       "qr": {
         "title": "Link WhatsApp",
-        "button": "Accesează link-ul",
-        "info": "Pentru a accesa link-ul, scanați codul QR sau faceți clic pe butonul de mai jos"
+        "button": "Accesează linkul",
+        "info": "Pentru a accesa linkul, scanează codul QR sau fă click pe butonul de mai jos"
       },
       "templates": {
-        "button": "Vezi șabloanele mele",
+        "button": "Vizualizează șabloanele mele",
         "title": "Șabloane",
         "new_language": "Limbă nouă"
       },
       "catalog": {
-        "button": "Vezi lista de cataloage",
+        "button": "Vizualizează lista catalogului",
         "title": "Catalog",
         "button_create": "Creează catalog",
         "error": {
-          "missing_vtex_app": "Trebuie să aveți o aplicație VTEX configurată pentru a conecta un catalog."
+          "missing_vtex_app": "O aplicație VTEX trebuie configurată pentru a conecta un catalog"
         }
       },
       "mmlite": {
-        "button": "Actualizare la API MM Lite WhatsApp",
-        "button_updating": "Actualizare la API MM Lite WhatsApp",
-        "disclaimer": "Vești bune! Acum utilizați API-ul MM Lite."
+        "button": "Actualizează la WhatsApp MM Lite API",
+        "button_updating": "Se actualizează la WhatsApp MM Lite API",
+        "disclaimer": "Vești bune! Folosești API-ul MM Lite."
       }
     },
     "catalog": {
       "error": {
-        "fetch_catalogs": "Nu s-a putut încărca lista de cataloage. Încercați din nou mai târziu",
-        "disable_catalog": "Nu s-a putut dezactiva catalogul în acest moment. Încercați din nou mai târziu",
-        "enable_catalog": "Catalogul nu a putut fi activat în acest moment. Încercați din nou mai târziu",
-        "toggle_cart_visibility": "Nu s-a putut activa coșul în acest moment. Încercați din nou mai târziu"
+        "fetch_catalogs": "Nu s-a putut încărca lista de cataloage. Încearcă din nou mai târziu.",
+        "disable_catalog": "Nu s-a putut dezactiva catalogul în acest moment. Încearcă din nou mai târziu.",
+        "enable_catalog": "Catalogul nu a putut fi activat momentan. Încearcă din nou mai târziu.",
+        "toggle_cart_visibility": "Nu s-a putut activa coșul de cumpărături în acest moment. Încearcă din nou mai târziu."
       },
       "list": {
-        "title": "Lista de cataloage",
-        "description": "Adăugați toate articolele pe care doriți să le promovați sau să le vindeți",
+        "title": "Listă de catalog",
+        "description": "Adaugă toate articolele pe care vrei să le promovezi sau să le vinzi",
         "advanced_settings": "Setări avansate",
         "identification": "Identificare",
         "actions": {
@@ -612,20 +612,20 @@
           "inactive_catalog": "Inactiv"
         },
         "disable_modal": {
-          "title": "Doriți cu adevărat să dezactivați catalogul?",
-          "title_active": "Aveți deja un alt catalog activ",
-          "description": "Pentru a continua să trimiteți produsele pe WhatsApp aveți nevoie de un catalog activ.",
+          "title": "Sigur vrei să dezactivezi catalogul?",
+          "title_active": "Ai deja un catalog activ",
+          "description": "Pentru a continua să îți trimiți produsele pe WhatsApp, vei avea nevoie de un catalog activ.",
           "description_active": "Această acțiune va dezactiva automat catalogul \"{name}\"",
-          "label": "Tastați \"{name}\" pentru a confirma",
+          "label": "Tastează \"{name}\" pentru a confirma",
           "confirm": "Dezactivează"
         },
         "advanced_configurations_modal": {
           "title": "Setări avansate",
-          "description": "Configurați nivelul de acuratețe pentru livrarea automată a produselor",
-          "recommendation": "Configurare recomandată: 1.55",
+          "description": "Configurează nivelul de precizie pentru livrarea automată a produselor",
+          "recommendation": "Configurație recomandată: 1.55",
           "confirm": "Salvează"
         },
-        "search_placeholder": "Căutați numele catalogului"
+        "search_placeholder": "Caută după numele catalogului"
       },
       "products": {
         "title": "Produse"
@@ -633,18 +633,18 @@
     },
     "templates": {
       "table": {
-        "crumb_title": "Gestionează șabloane",
+        "crumb_title": "Gestionează șabloanele",
         "actions": {
           "add_language": "Adaugă limbă",
-          "duplicate_language": "Duplică",
+          "duplicate_language": "Duplicare limbă",
           "delete_language": "Șterge",
-          "see_details": "Vezi detalii"
+          "see_details": "Vizualizează detalii"
         },
         "headers": {
-          "name": "Nume",
+          "name": "Denumire",
           "month": "Lună",
           "category": "Categorie",
-          "preview": "Previzualizare",
+          "preview": "Previzualizează",
           "language": "Limbă",
           "actions": "Acțiuni",
           "date": "Dată"
@@ -653,15 +653,15 @@
         "filters": {
           "date": {
             "label": "Dată",
-            "clear": "Șterge",
-            "filter": "Filtrează"
+            "clear": "Ștergere",
+            "filter": "Filtrare"
           },
           "search": "Căutare",
           "category": "Categorie"
         },
         "header": {
           "title": "Șabloane WhatsApp",
-          "description": "Tabelul următor prezintă șabloanele de mesaje configurate în prezent pentru acest număr."
+          "description": "Tabelul de mai jos afișează șabloanele de mesaje configurate în prezent pentru acest număr"
         }
       },
       "form": {
@@ -671,89 +671,89 @@
         "crumb_title": "Creează șablon"
       },
       "edit_form": {
-        "crumb_title": "Editează șablon"
+        "crumb_title": "Editează șablonul"
       },
       "error": {
-        "fetch_template_data": "Eroare la preluarea datelor șablonului, încercați din nou mai târziu",
+        "fetch_template_data": "Eroare la preluarea datelor șablonului. Încearcă din nou mai târziu.",
         "validation": {
-          "empty_header": "Antetul nu poate fi gol",
-          "long_header": "Antetul nu poate avea mai mult de 60 de caractere",
+          "empty_header": "Antetul nu poate rămâne necompletat",
+          "long_header": "Antetul nu poate depăși 60 de caractere",
           "invalid_media_type": "Tip de media nevalid",
-          "invalid_media_example": "Lipsește exemplul media",
-          "empty_body": "Corpul nu poate fi gol",
-          "long_body": "Corpul nu poate avea mai mult de 1024 de caractere",
-          "missing_variables_example": "Lipsește exemplul variabilelor",
-          "empty_footer": "Subsolul nu poate fi gol",
-          "long_footer": "Subsolul nu poate avea mai mult de 60 de caractere",
-          "empty_button_text": "Textul butonului nu poate fi gol",
-          "empty_button_phone_number": "Numărul de telefon nu poate fi gol",
-          "empty_button_country_code": "Codul de țară al telefonului nu poate fi gol",
-          "empty_button_url": "URL-ul nu poate fi gol",
-          "invalid_button_url": "URL buton nevalid"
+          "invalid_media_example": "Exemplu de media lipsă",
+          "empty_body": "Corpul mesajului nu poate rămâne necompletat",
+          "long_body": "Corpul nu poate depăși 1024 de caractere",
+          "missing_variables_example": "Exemplu de variabilă lipsă",
+          "empty_footer": "Subsolul nu poate rămâne necompletat",
+          "long_footer": "Subsolul nu poate depăși 60 de caractere",
+          "empty_button_text": "Textul butonului nu poate rămâne necompletat",
+          "empty_button_phone_number": "Numărul de telefon nu poate rămâne necompletat",
+          "empty_button_country_code": "Codul de țară al telefonului nu poate rămâne necompletat",
+          "empty_button_url": "URL-ul nu poate rămâne necompletat",
+          "invalid_button_url": "URL-ul butonului este nevalid"
         },
-        "unexpected_language": "Limbă neașteptată, reîmprospătați",
+        "unexpected_language": "Limbă neașteptată. Reîmprospătează pagina.",
         "language_already_exists": "Această limbă există deja",
-        "select_languages": "Eroare la preluarea datelor limbilor, încercați din nou mai târziu...",
-        "invalid_app_uuid": "Identificator de aplicație nevalid, reîmprospătați pagina.",
-        "invalid_name": "Nume șablon nevalid",
-        "invalid_category": "Categorie șablon nevalidă",
-        "invalid_language": "Limbă șablon nevalidă",
-        "create_template": "Nu s-a putut crea șablonul, încercați din nou mai târziu",
-        "create_translation": "Nu s-a putut crea traducerea șablonului, încercați din nou mai târziu",
-        "unknown_error": "A apărut o eroare necunoscută, reîmprospătați pagina",
-        "fetch_templates": "Nu s-a putut încărca lista de șabloane, încercați din nou mai târziu",
-        "delete_template": "Nu s-a putut șterge șablonul, încercați din nou mai târziu.",
+        "select_languages": "Eroare la preluarea datelor de limbă. Încearcă din nou mai târziu.",
+        "invalid_app_uuid": "Identificator de aplicație invalid. Reîmprospătează pagina.",
+        "invalid_name": "Numele șablonului nu este valid",
+        "invalid_category": "Categoria șablonului nu este validă",
+        "invalid_language": "Limbajul șablonului nu este valid",
+        "create_template": "Nu s-a putut crea șablonul. Încearcă din nou mai târziu.",
+        "create_translation": "Nu s-a putut crea traducerea șablonului. Încearcă din nou mai târziu.",
+        "unknown_error": "A apărut o eroare necunoscută. Reîmprospătează pagina.",
+        "fetch_templates": "Nu s-a putut încărca lista de șabloane. Încearcă din nou mai târziu.",
+        "delete_template": "Șablonul nu a putut fi șters. Încearcă din nou mai târziu.",
         "invalid_file_format": "Format de fișier nevalid",
-        "invalid_file_size": "Dimensiune fișier nevalidă, trebuie să fie mai mică de 16 MB",
-        "missing_variable_example": "Lipsește exemplul variabilei",
-        "missing_media_example": "Lipsește exemplul media",
-        "delete_sample": "Șabloanele generate de Facebook nu pot fi șterse.",
-        "invalid_fields": "Există câmpuri nevalide, corectați-le și încercați din nou.",
-        "start_or_end_with_variable": "Textul corpului conține parametri variabili la început sau la sfârșit.",
-        "too_many_variables": "Acest șablon conține prea mulți parametri variabili față de lungimea mesajului. Trebuie să scădeți numărul de parametri variabili sau să măriți lungimea mesajului.",
-        "incomplete_bracket_variable": "Acest șablon conține parametri variabili cu formatare incorectă. Parametrii variabili trebuie să fie numere întregi cu două seturi de paranteze acolade (de exemplu, {{1}}, {{2}}).",
-        "update_translation": "Nu s-a putut actualiza șablonul, încercați din nou mai târziu."
+        "invalid_file_size": "Dimensiunea fișierului nu este validă. Trebuie să fie mai mică de 16 MB.",
+        "missing_variable_example": "Exemplu de variabilă lipsă",
+        "missing_media_example": "Exemplu de media lipsă",
+        "delete_sample": "Șabloanele generate de Facebook nu pot fi șterse",
+        "invalid_fields": "Unele câmpuri sunt nevalide. Remediază-le și încearcă din nou.",
+        "start_or_end_with_variable": "Mesajul conține parametri variabili la început sau la sfârșit.",
+        "too_many_variables": "Acest șablon are prea mulți parametri variabili față de lungimea mesajului. Redu numărul de variabile sau mărește lungimea mesajului",
+        "incomplete_bracket_variable": "Acest șablon conține variabile cu formatare incorectă. Variabilele trebuie să fie numere întregi cu două seturi de paranteze (de exemplu, {{1}}, {{2}}).",
+        "update_translation": "Șablonul nu a putut fi actualizat. Încearcă din nou mai târziu."
       },
       "new_language": "Limbă nouă",
       "form_field": {
-        "name": "Nume",
+        "name": "Denumire",
         "category": "Categorie",
         "language": "Limbă",
-        "body_text": "Text corp",
+        "body_text": "Textul mesajului",
         "buttons": "Butoane",
-        "type_of_action": "Tip de acțiune",
-        "button_name": "Nume buton",
+        "type_of_action": "Tip acțiune",
+        "button_name": "Denumirea butonului",
         "country": "Țară",
-        "website_url": "URL site web",
+        "website_url": "URL site",
         "phone_number": "Număr de telefon",
-        "add_another_button": "Adaugă alt buton",
+        "add_another_button": "Adaugă un alt buton",
         "footer_text": "Text subsol",
         "header": "Antet",
-        "header_text_placeholder": "Ex.: Tastați mesajul...",
-        "add_variable": "Adaugă variabilă în corpul textului",
+        "header_text_placeholder": "Ex.: Introdu mesajul tău...",
+        "add_variable": "Adaugă variabilă la mesaj",
         "save_language": "Salvează limba",
-        "name_exists": "Acest nume există deja, introduceți unul diferit.",
-        "category_placeholder": "Selectați categoria",
-        "language__placeholder": "Selectați limba",
+        "name_exists": "Acest nume există deja. Introdu unul diferit.",
+        "category_placeholder": "Alege o categorie",
+        "language__placeholder": "Alege o limbă",
         "header__label": "Format",
-        "body_text__placeholder": "Scrieți textul corpului",
-        "buttons__label": "Tip butoane",
+        "body_text__placeholder": "Scrie un mesaj",
+        "buttons__label": "Tip buton",
         "reply_label": "Text buton",
         "button": "Buton",
-        "button_text_placeholder": "Introduceți textul butonului",
+        "button_text_placeholder": "Introdu textul butonului",
         "button_text": "Text buton",
-        "phone_number_placeholder": "Introduceți numărul de telefon",
-        "url_placeholder": "Introduceți URL-ul site-ului web",
-        "footer_text_placeholder": "Introduceți textul subsolului",
+        "phone_number_placeholder": "Introdu numărul de telefon",
+        "url_placeholder": "Introdu URL-ul site-ului web",
+        "footer_text_placeholder": "Introdu textul din subsol",
         "error_has_variable": "Butoanele șablonului nu pot conține variabile"
       },
       "category_options": {
         "marketing": "Marketing",
-        "marketing_description": "Trimiteți promoții sau informații despre produse, servicii sau afacere.",
+        "marketing_description": "Trimite promoții sau informații despre produsele, serviciile sau afacerea ta",
         "authentication": "Autentificare",
-        "authentication_description": "Trimiteți coduri pentru verificarea unei tranzacții sau autentificări.",
+        "authentication_description": "Trimite coduri pentru a verifica o tranzacție sau autentificare",
         "utility": "Utilitate",
-        "utility_description": "Trimiteți mesaje despre o comandă sau cont existent."
+        "utility_description": "Trimite mesaje despre o comandă sau un cont existent"
       },
       "button_options": {
         "none": "Niciunul",
@@ -761,7 +761,7 @@
         "call_to_action": "Apel la acțiune"
       },
       "call_to_action_options": {
-        "call_phone_number": "Apelează număr de telefon",
+        "call_phone_number": "Apelează numărul de telefon",
         "visit_website": "Vizitează site-ul web"
       },
       "header_type_options": {
@@ -769,36 +769,36 @@
         "media": "Media"
       },
       "add_language": "Adaugă limbă",
-      "preview": "Previzualizare",
+      "preview": "Previzualizează",
       "sample": {
-        "description": "Aveți opțiunea de a furniza exemple de conținut specific pentru șablonul dvs.",
+        "description": "Poți furniza exemple de conținut specifice pentru șablonul tău",
         "header": "Antet",
-        "choose_file": "Alegeți fișier",
-        "preview": "Previzualizare",
+        "choose_file": "Alege fișier",
+        "preview": "Previzualizează",
         "body": "Corp",
-        "send": "Trimite",
-        "info": "Asigurați-vă că nu includeți informații reale despre utilizatori sau clienți și furnizați doar conținut de probă în exemplele dvs.",
-        "title": "Adăugați conținut de probă"
+        "send": "Încarcă",
+        "info": "Asigură-te că nu incluzi informații reale despre utilizatori sau clienți și furnizează doar conținut exemplificativ.",
+        "title": "Adaugă conținut de exemplu"
       },
       "status": {
-        "APPROVED": "Aprobat",
-        "REJECTED": "Respins",
+        "APPROVED": "Aprobate",
+        "REJECTED": "Respinse",
         "PENDING": "În așteptare"
       },
       "success": {
-        "create_translation": "Traducere șablon creată cu succes",
-        "update_translation": "Traducere șablon actualizată cu succes"
+        "create_translation": "Traducerea șablonului a fost creată cu succes",
+        "update_translation": "Traducerea șablonului a fost actualizată cu succes"
       }
     },
     "insights": {
-      "insights": "Insights",
-      "see_insights": "Vezi insights",
-      "enable_insights": "Activează insights",
-      "disabled": "Nu ați activat insights",
-      "about_description": "Vedeți date mai detaliate legate de trimiterea, livrarea și citirea șabloanelor de mesaje declanșate.",
-      "about_text_1": "Introducem mai multe insights de performanță pentru a vă ajuta să urmăriți, să înțelegeți și să îmbunătățiți modelele de mesagerie. Modelele de marketing vor afișa și insights despre implicarea butoanelor. Pentru a migra la noul cadru de insights, datele existente pentru \"mesaje trimise\" vor fi șterse. Urmărirea va fi reluată la data la care faceți clic pe Confirmă.",
-      "about_text_2": "Făcând clic pe Confirmă, instruiți Meta să adauge insights la contul dvs. WhatsApp Business. Aceste insights includ urmărirea link-urilor pentru raportarea clicurilor pe site. Puteți dezactiva urmărirea link-urilor pentru fiecare șablon de mesaj.",
-      "about_text_3": "Făcând clic pe Confirmă, instruiți de asemenea Meta să colecteze și să anonimizeze datele din chat-urile clienților. Meta va anonimiza aceste date pentru a îmbunătăți serviciile oferite dvs. și altor companii.",
+      "insights": "Detalii",
+      "see_insights": "Vizualizează detalii",
+      "enable_insights": "Activează detalii",
+      "disabled": "Nu ai activat detaliile",
+      "about_description": "Vezi date mai detaliate legate de trimiterea, livrarea și citirea șabloanelor de mesaje declanșate",
+      "about_text_1": "Îți oferim mai multe informații despre performanță pentru a te ajuta să monitorizezi, să înțelegi și să îmbunătățești șabloanele tale de mesaje. Șabloanele de marketing vor include, de asemenea, informații despre interacțiunea cu butoanele. Pentru a migra la noua structură de informații, datele existente privind „mesajele trimise” vor fi șterse. Monitorizarea va fi reluată la data la care faci click pe Confirmare.",
+      "about_text_2": " Făcând click pe Confirmare, autorizezi Meta să adauge informații despre performanță în contul tău WhatsApp Business. Aceste informații includ monitorizarea linkurilor pentru raportarea accesărilor pe site. Poți dezactiva monitorizarea linkurilor pentru fiecare șablon de mesaj.",
+      "about_text_3": " Făcând click pe Confirmare, autorizezi, de asemenea, Meta să colecteze și să anonimizeze date din conversațiile tale cu clienții. Meta va anonimiza aceste date pentru a îmbunătăți serviciile pe care le oferă atât ție, cât și altor companii.",
       "messages": {
         "sent": "Mesaje trimise",
         "delivered": "Mesaje livrate",
@@ -806,43 +806,43 @@
         "received": "Mesaje primite"
       },
       "filters": {
-        "period_of_time": "Perioadă de timp",
+        "period_of_time": "Perioadă",
         "message_templates": "Șabloane de mesaje"
       },
       "modal": {
-        "present_insights": "Prezentăm insights noi"
+        "present_insights": "Prezentăm noi detalii"
       },
       "errors": {
-        "active_template": "Nu s-a putut activa insights în acest moment, încercați din nou mai târziu."
+        "active_template": "Nu s-au putut activa detaliile în acest moment. Încearcă din nou mai târziu."
       }
     },
     "template_details": {
       "crumbs": {
         "my_apps": "Aplicațiile mele",
-        "manage_templates": "Gestionează șabloane",
-        "model_details": "Detalii model",
+        "manage_templates": "Gestionează șabloanele",
+        "model_details": "Detalii șablon",
         "template_details": "Detalii șablon"
       },
       "summary": {
         "title": "Rezumat",
         "marketing": "Marketing",
-        "performace_overview": "Prezentare generală performanță",
+        "performace_overview": "Prezentare generală a performanței",
         "last_7_days": "ultimele 7 zile",
         "sent_messages": "Mesaje trimise",
         "delivered_messages": "Mesaje livrate",
         "read_messages": "Mesaje citite",
-        "quality_overview": "Prezentare generală calitate",
-        "current_level": "Nivel curent",
-        "block_reason": "Motivul principal de blocare"
+        "quality_overview": "Prezentare generală a calității",
+        "current_level": "Nivelul curent",
+        "block_reason": "Motivul principal al blocării"
       },
       "button": {
-        "edit_model": "Editează modelul"
+        "edit_model": "Editează șablonul"
       }
     },
     "product": {
       "table": {
         "headers": {
-          "name": "Nume",
+          "name": "Denumire",
           "availability": "Disponibilitate",
           "price": "Preț",
           "sku": "SKU",
@@ -850,164 +850,163 @@
         }
       },
       "list": {
-        "description": "Aici gestionați informațiile despre inventar. Adăugați toate articolele pe care doriți să le promovați sau să le vindeți"
+        "description": "Aici poți gestiona inventarul tău. Adaugă toate articolele pe care vrei să le listezi sau să le vinzi."
       }
     }
   },
   "WhatsAppCloud": {
     "data": {
-      "summary": "Dacă aveți un cont WhatsApp enterprise, îl puteți conecta pentru a comunica cu contactele dvs.",
-      "description": "WhatsApp este cea mai mare aplicație de mesagerie din lume și una dintre cele mai preferate de utilizatori.<br/><br/>Integrarea sa cu platforma VTEX Agentic CX vă permite să conectați numărul de afaceri la aplicație și să creați fluxuri inteligente pentru a răspunde nevoilor clienților.<br/><br/>Puteți utiliza această integrare pe platforma VTEX Agentic CX fără a avea managerul de afaceri verificat și a începe până la 50 de conversații de către afacere cu numere diferite în 24h. Chiar și fără managerul de afaceri verificat, puteți avea până la două numere per WABA.<br/><br/>Primele 1.000 de conversații în fiecare lună sunt gratuite. Astfel, puteți crea experiențe pe care clienții le vor adora înainte de a plăti pentru ele. Fiecare cont WhatsApp Business (WABA) va primi 1.000 de conversații gratuite pe lună care pot fi inițiate de afacere (dacă nu aveți managerul verificat, trebuie să acordați atenție limitării de 50 de conversații cu numere diferite) sau de utilizator. Acest beneficiu este oferit la nivel WABA. Deci, chiar dacă contul are mai multe numere atașate, limita de chat gratuit va fi totuși de 1.000. Limita de conversații gratuite se resetează în fiecare lună conform fusului orar asociat WABA.<br/><br/>De asemenea, amintim că cu planul gratuit al platformei VTEX Agentic CX puteți comunica cu 200 de contacte active (contacte unice într-un interval de 1 lună) fără costuri.<br/><br/>Verificând managerul de afaceri puteți debloca și mai mult potențialul integrării WhatsApp, cum ar fi creșterea nivelului de conversații inițiate de afacere (1000, 10.000, 100.000 sau nelimitat), posibilitatea de a achiziționa OBA (sigiliu de cont oficial/bilet verde) și având mai mult de două numere per WABA.<br/><br/>Această versiune a API-ului WhatsApp prin platforma VTEX Agentic CX acceptă personalizări, cum ar fi fotografii, videoclipuri, trimiterea de fișiere, descrieri și șabloane de mesaje (conversațiile pot fi inițiate de utilizator sau de afacere).",
+      "summary": "Dacă ai un cont WhatsApp Business, îl poți conecta pentru a comunica cu contactele tale.",
+      "description": "WhatsApp este cea mai populară aplicație de mesagerie din lume.<br/><br/>Integrarea sa cu Platforma VTEX CX îți permite să conectezi numărul de telefon de afaceri la aplicație și să creezi fluxuri automate pentru a-ți asista clienții.<br/><br/>Poți utiliza această integrare pe VTEX CX Platform fără a avea managerul de afaceri verificat și poți iniția până la 50 de conversații inițiate de afaceri cu numere diferite în 24 de ore. Chiar și fără managerul de afaceri verificat, poți avea până la două numere în WABA.<br/><br/>Primele 1.000 de conversații în fiecare lună sunt gratuite, permițându-ți să creezi experiențe excelente pentru clienți înainte de a plăti pentru acestea. Fiecare Cont WhatsApp Business (WABA) va primi 1.000 de conversații gratuite pe lună, care pot fi inițiate de afacere (dacă nu ai un manager verificat, reține limita de 50 de conversații per număr) sau de utilizator. Acest beneficiu este oferit la nivelul WABA. Prin urmare, chiar dacă contul are mai multe numere atașate, limita de conversații gratuite rămâne 1.000. Limita de conversații gratuite se reînnoiește lunar în funcție de fusul orar asociat WABA.<br/><br/>De asemenea, cu planul gratuit al Platformei VTEX CX, poți comunica cu 200 de contacte active (contacte unice într-o perioadă de 1 lună).<br/><br/>Prin verificarea managerului de afaceri, poți crește și mai mult potențialul integrării cu WhatsApp, de exemplu, prin creșterea nivelului conversațiilor inițiate de afacere (1.000; 10.000; 100.000; sau nelimitat), cu opțiunea de a dobândi OBA (insignă de cont oficial/bilet verde) și de a avea mai mult de două numere per WABA.<br/><br/>Această versiune a API-ului WhatsApp prin VTEX CX Platform acceptă personalizări precum fotografii, videoclipuri, partajare de fișiere, descrieri și mesaje șablon (conversațiile pot fi inițiate de utilizator sau de afacere).",
       "links": {
         "verify_business": {
-          "label": "Cum să îmi verific afacerea",
-          "url": "https://docs.weni.ai/l/en/channels/how-to-verify-my-business"
+          "label": "Cum să îmi verific organizația",
+          "url": "https://help.vtex.com/en/docs/tutorials/whatsapp-bussiness-api-how-to-verify-my-business"
         },
         "express_signup": {
-          "label": "Înscriere rapidă WhatsApp",
-          "url": "https://docs.weni.ai/l/en/weni-integrations/whatsapp-weni-express-integration"
+          "label": "Integrare rapidă WhatsApp",
+          "url": "https://help.vtex.com/en/docs/tutorials/whatsapp-vtex-cx-platform-express-integration"
         },
         "rate_limit": {
-          "label": "Limitări Rate Limit",
-          "url": "https://docs.weni.ai/l/pt/canais/limita-o-de-disparos-em-massa-do-whats-app"
+          "label": "Limitare la trimiterea în masă",
+          "url": "https://help.vtex.com/docs/tutorials/whatsapp-bussiness-api-whatsapp-message-triggering-limitation"
         }
       }
     },
     "setup": {
       "continue": "Continuă",
       "connect": "Conectare",
-      "description": "Urmați pașii și integrați cu WhatsApp"
+      "description": "Urmează pașii pentru a realiza integrarea cu WhatsApp"
     },
     "config": {
       "phone_numbers": {
-        "connect_later": "Conectare mai târziu",
+        "connect_later": "Conectează mai târziu",
         "create_channel": "Creează canal",
         "connect": "Conectare",
-        "error": "A apărut o eroare la încercarea de preluare a datelor numărului de telefon, încercați din nou mai târziu."
+        "error": "A apărut o eroare la preluarea datelor numărului de telefon. Încearcă din nou mai târziu."
       },
       "configure_phone_number": {
-        "error": "A apărut o eroare la încercarea de creare a canalului, încercați din nou mai târziu."
+        "error": "A apărut o eroare la crearea canalului. Încearcă din nou mai târziu."
       },
       "debug_token": {
-        "error": "A apărut o eroare la încercarea de comunicare cu Facebook, încercați din nou mai târziu."
+        "error": "A apărut o eroare în timpul comunicării cu Facebook. Încearcă din nou mai târziu."
       }
     }
   },
   "GenericApp": {
     "configuration_guide": {
-      "I2": "Dacă aveți un număr lung sau cod scurt cu <a href=\"https://www.i2sms.com/\">I2SMS</a> îl puteți conecta în câțiva pași simpli.",
-      "DS": "Adăugați un bot <a href=\"https://discord.com/\">Discord</a> pentru a trimite mesaje utilizatorilor Discord gratuit. Utilizatorii vor avea nevoie de un cont Discord și un dispozitiv compatibil pentru a trimite/primi mesaje. Acest tip de canal este disponibil doar dacă instanța a fost configurată cu aplicația proxy Discord, disponibilă <a href=\"https://github.com/releaseplatform/RapidPro-Discord-Proxy\">aici</a>.",
-      "D3": "Activați propriul cont WhatsApp enterprise în <a href=\"https://www.360dialog.com/\">360Dialog</a> pentru a comunica cu contactele.",
-      "CM": "Dacă vă aflați în Malawi sau Ghana, puteți achiziționa un număr de la <a href=\"https://www.click-mobile.com/\">Click Mobile</a> și să-l conectați în câțiva pași simpli.",
-      "AT": "Puteți achiziționa un cod scurt de la <a href=\"http://africastalking.com\">Africa's Talking</a> și să-l conectați în câțiva pași simpli.",
-      "ZVW": "Dacă aveți un număr <a href=\"https://www.zenvia.com/\">Zenvia WhatsApp</a>, îl puteți conecta pentru a comunica cu contactele WhatsApp.",
-      "ZVS": "Dacă aveți un număr <a href=\"https://www.zenvia.com/\">Zenvia SMS</a>, îl puteți conecta pentru a comunica cu contactele.",
-      "WC": "Adăugați un bot <a href=\"https://wechat.com\">WeChat</a> pentru a trimite și primi mesaje către utilizatorii WeChat gratuit. Utilizatorii vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont WeChat pentru a trimite și primi mesaje.",
-      "PM": "Dacă vă aflați în Uzbekistan, puteți achiziționa un cod scurt de la Play Mobile și să-l conectați în câțiva pași simpli.",
-      "MG": "Dacă vă aflați în Jamaica, puteți achiziționa un cod scurt de la <a href=\"http://www.messangi.com/\">Messangi</a> și să-l conectați în câțiva pași simpli.",
-      "KWA": "Activați propriul cont WhatsApp enterprise în Kaleyra pentru a comunica cu contactele. <a href=\"https://www.kaleyra.com/whatsapp/\">Aflați mai multe despre Kaleyra WhatsApp</a>",
-      "CT": "Pentru a conecta un număr <a href=\"http://clickatell.com\">Clickatell</a>, creați mai întâi o integrare HTTP pentru un număr bidirecțional, apoi introduceți numărul și cheia API mai jos.",
-      "FCM": "Puteți să vă conectați folosind o <a href=\"https://firebase.google.com/docs/cloud-messaging/\">aplicație Firebase Cloud Messaging</a> la spațiul de lucru pentru a automatiza trimiterea notificărilor. Va trebui să creați o aplicație nouă pe consola Firebase și să obțineți cheia. Pentru a face acest lucru:",
-      "FC": "<p>Puteți conecta un cont <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> la contul dvs. pentru a automatiza trimiterea și primirea de mesaje prin FreshChat. Aceasta va accepta și Apple Business Chat dacă a fost configurat pe contul FreshChat.<br/><br/>Fiecare mesaj trimis către canal va avea un URN în format <span class=\"highlight\">channel-uuid/user-uuid</span> unde UUID-ul canalului este UUID-ul canalului FreshChat.</p><ol><li>În interfața web FreshChat, sub Setări, Token-uri API, selectați Generare token. Odată ce token-ul este creat, îl veți introduce mai jos.</li><li>Sub Setări din nou, selectați Webhooks și copiați Cheia publică și lipiți-o mai jos. Acest lucru asigură că toate solicitările webhook de la FreshChat vor fi autentificate.</li><li>În cele din urmă, veți avea nevoie de UUID-ul agentului pe care VTEX Agentic CX îl va folosi când trimite mesaje FreshChat. Acesta este disponibil prin <a href=\"https://developers.freshchat.com/api/#agent\">API-ul FreshChat</a>.</li><li>Odată ce apăsați Trimite mai jos cu toate informațiile configurate, pagina de confirmare vă va oferi URL-ul de utilizat pentru Webhooks FreshChat. Introduceți acest URL pe pagina Setări, sub Webhooks, de unde a fost copiată înainte Cheia publică.</li></ol>",
-      "IB": "Puteți conecta numărul Infobip introducând numărul, numele de utilizator și parola aici.<br/><br/>După conectarea serviciului, vom furniza URL-uri pentru punctele finale pentru InfoBip de apelat când doresc să trimită un mesaj către Rapidpro.",
-      "JC": "Puteți conecta un <a href=\"https://jiochat.com\">canal JioChat</a> la spațiul de lucru pentru a automatiza trimiterea și primirea de mesaje JioChat.<br/><br/>Pentru a începe, copiați ID-ul aplicației și secretul aplicației din Centrul dezvoltatorilor în formularul de mai jos și faceți clic pe Salvare.",
-      "JN": "Introduceți acreditările pentru a adăuga numărul.",
-      "MB": "Introduceți acreditările pentru a adăuga numărul.",
-      "SL": "Puteți conecta un <a href=\"https://slack.com/app\">bot Slack</a> la spațiul de lucru pentru a automatiza trimiterea și primirea de mesaje.<br><br>Pentru a face acest lucru, va trebui să creați o aplicație Slack nouă și să o configurați.<br><ol><li>Va trebui să creați o <a href=\"https://api.slack.com/apps\">aplicație Slack</a> dacă nu aveți deja, să configurați un bot pentru aceasta, să adăugați domeniile necesare și să instalați aplicația pe spațiul de lucru Slack. Dacă aveți nevoie de ajutor cum să faceți acest lucru, citiți acest ghid <a href=\"https://api.slack.com/bot-users\">aici</a>.",
-      "TM": "Puteți conecta un bot Teams la spațiul de lucru Rapidpro pentru a automatiza trimiterea și primirea de mesaje Teams. Pentru aceasta, va trebui să creați și să înregistrați o aplicație de tip Bot în Microsoft Azure.",
-      "TMS": "Puteți adăuga SID-ul de mesagerie Twilio ca canal. Puteți obține SID-ul serviciului de mesagerie sau puteți crea un serviciu de mesagerie nou de la <a href=\"https://www.twilio.com/user/account/messaging/services\">Consola Twilio</a><br/><br/>După adăugarea SID-ului serviciului de mesagerie Twilio, vă vom furniza punctul final URL pentru Twilio de apelat când doresc să trimită un mesaj către VTEX Agentic CX.",
-      "TW": "Puteți adăuga un API REST TwiML ca canal folosind instanța TwiML.",
-      "VP": "Pentru a conecta pagina publică Viber la VTEX Agentic CX, va trebui să creați un canal public și să urmați pașii necesari pentru a obține un token de autentificare. Consultați <a href=\"https://developers.viber.com/?b_id=15145\">documentația dezvoltatorilor Viber</a> despre cum să creați propriul cont public.<br/><br/>Odată ce aveți token-ul de autentificare, introduceți-l mai jos pentru a conecta canalul public la VTEX Agentic CX"
+      "I2": "Dacă ai un număr lung sau un cod scurt, îl poți conecta cu ușurință cu <a href=\"https://www.i2sms.com/\">I2SMS</a>.",
+      "DS": "Adaugă un <a href=\"https://discord.com/\">bot Discord</a> pentru a trimite mesaje utilizatorilor Discord gratuit. Utilizatorii tăi vor avea nevoie de un cont Discord și un dispozitiv compatibil pentru a trimite și primi mesaje. Acest tip de canal este disponibil doar dacă instanța ta a fost configurată cu aplicația proxy Discord, disponibilă <a href=\"https://github.com/releaseplatform/RapidPro-Discord-Proxy\">aici</a>.",
+      "D3": "Activează propriul cont WhatsApp Business pe <a href=\"https://www.360dialog.com/\">360Dialog</a> pentru a comunica cu contactele tale",
+      "CM": "Dacă ești în Malawi sau Ghana, poți cumpăra un număr de la <a href=\"https://www.click-mobile.com/\">Click Mobile</a> și îl poți conecta cu ușurință.",
+      "AT": "Poți cumpăra un cod scurt de la <a href=\"http://africastalking.com\">Africa's Talking</a> și îl poți conecta cu ușurință.",
+      "ZVW": "Dacă ai un număr <a href=\"https://www.zenvia.com/\">Zenvia WhatsApp</a>, îl poți conecta pentru a comunica cu contactele tale de pe WhatsApp.",
+      "ZVS": "Dacă ai un număr <a href=\"https://www.zenvia.com/\">Zenvia SMS</a>, îl poți conecta pentru a comunica cu contactele tale.",
+      "WC": "Adaugă un <a href=\"https://wechat.com\">bot WeChat</a> pentru a trimite și primi mesaje către utilizatorii WeChat gratuit. Utilizatorii tăi vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont WeChat pentru a trimite și primi mesaje.",
+      "PM": "Dacă ești în Uzbekistan, poți cumpăra un cod scurt de la Play Mobile și îl poți conecta cu ușurință.",
+      "MG": "Dacă ești în Jamaica, poți cumpăra un cod scurt de la <a href=\"http://www.messangi.com/\">Messangi</a> și îl poți conecta cu ușurință.",
+      "KWA": "Activează-ți contul WhatsApp Business cu Kaleyra pentru a comunica cu contactele tale <a href=\"https://www.kaleyra.com/whatsapp/\">Află mai multe despre soluția WhatsApp a Kaleyra</a>",
+      "CT": "Pentru a conecta un număr <a href=\"http://clickatell.com\">Clickatell</a>, creează mai întâi o integrare HTTP pentru un număr bidirecțional și introdu numărul și cheia API mai jos.",
+      "FCM": "Te poți conecta folosind o <a href=\"https://firebase.google.com/docs/cloud-messaging/\">aplicație Firebase Cloud Messaging</a> la spațiul tău de lucru pentru a automatiza trimiterea notificărilor. Va trebui să creezi o nouă aplicație în Consola Firebase și să-ți obții cheia. Pentru a face acest lucru:",
+      "FC": "<p>Poți conecta un cont <a href=\"https://www.freshworks.com/live-chat-software/\">FreshChat</a> pentru a automatiza trimiterea și primirea mesajelor prin FreshChat. Aceasta va accepta și Apple Business Chat, dacă este configurat în contul tău FreshChat.<br/><br/>Fiecare mesaj trimis pe canal va avea un URN în formatul <span class=\"highlight\">channel-uuid/user-uuid</span>, unde UUID-ul canalului este UUID-ul canalului FreshChat.</p><ol><li>În interfața web FreshChat, sub Setări, Token-uri API, selectează Generare token. Odată creat, introdu-l mai jos.</li><li>Sub Setări, selectează Webhook-uri, copiază cheia publică și lipește-o mai jos. Aceasta asigură că toate solicitările webhook FreshChat sunt autentificate.</li><li>În cele din urmă, vei avea nevoie de UUID-ul agentului pe care VTEX CX Platform îl va folosi când trimite mesaje FreshChat. Acesta este disponibil prin <a href=\"https://developers.freshchat.com/api/#agent\">API-ul FreshChat</a>.</li><li>După ce ai configurat toate detaliile și ai făcut click pe Trimitere, pagina de confirmare va afișa URL-ul de utilizat pentru Webhook-urile FreshChat. Introdu acest URL pe pagina Setări, sub Webhook-uri, unde ai copiat cheia publică.</li></ol>",
+      "IB": "Poți conecta numărul tău Infobip introducând numărul, numele de utilizator și parola aici.<br/><br/>Odată conectat, vom furniza URL-uri către punctele finale, astfel încât Infobip să poată apela atunci când dorește să trimită un mesaj către RapidPro.",
+      "JC": "Poți conecta un <a href=\"https://jiochat.com\">canal JioChat</a> la spațiul tău de lucru pentru a automatiza trimiterea și primirea mesajelor pe JioChat.<br/><br/>Pentru a începe, copiază ID-ul aplicației și Secretul aplicației din Centrul pentru dezvoltatori în formularul de mai jos și fă click pe Salvare.",
+      "JN": "Introduc datele de autentificare pentru a-ți adăuga numărul.",
+      "MB": "Introduc datele de autentificare pentru a-ți adăuga numărul.",
+      "SL": "Poți conecta un <a href=\"https://slack.com/app\">Slack Bot</a> la spațiul tău de lucru pentru a automatiza trimiterea și primirea mesajelor.<br><br>Pentru a face acest lucru, va trebui să creezi o nouă aplicație Slack și să o configurezi.<br><ol><li>Va trebui să creezi o <a href=\"https://api.slack.com/apps\">aplicație Slack</a> dacă nu ai făcut-o deja, să configurezi un bot pentru aceasta, să adaugi permisiunile necesare și să instalezi aplicația în spațiul tău de lucru Slack. Pentru ajutor, consultă acest <a href=\"https://api.slack.com/bot-users\">ghid</a>.</li></ol>",
+      "TM": "Poți conecta un Bot Teams la spațiul de lucru RapidPro pentru a automatiza trimiterea și primirea mesajelor pe Teams. Pentru aceasta, va trebui să creezi și să adaugi o aplicație de tip Bot pe Microsoft Azure.",
+      "TMS": "Poți adăuga SID-ul de mesagerie Twilio ca un canal. Poți obține SID-ul serviciului de mesagerie sau poți crea un nou serviciu de mesagerie la <a href=\"https://www.twilio.com/user/account/messaging/services\">Consola Twilio</a>.<br/><br/>După adăugarea SID-ului serviciului de mesagerie Twilio, îți vom furniza URL-ul endpoint-ului pe care Twilio îl va apela atunci când dorește să trimită un mesaj către VTEX CX Platform.",
+      "TW": "Poți adăuga un API REST TwiML ca un canal folosind instanța TwiML.",
+      "VP": "Pentru a conecta pagina publică Viber la VTEX CX Platform, va trebui să creezi un canal public și să urmezi pașii necesari pentru a obține un token de autentificare. Consultă <a href=\"https://developers.viber.com/?b_id=15145\">documentația pentru dezvoltatori Viber</a> pentru a crea propriul cont public.<br/><br/>Odată ce ai tokenul de autentificare, introdu-l mai jos pentru a conecta canalul tău public la VTEX CX Platform."
     },
     "preview": {
       "errors": {
-        "fetch_app": "A apărut o eroare la încercarea de preluare a datelor aplicației, încercați din nou mai târziu."
+        "fetch_app": "A apărut o eroare la preluarea datelor aplicației. Încearcă din nou mai târziu."
       }
     },
     "description": {
-      "callback_url": "Pentru a finaliza configurarea canalului, trebuie să configurați URL-ul de callback al canalului platformei VTEX Agentic CX. URL-ul de callback pentru acest canal este",
-      "callback_url_info_1": "Pentru mai multe informații, urmați",
+      "callback_url": "Pentru a finaliza configurarea canalului, trebuie să setezi URL-ul de callback al canalului pe VTEX CX Platform. URL-ul de callback pentru acest canal este",
+      "callback_url_info_1": "Pentru mai multe informații, consultă",
       "callback_url_info_2": "această documentație"
     }
   },
   "instagram": {
     "data": {
-      "summary": "Acum puteți ridica nivelul și potențialul serviciului creând un canal care integrează Instagram-ul cu platforma VTEX Agentic CX",
-      "description": "Instagram a atins deja pragul de 1,4 miliarde de utilizatori activi, cu peste 500 de milioane care navighează asiduu în fiecare zi, căutând nu doar interacțiune, ci căutând servicii și produse.<br/><br/>Acum, imaginați-vă dacă instituția dvs. nu este prezentă, activă și eficientă pe acest canal? Aceasta nu mai este o simplă rețea socială pentru a împărtăși fotografii și videoclipuri din rutină, ci mai degrabă o vitrină pentru afaceri și parteneriate importante.<br/><br/>Și acum puteți ridica nivelul și potențialul serviciului creând un canal care integrează Instagram-ul cu platforma VTEX Agentic CX.<br/><br/>Acest lucru creează mai multă implicare și interacțiune cu urmăritorii și potențialii clienți și parteneri, crescând șansele de închidere a proiectelor noi, reducând în același timp costurile operaționale cu serviciul."
+      "summary": "Acum poți ridica nivelul și potențialul serviciului tău prin crearea unui canal care integrează Instagram-ul tău cu VTEX CX Platform.",
+      "description": "Instagram a atins deja 1,4 miliarde de utilizatori activi, cu peste 500 de milioane care accesează platforma zilnic, căutând nu doar interacțiune, ci și servicii și produse.<br/><br/>Platforma a evoluat de la o rețea socială pentru partajarea fotografiilor și videoclipurilor de zi cu zi la un spațiu pentru generarea de afaceri și stabilirea de parteneriate importante.<br/><br/>Acum îți poți îmbunătăți serviciul creând un canal care îți integrează Instagram-ul cu VTEX CX Platform.<br/><br/>Astfel, generezi mai mult angajament și interacțiune cu urmăritorii tăi, potențialii clienți și parteneri, crescând șansele de a încheia noi tranzacții, reducând în același timp costurile operaționale."
     },
     "setup": {
       "title": "Conectare",
-      "description": "Urmați pașii din <a href=\"https://docs.weni.ai/l/en/settings/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentație</a> înainte de a continua cu integrarea <strong>Instagram</strong>",
-      "success": "Aplicație Instagram creată cu succes",
-      "connect_later": "Conectare mai târziu",
+      "description": "Urmează pașii din <a href=\"https://help.vtex.com/en/docs/tutorials/how-to-create-a-channel-on-instagram\" target=\"_blank\" class=\"link\">documentație</a> înainte de a realiza integrarea cu <strong>Instagram</strong>",
+      "success": "Canalul Instagram a fost creat cu succes",
+      "connect_later": "Conectează mai târziu",
       "connect": "Conectare",
       "create_channel": "Creează canal",
       "page_selection": {
-        "description": "Adăugați o pagină de cont de afaceri <strong>Instagram</strong>"
+        "description": "Adaugă o pagină de cont business <strong>Instagram</strong>"
       },
       "account_data": {
-        "error": "Eșec la preluarea datelor paginilor Instagram, încercați din nou mai târziu."
+        "error": "Eroare la preluarea datelor paginii Instagram. Încearcă din nou mai târziu."
       },
       "find_page": {
-        "error": "Selectați o pagină Instagram pentru conectare"
+        "error": "Selectează o pagină Instagram pentru a o conecta"
       },
       "create_app": {
-        "error": "Eșec la crearea aplicației, încercați din nou mai târziu"
+        "error": "Eroare la crearea aplicației. Încearcă din nou mai târziu."
       },
       "update_app": {
-        "error": "Eșec la configurarea aplicației, încercați din nou mai târziu"
+        "error": "Eroare la configurarea aplicației. Încearcă din nou mai târziu."
       }
     },
     "config": {
-      "connected_account": "Contul Instagram este conectat"
+      "connected_account": "Contul tău de Instagram este conectat"
     }
   },
   "facebook": {
     "data": {
-      "summary": "Adăugați un bot Facebook pentru a trimite și primi mesaje în numele uneia dintre paginile Facebook.",
-      "description": "Facebook și-a actualizat politicile de integrare, astfel încât acum puteți conecta cu ușurință o pagină Facebook pentru a crea un canal Messenger în doar câteva momente. Veți fi dus automat la pagina noului canal unde puteți vizualiza înregistrarea canalului, apoi puteți crea un trigger care va referenția un contact când începe o conversație nouă în Messenger."
+      "summary": "Adaugă un bot Facebook pentru a trimite și primi mesaje în numele uneia dintre paginile tale.",
+      "description": "Facebook și-a actualizat politicile de integrare, permițându-ți să conectezi cu ușurință o pagină de Facebook pentru a crea un canal Messenger în doar câteva momente. Vei fi redirecționat automat către pagina noului canal, unde poți vizualiza detaliile canalului și crea un declanșator care va identifica contactul ori de câte ori este inițiată o nouă conversație pe Messenger."
     },
     "setup": {
-      "title": "Doriți să vă conectați la Facebook?",
-      "description": "Urmați pașii din <a href=\"https://docs.weni.ai/l/en/settings/adding-a-facebook-channel\" target=\"_blank\" class=\"link\">documentație</a> înainte de a continua cu integrarea <strong>Facebook</strong>",
-      "success": "Aplicație Facebook creată cu succes",
-      "connect_later": "Conectare mai târziu",
+      "title": "Dorești să te conectezi la Facebook?",
+      "description": "Urmează pașii din <a href=\"https://help.vtex.com/en/docs/tutorials/adding-a-facebook-channel\" target=\"_blank\" class=\"link\">documentație</a> înainte de a continua cu integrarea <strong>Facebook</strong>",
+      "success": "Aplicația Facebook a fost creată cu succes",
+      "connect_later": "Conectează mai târziu",
       "connect": "Conectare",
       "create_channel": "Creează canal",
       "page_selection": {
-        "description": "Adăugați o pagină de cont de afaceri <strong>Facebook</strong>"
+        "description": "Adaugă o pagină business <strong>Facebook</strong>"
       },
       "account_data": {
-        "error": "Eșec la preluarea datelor paginilor Facebook, încercați din nou mai târziu."
+        "error": "Eroare la preluarea informațiilor despre pagina de Facebook. Încearcă din nou mai târziu."
       },
       "find_page": {
-        "error": "Selectați o pagină Facebook pentru conectare"
+        "error": "Selectează o pagină de Facebook pentru a conecta"
       },
       "create_app": {
-        "error": "Eșec la crearea aplicației, încercați din nou mai târziu"
+        "error": "Eroare la crearea aplicației. Încearcă din nou mai târziu."
       },
       "update_app": {
-        "error": "Eșec la configurarea aplicației, încercați din nou mai târziu"
+        "error": "Eroare la configurarea aplicației. Încearcă din nou mai târziu."
       }
     },
     "config": {
-      "connected_account": "Contul Facebook este conectat"
+      "connected_account": "Contul tău Facebook este conectat"
     }
   },
   "omie": {
     "data": {
-      "summary": "Dacă aveți un CRM la Omie, puteți integra cu platforma VTEX Agentic CX și automatiza acțiunile în CRM prin chatbot",
-      "description": "Dacă aveți un CRM la Omie, puteți integra cu platforma VTEX Agentic CX și automatiza acțiunile în CRM prin chatbot.<br><br>Integrând platforma VTEX Agentic CX cu CRM-ul de la Omie, veți putea efectua acțiuni precum:<br><br>- Includeți oportunități în CRM<br>- Căutați titluri și lansări<br>- Listați clienți<br><br>Aici în modulul Integrări, trebuie să efectuați integrarea cu Omie furnizând datele API Key și API Secret și apoi să efectuați integrarea.<br>După aceea, mergeți la modulul fluxuri, creați un flux și apoi veți avea un card disponibil numit Servicii externe, în care veți putea efectua toate acțiunile cu CRM-ul Omie menționate aici."
+      "summary": "Dacă ai un CRM în Omie, îl poți integra cu VTEX CX Platform și automatiza acțiunile din CRM-ul tău prin intermediul chatbot-ului.",
+      "description": "Dacă ai un CRM în Omie, îl poți integra cu VTEX CX Platform și automatiza acțiunile din CRM-ul tău prin chatbot.<br><br>Prin integrarea VTEX CX Platform cu CRM-ul tău Omie, vei putea efectua acțiuni precum:<br><br>- Includerea oportunităților în CRM<br>- Căutarea facturilor și înregistrărilor<br>- Listarea clienților<br><br>În modulul Integrări, efectuează integrarea cu Omie furnizând datele API Key și API Secret.<br>După aceea, accesează modulul Fluxuri și creează un flux. Acolo, vei avea disponibil un card numit Servicii externe, unde poți efectua toate acțiunile menționate aici cu Omie CRM."
     },
     "config": {
-      "description": "Aflați mai multe despre integrarea cu Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">aici</a>",
       "connect": "Conectare",
       "tabs": {
         "config": {
           "title": "Configurare",
           "inputs": {
             "name": {
-              "label": "Nume"
+              "label": "Denumire"
             },
             "app_key": {
               "label": "Cheie aplicație"
@@ -1023,156 +1022,156 @@
       "configure": "Serviciu configurat cu succes"
     },
     "errors": {
-      "configure": "A apărut o eroare la încercarea de configurare a serviciului, încercați din nou mai târziu"
+      "configure": "A apărut o eroare la configurarea serviciului. Încearcă din nou."
     }
   },
   "ChatGPT": {
     "data": {
-      "summary": "Integrare puternică: VTEX Agentic CX + ChatGPT. Asistență automatizată cu o notă umană, răspunsuri instant și experiență personalizată. Încercați acum!",
-      "description": "Prezentăm o sinergie puternică între platforma VTEX Agentic CX și ChatGPT - o combinație perfectă pentru a transforma interacțiunile clienților într-o experiență de neegalat!<br><br>Cu integrarea VTEX Agentic CX și ChatGPT, aveți la dispoziție un asistent virtual inteligent alimentat de tehnologia avansată de limbaj natural a OpenAI. Imaginați-vă asistență completă automatizată pentru clienți care încă se simte umană și personalizată.<br><br>Platforma noastră VTEX Agentic CX, cunoscută pentru interfața intuitivă și funcțiile versatile, își consolidează acum capacitățile cu prezența ChatGPT. Cu aceasta, puteți oferi clienților răspunsuri instant, precise și captivante la întrebările și nevoile lor, oricând și oriunde.<br><br>ChatGPT înțelege nuanțele limbajului uman, învățând și adaptându-se continuu. Nu oferă doar răspunsuri rapide și eficiente, ci menține și conversații naturale și relevante, stabilind o conexiune reală cu clienții.<br><br>Profitați de beneficiile acestei integrări pentru a îmbunătăți asistența clienților, a automatiza sarcini repetitive și a oferi o experiență personalizată și plăcută. ChatGPT, alimentat de VTEX Agentic CX, vă ajută să creșteți eficiența, să economisiți timp și să obțineți satisfacție excepțională a clienților.<br><br>Încercați acum integrarea VTEX Agentic CX + ChatGPT și bucurați-vă de asistență inteligentă, dinamică pentru clienți, adaptată nevoilor afacerii. Alăturați-vă acestei revoluții în interacțiunea cu clienții și urmăriți rezultatele atingând noi culmi!"
+      "summary": "Integrare puternică: VTEX CX Platform + ChatGPT. Serviciu automatizat cu o notă umană, răspunsuri instantanee și o experiență personalizată. Încearcă acum!",
+      "description": "Îți prezentăm o sinergie puternică între VTEX CX Platform și ChatGPT, o combinație perfectă pentru a transforma interacțiunile cu clienții într-o experiență de neegalat!<br><br>Cu integrarea VTEX CX Platform cu ChatGPT, beneficiezi de un asistent virtual inteligent, alimentat de tehnologia avansată de procesare a limbajului natural de la OpenAI. Imaginează-ți un serviciu pentru clienți complet automatizat, dar cu o notă umană personalizată.<br><br>VTEX CX Platform, care oferă o interfață intuitivă și funcționalități versatile, devine și mai eficientă cu ChatGPT. Acesta oferă răspunsuri rapide și precise pentru a aborda întrebările și nevoile clienților tăi, oricând și oriunde.<br><br>ChatGPT înțelege nuanțele limbajului uman, învățând și adaptându-se continuu. Nu oferă doar răspunsuri rapide și eficiente, ci menține și conversații naturale și relevante, stabilind o conexiune autentică cu clienții tăi.<br><br>Profită de această integrare pentru a îmbunătăți asistența pentru clienți, a automatiza sarcinile repetitive și a oferi o experiență personalizată și plăcută. ChatGPT, alimentat de VTEX CX Platform, contribuie la creșterea eficienței, economisirea timpului și obținerea unei satisfacții excepționale a clienților.<br><br>Încearcă acum integrarea dintre VTEX CX Platform și ChatGPT pentru a oferi un serviciu inteligent, dinamic și pe deplin adaptat nevoilor afacerii tale. Alătură-te acestei revoluții în interacțiunea cu clienții și urmărește cum rezultatele tale ating noi culmi!"
     },
     "setup": {
       "version": "Versiune",
-      "title": "Integrare cu ChatGPT",
-      "description": "Pentru a integra, creați un nume, inserați API-Token-ul și selectați una dintre versiunile disponibile",
+      "title": "Integrează cu ChatGPT",
+      "description": "Pentru a integra, creează un nume, introdu tokenul API și selectează una dintre versiunile disponibile",
       "name": "Nume",
-      "name_placeholder": "Introduceți un nume",
+      "name_placeholder": "Introdu un nume",
       "token": "Token",
-      "token_placeholder": "Introduceți token-ul",
-      "version_tooltip": "Schimbarea versiunii ChatGPT poate schimba modul în care AI generează răspunsurile pe baza bazei de cunoștințe și regulilor.",
+      "token_placeholder": "Introdu tokenul",
+      "version_tooltip": "Modificarea versiunii ChatGPT poate afecta modul în care IA generează răspunsuri pe baza bazei de cunoștințe și a regulilor",
       "create_app": {
-        "error": "Eșec la crearea integrării ChatGPT, încercați din nou mai târziu"
+        "error": "Eroare la crearea integrării cu ChatGPT. Încearcă din nou mai târziu."
       },
-      "success": "Integrare ChatGPT creată cu succes"
+      "success": "Integrarea ChatGPT a fost creată cu succes"
     },
     "config": {
       "tabs": {
         "flows": {
           "title": "Fluxuri",
-          "description": "Definiți cum va răspunde ChatGPT persoanelor în zona Fluxuri.",
+          "description": "Setează modul în care ChatGPT se va comporta atunci când răspunde persoanelor în fluxuri",
           "inputs": {
             "rules_label": "Reguli",
             "knowledge_label": "Bază de cunoștințe",
-            "prompt_label": "Introduceți prompt-uri",
-            "prompt_placeholder": "Introduceți textul prompt-ului și apăsați enter",
-            "conversation_style_label": "Stil conversație",
-            "conversation_style_placeholder": "Selectați stilul conversației",
-            "voice_tone_label": "Ton vocal",
-            "voice_tone_placeholder": "Selectați tonul vocal"
+            "prompt_label": "Introdu solicitări",
+            "prompt_placeholder": "Introdu o solicitare și apasă Enter",
+            "conversation_style_label": "Stil de conversație",
+            "conversation_style_placeholder": "Selectează stilul de conversație",
+            "voice_tone_label": "Tonul vocii",
+            "voice_tone_placeholder": "Selectează  tonul vocii"
           },
           "selects": {
-            "necessary_label": "Necesar",
-            "necessary_description": "Răspunsuri obiective și directe",
+            "necessary_label": "Precis",
+            "necessary_description": "Răspunsuri obiective, direct la subiect",
             "balanced_label": "Echilibrat",
-            "balanced_description": "Folosiți puțină creativitate în răspunsuri dar rămâneți obiectiv",
+            "balanced_description": "Ușor creativ, dar totuși obiectiv",
             "creative_label": "Creativ",
-            "creative_description": "Răspunde creativ, mai puțin obiectiv",
+            "creative_description": "Răspunsuri creative, mai puțin obiective",
             "none_label": "Niciunul",
             "neutral_label": "Neutru",
-            "happy_label": "Fericit",
+            "happy_label": "Vesel",
             "trusting_label": "Încrezător",
             "formal_label": "Formal",
             "humble_label": "Umil",
             "informal_label": "Informal",
-            "helpful_label": "Util"
+            "helpful_label": "Amabil"
           },
-          "prompts_list": "Listă prompt-uri"
+          "prompts_list": "Listă de solicitări"
         },
         "general": {
           "title": "General"
         }
       },
       "save_modifications": "Salvează modificările",
-      "description": "Configurați modul în care funcționează ChatGPT în modulele platformei"
+      "description": "Configurează modul în care ChatGPT funcționează în modulele platformei"
     },
     "errors": {
-      "configure": "Eșec la actualizarea câmpurilor, încercați din nou mai târziu",
-      "create_prompt": "Eșec la crearea prompt-urilor, încercați din nou mai târziu",
-      "delete_prompt": "Eșec la ștergerea prompt-urilor, încercați din nou mai târziu",
-      "get_prompts": "Eșec la preluarea prompt-urilor, încercați din nou mai târziu"
+      "configure": "Eroare la actualizarea câmpurilor. Încearcă din nou mai târziu.",
+      "create_prompt": "Eroare la crearea solicitărilor. Încearcă din nou mai târziu.",
+      "delete_prompt": "Eroare la ștergerea solicitărilor. Încearcă din nou mai târziu.",
+      "get_prompts": "Eroare la preluarea solicitărilor. Încearcă din nou mai târziu."
     },
     "success": {
-      "configure": "Integrare actualizată cu succes"
+      "configure": "Integrarea a fost actualizată cu succes"
     }
   },
   "vtex": {
     "data": {
-      "summary": "Cu aplicația VTEX conectați catalogul și vindeți prin WhatsApp",
-      "description": "Integrarea între platforma VTEX Agentic CX și VTEX redefinește modul în care comercianții își dezvoltă afacerile online. Acum, puteți conecta cu ușurință catalogul de produse, deschizând calea pentru vânzări directe prin WhatsApp. Această soluție inovatoare promite o experiență de vânzare instant, agilă și personalizată, oferind o modalitate eficientă de a stimula vânzările.<br><br>Caracteristici principale:<br><br>Integrare cu VTEX în mod simplificat:<br>- Conectați catalogul de produse VTEX la VTEX Agentic CX cu ușurință, sincronizând automat produsele.<br>- Actualizări rapide asigură că magazinul este întotdeauna în concordanță cu cele mai recente modificări de inventar și prețuri.<br><br>Vânzare directă prin WhatsApp:<br>- Transformați conversațiile în tranzacții permițând clienților să răsfoiască, să aleagă și să cumpere produse direct prin WhatsApp.<br>- Creșteți confortul ajungând la clienți acolo unde sunt deja activi.<br><br>Beneficii suplimentare:<br><br>Scară globală:<br>- Ajungeți un public global prin WhatsApp, extinzând oportunitățile de vânzări internațional.<br><br>Configurare simplă:<br>- Configurați rapid, fără a fi necesare cunoștințe tehnice<br><br>Asistență tehnică specializată:<br>- Asistență dedicată pentru a asigura o implementare fără probleme și pentru a rezolva rapid orice probleme.<br><br>Încercați acum și descoperiți potențialul de a stimula vânzările eficient!"
+      "summary": "Cu aplicația VTEX, poți conecta catalogul și vinde prin WhatsApp",
+      "description": "Integrarea dintre VTEX CX Platform și VTEX redefinește modul în care comercianții își extind afacerile online. Acum poți conecta cu ușurință catalogul de produse, permițând vânzările directe prin WhatsApp. Această soluție inovatoare oferă o experiență de vânzare instantanee, agilă și personalizată, ajutându-te să-ți crești vânzările.<br><br>Funcții principale:<br><br>Integrare ușoară cu VTEX:<br>- Conectează catalogul de produse VTEX la VTEX CX Platform și sincronizează-ți produsele simplu și automat.<br>- Actualizările rapide asigură că magazinul tău este întotdeauna aliniat cu cele mai recente modificări de stoc și prețuri.<br><br>Vânzări directe prin WhatsApp:<br>- Transformă conversațiile în tranzacții, permițând clienților să navigheze, să selecteze și să achiziționeze produse direct prin WhatsApp.<br>- Crește confortul ajungând la clienți acolo unde sunt deja activi.<br><br>Beneficii suplimentare:<br><br>Scară globală:<br>- Atinge un public global prin WhatsApp, extinzând oportunitățile de vânzări internaționale.<br><br>Configurare simplă:<br>- Configurare rapidă fără necesitatea unor cunoștințe tehnice avansate.<br><br>Asistență tehnică specializată:<br>- Asistență dedicată pentru a asigura o implementare fără probleme și o rezolvare rapidă a problemelor.<br><br>Încearcă acum și descoperă cum să-ți crești eficient vânzările!"
     },
     "setup": {
-      "title": "Conectați magazinul",
-      "description": "Selectați numărul WhatsApp, introduceți subdomeniul, AppKey și AppToken",
+      "title": "Conectează-ți magazinul",
+      "description": "Selectează un număr de WhatsApp și introdu subdomeniul, AppKey și AppToken",
       "subdomain": "Subdomeniu",
-      "subdomain_placeholder": "Ex: shop.myvtex.com",
+      "subdomain_placeholder": "Ex.: vtexcxstore.myvtex.com",
       "whatsapp_channel": "Număr WhatsApp",
       "appKey": "AppKey",
-      "appKey_placeholder": "Introduceți AppKey-ul",
+      "appKey_placeholder": "Introdu AppKey",
       "appToken": "AppToken",
-      "appToken_placeholder": "Introduceți AppToken-ul",
+      "appToken_placeholder": "Introdu AppToken",
       "guide": {
-        "question": "Nu cunoașteți AppKey-ul și AppToken-ul?",
-        "question_end": "pentru a accesa documentația despre VTEX și a afla.",
-        "link": "Faceți clic aici"
+        "question": "Nu știi ce AppKey și AppToken ai?",
+        "question_end": "pentru a accesa documentația VTEX și a afla mai multe.",
+        "link": "Click aici"
       },
-      "invalid_credentials": "Acreditări nevalide pentru subdomeniul dat",
-      "error": "A apărut o eroare la încercarea de integrare cu VTEX, încercați din nou mai târziu",
-      "success": "Integrare VTEX finalizată cu succes",
-      "step1": "Conectați magazinul",
-      "step2": "Configurați afiliatul",
-      "storeDomain": "Link site web",
+      "invalid_credentials": "Date de autentificare nevalide pentru acest domeniu",
+      "error": "A apărut o eroare la integrarea cu VTEX. Încearcă din nou mai târziu.",
+      "success": "Integrarea VTEX a fost finalizată cu succes",
+      "step1": "Conectează-ți magazinul",
+      "step2": "Configurare afiliați",
+      "storeDomain": "Link site",
       "apiSubdomain": "Subdomeniu API",
-      "affiliate_title": "Configurați un afiliat în VTEX",
-      "affiliate_description": "Pentru a configura un afiliat în VTEX, urmați pașii de mai jos",
+      "affiliate_title": "Configurează un afiliat pe VTEX",
+      "affiliate_description": "Pentru a configura un afiliat pe VTEX, urmează pașii de mai jos:",
       "affiliate_step1": {
-        "title": "Accesați panoul de administrare în VTEX",
-        "description": "Mergeți la <b>Setări magazin > Comenzi > Setări,</b> sau tastați <i>Comenzi</i> în bara de căutare din partea de sus a paginii și selectați <i>Setări magazin / Comenzi</i>"
+        "title": "Accesează panoul de administrare VTEX",
+        "description": "Accesează <b>Setări magazin > Comenzi > Setări</b>."
       },
       "affiliate_step2": {
-        "title": "Creați un afiliat nou",
-        "description": "În fila Afiliați, faceți clic pe <span class='highlight'>+ Afiliat nou</span>"
+        "title": "Creează un nou afiliat",
+        "description": "În fila Afiliați, fă click pe <span class='highlight'>+ Afiliat nou</span>"
       },
       "affiliate_step3": {
-        "title": "Completați câmpurile formularului",
-        "description": "Urmând descrierea de mai jos, apoi faceți clic pe <span class='highlight'>Salvare</span><ul><li><b>Nume:</b>&nbsp;numele noului afiliat</li><li><b>Politică comercială:</b>&nbsp;numărul politicii comerciale care va defini sortarea catalogului și strategia de livrare a articolelor pentru piață</li><li><b>Punct final de căutare:</b>&nbsp;URL-ul aplicației care va primi notificări despre produse din inventar și prețuri, printre altele. Puteți copia URL-ul VTEX Agentic CX în <i>Pasul 4<i/></li></ul>"
+        "title": "Completează câmpurile",
+        "description": "Urmând descrierea de mai jos, fă click pe <span class=\"highlight\">Salvare</span><ul><li><b>Nume:</b>&nbsp;numele noului afiliat</li><li><b>Canal de vânzări:</b>&nbsp;numărul canalului de vânzări care va defini clasificarea catalogului și strategia de livrare a articolelor pentru marketplace.</li><li><b>Endpoint de căutare:</b>&nbsp;URL-ul aplicației care va primi notificări despre produsele disponibile în stoc și prețuri, printre altele. Poți copia URL-ul VTEX CX Platform din <i>pasul 4</i></li></ul>."
       },
       "affiliate_step4": {
-        "title": "Lipiți punctul final de căutare VTEX Agentic CX",
-        "description": "Copiați URL-ul de mai jos și lipiți-l în câmpul Punct final de căutare"
+        "title": "Inserează endpoint-ul de căutare al VTEX CX Platform",
+        "description": "Copiază URL-ul de mai jos și inserează-l în câmpul Căutare endpoint"
       },
       "error_missing_fields": "Toate câmpurile sunt obligatorii",
-      "storedomain_placeholder": "Ex: myshop.com"
+      "storedomain_placeholder": "Ex.: mystore.com"
     },
     "config": {
-      "description": "Conectați catalogul VTEX pentru a trimite produse prin WhatsApp",
+      "description": "Conectează catalogul VTEX pentru a trimite produse prin WhatsApp",
       "catalog": "Catalog",
-      "connect_catalog": "Conectați catalogul",
+      "connect_catalog": "Conectează catalogul",
       "details": "Detalii",
-      "name": "Nume cont",
+      "name": "Denumirea contului",
       "environment": "Mediu",
-      "view_catalog": "Vezi catalogul",
+      "view_catalog": "Vizualizează catalogul",
       "wpp_number": "Număr WhatsApp",
-      "sellers": "Vânzători",
-      "processing": "Sincronizare în proces. Așteptați.",
+      "sellers": "Comercianți",
+      "processing": "Sincronizare în curs. Te rugăm să aștepți.",
       "buttons": {
-        "close": "Închide",
+        "close": "Închidere",
         "confirm": "Confirmă"
       },
       "all": "Toate",
       "placeholder": {
-        "sellers": "Selectați vânzătorii..."
+        "sellers": "Selectează comercianții..."
       },
-      "vtexADS": "La activare, magazinul va putea afișa produse sponsorizate în căutările utilizatorilor."
+      "vtexADS": "Prin activare, magazinul tău poate afișa produse sponsorizate în căutările utilizatorilor."
     },
     "connect_modal": {
       "categories": {
-        "supermarket_and_groceries": "Supermarketuri și magazine alimentare",
+        "supermarket_and_groceries": "Supermarketuri și băcănii",
         "clothes_store": "Magazin de îmbrăcăminte",
         "pharmacies_and_drugstores": "Farmacii și drogherii",
         "restaurants_and_cafes": "Restaurante și cafenele",
-        "electronics_stores": "Magazine de electronice",
-        "bookstores_and_stationery": "Librării și papetării",
-        "furniture_and_decoration": "Magazine de mobilă și decorațiuni",
+        "electronics_stores": "Magazine de electronică",
+        "bookstores_and_stationery": "Cărți și papetărie",
+        "furniture_and_decoration": "Mobilier și decorațiuni pentru casă",
         "building_materials_and_hardware": "Magazine de materiale de construcții și feronerie",
         "sporting_goods": "Magazine de articole sportive",
         "shoe_stores": "Magazine de încălțăminte",
@@ -1183,22 +1182,22 @@
     },
     "connect_catalog": {
       "title": "Informații de bază",
-      "business_type": "Tip de afacere",
+      "business_type": "Tipul companiei",
       "name_placeholder": "",
       "name": "ID catalog",
-      "footer": "Creând un catalog, sunteți de acord cu <a class='link' target='_blank' href='https://google.com'><b>Termenii managerului de catalog</b></a> și confirmați că urmați <a class='link' target='_blank' href='https://google.com'><b>Politicile de publicitate Facebook</b></a>. Revizuiți aceste politici și confirmați că articolele pe care le încărcați în catalog respectă acestea."
+      "footer": "Prin crearea unui catalog, ești de acord cu <a class='link' target='_blank' href='https://google.com'><b>Termenii Managerului de Catalog</b></a> și confirmi conformitatea cu <a class='link' target='_blank' href='https://google.com'><b>Politicile de Publicitate Facebook</b></a>. Consultă aceste politici și asigură-te că articolele listate în catalog sunt conforme."
     },
     "errors": {
-      "connect_catalog": "Nu s-a putut conecta catalogul VTEX, încercați din nou mai târziu",
-      "fetch_related_wpp_data": "Eșec la preluarea informațiilor asociate numărului WhatsApp",
-      "redirect_to_wpp_catalog": "Eșec la redirecționarea către catalog, reîmprospătați pagina și încercați din nou",
-      "update_connected_catalog_status": "Eșec la preluarea stării catalogului, încercați din nou mai târziu.",
-      "select_five_sellers": "Selectați până la 5 vânzători.",
-      "sync_sellers": "Nu s-au putut sincroniza vânzătorii în acest moment, încercați din nou mai târziu."
+      "connect_catalog": "Conectarea la catalogul VTEX nu a reușit. Încearcă din nou mai târziu.",
+      "fetch_related_wpp_data": "Eroare la preluarea informațiilor legate de numărul WhatsApp",
+      "redirect_to_wpp_catalog": "Eroare la redirecționarea către catalog. Reîmprospătează pagina și încearcă din nou.",
+      "update_connected_catalog_status": "Eroare la preluarea stării catalogului. Încearcă din nou mai târziu.",
+      "select_five_sellers": "Selectează până la 5 comercianți.",
+      "sync_sellers": "Nu s-au putut sincroniza comercianții în acest moment. Încearcă din nou mai târziu."
     },
     "success": {
-      "connect_catalog": "Catalog VTEX conectat cu succes",
-      "sync_sellers": "Vânzători sincronizați cu succes"
+      "connect_catalog": "Catalogul VTEX a fost conectat cu succes",
+      "sync_sellers": "Comercianții au fost sincronizați cu succes"
     }
   },
   "whatsapp": {
@@ -1206,50 +1205,50 @@
       "option": {
         "vtex": {
           "title": "Catalog VTEX",
-          "description": "Conectați automat catalogul prin integrare cu aplicația VTEX"
+          "description": "Conectează-ți automat catalogul prin integrarea cu aplicația VTEX"
         },
         "meta": {
           "title": "Facebook Meta",
-          "description": "Creați un catalog pe Facebook Meta, se va deschide o filă nouă."
+          "description": "Creează un catalog pe Facebook by Meta. Se va deschide o nouă filă."
         }
       },
-      "footer": "Pentru a conecta catalogul VTEX trebuie să aveți integrată aplicația VTEX pe platformă. Dacă nu ați integrat încă, faceți clic aici",
+      "footer": "Pentru a conecta catalogul tău VTEX, trebuie să integrezi mai întâi aplicația VTEX. \nDacă nu ai făcut-o încă, fă click aici.",
       "title": "Creează catalog",
       "header": {
-        "title": "Metodă de trimitere",
-        "description": "Alegeți modul în care doriți să trimiteți catalogul pentru a începe să vindeți produse prin WhatsApp"
+        "title": "Metoda de trimitere",
+        "description": "Alege cum dorești să-ți partajezi catalogul pentru a începe să vinzi produse prin WhatsApp"
       }
     }
   },
   "channels": {
-    "TWT": "Trimiteți și primiți mesaje pe Twitter folosind API-ul de activitate Twitter. Va trebui să solicitați acces la API Twitter și să creați o aplicație Twitter.",
-    "SL": "Adăugați un bot Slack pentru a trimite și primi mesaje către utilizatorii Slack.",
-    "AT": "Puteți achiziționa un cod scurt de la Africa's Talking și să-l conectați în câțiva pași simpli.",
-    "CM": "Dacă vă aflați în Malawi sau Ghana, puteți achiziționa un număr de la Click Mobile și să-l conectați în câțiva pași simpli.",
-    "CT": "Conectați numărul Clickatell, vă vom ghida prin pașii necesari pentru a face conexiunea Clickatell funcțională în câteva minute.",
-    "D3": "Activați propriul cont WhatsApp enterprise în 360Dialog pentru a comunica cu contactele.",
-    "DS": "Adăugați un bot Discord pentru a trimite mesaje utilizatorilor Discord gratuit. Utilizatorii vor avea nevoie de un cont Discord și un dispozitiv compatibil pentru a trimite/primi mesaje. Acest tip de canal este disponibil doar dacă instanța a fost configurată cu aplicația proxy Discord, disponibilă aici.",
-    "FC": "Conectați canalul FreshChat aprobat",
-    "FCM": "Adăugați un canal Firebase Cloud Messaging pentru a trimite și primi mesaje. Utilizatorii vor avea nevoie de o aplicație pentru a trimite și primi mesaje.",
-    "I2": "Dacă aveți un număr lung sau cod scurt cu I2SMS, îl puteți conecta în câțiva pași simpli.",
-    "IB": "Adăugați cu ușurință un număr bidirecțional pe care l-ați configurat cu Infobip folosind API-urile lor.",
-    "JC": "Adăugați un bot JioChat pentru a trimite și primi mesaje către utilizatorii JioChat gratuit. Utilizatorii vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont JioChat pentru a trimite și primi mesaje.",
-    "JN": "Conectați instanța Junebug pe care ați configurat-o deja.",
-    "KWA": "Activați propriul cont WhatsApp enterprise în Kaleyra pentru a comunica cu contactele. Aflați mai multe despre Kaleyra WhatsApp",
-    "MB": "Adăugați cu ușurință un număr bidirecțional pe care l-ați configurat cu Mblox folosind API-urile lor.",
-    "MG": "Dacă vă aflați în Jamaica, puteți achiziționa un cod scurt de la Messangi și să-l conectați în câțiva pași simpli.",
-    "PM": "Dacă vă aflați în Uzbekistan, puteți achiziționa un cod scurt de la Play Mobile și să-l conectați în câțiva pași simpli.",
-    "TM": "Adăugați un bot Microsoft Teams pentru a trimite și primi mesaje către utilizatorii Microsoft Teams.",
-    "TMS": "Puteți conecta un serviciu de mesagerie din contul Twilio pentru a beneficia de funcțiile Twilio Copilot.",
-    "TW": "Conectați-vă la un serviciu care vorbește TwiML. Puteți utiliza acest lucru pentru a vă conecta la servicii compatibile TwiML în afara Twilio.",
-    "VP": "Conectați un canal public Viber pentru a trimite și primi mesaje către utilizatorii Viber gratuit. Utilizatorii vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont Viber pentru a trimite și primi mesaje.",
-    "WC": "Adăugați un bot WeChat pentru a trimite și primi mesaje către utilizatorii WeChat gratuit. Utilizatorii vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont WeChat pentru a trimite și primi mesaje.",
-    "ZVS": "Dacă aveți un număr Zenvia SMS, îl puteți conecta pentru a comunica cu contactele.",
-    "ZVW": "Dacă aveți un număr Zenvia WhatsApp, îl puteți conecta pentru a comunica cu contactele WhatsApp.",
+    "TWT": "Trimite și primește mesaje pe X folosind X Activity API. Va trebui să soliciți acces la X API și să creezi o aplicație X.",
+    "SL": "Adaugă un bot Slack pentru a trimite și primi mesaje de la utilizatorii Slack.",
+    "AT": "Poți cumpăra un cod scurt de la Africa's Talking și îl poți conecta cu ușurință.",
+    "CM": "Dacă ești în Malawi sau Ghana, poți cumpăra un număr de la Click Mobile și îl poți conecta cu ușurință.",
+    "CT": "Conectează-ți numărul Clickatell. Te vom ghida prin pașii necesari pentru a conecta Clickatell în doar câteva minute.",
+    "D3": "Activează-ți propriul cont WhatsApp Business pe 360Dialog pentru a comunica cu contactele tale.",
+    "DS": "Adaugă un bot Discord pentru a trimite mesaje gratuite utilizatorilor Discord. Utilizatorii tăi vor avea nevoie de un cont Discord și un dispozitiv compatibil pentru a trimite și primi mesaje. Acest tip de canal este disponibil doar dacă instanța ta este configurată cu aplicația proxy Discord, disponibilă aici.",
+    "FC": "Conectează-ți canalul FreshChat aprobat.",
+    "FCM": "Adaugă un canal Firebase Cloud Messaging pentru a trimite și a primi mesaje. Utilizatorii tăi vor avea nevoie de o aplicație pentru a trimite și a primi mesaje.",
+    "I2": "Dacă ai un număr lung sau un cod scurt cu I2SMS, îl poți conecta cu ușurință.",
+    "IB": "Adaugă cu ușurință un număr bidirecțional configurat cu Infobip folosind API-urile acestora.",
+    "JC": "Adaugă un bot JioChat pentru ca utilizatorii JioChat să poată trimite și primi mesaje gratuit. Utilizatorii tăi vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont JioChat pentru a trimite și primi mesaje.",
+    "JN": "Conectează instanța Junebug pe care ai configurat-o deja.",
+    "KWA": "Activează-ți propriul cont de business pe Kaleyra WhatsApp pentru a comunica cu contactele tale. Află mai multe despre Kaleyra WhatsApp",
+    "MB": "Adaugă cu ușurință un număr bidirecțional configurat cu Mblox folosind API-urile acestora.",
+    "MG": "Dacă ești în Jamaica, poți cumpăra un cod scurt de la Messangi și îl poți conecta cu ușurință.",
+    "PM": "Dacă ești în Uzbekistan, poți cumpăra un cod scurt de la Play Mobile și îl poți conecta cu ușurință.",
+    "TM": "Adaugă un bot Microsoft Teams pentru a trimite și primi mesaje de la utilizatorii Microsoft Teams.",
+    "TMS": "Poți conecta un serviciu de mesagerie la contul tău Twilio pentru a utiliza funcțiile Twilio Copilot.",
+    "TW": "Conectează un serviciu folosind TwiML. Poți utiliza aceasta pentru a te conecta la servicii compatibile TwiML din afara Twilio.",
+    "VP": "Conectează-te la un canal public Viber pentru a trimite și a primi mesaje gratuit către utilizatorii Viber. Utilizatorii tăi vor avea nevoie de un dispozitiv Android, Windows sau iOS și de un cont Viber pentru a trimite și a primi mesaje.",
+    "WC": "Adaugă un bot WeChat pentru a trimite și primi mesaje către utilizatorii WeChat gratuit. Utilizatorii tăi vor avea nevoie de un dispozitiv Android, Windows sau iOS și un cont WeChat pentru a trimite și primi mesaje.",
+    "ZVS": "Dacă ai un număr SMS de la Zenvia, îl poți conecta pentru a comunica cu contactele tale.",
+    "ZVW": "Dacă ai un număr WhatsApp de la Zenvia, îl poți conecta pentru a comunica cu contactele tale prin WhatsApp.",
     "inputs": {
       "KWA": {
         "number": {
-          "label": "Numărul WhatsApp enterprise",
+          "label": "Numărul tău de WhatsApp business",
           "message": "",
           "placeholder": ""
         },
@@ -1260,12 +1259,12 @@
         },
         "account_sid": {
           "label": "SID cont",
-          "message": "SID-ul contului Kaleyra",
+          "message": "SID-ul contului tău Kaleyra",
           "placeholder": ""
         },
         "api_key": {
           "label": "Cheie API",
-          "message": "Cheia API Kaleyra",
+          "message": "Cheia ta API Kaleyra",
           "placeholder": ""
         }
       },
@@ -1273,183 +1272,183 @@
         "country": {
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon",
-          "placeholder": "Selectați o țară"
+          "placeholder": "Selectează o țară"
         },
         "number": {
           "label": "Număr",
-          "message": "Numărul de telefon sau codul scurt pe care îl conectați cu codul de țară. ex: +250788123124",
-          "placeholder": "Introduceți numărul"
+          "message": "Numărul de telefon sau codul scurt pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124",
+          "placeholder": "Introdu numărul"
         },
         "username": {
           "label": "Nume utilizator",
-          "message": "Numele de utilizator furnizat de furnizor pentru a utiliza API-ul",
-          "placeholder": "Introduceți numele de utilizator"
+          "message": "Nume utilizator furnizat de furnizor pentru a utiliza API-ul lor",
+          "placeholder": "Introdu-ți numele de utilizator"
         },
         "password": {
           "label": "Parolă",
-          "message": "Parola furnizată de furnizor pentru a utiliza API-ul",
-          "placeholder": "Introduceți parola"
+          "message": "Parolă furnizată de furnizor pentru a utiliza API-ul acestuia",
+          "placeholder": "Introdu-ți parola"
         }
       },
       "MG": {
         "shortcode": {
-          "label": "Codul scurt Messangi",
-          "placeholder": "Introduceți codul scurt",
+          "label": "Cod scurt Messangi",
+          "placeholder": "Introdu codul scurt",
           "message": null
         },
         "carrier_id": {
           "label": "ID operator",
-          "placeholder": "Introduceți ID-ul operatorului",
+          "placeholder": "Introdu ID-ul operatorului",
           "message": "ID-ul operatorului pentru codul scurt"
         },
         "public_key": {
           "label": "Cheie publică",
-          "placeholder": "Introduceți cheia publică",
-          "message": "Cheia publică furnizată de Messangi"
+          "placeholder": "Introdu cheia publică",
+          "message": "Cheie publică furnizată de Messangi"
         },
         "private_key": {
           "label": "Cheie privată",
-          "placeholder": "Introduceți cheia privată",
-          "message": "Cheia privată furnizată de Messangi"
+          "placeholder": "Introdu cheia privată",
+          "message": "Cheie privată furnizată de Messangi"
         },
         "instance_id": {
           "label": "ID instanță",
-          "placeholder": "Introduceți ID-ul instanței",
-          "message": "ID-ul instanței furnizat de Messangi"
+          "placeholder": "Introdu ID-ul instanței",
+          "message": "ID instanță furnizat de Messangi"
         }
       },
       "PM": {
         "base_url": {
           "label": "URL de bază",
-          "placeholder": "Introduceți URL-ul de bază",
-          "message": "URL-ul de bază pentru PlayMobile"
+          "placeholder": "Introdu URL-ul de bază",
+          "message": "URL de bază pentru PlayMobile"
         },
         "shortcode": {
           "label": "Cod scurt",
-          "placeholder": "Introduceți codul scurt",
-          "message": "Codul scurt pe care îl conectați"
+          "placeholder": "Introdu codul scurt",
+          "message": "Codul scurt la care te conectezi"
         },
         "username": {
           "label": "Nume utilizator",
-          "placeholder": "Introduceți numele de utilizator",
-          "message": "Numele de utilizator pentru contul API"
+          "placeholder": "Introdu-ți numele de utilizator",
+          "message": "Numele de utilizator pentru contul tău API"
         },
         "password": {
           "label": "Parolă",
-          "placeholder": "Introduceți parola",
-          "message": "Parola pentru contul API"
+          "placeholder": "Introdu-ți parola",
+          "message": "Parola pentru contul tău API"
         }
       },
       "TM": {
         "bot_name": {
           "label": "Numele botului",
-          "placeholder": "Introduceți numele botului",
+          "placeholder": "Introdu numele botului",
           "message": null
         },
         "bot_id": {
-          "label": "ID-ul botului",
-          "placeholder": "Introduceți ID-ul botului",
+          "label": "ID bot",
+          "placeholder": "Introdu ID-ul botului",
           "message": null
         },
         "app_id": {
           "label": "ID aplicație",
-          "placeholder": "Introduceți ID-ul aplicației",
+          "placeholder": "Introdu ID-ul aplicației",
           "message": null
         },
         "app_password": {
           "label": "Parolă aplicație",
-          "placeholder": "Introduceți parola aplicației",
+          "placeholder": "Introdu parola aplicației",
           "message": null
         },
         "tenant_id": {
-          "label": "ID chiriaș",
-          "placeholder": "Introduceți ID-ul chiriașului",
+          "label": "ID entitate găzduită",
+          "placeholder": "Introdu ID-ul entității găzduite",
           "message": null
         }
       },
       "TMS": {
         "country": {
           "label": "Țară",
-          "placeholder": "Selectați țara",
+          "placeholder": "Selectează-ți țara",
           "message": null
         },
         "messaging_service_sid": {
-          "label": "SID serviciu mesagerie",
-          "placeholder": "Introduceți SID-ul serviciului de mesagerie",
-          "message": "SID-ul serviciului de mesagerie Twilio"
+          "label": "SID serviciu de mesagerie",
+          "placeholder": "Introdu SID-ul serviciului de mesagerie",
+          "message": "SID serviciu de mesagerie Twilio"
         }
       },
       "TW": {
         "country": {
-          "type": "select",
+          "type": "selectează",
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon"
         },
         "number": {
-          "type": "input",
+          "type": "intrare",
           "label": "Număr",
-          "message": "Numărul de telefon fără cod de țară sau codul scurt pe care îl conectați."
+          "message": "Numărul de telefon fără codul de țară sau codul scurt la care te conectezi."
         },
         "url": {
-          "type": "input",
+          "type": "intrare",
           "label": "Gazdă API REST TwiML",
-          "message": "URL-ul accesibil public pentru instanța API REST TwiML ex: https://api.twilio.com"
+          "message": "URL public accesibil pentru instanța TwiML REST API. Ex.: https://api.twilio.com"
         },
         "role": {
-          "type": "select",
+          "type": "selectează",
           "label": "Rol",
-          "message": "Alegeți rolul pe care îl acceptă acest canal"
+          "message": "Alege rolul pe care îl acceptă acest canal"
         },
         "account_sid": {
-          "type": "input",
-          "label": "SID-ul contului de utilizat pentru autentificarea la API-ul REST TwiML",
+          "type": "intrare",
+          "label": "SID cont pentru autentificarea API REST TwiML",
           "message": null
         },
         "account_token": {
-          "type": "input",
-          "label": "Token-ul contului de utilizat pentru autentificarea la API-ul REST TwiML",
+          "type": "intrare",
+          "label": "Token de cont pentru autentificarea TwiML REST API",
           "message": null
         },
         "max_concurrent_events": {
-          "type": "input",
-          "label": "Apeluri active maxime simultan",
+          "type": "intrare",
+          "label": "Nr. maxim de apeluri active simultane",
           "message": null
         }
       },
       "VP": {
         "auth_token": {
-          "type": "input",
-          "label": "Token-ul de autentificare furnizat de Viber",
+          "type": "intrare",
+          "label": "Token de autentificare furnizat de Viber",
           "message": null
         }
       },
       "WC": {
         "app_id": {
-          "type": "input",
+          "type": "intrare",
           "label": "ID aplicație WeChat",
           "message": null
         },
         "app_secret": {
-          "type": "input",
+          "type": "intrare",
           "label": "Secret aplicație WeChat",
           "message": null
         }
       },
       "ZVS": {
         "country": {
-          "type": "select",
+          "type": "selectează",
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon"
         },
         "number": {
-          "type": "input",
+          "type": "intrare",
           "label": "Număr",
-          "message": "Numărul de telefon cu cod de țară sau codul scurt pe care îl conectați. ex: +250788123124 sau 15543"
+          "message": "Numărul de telefon sau codul scurt pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124 sau 15543"
         },
         "token": {
-          "type": "input",
+          "type": "intrare",
           "label": "Token API",
-          "message": "Token-ul API pentru integrarea furnizată de Zenvia"
+          "message": "Token API pentru integrare furnizat de Zenvia"
         }
       },
       "ZVW": {
@@ -1460,40 +1459,40 @@
         },
         "number": {
           "label": "Număr",
-          "message": "Numărul de telefon cu cod de țară sau codul scurt pe care îl conectați. ex: +250788123124 sau 15543",
+          "message": "Numărul de telefon sau codul scurt pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124 sau 15543",
           "placeholder": ""
         },
         "token": {
           "label": "Token API",
-          "message": "Token-ul API pentru integrarea furnizată de Zenvia",
+          "message": "Token API pentru integrare furnizat de Zenvia",
           "placeholder": ""
         }
       },
       "SL": {
         "user_token": {
           "label": "Token OAuth utilizator",
-          "message": "În https://api.slack.com/apps selectați aplicația bot și accesați Features / OAuth & Permissions pentru a vedea aceste informații.",
+          "message": "La https://api.slack.com/apps, selectează aplicația bot, apoi accesează Funcționalități > OAuth și permisiuni pentru a vizualiza aceste informații.",
           "placeholder": ""
         },
         "bot_token": {
-          "label": "Token OAuth utilizator bot",
-          "message": "În https://api.slack.com/apps selectați aplicația bot și accesați Features / OAuth & Permissions pentru a vedea aceste informații.",
+          "label": "Token OAuth bot",
+          "message": "La https://api.slack.com/apps, selectează aplicația bot, apoi accesează Funcționalități > OAuth și permisiuni pentru a vizualiza aceste informații.",
           "placeholder": ""
         },
         "verification_token": {
           "label": "Token de verificare",
-          "message": "În https://api.slack.com/apps accesați Settings / Basic information, găsiți în App Credentials și lipiți aici.",
+          "message": "La https://api.slack.com/apps, accesează Setări > Informații de bază, localizează datele de autentificare ale aplicației și lipește aici.",
           "placeholder": ""
         }
       },
       "AT": {
         "shortcode": {
-          "label": "Codul scurt pe Africa's Talking",
+          "label": "Codul tău scurt pe Africa's Talking",
           "message": null,
           "placeholder": ""
         },
         "country": {
-          "label": "țară",
+          "label": "Țară",
           "message": null,
           "placeholder": ""
         },
@@ -1503,12 +1502,12 @@
           "placeholder": ""
         },
         "username": {
-          "label": "Numele de utilizator pe Africa's Talking",
+          "label": "Numele tău de utilizator Africa's Talking",
           "message": null,
           "placeholder": ""
         },
         "api_key": {
-          "label": "Cheia API, ar trebui să fie de 64 de caractere",
+          "label": "Cheia ta API trebuie să conțină 64 de caractere",
           "message": null,
           "placeholder": ""
         }
@@ -1516,7 +1515,7 @@
       "CM": {
         "number": {
           "label": "Număr",
-          "message": "Numărul de telefon sau codul scurt Click Mobile pe care îl conectați cu codul de țară. ex: +250788123124",
+          "message": "Numărul de telefon sau codul scurt Click Mobile pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124",
           "placeholder": ""
         },
         "country": {
@@ -1526,90 +1525,90 @@
         },
         "username": {
           "label": "ID utilizator",
-          "message": "User_id-ul pe Click Mobile",
+          "message": "ID-ul tău de utilizator pe Click Mobile",
           "placeholder": ""
         },
         "password": {
           "label": "Parolă",
-          "message": "Parola pe Click Mobile",
+          "message": "Parola ta Click Mobile",
           "placeholder": ""
         },
         "app_id": {
           "label": "ID aplicație",
-          "message": "App_id-ul pe Click Mobile",
+          "message": "ID-ul aplicației pe Click Mobile",
           "placeholder": ""
         },
         "org_id": {
-          "label": "ID organizație",
-          "message": "Org_id-ul pe Click Mobile",
+          "label": "ID companie",
+          "message": "ID-ul organizației tale pe Click Mobile",
           "placeholder": ""
         }
       },
       "CT": {
         "country": {
-          "type": "select",
+          "type": "selectează",
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon"
         },
         "number": {
-          "type": "input",
+          "type": "intrare",
           "label": "Număr",
-          "message": "Numărul de telefon cu cod de țară sau codul scurt pe care îl conectați. ex: +250788123124 sau 15543"
+          "message": "Numărul de telefon sau codul scurt pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124 sau 15543"
         },
         "api_key": {
-          "type": "input",
+          "type": "intrare",
           "label": "Cheie API",
-          "message": "Cheia API pentru integrarea furnizată de Clickatell"
+          "message": "Cheia API pentru integrarea ta, furnizată de Clickatell"
         }
       },
       "D3": {
         "number": {
-          "type": "input",
-          "label": "Numărul WhatsApp enterprise",
+          "type": "intrare",
+          "label": "Numărul tău de WhatsApp business",
           "message": null
         },
         "country": {
-          "type": "select",
+          "type": "selectează",
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon"
         },
         "base_url": {
-          "type": "input",
-          "label": "URL-ul de bază pentru instalarea WhatsApp enterprise 360 Dialog",
+          "type": "intrare",
+          "label": "URL de bază pentru instalarea afacerii tale WhatsApp 360 Dialog",
           "message": null
         },
         "api_key": {
-          "type": "input",
-          "label": "Cheia API 360 Dialog generată după înregistrarea contului",
+          "type": "intrare",
+          "label": "Cheie API generată după înregistrarea contului pe 360 Dialog",
           "message": null
         }
       },
       "DS": {
         "auth_token": {
-          "type": "input",
+          "type": "intrare",
           "label": "Token de autentificare",
-          "message": "Token-ul botului Discord"
+          "message": "Token bot Discord"
         },
         "proxy_url": {
-          "type": "input",
+          "type": "intrare",
           "label": "URL proxy",
-          "message": "URL-ul pe care rulează proxy-ul Discord"
+          "message": "URL unde rulează proxy-ul Discord"
         }
       },
       "FCM": {
         "title": {
-          "label": "Titlu notificare",
+          "label": "Titlul notificării",
           "message": "",
-          "placeholder": "Introduceți titlul notificării"
+          "placeholder": "Introdu titlul notificării"
         },
         "key": {
           "label": "Cheie FCM",
-          "message": "Cheia furnizată pe consola Firebase când ați creat aplicația.",
-          "placeholder": "Introduceți cheia FCM"
+          "message": "Cheie furnizată în Consola Firebase atunci când ai creat aplicația.",
+          "placeholder": "Introdu cheia FCM"
         },
         "send_notification": {
           "label": "Trimite notificare",
-          "message": "Bifați dacă doriți ca acest canal să trimită notificări contactelor.",
+          "message": "Bifează dacă dorești ca acest canal să trimită notificări contactelor.",
           "placeholder": ""
         }
       },
@@ -1617,132 +1616,132 @@
         "country": {
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon",
-          "placeholder": "Selectați o țară"
+          "placeholder": "Selectează o țară"
         },
         "number": {
           "label": "Număr",
-          "message": "Numărul de telefon sau codul scurt pe care îl conectați cu codul de țară. ex: +250788123124",
-          "placeholder": "Introduceți numărul"
+          "message": "Numărul de telefon sau codul scurt pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124",
+          "placeholder": "Introdu numărul"
         },
         "username": {
           "label": "Nume utilizator",
-          "message": "Numele de utilizator i2SMS",
-          "placeholder": "Introduceți numele de utilizator"
+          "message": "Numele tău de utilizator i2SMS",
+          "placeholder": "Introdu-ți numele de utilizator"
         },
         "password": {
           "label": "Parolă",
-          "message": "Parola i2SMS",
-          "placeholder": "Introduceți parola"
+          "message": "Parola ta i2SMS",
+          "placeholder": "Introdu-ți parola"
         },
         "channel_hash": {
-          "label": "Hash-ul canalului i2SMS",
+          "label": "Hash-ul canalului tău i2SMS",
           "message": null,
-          "placeholder": "Introduceți hash-ul canalului"
+          "placeholder": "Introdu hash-ul canalului"
         }
       },
       "IB": {
         "country": {
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon",
-          "placeholder": "Selectați o țară"
+          "placeholder": "Selectează o țară"
         },
         "number": {
           "label": "Număr",
-          "message": "Numărul de telefon sau codul scurt pe care îl conectați cu codul de țară. ex: +250788123124",
-          "placeholder": "Introduceți numărul"
+          "message": "Numărul de telefon sau codul scurt pe care îl conectezi, inclusiv prefixul de țară. Ex.: +250788123124",
+          "placeholder": "Introdu numărul"
         },
         "username": {
           "label": "Nume utilizator",
-          "message": "Numele de utilizator furnizat de furnizor pentru a utiliza API-ul",
-          "placeholder": "Introduceți numele de utilizator"
+          "message": "Nume utilizator furnizat de furnizor pentru a utiliza API-ul lor",
+          "placeholder": "Introdu-ți numele de utilizator"
         },
         "password": {
           "label": "Parolă",
-          "message": "Parola furnizată de furnizor pentru a utiliza API-ul",
-          "placeholder": "Introduceți parola"
+          "message": "Parolă furnizată de furnizor pentru a utiliza API-ul acestuia",
+          "placeholder": "Introdu-ți parola"
         }
       },
       "JC": {
         "app_id": {
           "label": "ID aplicație JioChat",
-          "message": "Introduceți ID-ul aplicației JioChat",
-          "placeholder": "Introduceți ID-ul aplicației"
+          "message": "Introdu-ți ID-ul aplicației JioChat",
+          "placeholder": "Introdu ID-ul aplicației"
         },
         "app_secret": {
-          "label": "Secret aplicație JioChat",
-          "message": "Introduceți secretul aplicației JioChat",
-          "placeholder": "Introduceți secretul aplicației"
+          "label": "Secretul aplicației JioChat",
+          "message": "Introdu secretul aplicației JioChat",
+          "placeholder": "Introdu secretul aplicației"
         }
       },
       "JN": {
         "country": {
           "label": "Țară",
           "message": "Țara în care este utilizat acest număr de telefon",
-          "placeholder": "Selectați o țară"
+          "placeholder": "Selectează o țară"
         },
         "number": {
           "label": "Număr",
-          "message": "Codul scurt sau numărul de telefon pe care îl conectați.",
-          "placeholder": "Introduceți numărul"
+          "message": "Codul scurt sau numărul de telefon la care te conectezi.",
+          "placeholder": "Introdu numărul"
         },
         "url": {
           "label": "URL",
-          "message": "URL-ul pentru canalul Junebug. ex: https://junebug.praekelt.org/jb/channels/3853bb51-d38a-4bca-b332-8a57c00f2a48/messages.json",
-          "placeholder": "Introduceți URL-ul"
+          "message": "URL pentru canalul Junebug. Exemplu: https://junebug.praekelt.org/jb/channels/3853bb51-d38a-4bca-b332-8a57c00f2a48/messages.json",
+          "placeholder": "Introdu URL-ul"
         },
         "username": {
           "label": "Nume utilizator",
-          "message": "Numele de utilizator de utilizat pentru autentificare la Junebug",
-          "placeholder": "Introduceți numele de utilizator"
+          "message": "Nume utilizator pentru autentificarea cu Junebug",
+          "placeholder": "Introdu numele de utilizator"
         },
         "password": {
           "label": "Parolă",
-          "message": "Parola de utilizat pentru autentificare la Junebug",
-          "placeholder": "Introduceți parola"
+          "message": "Parolă pentru autentificarea cu Junebug",
+          "placeholder": "Introdu parola"
         },
         "secret": {
           "label": "Secret",
-          "message": "Token-ul pe care ar trebui să îl folosească Junebug pentru autentificare",
-          "placeholder": "Introduceți secretul"
+          "message": "Token folosit de Junebug pentru autentificare",
+          "placeholder": "Introdu secretul"
         }
       }
     }
   },
   "email": {
     "data": {
-      "summary": "Conectați e-mailul și simplificați serviciul clienți mai ușor."
+      "summary": "Conectează-ți adresa de e-mail și automatizează mai ușor serviciul pentru clienți."
     },
     "config": {
       "title": "E-mail",
-      "description": "Conectați e-mailul și automatizați serviciul clienți mai ușor.",
-      "config_solution": "Configurare soluție",
-      "config_solution_subtitle": "Completați câmpurile de mai jos pentru a integra un e-mail",
-      "select": "Selectați tipul de e-mail",
+      "description": "Conectează-ți adresa de e-mail și automatizează mai ușor serviciul pentru clienți",
+      "config_solution": "Configurarea soluției",
+      "config_solution_subtitle": "Completează câmpurile de mai jos pentru a integra o adresă de e-mail",
+      "select": "Selectează tipul de e-mail",
       "smpt_server": {
         "title": "Server SMTP",
-        "description": "Adresa serverului SMTP pentru trimiterea e-mailurilor."
+        "description": "Adresa serverului SMTP pentru trimiterea e-mailurilor"
       },
       "smpt_port": {
         "title": "Port SMTP",
-        "description": "Port de comunicare al serverului SMTP."
+        "description": "Portul de comunicare al serverului SMTP"
       },
       "imap_server": {
         "title": "Server IMAP",
-        "description": "Adresa serverului IMAP pentru trimiterea e-mailurilor."
+        "description": "Adresa serverului IMAP pentru primirea e-mailurilor"
       },
       "imap_port": {
         "title": "Port IMAP",
-        "description": "Port de comunicare al serverului IMAP."
+        "description": "Portul de comunicare al serverului IMAP"
       },
-      "username": "Nume utilizator",
-      "username_description": "E-mailul folosit pentru autentificare.",
+      "username": "Utilizator",
+      "username_description": "E-mail folosit pentru autentificare",
       "password": "Parolă"
     }
   },
   "gmail": {
     "setup": {
-      "title": "Conectare la Gmail",
-      "description": "Faceți clic pe Continuă pentru a deschide pagina de autentificare Gmail. După autentificare, contul va fi integrat automat.",
+      "title": "Conectează-te la Gmail",
+      "description": "Fă click pe Continuare pentru a deschide pagina de conectare Gmail. După conectare, contul tău va fi integrat automat.",
       "buttons": {
         "cancel": "Anulează",
         "continue": "Continuă"

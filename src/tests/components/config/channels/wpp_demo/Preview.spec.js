@@ -66,7 +66,7 @@ describe('wpp-demo-preview Component', () => {
     expect(unnnicCallAlertSpy).toHaveBeenCalledWith(
       expect.objectContaining({
         props: {
-          text: 'Successfully copied!',
+          text: 'Copied successfully',
           type: 'success',
         },
         seconds: 3,
@@ -86,13 +86,13 @@ describe('wpp-demo-preview Component', () => {
 
   it('should render the description correctly', () => {
     expect(wrapper.find('.app-preview-wpp_demo__header__description').text()).toBe(
-      'With the URL below you can use WhatsApp Demo, test it on your project, or even share it with others.',
+      'Use the URL below to try WhatsApp Demo in your project or share it with others',
     );
   });
 
   it('should render the description correctly', () => {
     expect(wrapper.find('.app-preview-wpp_demo__header__description').text()).toBe(
-      'With the URL below you can use WhatsApp Demo, test it on your project, or even share it with others.',
+      'Use the URL below to try WhatsApp Demo in your project or share it with others',
     );
   });
 });

@@ -94,7 +94,7 @@ describe('IntegrateButton.vue', () => {
     expect(errorModalSpy).toHaveBeenCalled();
 
     expect(errorModalSpy).toHaveBeenCalledWith({
-      text: 'Unable to complete this action, please try again',
+      text: "Couldn't complete the action. Try again.",
     });
   });
 

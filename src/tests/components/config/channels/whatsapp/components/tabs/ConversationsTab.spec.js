@@ -66,7 +66,7 @@ describe('ConversationsTab', () => {
 
     expect(spyCallAlert).toHaveBeenCalledWith({
       props: {
-        text: 'Failed to request detailed report, please try again later',
+        text: 'Error requesting detailed report. Try again later.',
         type: 'error',
       },
       seconds: 6,
@@ -81,7 +81,7 @@ describe('ConversationsTab', () => {
 
     expect(spyCallAlert).toHaveBeenCalledWith({
       props: {
-        text: 'Failed to request detailed report, please try again later',
+        text: 'Error requesting detailed report. Try again later.',
         type: 'error',
       },
       seconds: 6,
@@ -99,7 +99,7 @@ describe('ConversationsTab', () => {
 
     expect(spyCallAlert).toHaveBeenCalledWith({
       props: {
-        text: 'You will receive your detailed report by email shortly',
+        text: "You'll receive your detailed report by email shortly",
         type: 'success',
       },
       seconds: 6,
@@ -111,7 +111,7 @@ describe('ConversationsTab', () => {
     wrapper.vm.userInitiated = 10;
 
     expect(wrapper.vm.beforeItems).toEqual([
-      { startedBy: 'Business', quantity: 5 },
+      { startedBy: 'Organization', quantity: 5 },
       { startedBy: 'User', quantity: 10 },
     ]);
   });

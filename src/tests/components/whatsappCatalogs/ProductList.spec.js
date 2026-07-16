@@ -54,7 +54,7 @@ describe('ProductList.vue', () => {
         )
         .text(),
     ).toBe(
-      'Here you manage your inventory information. Add all the items you want to advertise or sell',
+      'Here you can manage your inventory. Add all the items you want to list or sell.',
     );
   });
 

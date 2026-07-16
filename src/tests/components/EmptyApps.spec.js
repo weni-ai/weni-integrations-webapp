@@ -33,7 +33,7 @@ describe('EmptyApps.vue', () => {
 
   it('displays the correct title and description', () => {
     expect(wrapper.find('span.empty__title').text()).toBe(
-      `Wow, we couldn't find this thing called “test term”.`,
+      `Unfortunately, we couldn't find “test term”.`,
     );
     expect(wrapper.find('span.empty__description').text()).toContain(
       'But you can see all our integrations by clicking here',

@@ -27,7 +27,7 @@ describe('AppDetailsAbout.vue', () => {
   });
   it('renders the component correctly', () => {
     expect(wrapper.exists()).toBe(true);
-    expect(wrapper.find('.app-details-about__content__title').text()).toBe('About the App');
+    expect(wrapper.find('.app-details-about__content__title').text()).toBe('About the app');
     expect(wrapper.find('.app-details-about__content__description').html()).toContain(
       'This is a sample app description.',
     );

@@ -80,7 +80,9 @@ describe('GenericConfig.vue', () => {
 
   it('renders the app description correctly', () => {
     const description = wrapper.find('.app-config-generic__header__description');
-    expect(description.html()).toContain(appMock.config.channel_claim_blurb);
+    expect(description.text()).toContain('You can connect a');
+    expect(description.text()).toContain('Slack Bot');
+    expect(description.html()).toContain('https://slack.com/app');
   });
 
   it('shows callback URL when channel_code matches callbackChannels and isConfigured is true', async () => {

@@ -17,7 +17,7 @@ describe('ConnectCatalogModalContent.vue', () => {
 
     const title = wrapper.find('.modal__content__title');
     expect(title.exists()).toBe(true);
-    expect(title.text()).toBe('Basic informations');
+    expect(title.text()).toBe('Basic information');
 
     const input = wrapper.findComponent({ name: 'unnnic-input' });
     expect(input.exists()).toBe(true);
@@ -27,7 +27,7 @@ describe('ConnectCatalogModalContent.vue', () => {
     const footer = wrapper.find('.modal__content__form__footer');
     expect(footer.exists()).toBe(true);
     expect(footer.html()).toContain(
-      `<span data-v-ecca50a3="" class="modal__content__form__footer">By creating a catalog, you agree to the <a class="link" target="_blank" href="https://google.com"><b>Catalog Manager Terms</b></a> and confirm that you follow <a class="link" target="_blank" href="https://google.com"><b>Facebook's Advertising Policies</b></a>. Please review these policies and confirm that the items you upload to your catalog comply with them.</span>`,
+      `By creating a catalog, you agree to the <a class="link" target="_blank" href="https://google.com"><b>Catalog Manager Terms</b></a> and confirm compliance with the <a class="link" target="_blank" href="https://google.com"><b>Facebook Advertising Policies</b></a>. Review these policies and ensure that items listed in the catalog comply.`,
     );
   });
 

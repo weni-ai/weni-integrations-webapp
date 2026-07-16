@@ -5,9 +5,9 @@ exports[`MyApps > matches snapshot 1`] = `
   <!--v-if-->
   <!--v-if-->
   <div data-v-d693ca5e="" class="my-apps__empty"><img data-v-d693ca5e="" class="my-apps__empty__image" src="/src/assets/svgs/empty-apps.svg">
-    <div data-v-d693ca5e="" class="my-apps__empty__description__main">You haven't installed any integrations yet.</div>
+    <div data-v-d693ca5e="" class="my-apps__empty__description__main">No integrations installed yet</div>
     <div data-v-d693ca5e="" class="my-apps__empty__description__secondary">
-      <div data-v-d693ca5e="">Search for what you need</div>
+      <div data-v-d693ca5e="">Find what you need</div>
       <div data-v-d693ca5e="" class="my-apps__empty__description__secondary__link">here</div>
     </div>
   </div>
@@ -15,7 +15,7 @@ exports[`MyApps > matches snapshot 1`] = `
     <transition-stub data-v-7d3d5e15="" name="fade" appear="false" persisted="false" css="true">
       <!--v-if-->
     </transition-stub>
-    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Cancel modifications" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
+    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
   </div>
 </div>"
 `;
