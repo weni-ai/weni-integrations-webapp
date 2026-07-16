@@ -209,7 +209,7 @@
       "unread_messages_indicator": "Indicator mesaje necitite",
       "keep_chat_history": "Păstrează istoricul mesajelor",
       "time_between_messages": "Timp între mesaje",
-      "time_between_messages_option": "{ count } secundă | { count } secunde | { count } de secunde",
+      "time_between_messages_option": "{count, plural, one {{count} secundă} few {{count} secunde} other {{count} de secunde}}",
       "time_between_messages_message": "Intervalul dintre mesajele agentului",
       "navigate_if_same_domain": {
         "label": "Permite Shopping Assistant să redirecționeze automat pagina",
@@ -1000,7 +1000,6 @@
       "description": "Dacă ai un CRM în Omie, îl poți integra cu VTEX CX Platform și automatiza acțiunile din CRM-ul tău prin chatbot.<br><br>Prin integrarea VTEX CX Platform cu CRM-ul tău Omie, vei putea efectua acțiuni precum:<br><br>- Includerea oportunităților în CRM<br>- Căutarea facturilor și înregistrărilor<br>- Listarea clienților<br><br>În modulul Integrări, efectuează integrarea cu Omie furnizând datele API Key și API Secret.<br>După aceea, accesează modulul Fluxuri și creează un flux. Acolo, vei avea disponibil un card numit Servicii externe, unde poți efectua toate acțiunile menționate aici cu Omie CRM."
     },
     "config": {
-      "description": "Află mai multe despre integrarea Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">aici</a>",
       "connect": "Conectare",
       "tabs": {
         "config": {
@@ -1126,7 +1125,7 @@
       "affiliate_description": "Pentru a configura un afiliat pe VTEX, urmează pașii de mai jos:",
       "affiliate_step1": {
         "title": "Accesează panoul de administrare VTEX",
-        "description": "Accesează <b>Setări magazin > Comenzi > Setări</b>.<i></i>"
+        "description": "Accesează <b>Setări magazin > Comenzi > Setări</b>."
       },
       "affiliate_step2": {
         "title": "Creează un nou afiliat",

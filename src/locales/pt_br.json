@@ -209,7 +209,7 @@
       "unread_messages_indicator": "Indicador de mensagens não lidas",
       "keep_chat_history": "Manter histórico de mensagens",
       "time_between_messages": "Tempo entre as mensagens",
-      "time_between_messages_option": "{ count } segundo | { count } segundos",
+      "time_between_messages_option": "{count, plural, one {{count} segundo} other {{count} segundos}}",
       "time_between_messages_message": "Intervalo entre mensagens do agente",
       "navigate_if_same_domain": {
         "label": "Permitir que o Shopping Assistant redirecione automaticamente a página",
@@ -1016,8 +1016,7 @@
             }
           }
         }
-      },
-      "description": "Saiba mais sobre a integração com a Omie <a href=\"https://ajuda.omie.com.br/pt-BR/articles/499061-obtendo-a-chave-de-acesso-para-integracoes-de-api\" target=\"_blank\" class=\"link\">aqui</a>"
+      }
     },
     "success": {
       "configure": "Serviço configurado com sucesso"
@@ -1126,7 +1125,7 @@
       "affiliate_description": "Para configurar um afiliado na VTEX, siga os passos abaixo:",
       "affiliate_step1": {
         "title": "Acesse seu painel do Admin na VTEX",
-        "description": "Vá para <b>Configurações da loja > Pedidos > Configurações</b>.<i></i>"
+        "description": "Vá para <b>Configurações da loja > Pedidos > Configurações</b>."
       },
       "affiliate_step2": {
         "title": "Crie um novo afiliado",
