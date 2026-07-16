@@ -50,8 +50,8 @@ describe('NavBar.vue', () => {
     const links = wrapper.findAll('a');
 
     expect(links[0].text()).toBe('Discovery');
-    expect(links[1].text()).toBe('My Apps');
-    expect(links[2].text()).toBe('Other Apps');
+    expect(links[1].text()).toBe('My apps');
+    expect(links[2].text()).toBe('Other apps');
   });
 
   it('resolves absolute hrefs from configured app route', () => {

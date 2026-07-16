@@ -37,7 +37,7 @@ describe('FormTabContentBody.vue', () => {
 
   it('displays the correct title', () => {
     const title = wrapper.find('.form-tab-content-body__title');
-    expect(title.text()).toBe('Body Text');
+    expect(title.text()).toBe('Message text');
   });
 
   it('disables the text area when disableInputs is true', async () => {

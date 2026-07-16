@@ -54,7 +54,7 @@ describe('Config.vue', () => {
   it('should correctly render modal title and description', () => {
     expect(wrapper.find('.wpp-demo-modal').exists()).toBe(true);
     expect(wrapper.find('.wpp-demo-modal').text()).toContain(
-      wrapper.vm.$t('To be able to use WhatsApp Demo you will be directed to a link.'),
+      wrapper.vm.$t('WhatsAppDemo.config.title'),
     );
     expect(wrapper.find('.wpp-demo-modal').text()).toContain(
       wrapper.vm.$t('WhatsAppDemo.config.description'),

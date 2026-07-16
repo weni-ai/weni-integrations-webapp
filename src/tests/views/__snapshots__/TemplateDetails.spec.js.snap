@@ -11,7 +11,7 @@ exports[`TemplateDetails > matches snapshot 1`] = `
       </div>
     </div>
     <div class="wpp_template_details__header__button">
-      <unnnic-button text="Edit Model" type="secondary"></unnnic-button>
+      <unnnic-button text="Edit template" type="secondary"></unnnic-button>
     </div>
   </div><!-- Tabs -->
   <div class="wpp_template_details__tabs">

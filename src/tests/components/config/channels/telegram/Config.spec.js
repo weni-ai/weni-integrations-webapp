@@ -49,7 +49,7 @@ describe('Config.vue', () => {
     expect(wrapper.find('.app-config-telegram__header__title__name').text()).toBe('Telegram App');
 
     expect(wrapper.find('.app-config-telegram__header__description').text()).toContain(
-      'Learn more about how to integrate Telegram here.',
+      'Learn more about how to integrate Telegram here',
     );
     expect(wrapper.find('a').attributes('href')).toBe(
       'https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel',
@@ -116,7 +116,7 @@ describe('Config.vue', () => {
     });
     expect(callAlertSpy).toHaveBeenCalledWith({
       props: {
-        text: 'Aplicação instalada com sucesso!',
+        text: 'Aplicação instalada com sucesso',
         type: 'success',
       },
       seconds: 3,
@@ -134,7 +134,7 @@ describe('Config.vue', () => {
     expect(wrapper.vm.invalidToken).toBe(true);
     expect(unnnic.unnnicCallAlert).toHaveBeenCalledWith({
       props: {
-        text: 'Token provido não é válido.',
+        text: 'O token inserido não é válido',
         type: 'error',
       },
       seconds: 3,

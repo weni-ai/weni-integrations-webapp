@@ -55,7 +55,7 @@ describe('vtex-config Component', () => {
 
   it('should render the description correctly', () => {
     expect(wrapper.find('.config-vtex__header__description').html()).toContain(
-      '<span data-v-7d90e9f3="" class="config-vtex__header__description">Connect your VTEX catalog to send products via Whatsapp</span>',
+      '<span data-v-7d90e9f3="" class="config-vtex__header__description">Connect your VTEX catalog to send products via WhatsApp</span>',
     );
   });
 

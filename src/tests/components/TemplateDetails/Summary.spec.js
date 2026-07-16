@@ -40,7 +40,7 @@ describe('Summary.vue', () => {
   it('renders the main and subtitle titles correctly', () => {
     const mainTitle = wrapper.find('.whatsapp_template_summary__title__main');
     const subtitle = wrapper.find('.whatsapp_template_summary__title__subtitle');
-    expect(mainTitle.text()).toBe('Performace overview');
+    expect(mainTitle.text()).toBe('Performance overview');
     expect(subtitle.text()).toBe('last 7 days');
   });
 

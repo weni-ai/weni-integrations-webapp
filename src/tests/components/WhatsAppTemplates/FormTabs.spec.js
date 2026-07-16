@@ -144,7 +144,7 @@ describe('FormTabs.vue', () => {
     });
 
     await wrapper.vm.addTranslation();
-    expect(wrapper.vm.createdTabs).toContain('New Language');
+    expect(wrapper.vm.createdTabs).toContain('New language');
   });
 
   it('should show error modal on invalid name', async () => {

@@ -100,7 +100,7 @@ describe('WhatsAppSetup.vue', () => {
     await wrapper.vm.createChannel('1234');
 
     expect(spy).toHaveBeenCalledWith({
-      text: 'An error occurred while trying to create the Channel, please try again later.',
+      text: 'An error occurred while creating the channel. Try again later.',
     });
   });
 

@@ -110,7 +110,7 @@ exports[`ConversationsTab > matches the snapshot 1`] = `
         </div>
       </div>
     </div>
-    <div data-v-2b8fe4c5="" class="conversations__content__report"><span data-v-2b8fe4c5="" class="conversations__content__report__label">Detailed conversation report</span><span data-v-2b8fe4c5="" class="conversations__content__report__description">You can receive message breakdowns by email of no more than 6 months ago. It is possible that some information in the report is inaccurate. If in doubt, contact your account manager.</span>
+    <div data-v-2b8fe4c5="" class="conversations__content__report"><span data-v-2b8fe4c5="" class="conversations__content__report__label">Detailed conversation report</span><span data-v-2b8fe4c5="" class="conversations__content__report__description">You can receive message breakdowns by email for the past 6 months. Some information in the report may be inaccurate. If in doubt, contact your account manager.</span>
       <div data-v-03fa3548="" data-v-47313aed="" class="unnnic-tooltip-trigger unnnic-tooltip conversations__content__report__tooltip" data-testid="tooltip-trigger" data-state="closed" data-grace-area-trigger=""><button data-v-fb18c550="" data-v-2b8fe4c5="" class="conversations__content__report__button unnnic-button unnnic-button--size-small unnnic-button--secondary conversations__content__report__button" disabled="">
           <!---->
           <!---->

@@ -35,7 +35,7 @@ describe('FormTabContentFooter.vue', () => {
   it('renders the component correctly', () => {
     wrapper = mountComponent();
     expect(wrapper.find('.form-tab-content-footer').exists()).toBe(true);
-    expect(wrapper.find('.form-tab-content-footer__title').text()).toBe('Footer Text');
+    expect(wrapper.find('.form-tab-content-footer__title').text()).toBe('Footer text');
     expect(wrapper.findComponent({ name: 'unnnic-input' }).exists()).toBe(true);
   });
 

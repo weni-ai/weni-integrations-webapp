@@ -77,7 +77,7 @@ describe('WebhookTab', () => {
 
     expect(callModalSpy).toHaveBeenCalledWith({
       type: 'error',
-      text: 'Error while trying to update webhook data',
+      text: 'Failed to update webhook data',
     });
   });
 
@@ -98,7 +98,7 @@ describe('WebhookTab', () => {
 
     expect(callModalSpy).toHaveBeenCalledWith({
       type: 'error',
-      text: 'Error while trying to update webhook data',
+      text: 'Failed to update webhook data',
     });
   });
 });
