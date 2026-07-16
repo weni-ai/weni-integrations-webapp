@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { describe, it, expect } from 'vitest';
 import WhatsAppTemplatesForm from '@/views/whatsAppTemplates/Form.vue';
 import { createRouter, createWebHistory } from 'vue-router';
@@ -14,7 +14,7 @@ const router = createRouter({
 
 describe('WhatsAppTemplatesForm.vue', () => {
   it('sets formMode to edit and templateUuid correctly if route has templateUuid', async () => {
-    const wrapper = mount(WhatsAppTemplatesForm, {
+    const wrapper = shallowMount(WhatsAppTemplatesForm, {
       global: {
         plugins: [pinia, router, i18n, UnnnicSystem],
         mocks: {
@@ -32,7 +32,7 @@ describe('WhatsAppTemplatesForm.vue', () => {
   });
 
   it('sets formMode to create and templateUuid to empty string if no templateUuid in route', async () => {
-    const wrapper = mount(WhatsAppTemplatesForm, {
+    const wrapper = shallowMount(WhatsAppTemplatesForm, {
       global: {
         plugins: [pinia, router, i18n, UnnnicSystem],
         mocks: {
@@ -50,7 +50,7 @@ describe('WhatsAppTemplatesForm.vue', () => {
   });
 
   it('increments previewKey when updatePreview is called', async () => {
-    const wrapper = mount(WhatsAppTemplatesForm, {
+    const wrapper = shallowMount(WhatsAppTemplatesForm, {
       global: {
         plugins: [pinia, router, i18n, UnnnicSystem],
       },
