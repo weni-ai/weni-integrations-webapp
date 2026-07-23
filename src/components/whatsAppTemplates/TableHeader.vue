@@ -66,7 +66,7 @@
       font-weight: $unnnic-font-weight-regular;
       font-size: $unnnic-font-size-title-sm;
       line-height: $unnnic-line-height-md + $unnnic-font-size-title-sm;
-      color: $unnnic-color-neutral-darkest;
+      color: $unnnic-color-fg-emphasized;
     }
 
     &__description {
@@ -74,7 +74,7 @@
       font-weight: $unnnic-font-weight-regular;
       font-size: $unnnic-font-size-body-gt;
       line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-      color: $unnnic-color-neutral-darkest;
+      color: $unnnic-color-fg-emphasized;
     }
   }
 </style>

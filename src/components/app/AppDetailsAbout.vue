@@ -47,7 +47,7 @@
         font-weight: $unnnic-font-weight-bold;
         font-size: $unnnic-font-size-title-sm;
         line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
       }
 
       &__description {
@@ -55,7 +55,7 @@
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-lg;
         line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
       }
     }
 
@@ -65,7 +65,7 @@
         font-weight: $unnnic-font-weight-bold;
         font-size: $unnnic-font-size-title-sm;
         line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
       }
 
       &__content {
@@ -74,7 +74,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-body-lg;
           line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
           margin-right: $unnnic-inline-lg;
         }
       }

@@ -92,7 +92,7 @@
       &__input {
         ::v-deep {
           .unnnic-form__message {
-            color: $unnnic-color-neutral-cloudy;
+            color: $unnnic-color-fg-base;
           }
         }
       }

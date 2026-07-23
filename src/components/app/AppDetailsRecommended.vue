@@ -120,7 +120,7 @@
         font-weight: $unnnic-font-weight-bold;
         font-size: $unnnic-font-size-title-sm;
         line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
 
         align-self: center;
       }

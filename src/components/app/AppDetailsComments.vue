@@ -261,7 +261,7 @@
       font-weight: $unnnic-font-weight-regular;
       font-size: $unnnic-font-size-body-gt;
       line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-      color: $unnnic-color-neutral-cloudy;
+      color: $unnnic-color-fg-base;
       margin-bottom: $unnnic-spacing-stack-xs;
 
       &__cancel {

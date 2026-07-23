@@ -376,7 +376,7 @@
   .divider {
     margin-top: $unnnic-spacing-stack-lg;
     margin-bottom: $unnnic-spacing-stack-md;
-    border-top: 1px solid $unnnic-color-neutral-soft;
+    border-top: 1px solid $unnnic-color-border-base;
   }
 
   .form-tab-content {
@@ -401,7 +401,7 @@
       flex: 5;
 
       ::v-deep .unnnic-form__message {
-        color: $unnnic-color-feedback-red;
+        color: $unnnic-color-fg-critical;
       }
     }
 
@@ -421,8 +421,8 @@
 
           .input,
           .select-permission {
-            border: $unnnic-border-width-thinner dashed $unnnic-color-neutral-clean;
-            background-color: $unnnic-color-neutral-light;
+            border: 1px dashed $unnnic-color-border-base;
+            background-color: $unnnic-color-bg-muted;
           }
         }
       }

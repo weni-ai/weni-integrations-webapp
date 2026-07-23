@@ -119,7 +119,7 @@
       font-family: $unnnic-font-family-secondary;
       font-size: $unnnic-font-size-body-md;
       line-height: $unnnic-line-height-md + $unnnic-font-size-body-md;
-      color: $unnnic-color-neutral-dark;
+      color: $unnnic-color-fg-base;
 
       ::v-deep .unnnic-dropdown__content {
         width: max-content;
@@ -128,7 +128,7 @@
 
       &__item {
         &--delete_language {
-          color: $unnnic-color-feedback-red;
+          color: $unnnic-color-fg-critical;
         }
       }
     }

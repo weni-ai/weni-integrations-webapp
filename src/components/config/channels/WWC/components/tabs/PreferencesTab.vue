@@ -373,12 +373,12 @@
     &__switch-suffix {
       display: inline-block;
       border-radius: $unnnic-radius-1;
-      background: $unnnic-color-teal-100;
+      background: $unnnic-color-bg-accent-plain;
       padding: 0 $unnnic-space-1;
       color: $unnnic-color-fg-active;
       font: $unnnic-font-caption-1;
       margin: 0;
-      border: $unnnic-border-width-thinner solid $unnnic-color-teal-100;
+      border: 1px solid $unnnic-color-border-accent-plain;
       margin-left: $unnnic-space-1;
     }
   }

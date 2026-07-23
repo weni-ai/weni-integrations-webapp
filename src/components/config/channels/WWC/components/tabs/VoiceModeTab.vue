@@ -301,7 +301,7 @@
       padding: $unnnic-space-2;
       cursor: pointer;
       border-radius: $unnnic-border-radius-md;
-      border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+      border: 1px solid $unnnic-color-border-base;
 
       &:hover {
         border-color: $unnnic-color-border-emphasized;

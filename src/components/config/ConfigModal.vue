@@ -138,13 +138,13 @@
       right: 50%;
       bottom: 0;
       left: 0;
-      background-color: rgba($unnnic-color-brand-sec-dark, 0.4);
+      background-color: rgba($unnnic-color-gray-12, 0.4);
       z-index: 1;
     }
     &__dialog {
       height: 100vh;
       width: 50%;
-      background-color: $unnnic-color-background-snow;
+      background-color: $unnnic-color-bg-base;
       margin: 0 50%;
     }
   }

@@ -324,7 +324,7 @@
       .link {
         color: inherit;
         text-decoration: none;
-        border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-cloudy;
+        border-bottom: 1px solid $unnnic-color-border-base;
       }
     }
   }

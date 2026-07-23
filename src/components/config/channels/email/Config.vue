@@ -332,7 +332,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }
@@ -355,7 +355,7 @@
           box-sizing: border-box;
           margin-top: $unnnic-spacing-stack-sm;
           margin-bottom: $unnnic-spacing-stack-md;
-          border-top: 1px solid $unnnic-color-neutral-soft;
+          border-top: 1px solid $unnnic-color-border-base;
         }
 
         &__config {
@@ -366,7 +366,7 @@
             font-family: $unnnic-font-family-secondary;
             font-weight: $unnnic-font-weight-bold;
             font-size: $unnnic-font-size-body-lg;
-            color: $unnnic-color-neutral-darkest;
+            color: $unnnic-color-fg-emphasized;
           }
         }
 

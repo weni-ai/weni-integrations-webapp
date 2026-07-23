@@ -338,7 +338,7 @@
 
     &__field-dropdown-item {
       &--displayed {
-        color: $unnnic-color-neutral-cleanest;
+        color: $unnnic-color-fg-muted;
         cursor: not-allowed;
       }
     }

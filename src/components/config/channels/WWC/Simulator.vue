@@ -248,7 +248,7 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      background-color: $unnnic-color-background-snow;
+      background-color: $unnnic-color-bg-base;
       margin-bottom: $unnnic-spacing-stack-sm;
       border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0 0;
 
@@ -282,7 +282,7 @@
 
         &__text {
           flex-grow: 1;
-          color: $unnnic-color-background-snow;
+          color: $unnnic-color-fg-inverted;
           margin: $unnnic-spacing-inset-nano 0;
           overflow: hidden;
 
@@ -349,7 +349,7 @@
               margin-top: $unnnic-spacing-stack-xs;
 
               &__text {
-                background-color: $unnnic-color-background-sky;
+                background-color: $unnnic-color-bg-base-soft;
                 border-radius: 0px $unnnic-border-radius-sm $unnnic-border-radius-sm;
                 padding: $unnnic-spacing-inset-nano;
                 font-family: $unnnic-font-family-secondary;
@@ -366,7 +366,7 @@
 
                 &__reply {
                   @include colorTransition;
-                  border: $unnnic-border-width-thinner solid var(--main-color);
+                  border: 1px solid var(--main-color);
                   border-radius: $unnnic-border-radius-pill;
                   padding: $unnnic-spacing-stack-nano $unnnic-inline-sm;
                   font-family: $unnnic-font-family-secondary;
@@ -391,7 +391,7 @@
                 font-family: $unnnic-font-family-secondary;
                 font-size: $unnnic-font-size-body-md;
                 line-height: $unnnic-font-size-body-md + $unnnic-line-height-md;
-                color: $unnnic-color-background-snow;
+                color: $unnnic-color-fg-inverted;
                 border-radius: $unnnic-border-radius-sm;
                 padding: $unnnic-squish-nano;
               }
@@ -403,14 +403,14 @@
       &__input {
         display: flex;
         align-items: center;
-        background-color: $unnnic-color-background-sky;
+        background-color: $unnnic-color-bg-base-soft;
 
         &__text {
           margin: $unnnic-inset-nano;
           font-family: $unnnic-font-family-secondary;
           font-size: $unnnic-font-size-body-lg;
           line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-clean;
+          color: $unnnic-color-fg-base;
           width: 100%;
           overflow: hidden;
         }
@@ -448,7 +448,7 @@
 
       &__unread {
         z-index: 1;
-        color: $unnnic-color-background-snow;
+        color: $unnnic-color-fg-inverted;
         background-color: var(--main-color);
         margin-right: -$unnnic-spacing-inline-xs;
         height: $unnnic-icon-size-sm;

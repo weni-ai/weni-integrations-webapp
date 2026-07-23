@@ -273,7 +273,7 @@
       }
 
       &__file-name {
-        color: $unnnic-color-neutral-clean;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-gt;
         font-weight: $unnnic-font-weight-bold;
       }
@@ -289,7 +289,7 @@
     }
 
     &__info {
-      background-color: $unnnic-color-neutral-soft;
+      background-color: $unnnic-color-bg-muted;
       margin: 0 (-$unnnic-spacing-inline-md);
       margin-bottom: (-$unnnic-spacing-stack-giant);
       padding: $unnnic-spacing-inline-md;

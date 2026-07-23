@@ -83,7 +83,7 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+    border: 1px solid $unnnic-color-border-base;
     border-radius: $unnnic-border-radius-pill;
     padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-xs;
     align-items: center;

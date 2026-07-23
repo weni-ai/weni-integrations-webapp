@@ -390,7 +390,7 @@
       margin-bottom: $unnnic-spacing-sm;
 
       &__title {
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
         font-size: $unnnic-font-size-title-sm;
         font-weight: $unnnic-font-weight-black;
         line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
@@ -403,7 +403,7 @@
 
       &__title {
         font-family: $unnnic-font-family-secondary;
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
         font-weight: $unnnic-font-weight-black;
         font-size: $unnnic-font-size-title-sm;
         line-height: ($unnnic-font-size-title-sm + $unnnic-line-height-medium);
@@ -431,12 +431,12 @@
         }
 
         &__guide {
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
           font-size: $unnnic-font-size-body-gt;
           line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
 
           a {
-            color: $unnnic-color-neutral-cloudy;
+            color: $unnnic-color-fg-base;
             font-weight: $unnnic-font-weight-bold;
             text-decoration-line: underline;
           }
@@ -466,7 +466,7 @@
           align-items: center;
           gap: 10px;
           border-radius: $unnnic-border-radius-pill;
-          background: $unnnic-color-weni-200;
+          background: $unnnic-color-bg-accent-plain;
         }
 
         &__content {
@@ -476,7 +476,7 @@
           margin-top: 2px;
 
           &__title {
-            color: $unnnic-color-neutral-darkest;
+            color: $unnnic-color-fg-emphasized;
             font-size: $unnnic-font-size-body-lg;
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
@@ -484,15 +484,15 @@
 
           &__description {
             margin: unset;
-            color: $unnnic-color-neutral-dark;
+            color: $unnnic-color-fg-base;
             font-size: $unnnic-font-size-body-gt;
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
 
             ::v-deep {
               .highlight {
-                color: $unnnic-color-neutral-dark;
+                color: $unnnic-color-fg-base;
                 border-radius: $unnnic-border-radius-sm;
-                background: $unnnic-color-neutral-soft;
+                background: $unnnic-color-bg-muted;
                 padding: 2px $unnnic-spacing-nano;
               }
 

@@ -184,7 +184,7 @@
       line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
       font-weight: $unnnic-font-weight-bold;
 
-      color: $unnnic-color-neutral-darkest;
+      color: $unnnic-color-fg-emphasized;
     }
 
     &__input {

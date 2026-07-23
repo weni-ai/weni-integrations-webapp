@@ -171,7 +171,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }
@@ -180,17 +180,17 @@
       &__description {
         margin-top: $unnnic-inline-sm;
         padding-bottom: $unnnic-inline-md;
-        border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+        border-bottom: 1px solid $unnnic-color-border-base;
 
         font-family: $unnnic-font-family-secondary;
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
 
         a {
           font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
         }
       }
     }
@@ -209,7 +209,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 $unnnic-spacing-inset-lg;

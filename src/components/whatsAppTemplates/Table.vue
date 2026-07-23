@@ -434,7 +434,7 @@
       span {
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-        color: $unnnic-color-neutral-dark;
+        color: $unnnic-color-fg-base;
       }
     }
 
@@ -474,7 +474,7 @@
         &__label {
           font-size: $unnnic-font-size-body-gt;
           line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
           margin: $unnnic-spacing-inline-xs 0;
         }
       }

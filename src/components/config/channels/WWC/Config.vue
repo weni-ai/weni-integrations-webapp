@@ -408,7 +408,7 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      color: $unnnic-color-neutral-cloudy;
+      color: $unnnic-color-fg-base;
       font-size: $unnnic-font-size-body-gt;
       line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
       padding: 0 $unnnic-space-6;
@@ -475,18 +475,18 @@
       z-index: 2;
       bottom: 50%;
       right: calc(50% - 25px);
-      background-color: $unnnic-color-neutral-snow;
+      background-color: $unnnic-color-bg-base;
       border-radius: $unnnic-border-radius-pill;
       width: 50px;
       height: 50px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: $unnnic-shadow-level-near;
+      box-shadow: $unnnic-shadow-1;
       transition: all 0.5s;
 
       &:hover {
-        background-color: $unnnic-color-neutral-lightest;
+        background-color: $unnnic-color-bg-base-soft;
       }
     }
 
