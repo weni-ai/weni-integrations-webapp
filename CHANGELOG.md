@@ -1,3 +1,10 @@
+3.15.0
+----------
+`2026-07-24 · 1 🔧`
+
+### 🔧 Improvements
+- refactor: migrate deprecated Unnnic design tokens to semantic Shoreline tokens
+
 3.14.1
 ----------
 `2026-07-08 · 2 🔧`
