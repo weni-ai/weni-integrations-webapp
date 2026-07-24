@@ -78,14 +78,14 @@
         font-weight: $unnnic-font-weight-bold;
         font-size: $unnnic-font-size-title-md;
         line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-black;
+        color: $unnnic-color-fg-emphasized;
       }
 
       &__description {
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-lg;
         line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
       }
     }
 

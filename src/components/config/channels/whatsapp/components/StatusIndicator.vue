@@ -28,15 +28,15 @@
     align-self: center;
 
     &.green {
-      background-color: $unnnic-color-feedback-green;
+      background-color: $unnnic-color-bg-success;
     }
 
     &.yellow {
-      background-color: $unnnic-color-feedback-yellow;
+      background-color: $unnnic-color-bg-warning;
     }
 
     &.red {
-      background-color: $unnnic-color-feedback-red;
+      background-color: $unnnic-color-bg-critical;
     }
   }
 </style>

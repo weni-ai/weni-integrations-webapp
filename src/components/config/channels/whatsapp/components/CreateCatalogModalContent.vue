@@ -127,7 +127,7 @@
       text-align: left;
 
       &__title {
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
         font-size: $unnnic-font-size-title-sm;
         font-weight: $unnnic-font-weight-black;
         line-height: $unnnic-font-size-title-sm + $unnnic-line-height-medium;
@@ -139,14 +139,14 @@
         gap: $unnnic-spacing-nano;
 
         &__title {
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
           font-size: $unnnic-font-size-body-lg;
           font-weight: $unnnic-font-weight-black;
           line-height: $unnnic-font-size-body-lg + $unnnic-line-height-medium;
         }
 
         &__description {
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
           font-size: $unnnic-font-size-body-md;
           line-height: $unnnic-font-size-body-md + $unnnic-line-height-medium;
         }
@@ -169,15 +169,15 @@
             gap: $unnnic-spacing-sm;
 
             border-radius: $unnnic-border-radius-sm;
-            border: $unnnic-border-width-thinner solid $unnnic-color-neutral-cleanest;
-            background: $unnnic-color-neutral-lightest;
+            border: 1px solid $unnnic-color-border-emphasized;
+            background: $unnnic-color-bg-base-soft;
 
             cursor: pointer;
 
             &.selected {
               border-radius: $unnnic-border-radius-sm;
-              border: $unnnic-border-width-thinner solid $unnnic-color-weni-600;
-              background: $unnnic-color-weni-50;
+              border: 1px solid $unnnic-color-border-accent-strong;
+              background: $unnnic-color-bg-accent-plain;
             }
 
             &__icon {
@@ -200,7 +200,7 @@
                 display: flex;
                 align-items: center;
                 gap: $unnnic-spacing-nano;
-                color: $unnnic-color-neutral-darkest;
+                color: $unnnic-color-fg-emphasized;
                 font-size: $unnnic-font-size-body-gt;
                 font-weight: $unnnic-font-weight-bold;
                 line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
@@ -211,7 +211,7 @@
               }
 
               &__description {
-                color: $unnnic-color-neutral-cloudy;
+                color: $unnnic-color-fg-base;
                 font-size: $unnnic-font-size-body-md;
                 line-height: $unnnic-font-size-body-md + $unnnic-line-height-medium;
               }
@@ -221,7 +221,7 @@
 
         &__footer {
           margin-top: $unnnic-spacing-stack-xs;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
           font-size: $unnnic-font-size-body-gt;
           line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
         }

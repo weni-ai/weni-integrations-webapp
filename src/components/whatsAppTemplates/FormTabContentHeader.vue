@@ -161,7 +161,7 @@
       line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
       font-weight: $unnnic-font-weight-bold;
 
-      color: $unnnic-color-neutral-darkest;
+      color: $unnnic-color-fg-emphasized;
     }
 
     &__inputs {
@@ -185,8 +185,8 @@
           }
 
           ::v-deep .input {
-            border: $unnnic-border-width-thinner dashed $unnnic-color-neutral-clean;
-            background-color: $unnnic-color-neutral-light;
+            border: 1px dashed $unnnic-color-border-base;
+            background-color: $unnnic-color-bg-muted;
           }
         }
       }

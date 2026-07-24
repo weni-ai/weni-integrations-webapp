@@ -185,7 +185,7 @@
           display: flex;
           flex-direction: column;
           gap: $unnnic-spacing-stack-xs;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
           font-size: $unnnic-font-size-body-gt;
           line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
 

@@ -205,7 +205,7 @@
       margin-bottom: 0;
       padding: $unnnic-spacing-inset-nano;
       min-height: $unnnic-avatar-size-nano;
-      background-color: $unnnic-color-neutral-snow;
+      background-color: $unnnic-color-bg-base;
       border-radius: $unnnic-border-radius-sm;
       overflow-wrap: break-word;
 
@@ -227,7 +227,7 @@
       }
 
       &__header {
-        color: $unnnic-color-neutral-dark;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-lg;
         font-weight: $unnnic-font-weight-bold;
         margin-bottom: $unnnic-spacing-stack-xs;
@@ -237,7 +237,7 @@
           align-items: center;
           justify-content: center;
           height: 125px;
-          background-color: $unnnic-color-neutral-clean;
+          background-color: $unnnic-color-gray-7;
           border-radius: $unnnic-border-radius-sm;
           margin-bottom: $unnnic-spacing-stack-xs;
         }
@@ -250,7 +250,7 @@
       }
 
       &__body {
-        color: $unnnic-color-neutral-dark;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-gt;
         white-space: pre-wrap;
         margin-bottom: $unnnic-spacing-stack-xs;
@@ -258,7 +258,7 @@
       }
 
       &__footer {
-        color: rgba($unnnic-color-neutral-dark, $unnnic-opacity-level-clarifying);
+        color: rgba($unnnic-color-fg-base, $unnnic-opacity-level-clarifying);
         font-size: $unnnic-font-size-body-gt;
         white-space: pre-wrap;
       }
@@ -287,8 +287,8 @@
           min-width: calc(50% - 2px);
           height: 34px;
           color: #00a5f4;
-          background-color: $unnnic-color-neutral-snow;
-          box-shadow: $unnnic-shadow-level-near;
+          background-color: $unnnic-color-bg-base;
+          box-shadow: $unnnic-shadow-1;
           font-size: $unnnic-font-size-body-gt;
           line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
           white-space: pre-wrap;
@@ -300,7 +300,7 @@
     &__action-buttons {
       &__actions {
         margin-top: $unnnic-spacing-stack-nano;
-        border-top: $unnnic-border-width-thinner solid $unnnic-color-neutral-clean;
+        border-top: 1px solid $unnnic-color-border-base;
         min-width: 200px;
         display: block;
       }

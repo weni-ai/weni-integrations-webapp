@@ -236,7 +236,7 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      color: $unnnic-color-neutral-cloudy;
+      color: $unnnic-color-fg-base;
       font-size: $unnnic-font-size-body-gt;
       line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
       margin: $unnnic-spacing-inset-lg;
@@ -272,7 +272,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }
@@ -289,11 +289,11 @@
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
 
         a {
           font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
         }
       }
     }
@@ -338,10 +338,10 @@
           height: $unnnic-border-width-thick;
         }
         ::-webkit-scrollbar-track {
-          background: $unnnic-color-neutral-soft;
+          background: $unnnic-color-bg-muted;
         }
         ::-webkit-scrollbar-thumb {
-          background: $unnnic-color-neutral-clean;
+          background: $unnnic-color-gray-7;
           border-radius: $unnnic-border-radius-md;
         }
       }
@@ -353,7 +353,7 @@
 
         .unnnic-icon {
           ::v-deep path {
-            fill: $unnnic-color-neutral-clean;
+            fill: $unnnic-color-fg-base;
           }
         }
       }

@@ -2,16 +2,16 @@
     font-size: $unnnic-font-size-body-lg;
     font-weight: $unnnic-font-weight-bold;
     line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-    border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+    border-bottom: 1px solid $unnnic-color-border-base;
     padding-bottom: $unnnic-spacing-stack-sm;
   }
 
   .link {
     text-decoration: none;
-    color: $unnnic-color-neutral-clean;
+    color: $unnnic-color-fg-base;
     margin-right: $unnnic-inline-lg;
   }
 
   .router-link-active {
-    color: $unnnic-color-neutral-darkest;
+    color: $unnnic-color-fg-emphasized;
   }

@@ -804,11 +804,11 @@
         }
 
         ::-webkit-scrollbar-track {
-          background: $unnnic-color-neutral-soft;
+          background: $unnnic-color-bg-muted;
         }
 
         ::-webkit-scrollbar-thumb {
-          background: $unnnic-color-neutral-clean;
+          background: $unnnic-color-gray-7;
           border-radius: $unnnic-border-radius-md;
         }
       }

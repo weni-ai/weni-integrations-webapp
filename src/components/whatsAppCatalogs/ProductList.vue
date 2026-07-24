@@ -226,7 +226,7 @@
       span {
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-        color: $unnnic-color-neutral-dark;
+        color: $unnnic-color-fg-base;
       }
     }
 
@@ -302,7 +302,7 @@
         gap: $unnnic-spacing-nano;
         &__discount {
           text-decoration: line-through;
-          color: $unnnic-color-neutral-cleanest;
+          color: $unnnic-color-fg-muted;
         }
       }
     }
@@ -316,7 +316,7 @@
       span {
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-        color: $unnnic-color-neutral-dark;
+        color: $unnnic-color-fg-base;
       }
     }
   }

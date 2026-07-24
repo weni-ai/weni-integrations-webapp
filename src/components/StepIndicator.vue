@@ -40,20 +40,20 @@
   .indicator {
     height: $unnnic-spacing-xs;
     border-radius: $unnnic-border-radius-pill;
-    background: $unnnic-color-neutral-soft;
+    background: $unnnic-color-bg-muted;
 
     &--filled {
-      background: $unnnic-color-weni-600;
+      background: $unnnic-color-bg-accent-strong;
     }
   }
 
   .label {
-    color: $unnnic-color-neutral-clean;
+    color: $unnnic-color-fg-base;
     font-size: $unnnic-font-size-body-md;
     line-height: $unnnic-font-size-body-md + $unnnic-line-height-medium;
 
     &--filled {
-      color: $unnnic-color-weni-700;
+      color: $unnnic-color-fg-accent;
     }
   }
 </style>

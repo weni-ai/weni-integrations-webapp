@@ -359,7 +359,7 @@
         font-weight: $unnnic-font-weight-bold;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
       }
 
       &__report {
@@ -371,12 +371,12 @@
 
         &__label {
           font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
         }
 
         &__description {
           font-weight: $unnnic-font-weight-regular;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
         }
 
         &__tooltip {

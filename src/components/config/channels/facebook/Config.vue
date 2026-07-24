@@ -87,7 +87,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }

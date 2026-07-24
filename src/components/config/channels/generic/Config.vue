@@ -280,7 +280,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }
@@ -298,17 +298,17 @@
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
 
         ::v-deep {
           a {
             font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-neutral-cloudy;
+            color: $unnnic-color-fg-base;
           }
 
           .highlight {
-            color: $unnnic-color-brand-weni-soft;
-            background-color: $unnnic-color-background-solo;
+            color: $unnnic-color-fg-accent;
+            background-color: $unnnic-color-bg-accent-plain;
             padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-nano;
             border-radius: $unnnic-border-radius-sm;
           }
@@ -322,7 +322,7 @@
       height: 100%;
 
       &__content {
-        border-top: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+        border-top: 1px solid $unnnic-color-border-base;
 
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
@@ -335,7 +335,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 $unnnic-spacing-inset-lg;

@@ -433,7 +433,7 @@
       line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
       font-weight: $unnnic-font-weight-bold;
 
-      color: $unnnic-color-neutral-darkest;
+      color: $unnnic-color-fg-emphasized;
     }
 
     &__type-select {
@@ -448,8 +448,8 @@
         }
 
         ::v-deep .input {
-          border: $unnnic-border-width-thinner dashed $unnnic-color-neutral-clean;
-          background-color: $unnnic-color-neutral-light;
+          border: 1px dashed $unnnic-color-border-base;
+          background-color: $unnnic-color-bg-muted;
         }
       }
 
@@ -463,7 +463,7 @@
         display: flex;
         flex-direction: column;
 
-        border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+        border: 1px solid $unnnic-color-border-base;
         border-radius: $unnnic-border-radius-md;
         padding: $unnnic-spacing-inset-sm;
         margin-bottom: $unnnic-spacing-stack-md;
@@ -478,7 +478,7 @@
           font-size: $unnnic-font-size-body-lg;
           line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
 
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
         }
 
         margin-bottom: $unnnic-spacing-stack-md;
@@ -504,7 +504,7 @@
         flex-direction: column;
         gap: $unnnic-spacing-stack-xs;
 
-        border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+        border: 1px solid $unnnic-color-border-base;
         border-radius: $unnnic-border-radius-md;
         padding: $unnnic-spacing-inset-sm;
         margin-bottom: $unnnic-spacing-stack-md;
@@ -518,7 +518,7 @@
             font-size: $unnnic-font-size-body-lg;
             line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
 
-            color: $unnnic-color-neutral-darkest;
+            color: $unnnic-color-fg-emphasized;
           }
         }
       }
@@ -539,8 +539,8 @@
           }
 
           ::v-deep .input {
-            border: $unnnic-border-width-thinner dashed $unnnic-color-neutral-clean;
-            background-color: $unnnic-color-neutral-light;
+            border: 1px dashed $unnnic-color-border-base;
+            background-color: $unnnic-color-bg-muted;
           }
         }
       }
@@ -565,17 +565,17 @@
       height: calc($unnnic-font-size-h3 - 3px);
       margin-top: 1.5rem;
       padding: $unnnic-spacing-inline-ant $unnnic-spacing-inline-xs;
-      border: 0.0625rem solid $unnnic-color-neutral-soft;
+      border: 0.0625rem solid $unnnic-color-border-base;
       border-right: none;
       border-radius: $unnnic-border-radius-sm 0 0 $unnnic-border-radius-sm;
-      background-color: $unnnic-color-background-sky;
+      background-color: $unnnic-color-bg-base-soft;
       z-index: 1;
-      color: $unnnic-color-neutral-dark;
+      color: $unnnic-color-fg-base;
       font-size: $unnnic-font-size-body-gt;
       line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
 
       &--focused {
-        border-color: $unnnic-color-neutral-cleanest;
+        border-color: $unnnic-color-border-emphasized;
       }
     }
 

@@ -497,7 +497,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }
@@ -514,12 +514,12 @@
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
 
         ::v-deep {
           a {
             font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-neutral-cloudy;
+            color: $unnnic-color-fg-base;
           }
         }
       }
@@ -537,7 +537,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 2rem 2rem 2rem;
@@ -546,7 +546,7 @@
           font-weight: $unnnic-font-weight-bold;
           font-size: $unnnic-font-size-body-gt;
           line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
         }
 
         &__scroll {

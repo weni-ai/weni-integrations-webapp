@@ -406,7 +406,7 @@
           font-weight: $unnnic-font-weight-regular;
           font-size: $unnnic-font-size-title-md;
           line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-neutral-darkest;
+          color: $unnnic-color-fg-emphasized;
 
           margin-left: $unnnic-inline-sm;
         }
@@ -423,12 +423,12 @@
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
 
         ::v-deep {
           a {
             font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-neutral-cloudy;
+            color: $unnnic-color-fg-base;
           }
         }
       }
@@ -446,7 +446,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        color: $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 $unnnic-spacing-lg $unnnic-spacing-lg $unnnic-spacing-lg;
@@ -459,7 +459,7 @@
           margin-bottom: $unnnic-spacing-sm;
 
           &__label {
-            color: $unnnic-color-neutral-darkest;
+            color: $unnnic-color-fg-emphasized;
             font-size: $unnnic-font-size-body-lg;
             font-weight: $unnnic-font-weight-bold;
             line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
@@ -483,8 +483,8 @@
           gap: $unnnic-spacing-xs;
           &__alert {
             display: flex;
-            background-color: $unnnic-color-background-lightest;
-            border: 1px solid $unnnic-color-neutral-soft;
+            background-color: $unnnic-color-bg-base-soft;
+            border: 1px solid $unnnic-color-border-base;
             border-radius: 4px;
             align-items: center;
             gap: $unnnic-spacing-xs;

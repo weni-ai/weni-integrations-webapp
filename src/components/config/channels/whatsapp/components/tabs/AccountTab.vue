@@ -542,7 +542,7 @@
               font-weight: $unnnic-font-weight-bold;
               font-size: $unnnic-font-size-body-lg;
               line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-              color: $unnnic-color-neutral-darkest;
+              color: $unnnic-color-fg-emphasized;
               margin-bottom: $unnnic-spacing-sm;
             }
             &__button {
@@ -561,7 +561,7 @@
             font-weight: $unnnic-font-weight-black;
             font-size: $unnnic-font-size-body-lg;
             line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-darkest;
+            color: $unnnic-color-fg-emphasized;
 
             margin-bottom: $unnnic-spacing-stack-sm;
           }
@@ -575,7 +575,7 @@
             &__info {
               font-size: $unnnic-font-size-body-gt;
               line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-              color: $unnnic-color-neutral-cloudy;
+              color: $unnnic-color-fg-base;
             }
           }
         }
@@ -596,7 +596,7 @@
             font-weight: $unnnic-font-weight-black;
             font-size: $unnnic-font-size-body-lg;
             line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-darkest;
+            color: $unnnic-color-fg-emphasized;
           }
         }
 
@@ -610,7 +610,7 @@
             width: 50%;
             font-size: $unnnic-font-size-body-gt;
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            color: $unnnic-color-neutral-cloudy;
+            color: $unnnic-color-fg-base;
             margin: auto 0;
             word-wrap: anywhere;
           }

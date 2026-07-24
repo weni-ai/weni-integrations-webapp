@@ -101,14 +101,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: $unnnic-border-width-thinner solid $unnnic-color-neutral-soft;
+      border: 1px solid $unnnic-color-border-base;
       border-radius: $unnnic-border-radius-md;
       padding: $unnnic-spacing-md;
       cursor: pointer;
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: $unnnic-color-neutral-lightest;
+        background-color: $unnnic-color-bg-base-soft;
       }
 
       &__actions {

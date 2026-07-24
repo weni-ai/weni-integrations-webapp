@@ -15,10 +15,10 @@
         font-size: $unnnic-font-size-body-lg;
         line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
 
-        color: $unnnic-color-neutral-cloudy;
-        border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-cloudy;
+        color: $unnnic-color-fg-base;
+        border-bottom: 1px solid $unnnic-color-border-base;
         &.router-link-active {
-          color: $unnnic-color-neutral-dark;
+          color: $unnnic-color-fg-base;
           font-weight: $unnnic-font-weight-bold;
           cursor: default;
 

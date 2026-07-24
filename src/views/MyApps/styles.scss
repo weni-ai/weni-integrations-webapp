@@ -6,7 +6,7 @@
       &__results {
         font-size: $unnnic-font-size-body-lg;
         line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        color: $unnnic-color-neutral-darkest;
+        color: $unnnic-color-fg-emphasized;
 
         &__highlight {
           font-weight: $unnnic-font-weight-bold;
@@ -26,7 +26,7 @@
           font-weight: $unnnic-font-weight-bold;
           font-size: $unnnic-font-size-title-sm;
           line-height: $unnnic-line-height-md + $unnnic-font-size-title-sm;
-          color: $unnnic-color-neutral-dark;
+          color: $unnnic-color-fg-base;
           text-align: center;
         }
 
@@ -38,12 +38,12 @@
           font-family: $unnnic-font-family-secondary;
           font-size: $unnnic-font-size-body-lg;
           line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
-          color: $unnnic-color-neutral-cloudy;
+          color: $unnnic-color-fg-base;
 
           &__link {
             cursor: pointer;
             font-weight: $unnnic-font-weight-bold;
-            border-bottom: $unnnic-border-width-thinner solid $unnnic-color-neutral-cloudy;
+            border-bottom: 1px solid $unnnic-color-border-base;
           }
         }
       }
