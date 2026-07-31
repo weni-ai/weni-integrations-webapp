@@ -25,26 +25,24 @@
   </unnnic-modal>
 </template>
 
-<script>
-  export default {
-    name: 'ConnectNewWhatsAppAccountModal',
-    props: {
-      show: {
-        type: Boolean,
-        default: false,
-      },
+<script setup>
+  defineProps({
+    show: {
+      type: Boolean,
+      default: false,
     },
-    emits: ['close', 'try-again'],
-    methods: {
-      handleClose() {
-        this.$emit('close');
-      },
-      handleTryAgain() {
-        this.$emit('try-again');
-        this.$emit('close');
-      },
-    },
-  };
+  });
+
+  const emit = defineEmits(['close', 'try-again']);
+
+  function handleClose() {
+    emit('close');
+  }
+
+  function handleTryAgain() {
+    emit('try-again');
+    emit('close');
+  }
 </script>
 
 <style lang="scss" scoped>
