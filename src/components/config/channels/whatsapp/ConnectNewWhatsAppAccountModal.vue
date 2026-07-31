@@ -1,28 +1,31 @@
 <template>
-  <unnnic-modal
+  <unnnic-dialog
     class="connect-new-whatsapp-account-modal"
-    :showModal="show"
-    :text="$t('WhatsAppCloud.setup.connect_new_account.title')"
-    scheme="feedback-red"
-    modal-icon="alert-circle-1"
-    @close="handleClose"
-    @click.stop
+    :open="show"
+    @update:open="handleOpenUpdate"
   >
-    <template #message>
+    <unnnic-dialog-content size="medium">
+      <unnnic-dialog-header type="warning">
+        <unnnic-dialog-title>
+          {{ $t('WhatsAppCloud.setup.connect_new_account.title') }}
+        </unnnic-dialog-title>
+      </unnnic-dialog-header>
+
       <section
         class="connect-new-whatsapp-account-modal__description"
         v-html="$t('WhatsAppCloud.setup.connect_new_account.description')"
       />
-    </template>
-    <template #options>
-      <unnnic-button
-        type="primary"
-        size="large"
-        :text="$t('WhatsAppCloud.setup.connect_new_account.try_again')"
-        @click="handleTryAgain"
-      />
-    </template>
-  </unnnic-modal>
+
+      <unnnic-dialog-footer>
+        <unnnic-button
+          type="primary"
+          size="large"
+          :text="$t('WhatsAppCloud.setup.connect_new_account.try_again')"
+          @click="handleTryAgain"
+        />
+      </unnnic-dialog-footer>
+    </unnnic-dialog-content>
+  </unnnic-dialog>
 </template>
 
 <script setup>
@@ -35,8 +38,10 @@
 
   const emit = defineEmits(['close', 'try-again']);
 
-  function handleClose() {
-    emit('close');
+  function handleOpenUpdate(open) {
+    if (!open) {
+      emit('close');
+    }
   }
 
   function handleTryAgain() {
@@ -51,6 +56,8 @@
 
     &__description {
       text-align: left;
+      padding: $unnnic-spacing-md;
+      color: $unnnic-color-fg-base;
 
       :deep(ol) {
         padding-left: $unnnic-spacing-inline-md;
