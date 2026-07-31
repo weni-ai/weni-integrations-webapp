@@ -876,6 +876,11 @@
     "setup": {
       "continue": "Continuar",
       "connect": "Conectar",
+      "connect_new_account": {
+        "description": "La cuenta de persona jurídica de WhatsApp seleccionada ya está configurada para facturación con otro sistema, por lo que tu número no puede conectarse a través de ella.<br /><br />Crea una <b>nueva cuenta de persona jurídica de WhatsApp</b> y tu número se conectará correctamente. Funciona sin importar dónde esté ubicado tu negocio.<br /><br /><ol><li>Selecciona <b>Intentar nuevamente</b> a continuación.</li><li>Cuando WhatsApp pregunte qué cuenta usar, selecciona <b>Crear una nueva cuenta de persona jurídica de WhatsApp</b>.</li><li>Sigue los pasos de configuración para finalizar.</li></ol>",
+        "title": "Conectar nueva cuenta de WhatsApp",
+        "try_again": "Intentar nuevamente"
+      },
       "description": "Sigue los pasos para integrar WhatsApp"
     },
     "config": {
