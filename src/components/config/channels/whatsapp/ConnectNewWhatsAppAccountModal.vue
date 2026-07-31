@@ -9,7 +9,7 @@
     @click.stop
   >
     <template #message>
-      <div
+      <section
         class="connect-new-whatsapp-account-modal__description"
         v-html="$t('WhatsAppCloud.setup.connect_new_account.description')"
       />
