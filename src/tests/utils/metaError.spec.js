@@ -57,4 +57,38 @@ describe('isMetaCreditAllocationError', () => {
       }),
     ).toBe(false);
   });
+
+  it('returns true when the subcode is nested inside an array', () => {
+    expect(
+      isMetaCreditAllocationError({
+        errors: [{ code: 1 }, { error_subcode: META_CREDIT_ALLOCATION_SUBCODE }],
+      }),
+    ).toBe(true);
+  });
+
+  it('returns true when a plain string contains the subcode', () => {
+    expect(
+      isMetaCreditAllocationError(`Meta failed with subcode ${META_CREDIT_ALLOCATION_SUBCODE}`),
+    ).toBe(true);
+  });
+
+  it('returns false for circular object graphs without the subcode', () => {
+    const circular = { error: { message: 'boom' } };
+    circular.self = circular;
+
+    expect(isMetaCreditAllocationError(circular)).toBe(false);
+  });
+
+  it('returns true for circular object graphs that include the subcode', () => {
+    const circular = {
+      error: { error_subcode: META_CREDIT_ALLOCATION_SUBCODE },
+    };
+    circular.self = circular;
+
+    expect(isMetaCreditAllocationError(circular)).toBe(true);
+  });
+
+  it('exports the expected Meta credit allocation subcode', () => {
+    expect(META_CREDIT_ALLOCATION_SUBCODE).toBe('1752246');
+  });
 });
