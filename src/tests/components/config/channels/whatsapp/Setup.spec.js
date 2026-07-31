@@ -91,17 +91,48 @@ describe('WhatsAppSetup.vue', () => {
     expect(wrapper.vm.wabaId).toBeNull();
   });
 
-  it('shows error modal when createChannel fails', async () => {
+  it('shows error toast when createChannel fails with a generic error', async () => {
     const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
+    const store = whatsapp_cloud();
 
-    wrapper.vm.errorCloudConfigure = true;
-    await wrapper.vm.$nextTick();
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
+      store.errorCloudConfigure = new Error('network');
+    });
 
     await wrapper.vm.createChannel('1234');
 
     expect(spy).toHaveBeenCalledWith({
       text: 'An error occurred while creating the channel. Try again later.',
     });
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(false);
+  });
+
+  it('opens ConnectNewWhatsAppAccount modal on Meta credit allocation error', async () => {
+    const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
+    const store = whatsapp_cloud();
+
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
+      store.errorCloudConfigure = {
+        message: 'Fatal',
+        type: 'OAuthException',
+        error_subcode: '1752246',
+      };
+    });
+
+    await wrapper.vm.createChannel('1234');
+
+    expect(spy).not.toHaveBeenCalled();
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(true);
+  });
+
+  it('retries Facebook login from ConnectNewWhatsAppAccount modal', async () => {
+    const startSpy = vi.spyOn(wrapper.vm, 'startFacebookLogin').mockImplementation(() => {});
+    wrapper.vm.showConnectNewAccountModal = true;
+
+    wrapper.vm.handleConnectNewAccountTryAgain();
+
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(false);
+    expect(startSpy).toHaveBeenCalled();
   });
 
   it('reacts to Pinia state changes', async () => {
