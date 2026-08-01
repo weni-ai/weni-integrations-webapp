@@ -1,6 +1,13 @@
 <template>
   <div class="account-tab">
     <div class="account-tab__content">
+      <unnnic-disclaimer
+        class="account-tab__content__brl-disclaimer"
+        type="informational"
+        :title="$t('WhatsApp.config.billing.brl_disclaimer.title')"
+        :description="$t('WhatsApp.config.billing.brl_disclaimer.description')"
+      />
+
       <section
         v-if="isProjectWithVoiceCalling"
         :class="[
@@ -522,6 +529,11 @@
       margin-top: $unnnic-spacing-stack-sm;
       overflow-x: hidden;
       flex: 1;
+
+      &__brl-disclaimer {
+        min-height: auto;
+        margin-bottom: $unnnic-spacing-stack-md;
+      }
 
       &__info {
         display: flex;

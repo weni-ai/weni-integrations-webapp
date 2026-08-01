@@ -398,6 +398,10 @@
         }
       },
       "billing": {
+        "brl_disclaimer": {
+          "description": "A Meta agora cobra mensagens do WhatsApp em reais no Brasil. Em 30 de julho de 2026, a conta foi atualizada automaticamente: uma nova conta de pessoa jurídica do WhatsApp (WABA) em reais foi criada, e o número, templates e fluxos foram transferidos para ela. O serviço continuou funcionando normalmente e nenhuma ação é necessária.",
+          "title": "Conta agora cobrada em reais (BRL)"
+        },
         "title": "Informações de pagamento"
       },
       "account_verification": {
