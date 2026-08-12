@@ -58,7 +58,7 @@ export function generateScriptCode(config) {
   return `<script>
   (function (d, s, u, w, v) {
     if (w[v]) { return; } else { w[v] = !0; }
-    const cb = `${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const cb = \`\${Date.now()}_\${Math.random().toString(36).slice(2)}\`;
     const withV = (url) => { const p = new URL(url); p.searchParams.set('v', cb); return p.toString(); };
     let h = d.getElementsByTagName(s)[0], k = d.createElement(s);
     k.onload = function () {
