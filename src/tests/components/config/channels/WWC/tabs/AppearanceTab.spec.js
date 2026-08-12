@@ -328,6 +328,12 @@ describe('AppearanceTab', () => {
       expect(avatarUpload.attributes('candelete')).toBe('true');
     });
 
+    it('should pass shouldReplace to avatar upload area', () => {
+      const uploadAreas = wrapper.findAll('unnnic-upload-area-stub');
+      const avatarUpload = uploadAreas[0];
+      expect(avatarUpload.attributes('shouldreplace')).toBe('true');
+    });
+
     it('should pass the existing avatar to the upload area when initialAvatarBase64 is provided', async () => {
       wrapper = createWrapper({
         initialAvatarBase64: 'https://example.com/avatar.png',
