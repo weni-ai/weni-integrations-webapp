@@ -530,10 +530,12 @@
       overflow-x: hidden;
       flex: 1;
 
+
       &__brl-disclaimer {
         min-height: auto;
-        margin-bottom: $unnnic-spacing-stack-md;
+        margin-bottom: $unnnic-space-4;
       }
+
 
       &__info {
         display: flex;
