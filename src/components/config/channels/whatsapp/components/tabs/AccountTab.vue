@@ -405,30 +405,19 @@
         );
       },
       brlMigrationIsoDate() {
-        return (
-          this.appInfo?.config?.currency_migration_previous_waba_info?.migrated_at ||
-          this.appInfo?.config?.wa_migration_date ||
-          ''
-        );
+        return this.appInfo?.config?.currency_migration?.migration_date || '';
       },
       showBrlBillingDisclaimer() {
-        const config = this.appInfo?.config;
-        const previous = config?.currency_migration_previous_waba_info;
-        if (!previous || typeof previous !== 'object' || !Object.keys(previous).length) {
+        const migration = this.appInfo?.config?.currency_migration;
+        if (!migration || typeof migration !== 'object') {
           return false;
         }
 
-        const currentCurrency = String(config?.wa_currency || '').toUpperCase();
-        const previousCurrency = String(previous.wa_currency || '').toUpperCase();
-        if (
-          currentCurrency !== 'BRL' ||
-          !previousCurrency ||
-          previousCurrency === currentCurrency
-        ) {
+        if (!migration.migration_date || !migration.old_waba_id) {
           return false;
         }
 
-        const migrationTime = new Date(this.brlMigrationIsoDate).getTime();
+        const migrationTime = new Date(migration.migration_date).getTime();
         if (Number.isNaN(migrationTime)) return false;
 
         const elapsedMs = Date.now() - migrationTime;

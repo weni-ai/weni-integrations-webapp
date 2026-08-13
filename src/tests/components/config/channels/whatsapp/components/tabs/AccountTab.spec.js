@@ -139,10 +139,9 @@ describe('AccountTab.vue', () => {
       });
 
     const migratedConfig = (overrides = {}) => ({
-      wa_currency: 'BRL',
-      currency_migration_previous_waba_info: {
-        migrated_at: '2026-07-30T23:53:08.065026+00:00',
-        wa_currency: 'USD',
+      currency_migration: {
+        migration_date: '2026-07-30T23:53:08.065026+00:00',
+        old_waba_id: '1623066789051136',
         ...overrides,
       },
     });
@@ -156,76 +155,50 @@ describe('AccountTab.vue', () => {
       vi.useRealTimers();
     });
 
-    it('does not render when currency_migration_previous_waba_info is missing', () => {
+    it('does not render when currency_migration is missing', () => {
       expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
 
-    it('does not render when currency_migration_previous_waba_info is null', () => {
+    it('does not render when currency_migration is null', () => {
       wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        currency_migration_previous_waba_info: null,
+        currency_migration: null,
       });
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
 
-    it('does not render when currency_migration_previous_waba_info is empty', () => {
+    it('does not render when currency_migration is empty', () => {
       wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        currency_migration_previous_waba_info: {},
+        currency_migration: {},
       });
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
 
-    it('does not render when previous currency is missing', () => {
+    it('does not render when migration_date is missing', () => {
       wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        currency_migration_previous_waba_info: {
-          wa_waba_id: '1623066789051136',
+        currency_migration: {
+          old_waba_id: '1623066789051136',
         },
       });
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
 
-    it('does not render when current currency is not BRL', () => {
+    it('does not render when old_waba_id is missing', () => {
       wrapper = createWrapperWithConfig({
-        wa_currency: 'USD',
-        currency_migration_previous_waba_info: {
-          wa_currency: 'EUR',
+        currency_migration: {
+          migration_date: '2026-07-30T23:53:08.065026+00:00',
         },
       });
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
 
-    it('does not render when previous currency is the same as current', () => {
-      wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        currency_migration_previous_waba_info: {
-          wa_currency: 'BRL',
-        },
-      });
-
-      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
-    });
-
-    it('renders when current currency is BRL and previous currency is different', () => {
+    it('renders when currency_migration has date and previous WABA id', () => {
       wrapper = createWrapperWithConfig(migratedConfig());
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
-    });
-
-    it('does not render when migration date is missing', () => {
-      wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        currency_migration_previous_waba_info: {
-          wa_currency: 'USD',
-        },
-      });
-
-      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
 
     it('does not render more than 30 days after the migration date', () => {
@@ -242,7 +215,7 @@ describe('AccountTab.vue', () => {
       expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
     });
 
-    it('uses migrated_at as the disclaimer date', () => {
+    it('uses currency_migration.migration_date as the disclaimer date', () => {
       wrapper = createWrapperWithConfig(migratedConfig());
 
       expect(wrapper.vm.brlMigrationDate).toBe('July 30, 2026');
@@ -251,19 +224,6 @@ describe('AccountTab.vue', () => {
           migrationDate: wrapper.vm.brlMigrationDate,
         }),
       ).toContain('July 30, 2026');
-    });
-
-    it('falls back to wa_migration_date when migrated_at is missing', () => {
-      wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        wa_migration_date: '2026-08-01T10:00:00.000000+00:00',
-        currency_migration_previous_waba_info: {
-          wa_currency: 'USD',
-        },
-      });
-
-      expect(wrapper.vm.brlMigrationDate).toBe('August 1, 2026');
-      expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
     });
   });
 });
