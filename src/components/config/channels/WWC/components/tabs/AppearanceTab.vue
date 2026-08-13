@@ -68,6 +68,7 @@
             :isUploading="avatarUpload.isUploading.value"
             :canImport="true"
             :canDelete="true"
+            :shouldReplace="true"
             :maxFileSize="10"
             @fileChange="handleAvatarChange"
           />
@@ -246,7 +247,10 @@
   }
 
   function handleAvatarChange(files) {
-    avatarUpload.handleImageUpload(files, async (base64, fileName) => {
+    const filesToProcess =
+      files.length > 1 ? [files[files.length - 1]] : files;
+
+    avatarUpload.handleImageUpload(filesToProcess, async (base64, fileName) => {
       if (!base64) {
         avatarFiles.value = [];
         avatarBase64.value = null;
@@ -256,7 +260,7 @@
       }
 
       const file = await avatarUpload.base64ToFile(base64, fileName);
-      avatarFiles.value = files;
+      avatarFiles.value = filesToProcess;
       avatarBase64.value = base64;
       emit('update:avatarFile', file);
       emit('update:avatarBase64', base64);

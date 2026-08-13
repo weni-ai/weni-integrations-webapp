@@ -214,7 +214,7 @@ describe('MyApps', () => {
     });
 
     describe('onDirectConfigModalClose', () => {
-      it('calls $router.back() when window.history.state.back is set', () => {
+      it('calls $router.replace("/apps/my") when closing the config modal', () => {
         const router = mockRouter();
         const wrapper = mount(MyApps, {
           global: {
@@ -223,22 +223,6 @@ describe('MyApps', () => {
           },
         });
 
-        window.history.pushState({ back: '/apps/my' }, '');
-        wrapper.vm.onDirectConfigModalClose();
-        expect(router.back).toHaveBeenCalled();
-        expect(router.replace).not.toHaveBeenCalled();
-      });
-
-      it('calls $router.replace("/apps/my") when there is no history.back', () => {
-        const router = mockRouter();
-        const wrapper = mount(MyApps, {
-          global: {
-            plugins: [createTestingPinia({ createSpy: vi.fn }), i18n],
-            mocks: { $router: router, $route: mockRoute() },
-          },
-        });
-
-        window.history.replaceState({}, '');
         wrapper.vm.onDirectConfigModalClose();
         expect(router.replace).toHaveBeenCalledWith('/apps/my');
         expect(router.back).not.toHaveBeenCalled();

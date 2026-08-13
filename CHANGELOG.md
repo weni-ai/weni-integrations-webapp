@@ -1,3 +1,14 @@
+3.15.1
+----------
+`2026-08-12 · 2 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix Shopping Assistant avatar replacement on upload
+- Add cache-busting `v` param to Weni WebChat loader scripts
+
+### 🔧 Improvements
+- Always navigate to My Apps when closing the direct config modal
+
 3.15.0
 ----------
 `2026-07-24 · 1 🔧`
