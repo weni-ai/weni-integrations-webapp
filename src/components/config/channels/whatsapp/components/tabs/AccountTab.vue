@@ -404,6 +404,13 @@
           }
         );
       },
+      brlMigrationIsoDate() {
+        return (
+          this.appInfo?.config?.currency_migration_previous_waba_info?.migrated_at ||
+          this.appInfo?.config?.wa_migration_date ||
+          ''
+        );
+      },
       showBrlBillingDisclaimer() {
         const config = this.appInfo?.config;
         const previous = config?.currency_migration_previous_waba_info;
@@ -413,18 +420,24 @@
 
         const currentCurrency = String(config?.wa_currency || '').toUpperCase();
         const previousCurrency = String(previous.wa_currency || '').toUpperCase();
+        if (
+          currentCurrency !== 'BRL' ||
+          !previousCurrency ||
+          previousCurrency === currentCurrency
+        ) {
+          return false;
+        }
 
-        return (
-          currentCurrency === 'BRL' &&
-          Boolean(previousCurrency) &&
-          previousCurrency !== currentCurrency
-        );
+        const migrationTime = new Date(this.brlMigrationIsoDate).getTime();
+        if (Number.isNaN(migrationTime)) return false;
+
+        const elapsedMs = Date.now() - migrationTime;
+        const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
+
+        return elapsedMs >= 0 && elapsedMs <= thirtyDaysMs;
       },
       brlMigrationDate() {
-        const iso =
-          this.appInfo?.config?.currency_migration_previous_waba_info?.migrated_at ||
-          this.appInfo?.config?.wa_migration_date;
-
+        const iso = this.brlMigrationIsoDate;
         if (!iso) return '';
 
         const date = new Date(iso);

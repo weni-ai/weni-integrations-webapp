@@ -138,6 +138,24 @@ describe('AccountTab.vue', () => {
         },
       });
 
+    const migratedConfig = (overrides = {}) => ({
+      wa_currency: 'BRL',
+      currency_migration_previous_waba_info: {
+        migrated_at: '2026-07-30T23:53:08.065026+00:00',
+        wa_currency: 'USD',
+        ...overrides,
+      },
+    });
+
+    beforeEach(() => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date('2026-08-13T12:00:00.000Z'));
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
     it('does not render when currency_migration_previous_waba_info is missing', () => {
       expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
     });
@@ -194,25 +212,38 @@ describe('AccountTab.vue', () => {
     });
 
     it('renders when current currency is BRL and previous currency is different', () => {
+      wrapper = createWrapperWithConfig(migratedConfig());
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
+    });
+
+    it('does not render when migration date is missing', () => {
       wrapper = createWrapperWithConfig({
         wa_currency: 'BRL',
         currency_migration_previous_waba_info: {
-          migrated_at: '2026-07-30T23:53:08.065026+00:00',
           wa_currency: 'USD',
         },
       });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render more than 30 days after the migration date', () => {
+      vi.setSystemTime(new Date('2026-08-30T00:00:00.000Z'));
+      wrapper = createWrapperWithConfig(migratedConfig());
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('renders on the 30th day after the migration date', () => {
+      vi.setSystemTime(new Date('2026-08-29T23:53:08.065026+00:00'));
+      wrapper = createWrapperWithConfig(migratedConfig());
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
     });
 
     it('uses migrated_at as the disclaimer date', () => {
-      wrapper = createWrapperWithConfig({
-        wa_currency: 'BRL',
-        currency_migration_previous_waba_info: {
-          migrated_at: '2026-07-30T23:53:08.065026+00:00',
-          wa_currency: 'USD',
-        },
-      });
+      wrapper = createWrapperWithConfig(migratedConfig());
 
       expect(wrapper.vm.brlMigrationDate).toBe('July 30, 2026');
       expect(
@@ -232,6 +263,7 @@ describe('AccountTab.vue', () => {
       });
 
       expect(wrapper.vm.brlMigrationDate).toBe('August 1, 2026');
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
     });
   });
 });
