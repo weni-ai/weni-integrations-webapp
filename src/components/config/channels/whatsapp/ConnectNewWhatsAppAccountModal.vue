@@ -56,16 +56,18 @@
 
     &__description {
       text-align: left;
-      padding: $unnnic-spacing-md;
+
+      padding: $unnnic-space-4;
       color: $unnnic-color-fg-base;
 
       :deep(ol) {
-        padding-left: $unnnic-spacing-inline-md;
+        padding-left: $unnnic-space-3;
         margin: 0;
       }
 
       :deep(li) {
-        margin-top: $unnnic-spacing-stack-nano;
+        margin-top: $unnnic-space-1;
+
       }
 
       :deep(b) {
