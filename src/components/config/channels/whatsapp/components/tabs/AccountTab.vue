@@ -6,7 +6,11 @@
         class="account-tab__content__brl-disclaimer"
         type="informational"
         :title="$t('WhatsApp.config.billing.brl_disclaimer.title')"
-        :description="$t('WhatsApp.config.billing.brl_disclaimer.description')"
+        :description="
+          $t('WhatsApp.config.billing.brl_disclaimer.description', {
+            migrationDate: brlMigrationDate,
+          })
+        "
       />
 
       <section
@@ -411,8 +415,27 @@
         const previousCurrency = String(previous.wa_currency || '').toUpperCase();
 
         return (
-          currentCurrency === 'BRL' && Boolean(previousCurrency) && previousCurrency !== currentCurrency
+          currentCurrency === 'BRL' &&
+          Boolean(previousCurrency) &&
+          previousCurrency !== currentCurrency
         );
+      },
+      brlMigrationDate() {
+        const iso =
+          this.appInfo?.config?.currency_migration_previous_waba_info?.migrated_at ||
+          this.appInfo?.config?.wa_migration_date;
+
+        if (!iso) return '';
+
+        const date = new Date(iso);
+        if (Number.isNaN(date.getTime())) return '';
+
+        return new Intl.DateTimeFormat(this.$i18n.locale, {
+          day: 'numeric',
+          month: 'long',
+          timeZone: 'UTC',
+          year: 'numeric',
+        }).format(date);
       },
       hasVtexCatalogConnected() {
         return this.vtexApp?.config?.connected_catalog ?? false;

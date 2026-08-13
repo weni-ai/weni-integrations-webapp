@@ -399,7 +399,7 @@
       },
       "billing": {
         "brl_disclaimer": {
-          "description": "Meta acum taxează mesajele WhatsApp în reali în Brazilia. Pe 30 iulie 2026, contul a fost actualizat automat: un cont WhatsApp Business nou (WABA) în reali a fost creat, iar numărul, șabloanele și fluxurile au fost mutate în el. Serviciul a continuat să funcționeze normal și nu este necesară nicio acțiune.",
+          "description": "Meta acum taxează mesajele WhatsApp în reali în Brazilia. Pe {migrationDate}, contul a fost actualizat automat: un cont WhatsApp Business nou (WABA) în reali a fost creat, iar numărul, șabloanele și fluxurile au fost mutate în el. Serviciul a continuat să funcționeze normal și nu este necesară nicio acțiune.",
           "title": "Cont facturat acum în reali brazilieni (BRL)"
         },
         "title": "Informații de plată"

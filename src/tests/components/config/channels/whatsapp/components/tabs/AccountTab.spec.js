@@ -197,11 +197,41 @@ describe('AccountTab.vue', () => {
       wrapper = createWrapperWithConfig({
         wa_currency: 'BRL',
         currency_migration_previous_waba_info: {
+          migrated_at: '2026-07-30T23:53:08.065026+00:00',
           wa_currency: 'USD',
         },
       });
 
       expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
+    });
+
+    it('uses migrated_at as the disclaimer date', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        currency_migration_previous_waba_info: {
+          migrated_at: '2026-07-30T23:53:08.065026+00:00',
+          wa_currency: 'USD',
+        },
+      });
+
+      expect(wrapper.vm.brlMigrationDate).toBe('July 30, 2026');
+      expect(
+        wrapper.vm.$t('WhatsApp.config.billing.brl_disclaimer.description', {
+          migrationDate: wrapper.vm.brlMigrationDate,
+        }),
+      ).toContain('July 30, 2026');
+    });
+
+    it('falls back to wa_migration_date when migrated_at is missing', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        wa_migration_date: '2026-08-01T10:00:00.000000+00:00',
+        currency_migration_previous_waba_info: {
+          wa_currency: 'USD',
+        },
+      });
+
+      expect(wrapper.vm.brlMigrationDate).toBe('August 1, 2026');
     });
   });
 });

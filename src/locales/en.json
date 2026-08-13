@@ -399,7 +399,7 @@
       },
       "billing": {
         "brl_disclaimer": {
-          "description": "Meta now charges WhatsApp messages in Reais in Brazil. On July 30, 2026, the account was updated automatically: a new WhatsApp Business account (WABA) in Reais was created, and the number, templates, and flows were moved to it. Service kept running normally and no action is needed.",
+          "description": "Meta now charges WhatsApp messages in Reais in Brazil. On {migrationDate}, the account was updated automatically: a new WhatsApp Business account (WABA) in Reais was created, and the number, templates, and flows were moved to it. Service kept running normally and no action is needed.",
           "title": "Account now billed in Brazilian Reais (BRL)"
         },
         "title": "Payment information"
