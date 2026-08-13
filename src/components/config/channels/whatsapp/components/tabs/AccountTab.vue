@@ -2,6 +2,7 @@
   <div class="account-tab">
     <div class="account-tab__content">
       <unnnic-disclaimer
+        v-if="showBrlBillingDisclaimer"
         class="account-tab__content__brl-disclaimer"
         type="informational"
         :title="$t('WhatsApp.config.billing.brl_disclaimer.title')"
@@ -397,6 +398,20 @@
             default_template_language: null,
             consent_status: null,
           }
+        );
+      },
+      showBrlBillingDisclaimer() {
+        const config = this.appInfo?.config;
+        const previous = config?.currency_migration_previous_waba_info;
+        if (!previous || typeof previous !== 'object' || !Object.keys(previous).length) {
+          return false;
+        }
+
+        const currentCurrency = String(config?.wa_currency || '').toUpperCase();
+        const previousCurrency = String(previous.wa_currency || '').toUpperCase();
+
+        return (
+          currentCurrency === 'BRL' && Boolean(previousCurrency) && previousCurrency !== currentCurrency
         );
       },
       hasVtexCatalogConnected() {

@@ -122,4 +122,86 @@ describe('AccountTab.vue', () => {
     expect(section.fields[0].value).toBe('Business Name');
     expect(section.fields[1].value).toBe('Behalf Name');
   });
+
+  describe('BRL billing disclaimer', () => {
+    const findBrlDisclaimer = (component) =>
+      component.find('.account-tab__content__brl-disclaimer');
+
+    const createWrapperWithConfig = (config) =>
+      createWrapper({
+        appInfo: {
+          ...wrapper.vm.appInfo,
+          config: {
+            ...wrapper.vm.appInfo.config,
+            ...config,
+          },
+        },
+      });
+
+    it('does not render when currency_migration_previous_waba_info is missing', () => {
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when currency_migration_previous_waba_info is null', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        currency_migration_previous_waba_info: null,
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when currency_migration_previous_waba_info is empty', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        currency_migration_previous_waba_info: {},
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when previous currency is missing', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        currency_migration_previous_waba_info: {
+          wa_waba_id: '1623066789051136',
+        },
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when current currency is not BRL', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'USD',
+        currency_migration_previous_waba_info: {
+          wa_currency: 'EUR',
+        },
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when previous currency is the same as current', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        currency_migration_previous_waba_info: {
+          wa_currency: 'BRL',
+        },
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('renders when current currency is BRL and previous currency is different', () => {
+      wrapper = createWrapperWithConfig({
+        wa_currency: 'BRL',
+        currency_migration_previous_waba_info: {
+          wa_currency: 'USD',
+        },
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
+    });
+  });
 });
