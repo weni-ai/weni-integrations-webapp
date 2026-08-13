@@ -1,6 +1,18 @@
 <template>
   <div class="account-tab">
     <div class="account-tab__content">
+      <unnnic-disclaimer
+        v-if="showBrlBillingDisclaimer"
+        class="account-tab__content__brl-disclaimer"
+        type="informational"
+        :title="$t('WhatsApp.config.billing.brl_disclaimer.title')"
+        :description="
+          $t('WhatsApp.config.billing.brl_disclaimer.description', {
+            migrationDate: brlMigrationDate,
+          })
+        "
+      />
+
       <section
         v-if="isProjectWithVoiceCalling"
         :class="[
@@ -392,6 +404,41 @@
           }
         );
       },
+      brlMigrationIsoDate() {
+        return this.appInfo?.config?.currency_migration?.migration_date || '';
+      },
+      showBrlBillingDisclaimer() {
+        const migration = this.appInfo?.config?.currency_migration;
+        if (!migration || typeof migration !== 'object') {
+          return false;
+        }
+
+        if (!migration.migration_date || !migration.old_waba_id) {
+          return false;
+        }
+
+        const migrationTime = new Date(migration.migration_date).getTime();
+        if (Number.isNaN(migrationTime)) return false;
+
+        const elapsedMs = Date.now() - migrationTime;
+        const thirtyDaysMs = 30 * 24 * 60 * 60 * 1000;
+
+        return elapsedMs >= 0 && elapsedMs <= thirtyDaysMs;
+      },
+      brlMigrationDate() {
+        const iso = this.brlMigrationIsoDate;
+        if (!iso) return '';
+
+        const date = new Date(iso);
+        if (Number.isNaN(date.getTime())) return '';
+
+        return new Intl.DateTimeFormat(this.$i18n.locale, {
+          day: 'numeric',
+          month: 'long',
+          timeZone: 'UTC',
+          year: 'numeric',
+        }).format(date);
+      },
       hasVtexCatalogConnected() {
         return this.vtexApp?.config?.connected_catalog ?? false;
       },
@@ -522,6 +569,11 @@
       margin-top: $unnnic-spacing-stack-sm;
       overflow-x: hidden;
       flex: 1;
+
+      &__brl-disclaimer {
+        min-height: auto;
+        margin-bottom: $unnnic-space-4;
+      }
 
       &__info {
         display: flex;

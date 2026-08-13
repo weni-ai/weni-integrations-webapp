@@ -1,3 +1,10 @@
+3.16.1
+----------
+`2026-08-13 · 1 🎉`
+
+### 🎉 New features
+- Show a WhatsApp Cloud BRL billing disclaimer after currency migration, using the migration date from the app config and hiding it after 30 days
+
 3.15.1
 ----------
 `2026-08-12 · 2 🐛 · 1 🔧`

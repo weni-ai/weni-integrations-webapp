@@ -247,8 +247,7 @@
   }
 
   function handleAvatarChange(files) {
-    const filesToProcess =
-      files.length > 1 ? [files[files.length - 1]] : files;
+    const filesToProcess = files.length > 1 ? [files[files.length - 1]] : files;
 
     avatarUpload.handleImageUpload(filesToProcess, async (base64, fileName) => {
       if (!base64) {
