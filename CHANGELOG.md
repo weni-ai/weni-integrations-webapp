@@ -1,3 +1,10 @@
+3.17.0
+----------
+`2026-08-13 · 1 🎉`
+
+### 🎉 New features
+- Show a modal to connect a new WhatsApp account when Meta returns credit allocation error `1752246` during setup
+
 3.16.1
 ----------
 `2026-08-13 · 1 🎉`

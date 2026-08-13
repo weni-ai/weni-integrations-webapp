@@ -880,6 +880,11 @@
     "setup": {
       "continue": "Continuar",
       "connect": "Conectar",
+      "connect_new_account": {
+        "description": "A conta de pessoa jurídica do WhatsApp selecionada já está configurada para cobrança com outro sistema, então seu número não pode ser conectado através dela.<br /><br />Crie uma <b>nova conta de pessoa jurídica do WhatsApp</b> e seu número será conectado com sucesso. Isso funciona independentemente de onde seu negócio está localizado.<br /><br /><ol><li>Selecione <b>Tentar novamente</b> abaixo.</li><li>Quando o WhatsApp perguntar qual conta usar, escolha <b>Criar uma nova conta de pessoa jurídica do WhatsApp</b>.</li><li>Siga as etapas de configuração para concluir.</li></ol>",
+        "title": "Conectar nova conta do WhatsApp",
+        "try_again": "Tentar novamente"
+      },
       "description": "Siga os passos para integrar com o WhatsApp"
     },
     "config": {

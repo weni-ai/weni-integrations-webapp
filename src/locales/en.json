@@ -880,6 +880,11 @@
     "setup": {
       "continue": "Continue",
       "connect": "Connect",
+      "connect_new_account": {
+        "description": "The WhatsApp Business Account you selected is already set up for billing with another system, so your number can't be connected through it.<br /><br />Create a <b>new WhatsApp Business Account</b> and your number will connect successfully. This works no matter where your business is located.<br /><br /><ol><li>Select <b>Try again</b> below.</li><li>When WhatsApp asks which account to use, choose <b>Create a new WhatsApp Business Account</b>.</li><li>Follow the setup steps to finish.</li></ol>",
+        "title": "Connect new WhatsApp account",
+        "try_again": "Try again"
+      },
       "description": "Follow the steps to integrate with WhatsApp"
     },
     "config": {

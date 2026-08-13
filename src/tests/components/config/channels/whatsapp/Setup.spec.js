@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils';
 import { setActivePinia } from 'pinia';
 import { createTestingPinia } from '@pinia/testing';
 import WhatsAppSetup from '@/components/config/channels/whatsapp/Setup.vue';
+import ConnectNewWhatsAppAccountModal from '@/components/config/channels/whatsapp/ConnectNewWhatsAppAccountModal.vue';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
@@ -43,6 +44,9 @@ describe('WhatsAppSetup.vue', () => {
     wrapper = mount(WhatsAppSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: {
+          ConnectNewWhatsAppAccountModal: true,
+        },
         mocks: {
           $route: { params: { appUuid: '123' } },
           $router: {
@@ -91,17 +95,87 @@ describe('WhatsAppSetup.vue', () => {
     expect(wrapper.vm.wabaId).toBeNull();
   });
 
-  it('shows error modal when createChannel fails', async () => {
+  it('shows error toast when createChannel fails with a generic error', async () => {
     const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
+    const store = whatsapp_cloud();
 
-    wrapper.vm.errorCloudConfigure = true;
-    await wrapper.vm.$nextTick();
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
+      store.errorCloudConfigure = new Error('network');
+    });
 
     await wrapper.vm.createChannel('1234');
 
     expect(spy).toHaveBeenCalledWith({
       text: 'An error occurred while creating the channel. Try again later.',
     });
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(false);
+  });
+
+  it('opens ConnectNewWhatsAppAccount modal on Meta credit allocation error', async () => {
+    const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
+    const store = whatsapp_cloud();
+
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
+      store.errorCloudConfigure = {
+        message: 'Fatal',
+        type: 'OAuthException',
+        error_subcode: '1752246',
+      };
+    });
+
+    await wrapper.vm.createChannel('1234');
+    await wrapper.vm.$nextTick();
+
+    expect(spy).not.toHaveBeenCalled();
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(true);
+
+    const connectModal = wrapper.findComponent(ConnectNewWhatsAppAccountModal);
+    expect(connectModal.exists()).toBe(true);
+    expect(connectModal.props('show')).toBe(true);
+  });
+
+  it('opens ConnectNewWhatsAppAccount modal for nested axios Meta errors', async () => {
+    const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
+    const store = whatsapp_cloud();
+
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
+      store.errorCloudConfigure = {
+        response: {
+          data: {
+            error: {
+              error_subcode: 1752246,
+            },
+          },
+        },
+      };
+    });
+
+    await wrapper.vm.createChannel('1234');
+
+    expect(spy).not.toHaveBeenCalled();
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(true);
+  });
+
+  it('retries Facebook login from ConnectNewWhatsAppAccount modal', async () => {
+    const startSpy = vi.spyOn(wrapper.vm, 'startFacebookLogin').mockImplementation(() => {});
+    wrapper.vm.showConnectNewAccountModal = true;
+    await wrapper.vm.$nextTick();
+
+    const connectModal = wrapper.findComponent(ConnectNewWhatsAppAccountModal);
+    await connectModal.vm.$emit('try-again');
+
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(false);
+    expect(startSpy).toHaveBeenCalled();
+  });
+
+  it('closes ConnectNewWhatsAppAccount modal on close event', async () => {
+    wrapper.vm.showConnectNewAccountModal = true;
+    await wrapper.vm.$nextTick();
+
+    const connectModal = wrapper.findComponent(ConnectNewWhatsAppAccountModal);
+    await connectModal.vm.$emit('close');
+
+    expect(wrapper.vm.showConnectNewAccountModal).toBe(false);
   });
 
   it('reacts to Pinia state changes', async () => {

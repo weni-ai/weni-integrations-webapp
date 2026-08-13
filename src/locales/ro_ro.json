@@ -880,6 +880,11 @@
     "setup": {
       "continue": "Continuă",
       "connect": "Conectare",
+      "connect_new_account": {
+        "description": "Contul WhatsApp Business selectat este deja configurat pentru facturare cu un alt sistem, astfel numărul tău nu poate fi conectat prin el.<br /><br />Creează un <b>cont WhatsApp Business nou</b> și numărul tău se va conecta cu succes. Funcționează indiferent de locația afacerii tale.<br /><br /><ol><li>Selectează <b>Încearcă din nou</b> mai jos.</li><li>Când WhatsApp te întreabă ce cont să folosești, alege <b>Creează un cont WhatsApp Business nou</b>.</li><li>Urmează pașii de configurare pentru a finaliza.</li></ol>",
+        "title": "Conectează un cont WhatsApp nou",
+        "try_again": "Încearcă din nou"
+      },
       "description": "Urmează pașii pentru a realiza integrarea cu WhatsApp"
     },
     "config": {
