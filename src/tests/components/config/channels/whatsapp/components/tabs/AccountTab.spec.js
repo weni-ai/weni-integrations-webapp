@@ -68,9 +68,11 @@ describe('AccountTab.vue', () => {
   });
 
   it('renders a single manage content label', () => {
-    expect(wrapper.find('.account-tab__content__info__templates__title').text()).toBe(
+
+    expect(wrapper.find('.account-tab__content__section__title').text()).toBe(
       'Manage content',
     );
+
   });
 
   it('renders phone number correctly', () => {
