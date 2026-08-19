@@ -2,12 +2,7 @@
 
 exports[`Config.vue > matches the snapshot 1`] = `
 "<div data-v-30bfe664="" class="app-config-telegram">
-  <div data-v-30bfe664="" class="app-config-telegram__header">
-    <div data-v-30bfe664="" class="app-config-telegram__header__title">
-      <div data-v-30bfe664="" class="app-config-telegram__header__title__icon-container"><img data-v-30bfe664="" class="app-config-telegram__header__title__icon-container__icon" src="telegram-icon-url"></div>
-      <div data-v-30bfe664="" class="app-config-telegram__header__title__name">Telegram App</div>
-    </div><span data-v-30bfe664="" class="app-config-telegram__header__description">Learn more about how to integrate Telegram <a data-v-30bfe664="" href="https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel" target="_blank"><span data-v-30bfe664="">here</span></a></span>
-  </div>
+  <div data-v-30bfe664="" class="app-config-telegram__header"><span data-v-30bfe664="" class="app-config-telegram__header__description">Learn more about how to integrate Telegram <a data-v-30bfe664="" href="https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel" target="_blank"><span data-v-30bfe664="">here</span></a></span></div>
   <div data-v-30bfe664="" class="app-config-telegram__settings__content">
     <section data-v-61d29f44="" data-v-2dd04313="" data-v-30bfe664="" class="unnnic-form-element unnnic-form-element--disabled unnnic-form md" data-testid="form-element">
       <section data-v-b52fcb11="" data-v-61d29f44="" class="unnnic-label unnnic-form-element__label">

@@ -41,9 +41,8 @@ describe('wpp-demo-preview Component', () => {
     wrapper.unmount();
   });
 
-  it('should render app name and icon correctly', () => {
-    expect(wrapper.find('img').attributes('src')).toBe(mockApp.icon);
-    expect(wrapper.find('.app-preview-wpp_demo__header__title__name').text()).toBe(mockApp.name);
+  it('should render the header description', () => {
+    expect(wrapper.find('.app-preview-wpp_demo__header__description').exists()).toBe(true);
   });
 
   it('should display the QR code URL', () => {

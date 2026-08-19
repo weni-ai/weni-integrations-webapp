@@ -9,9 +9,7 @@ exports[`AppGrid > matches snapshot 1`] = `
   </section>
   <unnnic-modal data-v-deb56cf9="" showmodal="false" text="Delete app" scheme="feedback-red" modal-icon="alert-circle-1"></unnnic-modal>
   <div data-v-7d3d5e15="" data-v-deb56cf9="">
-    <transition-stub data-v-7d3d5e15="" name="fade" appear="false" persisted="false" css="true">
-      <!--v-if-->
-    </transition-stub>
+    <!--v-if-->
     <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
   </div>
 </div>"

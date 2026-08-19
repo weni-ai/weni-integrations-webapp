@@ -1,17 +1,6 @@
 <template>
   <div class="app-config-generic">
     <div class="app-config-generic__header" ref="header">
-      <div class="app-config-generic__header__title">
-        <div class="app-config-generic__header__title__icon-container">
-          <img
-            class="app-config-generic__header__title__icon-container__icon"
-            :src="app.config.channel_icon_url"
-          />
-        </div>
-        <div class="app-config-generic__header__title__name">
-          {{ app.config.channel_name }}
-        </div>
-      </div>
       <span class="app-config-generic__header__description" v-html="appDescription" />
 
       <div v-if="callbackChannels.includes(app.config.channel_code) && shouldDisplayCallback">
@@ -258,33 +247,6 @@
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
       flex-direction: column;
-
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-
-          &__icon {
-            width: $unnnic-avatar-size-sm;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-      }
 
       &__description {
         &.bold {

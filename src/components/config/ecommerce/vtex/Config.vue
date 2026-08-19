@@ -1,21 +1,6 @@
 <template>
   <div class="config-vtex">
     <div class="config-vtex__header">
-      <div class="config-vtex__header__title">
-        <div class="config-vtex__header__title__icon-container">
-          <img class="config-vtex__header__title__icon-container__icon" :src="app.icon" />
-        </div>
-        <div class="config-vtex__header__title__name">{{ app.name }}</div>
-
-        <unnnic-button
-          ref="closeButton"
-          class="config-vtex__header__title__close"
-          type="tertiary"
-          icon-center="close-1"
-          size="small"
-          @click="closeConfig"
-        />
-      </div>
       <span class="config-vtex__header__description" v-html="$t('vtex.config.description')" />
     </div>
 
@@ -381,44 +366,7 @@
       margin: $unnnic-spacing-lg;
       margin-bottom: $unnnic-spacing-md;
 
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-          align-items: center;
-
-          background-color: rgba(247, 25, 99, 0.08);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            height: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-
-        &__close {
-          margin-left: auto;
-          align-self: center;
-        }
-      }
-
       &__description {
-        margin-top: $unnnic-inline-sm;
         font-family: $unnnic-font-family-secondary;
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;

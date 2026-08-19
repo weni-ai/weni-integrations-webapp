@@ -1,12 +1,23 @@
 <template>
   <div>
-    <transition name="fade">
-      <div class="config-modal" v-if="show">
-        <div class="config-modal__backdrop" @click="closeModal" />
-
-        <div class="config-modal__dialog">
+    <UnnnicDrawerNext v-if="show" :open="show" @update:open="onDrawerOpenChange" size="large">
+      <UnnnicDrawerContent size="large">
+        <UnnnicDrawerHeader>
+          <UnnnicDrawerTitle>
+            <div class="config-drawer__title">
+              <img
+                v-if="showHeaderIcon"
+                class="config-drawer__title__icon"
+                :src="headerIcon"
+                alt=""
+              />
+              <span>{{ headerTitle }}</span>
+            </div>
+          </UnnnicDrawerTitle>
+        </UnnnicDrawerHeader>
+        <div class="config-drawer__body">
           <component
-            class="config-modal__component"
+            class="config-drawer__component"
             :is="currentComponent"
             :app="currentApp"
             :isConfigured="isConfigured"
@@ -14,8 +25,8 @@
             @setConfirmation="setConfirmation"
           />
         </div>
-      </div>
-    </transition>
+      </UnnnicDrawerContent>
+    </UnnnicDrawerNext>
 
     <unnnic-modal
       ref="unnnic-confirmation-modal"
@@ -60,10 +71,26 @@
   import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
   import vtexConfig from '@/components/config/ecommerce/vtex/Config.vue';
   import emailConfig from '@/components/config/channels/email/Config.vue';
+  import { getAppDisplayName } from '@/utils/apps';
   import { markRaw } from 'vue';
+  import {
+    UnnnicDrawerNext,
+    UnnnicDrawerContent,
+    UnnnicDrawerHeader,
+    UnnnicDrawerTitle,
+  } from '@weni/unnnic-system';
+
+  const WHATSAPP_CODES = ['wpp', 'wpp-cloud'];
+  const CODES_WITHOUT_HEADER_ICON = [...WHATSAPP_CODES, 'wwc'];
 
   export default {
     name: 'Modal',
+    components: {
+      UnnnicDrawerNext,
+      UnnnicDrawerContent,
+      UnnnicDrawerHeader,
+      UnnnicDrawerTitle,
+    },
     data() {
       return {
         show: false,
@@ -89,6 +116,13 @@
     },
     emits: ['close'],
     methods: {
+      onDrawerOpenChange(open) {
+        if (open) {
+          this.show = true;
+          return;
+        }
+        this.closeModal();
+      },
       closeModal() {
         if (this.needConfirmation) {
           this.showConfirmationModal = true;
@@ -120,40 +154,55 @@
       currentComponent() {
         return this.componentMapping[this.type] || genericTypeConfig;
       },
+      isGenericApp() {
+        return !this.componentMapping[this.type];
+      },
+      showHeaderIcon() {
+        if (CODES_WITHOUT_HEADER_ICON.includes(this.type)) {
+          return false;
+        }
+        return Boolean(this.headerIcon);
+      },
+      headerIcon() {
+        if (this.isGenericApp) {
+          return this.currentApp.config?.channel_icon_url;
+        }
+        return this.currentApp.icon;
+      },
+      headerTitle() {
+        if (this.isGenericApp) {
+          return this.currentApp.config?.channel_name || this.currentApp.name;
+        }
+        return getAppDisplayName(this.currentApp, this.$t.bind(this));
+      },
     },
   };
 </script>
 
 <style lang="scss" scoped>
-  .config-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    &__backdrop {
-      position: fixed;
-      top: 0;
-      right: 50%;
-      bottom: 0;
-      left: 0;
-      background-color: rgba($unnnic-color-gray-12, 0.4);
-      z-index: 1;
+  .config-drawer {
+    &__title {
+      display: flex;
+      align-items: center;
+      gap: $unnnic-inline-sm;
+
+      &__icon {
+        width: $unnnic-icon-size-md;
+        height: $unnnic-icon-size-md;
+        object-fit: contain;
+      }
     }
-    &__dialog {
-      height: 100vh;
-      width: 50%;
-      background-color: $unnnic-color-bg-base;
-      margin: 0 50%;
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
     }
-  }
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.2s;
-  }
-  .fade-enter,
-  .fade-leave-to {
-    opacity: 0;
+
+    &__component {
+      height: 100%;
+    }
   }
 </style>

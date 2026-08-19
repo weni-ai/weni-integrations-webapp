@@ -43,11 +43,6 @@ describe('Config.vue', () => {
   });
 
   it('should render the component correctly', () => {
-    const img = wrapper.find('img');
-    expect(img.attributes('src')).toBe('telegram-icon-url');
-
-    expect(wrapper.find('.app-config-telegram__header__title__name').text()).toBe('Telegram App');
-
     expect(wrapper.find('.app-config-telegram__header__description').text()).toContain(
       'Learn more about how to integrate Telegram here',
     );

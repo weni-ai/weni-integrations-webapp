@@ -70,12 +70,8 @@ describe('GenericConfig.vue', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('displays the correct channel name and icon', () => {
-    const icon = wrapper.find('img');
-    const channelName = wrapper.find('.app-config-generic__header__title__name');
-
-    expect(icon.attributes('src')).toBe(appMock.config.channel_icon_url);
-    expect(channelName.text()).toBe(appMock.config.channel_name);
+  it('renders the generic config form container', () => {
+    expect(wrapper.find('.app-config-generic').exists()).toBe(true);
   });
 
   it('renders the app description correctly', () => {

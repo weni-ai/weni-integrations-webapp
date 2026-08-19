@@ -1,25 +1,6 @@
 <template>
   <div class="config-whatsapp">
     <div class="config-whatsapp__header">
-      <div class="config-whatsapp__header__title">
-        <div class="config-whatsapp__header__title__icon-container">
-          <img
-            class="config-whatsapp__header__title__icon-container__icon"
-            :src="app.icon"
-            alt=""
-          />
-        </div>
-        <div class="config-whatsapp__header__title__name">{{ app.name }}</div>
-
-        <unnnic-button
-          ref="close"
-          class="config-whatsapp__header__title__close"
-          type="tertiary"
-          icon-center="close-1"
-          size="small"
-          @click="closeConfig"
-        />
-      </div>
       <span class="config-whatsapp__header__description">
         {{ $t('WhatsApp.config.description.text') }}
         <span>
@@ -249,43 +230,7 @@
       flex-direction: column;
       margin: $unnnic-spacing-inset-lg;
 
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-
-          background-color: rgba(96, 190, 99, 0.2);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-
-        &__close {
-          margin-left: auto;
-          align-self: center;
-        }
-      }
-
       &__description {
-        margin-top: $unnnic-inline-sm;
-
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;

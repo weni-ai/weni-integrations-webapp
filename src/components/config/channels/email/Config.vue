@@ -1,14 +1,5 @@
 <template>
   <div class="app-config-email">
-    <div class="app-config-email__header">
-      <div class="app-config-email__header__title">
-        <div class="app-config-email__header__title__icon-container">
-          <img class="app-config-email__header__title__icon-container__icon" :src="app.icon" />
-        </div>
-        <div class="app-config-email__header__title__name">{{ app.name }}</div>
-      </div>
-    </div>
-
     <div class="app-config-email__settings__content">
       <unnnic-label :label="`${$t('email.config.description')}`" />
       <div class="app-config-email__settings__content__divider" />
@@ -308,35 +299,6 @@
       display: flex;
       margin-bottom: $unnnic-spacing-stack-md;
       flex-direction: column;
-
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-
-          background-color: rgba(197, 220, 245, 0.5);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-      }
     }
 
     &__settings {

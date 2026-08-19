@@ -1,12 +1,6 @@
 <template>
   <div class="app-preview-wpp_demo">
     <div class="app-preview-wpp_demo__header">
-      <div class="app-preview-wpp_demo__header__title">
-        <div class="app-preview-wpp_demo__header__title__icon-container">
-          <img class="app-preview-wpp_demo__header__title__icon-container__icon" :src="app.icon" />
-        </div>
-        <div class="app-preview-wpp_demo__header__title__name">{{ app.name }}</div>
-      </div>
       <div class="app-preview-wpp_demo__header__description">
         {{ $t('WhatsAppDemo.preview.description') }}
       </div>
@@ -109,35 +103,6 @@
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
       flex-direction: column;
-
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-
-          background: rgba(209, 252, 201, 0.8);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-      }
 
       &__description {
         display: flex;
