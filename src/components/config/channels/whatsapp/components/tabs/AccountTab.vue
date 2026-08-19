@@ -27,82 +27,76 @@
         />
       </section>
 
-      <div class="account-tab__content__info">
-        <div class="account-tab__content__info__templates">
-          <div class="account-tab__content__info__templates__title">
-            {{ $t('WhatsApp.config.manage_content') }}
-          </div>
+      <section class="account-tab__content__section">
+        <section class="account-tab__content__section__title">
+          {{ $t('WhatsApp.config.manage_content') }}
+        </section>
 
-          <div class="account-tab__content__info__templates__buttons">
-            <unnnic-button
-              class="account-tab__content__info__templates__buttons__button"
-              @click="navigateToTemplates"
-              type="secondary"
-              size="small"
-              scheme="feedback-green"
-            >
-              {{ $t('WhatsApp.config.templates.button') }}
-            </unnnic-button>
+        <section class="account-tab__content__templates__buttons">
+          <unnnic-button
+            @click="navigateToTemplates"
+            type="secondary"
+          >
+            {{ $t('WhatsApp.config.templates.button') }}
+          </unnnic-button>
 
-            <unnnic-button
-              v-if="hasCatalog || hasVtexCatalogConnected"
-              ref="catalogButton"
-              class="account-tab__content__info__templates__buttons__button"
-              @click="handleCatalogButtonClick"
-              type="primary"
-              size="small"
-            >
-              {{ $t('WhatsApp.config.catalog.button') }}
-            </unnnic-button>
-          </div>
-        </div>
-      </div>
+          <unnnic-button
+            v-if="hasCatalog || hasVtexCatalogConnected"
+            ref="catalogButton"
+            @click="handleCatalogButtonClick"
+            type="secondary"
+          >
+            {{ $t('WhatsApp.config.catalog.button') }}
+          </unnnic-button>
+        </section>
+      </section>
 
-      <div
+      <section
         v-for="(section, index) in accountSections"
         :key="index"
         class="account-tab__content__section"
       >
-        <div class="account-tab__content__section__title">
-          <span class="account-tab__content__section__title__name">
-            {{ $t(`WhatsApp.config.${section.name}.title`) }}
-          </span>
-        </div>
+        <section class="account-tab__content__section__title">
+          {{ $t(`WhatsApp.config.${section.name}.title`) }}
+        </section>
 
-        <div
-          v-for="(field, i) in section.fields"
-          :key="i"
-          class="account-tab__content__section__field"
-        >
-          <div class="account-tab__content__section__field__key">
-            {{ $t(field.label) }}
+
+        <section class="account-tab__content__section__fields">
+          <div
+            v-for="(field, i) in section.fields"
+            :key="i"
+            class="account-tab__content__section__fields__field"
+          >
+            <div class="account-tab__content__section__fields__field__key">
+              {{ $t(field.label) }}
+            </div>
+            <div class="account-tab__content__section__fields__field__value">
+              <template v-if="field.name === 'phone_number'">
+                <span>{{ field.value }}</span>
+                <div class="account-tab__content__section__fields__field__actions">
+                  <unnnic-button
+                    class="account-tab__content__section__fields__field__copy"
+                    type="tertiary"
+                    size="small"
+                    iconCenter="content_copy"
+                    @click="copyPhoneNumber"
+                  />
+                  <unnnic-button
+                    class="account-tab__content__section__fields__field__open"
+                    type="tertiary"
+                    size="small"
+                    iconCenter="arrow_outward"
+                    @click="openWAUrl"
+                  />
+                </div>
+              </template>
+              <template v-else>
+                {{ field.value }}
+              </template>
+            </div>
           </div>
-          <div class="account-tab__content__section__field__value">
-            <template v-if="field.name === 'phone_number'">
-              <span>{{ field.value }}</span>
-              <div class="account-tab__content__section__field__actions">
-                <unnnic-button
-                  class="account-tab__content__section__field__copy"
-                  type="tertiary"
-                  size="small"
-                  iconCenter="content_copy"
-                  @click="copyPhoneNumber"
-                />
-                <unnnic-button
-                  class="account-tab__content__section__field__open"
-                  type="tertiary"
-                  size="small"
-                  iconCenter="arrow_outward"
-                  @click="openWAUrl"
-                />
-              </div>
-            </template>
-            <template v-else>
-              {{ field.value }}
-            </template>
-          </div>
-        </div>
-      </div>
+        </section>
+      </section>
 
       <div class="account-tab__content__mmlite">
         <unnnic-button
@@ -507,6 +501,12 @@
               },
               {
                 type: 'text',
+                name: 'waba_id',
+                label: 'WhatsApp.config.business_account.fields.waba_id',
+                value: this.fieldHandler(this.wabaInfo.id),
+              },
+              {
+                type: 'text',
                 name: 'message_on_behalf_of',
                 label: 'WhatsApp.config.business_account.fields.message_on_behalf_of',
                 value: this.fieldHandler(this.wabaInfo.message_behalf_name),
@@ -516,12 +516,6 @@
                 name: 'timezone_id',
                 label: 'WhatsApp.config.business_account.fields.timezone_id',
                 value: this.fieldHandler(this.wabaInfo.timezone),
-              },
-              {
-                type: 'text',
-                name: 'waba_id',
-                label: 'WhatsApp.config.business_account.fields.waba_id',
-                value: this.fieldHandler(this.wabaInfo.id),
               },
               {
                 type: 'text',
@@ -549,7 +543,7 @@
     height: 100%;
 
     &__voice-calling {
-      margin-bottom: $unnnic-spacing-stack-sm;
+      margin-bottom: $unnnic-space-4;
 
       &--disabled {
         pointer-events: none;
@@ -559,114 +553,92 @@
     &__content {
       display: flex;
       flex-direction: column;
+      gap: $unnnic-space-6;
       padding-right: $unnnic-spacing-inline-md;
-      margin-top: $unnnic-spacing-stack-sm;
+      margin-top: $unnnic-space-4;
       overflow-x: hidden;
       flex: 1;
 
       &__brl-disclaimer {
         min-height: auto;
-        margin-bottom: $unnnic-space-4;
-      }
-
-      &__info {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: $unnnic-spacing-stack-lg;
-
-        &__templates {
-          display: flex;
-          flex-direction: column;
-          gap: $unnnic-spacing-stack-sm;
-
-          &__title {
-            font-weight: $unnnic-font-weight-bold;
-            font-size: $unnnic-font-size-body-lg;
-            line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-            color: $unnnic-color-fg-emphasized;
-          }
-
-          &__buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: $unnnic-spacing-stack-sm;
-
-            &__button {
-              width: 100%;
-            }
-          }
-        }
       }
 
       &__section {
         display: flex;
         flex-direction: column;
-        gap: $unnnic-spacing-inline-sm;
+        gap: $unnnic-space-3;
 
         &__title {
-          display: flex;
-          margin-bottom: $unnnic-spacing-stack-nano;
-          margin-top: $unnnic-spacing-stack-lg;
-          gap: $unnnic-inline-xs;
-
-          &__name {
-            font-weight: $unnnic-font-weight-black;
-            font-size: $unnnic-font-size-body-lg;
-            line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-            color: $unnnic-color-fg-emphasized;
-          }
+          font: $unnnic-font-display-3;
+          color: $unnnic-color-fg-emphasized;
         }
 
-        &__field {
-          display: inline-flex;
+        &__fields {
+          display: flex;
+          flex-direction: column;
+          gap: $unnnic-space-1;
 
-          &__key,
-          &__value,
-          &__edit {
-            flex: 1;
-            width: 50%;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-            color: $unnnic-color-fg-base;
-            margin: auto 0;
-            word-wrap: anywhere;
-          }
+          &__field {
+            display: flex;
+            gap: $unnnic-space-6;
 
-          &__value {
-            display: inline-flex;
-            align-items: center;
-            gap: $unnnic-space-2;
-          }
+            &__key,
+            &__value,
+            &__edit {
+              flex: 1;
+              width: 50%;
+              font-size: $unnnic-font-size-body-gt;
+              line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+              color: $unnnic-color-fg-base;
+              margin: auto 0;
+              word-wrap: anywhere;
+            }
 
-          &__actions {
-            display: inline-flex;
-            align-items: center;
-            gap: $unnnic-space-2;
-            margin-left: auto;
-          }
+            &__key {
+              font: $unnnic-font-emphasis;
+              color: $unnnic-color-fg-emphasized;
+            }
 
-          &__edit {
-            display: inline-flex;
-            gap: $unnnic-spacing-inline-xs;
-            align-items: center;
+            &__value {
+              display: inline-flex;
+              align-items: center;
+              gap: $unnnic-space-2;
+            }
 
-            &__input {
-              height: 29px;
-              max-width: 70%;
+            &__actions {
+              display: inline-flex;
+              align-items: center;
+              gap: $unnnic-space-05;
+            }
 
-              :deep(.input) {
+            &__edit {
+              display: inline-flex;
+              gap: $unnnic-spacing-inline-xs;
+              align-items: center;
+
+              &__input {
                 height: 29px;
+                max-width: 70%;
+
+                :deep(.input) {
+                  height: 29px;
+                }
               }
             }
           }
         }
       }
 
+      &__templates {
+        &__buttons {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+          gap: $unnnic-space-3;
+        }
+      }
+
       &__mmlite {
         display: flex;
-        margin-top: $unnnic-spacing-stack-lg;
 
         &__button {
           width: 100%;
