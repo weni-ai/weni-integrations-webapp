@@ -145,6 +145,7 @@
     "config": {
       "first_integration_success": "Para baixar o código e usá-lo no seu site, vá para a aba Código Script.",
       "integration_success": "Aplicação instalada com sucesso",
+      "copy_error": "Não foi possível copiar o número",
       "copy_success": "Copiado com sucesso",
       "configure_later": "Configurar depois",
       "save_changes": "Salvar alterações",
@@ -573,24 +574,18 @@
           "message": "O cabeçalho da mensagem não pode conter novas linhas, caracteres de formatação, emojis ou asteriscos."
         }
       },
-      "qr": {
-        "title": "Link do WhatsApp",
-        "button": "Acessar link",
-        "info": "Para acessar o link, escaneie o QR code ou clique no botão abaixo"
-      },
       "templates": {
         "button": "Ver meus templates",
-        "title": "Templates",
         "new_language": "Nova linguagem"
       },
       "catalog": {
         "button": "Ver lista de catálogos",
-        "title": "Catálogo",
         "button_create": "Criar catálogo",
         "error": {
           "missing_vtex_app": "É necessário ter um app VTEX configurado para conectar um catálogo"
         }
       },
+      "manage_content": "Gerenciar conteúdo",
       "mmlite": {
         "button": "Atualizar para API MM Lite do WhatsApp",
         "button_updating": "Atualizando para API MM Lite do WhatsApp",

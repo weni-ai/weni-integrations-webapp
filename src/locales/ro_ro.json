@@ -145,6 +145,7 @@
     "config": {
       "first_integration_success": "Pentru a descărca codul și a-l utiliza pe site-ul tău, accesează fila Cod script.",
       "integration_success": "Aplicația a fost instalată cu succes",
+      "copy_error": "Nu s-a putut copia numărul",
       "copy_success": "Copiere efectuată cu succes",
       "configure_later": "Configurează mai târziu",
       "save_changes": "Salvează modificările",
@@ -573,24 +574,18 @@
           "message": "Antetul mesajului nu poate conține linii noi, caractere de formatare, emoji sau asteriscuri."
         }
       },
-      "qr": {
-        "title": "Link WhatsApp",
-        "button": "Accesează linkul",
-        "info": "Pentru a accesa linkul, scanează codul QR sau fă click pe butonul de mai jos"
-      },
       "templates": {
         "button": "Vizualizează șabloanele mele",
-        "title": "Șabloane",
         "new_language": "Limbă nouă"
       },
       "catalog": {
         "button": "Vizualizează lista catalogului",
-        "title": "Catalog",
         "button_create": "Creează catalog",
         "error": {
           "missing_vtex_app": "O aplicație VTEX trebuie configurată pentru a conecta un catalog"
         }
       },
+      "manage_content": "Gestionează conținut",
       "mmlite": {
         "button": "Actualizează la WhatsApp MM Lite API",
         "button_updating": "Se actualizează la WhatsApp MM Lite API",

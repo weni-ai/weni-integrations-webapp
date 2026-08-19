@@ -29,11 +29,11 @@
 
       <div class="account-tab__content__info">
         <div class="account-tab__content__info__templates">
-          <div class="account-tab__content__info__templates__buttons">
-            <div class="account-tab__content__info__templates__buttons__title">
-              {{ $t('WhatsApp.config.templates.title') }}
-            </div>
+          <div class="account-tab__content__info__templates__title">
+            {{ $t('WhatsApp.config.manage_content') }}
+          </div>
 
+          <div class="account-tab__content__info__templates__buttons">
             <unnnic-button
               class="account-tab__content__info__templates__buttons__button"
               @click="navigateToTemplates"
@@ -43,16 +43,9 @@
             >
               {{ $t('WhatsApp.config.templates.button') }}
             </unnnic-button>
-          </div>
-          <div
-            v-if="hasCatalog || hasVtexCatalogConnected"
-            class="account-tab__content__info__templates__buttons"
-          >
-            <div class="account-tab__content__info__templates__buttons__title">
-              {{ $t('WhatsApp.config.catalog.title') }}
-            </div>
 
             <unnnic-button
+              v-if="hasCatalog || hasVtexCatalogConnected"
               ref="catalogButton"
               class="account-tab__content__info__templates__buttons__button"
               @click="handleCatalogButtonClick"
@@ -61,29 +54,6 @@
             >
               {{ $t('WhatsApp.config.catalog.button') }}
             </unnnic-button>
-          </div>
-        </div>
-
-        <div class="account-tab__content__info__qr">
-          <div class="account-tab__content__info__qr__title">
-            {{ $t('WhatsApp.config.qr.title') }}
-          </div>
-          <div class="account-tab__content__info__qr__wrapper">
-            <img class="account-tab__content__info__qr__img" :src="QRCodeUrl" />
-
-            <div class="account-tab__content__info__qr__content">
-              <span class="account-tab__content__info__qr__content__info">{{
-                $t('WhatsApp.config.qr.info')
-              }}</span>
-              <unnnic-button
-                class="account-tab__content__info__qr__content__button"
-                type="secondary"
-                :text="$t('WhatsApp.config.qr.button')"
-                iconLeft="export-1"
-                size="small"
-                @click="openWAUrl"
-              />
-            </div>
           </div>
         </div>
       </div>
@@ -108,7 +78,28 @@
             {{ $t(field.label) }}
           </div>
           <div class="account-tab__content__section__field__value">
-            {{ field.value }}
+            <template v-if="field.name === 'phone_number'">
+              <span>{{ field.value }}</span>
+              <div class="account-tab__content__section__field__actions">
+                <unnnic-button
+                  class="account-tab__content__section__field__copy"
+                  type="tertiary"
+                  size="small"
+                  iconCenter="content_copy"
+                  @click="copyPhoneNumber"
+                />
+                <unnnic-button
+                  class="account-tab__content__section__field__open"
+                  type="tertiary"
+                  size="small"
+                  iconCenter="arrow_outward"
+                  @click="openWAUrl"
+                />
+              </div>
+            </template>
+            <template v-else>
+              {{ field.value }}
+            </template>
           </div>
         </div>
       </div>
@@ -168,7 +159,7 @@
   import CreateCatalogModalContent from '../CreateCatalogModalContent.vue';
   import ConnectCatalogModalContent from '../../../../ecommerce/vtex/ConnectCatalogModalContent.vue';
   import { mapActions, mapState } from 'pinia';
-  import unnnic from '@weni/unnnic-system';
+  import unnnic, { unnnicToastManager } from '@weni/unnnic-system';
   import { app_type } from '@/stores/modules/appType/appType.store';
   import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
   import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
@@ -224,6 +215,14 @@
       /* istanbul ignore next */
       openWAUrl() {
         window.open(this.WAUrl, '_blank').focus();
+      },
+      async copyPhoneNumber() {
+        try {
+          await navigator.clipboard.writeText(this.phoneNumber.display_phone_number);
+          unnnicToastManager.success(this.$t('apps.config.copy_success'));
+        } catch {
+          unnnicToastManager.error(this.$t('apps.config.copy_error'));
+        }
       },
       navigateToTemplates() {
         const { code, uuid } = this.appInfo;
@@ -379,11 +378,6 @@
       ...mapState(whatsapp_cloud, ['updatingVoiceCallingStatus', 'errorVoiceCallingStatus']),
       ...mapState(app_type, ['configuredApps']),
       ...mapState(ecommerce_store, ['loadingConnectVtexCatalog', 'errorConnectVtexCatalog']),
-      QRCodeUrl() {
-        return `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
-          this.WAUrl,
-        )}`;
-      },
       WAUrl() {
         const cleanNumber = this.phoneNumber.display_phone_number?.replace(/\D/g, '');
         return `https://wa.me/${cleanNumber}`;
@@ -584,50 +578,23 @@
 
         &__templates {
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
           gap: $unnnic-spacing-stack-sm;
 
-          &__buttons {
-            width: 100%;
-
-            &__title {
-              font-weight: $unnnic-font-weight-bold;
-              font-size: $unnnic-font-size-body-lg;
-              line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-              color: $unnnic-color-fg-emphasized;
-              margin-bottom: $unnnic-spacing-sm;
-            }
-            &__button {
-              width: 100%;
-            }
-          }
-        }
-
-        &__qr {
-          &__wrapper {
-            display: flex;
-            gap: $unnnic-spacing-inline-sm;
-          }
-
           &__title {
-            font-weight: $unnnic-font-weight-black;
+            font-weight: $unnnic-font-weight-bold;
             font-size: $unnnic-font-size-body-lg;
             line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
             color: $unnnic-color-fg-emphasized;
-
-            margin-bottom: $unnnic-spacing-stack-sm;
           }
 
-          &__content {
+          &__buttons {
             display: flex;
-            flex-direction: column;
-            width: 100%;
             justify-content: space-between;
+            gap: $unnnic-spacing-stack-sm;
 
-            &__info {
-              font-size: $unnnic-font-size-body-gt;
-              line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-              color: $unnnic-color-fg-base;
+            &__button {
+              width: 100%;
             }
           }
         }
@@ -665,6 +632,19 @@
             color: $unnnic-color-fg-base;
             margin: auto 0;
             word-wrap: anywhere;
+          }
+
+          &__value {
+            display: inline-flex;
+            align-items: center;
+            gap: $unnnic-space-2;
+          }
+
+          &__actions {
+            display: inline-flex;
+            align-items: center;
+            gap: $unnnic-space-2;
+            margin-left: auto;
           }
 
           &__edit {

@@ -5,6 +5,7 @@ import AccountTab from '@/components/config/channels/whatsapp/components/tabs/Ac
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { createRouter, createWebHistory } from 'vue-router';
+import { unnnicToastManager } from '@weni/unnnic-system';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -66,13 +67,10 @@ describe('AccountTab.vue', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
-  it('renders QRCode with correct URL', () => {
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=74x74&data=${encodeURI(
-      'https://wa.me/1234567890',
-    )}`;
-    expect(wrapper.vm.QRCodeUrl).toBe(qrCodeUrl);
-    const img = wrapper.find('img.account-tab__content__info__qr__img');
-    expect(img.attributes('src')).toBe(qrCodeUrl);
+  it('renders a single manage content label', () => {
+    expect(wrapper.find('.account-tab__content__info__templates__title').text()).toBe(
+      'Manage content',
+    );
   });
 
   it('renders phone number correctly', () => {
@@ -105,6 +103,27 @@ describe('AccountTab.vue', () => {
     expect(wrapper.vm.$router.push).toHaveBeenCalledWith({
       path: '/apps/my/app_code/app_uuid/catalogs',
     });
+  });
+
+  it('copies the phone number and shows a success toast', async () => {
+    const writeText = vi.fn().mockResolvedValue();
+    global.navigator.clipboard = { writeText };
+    const toastSpy = vi.spyOn(unnnicToastManager, 'success').mockResolvedValue();
+
+    await wrapper.find('.account-tab__content__section__field__copy').trigger('click');
+
+    expect(writeText).toHaveBeenCalledWith('+1234567890');
+    expect(toastSpy).toHaveBeenCalledWith(wrapper.vm.$t('apps.config.copy_success'));
+    toastSpy.mockRestore();
+  });
+
+  it('opens WhatsApp URL when the outbound button is clicked', async () => {
+    const openSpy = vi.spyOn(window, 'open').mockReturnValue({ focus: vi.fn() });
+
+    await wrapper.find('.account-tab__content__section__field__open').trigger('click');
+
+    expect(openSpy).toHaveBeenCalledWith('https://wa.me/1234567890', '_blank');
+    openSpy.mockRestore();
   });
 
   it('calls alert correctly on error when connecting catalog', async () => {
