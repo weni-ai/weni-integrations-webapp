@@ -26,7 +26,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import '@weni/unnnic-system/src/assets/scss/unnnic.scss';
+          @use '@weni/unnnic-system/src/assets/scss/unnnic.scss' as *;
         `,
       },
     },
