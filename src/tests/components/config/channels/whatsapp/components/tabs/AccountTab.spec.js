@@ -86,7 +86,7 @@ describe('AccountTab.vue', () => {
   });
 
   it('navigates to templates when button is clicked', async () => {
-    const button = wrapper.find('.account-tab__content__info__templates__buttons__button');
+    const button = wrapper.find('.account-tab__content__templates__buttons unnnic-button-stub');
     const spy = vi.spyOn(wrapper.vm.$router, 'push');
     expect(button.exists()).toBe(true);
     await button.trigger('click');
@@ -112,7 +112,7 @@ describe('AccountTab.vue', () => {
     global.navigator.clipboard = { writeText };
     const toastSpy = vi.spyOn(unnnicToastManager, 'success').mockResolvedValue();
 
-    await wrapper.find('.account-tab__content__section__field__copy').trigger('click');
+    await wrapper.find('.account-tab__content__section__fields__field__copy').trigger('click');
 
     expect(writeText).toHaveBeenCalledWith('+1234567890');
     expect(toastSpy).toHaveBeenCalledWith(wrapper.vm.$t('apps.config.copy_success'));
@@ -122,7 +122,7 @@ describe('AccountTab.vue', () => {
   it('opens WhatsApp URL when the outbound button is clicked', async () => {
     const openSpy = vi.spyOn(window, 'open').mockReturnValue({ focus: vi.fn() });
 
-    await wrapper.find('.account-tab__content__section__field__open').trigger('click');
+    await wrapper.find('.account-tab__content__section__fields__field__open').trigger('click');
 
     expect(openSpy).toHaveBeenCalledWith('https://wa.me/1234567890', '_blank');
     openSpy.mockRestore();
@@ -141,7 +141,8 @@ describe('AccountTab.vue', () => {
   it('displays WABA info correctly in business account section', () => {
     const section = wrapper.vm.accountSections[1];
     expect(section.fields[0].value).toBe('Business Name');
-    expect(section.fields[1].value).toBe('Behalf Name');
+    expect(section.fields[1].value).toBe('waba_id_123');
+    expect(section.fields[2].value).toBe('Behalf Name');
   });
 
   describe('BRL billing disclaimer', () => {
