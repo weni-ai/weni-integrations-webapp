@@ -122,6 +122,14 @@ describe('ConfigModal.vue', () => {
     expect(wrapper.vm.headerTitle).toBe('WhatsApp');
   });
 
+  it('shows WhatsApp title for wpp-cloud when instance has no name', async () => {
+    await wrapper.vm.openModal({
+      app: { code: 'wpp-cloud', uuid: 'baa88c70-55fc-47a9-b1ee-093f48248005' },
+      isConfigured: true,
+    });
+    expect(wrapper.vm.headerTitle).toBe('WhatsApp');
+  });
+
   it('renders a header icon for apps that use one', async () => {
     await wrapper.vm.openModal({
       app: { code: 'tg', name: 'Telegram', icon: 'https://example.com/telegram.png' },
