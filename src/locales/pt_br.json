@@ -230,7 +230,7 @@
       "initPayloadToolTip": "Ao abrir o chat no seu site, um trigger com este valor será disparado automaticamente para iniciar o fluxo escolhido. Você pode configurá-lo em Estúdio.",
       "TitleInput": {
         "label": "Título do chat",
-        "max_length": "Por padrão, o máximo é {max} caracteres.",
+        "max_length": "O tamanho máximo é de {max} caracteres",
         "placeholder": "Ex.: Nome do seu chatbot"
       },
       "SubtitleInput": {

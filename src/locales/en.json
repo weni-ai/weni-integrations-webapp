@@ -230,7 +230,7 @@
       "initPayloadToolTip": "When opening the chat on your site, a trigger with this value will automatically fire to start the selected flow. You can configure it in Studio.",
       "TitleInput": {
         "label": "Chat title",
-        "max_length": "By default, the maximum is {max} characters.",
+        "max_length": "The maximum length is {max} characters",
         "placeholder": "Ex.: Your chatbot's name"
       },
       "SubtitleInput": {
