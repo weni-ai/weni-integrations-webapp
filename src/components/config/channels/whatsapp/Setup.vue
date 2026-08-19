@@ -295,7 +295,7 @@
       }
     }
 
-    ::v-deep .unnnic-modal-container-background-body-description {
+    :deep(.unnnic-modal-container-background-body-description) {
       padding-bottom: $unnnic-spacing-stack-lg;
     }
   }

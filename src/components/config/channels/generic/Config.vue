@@ -300,19 +300,19 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        ::v-deep {
-          a {
-            font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-fg-base;
-          }
-
-          .highlight {
-            color: $unnnic-color-fg-accent;
-            background-color: $unnnic-color-bg-accent-plain;
-            padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-nano;
-            border-radius: $unnnic-border-radius-sm;
-          }
+        
+        :deep(a) {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-fg-base;
         }
+
+        :deep(.highlight) {
+          color: $unnnic-color-fg-accent;
+          background-color: $unnnic-color-bg-accent-plain;
+          padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-nano;
+          border-radius: $unnnic-border-radius-sm;
+        }
+      
       }
     }
 

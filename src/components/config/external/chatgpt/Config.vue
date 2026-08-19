@@ -445,13 +445,13 @@
       overflow-y: hidden;
       width: 100%;
 
-      ::v-deep .tab-body {
+      :deep(.tab-body) {
         display: flex;
         height: -webkit-fill-available;
         height: -moz-available;
         overflow-y: auto;
       }
-      ::v-deep .tab-panel {
+      :deep(.tab-panel) {
         width: 100%;
 
         display: flex;
@@ -516,12 +516,12 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        ::v-deep {
-          a {
-            font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-fg-base;
-          }
+        
+        :deep(a) {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-fg-base;
         }
+      
       }
     }
 
@@ -565,7 +565,7 @@
           flex-direction: row;
           gap: $unnnic-spacing-inline-xs;
 
-          ::v-deep .unnnic-text-area {
+          :deep(.unnnic-text-area) {
             textarea {
               border-color: #e2e6ed;
 
@@ -584,7 +584,7 @@
 
         &__prompt {
           max-width: 100%;
-          ::v-deep .unnnic-tag__label {
+          :deep(.unnnic-tag__label) {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -618,11 +618,11 @@
       }
     }
 
-    ::v-deep .unnnic-form__label {
+    :deep(.unnnic-form__label) {
       margin: 0 0 0.25rem;
     }
 
-    ::v-deep .unnnic-label__label {
+    :deep(.unnnic-label__label) {
       margin: 5px 0px -10px;
     }
   }

@@ -400,31 +400,31 @@
     &__input--name {
       flex: 5;
 
-      ::v-deep .unnnic-form__message {
+      :deep(.unnnic-form__message) {
         color: $unnnic-color-fg-critical;
       }
     }
 
     &__selects {
-      ::v-deep .select-permission {
+      :deep(.select-permission) {
         min-height: 22px;
       }
 
       &__disabled {
         cursor: default;
-        ::v-deep {
-          .input,
-          .unnnic-icon,
-          .select-permission {
-            pointer-events: none;
-          }
-
-          .input,
-          .select-permission {
-            border: 1px dashed $unnnic-color-border-base;
-            background-color: $unnnic-color-bg-muted;
-          }
+        
+        :deep(.input),
+        :deep(.unnnic-icon),
+        :deep(.select-permission) {
+          pointer-events: none;
         }
+
+        :deep(.input),
+        :deep(.select-permission) {
+          border: 1px dashed $unnnic-color-border-base;
+          background-color: $unnnic-color-bg-muted;
+        }
+      
       }
 
       &--category {

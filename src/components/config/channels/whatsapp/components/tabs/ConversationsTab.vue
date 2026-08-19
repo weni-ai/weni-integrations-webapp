@@ -397,7 +397,7 @@
           display: flex;
           flex-direction: column;
           gap: $unnnic-spacing-stack-xs;
-          ::v-deep .scroll {
+          :deep(.scroll) {
             padding-right: 0;
           }
         }

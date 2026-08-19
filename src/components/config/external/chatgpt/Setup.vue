@@ -144,31 +144,31 @@
 
 <style lang="scss" scoped>
   .chatgpt-modal {
-    ::v-deep {
-      .container {
-        padding: $unnnic-squish-md !important;
-      }
-
-      .header {
-        margin-bottom: $unnnic-spacing-stack-nano !important;
-      }
-
-      .unnnic-modal-container-background {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        padding: 0 $unnnic-spacing-md;
-        max-height: 95vh;
-      }
-
-      .unnnic-modal-container-background-body {
-        border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
-      }
-
-      .unnnic-modal-container-background-body-description-container {
-        padding-bottom: $unnnic-spacing-md;
-      }
+    
+    :deep(.container) {
+      padding: $unnnic-squish-md !important;
     }
+
+    :deep(.header) {
+      margin-bottom: $unnnic-spacing-stack-nano !important;
+    }
+
+    :deep(.unnnic-modal-container-background) {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 0 $unnnic-spacing-md;
+      max-height: 95vh;
+    }
+
+    :deep(.unnnic-modal-container-background-body) {
+      border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
+    }
+
+    :deep(.unnnic-modal-container-background-body-description-container) {
+      padding-bottom: $unnnic-spacing-md;
+    }
+  
 
     &__content {
       display: flex;

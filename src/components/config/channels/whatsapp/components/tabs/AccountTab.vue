@@ -676,7 +676,7 @@
               height: 29px;
               max-width: 70%;
 
-              ::v-deep .input {
+              :deep(.input) {
                 height: 29px;
               }
             }
@@ -704,7 +704,7 @@
   }
 
   .catalog-modal {
-    ::v-deep .unnnic-modal-container-background {
+    :deep(.unnnic-modal-container-background) {
       width: 750px;
       max-width: 90%;
     }

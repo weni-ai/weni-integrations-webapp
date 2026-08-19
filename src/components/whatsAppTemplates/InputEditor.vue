@@ -114,12 +114,12 @@
       margin-top: 1px;
 
       &__strike {
-        ::v-deep {
-          span {
-            align-self: baseline;
-            opacity: 0.5;
-          }
+        
+        :deep(span) {
+          align-self: baseline;
+          opacity: 0.5;
         }
+      
       }
 
       &__mono {
@@ -129,12 +129,12 @@
         padding-top: 20px;
       }
 
-      ::v-deep {
-        svg {
-          width: $unnnic-icon-size-sm;
-          margin-left: $unnnic-spacing-inline-nano;
-        }
+      
+      :deep(svg) {
+        width: $unnnic-icon-size-sm;
+        margin-left: $unnnic-spacing-inline-nano;
       }
+    
     }
 
     &__emoji-picker {
@@ -152,7 +152,7 @@
         transform: translateX(-150px);
       }
 
-      ::v-deep .container-emoji {
+      :deep(.container-emoji) {
         height: 200px;
       }
     }

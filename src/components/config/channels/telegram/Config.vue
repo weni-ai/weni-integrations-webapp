@@ -221,7 +221,7 @@
             flex: 1;
             margin-top: $unnnic-spacing-stack-xs;
 
-            ::v-deep .unnnic-form-input {
+            :deep(.unnnic-form-input) {
               margin-top: $unnnic-spacing-stack-xs;
             }
           }

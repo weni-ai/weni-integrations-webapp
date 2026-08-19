@@ -425,12 +425,12 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        ::v-deep {
-          a {
-            font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-fg-base;
-          }
+        
+        :deep(a) {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-fg-base;
         }
+      
       }
     }
 
@@ -474,7 +474,7 @@
           align-items: center;
           gap: $unnnic-spacing-inline-xs;
 
-          ::v-deep .unnnic-tooltip {
+          :deep(.unnnic-tooltip) {
             display: flex;
           }
         }
@@ -532,7 +532,7 @@
   }
 
   .connect-modal {
-    ::v-deep .unnnic-modal-container-background {
+    :deep(.unnnic-modal-container-background) {
       width: 750px;
       max-width: 90%;
     }

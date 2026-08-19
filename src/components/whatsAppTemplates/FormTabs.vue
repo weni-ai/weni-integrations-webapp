@@ -789,7 +789,7 @@
     }
 
     &__tab {
-      ::v-deep .tab-header {
+      :deep(.tab-header) {
         .tab-content {
           overflow-y: hidden;
           overflow-x: auto;

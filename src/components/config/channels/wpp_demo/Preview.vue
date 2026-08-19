@@ -174,7 +174,7 @@
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
         margin: 0 $unnnic-spacing-inset-lg;
 
-        ::v-deep .unnnic-button--primary {
+        :deep(.unnnic-button--primary) {
           background-color: rgba(226, 230, 237, 0.4) !important;
 
           span {
@@ -194,7 +194,7 @@
             flex: 1;
             margin-top: $unnnic-spacing-stack-xs;
 
-            ::v-deep .unnnic-form-input {
+            :deep(.unnnic-form-input) {
               margin-top: $unnnic-spacing-stack-xs;
             }
           }

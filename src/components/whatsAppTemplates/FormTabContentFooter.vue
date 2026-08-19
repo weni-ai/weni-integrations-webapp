@@ -54,11 +54,11 @@
     }
 
     &__input {
-      ::v-deep textarea {
+      :deep(textarea) {
         resize: none;
       }
 
-      ::v-deep .helper {
+      :deep(.helper) {
         margin-top: $unnnic-spacing-stack-xs;
       }
     }

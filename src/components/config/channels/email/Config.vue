@@ -388,14 +388,14 @@
             width: 100%;
 
             .server {
-              ::v-deep .unnnic-form-input {
+              :deep(.unnnic-form-input) {
                 display: flex;
                 max-width: 364px;
               }
             }
 
             .port {
-              ::v-deep .unnnic-form-input {
+              :deep(.unnnic-form-input) {
                 max-width: 198px;
               }
             }
@@ -408,7 +408,7 @@
         grid-template-columns: 1fr 1fr;
         padding: $unnnic-spacing-inline-sm 0;
 
-        ::v-deep .unnnic-button {
+        :deep(.unnnic-button) {
           width: 100%;
         }
       }

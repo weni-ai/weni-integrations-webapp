@@ -212,12 +212,12 @@
       overflow-y: hidden;
       width: 100%;
 
-      ::v-deep .tab-body {
+      :deep(.tab-body) {
         display: flex;
         height: 100%;
         overflow-y: auto;
       }
-      ::v-deep .tab-panel {
+      :deep(.tab-panel) {
         width: 100%;
 
         display: flex;
