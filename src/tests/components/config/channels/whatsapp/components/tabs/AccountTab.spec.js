@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
 import { createTestingPinia } from '@pinia/testing';
 import AccountTab from '@/components/config/channels/whatsapp/components/tabs/AccountTab.vue';
@@ -121,5 +121,109 @@ describe('AccountTab.vue', () => {
     const section = wrapper.vm.accountSections[1];
     expect(section.fields[0].value).toBe('Business Name');
     expect(section.fields[1].value).toBe('Behalf Name');
+  });
+
+  describe('BRL billing disclaimer', () => {
+    const findBrlDisclaimer = (component) =>
+      component.find('.account-tab__content__brl-disclaimer');
+
+    const createWrapperWithConfig = (config) =>
+      createWrapper({
+        appInfo: {
+          ...wrapper.vm.appInfo,
+          config: {
+            ...wrapper.vm.appInfo.config,
+            ...config,
+          },
+        },
+      });
+
+    const migratedConfig = (overrides = {}) => ({
+      currency_migration: {
+        migration_date: '2026-07-30T23:53:08.065026+00:00',
+        old_waba_id: '1623066789051136',
+        ...overrides,
+      },
+    });
+
+    beforeEach(() => {
+      vi.useFakeTimers();
+      vi.setSystemTime(new Date('2026-08-13T12:00:00.000Z'));
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('does not render when currency_migration is missing', () => {
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when currency_migration is null', () => {
+      wrapper = createWrapperWithConfig({
+        currency_migration: null,
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when currency_migration is empty', () => {
+      wrapper = createWrapperWithConfig({
+        currency_migration: {},
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when migration_date is missing', () => {
+      wrapper = createWrapperWithConfig({
+        currency_migration: {
+          old_waba_id: '1623066789051136',
+        },
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('does not render when old_waba_id is missing', () => {
+      wrapper = createWrapperWithConfig({
+        currency_migration: {
+          migration_date: '2026-07-30T23:53:08.065026+00:00',
+        },
+      });
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('renders when currency_migration has date and previous WABA id', () => {
+      wrapper = createWrapperWithConfig(migratedConfig());
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
+    });
+
+    it('does not render more than 30 days after the migration date', () => {
+      vi.setSystemTime(new Date('2026-08-30T00:00:00.000Z'));
+      wrapper = createWrapperWithConfig(migratedConfig());
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(false);
+    });
+
+    it('renders on the 30th day after the migration date', () => {
+      vi.setSystemTime(new Date('2026-08-29T23:53:08.065026+00:00'));
+      wrapper = createWrapperWithConfig(migratedConfig());
+
+      expect(findBrlDisclaimer(wrapper).exists()).toBe(true);
+    });
+
+    it('uses currency_migration.migration_date as the disclaimer date', () => {
+      wrapper = createWrapperWithConfig(migratedConfig());
+
+      expect(wrapper.vm.brlMigrationDate).toBe('July 30, 2026');
+      expect(
+        wrapper.vm.$t('WhatsApp.config.billing.brl_disclaimer.description', {
+          migrationDate: wrapper.vm.brlMigrationDate,
+        }),
+      ).toContain('July 30, 2026');
+    });
   });
 });

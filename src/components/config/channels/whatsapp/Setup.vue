@@ -35,6 +35,12 @@
         </div>
       </template>
     </unnnic-modal>
+
+    <ConnectNewWhatsAppAccountModal
+      :show="showConnectNewAccountModal"
+      @close="showConnectNewAccountModal = false"
+      @try-again="handleConnectNewAccountTryAgain"
+    />
   </div>
 </template>
 
@@ -44,14 +50,17 @@
   import { auth_store } from '@/stores/modules/auth.store';
   import unnnic from '@weni/unnnic-system';
   import LoadingButton from '../../../LoadingButton/index.vue';
+  import ConnectNewWhatsAppAccountModal from './ConnectNewWhatsAppAccountModal.vue';
   import getEnv from '@/utils/env';
   import { initFacebookSdk } from '@/utils/plugins/fb';
   import { captureSentryManualError } from '@/utils/sentry';
+  import { isMetaCreditAllocationError } from '@/utils/metaError';
 
   export default {
     name: 'WhatsAppSetup',
     components: {
       LoadingButton,
+      ConnectNewWhatsAppAccountModal,
     },
     props: {
       app: {
@@ -64,6 +73,7 @@
         phoneNumberId: null,
         wabaId: null,
         onLogin: false,
+        showConnectNewAccountModal: false,
       };
     },
     async mounted() {
@@ -229,9 +239,13 @@
           const res = await this.configurePhoneNumber({ data });
 
           if (this.errorCloudConfigure) {
-            this.callErrorModal({
-              text: this.$t('WhatsAppCloud.config.configure_phone_number.error'),
-            });
+            if (isMetaCreditAllocationError(this.errorCloudConfigure)) {
+              this.showConnectNewAccountModal = true;
+            } else {
+              this.callErrorModal({
+                text: this.$t('WhatsAppCloud.config.configure_phone_number.error'),
+              });
+            }
 
             this.sendToSentry('Error trying to create WAC channel', {
               data: data,
@@ -245,6 +259,10 @@
             this.$router.replace('/apps/my');
           }
         }
+      },
+      handleConnectNewAccountTryAgain() {
+        this.showConnectNewAccountModal = false;
+        this.startFacebookLogin();
       },
       closePopUp() {
         this.$emit('closePopUp');

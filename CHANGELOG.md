@@ -1,3 +1,28 @@
+3.17.0
+----------
+`2026-08-13 · 1 🎉`
+
+### 🎉 New features
+- Show a modal to connect a new WhatsApp account when Meta returns credit allocation error `1752246` during setup
+
+3.16.1
+----------
+`2026-08-13 · 1 🎉`
+
+### 🎉 New features
+- Show a WhatsApp Cloud BRL billing disclaimer after currency migration, using the migration date from the app config and hiding it after 30 days
+
+3.15.1
+----------
+`2026-08-12 · 2 🐛 · 1 🔧`
+
+### 🐛 Bug fixes
+- Fix Shopping Assistant avatar replacement on upload
+- Add cache-busting `v` param to Weni WebChat loader scripts
+
+### 🔧 Improvements
+- Always navigate to My Apps when closing the direct config modal
+
 3.15.0
 ----------
 `2026-07-24 · 1 🔧`

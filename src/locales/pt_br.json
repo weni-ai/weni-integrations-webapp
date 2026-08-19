@@ -398,6 +398,10 @@
         }
       },
       "billing": {
+        "brl_disclaimer": {
+          "description": "A Meta agora cobra mensagens do WhatsApp em reais no Brasil. Em {migrationDate}, a conta foi atualizada automaticamente: uma nova conta de pessoa jurídica do WhatsApp (WABA) em reais foi criada, e o número, templates e fluxos foram transferidos para ela. O serviço continuou funcionando normalmente e nenhuma ação é necessária.",
+          "title": "Conta agora cobrada em reais (BRL)"
+        },
         "title": "Informações de pagamento"
       },
       "account_verification": {
@@ -876,6 +880,11 @@
     "setup": {
       "continue": "Continuar",
       "connect": "Conectar",
+      "connect_new_account": {
+        "description": "A conta de pessoa jurídica do WhatsApp selecionada já está configurada para cobrança com outro sistema, então seu número não pode ser conectado através dela.<br /><br />Crie uma <b>nova conta de pessoa jurídica do WhatsApp</b> e seu número será conectado com sucesso. Isso funciona independentemente de onde seu negócio está localizado.<br /><br /><ol><li>Selecione <b>Tentar novamente</b> abaixo.</li><li>Quando o WhatsApp perguntar qual conta usar, escolha <b>Criar uma nova conta de pessoa jurídica do WhatsApp</b>.</li><li>Siga as etapas de configuração para concluir.</li></ol>",
+        "title": "Conectar nova conta do WhatsApp",
+        "try_again": "Tentar novamente"
+      },
       "description": "Siga os passos para integrar com o WhatsApp"
     },
     "config": {

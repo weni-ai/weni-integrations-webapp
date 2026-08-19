@@ -184,11 +184,7 @@
         }
       },
       onDirectConfigModalClose() {
-        if (window.history.state?.back) {
-          this.$router.back();
-        } else {
-          this.$router.replace('/apps/my');
-        }
+        this.$router.replace('/apps/my');
       },
       filterByName(appList, search) {
         return appList.filter((app) => {
