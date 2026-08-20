@@ -649,6 +649,8 @@
           "date": "Dată"
         },
         "new_template": "Șablon nou",
+        "sync_templates": "Sincronizează template-uri",
+        "sync_templates_cooldown_tooltip": "Template-urile pot fi sincronizate din nou în {remaining} min",
         "filters": {
           "date": {
             "label": "Dată",
@@ -701,6 +703,7 @@
         "create_translation": "Nu s-a putut crea traducerea șablonului. Încearcă din nou mai târziu.",
         "unknown_error": "A apărut o eroare necunoscută. Reîmprospătează pagina.",
         "fetch_templates": "Nu s-a putut încărca lista de șabloane. Încearcă din nou mai târziu.",
+        "sync_templates": "Template-urile nu au putut fi sincronizate din cauza unei probleme tehnice",
         "delete_template": "Șablonul nu a putut fi șters. Încearcă din nou mai târziu.",
         "invalid_file_format": "Format de fișier nevalid",
         "invalid_file_size": "Dimensiunea fișierului nu este validă. Trebuie să fie mai mică de 16 MB.",
@@ -786,6 +789,7 @@
       },
       "success": {
         "create_translation": "Traducerea șablonului a fost creată cu succes",
+        "sync_templates": "Template-uri sincronizate cu succes",
         "update_translation": "Traducerea șablonului a fost actualizată cu succes"
       }
     },

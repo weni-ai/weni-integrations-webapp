@@ -34,6 +34,16 @@ export default {
       .get(`${templatesResource}/${appUuid}/templates/?${queryString}`)
       .then((r) => r.data);
   },
+  async getWhatsAppTemplatesSyncStatus(appUuid) {
+    return await request.$http
+      .get(`${templatesResource}/${appUuid}/templates/sync/`)
+      .then((r) => r.data);
+  },
+  async syncWhatsAppTemplates(appUuid) {
+    return await request.$http
+      .post(`${templatesResource}/${appUuid}/templates/sync/`)
+      .then((r) => r.data);
+  },
   async fetchTemplateData(appUuid, templateUuid) {
     return await request.$http
       .get(`${templatesResource}/${appUuid}/templates/${templateUuid}/`)

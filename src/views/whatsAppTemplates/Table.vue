@@ -2,8 +2,8 @@
 <template>
   <div class="whatsapp-templates">
     <div class="whatsapp-templates__table" v-if="$route.name === 'WhatsApp Templates Table'">
-      <Header />
-      <Table />
+      <Header @templates-synced="refreshTemplatesTable" />
+      <Table ref="templatesTable" />
     </div>
     <router-view v-else />
   </div>
@@ -18,6 +18,12 @@
     components: {
       Header,
       Table,
+    },
+    methods: {
+      refreshTemplatesTable() {
+        const table = this.$refs.templatesTable;
+        table?.fetchData?.({ page: table.page || 1 });
+      },
     },
   };
 </script>
