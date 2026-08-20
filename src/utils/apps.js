@@ -1,4 +1,4 @@
-const WHATSAPP_CODES = ['wpp', 'wpp-cloud'];
+export const WHATSAPP_CODES = ['wpp', 'wpp-cloud'];
 
 export function getAppDisplayName(app, t) {
   if (app?.code === 'wwc') {

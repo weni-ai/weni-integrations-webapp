@@ -71,7 +71,7 @@
   import chatGptConfig from '@/components/config/external/chatgpt/Config.vue';
   import vtexConfig from '@/components/config/ecommerce/vtex/Config.vue';
   import emailConfig from '@/components/config/channels/email/Config.vue';
-  import { getAppDisplayName } from '@/utils/apps';
+  import { getAppDisplayName, WHATSAPP_CODES } from '@/utils/apps';
   import { markRaw } from 'vue';
   import {
     UnnnicDrawerNext,
@@ -80,7 +80,6 @@
     UnnnicDrawerTitle,
   } from '@weni/unnnic-system';
 
-  const WHATSAPP_CODES = ['wpp', 'wpp-cloud'];
   const CODES_WITHOUT_HEADER_ICON = [...WHATSAPP_CODES, 'wwc'];
 
   export default {
