@@ -650,7 +650,7 @@
         },
         "new_template": "Nueva plantilla",
         "sync_templates": "Sincronizar plantillas",
-        "sync_templates_cooldown_tooltip": "Las plantillas se podrán sincronizar de nuevo en {remaining}",
+        "sync_templates_cooldown_tooltip": "Las plantillas se podrán sincronizar de nuevo en {remaining} min",
         "filters": {
           "date": {
             "label": "Fecha",

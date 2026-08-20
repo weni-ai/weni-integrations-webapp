@@ -650,7 +650,7 @@
         },
         "new_template": "Novo template",
         "sync_templates": "Sincronizar templates",
-        "sync_templates_cooldown_tooltip": "Os templates poderão ser sincronizados novamente em {remaining}",
+        "sync_templates_cooldown_tooltip": "Os templates poderão ser sincronizados novamente em {remaining} min",
         "filters": {
           "date": {
             "label": "Data",

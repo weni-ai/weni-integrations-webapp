@@ -73,18 +73,12 @@
       isSyncOnCooldown() {
         return this.remainingMs > 0;
       },
-      remainingLabel() {
-        const totalMinutes = Math.max(1, Math.ceil(this.remainingMs / 60000));
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = totalMinutes % 60;
-        if (hours >= 1) {
-          return minutes ? `${hours}h ${minutes}min` : `${hours}h`;
-        }
-        return `${totalMinutes}min`;
+      remainingMinutes() {
+        return Math.max(1, Math.ceil(this.remainingMs / 60000));
       },
       syncCooldownTooltip() {
         return this.$t('WhatsApp.templates.table.sync_templates_cooldown_tooltip', {
-          remaining: this.remainingLabel,
+          remaining: this.remainingMinutes,
         });
       },
     },

@@ -83,8 +83,8 @@ describe('TableHeader.vue', () => {
     await wrapper.vm.$nextTick();
 
     expect(wrapper.vm.isSyncOnCooldown).toBe(true);
-    expect(wrapper.vm.remainingLabel).toBe('10min');
-    expect(wrapper.vm.syncCooldownTooltip).toContain('10min');
+    expect(wrapper.vm.remainingMinutes).toBe(10);
+    expect(wrapper.vm.syncCooldownTooltip).toContain('10 min');
   });
 
   it('calls sync and emits templates-synced on success', async () => {

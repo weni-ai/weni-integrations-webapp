@@ -650,7 +650,7 @@
         },
         "new_template": "Șablon nou",
         "sync_templates": "Sincronizează template-uri",
-        "sync_templates_cooldown_tooltip": "Template-urile pot fi sincronizate din nou în {remaining}",
+        "sync_templates_cooldown_tooltip": "Template-urile pot fi sincronizate din nou în {remaining} min",
         "filters": {
           "date": {
             "label": "Dată",
