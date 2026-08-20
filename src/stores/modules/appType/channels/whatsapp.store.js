@@ -33,6 +33,10 @@ export const whatsapp_store = defineStore('whatsapp', {
       loadingWhatsAppTemplates: false,
       errorWhatsAppTemplates: false,
 
+      templatesLastSyncedAt: null,
+      loadingSyncWhatsAppTemplates: false,
+      errorSyncWhatsAppTemplates: null,
+
       templateForm: {
         name: null,
         category: null,
@@ -192,6 +196,32 @@ export const whatsapp_store = defineStore('whatsapp', {
         captureSentryException(err);
         this.errorWhatsAppTemplates = err.response?.data.error || err;
         this.loadingWhatsAppTemplates = false;
+      }
+    },
+    async getWhatsAppTemplatesSyncStatus({ appUuid }) {
+      this.errorSyncWhatsAppTemplates = null;
+      try {
+        const data = await whatsApp.getWhatsAppTemplatesSyncStatus(appUuid);
+        this.templatesLastSyncedAt = data.last_synced_at ?? null;
+      } catch (err) {
+        captureSentryException(err);
+        this.errorSyncWhatsAppTemplates = err.response?.data?.error || err;
+      }
+    },
+    async syncWhatsAppTemplates({ appUuid }) {
+      this.loadingSyncWhatsAppTemplates = true;
+      this.errorSyncWhatsAppTemplates = null;
+      try {
+        const data = await whatsApp.syncWhatsAppTemplates(appUuid);
+        this.templatesLastSyncedAt = data.last_synced_at ?? null;
+        this.loadingSyncWhatsAppTemplates = false;
+      } catch (err) {
+        captureSentryException(err);
+        if (err.response?.status === 429 && err.response?.data?.last_synced_at) {
+          this.templatesLastSyncedAt = err.response.data.last_synced_at;
+        }
+        this.errorSyncWhatsAppTemplates = err.response?.data?.error || err;
+        this.loadingSyncWhatsAppTemplates = false;
       }
     },
     updateTemplateForm({ fieldName, fieldValue }) {

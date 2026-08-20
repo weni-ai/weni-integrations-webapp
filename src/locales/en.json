@@ -649,6 +649,8 @@
           "date": "Date"
         },
         "new_template": "New template",
+        "sync_templates": "Sync templates",
+        "sync_templates_cooldown_tooltip": "Templates can be synced again in {remaining}",
         "filters": {
           "date": {
             "label": "Date",
@@ -701,6 +703,7 @@
         "create_translation": "Couldn't create template translation. Try again later.",
         "unknown_error": "An unknown error occurred. Refresh the page.",
         "fetch_templates": "Couldn't load the template list. Try again later.",
+        "sync_templates": "Templates couldn't be synced due to a technical issue",
         "delete_template": "Couldn't delete the template. Try again later.",
         "invalid_file_format": "Invalid file format",
         "invalid_file_size": "Invalid file size. It must be less than 16 MB.",
@@ -786,6 +789,7 @@
       },
       "success": {
         "create_translation": "Template translation created successfully",
+        "sync_templates": "Templates synced successfully",
         "update_translation": "Template translation updated successfully"
       }
     },
