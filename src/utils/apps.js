@@ -1,6 +1,11 @@
+export const WHATSAPP_CODES = ['wpp', 'wpp-cloud'];
+
 export function getAppDisplayName(app, t) {
   if (app?.code === 'wwc') {
     return t('weniWebChat.data.name');
+  }
+  if (WHATSAPP_CODES.includes(app?.code)) {
+    return app?.name || 'WhatsApp';
   }
   return app?.name ?? '';
 }

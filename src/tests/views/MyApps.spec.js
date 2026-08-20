@@ -4,6 +4,7 @@ import MyApps from '../../views/MyApps/index.vue';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
 import { app_type } from '@/stores/modules/appType/appType.store';
+import { my_apps } from '@/stores/modules/myApps.store';
 
 const mockApp = {
   uuid: 'app-uuid-123',
@@ -175,6 +176,7 @@ describe('MyApps', () => {
           .mockImplementation(() => {});
 
         await wrapper.vm.fetchAppFromRoute();
+        await wrapper.vm.$nextTick();
 
         expect(store.getApp).toHaveBeenCalledWith({ code: 'wwc', appUuid: 'app-uuid-123' });
         expect(openModalSpy).toHaveBeenCalledWith({ app: mockApp, isConfigured: true });
@@ -210,6 +212,22 @@ describe('MyApps', () => {
         await wrapper.vm.fetchAppFromRoute();
 
         expect(store.getApp).not.toHaveBeenCalled();
+      });
+
+      it('prefers the configured list app after getApp when it becomes available', async () => {
+        const { wrapper, store } = mountForFetch();
+        const listedApp = { ...mockApp, name: 'WhatsApp' };
+        store.$patch({
+          currentApp: { uuid: mockApp.uuid, code: mockApp.code },
+          errorCurrentApp: null,
+        });
+        my_apps().$patch({ configuredApps: [listedApp] });
+
+        const openSpy = vi.spyOn(wrapper.vm, 'openConfigFromRoute').mockImplementation(() => {});
+
+        await wrapper.vm.fetchAppFromRoute();
+
+        expect(openSpy).toHaveBeenCalledWith(listedApp);
       });
     });
 
@@ -252,6 +270,35 @@ describe('MyApps', () => {
         });
 
         await Promise.resolve();
+        expect(openSpy).toHaveBeenCalledWith(mockApp);
+        openSpy.mockRestore();
+      });
+
+      it('opens config from the list when configuredApps loads after a direct link', async () => {
+        const openSpy = vi
+          .spyOn(MyApps.methods, 'openConfigFromRoute')
+          .mockImplementation(() => {});
+
+        const pinia = createTestingPinia({
+          createSpy: vi.fn,
+          initialState: { myApps: { configuredApps: [] } },
+        });
+
+        const wrapper = mount(MyApps, {
+          global: {
+            plugins: [pinia, i18n],
+            mocks: {
+              $router: mockRouter(),
+              $route: mockRoute({ appUuid: mockApp.uuid, appCode: mockApp.code }),
+              $t: (msg) => msg,
+            },
+          },
+        });
+
+        openSpy.mockClear();
+        my_apps().$patch({ configuredApps: [mockApp] });
+        await wrapper.vm.$nextTick();
+
         expect(openSpy).toHaveBeenCalledWith(mockApp);
         openSpy.mockRestore();
       });

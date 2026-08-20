@@ -143,20 +143,32 @@
       '$route.params.appUuid': {
         handler(appUuid) {
           if (!appUuid) return;
-          const app = this.configuredApps?.find((a) => a.uuid === this.$route.params.appUuid);
-          if (app) {
-            this.openConfigFromRoute(app);
-          } else {
-            this.fetchAppFromRoute();
-          }
+          this.openConfigForRouteApp();
         },
         immediate: true,
+      },
+      configuredApps(apps) {
+        if (!this.$route?.params?.appUuid || !apps?.length) return;
+        this.openConfigForRouteApp();
       },
     },
     methods: {
       ...mapActions(my_apps, ['getConfiguredApps', 'getInstalledApps']),
       ...mapActions(app_type, ['getApp']),
       ...mapActions(useEventStore, ['on', 'off']),
+      findConfiguredAppByRoute() {
+        const appUuid = this.$route?.params?.appUuid;
+        if (!appUuid) return null;
+        return this.configuredApps?.find((app) => app.uuid === appUuid) ?? null;
+      },
+      openConfigForRouteApp() {
+        const app = this.findConfiguredAppByRoute();
+        if (app) {
+          this.openConfigFromRoute(app);
+          return;
+        }
+        this.fetchAppFromRoute();
+      },
       openConfigFromRoute(app) {
         this.$nextTick(() => {
           this.$refs.directConfigModal?.openModal({ app, isConfigured: true });
@@ -164,12 +176,18 @@
       },
       async fetchAppFromRoute() {
         if (this.isFetchingApp) return;
-        const { appCode, appUuid } = this.$route.params;
+        const { appCode, appUuid } = this.$route?.params ?? {};
         if (!appCode || !appUuid) return;
 
         this.isFetchingApp = true;
         await this.getApp({ code: appCode, appUuid });
         this.isFetchingApp = false;
+
+        const listedApp = this.findConfiguredAppByRoute();
+        if (listedApp) {
+          this.openConfigFromRoute(listedApp);
+          return;
+        }
 
         if (this.errorCurrentApp) {
           unnnic.unnnicCallAlert({
@@ -180,7 +198,12 @@
         }
 
         if (this.currentApp) {
-          this.$refs.directConfigModal?.openModal({ app: this.currentApp, isConfigured: true });
+          this.$nextTick(() => {
+            this.$refs.directConfigModal?.openModal({
+              app: this.currentApp,
+              isConfigured: true,
+            });
+          });
         }
       },
       onDirectConfigModalClose() {

@@ -50,13 +50,6 @@ describe('WhatsappConfig.vue', () => {
   });
 
   it('renders the component and its elements correctly', () => {
-    const titleName = wrapper.find('.config-whatsapp__header__title__name');
-    expect(titleName.exists()).toBe(true);
-    expect(titleName.text()).toBe('App Name');
-
-    const icon = wrapper.find('.config-whatsapp__header__title__icon-container__icon');
-    expect(icon.attributes('src')).toBe('icon-url');
-
     const description = wrapper.find('.config-whatsapp__header__description');
     expect(description.exists()).toBe(true);
     expect(description.text()).toContain(
@@ -73,11 +66,8 @@ describe('WhatsappConfig.vue', () => {
     expect(wrapper.findAll('.tab-head').length).toBe(5);
   });
 
-  it('calls closeConfig method when the close button is clicked', async () => {
-    const closeButton = wrapper.findComponent({ ref: 'close' });
-    expect(closeButton.exists()).toBe(true);
-
-    await closeButton.trigger('click');
+  it('emits closeModal when closeConfig is called', async () => {
+    wrapper.vm.closeConfig();
     await wrapper.vm.$nextTick();
 
     expect(wrapper.emitted('closeModal')).toBeTruthy();

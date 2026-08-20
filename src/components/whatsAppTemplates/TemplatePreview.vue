@@ -323,7 +323,7 @@
         &__icon {
           margin-right: $unnnic-spacing-inline-nano;
 
-          ::v-deep svg > path {
+          :deep(svg > path) {
             fill: #00a5f4;
           }
         }

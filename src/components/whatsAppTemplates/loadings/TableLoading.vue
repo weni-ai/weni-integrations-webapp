@@ -32,7 +32,7 @@
     flex-direction: column;
 
     &__table {
-      ::v-deep .scroll {
+      :deep(.scroll) {
         @media (max-height: 800px) {
           max-height: 60vh;
         }

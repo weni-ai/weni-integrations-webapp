@@ -179,12 +179,12 @@
         &__disabled {
           cursor: default;
 
-          ::v-deep .input,
-          ::v-deep .unnnic-icon {
+          :deep(.input),
+          :deep(.unnnic-icon) {
             pointer-events: none;
           }
 
-          ::v-deep .input {
+          :deep(.input) {
             border: 1px dashed $unnnic-color-border-base;
             background-color: $unnnic-color-bg-muted;
           }

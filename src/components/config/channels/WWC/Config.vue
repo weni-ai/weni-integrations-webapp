@@ -1,21 +1,9 @@
 <template>
   <div class="app-config-wwc">
     <div class="app-config-wwc__header">
-      <div class="app-config-wwc__header__title-container">
-        <h1 class="app-config-wwc__header__title">{{ appDisplayName }}</h1>
-        <p class="app-config-wwc__header__description">
-          {{ $t('weniWebChat.config.description') }}
-        </p>
-      </div>
-      <div class="app-config-wwc__header__close">
-        <unnnic-button
-          size="small"
-          iconCenter="arrow_forward"
-          type="tertiary"
-          class="app-config-wwc__header__close__button"
-          @click="closeConfig"
-        />
-      </div>
+      <p class="app-config-wwc__header__description">
+        {{ $t('weniWebChat.config.description') }}
+      </p>
     </div>
 
     <div class="app-config-wwc__content">
@@ -150,7 +138,6 @@
   import { useEventStore } from '@/stores/event.store';
   import { dataUrlToFile, toBase64 } from '@/utils/files';
   import removeEmpty from '@/utils/clean';
-  import { getAppDisplayName } from '@/utils/apps';
   import {
     DEFAULT_COLOR,
     TITLE_MAX_LENGTH,
@@ -234,8 +221,6 @@
   });
 
   const chatSubtitle = computed(() => config.subtitle || ' ');
-
-  const appDisplayName = computed(() => getAppDisplayName(selectedApp.value, t));
 
   const loadingSave = computed(() => loadingUpdateAppConfig.value || loadingCurrentApp.value);
 
@@ -419,26 +404,10 @@
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
 
-      &__title-container {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-space-1;
-      }
-
-      &__title {
-        font: $unnnic-font-display-2;
-        color: $unnnic-color-fg-emphasized;
-        margin: 0;
-      }
-
       &__description {
         font: $unnnic-font-body;
         color: $unnnic-color-fg-base;
         margin: 0;
-      }
-
-      &__close {
-        margin-left: auto;
       }
     }
 

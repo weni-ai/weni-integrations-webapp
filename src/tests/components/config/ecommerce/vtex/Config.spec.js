@@ -48,9 +48,8 @@ describe('vtex-config Component', () => {
     wrapper.unmount();
   });
 
-  it('should render app name and icon correctly', () => {
-    expect(wrapper.find('img').attributes('src')).toBe(mockApp.icon);
-    expect(wrapper.find('.config-vtex__header__title__name').text()).toBe(mockApp.name);
+  it('should render the description', () => {
+    expect(wrapper.find('.config-vtex__header__description').exists()).toBe(true);
   });
 
   it('should render the description correctly', () => {
