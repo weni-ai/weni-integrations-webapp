@@ -202,7 +202,7 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.errorSyncWhatsAppTemplates = null;
       try {
         const data = await whatsApp.getWhatsAppTemplatesSyncStatus(appUuid);
-        this.templatesLastSyncedAt = data.last_synced_at ?? null;
+        this.templatesLastSyncedAt = data.lastSyncedAt ?? null;
       } catch (err) {
         captureSentryException(err);
         this.errorSyncWhatsAppTemplates = err.response?.data?.error || err;
