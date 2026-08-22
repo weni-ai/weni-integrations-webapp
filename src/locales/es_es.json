@@ -61,7 +61,7 @@
         "bi-tools": "Herramientas de BI",
         "external": "Servicios externos",
         "recommended": "Canales recomendados",
-        "ecommerce": "Ecommerce"
+        "ecommerce": "Comercio Electrónico"
       },
       "fetch_error": "Error al cargar la lista de aplicaciones. Inténtalo de nuevo más tarde.",
       "search": {
@@ -193,7 +193,7 @@
       "preferences": "Preferencias",
       "behavior": "Comportamiento",
       "media": "Multimedia",
-      "retail": "Retail",
+      "retail": "Minorista",
       "history": "Historial de chat e inactividad",
       "script_tutorial": "Para instalar Shopping Assistant en tu sitio web, copia y pega este código antes de la tag de cierre <strong>/body</strong> del sitio web",
       "script_disclaimer": "El script estará disponible en cuanto se completen los ajustes básicos necesarios.",
@@ -269,11 +269,11 @@
         },
         "get_token_here": "Obtén tu token aquí",
         "no_key_text": "¿No tienes una clave?",
-        "other_voice": "Otro",
+        "other_voice": "Otra",
         "other_voice_placeholder": "Pega aquí el ID de la voz",
         "select_voice": "Selecciona la voz",
         "voice_category": {
-          "default_portuguese": "Predeterminado – Portugués",
+          "default_portuguese": "Predeterminado–Português",
           "english": "Inglés",
           "portuguese": "Portugués",
           "spanish": "Español"
@@ -356,7 +356,7 @@
           "alert_update": "Actualización de alerta",
           "auto_reply": "Respuesta automática",
           "transactional": "Transacción",
-          "marketing": "Marketing",
+          "marketing": "Comercialización",
           "otp": "Contraseña de un solo uso",
           "utility": "Utilidad",
           "authentication": "Autenticación",
@@ -481,7 +481,7 @@
             "utility": "Utilidad",
             "authentication": "Autenticación",
             "service": "Servicio",
-            "category": "Category"
+            "category": "Categoría"
           },
           "before_label": "Datos antes del cambio de precio",
           "after_label": "Datos después del cambio de precio"
@@ -517,7 +517,7 @@
           "message_on_behalf_of": "Mensajes en nombre de",
           "timezone_id": "ID de la zona horaria",
           "waba_id": "ID de WABA",
-          "namespace": "Namespace"
+          "namespace": "Espacio de nombres"
         }
       },
       "profile": {
@@ -525,7 +525,7 @@
           "label": "Imagen de perfil"
         },
         "status": {
-          "label": "Status",
+          "label": "El estatus",
           "placeholder": "Ej.: No puedo hablar, solo WhatsApp"
         },
         "description": {
@@ -1721,7 +1721,7 @@
       "summary": "Conecta tu email y automatiza el servicio de atención al cliente más fácilmente."
     },
     "config": {
-      "title": "Email",
+      "title": "Correo Electrónico",
       "description": "Conecta tu email y automatiza el servicio de atención al cliente más fácilmente",
       "config_solution": "Configuración de la solución",
       "config_solution_subtitle": "Llena los campos a continuación para integrar un email",
