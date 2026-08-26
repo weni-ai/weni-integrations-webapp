@@ -649,6 +649,8 @@
           "date": "Data"
         },
         "new_template": "Novo template",
+        "sync_templates": "Sincronizar templates",
+        "sync_templates_cooldown_tooltip": "Os templates poderão ser sincronizados novamente em {remaining} min",
         "filters": {
           "date": {
             "label": "Data",
@@ -701,6 +703,7 @@
         "create_translation": "Não foi possível criar a tradução do template. Tente novamente mais tarde.",
         "unknown_error": "Ocorreu um erro desconhecido. Atualize a página.",
         "fetch_templates": "Não foi possível carregar a lista de templates. Tente novamente mais tarde.",
+        "sync_templates": "Não foi possível sincronizar os templates devido a um problema técnico",
         "delete_template": "Não foi possível excluir o template. Tente novamente mais tarde.",
         "invalid_file_format": "O formato de arquivo é inválido",
         "invalid_file_size": "Tamanho de arquivo inválido. Ele deve ser menor que 16 MB.",
@@ -786,6 +789,7 @@
       },
       "success": {
         "create_translation": "Tradução de template criada com sucesso",
+        "sync_templates": "Templates sincronizados com sucesso",
         "update_translation": "Tradução de template atualizada com sucesso"
       }
     },

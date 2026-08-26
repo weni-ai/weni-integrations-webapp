@@ -93,6 +93,65 @@ describe('whatsapp_store actions', () => {
       expect(store.loadingWhatsAppTemplates).toBe(false);
     });
 
+    it('should fetch WhatsApp templates sync status successfully', async () => {
+      whatsApp.getWhatsAppTemplatesSyncStatus.mockResolvedValueOnce({
+        last_synced_at: '2026-08-20T12:00:00+00:00',
+      });
+
+      await store.getWhatsAppTemplatesSyncStatus({ appUuid: 'abc' });
+
+      expect(store.templatesLastSyncedAt).toBe('2026-08-20T12:00:00+00:00');
+      expect(whatsApp.getWhatsAppTemplatesSyncStatus).toHaveBeenCalledWith('abc');
+    });
+
+    it('should handle error when fetching WhatsApp templates sync status', async () => {
+      const mockError = new Error('Failed to fetch sync status');
+      whatsApp.getWhatsAppTemplatesSyncStatus.mockRejectedValueOnce(mockError);
+
+      await store.getWhatsAppTemplatesSyncStatus({ appUuid: 'abc' });
+
+      expect(captureSentryException).toHaveBeenCalledWith(mockError);
+      expect(store.errorSyncWhatsAppTemplates).toBe(mockError);
+    });
+
+    it('should sync WhatsApp templates successfully', async () => {
+      whatsApp.syncWhatsAppTemplates.mockResolvedValueOnce({
+        last_synced_at: '2026-08-20T13:00:00+00:00',
+      });
+
+      await store.syncWhatsAppTemplates({ appUuid: 'abc' });
+
+      expect(store.templatesLastSyncedAt).toBe('2026-08-20T13:00:00+00:00');
+      expect(store.loadingSyncWhatsAppTemplates).toBe(false);
+    });
+
+    it('should update last synced at when sync returns 429', async () => {
+      const mockError = {
+        response: {
+          status: 429,
+          data: { last_synced_at: '2026-08-20T13:30:00+00:00', error: 'cooldown' },
+        },
+      };
+      whatsApp.syncWhatsAppTemplates.mockRejectedValueOnce(mockError);
+
+      await store.syncWhatsAppTemplates({ appUuid: 'abc' });
+
+      expect(store.templatesLastSyncedAt).toBe('2026-08-20T13:30:00+00:00');
+      expect(store.loadingSyncWhatsAppTemplates).toBe(false);
+      expect(store.errorSyncWhatsAppTemplates).toBe('cooldown');
+    });
+
+    it('should handle error when syncing WhatsApp templates', async () => {
+      const mockError = new Error('Failed to sync templates');
+      whatsApp.syncWhatsAppTemplates.mockRejectedValueOnce(mockError);
+
+      await store.syncWhatsAppTemplates({ appUuid: 'abc' });
+
+      expect(captureSentryException).toHaveBeenCalledWith(mockError);
+      expect(store.errorSyncWhatsAppTemplates).toBe(mockError);
+      expect(store.loadingSyncWhatsAppTemplates).toBe(false);
+    });
+
     it('should successfully create a WhatsApp template', async () => {
       const mockTemplateData = { id: 'template123' };
       whatsApp.createTemplate.mockResolvedValueOnce(mockTemplateData);
