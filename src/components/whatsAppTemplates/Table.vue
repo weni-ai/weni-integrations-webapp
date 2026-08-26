@@ -404,7 +404,7 @@
       overflow-x: hidden;
       overflow-y: auto;
 
-      ::v-deep .scroll {
+      :deep(.scroll) {
         overflow-x: hidden;
         flex: none;
         min-height: 248px;
@@ -459,16 +459,16 @@
           width: 260px;
           max-width: 300px;
 
-          ::v-deep {
-            .input {
-              padding: $unnnic-squish-xs;
-              font-size: $unnnic-font-size-body-gt;
-              line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-            }
-            .icon-left {
-              transform: translateY(30%);
-            }
+          
+          :deep(.input) {
+            padding: $unnnic-squish-xs;
+            font-size: $unnnic-font-size-body-gt;
+            line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
           }
+          :deep(.icon-left) {
+            transform: translateY(30%);
+          }
+        
         }
 
         &__label {

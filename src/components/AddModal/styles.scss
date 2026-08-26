@@ -1,5 +1,5 @@
 .add-modal {
-    ::v-deep .unnnic-modal-container-background-body-close_icon {
+    :deep(.unnnic-modal-container-background-body-close_icon) {
       .unnnic-icon {
         display: none;
       }

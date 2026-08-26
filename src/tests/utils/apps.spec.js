@@ -18,6 +18,10 @@ describe('apps utils', () => {
       expect(getAppDisplayName({ code: 'telegram', name: 'Telegram' }, t)).toBe('Telegram');
     });
 
+    it('falls back to WhatsApp when wpp-cloud has no name', () => {
+      expect(getAppDisplayName({ code: 'wpp-cloud' }, t)).toBe('WhatsApp');
+    });
+
     it('returns empty string when app is undefined', () => {
       expect(getAppDisplayName(undefined, t)).toBe('');
     });

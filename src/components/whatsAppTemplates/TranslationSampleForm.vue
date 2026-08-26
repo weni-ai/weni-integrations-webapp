@@ -240,17 +240,17 @@
       margin: 0 (-$unnnic-spacing-inline-md);
       padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-md;
 
-      ::v-deep .template-preview__content,
-      ::v-deep .template-preview__buttons {
+      :deep(.template-preview__content),
+      :deep(.template-preview__buttons) {
         margin: $unnnic-spacing-stack-xs 0;
       }
 
-      ::v-deep .template-preview__content {
+      :deep(.template-preview__content) {
         width: 210px;
         margin-bottom: $unnnic-spacing-stack-nano;
       }
 
-      ::v-deep .template-preview__buttons {
+      :deep(.template-preview__buttons) {
         width: 225px;
         margin-top: $unnnic-spacing-stack-nano;
       }

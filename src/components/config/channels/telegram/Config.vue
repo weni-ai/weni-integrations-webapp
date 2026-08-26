@@ -1,12 +1,6 @@
 <template>
   <div class="app-config-telegram">
     <div class="app-config-telegram__header">
-      <div class="app-config-telegram__header__title">
-        <div class="app-config-telegram__header__title__icon-container">
-          <img class="app-config-telegram__header__title__icon-container__icon" :src="app.icon" />
-        </div>
-        <div class="app-config-telegram__header__title__name">{{ app.name }}</div>
-      </div>
       <span class="app-config-telegram__header__description">
         {{ $t('telegram.config.description.text') }}
         <a :href="documentationLink" target="_blank">
@@ -148,37 +142,7 @@
       margin: $unnnic-spacing-inset-lg;
       margin-bottom: $unnnic-spacing-stack-sm;
 
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-
-          background-color: rgba(3, 155, 229, 0.2);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-      }
-
       &__description {
-        margin-top: $unnnic-inline-sm;
         padding-bottom: $unnnic-inline-md;
         border-bottom: 1px solid $unnnic-color-border-base;
 
@@ -221,7 +185,7 @@
             flex: 1;
             margin-top: $unnnic-spacing-stack-xs;
 
-            ::v-deep .unnnic-form-input {
+            :deep(.unnnic-form-input) {
               margin-top: $unnnic-spacing-stack-xs;
             }
           }

@@ -1,3 +1,12 @@
+3.18.0
+----------
+`2026-08-26 · 3 🔧`
+
+### 🔧 Improvements
+- Replace the app configuration overlay with `UnnnicDrawer` and show the app name and icon in the header
+- Redesign the WhatsApp Account tab and add a control to copy the phone number
+- Update Vue scoped styles to `:deep()` and SCSS modules to `@use`
+
 3.17.0
 ----------
 `2026-08-13 · 1 🎉`

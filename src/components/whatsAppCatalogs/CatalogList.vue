@@ -383,15 +383,15 @@
       }
     }
 
-    ::v-deep .unnnic-modal .container .content {
+    :deep(.unnnic-modal .container .content) {
       padding-right: 0px;
     }
 
-    ::v-deep .unnnic-modal.type-alert .title {
+    :deep(.unnnic-modal.type-alert .title) {
       padding-bottom: $unnnic-spacing-xs;
     }
 
-    ::v-deep .unnnic-modal.type-alert .container .content.with-validation .description {
+    :deep(.unnnic-modal.type-alert .container .content.with-validation .description) {
       margin-bottom: $unnnic-spacing-sm;
     }
   }

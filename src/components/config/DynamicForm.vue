@@ -90,11 +90,11 @@
       }
 
       &__input {
-        ::v-deep {
-          .unnnic-form__message {
-            color: $unnnic-color-fg-base;
-          }
+        
+        :deep(.unnnic-form__message) {
+          color: $unnnic-color-fg-base;
         }
+      
       }
     }
   }

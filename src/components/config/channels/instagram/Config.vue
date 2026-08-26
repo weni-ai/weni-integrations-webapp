@@ -1,14 +1,5 @@
 <template>
   <div class="app-config-instagram">
-    <div class="app-config-instagram__header">
-      <div class="app-config-instagram__header__title">
-        <div class="app-config-instagram__header__title__icon-container">
-          <img class="app-config-instagram__header__title__icon-container__icon" :src="app.icon" />
-        </div>
-        <div ref="title-name" class="app-config-instagram__header__title__name">{{ app.name }}</div>
-      </div>
-    </div>
-
     <div class="app-config-instagram__settings__content">
       <unnnic-label ref="label" :label="$t('instagram.config.connected_account')" />
       <div class="app-config-instagram__settings__content__inputs">
@@ -63,35 +54,6 @@
       display: flex;
       margin-bottom: $unnnic-spacing-stack-md;
       flex-direction: column;
-
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-
-          background-color: rgba(222, 22, 186, 0.08);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-      }
     }
 
     &__settings {

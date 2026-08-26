@@ -357,29 +357,29 @@
 
 <style lang="scss" scoped>
   .vtex-modal {
-    ::v-deep {
-      .unnnic-modal-container-background {
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        padding: 0 $unnnic-spacing-md;
-        max-height: 95vh;
-        cursor: auto;
-        box-shadow: none;
-        width: 750px;
-      }
-      .unnnic-modal-container-background-body {
-        border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
-      }
-
-      .unnnic-modal-container-background-body-title {
-        padding-bottom: $unnnic-spacing-xs;
-      }
-
-      .unnnic-modal-container-background-body-description-container {
-        padding-bottom: $unnnic-spacing-xs;
-      }
+    
+    :deep(.unnnic-modal-container-background) {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 0 $unnnic-spacing-md;
+      max-height: 95vh;
+      cursor: auto;
+      box-shadow: none;
+      width: 750px;
     }
+    :deep(.unnnic-modal-container-background-body) {
+      border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
+    }
+
+    :deep(.unnnic-modal-container-background-body-title) {
+      padding-bottom: $unnnic-spacing-xs;
+    }
+
+    :deep(.unnnic-modal-container-background-body-description-container) {
+      padding-bottom: $unnnic-spacing-xs;
+    }
+  
 
     &__header {
       display: flex;
@@ -488,21 +488,21 @@
             font-size: $unnnic-font-size-body-gt;
             line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
 
-            ::v-deep {
-              .highlight {
-                color: $unnnic-color-fg-base;
-                border-radius: $unnnic-border-radius-sm;
-                background: $unnnic-color-bg-muted;
-                padding: 2px $unnnic-spacing-nano;
-              }
-
-              ul {
-                margin: unset;
-                padding: unset;
-
-                padding-left: 20px;
-              }
+            
+            :deep(.highlight) {
+              color: $unnnic-color-fg-base;
+              border-radius: $unnnic-border-radius-sm;
+              background: $unnnic-color-bg-muted;
+              padding: 2px $unnnic-spacing-nano;
             }
+
+            :deep(ul) {
+              margin: unset;
+              padding: unset;
+
+              padding-left: 20px;
+            }
+          
           }
 
           &__url-wrapper {

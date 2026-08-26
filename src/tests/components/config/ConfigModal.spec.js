@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import ConfigModal from '@/components/config/ConfigModal.vue';
 import wppConfig from '@/components/config/channels/whatsapp/Config.vue';
 import telegramConfig from '@/components/config/channels/telegram/Config.vue';
@@ -28,6 +28,12 @@ describe('ConfigModal.vue', () => {
     wrapper = mount(ConfigModal, {
       global: {
         plugins: [i18n, UnnnicSystem, pinia],
+        stubs: {
+          UnnnicDrawerNext: true,
+          UnnnicDrawerContent: true,
+          UnnnicDrawerHeader: true,
+          UnnnicDrawerTitle: true,
+        },
         mocks: {
           $t: (msg) => msg,
           $i18n: {
@@ -36,6 +42,10 @@ describe('ConfigModal.vue', () => {
         },
       },
     });
+  });
+
+  afterEach(() => {
+    wrapper.unmount();
   });
 
   it('opens the modal correctly', async () => {
@@ -89,10 +99,45 @@ describe('ConfigModal.vue', () => {
     expect(wrapper.vm.showConfirmationModal).toBe(false);
   });
 
-  it('closes the modal when the backdrop is clicked', async () => {
+  it('closes the drawer when onDrawerOpenChange receives false', async () => {
     await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
-    await wrapper.find('.config-modal__backdrop').trigger('click');
+    wrapper.vm.onDrawerOpenChange(false);
     expect(wrapper.vm.show).toBe(false);
+  });
+
+  it('does not close the drawer when confirmation is required', async () => {
+    await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
+    wrapper.vm.needConfirmation = true;
+    wrapper.vm.onDrawerOpenChange(false);
+    expect(wrapper.vm.show).toBe(true);
+    expect(wrapper.vm.showConfirmationModal).toBe(true);
+  });
+
+  it('does not render a header icon for WhatsApp', async () => {
+    await wrapper.vm.openModal({
+      app: { code: 'wpp', name: 'WhatsApp', icon: 'https://example.com/wpp.png' },
+      isConfigured: true,
+    });
+    expect(wrapper.vm.showHeaderIcon).toBe(false);
+    expect(wrapper.vm.headerTitle).toBe('WhatsApp');
+  });
+
+  it('shows WhatsApp title for wpp-cloud when instance has no name', async () => {
+    await wrapper.vm.openModal({
+      app: { code: 'wpp-cloud', uuid: 'baa88c70-55fc-47a9-b1ee-093f48248005' },
+      isConfigured: true,
+    });
+    expect(wrapper.vm.headerTitle).toBe('WhatsApp');
+  });
+
+  it('renders a header icon for apps that use one', async () => {
+    await wrapper.vm.openModal({
+      app: { code: 'tg', name: 'Telegram', icon: 'https://example.com/telegram.png' },
+      isConfigured: false,
+    });
+    expect(wrapper.vm.showHeaderIcon).toBe(true);
+    expect(wrapper.vm.headerIcon).toBe('https://example.com/telegram.png');
+    expect(wrapper.vm.headerTitle).toBe('Telegram');
   });
 
   it('setConfirmation value', async () => {
@@ -102,6 +147,7 @@ describe('ConfigModal.vue', () => {
 
   describe('close event', () => {
     it('emits close when closeModal is called and needConfirmation is false', async () => {
+      await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
       wrapper.vm.needConfirmation = false;
       await wrapper.vm.closeModal();
       expect(wrapper.emitted('close')).toHaveLength(1);

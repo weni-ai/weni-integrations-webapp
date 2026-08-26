@@ -188,7 +188,7 @@
     }
 
     &__input {
-      ::v-deep textarea {
+      :deep(textarea) {
         resize: none;
       }
 

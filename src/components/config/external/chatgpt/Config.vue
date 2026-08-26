@@ -1,20 +1,6 @@
 <template>
   <div class="config-chatgpt">
     <div class="config-chatgpt__header">
-      <div class="config-chatgpt__header__title">
-        <div class="config-chatgpt__header__title__icon-container">
-          <img class="config-chatgpt__header__title__icon-container__icon" :src="app.icon" />
-        </div>
-        <div class="config-chatgpt__header__title__name">{{ app.name }}</div>
-
-        <unnnic-button
-          class="config-chatgpt__header__title__close"
-          type="tertiary"
-          icon-center="close-1"
-          size="small"
-          @click="closeConfig"
-        />
-      </div>
       <span class="config-chatgpt__header__description" v-html="$t('ChatGPT.config.description')" />
     </div>
 
@@ -445,13 +431,13 @@
       overflow-y: hidden;
       width: 100%;
 
-      ::v-deep .tab-body {
+      :deep(.tab-body) {
         display: flex;
         height: -webkit-fill-available;
         height: -moz-available;
         overflow-y: auto;
       }
-      ::v-deep .tab-panel {
+      :deep(.tab-panel) {
         width: 100%;
 
         display: flex;
@@ -472,56 +458,19 @@
       margin: 2rem;
       margin-bottom: 1.5rem;
 
-      &__title {
-        display: flex;
-
-        &__icon-container {
-          display: flex;
-          width: $unnnic-avatar-size-sm;
-          height: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-          align-items: center;
-
-          background-color: rgba(0, 158, 150, 0.16);
-
-          &__icon {
-            width: $unnnic-icon-size-md;
-            height: $unnnic-icon-size-md;
-            margin: 0 auto;
-          }
-        }
-
-        &__name {
-          align-self: center;
-          font-family: $unnnic-font-family-primary;
-          font-weight: $unnnic-font-weight-regular;
-          font-size: $unnnic-font-size-title-md;
-          line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-          color: $unnnic-color-fg-emphasized;
-
-          margin-left: $unnnic-inline-sm;
-        }
-
-        &__close {
-          margin-left: auto;
-          align-self: center;
-        }
-      }
-
       &__description {
-        margin-top: $unnnic-inline-sm;
         font-family: $unnnic-font-family-secondary;
         font-weight: $unnnic-font-weight-regular;
         font-size: $unnnic-font-size-body-gt;
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        ::v-deep {
-          a {
-            font-weight: $unnnic-font-weight-bold;
-            color: $unnnic-color-fg-base;
-          }
+        
+        :deep(a) {
+          font-weight: $unnnic-font-weight-bold;
+          color: $unnnic-color-fg-base;
         }
+      
       }
     }
 
@@ -565,7 +514,7 @@
           flex-direction: row;
           gap: $unnnic-spacing-inline-xs;
 
-          ::v-deep .unnnic-text-area {
+          :deep(.unnnic-text-area) {
             textarea {
               border-color: #e2e6ed;
 
@@ -584,7 +533,7 @@
 
         &__prompt {
           max-width: 100%;
-          ::v-deep .unnnic-tag__label {
+          :deep(.unnnic-tag__label) {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -618,11 +567,11 @@
       }
     }
 
-    ::v-deep .unnnic-form__label {
+    :deep(.unnnic-form__label) {
       margin: 0 0 0.25rem;
     }
 
-    ::v-deep .unnnic-label__label {
+    :deep(.unnnic-label__label) {
       margin: 5px 0px -10px;
     }
   }

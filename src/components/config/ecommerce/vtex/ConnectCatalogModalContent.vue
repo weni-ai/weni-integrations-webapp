@@ -70,7 +70,7 @@
       widows: 100%;
       flex: 1;
 
-      ::v-deep .unnnic-button {
+      :deep(.unnnic-button) {
         width: 100%;
       }
     }

@@ -297,11 +297,11 @@
 
 <style lang="scss" scoped>
   .facebook-icon {
-    ::v-deep {
-      .unnnic-icon > svg > path {
-        fill: #3c579e;
-      }
+    
+    :deep(.unnnic-icon > svg > path) {
+      fill: #3c579e;
     }
+  
   }
   .facebook-setup {
     cursor: default;
@@ -317,16 +317,16 @@
       }
     }
 
-    ::v-deep {
-      .unnnic-modal-container-background-body-description {
-        padding-bottom: $unnnic-spacing-stack-nano;
-      }
-      .link {
-        color: inherit;
-        text-decoration: none;
-        border-bottom: 1px solid $unnnic-color-border-base;
-      }
+    
+    :deep(.unnnic-modal-container-background-body-description) {
+      padding-bottom: $unnnic-spacing-stack-nano;
     }
+    :deep(.link) {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid $unnnic-color-border-base;
+    }
+  
   }
 
   .page-selection {
@@ -349,11 +349,11 @@
       gap: $unnnic-spacing-stack-md;
     }
 
-    ::v-deep .unnnic-modal-container-background-body-description {
+    :deep(.unnnic-modal-container-background-body-description) {
       padding-bottom: $unnnic-spacing-stack-nano;
     }
 
-    ::v-deep .unnnic-modal-container-background-button {
+    :deep(.unnnic-modal-container-background-button) {
       padding-top: $unnnic-spacing-stack-md;
     }
   }

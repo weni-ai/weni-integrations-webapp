@@ -107,7 +107,7 @@ describe('wwcConfig Component', () => {
   describe('rendering', () => {
     it('should render the component correctly', () => {
       expect(wrapper.find('.app-config-wwc').exists()).toBe(true);
-      expect(wrapper.find('.app-config-wwc__header__title').text()).toBe('Shopping Assistant');
+      expect(wrapper.find('.app-config-wwc__header__description').exists()).toBe(true);
     });
 
     it('should render AppearanceTab component', () => {
@@ -122,14 +122,9 @@ describe('wwcConfig Component', () => {
       expect(wrapper.findComponent({ name: 'IntegrationTab' }).exists()).toBe(true);
     });
 
-    it('should render header with title and description', () => {
+    it('should render header with description', () => {
       expect(wrapper.find('.app-config-wwc__header').exists()).toBe(true);
-      expect(wrapper.find('.app-config-wwc__header__title-container').exists()).toBe(true);
       expect(wrapper.find('.app-config-wwc__header__description').exists()).toBe(true);
-    });
-
-    it('should render close button', () => {
-      expect(wrapper.find('.app-config-wwc__header__close').exists()).toBe(true);
     });
 
     it('should have simulator switch button', () => {
@@ -150,9 +145,8 @@ describe('wwcConfig Component', () => {
   });
 
   describe('close functionality', () => {
-    it('should emit closeModal when close button is clicked', async () => {
-      const closeButton = wrapper.find('.app-config-wwc__header__close unnnic-button-stub');
-      await closeButton.trigger('click');
+    it('should emit closeModal when closeConfig is called', async () => {
+      wrapper.vm.closeConfig();
       expect(wrapper.emitted().closeModal).toBeTruthy();
     });
 

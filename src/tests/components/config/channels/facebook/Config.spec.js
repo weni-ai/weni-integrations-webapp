@@ -41,8 +41,6 @@ describe('Config.vue', () => {
     expect(wrapper.html()).toMatchSnapshot();
   });
   it('renders the component with correct elements', () => {
-    expect(wrapper.find('.app-config-facebook__header__title__name').text()).toBe(mockApp.name);
-    expect(wrapper.find('img').attributes('src')).toBe(mockApp.icon);
     expect(
       wrapper.find('.app-config-facebook__settings__content__inputs__name input').element.value,
     ).toBe(mockApp.config.page_name);

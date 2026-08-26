@@ -13,7 +13,7 @@
     }
 
     &__banner {
-      ::v-deep .unnnic-banner-info__section {
+      :deep(.unnnic-banner-info__section) {
         align-self: center;
       }
     }

@@ -22,7 +22,7 @@ describe('InstagramConfig.vue', () => {
     });
   };
 
-  it('should render the app name and icon correctly', () => {
+  it('should render the connected account fields', () => {
     const app = {
       name: 'Instagram',
       icon: 'https://example.com/icon.png',
@@ -34,19 +34,7 @@ describe('InstagramConfig.vue', () => {
 
     const wrapper = factory(app);
 
-    expect(wrapper.find('.app-config-instagram__header__title__name').text()).toBe('Instagram');
-    expect(wrapper.find('img').attributes('src')).toBe('https://example.com/icon.png');
-  });
-
-  it('should not render the name and icon if they are not provided', () => {
-    const app = {};
-
-    const wrapper = factory(app);
-
-    const titleName = wrapper.find('.app-config-instagram__header__title__name').text();
-    expect(titleName).toBe('');
-    const image = wrapper.find('img').attributes('src');
-    expect(image).toBe(undefined);
+    expect(wrapper.find('.app-config-instagram__settings__content').exists()).toBe(true);
   });
 
   it('should render the page name and formatted ID correctly', () => {
