@@ -400,8 +400,8 @@
       },
       "billing": {
         "brl_disclaimer": {
-          "description": "Meta ahora cobra mensajes de WhatsApp en reales en Brasil. El {migrationDate}, la cuenta se actualizó automáticamente: se creó una nueva cuenta de persona jurídica de WhatsApp (WABA) en reales, y el número, plantillas y flujos se transfirieron a ella. El servicio continuó funcionando normalmente y no se requiere ninguna acción.",
-          "title": "Cuenta ahora facturada en reales brasileños (BRL)"
+          "description": "Meta ahora cobra los mensajes de WhatsApp en reales en Brasil. El {migrationDate}, la cuenta se actualizó automáticamente: se creó una nueva cuenta de WhatsApp Business (WABA) en reales, y el número, las plantillas y los flujos se transfirieron a ella. El servicio siguió funcionando con normalidad y no se necesita ninguna acción.",
+          "title": "La cuenta ahora se factura en reales brasileños (BRL)"
         },
         "title": "Información de pago"
       },
