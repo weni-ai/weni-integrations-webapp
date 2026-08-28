@@ -1,19 +1,25 @@
 <template>
   <div class="discovery-content">
-    <unnnic-input
+    <UnnnicInput
       v-model="searchTerm"
       class="discovery-content__search"
       :placeholder="$t('apps.discovery.search.placeholder')"
-      icon-left="search-1"
+      iconLeft="search-1"
     />
 
-    <span v-if="searchTerm && searchTerm.trim()" class="discovery-content__search__results">
+    <span
+      v-if="searchTerm && searchTerm.trim()"
+      class="discovery-content__search__results"
+    >
       {{ $t('apps.discovery.search.results') }}
       <span class="discovery-content__search__results__highlight">
         {{ `“${searchTerm}”...` }}
       </span>
     </span>
-    <div v-if="hasAnyVisibleApp" class="discovery-content__grids">
+    <div
+      v-if="hasAnyVisibleApp"
+      class="discovery-content__grids"
+    >
       <AppGrid
         ref="appGrid"
         section="channel"
@@ -39,11 +45,18 @@
         @update="fetchExternalServices"
       />
     </div>
-    <div v-else-if="searchTerm && !filteredApps.length && !filteredExternalServices.length">
+    <div
+      v-else-if="
+        searchTerm && !filteredApps.length && !filteredExternalServices.length
+      "
+    >
       <EmptyApps :term="searchTerm" />
     </div>
 
-    <div v-if="searchTerm" class="discovery-content__recommended">
+    <div
+      v-if="searchTerm"
+      class="discovery-content__recommended"
+    >
       <AppGrid
         section="recommended"
         type="add"
@@ -55,129 +68,134 @@
 </template>
 
 <script>
-  import AppGrid from '@/components/AppGrid/index.vue';
-  import EmptyApps from '@/components/EmptyApps/index.vue';
-  import { mapActions, mapState } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { externals_store } from '@/stores/modules/appType/externals/externals.store';
-  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import unnnic from '@weni/unnnic-system';
-  import { getAppDisplayName, appMatchesSearch } from '@/utils/apps';
-  export default {
-    name: 'Discovery',
-    components: {
-      AppGrid,
-      EmptyApps,
+import AppGrid from '@/components/AppGrid/index.vue';
+import EmptyApps from '@/components/EmptyApps/index.vue';
+import { mapActions, mapState } from 'pinia';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+import unnnic from '@weni/unnnic-system';
+import { getAppDisplayName, appMatchesSearch } from '@/utils/apps';
+export default {
+  name: 'Discovery',
+  components: {
+    AppGrid,
+    EmptyApps,
+  },
+  data() {
+    return {
+      searchTerm: '',
+      channels: {
+        loading: true,
+        data: null,
+      },
+    };
+  },
+  async mounted() {
+    this.fetchChannels();
+
+    this.fetchExternalServices();
+
+    this.fetchEcommerceApps();
+
+    this.fetchFeatured();
+  },
+  computed: {
+    ...mapState(app_type, [
+      'allAppTypes',
+      'loadingAllAppTypes',
+      'errorAllAppTypes',
+      'featuredApps',
+      'loadingFeaturedApps',
+    ]),
+    ...mapState(externals_store, [
+      'loadingExternalServices',
+      'externalServicesList',
+    ]),
+    ...mapState(ecommerce_store, ['loadingEcommerceApps', 'ecommerceAppsList']),
+    searchOptions() {
+      if (!this.allAppTypes || !this.externalServicesList) return [];
+
+      const allApps = [...this.allAppTypes, ...this.externalServicesList];
+
+      const filtered = allApps.filter((app) => {
+        return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
+      });
+
+      return filtered.map((app) => {
+        return getAppDisplayName(app, this.$t.bind(this));
+      });
     },
-    data() {
-      return {
-        searchTerm: '',
-        channels: {
-          loading: true,
-          data: null,
-        },
+    filteredApps() {
+      if (!this.allAppTypes) return [];
+
+      if (!this.searchTerm || !this.searchTerm.trim()) return this.allAppTypes;
+
+      return this.allAppTypes.filter((app) => {
+        return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
+      });
+    },
+    filteredExternalServices() {
+      if (!this.externalServicesList) return [];
+
+      if (!this.searchTerm || !this.searchTerm.trim())
+        return this.externalServicesList;
+
+      return this.externalServicesList.filter((app) => {
+        return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
+      });
+    },
+    filteredEcommerceApps() {
+      if (!this.ecommerceAppsList) return [];
+
+      if (!this.searchTerm || !this.searchTerm.trim())
+        return this.ecommerceAppsList;
+
+      return this.ecommerceAppsList.filter((app) => {
+        return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
+      });
+    },
+    hasAnyVisibleApp() {
+      return (
+        this.filteredExternalServices.length ||
+        this.filteredEcommerceApps.length ||
+        this.filteredApps.length
+      );
+    },
+  },
+  methods: {
+    ...mapActions(app_type, ['getAllAppTypes', 'fetchFeatured']),
+    ...mapActions(externals_store, ['getExternalServicesTypes']),
+    ...mapActions(ecommerce_store, ['getEcommerceTypes']),
+    async fetchChannels() {
+      const params = {
+        category: 'channel',
       };
+      await this.getAllAppTypes({ params });
+
+      if (this.errorAllAppTypes) {
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('apps.discovery.fetch_error'),
+            type: 'error',
+          },
+          seconds: 6,
+        });
+        return;
+      }
+
+      this.channels.data = this.allAppTypes;
     },
-    async mounted() {
-      this.fetchChannels();
-
-      this.fetchExternalServices();
-
-      this.fetchEcommerceApps();
-
-      this.fetchFeatured();
+    async fetchExternalServices() {
+      await this.getExternalServicesTypes();
     },
-    computed: {
-      ...mapState(app_type, [
-        'allAppTypes',
-        'loadingAllAppTypes',
-        'errorAllAppTypes',
-        'featuredApps',
-        'loadingFeaturedApps',
-      ]),
-      ...mapState(externals_store, ['loadingExternalServices', 'externalServicesList']),
-      ...mapState(ecommerce_store, ['loadingEcommerceApps', 'ecommerceAppsList']),
-      searchOptions() {
-        if (!this.allAppTypes || !this.externalServicesList) return [];
-
-        const allApps = [...this.allAppTypes, ...this.externalServicesList];
-
-        const filtered = allApps.filter((app) => {
-          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
-        });
-
-        return filtered.map((app) => {
-          return getAppDisplayName(app, this.$t.bind(this));
-        });
-      },
-      filteredApps() {
-        if (!this.allAppTypes) return [];
-
-        if (!this.searchTerm || !this.searchTerm.trim()) return this.allAppTypes;
-
-        return this.allAppTypes.filter((app) => {
-          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
-        });
-      },
-      filteredExternalServices() {
-        if (!this.externalServicesList) return [];
-
-        if (!this.searchTerm || !this.searchTerm.trim()) return this.externalServicesList;
-
-        return this.externalServicesList.filter((app) => {
-          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
-        });
-      },
-      filteredEcommerceApps() {
-        if (!this.ecommerceAppsList) return [];
-
-        if (!this.searchTerm || !this.searchTerm.trim()) return this.ecommerceAppsList;
-
-        return this.ecommerceAppsList.filter((app) => {
-          return appMatchesSearch(app, this.searchTerm, this.$t.bind(this));
-        });
-      },
-      hasAnyVisibleApp() {
-        return (
-          this.filteredExternalServices.length ||
-          this.filteredEcommerceApps.length ||
-          this.filteredApps.length
-        );
-      },
+    async fetchEcommerceApps() {
+      await this.getEcommerceTypes();
     },
-    methods: {
-      ...mapActions(app_type, ['getAllAppTypes', 'fetchFeatured']),
-      ...mapActions(externals_store, ['getExternalServicesTypes']),
-      ...mapActions(ecommerce_store, ['getEcommerceTypes']),
-      async fetchChannels() {
-        const params = {
-          category: 'channel',
-        };
-        await this.getAllAppTypes({ params });
-
-        if (this.errorAllAppTypes) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('apps.discovery.fetch_error'),
-              type: 'error',
-            },
-            seconds: 6,
-          });
-          return;
-        }
-
-        this.channels.data = this.allAppTypes;
-      },
-      async fetchExternalServices() {
-        await this.getExternalServicesTypes();
-      },
-      async fetchEcommerceApps() {
-        await this.getEcommerceTypes();
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @import './styles.scss';
+@import './styles.scss';
 </style>

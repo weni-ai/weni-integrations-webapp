@@ -29,9 +29,9 @@ describe('ProfileTab.vue', () => {
   });
 
   it('renders loading state when loadingContactInfo is true', async () => {
-    const skeletonLoading = wrapper.findComponent({ ref: 'skeleton' });
     wrapper.vm.loadingContactInfo = true;
     await wrapper.vm.$nextTick();
+    const skeletonLoading = wrapper.findComponent({ ref: 'skeleton' });
     expect(skeletonLoading.exists()).toBe(true);
   });
 
@@ -61,7 +61,9 @@ describe('ProfileTab.vue', () => {
 
     const validInputData = { index: 2, value: 'valid.email@example.com' };
     await wrapper.vm.updateContactInfoInputs(validInputData);
-    expect(wrapper.vm.contactInfoInputs[validInputData.index].error).toBe(false);
+    expect(wrapper.vm.contactInfoInputs[validInputData.index].error).toBe(
+      false,
+    );
   });
 
   it('calls saveProfile and saveContactInfo methods on handleSave', async () => {

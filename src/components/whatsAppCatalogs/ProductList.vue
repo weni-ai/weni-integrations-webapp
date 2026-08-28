@@ -16,29 +16,46 @@
       </div>
     </div>
 
-    <unnnic-table :items="listItems" class="whatsapp-product-list__table">
-      <template v-slot:header>
-        <unnnic-table-row :headers="headers" />
+    <UnnnicTable
+      :items="listItems"
+      class="whatsapp-product-list__table"
+    >
+      <template #header>
+        <UnnnicTableRow :headers="headers" />
       </template>
 
-      <template v-slot:item="{ item }">
-        <unnnic-table-row :headers="headers">
-          <template v-slot:title>
-            <div class="whatsapp-product-list__table__title" name="table-title">
-              <img :src="item.image_link" class="whatsapp-product-list__table__title__image" />
+      <template #item="{ item }">
+        <UnnnicTableRow :headers="headers">
+          <template #title>
+            <div
+              class="whatsapp-product-list__table__title"
+              name="table-title"
+            >
+              <img
+                :src="item.image_link"
+                class="whatsapp-product-list__table__title__image"
+              />
               <span :data-title="item.title">{{ item.title }}</span>
             </div>
           </template>
 
-          <template v-slot:available>
-            <div :title="item.available" class="break-text whatsapp-product-list__table__status">
-              <span :class="`whatsapp-product-list__table__status__indicator ${item.available}`" />
+          <template #available>
+            <div
+              :title="item.available"
+              class="break-text whatsapp-product-list__table__status"
+            >
+              <span
+                :class="`whatsapp-product-list__table__status__indicator ${item.available}`"
+              />
               <span>{{ item.available ? 'Disponível' : 'Indisponível' }}</span>
             </div>
           </template>
 
-          <template v-slot:price>
-            <div :title="item.price" class="break-text whatsapp-product-list__table__price">
+          <template #price>
+            <div
+              :title="item.price"
+              class="break-text whatsapp-product-list__table__price"
+            >
               <span>{{ item.price }}</span>
               <span
                 v-if="item.base_price !== item.price"
@@ -49,275 +66,285 @@
             </div>
           </template>
 
-          <template v-slot:facebook_product_id>
-            <div :title="item.facebook_product_id" class="break-text">
+          <template #facebook_product_id>
+            <div
+              :title="item.facebook_product_id"
+              class="break-text"
+            >
               {{ item.facebook_product_id }}
             </div>
           </template>
-        </unnnic-table-row>
+        </UnnnicTableRow>
       </template>
-    </unnnic-table>
+    </UnnnicTable>
     <div class="whatsapp-product-list__pagination">
-      <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination
+      <span
+        >{{ currentPageStart }} - {{ currentPageCount }} de
+        {{ totalCount }}</span
+      >
+      <UnnnicPagination
         :modelValue="page"
-        @update:modelValue="onPageChange"
         :max="pageCount"
         :show="5"
+        @update:model-value="onPageChange"
       />
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
-  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+import { mapActions, mapState } from 'pinia';
+import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
-  export default {
-    name: 'ProductList',
-    props: {
-      catalogName: {
-        type: String,
-        required: true,
-        default: '',
-      },
+export default {
+  name: 'ProductList',
+  props: {
+    catalogName: {
+      type: String,
+      required: true,
+      default: '',
     },
-    data() {
-      return {
-        firstLoad: true,
-        page: 1,
-        pageSize: 15,
-        headers: [
-          {
-            id: 'title',
-            text: 'WhatsApp.product.table.headers.name',
-            flex: 2,
-          },
-          {
-            id: 'available',
-            text: 'WhatsApp.product.table.headers.availability',
-            flex: 1,
-          },
-          {
-            id: 'price',
-            text: 'WhatsApp.product.table.headers.price',
-            flex: 1,
-          },
-          {
-            id: 'facebook_product_id',
-            text: 'WhatsApp.product.table.headers.facebook_id',
-            flex: 1,
-          },
-        ],
-      };
-    },
-    async mounted() {
-      await this.fetchProducts(this.page);
-    },
-    computed: {
-      ...mapState(whatsapp_cloud, [
-        'catalogProducts',
-        'loadingCatalogProducts',
-        'errorCatalogProducts',
-      ]),
-      listItems() {
-        return this.catalogProducts?.results || [];
-      },
-      totalCount() {
-        return this.catalogProducts?.count || this.pageSize;
-      },
-      pageCount() {
-        if (this.catalogProducts?.count) {
-          return Math.ceil(this.catalogProducts.count / this.pageSize);
-        } else {
-          return 1;
-        }
-      },
-      currentPageStart() {
-        return (this.page - 1) * this.pageSize || 1;
-      },
-      currentPageCount() {
-        const value = this.pageSize * this.page;
-        return value > this.catalogProducts?.count ? this.catalogProducts?.count || 0 : value;
-      },
-    },
-    methods: {
-      ...mapActions(whatsapp_cloud, ['getCatalogProducts']),
-      async fetchProducts(page) {
-        const { appUuid, catalogUuid } = this.$route.params;
-        const params = {
-          page: page,
-          page_size: this.pageSize,
-        };
-
-        await this.getCatalogProducts({ appUuid, catalogUuid, params });
-      },
-      onPageChange(value) {
-        this.page = value;
-      },
-    },
-    watch: {
-      page: {
-        immediate: true,
-        handler(page) {
-          this.fetchProducts(page);
+  },
+  data() {
+    return {
+      firstLoad: true,
+      page: 1,
+      pageSize: 15,
+      headers: [
+        {
+          id: 'title',
+          text: 'WhatsApp.product.table.headers.name',
+          flex: 2,
         },
+        {
+          id: 'available',
+          text: 'WhatsApp.product.table.headers.availability',
+          flex: 1,
+        },
+        {
+          id: 'price',
+          text: 'WhatsApp.product.table.headers.price',
+          flex: 1,
+        },
+        {
+          id: 'facebook_product_id',
+          text: 'WhatsApp.product.table.headers.facebook_id',
+          flex: 1,
+        },
+      ],
+    };
+  },
+  async mounted() {
+    await this.fetchProducts(this.page);
+  },
+  computed: {
+    ...mapState(whatsapp_cloud, [
+      'catalogProducts',
+      'loadingCatalogProducts',
+      'errorCatalogProducts',
+    ]),
+    listItems() {
+      return this.catalogProducts?.results || [];
+    },
+    totalCount() {
+      return this.catalogProducts?.count || this.pageSize;
+    },
+    pageCount() {
+      if (this.catalogProducts?.count) {
+        return Math.ceil(this.catalogProducts.count / this.pageSize);
+      } else {
+        return 1;
+      }
+    },
+    currentPageStart() {
+      return (this.page - 1) * this.pageSize || 1;
+    },
+    currentPageCount() {
+      const value = this.pageSize * this.page;
+      return value > this.catalogProducts?.count
+        ? this.catalogProducts?.count || 0
+        : value;
+    },
+  },
+  methods: {
+    ...mapActions(whatsapp_cloud, ['getCatalogProducts']),
+    async fetchProducts(page) {
+      const { appUuid, catalogUuid } = this.$route.params;
+      const params = {
+        page: page,
+        page_size: this.pageSize,
+      };
+
+      await this.getCatalogProducts({ appUuid, catalogUuid, params });
+    },
+    onPageChange(value) {
+      this.page = value;
+    },
+  },
+  watch: {
+    page: {
+      immediate: true,
+      handler(page) {
+        this.fetchProducts(page);
       },
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .whatsapp-product-list {
+.whatsapp-product-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  gap: $unnnic-spacing-md;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__icon {
+      display: flex;
+      background-color: #eefffc;
+      border-radius: $unnnic-border-radius-sm;
+      justify-content: center;
+      margin-right: $unnnic-spacing-inline-sm;
+
+      img {
+        height: $unnnic-icon-size-xl;
+        width: $unnnic-icon-size-xl;
+        padding: $unnnic-inset-nano;
+      }
+    }
+    &__text {
+      display: flex;
+    }
+    &__title {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-spacing-nano;
+    }
+  }
+
+  &__search {
+    width: 33%;
+    min-width: 250px;
+    max-width: 450px;
+  }
+
+  &__cards {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow: hidden;
     gap: $unnnic-spacing-md;
+    overflow: auto;
+    padding-right: $unnnic-spacing-xs;
+  }
 
-    &__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  &__pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-      &__icon {
-        display: flex;
-        background-color: #eefffc;
-        border-radius: $unnnic-border-radius-sm;
-        justify-content: center;
-        margin-right: $unnnic-spacing-inline-sm;
-
-        img {
-          height: $unnnic-icon-size-xl;
-          width: $unnnic-icon-size-xl;
-          padding: $unnnic-inset-nano;
-        }
-      }
-      &__text {
-        display: flex;
-      }
-      &__title {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-spacing-nano;
-      }
+    span {
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+      color: $unnnic-color-fg-base;
     }
+  }
 
-    &__search {
-      width: 33%;
-      min-width: 250px;
-      max-width: 450px;
-    }
+  :deep(.unnnic-modal .container .content) {
+    padding-right: 0px;
+  }
 
-    &__cards {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: $unnnic-spacing-md;
-      overflow: auto;
-      padding-right: $unnnic-spacing-xs;
-    }
+  :deep(.unnnic-modal.type-alert .title) {
+    padding-bottom: $unnnic-spacing-xs;
+  }
 
-    &__pagination {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  :deep(
+    .unnnic-modal.type-alert .container .content.with-validation .description
+  ) {
+    margin-bottom: $unnnic-spacing-sm;
+  }
 
-      span {
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-        color: $unnnic-color-fg-base;
-      }
-    }
+  &__table {
+    display: flex;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 
-    :deep(.unnnic-modal .container .content) {
-      padding-right: 0px;
-    }
-
-    :deep(.unnnic-modal.type-alert .title) {
-      padding-bottom: $unnnic-spacing-xs;
-    }
-
-    :deep(.unnnic-modal.type-alert .container .content.with-validation .description) {
-      margin-bottom: $unnnic-spacing-sm;
-    }
-
-    &__table {
-      display: flex;
-      height: 100%;
+    :deep(.scroll) {
       overflow-x: hidden;
       overflow-y: auto;
 
-      :deep(.scroll) {
-        overflow-x: hidden;
-        overflow-y: auto;
+      padding-right: unset;
+    }
 
-        padding-right: unset;
+    &__title {
+      display: flex;
+      align-items: center;
+
+      // add ellipsis if it breaks text
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
-      &__title {
-        display: flex;
-        align-items: center;
-
-        // add ellipsis if it breaks text
-        span {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-        }
-
-        &__image {
-          height: $unnnic-avatar-size-sm;
-          width: $unnnic-avatar-size-sm;
-          border-radius: $unnnic-border-radius-sm;
-          margin-right: $unnnic-spacing-inline-sm;
-          object-fit: cover;
-          aspect-ratio: 1 / 1;
-        }
+      &__image {
+        height: $unnnic-avatar-size-sm;
+        width: $unnnic-avatar-size-sm;
+        border-radius: $unnnic-border-radius-sm;
+        margin-right: $unnnic-spacing-inline-sm;
+        object-fit: cover;
+        aspect-ratio: 1 / 1;
       }
+    }
 
-      &__status {
-        display: flex;
-        align-items: center;
-        gap: $unnnic-spacing-nano;
+    &__status {
+      display: flex;
+      align-items: center;
+      gap: $unnnic-spacing-nano;
 
-        &__indicator {
-          display: inline-block;
-          height: $unnnic-spacing-xs;
-          width: $unnnic-spacing-xs;
-          margin: 0 6px;
-          border-radius: $unnnic-border-radius-pill;
-          &.false {
-            background-color: $unnnic-color-bg-red-strong;
-          }
-
-          &.true {
-            background-color: $unnnic-color-bg-green-strong;
-          }
+      &__indicator {
+        display: inline-block;
+        height: $unnnic-spacing-xs;
+        width: $unnnic-spacing-xs;
+        margin: 0 6px;
+        border-radius: $unnnic-border-radius-pill;
+        &.false {
+          background-color: $unnnic-color-bg-red-strong;
         }
-      }
 
-      &__price {
-        display: flex;
-        gap: $unnnic-spacing-nano;
-        &__discount {
-          text-decoration: line-through;
-          color: $unnnic-color-fg-muted;
+        &.true {
+          background-color: $unnnic-color-bg-green-strong;
         }
       }
     }
 
-    &__pagination {
+    &__price {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: $unnnic-spacing-stack-md;
-
-      span {
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-        color: $unnnic-color-fg-base;
+      gap: $unnnic-spacing-nano;
+      &__discount {
+        text-decoration: line-through;
+        color: $unnnic-color-fg-muted;
       }
     }
   }
+
+  &__pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $unnnic-spacing-stack-md;
+
+    span {
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+      color: $unnnic-color-fg-base;
+    }
+  }
+}
 </style>

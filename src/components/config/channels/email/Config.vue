@@ -1,111 +1,113 @@
 <template>
   <div class="app-config-email">
     <div class="app-config-email__settings__content">
-      <unnnic-label :label="`${$t('email.config.description')}`" />
+      <UnnnicLabel :label="`${$t('email.config.description')}`" />
       <div class="app-config-email__settings__content__divider" />
       <div class="app-config-email__settings__content__config">
         <p class="app-config-email__settings__content__config__title">
           {{ $t('email.config.config_solution') }}
         </p>
-        <unnnic-label :label="`${$t('email.config.config_solution_subtitle')}`" />
+        <UnnnicLabel
+          :label="`${$t('email.config.config_solution_subtitle')}`"
+        />
       </div>
       <div class="app-config-email__settings__content__inputs">
         <div class="app-config-email__settings__content__inputs__SMPT">
-          <unnnic-form-element
+          <UnnnicFormElement
             :label="$t('email.config.smpt_server.title')"
             :message="$t('email.config.smpt_server.description')"
           >
-            <unnnic-input
+            <UnnnicInput
               class="server"
               :modelValue="smtp_host.value"
-              @update:modelValue="(value) => updateValue('smtp_host', value)"
               size="md"
               nativeType="normal"
               placeholder="smtp.exemplo.com"
               :message="smtp_host.error || ''"
               :type="smtp_host.error ? 'error' : 'normal'"
+              @update:model-value="(value) => updateValue('smtp_host', value)"
             />
-          </unnnic-form-element>
-          <unnnic-form-element
+          </UnnnicFormElement>
+          <UnnnicFormElement
             :label="$t('email.config.smpt_port.title')"
             :message="$t('email.config.smpt_port.description')"
           >
-            <unnnic-input
+            <UnnnicInput
               class="port"
               :modelValue="smtp_port.value"
-              @update:modelValue="(value) => updateValue('smtp_port', value)"
               size="md"
               nativeType="normal"
               placeholder="Ex:. 587 ou 465."
               :message="smtp_port.error || ''"
               :type="smtp_port.error ? 'error' : 'normal'"
+              @update:model-value="(value) => updateValue('smtp_port', value)"
             />
-          </unnnic-form-element>
+          </UnnnicFormElement>
         </div>
         <div class="app-config-email__settings__content__inputs__IMAP">
-          <unnnic-form-element
+          <UnnnicFormElement
             :label="$t('email.config.imap_server.title')"
             :message="$t('email.config.imap_server.description')"
           >
-            <unnnic-input
+            <UnnnicInput
               class="server"
               :modelValue="imap_host.value"
-              @update:modelValue="(value) => updateValue('imap_host', value)"
               size="md"
               nativeType="normal"
               placeholder="smtp.exemplo.com"
               :message="imap_host.error || ''"
               :type="imap_host.error ? 'error' : 'normal'"
+              @update:model-value="(value) => updateValue('imap_host', value)"
             />
-          </unnnic-form-element>
-          <unnnic-form-element
+          </UnnnicFormElement>
+          <UnnnicFormElement
             class="port"
             :label="$t('email.config.imap_port.title')"
             :message="$t('email.config.imap_port.description')"
           >
-            <unnnic-input
+            <UnnnicInput
               class="port"
               :modelValue="imap_port.value"
-              @update:modelValue="(value) => updateValue('imap_port', value)"
               size="md"
               nativeType="normal"
               placeholder="Ex:. 993"
               :message="imap_port.error || ''"
               :type="imap_port.error ? 'error' : 'normal'"
+              @update:model-value="(value) => updateValue('imap_port', value)"
             />
-          </unnnic-form-element>
+          </UnnnicFormElement>
         </div>
         <div class="app-config-email__settings__content__inputs__login">
-          <unnnic-form-element
+          <UnnnicFormElement
             :label="$t('email.config.username')"
             :message="$t('email.config.username_description')"
           >
-            <unnnic-input
+            <UnnnicInput
               :modelValue="username.value"
-              @update:modelValue="(value) => updateValue('username', value)"
               size="md"
               nativeType="normal"
               placeholder="seu.email@exemplo.com"
               :message="username.error || ''"
               :type="username.error ? 'error' : 'normal'"
+              @update:model-value="(value) => updateValue('username', value)"
             />
-          </unnnic-form-element>
-          <unnnic-form-element :label="$t('email.config.password')">
-            <unnnic-input
+          </UnnnicFormElement>
+          <UnnnicFormElement :label="$t('email.config.password')">
+            <UnnnicInput
               :modelValue="password.value"
-              @update:modelValue="(value) => updateValue('password', value)"
               size="md"
               nativeType="normal"
               placeholder="Digite sua senha"
               :message="password.error || ''"
               :type="password.error ? 'error' : 'normal'"
+              @update:model-value="(value) => updateValue('password', value)"
             />
-          </unnnic-form-element>
+          </UnnnicFormElement>
         </div>
       </div>
     </div>
     <div class="app-config-email__settings__buttons">
-      <unnnic-button
+      <UnnnicButton
         class="app-config-email__settings__buttons__cancel"
         type="tertiary"
         size="large"
@@ -113,11 +115,11 @@
         @click="closeConfig"
       />
 
-      <unnnic-button
+      <UnnnicButton
         class="app-config-email__settings__buttons__save"
         size="large"
         :text="$t('apps.config.validate')"
-        :disabled="this.app.config.token || disableValidate"
+        :disabled="app.config.token || disableValidate"
         @click="saveConfig"
       />
     </div>
@@ -125,255 +127,259 @@
 </template>
 
 <script>
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import { mapActions, mapState } from 'pinia';
-  import { useEventStore } from '@/stores/event.store';
-  import unnnic from '@weni/unnnic-system';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { auth_store } from '@/stores/modules/auth.store';
+import { mapActions, mapState } from 'pinia';
+import { useEventStore } from '@/stores/event.store';
+import unnnic from '@weni/unnnic-system';
 
-  export default {
-    name: 'emailConfig',
-    props: {
-      app: {
-        type: Object,
-        default: () => {},
-      },
+export default {
+  name: 'EmailConfig',
+  props: {
+    app: {
+      type: Object,
+      default: () => {},
     },
-    data() {
-      return {
-        pageName: this.app.config.page_name,
-        smtp_host: {
-          value: this.app.config.smtp_host || null,
-          error: null,
-        },
+  },
+  data() {
+    return {
+      pageName: this.app.config.page_name,
+      smtp_host: {
+        value: this.app.config.smtp_host || null,
+        error: null,
+      },
 
-        smtp_port: {
-          value: this.app.config.smtp_port ? String(this.app.config.smtp_port) : null,
-          error: null,
-        },
+      smtp_port: {
+        value: this.app.config.smtp_port
+          ? String(this.app.config.smtp_port)
+          : null,
+        error: null,
+      },
 
-        imap_host: {
-          value: this.app.config.imap_host || null,
-          error: null,
-        },
+      imap_host: {
+        value: this.app.config.imap_host || null,
+        error: null,
+      },
 
-        imap_port: {
-          value: this.app.config.imap_port ? String(this.app.config.imap_port) : null,
-          error: null,
-        },
+      imap_port: {
+        value: this.app.config.imap_port
+          ? String(this.app.config.imap_port)
+          : null,
+        error: null,
+      },
 
-        username: {
-          value: this.app.config.username || null,
-          error: null,
-        },
+      username: {
+        value: this.app.config.username || null,
+        error: null,
+      },
 
-        password: {
-          value: this.app.config.password || null,
-          error: null,
+      password: {
+        value: this.app.config.password || null,
+        error: null,
+      },
+      disableValidate: false,
+    };
+  },
+  computed: {
+    ...mapState(auth_store, ['project']),
+  },
+  methods: {
+    ...mapActions(app_type, ['updateAppConfig', 'errorUpdateAppConfig']),
+    ...mapActions(useEventStore, ['emit']),
+    selectType(type) {
+      this.selectedType = type;
+    },
+    async saveConfig() {
+      const payloadGeneric = {
+        project_uuid: this.project,
+        config: {
+          username: this.username.value,
+          password: this.password.value,
+          smtp_host: this.smtp_host.value,
+          smtp_port: this.smtp_port.value,
+          imap_host: this.imap_host.value,
+          imap_port: this.imap_port.value,
         },
-        disableValidate: false,
+        channeltype_code: 'EM',
       };
-    },
-    computed: {
-      ...mapState(auth_store, ['project']),
-    },
-    methods: {
-      ...mapActions(app_type, ['updateAppConfig', 'errorUpdateAppConfig']),
-      ...mapActions(useEventStore, ['emit']),
-      selectType(type) {
-        this.selectedType = type;
-      },
-      async saveConfig() {
-        const payloadGeneric = {
-          project_uuid: this.project,
-          config: {
-            username: this.username.value,
-            password: this.password.value,
-            smtp_host: this.smtp_host.value,
-            smtp_port: this.smtp_port.value,
-            imap_host: this.imap_host.value,
-            imap_port: this.imap_port.value,
+
+      let thereIsError = false;
+
+      for (let key in payloadGeneric.config) {
+        this.errorFor(key);
+        if (this.$data[key].error) {
+          thereIsError = true;
+        }
+      }
+
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: payloadGeneric,
+      };
+
+      if (thereIsError) {
+        return;
+      }
+
+      try {
+        await this.updateAppConfig(data);
+
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('apps.config.integration_success'),
+            type: 'success',
           },
-          channeltype_code: 'EM',
-        };
+          seconds: 3,
+        });
 
-        let thereIsError = false;
+        this.emit('updateGrid');
+      } catch (err) {
+        let errorMessage = this.$t('apps.details.status_error');
 
-        for (let key in payloadGeneric.config) {
-          this.errorFor(key);
-          if (this.$data[key].error) {
-            thereIsError = true;
-          }
+        if (err.response?.status === 400) {
+          this.invalidToken = true;
+          errorMessage = this.$t('telegram.config.errors.invalidToken');
         }
 
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: payloadGeneric,
-        };
+        unnnic.unnnicCallAlert({
+          props: {
+            text: errorMessage,
+            type: 'error',
+          },
+          seconds: 3,
+        });
 
-        if (thereIsError) {
-          return;
-        }
+        const errors = err.response?.data?.config;
 
-        try {
-          await this.updateAppConfig(data);
-
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('apps.config.integration_success'),
-              type: 'success',
-            },
-            seconds: 3,
-          });
-
-          this.emit('updateGrid');
-        } catch (err) {
-          let errorMessage = this.$t('apps.details.status_error');
-
-          if (err.response?.status === 400) {
-            this.invalidToken = true;
-            errorMessage = this.$t('telegram.config.errors.invalidToken');
-          }
-
-          unnnic.unnnicCallAlert({
-            props: {
-              text: errorMessage,
-              type: 'error',
-            },
-            seconds: 3,
-          });
-
-          const errors = err.response?.data?.config;
-
-          if (errors && typeof errors === 'object') {
-            for (let key in errors) {
-              const value = errors[key];
-              if (typeof value?.[0] === 'string') {
-                this.$data[key].error = value[0];
-              }
+        if (errors && typeof errors === 'object') {
+          for (let key in errors) {
+            const value = errors[key];
+            if (typeof value?.[0] === 'string') {
+              this.$data[key].error = value[0];
             }
           }
         }
-      },
-      closeConfig() {
-        this.$emit('closeModal');
-      },
-      errorFor(key) {
-        const item = this.$data[key];
-        if (item.value === null && this.disableValidate) {
-          return;
-        }
-
-        if (!(item.value !== null && item.value.trim())) {
-          this.$data[key].error = this.$t('errors.empty_input');
-          return;
-        }
-
-        this.$data[key].error = null;
-        if (!this.app.config.token) {
-          this.disableValidate = false;
-        }
-      },
-      updateValue(key, value) {
-        this.$data[key].value = value;
-        if (value && !this.app.config.token) {
-          this.disableValidate = false;
-        }
-        this.errorFor(key);
-      },
+      }
     },
-  };
+    closeConfig() {
+      this.$emit('closeModal');
+    },
+    errorFor(key) {
+      const item = this.$data[key];
+      if (item.value === null && this.disableValidate) {
+        return;
+      }
+
+      if (!(item.value !== null && item.value.trim())) {
+        this.$data[key].error = this.$t('errors.empty_input');
+        return;
+      }
+
+      this.$data[key].error = null;
+      if (!this.app.config.token) {
+        this.disableValidate = false;
+      }
+    },
+    updateValue(key, value) {
+      this.$data[key].value = value;
+      if (value && !this.app.config.token) {
+        this.disableValidate = false;
+      }
+      this.errorFor(key);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .app-config-email {
+.app-config-email {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  padding: $unnnic-inset-lg;
+  overflow-y: scroll;
+
+  &__header {
+    display: flex;
+    margin-bottom: $unnnic-spacing-stack-md;
+    flex-direction: column;
+  }
+
+  &__settings {
     display: flex;
     flex-direction: column;
     height: -webkit-fill-available;
     height: -moz-available;
-    padding: $unnnic-inset-lg;
-    overflow-y: scroll;
+    overflow-y: hidden;
 
-    &__header {
-      display: flex;
-      margin-bottom: $unnnic-spacing-stack-md;
-      flex-direction: column;
-    }
-
-    &__settings {
+    &__content {
+      padding-right: $unnnic-spacing-inline-xs;
       display: flex;
       flex-direction: column;
-      height: -webkit-fill-available;
-      height: -moz-available;
-      overflow-y: hidden;
 
-      &__content {
-        padding-right: $unnnic-spacing-inline-xs;
+      &__divider {
+        box-sizing: border-box;
+        margin-top: $unnnic-spacing-stack-sm;
+        margin-bottom: $unnnic-spacing-stack-md;
+        border-top: 1px solid $unnnic-color-border-base;
+      }
+
+      &__config {
         display: flex;
         flex-direction: column;
+        &__title {
+          margin: 0 !important;
+          font-family: $unnnic-font-family-secondary;
+          font-weight: $unnnic-font-weight-bold;
+          font-size: $unnnic-font-size-body-lg;
+          color: $unnnic-color-fg-emphasized;
+        }
+      }
 
-        &__divider {
-          box-sizing: border-box;
-          margin-top: $unnnic-spacing-stack-sm;
-          margin-bottom: $unnnic-spacing-stack-md;
-          border-top: 1px solid $unnnic-color-border-base;
+      &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: $unnnic-spacing-inline-xs;
+
+        &__type {
+          font-family: $unnnic-font-family-secondary;
+          font-size: $unnnic-font-size-body-gt;
         }
 
-        &__config {
+        &__SMPT,
+        &__IMAP {
           display: flex;
-          flex-direction: column;
-          &__title {
-            margin: 0 !important;
-            font-family: $unnnic-font-family-secondary;
-            font-weight: $unnnic-font-weight-bold;
-            font-size: $unnnic-font-size-body-lg;
-            color: $unnnic-color-fg-emphasized;
-          }
-        }
+          flex-direction: row;
+          gap: $unnnic-spacing-inline-md;
+          width: 100%;
 
-        &__inputs {
-          display: flex;
-          flex-direction: column;
-          gap: $unnnic-spacing-inline-xs;
-
-          &__type {
-            font-family: $unnnic-font-family-secondary;
-            font-size: $unnnic-font-size-body-gt;
-          }
-
-          &__SMPT,
-          &__IMAP {
-            display: flex;
-            flex-direction: row;
-            gap: $unnnic-spacing-inline-md;
-            width: 100%;
-
-            .server {
-              :deep(.unnnic-form-input) {
-                display: flex;
-                max-width: 364px;
-              }
+          .server {
+            :deep(.unnnic-form-input) {
+              display: flex;
+              max-width: 364px;
             }
+          }
 
-            .port {
-              :deep(.unnnic-form-input) {
-                max-width: 198px;
-              }
+          .port {
+            :deep(.unnnic-form-input) {
+              max-width: 198px;
             }
           }
         }
       }
+    }
 
-      &__buttons {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        padding: $unnnic-spacing-inline-sm 0;
+    &__buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: $unnnic-spacing-inline-sm 0;
 
-        :deep(.unnnic-button) {
-          width: 100%;
-        }
+      :deep(.unnnic-button) {
+        width: 100%;
       }
     }
   }
+}
 </style>

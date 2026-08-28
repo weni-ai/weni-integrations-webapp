@@ -113,7 +113,10 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.loadingWhatsAppCloudCatalogs = true;
       this.errorWhatsAppCloudCatalogs = null;
       try {
-        const { data } = await whatsAppCloud.getWhatsAppCloudCatalogs(appUuid, params);
+        const { data } = await whatsAppCloud.getWhatsAppCloudCatalogs(
+          appUuid,
+          params,
+        );
         this.whatsAppCloudCatalogs = data;
         this.loadingWhatsAppCloudCatalogs = false;
       } catch (err) {
@@ -126,7 +129,10 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.loadingFetchWhatsAppCloudCatalog = true;
       this.errorFetchWhatsAppCloudCatalog = null;
       try {
-        const { data } = await whatsAppCloud.fetchCatalogData(appUuid, catalogUuid);
+        const { data } = await whatsAppCloud.fetchCatalogData(
+          appUuid,
+          catalogUuid,
+        );
         this.whatsAppCloudCatalog = data;
         this.loadingFetchWhatsAppCloudCatalog = false;
       } catch (err) {
@@ -140,7 +146,10 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.disabledCatalog = null;
       this.errorDisableCatalog = null;
       try {
-        const { data } = await whatsAppCloud.disableWhatsAppCloudCatalogs(appUuid, catalogUuid);
+        const { data } = await whatsAppCloud.disableWhatsAppCloudCatalogs(
+          appUuid,
+          catalogUuid,
+        );
         this.disabledCatalog = data;
         this.loadingDisableCatalog = false;
       } catch (err) {
@@ -154,7 +163,10 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.enabledCatalog = null;
       this.errorEnableCatalog = null;
       try {
-        const { data } = await whatsAppCloud.enableWhatsAppCloudCatalogs(appUuid, catalogUuid);
+        const { data } = await whatsAppCloud.enableWhatsAppCloudCatalogs(
+          appUuid,
+          catalogUuid,
+        );
         this.enabledCatalog = data;
         this.loadingEnableCatalog = false;
       } catch (err) {
@@ -168,7 +180,10 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.toggledCartVisibility = null;
       this.errorToggleCartVisibility = null;
       try {
-        const { data } = await whatsAppCloud.toggleCartVisibility(appUuid, payload);
+        const { data } = await whatsAppCloud.toggleCartVisibility(
+          appUuid,
+          payload,
+        );
         this.toggledCartVisibility = data;
         this.loadingToggleCartVisibility = false;
       } catch (err) {
@@ -182,7 +197,10 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.toggledCatalogVisibility = null;
       this.errorToggleCatalogVisibility = null;
       try {
-        const { data } = await whatsAppCloud.toggleCatalogVisibility(appUuid, payload);
+        const { data } = await whatsAppCloud.toggleCatalogVisibility(
+          appUuid,
+          payload,
+        );
         this.toggledCatalogVisibility = data;
         this.loadingToggleCatalogVisibility = false;
       } catch (err) {
@@ -209,7 +227,11 @@ export const whatsapp_cloud = defineStore('whatsapp_cloud', {
       this.loadingCatalogProducts = true;
       this.errorCatalogProducts = null;
       try {
-        const { data } = await whatsAppCloud.getCatalogProducts(appUuid, catalogUuid, params);
+        const { data } = await whatsAppCloud.getCatalogProducts(
+          appUuid,
+          catalogUuid,
+          params,
+        );
         this.catalogProducts = data;
         this.loadingCatalogProducts = false;
       } catch (err) {

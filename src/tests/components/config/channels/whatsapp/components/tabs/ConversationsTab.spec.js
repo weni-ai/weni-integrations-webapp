@@ -33,7 +33,9 @@ describe('ConversationsTab', () => {
   });
 
   it('renders the filter label correctly', () => {
-    expect(wrapper.find('.conversations__content__label').text()).toBe('Filter by');
+    expect(wrapper.find('.conversations__content__label').text()).toBe(
+      'Filter by',
+    );
   });
 
   it('displays the conversations count labels correctly', () => {

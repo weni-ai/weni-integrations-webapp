@@ -45,7 +45,9 @@ describe('IntegrateButton.vue', () => {
   });
 
   it('renders LoadingButton component', () => {
-    expect(wrapper.findComponent({ name: 'LoadingButton' }).exists()).toBe(true);
+    expect(wrapper.findComponent({ name: 'LoadingButton' }).exists()).toBe(
+      true,
+    );
   });
 
   it('opens the config pop-up when app is in hasFBLoginList', async () => {
@@ -57,7 +59,9 @@ describe('IntegrateButton.vue', () => {
   });
 
   it('calls createApp and handles errors correctly', async () => {
-    const createAppSpy = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue({});
+    const createAppSpy = vi
+      .spyOn(wrapper.vm, 'createApp')
+      .mockResolvedValue({});
 
     await wrapper.vm.addApp({ code: 'generic', config_design: 'popup' });
     expect(createAppSpy).toHaveBeenCalledWith({
@@ -68,7 +72,9 @@ describe('IntegrateButton.vue', () => {
   });
 
   it('creates wwc apps with v3 default config', async () => {
-    const createAppSpy = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue({});
+    const createAppSpy = vi
+      .spyOn(wrapper.vm, 'createApp')
+      .mockResolvedValue({});
 
     await wrapper.vm.addApp({ code: 'wwc', config_design: 'popup' });
     expect(createAppSpy).toHaveBeenCalledWith({
@@ -108,6 +114,9 @@ describe('IntegrateButton.vue', () => {
   it('calls openWACloudPopUp method', () => {
     const openWACloudPopUpSpy = vi.spyOn(wrapper.vm, 'openWACloudPopUp');
     wrapper.vm.openWACloudPopUp({ code: 'wpp-cloud' }, 'some-token');
-    expect(openWACloudPopUpSpy).toHaveBeenCalledWith({ code: 'wpp-cloud' }, 'some-token');
+    expect(openWACloudPopUpSpy).toHaveBeenCalledWith(
+      { code: 'wpp-cloud' },
+      'some-token',
+    );
   });
 });

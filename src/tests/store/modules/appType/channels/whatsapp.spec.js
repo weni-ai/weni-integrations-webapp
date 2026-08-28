@@ -40,9 +40,15 @@ describe('whatsapp_store actions', () => {
 
     it('should successfully update WhatsApp contact info', async () => {
       const mockUpdatedContactInfo = { name: 'Updated Contact' };
-      whatsApp.updateWppContactInfo.mockResolvedValueOnce({ data: mockUpdatedContactInfo });
+      whatsApp.updateWppContactInfo.mockResolvedValueOnce({
+        data: mockUpdatedContactInfo,
+      });
 
-      await store.updateWppContactInfo({ code: '123', appUuid: 'abc', payload: {} });
+      await store.updateWppContactInfo({
+        code: '123',
+        appUuid: 'abc',
+        payload: {},
+      });
 
       expect(store.contactInfo).toEqual(mockUpdatedContactInfo);
     });
@@ -53,7 +59,11 @@ describe('whatsapp_store actions', () => {
       const mockProfile = { name: 'Updated Profile' };
       whatsApp.updateWppProfile.mockResolvedValueOnce({ data: mockProfile });
 
-      await store.updateWppProfile({ code: '123', appUuid: 'abc', payload: {} });
+      await store.updateWppProfile({
+        code: '123',
+        appUuid: 'abc',
+        payload: {},
+      });
 
       expect(store.updateWhatsAppProfileResult).toEqual(mockProfile);
       expect(store.loadingUpdateWhatsAppProfile).toBe(false);
@@ -63,7 +73,11 @@ describe('whatsapp_store actions', () => {
       const mockError = new Error('Failed to update');
       whatsApp.updateWppProfile.mockRejectedValueOnce(mockError);
 
-      await store.updateWppProfile({ code: '123', appUuid: 'abc', payload: {} });
+      await store.updateWppProfile({
+        code: '123',
+        appUuid: 'abc',
+        payload: {},
+      });
 
       expect(captureSentryException).toHaveBeenCalledWith(mockError);
       expect(store.errorUpdateWhatsAppProfile).toBe(mockError);
@@ -135,8 +149,14 @@ describe('whatsapp_store actions', () => {
 
   describe('Fetch conversations', () => {
     it('should successfully fetch WhatsApp conversations', async () => {
-      const mockConversations = { business_initiated: 2, user_initiated: 3, total: 5 };
-      whatsApp.getConversations.mockResolvedValueOnce({ data: mockConversations });
+      const mockConversations = {
+        business_initiated: 2,
+        user_initiated: 3,
+        total: 5,
+      };
+      whatsApp.getConversations.mockResolvedValueOnce({
+        data: mockConversations,
+      });
 
       await store.getConversations({ code: '123', appUuid: 'abc', params: {} });
 
@@ -163,7 +183,9 @@ describe('whatsapp_store actions', () => {
       };
       store.templateTranslationSelectedForm = 'form1';
 
-      expect(store.templateTranslationCurrentForm).toEqual({ name: 'Translation Form 1' });
+      expect(store.templateTranslationCurrentForm).toEqual({
+        name: 'Translation Form 1',
+      });
     });
   });
 
@@ -204,7 +226,11 @@ describe('whatsapp_store actions', () => {
       expect(store.loadingUpdateWebhookInfo).toBe(false);
       expect(store.updateWebhookInfoData).toEqual(mockResponse.data);
       expect(store.errorUpdateWebhookInfo).toBe(null);
-      expect(whatsApp.updateWppWebhookInfo).toHaveBeenCalledWith(code, appUuid, payload);
+      expect(whatsApp.updateWppWebhookInfo).toHaveBeenCalledWith(
+        code,
+        appUuid,
+        payload,
+      );
     });
 
     it('should handle error when updating webhook info', async () => {
@@ -266,7 +292,10 @@ describe('whatsapp_store actions', () => {
       expect(store.loadingDeleteTemplateMessage).toBe(false);
       expect(store.deletedTemplateMessageData).toEqual(mockResponse.data);
       expect(store.errorDeleteTemplateMessage).toBe(null);
-      expect(whatsApp.deleteTemplateMessage).toHaveBeenCalledWith(appUuid, templateUuid);
+      expect(whatsApp.deleteTemplateMessage).toHaveBeenCalledWith(
+        appUuid,
+        templateUuid,
+      );
     });
 
     it('should handle error when deleting a template message', async () => {
@@ -335,7 +364,9 @@ describe('whatsapp_store actions', () => {
     });
 
     it('should handle error when updating template translation', async () => {
-      const mockError = { response: { data: { error: 'Failed to update translation' } } };
+      const mockError = {
+        response: { data: { error: 'Failed to update translation' } },
+      };
       const appUuid = 'app123';
       const templateUuid = 'template123';
       const payload = { translation: 'New translation' };
@@ -346,7 +377,9 @@ describe('whatsapp_store actions', () => {
 
       expect(captureSentryException).toHaveBeenCalledWith(mockError);
       expect(store.loadingUpdateTemplateTranslation).toBe(false);
-      expect(store.errorUpdateTemplateTranslation).toEqual('Failed to update translation');
+      expect(store.errorUpdateTemplateTranslation).toEqual(
+        'Failed to update translation',
+      );
       expect(store.updatedTemplateTranslationData).toBe(null);
     });
 
@@ -371,7 +404,11 @@ describe('whatsapp_store actions', () => {
       const templateUuid = 'template123';
       const payload = { translation: 'New translation' };
 
-      const promise = store.updateTemplateTranslation({ appUuid, templateUuid, payload });
+      const promise = store.updateTemplateTranslation({
+        appUuid,
+        templateUuid,
+        payload,
+      });
 
       expect(store.loadingUpdateTemplateTranslation).toBe(true);
 
@@ -403,7 +440,9 @@ describe('whatsapp_store actions', () => {
     });
 
     it('should handle error when creating template translation', async () => {
-      const mockError = { response: { data: { error: 'Failed to create translation' } } };
+      const mockError = {
+        response: { data: { error: 'Failed to create translation' } },
+      };
       const appUuid = 'app123';
       const templateUuid = 'template123';
       const payload = { translation: 'New translation' };
@@ -414,7 +453,9 @@ describe('whatsapp_store actions', () => {
 
       expect(captureSentryException).toHaveBeenCalledWith(mockError);
       expect(store.loadingCreateTemplateTranslation).toBe(false);
-      expect(store.errorCreateTemplateTranslation).toEqual('Failed to create translation');
+      expect(store.errorCreateTemplateTranslation).toEqual(
+        'Failed to create translation',
+      );
       expect(store.createdTemplateTranslationData).toBe(null);
     });
 
@@ -457,7 +498,9 @@ describe('whatsapp_store actions', () => {
     });
 
     it('should handle error when fetching WhatsApp template select languages', async () => {
-      const mockError = { response: { data: { error: 'Failed to fetch languages' } } };
+      const mockError = {
+        response: { data: { error: 'Failed to fetch languages' } },
+      };
       const appUuid = 'app123';
 
       whatsApp.fetchSelectLanguages.mockRejectedValueOnce(mockError);
@@ -466,7 +509,9 @@ describe('whatsapp_store actions', () => {
 
       expect(captureSentryException).toHaveBeenCalledWith(mockError);
       expect(store.loadingFetchWhatsAppTemplateSelectLanguages).toBe(false);
-      expect(store.errorFetchWhatsAppTemplateSelectLanguages).toEqual('Failed to fetch languages');
+      expect(store.errorFetchWhatsAppTemplateSelectLanguages).toEqual(
+        'Failed to fetch languages',
+      );
       expect(store.whatsAppTemplateSelectLanguages).toEqual(null);
     });
 
@@ -480,7 +525,9 @@ describe('whatsapp_store actions', () => {
 
       expect(captureSentryException).toHaveBeenCalledWith(mockError);
       expect(store.loadingFetchWhatsAppTemplateSelectLanguages).toBe(false);
-      expect(store.errorFetchWhatsAppTemplateSelectLanguages).toEqual(mockError);
+      expect(store.errorFetchWhatsAppTemplateSelectLanguages).toEqual(
+        mockError,
+      );
       expect(store.whatsAppTemplateSelectLanguages).toEqual(null);
     });
 

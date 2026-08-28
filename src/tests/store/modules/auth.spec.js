@@ -51,7 +51,10 @@ describe('auth_store', () => {
     const store = auth_store();
     await store.externalLogin({ token: 'test-token' });
     expect(store.token).toBe('test-token');
-    expect(moduleStorage.setItem).toHaveBeenCalledWith('authToken', 'test-token');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith(
+      'authToken',
+      'test-token',
+    );
   });
 
   it('should set org and store it locally on selectedOrg', async () => {
@@ -65,14 +68,20 @@ describe('auth_store', () => {
     const store = auth_store();
     await store.selectedProject({ project: 'test-project' });
     expect(store.project).toBe('test-project');
-    expect(moduleStorage.setItem).toHaveBeenCalledWith('project', 'test-project');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith(
+      'project',
+      'test-project',
+    );
   });
 
   it('should set flowOrg and store it locally on selectedFlowOrg', async () => {
     const store = auth_store();
     await store.selectedFlowOrg({ flowOrg: 'test-flowOrg' });
     expect(store.flowOrg).toBe('test-flowOrg');
-    expect(moduleStorage.setItem).toHaveBeenCalledWith('flowOrg', 'test-flowOrg');
+    expect(moduleStorage.setItem).toHaveBeenCalledWith(
+      'flowOrg',
+      'test-flowOrg',
+    );
   });
 
   it('should retrieve and set token from localStorage', () => {
@@ -105,7 +114,9 @@ describe('auth_store', () => {
 
   it('should handle getFlowToken correctly', async () => {
     const store = auth_store();
-    auth.getFlowToken.mockResolvedValue({ data: { api_token: 'test-flowToken' } });
+    auth.getFlowToken.mockResolvedValue({
+      data: { api_token: 'test-flowToken' },
+    });
 
     await store.getFlowToken();
 

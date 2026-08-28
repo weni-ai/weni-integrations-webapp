@@ -4,7 +4,7 @@ import ConnectNewWhatsAppAccountModal from '@/components/config/channels/whatsap
 import i18n from '@/utils/plugins/i18n';
 
 const DialogStub = {
-  name: 'unnnic-dialog',
+  name: 'UnnnicDialog',
   props: {
     open: { type: Boolean, default: false },
   },
@@ -13,7 +13,7 @@ const DialogStub = {
 };
 
 const DialogContentStub = {
-  name: 'unnnic-dialog-content',
+  name: 'UnnnicDialogContent',
   props: {
     size: { type: String, default: 'medium' },
   },
@@ -21,7 +21,7 @@ const DialogContentStub = {
 };
 
 const DialogHeaderStub = {
-  name: 'unnnic-dialog-header',
+  name: 'UnnnicDialogHeader',
   props: {
     type: { type: String, default: 'default' },
   },
@@ -29,24 +29,25 @@ const DialogHeaderStub = {
 };
 
 const DialogTitleStub = {
-  name: 'unnnic-dialog-title',
+  name: 'UnnnicDialogTitle',
   template: '<div class="unnnic-dialog-title-stub"><slot /></div>',
 };
 
 const DialogFooterStub = {
-  name: 'unnnic-dialog-footer',
+  name: 'UnnnicDialogFooter',
   template: '<div class="unnnic-dialog-footer-stub"><slot /></div>',
 };
 
 const ButtonStub = {
-  name: 'unnnic-button',
+  name: 'UnnnicButton',
   props: {
     text: { type: String, default: '' },
     type: { type: String, default: 'primary' },
     size: { type: String, default: 'large' },
   },
   emits: ['click'],
-  template: '<button class="unnnic-button-stub" @click="$emit(\'click\')">{{ text }}</button>',
+  template:
+    '<button class="unnnic-button-stub" @click="$emit(\'click\')">{{ text }}</button>',
 };
 
 describe('ConnectNewWhatsAppAccountModal.vue', () => {
@@ -61,12 +62,12 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
       global: {
         plugins: [i18n],
         stubs: {
-          'unnnic-dialog': DialogStub,
-          'unnnic-dialog-content': DialogContentStub,
-          'unnnic-dialog-header': DialogHeaderStub,
-          'unnnic-dialog-title': DialogTitleStub,
-          'unnnic-dialog-footer': DialogFooterStub,
-          'unnnic-button': ButtonStub,
+          UnnnicDialog: DialogStub,
+          UnnnicDialogContent: DialogContentStub,
+          UnnnicDialogHeader: DialogHeaderStub,
+          UnnnicDialogTitle: DialogTitleStub,
+          UnnnicDialogFooter: DialogFooterStub,
+          UnnnicButton: ButtonStub,
         },
       },
     });
@@ -80,21 +81,25 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
   });
 
   it('renders the dialog with title, description, and try again button', () => {
-    expect(wrapper.find('.connect-new-whatsapp-account-modal').exists()).toBe(true);
-    expect(wrapper.text()).toContain('Connect new WhatsApp account');
-    expect(wrapper.find('.connect-new-whatsapp-account-modal__description').exists()).toBe(true);
-    expect(wrapper.find('.connect-new-whatsapp-account-modal__description').html()).toContain(
-      'Create a <b>new WhatsApp Business Account</b>',
+    expect(wrapper.find('.connect-new-whatsapp-account-modal').exists()).toBe(
+      true,
     );
+    expect(wrapper.text()).toContain('Connect new WhatsApp account');
+    expect(
+      wrapper.find('.connect-new-whatsapp-account-modal__description').exists(),
+    ).toBe(true);
+    expect(
+      wrapper.find('.connect-new-whatsapp-account-modal__description').html(),
+    ).toContain('Create a <b>new WhatsApp Business Account</b>');
 
-    const button = wrapper.findComponent({ name: 'unnnic-button' });
+    const button = wrapper.findComponent({ name: 'UnnnicButton' });
     expect(button.exists()).toBe(true);
     expect(button.props('text')).toBe('Try again');
     expect(button.props('type')).toBe('primary');
   });
 
   it('binds the show prop to the dialog open state', async () => {
-    const dialog = wrapper.findComponent({ name: 'unnnic-dialog' });
+    const dialog = wrapper.findComponent({ name: 'UnnnicDialog' });
     expect(dialog.exists()).toBe(true);
     expect(dialog.props('open')).toBe(true);
 
@@ -107,12 +112,12 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
       global: {
         plugins: [i18n],
         stubs: {
-          'unnnic-dialog': DialogStub,
-          'unnnic-dialog-content': DialogContentStub,
-          'unnnic-dialog-header': DialogHeaderStub,
-          'unnnic-dialog-title': DialogTitleStub,
-          'unnnic-dialog-footer': DialogFooterStub,
-          'unnnic-button': ButtonStub,
+          UnnnicDialog: DialogStub,
+          UnnnicDialogContent: DialogContentStub,
+          UnnnicDialogHeader: DialogHeaderStub,
+          UnnnicDialogTitle: DialogTitleStub,
+          UnnnicDialogFooter: DialogFooterStub,
+          UnnnicButton: ButtonStub,
         },
       },
     });
@@ -122,7 +127,7 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
   });
 
   it('emits close when the dialog requests to close', async () => {
-    const dialog = wrapper.findComponent({ name: 'unnnic-dialog' });
+    const dialog = wrapper.findComponent({ name: 'UnnnicDialog' });
 
     await dialog.vm.$emit('update:open', false);
 
@@ -133,7 +138,7 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
 
   it('does not emit close when the dialog opens', async () => {
     await wrapper.setProps({ show: false });
-    const dialog = wrapper.findComponent({ name: 'unnnic-dialog' });
+    const dialog = wrapper.findComponent({ name: 'UnnnicDialog' });
 
     await dialog.vm.$emit('update:open', true);
 
@@ -141,7 +146,7 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
   });
 
   it('emits try-again and close when Try again is clicked', async () => {
-    const button = wrapper.findComponent({ name: 'unnnic-button' });
+    const button = wrapper.findComponent({ name: 'UnnnicButton' });
 
     await button.trigger('click');
 
@@ -152,7 +157,7 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
   });
 
   it('uses a warning dialog header', () => {
-    const header = wrapper.findComponent({ name: 'unnnic-dialog-header' });
+    const header = wrapper.findComponent({ name: 'UnnnicDialogHeader' });
     expect(header.exists()).toBe(true);
     expect(header.props('type')).toBe('warning');
   });

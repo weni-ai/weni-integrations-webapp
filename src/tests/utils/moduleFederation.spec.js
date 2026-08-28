@@ -38,7 +38,10 @@ describe('isFederatedModule', () => {
   });
 
   it('returns false when PUBLIC_PATH_URL matches the current origin', async () => {
-    const result = await loadModule('http://localhost:5174/', 'http://localhost:5174');
+    const result = await loadModule(
+      'http://localhost:5174/',
+      'http://localhost:5174',
+    );
     expect(result).toBe(false);
   });
 

@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import * as VueI18n from 'vue-i18n';
 
-import icuMessageCompiler, { shouldUseIntlMessageFormat } from '@/utils/plugins/icuMessageCompiler';
+import icuMessageCompiler, {
+  shouldUseIntlMessageFormat,
+} from '@/utils/plugins/icuMessageCompiler';
 
 const createInstance = (messages) =>
   VueI18n.createI18n({
@@ -15,16 +17,24 @@ const createInstance = (messages) =>
 describe('icuMessageCompiler', () => {
   describe('shouldUseIntlMessageFormat', () => {
     it('detects ICU plural messages', () => {
-      expect(shouldUseIntlMessageFormat('{count, plural, one {item} other {items}}')).toBe(true);
+      expect(
+        shouldUseIntlMessageFormat('{count, plural, one {item} other {items}}'),
+      ).toBe(true);
     });
 
     it('detects ICU select messages', () => {
-      expect(shouldUseIntlMessageFormat('{gender, select, male {he} other {they}}')).toBe(true);
+      expect(
+        shouldUseIntlMessageFormat('{gender, select, male {he} other {they}}'),
+      ).toBe(true);
     });
 
     it('ignores plain strings that merely contain the words plural or select', () => {
-      expect(shouldUseIntlMessageFormat('Select an option to continue')).toBe(false);
-      expect(shouldUseIntlMessageFormat('Choose a plural form below')).toBe(false);
+      expect(shouldUseIntlMessageFormat('Select an option to continue')).toBe(
+        false,
+      );
+      expect(shouldUseIntlMessageFormat('Choose a plural form below')).toBe(
+        false,
+      );
     });
   });
 
@@ -45,7 +55,8 @@ describe('icuMessageCompiler', () => {
     });
 
     it('preserves literal double curly brackets used as example text', () => {
-      const message = 'Use two sets of curly brackets (for example, {{1}}, {{2}}).';
+      const message =
+        'Use two sets of curly brackets (for example, {{1}}, {{2}}).';
       const i18n = createInstance({ 'en-us': { hint: message } });
       expect(i18n.global.t('hint')).toBe(message);
     });
@@ -54,10 +65,12 @@ describe('icuMessageCompiler', () => {
   describe('ICU plural messages', () => {
     const messages = {
       'en-us': {
-        seconds: '{count, plural, one {{count} second} other {{count} seconds}}',
+        seconds:
+          '{count, plural, one {{count} second} other {{count} seconds}}',
       },
       'pt-br': {
-        seconds: '{count, plural, one {{count} segundo} other {{count} segundos}}',
+        seconds:
+          '{count, plural, one {{count} segundo} other {{count} segundos}}',
       },
     };
 
@@ -81,7 +94,10 @@ describe('icuMessageCompiler', () => {
 
   describe('falls back to the key for AST messages', () => {
     it('returns the key when the message is not a string', () => {
-      const compiled = icuMessageCompiler({ type: 0 }, { locale: 'en-us', key: 'some.key' });
+      const compiled = icuMessageCompiler(
+        { type: 0 },
+        { locale: 'en-us', key: 'some.key' },
+      );
       expect(compiled()).toBe('some.key');
     });
   });

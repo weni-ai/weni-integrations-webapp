@@ -7,10 +7,10 @@ exports[`AppGrid > matches snapshot 1`] = `
     <div data-v-deb56cf9="" class="app-grid__content"></div>
     <!--v-if-->
   </section>
-  <unnnic-modal data-v-deb56cf9="" showmodal="false" text="Delete app" scheme="feedback-red" modal-icon="alert-circle-1"></unnnic-modal>
+  <unnnicmodal data-v-deb56cf9="" showmodal="false" text="Delete app" scheme="feedback-red" modalicon="alert-circle-1"></unnnicmodal>
   <div data-v-7d3d5e15="" data-v-deb56cf9="">
     <!--v-if-->
-    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
+    <unnnicmodal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modalicon="alert-circle-1"></unnnicmodal>
   </div>
 </div>"
 `;

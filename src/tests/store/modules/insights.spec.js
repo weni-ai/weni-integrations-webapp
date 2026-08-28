@@ -38,13 +38,18 @@ describe('insights_store', () => {
     expect(store.loadingTemplateAnalytics).toBe(false);
     expect(store.templateAnalytics).toEqual(mockData);
     expect(store.errorTemplateAnalytics).toBeNull();
-    expect(insights.get_template_analytics).toHaveBeenCalledWith('test-uuid', {});
+    expect(insights.get_template_analytics).toHaveBeenCalledWith(
+      'test-uuid',
+      {},
+    );
   });
 
   it('should handle error when fetching template analytics', async () => {
     const store = insights_store();
     const mockError = new Error('Test Error');
-    insights.get_template_analytics.mockRejectedValue({ response: { data: { error: mockError } } });
+    insights.get_template_analytics.mockRejectedValue({
+      response: { data: { error: mockError } },
+    });
 
     await store.getTemplateAnalytics({ app_uuid: 'test-uuid', filters: {} });
 
@@ -68,7 +73,9 @@ describe('insights_store', () => {
   it('should handle error when fetching templates', async () => {
     const store = insights_store();
     const mockError = new Error('Test Error');
-    insights.get_templates.mockRejectedValue({ response: { data: { error: mockError } } });
+    insights.get_templates.mockRejectedValue({
+      response: { data: { error: mockError } },
+    });
 
     await store.getTemplates({ app_uuid: 'test-uuid' });
 

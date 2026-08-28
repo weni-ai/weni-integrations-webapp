@@ -1,22 +1,22 @@
 <template>
-  <unnnic-modal
+  <UnnnicModal
     ref="unnnic-remove-modal"
     :showModal="showRemoveModal"
     :text="$t('apps.details.actions.remove.title')"
     scheme="feedback-red"
-    modal-icon="alert-circle-1"
+    modalIcon="alert-circle-1"
     @close="toggleRemoveModal"
   >
     <template #message>
       <span v-html="$t('apps.details.actions.remove.description')"></span>
     </template>
     <template #options>
-      <unnnic-button
+      <UnnnicButton
         ref="unnnic-remove-modal-close-button"
         data-testid="remove-modal-button"
         type="tertiary"
         @click="toggleRemoveModal"
-        >{{ $t('general.Cancel') }}</unnnic-button
+        >{{ $t('general.Cancel') }}</UnnnicButton
       >
       <LoadingButton
         ref="unnnic-remove-modal-navigate-button"
@@ -27,29 +27,29 @@
         @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
       />
     </template>
-  </unnnic-modal>
+  </UnnnicModal>
 </template>
 
 <script>
-  import LoadingButton from '@/components/LoadingButton/index.vue';
+import LoadingButton from '@/components/LoadingButton/index.vue';
 
-  export default {
-    name: 'AppModal',
-    components: {
-      LoadingButton,
+export default {
+  name: 'AppModal',
+  components: {
+    LoadingButton,
+  },
+  data() {
+    return {
+      showAddModal: false,
+      showRemoveModal: false,
+      currentRemoval: null,
+    };
+  },
+  methods: {
+    toggleRemoveModal(app = null) {
+      this.currentRemoval = app;
+      this.showRemoveModal = !this.showRemoveModal;
     },
-    data() {
-      return {
-        showAddModal: false,
-        showRemoveModal: false,
-        currentRemoval: null,
-      };
-    },
-    methods: {
-      toggleRemoveModal(app = null) {
-        this.currentRemoval = app;
-        this.showRemoveModal = !this.showRemoveModal;
-      },
-    },
-  };
+  },
+};
 </script>

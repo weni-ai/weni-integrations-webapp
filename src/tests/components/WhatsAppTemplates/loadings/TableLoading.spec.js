@@ -20,17 +20,21 @@ describe('TableLoading.vue', () => {
   });
 
   it('should render a table with skeletons', () => {
-    const table = wrapper.findComponent({ name: 'unnnic-table' });
+    const table = wrapper.findComponent({ name: 'UnnnicTable' });
     expect(table.exists()).toBe(true);
 
-    const skeletons = wrapper.findAllComponents({ name: 'unnnic-skeleton-loading' });
+    const skeletons = wrapper.findAllComponents({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletons.length).toBe(10);
   });
 
   it('should have correct dimensions for each skeleton', async () => {
     await wrapper.vm.$nextTick();
 
-    const skeletons = wrapper.findAllComponents({ name: 'unnnic-skeleton-loading' });
+    const skeletons = wrapper.findAllComponents({
+      name: 'UnnnicSkeletonLoading',
+    });
 
     skeletons.forEach((skeleton) => {
       const skeletonStyles = skeleton.props();
@@ -40,7 +44,7 @@ describe('TableLoading.vue', () => {
   });
 
   it('should have the correct number of table rows', () => {
-    const tableRows = wrapper.findAllComponents({ name: 'unnnic-table-row' });
+    const tableRows = wrapper.findAllComponents({ name: 'UnnnicTableRow' });
     expect(tableRows.length).toBe(1);
   });
 });

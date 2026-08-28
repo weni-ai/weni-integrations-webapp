@@ -30,8 +30,12 @@ describe('WWC constants', () => {
       expect(WEBCHAT_SCRIPT_URLS.v1).toBe(
         'https://storage.googleapis.com/push-webchat/wwc-latest.js',
       );
-      expect(WEBCHAT_SCRIPT_URLS.v2).toBe('https://cdn.cloud.weni.ai/webchat-latest.umd.js');
-      expect(WEBCHAT_SCRIPT_URLS.v3).toBe('https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js');
+      expect(WEBCHAT_SCRIPT_URLS.v2).toBe(
+        'https://cdn.cloud.weni.ai/webchat-latest.umd.js',
+      );
+      expect(WEBCHAT_SCRIPT_URLS.v3).toBe(
+        'https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js',
+      );
     });
   });
 
@@ -41,7 +45,12 @@ describe('WWC constants', () => {
     });
 
     it('should have values from 1 to 4', () => {
-      expect(TIME_BETWEEN_MESSAGES_OPTIONS.map((o) => o.value)).toEqual(['1', '2', '3', '4']);
+      expect(TIME_BETWEEN_MESSAGES_OPTIONS.map((o) => o.value)).toEqual([
+        '1',
+        '2',
+        '3',
+        '4',
+      ]);
     });
   });
 
@@ -93,7 +102,9 @@ describe('WWC constants', () => {
       const config = { script: 'https://test.script.url', version: '1' };
       const result = generateScriptCode(config);
 
-      expect(result).toContain('https://storage.googleapis.com/push-webchat/wwc-latest.js');
+      expect(result).toContain(
+        'https://storage.googleapis.com/push-webchat/wwc-latest.js',
+      );
       expect(result).toContain('https://test.script.url');
       expect(result).toContain('<script>');
     });
@@ -102,7 +113,9 @@ describe('WWC constants', () => {
       const config = { script: 'https://test.script.url', version: '2' };
       const result = generateScriptCode(config);
 
-      expect(result).toContain('https://cdn.cloud.weni.ai/webchat-latest.umd.js');
+      expect(result).toContain(
+        'https://cdn.cloud.weni.ai/webchat-latest.umd.js',
+      );
       expect(result).toContain('https://test.script.url');
     });
 
@@ -110,7 +123,9 @@ describe('WWC constants', () => {
       const config = { script: 'https://test.script.url', version: '3' };
       const result = generateScriptCode(config);
 
-      expect(result).toContain('https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js');
+      expect(result).toContain(
+        'https://cdn.cloud.weni.ai/v3/webchat-latest.umd.js',
+      );
       expect(result).toContain('https://test.script.url');
     });
 
@@ -118,14 +133,18 @@ describe('WWC constants', () => {
       const config = { script: 'https://test.script.url' };
       const result = generateScriptCode(config);
 
-      expect(result).toContain('https://storage.googleapis.com/push-webchat/wwc-latest.js');
+      expect(result).toContain(
+        'https://storage.googleapis.com/push-webchat/wwc-latest.js',
+      );
     });
 
     it('should fall back to v1 for unknown versions', () => {
       const config = { script: 'https://test.script.url', version: '99' };
       const result = generateScriptCode(config);
 
-      expect(result).toContain('https://storage.googleapis.com/push-webchat/wwc-latest.js');
+      expect(result).toContain(
+        'https://storage.googleapis.com/push-webchat/wwc-latest.js',
+      );
     });
   });
 

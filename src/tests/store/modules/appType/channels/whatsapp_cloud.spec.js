@@ -72,7 +72,9 @@ describe('whatsapp_cloud store', () => {
   it('should fetch WhatsApp phone numbers and update state', async () => {
     const store = whatsapp_cloud();
     const mockPhoneNumbers = ['+123456789'];
-    whatsAppCloud.getWhatsAppPhoneNumbers.mockResolvedValue({ data: mockPhoneNumbers });
+    whatsAppCloud.getWhatsAppPhoneNumbers.mockResolvedValue({
+      data: mockPhoneNumbers,
+    });
 
     await store.getWhatsAppPhoneNumbers({ params: {} });
 
@@ -112,7 +114,9 @@ describe('whatsapp_cloud store', () => {
     expect(store.accountVerification).toEqual(mockData.data);
     expect(store.loadingAccountVerification).toBe(false);
     expect(store.errorAccountVerification).toBeNull();
-    expect(whatsAppCloud.getAccountVerification).toHaveBeenCalledWith('app-uuid');
+    expect(whatsAppCloud.getAccountVerification).toHaveBeenCalledWith(
+      'app-uuid',
+    );
   });
 
   it('should handle error when fetching account verification', async () => {
@@ -136,15 +140,22 @@ describe('whatsapp_cloud store', () => {
       data: { ui_state: 'pending', can_submit: false },
     };
     whatsAppCloud.submitAccountVerification.mockResolvedValue({});
-    whatsAppCloud.getAccountVerification.mockResolvedValue(verificationResponse);
+    whatsAppCloud.getAccountVerification.mockResolvedValue(
+      verificationResponse,
+    );
 
-    await store.submitAccountVerification({ appUuid: 'app-uuid', documents: [file] });
+    await store.submitAccountVerification({
+      appUuid: 'app-uuid',
+      documents: [file],
+    });
 
     expect(whatsAppCloud.submitAccountVerification).toHaveBeenCalledWith(
       'app-uuid',
       expect.any(FormData),
     );
-    expect(whatsAppCloud.getAccountVerification).toHaveBeenCalledWith('app-uuid');
+    expect(whatsAppCloud.getAccountVerification).toHaveBeenCalledWith(
+      'app-uuid',
+    );
     expect(store.accountVerification).toEqual(verificationResponse.data);
     expect(store.submittingAccountVerification).toBe(false);
   });

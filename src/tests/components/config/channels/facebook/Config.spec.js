@@ -42,22 +42,29 @@ describe('Config.vue', () => {
   });
   it('renders the component with correct elements', () => {
     expect(
-      wrapper.find('.app-config-facebook__settings__content__inputs__name input').element.value,
+      wrapper.find(
+        '.app-config-facebook__settings__content__inputs__name input',
+      ).element.value,
     ).toBe(mockApp.config.page_name);
     expect(
-      wrapper.find('.app-config-facebook__settings__content__inputs__id input').element.value,
+      wrapper.find('.app-config-facebook__settings__content__inputs__id input')
+        .element.value,
     ).toBe(`ID: ${mockApp.config.page_id}`);
   });
 
   it('renders the "Connected Account" label correctly', () => {
-    const label = wrapper.findComponent({ name: 'unnnic-label' });
+    const label = wrapper.findComponent({ name: 'UnnnicLabel' });
     expect(label.exists()).toBe(true);
     expect(label.props('label')).toBe('Your Facebook account is connected');
   });
 
   it('disables the inputs', () => {
-    const nameInput = wrapper.find('.app-config-facebook__settings__content__inputs__name input');
-    const idInput = wrapper.find('.app-config-facebook__settings__content__inputs__id input');
+    const nameInput = wrapper.find(
+      '.app-config-facebook__settings__content__inputs__name input',
+    );
+    const idInput = wrapper.find(
+      '.app-config-facebook__settings__content__inputs__id input',
+    );
 
     expect(nameInput.attributes('disabled')).toBeDefined();
     expect(idInput.attributes('disabled')).toBeDefined();

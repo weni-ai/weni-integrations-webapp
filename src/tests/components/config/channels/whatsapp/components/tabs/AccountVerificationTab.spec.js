@@ -24,7 +24,7 @@ describe('AccountVerificationTab', () => {
       global: {
         plugins: [i18n, UnnnicSystem, pinia],
         stubs: {
-          'unnnic-skeleton-loading': true,
+          UnnnicSkeletonLoading: true,
         },
       },
     });
@@ -55,9 +55,11 @@ describe('AccountVerificationTab', () => {
     vi.clearAllMocks();
 
     const cloudStore = whatsapp_cloud();
-    cloudStore.fetchAccountVerification = vi.fn().mockImplementation(async () => {
-      setVerificationState();
-    });
+    cloudStore.fetchAccountVerification = vi
+      .fn()
+      .mockImplementation(async () => {
+        setVerificationState();
+      });
     cloudStore.submitAccountVerification = vi.fn().mockResolvedValue();
 
     const wppStore = whatsapp_store();
@@ -74,22 +76,28 @@ describe('AccountVerificationTab', () => {
 
   it('shows reviewing disclaimer when ui_state is pending', async () => {
     const cloudStore = whatsapp_cloud();
-    cloudStore.fetchAccountVerification = vi.fn().mockImplementation(async () => {
-      setVerificationState({ ui_state: 'pending' });
-    });
+    cloudStore.fetchAccountVerification = vi
+      .fn()
+      .mockImplementation(async () => {
+        setVerificationState({ ui_state: 'pending' });
+      });
     setConversationTemplates({});
 
     await mountComponent();
 
-    expect(wrapper.text()).toContain('Your documents are being reviewed by Meta');
+    expect(wrapper.text()).toContain(
+      'Your documents are being reviewed by Meta',
+    );
     expect(wrapper.text()).not.toContain('Confirm that you verified');
   });
 
   it('shows not available disclaimer when usage threshold is not met', async () => {
     const cloudStore = whatsapp_cloud();
-    cloudStore.fetchAccountVerification = vi.fn().mockImplementation(async () => {
-      setVerificationState({ ui_state: 'not_started' });
-    });
+    cloudStore.fetchAccountVerification = vi
+      .fn()
+      .mockImplementation(async () => {
+        setVerificationState({ ui_state: 'not_started' });
+      });
 
     const wppStore = whatsapp_store();
     wppStore.getConversations = vi.fn().mockImplementation(async () => {
@@ -156,7 +164,10 @@ describe('AccountVerificationTab', () => {
   it('lists selected files and removes them from documents', async () => {
     await mountComponent();
 
-    wrapper.vm.documentFiles = [new File(['a'], 'contract.pdf'), new File(['b'], 'cnpj.png')];
+    wrapper.vm.documentFiles = [
+      new File(['a'], 'contract.pdf'),
+      new File(['b'], 'cnpj.png'),
+    ];
     await wrapper.vm.$nextTick();
 
     expect(wrapper.text()).toContain('contract.pdf');
@@ -172,7 +183,9 @@ describe('AccountVerificationTab', () => {
   it('adds files through the upload files button input', async () => {
     await mountComponent();
 
-    const file = new File(['content'], 'registration.pdf', { type: 'application/pdf' });
+    const file = new File(['content'], 'registration.pdf', {
+      type: 'application/pdf',
+    });
     const input = wrapper.find('input[type="file"]');
     Object.defineProperty(input.element, 'files', { value: [file] });
 

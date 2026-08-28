@@ -1,10 +1,10 @@
 <template>
   <div>
-    <unnnic-modal
+    <UnnnicModal
       class="sample-form"
       :text="$t('WhatsApp.templates.sample.title')"
       scheme="feedback-yellow"
-      modal-icon="alert-circle-1"
+      modalIcon="alert-circle-1"
       @close="closeSampleModal"
       @click.stop
     >
@@ -25,274 +25,304 @@
             />
 
             <div class="sample-form__content">
-              <div v-if="hasMedia" class="sample-form__header__wrapper">
+              <div
+                v-if="hasMedia"
+                class="sample-form__header__wrapper"
+              >
                 <span class="sample-form__header__title">
                   {{ $t('WhatsApp.templates.sample.header') }}
                 </span>
-                <unnnic-button type="secondary" @click="() => this.$refs.file.click()">
+                <UnnnicButton
+                  type="secondary"
+                  @click="() => $refs.file.click()"
+                >
                   {{ $t('WhatsApp.templates.sample.choose_file') }}
-                </unnnic-button>
+                </UnnnicButton>
                 <input
-                  type="file"
                   ref="file"
+                  type="file"
                   :accept="supportedFormats"
                   :multiple="false"
-                  @input="handleFileChange"
                   style="display: none"
+                  @input="handleFileChange"
                 />
-                <span v-if="file" class="sample-form__header__file-name"> {{ file.name }} </span>
+                <span
+                  v-if="file"
+                  class="sample-form__header__file-name"
+                >
+                  {{ file.name }}
+                </span>
               </div>
-              <div v-if="hasVariables" class="sample-form__body__wrapper">
+              <div
+                v-if="hasVariables"
+                class="sample-form__body__wrapper"
+              >
                 <span class="sample-form__body__title">
                   {{ $t('WhatsApp.templates.sample.body') }}</span
                 >
-                <unnnic-input
+                <UnnnicInput
                   v-for="(variable, index) in variableCount"
                   :key="variable"
                   :placeholder="`Enter content for {{${variable}}}`"
                   :modelValue="textInput"
-                  @update:modelValue="handleVariableChange(index, $event)"
+                  @update:model-value="handleVariableChange(index, $event)"
                 />
               </div>
             </div>
 
             <div class="sample-form__button">
-              <unnnic-button type="secondary" @click="saveSample">
+              <UnnnicButton
+                type="secondary"
+                @click="saveSample"
+              >
                 {{ $t('WhatsApp.templates.sample.send') }}
-              </unnnic-button>
+              </UnnnicButton>
             </div>
           </div>
-          <div class="sample-form__info">{{ $t('WhatsApp.templates.sample.info') }}</div>
+          <div class="sample-form__info">
+            {{ $t('WhatsApp.templates.sample.info') }}
+          </div>
         </div>
       </template>
-    </unnnic-modal>
+    </UnnnicModal>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'pinia';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
-  import unnnic from '@weni/unnnic-system';
-  import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
+import { mapState } from 'pinia';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import unnnic from '@weni/unnnic-system';
+import TemplatePreview from '@/components/whatsAppTemplates/TemplatePreview.vue';
 
-  import { countVariables } from '@/utils/countTemplateVariables.js';
-  import { toBase64 } from '@/utils/files.js';
+import { countVariables } from '@/utils/countTemplateVariables.js';
+import { toBase64 } from '@/utils/files.js';
 
-  export default {
-    name: 'TranslationSampleForm',
-    components: { TemplatePreview },
-    props: {
-      hasMedia: {
-        type: Boolean,
-        default: false,
-      },
-      hasVariables: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  name: 'TranslationSampleForm',
+  components: { TemplatePreview },
+  props: {
+    hasMedia: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        textInput: '',
-        variablesData: [],
-        formattedBody: '',
-        file: null,
-        fileToPreview: null,
+    hasVariables: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      textInput: '',
+      variablesData: [],
+      formattedBody: '',
+      file: null,
+      fileToPreview: null,
+    };
+  },
+  created() {
+    this.formattedBody = this.templateTranslationCurrentForm.body;
+  },
+  computed: {
+    ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+    variableCount() {
+      return countVariables(this.templateTranslationCurrentForm.body);
+    },
+    supportedFormats() {
+      const formatsMap = {
+        IMAGE: '.png,.jpg,.jpeg',
+        VIDEO: '.mp4',
+        DOCUMENT: '.pdf',
       };
+      return (
+        formatsMap[this.templateTranslationCurrentForm.header.mediaType] || ''
+      );
     },
-    created() {
-      this.formattedBody = this.templateTranslationCurrentForm.body;
+  },
+  methods: {
+    closeSampleModal() {
+      this.$emit('close-modal');
     },
-    computed: {
-      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
-      variableCount() {
-        return countVariables(this.templateTranslationCurrentForm.body);
-      },
-      supportedFormats() {
-        const formatsMap = {
-          IMAGE: '.png,.jpg,.jpeg',
-          VIDEO: '.mp4',
-          DOCUMENT: '.pdf',
-        };
-        return formatsMap[this.templateTranslationCurrentForm.header.mediaType] || '';
-      },
+    handleVariableChange(index, event) {
+      this.variablesData[index] = event;
+      let newBody = this.templateTranslationCurrentForm.body;
+      this.variablesData.forEach((variable, index) => {
+        newBody = newBody.replaceAll(`{{${index + 1}}}`, variable);
+      });
+      this.formattedBody = newBody;
     },
-    methods: {
-      closeSampleModal() {
-        this.$emit('close-modal');
-      },
-      handleVariableChange(index, event) {
-        this.variablesData[index] = event;
-        let newBody = this.templateTranslationCurrentForm.body;
-        this.variablesData.forEach((variable, index) => {
-          newBody = newBody.replaceAll(`{{${index + 1}}}`, variable);
+    validFormat(files) {
+      const formats = this.supportedFormats.replaceAll('.', '').split(',');
+      const isValid = Array.from(files).find((file) => {
+        const validFormat = formats.find((format) => {
+          return file.type.toLowerCase().includes(format.toLowerCase());
         });
-        this.formattedBody = newBody;
-      },
-      validFormat(files) {
-        const formats = this.supportedFormats.replaceAll('.', '').split(',');
-        const isValid = Array.from(files).find((file) => {
-          const validFormat = formats.find((format) => {
-            return file.type.toLowerCase().includes(format.toLowerCase());
-          });
-          return validFormat;
-        });
-        return isValid;
-      },
-      validSize(files) {
-        const maxFileSize = 16; // 16Mb
-        const isValid = Array.from(files).find((file) => {
-          const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
-          return sizeInMB < maxFileSize;
-        });
-        return isValid;
-      },
-      validateFiles(files) {
-        if (!files.length || files.length !== 1) {
-          return false;
-        }
-
-        if (!this.validFormat(files)) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_file_format') });
-          return false;
-        }
-        if (!this.validSize(files)) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.invalid_file_size') });
-          return false;
-        }
-        return true;
-      },
-      async handleFileChange(event) {
-        const { files } = event.target;
-        if (this.validateFiles(files)) {
-          this.file = files[0];
-
-          if (this.templateTranslationCurrentForm.header.mediaType === 'IMAGE') {
-            this.fileToPreview = await toBase64(files[0]);
-          } else {
-            this.fileToPreview = null;
-          }
-        }
-        /* istanbul ignore next */
-        if (this.$refs.file) {
-          this.$refs.file.value = '';
-        }
-      },
-      async saveSample() {
-        if (this.hasVariables && this.variablesData.length !== this.variableCount) {
-          this.callErrorModal({
-            text: this.$t('WhatsApp.templates.error.missing_variable_example'),
-          });
-          return;
-        }
-
-        if (this.hasMedia && this.file === null) {
-          this.callErrorModal({ text: this.$t('WhatsApp.templates.error.missing_media_example') });
-          return;
-        }
-
-        const fileData = await toBase64(this.file);
-        const sampleForm = {
-          variables: this.variablesData,
-          headerFile: fileData,
-        };
-
-        this.$emit('sample-submission', sampleForm);
-        this.$emit('close-modal');
-      },
-      callErrorModal({ text }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text,
-            type: 'error',
-          },
-          seconds: 6,
-        });
-      },
+        return validFormat;
+      });
+      return isValid;
     },
-  };
+    validSize(files) {
+      const maxFileSize = 16; // 16Mb
+      const isValid = Array.from(files).find((file) => {
+        const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+        return sizeInMB < maxFileSize;
+      });
+      return isValid;
+    },
+    validateFiles(files) {
+      if (!files.length || files.length !== 1) {
+        return false;
+      }
+
+      if (!this.validFormat(files)) {
+        this.callErrorModal({
+          text: this.$t('WhatsApp.templates.error.invalid_file_format'),
+        });
+        return false;
+      }
+      if (!this.validSize(files)) {
+        this.callErrorModal({
+          text: this.$t('WhatsApp.templates.error.invalid_file_size'),
+        });
+        return false;
+      }
+      return true;
+    },
+    async handleFileChange(event) {
+      const { files } = event.target;
+      if (this.validateFiles(files)) {
+        this.file = files[0];
+
+        if (this.templateTranslationCurrentForm.header.mediaType === 'IMAGE') {
+          this.fileToPreview = await toBase64(files[0]);
+        } else {
+          this.fileToPreview = null;
+        }
+      }
+      /* istanbul ignore next */
+      if (this.$refs.file) {
+        this.$refs.file.value = '';
+      }
+    },
+    async saveSample() {
+      if (
+        this.hasVariables &&
+        this.variablesData.length !== this.variableCount
+      ) {
+        this.callErrorModal({
+          text: this.$t('WhatsApp.templates.error.missing_variable_example'),
+        });
+        return;
+      }
+
+      if (this.hasMedia && this.file === null) {
+        this.callErrorModal({
+          text: this.$t('WhatsApp.templates.error.missing_media_example'),
+        });
+        return;
+      }
+
+      const fileData = await toBase64(this.file);
+      const sampleForm = {
+        variables: this.variablesData,
+        headerFile: fileData,
+      };
+
+      this.$emit('sample-submission', sampleForm);
+      this.$emit('close-modal');
+    },
+    callErrorModal({ text }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text,
+          type: 'error',
+        },
+        seconds: 6,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .sample-form {
-    &__container {
-      max-height: 50vh;
-      overflow-x: hidden;
-      padding: 0 16px;
-      overflow-y: auto;
+.sample-form {
+  &__container {
+    max-height: 50vh;
+    overflow-x: hidden;
+    padding: 0 16px;
+    overflow-y: auto;
+  }
+
+  &__content {
+    overflow: auto;
+    margin: $unnnic-spacing-stack-sm 0;
+    padding-right: $unnnic-spacing-inline-xs;
+  }
+
+  &__preview {
+    max-height: 30vh;
+    overflow: auto;
+
+    &__title {
+      margin-bottom: $unnnic-spacing-stack-xs;
+      text-align: left;
     }
 
-    &__content {
-      overflow: auto;
-      margin: $unnnic-spacing-stack-sm 0;
-      padding-right: $unnnic-spacing-inline-xs;
+    margin: 0 (-$unnnic-spacing-inline-md);
+    padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-md;
+
+    :deep(.template-preview__content),
+    :deep(.template-preview__buttons) {
+      margin: $unnnic-spacing-stack-xs 0;
     }
 
-    &__preview {
-      max-height: 30vh;
-      overflow: auto;
-
-      &__title {
-        margin-bottom: $unnnic-spacing-stack-xs;
-        text-align: left;
-      }
-
-      margin: 0 (-$unnnic-spacing-inline-md);
-      padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-md;
-
-      :deep(.template-preview__content),
-      :deep(.template-preview__buttons) {
-        margin: $unnnic-spacing-stack-xs 0;
-      }
-
-      :deep(.template-preview__content) {
-        width: 210px;
-        margin-bottom: $unnnic-spacing-stack-nano;
-      }
-
-      :deep(.template-preview__buttons) {
-        width: 225px;
-        margin-top: $unnnic-spacing-stack-nano;
-      }
+    :deep(.template-preview__content) {
+      width: 210px;
+      margin-bottom: $unnnic-spacing-stack-nano;
     }
 
-    &__body,
-    &__header {
-      &__wrapper {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        gap: $unnnic-spacing-stack-xs;
-        width: 75%;
-      }
-    }
-
-    &__header {
-      &__wrapper {
-        margin-bottom: $unnnic-spacing-stack-sm;
-      }
-
-      &__file-name {
-        color: $unnnic-color-fg-base;
-        font-size: $unnnic-font-size-body-gt;
-        font-weight: $unnnic-font-weight-bold;
-      }
-    }
-
-    &__button {
-      text-align: right;
-      margin-bottom: $unnnic-spacing-stack-sm;
-
-      .unnnic-button {
-        width: 50%;
-      }
-    }
-
-    &__info {
-      background-color: $unnnic-color-bg-muted;
-      margin: 0 (-$unnnic-spacing-inline-md);
-      margin-bottom: (-$unnnic-spacing-stack-giant);
-      padding: $unnnic-spacing-inline-md;
+    :deep(.template-preview__buttons) {
+      width: 225px;
+      margin-top: $unnnic-spacing-stack-nano;
     }
   }
+
+  &__body,
+  &__header {
+    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      gap: $unnnic-spacing-stack-xs;
+      width: 75%;
+    }
+  }
+
+  &__header {
+    &__wrapper {
+      margin-bottom: $unnnic-spacing-stack-sm;
+    }
+
+    &__file-name {
+      color: $unnnic-color-fg-base;
+      font-size: $unnnic-font-size-body-gt;
+      font-weight: $unnnic-font-weight-bold;
+    }
+  }
+
+  &__button {
+    text-align: right;
+    margin-bottom: $unnnic-spacing-stack-sm;
+
+    .unnnic-button {
+      width: 50%;
+    }
+  }
+
+  &__info {
+    background-color: $unnnic-color-bg-muted;
+    margin: 0 (-$unnnic-spacing-inline-md);
+    margin-bottom: (-$unnnic-spacing-stack-giant);
+    padding: $unnnic-spacing-inline-md;
+  }
+}
 </style>

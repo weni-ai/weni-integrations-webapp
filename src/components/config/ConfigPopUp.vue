@@ -1,69 +1,72 @@
 <template>
-  <div class="config-popup" v-if="show">
+  <div
+    v-if="show"
+    class="config-popup"
+  >
     <component
-      class="config-popup__component"
       :is="currentComponent"
+      class="config-popup__component"
       :app="currentApp"
       :customData="currentCustomData"
-      @closePopUp="closePopUp"
-      @toggleIntegratedAppModal="toggleIntegratedAppModal"
+      @close-pop-up="closePopUp"
+      @toggle-integrated-app-modal="toggleIntegratedAppModal"
     />
   </div>
 
-  <add-modal ref="addModal" />
+  <AddModal ref="addModal" />
 </template>
 
 <script>
-  import addModal from '../AddModal/index.vue';
-  import wppDemoConfig from './channels/wpp_demo/Config.vue';
-  import wppCloudSetup from './channels/whatsapp/Setup.vue';
-  import facebookSetup from './channels/facebook/Setup.vue';
-  import chatGptSetup from './external/chatgpt/Setup.vue';
-  import vtexSetup from './ecommerce/vtex/Setup.vue';
-  import gmailSetup from './channels/email/Setup.vue';
+import AddModal from '../AddModal/index.vue';
+import wppDemoConfig from './channels/wpp_demo/Config.vue';
+import wppCloudSetup from './channels/whatsapp/Setup.vue';
+import facebookSetup from './channels/facebook/Setup.vue';
+import chatGptSetup from './external/chatgpt/Setup.vue';
+import vtexSetup from './ecommerce/vtex/Setup.vue';
+import gmailSetup from './channels/email/Setup.vue';
 
-  export default {
-    name: 'Config-PopUp',
-    components: {
-      addModal,
-    },
-    data() {
-      return {
-        show: false,
-        type: '',
-        currentApp: {},
-        currentCustomData: null,
-        componentMapping: {
-          'wpp-demo': wppDemoConfig,
-          'wpp-cloud': wppCloudSetup,
-          ig: facebookSetup,
-          fba: facebookSetup,
-          chatgpt: chatGptSetup,
-          vtex: vtexSetup,
-          gmail: gmailSetup,
-        },
-      };
-    },
-    methods: {
-      toggleIntegratedAppModal() {
-        this.$refs.addModal.toggleModal();
+export default {
+  name: 'ConfigPopUp',
+  components: {
+    AddModal,
+  },
+  data() {
+    return {
+      show: false,
+      type: '',
+      currentApp: {},
+      currentCustomData: null,
+      componentMapping: {
+        'wpp-demo': wppDemoConfig,
+        'wpp-cloud': wppCloudSetup,
+        ig: facebookSetup,
+        fba: facebookSetup,
+        chatgpt: chatGptSetup,
+        vtex: vtexSetup,
+        gmail: gmailSetup,
       },
-      closePopUp() {
-        this.show = false;
-      },
-      openPopUp(app, customData) {
-        this.type = app.code;
-        this.currentApp = app;
-        this.currentCustomData = customData;
-        this.show = true;
-      },
+    };
+  },
+  computed: {
+    currentComponent() {
+      return this.componentMapping[this.type];
     },
-    computed: {
-      currentComponent() {
-        return this.componentMapping[this.type];
-      },
+  },
+  methods: {
+    toggleIntegratedAppModal() {
+      this.$refs.addModal.toggleModal();
     },
-  };
+    closePopUp() {
+      this.show = false;
+    },
+    openPopUp(app, customData) {
+      this.type = app.code;
+      this.currentApp = app;
+      this.currentCustomData = customData;
+      this.show = true;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

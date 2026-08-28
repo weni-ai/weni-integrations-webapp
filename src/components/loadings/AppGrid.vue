@@ -1,11 +1,19 @@
 <template>
   <div>
     <div class="title">
-      <unnnic-skeleton-loading tag="div" width="40px" height="40px" />
-      <unnnic-skeleton-loading tag="div" width="208px" height="40px" />
+      <UnnnicSkeletonLoading
+        tag="div"
+        width="40px"
+        height="40px"
+      />
+      <UnnnicSkeletonLoading
+        tag="div"
+        width="208px"
+        height="40px"
+      />
     </div>
     <div class="grid">
-      <unnnic-skeleton-loading
+      <UnnnicSkeletonLoading
         v-for="index in 4"
         :key="index"
         class="grid__item"
@@ -18,19 +26,21 @@
 </template>
 
 <script>
-  export default {};
+export default {
+  name: 'SkeletonLoading',
+};
 </script>
 
 <style lang="scss" scoped>
-  .title {
-    display: flex;
-    gap: $unnnic-spacing-inline-xs;
-    margin: $unnnic-spacing-stack-md 0;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
-    grid-gap: $unnnic-spacing-stack-sm;
-    align-items: flex-start;
-  }
+.title {
+  display: flex;
+  gap: $unnnic-spacing-inline-xs;
+  margin: $unnnic-spacing-stack-md 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(256px, 256px));
+  grid-gap: $unnnic-spacing-stack-sm;
+  align-items: flex-start;
+}
 </style>
