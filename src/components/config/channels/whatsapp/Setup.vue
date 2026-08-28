@@ -1,26 +1,26 @@
 <template>
   <div>
-    <unnnic-modal
+    <UnnnicModal
       ref="whatsapp-setup-modal"
       class="whatsapp-setup"
       :text="$t('WhatsAppCloud.setup.connect')"
       :description="$t('WhatsAppCloud.setup.description')"
       scheme="feedback-green"
-      modal-icon="phone-3"
-      :close-icon="false"
+      modalIcon="phone-3"
+      :closeIcon="false"
       @close="closePopUp"
       @click.stop
     >
       <template #options>
         <div>
           <div class="whatsapp-setup__buttons">
-            <unnnic-button
+            <UnnnicButton
               class="whatsapp-setup__buttons__cancel"
               type="tertiary"
               size="large"
               :text="$t('general.Cancel')"
               @click="closePopUp"
-            ></unnnic-button>
+            ></UnnnicButton>
 
             <LoadingButton
               class="whatsapp-setup__buttons__start"
@@ -34,7 +34,7 @@
           </div>
         </div>
       </template>
-    </unnnic-modal>
+    </UnnnicModal>
 
     <ConnectNewWhatsAppAccountModal
       :show="showConnectNewAccountModal"
@@ -45,258 +45,277 @@
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
-  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import unnnic from '@weni/unnnic-system';
-  import LoadingButton from '../../../LoadingButton/index.vue';
-  import ConnectNewWhatsAppAccountModal from './ConnectNewWhatsAppAccountModal.vue';
-  import getEnv from '@/utils/env';
-  import { initFacebookSdk } from '@/utils/plugins/fb';
-  import { captureSentryManualError } from '@/utils/sentry';
-  import { isMetaCreditAllocationError } from '@/utils/metaError';
+import { mapActions, mapState } from 'pinia';
+import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+import { auth_store } from '@/stores/modules/auth.store';
+import unnnic from '@weni/unnnic-system';
+import LoadingButton from '../../../LoadingButton/index.vue';
+import ConnectNewWhatsAppAccountModal from './ConnectNewWhatsAppAccountModal.vue';
+import getEnv from '@/utils/env';
+import { initFacebookSdk } from '@/utils/plugins/fb';
+import { captureSentryManualError } from '@/utils/sentry';
+import { isMetaCreditAllocationError } from '@/utils/metaError';
 
-  export default {
-    name: 'WhatsAppSetup',
-    components: {
-      LoadingButton,
-      ConnectNewWhatsAppAccountModal,
+export default {
+  name: 'WhatsAppSetup',
+  components: {
+    LoadingButton,
+    ConnectNewWhatsAppAccountModal,
+  },
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+  },
+  data() {
+    return {
+      phoneNumberId: null,
+      wabaId: null,
+      onLogin: false,
+      showConnectNewAccountModal: false,
+    };
+  },
+  async mounted() {
+    window.createChannel = this.createChannel;
+    window.changeLoginState = this.changeLoginState;
+    window.sendToSentry = this.sendToSentry;
+  },
+  computed: {
+    ...mapState(auth_store, ['project']),
+    ...mapState(whatsapp_cloud, [
+      'loadingWhatsAppCloudConfigure',
+      'errorCloudConfigure',
+    ]),
+  },
+  methods: {
+    ...mapActions(whatsapp_cloud, ['configurePhoneNumber']),
+    changeLoginState(state) {
+      this.onLogin = state;
     },
-    data() {
-      return {
-        phoneNumberId: null,
-        wabaId: null,
-        onLogin: false,
-        showConnectNewAccountModal: false,
-      };
+    sendToSentry(message, extra) {
+      const err = new Error(message);
+      captureSentryManualError(err, extra);
     },
-    async mounted() {
-      window.createChannel = this.createChannel;
-      window.changeLoginState = this.changeLoginState;
-      window.sendToSentry = this.sendToSentry;
-    },
-    computed: {
-      ...mapState(auth_store, ['project']),
-      ...mapState(whatsapp_cloud, ['loadingWhatsAppCloudConfigure', 'errorCloudConfigure']),
-    },
-    methods: {
-      ...mapActions(whatsapp_cloud, ['configurePhoneNumber']),
-      changeLoginState(state) {
-        this.onLogin = state;
-      },
-      sendToSentry(message, extra) {
-        const err = new Error(message);
-        captureSentryManualError(err, extra);
-      },
-      /* istanbul ignore next */
-      startFacebookLogin() {
-        const fbAppId = getEnv('WHATSAPP_FACEBOOK_APP_ID');
-        const configId = getEnv('WHATSAPP_FACEBOOK_APP_CONFIG_ID');
+    /* istanbul ignore next */
+    startFacebookLogin() {
+      const fbAppId = getEnv('WHATSAPP_FACEBOOK_APP_ID');
+      const configId = getEnv('WHATSAPP_FACEBOOK_APP_CONFIG_ID');
 
-        if (!fbAppId) {
-          return;
-        }
+      if (!fbAppId) {
+        return;
+      }
 
-        /* eslint-disable no-undef */
-        const loginCallback = () => {
-          this.changeLoginState(true);
+      /* eslint-disable no-undef */
+      const loginCallback = () => {
+        this.changeLoginState(true);
 
-          const sessionInfoListener = (event) => {
-            if (event.origin == null) {
-              console.log("Session info listener: Data doesn't have an origin", event.origin);
-              this.sendToSentry("Session info listener: Data doesn't have an origin", {
+        const sessionInfoListener = (event) => {
+          if (event.origin == null) {
+            console.log(
+              "Session info listener: Data doesn't have an origin",
+              event.origin,
+            );
+            this.sendToSentry(
+              "Session info listener: Data doesn't have an origin",
+              {
                 data: event,
                 data_string: JSON.stringify(event),
-              });
-              return;
-            }
+              },
+            );
+            return;
+          }
 
-            // Make sure the data is coming from facebook.com
-            if (!event.origin.endsWith('facebook.com')) {
-              console.log(
-                'Session info listener: Data is not coming from facebook.com',
-                event.origin,
-              );
-              this.sendToSentry('Session info listener: Data is not coming from facebook.com', {
+          // Make sure the data is coming from facebook.com
+          if (!event.origin.endsWith('facebook.com')) {
+            console.log(
+              'Session info listener: Data is not coming from facebook.com',
+              event.origin,
+            );
+            this.sendToSentry(
+              'Session info listener: Data is not coming from facebook.com',
+              {
                 data: event,
                 data_string: JSON.stringify(event),
-              });
-              return;
-            }
+              },
+            );
+            return;
+          }
 
-            try {
-              const data = JSON.parse(event.data);
-              if (data.type === 'WA_EMBEDDED_SIGNUP') {
-                // if user finishes the Embedded Signup flow
-                if (data.event === 'FINISH') {
-                  const { phone_number_id, waba_id } = data.data;
-                  this.phoneNumberId = phone_number_id;
-                  this.wabaId = waba_id;
-                }
-                // if user reports an error during the Embedded Signup flow
-                else if (data.event === 'ERROR') {
-                  const { error_message } = data.data;
-                  console.log(
-                    'Session info listener: Error during the Embedded Signup flow.',
-                    error_message,
-                  );
-                  this.sendToSentry(
-                    'Session info listener: Error during the Embedded Signup flow.',
-                    {
-                      data: data,
-                      data_string: event.data,
-                      phone_number_id: this.phoneNumberId,
-                      waba_id: this.wabaId,
-                    },
-                  );
-                }
-                // if user cancels the Embedded Signup flow
-                else {
-                  const { current_step } = data.data;
-                  console.log(
-                    'Session info listener: User cancelled login or did not fully authorize.',
-                    current_step,
-                  );
-                  this.sendToSentry('User cancelled login or did not fully authorize.', {
+          try {
+            const data = JSON.parse(event.data);
+            if (data.type === 'WA_EMBEDDED_SIGNUP') {
+              // if user finishes the Embedded Signup flow
+              if (data.event === 'FINISH') {
+                const { phone_number_id, waba_id } = data.data;
+                this.phoneNumberId = phone_number_id;
+                this.wabaId = waba_id;
+              }
+              // if user reports an error during the Embedded Signup flow
+              else if (data.event === 'ERROR') {
+                const { error_message } = data.data;
+                console.log(
+                  'Session info listener: Error during the Embedded Signup flow.',
+                  error_message,
+                );
+                this.sendToSentry(
+                  'Session info listener: Error during the Embedded Signup flow.',
+                  {
                     data: data,
                     data_string: event.data,
-                    phone_number_id: this.phoneNumberId,
-                    waba_id: this.wabaId,
-                  });
-                }
-              }
-            } catch {
-              // Don’t parse info that’s not a JSON
-              console.log('Non JSON Response', event.data);
-              this.sendToSentry('Non JSON Response in event.data', {
-                data_string: event.data,
-                phone_number_id: this.phoneNumberId,
-                waba_id: this.wabaId,
-              });
-            }
-          };
-
-          window.addEventListener('message', sessionInfoListener);
-
-          typeof fbq !== 'undefined' &&
-            fbq('trackCustom', 'WhatsAppOnboardingStart', {
-              appId: fbAppId,
-              feature: 'whatsapp_embedded_signup',
-            });
-
-          FB.login(
-            function (response) {
-              if (response.authResponse) {
-                const code = response.authResponse.code;
-                this.createChannel(code);
-              } else {
-                console.log('Login Callback: User cancelled login or did not fully authorize');
-                this.sendToSentry(
-                  'Login Callback: User cancelled login or did not fully authorize',
-                  {
-                    data: response,
-                    data_string: JSON.stringify(response),
                     phone_number_id: this.phoneNumberId,
                     waba_id: this.wabaId,
                   },
                 );
               }
-              this.changeLoginState(false);
-            },
-            {
-              config_id: configId,
-              response_type: 'code',
-              override_default_response_type: true,
-              extras: {
-                sessionInfoVersion: 2,
-                features: [
+              // if user cancels the Embedded Signup flow
+              else {
+                const { current_step } = data.data;
+                console.log(
+                  'Session info listener: User cancelled login or did not fully authorize.',
+                  current_step,
+                );
+                this.sendToSentry(
+                  'User cancelled login or did not fully authorize.',
                   {
-                    name: 'marketing_messages_lite',
+                    data: data,
+                    data_string: event.data,
+                    phone_number_id: this.phoneNumberId,
+                    waba_id: this.wabaId,
                   },
-                ],
-              },
-            },
-          );
-        };
-
-        initFacebookSdk(fbAppId, loginCallback);
-      },
-      async createChannel(code) {
-        if (!this.loadingWhatsAppCloudConfigure) {
-          const data = {
-            waba_id: this.wabaId,
-            phone_number_id: this.phoneNumberId,
-            project_uuid: this.project,
-            auth_code: code,
-          };
-
-          const res = await this.configurePhoneNumber({ data });
-
-          if (this.errorCloudConfigure) {
-            if (isMetaCreditAllocationError(this.errorCloudConfigure)) {
-              this.showConnectNewAccountModal = true;
-            } else {
-              this.callErrorModal({
-                text: this.$t('WhatsAppCloud.config.configure_phone_number.error'),
-              });
+                );
+              }
             }
-
-            this.sendToSentry('Error trying to create WAC channel', {
-              data: data,
-              data_string: JSON.stringify(data),
-              response: res,
-              response_string: JSON.stringify(res),
+          } catch {
+            // Don’t parse info that’s not a JSON
+            console.log('Non JSON Response', event.data);
+            this.sendToSentry('Non JSON Response in event.data', {
+              data_string: event.data,
               phone_number_id: this.phoneNumberId,
               waba_id: this.wabaId,
             });
-          } else {
-            this.$router.replace('/apps/my');
           }
-        }
-      },
-      handleConnectNewAccountTryAgain() {
-        this.showConnectNewAccountModal = false;
-        this.startFacebookLogin();
-      },
-      closePopUp() {
-        this.$emit('closePopUp');
-      },
-      callErrorModal({ text }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text: text,
-            type: 'error',
+        };
+
+        window.addEventListener('message', sessionInfoListener);
+
+        typeof fbq !== 'undefined' &&
+          fbq('trackCustom', 'WhatsAppOnboardingStart', {
+            appId: fbAppId,
+            feature: 'whatsapp_embedded_signup',
+          });
+
+        FB.login(
+          function (response) {
+            if (response.authResponse) {
+              const code = response.authResponse.code;
+              this.createChannel(code);
+            } else {
+              console.log(
+                'Login Callback: User cancelled login or did not fully authorize',
+              );
+              this.sendToSentry(
+                'Login Callback: User cancelled login or did not fully authorize',
+                {
+                  data: response,
+                  data_string: JSON.stringify(response),
+                  phone_number_id: this.phoneNumberId,
+                  waba_id: this.wabaId,
+                },
+              );
+            }
+            this.changeLoginState(false);
           },
-          seconds: 15,
-        });
-      },
+          {
+            config_id: configId,
+            response_type: 'code',
+            override_default_response_type: true,
+            extras: {
+              sessionInfoVersion: 2,
+              features: [
+                {
+                  name: 'marketing_messages_lite',
+                },
+              ],
+            },
+          },
+        );
+      };
+
+      initFacebookSdk(fbAppId, loginCallback);
     },
-  };
+    async createChannel(code) {
+      if (!this.loadingWhatsAppCloudConfigure) {
+        const data = {
+          waba_id: this.wabaId,
+          phone_number_id: this.phoneNumberId,
+          project_uuid: this.project,
+          auth_code: code,
+        };
+
+        const res = await this.configurePhoneNumber({ data });
+
+        if (this.errorCloudConfigure) {
+          if (isMetaCreditAllocationError(this.errorCloudConfigure)) {
+            this.showConnectNewAccountModal = true;
+          } else {
+            this.callErrorModal({
+              text: this.$t(
+                'WhatsAppCloud.config.configure_phone_number.error',
+              ),
+            });
+          }
+
+          this.sendToSentry('Error trying to create WAC channel', {
+            data: data,
+            data_string: JSON.stringify(data),
+            response: res,
+            response_string: JSON.stringify(res),
+            phone_number_id: this.phoneNumberId,
+            waba_id: this.wabaId,
+          });
+        } else {
+          this.$router.replace('/apps/my');
+        }
+      }
+    },
+    handleConnectNewAccountTryAgain() {
+      this.showConnectNewAccountModal = false;
+      this.startFacebookLogin();
+    },
+    closePopUp() {
+      this.$emit('closePopUp');
+    },
+    callErrorModal({ text }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text: text,
+          type: 'error',
+        },
+        seconds: 15,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .whatsapp-setup {
-    cursor: default;
+.whatsapp-setup {
+  cursor: default;
 
-    &__buttons {
-      display: flex;
-      justify-content: space-around;
-      gap: $unnnic-spacing-inline-xs;
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: $unnnic-spacing-inline-xs;
 
-      &__cancel,
-      &__start {
-        width: 50%;
-      }
-    }
-
-    :deep(.unnnic-modal-container-background-body-description) {
-      padding-bottom: $unnnic-spacing-stack-lg;
+    &__cancel,
+    &__start {
+      width: 50%;
     }
   }
+
+  :deep(.unnnic-modal-container-background-body-description) {
+    padding-bottom: $unnnic-spacing-stack-lg;
+  }
+}
 </style>

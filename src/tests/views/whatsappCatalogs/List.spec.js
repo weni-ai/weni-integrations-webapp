@@ -30,7 +30,7 @@ describe('WhatsAppCatalogsList.vue', () => {
     });
 
     expect(wrapper.findComponent(CatalogList).exists()).toBe(true);
-    expect(wrapper.find('router-view').exists()).toBe(false);
+    expect(wrapper.findComponent({ name: 'RouterView' }).exists()).toBe(false);
   });
 
   it('renders router-view when route name is not WhatsApp Catalogs List', async () => {

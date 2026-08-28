@@ -35,20 +35,22 @@ describe('FormTabContentFooter.vue', () => {
   it('renders the component correctly', () => {
     wrapper = mountComponent();
     expect(wrapper.find('.form-tab-content-footer').exists()).toBe(true);
-    expect(wrapper.find('.form-tab-content-footer__title').text()).toBe('Footer text');
-    expect(wrapper.findComponent({ name: 'unnnic-input' }).exists()).toBe(true);
+    expect(wrapper.find('.form-tab-content-footer__title').text()).toBe(
+      'Footer text',
+    );
+    expect(wrapper.findComponent({ name: 'UnnnicInput' }).exists()).toBe(true);
   });
 
   it('displays the correct footer text from the store', () => {
     wrapper = mountComponent();
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent({ name: 'UnnnicInput' });
     expect(input.props('modelValue')).toBe('Initial Footer');
   });
 
   it('displays an empty string when there is no footer in the store', () => {
     whatsappStore.templateTranslationCurrentForm.footer = '';
     wrapper = mountComponent();
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent({ name: 'UnnnicInput' });
     expect(input.props('modelValue')).toBe('');
   });
 
@@ -60,7 +62,7 @@ describe('FormTabContentFooter.vue', () => {
 
   it('emits `input-change` event when the input value changes', async () => {
     wrapper = mountComponent();
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent({ name: 'UnnnicInput' });
     await input.vm.$emit('update:modelValue', 'New Footer Text');
     expect(wrapper.emitted('input-change')).toBeTruthy();
     expect(wrapper.emitted('input-change')[0]).toEqual([

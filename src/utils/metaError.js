@@ -36,7 +36,10 @@ function hasMetaErrorSubcode(value, subcode, seen = new WeakSet()) {
     return value.some((item) => hasMetaErrorSubcode(item, subcode, seen));
   }
 
-  if ('error_subcode' in value && matchesSubcode(value.error_subcode, subcode)) {
+  if (
+    'error_subcode' in value &&
+    matchesSubcode(value.error_subcode, subcode)
+  ) {
     return true;
   }
 
@@ -45,7 +48,9 @@ function hasMetaErrorSubcode(value, subcode, seen = new WeakSet()) {
     return hasMetaErrorSubcode(value.response.data, subcode, seen);
   }
 
-  return Object.values(value).some((nested) => hasMetaErrorSubcode(nested, subcode, seen));
+  return Object.values(value).some((nested) =>
+    hasMetaErrorSubcode(nested, subcode, seen),
+  );
 }
 
 export function isMetaCreditAllocationError(value) {

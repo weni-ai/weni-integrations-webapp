@@ -5,7 +5,9 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 
 vi.mock('@/utils/files', () => ({
-  dataUrlToFile: vi.fn().mockResolvedValue(new File(['test'], 'avatar.png', { type: 'image/png' })),
+  dataUrlToFile: vi
+    .fn()
+    .mockResolvedValue(new File(['test'], 'avatar.png', { type: 'image/png' })),
 }));
 
 const mockHandleImageUpload = vi.fn((files, cb) => cb(null, null, null));
@@ -45,12 +47,12 @@ describe('AppearanceTab', () => {
       global: {
         plugins: [i18n, UnnnicSystem],
         stubs: {
-          'unnnic-input': true,
-          'unnnic-dropdown': true,
-          'unnnic-dropdown-item': true,
-          'unnnic-button': true,
-          'unnnic-label': true,
-          'unnnic-upload-area': true,
+          UnnnicInput: true,
+          UnnnicDropdown: true,
+          UnnnicDropdownItem: true,
+          UnnnicButton: true,
+          UnnnicLabel: true,
+          UnnnicUploadArea: true,
           ColorPicker: true,
         },
       },
@@ -82,11 +84,15 @@ describe('AppearanceTab', () => {
     });
 
     it('should render customization section', () => {
-      expect(wrapper.find('.appearance-tab__customization').exists()).toBe(true);
+      expect(wrapper.find('.appearance-tab__customization').exists()).toBe(
+        true,
+      );
     });
 
     it('should render color picker', () => {
-      expect(wrapper.findComponent({ name: 'ColorPicker' }).exists()).toBe(true);
+      expect(wrapper.findComponent({ name: 'ColorPicker' }).exists()).toBe(
+        true,
+      );
     });
 
     it('should render upload areas for avatar and CSS', () => {
@@ -107,7 +113,9 @@ describe('AppearanceTab', () => {
     });
 
     it('should render customization title', () => {
-      expect(wrapper.find('.appearance-tab__customization-title').exists()).toBe(true);
+      expect(
+        wrapper.find('.appearance-tab__customization-title').exists(),
+      ).toBe(true);
     });
   });
 
@@ -295,7 +303,9 @@ describe('AppearanceTab', () => {
       const uploadAreas = wrapper.findAll('unnnic-upload-area-stub');
       const avatarUpload = uploadAreas[0];
       expect(avatarUpload.exists()).toBe(true);
-      expect(avatarUpload.attributes('supportedformats')).toBe('.png,.jpg,.jpeg');
+      expect(avatarUpload.attributes('supportedformats')).toBe(
+        '.png,.jpg,.jpeg',
+      );
     });
 
     it('should pass maxFileSize to avatar upload area', () => {
@@ -396,7 +406,9 @@ describe('AppearanceTab', () => {
     });
 
     it('should pass the existing CSS file to the upload area when initialCssFile is provided', async () => {
-      const existingCssFile = new File(['body {}'], 'style.css', { type: 'text/css' });
+      const existingCssFile = new File(['body {}'], 'style.css', {
+        type: 'text/css',
+      });
       wrapper = createWrapper({ initialCssFile: existingCssFile });
       await flushPromises();
 
@@ -433,7 +445,9 @@ describe('AppearanceTab', () => {
     });
 
     it('should emit null update:cssFile and update:customCss when the upload area clears the file', async () => {
-      const existingCssFile = new File(['body {}'], 'style.css', { type: 'text/css' });
+      const existingCssFile = new File(['body {}'], 'style.css', {
+        type: 'text/css',
+      });
       wrapper = createWrapper({ initialCssFile: existingCssFile });
       await flushPromises();
 
@@ -472,7 +486,9 @@ describe('AppearanceTab', () => {
 
   describe('color picker', () => {
     it('should render color picker in color section', () => {
-      expect(wrapper.find('.appearance-tab__color-section').exists()).toBe(true);
+      expect(wrapper.find('.appearance-tab__color-section').exists()).toBe(
+        true,
+      );
       expect(wrapper.find('.appearance-tab__color-picker').exists()).toBe(true);
     });
 

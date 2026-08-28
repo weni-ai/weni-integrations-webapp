@@ -76,7 +76,10 @@ describe('AppGrid', () => {
 
       await wrapper.vm.removeApp('1234', '5678');
 
-      expect(spyDeleteApp).toHaveBeenCalledWith({ code: '1234', appUuid: '5678' });
+      expect(spyDeleteApp).toHaveBeenCalledWith({
+        code: '1234',
+        appUuid: '5678',
+      });
       expect(spyToggleRemoveModal).toHaveBeenCalledTimes(1);
     });
 
@@ -129,8 +132,13 @@ describe('AppGrid', () => {
 
         await w.vm.openAppModal(configuredApp);
 
-        expect(openModalSpy).toHaveBeenCalledWith({ app: configuredApp, isConfigured: false });
-        expect(pushMock).not.toHaveBeenCalledWith(expect.stringContaining('/apps/my/configured/'));
+        expect(openModalSpy).toHaveBeenCalledWith({
+          app: configuredApp,
+          isConfigured: false,
+        });
+        expect(pushMock).not.toHaveBeenCalledWith(
+          expect.stringContaining('/apps/my/configured/'),
+        );
       });
 
       it('does nothing when type is "add" and app is generic', async () => {

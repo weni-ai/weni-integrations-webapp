@@ -21,11 +21,14 @@ describe('Navigator.vue', () => {
       global: {
         plugins: [i18n, UnnnicSystem],
         stubs: {
-          'router-link': {
+          RouterLink: {
             template: '<a :href="to"><slot /></a>',
             props: ['to'],
           },
-          'unnnic-icon-svg': true,
+          UnnnicIconSvg: {
+            name: 'UnnnicIconSvg',
+            template: '<span class="unnnic-icon-svg-stub" />',
+          },
         },
       },
       mocks: {
@@ -48,7 +51,7 @@ describe('Navigator.vue', () => {
   });
 
   it('renders the correct number of divider icons', () => {
-    const dividers = wrapper.findAllComponents({ name: 'unnnic-icon-svg' });
+    const dividers = wrapper.findAll('.navigator__container__divider');
     expect(dividers.length).toBe(routes.length - 1);
   });
 });

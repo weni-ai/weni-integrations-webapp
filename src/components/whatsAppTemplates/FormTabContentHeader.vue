@@ -6,50 +6,57 @@
 
     <div class="form-tab-content-header__inputs">
       <div>
-        <unnnic-label
+        <UnnnicLabel
           class="form-tab-content-header__inputs__selector__label"
           :label="$t('WhatsApp.templates.form_field.header__label')"
         />
-        <unnnic-select-smart
+        <UnnnicSelectSmart
           :disabled="disableInputs"
           :class="{
             'form-tab-content-header__inputs__selector': true,
-            'form-tab-content-header__inputs__selector__disabled': disableInputs,
+            'form-tab-content-header__inputs__selector__disabled':
+              disableInputs,
           }"
           :options="headerTypeOptions"
           :modelValue="selectedHeaderType"
-          @update:modelValue="handleHeaderTypeChange"
+          @update:model-value="handleHeaderTypeChange"
         />
       </div>
 
-      <unnnic-input
+      <UnnnicInput
+        v-if="headerType === 'TEXT'"
         :class="{
           'form-tab-content-header__inputs__text-input': true,
-          'form-tab-content-header__inputs__text-input__disabled': disableInputs,
+          'form-tab-content-header__inputs__text-input__disabled':
+            disableInputs,
         }"
-        v-if="headerType === 'TEXT'"
-        :placeholder="$t('WhatsApp.templates.form_field.header_text_placeholder')"
+        :placeholder="
+          $t('WhatsApp.templates.form_field.header_text_placeholder')
+        "
         :disabled="disableInputs"
         :modelValue="headerText"
-        @update:modelValue="handleNewHeaderInput({ text: $event })"
         :maxlength="60"
+        @update:model-value="handleNewHeaderInput({ text: $event })"
       />
       <!-- TODO: Set media type on button click -->
-      <div v-else class="form-tab-content-header__inputs__buttons">
-        <unnnic-button
+      <div
+        v-else
+        class="form-tab-content-header__inputs__buttons"
+      >
+        <UnnnicButton
           ref="button"
           :type="buttonType('IMAGE')"
           iconCenter="common-file-horizontal-image-1"
           :disabled="disableInputs || isSelected('IMAGE')"
           @click="handleNewHeaderInput({ mediaType: 'IMAGE' })"
         />
-        <unnnic-button
+        <UnnnicButton
           :type="buttonType('VIDEO')"
           iconCenter="button-play-1"
           :disabled="disableInputs || isSelected('VIDEO')"
           @click="handleNewHeaderInput({ mediaType: 'VIDEO' })"
         />
-        <unnnic-button
+        <UnnnicButton
           :type="buttonType('DOCUMENT')"
           iconCenter="text-left"
           :disabled="disableInputs || isSelected('DOCUMENT')"
@@ -61,146 +68,148 @@
 </template>
 
 <script>
-  import { mapState } from 'pinia';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import { mapState } from 'pinia';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
-  export default {
-    name: 'FormTabContentHeader',
-    props: {
-      disableInputs: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  name: 'FormTabContentHeader',
+  props: {
+    disableInputs: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        selectedHeaderType: [],
-        headerTypeOptions: [
-          {
-            value: 'TEXT',
-            label: this.$t('WhatsApp.templates.header_type_options.text'),
-          },
-          {
-            value: 'MEDIA',
-            label: this.$t('WhatsApp.templates.header_type_options.media'),
-          },
-        ],
-      };
+  },
+  data() {
+    return {
+      selectedHeaderType: [],
+      headerTypeOptions: [
+        {
+          value: 'TEXT',
+          label: this.$t('WhatsApp.templates.header_type_options.text'),
+        },
+        {
+          value: 'MEDIA',
+          label: this.$t('WhatsApp.templates.header_type_options.media'),
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.fillEmptyHeader();
+  },
+  beforeUpdate() {
+    this.fillEmptyHeader();
+  },
+  computed: {
+    ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+    headerType() {
+      return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
     },
-    mounted() {
-      this.fillEmptyHeader();
+    headerText() {
+      return this.templateTranslationCurrentForm.header?.text || null;
     },
-    beforeUpdate() {
-      this.fillEmptyHeader();
+  },
+  methods: {
+    handleNewHeaderInput(event) {
+      this.$emit('input-change', {
+        fieldName: 'header',
+        fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
+      });
     },
-    computed: {
-      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
-      headerType() {
-        return this.templateTranslationCurrentForm.header?.header_type || 'TEXT';
-      },
-      headerText() {
-        return this.templateTranslationCurrentForm.header?.text || null;
-      },
+    handleHeaderTypeChange(event) {
+      this.selectedHeaderType = event;
+      let fieldValue;
+
+      if (event[0].value === 'TEXT') {
+        fieldValue = { header_type: 'TEXT', text: this.headerText || null };
+      } else {
+        fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };
+      }
+
+      this.$emit('input-change', {
+        fieldName: 'header',
+        fieldValue,
+      });
     },
-    methods: {
-      handleNewHeaderInput(event) {
+    buttonType(type) {
+      if (this.disableInputs) {
+        const selectedMediaType =
+          this.templateTranslationCurrentForm.header?.mediaType;
+
+        if (selectedMediaType !== type) {
+          return 'primary';
+        }
+      }
+      return 'secondary';
+    },
+    isSelected(type) {
+      return this.templateTranslationCurrentForm.header?.mediaType === type;
+    },
+    fillEmptyHeader() {
+      const headerType =
+        this.templateTranslationCurrentForm.header?.header_type;
+      if (!headerType) {
         this.$emit('input-change', {
           fieldName: 'header',
-          fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
+          fieldValue: { header_type: 'TEXT', text: null },
         });
-      },
-      handleHeaderTypeChange(event) {
-        this.selectedHeaderType = event;
-        let fieldValue;
-
-        if (event[0].value === 'TEXT') {
-          fieldValue = { header_type: 'TEXT', text: this.headerText || null };
-        } else {
-          fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };
-        }
-
-        this.$emit('input-change', {
-          fieldName: 'header',
-          fieldValue,
-        });
-      },
-      buttonType(type) {
-        if (this.disableInputs) {
-          const selectedMediaType = this.templateTranslationCurrentForm.header?.mediaType;
-
-          if (selectedMediaType !== type) {
-            return 'primary';
-          }
-        }
-        return 'secondary';
-      },
-      isSelected(type) {
-        return this.templateTranslationCurrentForm.header?.mediaType === type;
-      },
-      fillEmptyHeader() {
-        const headerType = this.templateTranslationCurrentForm.header?.header_type;
-        if (!headerType) {
-          this.$emit('input-change', {
-            fieldName: 'header',
-            fieldValue: { header_type: 'TEXT', text: null },
-          });
-        }
-      },
+      }
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .form-tab-content-header {
+.form-tab-content-header {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    margin-bottom: $unnnic-spacing-stack-sm;
+    font-size: $unnnic-font-size-body-lg;
+    line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+    font-weight: $unnnic-font-weight-bold;
+
+    color: $unnnic-color-fg-emphasized;
+  }
+
+  &__inputs {
     display: flex;
-    flex-direction: column;
+    gap: $unnnic-spacing-inline-md;
 
-    &__title {
-      margin-bottom: $unnnic-spacing-stack-sm;
-      font-size: $unnnic-font-size-body-lg;
-      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-      font-weight: $unnnic-font-weight-bold;
+    &__selector {
+      min-width: fit-content;
+      width: 25%;
 
-      color: $unnnic-color-fg-emphasized;
+      &__label {
+        margin-bottom: $unnnic-spacing-stack-nano;
+      }
+
+      &__disabled {
+        cursor: default;
+
+        :deep(.input),
+        :deep(.unnnic-icon) {
+          pointer-events: none;
+        }
+
+        :deep(.input) {
+          border: 1px dashed $unnnic-color-border-base;
+          background-color: $unnnic-color-bg-muted;
+        }
+      }
     }
 
-    &__inputs {
+    &__text-input {
+      flex: 1;
+      margin-top: calc($unnnic-spacing-stack-md + 1px);
+    }
+
+    &__buttons {
       display: flex;
+      align-items: flex-end;
       gap: $unnnic-spacing-inline-md;
-
-      &__selector {
-        min-width: fit-content;
-        width: 25%;
-
-        &__label {
-          margin-bottom: $unnnic-spacing-stack-nano;
-        }
-
-        &__disabled {
-          cursor: default;
-
-          :deep(.input),
-          :deep(.unnnic-icon) {
-            pointer-events: none;
-          }
-
-          :deep(.input) {
-            border: 1px dashed $unnnic-color-border-base;
-            background-color: $unnnic-color-bg-muted;
-          }
-        }
-      }
-
-      &__text-input {
-        flex: 1;
-        margin-top: calc($unnnic-spacing-stack-md + 1px);
-      }
-
-      &__buttons {
-        display: flex;
-        align-items: flex-end;
-        gap: $unnnic-spacing-inline-md;
-      }
     }
   }
+}
 </style>

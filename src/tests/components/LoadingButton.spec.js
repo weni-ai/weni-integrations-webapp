@@ -63,7 +63,9 @@ describe('LoadingButton.vue', () => {
       },
     });
 
-    const buttonStubCenter = wrapperCenter.findComponent({ ref: 'unnnic-button' });
+    const buttonStubCenter = wrapperCenter.findComponent({
+      ref: 'unnnic-button',
+    });
     expect(buttonStubCenter.exists()).toBe(true);
     expect(buttonStubCenter.props('iconCenter')).toBe('loading-circle-1');
   });

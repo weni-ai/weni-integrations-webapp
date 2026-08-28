@@ -70,7 +70,10 @@ describe('comments_store', () => {
     const mockResult = { id: 1, text: 'New Comment' };
     appType.createComment.mockResolvedValue({ data: mockResult });
 
-    await store.createComment({ code: 'code', payload: { text: 'New Comment' } });
+    await store.createComment({
+      code: 'code',
+      payload: { text: 'New Comment' },
+    });
 
     expect(store.createCommentResult).toEqual(mockResult);
     expect(store.loadingCreateComment).toBe(false);
@@ -82,7 +85,10 @@ describe('comments_store', () => {
     const mockError = new Error('Test Error');
     appType.createComment.mockRejectedValue(mockError);
 
-    await store.createComment({ code: 'code', payload: { text: 'New Comment' } });
+    await store.createComment({
+      code: 'code',
+      payload: { text: 'New Comment' },
+    });
 
     expect(store.createCommentResult).toBeNull();
     expect(store.loadingCreateComment).toBe(false);

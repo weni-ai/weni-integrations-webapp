@@ -18,7 +18,9 @@ export const useEventStore = defineStore('event', {
     },
     off(eventName, callback) {
       if (this.events[eventName]) {
-        this.events[eventName] = this.events[eventName].filter((cb) => cb !== callback);
+        this.events[eventName] = this.events[eventName].filter(
+          (cb) => cb !== callback,
+        );
       }
     },
   },

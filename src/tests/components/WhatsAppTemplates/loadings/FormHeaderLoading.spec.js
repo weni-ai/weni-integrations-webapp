@@ -16,7 +16,9 @@ describe('FormHeaderLoading.vue', () => {
   });
 
   it('should render all skeleton loading components', () => {
-    const skeletons = wrapper.findAllComponents({ name: 'unnnic-skeleton-loading' });
+    const skeletons = wrapper.findAllComponents({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletons[0].exists()).toBe(true);
     expect(skeletons).toHaveLength(3);
   });
@@ -38,7 +40,9 @@ describe('FormHeaderLoading.vue', () => {
 
     await wrapper.vm.$nextTick();
 
-    const skeletons = wrapper.findAllComponents({ name: 'unnnic-skeleton-loading' });
+    const skeletons = wrapper.findAllComponents({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletons.length).toBe(3);
 
     const firstSkeleton = skeletons[0].props();

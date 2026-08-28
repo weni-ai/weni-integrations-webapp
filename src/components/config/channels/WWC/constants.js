@@ -53,7 +53,8 @@ export function generateScriptCode(config) {
   if (!config?.script) return '';
 
   const version = config.version ?? '1';
-  const scriptUrl = WEBCHAT_SCRIPT_URLS[`v${version}`] || WEBCHAT_SCRIPT_URLS.v1;
+  const scriptUrl =
+    WEBCHAT_SCRIPT_URLS[`v${version}`] || WEBCHAT_SCRIPT_URLS.v1;
 
   return `<script>
   (function (d, s, u, w, v) {

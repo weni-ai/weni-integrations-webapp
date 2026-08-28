@@ -69,21 +69,33 @@ describe('VtexModal.vue', () => {
       whatsappChannels: [{ label: 'Channel 1', value: '1' }],
     });
     await wrapper.vm.$nextTick();
-    const whatsappSelect = wrapper.findComponent({ ref: 'whatsappChannelSelect' });
+    const whatsappSelect = wrapper.findComponent({
+      ref: 'whatsappChannelSelect',
+    });
     expect(whatsappSelect.exists()).toBe(true);
-    expect(whatsappSelect.props('options')).toEqual([{ label: 'Channel 1', value: '1' }]);
+    expect(whatsappSelect.props('options')).toEqual([
+      { label: 'Channel 1', value: '1' },
+    ]);
   });
 
   it('displays a skeleton loader when loading WhatsApp channels', async () => {
     wrapper.setData({ loadingChannels: true });
     await wrapper.vm.$nextTick();
-    const skeletonLoader = wrapper.findComponent({ name: 'unnnic-skeleton-loading' });
+    const skeletonLoader = wrapper.findComponent({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletonLoader.exists()).toBe(true);
   });
 
   it('shows an error message if fields are missing when continuing setup', async () => {
     const spy = vi.spyOn(unnnic, 'unnnicCallAlert');
-    wrapper.setData({ currentStep: 0, storeDomain: '', apiDomain: '', appKey: '', appToken: '' });
+    wrapper.setData({
+      currentStep: 0,
+      storeDomain: '',
+      apiDomain: '',
+      appKey: '',
+      appToken: '',
+    });
     await wrapper.vm.continueSetup();
     expect(spy).toHaveBeenCalledWith({
       props: { type: 'error', text: 'vtex.setup.error_missing_fields' },

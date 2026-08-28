@@ -115,7 +115,11 @@ describe('ConfigModal.vue', () => {
 
   it('does not render a header icon for WhatsApp', async () => {
     await wrapper.vm.openModal({
-      app: { code: 'wpp', name: 'WhatsApp', icon: 'https://example.com/wpp.png' },
+      app: {
+        code: 'wpp',
+        name: 'WhatsApp',
+        icon: 'https://example.com/wpp.png',
+      },
       isConfigured: true,
     });
     expect(wrapper.vm.showHeaderIcon).toBe(false);
@@ -132,7 +136,11 @@ describe('ConfigModal.vue', () => {
 
   it('renders a header icon for apps that use one', async () => {
     await wrapper.vm.openModal({
-      app: { code: 'tg', name: 'Telegram', icon: 'https://example.com/telegram.png' },
+      app: {
+        code: 'tg',
+        name: 'Telegram',
+        icon: 'https://example.com/telegram.png',
+      },
       isConfigured: false,
     });
     expect(wrapper.vm.showHeaderIcon).toBe(true);

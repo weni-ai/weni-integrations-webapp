@@ -6,7 +6,7 @@ import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { createTestingPinia } from '@pinia/testing';
 
 vi.mock('@/components/UnnnicIconSvg.vue', () => ({
-  name: 'unnnic-icon-svg',
+  name: 'UnnnicIconSvg',
   props: ['icon', 'size'],
   template: '<svg />',
 }));
@@ -40,9 +40,15 @@ describe('ColorPicker.vue', () => {
   it('renders initial colors correctly', () => {
     const colorDivs = wrapper.findAll('.color-picker__color');
     expect(colorDivs).toHaveLength(4);
-    expect(colorDivs[0].attributes('style')).toContain('background-color: rgb(0, 158, 150)');
-    expect(colorDivs[1].attributes('style')).toContain('background-color: rgb(38, 38, 38)');
-    expect(colorDivs[2].attributes('style')).toContain('background-color: rgb(196, 234, 245)');
+    expect(colorDivs[0].attributes('style')).toContain(
+      'background-color: rgb(0, 158, 150)',
+    );
+    expect(colorDivs[1].attributes('style')).toContain(
+      'background-color: rgb(38, 38, 38)',
+    );
+    expect(colorDivs[2].attributes('style')).toContain(
+      'background-color: rgb(196, 234, 245)',
+    );
   });
 
   it('adds a new color and emits colorChange event', async () => {

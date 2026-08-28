@@ -11,14 +11,22 @@ const router = createRouter({
     {
       path: '/apps',
       children: [
-        { name: 'Discovery', path: 'discovery', component: { template: '<div />' } },
+        {
+          name: 'Discovery',
+          path: 'discovery',
+          component: { template: '<div />' },
+        },
         { name: 'Apps', path: 'my', component: { template: '<div />' } },
         {
           name: 'App Config Direct',
           path: 'my/configured/:appCode/:appUuid',
           component: { template: '<div />' },
         },
-        { name: 'Other Apps', path: 'other-apps', component: { template: '<div />' } },
+        {
+          name: 'Other Apps',
+          path: 'other-apps',
+          component: { template: '<div />' },
+        },
       ],
     },
   ],

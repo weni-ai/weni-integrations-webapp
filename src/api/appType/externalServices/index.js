@@ -4,7 +4,9 @@ const resource = '/api/v1/apptypes';
 
 export default {
   async getAllExternalServicesTypes() {
-    return await request.$http.get(`${resource}/?category=external`).then((r) => r.data);
+    return await request.$http
+      .get(`${resource}/?category=external`)
+      .then((r) => r.data);
   },
   async createPrompts(code, appUuid, payload) {
     return await request.$http
