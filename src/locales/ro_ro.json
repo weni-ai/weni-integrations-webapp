@@ -145,7 +145,7 @@
     "config": {
       "first_integration_success": "Pentru a descărca codul și a-l utiliza pe site-ul tău, accesează fila Cod script.",
       "integration_success": "Aplicația a fost instalată cu succes",
-      "copy_error": "Nu s-a putut copia numărul",
+      "copy_error": "Numărul nu a putut fi copiat",
       "copy_success": "Copiere efectuată cu succes",
       "configure_later": "Configurează mai târziu",
       "save_changes": "Salvează modificările",
@@ -585,7 +585,7 @@
           "missing_vtex_app": "O aplicație VTEX trebuie configurată pentru a conecta un catalog"
         }
       },
-      "manage_content": "Gestionează conținut",
+      "manage_content": "Gestionează conținutul",
       "mmlite": {
         "button": "Actualizează la WhatsApp MM Lite API",
         "button_updating": "Se actualizează la WhatsApp MM Lite API",
