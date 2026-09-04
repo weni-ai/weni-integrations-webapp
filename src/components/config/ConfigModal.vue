@@ -28,34 +28,41 @@
       </UnnnicDrawerContent>
     </UnnnicDrawerNext>
 
-    <unnnic-modal
+    <unnnic-dialog
       ref="unnnic-confirmation-modal"
-      :showModal="showConfirmationModal"
-      :text="$t('apps.config.confirmation.title')"
-      scheme="feedback-yellow"
-      modal-icon="alert-circle-1"
-      @close="toggleConfirmationModal"
+      class="config-confirmation-dialog"
+      :open="showConfirmationModal"
+      @update:open="handleConfirmationOpenUpdate"
     >
-      <template #message>
-        <span v-html="$t('apps.config.confirmation.description')"></span>
-      </template>
-      <template #options>
-        <unnnic-button
-          ref="unnnic-remove-modal-close-button"
-          type="tertiary"
-          @click="toggleConfirmationModal"
-        >
-          {{ $t('apps.config.confirmation.goBackToConfig') }}
-        </unnnic-button>
-        <unnnic-button
-          ref="unnnic-remove-modal-navigate-button"
-          type="primary"
-          @click="confirmClose()"
-        >
-          {{ $t('general.confirm') }}
-        </unnnic-button>
-      </template>
-    </unnnic-modal>
+      <unnnic-dialog-content size="medium">
+        <unnnic-dialog-header type="attention">
+          <unnnic-dialog-title>
+            {{ $t('apps.config.confirmation.title') }}
+          </unnnic-dialog-title>
+        </unnnic-dialog-header>
+
+        <section
+          class="config-confirmation-dialog__description"
+          v-html="$t('apps.config.confirmation.description')"
+        />
+
+        <unnnic-dialog-footer>
+          <unnnic-dialog-close>
+            <unnnic-button
+              ref="unnnic-remove-modal-close-button"
+              type="tertiary"
+              :text="$t('apps.config.confirmation.goBackToConfig')"
+            />
+          </unnnic-dialog-close>
+          <unnnic-button
+            ref="unnnic-remove-modal-navigate-button"
+            type="primary"
+            :text="$t('general.confirm')"
+            @click="confirmClose()"
+          />
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
   </div>
 </template>
 
@@ -139,6 +146,11 @@
       setConfirmation(value) {
         this.needConfirmation = value;
       },
+      handleConfirmationOpenUpdate(open) {
+        if (!open) {
+          this.showConfirmationModal = false;
+        }
+      },
       toggleConfirmationModal() {
         this.showConfirmationModal = !this.showConfirmationModal;
       },
@@ -202,6 +214,13 @@
 
     &__component {
       height: 100%;
+    }
+  }
+
+  .config-confirmation-dialog {
+    &__description {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
     }
   }
 </style>

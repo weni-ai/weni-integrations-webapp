@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <unnnic-modal
-      ref="whatsapp-setup-modal"
-      class="whatsapp-setup"
-      :text="$t('WhatsAppCloud.setup.connect')"
-      :description="$t('WhatsAppCloud.setup.description')"
-      scheme="feedback-green"
-      modal-icon="phone-3"
-      :close-icon="false"
-      @close="closePopUp"
-      @click.stop
-    >
-      <template #options>
-        <div>
+  <div class="whatsapp-setup">
+    <unnnic-dialog ref="whatsapp-setup-modal" :open="true" @update:open="handleOpenUpdate">
+      <unnnic-dialog-content size="medium" @interact-outside.prevent>
+        <unnnic-dialog-header type="success" :close-button="false">
+          <unnnic-dialog-title>
+            {{ $t('WhatsAppCloud.setup.connect') }}
+          </unnnic-dialog-title>
+        </unnnic-dialog-header>
+
+        <section class="whatsapp-setup__description">
+          {{ $t('WhatsAppCloud.setup.description') }}
+        </section>
+
+        <unnnic-dialog-footer>
           <div class="whatsapp-setup__buttons">
             <unnnic-button
               class="whatsapp-setup__buttons__cancel"
@@ -20,8 +20,7 @@
               size="large"
               :text="$t('general.Cancel')"
               @click="closePopUp"
-            ></unnnic-button>
-
+            />
             <LoadingButton
               class="whatsapp-setup__buttons__start"
               type="secondary"
@@ -32,9 +31,9 @@
               @clicked="startFacebookLogin"
             />
           </div>
-        </div>
-      </template>
-    </unnnic-modal>
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
 
     <ConnectNewWhatsAppAccountModal
       :show="showConnectNewAccountModal"
@@ -264,6 +263,11 @@
         this.showConnectNewAccountModal = false;
         this.startFacebookLogin();
       },
+      handleOpenUpdate(open) {
+        if (!open) {
+          this.closePopUp();
+        }
+      },
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -284,8 +288,14 @@
   .whatsapp-setup {
     cursor: default;
 
+    &__description {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
+    }
+
     &__buttons {
       display: flex;
+      width: 100%;
       justify-content: space-around;
       gap: $unnnic-spacing-inline-xs;
 
@@ -293,10 +303,6 @@
       &__start {
         width: 50%;
       }
-    }
-
-    :deep(.unnnic-modal-container-background-body-description) {
-      padding-bottom: $unnnic-spacing-stack-lg;
     }
   }
 </style>

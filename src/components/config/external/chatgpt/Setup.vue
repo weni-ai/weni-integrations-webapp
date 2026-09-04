@@ -1,14 +1,21 @@
 <template>
-  <unnnic-modal
+  <unnnic-dialog
     ref="unnnic-chatgpt-modal"
     class="chatgpt-modal"
-    @close="closePopUp"
-    @click.stop
-    :closeIcon="false"
-    :text="$t('ChatGPT.setup.title')"
-    :description="$t('ChatGPT.setup.description')"
+    :open="true"
+    @update:open="handleOpenUpdate"
   >
-    <template #message>
+    <unnnic-dialog-content size="medium" @interact-outside.prevent>
+      <unnnic-dialog-header :close-button="false">
+        <unnnic-dialog-title>
+          {{ $t('ChatGPT.setup.title') }}
+        </unnnic-dialog-title>
+      </unnnic-dialog-header>
+
+      <section class="chatgpt-modal__description">
+        {{ $t('ChatGPT.setup.description') }}
+      </section>
+
       <div class="chatgpt-modal__content">
         <div class="chatgpt-modal__content__form">
           <unnnic-input
@@ -60,21 +67,24 @@
           </div>
         </div>
       </div>
-    </template>
-    <template #options>
-      <unnnic-button ref="unnnic-chatgpt-modal-close-button" type="tertiary" @click="closePopUp">
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button
-        ref="unnnic-chatgpt-modal-navigate-button"
-        type="secondary"
-        @click="setupChatGptService"
-        :loading="loadingCreateApp"
-      >
-        {{ $t('general.continue') }}
-      </unnnic-button>
-    </template>
-  </unnnic-modal>
+
+      <unnnic-dialog-footer>
+        <unnnic-button
+          ref="unnnic-chatgpt-modal-close-button"
+          type="tertiary"
+          :text="$t('general.Cancel')"
+          @click="closePopUp"
+        />
+        <unnnic-button
+          ref="unnnic-chatgpt-modal-navigate-button"
+          type="secondary"
+          :text="$t('general.continue')"
+          :loading="loadingCreateApp"
+          @click="setupChatGptService"
+        />
+      </unnnic-dialog-footer>
+    </unnnic-dialog-content>
+  </unnnic-dialog>
 </template>
 
 <script>
@@ -105,6 +115,11 @@
     },
     methods: {
       ...mapActions(app_type, ['createApp']),
+      handleOpenUpdate(open) {
+        if (!open) {
+          this.closePopUp();
+        }
+      },
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -144,36 +159,17 @@
 
 <style lang="scss" scoped>
   .chatgpt-modal {
-    
-    :deep(.container) {
-      padding: $unnnic-squish-md !important;
+    &__description {
+      padding: $unnnic-space-4;
+      padding-bottom: 0;
+      color: $unnnic-color-fg-base;
     }
-
-    :deep(.header) {
-      margin-bottom: $unnnic-spacing-stack-nano !important;
-    }
-
-    :deep(.unnnic-modal-container-background) {
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      padding: 0 $unnnic-spacing-md;
-      max-height: 95vh;
-    }
-
-    :deep(.unnnic-modal-container-background-body) {
-      border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
-    }
-
-    :deep(.unnnic-modal-container-background-body-description-container) {
-      padding-bottom: $unnnic-spacing-md;
-    }
-  
 
     &__content {
       display: flex;
       flex-direction: column;
       overflow: auto;
+      padding: $unnnic-space-4;
 
       &__form {
         display: flex;
@@ -194,16 +190,6 @@
             gap: $unnnic-spacing-stack-lg;
           }
         }
-      }
-    }
-
-    &__buttons {
-      display: flex;
-      flex: 1;
-      margin-top: $unnnic-spacing-md;
-
-      * {
-        flex: 1;
       }
     }
   }

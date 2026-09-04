@@ -7,6 +7,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('@/utils/plugins/fb', () => ({
   initFacebookSdk: vi.fn(),
@@ -45,6 +46,7 @@ describe('WhatsAppSetup.vue', () => {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
         stubs: {
+          ...teleportStubs,
           ConnectNewWhatsAppAccountModal: true,
         },
         mocks: {
@@ -64,7 +66,7 @@ describe('WhatsAppSetup.vue', () => {
 
   it('renders WhatsApp setup modal', () => {
     expect(wrapper.find('.whatsapp-setup').exists()).toBe(true);
-    expect(wrapper.findComponent({ name: 'unnnic-modal' }).exists()).toBe(true);
+    expect(wrapper.findComponent({ name: 'unnnic-dialog' }).exists()).toBe(true);
   });
 
   it('calls closePopUp on button click', async () => {

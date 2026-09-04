@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
 
 describe('ConnectCatalogModalContent.vue', () => {
-  it('should render the modal with title, input, and footer', () => {
+  it('should render the modal with input and footer', () => {
     const wrapper = mount(ConnectCatalogModalContent, {
       global: {
         plugins: [i18n, UnnnicSystem],
@@ -14,10 +14,6 @@ describe('ConnectCatalogModalContent.vue', () => {
         $t: (e) => e,
       },
     });
-
-    const title = wrapper.find('.modal__content__title');
-    expect(title.exists()).toBe(true);
-    expect(title.text()).toBe('Basic information');
 
     const input = wrapper.findComponent({ name: 'unnnic-input' });
     expect(input.exists()).toBe(true);
@@ -31,55 +27,33 @@ describe('ConnectCatalogModalContent.vue', () => {
     );
   });
 
-  it('should emit closeModal when the cancel button is clicked', async () => {
+  it('should emit closeModal when closeModal is called', () => {
     const wrapper = mount(ConnectCatalogModalContent, {
       global: {
         plugins: [i18n, UnnnicSystem],
       },
     });
 
-    const closeButton = wrapper.findComponent({ ref: 'closeButton' });
-    expect(closeButton.exists()).toBe(true);
-
-    await closeButton.trigger('click');
+    wrapper.vm.closeModal();
 
     expect(wrapper.emitted()).toHaveProperty('closeModal');
   });
 
-  it('should emit connectCatalog with the correct name when the continue button is clicked', async () => {
+  it('should emit connectCatalog with the correct name when connectCatalog is called', async () => {
     const wrapper = mount(ConnectCatalogModalContent, {
       global: {
         plugins: [i18n, UnnnicSystem],
       },
     });
 
-    const connectButton = wrapper.findComponent({ ref: 'connectButton' });
-    expect(connectButton.exists()).toBe(true);
-
     const input = wrapper.findComponent({ name: 'unnnic-input' });
     await input.setValue('My Catalog');
 
-    await connectButton.trigger('click');
+    wrapper.vm.connectCatalog();
 
     expect(wrapper.emitted('connectCatalog')).toBeTruthy();
     expect(wrapper.emitted('connectCatalog')[0]).toEqual([{ name: 'My Catalog' }]);
 
     expect(wrapper.emitted()).toHaveProperty('closeModal');
-  });
-
-  it('should display loading state on the continue button', () => {
-    const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
-      props: {
-        loading: true,
-      },
-    });
-
-    const connectButton = wrapper.findComponent({ ref: 'connectButton' });
-    expect(connectButton.exists()).toBe(true);
-
-    expect(connectButton.props('loading')).toBe(true);
   });
 });

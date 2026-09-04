@@ -230,18 +230,6 @@
       }
     }
 
-    :deep(.unnnic-modal .container .content) {
-      padding-right: 0px;
-    }
-
-    :deep(.unnnic-modal.type-alert .title) {
-      padding-bottom: $unnnic-spacing-xs;
-    }
-
-    :deep(.unnnic-modal.type-alert .container .content.with-validation .description) {
-      margin-bottom: $unnnic-spacing-sm;
-    }
-
     &__table {
       display: flex;
       height: 100%;

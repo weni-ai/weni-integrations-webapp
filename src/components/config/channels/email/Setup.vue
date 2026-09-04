@@ -1,32 +1,39 @@
 <template>
-  <unnnic-modal class="gmail-setup" :close-icon="false" @click.stop :text="$t(`gmail.setup.title`)">
-    <template #icon> <img class="logo" src="../../../../assets/svgs/gmail.svg" alt="" /></template>
-    <template #message>
-      <div>
-        <span v-html="$t(`gmail.setup.description`)"></span>
-      </div>
-    </template>
+  <div class="gmail-setup">
+    <unnnic-dialog :open="true" @update:open="handleOpenUpdate">
+      <unnnic-dialog-content size="medium" @interact-outside.prevent>
+        <unnnic-dialog-header :close-button="false">
+          <unnnic-dialog-title>
+            {{ $t(`gmail.setup.title`) }}
+          </unnnic-dialog-title>
+        </unnnic-dialog-header>
 
-    <template #options>
-      <div class="gmail-setup__buttons">
-        <unnnic-button
-          class="gmail-setup__buttons__cancel"
-          type="tertiary"
-          size="large"
-          :text="$t('general.Cancel')"
-          @click="closePopUp"
-        />
+        <section class="gmail-setup__body">
+          <img class="gmail-setup__logo" src="../../../../assets/svgs/gmail.svg" alt="" />
+          <span v-html="$t(`gmail.setup.description`)"></span>
+        </section>
 
-        <unnnic-button
-          class="gmail-setup__buttons__continue"
-          size="large"
-          :text="$t('gmail.setup.buttons.continue')"
-          @click="saveConfig"
-          :loading="loadingTokens"
-        />
-      </div>
-    </template>
-  </unnnic-modal>
+        <unnnic-dialog-footer>
+          <div class="gmail-setup__buttons">
+            <unnnic-button
+              class="gmail-setup__buttons__cancel"
+              type="tertiary"
+              size="large"
+              :text="$t('general.Cancel')"
+              @click="closePopUp"
+            />
+            <unnnic-button
+              class="gmail-setup__buttons__continue"
+              size="large"
+              :text="$t('gmail.setup.buttons.continue')"
+              @click="saveConfig"
+              :loading="loadingTokens"
+            />
+          </div>
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
+  </div>
 </template>
 
 <script>
@@ -84,6 +91,11 @@
     },
     methods: {
       ...mapActions(email_store, ['getTokens', 'setCode', 'setLogin']),
+      handleOpenUpdate(open) {
+        if (!open) {
+          this.closePopUp();
+        }
+      },
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -144,8 +156,23 @@
 </script>
 <style lang="scss" scoped>
   .gmail-setup {
+    &__body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $unnnic-space-4;
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
+    }
+
+    &__logo {
+      width: $unnnic-icon-size-md;
+      height: $unnnic-icon-size-md;
+    }
+
     &__buttons {
       display: grid;
+      width: 100%;
       grid-template-columns: 1fr 1fr;
       justify-content: space-around;
       gap: $unnnic-spacing-inline-xs;
