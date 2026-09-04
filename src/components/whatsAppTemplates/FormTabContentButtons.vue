@@ -9,7 +9,7 @@
         class="form-tab-content-buttons__type-select__label"
         :label="$t('WhatsApp.templates.form_field.buttons__label')"
       />
-      <unnnic-select-smart
+      <unnnic-select
         :disabled="disableInputs"
         :class="{
           'form-tab-content-buttons__type-select': true,
@@ -85,14 +85,14 @@
           />
         </div>
 
-        <unnnic-select-smart
+        <unnnic-select
           :class="{
             'form-tab-content-buttons__call-actions__select__disabled': disableInputs,
           }"
           :label="$t('WhatsApp.templates.form_field.type_of_action')"
           :disabled="disableInputs"
           :options="callToActionOptions"
-          :modelValue="currentButtonsSelect[index]"
+          :modelValue="button.button_type"
           @update:modelValue="handleCallToActionTypeChange($event, index)"
         />
         <!-- WEBSITE -->
@@ -122,12 +122,12 @@
               }"
             >
               <unnnic-label :label="$t('WhatsApp.templates.form_field.country')" />
-              <unnnic-select-smart
+              <unnnic-select
                 :key="button.button_type"
                 :disabled="disableInputs"
                 :options="countryOptions"
-                :modelValue="currentCountryCode[index]"
-                :search="true"
+                :modelValue="button.country_code"
+                enable-search
                 @update:modelValue="handleCountryCodeSelection($event, index)"
               />
             </div>
@@ -200,14 +200,12 @@
     data() {
       return {
         EMOJI_REGEX: /\p{Emoji_Presentation}/gu,
-        currentButtonType: [],
-        currentButtonsSelect: [],
-        currentCountryCode: [],
+        currentButtonType: '',
         phoneNumber: '',
         url: '',
         buttonOptions: [
           {
-            value: '',
+            value: 'none',
             label: this.$t('WhatsApp.templates.button_options.none'),
           },
           {
@@ -244,15 +242,15 @@
       };
     },
     mounted() {
-      const valueToFind = this.buttonsType || '';
-      this.currentButtonType = [this.buttonOptions.find((option) => option.value === valueToFind)];
+      const valueToFind = this.buttonsType || 'none';
+      this.currentButtonType = valueToFind;
       this.buttons = this.currentButtons;
     },
     computed: {
       ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
       buttonsType() {
         if (!this.templateTranslationCurrentForm.buttons?.length) {
-          return '';
+          return 'none';
         } else if (this.templateTranslationCurrentForm.buttons[0]?.button_type === 'QUICK_REPLY') {
           return 'quick_reply';
         } else {
@@ -292,16 +290,16 @@
 
         return hasIssues;
       },
-      handleButtonTypeChange(event) {
-        this.currentButtonType = event;
-        if (event[0].value === this.buttonsType) {
+      handleButtonTypeChange(value) {
+        this.currentButtonType = value;
+        if (value === this.buttonsType) {
           return;
         }
 
         this.buttons = [];
-        if (event[0].value === 'quick_reply') {
+        if (value === 'quick_reply') {
           this.buttons = [{ button_type: 'QUICK_REPLY', text: '' }];
-        } else if (event[0].value === 'call_to_action') {
+        } else if (value === 'call_to_action') {
           this.buttons = [
             {
               button_type: 'PHONE_NUMBER',
@@ -309,7 +307,6 @@
               country_calling_code: '55',
             },
           ];
-          this.currentButtonsSelect[0] = [...this.buttons];
         } else {
           this.buttons = [];
         }
@@ -320,7 +317,7 @@
         });
         this.$emit('input-change', {
           fieldName: 'buttonsType',
-          fieldValue: event[0].value,
+          fieldValue: value === 'none' ? '' : value,
         });
       },
       handleRepliesInput(event, index) {
@@ -336,30 +333,28 @@
           hasIssue: this.checkIssues(),
         });
       },
-      handleCallToActionTypeChange(event, index) {
-        if (this.currentButtonsSelect.length > 0) {
-          this.currentButtonsSelect[index] = event;
-          this.currentButtons[index] = event.value;
-          if (
-            this.buttons.length === this.maxActionButtons &&
-            this.buttons[index]?.button_type &&
-            this.buttons[index].button_type !== event[0].value
-          ) {
-            const indexToSwitch = this.buttons.length - index - 1;
-            const currentValue = this.buttons[index];
-            this.buttons[index] = this.buttons[indexToSwitch];
-            this.buttons[indexToSwitch] = currentValue;
-          } else {
-            const result = { button_type: event[0].value };
-            event[0].value === 'URL' ? null : (result.country_code = 'BR');
-            this.buttons[index] = result;
+      handleCallToActionTypeChange(value, index) {
+        if (
+          this.buttons.length === this.maxActionButtons &&
+          this.buttons[index]?.button_type &&
+          this.buttons[index].button_type !== value
+        ) {
+          const indexToSwitch = this.buttons.length - index - 1;
+          const currentValue = this.buttons[index];
+          this.buttons[index] = this.buttons[indexToSwitch];
+          this.buttons[indexToSwitch] = currentValue;
+        } else {
+          const result = { button_type: value };
+          if (value !== 'URL') {
+            result.country_code = 'BR';
           }
-
-          this.$emit('input-change', {
-            fieldName: 'buttons',
-            fieldValue: [...this.buttons],
-          });
+          this.buttons[index] = result;
         }
+
+        this.$emit('input-change', {
+          fieldName: 'buttons',
+          fieldValue: [...this.buttons],
+        });
       },
       handleActionInput(event, inputName, index) {
         if (inputName === 'phone_number') {
@@ -380,11 +375,9 @@
           hasIssue: this.checkIssues(),
         });
       },
-      handleCountryCodeSelection(event, index) {
-        this.currentCountryCode[index] = event;
-        this.currentButtons[index].country_code = event.value;
-        this.buttons[index]['country_code'] = event[0].value;
-        this.buttons[index]['country_calling_code'] = getCountryCallingCode(event[0].value);
+      handleCountryCodeSelection(value, index) {
+        this.buttons[index]['country_code'] = value;
+        this.buttons[index]['country_calling_code'] = getCountryCallingCode(value);
         this.$emit('input-change', {
           fieldName: 'buttons',
           fieldValue: [...this.buttons],

@@ -172,10 +172,10 @@
             });
 
             formattedInput.options = formattedOptions;
-            formattedInput.value = [
-              formattedOptions.find((option) => option.value === formattedInput.value) ||
-                formattedOptions[0],
-            ];
+            formattedInput.value =
+              formattedOptions.find((option) => option.value === formattedInput.value)?.value ||
+              formattedOptions[0]?.value ||
+              null;
           }
           return [formattedInput];
         });
@@ -191,10 +191,6 @@
         let payloadConfig = {};
 
         this.appFormInputs.forEach((input) => {
-          if (input.type === 'select') {
-            payloadConfig[input.name] = input.value[0].value;
-            return;
-          }
           payloadConfig[input.name] = input.value;
         });
 
@@ -262,7 +258,6 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        
         :deep(a) {
           font-weight: $unnnic-font-weight-bold;
           color: $unnnic-color-fg-base;
@@ -274,7 +269,6 @@
           padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-nano;
           border-radius: $unnnic-border-radius-sm;
         }
-      
       }
     }
 

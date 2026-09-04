@@ -31,10 +31,9 @@
               <unnnic-label
                 :label="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_label')"
               />
-              <unnnic-select-smart v-model="selectedConversationStyle" :options="stylesList" />
+              <unnnic-select v-model="selectedConversationStyle" :options="stylesList" />
               <unnnic-label :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')" />
-              <unnnic-select-smart v-model="selectedVoiceTone" :options="voiceToneList">
-              </unnnic-select-smart>
+              <unnnic-select v-model="selectedVoiceTone" :options="voiceToneList" />
               <unnnic-input
                 ref="prompt-input"
                 v-model="prompt"
@@ -178,7 +177,7 @@
         toAddPrompts: [],
         toRemovePrompts: [],
         hasChanges: false,
-        selectedConversationStyle: this.app.config?.conversation_style,
+        selectedConversationStyle: this.app.config?.conversation_style || '0.5,0.5',
         stylesList: [
           {
             value: '0.2,0.1',
@@ -196,7 +195,7 @@
             description: this.$t('ChatGPT.config.tabs.flows.selects.creative_description'),
           },
         ],
-        selectedVoiceTone: this.app.config?.voice_tone,
+        selectedVoiceTone: this.app.config?.voice_tone || '1',
         voiceToneList: [
           {
             value: '1',
@@ -297,8 +296,11 @@
         this.hasChanges = true;
       },
       async handleUpdateApp() {
-        const [temperature, top_p] = this.selectedConversationStyle[0].value.split(',');
-        const voice_tone = `Em tom ${this.selectedVoiceTone[0].label}`;
+        const [temperature, top_p] = String(this.selectedConversationStyle).split(',');
+        const voiceLabel = this.voiceToneList.find(
+          (option) => option.value === this.selectedVoiceTone,
+        )?.label;
+        const voice_tone = `Em tom ${voiceLabel}`;
         const data = {
           code: this.app.code,
           appUuid: this.app.uuid,
@@ -465,12 +467,10 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        
         :deep(a) {
           font-weight: $unnnic-font-weight-bold;
           color: $unnnic-color-fg-base;
         }
-      
       }
     }
 
