@@ -32,7 +32,7 @@ describe('PreferencesTab', () => {
           UnnnicToolTip: true,
           UnnnicIconSvg: true,
           UnnnicFormElement: true,
-          UnnnicSelectSmart: true,
+          UnnnicSelect: true,
         },
       },
       props: { ...defaultProps, ...props },

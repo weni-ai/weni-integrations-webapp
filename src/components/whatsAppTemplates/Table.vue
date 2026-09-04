@@ -12,7 +12,7 @@
           @update:model-value="handleDateFilter"
         />
       </div>
-      <UnnnicSelectSmart
+      <UnnnicSelect
         v-model="selectedCategory"
         class="whatsapp-templates-table__filters__category"
         :options="categoryOptions"
@@ -295,7 +295,7 @@ export default {
       return { start: this.startDateObject, end: this.endDateObject };
     },
     filterState() {
-      return `${this.selectedCategory[0]?.value}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+      return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
     },
   },
   methods: {
@@ -307,8 +307,8 @@ export default {
         page_size: this.pageSize,
       };
 
-      if (this.selectedCategory[0].value !== 'ANY') {
-        params.category = this.selectedCategory[0].value;
+      if (this.selectedCategory && this.selectedCategory !== 'ANY') {
+        params.category = this.selectedCategory;
       }
 
       if (this.startDate) {
