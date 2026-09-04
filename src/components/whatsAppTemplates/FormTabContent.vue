@@ -24,7 +24,7 @@
             class="form-tab-content__selects--category__label"
             :label="$t('WhatsApp.templates.form_field.category')"
           />
-          <UnnnicSelectSmart
+          <UnnnicSelect
             ref="categorySelect"
             :class="{
               'form-tab-content__selects__disabled':
@@ -32,7 +32,9 @@
             }"
             :options="categoryGroups"
             :modelValue="templateCategory"
-            :selectFirst="false"
+            :placeholder="
+              $t('WhatsApp.templates.form_field.category_placeholder')
+            "
             @update:model-value="handleCategoryChange"
           />
         </section>
@@ -44,13 +46,12 @@
           class="form-tab-content__selects__language__label"
           :label="$t('WhatsApp.templates.form_field.language')"
         />
-        <UnnnicSelectSmart
+        <UnnnicSelect
           :class="{ 'form-tab-content__selects__disabled': disableInputs }"
           :disabled="disableInputs"
           :options="availableLanguages"
           :modelValue="templateLanguage"
-          :selectFirst="false"
-          autocomplete
+          enableSearch
           @update:model-value="handleLanguageSelection"
         />
       </div>
@@ -146,33 +147,20 @@ export default {
   data() {
     return {
       languageKey: 0,
-      templateCategory: [],
-      templateLanguage: [],
+      templateCategory: '',
+      templateLanguage: '',
       categoryGroups: [
-        {
-          value: '',
-          label: this.$t('WhatsApp.templates.form_field.category_placeholder'),
-        },
         {
           value: 'UTILITY',
           label: this.$t('WhatsApp.templates.category_options.utility'),
-          description: this.$t(
-            'WhatsApp.templates.category_options.utility_description',
-          ),
         },
         {
           value: 'MARKETING',
           label: this.$t('WhatsApp.templates.category_options.marketing'),
-          description: this.$t(
-            'WhatsApp.templates.category_options.marketing_description',
-          ),
         },
         {
           value: 'AUTHENTICATION',
           label: this.$t('WhatsApp.templates.category_options.authentication'),
-          description: this.$t(
-            'WhatsApp.templates.category_options.authentication_description',
-          ),
         },
       ],
       errorStates: {
@@ -189,9 +177,8 @@ export default {
   },
   beforeMount() {
     if (this.templateTranslationCurrentForm?.language) {
-      this.templateLanguage = this.availableLanguages.filter(
-        (item) => item.value === this.templateTranslationCurrentForm?.language,
-      );
+      this.templateLanguage =
+        this.templateTranslationCurrentForm?.language || '';
     }
   },
   mounted() {
@@ -230,7 +217,7 @@ export default {
       return this.templateTranslationCurrentForm?.language;
     },
     currentCategory() {
-      const category = this.categoryGroups[0].items.find(
+      const category = this.categoryGroups.find(
         (item) => item.value === this.templateForm.category,
       );
 
@@ -283,26 +270,19 @@ export default {
         fieldValue,
       });
     },
-    handleCategoryChange(event) {
-      const selectedCategory = event[0];
-      if (
-        !selectedCategory ||
-        selectedCategory.value === this.templateCategory[0]?.value
-      ) {
+    handleCategoryChange(value) {
+      if (!value || value === this.templateCategory) {
         return;
       }
-      this.templateCategory = [selectedCategory];
+      this.templateCategory = value;
 
       this.handleTemplateFormInput({
         fieldName: 'category',
-        fieldValue: selectedCategory.value,
+        fieldValue: value,
       });
     },
     handleLanguageSelection(value) {
-      if (
-        value.length === 0 &&
-        this.templateTranslationSelectedForm !== 'New Language'
-      ) {
+      if (!value && this.templateTranslationSelectedForm !== 'New Language') {
         this.setTemplateTranslationCurrentForm = 'New Language';
         this.updateTemplateTranslationForm({
           formName: this.selectedForm,
@@ -311,12 +291,12 @@ export default {
         });
         this.$emit('language-change', 'new');
         return;
-      } else if (this.templateLanguage === value || value.length > 1) {
+      } else if (this.templateLanguage === value) {
         return;
       }
       this.templateLanguage = value;
       const selectedLanguage = this.availableLanguages.find(
-        (item) => item.value === value[0].value,
+        (item) => item.value === value,
       );
       if (!selectedLanguage) {
         unnnic.unnnicCallAlert({
@@ -384,10 +364,7 @@ export default {
   watch: {
     templateTranslationCurrentForm(newval) {
       if (newval?.language !== this.templateLanguage) {
-        const selectedLanguage = this.availableLanguages.filter(
-          (item) => item.value === newval.language,
-        );
-        this.templateLanguage = selectedLanguage;
+        this.templateLanguage = newval?.language || '';
       }
     },
   },
