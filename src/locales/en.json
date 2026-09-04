@@ -151,12 +151,7 @@
       "save_changes": "Save changes",
       "cancel": "Cancel",
       "validate": "Validate",
-      "copy": "Copy",
-      "confirmation": {
-        "title": "Discard changes",
-        "description": "Are you sure you want to discard the changes? You'll lose any unsaved content.",
-        "goBackToConfig": "Back to settings"
-      }
+      "copy": "Copy"
     }
   },
   "upload_area": {

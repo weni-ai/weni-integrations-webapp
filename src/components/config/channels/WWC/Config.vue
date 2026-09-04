@@ -205,7 +205,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['closeModal', 'setConfirmation']);
+const emit = defineEmits(['closeModal']);
 
 // Store
 const appTypeStore = app_type();
@@ -277,7 +277,6 @@ const loadingSave = computed(
 // Methods
 function updateConfig(key, value) {
   config[key] = value;
-  emit('setConfirmation', true);
 }
 
 function toggleSimulator() {
@@ -393,7 +392,6 @@ async function saveConfig() {
     }
 
     selectedApp.value.config = currentApp.value.config;
-    emit('setConfirmation', false);
 
     unnnic.unnnicCallAlert({
       props: {
@@ -425,7 +423,6 @@ onMounted(async () => {
       selectedApp.value.config.profileAvatar,
       'avatar.png',
     );
-    setTimeout(() => emit('setConfirmation', false), 250);
   }
 });
 
