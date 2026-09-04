@@ -159,7 +159,7 @@
     },
   });
 
-  const emit = defineEmits(['closeModal', 'setConfirmation']);
+  const emit = defineEmits(['closeModal']);
 
   // Store
   const appTypeStore = app_type();
@@ -227,7 +227,6 @@
   // Methods
   function updateConfig(key, value) {
     config[key] = value;
-    emit('setConfirmation', true);
   }
 
   function toggleSimulator() {
@@ -337,10 +336,9 @@
         throw new Error(errorCurrentApp.value);
       }
 
-      selectedApp.value.config = currentApp.value.config;
-      emit('setConfirmation', false);
+    selectedApp.value.config = currentApp.value.config;
 
-      unnnic.unnnicCallAlert({
+    unnnic.unnnicCallAlert({
         props: {
           text: firstSave
             ? t('apps.config.first_integration_success')
@@ -367,7 +365,6 @@
   onMounted(async () => {
     if (selectedApp.value.config.profileAvatar) {
       config.avatarFile = await dataUrlToFile(selectedApp.value.config.profileAvatar, 'avatar.png');
-      setTimeout(() => emit('setConfirmation', false), 250);
     }
   });
 

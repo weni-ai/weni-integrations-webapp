@@ -151,12 +151,7 @@
       "save_changes": "Salvează modificările",
       "cancel": "Anulează",
       "validate": "Validare",
-      "copy": "Copiere",
-      "confirmation": {
-        "title": "Renunță la modificări",
-        "description": "Sigur vrei să renunți la modificări? Vei pierde orice conținut nesalvat.",
-        "goBackToConfig": "Înapoi la setări"
-      }
+      "copy": "Copiere"
     }
   },
   "upload_area": {

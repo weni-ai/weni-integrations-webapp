@@ -22,47 +22,10 @@
             :app="currentApp"
             :isConfigured="isConfigured"
             @closeModal="closeModal"
-            @setConfirmation="setConfirmation"
           />
         </div>
       </UnnnicDrawerContent>
     </UnnnicDrawerNext>
-
-    <unnnic-dialog
-      ref="unnnic-confirmation-modal"
-      class="config-confirmation-dialog"
-      :open="showConfirmationModal"
-      @update:open="handleConfirmationOpenUpdate"
-    >
-      <unnnic-dialog-content size="medium">
-        <unnnic-dialog-header type="attention">
-          <unnnic-dialog-title>
-            {{ $t('apps.config.confirmation.title') }}
-          </unnnic-dialog-title>
-        </unnnic-dialog-header>
-
-        <section
-          class="config-confirmation-dialog__description"
-          v-html="$t('apps.config.confirmation.description')"
-        />
-
-        <unnnic-dialog-footer>
-          <unnnic-dialog-close>
-            <unnnic-button
-              ref="unnnic-remove-modal-close-button"
-              type="tertiary"
-              :text="$t('apps.config.confirmation.goBackToConfig')"
-            />
-          </unnnic-dialog-close>
-          <unnnic-button
-            ref="unnnic-remove-modal-navigate-button"
-            type="primary"
-            :text="$t('general.confirm')"
-            @click="confirmClose()"
-          />
-        </unnnic-dialog-footer>
-      </unnnic-dialog-content>
-    </unnnic-dialog>
   </div>
 </template>
 
@@ -103,8 +66,6 @@
         type: '',
         currentApp: {},
         isConfigured: false,
-        showConfirmationModal: false,
-        needConfirmation: false,
         componentMapping: markRaw({
           wwc: wwcConfig,
           tg: telegramConfig,
@@ -130,10 +91,6 @@
         this.closeModal();
       },
       closeModal() {
-        if (this.needConfirmation) {
-          this.showConfirmationModal = true;
-          return;
-        }
         this.show = false;
         this.$emit('close');
       },
@@ -142,23 +99,6 @@
         this.currentApp = app;
         this.isConfigured = isConfigured;
         this.show = true;
-      },
-      setConfirmation(value) {
-        this.needConfirmation = value;
-      },
-      handleConfirmationOpenUpdate(open) {
-        if (!open) {
-          this.showConfirmationModal = false;
-        }
-      },
-      toggleConfirmationModal() {
-        this.showConfirmationModal = !this.showConfirmationModal;
-      },
-      confirmClose() {
-        this.needConfirmation = false;
-        this.showConfirmationModal = false;
-        this.show = false;
-        this.$emit('close');
       },
     },
     computed: {
@@ -214,13 +154,6 @@
 
     &__component {
       height: 100%;
-    }
-  }
-
-  .config-confirmation-dialog {
-    &__description {
-      padding: $unnnic-space-4;
-      color: $unnnic-color-fg-base;
     }
   }
 </style>
