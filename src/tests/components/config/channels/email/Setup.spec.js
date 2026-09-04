@@ -6,6 +6,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { email_store } from '@/stores/modules/appType/channels/email.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('@/utils/env', () => ({
   default: vi.fn(),
@@ -44,6 +45,7 @@ describe('EmailSetup.vue', () => {
     wrapper = mount(EmailSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $t: (key) => {
             const translations = {

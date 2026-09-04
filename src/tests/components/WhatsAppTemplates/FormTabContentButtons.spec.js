@@ -52,13 +52,13 @@ describe('FormTabContentButtons.vue', () => {
   });
 
   it('should render the button options select', () => {
-    const select = wrapper.findComponent({ name: 'UnnnicSelectSmart' });
+    const select = wrapper.findComponent({ name: 'unnnic-select' });
     expect(select.exists()).toBe(true);
   });
 
   it('should update button type when selected', async () => {
-    const select = wrapper.findComponent({ name: 'UnnnicSelectSmart' });
-    const options = [{ value: 'quick_reply', label: 'Quick Reply' }];
+    const select = wrapper.findComponent({ name: 'unnnic-select' });
+    const options = 'quick_reply';
 
     await select.vm.$emit('update:modelValue', options);
     expect(wrapper.vm.currentButtonType).toEqual(options);
@@ -77,7 +77,9 @@ describe('FormTabContentButtons.vue', () => {
     const repliesWrapper = wrapper.find({ ref: 'replies-wrapper' });
     expect(repliesWrapper.exists()).toBe(true);
 
-    const inputFields = wrapper.findAllComponents({ name: 'UnnnicInput' });
+    const inputFields = wrapper.findAll(
+      '.form-tab-content-buttons__replies__wrapper',
+    );
     expect(inputFields.length).toBe(
       mockTemplateTranslationCurrentForm.buttons.length,
     );
@@ -87,7 +89,9 @@ describe('FormTabContentButtons.vue', () => {
     const callActionWrapper = wrapper.find({ ref: 'replies-wrapper' });
     expect(callActionWrapper.exists()).toBe(true);
 
-    const inputFields = wrapper.findAllComponents({ name: 'UnnnicInput' });
+    const inputFields = wrapper.findAll(
+      '.form-tab-content-buttons__replies__wrapper',
+    );
     expect(inputFields.length).toBe(
       mockTemplateTranslationCurrentForm.buttons.length,
     );
@@ -104,10 +108,10 @@ describe('FormTabContentButtons.vue', () => {
   });
 
   it('should handle call-to-action type change', async () => {
-    const select = wrapper.findComponent({ name: 'UnnnicSelectSmart' });
+    const select = wrapper.findComponent({ name: 'unnnic-select' });
     expect(wrapper.vm.disableInputs).toBe(false);
     expect(select.exists()).toBe(true);
-    const options = [{ value: 'call_to_action', label: 'Call to action' }];
+    const options = 'call_to_action';
 
     await select.vm.$emit('update:modelValue', options);
     await wrapper.vm.$nextTick();

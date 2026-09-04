@@ -1,3 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`AddModal > matches snapshot 1`] = `"<unnnicmodal data-v-abfb8ffe="" class="add-modal" showmodal="false" text="App added" scheme="feedback-green" modalicon="check-circle-1-1"></unnnicmodal>"`;
+exports[`AddModal > matches snapshot 1`] = `
+"<unnnicdialog data-v-abfb8ffe="" class="add-modal" open="false">
+  <unnnicdialogcontent data-v-abfb8ffe="" size="medium">
+    <unnnicdialogheader data-v-abfb8ffe="" type="success">
+      <unnnicdialogtitle data-v-abfb8ffe="">App added</unnnicdialogtitle>
+    </unnnicdialogheader>
+    <section data-v-abfb8ffe="" class="add-modal__description">You still need to configure the app by going to the "My apps" section</section>
+    <unnnicdialogfooter data-v-abfb8ffe="">
+      <unnnicdialogclose data-v-abfb8ffe="">
+        <unnnicbutton data-v-abfb8ffe="" type="tertiary" text="Close"></unnnicbutton>
+      </unnnicdialogclose>
+      <unnnicbutton data-v-abfb8ffe="" type="primary" text="Go to My apps"></unnnicbutton>
+    </unnnicdialogfooter>
+  </unnnicdialogcontent>
+</unnnicdialog>"
+`;

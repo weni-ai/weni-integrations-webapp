@@ -1,32 +1,40 @@
 <template>
-  <UnnnicModal
-    ref="unnnic-wpp-demo-modal"
-    class="wpp-demo-modal"
-    :text="$t('WhatsAppDemo.config.title')"
-    scheme="feedback-green"
-    modalIcon="check-circle-1-1"
-    @close="closePopUp"
-    @click.stop
-  >
-    <template #message>
-      <span v-html="$t('WhatsAppDemo.config.description')"></span>
-    </template>
-    <template #options>
-      <UnnnicButton
-        ref="unnnic-wpp-demo-modal-close-button"
-        type="tertiary"
-        @click="closePopUp"
-        >{{ $t('general.Close') }}</UnnnicButton
-      >
-      <UnnnicButton
-        ref="unnnic-wpp-demo-modal-navigate-button"
-        type="primary"
-        @click="openWppLink"
-      >
-        {{ $t('WhatsAppDemo.config.continue_and_redirect') }}
-      </UnnnicButton>
-    </template>
-  </UnnnicModal>
+  <div class="wpp-demo-modal">
+    <UnnnicDialog
+      ref="unnnic-wpp-demo-modal"
+      :open="true"
+      @update:open="handleOpenUpdate"
+    >
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="success">
+          <UnnnicDialogTitle>
+            {{ $t('WhatsAppDemo.config.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <section
+          class="wpp-demo-modal__description"
+          v-html="$t('WhatsAppDemo.config.description')"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              ref="unnnic-wpp-demo-modal-close-button"
+              type="tertiary"
+              :text="$t('general.Close')"
+            />
+          </UnnnicDialogClose>
+          <UnnnicButton
+            ref="unnnic-wpp-demo-modal-navigate-button"
+            type="primary"
+            :text="$t('WhatsAppDemo.config.continue_and_redirect')"
+            @click="openWppLink"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
+  </div>
 </template>
 
 <script>
@@ -44,6 +52,11 @@ export default {
     };
   },
   methods: {
+    handleOpenUpdate(open) {
+      if (!open) {
+        this.closePopUp();
+      }
+    },
     closePopUp() {
       this.showModal = !this.showModal;
       this.$emit('closePopUp');
@@ -57,4 +70,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.wpp-demo-modal {
+  &__description {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+  }
+}
+</style>

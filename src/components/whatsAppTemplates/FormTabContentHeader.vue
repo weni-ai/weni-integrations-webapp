@@ -10,7 +10,7 @@
           class="form-tab-content-header__inputs__selector__label"
           :label="$t('WhatsApp.templates.form_field.header__label')"
         />
-        <UnnnicSelectSmart
+        <UnnnicSelect
           :disabled="disableInputs"
           :class="{
             'form-tab-content-header__inputs__selector': true,
@@ -18,7 +18,7 @@
               disableInputs,
           }"
           :options="headerTypeOptions"
-          :modelValue="selectedHeaderType"
+          :modelValue="headerType"
           @update:model-value="handleHeaderTypeChange"
         />
       </div>
@@ -81,7 +81,6 @@ export default {
   },
   data() {
     return {
-      selectedHeaderType: [],
       headerTypeOptions: [
         {
           value: 'TEXT',
@@ -116,11 +115,10 @@ export default {
         fieldValue: { ...this.templateTranslationCurrentForm.header, ...event },
       });
     },
-    handleHeaderTypeChange(event) {
-      this.selectedHeaderType = event;
+    handleHeaderTypeChange(value) {
       let fieldValue;
 
-      if (event[0].value === 'TEXT') {
+      if (value === 'TEXT') {
         fieldValue = { header_type: 'TEXT', text: this.headerText || null };
       } else {
         fieldValue = { header_type: 'MEDIA', mediaType: 'IMAGE' };

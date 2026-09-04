@@ -59,44 +59,61 @@
         @update:model-value="onPageChange"
       />
     </div>
-    <UnnnicModalNext
-      v-if="openModal"
-      type="alert"
-      icon="alert-circle-1"
-      scheme="feedback-red"
-      :validate="connectedCatalog.name"
-      :validatePlaceholder="connectedCatalog.name"
-      :title="
-        catalogToEnable
-          ? $t('WhatsApp.catalog.list.disable_modal.title_active')
-          : $t('WhatsApp.catalog.list.disable_modal.title')
-      "
-      :actionPrimaryLabel="$t('WhatsApp.catalog.list.disable_modal.confirm')"
-      :actionSecondaryLabel="$t('general.Cancel')"
-      :actionPrimaryLoading="actionPrimaryLoading"
-      @click-action-secondary="closeModal"
-      @click-action-primary="handleCatalogConfirmation"
+    <UnnnicDialog
+      class="catalog-disable-dialog"
+      :open="openModal"
+      @update:open="handleDisableDialogOpenUpdate"
     >
-      <template #description>
-        <div v-if="catalogToEnable">
-          {{
-            $t('WhatsApp.catalog.list.disable_modal.description_active', {
-              name: connectedCatalog.name,
-            })
-          }}
-        </div>
-        <div v-else>
-          {{ $t('WhatsApp.catalog.list.disable_modal.description') }}
-        </div>
-        <div>
-          {{
-            $t('WhatsApp.catalog.list.disable_modal.label', {
-              name: connectedCatalog.name,
-            })
-          }}
-        </div>
-      </template>
-    </UnnnicModalNext>
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="warning">
+          <UnnnicDialogTitle>
+            {{
+              catalogToEnable
+                ? $t('WhatsApp.catalog.list.disable_modal.title_active')
+                : $t('WhatsApp.catalog.list.disable_modal.title')
+            }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <section class="catalog-disable-dialog__body">
+          <p v-if="catalogToEnable">
+            {{
+              $t('WhatsApp.catalog.list.disable_modal.description_active', {
+                name: connectedCatalog?.name,
+              })
+            }}
+          </p>
+          <p v-else>
+            {{ $t('WhatsApp.catalog.list.disable_modal.description') }}
+          </p>
+          <UnnnicInput
+            v-model="confirmationText"
+            :label="
+              $t('WhatsApp.catalog.list.disable_modal.label', {
+                name: connectedCatalog?.name,
+              })
+            "
+            :placeholder="connectedCatalog?.name"
+          />
+        </section>
+
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              type="tertiary"
+              :text="$t('general.Cancel')"
+            />
+          </UnnnicDialogClose>
+          <UnnnicButton
+            type="primary"
+            :text="$t('WhatsApp.catalog.list.disable_modal.confirm')"
+            :loading="actionPrimaryLoading"
+            :disabled="!isConfirmationValid"
+            @click="handleCatalogConfirmation"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
@@ -122,6 +139,7 @@ export default {
       pageSize: 15,
       searchTerm: '',
       actionPrimaryLoading: false,
+      confirmationText: '',
     };
   },
   mounted() {
@@ -154,6 +172,9 @@ export default {
       } else {
         return 1;
       }
+    },
+    isConfirmationValid() {
+      return this.confirmationText === this.connectedCatalog?.name;
     },
     currentPageStart() {
       return (this.page - 1) * this.pageSize || 1;
@@ -266,9 +287,15 @@ export default {
         this.actionPrimaryLoading = false;
       }
     },
+    handleDisableDialogOpenUpdate(open) {
+      if (!open) {
+        this.closeModal();
+      }
+    },
     closeModal() {
       this.catalogToEnable = null;
       this.openModal = false;
+      this.confirmationText = '';
     },
     async toggleCart() {
       const { appUuid } = this.$route.params;
@@ -397,19 +424,20 @@ export default {
       color: $unnnic-color-fg-base;
     }
   }
+}
 
-  :deep(.unnnic-modal .container .content) {
-    padding-right: 0px;
-  }
+.catalog-disable-dialog {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $unnnic-space-4;
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+    text-align: left;
 
-  :deep(.unnnic-modal.type-alert .title) {
-    padding-bottom: $unnnic-spacing-xs;
-  }
-
-  :deep(
-    .unnnic-modal.type-alert .container .content.with-validation .description
-  ) {
-    margin-bottom: $unnnic-spacing-sm;
+    p {
+      margin: 0;
+    }
   }
 }
 </style>

@@ -82,13 +82,11 @@
             {{ $t('vtex.config.sellers') }}
           </span>
 
-          <UnnnicSelectSmart
+          <UnnnicMultiSelect
             class="config-vtex__settings__content__sellers__options"
             :options="sellerOptions"
             :modelValue="selectedSellers"
             :placeholder="$t('vtex.config.placeholder.sellers')"
-            multiple
-            :selectFirst="false"
             :disabled="disableSellers"
             @update:model-value="handleSelectSellers"
           />
@@ -127,19 +125,40 @@
       />
     </section>
 
-    <UnnnicModal
-      v-if="showConnectModal"
+    <UnnnicDialog
       class="connect-modal"
-      :closeIcon="false"
-      @close="showConnectModal = false"
-      @click.stop
+      :open="showConnectModal"
+      @update:open="handleConnectModalOpenUpdate"
     >
-      <ConnectCatalogModalContent
-        ref="connectCatalogModalContent"
-        @close-modal="showConnectModal = false"
-        @connect-catalog="connectCatalog"
-      />
-    </UnnnicModal>
+      <UnnnicDialogContent
+        size="large"
+        @interact-outside.prevent
+      >
+        <UnnnicDialogHeader :closeButton="false">
+          <UnnnicDialogTitle>
+            {{ $t('vtex.connect_catalog.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <ConnectCatalogModalContent
+          ref="connectCatalogModalContent"
+          @close-modal="showConnectModal = false"
+          @connect-catalog="connectCatalog"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicButton
+            type="tertiary"
+            :text="$t('general.Cancel')"
+            @click="showConnectModal = false"
+          />
+          <UnnnicButton
+            :text="$t('general.continue')"
+            @click="submitConnectCatalog"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
@@ -244,6 +263,14 @@ export default {
       'getADS',
       'checkSyncSellers',
     ]),
+    handleConnectModalOpenUpdate(open) {
+      if (!open) {
+        this.showConnectModal = false;
+      }
+    },
+    submitConnectCatalog() {
+      this.$refs.connectCatalogModalContent?.connectCatalog();
+    },
     async connectCatalog(eventData) {
       const data = {
         code: 'wpp-cloud',
@@ -338,20 +365,16 @@ export default {
       });
     },
     handleSelectSellers(value) {
-      const isAllSelectedBefore = this.selectedSellers.find(
-        (item) => item.value === '#all',
-      );
-      const isAllSelectedNow = value.find((item) => item.value === '#all');
-      const anySellerSelectedNow = value.filter(
-        (item) => item.value !== '#all',
-      );
+      const isAllSelectedBefore = this.selectedSellers.includes('#all');
+      const isAllSelectedNow = value.includes('#all');
+      const anySellerSelectedNow = value.filter((item) => item !== '#all');
 
       if (isAllSelectedNow && value.length === 1) {
         this.selectedSellers = value;
       } else if (!isAllSelectedBefore && isAllSelectedNow) {
-        this.selectedSellers = value.filter((item) => item.value === '#all');
-      } else if (isAllSelectedBefore && anySellerSelectedNow) {
-        this.selectedSellers = value.filter((item) => item.value !== '#all');
+        this.selectedSellers = ['#all'];
+      } else if (isAllSelectedBefore && anySellerSelectedNow.length) {
+        this.selectedSellers = anySellerSelectedNow;
       } else {
         this.selectedSellers = value;
       }
@@ -364,10 +387,8 @@ export default {
         });
       }
 
-      const isAllSellersSelected = this.selectedSellers.find(
-        (item) => item.value === '#all',
-      );
-      const sellers = this.selectedSellers.map((item) => item.value);
+      const isAllSellersSelected = this.selectedSellers.includes('#all');
+      const sellers = this.selectedSellers;
 
       if (sellers.length) {
         const payloadSync = {
@@ -526,13 +547,6 @@ export default {
     &__save {
       flex-grow: 1;
     }
-  }
-}
-
-.connect-modal {
-  :deep(.unnnic-modal-container-background) {
-    width: 750px;
-    max-width: 90%;
   }
 }
 </style>

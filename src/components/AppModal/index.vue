@@ -1,33 +1,42 @@
 <template>
-  <UnnnicModal
+  <UnnnicDialog
     ref="unnnic-remove-modal"
-    :showModal="showRemoveModal"
-    :text="$t('apps.details.actions.remove.title')"
-    scheme="feedback-red"
-    modalIcon="alert-circle-1"
-    @close="toggleRemoveModal"
+    class="app-modal"
+    :open="showRemoveModal"
+    @update:open="handleOpenUpdate"
   >
-    <template #message>
-      <span v-html="$t('apps.details.actions.remove.description')"></span>
-    </template>
-    <template #options>
-      <UnnnicButton
-        ref="unnnic-remove-modal-close-button"
-        data-testid="remove-modal-button"
-        type="tertiary"
-        @click="toggleRemoveModal"
-        >{{ $t('general.Cancel') }}</UnnnicButton
-      >
-      <LoadingButton
-        ref="unnnic-remove-modal-navigate-button"
-        type="primary"
-        :isLoading="loadingDeleteApp"
-        :loadingText="$t('general.loading')"
-        :text="$t('apps.details.actions.remove.remove')"
-        @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
+    <UnnnicDialogContent size="medium">
+      <UnnnicDialogHeader type="warning">
+        <UnnnicDialogTitle>
+          {{ $t('apps.details.actions.remove.title') }}
+        </UnnnicDialogTitle>
+      </UnnnicDialogHeader>
+
+      <section
+        class="app-modal__description"
+        v-html="$t('apps.details.actions.remove.description')"
       />
-    </template>
-  </UnnnicModal>
+
+      <UnnnicDialogFooter>
+        <UnnnicDialogClose>
+          <UnnnicButton
+            ref="unnnic-remove-modal-close-button"
+            data-testid="remove-modal-button"
+            type="tertiary"
+            :text="$t('general.Cancel')"
+          />
+        </UnnnicDialogClose>
+        <LoadingButton
+          ref="unnnic-remove-modal-navigate-button"
+          type="primary"
+          :isLoading="loadingDeleteApp"
+          :loadingText="$t('general.loading')"
+          :text="$t('apps.details.actions.remove.remove')"
+          @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
+        />
+      </UnnnicDialogFooter>
+    </UnnnicDialogContent>
+  </UnnnicDialog>
 </template>
 
 <script>
@@ -46,6 +55,11 @@ export default {
     };
   },
   methods: {
+    handleOpenUpdate(open) {
+      if (!open) {
+        this.showRemoveModal = false;
+      }
+    },
     toggleRemoveModal(app = null) {
       this.currentRemoval = app;
       this.showRemoveModal = !this.showRemoveModal;
@@ -53,3 +67,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.app-modal {
+  &__description {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+  }
+}
+</style>

@@ -6,7 +6,7 @@
           <UnnnicLabel
             :label="$t('WhatsApp.config.webhook_info.method.label')"
           />
-          <UnnnicSelectSmart
+          <UnnnicSelect
             v-model="selectedMethod"
             class="webhook-info__content__method"
             :options="methodsList"
@@ -99,7 +99,7 @@ export default {
   data() {
     return {
       webhookUrl: this.app.config?.webhook?.url || '',
-      selectedMethod: [],
+      selectedMethod: this.app.config?.webhook?.method || '',
       headers: [],
       methodsList: [
         {
@@ -241,7 +241,7 @@ export default {
           config: {
             webhook: {
               url: this.webhookUrl,
-              method: this.selectedMethod[0].value,
+              method: this.selectedMethod,
               headers,
             },
           },

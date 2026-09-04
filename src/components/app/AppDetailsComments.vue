@@ -80,34 +80,41 @@
       </template>
     </UnnnicComment>
 
-    <UnnnicModal
+    <UnnnicDialog
       ref="unnnic-remove-modal"
-      :showModal="showRemoveModal"
-      :text="$t('apps.details.comments.remove.title')"
-      scheme="feedback-red"
-      modalIcon="alert-circle-1"
-      @close="toggleRemoveModal"
+      class="app-details-comments__remove-dialog"
+      :open="showRemoveModal"
+      @update:open="handleRemoveModalOpenUpdate"
     >
-      <template #message>
-        <span v-html="$t('apps.details.comments.remove.description')"></span>
-      </template>
-      <template #options>
-        <UnnnicButton
-          ref="unnnic-remove-modal-close-button"
-          type="tertiary"
-          @click="toggleRemoveModal"
-          >{{ $t('general.Cancel') }}</UnnnicButton
-        >
-        <UnnnicButton
-          ref="unnnic-remove-modal-navigate-button"
-          type="primary"
-          scheme="feedback-red"
-          @click="handleDelete(currentRemovalUuid)"
-        >
-          {{ $t('apps.details.comments.remove.remove') }}
-        </UnnnicButton>
-      </template>
-    </UnnnicModal>
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="warning">
+          <UnnnicDialogTitle>
+            {{ $t('apps.details.comments.remove.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <section
+          class="app-details-comments__remove-dialog__description"
+          v-html="$t('apps.details.comments.remove.description')"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              ref="unnnic-remove-modal-close-button"
+              type="tertiary"
+              :text="$t('general.Cancel')"
+            />
+          </UnnnicDialogClose>
+          <UnnnicButton
+            ref="unnnic-remove-modal-navigate-button"
+            type="primary"
+            :text="$t('apps.details.comments.remove.remove')"
+            @click="handleDelete(currentRemovalUuid)"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
@@ -168,6 +175,11 @@ export default {
     },
     fullOwnerName(owner) {
       return owner.first_name + ' ' + owner.last_name;
+    },
+    handleRemoveModalOpenUpdate(open) {
+      if (!open) {
+        this.showRemoveModal = false;
+      }
     },
     toggleRemoveModal() {
       this.showRemoveModal = !this.showRemoveModal;
@@ -296,6 +308,13 @@ export default {
       width: 56px;
       object-fit: cover;
       border-radius: $unnnic-border-radius-pill;
+    }
+  }
+
+  &__remove-dialog {
+    &__description {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
     }
   }
 }

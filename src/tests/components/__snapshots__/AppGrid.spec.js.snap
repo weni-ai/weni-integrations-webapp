@@ -7,10 +7,36 @@ exports[`AppGrid > matches snapshot 1`] = `
     <div data-v-deb56cf9="" class="app-grid__content"></div>
     <!--v-if-->
   </section>
-  <unnnicmodal data-v-deb56cf9="" showmodal="false" text="Delete app" scheme="feedback-red" modalicon="alert-circle-1"></unnnicmodal>
+  <unnnicdialog data-v-deb56cf9="" class="app-grid-remove-dialog" open="false">
+    <unnnicdialogcontent data-v-deb56cf9="" size="medium">
+      <unnnicdialogheader data-v-deb56cf9="" type="warning">
+        <unnnicdialogtitle data-v-deb56cf9="">Delete app</unnnicdialogtitle>
+      </unnnicdialogheader>
+      <section data-v-deb56cf9="" class="app-grid-remove-dialog__description">Are you sure you want to delete this app? This action can't be undone.</section>
+      <unnnicdialogfooter data-v-deb56cf9="">
+        <unnnicdialogclose data-v-deb56cf9="">
+          <unnnicbutton data-v-deb56cf9="" type="tertiary" text="Cancel"></unnnicbutton>
+        </unnnicdialogclose>
+        <unnnicbutton data-v-5b4d99d7="" data-v-deb56cf9="" class="loading-button" type="primary" size="large" disabled="false" text="Delete app"></unnnicbutton>
+      </unnnicdialogfooter>
+    </unnnicdialogcontent>
+  </unnnicdialog>
   <div data-v-7d3d5e15="" data-v-deb56cf9="">
     <!--v-if-->
-    <unnnicmodal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modalicon="alert-circle-1"></unnnicmodal>
+    <unnnicdialog data-v-7d3d5e15="" class="config-confirmation-dialog" open="false">
+      <unnnicdialogcontent data-v-7d3d5e15="" size="medium">
+        <unnnicdialogheader data-v-7d3d5e15="" type="attention">
+          <unnnicdialogtitle data-v-7d3d5e15="">Discard changes</unnnicdialogtitle>
+        </unnnicdialogheader>
+        <section data-v-7d3d5e15="" class="config-confirmation-dialog__description">Are you sure you want to discard the changes? You'll lose any unsaved content.</section>
+        <unnnicdialogfooter data-v-7d3d5e15="">
+          <unnnicdialogclose data-v-7d3d5e15="">
+            <unnnicbutton data-v-7d3d5e15="" type="tertiary" text="Back to settings"></unnnicbutton>
+          </unnnicdialogclose>
+          <unnnicbutton data-v-7d3d5e15="" type="primary" text="Confirm"></unnnicbutton>
+        </unnnicdialogfooter>
+      </unnnicdialogcontent>
+    </unnnicdialog>
   </div>
 </div>"
 `;

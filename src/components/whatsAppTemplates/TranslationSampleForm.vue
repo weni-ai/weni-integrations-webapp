@@ -1,91 +1,92 @@
 <template>
-  <div>
-    <UnnnicModal
-      class="sample-form"
-      :text="$t('WhatsApp.templates.sample.title')"
-      scheme="feedback-yellow"
-      modalIcon="alert-circle-1"
-      @close="closeSampleModal"
-      @click.stop
-    >
-      <template #message>
-        <div>
-          <span>
-            {{ $t('WhatsApp.templates.sample.description') }}
-          </span>
-          <div class="sample-form__container">
-            <div class="sample-form__preview__title">
-              {{ $t('WhatsApp.templates.sample.preview') }}
-            </div>
-            <TemplatePreview
-              class="sample-form__preview"
-              :showTitle="false"
-              :bodyOverwrite="formattedBody"
-              :headerOverwrite="fileToPreview"
-            />
+  <UnnnicDialog
+    class="sample-form"
+    :open="true"
+    @update:open="handleOpenUpdate"
+  >
+    <UnnnicDialogContent size="large">
+      <UnnnicDialogHeader type="attention">
+        <UnnnicDialogTitle>
+          {{ $t('WhatsApp.templates.sample.title') }}
+        </UnnnicDialogTitle>
+      </UnnnicDialogHeader>
 
-            <div class="sample-form__content">
-              <div
-                v-if="hasMedia"
-                class="sample-form__header__wrapper"
-              >
-                <span class="sample-form__header__title">
-                  {{ $t('WhatsApp.templates.sample.header') }}
-                </span>
-                <UnnnicButton
-                  type="secondary"
-                  @click="() => $refs.file.click()"
-                >
-                  {{ $t('WhatsApp.templates.sample.choose_file') }}
-                </UnnnicButton>
-                <input
-                  ref="file"
-                  type="file"
-                  :accept="supportedFormats"
-                  :multiple="false"
-                  style="display: none"
-                  @input="handleFileChange"
-                />
-                <span
-                  v-if="file"
-                  class="sample-form__header__file-name"
-                >
-                  {{ file.name }}
-                </span>
-              </div>
-              <div
-                v-if="hasVariables"
-                class="sample-form__body__wrapper"
-              >
-                <span class="sample-form__body__title">
-                  {{ $t('WhatsApp.templates.sample.body') }}</span
-                >
-                <UnnnicInput
-                  v-for="(variable, index) in variableCount"
-                  :key="variable"
-                  :placeholder="`Enter content for {{${variable}}}`"
-                  :modelValue="textInput"
-                  @update:model-value="handleVariableChange(index, $event)"
-                />
-              </div>
-            </div>
+      <div class="sample-form__body">
+        <span>
+          {{ $t('WhatsApp.templates.sample.description') }}
+        </span>
+        <div class="sample-form__container">
+          <div class="sample-form__preview__title">
+            {{ $t('WhatsApp.templates.sample.preview') }}
+          </div>
+          <TemplatePreview
+            class="sample-form__preview"
+            :showTitle="false"
+            :bodyOverwrite="formattedBody"
+            :headerOverwrite="fileToPreview"
+          />
 
-            <div class="sample-form__button">
+          <div class="sample-form__content">
+            <div
+              v-if="hasMedia"
+              class="sample-form__header__wrapper"
+            >
+              <span class="sample-form__header__title">
+                {{ $t('WhatsApp.templates.sample.header') }}
+              </span>
               <UnnnicButton
                 type="secondary"
-                @click="saveSample"
+                @click="() => $refs.file.click()"
               >
-                {{ $t('WhatsApp.templates.sample.send') }}
+                {{ $t('WhatsApp.templates.sample.choose_file') }}
               </UnnnicButton>
+              <input
+                ref="file"
+                type="file"
+                :accept="supportedFormats"
+                :multiple="false"
+                style="display: none"
+                @input="handleFileChange"
+              />
+              <span
+                v-if="file"
+                class="sample-form__header__file-name"
+              >
+                {{ file.name }}
+              </span>
+            </div>
+            <div
+              v-if="hasVariables"
+              class="sample-form__body__wrapper"
+            >
+              <span class="sample-form__body__title">
+                {{ $t('WhatsApp.templates.sample.body') }}</span
+              >
+              <UnnnicInput
+                v-for="(variable, index) in variableCount"
+                :key="variable"
+                :placeholder="`Enter content for {{${variable}}}`"
+                :modelValue="textInput"
+                @update:model-value="handleVariableChange(index, $event)"
+              />
             </div>
           </div>
-          <div class="sample-form__info">
-            {{ $t('WhatsApp.templates.sample.info') }}
+
+          <div class="sample-form__button">
+            <UnnnicButton
+              type="secondary"
+              @click="saveSample"
+            >
+              {{ $t('WhatsApp.templates.sample.send') }}
+            </UnnnicButton>
           </div>
         </div>
-      </template>
-    </UnnnicModal>
-  </div>
+        <div class="sample-form__info">
+          {{ $t('WhatsApp.templates.sample.info') }}
+        </div>
+      </div>
+    </UnnnicDialogContent>
+  </UnnnicDialog>
 </template>
 
 <script>
@@ -139,6 +140,11 @@ export default {
     },
   },
   methods: {
+    handleOpenUpdate(open) {
+      if (!open) {
+        this.closeSampleModal();
+      }
+    },
     closeSampleModal() {
       this.$emit('close-modal');
     },
@@ -245,6 +251,11 @@ export default {
 
 <style lang="scss" scoped>
 .sample-form {
+  &__body {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+  }
+
   &__container {
     max-height: 50vh;
     overflow-x: hidden;
