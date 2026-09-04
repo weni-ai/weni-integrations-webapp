@@ -53,14 +53,12 @@
             {{ $t('vtex.config.sellers') }}
           </span>
 
-          <unnnic-select-smart
+          <unnnic-multi-select
             class="config-vtex__settings__content__sellers__options"
             :options="sellerOptions"
             :modelValue="selectedSellers"
             @update:modelValue="handleSelectSellers"
             :placeholder="$t('vtex.config.placeholder.sellers')"
-            multiple
-            :selectFirst="false"
             :disabled="disableSellers"
           />
           <div class="config-vtex__settings__content__sellers__alert" v-if="disableSellers">
@@ -95,19 +93,34 @@
       />
     </section>
 
-    <unnnic-modal
-      v-if="showConnectModal"
+    <unnnic-dialog
       class="connect-modal"
-      @close="showConnectModal = false"
-      :closeIcon="false"
-      @click.stop
+      :open="showConnectModal"
+      @update:open="handleConnectModalOpenUpdate"
     >
-      <ConnectCatalogModalContent
-        ref="connectCatalogModalContent"
-        @closeModal="showConnectModal = false"
-        @connectCatalog="connectCatalog"
-      />
-    </unnnic-modal>
+      <unnnic-dialog-content size="large" @interact-outside.prevent>
+        <unnnic-dialog-header :close-button="false">
+          <unnnic-dialog-title>
+            {{ $t('vtex.connect_catalog.title') }}
+          </unnnic-dialog-title>
+        </unnnic-dialog-header>
+
+        <ConnectCatalogModalContent
+          ref="connectCatalogModalContent"
+          @closeModal="showConnectModal = false"
+          @connectCatalog="connectCatalog"
+        />
+
+        <unnnic-dialog-footer>
+          <unnnic-button
+            type="tertiary"
+            :text="$t('general.Cancel')"
+            @click="showConnectModal = false"
+          />
+          <unnnic-button :text="$t('general.continue')" @click="submitConnectCatalog" />
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
   </div>
 </template>
 
@@ -207,6 +220,14 @@
         'getADS',
         'checkSyncSellers',
       ]),
+      handleConnectModalOpenUpdate(open) {
+        if (!open) {
+          this.showConnectModal = false;
+        }
+      },
+      submitConnectCatalog() {
+        this.$refs.connectCatalogModalContent?.connectCatalog();
+      },
       async connectCatalog(eventData) {
         const data = {
           code: 'wpp-cloud',
@@ -295,16 +316,16 @@
         });
       },
       handleSelectSellers(value) {
-        const isAllSelectedBefore = this.selectedSellers.find((item) => item.value === '#all');
-        const isAllSelectedNow = value.find((item) => item.value === '#all');
-        const anySellerSelectedNow = value.filter((item) => item.value !== '#all');
+        const isAllSelectedBefore = this.selectedSellers.includes('#all');
+        const isAllSelectedNow = value.includes('#all');
+        const anySellerSelectedNow = value.filter((item) => item !== '#all');
 
         if (isAllSelectedNow && value.length === 1) {
           this.selectedSellers = value;
         } else if (!isAllSelectedBefore && isAllSelectedNow) {
-          this.selectedSellers = value.filter((item) => item.value === '#all');
-        } else if (isAllSelectedBefore && anySellerSelectedNow) {
-          this.selectedSellers = value.filter((item) => item.value !== '#all');
+          this.selectedSellers = ['#all'];
+        } else if (isAllSelectedBefore && anySellerSelectedNow.length) {
+          this.selectedSellers = anySellerSelectedNow;
         } else {
           this.selectedSellers = value;
         }
@@ -317,8 +338,8 @@
           });
         }
 
-        const isAllSellersSelected = this.selectedSellers.find((item) => item.value === '#all');
-        const sellers = this.selectedSellers.map((item) => item.value);
+        const isAllSellersSelected = this.selectedSellers.includes('#all');
+        const sellers = this.selectedSellers;
 
         if (sellers.length) {
           const payloadSync = {
@@ -373,12 +394,10 @@
         line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
         color: $unnnic-color-fg-base;
 
-        
         :deep(a) {
           font-weight: $unnnic-font-weight-bold;
           color: $unnnic-color-fg-base;
         }
-      
       }
     }
 
@@ -476,13 +495,6 @@
       &__save {
         flex-grow: 1;
       }
-    }
-  }
-
-  .connect-modal {
-    :deep(.unnnic-modal-container-background) {
-      width: 750px;
-      max-width: 90%;
     }
   }
 </style>

@@ -1,33 +1,39 @@
 <template>
-  <unnnic-modal
+  <unnnic-dialog
     ref="unnnic-add-modal"
     class="add-modal"
-    :showModal="showAddModal"
-    :text="$t('apps.details.actions.installed.title')"
-    scheme="feedback-green"
-    modal-icon="check-circle-1-1"
-    @close="toggleModal"
-    @click.stop
+    :open="showAddModal"
+    @update:open="handleOpenUpdate"
   >
-    <template #message>
-      <span v-html="$t('apps.details.actions.installed.description')"></span>
-    </template>
-    <template #options>
-      <unnnic-button
-        ref="unnnic-add-modal-close-button"
-        type="tertiary"
-        @click.stop="toggleModal"
-        >{{ $t('general.Close') }}</unnnic-button
-      >
-      <unnnic-button
-        ref="unnnic-add-modal-navigate-button"
-        type="primary"
-        @click="navigateToMyApps"
-      >
-        {{ $t('apps.details.actions.installed.access_my_apps') }}
-      </unnnic-button>
-    </template>
-  </unnnic-modal>
+    <unnnic-dialog-content size="medium">
+      <unnnic-dialog-header type="success">
+        <unnnic-dialog-title>
+          {{ $t('apps.details.actions.installed.title') }}
+        </unnnic-dialog-title>
+      </unnnic-dialog-header>
+
+      <section
+        class="add-modal__description"
+        v-html="$t('apps.details.actions.installed.description')"
+      />
+
+      <unnnic-dialog-footer>
+        <unnnic-dialog-close>
+          <unnnic-button
+            ref="unnnic-add-modal-close-button"
+            type="tertiary"
+            :text="$t('general.Close')"
+          />
+        </unnnic-dialog-close>
+        <unnnic-button
+          ref="unnnic-add-modal-navigate-button"
+          type="primary"
+          :text="$t('apps.details.actions.installed.access_my_apps')"
+          @click="navigateToMyApps"
+        />
+      </unnnic-dialog-footer>
+    </unnnic-dialog-content>
+  </unnnic-dialog>
 </template>
 
 <script>
@@ -39,6 +45,11 @@
       };
     },
     methods: {
+      handleOpenUpdate(open) {
+        if (!open) {
+          this.showAddModal = false;
+        }
+      },
       toggleModal() {
         this.showAddModal = !this.showAddModal;
       },
@@ -50,5 +61,10 @@
 </script>
 
 <style lang="scss" scoped>
-  @import './styles.scss';
+  .add-modal {
+    &__description {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
+    }
+  }
 </style>

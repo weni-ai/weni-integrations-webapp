@@ -33,10 +33,7 @@
         </section>
 
         <section class="account-tab__content__templates__buttons">
-          <unnnic-button
-            @click="navigateToTemplates"
-            type="secondary"
-          >
+          <unnnic-button @click="navigateToTemplates" type="secondary">
             {{ $t('WhatsApp.config.templates.button') }}
           </unnnic-button>
 
@@ -59,7 +56,6 @@
         <section class="account-tab__content__section__title">
           {{ $t(`WhatsApp.config.${section.name}.title`) }}
         </section>
-
 
         <section class="account-tab__content__section__fields">
           <div
@@ -125,27 +121,53 @@
       </div>
     </div>
 
-    <unnnic-modal
-      v-if="showCreateCatalogModal || showConnectCatalogModal"
+    <unnnic-dialog
       class="catalog-modal"
-      @close="showCreateCatalogModal = false"
-      :closeIcon="false"
-      @click.stop
+      :open="showCreateCatalogModal || showConnectCatalogModal"
+      @update:open="handleCatalogDialogOpenUpdate"
     >
-      <CreateCatalogModalContent
-        ref="createCatalogModalContent"
-        v-if="showCreateCatalogModal"
-        @closeModal="showCreateCatalogModal = false"
-        @createCatalog="handleCatalogCreateModalContinue"
-      />
+      <unnnic-dialog-content size="large" @interact-outside.prevent>
+        <unnnic-dialog-header :close-button="false">
+          <unnnic-dialog-title>
+            {{
+              showCreateCatalogModal
+                ? $t('whatsapp.create_catalog.title')
+                : $t('vtex.connect_catalog.title')
+            }}
+          </unnnic-dialog-title>
+        </unnnic-dialog-header>
 
-      <ConnectCatalogModalContent
-        v-if="showConnectCatalogModal"
-        :loading="loadingConnectVtexCatalog"
-        @closeModal="showConnectCatalogModal = false"
-        @connectCatalog="handleCatalogConnect"
-      />
-    </unnnic-modal>
+        <CreateCatalogModalContent
+          ref="createCatalogModalContent"
+          v-if="showCreateCatalogModal"
+          @closeModal="showCreateCatalogModal = false"
+          @createCatalog="handleCatalogCreateModalContinue"
+        />
+
+        <ConnectCatalogModalContent
+          v-if="showConnectCatalogModal"
+          ref="connectCatalogModalContent"
+          :loading="loadingConnectVtexCatalog"
+          @closeModal="showConnectCatalogModal = false"
+          @connectCatalog="handleCatalogConnect"
+        />
+
+        <unnnic-dialog-footer>
+          <unnnic-button type="tertiary" :text="$t('general.Cancel')" @click="closeCatalogDialog" />
+          <unnnic-button
+            v-if="showCreateCatalogModal"
+            :text="$t('general.continue')"
+            @click="submitCreateCatalog"
+          />
+          <unnnic-button
+            v-else
+            :text="$t('general.continue')"
+            :loading="loadingConnectVtexCatalog"
+            @click="submitConnectCatalog"
+          />
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
   </div>
 </template>
 
@@ -225,6 +247,21 @@
       handleCatalogButtonClick() {
         const { code, uuid } = this.appInfo;
         this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
+      },
+      handleCatalogDialogOpenUpdate(open) {
+        if (!open) {
+          this.closeCatalogDialog();
+        }
+      },
+      closeCatalogDialog() {
+        this.showCreateCatalogModal = false;
+        this.showConnectCatalogModal = false;
+      },
+      submitCreateCatalog() {
+        this.$refs.createCatalogModalContent?.createCatalog();
+      },
+      submitConnectCatalog() {
+        this.$refs.connectCatalogModalContent?.connectCatalog();
       },
       handleCatalogCreateModalContinue(type) {
         if (type === 'vtex') {
@@ -652,13 +689,6 @@
 
     &__close-button {
       margin-top: $unnnic-spacing-stack-lg;
-    }
-  }
-
-  .catalog-modal {
-    :deep(.unnnic-modal-container-background) {
-      width: 750px;
-      max-width: 90%;
     }
   }
 </style>

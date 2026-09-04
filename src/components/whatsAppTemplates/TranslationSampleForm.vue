@@ -1,72 +1,69 @@
 <template>
-  <div>
-    <unnnic-modal
-      class="sample-form"
-      :text="$t('WhatsApp.templates.sample.title')"
-      scheme="feedback-yellow"
-      modal-icon="alert-circle-1"
-      @close="closeSampleModal"
-      @click.stop
-    >
-      <template #message>
-        <div>
-          <span>
-            {{ $t('WhatsApp.templates.sample.description') }}
-          </span>
-          <div class="sample-form__container">
-            <div class="sample-form__preview__title">
-              {{ $t('WhatsApp.templates.sample.preview') }}
-            </div>
-            <TemplatePreview
-              class="sample-form__preview"
-              :showTitle="false"
-              :bodyOverwrite="formattedBody"
-              :headerOverwrite="fileToPreview"
-            />
+  <unnnic-dialog class="sample-form" :open="true" @update:open="handleOpenUpdate">
+    <unnnic-dialog-content size="large">
+      <unnnic-dialog-header type="attention">
+        <unnnic-dialog-title>
+          {{ $t('WhatsApp.templates.sample.title') }}
+        </unnnic-dialog-title>
+      </unnnic-dialog-header>
 
-            <div class="sample-form__content">
-              <div v-if="hasMedia" class="sample-form__header__wrapper">
-                <span class="sample-form__header__title">
-                  {{ $t('WhatsApp.templates.sample.header') }}
-                </span>
-                <unnnic-button type="secondary" @click="() => this.$refs.file.click()">
-                  {{ $t('WhatsApp.templates.sample.choose_file') }}
-                </unnnic-button>
-                <input
-                  type="file"
-                  ref="file"
-                  :accept="supportedFormats"
-                  :multiple="false"
-                  @input="handleFileChange"
-                  style="display: none"
-                />
-                <span v-if="file" class="sample-form__header__file-name"> {{ file.name }} </span>
-              </div>
-              <div v-if="hasVariables" class="sample-form__body__wrapper">
-                <span class="sample-form__body__title">
-                  {{ $t('WhatsApp.templates.sample.body') }}</span
-                >
-                <unnnic-input
-                  v-for="(variable, index) in variableCount"
-                  :key="variable"
-                  :placeholder="`Enter content for {{${variable}}}`"
-                  :modelValue="textInput"
-                  @update:modelValue="handleVariableChange(index, $event)"
-                />
-              </div>
-            </div>
+      <div class="sample-form__body">
+        <span>
+          {{ $t('WhatsApp.templates.sample.description') }}
+        </span>
+        <div class="sample-form__container">
+          <div class="sample-form__preview__title">
+            {{ $t('WhatsApp.templates.sample.preview') }}
+          </div>
+          <TemplatePreview
+            class="sample-form__preview"
+            :showTitle="false"
+            :bodyOverwrite="formattedBody"
+            :headerOverwrite="fileToPreview"
+          />
 
-            <div class="sample-form__button">
-              <unnnic-button type="secondary" @click="saveSample">
-                {{ $t('WhatsApp.templates.sample.send') }}
+          <div class="sample-form__content">
+            <div v-if="hasMedia" class="sample-form__header__wrapper">
+              <span class="sample-form__header__title">
+                {{ $t('WhatsApp.templates.sample.header') }}
+              </span>
+              <unnnic-button type="secondary" @click="() => this.$refs.file.click()">
+                {{ $t('WhatsApp.templates.sample.choose_file') }}
               </unnnic-button>
+              <input
+                type="file"
+                ref="file"
+                :accept="supportedFormats"
+                :multiple="false"
+                @input="handleFileChange"
+                style="display: none"
+              />
+              <span v-if="file" class="sample-form__header__file-name"> {{ file.name }} </span>
+            </div>
+            <div v-if="hasVariables" class="sample-form__body__wrapper">
+              <span class="sample-form__body__title">
+                {{ $t('WhatsApp.templates.sample.body') }}</span
+              >
+              <unnnic-input
+                v-for="(variable, index) in variableCount"
+                :key="variable"
+                :placeholder="`Enter content for {{${variable}}}`"
+                :modelValue="textInput"
+                @update:modelValue="handleVariableChange(index, $event)"
+              />
             </div>
           </div>
-          <div class="sample-form__info">{{ $t('WhatsApp.templates.sample.info') }}</div>
+
+          <div class="sample-form__button">
+            <unnnic-button type="secondary" @click="saveSample">
+              {{ $t('WhatsApp.templates.sample.send') }}
+            </unnnic-button>
+          </div>
         </div>
-      </template>
-    </unnnic-modal>
-  </div>
+        <div class="sample-form__info">{{ $t('WhatsApp.templates.sample.info') }}</div>
+      </div>
+    </unnnic-dialog-content>
+  </unnnic-dialog>
 </template>
 
 <script>
@@ -118,6 +115,11 @@
       },
     },
     methods: {
+      handleOpenUpdate(open) {
+        if (!open) {
+          this.closeSampleModal();
+        }
+      },
       closeSampleModal() {
         this.$emit('close-modal');
       },
@@ -215,6 +217,11 @@
 
 <style lang="scss" scoped>
   .sample-form {
+    &__body {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
+    }
+
     &__container {
       max-height: 50vh;
       overflow-x: hidden;

@@ -1,8 +1,6 @@
 <template>
   <div class="modal">
-    <div slot="message" class="modal__content">
-      <span class="modal__content__title">{{ $t('whatsapp.create_catalog.title') }}</span>
-
+    <div class="modal__content">
       <div class="modal__content__header">
         <span class="modal__content__header__title">{{
           $t('whatsapp.create_catalog.header.title')
@@ -69,14 +67,6 @@
         ></span>
       </div>
     </div>
-    <div class="modal__buttons">
-      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button slot="options" ref="createButton" @click="createCatalog">
-        {{ $t('general.continue') }}
-      </unnnic-button>
-    </div>
   </div>
 </template>
 
@@ -108,30 +98,13 @@
     display: flex;
     flex-direction: column;
     gap: $unnnic-spacing-md;
-
-    &__buttons {
-      display: flex;
-      gap: $unnnic-spacing-lg;
-      widows: 100%;
-      flex: 1;
-
-      :deep(.unnnic-button) {
-        width: 100%;
-      }
-    }
+    padding: $unnnic-space-4;
 
     &__content {
       display: flex;
       flex-direction: column;
       gap: $unnnic-spacing-sm;
       text-align: left;
-
-      &__title {
-        color: $unnnic-color-fg-emphasized;
-        font-size: $unnnic-font-size-title-sm;
-        font-weight: $unnnic-font-weight-black;
-        line-height: $unnnic-font-size-title-sm + $unnnic-line-height-medium;
-      }
 
       &__header {
         display: flex;
@@ -187,8 +160,8 @@
               align-items: center;
               border-radius: $unnnic-border-radius-sm;
               background: rgba(59, 65, 77, 0.08);
-              width: 40px;
-              height: 40px;
+              width: $unnnic-icon-size-xl;
+              height: $unnnic-icon-size-xl;
             }
 
             &__content {

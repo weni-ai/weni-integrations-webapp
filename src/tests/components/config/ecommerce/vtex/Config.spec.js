@@ -110,7 +110,7 @@ describe('vtex-config Component', () => {
   });
 
   it('should allow saving when sellers are selected', async () => {
-    wrapper.vm.selectedSellers = [{ value: 'Seller 1' }];
+    wrapper.vm.selectedSellers = ['Seller 1'];
     await wrapper.vm.$nextTick();
 
     expect(wrapper.vm.disableSave).toBe(false);

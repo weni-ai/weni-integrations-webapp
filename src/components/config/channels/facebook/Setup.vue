@@ -1,90 +1,86 @@
 <template>
   <div>
-    <unnnic-modal
-      v-if="stage === 'login'"
-      ref="facebook-setup-modal"
-      :class="`facebook-setup ${this.integrationName}-icon`"
-      :text="$t(`${this.integrationName}.setup.title`)"
-      :modal-icon="this.integrationIcon"
-      :close-icon="false"
-      @close="closePopUp"
-      @click.stop
-    >
-      <template #message>
-        <div>
-          <span v-html="$t(`${this.integrationName}.setup.description`)"></span>
-        </div>
-      </template>
-      <template #options>
-        <div>
-          <div class="facebook-setup__buttons">
-            <unnnic-button
-              class="facebook-setup__buttons__cancel"
-              type="tertiary"
-              size="large"
-              :text="$t('general.Cancel')"
-              @click="closePopUp"
+    <div v-if="stage === 'login'" class="facebook-setup">
+      <unnnic-dialog ref="facebook-setup-modal" :open="true" @update:open="handleOpenUpdate">
+        <unnnic-dialog-content size="medium" @interact-outside.prevent>
+          <unnnic-dialog-header :close-button="false">
+            <unnnic-dialog-title>
+              {{ $t(`${this.integrationName}.setup.title`) }}
+            </unnnic-dialog-title>
+          </unnnic-dialog-header>
+
+          <section
+            class="facebook-setup__description"
+            v-html="$t(`${this.integrationName}.setup.description`)"
+          />
+
+          <unnnic-dialog-footer>
+            <div class="facebook-setup__buttons">
+              <unnnic-button
+                class="facebook-setup__buttons__cancel"
+                type="tertiary"
+                size="large"
+                :text="$t('general.Cancel')"
+                @click="closePopUp"
+              />
+              <LoadingButton
+                class="facebook-setup__buttons__start"
+                type="secondary"
+                size="large"
+                :text="$t(`${this.integrationName}.setup.connect`)"
+                :isLoading="onLogin"
+                :disabled="onLogin"
+                @clicked="startFacebookLogin"
+              />
+            </div>
+          </unnnic-dialog-footer>
+        </unnnic-dialog-content>
+      </unnnic-dialog>
+    </div>
+
+    <div v-else class="page-selection">
+      <unnnic-dialog ref="page-selection-modal" :open="true" @update:open="handleOpenUpdate">
+        <unnnic-dialog-content size="medium" @interact-outside.prevent>
+          <unnnic-dialog-header :close-button="false">
+            <unnnic-dialog-title>
+              {{ $t(`${this.integrationName}.setup.title`) }}
+            </unnnic-dialog-title>
+          </unnnic-dialog-header>
+
+          <section class="page-selection__select">
+            <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
+            <unnnic-select
+              ref="page-selection-input"
+              size="sm"
+              :options="pageListOptions"
+              v-model="selectedPage"
+              @update:modelValue="handlePageSelection"
             />
+          </section>
 
-            <LoadingButton
-              class="facebook-setup__buttons__start"
-              type="secondary"
-              size="large"
-              :text="$t(`${this.integrationName}.setup.connect`)"
-              :isLoading="onLogin"
-              :disabled="onLogin"
-              @clicked="startFacebookLogin"
-            />
-          </div>
-        </div>
-      </template>
-    </unnnic-modal>
-
-    <unnnic-modal
-      v-else
-      ref="page-selection-modal"
-      :class="`page-selection ${this.integrationName}-icon`"
-      :text="$t(`${this.integrationName}.setup.title`)"
-      :modal-icon="this.integrationIcon"
-      :close-icon="false"
-      @close="closePopUp"
-      @click.stop
-    >
-      <template #message>
-        <div class="page-selection__select">
-          <span v-html="$t(`${this.integrationName}.setup.page_selection.description`)"></span>
-          <unnnic-select-smart
-            ref="page-selection-input"
-            size="sm"
-            :options="pageListOptions"
-            v-model="selectedPage"
-            @update:modelValue="handlePageSelection"
-          />
-        </div>
-      </template>
-
-      <template #options>
-        <div class="page-selection__buttons">
-          <unnnic-button
-            class="page-selection__buttons__cancel"
-            type="tertiary"
-            size="large"
-            :text="$t(`${this.integrationName}.setup.connect_later`)"
-            @click="closePopUp"
-          />
-
-          <LoadingButton
-            class="page-selection__buttons__save"
-            type="secondary"
-            size="large"
-            :isLoading="loadingUpdateAppConfig || loadingCreateApp"
-            :loadingText="$t('general.loading')"
-            :text="$t(`${this.integrationName}.setup.create_channel`)"
-            @clicked="createChannel"
-          />
-        </div>
-      </template>
-    </unnnic-modal>
+          <unnnic-dialog-footer>
+            <div class="page-selection__buttons">
+              <unnnic-button
+                class="page-selection__buttons__cancel"
+                type="tertiary"
+                size="large"
+                :text="$t(`${this.integrationName}.setup.connect_later`)"
+                @click="closePopUp"
+              />
+              <LoadingButton
+                class="page-selection__buttons__save"
+                type="secondary"
+                size="large"
+                :isLoading="loadingUpdateAppConfig || loadingCreateApp"
+                :loadingText="$t('general.loading')"
+                :text="$t(`${this.integrationName}.setup.create_channel`)"
+                @clicked="createChannel"
+              />
+            </div>
+          </unnnic-dialog-footer>
+        </unnnic-dialog-content>
+      </unnnic-dialog>
+    </div>
   </div>
 </template>
 
@@ -114,7 +110,7 @@
         stage: 'login',
         accessToken: null,
         pageList: [],
-        selectedPage: [],
+        selectedPage: '',
         selectKey: 0,
         onLogin: false,
         loadingPages: false,
@@ -144,13 +140,6 @@
         };
 
         return nameMap[this.app.code];
-      },
-      integrationIcon() {
-        const iconMap = {
-          ig: 'social-instagram-1',
-          fba: 'social-media-facebook-1',
-        };
-        return iconMap[this.app.code];
       },
       pageListOptions() {
         return this.pageList.map((item) => {
@@ -222,7 +211,7 @@
         this.loadingPages = false;
       },
       async createChannel() {
-        const page = this.pageList.find((page) => page.id === this.selectedPage[0].value);
+        const page = this.pageList.find((page) => page.id === this.selectedPage);
 
         if (!page) {
           this.callModal({
@@ -279,6 +268,11 @@
         this.callModal({ type: 'success', text: this.$t(`${this.integrationName}.setup.success`) });
         this.$router.replace('/apps/my');
       },
+      handleOpenUpdate(open) {
+        if (!open) {
+          this.closePopUp();
+        }
+      },
       closePopUp() {
         this.$emit('closePopUp');
       },
@@ -296,18 +290,17 @@
 </script>
 
 <style lang="scss" scoped>
-  .facebook-icon {
-    
-    :deep(.unnnic-icon > svg > path) {
-      fill: #3c579e;
-    }
-  
-  }
   .facebook-setup {
     cursor: default;
 
+    &__description {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
+    }
+
     &__buttons {
       display: flex;
+      width: 100%;
       justify-content: space-around;
       gap: $unnnic-spacing-inline-xs;
 
@@ -317,16 +310,11 @@
       }
     }
 
-    
-    :deep(.unnnic-modal-container-background-body-description) {
-      padding-bottom: $unnnic-spacing-stack-nano;
-    }
     :deep(.link) {
       color: inherit;
       text-decoration: none;
       border-bottom: 1px solid $unnnic-color-border-base;
     }
-  
   }
 
   .page-selection {
@@ -334,6 +322,7 @@
 
     &__buttons {
       display: flex;
+      width: 100%;
       justify-content: space-around;
       gap: $unnnic-spacing-inline-xs;
 
@@ -347,14 +336,8 @@
       display: flex;
       flex-direction: column;
       gap: $unnnic-spacing-stack-md;
-    }
-
-    :deep(.unnnic-modal-container-background-body-description) {
-      padding-bottom: $unnnic-spacing-stack-nano;
-    }
-
-    :deep(.unnnic-modal-container-background-button) {
-      padding-top: $unnnic-spacing-stack-md;
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
     }
   }
 </style>

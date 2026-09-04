@@ -13,7 +13,20 @@ exports[`MyApps > matches snapshot 1`] = `
   </div>
   <div data-v-7d3d5e15="" data-v-d693ca5e="">
     <!--v-if-->
-    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
+    <unnnic-dialog data-v-7d3d5e15="" class="config-confirmation-dialog" open="false">
+      <unnnic-dialog-content data-v-7d3d5e15="" size="medium">
+        <unnnic-dialog-header data-v-7d3d5e15="" type="attention">
+          <unnnic-dialog-title data-v-7d3d5e15="">Discard changes</unnnic-dialog-title>
+        </unnnic-dialog-header>
+        <section data-v-7d3d5e15="" class="config-confirmation-dialog__description">Are you sure you want to discard the changes? You'll lose any unsaved content.</section>
+        <unnnic-dialog-footer data-v-7d3d5e15="">
+          <unnnic-dialog-close data-v-7d3d5e15="">
+            <unnnic-button data-v-7d3d5e15="" type="tertiary" text="Back to settings"></unnnic-button>
+          </unnnic-dialog-close>
+          <unnnic-button data-v-7d3d5e15="" type="primary" text="Confirm"></unnnic-button>
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
   </div>
 </div>"
 `;

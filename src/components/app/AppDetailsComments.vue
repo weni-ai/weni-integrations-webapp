@@ -65,34 +65,41 @@
       </template>
     </unnnic-comment>
 
-    <unnnic-modal
+    <unnnic-dialog
       ref="unnnic-remove-modal"
-      :showModal="showRemoveModal"
-      :text="$t('apps.details.comments.remove.title')"
-      scheme="feedback-red"
-      modal-icon="alert-circle-1"
-      @close="toggleRemoveModal"
+      class="app-details-comments__remove-dialog"
+      :open="showRemoveModal"
+      @update:open="handleRemoveModalOpenUpdate"
     >
-      <template #message>
-        <span v-html="$t('apps.details.comments.remove.description')"></span>
-      </template>
-      <template #options>
-        <unnnic-button
-          ref="unnnic-remove-modal-close-button"
-          type="tertiary"
-          @click="toggleRemoveModal"
-          >{{ $t('general.Cancel') }}</unnnic-button
-        >
-        <unnnic-button
-          ref="unnnic-remove-modal-navigate-button"
-          type="primary"
-          @click="handleDelete(currentRemovalUuid)"
-          scheme="feedback-red"
-        >
-          {{ $t('apps.details.comments.remove.remove') }}
-        </unnnic-button>
-      </template>
-    </unnnic-modal>
+      <unnnic-dialog-content size="medium">
+        <unnnic-dialog-header type="warning">
+          <unnnic-dialog-title>
+            {{ $t('apps.details.comments.remove.title') }}
+          </unnnic-dialog-title>
+        </unnnic-dialog-header>
+
+        <section
+          class="app-details-comments__remove-dialog__description"
+          v-html="$t('apps.details.comments.remove.description')"
+        />
+
+        <unnnic-dialog-footer>
+          <unnnic-dialog-close>
+            <unnnic-button
+              ref="unnnic-remove-modal-close-button"
+              type="tertiary"
+              :text="$t('general.Cancel')"
+            />
+          </unnnic-dialog-close>
+          <unnnic-button
+            ref="unnnic-remove-modal-navigate-button"
+            type="primary"
+            :text="$t('apps.details.comments.remove.remove')"
+            @click="handleDelete(currentRemovalUuid)"
+          />
+        </unnnic-dialog-footer>
+      </unnnic-dialog-content>
+    </unnnic-dialog>
   </div>
 </template>
 
@@ -153,6 +160,11 @@
       },
       fullOwnerName(owner) {
         return owner.first_name + ' ' + owner.last_name;
+      },
+      handleRemoveModalOpenUpdate(open) {
+        if (!open) {
+          this.showRemoveModal = false;
+        }
       },
       toggleRemoveModal() {
         this.showRemoveModal = !this.showRemoveModal;
@@ -281,6 +293,13 @@
         width: 56px;
         object-fit: cover;
         border-radius: $unnnic-border-radius-pill;
+      }
+    }
+
+    &__remove-dialog {
+      &__description {
+        padding: $unnnic-space-4;
+        color: $unnnic-color-fg-base;
       }
     }
   }

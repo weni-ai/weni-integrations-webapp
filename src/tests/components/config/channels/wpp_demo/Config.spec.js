@@ -5,6 +5,7 @@ import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 describe('Config.vue', () => {
   let wrapper;
@@ -15,6 +16,7 @@ describe('Config.vue', () => {
     wrapper = mount(WppDemoModal, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
       },
       props: {
         app: {

@@ -1,8 +1,6 @@
 <template>
   <div class="modal">
-    <div slot="message" class="modal__content">
-      <span class="modal__content__title">{{ $t('vtex.connect_catalog.title') }}</span>
-
+    <div class="modal__content">
       <div class="modal__content__form">
         <unnnic-input
           class="modal__content__form__input__name"
@@ -16,15 +14,6 @@
           class="modal__content__form__footer"
         ></span>
       </div>
-    </div>
-
-    <div class="modal__buttons">
-      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button slot="options" ref="connectButton" @click="connectCatalog" :loading="loading">
-        {{ $t('general.continue') }}
-      </unnnic-button>
     </div>
   </div>
 </template>
@@ -63,32 +52,12 @@
     display: flex;
     flex-direction: column;
     gap: $unnnic-spacing-md;
-
-    &__buttons {
-      display: flex;
-      gap: $unnnic-spacing-lg;
-      widows: 100%;
-      flex: 1;
-
-      :deep(.unnnic-button) {
-        width: 100%;
-      }
-    }
+    padding: $unnnic-space-4;
 
     &__content {
       display: flex;
       flex-direction: column;
       text-align: left;
-
-      &__title {
-        color: $unnnic-color-fg-emphasized;
-
-        font-family: Lato;
-        font-size: $unnnic-font-size-title-sm;
-        font-weight: $unnnic-font-weight-black;
-        line-height: $unnnic-font-size-title-sm + $unnnic-line-height-medium;
-        margin-bottom: $unnnic-spacing-xs;
-      }
 
       &__form {
         display: flex;

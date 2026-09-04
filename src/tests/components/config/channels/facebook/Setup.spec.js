@@ -7,6 +7,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { app_type } from '@/stores/modules/appType/appType.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('axios');
 vi.mock('@/utils/plugins/fb', () => ({
@@ -29,6 +30,7 @@ describe('FacebookSetup.vue', () => {
     wrapper = mount(FacebookSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $router: { replace: vi.fn() },
         },
@@ -86,6 +88,7 @@ describe('FacebookSetup.vue', () => {
     wrapper = mount(FacebookSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $router: { replace: replaceMock },
         },
@@ -93,7 +96,7 @@ describe('FacebookSetup.vue', () => {
       props: { app: mockApp },
     });
     wrapper.vm.pageList = [{ id: '123', name: 'Test Page', access_token: 'mockAccessToken' }];
-    wrapper.vm.selectedPage = [{ value: '123' }];
+    wrapper.vm.selectedPage = '123';
     const spyCreateApp = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue();
     const spyUpdateAppConfig = vi.spyOn(wrapper.vm, 'updateAppConfig').mockResolvedValue();
 
@@ -118,7 +121,7 @@ describe('FacebookSetup.vue', () => {
     const spyCreateApp = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue();
 
     wrapper.vm.pageList = [{ id: '123', name: 'Test Page', access_token: 'mockAccessToken' }];
-    wrapper.vm.selectedPage = [{ value: '123' }];
+    wrapper.vm.selectedPage = '123';
 
     await wrapper.vm.createChannel();
     wrapper.vm.$nextTick();
