@@ -38,8 +38,9 @@ describe('Table.vue', () => {
     });
   });
 
-  it('should fetch data on creation', async () => {
-    const wrapper = mount(Table, {
+  it('should fetch data on creation', () => {
+    const spy = vi.spyOn(Table.methods, 'fetchData');
+    mount(Table, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
         mocks: {
@@ -47,9 +48,8 @@ describe('Table.vue', () => {
         },
       },
     });
-    const spy = vi.spyOn(wrapper.vm, 'fetchData').mockResolvedValue({});
-    await wrapper.vm.$nextTick();
     expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
   });
 
   it('should render the table items correctly', () => {
@@ -66,7 +66,7 @@ describe('Table.vue', () => {
   });
 
   it('should handle category selection change', async () => {
-    const categorySelect = wrapper.findComponent({ name: 'unnnic-select-smart' });
+    const categorySelect = wrapper.findComponent({ name: 'unnnic-select' });
     await categorySelect.vm.$emit('update:modelValue', 'MARKETING');
 
     expect(wrapper.vm.selectedCategory).toBe('MARKETING');

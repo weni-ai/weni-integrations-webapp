@@ -12,7 +12,7 @@
           format="MM-DD-YYYY"
         />
       </div>
-      <unnnic-select-smart
+      <unnnic-select
         class="whatsapp-templates-table__filters__category"
         v-model="selectedCategory"
         :options="categoryOptions"
@@ -269,7 +269,7 @@
         return { start: this.startDateObject, end: this.endDateObject };
       },
       filterState() {
-        return `${this.selectedCategory[0]?.value}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
+        return `${this.selectedCategory}-${this.startDate}-${this.endDate}-${this.searchTerm}-${this.nameSortDirection}-${this.dateSortDirection}`;
       },
     },
     methods: {
@@ -281,8 +281,8 @@
           page_size: this.pageSize,
         };
 
-        if (this.selectedCategory[0].value !== 'ANY') {
-          params.category = this.selectedCategory[0].value;
+        if (this.selectedCategory && this.selectedCategory !== 'ANY') {
+          params.category = this.selectedCategory;
         }
 
         if (this.startDate) {
@@ -459,7 +459,6 @@
           width: 260px;
           max-width: 300px;
 
-          
           :deep(.input) {
             padding: $unnnic-squish-xs;
             font-size: $unnnic-font-size-body-gt;
@@ -468,7 +467,6 @@
           :deep(.icon-left) {
             transform: translateY(30%);
           }
-        
         }
 
         &__label {

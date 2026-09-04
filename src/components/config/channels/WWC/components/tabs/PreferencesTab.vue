@@ -148,7 +148,7 @@
             :label="$t('weniWebChat.config.time_between_messages')"
             :message="$t('weniWebChat.config.time_between_messages_message')"
           >
-            <unnnic-select-smart
+            <unnnic-select
               :modelValue="timeBetweenMessagesValue"
               :options="timeBetweenMessagesOptions"
               :placeholder="$t('weniWebChat.config.time_between_messages_placeholder')"
@@ -247,12 +247,7 @@
     { label: t('weniWebChat.config.time_between_messages_option', { count: 4 }), value: '4' },
   ]);
 
-  const timeBetweenMessagesValue = computed(() => {
-    const option = timeBetweenMessagesOptions.value.find(
-      (opt) => parseInt(opt.value) === timeBetweenMessages.value,
-    );
-    return option ? [option] : [];
-  });
+  const timeBetweenMessagesValue = computed(() => String(timeBetweenMessages.value));
 
   const contactTimeoutError = computed(() => {
     if (!enableContactTimeout.value) return false;
@@ -263,7 +258,7 @@
 
   // Methods
   function handleTimeBetweenMessagesChange(value) {
-    timeBetweenMessages.value = parseInt(value[0]?.value) || 1;
+    timeBetweenMessages.value = parseInt(value) || 1;
   }
 
   // Watchers

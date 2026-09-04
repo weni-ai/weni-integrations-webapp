@@ -15,7 +15,13 @@
 
       <div v-if="input.type === 'select'">
         <unnnic-label :label="input.label && getValue(input, 'label')" />
-        <unnnic-select-smart ref="unnnic-select" :options="input.options" v-model="input.value" />
+        <unnnic-select
+          ref="unnnic-select"
+          :options="selectOptions(input)"
+          v-model="input.value"
+          :placeholder="input.placeholder && getValue(input, 'placeholder')"
+          @update:modelValue="(e) => emitInput(index, e)"
+        />
       </div>
       <div v-else-if="input.type === 'upload'">
         <unnnic-label :label="input.label && getValue(input, 'label')" />
@@ -61,15 +67,13 @@
     },
     methods: {
       emitInput(index, event) {
-        const type = this.inputs[index]?.type;
-        switch (type) {
-          case 'select':
-            this.$emit('input', { index, value: event[0] });
-            break;
-          default:
-            this.$emit('input', { index, value: event });
-            break;
-        }
+        this.$emit('input', { index, value: event });
+      },
+      selectOptions(input) {
+        return (input.options || []).map((option) => ({
+          value: option.value,
+          label: option.label || option.text,
+        }));
       },
       getType(input) {
         return input.error ? 'error' : 'normal';
@@ -90,11 +94,9 @@
       }
 
       &__input {
-        
         :deep(.unnnic-form__message) {
           color: $unnnic-color-fg-base;
         }
-      
       }
     }
   }
