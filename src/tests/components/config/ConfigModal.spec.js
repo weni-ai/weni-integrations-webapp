@@ -55,24 +55,10 @@ describe('ConfigModal.vue', () => {
     expect(wrapper.vm.isConfigured).toBe(true);
   });
 
-  it('closes the modal without confirmation when needConfirmation is false', async () => {
-    wrapper.vm.needConfirmation = false;
+  it('closes the modal', async () => {
+    await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
     await wrapper.vm.closeModal();
     expect(wrapper.vm.show).toBe(false);
-  });
-
-  it('shows confirmation modal when needConfirmation is true', async () => {
-    wrapper.vm.needConfirmation = true;
-    await wrapper.vm.closeModal();
-    expect(wrapper.vm.showConfirmationModal).toBe(true);
-  });
-
-  it('confirms closing the modal', async () => {
-    wrapper.vm.needConfirmation = true;
-    await wrapper.vm.closeModal();
-    await wrapper.vm.confirmClose();
-    expect(wrapper.vm.show).toBe(false);
-    expect(wrapper.vm.showConfirmationModal).toBe(false);
   });
 
   it('renders the correct component based on app type', async () => {
@@ -91,26 +77,10 @@ describe('ConfigModal.vue', () => {
     expect(wrapper.vm.currentComponent).toBe(wppConfig);
   });
 
-  it('toggles the confirmation modal', async () => {
-    await wrapper.vm.toggleConfirmationModal();
-    expect(wrapper.vm.showConfirmationModal).toBe(true);
-
-    await wrapper.vm.toggleConfirmationModal();
-    expect(wrapper.vm.showConfirmationModal).toBe(false);
-  });
-
   it('closes the drawer when onDrawerOpenChange receives false', async () => {
     await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
     wrapper.vm.onDrawerOpenChange(false);
     expect(wrapper.vm.show).toBe(false);
-  });
-
-  it('does not close the drawer when confirmation is required', async () => {
-    await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
-    wrapper.vm.needConfirmation = true;
-    wrapper.vm.onDrawerOpenChange(false);
-    expect(wrapper.vm.show).toBe(true);
-    expect(wrapper.vm.showConfirmationModal).toBe(true);
   });
 
   it('does not render a header icon for WhatsApp', async () => {
@@ -148,29 +118,10 @@ describe('ConfigModal.vue', () => {
     expect(wrapper.vm.headerTitle).toBe('Telegram');
   });
 
-  it('setConfirmation value', async () => {
-    await wrapper.vm.setConfirmation(true);
-    expect(wrapper.vm.needConfirmation).toBe(true);
-  });
-
   describe('close event', () => {
-    it('emits close when closeModal is called and needConfirmation is false', async () => {
+    it('emits close when closeModal is called', async () => {
       await wrapper.vm.openModal({ app: { code: 'wpp' }, isConfigured: true });
-      wrapper.vm.needConfirmation = false;
       await wrapper.vm.closeModal();
-      expect(wrapper.emitted('close')).toHaveLength(1);
-    });
-
-    it('does not emit close when closeModal is called and needConfirmation is true', async () => {
-      wrapper.vm.needConfirmation = true;
-      await wrapper.vm.closeModal();
-      expect(wrapper.emitted('close')).toBeFalsy();
-    });
-
-    it('emits close when confirmClose is called', async () => {
-      wrapper.vm.needConfirmation = true;
-      await wrapper.vm.closeModal();
-      await wrapper.vm.confirmClose();
       expect(wrapper.emitted('close')).toHaveLength(1);
     });
   });
