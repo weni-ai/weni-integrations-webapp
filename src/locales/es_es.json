@@ -151,12 +151,7 @@
       "save_changes": "Guardar cambios",
       "cancel": "Cancelar",
       "validate": "Validar",
-      "copy": "Copiar",
-      "confirmation": {
-        "title": "Descartar cambios",
-        "description": "¿Realmente deseas descartar los cambios? Perderás cualquier contenido no guardado.",
-        "goBackToConfig": "Volver a la configuración"
-      }
+      "copy": "Copiar"
     }
   },
   "upload_area": {

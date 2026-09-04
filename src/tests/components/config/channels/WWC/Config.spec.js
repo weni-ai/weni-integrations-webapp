@@ -164,42 +164,40 @@ describe('wwcConfig Component', () => {
   });
 
   describe('config updates', () => {
-    it('should emit setConfirmation when AppearanceTab emits update:title', async () => {
+    it('should update title when AppearanceTab emits update:title', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:title', 'New Title');
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      expect(wrapper.emitted().setConfirmation[0]).toEqual([true]);
+      expect(wrapper.vm.config.title).toBe('New Title');
     });
 
-    it('should emit setConfirmation when AppearanceTab emits update:subtitle', async () => {
+    it('should update subtitle when AppearanceTab emits update:subtitle', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:subtitle', 'New Subtitle');
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.subtitle).toBe('New Subtitle');
     });
 
-    it('should emit setConfirmation when AppearanceTab emits update:mainColor', async () => {
+    it('should update mainColor when AppearanceTab emits update:mainColor', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:mainColor', '#FF0000');
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.mainColor).toBe('#FF0000');
     });
 
-    it('should emit setConfirmation when PreferencesTab emits update:embedded', async () => {
+    it('should update embedded when PreferencesTab emits update:embedded', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:embedded', true);
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.embedded).toBe(true);
     });
 
-    it('should emit setConfirmation when PreferencesTab emits update:displayUnreadCount', async () => {
+    it('should update displayUnreadCount when PreferencesTab emits update:displayUnreadCount', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:displayUnreadCount', false);
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.displayUnreadCount).toBe(false);
     });
 
-    it('should emit setConfirmation when PreferencesTab emits update:conversationStartersPDP', async () => {
+    it('should update conversationStartersPDP when PreferencesTab emits update:conversationStartersPDP', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:conversationStartersPDP', true);
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      expect(wrapper.emitted().setConfirmation[0]).toEqual([true]);
+      expect(wrapper.vm.config.conversationStartersPDP).toBe(true);
     });
   });
 
@@ -461,21 +459,6 @@ describe('wwcConfig Component', () => {
       },
     );
 
-    it('should emit setConfirmation false on successful save', async () => {
-      vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
-      vi.spyOn(store, 'getApp').mockResolvedValue();
-      store.currentApp = { config: { title: 'Test Title' } };
-
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('save');
-      await flushPromises();
-
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      const lastEmission =
-        wrapper.emitted().setConfirmation[wrapper.emitted().setConfirmation.length - 1];
-      expect(lastEmission).toEqual([false]);
-    });
-
     it('should trigger save flow when save event emitted', async () => {
       // Create wrapper with valid title
       wrapper = createWrapper();
@@ -598,24 +581,24 @@ describe('wwcConfig Component', () => {
   });
 
   describe('config state management', () => {
-    it('should emit setConfirmation when config updates are received', async () => {
+    it('should update config when appearance updates are received', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
 
       await appearanceTab.vm.$emit('update:title', 'Updated Title');
       await appearanceTab.vm.$emit('update:mainColor', '#FF0000');
       await appearanceTab.vm.$emit('update:subtitle', 'Updated Subtitle');
 
-      // Verify setConfirmation was emitted
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      expect(wrapper.emitted().setConfirmation.length).toBeGreaterThanOrEqual(3);
+      expect(wrapper.vm.config.title).toBe('Updated Title');
+      expect(wrapper.vm.config.mainColor).toBe('#FF0000');
+      expect(wrapper.vm.config.subtitle).toBe('Updated Subtitle');
     });
 
-    it('should emit setConfirmation when preference updates are received', async () => {
+    it('should update config when preference updates are received', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
 
       await preferencesTab.vm.$emit('update:displayUnreadCount', false);
 
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.displayUnreadCount).toBe(false);
     });
   });
 });
