@@ -145,7 +145,7 @@
     "config": {
       "first_integration_success": "To download the code and use it on your site, go to the Script Code tab.",
       "integration_success": "App installed successfully",
-      "copy_error": "Couldn't copy the number",
+      "copy_error": "Couldn't copy number",
       "copy_success": "Copied successfully",
       "configure_later": "Configure later",
       "save_changes": "Save changes",
