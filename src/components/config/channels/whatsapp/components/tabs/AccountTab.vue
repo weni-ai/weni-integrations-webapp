@@ -25,7 +25,7 @@
         <UnnnicSwitch
           v-model="voiceCallingEnabled"
           :textRight="$t('WhatsApp.config.account.config.voice_calling.label')"
-          @update:model-value="handleVoiceCallingChange"
+          @update:modelValue="handleVoiceCallingChange"
         />
       </section>
 
@@ -36,8 +36,8 @@
 
         <section class="account-tab__content__templates__buttons">
           <UnnnicButton
-            type="secondary"
             @click="navigateToTemplates"
+            type="secondary"
           >
             {{ $t('WhatsApp.config.templates.button') }}
           </UnnnicButton>
@@ -45,8 +45,8 @@
           <UnnnicButton
             v-if="hasCatalog || hasVtexCatalogConnected"
             ref="catalogButton"
-            type="secondary"
             @click="handleCatalogButtonClick"
+            type="secondary"
           >
             {{ $t('WhatsApp.config.catalog.button') }}
           </UnnnicButton>
@@ -105,11 +105,11 @@
         <UnnnicButton
           v-if="!activeMMLite"
           class="account-tab__content__mmlite__button"
+          @click="enableMMLite"
           :loading="loadingMMLite"
           :disabled="inProgressMMLite"
           type="secondary"
           size="small"
-          @click="enableMMLite"
         >
           <template v-if="mmliteStatus === 'in_progress'">
             {{ $t('WhatsApp.config.mmlite.button_updating') }}
@@ -128,27 +128,60 @@
       </div>
     </div>
 
-    <UnnnicModal
-      v-if="showCreateCatalogModal || showConnectCatalogModal"
+    <UnnnicDialog
       class="catalog-modal"
-      :closeIcon="false"
-      @close="showCreateCatalogModal = false"
-      @click.stop
+      :open="showCreateCatalogModal || showConnectCatalogModal"
+      @update:open="handleCatalogDialogOpenUpdate"
     >
-      <CreateCatalogModalContent
-        v-if="showCreateCatalogModal"
-        ref="createCatalogModalContent"
-        @close-modal="showCreateCatalogModal = false"
-        @create-catalog="handleCatalogCreateModalContinue"
-      />
+      <UnnnicDialogContent
+        size="large"
+        @interact-outside.prevent
+      >
+        <UnnnicDialogHeader :close-button="false">
+          <UnnnicDialogTitle>
+            {{
+              showCreateCatalogModal
+                ? $t('whatsapp.create_catalog.title')
+                : $t('vtex.connect_catalog.title')
+            }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
 
-      <ConnectCatalogModalContent
-        v-if="showConnectCatalogModal"
-        :loading="loadingConnectVtexCatalog"
-        @close-modal="showConnectCatalogModal = false"
-        @connect-catalog="handleCatalogConnect"
-      />
-    </UnnnicModal>
+        <CreateCatalogModalContent
+          ref="createCatalogModalContent"
+          v-if="showCreateCatalogModal"
+          @closeModal="showCreateCatalogModal = false"
+          @createCatalog="handleCatalogCreateModalContinue"
+        />
+
+        <ConnectCatalogModalContent
+          v-if="showConnectCatalogModal"
+          ref="connectCatalogModalContent"
+          :loading="loadingConnectVtexCatalog"
+          @closeModal="showConnectCatalogModal = false"
+          @connectCatalog="handleCatalogConnect"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicButton
+            type="tertiary"
+            :text="$t('general.Cancel')"
+            @click="closeCatalogDialog"
+          />
+          <UnnnicButton
+            v-if="showCreateCatalogModal"
+            :text="$t('general.continue')"
+            @click="submitCreateCatalog"
+          />
+          <UnnnicButton
+            v-else
+            :text="$t('general.continue')"
+            :loading="loadingConnectVtexCatalog"
+            @click="submitConnectCatalog"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
@@ -181,6 +214,14 @@ export default {
       default: false,
     },
   },
+  async mounted() {
+    this.voiceCallingEnabled = this.appInfo?.config?.has_calling === true;
+
+    window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
+    window.setMMLiteToInProgress = this.setMMLiteToInProgress;
+
+    await this.fetchVtexApp();
+  },
   data() {
     return {
       voiceCallingEnabled: false,
@@ -190,14 +231,6 @@ export default {
       vtexApp: null,
       localMMLiteStatus: null,
     };
-  },
-  async mounted() {
-    this.voiceCallingEnabled = this.appInfo?.config?.has_calling === true;
-
-    window.changeMMLiteLoadingState = this.changeMMLiteLoadingState;
-    window.setMMLiteToInProgress = this.setMMLiteToInProgress;
-
-    await this.fetchVtexApp();
   },
   methods: {
     ...mapActions(my_apps, ['getConfiguredApps']),
@@ -233,6 +266,21 @@ export default {
     handleCatalogButtonClick() {
       const { code, uuid } = this.appInfo;
       this.$router.push({ path: `/apps/my/${code}/${uuid}/catalogs` });
+    },
+    handleCatalogDialogOpenUpdate(open) {
+      if (!open) {
+        this.closeCatalogDialog();
+      }
+    },
+    closeCatalogDialog() {
+      this.showCreateCatalogModal = false;
+      this.showConnectCatalogModal = false;
+    },
+    submitCreateCatalog() {
+      this.$refs.createCatalogModalContent?.createCatalog();
+    },
+    submitConnectCatalog() {
+      this.$refs.connectCatalogModalContent?.connectCatalog();
     },
     handleCatalogCreateModalContinue(type) {
       if (type === 'vtex') {
@@ -684,13 +732,6 @@ export default {
 
   &__close-button {
     margin-top: $unnnic-spacing-stack-lg;
-  }
-}
-
-.catalog-modal {
-  :deep(.unnnic-modal-container-background) {
-    width: 750px;
-    max-width: 90%;
   }
 }
 </style>

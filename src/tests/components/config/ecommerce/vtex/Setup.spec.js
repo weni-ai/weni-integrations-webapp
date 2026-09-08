@@ -8,6 +8,7 @@ import { setActivePinia } from 'pinia';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import StepIndicator from '@/components/StepIndicator.vue';
 import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('vue-i18n', async (importOriginal) => {
   const actual = await importOriginal();
@@ -39,6 +40,7 @@ describe('VtexModal.vue', () => {
       },
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           StepIndicator,
           unnnic,

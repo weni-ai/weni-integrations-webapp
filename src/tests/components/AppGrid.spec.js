@@ -123,12 +123,30 @@ describe('AppGrid', () => {
 
       it('calls configModal.openModal when type is "config"', async () => {
         pushMock.mockClear();
-        const w = mountForOpenAppModal('config');
+        const openModalSpy = vi.fn();
+        const w = mount(AppGrid, {
+          props: {
+            section: 'configured',
+            type: 'config',
+            apps: [configuredApp],
+          },
+          global: {
+            plugins: [pinia, i18n],
+            stubs: {
+              ConfigModal: {
+                name: 'ConfigModal',
+                template: '<div />',
+                methods: {
+                  openModal: openModalSpy,
+                },
+              },
+            },
+            mocks: {
+              $router: { push: pushMock },
+            },
+          },
+        });
         await w.vm.$nextTick();
-
-        const openModalSpy = vi
-          .spyOn(w.vm.$refs.configModal, 'openModal')
-          .mockImplementation(() => {});
 
         await w.vm.openAppModal(configuredApp);
 

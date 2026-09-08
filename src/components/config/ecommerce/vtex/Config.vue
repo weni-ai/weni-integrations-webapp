@@ -59,10 +59,10 @@
         <div class="config-vtex__settings__content__vtexADS">
           <UnnnicSwitch
             :modelValue="vtexADS"
-            @update:model-value="updateVtexADS"
+            @update:modelValue="updateVtexADS"
           />
           <p>Vtex ADS</p>
-          <UnnnicToolTip
+          <unnnicToolTip
             side="top"
             :text="$t('vtex.config.vtexADS')"
             enabled
@@ -72,11 +72,11 @@
               src="../../../../assets/svgs/info.svg"
               alt=""
             />
-          </UnnnicToolTip>
+          </unnnicToolTip>
         </div>
         <div
-          v-if="hasConnectedCatalog"
           class="config-vtex__settings__content__sellers"
+          v-if="hasConnectedCatalog"
         >
           <span class="config-vtex__settings__content__sellers__label">
             {{ $t('vtex.config.sellers') }}
@@ -87,14 +87,12 @@
             :options="sellerOptions"
             :modelValue="selectedSellers"
             :placeholder="$t('vtex.config.placeholder.sellers')"
-            multiple
-            :selectFirst="false"
             :disabled="disableSellers"
             @update:model-value="handleSelectSellers"
           />
           <div
-            v-if="disableSellers"
             class="config-vtex__settings__content__sellers__alert"
+            v-if="disableSellers"
           >
             <UnnnicIcon
               class="config-vtex__settings__content__sellers__alert__icon"
@@ -127,19 +125,40 @@
       />
     </section>
 
-    <UnnnicModal
-      v-if="showConnectModal"
+    <UnnnicDialog
       class="connect-modal"
-      :closeIcon="false"
-      @close="showConnectModal = false"
-      @click.stop
+      :open="showConnectModal"
+      @update:open="handleConnectModalOpenUpdate"
     >
-      <ConnectCatalogModalContent
-        ref="connectCatalogModalContent"
-        @close-modal="showConnectModal = false"
-        @connect-catalog="connectCatalog"
-      />
-    </UnnnicModal>
+      <UnnnicDialogContent
+        size="large"
+        @interact-outside.prevent
+      >
+        <UnnnicDialogHeader :close-button="false">
+          <UnnnicDialogTitle>
+            {{ $t('vtex.connect_catalog.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <ConnectCatalogModalContent
+          ref="connectCatalogModalContent"
+          @closeModal="showConnectModal = false"
+          @connectCatalog="connectCatalog"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicButton
+            type="tertiary"
+            :text="$t('general.Cancel')"
+            @click="showConnectModal = false"
+          />
+          <UnnnicButton
+            :text="$t('general.continue')"
+            @click="submitConnectCatalog"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
@@ -154,7 +173,7 @@ import { my_apps } from '@/stores/modules/myApps.store';
 import i18n from '@/utils/plugins/i18n';
 
 export default {
-  name: 'VtexConfig',
+  name: 'vtex-config',
   components: { ConnectCatalogModalContent },
   props: {
     app: {
@@ -244,6 +263,14 @@ export default {
       'getADS',
       'checkSyncSellers',
     ]),
+    handleConnectModalOpenUpdate(open) {
+      if (!open) {
+        this.showConnectModal = false;
+      }
+    },
+    submitConnectCatalog() {
+      this.$refs.connectCatalogModalContent?.connectCatalog();
+    },
     async connectCatalog(eventData) {
       const data = {
         code: 'wpp-cloud',
@@ -526,13 +553,6 @@ export default {
     &__save {
       flex-grow: 1;
     }
-  }
-}
-
-.connect-modal {
-  :deep(.unnnic-modal-container-background) {
-    width: 750px;
-    max-width: 90%;
   }
 }
 </style>

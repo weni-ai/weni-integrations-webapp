@@ -25,21 +25,21 @@
 
       <div class="app-grid__content">
         <UnnnicCard
-          v-for="(app, index) in currentGridApps"
-          :id="app.id"
           ref="unnnic-marketplace-card"
-          :key="index"
           :class="[
             'app-grid__content__item',
             {
               'app-grid__content__item--generic': app.generic && type === 'add',
             },
           ]"
+          v-for="(app, index) in currentGridApps"
+          v-bind:key="index"
           type="marketplace"
           :title="appName(app)"
           :description="
             app.generic ? $t(`${getTranslation(app)}`) : $t(app.summary)
           "
+          :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
           :iconSrc="appIcon(app)"
@@ -50,12 +50,12 @@
             (!app.generic && app.code !== 'email' && app.code !== 'gmail') ||
             (type !== 'add' && app.code !== 'gmail')
           "
-          @open-modal="openAppModal(app)"
+          @openModal="openAppModal(app)"
         >
           <template #actions>
             <IntegrateButton
-              v-if="type === 'add'"
               :ref="`integrate-button-${app.code}`"
+              v-if="type === 'add'"
               :app="app"
               :icon="action"
               :disabled="!app.generic && !app.can_add"
@@ -85,9 +85,9 @@
               </UnnnicDropdownItem>
               <UnnnicDropdownItem
                 v-if="!['wpp', 'gmail'].includes(app.code)"
+                class="app-grid__content__item__button--details"
                 id="openAppDetails"
                 ref="openAppDetails"
-                class="app-grid__content__item__button--details"
                 @click="openAppDetails(app.code)"
               >
                 <UnnnicIconSvg
@@ -134,43 +134,51 @@
         <UnnnicPagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
           :modelValue="currentPage"
+          @update:modelValue="onPageChange"
           :max="maxGridPages"
           :show="6"
-          @update:model-value="onPageChange"
         />
       </div>
     </section>
     <SkeletonLoading v-else />
 
-    <UnnnicModal
+    <UnnnicDialog
       ref="unnnic-remove-modal"
-      :showModal="showRemoveModal"
-      :text="$t('apps.details.actions.remove.title')"
-      scheme="feedback-red"
-      modalIcon="alert-circle-1"
-      @close="toggleRemoveModal"
+      class="app-grid-remove-dialog"
+      :open="showRemoveModal"
+      @update:open="handleRemoveModalOpenUpdate"
     >
-      <template #message>
-        <span v-html="$t('apps.details.actions.remove.description')"></span>
-      </template>
-      <template #options>
-        <UnnnicButton
-          ref="unnnic-remove-modal-close-button"
-          type="tertiary"
-          @click="toggleRemoveModal"
-          >{{ $t('general.Cancel') }}</UnnnicButton
-        >
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="warning">
+          <UnnnicDialogTitle>
+            {{ $t('apps.details.actions.remove.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
 
-        <LoadingButton
-          ref="unnnic-remove-modal-navigate-button"
-          type="primary"
-          :isLoading="loadingDeleteApp"
-          :loadingText="$t('general.loading')"
-          :text="$t('apps.details.actions.remove.remove')"
-          @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
+        <section
+          class="app-grid-remove-dialog__description"
+          v-html="$t('apps.details.actions.remove.description')"
         />
-      </template>
-    </UnnnicModal>
+
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              ref="unnnic-remove-modal-close-button"
+              type="tertiary"
+              :text="$t('general.Cancel')"
+            />
+          </UnnnicDialogClose>
+          <LoadingButton
+            ref="unnnic-remove-modal-navigate-button"
+            type="primary"
+            :isLoading="loadingDeleteApp"
+            :loadingText="$t('general.loading')"
+            :text="$t('apps.details.actions.remove.remove')"
+            @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
 
     <ConfigModal ref="configModal" />
   </div>
@@ -178,8 +186,8 @@
 
 <script>
 import unnnic from '@weni/unnnic-system';
-import ConfigModal from '../config/ConfigModal.vue';
-import SkeletonLoading from '../loadings/AppGrid.vue';
+import configModal from '../config/ConfigModal.vue';
+import skeletonLoading from '../loadings/AppGrid.vue';
 import IntegrateButton from '../IntegrateButton/index.vue';
 import LoadingButton from '../LoadingButton/index.vue';
 import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
@@ -189,7 +197,7 @@ import { storeToRefs } from 'pinia';
 import { getAppDisplayName } from '@/utils/apps';
 export default {
   name: 'AppGrid',
-  components: { ConfigModal, IntegrateButton, LoadingButton, SkeletonLoading },
+  components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
   props: {
     section: {
       type: String,
@@ -276,6 +284,11 @@ export default {
   },
   methods: {
     ...mapActions(app_type, ['deleteApp', 'setAppUuid']),
+    handleRemoveModalOpenUpdate(open) {
+      if (!open) {
+        this.showRemoveModal = false;
+      }
+    },
     toggleRemoveModal(app = null) {
       this.currentRemoval = app;
       this.showRemoveModal = !this.showRemoveModal;
@@ -401,4 +414,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../styles/grid.scss';
+
+.app-grid-remove-dialog {
+  &__description {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+  }
+}
 </style>

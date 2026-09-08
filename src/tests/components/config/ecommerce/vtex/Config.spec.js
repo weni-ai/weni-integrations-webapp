@@ -111,11 +111,13 @@ describe('vtex-config Component', () => {
   });
 
   it('should disable save button when no sellers are selected', () => {
+    wrapper.vm.selectedSellers = [];
+    wrapper.vm.disableVtexADS = true;
     expect(wrapper.vm.disableSave).toBe(true);
   });
 
   it('should allow saving when sellers are selected', async () => {
-    wrapper.vm.selectedSellers = [{ value: 'Seller 1' }];
+    wrapper.vm.selectedSellers = ['Seller 1'];
     await wrapper.vm.$nextTick();
 
     expect(wrapper.vm.disableSave).toBe(false);

@@ -7,6 +7,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { app_type } from '@/stores/modules/appType/appType.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('axios');
 vi.mock('@/utils/plugins/fb', () => ({
@@ -29,6 +30,7 @@ describe('FacebookSetup.vue', () => {
     wrapper = mount(FacebookSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $router: { replace: vi.fn() },
         },
@@ -90,6 +92,7 @@ describe('FacebookSetup.vue', () => {
     wrapper = mount(FacebookSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $router: { replace: replaceMock },
         },

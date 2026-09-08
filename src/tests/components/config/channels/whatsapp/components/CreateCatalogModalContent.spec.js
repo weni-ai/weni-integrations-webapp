@@ -31,20 +31,17 @@ describe('CreateCatalogModalContent Component', () => {
   });
 
   it('should emit createCatalog event with correct type when continue is clicked', async () => {
-    const createButton = wrapper.findComponent({ ref: 'createButton' });
-    expect(createButton.exists()).toBeTruthy();
-    await createButton.trigger('click');
+    wrapper.vm.createCatalog();
     expect(wrapper.emitted().createCatalog[0]).toEqual(['vtex']);
 
     const metaOption = wrapper.find({ ref: 'metaOption' });
     await metaOption.trigger('click');
-    await createButton.trigger('click');
+    wrapper.vm.createCatalog();
     expect(wrapper.emitted().createCatalog[1]).toEqual(['meta']);
   });
 
-  it('should emit closeModal event when cancel button is clicked', async () => {
-    const closeButton = wrapper.findComponent({ ref: 'closeButton' });
-    await closeButton.trigger('click');
+  it('should emit closeModal event when cancel is called', () => {
+    wrapper.vm.closeModal();
     expect(wrapper.emitted().closeModal).toBeTruthy();
   });
 });

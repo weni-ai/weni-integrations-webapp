@@ -1,33 +1,39 @@
 <template>
-  <UnnnicModal
+  <UnnnicDialog
     ref="unnnic-add-modal"
     class="add-modal"
-    :showModal="showAddModal"
-    :text="$t('apps.details.actions.installed.title')"
-    scheme="feedback-green"
-    modalIcon="check-circle-1-1"
-    @close="toggleModal"
-    @click.stop
+    :open="showAddModal"
+    @update:open="handleOpenUpdate"
   >
-    <template #message>
-      <span v-html="$t('apps.details.actions.installed.description')"></span>
-    </template>
-    <template #options>
-      <UnnnicButton
-        ref="unnnic-add-modal-close-button"
-        type="tertiary"
-        @click.stop="toggleModal"
-        >{{ $t('general.Close') }}</UnnnicButton
-      >
-      <UnnnicButton
-        ref="unnnic-add-modal-navigate-button"
-        type="primary"
-        @click="navigateToMyApps"
-      >
-        {{ $t('apps.details.actions.installed.access_my_apps') }}
-      </UnnnicButton>
-    </template>
-  </UnnnicModal>
+    <UnnnicDialogContent size="medium">
+      <UnnnicDialogHeader type="success">
+        <UnnnicDialogTitle>
+          {{ $t('apps.details.actions.installed.title') }}
+        </UnnnicDialogTitle>
+      </UnnnicDialogHeader>
+
+      <section
+        class="add-modal__description"
+        v-html="$t('apps.details.actions.installed.description')"
+      />
+
+      <UnnnicDialogFooter>
+        <UnnnicDialogClose>
+          <UnnnicButton
+            ref="unnnic-add-modal-close-button"
+            type="tertiary"
+            :text="$t('general.Close')"
+          />
+        </UnnnicDialogClose>
+        <UnnnicButton
+          ref="unnnic-add-modal-navigate-button"
+          type="primary"
+          :text="$t('apps.details.actions.installed.access_my_apps')"
+          @click="navigateToMyApps"
+        />
+      </UnnnicDialogFooter>
+    </UnnnicDialogContent>
+  </UnnnicDialog>
 </template>
 
 <script>
@@ -39,6 +45,11 @@ export default {
     };
   },
   methods: {
+    handleOpenUpdate(open) {
+      if (!open) {
+        this.showAddModal = false;
+      }
+    },
     toggleModal() {
       this.showAddModal = !this.showAddModal;
     },
@@ -50,5 +61,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './styles.scss';
+.add-modal {
+  &__description {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+  }
+}
 </style>

@@ -3,8 +3,8 @@
     <UnnnicDrawerNext
       v-if="show"
       :open="show"
-      size="large"
       @update:open="onDrawerOpenChange"
+      size="large"
     >
       <UnnnicDrawerContent size="large">
         <UnnnicDrawerHeader>
@@ -22,45 +22,52 @@
         </UnnnicDrawerHeader>
         <div class="config-drawer__body">
           <component
-            :is="currentComponent"
             class="config-drawer__component"
+            :is="currentComponent"
             :app="currentApp"
             :isConfigured="isConfigured"
-            @close-modal="closeModal"
-            @set-confirmation="setConfirmation"
+            @closeModal="closeModal"
+            @setConfirmation="setConfirmation"
           />
         </div>
       </UnnnicDrawerContent>
     </UnnnicDrawerNext>
 
-    <UnnnicModal
+    <UnnnicDialog
       ref="unnnic-confirmation-modal"
-      :showModal="showConfirmationModal"
-      :text="$t('apps.config.confirmation.title')"
-      scheme="feedback-yellow"
-      modalIcon="alert-circle-1"
-      @close="toggleConfirmationModal"
+      class="config-confirmation-dialog"
+      :open="showConfirmationModal"
+      @update:open="handleConfirmationOpenUpdate"
     >
-      <template #message>
-        <span v-html="$t('apps.config.confirmation.description')"></span>
-      </template>
-      <template #options>
-        <UnnnicButton
-          ref="unnnic-remove-modal-close-button"
-          type="tertiary"
-          @click="toggleConfirmationModal"
-        >
-          {{ $t('apps.config.confirmation.goBackToConfig') }}
-        </UnnnicButton>
-        <UnnnicButton
-          ref="unnnic-remove-modal-navigate-button"
-          type="primary"
-          @click="confirmClose()"
-        >
-          {{ $t('general.confirm') }}
-        </UnnnicButton>
-      </template>
-    </UnnnicModal>
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="attention">
+          <UnnnicDialogTitle>
+            {{ $t('apps.config.confirmation.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <section
+          class="config-confirmation-dialog__description"
+          v-html="$t('apps.config.confirmation.description')"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              ref="unnnic-remove-modal-close-button"
+              type="tertiary"
+              :text="$t('apps.config.confirmation.goBackToConfig')"
+            />
+          </UnnnicDialogClose>
+          <UnnnicButton
+            ref="unnnic-remove-modal-navigate-button"
+            type="primary"
+            :text="$t('general.confirm')"
+            @click="confirmClose()"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
@@ -95,7 +102,6 @@ export default {
     UnnnicDrawerHeader,
     UnnnicDrawerTitle,
   },
-  emits: ['close'],
   data() {
     return {
       show: false,
@@ -119,32 +125,7 @@ export default {
       }),
     };
   },
-  computed: {
-    currentComponent() {
-      return this.componentMapping[this.type] || genericTypeConfig;
-    },
-    isGenericApp() {
-      return !this.componentMapping[this.type];
-    },
-    showHeaderIcon() {
-      if (CODES_WITHOUT_HEADER_ICON.includes(this.type)) {
-        return false;
-      }
-      return Boolean(this.headerIcon);
-    },
-    headerIcon() {
-      if (this.isGenericApp) {
-        return this.currentApp.config?.channel_icon_url;
-      }
-      return this.currentApp.icon;
-    },
-    headerTitle() {
-      if (this.isGenericApp) {
-        return this.currentApp.config?.channel_name || this.currentApp.name;
-      }
-      return getAppDisplayName(this.currentApp, this.$t.bind(this));
-    },
-  },
+  emits: ['close'],
   methods: {
     onDrawerOpenChange(open) {
       if (open) {
@@ -170,6 +151,11 @@ export default {
     setConfirmation(value) {
       this.needConfirmation = value;
     },
+    handleConfirmationOpenUpdate(open) {
+      if (!open) {
+        this.showConfirmationModal = false;
+      }
+    },
     toggleConfirmationModal() {
       this.showConfirmationModal = !this.showConfirmationModal;
     },
@@ -178,6 +164,32 @@ export default {
       this.showConfirmationModal = false;
       this.show = false;
       this.$emit('close');
+    },
+  },
+  computed: {
+    currentComponent() {
+      return this.componentMapping[this.type] || genericTypeConfig;
+    },
+    isGenericApp() {
+      return !this.componentMapping[this.type];
+    },
+    showHeaderIcon() {
+      if (CODES_WITHOUT_HEADER_ICON.includes(this.type)) {
+        return false;
+      }
+      return Boolean(this.headerIcon);
+    },
+    headerIcon() {
+      if (this.isGenericApp) {
+        return this.currentApp.config?.channel_icon_url;
+      }
+      return this.currentApp.icon;
+    },
+    headerTitle() {
+      if (this.isGenericApp) {
+        return this.currentApp.config?.channel_name || this.currentApp.name;
+      }
+      return getAppDisplayName(this.currentApp, this.$t.bind(this));
     },
   },
 };
@@ -207,6 +219,13 @@ export default {
 
   &__component {
     height: 100%;
+  }
+}
+
+.config-confirmation-dialog {
+  &__description {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
   }
 }
 </style>
