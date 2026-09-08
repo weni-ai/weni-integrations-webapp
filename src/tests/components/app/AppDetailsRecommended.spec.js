@@ -44,14 +44,18 @@ describe('AppDetailsRecommended.vue', () => {
   });
 
   it('changes recommended app when clicking next button', async () => {
-    const nextButton = wrapper.find('.app-details-recommended__header__buttons__next');
+    const nextButton = wrapper.find(
+      '.app-details-recommended__header__buttons__next',
+    );
     await nextButton.trigger('click');
     expect(wrapper.vm.currentRecommendedIndex).toBe(1); // Next app should be Gmail
   });
 
   it('changes recommended app when clicking prev button', async () => {
     await wrapper.setData({ currentRecommendedIndex: 1 }); // Set to Gmail
-    const prevButton = wrapper.find('.app-details-recommended__header__buttons__prev');
+    const prevButton = wrapper.find(
+      '.app-details-recommended__header__buttons__prev',
+    );
     await prevButton.trigger('click');
     expect(wrapper.vm.currentRecommendedIndex).toBe(0); // Previous app should be Slack
   });

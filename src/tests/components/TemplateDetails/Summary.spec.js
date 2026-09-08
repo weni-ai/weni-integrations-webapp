@@ -39,15 +39,23 @@ describe('Summary.vue', () => {
 
   it('renders the main and subtitle titles correctly', () => {
     const mainTitle = wrapper.find('.whatsapp_template_summary__title__main');
-    const subtitle = wrapper.find('.whatsapp_template_summary__title__subtitle');
+    const subtitle = wrapper.find(
+      '.whatsapp_template_summary__title__subtitle',
+    );
     expect(mainTitle.text()).toBe('Performance overview');
     expect(subtitle.text()).toBe('last 7 days');
   });
 
   it('displays the correct week values in the summary cards', () => {
-    const sentMessages = wrapper.findAll('.whatsapp_template_summary__main__card__value')[0];
-    const deliveredMessages = wrapper.findAll('.whatsapp_template_summary__main__card__value')[1];
-    const readMessages = wrapper.findAll('.whatsapp_template_summary__main__card__value')[2];
+    const sentMessages = wrapper.findAll(
+      '.whatsapp_template_summary__main__card__value',
+    )[0];
+    const deliveredMessages = wrapper.findAll(
+      '.whatsapp_template_summary__main__card__value',
+    )[1];
+    const readMessages = wrapper.findAll(
+      '.whatsapp_template_summary__main__card__value',
+    )[2];
 
     expect(sentMessages.text()).toBe('0');
     expect(deliveredMessages.text()).toBe('0');
@@ -55,7 +63,10 @@ describe('Summary.vue', () => {
   });
 
   it('calls fetchTemplateAnalyticsWeek on mount', async () => {
-    const fetchTemplateAnalyticsWeekSpy = vi.spyOn(Summary.methods, 'fetchTemplateAnalyticsWeek');
+    const fetchTemplateAnalyticsWeekSpy = vi.spyOn(
+      Summary.methods,
+      'fetchTemplateAnalyticsWeek',
+    );
     wrapper = mount(Summary, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
@@ -77,7 +88,9 @@ describe('Summary.vue', () => {
     expect(getTemplateAnalyticsSpy).toHaveBeenCalledWith({
       app_uuid: wrapper.vm.appUuid,
       filters: {
-        start: wrapper.vm.formatDate(new Date(Date.now() - wrapper.vm.sevenDays)),
+        start: wrapper.vm.formatDate(
+          new Date(Date.now() - wrapper.vm.sevenDays),
+        ),
         end: wrapper.vm.formatDate(new Date()),
         fba_template_ids: wrapper.vm.selectedTemplate.translations?.map(
           (item) => item.message_template_id,

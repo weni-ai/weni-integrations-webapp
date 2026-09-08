@@ -26,13 +26,13 @@ describe('PreferencesTab', () => {
       global: {
         plugins: [i18n, UnnnicSystem],
         stubs: {
-          'unnnic-switch': true,
-          'unnnic-button': true,
-          'unnnic-input': true,
-          'unnnic-toolTip': true,
-          'unnnic-icon-svg': true,
-          'unnnic-form-element': true,
-          'unnnic-select-smart': true,
+          UnnnicSwitch: true,
+          UnnnicButton: true,
+          UnnnicInput: true,
+          UnnnicToolTip: true,
+          UnnnicIconSvg: true,
+          UnnnicFormElement: true,
+          UnnnicSelectSmart: true,
         },
       },
       props: { ...defaultProps, ...props },
@@ -91,7 +91,9 @@ describe('PreferencesTab', () => {
     });
 
     it('should render contact timeout section', () => {
-      expect(wrapper.find('.preferences-tab__contact-timeout').exists()).toBe(true);
+      expect(wrapper.find('.preferences-tab__contact-timeout').exists()).toBe(
+        true,
+      );
     });
 
     it('should render contact timeout tooltip', () => {
@@ -328,7 +330,9 @@ describe('PreferencesTab', () => {
 
   describe('contact timeout header', () => {
     it('should render contact timeout header', () => {
-      expect(wrapper.find('.preferences-tab__contact-timeout-header').exists()).toBe(true);
+      expect(
+        wrapper.find('.preferences-tab__contact-timeout-header').exists(),
+      ).toBe(true);
     });
   });
 

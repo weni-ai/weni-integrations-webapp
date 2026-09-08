@@ -1,21 +1,24 @@
 import { mount } from '@vue/test-utils';
 import ConnectCatalogModalContent from '@/components/config/ecommerce/vtex/ConnectCatalogModalContent.vue';
-import UnnnicSystem from '@weni/unnnic-system';
+import { UnnnicInput } from '@weni/unnnic-system';
 import { describe, it, expect } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
+
+const globalConfig = {
+  plugins: [i18n],
+  components: { UnnnicInput },
+};
 
 describe('ConnectCatalogModalContent.vue', () => {
   it('should render the modal with input and footer', () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
       mocks: {
         $t: (e) => e,
       },
     });
 
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent(UnnnicInput);
     expect(input.exists()).toBe(true);
     expect(input.props().label).toBe('Catalog ID');
     expect(input.props().placeholder).toBe('');
@@ -29,9 +32,7 @@ describe('ConnectCatalogModalContent.vue', () => {
 
   it('should emit closeModal when closeModal is called', () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
     });
 
     wrapper.vm.closeModal();
@@ -41,18 +42,18 @@ describe('ConnectCatalogModalContent.vue', () => {
 
   it('should emit connectCatalog with the correct name when connectCatalog is called', async () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
     });
 
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent(UnnnicInput);
     await input.setValue('My Catalog');
 
     wrapper.vm.connectCatalog();
 
     expect(wrapper.emitted('connectCatalog')).toBeTruthy();
-    expect(wrapper.emitted('connectCatalog')[0]).toEqual([{ name: 'My Catalog' }]);
+    expect(wrapper.emitted('connectCatalog')[0]).toEqual([
+      { name: 'My Catalog' },
+    ]);
 
     expect(wrapper.emitted()).toHaveProperty('closeModal');
   });

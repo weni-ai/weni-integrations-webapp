@@ -1,19 +1,19 @@
 <template>
   <div class="app-config-facebook">
     <div class="app-config-facebook__settings__content">
-      <unnnic-label :label="this.$t('facebook.config.connected_account')" />
+      <UnnnicLabel :label="$t('facebook.config.connected_account')" />
       <div class="app-config-facebook__settings__content__inputs">
-        <unnnic-input
+        <UnnnicInput
+          v-model="pageName"
           class="app-config-facebook__settings__content__inputs__name"
           type="normal"
           :disabled="true"
-          v-model="pageName"
         />
-        <unnnic-input
+        <UnnnicInput
+          v-model="pageId"
           class="app-config-facebook__settings__content__inputs__id"
           type="normal"
           :disabled="true"
-          v-model="pageId"
         />
       </div>
     </div>
@@ -21,64 +21,64 @@
 </template>
 
 <script>
-  export default {
-    name: 'FacebookConfig',
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+export default {
+  name: 'FacebookConfig',
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    data() {
-      return {
-        pageName: this.app.config.page_name,
-      };
+  },
+  data() {
+    return {
+      pageName: this.app.config.page_name,
+    };
+  },
+  computed: {
+    pageId() {
+      return `ID: ${this.app.config.page_id}`;
     },
-    computed: {
-      pageId() {
-        return `ID: ${this.app.config.page_id}`;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .app-config-facebook {
+.app-config-facebook {
+  display: flex;
+  flex-direction: column;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  padding: $unnnic-inset-lg;
+
+  &__header {
+    display: flex;
+    margin-bottom: $unnnic-spacing-stack-md;
+    flex-direction: column;
+  }
+
+  &__settings {
     display: flex;
     flex-direction: column;
     height: -webkit-fill-available;
     height: -moz-available;
-    padding: $unnnic-inset-lg;
+    overflow-y: hidden;
 
-    &__header {
-      display: flex;
-      margin-bottom: $unnnic-spacing-stack-md;
-      flex-direction: column;
-    }
-
-    &__settings {
+    &__content {
+      padding-right: $unnnic-spacing-inline-xs;
       display: flex;
       flex-direction: column;
-      height: -webkit-fill-available;
-      height: -moz-available;
-      overflow-y: hidden;
 
-      &__content {
-        padding-right: $unnnic-spacing-inline-xs;
+      &__inputs {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: $unnnic-spacing-inline-xs;
 
-        &__inputs {
-          display: flex;
-          flex-direction: row;
-          gap: $unnnic-spacing-inline-xs;
-
-          &__name,
-          &__id {
-            width: 50%;
-          }
+        &__name,
+        &__id {
+          width: 50%;
         }
       }
     }
   }
+}
 </style>

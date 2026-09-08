@@ -145,7 +145,7 @@
     "config": {
       "first_integration_success": "Pentru a descărca codul și a-l utiliza pe site-ul tău, accesează fila Cod script.",
       "integration_success": "Aplicația a fost instalată cu succes",
-      "copy_error": "Nu s-a putut copia numărul",
+      "copy_error": "Numărul nu a putut fi copiat",
       "copy_success": "Copiere efectuată cu succes",
       "configure_later": "Configurează mai târziu",
       "save_changes": "Salvează modificările",
@@ -400,8 +400,8 @@
       },
       "billing": {
         "brl_disclaimer": {
-          "description": "Meta acum taxează mesajele WhatsApp în reali în Brazilia. Pe {migrationDate}, contul a fost actualizat automat: un cont WhatsApp Business nou (WABA) în reali a fost creat, iar numărul, șabloanele și fluxurile au fost mutate în el. Serviciul a continuat să funcționeze normal și nu este necesară nicio acțiune.",
-          "title": "Cont facturat acum în reali brazilieni (BRL)"
+          "description": "Meta taxează în prezent mesajele WhatsApp în reali în Brazilia. Pe {migrationDate}, contul a fost actualizat automat: un cont WhatsApp Business nou (WABA) în reali a fost creat, iar numărul, șabloanele și fluxurile au fost mutate în el. Serviciul a continuat să funcționeze normal și nu este necesară nicio acțiune.",
+          "title": "Cont facturat în prezent în reali brazilieni (BRL)"
         },
         "title": "Informații de plată"
       },
@@ -585,7 +585,7 @@
           "missing_vtex_app": "O aplicație VTEX trebuie configurată pentru a conecta un catalog"
         }
       },
-      "manage_content": "Gestionează conținut",
+      "manage_content": "Gestionează conținutul",
       "mmlite": {
         "button": "Actualizează la WhatsApp MM Lite API",
         "button_updating": "Se actualizează la WhatsApp MM Lite API",

@@ -53,7 +53,9 @@ describe('ProductList.vue', () => {
           '.whatsapp-product-list__header__title span.u.font.secondary.body-gt.color-neutral-darkest',
         )
         .text(),
-    ).toBe('Here you can manage your inventory. Add all the items you want to list or sell.');
+    ).toBe(
+      'Here you can manage your inventory. Add all the items you want to list or sell.',
+    );
   });
 
   it('handles page changes correctly', async () => {

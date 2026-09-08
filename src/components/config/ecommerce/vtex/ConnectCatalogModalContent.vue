@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="modal__content">
       <div class="modal__content__form">
-        <unnnic-input
+        <UnnnicInput
           class="modal__content__form__input__name"
           v-model="name"
           :label="$t('vtex.connect_catalog.name')"
@@ -19,58 +19,58 @@
 </template>
 
 <script>
-  export default {
-    name: 'ConnectCatalogModalContent',
-    props: {
-      loading: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  name: 'ConnectCatalogModalContent',
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        name: '',
-      };
-    },
-    methods: {
-      connectCatalog() {
-        this.$emit('connectCatalog', {
-          name: this.name,
-        });
+  },
+  data() {
+    return {
+      name: '',
+    };
+  },
+  methods: {
+    connectCatalog() {
+      this.$emit('connectCatalog', {
+        name: this.name,
+      });
 
-        this.closeModal();
-      },
-      closeModal() {
-        this.$emit('closeModal');
-      },
+      this.closeModal();
     },
-  };
+    closeModal() {
+      this.$emit('closeModal');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .modal {
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: $unnnic-spacing-md;
+  padding: $unnnic-space-4;
+
+  &__content {
     display: flex;
     flex-direction: column;
-    gap: $unnnic-spacing-md;
-    padding: $unnnic-space-4;
+    text-align: left;
 
-    &__content {
+    &__form {
       display: flex;
       flex-direction: column;
-      text-align: left;
+      gap: $unnnic-spacing-sm;
 
-      &__form {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-spacing-sm;
-
-        &__footer {
-          margin-top: $unnnic-spacing-stack-xs;
-          color: $unnnic-color-fg-base;
-          font-size: $unnnic-font-size-body-gt;
-          line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
-        }
+      &__footer {
+        margin-top: $unnnic-spacing-stack-xs;
+        color: $unnnic-color-fg-base;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
       }
     }
   }
+}
 </style>

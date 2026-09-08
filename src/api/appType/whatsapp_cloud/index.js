@@ -18,22 +18,36 @@ export default {
   },
   getWhatsAppCloudCatalogs(appUuid, params) {
     const queryString = qs.stringify(params);
-    return request.$http.get(`${appResource}/${appUuid}/catalogs/?${queryString}`);
+    return request.$http.get(
+      `${appResource}/${appUuid}/catalogs/?${queryString}`,
+    );
   },
   fetchCatalogData(appUuid, catalogUuid) {
-    return request.$http.get(`${appResource}/${appUuid}/catalogs/${catalogUuid}/`);
+    return request.$http.get(
+      `${appResource}/${appUuid}/catalogs/${catalogUuid}/`,
+    );
   },
   disableWhatsAppCloudCatalogs(appUuid, catalogUuid) {
-    return request.$http.post(`${appResource}/${appUuid}/catalogs/${catalogUuid}/disable/`);
+    return request.$http.post(
+      `${appResource}/${appUuid}/catalogs/${catalogUuid}/disable/`,
+    );
   },
   enableWhatsAppCloudCatalogs(appUuid, catalogUuid) {
-    return request.$http.post(`${appResource}/${appUuid}/catalogs/${catalogUuid}/enable/`);
+    return request.$http.post(
+      `${appResource}/${appUuid}/catalogs/${catalogUuid}/enable/`,
+    );
   },
   toggleCartVisibility(appUuid, data) {
-    return request.$http.post(`${appResource}/${appUuid}/toggle-cart-visibility/`, data);
+    return request.$http.post(
+      `${appResource}/${appUuid}/toggle-cart-visibility/`,
+      data,
+    );
   },
   toggleCatalogVisibility(appUuid, data) {
-    return request.$http.post(`${appResource}/${appUuid}/toggle-catalog-visibility/`, data);
+    return request.$http.post(
+      `${appResource}/${appUuid}/toggle-catalog-visibility/`,
+      data,
+    );
   },
   getCommerceSettings(appUuid) {
     return request.$http.get(`${appResource}/${appUuid}/commerce-settings/`);
@@ -45,7 +59,10 @@ export default {
     );
   },
   updateMMLiteStatus(appUuid, data) {
-    return request.$http.patch(`${resource}/${appUuid}/update_mmlite_status/`, data);
+    return request.$http.patch(
+      `${resource}/${appUuid}/update_mmlite_status/`,
+      data,
+    );
   },
   enableVoiceCalling(appUuid) {
     return request.$http.patch(`${resource}/${appUuid}/enable_calling/`);
@@ -57,8 +74,12 @@ export default {
     return request.$http.get(`${resource}/${appUuid}/account-verification/`);
   },
   submitAccountVerification(appUuid, formData) {
-    return request.$http.post(`${resource}/${appUuid}/account-verification/`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
+    return request.$http.post(
+      `${resource}/${appUuid}/account-verification/`,
+      formData,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      },
+    );
   },
 };

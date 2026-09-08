@@ -66,7 +66,11 @@ export const comments_store = defineStore('comments', {
       this.errorUpdateComment = null;
       this.updateCommentResult = null;
       try {
-        const { data } = await appType.updateComment(code, commentUuid, payload);
+        const { data } = await appType.updateComment(
+          code,
+          commentUuid,
+          payload,
+        );
         this.updateCommentResult = data;
         this.loadingUpdateComment = false;
       } catch (err) {

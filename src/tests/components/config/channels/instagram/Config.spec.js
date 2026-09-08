@@ -34,7 +34,9 @@ describe('InstagramConfig.vue', () => {
 
     const wrapper = factory(app);
 
-    expect(wrapper.find('.app-config-instagram__settings__content').exists()).toBe(true);
+    expect(
+      wrapper.find('.app-config-instagram__settings__content').exists(),
+    ).toBe(true);
   });
 
   it('should render the page name and formatted ID correctly', () => {
@@ -52,7 +54,9 @@ describe('InstagramConfig.vue', () => {
     );
     expect(pageNameInput.element.value).toBe('Test Page');
 
-    const pageIdInput = wrapper.find('.app-config-instagram__settings__content__inputs__id input');
+    const pageIdInput = wrapper.find(
+      '.app-config-instagram__settings__content__inputs__id input',
+    );
     expect(pageIdInput.element.value).toBe('ID: 123456789');
   });
 
@@ -64,7 +68,9 @@ describe('InstagramConfig.vue', () => {
     };
 
     const wrapper = factory(app);
-    const pageIdInput = wrapper.find('.app-config-instagram__settings__content__inputs__id input');
+    const pageIdInput = wrapper.find(
+      '.app-config-instagram__settings__content__inputs__id input',
+    );
     expect(pageIdInput.element.value).toBe('ID: undefined');
   });
 

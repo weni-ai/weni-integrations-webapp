@@ -66,7 +66,7 @@ describe('WhatsAppSetup.vue', () => {
 
   it('renders WhatsApp setup modal', () => {
     expect(wrapper.find('.whatsapp-setup').exists()).toBe(true);
-    expect(wrapper.findComponent({ name: 'unnnic-dialog' }).exists()).toBe(true);
+    expect(wrapper.findComponent({ name: 'UnnnicDialog' }).exists()).toBe(true);
   });
 
   it('calls closePopUp on button click', async () => {
@@ -101,9 +101,11 @@ describe('WhatsAppSetup.vue', () => {
     const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
     const store = whatsapp_cloud();
 
-    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
-      store.errorCloudConfigure = new Error('network');
-    });
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(
+      async () => {
+        store.errorCloudConfigure = new Error('network');
+      },
+    );
 
     await wrapper.vm.createChannel('1234');
 
@@ -117,13 +119,15 @@ describe('WhatsAppSetup.vue', () => {
     const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
     const store = whatsapp_cloud();
 
-    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
-      store.errorCloudConfigure = {
-        message: 'Fatal',
-        type: 'OAuthException',
-        error_subcode: '1752246',
-      };
-    });
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(
+      async () => {
+        store.errorCloudConfigure = {
+          message: 'Fatal',
+          type: 'OAuthException',
+          error_subcode: '1752246',
+        };
+      },
+    );
 
     await wrapper.vm.createChannel('1234');
     await wrapper.vm.$nextTick();
@@ -140,17 +144,19 @@ describe('WhatsAppSetup.vue', () => {
     const spy = vi.spyOn(wrapper.vm, 'callErrorModal');
     const store = whatsapp_cloud();
 
-    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(async () => {
-      store.errorCloudConfigure = {
-        response: {
-          data: {
-            error: {
-              error_subcode: 1752246,
+    vi.spyOn(wrapper.vm, 'configurePhoneNumber').mockImplementation(
+      async () => {
+        store.errorCloudConfigure = {
+          response: {
+            data: {
+              error: {
+                error_subcode: 1752246,
+              },
             },
           },
-        },
-      };
-    });
+        };
+      },
+    );
 
     await wrapper.vm.createChannel('1234');
 
@@ -159,7 +165,9 @@ describe('WhatsAppSetup.vue', () => {
   });
 
   it('retries Facebook login from ConnectNewWhatsAppAccount modal', async () => {
-    const startSpy = vi.spyOn(wrapper.vm, 'startFacebookLogin').mockImplementation(() => {});
+    const startSpy = vi
+      .spyOn(wrapper.vm, 'startFacebookLogin')
+      .mockImplementation(() => {});
     wrapper.vm.showConnectNewAccountModal = true;
     await wrapper.vm.$nextTick();
 
@@ -192,12 +200,18 @@ describe('WhatsAppSetup.vue', () => {
     const sendToSentrySpy = vi.spyOn(wrapper.vm, 'sendToSentry');
 
     await wrapper.vm.sendToSentry('Test error', { extra: 'info' });
-    expect(sendToSentrySpy).toHaveBeenCalledWith('Test error', { extra: 'info' });
+    expect(sendToSentrySpy).toHaveBeenCalledWith('Test error', {
+      extra: 'info',
+    });
   });
   it('renders the WhatsApp setup modal with correct elements', () => {
     expect(wrapper.find('.whatsapp-setup').exists()).toBe(true);
-    expect(wrapper.findComponent({ ref: 'whatsapp-setup-modal' }).exists()).toBe(true);
-    expect(wrapper.find('.whatsapp-setup__buttons__cancel').exists()).toBe(true);
+    expect(
+      wrapper.findComponent({ ref: 'whatsapp-setup-modal' }).exists(),
+    ).toBe(true);
+    expect(wrapper.find('.whatsapp-setup__buttons__cancel').exists()).toBe(
+      true,
+    );
     expect(wrapper.find('.whatsapp-setup__buttons__start').exists()).toBe(true);
   });
 });

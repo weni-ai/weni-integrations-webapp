@@ -76,7 +76,7 @@ describe('WhatsappConfig.vue', () => {
   it('displays skeleton loader when data is loading', async () => {
     await wrapper.setData({ skipLoad: false, loadingCurrentApp: true });
 
-    const skeletonLoader = wrapper.findComponent({ name: 'skeleton-loading' });
+    const skeletonLoader = wrapper.findComponent({ name: 'SkeletonLoading' });
     expect(skeletonLoader.exists()).toBe(true);
   });
 

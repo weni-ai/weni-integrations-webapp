@@ -136,7 +136,10 @@ describe('MyApps', () => {
         wrapper.vm.openConfigFromRoute(mockApp);
         await wrapper.vm.$nextTick();
 
-        expect(openModalSpy).toHaveBeenCalledWith({ app: mockApp, isConfigured: true });
+        expect(openModalSpy).toHaveBeenCalledWith({
+          app: mockApp,
+          isConfigured: true,
+        });
       });
 
       it('does not throw if directConfigModal ref is unavailable', async () => {
@@ -152,7 +155,9 @@ describe('MyApps', () => {
     });
 
     describe('fetchAppFromRoute', () => {
-      const mountForFetch = (params = { appCode: 'wwc', appUuid: 'app-uuid-123' }) => {
+      const mountForFetch = (
+        params = { appCode: 'wwc', appUuid: 'app-uuid-123' },
+      ) => {
         const pinia = createTestingPinia({ createSpy: vi.fn });
         const wrapper = mount(MyApps, {
           global: {
@@ -178,13 +183,22 @@ describe('MyApps', () => {
         await wrapper.vm.fetchAppFromRoute();
         await wrapper.vm.$nextTick();
 
-        expect(store.getApp).toHaveBeenCalledWith({ code: 'wwc', appUuid: 'app-uuid-123' });
-        expect(openModalSpy).toHaveBeenCalledWith({ app: mockApp, isConfigured: true });
+        expect(store.getApp).toHaveBeenCalledWith({
+          code: 'wwc',
+          appUuid: 'app-uuid-123',
+        });
+        expect(openModalSpy).toHaveBeenCalledWith({
+          app: mockApp,
+          isConfigured: true,
+        });
       });
 
       it('shows error alert and does not open modal when getApp fails', async () => {
         const { wrapper, store } = mountForFetch();
-        store.$patch({ currentApp: null, errorCurrentApp: new Error('Not found') });
+        store.$patch({
+          currentApp: null,
+          errorCurrentApp: new Error('Not found'),
+        });
 
         const openModalSpy = vi
           .spyOn(wrapper.vm.$refs.directConfigModal, 'openModal')
@@ -223,7 +237,9 @@ describe('MyApps', () => {
         });
         my_apps().$patch({ configuredApps: [listedApp] });
 
-        const openSpy = vi.spyOn(wrapper.vm, 'openConfigFromRoute').mockImplementation(() => {});
+        const openSpy = vi
+          .spyOn(wrapper.vm, 'openConfigFromRoute')
+          .mockImplementation(() => {});
 
         await wrapper.vm.fetchAppFromRoute();
 
@@ -263,7 +279,10 @@ describe('MyApps', () => {
             plugins: [pinia, i18n],
             mocks: {
               $router: mockRouter(),
-              $route: mockRoute({ appUuid: mockApp.uuid, appCode: mockApp.code }),
+              $route: mockRoute({
+                appUuid: mockApp.uuid,
+                appCode: mockApp.code,
+              }),
               $t: (msg) => msg,
             },
           },
@@ -289,7 +308,10 @@ describe('MyApps', () => {
             plugins: [pinia, i18n],
             mocks: {
               $router: mockRouter(),
-              $route: mockRoute({ appUuid: mockApp.uuid, appCode: mockApp.code }),
+              $route: mockRoute({
+                appUuid: mockApp.uuid,
+                appCode: mockApp.code,
+              }),
               $t: (msg) => msg,
             },
           },
@@ -304,7 +326,9 @@ describe('MyApps', () => {
       });
 
       it('calls fetchAppFromRoute when appUuid is in route but app is not in configuredApps', async () => {
-        const fetchSpy = vi.spyOn(MyApps.methods, 'fetchAppFromRoute').mockImplementation(() => {});
+        const fetchSpy = vi
+          .spyOn(MyApps.methods, 'fetchAppFromRoute')
+          .mockImplementation(() => {});
 
         mount(MyApps, {
           global: {

@@ -4,22 +4,25 @@
       {{ $t('weniWebChat.config.script') }}
     </h3>
 
-    <unnnic-disclaimer
+    <UnnnicDisclaimer
       v-if="!scriptCode"
       class="integration-tab__disclaimer"
       :title="$t('weniWebChat.config.script_disclaimer')"
       type="informational"
     />
 
-    <unnnic-text-area
-      :class="['integration-tab__textarea', { 'integration-tab__textarea--filled': !!scriptCode }]"
+    <UnnnicTextArea
+      :class="[
+        'integration-tab__textarea',
+        { 'integration-tab__textarea--filled': !!scriptCode },
+      ]"
       :modelValue="scriptCode"
       :label="$t('weniWebChat.config.script_tutorial')"
       :disabled="!scriptCode"
       resize="none"
     />
 
-    <unnnic-button
+    <UnnnicButton
       class="integration-tab__copy-button"
       type="secondary"
       size="large"
@@ -30,13 +33,13 @@
     />
 
     <div class="integration-tab__buttons">
-      <unnnic-button
+      <UnnnicButton
         type="tertiary"
         size="large"
         :text="$t('general.Cancel')"
         @click="emit('cancel')"
       />
-      <unnnic-button
+      <UnnnicButton
         type="primary"
         size="large"
         :text="$t('apps.config.save_changes')"
@@ -48,81 +51,81 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue';
-  import { generateScriptCode } from '../../constants';
+import { computed } from 'vue';
+import { generateScriptCode } from '../../constants';
 
-  const props = defineProps({
-    appConfig: {
-      type: Object,
-      default: () => ({}),
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-  });
+const props = defineProps({
+  appConfig: {
+    type: Object,
+    default: () => ({}),
+  },
+  title: {
+    type: String,
+    default: '',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
 
-  const emit = defineEmits(['save', 'cancel']);
+const emit = defineEmits(['save', 'cancel']);
 
-  // Computed
-  const scriptCode = computed(() => generateScriptCode(props.appConfig));
+// Computed
+const scriptCode = computed(() => generateScriptCode(props.appConfig));
 
-  // Methods
-  function downloadScript() {
-    const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${scriptCode.value}\n</body>\n</html>`;
+// Methods
+function downloadScript() {
+  const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${scriptCode.value}\n</body>\n</html>`;
 
-    const element = document.createElement('a');
-    element.setAttribute(
-      'href',
-      'data:text/plain;charset=utf-8, ' + encodeURIComponent(htmlScript),
-    );
-    element.setAttribute('download', `wwc-script-${props.title}.html`);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }
+  const element = document.createElement('a');
+  element.setAttribute(
+    'href',
+    'data:text/plain;charset=utf-8, ' + encodeURIComponent(htmlScript),
+  );
+  element.setAttribute('download', `wwc-script-${props.title}.html`);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
 </script>
 
 <style lang="scss" scoped>
-  .integration-tab {
-    display: flex;
-    flex-direction: column;
-    gap: $unnnic-inline-xs;
+.integration-tab {
+  display: flex;
+  flex-direction: column;
+  gap: $unnnic-inline-xs;
 
-    &__title {
-      font: $unnnic-font-display-3;
-      margin: 0;
-      margin-bottom: $unnnic-space-1;
-      color: $unnnic-color-fg-emphasized;
-    }
+  &__title {
+    font: $unnnic-font-display-3;
+    margin: 0;
+    margin-bottom: $unnnic-space-1;
+    color: $unnnic-color-fg-emphasized;
+  }
 
-    &__textarea {
-      &--filled {
-        :deep(.unnnic-text-area__textarea) {
-          height: 362px;
-        }
-      }
-    }
-
-    &__copy-button {
-      width: 100% !important;
-    }
-
-    &__buttons {
-      display: flex;
-      gap: $unnnic-space-3;
-      justify-content: center;
-      padding: $unnnic-space-6 0;
-      margin-top: auto;
-
-      :deep(.unnnic-button) {
-        width: 100% !important;
+  &__textarea {
+    &--filled {
+      :deep(.unnnic-text-area__textarea) {
+        height: 362px;
       }
     }
   }
+
+  &__copy-button {
+    width: 100% !important;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: $unnnic-space-3;
+    justify-content: center;
+    padding: $unnnic-space-6 0;
+    margin-top: auto;
+
+    :deep(.unnnic-button) {
+      width: 100% !important;
+    }
+  }
+}
 </style>

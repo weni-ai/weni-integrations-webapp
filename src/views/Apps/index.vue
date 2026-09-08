@@ -1,20 +1,20 @@
 <template>
   <div class="container">
     <NavBar />
-    <router-view />
+    <RouterView />
   </div>
 </template>
 
 <script>
-  import NavBar from '../../components/NavBar/index.vue';
-  export default {
-    name: 'Apps',
-    components: {
-      NavBar,
-    },
-  };
+import NavBar from '../../components/NavBar/index.vue';
+export default {
+  name: 'Apps',
+  components: {
+    NavBar,
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  @import './styles.scss';
+@import './styles.scss';
 </style>

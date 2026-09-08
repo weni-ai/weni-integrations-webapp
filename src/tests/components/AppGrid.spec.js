@@ -76,7 +76,10 @@ describe('AppGrid', () => {
 
       await wrapper.vm.removeApp('1234', '5678');
 
-      expect(spyDeleteApp).toHaveBeenCalledWith({ code: '1234', appUuid: '5678' });
+      expect(spyDeleteApp).toHaveBeenCalledWith({
+        code: '1234',
+        appUuid: '5678',
+      });
       expect(spyToggleRemoveModal).toHaveBeenCalledTimes(1);
     });
 
@@ -120,17 +123,40 @@ describe('AppGrid', () => {
 
       it('calls configModal.openModal when type is "config"', async () => {
         pushMock.mockClear();
-        const w = mountForOpenAppModal('config');
+        const openModalSpy = vi.fn();
+        const w = mount(AppGrid, {
+          props: {
+            section: 'configured',
+            type: 'config',
+            apps: [configuredApp],
+          },
+          global: {
+            plugins: [pinia, i18n],
+            stubs: {
+              ConfigModal: {
+                name: 'ConfigModal',
+                template: '<div />',
+                methods: {
+                  openModal: openModalSpy,
+                },
+              },
+            },
+            mocks: {
+              $router: { push: pushMock },
+            },
+          },
+        });
         await w.vm.$nextTick();
-
-        const openModalSpy = vi
-          .spyOn(w.vm.$refs.configModal, 'openModal')
-          .mockImplementation(() => {});
 
         await w.vm.openAppModal(configuredApp);
 
-        expect(openModalSpy).toHaveBeenCalledWith({ app: configuredApp, isConfigured: false });
-        expect(pushMock).not.toHaveBeenCalledWith(expect.stringContaining('/apps/my/configured/'));
+        expect(openModalSpy).toHaveBeenCalledWith({
+          app: configuredApp,
+          isConfigured: false,
+        });
+        expect(pushMock).not.toHaveBeenCalledWith(
+          expect.stringContaining('/apps/my/configured/'),
+        );
       });
 
       it('does nothing when type is "add" and app is generic', async () => {

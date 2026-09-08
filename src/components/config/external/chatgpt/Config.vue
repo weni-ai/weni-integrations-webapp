@@ -1,12 +1,21 @@
 <template>
   <div class="config-chatgpt">
     <div class="config-chatgpt__header">
-      <span class="config-chatgpt__header__description" v-html="$t('ChatGPT.config.description')" />
+      <span
+        class="config-chatgpt__header__description"
+        v-html="$t('ChatGPT.config.description')"
+      />
     </div>
 
     <div class="config-chatgpt__settings__content">
-      <unnnic-tab class="config-chatgpt__tabs" :tabs="tabs" initialTab="flows">
-        <template #tab-head-flows> {{ $t('ChatGPT.config.tabs.flows.title') }} </template>
+      <UnnnicTab
+        class="config-chatgpt__tabs"
+        :tabs="tabs"
+        initialTab="flows"
+      >
+        <template #tab-head-flows>
+          {{ $t('ChatGPT.config.tabs.flows.title') }}
+        </template>
         <template #tab-panel-flows>
           <div>
             <div class="config-chatgpt__settings__content__scroll">
@@ -14,50 +23,64 @@
                 {{ $t('ChatGPT.config.tabs.flows.description') }}
               </span>
 
-              <unnnic-text-area
+              <UnnnicTextArea
                 ref="rules-input"
                 v-model="rules"
                 class="config-chatgpt__settings__content__inputs__rules"
                 type="normal"
                 :label="$t('ChatGPT.config.tabs.flows.inputs.rules_label')"
               />
-              <unnnic-text-area
+              <UnnnicTextArea
                 ref="base-input"
                 v-model="knowledgeBase"
                 class="config-chatgpt__settings__content__inputs__knowledge"
                 type="normal"
                 :label="$t('ChatGPT.config.tabs.flows.inputs.knowledge_label')"
               />
-              <unnnic-label
-                :label="$t('ChatGPT.config.tabs.flows.inputs.conversation_style_label')"
+              <UnnnicLabel
+                :label="
+                  $t(
+                    'ChatGPT.config.tabs.flows.inputs.conversation_style_label',
+                  )
+                "
               />
-              <unnnic-select-smart v-model="selectedConversationStyle" :options="stylesList" />
-              <unnnic-label :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')" />
-              <unnnic-select-smart v-model="selectedVoiceTone" :options="voiceToneList">
-              </unnnic-select-smart>
-              <unnnic-input
+              <UnnnicSelectSmart
+                v-model="selectedConversationStyle"
+                :options="stylesList"
+              />
+              <UnnnicLabel
+                :label="$t('ChatGPT.config.tabs.flows.inputs.voice_tone_label')"
+              />
+              <UnnnicSelectSmart
+                v-model="selectedVoiceTone"
+                :options="voiceToneList"
+              >
+              </UnnnicSelectSmart>
+              <UnnnicInput
                 ref="prompt-input"
                 v-model="prompt"
                 class="config-chatgpt__settings__content__inputs__prompt"
                 type="normal"
                 :label="$t('ChatGPT.config.tabs.flows.inputs.prompt_label')"
-                :placeholder="$t('ChatGPT.config.tabs.flows.inputs.prompt_placeholder')"
-                @keyup.enter="addPrompt"
+                :placeholder="
+                  $t('ChatGPT.config.tabs.flows.inputs.prompt_placeholder')
+                "
                 iconRight="keyboard"
+                @keyup.enter="addPrompt"
               />
 
-              <unnnic-label
+              <UnnnicLabel
                 v-if="availablePrompts.length > 0 && !loadingGetPrompts"
                 :label="$t('ChatGPT.config.tabs.flows.prompts_list')"
               />
-              <unnnic-skeleton-loading
+              <UnnnicSkeletonLoading
                 v-else-if="loadingGetPrompts"
                 tag="div"
                 height="25px"
                 width="75px"
               />
               <div class="config-chatgpt__settings__content__prompts-wrapper">
-                <unnnic-toolTip
+                <UnnnicToolTip
                   v-for="(prompt, index) in availablePrompts"
                   :key="index"
                   class="config-chatgpt__settings__content__prompt config-chatgpt__settings__content__prompts__tooltip"
@@ -66,19 +89,19 @@
                   side="top"
                   maxWidth="350px"
                 >
-                  <unnnic-tag
+                  <UnnnicTag
+                    :ref="`tag-${index}`"
                     :text="prompt.text"
                     scheme="neutral-cloudy"
                     hasCloseIcon
                     @close="removePrompt(prompt)"
-                    :ref="`tag-${index}`"
                   />
-                </unnnic-toolTip>
+                </UnnnicToolTip>
               </div>
             </div>
 
             <div class="config-chatgpt__settings__buttons">
-              <unnnic-button
+              <UnnnicButton
                 class="config-chatgpt__settings__buttons__cancel"
                 type="tertiary"
                 size="large"
@@ -86,7 +109,7 @@
                 @click="closeConfig"
               />
 
-              <unnnic-button
+              <UnnnicButton
                 class="config-chatgpt__settings__buttons__save"
                 type="secondary"
                 size="large"
@@ -99,31 +122,35 @@
           </div>
         </template>
 
-        <template #tab-head-general> {{ $t('ChatGPT.config.tabs.general.title') }} </template>
+        <template #tab-head-general>
+          {{ $t('ChatGPT.config.tabs.general.title') }}
+        </template>
         <template #tab-panel-general>
           <div class="config-chatgpt__general">
             <div class="config-chatgpt__settings__content__version-wrapper">
               <div>
                 {{ $t('ChatGPT.setup.version') }}
 
-                <unnnic-toolTip
+                <UnnnicToolTip
                   class="config-chatgpt__settings__content__version__tooltip"
                   :text="$t('ChatGPT.setup.version_tooltip')"
                   :enabled="true"
                   side="right"
                   maxWidth="350px"
                 >
-                  <unnnic-icon-svg
+                  <UnnnicIconSvg
                     class="config-chatgpt__settings__content__version__icon"
                     icon="information-circle-4"
                     size="sm"
                     scheme="neutral-soft"
                   />
-                </unnnic-toolTip>
+                </UnnnicToolTip>
               </div>
 
-              <div class="config-chatgpt__settings__content__version-wrapper__options">
-                <unnnic-radio
+              <div
+                class="config-chatgpt__settings__content__version-wrapper__options"
+              >
+                <UnnnicRadio
                   v-for="(version, index) in availableVersions"
                   :key="index"
                   v-model="selectedVersion"
@@ -132,7 +159,7 @@
                   :label="$t('ChatGPT.setup.version')"
                 >
                   {{ version }}
-                </unnnic-radio>
+                </UnnnicRadio>
               </div>
             </div>
 
@@ -142,452 +169,483 @@
             </div>
           </div>
         </template>
-      </unnnic-tab>
+      </UnnnicTab>
     </div>
   </div>
 </template>
 
 <script>
-  import debounce from 'lodash.debounce';
-  import unnnic from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'pinia';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { externals_store } from '@/stores/modules/appType/externals/externals.store';
-  import { useEventStore } from '@/stores/event.store';
+import debounce from 'lodash.debounce';
+import unnnic from '@weni/unnnic-system';
+import { mapActions, mapState } from 'pinia';
+import { auth_store } from '@/stores/modules/auth.store';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { useEventStore } from '@/stores/event.store';
 
-  export default {
-    name: 'chatgpt-config',
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+export default {
+  name: 'ChatgptConfig',
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    data() {
-      return {
-        selectedVersion: this.app.config?.ai_model ?? 'gpt-3.5-turbo-16k',
-        name: this.app.config?.name ?? null,
-        rules: this.app.config?.rules ?? null,
-        knowledgeBase: this.app.config?.knowledge_base ?? null,
-        token: this.app.config?.api_key ?? null,
-        prompt: '',
-        tabs: ['flows', 'general'],
-        availableVersions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo'],
-        availablePrompts: [],
-        toAddPrompts: [],
-        toRemovePrompts: [],
-        hasChanges: false,
-        selectedConversationStyle: this.app.config?.conversation_style,
-        stylesList: [
-          {
-            value: '0.2,0.1',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.necessary_label'),
-            description: this.$t('ChatGPT.config.tabs.flows.selects.necessary_description'),
-          },
-          {
-            value: '0.5,0.5',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.balanced_label'),
-            description: this.$t('ChatGPT.config.tabs.flows.selects.balanced_description'),
-          },
-          {
-            value: '0.7,0.8',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.creative_label'),
-            description: this.$t('ChatGPT.config.tabs.flows.selects.creative_description'),
-          },
-        ],
-        selectedVoiceTone: this.app.config?.voice_tone,
-        voiceToneList: [
-          {
-            value: '1',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.none_label'),
-          },
-          {
-            value: '2',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.neutral_label'),
-          },
-          {
-            value: '3',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.happy_label'),
-          },
-          {
-            value: '4',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.trusting_label'),
-          },
-          {
-            value: '5',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.formal_label'),
-          },
-          {
-            value: '6',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.humble_label'),
-          },
-          {
-            value: '7',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.informal_label'),
-          },
-          {
-            value: '8',
-            label: this.$t('ChatGPT.config.tabs.flows.selects.helpful_label'),
-          },
-        ],
-      };
-    },
-    async mounted() {
-      await this.reloadPrompts();
-    },
-    computed: {
-      ...mapState(auth_store, ['project']),
-      ...mapState(app_type, ['loadingUpdateApp', 'errorUpdateApp']),
-      ...mapState(externals_store, [
-        'loadingCreatePrompt',
-        'errorCreatePrompt',
-        'createPromptsResult',
-        'loadingGetPrompts',
-        'errorGetPrompts',
-        'getPromptsResult',
-        'loadingDeletePrompts',
-        'errorDeletePrompts',
-        'deletePromptsResult',
-      ]),
-    },
-    methods: {
-      ...mapActions(app_type, ['updateApp']),
-      ...mapActions(externals_store, ['createPrompts', 'getPrompts', 'deletePrompts']),
-      ...mapActions(useEventStore, ['emit']),
-      async reloadPrompts() {
-        await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
+  },
+  data() {
+    return {
+      selectedVersion: this.app.config?.ai_model ?? 'gpt-3.5-turbo-16k',
+      name: this.app.config?.name ?? null,
+      rules: this.app.config?.rules ?? null,
+      knowledgeBase: this.app.config?.knowledge_base ?? null,
+      token: this.app.config?.api_key ?? null,
+      prompt: '',
+      tabs: ['flows', 'general'],
+      availableVersions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo'],
+      availablePrompts: [],
+      toAddPrompts: [],
+      toRemovePrompts: [],
+      hasChanges: false,
+      selectedConversationStyle: this.app.config?.conversation_style,
+      stylesList: [
+        {
+          value: '0.2,0.1',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.necessary_label'),
+          description: this.$t(
+            'ChatGPT.config.tabs.flows.selects.necessary_description',
+          ),
+        },
+        {
+          value: '0.5,0.5',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.balanced_label'),
+          description: this.$t(
+            'ChatGPT.config.tabs.flows.selects.balanced_description',
+          ),
+        },
+        {
+          value: '0.7,0.8',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.creative_label'),
+          description: this.$t(
+            'ChatGPT.config.tabs.flows.selects.creative_description',
+          ),
+        },
+      ],
+      selectedVoiceTone: this.app.config?.voice_tone,
+      voiceToneList: [
+        {
+          value: '1',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.none_label'),
+        },
+        {
+          value: '2',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.neutral_label'),
+        },
+        {
+          value: '3',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.happy_label'),
+        },
+        {
+          value: '4',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.trusting_label'),
+        },
+        {
+          value: '5',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.formal_label'),
+        },
+        {
+          value: '6',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.humble_label'),
+        },
+        {
+          value: '7',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.informal_label'),
+        },
+        {
+          value: '8',
+          label: this.$t('ChatGPT.config.tabs.flows.selects.helpful_label'),
+        },
+      ],
+    };
+  },
+  async mounted() {
+    await this.reloadPrompts();
+  },
+  computed: {
+    ...mapState(auth_store, ['project']),
+    ...mapState(app_type, ['loadingUpdateApp', 'errorUpdateApp']),
+    ...mapState(externals_store, [
+      'loadingCreatePrompt',
+      'errorCreatePrompt',
+      'createPromptsResult',
+      'loadingGetPrompts',
+      'errorGetPrompts',
+      'getPromptsResult',
+      'loadingDeletePrompts',
+      'errorDeletePrompts',
+      'deletePromptsResult',
+    ]),
+  },
+  methods: {
+    ...mapActions(app_type, ['updateApp']),
+    ...mapActions(externals_store, [
+      'createPrompts',
+      'getPrompts',
+      'deletePrompts',
+    ]),
+    ...mapActions(useEventStore, ['emit']),
+    async reloadPrompts() {
+      await this.getPrompts({ code: this.app.code, appUuid: this.app.uuid });
 
-        if (this.errorGetPrompts) {
-          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.get_prompts') });
-        }
-
-        this.availablePrompts = this.getPromptsResult || [];
-        this.toAddPrompts = [];
-        this.toRemovePrompts = [];
-      },
-      addPrompt() {
-        if (this.prompt.trim()) {
-          const newPrompt = { text: this.prompt.trim() };
-          this.availablePrompts.push(newPrompt);
-          this.toAddPrompts.push(newPrompt);
-          this.prompt = '';
-
-          this.hasChanges = true;
-        }
-      },
-      removePrompt(prompt) {
-        const checkPrompt = (p) => {
-          if (prompt.uuid) {
-            return p.uuid !== prompt.uuid;
-          } else {
-            if (p.uuid) return true;
-
-            return p.text !== prompt.text;
-          }
-        };
-
-        if (prompt.uuid) {
-          this.toRemovePrompts.push(prompt);
-        }
-
-        this.availablePrompts = this.availablePrompts.filter(checkPrompt);
-        this.toAddPrompts = this.toAddPrompts.filter(checkPrompt);
-
-        this.hasChanges = true;
-      },
-      async handleUpdateApp() {
-        const [temperature, top_p] = this.selectedConversationStyle[0].value.split(',');
-        const voice_tone = `Em tom ${this.selectedVoiceTone[0].label}`;
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: {
-            config: {
-              ai_model: this.selectedVersion,
-              rules: this.rules,
-              knowledge_base: this.knowledgeBase,
-              voice_tone,
-              temperature,
-              top_p,
-            },
-          },
-        };
-
-        await this.updateApp(data);
-
-        if (this.errorUpdateApp) {
-          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.configure') });
-          return true;
-        }
-      },
-      async handleAddPrompts() {
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: {
-            project_uuid: this.project,
-            prompts: this.toAddPrompts,
-          },
-        };
-
-        await this.createPrompts(data);
-
-        if (this.errorCreatePrompt) {
-          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.create_prompt') });
-          return true;
-        }
-
-        this.reloadPrompts();
-      },
-      async handleRemovePrompts() {
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: {
-            project_uuid: this.project,
-            prompts: this.toRemovePrompts.map((p) => p.uuid),
-          },
-        };
-
-        await this.deletePrompts(data);
-
-        if (this.errorDeletePrompts) {
-          this.callModal({ type: 'error', text: this.$t('ChatGPT.errors.delete_prompt') });
-          return true;
-        }
-
-        this.reloadPrompts();
-      },
-      async saveConfig() {
-        if (
-          this.rules !== this.app.config.rules ||
-          this.knowledgeBase !== this.app.config.knowledge_base ||
-          this.selectedVersion !== this.app.config.ai_model ||
-          this.selectedVoiceTone !== this.app.config.voice_tone ||
-          this.selectedConversationStyle != this.app.config.conversation_style
-        ) {
-          let err = await this.handleUpdateApp();
-          if (err) return;
-        }
-
-        if (this.toAddPrompts.length > 0) {
-          let err = await this.handleAddPrompts();
-          if (err) return;
-        }
-
-        if (this.toRemovePrompts.length > 0) {
-          let err = await this.handleRemovePrompts();
-          if (err) return;
-        }
-
-        this.callModal({ type: 'success', text: this.$t('ChatGPT.success.configure') });
-        this.emit('updateGrid');
-      },
-      closeConfig() {
-        this.$emit('closeModal');
-      },
-      callModal({ text, type }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text,
-            type,
-          },
-          seconds: 6,
+      if (this.errorGetPrompts) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('ChatGPT.errors.get_prompts'),
         });
-      },
+      }
+
+      this.availablePrompts = this.getPromptsResult || [];
+      this.toAddPrompts = [];
+      this.toRemovePrompts = [];
     },
-    watch: {
-      selectedVersion: {
-        handler: debounce(async function () {
-          let err = await this.handleUpdateApp();
-          if (!err) {
-            this.callModal({ type: 'Success', text: this.$t('ChatGPT.success.configure') });
-            this.emit('updateGrid');
-          }
-        }, 1000),
-      },
-      rules() {
+    addPrompt() {
+      if (this.prompt.trim()) {
+        const newPrompt = { text: this.prompt.trim() };
+        this.availablePrompts.push(newPrompt);
+        this.toAddPrompts.push(newPrompt);
+        this.prompt = '';
+
         this.hasChanges = true;
-      },
-      knowledgeBase() {
-        this.hasChanges = true;
-      },
+      }
     },
-  };
+    removePrompt(prompt) {
+      const checkPrompt = (p) => {
+        if (prompt.uuid) {
+          return p.uuid !== prompt.uuid;
+        } else {
+          if (p.uuid) return true;
+
+          return p.text !== prompt.text;
+        }
+      };
+
+      if (prompt.uuid) {
+        this.toRemovePrompts.push(prompt);
+      }
+
+      this.availablePrompts = this.availablePrompts.filter(checkPrompt);
+      this.toAddPrompts = this.toAddPrompts.filter(checkPrompt);
+
+      this.hasChanges = true;
+    },
+    async handleUpdateApp() {
+      const [temperature, top_p] =
+        this.selectedConversationStyle[0].value.split(',');
+      const voice_tone = `Em tom ${this.selectedVoiceTone[0].label}`;
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: {
+          config: {
+            ai_model: this.selectedVersion,
+            rules: this.rules,
+            knowledge_base: this.knowledgeBase,
+            voice_tone,
+            temperature,
+            top_p,
+          },
+        },
+      };
+
+      await this.updateApp(data);
+
+      if (this.errorUpdateApp) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('ChatGPT.errors.configure'),
+        });
+        return true;
+      }
+    },
+    async handleAddPrompts() {
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: {
+          project_uuid: this.project,
+          prompts: this.toAddPrompts,
+        },
+      };
+
+      await this.createPrompts(data);
+
+      if (this.errorCreatePrompt) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('ChatGPT.errors.create_prompt'),
+        });
+        return true;
+      }
+
+      this.reloadPrompts();
+    },
+    async handleRemovePrompts() {
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: {
+          project_uuid: this.project,
+          prompts: this.toRemovePrompts.map((p) => p.uuid),
+        },
+      };
+
+      await this.deletePrompts(data);
+
+      if (this.errorDeletePrompts) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('ChatGPT.errors.delete_prompt'),
+        });
+        return true;
+      }
+
+      this.reloadPrompts();
+    },
+    async saveConfig() {
+      if (
+        this.rules !== this.app.config.rules ||
+        this.knowledgeBase !== this.app.config.knowledge_base ||
+        this.selectedVersion !== this.app.config.ai_model ||
+        this.selectedVoiceTone !== this.app.config.voice_tone ||
+        this.selectedConversationStyle != this.app.config.conversation_style
+      ) {
+        let err = await this.handleUpdateApp();
+        if (err) return;
+      }
+
+      if (this.toAddPrompts.length > 0) {
+        let err = await this.handleAddPrompts();
+        if (err) return;
+      }
+
+      if (this.toRemovePrompts.length > 0) {
+        let err = await this.handleRemovePrompts();
+        if (err) return;
+      }
+
+      this.callModal({
+        type: 'success',
+        text: this.$t('ChatGPT.success.configure'),
+      });
+      this.emit('updateGrid');
+    },
+    closeConfig() {
+      this.$emit('closeModal');
+    },
+    callModal({ text, type }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text,
+          type,
+        },
+        seconds: 6,
+      });
+    },
+  },
+  watch: {
+    selectedVersion: {
+      handler: debounce(async function () {
+        let err = await this.handleUpdateApp();
+        if (!err) {
+          this.callModal({
+            type: 'Success',
+            text: this.$t('ChatGPT.success.configure'),
+          });
+          this.emit('updateGrid');
+        }
+      }, 1000),
+    },
+    rules() {
+      this.hasChanges = true;
+    },
+    knowledgeBase() {
+      this.hasChanges = true;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .config-chatgpt {
+.config-chatgpt {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__tabs {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    overflow-y: hidden;
+    width: 100%;
 
-    &__tabs {
+    :deep(.tab-body) {
       display: flex;
-      flex-direction: column;
       height: -webkit-fill-available;
       height: -moz-available;
-      overflow-y: hidden;
+      overflow-y: auto;
+    }
+    :deep(.tab-panel) {
       width: 100%;
 
-      :deep(.tab-body) {
-        display: flex;
-        height: -webkit-fill-available;
-        height: -moz-available;
-        overflow-y: auto;
-      }
-      :deep(.tab-panel) {
-        width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
 
+      > div {
         display: flex;
         flex-direction: column;
         height: 100%;
-
-        > div {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
       }
     }
+  }
 
-    &__header {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+    margin-bottom: 1.5rem;
+
+    &__description {
+      font-family: $unnnic-font-family-secondary;
+      font-weight: $unnnic-font-weight-regular;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+      color: $unnnic-color-fg-base;
+
+      :deep(a) {
+        font-weight: $unnnic-font-weight-bold;
+        color: $unnnic-color-fg-base;
+      }
+    }
+  }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    overflow-y: hidden;
+
+    &__content {
+      overflow: auto;
       display: flex;
       flex-direction: column;
-      margin: 2rem;
-      margin-bottom: 1.5rem;
+      flex: 1;
+      color: $unnnic-color-fg-base;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+      margin: 0 2rem 2rem 2rem;
 
       &__description {
-        font-family: $unnnic-font-family-secondary;
-        font-weight: $unnnic-font-weight-regular;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-fg-base;
-
-        
-        :deep(a) {
-          font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-fg-base;
-        }
-      
-      }
-    }
-
-    &__settings {
-      display: flex;
-      flex-direction: column;
-      height: -webkit-fill-available;
-      height: -moz-available;
-      overflow-y: hidden;
-
-      &__content {
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        color: $unnnic-color-fg-base;
+        font-weight: $unnnic-font-weight-bold;
         font-size: $unnnic-font-size-body-gt;
         line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-        margin: 0 2rem 2rem 2rem;
+        color: $unnnic-color-fg-base;
+      }
 
-        &__description {
-          font-weight: $unnnic-font-weight-bold;
-          font-size: $unnnic-font-size-body-gt;
-          line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-          color: $unnnic-color-fg-base;
-        }
+      &__scroll {
+        padding-right: $unnnic-spacing-inline-xs;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: auto;
+        overflow-x: hidden;
+        gap: $unnnic-spacing-stack-sm;
+        margin-bottom: 2rem;
+      }
 
-        &__scroll {
-          padding-right: $unnnic-spacing-inline-xs;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          overflow: auto;
-          overflow-x: hidden;
-          gap: $unnnic-spacing-stack-sm;
-          margin-bottom: 2rem;
-        }
+      &__inputs {
+        display: flex;
+        flex-direction: row;
+        gap: $unnnic-spacing-inline-xs;
 
-        &__inputs {
-          display: flex;
-          flex-direction: row;
-          gap: $unnnic-spacing-inline-xs;
+        :deep(.unnnic-text-area) {
+          textarea {
+            border-color: #e2e6ed;
 
-          :deep(.unnnic-text-area) {
-            textarea {
-              border-color: #e2e6ed;
-
-              &:focus {
-                border-color: #9caccc;
-              }
+            &:focus {
+              border-color: #9caccc;
             }
           }
         }
-
-        &__prompts-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          gap: $unnnic-spacing-inline-sm;
-        }
-
-        &__prompt {
-          max-width: 100%;
-          :deep(.unnnic-tag__label) {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        }
       }
 
-      &__buttons {
-        padding-right: $unnnic-spacing-inline-xs;
-        margin-top: auto;
+      &__prompts-wrapper {
         display: flex;
-        justify-content: space-between;
-        gap: $unnnic-spacing-inline-md;
-
-        &__cancel,
-        &__save {
-          flex: 1;
-        }
-      }
-    }
-
-    &__general {
-      display: flex;
-      flex-direction: column;
-      gap: $unnnic-spacing-stack-sm;
-
-      &__field {
-        display: flex;
+        flex-wrap: wrap;
         gap: $unnnic-spacing-inline-sm;
-        justify-content: space-between;
+      }
+
+      &__prompt {
+        max-width: 100%;
+        :deep(.unnnic-tag__label) {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
 
-    :deep(.unnnic-form__label) {
-      margin: 0 0 0.25rem;
-    }
+    &__buttons {
+      padding-right: $unnnic-spacing-inline-xs;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: $unnnic-spacing-inline-md;
 
-    :deep(.unnnic-label__label) {
-      margin: 5px 0px -10px;
+      &__cancel,
+      &__save {
+        flex: 1;
+      }
     }
   }
+
+  &__general {
+    display: flex;
+    flex-direction: column;
+    gap: $unnnic-spacing-stack-sm;
+
+    &__field {
+      display: flex;
+      gap: $unnnic-spacing-inline-sm;
+      justify-content: space-between;
+    }
+  }
+
+  :deep(.unnnic-form__label) {
+    margin: 0 0 0.25rem;
+  }
+
+  :deep(.unnnic-label__label) {
+    margin: 5px 0px -10px;
+  }
+}
 </style>
-import { auth_store } from '@/stores/modules/auth.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
+import { auth_store } from '@/stores/modules/auth.store'; import {
+externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store }
+from '@/stores/modules/appType/externals/externals.store'; import {
+externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store }
+from '@/stores/modules/appType/externals/externals.store'; import {
+externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from
 '@/stores/modules/appType/externals/externals.store'; import { app_type } from
-'@/stores/modules/appType/appType.store'; import appType from '@/api/appType'; import { app_type }
-from '@/stores/modules/appType/appType.store'; import { app_type } from
-'@/stores/modules/appType/appType.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store'; import { externals_store } from
-'@/stores/modules/appType/externals/externals.store';
+'@/stores/modules/appType/appType.store'; import appType from '@/api/appType';
+import { app_type } from '@/stores/modules/appType/appType.store'; import {
+app_type } from '@/stores/modules/appType/appType.store'; import {
+externals_store } from '@/stores/modules/appType/externals/externals.store';
+import { externals_store } from
+'@/stores/modules/appType/externals/externals.store'; import { externals_store }
+from '@/stores/modules/appType/externals/externals.store';

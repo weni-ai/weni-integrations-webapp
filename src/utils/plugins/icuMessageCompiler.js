@@ -11,7 +11,10 @@ const ICU_PLURAL_OR_SELECTORDINAL_PATTERN =
 const ICU_SELECT_PATTERN = /\{([a-zA-Z][\w]*),\s*select\s*,\s*[\w#.-]+\s*\{/i;
 
 export function shouldUseIntlMessageFormat(message) {
-  return ICU_PLURAL_OR_SELECTORDINAL_PATTERN.test(message) || ICU_SELECT_PATTERN.test(message);
+  return (
+    ICU_PLURAL_OR_SELECTORDINAL_PATTERN.test(message) ||
+    ICU_SELECT_PATTERN.test(message)
+  );
 }
 
 /** Tag names in ICU XML markup (<b>, <i>, <br>) need function handlers in .format(). */
@@ -101,7 +104,9 @@ const icuMessageCompiler = (message, { locale, key, onError }) => {
     if (shouldUseIntlMessageFormat(message)) {
       const formatter = new IntlMessageFormat(message, locale);
       return (ctx) => {
-        const formatted = formatter.format(buildIntlFormatValues(message, ctx.values));
+        const formatted = formatter.format(
+          buildIntlFormatValues(message, ctx.values),
+        );
         const parts = Array.isArray(formatted) ? formatted : [formatted];
         return ctx.normalize(parts);
       };

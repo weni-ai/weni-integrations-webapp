@@ -42,7 +42,9 @@ describe('FormTabContentBody.vue', () => {
 
   it('disables the text area when disableInputs is true', async () => {
     await wrapper.setProps({ disableInputs: true });
-    expect(wrapper.findComponent({ ref: 'bodyText' }).props('disabled')).toBe(true);
+    expect(wrapper.findComponent({ ref: 'bodyText' }).props('disabled')).toBe(
+      true,
+    );
   });
 
   it('emits input-change event when onInput is called', async () => {

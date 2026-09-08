@@ -1,31 +1,31 @@
 <template>
-  <unnnic-dialog
+  <UnnnicDialog
     ref="unnnic-remove-modal"
     class="app-modal"
     :open="showRemoveModal"
     @update:open="handleOpenUpdate"
   >
-    <unnnic-dialog-content size="medium">
-      <unnnic-dialog-header type="warning">
-        <unnnic-dialog-title>
+    <UnnnicDialogContent size="medium">
+      <UnnnicDialogHeader type="warning">
+        <UnnnicDialogTitle>
           {{ $t('apps.details.actions.remove.title') }}
-        </unnnic-dialog-title>
-      </unnnic-dialog-header>
+        </UnnnicDialogTitle>
+      </UnnnicDialogHeader>
 
       <section
         class="app-modal__description"
         v-html="$t('apps.details.actions.remove.description')"
       />
 
-      <unnnic-dialog-footer>
-        <unnnic-dialog-close>
-          <unnnic-button
+      <UnnnicDialogFooter>
+        <UnnnicDialogClose>
+          <UnnnicButton
             ref="unnnic-remove-modal-close-button"
             data-testid="remove-modal-button"
             type="tertiary"
             :text="$t('general.Cancel')"
           />
-        </unnnic-dialog-close>
+        </UnnnicDialogClose>
         <LoadingButton
           ref="unnnic-remove-modal-navigate-button"
           type="primary"
@@ -34,45 +34,45 @@
           :text="$t('apps.details.actions.remove.remove')"
           @clicked="removeApp(currentRemoval.code, currentRemoval.uuid)"
         />
-      </unnnic-dialog-footer>
-    </unnnic-dialog-content>
-  </unnnic-dialog>
+      </UnnnicDialogFooter>
+    </UnnnicDialogContent>
+  </UnnnicDialog>
 </template>
 
 <script>
-  import LoadingButton from '@/components/LoadingButton/index.vue';
+import LoadingButton from '@/components/LoadingButton/index.vue';
 
-  export default {
-    name: 'AppModal',
-    components: {
-      LoadingButton,
+export default {
+  name: 'AppModal',
+  components: {
+    LoadingButton,
+  },
+  data() {
+    return {
+      showAddModal: false,
+      showRemoveModal: false,
+      currentRemoval: null,
+    };
+  },
+  methods: {
+    handleOpenUpdate(open) {
+      if (!open) {
+        this.showRemoveModal = false;
+      }
     },
-    data() {
-      return {
-        showAddModal: false,
-        showRemoveModal: false,
-        currentRemoval: null,
-      };
+    toggleRemoveModal(app = null) {
+      this.currentRemoval = app;
+      this.showRemoveModal = !this.showRemoveModal;
     },
-    methods: {
-      handleOpenUpdate(open) {
-        if (!open) {
-          this.showRemoveModal = false;
-        }
-      },
-      toggleRemoveModal(app = null) {
-        this.currentRemoval = app;
-        this.showRemoveModal = !this.showRemoveModal;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .app-modal {
-    &__description {
-      padding: $unnnic-space-4;
-      color: $unnnic-color-fg-base;
-    }
+.app-modal {
+  &__description {
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
   }
+}
 </style>

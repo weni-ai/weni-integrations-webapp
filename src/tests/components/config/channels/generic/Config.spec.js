@@ -75,7 +75,9 @@ describe('GenericConfig.vue', () => {
   });
 
   it('renders the app description correctly', () => {
-    const description = wrapper.find('.app-config-generic__header__description');
+    const description = wrapper.find(
+      '.app-config-generic__header__description',
+    );
     expect(description.text()).toContain('You can connect a');
     expect(description.text()).toContain('Slack Bot');
     expect(description.html()).toContain('https://slack.com/app');
@@ -86,11 +88,16 @@ describe('GenericConfig.vue', () => {
     await wrapper.setData({ showCallback: true });
     const callbackUrl = wrapper.find('.highlight');
     expect(callbackUrl.exists()).toBe(true);
-    expect(callbackUrl.text()).toContain('https://flows.weni.ai/c/sl/1234/receive');
+    expect(callbackUrl.text()).toContain(
+      'https://flows.weni.ai/c/sl/1234/receive',
+    );
   });
 
   it('renders DynamicForm component when loadingCurrentApp and loadingFormBuild are false', async () => {
-    await wrapper.setData({ loadingCurrentApp: false, loadingFormBuild: false });
+    await wrapper.setData({
+      loadingCurrentApp: false,
+      loadingFormBuild: false,
+    });
 
     const dynamicForm = wrapper.findComponent(DynamicForm);
     expect(dynamicForm.exists()).toBe(true);
@@ -99,7 +106,9 @@ describe('GenericConfig.vue', () => {
   it('shows skeleton loader when loadingCurrentApp or loadingFormBuild is true', async () => {
     await wrapper.setData({ loadingCurrentApp: true, loadingFormBuild: true });
 
-    const skeletonLoader = wrapper.findComponent({ name: 'unnnic-skeleton-loading' });
+    const skeletonLoader = wrapper.findComponent({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletonLoader.exists()).toBe(true);
   });
 });

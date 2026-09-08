@@ -31,11 +31,15 @@ describe('CatalogCard.vue', () => {
   it('should render catalog details correctly', () => {
     expect(wrapper.text()).toContain(catalog.name);
     expect(wrapper.text()).toContain(catalog.facebook_catalog_id);
-    expect(wrapper.text()).toContain(wrapper.vm.$t('WhatsApp.catalog.list.identification'));
+    expect(wrapper.text()).toContain(
+      wrapper.vm.$t('WhatsApp.catalog.list.identification'),
+    );
   });
 
   it('should emit "enable" when catalog status is toggled to true', async () => {
-    const catalogConnectSwitch = wrapper.findComponent({ ref: 'catalogConnectSwitch' });
+    const catalogConnectSwitch = wrapper.findComponent({
+      ref: 'catalogConnectSwitch',
+    });
 
     await catalogConnectSwitch.vm.$emit('update:modelValue', true);
 
@@ -45,7 +49,9 @@ describe('CatalogCard.vue', () => {
   it('should emit "disable" when catalog status is toggled to false', async () => {
     await wrapper.setData({ catalogStatus: false });
 
-    const catalogConnectSwitch = wrapper.findComponent({ ref: 'catalogConnectSwitch' });
+    const catalogConnectSwitch = wrapper.findComponent({
+      ref: 'catalogConnectSwitch',
+    });
 
     await catalogConnectSwitch.vm.$emit('update:modelValue', false);
 
@@ -68,7 +74,9 @@ describe('CatalogCard.vue', () => {
   });
 
   it('should display the correct text on the switches', () => {
-    const catalogConnectSwitch = wrapper.findComponent({ ref: 'catalogConnectSwitch' });
+    const catalogConnectSwitch = wrapper.findComponent({
+      ref: 'catalogConnectSwitch',
+    });
     const cartEnableSwitch = wrapper.findComponent({ ref: 'cartEnableSwitch' });
 
     const catalogText = catalog.is_connected

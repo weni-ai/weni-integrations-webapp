@@ -1,7 +1,14 @@
 <template>
   <div class="vtex-modal">
-    <unnnic-dialog ref="modal" :open="true" @update:open="handleOpenUpdate">
-      <unnnic-dialog-content size="large" @interact-outside.prevent>
+    <UnnnicDialog
+      ref="modal"
+      :open="true"
+      @update:open="handleOpenUpdate"
+    >
+      <UnnnicDialogContent
+        size="large"
+        @interact-outside.prevent
+      >
         <div class="vtex-modal__content">
           <StepIndicator
             ref="stepIndicator"
@@ -10,7 +17,10 @@
           />
 
           <div v-if="currentStep == 0">
-            <header ref="headerTitle" class="vtex-modal__header">
+            <header
+              ref="headerTitle"
+              class="vtex-modal__header"
+            >
               <span class="vtex-modal__header__title">
                 {{ $t('vtex.setup.title') }}
               </span>
@@ -21,24 +31,29 @@
 
             <div class="vtex-modal__content__form">
               <div>
-                <unnnic-label :label="$t('vtex.setup.whatsapp_channel')" />
-                <unnnic-select
+                <UnnnicLabel :label="$t('vtex.setup.whatsapp_channel')" />
+                <UnnnicSelectSmart
                   v-if="!loadingChannels"
                   ref="whatsappChannelSelect"
                   v-model="selectedChannel"
                   :options="whatsappChannels"
                 />
-                <unnnic-skeleton-loading v-else tag="div" width="100%" height="42px" />
+                <UnnnicSkeletonLoading
+                  v-else
+                  tag="div"
+                  width="100%"
+                  height="42px"
+                />
               </div>
 
-              <unnnic-input
+              <UnnnicInput
                 class="vtex-modal__content__form__input"
                 v-model="storeDomain"
                 :label="$t('vtex.setup.storeDomain')"
                 :placeholder="$t('vtex.setup.storedomain_placeholder')"
               />
 
-              <unnnic-input
+              <UnnnicInput
                 class="vtex-modal__content__form__input"
                 v-model="apiDomain"
                 :label="$t('vtex.setup.apiSubdomain')"
@@ -46,14 +61,14 @@
               />
 
               <div class="vtex-modal__content__form__keys">
-                <unnnic-input
+                <UnnnicInput
                   class="vtex-modal__content__form__input"
                   v-model="appKey"
                   :label="$t('vtex.setup.appKey')"
                   :placeholder="$t('vtex.setup.appKey_placeholder')"
                 />
 
-                <unnnic-input
+                <UnnnicInput
                   class="vtex-modal__content__form__input"
                   v-model="appToken"
                   :label="$t('vtex.setup.appToken')"
@@ -75,7 +90,10 @@
             </div>
           </div>
 
-          <div v-if="currentStep == 1" class="vtex-modal__content">
+          <div
+            v-if="currentStep == 1"
+            class="vtex-modal__content"
+          >
             <header class="vtex-modal__header">
               <span class="vtex-modal__header__title">
                 {{ $t('vtex.setup.affiliate_title') }}
@@ -136,13 +154,15 @@
                     v-html="$t('vtex.setup.affiliate_step4.description')"
                   ></p>
 
-                  <div class="vtex-modal__content__section__content__url-wrapper">
-                    <unnnic-input
+                  <div
+                    class="vtex-modal__content__section__content__url-wrapper"
+                  >
+                    <UnnnicInput
                       class="vtex-vtex-modal__content__section__content__url-input"
                       v-model="webhookUrl"
                     />
 
-                    <unnnic-button
+                    <UnnnicButton
                       ref="vtex-copy-button"
                       class="vtex-modal__content__section__content__url-wrapper__button"
                       type="secondary"
@@ -157,15 +177,15 @@
           </div>
         </div>
 
-        <unnnic-dialog-footer>
-          <unnnic-button
+        <UnnnicDialogFooter>
+          <UnnnicButton
             ref="unnnic-vtex-modal-close-button"
             class="vtex-modal__buttons__button"
             type="tertiary"
             :text="$t('general.Cancel')"
             @click="closePopUp"
           />
-          <unnnic-button
+          <UnnnicButton
             ref="unnnic-vtex-modal-setup-button"
             class="vtex-modal__buttons__button"
             type="primary"
@@ -174,337 +194,345 @@
             :disabled="isContinueDisabled"
             @click="continueSetup"
           />
-        </unnnic-dialog-footer>
-      </unnnic-dialog-content>
-    </unnnic-dialog>
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
 <script>
-  import { mapState, mapActions } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { my_apps } from '@/stores/modules/myApps.store';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
-  import unnnic from '@weni/unnnic-system';
-  import StepIndicator from '../../../StepIndicator.vue';
-  import getEnv from '../../../../utils/env';
+import { mapState, mapActions } from 'pinia';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { my_apps } from '@/stores/modules/myApps.store';
+import { auth_store } from '@/stores/modules/auth.store';
+import { ecommerce_store } from '@/stores/modules/appType/ecommerce/ecommerce.store';
+import unnnic from '@weni/unnnic-system';
+import StepIndicator from '../../../StepIndicator.vue';
+import getEnv from '../../../../utils/env';
 
-  export default {
-    name: 'VtexModal',
-    components: {
-      StepIndicator,
+export default {
+  name: 'VtexModal',
+  components: {
+    StepIndicator,
+  },
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+  },
+  data() {
+    return {
+      storeDomain: '',
+      apiDomain: '',
+      whatsappChannels: [],
+      selectedChannel: [],
+      loadingChannels: false,
+      appKey: '',
+      appToken: '',
+      currentStep: 0,
+    };
+  },
+  mounted() {
+    this.getWhatsAppChannels();
+    this.getVtexAppUuid({ code: this.app.code });
+  },
+  computed: {
+    ...mapState(auth_store, ['project']),
+    ...mapState(my_apps, ['configuredApps', 'errorConfiguredApps']),
+    ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
+    ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
+    webhookUrl() {
+      const backendUrl = getEnv('API_BASE_URL');
+      return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid.uuid}/products-update/api/notification/`;
     },
-    data() {
-      return {
-        storeDomain: '',
-        apiDomain: '',
-        whatsappChannels: [],
-        selectedChannel: '',
-        loadingChannels: false,
-        appKey: '',
-        appToken: '',
-        currentStep: 0,
-      };
+
+    isContinueDisabled() {
+      if (this.currentStep === 0) {
+        const isChannelSelected =
+          this.selectedChannel.length > 0 && !!this.selectedChannel.at(0).value;
+        const isAPIDomainNotEmpty = !!this.apiDomain.trim();
+        const isStoreDomainNotEmpty = !!this.storeDomain.trim();
+        const isAppKeyNotEmpty = !!this.appKey.trim();
+        const isAppTokenNotEmpty = !!this.appToken.trim();
+
+        return (
+          !isChannelSelected ||
+          !isAPIDomainNotEmpty ||
+          !isStoreDomainNotEmpty ||
+          !isAppKeyNotEmpty ||
+          !isAppTokenNotEmpty
+        );
+      }
+
+      return false;
     },
-    mounted() {
-      this.getWhatsAppChannels();
-      this.getVtexAppUuid({ code: this.app.code });
+  },
+  methods: {
+    ...mapActions(app_type, ['createApp']),
+    ...mapActions(my_apps, ['getConfiguredApps']),
+    ...mapActions(ecommerce_store, ['getVtexAppUuid']),
+    handleOpenUpdate(open) {
+      if (!open) {
+        this.closePopUp();
+      }
     },
-    computed: {
-      ...mapState(auth_store, ['project']),
-      ...mapState(my_apps, ['configuredApps', 'errorConfiguredApps']),
-      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
-      ...mapState(ecommerce_store, ['generatedVtexAppUuid', 'errorVtexAppUuid']),
-      webhookUrl() {
-        const backendUrl = getEnv('API_BASE_URL');
-        return `${backendUrl}/api/v1/webhook/vtex/${this.generatedVtexAppUuid.uuid}/products-update/api/notification/`;
-      },
-
-      isContinueDisabled() {
-        if (this.currentStep === 0) {
-          const isChannelSelected = !!this.selectedChannel;
-          const isAPIDomainNotEmpty = !!this.apiDomain.trim();
-          const isStoreDomainNotEmpty = !!this.storeDomain.trim();
-          const isAppKeyNotEmpty = !!this.appKey.trim();
-          const isAppTokenNotEmpty = !!this.appToken.trim();
-
-          return (
-            !isChannelSelected ||
-            !isAPIDomainNotEmpty ||
-            !isStoreDomainNotEmpty ||
-            !isAppKeyNotEmpty ||
-            !isAppTokenNotEmpty
-          );
-        }
-
-        return false;
-      },
+    closePopUp() {
+      this.$emit('closePopUp');
     },
-    methods: {
-      ...mapActions(app_type, ['createApp']),
-      ...mapActions(my_apps, ['getConfiguredApps']),
-      ...mapActions(ecommerce_store, ['getVtexAppUuid']),
-      handleOpenUpdate(open) {
-        if (!open) {
-          this.closePopUp();
-        }
-      },
-      closePopUp() {
-        this.$emit('closePopUp');
-      },
-      continueSetup() {
-        if (this.currentStep === 0) {
-          if (
-            !this.storeDomain.trim() ||
-            !this.apiDomain.trim() ||
-            !this.appKey.trim() ||
-            !this.appToken.trim()
-          ) {
-            this.callModal({ type: 'error', text: this.$t('vtex.setup.error_missing_fields') });
-            return;
-          }
-          this.currentStep = 1;
-          return;
-        }
-        this.setupVtex();
-      },
-      async setupVtex() {
-        const data = {
-          code: this.app.code,
-          payload: {
-            project_uuid: this.project,
-            domain: this.apiDomain.trim(),
-            store_domain: this.storeDomain.trim(),
-            app_key: this.appKey.trim(),
-            app_token: this.appToken.trim(),
-            wpp_cloud_uuid: this.selectedChannel,
-            uuid: this.generatedVtexAppUuid.uuid,
-          },
-        };
-        await this.createApp(data);
-
-        if (this.errorCreateApp) {
-          if (
-            this.errorCreateApp.response.status === 400 &&
-            this.errorCreateApp.response.data.detail === 'The credentials provided are invalid.'
-          ) {
-            this.callModal({ type: 'error', text: this.$t('vtex.setup.invalid_credentials') });
-            return;
-          }
-          this.callModal({ type: 'error', text: this.$t('vtex.setup.error') });
-          return;
-        }
-
-        this.callModal({ type: 'success', text: this.$t('vtex.setup.success') });
-        this.$emit('closePopUp');
-        this.$router.push({ name: 'Apps' });
-      },
-      async getWhatsAppChannels() {
-        this.loadingChannels = true;
-        const params = {
-          project_uuid: this.project,
-        };
-        await this.getConfiguredApps({ params });
-        this.loadingChannels = false;
-        if (this.errorConfiguredApps) {
+    continueSetup() {
+      if (this.currentStep === 0) {
+        if (
+          !this.storeDomain.trim() ||
+          !this.apiDomain.trim() ||
+          !this.appKey.trim() ||
+          !this.appToken.trim()
+        ) {
           this.callModal({
             type: 'error',
-            text: this.$t('apps.myApps.error.configured'),
+            text: this.$t('vtex.setup.error_missing_fields'),
           });
-          this.closePopUp();
           return;
         }
-        this.whatsappChannels = this.configuredApps
-          .filter((app) => app.code === 'wpp-cloud')
-          .map((wppChannel) => {
-            return {
-              label: `${wppChannel.config.wa_verified_name} - (${wppChannel.config.title})`,
-              value: wppChannel.uuid,
-            };
-          });
-
-        if (this.whatsappChannels.length === 1) {
-          this.selectedChannel = this.whatsappChannels[0].value;
-        }
-      },
-      async copyWebhookUrl() {
-        navigator.clipboard.writeText(this.webhookUrl);
-        unnnic.unnnicCallAlert({
-          props: {
-            text: this.$t('apps.config.copy_success'),
-            type: 'success',
-          },
-          seconds: 3,
-        });
-      },
-      callModal({ text, type }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text,
-            type,
-          },
-          seconds: 6,
-        });
-      },
+        this.currentStep = 1;
+        return;
+      }
+      this.setupVtex();
     },
-  };
+    async setupVtex() {
+      const data = {
+        code: this.app.code,
+        payload: {
+          project_uuid: this.project,
+          domain: this.apiDomain.trim(),
+          store_domain: this.storeDomain.trim(),
+          app_key: this.appKey.trim(),
+          app_token: this.appToken.trim(),
+          wpp_cloud_uuid: this.selectedChannel.at(0).value,
+          uuid: this.generatedVtexAppUuid.uuid,
+        },
+      };
+      await this.createApp(data);
+
+      if (this.errorCreateApp) {
+        if (
+          this.errorCreateApp.response.status === 400 &&
+          this.errorCreateApp.response.data.detail ===
+            'The credentials provided are invalid.'
+        ) {
+          this.callModal({
+            type: 'error',
+            text: this.$t('vtex.setup.invalid_credentials'),
+          });
+          return;
+        }
+        this.callModal({ type: 'error', text: this.$t('vtex.setup.error') });
+        return;
+      }
+
+      this.callModal({ type: 'success', text: this.$t('vtex.setup.success') });
+      this.$emit('closePopUp');
+      this.$router.push({ name: 'Apps' });
+    },
+    async getWhatsAppChannels() {
+      this.loadingChannels = true;
+      const params = {
+        project_uuid: this.project,
+      };
+      await this.getConfiguredApps({ params });
+      this.loadingChannels = false;
+      if (this.errorConfiguredApps) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('apps.myApps.error.configured'),
+        });
+        this.closePopUp();
+        return;
+      }
+      this.whatsappChannels = this.configuredApps
+        .filter((app) => app.code === 'wpp-cloud')
+        .map((wppChannel) => {
+          return {
+            label: `${wppChannel.config.wa_verified_name} - (${wppChannel.config.title})`,
+            value: wppChannel.uuid,
+          };
+        });
+
+      if (this.whatsappChannels.length === 1) {
+        this.selectedChannel = [this.whatsappChannels[0]];
+      }
+    },
+    async copyWebhookUrl() {
+      navigator.clipboard.writeText(this.webhookUrl);
+      unnnic.unnnicCallAlert({
+        props: {
+          text: this.$t('apps.config.copy_success'),
+          type: 'success',
+        },
+        seconds: 3,
+      });
+    },
+    callModal({ text, type }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text,
+          type,
+        },
+        seconds: 6,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .vtex-modal {
-    &__header {
+.vtex-modal {
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $unnnic-spacing-xs;
+    text-align: left;
+    margin-top: $unnnic-spacing-md;
+    margin-bottom: $unnnic-spacing-sm;
+
+    &__title {
+      color: $unnnic-color-fg-emphasized;
+      font-size: $unnnic-font-size-title-sm;
+      font-weight: $unnnic-font-weight-black;
+      line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: $unnnic-space-4;
+
+    &__title {
+      font-family: $unnnic-font-family-secondary;
+      color: $unnnic-color-fg-emphasized;
+      font-weight: $unnnic-font-weight-black;
+      font-size: $unnnic-font-size-title-sm;
+      line-height: ($unnnic-font-size-title-sm + $unnnic-line-height-medium);
+      margin-bottom: $unnnic-spacing-stack-xs;
+    }
+
+    &__description {
+      margin-bottom: $unnnic-spacing-stack-md;
+    }
+
+    &__form {
       display: flex;
       flex-direction: column;
-      gap: $unnnic-spacing-xs;
+      gap: $unnnic-spacing-stack-sm;
       text-align: left;
-      margin-top: $unnnic-spacing-md;
-      margin-bottom: $unnnic-spacing-sm;
 
-      &__title {
-        color: $unnnic-color-fg-emphasized;
-        font-size: $unnnic-font-size-title-sm;
-        font-weight: $unnnic-font-weight-black;
-        line-height: $unnnic-font-size-title-sm + $unnnic-line-height-md;
+      &__keys {
+        display: inline-flex;
+        flex: 1;
+        gap: $unnnic-spacing-sm;
+
+        .unnnic-form {
+          flex: 1;
+        }
+      }
+
+      &__guide {
+        color: $unnnic-color-fg-base;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+
+        a {
+          color: $unnnic-color-fg-base;
+          font-weight: $unnnic-font-weight-bold;
+          text-decoration-line: underline;
+        }
       }
     }
 
-    &__content {
+    &__section_wrapper {
       display: flex;
       flex-direction: column;
-      padding: $unnnic-space-4;
+      gap: $unnnic-spacing-sm;
+    }
 
-      &__title {
-        font-family: $unnnic-font-family-secondary;
-        color: $unnnic-color-fg-emphasized;
-        font-weight: $unnnic-font-weight-black;
-        font-size: $unnnic-font-size-title-sm;
-        line-height: ($unnnic-font-size-title-sm + $unnnic-line-height-medium);
-        margin-bottom: $unnnic-spacing-stack-xs;
+    &__section {
+      display: flex;
+      text-align: left;
+      flex: 1;
+      gap: $unnnic-spacing-stack-xs;
+
+      &__number {
+        display: flex;
+        min-width: 31px;
+        min-height: 31px;
+        max-width: 31px;
+        max-height: 31px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        border-radius: $unnnic-border-radius-pill;
+        background: $unnnic-color-bg-accent-plain;
       }
 
-      &__description {
-        margin-bottom: $unnnic-spacing-stack-md;
-      }
-
-      &__form {
+      &__content {
         display: flex;
         flex-direction: column;
-        gap: $unnnic-spacing-stack-sm;
-        text-align: left;
+        gap: $unnnic-spacing-stack-nano;
+        margin-top: 2px;
 
-        &__keys {
-          display: inline-flex;
-          flex: 1;
-          gap: $unnnic-spacing-sm;
-
-          .unnnic-form {
-            flex: 1;
-          }
+        &__title {
+          color: $unnnic-color-fg-emphasized;
+          font-size: $unnnic-font-size-body-lg;
+          font-weight: $unnnic-font-weight-bold;
+          line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
         }
 
-        &__guide {
+        &__description {
+          margin: unset;
           color: $unnnic-color-fg-base;
           font-size: $unnnic-font-size-body-gt;
-          line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
+          line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
 
-          a {
+          :deep(.highlight) {
             color: $unnnic-color-fg-base;
-            font-weight: $unnnic-font-weight-bold;
-            text-decoration-line: underline;
-          }
-        }
-      }
-
-      &__section_wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-spacing-sm;
-      }
-
-      &__section {
-        display: flex;
-        text-align: left;
-        flex: 1;
-        gap: $unnnic-spacing-stack-xs;
-
-        &__number {
-          display: flex;
-          min-width: 31px;
-          min-height: 31px;
-          max-width: 31px;
-          max-height: 31px;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          border-radius: $unnnic-border-radius-pill;
-          background: $unnnic-color-bg-accent-plain;
-        }
-
-        &__content {
-          display: flex;
-          flex-direction: column;
-          gap: $unnnic-spacing-stack-nano;
-          margin-top: 2px;
-
-          &__title {
-            color: $unnnic-color-fg-emphasized;
-            font-size: $unnnic-font-size-body-lg;
-            font-weight: $unnnic-font-weight-bold;
-            line-height: $unnnic-line-height-md + $unnnic-font-size-body-lg;
+            border-radius: $unnnic-border-radius-sm;
+            background: $unnnic-color-bg-muted;
+            padding: 2px $unnnic-spacing-nano;
           }
 
-          &__description {
+          :deep(ul) {
             margin: unset;
-            color: $unnnic-color-fg-base;
-            font-size: $unnnic-font-size-body-gt;
-            line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+            padding: unset;
 
-            :deep(.highlight) {
-              color: $unnnic-color-fg-base;
-              border-radius: $unnnic-border-radius-sm;
-              background: $unnnic-color-bg-muted;
-              padding: 2px $unnnic-spacing-nano;
-            }
-
-            :deep(ul) {
-              margin: unset;
-              padding: unset;
-
-              padding-left: 20px;
-            }
-          }
-
-          &__url-wrapper {
-            display: flex;
-            gap: $unnnic-spacing-xs;
-            align-items: center;
-
-            &__button {
-              min-width: 110px;
-            }
+            padding-left: 20px;
           }
         }
-      }
-    }
 
-    &__buttons {
-      display: flex;
-      justify-content: center;
-      padding-top: $unnnic-spacing-md;
-      gap: $unnnic-spacing-md;
+        &__url-wrapper {
+          display: flex;
+          gap: $unnnic-spacing-xs;
+          align-items: center;
 
-      &__button {
-        display: flex;
-        width: 221px;
+          &__button {
+            min-width: 110px;
+          }
+        }
       }
     }
   }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    padding-top: $unnnic-spacing-md;
+    gap: $unnnic-spacing-md;
+
+    &__button {
+      display: flex;
+      width: 221px;
+    }
+  }
+}
 </style>

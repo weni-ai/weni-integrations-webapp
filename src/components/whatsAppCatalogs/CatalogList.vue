@@ -3,7 +3,10 @@
     <div class="whatsapp-catalog-list__header">
       <div class="whatsapp-catalog-list__header__text">
         <div class="whatsapp-catalog-list__header__icon">
-          <img src="@/assets/svgs/storefront.svg" alt="" />
+          <img
+            src="@/assets/svgs/storefront.svg"
+            alt=""
+          />
         </div>
         <div class="whatsapp-catalog-list__header__title">
           <span class="u font primary title-sm color-neutral-darkest">
@@ -17,7 +20,7 @@
     </div>
 
     <div class="whatsapp-catalog-list__search">
-      <unnnic-input
+      <UnnnicInput
         v-model="searchTerm"
         :placeholder="$t('WhatsApp.catalog.list.search_placeholder')"
         iconLeft="search-1"
@@ -26,7 +29,10 @@
 
     <div
       class="whatsapp-catalog-list__cards"
-      v-if="whatsAppCloudCatalogs || (!loadingWhatsAppCloudCatalogs && !errorWhatsAppCloudCatalogs)"
+      v-if="
+        whatsAppCloudCatalogs ||
+        (!loadingWhatsAppCloudCatalogs && !errorWhatsAppCloudCatalogs)
+      "
     >
       <CatalogCard
         v-for="(catalog, index) in listItems"
@@ -42,29 +48,32 @@
       />
     </div>
     <div class="whatsapp-catalog-list__pagination">
-      <span>{{ currentPageStart }} - {{ currentPageCount }} de {{ totalCount }}</span>
-      <unnnic-pagination
+      <span
+        >{{ currentPageStart }} - {{ currentPageCount }} de
+        {{ totalCount }}</span
+      >
+      <UnnnicPagination
         :modelValue="page"
         @update:modelValue="onPageChange"
         :max="pageCount"
         :show="5"
       />
     </div>
-    <unnnic-dialog
+    <UnnnicDialog
       class="catalog-disable-dialog"
       :open="openModal"
       @update:open="handleDisableDialogOpenUpdate"
     >
-      <unnnic-dialog-content size="medium">
-        <unnnic-dialog-header type="warning">
-          <unnnic-dialog-title>
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="warning">
+          <UnnnicDialogTitle>
             {{
               catalogToEnable
                 ? $t('WhatsApp.catalog.list.disable_modal.title_active')
                 : $t('WhatsApp.catalog.list.disable_modal.title')
             }}
-          </unnnic-dialog-title>
-        </unnnic-dialog-header>
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
 
         <section class="catalog-disable-dialog__body">
           <p v-if="catalogToEnable">
@@ -77,351 +86,358 @@
           <p v-else>
             {{ $t('WhatsApp.catalog.list.disable_modal.description') }}
           </p>
-          <unnnic-input
+          <UnnnicInput
             v-model="confirmationText"
             :label="
-              $t('WhatsApp.catalog.list.disable_modal.label', { name: connectedCatalog?.name })
+              $t('WhatsApp.catalog.list.disable_modal.label', {
+                name: connectedCatalog?.name,
+              })
             "
             :placeholder="connectedCatalog?.name"
           />
         </section>
 
-        <unnnic-dialog-footer>
-          <unnnic-dialog-close>
-            <unnnic-button type="tertiary" :text="$t('general.Cancel')" />
-          </unnnic-dialog-close>
-          <unnnic-button
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              type="tertiary"
+              :text="$t('general.Cancel')"
+            />
+          </UnnnicDialogClose>
+          <UnnnicButton
             type="primary"
             :text="$t('WhatsApp.catalog.list.disable_modal.confirm')"
             :loading="actionPrimaryLoading"
             :disabled="!isConfirmationValid"
             @click="handleCatalogConfirmation"
           />
-        </unnnic-dialog-footer>
-      </unnnic-dialog-content>
-    </unnnic-dialog>
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
 <script>
-  import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
-  import { mapActions, mapState } from 'pinia';
-  import debounce from 'lodash.debounce';
-  import unnnic from '@weni/unnnic-system';
-  import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
+import CatalogCard from '@/components/whatsAppCatalogs/CatalogCard.vue';
+import { mapActions, mapState } from 'pinia';
+import debounce from 'lodash.debounce';
+import unnnic from '@weni/unnnic-system';
+import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 
-  export default {
-    name: 'CatalogList',
-    components: {
-      CatalogCard,
+export default {
+  name: 'CatalogList',
+  components: {
+    CatalogCard,
+  },
+  data() {
+    return {
+      openModal: false,
+      connectedCatalog: null,
+      catalogToEnable: null,
+      firstLoad: true,
+      page: 1,
+      pageSize: 15,
+      searchTerm: '',
+      actionPrimaryLoading: false,
+      confirmationText: '',
+    };
+  },
+  mounted() {
+    this.fetchData(this.page);
+  },
+  computed: {
+    ...mapState(whatsapp_cloud, [
+      'loadingWhatsAppCloudCatalogs',
+      'errorWhatsAppCloudCatalogs',
+      'whatsAppCloudCatalogs',
+      'errorDisableCatalog',
+      'errorEnableCatalog',
+      'commerceSettings',
+      'errorToggleCartVisibility',
+    ]),
+    hasCommerceSetting() {
+      return this.commerceSettings
+        ? this.commerceSettings?.is_cart_enabled
+        : false;
     },
-    data() {
-      return {
-        openModal: false,
-        connectedCatalog: null,
-        catalogToEnable: null,
-        firstLoad: true,
-        page: 1,
-        pageSize: 15,
-        searchTerm: '',
-        actionPrimaryLoading: false,
-        confirmationText: '',
+    listItems() {
+      return this.whatsAppCloudCatalogs?.results || [];
+    },
+    totalCount() {
+      return this.whatsAppCloudCatalogs?.count || this.pageSize;
+    },
+    pageCount() {
+      if (this.whatsAppCloudCatalogs?.count) {
+        return Math.ceil(this.whatsAppCloudCatalogs.count / this.pageSize);
+      } else {
+        return 1;
+      }
+    },
+    isConfirmationValid() {
+      return this.confirmationText === this.connectedCatalog?.name;
+    },
+    currentPageStart() {
+      return (this.page - 1) * this.pageSize || 1;
+    },
+    currentPageCount() {
+      const value = this.pageSize * this.page;
+      return value > this.whatsAppCloudCatalogs?.count
+        ? this.whatsAppCloudCatalogs?.count || 0
+        : value;
+    },
+  },
+  methods: {
+    ...mapActions(whatsapp_cloud, [
+      'getWhatsAppCloudCatalogs',
+      'disableWhatsAppCloudCatalogs',
+      'enableWhatsAppCloudCatalogs',
+      'getCommerceSettings',
+      'toggleCartVisibility',
+    ]),
+    fetchData: debounce(async function (page) {
+      const { appUuid } = this.$route.params;
+      const params = {
+        page: page,
+        page_size: this.pageSize,
       };
-    },
-    mounted() {
+
+      if (this.searchTerm && this.searchTerm.trim()) {
+        params.name = this.searchTerm.trim();
+      }
+      await this.getCommerceSettings({ appUuid });
+      await this.getWhatsAppCloudCatalogs({ appUuid, params });
+
+      if (this.errorWhatsAppCloudCatalogs) {
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
+            type: 'error',
+          },
+          seconds: 8,
+        });
+      }
+
+      this.connectedCatalog = this.whatsAppCloudCatalogs.results.find(
+        (catalog) => catalog.is_connected === true,
+      );
+    }, 750),
+    async disableCatalog() {
+      const { appUuid } = this.$route.params;
+      const data = {
+        catalogUuid: this.connectedCatalog.uuid,
+        appUuid,
+      };
+
+      await this.disableWhatsAppCloudCatalogs(data);
+
+      if (this.errorDisableCatalog) {
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.catalog.error.disable_catalog'),
+            type: 'error',
+          },
+          seconds: 8,
+        });
+      } else {
+        this.openModal = false;
+      }
       this.fetchData(this.page);
     },
-    computed: {
-      ...mapState(whatsapp_cloud, [
-        'loadingWhatsAppCloudCatalogs',
-        'errorWhatsAppCloudCatalogs',
-        'whatsAppCloudCatalogs',
-        'errorDisableCatalog',
-        'errorEnableCatalog',
-        'commerceSettings',
-        'errorToggleCartVisibility',
-      ]),
-      hasCommerceSetting() {
-        return this.commerceSettings ? this.commerceSettings?.is_cart_enabled : false;
-      },
-      listItems() {
-        return this.whatsAppCloudCatalogs?.results || [];
-      },
-      totalCount() {
-        return this.whatsAppCloudCatalogs?.count || this.pageSize;
-      },
-      pageCount() {
-        if (this.whatsAppCloudCatalogs?.count) {
-          return Math.ceil(this.whatsAppCloudCatalogs.count / this.pageSize);
-        } else {
-          return 1;
-        }
-      },
-      isConfirmationValid() {
-        return this.confirmationText === this.connectedCatalog?.name;
-      },
-      currentPageStart() {
-        return (this.page - 1) * this.pageSize || 1;
-      },
-      currentPageCount() {
-        const value = this.pageSize * this.page;
-        return value > this.whatsAppCloudCatalogs?.count
-          ? this.whatsAppCloudCatalogs?.count || 0
-          : value;
-      },
-    },
-    methods: {
-      ...mapActions(whatsapp_cloud, [
-        'getWhatsAppCloudCatalogs',
-        'disableWhatsAppCloudCatalogs',
-        'enableWhatsAppCloudCatalogs',
-        'getCommerceSettings',
-        'toggleCartVisibility',
-      ]),
-      fetchData: debounce(async function (page) {
-        const { appUuid } = this.$route.params;
-        const params = {
-          page: page,
-          page_size: this.pageSize,
-        };
-
-        if (this.searchTerm && this.searchTerm.trim()) {
-          params.name = this.searchTerm.trim();
-        }
-        await this.getCommerceSettings({ appUuid });
-        await this.getWhatsAppCloudCatalogs({ appUuid, params });
-
-        if (this.errorWhatsAppCloudCatalogs) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.catalog.error.fetch_catalogs'),
-              type: 'error',
-            },
-            seconds: 8,
-          });
-        }
-
-        this.connectedCatalog = this.whatsAppCloudCatalogs.results.find(
-          (catalog) => catalog.is_connected === true,
-        );
-      }, 750),
-      async disableCatalog() {
-        const { appUuid } = this.$route.params;
-        const data = {
-          catalogUuid: this.connectedCatalog.uuid,
-          appUuid,
-        };
-
-        await this.disableWhatsAppCloudCatalogs(data);
-
-        if (this.errorDisableCatalog) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.catalog.error.disable_catalog'),
-              type: 'error',
-            },
-            seconds: 8,
-          });
-        } else {
-          this.openModal = false;
-        }
-        this.fetchData(this.page);
-      },
-      async handleEnableCatalog(catalog) {
-        if (this.connectedCatalog) {
-          this.catalogToEnable = catalog;
-          this.openModal = true;
-        } else {
-          this.enableCatalog(catalog);
-        }
-      },
-      handleDisableCatalog() {
+    async handleEnableCatalog(catalog) {
+      if (this.connectedCatalog) {
+        this.catalogToEnable = catalog;
         this.openModal = true;
-      },
-      async enableCatalog(catalog) {
-        const { appUuid } = this.$route.params;
-        const data = {
-          catalogUuid: catalog.uuid,
-          appUuid,
-        };
+      } else {
+        this.enableCatalog(catalog);
+      }
+    },
+    handleDisableCatalog() {
+      this.openModal = true;
+    },
+    async enableCatalog(catalog) {
+      const { appUuid } = this.$route.params;
+      const data = {
+        catalogUuid: catalog.uuid,
+        appUuid,
+      };
 
-        await this.enableWhatsAppCloudCatalogs(data);
+      await this.enableWhatsAppCloudCatalogs(data);
 
-        if (this.errorEnableCatalog) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.catalog.error.enable_catalog'),
-              type: 'error',
-            },
-            seconds: 8,
-          });
-        }
-
-        this.fetchData(this.page);
-      },
-      async handleCatalogConfirmation() {
-        this.actionPrimaryLoading = true;
-        try {
-          await this.disableCatalog();
-          if (!this.errorDisableCatalog && this.catalogToEnable) {
-            await this.enableCatalog(this.catalogToEnable);
-            this.catalogToEnable = null;
-          }
-        } finally {
-          this.actionPrimaryLoading = false;
-        }
-      },
-      handleDisableDialogOpenUpdate(open) {
-        if (!open) {
-          this.closeModal();
-        }
-      },
-      closeModal() {
-        this.catalogToEnable = null;
-        this.openModal = false;
-        this.confirmationText = '';
-      },
-      async toggleCart() {
-        const { appUuid } = this.$route.params;
-        const data = {
-          appUuid,
-          payload: {
-            enable: !this.commerceSettings?.is_cart_enabled,
+      if (this.errorEnableCatalog) {
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.catalog.error.enable_catalog'),
+            type: 'error',
           },
-        };
-        await this.toggleCartVisibility(data);
-
-        if (this.errorToggleCartVisibility) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
-              type: 'error',
-            },
-            seconds: 8,
-          });
-        }
-
-        this.fetchData(this.page);
-      },
-      redirectToCatalogProducts(catalogUuid, catalogName) {
-        this.$router.push({
-          name: 'WhatsApp Catalog Products',
-          params: {
-            appUuid: this.$route.params.appUuid,
-            catalogUuid,
-          },
-          query: {
-            catalogName,
-          },
+          seconds: 8,
         });
-      },
-      onPageChange(value) {
-        this.page = value;
+      }
+
+      this.fetchData(this.page);
+    },
+    async handleCatalogConfirmation() {
+      this.actionPrimaryLoading = true;
+      try {
+        await this.disableCatalog();
+        if (!this.errorDisableCatalog && this.catalogToEnable) {
+          await this.enableCatalog(this.catalogToEnable);
+          this.catalogToEnable = null;
+        }
+      } finally {
+        this.actionPrimaryLoading = false;
+      }
+    },
+    handleDisableDialogOpenUpdate(open) {
+      if (!open) {
+        this.closeModal();
+      }
+    },
+    closeModal() {
+      this.catalogToEnable = null;
+      this.openModal = false;
+      this.confirmationText = '';
+    },
+    async toggleCart() {
+      const { appUuid } = this.$route.params;
+      const data = {
+        appUuid,
+        payload: {
+          enable: !this.commerceSettings?.is_cart_enabled,
+        },
+      };
+      await this.toggleCartVisibility(data);
+
+      if (this.errorToggleCartVisibility) {
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.catalog.error.toggle_cart_visibility'),
+            type: 'error',
+          },
+          seconds: 8,
+        });
+      }
+
+      this.fetchData(this.page);
+    },
+    redirectToCatalogProducts(catalogUuid, catalogName) {
+      this.$router.push({
+        name: 'WhatsApp Catalog Products',
+        params: {
+          appUuid: this.$route.params.appUuid,
+          catalogUuid,
+        },
+        query: {
+          catalogName,
+        },
+      });
+    },
+    onPageChange(value) {
+      this.page = value;
+    },
+  },
+  watch: {
+    page: {
+      immediate: true,
+      handler(page) {
+        this.fetchData(page);
       },
     },
-    watch: {
-      page: {
-        immediate: true,
-        handler(page) {
-          this.fetchData(page);
-        },
+    whatsAppCloudCatalogs: {
+      handler() {
+        this.firstLoad = false;
       },
-      whatsAppCloudCatalogs: {
-        handler() {
-          this.firstLoad = false;
-        },
-        deep: true,
-      },
-      searchTerm: {
-        handler() {
-          if (this.page === 1) {
-            this.fetchData(this.page);
-          } else {
-            this.page = 1;
-          }
-        },
-        deep: true,
-      },
+      deep: true,
     },
-  };
+    searchTerm: {
+      handler() {
+        if (this.page === 1) {
+          this.fetchData(this.page);
+        } else {
+          this.page = 1;
+        }
+      },
+      deep: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .whatsapp-catalog-list {
+.whatsapp-catalog-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  gap: $unnnic-spacing-md;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__icon {
+      display: flex;
+      background-color: #eefffc;
+      border-radius: $unnnic-border-radius-sm;
+      justify-content: center;
+      margin-right: $unnnic-spacing-inline-sm;
+
+      img {
+        height: $unnnic-icon-size-xl;
+        width: $unnnic-icon-size-xl;
+        padding: $unnnic-inset-nano;
+      }
+    }
+    &__text {
+      display: flex;
+    }
+    &__title {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  &__search {
+    width: 33%;
+    min-width: 250px;
+    max-width: 450px;
+  }
+
+  &__cards {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow: hidden;
     gap: $unnnic-spacing-md;
-
-    &__header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      &__icon {
-        display: flex;
-        background-color: #eefffc;
-        border-radius: $unnnic-border-radius-sm;
-        justify-content: center;
-        margin-right: $unnnic-spacing-inline-sm;
-
-        img {
-          height: $unnnic-icon-size-xl;
-          width: $unnnic-icon-size-xl;
-          padding: $unnnic-inset-nano;
-        }
-      }
-      &__text {
-        display: flex;
-      }
-      &__title {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-    }
-
-    &__search {
-      width: 33%;
-      min-width: 250px;
-      max-width: 450px;
-    }
-
-    &__cards {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: $unnnic-spacing-md;
-      overflow: auto;
-      padding-right: $unnnic-spacing-xs;
-    }
-
-    &__pagination {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      span {
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
-        color: $unnnic-color-fg-base;
-      }
-    }
+    overflow: auto;
+    padding-right: $unnnic-spacing-xs;
   }
 
-  .catalog-disable-dialog {
-    &__body {
-      display: flex;
-      flex-direction: column;
-      gap: $unnnic-space-4;
-      padding: $unnnic-space-4;
+  &__pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-line-height-md + $unnnic-font-size-body-gt;
       color: $unnnic-color-fg-base;
-      text-align: left;
-
-      p {
-        margin: 0;
-      }
     }
   }
+}
+
+.catalog-disable-dialog {
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $unnnic-space-4;
+    padding: $unnnic-space-4;
+    color: $unnnic-color-fg-base;
+    text-align: left;
+
+    p {
+      margin: 0;
+    }
+  }
+}
 </style>

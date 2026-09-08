@@ -46,14 +46,18 @@ describe('FacebookSetup.vue', () => {
 
   it('renders correctly when stage is login', async () => {
     expect(wrapper.find('.facebook-setup').exists()).toBe(true);
-    expect(wrapper.findComponent({ ref: 'facebook-setup-modal' }).exists()).toBe(true);
+    expect(
+      wrapper.findComponent({ ref: 'facebook-setup-modal' }).exists(),
+    ).toBe(true);
   });
 
   it('changes stage to select-page and loads pages on successful login', async () => {
     wrapper.vm.startPageSelectionStage('mockAccessToken');
 
     await wrapper.vm.$nextTick();
-    expect(wrapper.findComponent({ ref: 'page-selection-modal' }).exists()).toBe(true);
+    expect(
+      wrapper.findComponent({ ref: 'page-selection-modal' }).exists(),
+    ).toBe(true);
 
     axios.get.mockResolvedValue({
       data: {
@@ -95,10 +99,14 @@ describe('FacebookSetup.vue', () => {
       },
       props: { app: mockApp },
     });
-    wrapper.vm.pageList = [{ id: '123', name: 'Test Page', access_token: 'mockAccessToken' }];
-    wrapper.vm.selectedPage = '123';
+    wrapper.vm.pageList = [
+      { id: '123', name: 'Test Page', access_token: 'mockAccessToken' },
+    ];
+    wrapper.vm.selectedPage = [{ value: '123' }];
     const spyCreateApp = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue();
-    const spyUpdateAppConfig = vi.spyOn(wrapper.vm, 'updateAppConfig').mockResolvedValue();
+    const spyUpdateAppConfig = vi
+      .spyOn(wrapper.vm, 'updateAppConfig')
+      .mockResolvedValue();
 
     await wrapper.vm.createChannel();
     await wrapper.vm.$nextTick();
@@ -120,8 +128,10 @@ describe('FacebookSetup.vue', () => {
 
     const spyCreateApp = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue();
 
-    wrapper.vm.pageList = [{ id: '123', name: 'Test Page', access_token: 'mockAccessToken' }];
-    wrapper.vm.selectedPage = '123';
+    wrapper.vm.pageList = [
+      { id: '123', name: 'Test Page', access_token: 'mockAccessToken' },
+    ];
+    wrapper.vm.selectedPage = [{ value: '123' }];
 
     await wrapper.vm.createChannel();
     wrapper.vm.$nextTick();

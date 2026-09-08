@@ -1,13 +1,21 @@
 <template>
-  <div class="app-details-header" :style="cssVars">
+  <div
+    class="app-details-header"
+    :style="cssVars"
+  >
     <div class="app-details-header__icon">
-      <img class="app-details-header__icon__src" :src="app?.icon" />
+      <img
+        class="app-details-header__icon__src"
+        :src="app?.icon"
+      />
     </div>
     <div class="app-details-header__content">
       <div class="app-details-header__content__title">{{ displayName }}</div>
-      <div class="app-details-header__content__description">{{ $t(app?.summary || '') }}</div>
+      <div class="app-details-header__content__description">
+        {{ $t(app?.summary || '') }}
+      </div>
     </div>
-    <integrate-button
+    <IntegrateButton
       ref="unnnic-button-add"
       class="app-details-header__button"
       type="add"
@@ -19,79 +27,79 @@
       loadingPosition="left"
     />
 
-    <add-modal ref="addModal" />
+    <AddModal ref="addModal" />
   </div>
 </template>
 
 <script>
-  import addModal from '../AddModal/index.vue';
-  import IntegrateButton from '../IntegrateButton/index.vue';
-  import { getAppDisplayName } from '@/utils/apps';
+import AddModal from '../AddModal/index.vue';
+import IntegrateButton from '../IntegrateButton/index.vue';
+import { getAppDisplayName } from '@/utils/apps';
 
-  export default {
-    name: 'AppDetailsHeader',
-    components: { addModal, IntegrateButton },
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+export default {
+  name: 'AppDetailsHeader',
+  components: { AddModal, IntegrateButton },
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    computed: {
-      displayName() {
-        return getAppDisplayName(this.app, this.$t.bind(this));
-      },
-      cssVars() {
-        return {
-          '--icon-bg-color': this.app?.bg_color || 'white',
-        };
-      },
+  },
+  computed: {
+    displayName() {
+      return getAppDisplayName(this.app, this.$t.bind(this));
     },
-  };
+    cssVars() {
+      return {
+        '--icon-bg-color': this.app?.bg_color || 'white',
+      };
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .app-details-header {
+.app-details-header {
+  display: flex;
+  flex-direction: row;
+
+  &__icon {
     display: flex;
-    flex-direction: row;
+    height: 80px;
+    width: 80px;
+    background-color: var(--icon-bg-color);
+    border-radius: $unnnic-border-radius-md;
+    justify-content: center;
 
-    &__icon {
-      display: flex;
-      height: 80px;
-      width: 80px;
-      background-color: var(--icon-bg-color);
-      border-radius: $unnnic-border-radius-md;
-      justify-content: center;
-
-      &__src {
-        padding: $unnnic-inset-xs;
-      }
-    }
-
-    &__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      font-family: $unnnic-font-family-secondary;
-      margin-left: $unnnic-inline-sm;
-      &__title {
-        font-weight: $unnnic-font-weight-bold;
-        font-size: $unnnic-font-size-title-md;
-        line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
-        color: $unnnic-color-fg-emphasized;
-      }
-
-      &__description {
-        font-weight: $unnnic-font-weight-regular;
-        font-size: $unnnic-font-size-body-lg;
-        line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-        color: $unnnic-color-fg-base;
-      }
-    }
-
-    &__button {
-      align-self: flex-start;
-      margin-left: auto;
+    &__src {
+      padding: $unnnic-inset-xs;
     }
   }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: $unnnic-font-family-secondary;
+    margin-left: $unnnic-inline-sm;
+    &__title {
+      font-weight: $unnnic-font-weight-bold;
+      font-size: $unnnic-font-size-title-md;
+      line-height: $unnnic-font-size-title-md + $unnnic-line-height-md;
+      color: $unnnic-color-fg-emphasized;
+    }
+
+    &__description {
+      font-weight: $unnnic-font-weight-regular;
+      font-size: $unnnic-font-size-body-lg;
+      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+      color: $unnnic-color-fg-base;
+    }
+  }
+
+  &__button {
+    align-self: flex-start;
+    margin-left: auto;
+  }
+}
 </style>
