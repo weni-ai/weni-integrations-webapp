@@ -183,11 +183,12 @@ export default {
           });
 
           formattedInput.options = formattedOptions;
-          formattedInput.value = [
+          formattedInput.value =
             formattedOptions.find(
               (option) => option.value === formattedInput.value,
-            ) || formattedOptions[0],
-          ];
+            )?.value ||
+            formattedOptions[0]?.value ||
+            null;
         }
         return [formattedInput];
       });
@@ -203,10 +204,6 @@ export default {
       let payloadConfig = {};
 
       this.appFormInputs.forEach((input) => {
-        if (input.type === 'select') {
-          payloadConfig[input.name] = input.value[0].value;
-          return;
-        }
         payloadConfig[input.name] = input.value;
       });
 
