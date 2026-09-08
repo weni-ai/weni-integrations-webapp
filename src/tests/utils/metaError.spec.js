@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { isMetaCreditAllocationError, META_CREDIT_ALLOCATION_SUBCODE } from '@/utils/metaError';
+import {
+  isMetaCreditAllocationError,
+  META_CREDIT_ALLOCATION_SUBCODE,
+} from '@/utils/metaError';
 
 const metaPayload = {
   error: {
@@ -9,7 +12,8 @@ const metaPayload = {
     error_subcode: META_CREDIT_ALLOCATION_SUBCODE,
     is_transient: 'False',
     error_user_title: 'Alocação de crédito não permitida',
-    error_user_msg: 'A moeda fornecida para o objeto faturável não será aceita.',
+    error_user_msg:
+      'A moeda fornecida para o objeto faturável não será aceita.',
     fbtrace_id: 'ANVS9Va2_vOb2vAsaX3X0HW',
   },
 };
@@ -44,7 +48,9 @@ describe('isMetaCreditAllocationError', () => {
   });
 
   it('returns false for unrelated errors', () => {
-    expect(isMetaCreditAllocationError({ error: { message: 'boom' } })).toBe(false);
+    expect(isMetaCreditAllocationError({ error: { message: 'boom' } })).toBe(
+      false,
+    );
     expect(isMetaCreditAllocationError(new Error('network'))).toBe(false);
     expect(isMetaCreditAllocationError(null)).toBe(false);
     expect(isMetaCreditAllocationError(true)).toBe(false);
@@ -61,14 +67,19 @@ describe('isMetaCreditAllocationError', () => {
   it('returns true when the subcode is nested inside an array', () => {
     expect(
       isMetaCreditAllocationError({
-        errors: [{ code: 1 }, { error_subcode: META_CREDIT_ALLOCATION_SUBCODE }],
+        errors: [
+          { code: 1 },
+          { error_subcode: META_CREDIT_ALLOCATION_SUBCODE },
+        ],
       }),
     ).toBe(true);
   });
 
   it('returns true when a plain string contains the subcode', () => {
     expect(
-      isMetaCreditAllocationError(`Meta failed with subcode ${META_CREDIT_ALLOCATION_SUBCODE}`),
+      isMetaCreditAllocationError(
+        `Meta failed with subcode ${META_CREDIT_ALLOCATION_SUBCODE}`,
+      ),
     ).toBe(true);
   });
 

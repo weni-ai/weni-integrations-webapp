@@ -62,8 +62,12 @@ describe('Config.vue', () => {
   });
 
   it('should have buttons that trigger correct methods on click', async () => {
-    const closeButton = wrapper.findComponent({ ref: 'unnnic-wpp-demo-modal-close-button' });
-    const navigateButton = wrapper.findComponent({ ref: 'unnnic-wpp-demo-modal-navigate-button' });
+    const closeButton = wrapper.findComponent({
+      ref: 'unnnic-wpp-demo-modal-close-button',
+    });
+    const navigateButton = wrapper.findComponent({
+      ref: 'unnnic-wpp-demo-modal-navigate-button',
+    });
 
     await closeButton.trigger('click');
     expect(wrapper.emitted().closePopUp).toBeTruthy();

@@ -28,12 +28,12 @@ describe('CatalogList.vue', () => {
   });
 
   it('should render catalog list header correctly', () => {
-    expect(wrapper.find('.whatsapp-catalog-list__header__title').text()).toContain(
-      wrapper.vm.$t('WhatsApp.catalog.list.title'),
-    );
-    expect(wrapper.find('.whatsapp-catalog-list__header__text').text()).toContain(
-      wrapper.vm.$t('WhatsApp.catalog.list.description'),
-    );
+    expect(
+      wrapper.find('.whatsapp-catalog-list__header__title').text(),
+    ).toContain(wrapper.vm.$t('WhatsApp.catalog.list.title'));
+    expect(
+      wrapper.find('.whatsapp-catalog-list__header__text').text(),
+    ).toContain(wrapper.vm.$t('WhatsApp.catalog.list.description'));
   });
 
   it('should close the modal correctly', async () => {

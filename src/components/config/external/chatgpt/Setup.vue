@@ -1,26 +1,26 @@
 <template>
-  <unnnic-modal
+  <UnnnicModal
     ref="unnnic-chatgpt-modal"
     class="chatgpt-modal"
-    @close="closePopUp"
-    @click.stop
     :closeIcon="false"
     :text="$t('ChatGPT.setup.title')"
     :description="$t('ChatGPT.setup.description')"
+    @close="closePopUp"
+    @click.stop
   >
     <template #message>
       <div class="chatgpt-modal__content">
         <div class="chatgpt-modal__content__form">
-          <unnnic-input
-            class="chatgpt-modal__content__form__input__name"
+          <UnnnicInput
             v-model="name"
+            class="chatgpt-modal__content__form__input__name"
             :label="$t('ChatGPT.setup.name')"
             :placeholder="$t('ChatGPT.setup.name_placeholder')"
           />
 
-          <unnnic-input
-            class="chatgpt-modal__content__form__input__token"
+          <UnnnicInput
             v-model="token"
+            class="chatgpt-modal__content__form__input__token"
             :label="$t('ChatGPT.setup.token')"
             :placeholder="$t('ChatGPT.setup.token_placeholder')"
           />
@@ -29,24 +29,24 @@
             <div>
               {{ $t('ChatGPT.setup.version') }}
 
-              <unnnic-toolTip
+              <UnnnicToolTip
                 class="chatgpt-modal__content__form__version__tooltip"
                 :text="$t('ChatGPT.setup.version_tooltip')"
                 :enabled="true"
                 side="right"
                 maxWidth="350px"
               >
-                <unnnic-icon-svg
+                <UnnnicIconSvg
                   class="chatgpt-modal__content__form__version__icon"
                   icon="information-circle-4"
                   size="sm"
                   scheme="neutral-soft"
                 />
-              </unnnic-toolTip>
+              </UnnnicToolTip>
             </div>
 
             <div class="chatgpt-modal__content__form__version-wrapper__options">
-              <unnnic-radio
+              <UnnnicRadio
                 v-for="(version, index) in versions"
                 :key="index"
                 v-model="selectedVersion"
@@ -55,156 +55,161 @@
                 :label="$t('ChatGPT.setup.version')"
               >
                 {{ version }}
-              </unnnic-radio>
+              </UnnnicRadio>
             </div>
           </div>
         </div>
       </div>
     </template>
     <template #options>
-      <unnnic-button ref="unnnic-chatgpt-modal-close-button" type="tertiary" @click="closePopUp">
+      <UnnnicButton
+        ref="unnnic-chatgpt-modal-close-button"
+        type="tertiary"
+        @click="closePopUp"
+      >
         {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button
+      </UnnnicButton>
+      <UnnnicButton
         ref="unnnic-chatgpt-modal-navigate-button"
         type="secondary"
-        @click="setupChatGptService"
         :loading="loadingCreateApp"
+        @click="setupChatGptService"
       >
         {{ $t('general.continue') }}
-      </unnnic-button>
+      </UnnnicButton>
     </template>
-  </unnnic-modal>
+  </UnnnicModal>
 </template>
 
 <script>
-  import { mapState, mapActions } from 'pinia';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import unnnic from '@weni/unnnic-system';
+import { mapState, mapActions } from 'pinia';
+import { auth_store } from '@/stores/modules/auth.store';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import unnnic from '@weni/unnnic-system';
 
-  export default {
-    name: 'ChatGPTModal',
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+export default {
+  name: 'ChatGPTModal',
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    data() {
-      return {
-        name: '',
-        token: '',
-        selectedVersion: 'gpt-3.5-turbo-16k',
-        versions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo'],
+  },
+  data() {
+    return {
+      name: '',
+      token: '',
+      selectedVersion: 'gpt-3.5-turbo-16k',
+      versions: ['gpt-3.5-turbo-16k', 'gpt-3.5-turbo'],
+    };
+  },
+  computed: {
+    ...mapState(auth_store, ['project']),
+    ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
+  },
+  methods: {
+    ...mapActions(app_type, ['createApp']),
+    closePopUp() {
+      this.$emit('closePopUp');
+    },
+    async setupChatGptService() {
+      const payload = {
+        project_uuid: this.project,
+        name: this.name,
+        api_key: this.token,
+        ai_model: this.selectedVersion,
       };
-    },
-    computed: {
-      ...mapState(auth_store, ['project']),
-      ...mapState(app_type, ['loadingCreateApp', 'errorCreateApp']),
-    },
-    methods: {
-      ...mapActions(app_type, ['createApp']),
-      closePopUp() {
-        this.$emit('closePopUp');
-      },
-      async setupChatGptService() {
-        const payload = {
-          project_uuid: this.project,
-          name: this.name,
-          api_key: this.token,
-          ai_model: this.selectedVersion,
-        };
 
-        await this.createApp({ code: this.app.code, payload });
+      await this.createApp({ code: this.app.code, payload });
 
-        if (this.errorCreateApp) {
-          this.callModal({
-            type: 'error',
-            text: this.$t(`ChatGPT.setup.create_app.error`),
-          });
-          return;
-        }
-
-        this.callModal({ type: 'success', text: this.$t(`ChatGPT.setup.success`) });
-        this.$router.replace('/apps/my');
-      },
-      callModal({ text, type }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text,
-            type,
-          },
-          seconds: 6,
+      if (this.errorCreateApp) {
+        this.callModal({
+          type: 'error',
+          text: this.$t(`ChatGPT.setup.create_app.error`),
         });
-      },
+        return;
+      }
+
+      this.callModal({
+        type: 'success',
+        text: this.$t(`ChatGPT.setup.success`),
+      });
+      this.$router.replace('/apps/my');
     },
-  };
+    callModal({ text, type }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text,
+          type,
+        },
+        seconds: 6,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .chatgpt-modal {
-    
-    :deep(.container) {
-      padding: $unnnic-squish-md !important;
-    }
+.chatgpt-modal {
+  :deep(.container) {
+    padding: $unnnic-squish-md !important;
+  }
 
-    :deep(.header) {
-      margin-bottom: $unnnic-spacing-stack-nano !important;
-    }
+  :deep(.header) {
+    margin-bottom: $unnnic-spacing-stack-nano !important;
+  }
 
-    :deep(.unnnic-modal-container-background) {
+  :deep(.unnnic-modal-container-background) {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0 $unnnic-spacing-md;
+    max-height: 95vh;
+  }
+
+  :deep(.unnnic-modal-container-background-body) {
+    border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
+  }
+
+  :deep(.unnnic-modal-container-background-body-description-container) {
+    padding-bottom: $unnnic-spacing-md;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+
+    &__form {
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      padding: 0 $unnnic-spacing-md;
-      max-height: 95vh;
-    }
+      gap: $unnnic-spacing-stack-lg;
+      text-align: left;
 
-    :deep(.unnnic-modal-container-background-body) {
-      border-radius: $unnnic-border-radius-sm $unnnic-border-radius-sm 0px 0px;
-    }
-
-    :deep(.unnnic-modal-container-background-body-description-container) {
-      padding-bottom: $unnnic-spacing-md;
-    }
-  
-
-    &__content {
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-
-      &__form {
+      &__version-wrapper {
         display: flex;
         flex-direction: column;
-        gap: $unnnic-spacing-stack-lg;
-        text-align: left;
+        gap: $unnnic-spacing-stack-xs;
+        color: $unnnic-color-fg-base;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
 
-        &__version-wrapper {
+        &__options {
           display: flex;
-          flex-direction: column;
-          gap: $unnnic-spacing-stack-xs;
-          color: $unnnic-color-fg-base;
-          font-size: $unnnic-font-size-body-gt;
-          line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-
-          &__options {
-            display: flex;
-            gap: $unnnic-spacing-stack-lg;
-          }
+          gap: $unnnic-spacing-stack-lg;
         }
       }
     }
+  }
 
-    &__buttons {
-      display: flex;
+  &__buttons {
+    display: flex;
+    flex: 1;
+    margin-top: $unnnic-spacing-md;
+
+    * {
       flex: 1;
-      margin-top: $unnnic-spacing-md;
-
-      * {
-        flex: 1;
-      }
     }
   }
+}
 </style>

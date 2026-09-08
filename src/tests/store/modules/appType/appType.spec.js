@@ -189,9 +189,15 @@ describe('app_type store', () => {
       const store = app_type();
       const mockUpdateConfigResult = { success: true };
 
-      appType.updateAppConfig.mockResolvedValueOnce({ data: mockUpdateConfigResult });
+      appType.updateAppConfig.mockResolvedValueOnce({
+        data: mockUpdateConfigResult,
+      });
 
-      await store.updateAppConfig({ code: 'code1', appUuid: 'uuid1', payload: {} });
+      await store.updateAppConfig({
+        code: 'code1',
+        appUuid: 'uuid1',
+        payload: {},
+      });
 
       expect(store.updateAppConfigResult).toEqual(mockUpdateConfigResult);
       expect(store.loadingUpdateAppConfig).toBe(false);

@@ -3,7 +3,10 @@
     <div class="app-config-telegram__header">
       <span class="app-config-telegram__header__description">
         {{ $t('telegram.config.description.text') }}
-        <a :href="documentationLink" target="_blank">
+        <a
+          :href="documentationLink"
+          target="_blank"
+        >
           <span>
             {{ $t('telegram.config.description.link') }}
           </span>
@@ -12,195 +15,199 @@
     </div>
 
     <div class="app-config-telegram__settings__content">
-      <unnnic-input
+      <UnnnicInput
         key="config-title"
         v-model="token"
         :type="invalidToken ? 'error' : 'normal'"
         :label="$t('telegram.config.TokenInput.label')"
-        :disabled="this.app.config.token"
+        :disabled="app.config.token"
       />
     </div>
 
     <div class="app-config-telegram__settings__buttons">
-      <unnnic-button
+      <UnnnicButton
         class="app-config-telegram__settings__buttons__cancel"
         type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="closeConfig"
-      ></unnnic-button>
+      ></UnnnicButton>
 
-      <unnnic-button
+      <UnnnicButton
         class="app-config-telegram__settings__buttons__save"
         type="secondary"
         size="large"
         :text="$t('apps.config.validate')"
-        :disabled="this.app.config.token"
+        :disabled="app.config.token"
         @click="saveConfig"
-      ></unnnic-button>
+      ></UnnnicButton>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import unnnic from '@weni/unnnic-system';
-  import { useEventStore } from '@/stores/event.store';
+import { mapActions, mapState } from 'pinia';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import unnnic from '@weni/unnnic-system';
+import { useEventStore } from '@/stores/event.store';
 
-  export default {
-    name: 'telegram-config',
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+export default {
+  name: 'TelegramConfig',
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    data() {
-      return {
-        token: this.app.config.token ?? null,
-        invalidToken: false,
-        documentations: {
-          'en-us': 'https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel',
-          'pt-br': 'https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-no-telegram',
+  },
+  data() {
+    return {
+      token: this.app.config.token ?? null,
+      invalidToken: false,
+      documentations: {
+        'en-us':
+          'https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel',
+        'pt-br':
+          'https://docs.weni.ai/l/pt/m-dulo-integra-es/como-criar-um-canal-no-telegram',
+      },
+    };
+  },
+  computed: {
+    ...mapState(app_type, ['errorUpdateAppConfig']),
+    documentationLink() {
+      return (
+        this.documentations[this.$i18n.locale] ?? this.documentations['en-us']
+      );
+    },
+  },
+  methods: {
+    ...mapActions(app_type, ['updateAppConfig']),
+    ...mapActions(useEventStore, ['emit']),
+    async saveConfig() {
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: {
+          config: {
+            token: this.token,
+          },
         },
       };
-    },
-    computed: {
-      ...mapState(app_type, ['errorUpdateAppConfig']),
-      documentationLink() {
-        return this.documentations[this.$i18n.locale] ?? this.documentations['en-us'];
-      },
-    },
-    methods: {
-      ...mapActions(app_type, ['updateAppConfig']),
-      ...mapActions(useEventStore, ['emit']),
-      async saveConfig() {
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: {
-            config: {
-              token: this.token,
-            },
-          },
-        };
 
-        try {
-          await this.updateAppConfig(data);
+      try {
+        await this.updateAppConfig(data);
 
-          if (this.errorUpdateAppConfig) {
-            throw new Error(this.errorUpdateAppConfig);
-          }
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('apps.config.integration_success'),
-              type: 'success',
-            },
-            seconds: 3,
-          });
-        } catch (err) {
-          let errorMessage = this.$t('apps.details.status_error');
-
-          if (err.response?.status === 400) {
-            this.invalidToken = true;
-            errorMessage = this.$t('telegram.config.errors.invalidToken');
-          }
-
-          unnnic.unnnicCallAlert({
-            props: {
-              text: errorMessage,
-              type: 'error',
-            },
-            seconds: 3,
-          });
-        } finally {
-          this.emit('updateGrid');
+        if (this.errorUpdateAppConfig) {
+          throw new Error(this.errorUpdateAppConfig);
         }
-      },
-      closeConfig() {
-        this.$emit('closeModal');
-      },
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('apps.config.integration_success'),
+            type: 'success',
+          },
+          seconds: 3,
+        });
+      } catch (err) {
+        let errorMessage = this.$t('apps.details.status_error');
+
+        if (err.response?.status === 400) {
+          this.invalidToken = true;
+          errorMessage = this.$t('telegram.config.errors.invalidToken');
+        }
+
+        unnnic.unnnicCallAlert({
+          props: {
+            text: errorMessage,
+            type: 'error',
+          },
+          seconds: 3,
+        });
+      } finally {
+        this.emit('updateGrid');
+      }
     },
-    watch: {
-      token: function () {
-        this.invalidToken = false;
-      },
+    closeConfig() {
+      this.$emit('closeModal');
     },
-  };
+  },
+  watch: {
+    token: function () {
+      this.invalidToken = false;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .app-config-telegram {
+.app-config-telegram {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    margin: $unnnic-spacing-inset-lg;
+    margin-bottom: $unnnic-spacing-stack-sm;
 
-    &__header {
-      display: flex;
-      flex-direction: column;
-      margin: $unnnic-spacing-inset-lg;
-      margin-bottom: $unnnic-spacing-stack-sm;
+    &__description {
+      padding-bottom: $unnnic-inline-md;
+      border-bottom: 1px solid $unnnic-color-border-base;
 
-      &__description {
-        padding-bottom: $unnnic-inline-md;
-        border-bottom: 1px solid $unnnic-color-border-base;
+      font-family: $unnnic-font-family-secondary;
+      font-weight: $unnnic-font-weight-regular;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+      color: $unnnic-color-fg-base;
 
-        font-family: $unnnic-font-family-secondary;
-        font-weight: $unnnic-font-weight-regular;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+      a {
+        font-weight: $unnnic-font-weight-bold;
         color: $unnnic-color-fg-base;
-
-        a {
-          font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-fg-base;
-        }
-      }
-    }
-
-    &__settings {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      overflow-y: hidden;
-
-      &__content {
-        padding-right: $unnnic-spacing-inline-xs;
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        color: $unnnic-color-fg-base;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-        margin: 0 $unnnic-spacing-inset-lg;
-
-        &__input {
-          margin-top: $unnnic-spacing-stack-xs;
-
-          &__payload {
-            flex: 1;
-            margin-top: $unnnic-spacing-stack-xs;
-
-            :deep(.unnnic-form-input) {
-              margin-top: $unnnic-spacing-stack-xs;
-            }
-          }
-        }
-      }
-      &__buttons {
-        display: flex;
-        gap: $unnnic-spacing-inline-xs;
-        margin: $unnnic-spacing-inset-lg;
-
-        &__cancel,
-        &__save {
-          flex-grow: 1;
-        }
       }
     }
   }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: hidden;
+
+    &__content {
+      padding-right: $unnnic-spacing-inline-xs;
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      color: $unnnic-color-fg-base;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+      margin: 0 $unnnic-spacing-inset-lg;
+
+      &__input {
+        margin-top: $unnnic-spacing-stack-xs;
+
+        &__payload {
+          flex: 1;
+          margin-top: $unnnic-spacing-stack-xs;
+
+          :deep(.unnnic-form-input) {
+            margin-top: $unnnic-spacing-stack-xs;
+          }
+        }
+      }
+    }
+    &__buttons {
+      display: flex;
+      gap: $unnnic-spacing-inline-xs;
+      margin: $unnnic-spacing-inset-lg;
+
+      &__cancel,
+      &__save {
+        flex-grow: 1;
+      }
+    }
+  }
+}
 </style>

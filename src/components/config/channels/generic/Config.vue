@@ -1,9 +1,20 @@
 <template>
   <div class="app-config-generic">
-    <div class="app-config-generic__header" ref="header">
-      <span class="app-config-generic__header__description" v-html="appDescription" />
+    <div
+      ref="header"
+      class="app-config-generic__header"
+    >
+      <span
+        class="app-config-generic__header__description"
+        v-html="appDescription"
+      />
 
-      <div v-if="callbackChannels.includes(app.config.channel_code) && shouldDisplayCallback">
+      <div
+        v-if="
+          callbackChannels.includes(app.config.channel_code) &&
+          shouldDisplayCallback
+        "
+      >
         <span class="app-config-generic__header__description bold">
           {{ $t('GenericApp.description.callback_url') }}
           <span class="highlight">
@@ -35,7 +46,7 @@
         :channelCode="app.config.channel_code"
         @input="updateInputs"
       />
-      <unnnic-skeleton-loading
+      <UnnnicSkeletonLoading
         v-else
         class="app-config-generic__settings__content__form-loading"
         tag="div"
@@ -45,296 +56,301 @@
     </div>
 
     <div class="app-config-generic__settings__buttons">
-      <unnnic-button
+      <UnnnicButton
         class="app-config-generic__settings__buttons__cancel"
         type="tertiary"
         size="large"
         :text="$t('apps.config.cancel')"
         @click="closeConfig"
-      ></unnnic-button>
+      ></UnnnicButton>
 
-      <unnnic-button
-        class="app-config-generic__settings__buttons__save"
+      <UnnnicButton
         ref=""
+        class="app-config-generic__settings__buttons__save"
         type="secondary"
         size="large"
         :text="$t('apps.config.save_changes')"
         :loading="loadingUpdateAppConfig"
         :disabled="isConfigured"
         @click="saveConfig"
-      ></unnnic-button>
+      ></UnnnicButton>
     </div>
   </div>
 </template>
 
 <script>
-  import unnnic from '@weni/unnnic-system';
-  import { mapActions, mapState } from 'pinia';
-  import DynamicForm from '@/components/config/DynamicForm.vue';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import { generic_store } from '@/stores/modules/appType/channels/generic.store';
-  import { useEventStore } from '@/stores/event.store';
+import unnnic from '@weni/unnnic-system';
+import { mapActions, mapState } from 'pinia';
+import DynamicForm from '@/components/config/DynamicForm.vue';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import { generic_store } from '@/stores/modules/appType/channels/generic.store';
+import { useEventStore } from '@/stores/event.store';
 
-  export default {
-    name: 'generic-config',
-    components: {
-      DynamicForm,
+export default {
+  name: 'GenericConfig',
+  components: {
+    DynamicForm,
+  },
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
+    isConfigured: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      callbackChannels: ['SL', 'AC', 'CT', 'TMS'],
+      appFormInputs: [],
+      inputTypeMapping: {
+        text: 'input',
+        number: 'input',
+        url: 'input',
+        select: 'select',
+        checkbox: 'checkbox',
       },
-      isConfigured: {
-        type: Boolean,
-        default: false,
-      },
+      loadingFormBuild: true,
+      showCallback: false,
+    };
+  },
+  async mounted() {
+    const anchorsInHeader = this.$refs.header.getElementsByTagName('a');
+    for (let i = anchorsInHeader.length; i--; ) {
+      anchorsInHeader[i].setAttribute('target', '_blank');
+    }
+
+    await this.fetchAppData();
+  },
+  computed: {
+    channelCode() {
+      return this.app.config.channel_code;
     },
-    data() {
-      return {
-        callbackChannels: ['SL', 'AC', 'CT', 'TMS'],
-        appFormInputs: [],
-        inputTypeMapping: {
-          text: 'input',
-          number: 'input',
-          url: 'input',
-          select: 'select',
-          checkbox: 'checkbox',
-        },
-        loadingFormBuild: true,
-        showCallback: false,
-      };
+    ...mapState(app_type, [
+      'currentApp',
+      'loadingCurrentApp',
+      'errorCurrentApp',
+      'loadingUpdateAppConfig',
+      'errorUpdateAppConfig',
+    ]),
+    ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
+    appDescription() {
+      const i18nkey = `GenericApp.configuration_guide.${this.channelCode}`;
+      return this.$t(i18nkey) ?? this.app.config.channel_claim_blurb;
     },
-    async mounted() {
-      const anchorsInHeader = this.$refs.header.getElementsByTagName('a');
-      for (let i = anchorsInHeader.length; i--; ) {
-        anchorsInHeader[i].setAttribute('target', '_blank');
+    shouldDisplayCallback() {
+      return this.isConfigured || this.showCallback;
+    },
+  },
+  methods: {
+    ...mapActions(app_type, ['getApp', 'updateAppConfig']),
+    ...mapActions(generic_store, ['getAppForm']),
+    ...mapActions(useEventStore, ['emit']),
+    async fetchAppData() {
+      this.loadingFormBuild = true;
+      await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
+      await generic_store().getAppForm({ channelCode: this.channelCode });
+
+      if (this.errorCurrentApp || this.errorAppForm) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('GenericApp.preview.errors.fetch_app'),
+        });
       }
 
-      await this.fetchAppData();
-    },
-    computed: {
-      channelCode() {
-        return this.app.config.channel_code;
-      },
-      ...mapState(app_type, [
-        'currentApp',
-        'loadingCurrentApp',
-        'errorCurrentApp',
-        'loadingUpdateAppConfig',
-        'errorUpdateAppConfig',
-      ]),
-      ...mapState(generic_store, ['errorAppForm', 'genericAppForm']),
-      appDescription() {
-        const i18nkey = `GenericApp.configuration_guide.${this.channelCode}`;
-        return this.$t(i18nkey) ?? this.app.config.channel_claim_blurb;
-      },
-      shouldDisplayCallback() {
-        return this.isConfigured || this.showCallback;
-      },
-    },
-    methods: {
-      ...mapActions(app_type, ['getApp', 'updateAppConfig']),
-      ...mapActions(generic_store, ['getAppForm']),
-      ...mapActions(useEventStore, ['emit']),
-      async fetchAppData() {
-        this.loadingFormBuild = true;
-        await app_type().getApp({ code: this.app.code, appUuid: this.app.uuid });
-        await generic_store().getAppForm({ channelCode: this.channelCode });
-
-        if (this.errorCurrentApp || this.errorAppForm) {
-          this.callModal({
-            type: 'error',
-            text: this.$t('GenericApp.preview.errors.fetch_app'),
-          });
+      this.appFormInputs = this.genericAppForm.flatMap((input) => {
+        const mappedInputType = this.inputTypeMapping[input.type];
+        if (!mappedInputType) {
+          return [];
         }
 
-        this.appFormInputs = this.genericAppForm.flatMap((input) => {
-          const mappedInputType = this.inputTypeMapping[input.type];
-          if (!mappedInputType) {
-            return [];
-          }
-
-          let formattedInput = {
-            type: mappedInputType,
-            name: input.name,
-            label: input.label || input.help_text || input.name,
-            message: input.label ? input.help_text : null,
-            value: this.currentApp.config[input.name] || null,
-          };
-
-          if (input.type === 'select') {
-            let formattedOptions = input.choices.map((choice) => {
-              return {
-                value: choice[0],
-                label: choice[1],
-              };
-            });
-
-            formattedInput.options = formattedOptions;
-            formattedInput.value = [
-              formattedOptions.find((option) => option.value === formattedInput.value) ||
-                formattedOptions[0],
-            ];
-          }
-          return [formattedInput];
-        });
-
-        this.loadingFormBuild = false;
-      },
-      updateInputs(inputData) {
-        if (inputData?.value) {
-          this.appFormInputs[inputData.index].value = inputData.value;
-        }
-      },
-      async saveConfig() {
-        let payloadConfig = {};
-
-        this.appFormInputs.forEach((input) => {
-          if (input.type === 'select') {
-            payloadConfig[input.name] = input.value[0].value;
-            return;
-          }
-          payloadConfig[input.name] = input.value;
-        });
-
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: {
-            config: payloadConfig,
-            channel_code: this.channelCode,
-          },
+        let formattedInput = {
+          type: mappedInputType,
+          name: input.name,
+          label: input.label || input.help_text || input.name,
+          message: input.label ? input.help_text : null,
+          value: this.currentApp.config[input.name] || null,
         };
 
-        await this.updateAppConfig(data);
+        if (input.type === 'select') {
+          let formattedOptions = input.choices.map((choice) => {
+            return {
+              value: choice[0],
+              label: choice[1],
+            };
+          });
 
-        if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'error', text: this.$t('apps.details.status_error') });
-        } else {
-          this.callModal({ type: 'success', text: this.$t('apps.config.integration_success') });
-
-          await this.fetchAppData();
-          this.showCallback = true;
+          formattedInput.options = formattedOptions;
+          formattedInput.value = [
+            formattedOptions.find(
+              (option) => option.value === formattedInput.value,
+            ) || formattedOptions[0],
+          ];
         }
+        return [formattedInput];
+      });
 
-        this.emit('updateGrid');
-      },
-      closeConfig() {
-        this.$emit('closeModal');
-      },
-      callModal({ text, type }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text: text,
-            type: type,
-          },
-          seconds: 6,
-        });
-      },
+      this.loadingFormBuild = false;
     },
-  };
+    updateInputs(inputData) {
+      if (inputData?.value) {
+        this.appFormInputs[inputData.index].value = inputData.value;
+      }
+    },
+    async saveConfig() {
+      let payloadConfig = {};
+
+      this.appFormInputs.forEach((input) => {
+        if (input.type === 'select') {
+          payloadConfig[input.name] = input.value[0].value;
+          return;
+        }
+        payloadConfig[input.name] = input.value;
+      });
+
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: {
+          config: payloadConfig,
+          channel_code: this.channelCode,
+        },
+      };
+
+      await this.updateAppConfig(data);
+
+      if (this.errorUpdateAppConfig) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('apps.details.status_error'),
+        });
+      } else {
+        this.callModal({
+          type: 'success',
+          text: this.$t('apps.config.integration_success'),
+        });
+
+        await this.fetchAppData();
+        this.showCallback = true;
+      }
+
+      this.emit('updateGrid');
+    },
+    closeConfig() {
+      this.$emit('closeModal');
+    },
+    callModal({ text, type }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text: text,
+          type: type,
+        },
+        seconds: 6,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .app-config-generic {
+.app-config-generic {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    margin: $unnnic-spacing-inset-lg;
+    margin-bottom: $unnnic-spacing-stack-sm;
+    flex-direction: column;
+
+    &__description {
+      &.bold {
+        font-weight: $unnnic-font-weight-bold;
+      }
+
+      margin-top: $unnnic-inline-sm;
+      padding-bottom: $unnnic-inline-md;
+
+      font-family: $unnnic-font-family-secondary;
+      font-weight: $unnnic-font-weight-regular;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+      color: $unnnic-color-fg-base;
+
+      :deep(a) {
+        font-weight: $unnnic-font-weight-bold;
+        color: $unnnic-color-fg-base;
+      }
+
+      :deep(.highlight) {
+        color: $unnnic-color-fg-accent;
+        background-color: $unnnic-color-bg-accent-plain;
+        padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-nano;
+        border-radius: $unnnic-border-radius-sm;
+      }
+    }
+  }
+
+  &__settings {
     display: flex;
     flex-direction: column;
     height: 100%;
 
-    &__header {
-      display: flex;
-      margin: $unnnic-spacing-inset-lg;
-      margin-bottom: $unnnic-spacing-stack-sm;
-      flex-direction: column;
+    &__content {
+      border-top: 1px solid $unnnic-color-border-base;
 
-      &__description {
-        &.bold {
-          font-weight: $unnnic-font-weight-bold;
-        }
-
-        margin-top: $unnnic-inline-sm;
-        padding-bottom: $unnnic-inline-md;
-
-        font-family: $unnnic-font-family-secondary;
-        font-weight: $unnnic-font-weight-regular;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-        color: $unnnic-color-fg-base;
-
-        
-        :deep(a) {
-          font-weight: $unnnic-font-weight-bold;
-          color: $unnnic-color-fg-base;
-        }
-
-        :deep(.highlight) {
-          color: $unnnic-color-fg-accent;
-          background-color: $unnnic-color-bg-accent-plain;
-          padding: $unnnic-spacing-stack-nano $unnnic-spacing-inline-nano;
-          border-radius: $unnnic-border-radius-sm;
-        }
-      
-      }
-    }
-
-    &__settings {
+      padding-right: $unnnic-spacing-inline-xs;
       display: flex;
       flex-direction: column;
+      overflow: auto;
+      flex: 1;
+
       height: 100%;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      color: $unnnic-color-fg-base;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+      margin: 0 $unnnic-spacing-inset-lg;
 
-      &__content {
-        border-top: 1px solid $unnnic-color-border-base;
-
-        padding-right: $unnnic-spacing-inline-xs;
+      &__form {
         display: flex;
         flex-direction: column;
-        overflow: auto;
-        flex: 1;
-
-        height: 100%;
-        overflow: auto;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        color: $unnnic-color-fg-base;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-        margin: 0 $unnnic-spacing-inset-lg;
-
-        &__form {
-          display: flex;
-          flex-direction: column;
-          margin-top: $unnnic-spacing-stack-sm;
-        }
-
-        &__form-loading {
-          margin-top: $unnnic-spacing-stack-sm;
-          display: flex;
-          flex: 1;
-        }
+        margin-top: $unnnic-spacing-stack-sm;
       }
-      &__buttons {
-        padding-right: $unnnic-spacing-inline-xs;
-        margin: $unnnic-spacing-inset-lg;
-        display: flex;
 
-        &__cancel,
-        &__save {
-          flex-grow: 1;
-        }
+      &__form-loading {
+        margin-top: $unnnic-spacing-stack-sm;
+        display: flex;
+        flex: 1;
+      }
+    }
+    &__buttons {
+      padding-right: $unnnic-spacing-inline-xs;
+      margin: $unnnic-spacing-inset-lg;
+      display: flex;
+
+      &__cancel,
+      &__save {
+        flex-grow: 1;
       }
     }
   }
+}
 
-  @media screen and (max-width: 700px) {
-    .app-config-generic {
-      &__header {
-        &__description {
-          max-height: 600px;
-          overflow: auto;
-        }
+@media screen and (max-width: 700px) {
+  .app-config-generic {
+    &__header {
+      &__description {
+        max-height: 600px;
+        overflow: auto;
       }
     }
   }
+}
 </style>

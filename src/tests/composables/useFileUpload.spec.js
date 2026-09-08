@@ -2,7 +2,9 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { useFileUpload } from '@/composables/useFileUpload';
 
 vi.mock('@/utils/files', () => ({
-  dataUrlToFile: vi.fn().mockResolvedValue(new File(['test'], 'test.png', { type: 'image/png' })),
+  dataUrlToFile: vi
+    .fn()
+    .mockResolvedValue(new File(['test'], 'test.png', { type: 'image/png' })),
 }));
 
 describe('useFileUpload', () => {
@@ -44,7 +46,9 @@ describe('useFileUpload', () => {
     });
 
     it('should read file as data URL when files are provided', () => {
-      const mockFile = new File(['test content'], 'test.png', { type: 'image/png' });
+      const mockFile = new File(['test content'], 'test.png', {
+        type: 'image/png',
+      });
       const onComplete = vi.fn();
 
       const mockFileReader = {
@@ -134,7 +138,11 @@ describe('useFileUpload', () => {
       // Simulate onload event
       capturedOnload({ target: { result: 'data:image/png;base64,abc123' } });
 
-      expect(onComplete).toHaveBeenCalledWith('data:image/png;base64,abc123', 'test.png', mockFile);
+      expect(onComplete).toHaveBeenCalledWith(
+        'data:image/png;base64,abc123',
+        'test.png',
+        mockFile,
+      );
     });
 
     it('should process jpeg files correctly', () => {
@@ -160,7 +168,11 @@ describe('useFileUpload', () => {
       // Simulate successful load
       capturedOnload({ target: { result: 'data:image/jpeg;base64,abc' } });
 
-      expect(onComplete).toHaveBeenCalledWith('data:image/jpeg;base64,abc', 'test.jpg', mockFile);
+      expect(onComplete).toHaveBeenCalledWith(
+        'data:image/jpeg;base64,abc',
+        'test.jpg',
+        mockFile,
+      );
     });
   });
 
@@ -172,7 +184,9 @@ describe('useFileUpload', () => {
     });
 
     it('should read file as text when files are provided', () => {
-      const mockFile = new File(['test content'], 'test.css', { type: 'text/css' });
+      const mockFile = new File(['test content'], 'test.css', {
+        type: 'text/css',
+      });
       const onComplete = vi.fn();
 
       const mockFileReader = {
@@ -189,7 +203,9 @@ describe('useFileUpload', () => {
     });
 
     it('should call onComplete with text content when onload fires', () => {
-      const mockFile = new File(['.test { color: red; }'], 'style.css', { type: 'text/css' });
+      const mockFile = new File(['.test { color: red; }'], 'style.css', {
+        type: 'text/css',
+      });
       const onComplete = vi.fn();
 
       let capturedOnload;
@@ -211,7 +227,10 @@ describe('useFileUpload', () => {
       // Simulate onload event
       capturedOnload({ target: { result: '.test { color: red; }' } });
 
-      expect(onComplete).toHaveBeenCalledWith('.test { color: red; }', mockFile);
+      expect(onComplete).toHaveBeenCalledWith(
+        '.test { color: red; }',
+        mockFile,
+      );
     });
 
     it('should set up onloadstart handler for text upload', () => {
@@ -304,7 +323,11 @@ describe('useFileUpload', () => {
 
       await fileUpload.base64ToFile(base64, 'test.png');
 
-      expect(dataUrlToFile).toHaveBeenCalledWith(base64, 'test.png', 'image/png');
+      expect(dataUrlToFile).toHaveBeenCalledWith(
+        base64,
+        'test.png',
+        'image/png',
+      );
     });
   });
 

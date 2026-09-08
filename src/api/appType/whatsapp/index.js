@@ -11,7 +11,10 @@ export default {
       .then((r) => r.data);
   },
   updateWppContactInfo(appCode, appUuid, payload) {
-    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/contact/`, payload);
+    return request.$http.patch(
+      `${resource}/${appCode}/apps/${appUuid}/contact/`,
+      payload,
+    );
   },
   getConversations(appCode, appUuid, params) {
     const queryString = qs.stringify(params);
@@ -23,10 +26,15 @@ export default {
     return request.$http.get(`${resource}/${appCode}/apps/${appUuid}/profile/`);
   },
   updateWppProfile(appCode, appUuid, data) {
-    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/profile/`, data);
+    return request.$http.patch(
+      `${resource}/${appCode}/apps/${appUuid}/profile/`,
+      data,
+    );
   },
   deleteWppProfilePhoto(appCode, appUuid) {
-    return request.$http.delete(`${resource}/${appCode}/apps/${appUuid}/profile/`);
+    return request.$http.delete(
+      `${resource}/${appCode}/apps/${appUuid}/profile/`,
+    );
   },
   async getWhatsAppTemplates(appUuid, params) {
     const queryString = qs.stringify(params);
@@ -50,18 +58,29 @@ export default {
       .then((r) => r.data);
   },
   deleteTemplateMessage(appUuid, templateUuid) {
-    return request.$http.delete(`${templatesResource}/${appUuid}/templates/${templateUuid}`);
+    return request.$http.delete(
+      `${templatesResource}/${appUuid}/templates/${templateUuid}`,
+    );
   },
   async createTemplateTranslation(appUuid, templateUuid, data) {
     return await request.$http
-      .post(`${templatesResource}/${appUuid}/templates/${templateUuid}/translations/`, data)
+      .post(
+        `${templatesResource}/${appUuid}/templates/${templateUuid}/translations/`,
+        data,
+      )
       .then((r) => r.data);
   },
   updateTemplateTranslation(appUuid, templateUuid, data) {
-    return request.$http.patch(`${templatesResource}/${appUuid}/templates/${templateUuid}/`, data);
+    return request.$http.patch(
+      `${templatesResource}/${appUuid}/templates/${templateUuid}/`,
+      data,
+    );
   },
   updateWppWebhookInfo(appCode, appUuid, payload) {
-    return request.$http.patch(`${resource}/${appCode}/apps/${appUuid}/update_webhook/`, payload);
+    return request.$http.patch(
+      `${resource}/${appCode}/apps/${appUuid}/update_webhook/`,
+      payload,
+    );
   },
   async requestConversationsReport(appCode, appUuid, params) {
     const queryString = qs.stringify(params);

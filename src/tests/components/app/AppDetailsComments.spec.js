@@ -36,7 +36,9 @@ describe('AppDetailsComments.vue', () => {
   });
 
   it('renders correctly in non-edit mode', () => {
-    expect(wrapper.find('.app-details-comments__header').text()).toContain('Leave a comment');
+    expect(wrapper.find('.app-details-comments__header').text()).toContain(
+      'Leave a comment',
+    );
   });
 
   it('calls listComments on mount', () => {

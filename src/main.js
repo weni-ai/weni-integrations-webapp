@@ -1,6 +1,6 @@
 import { createApp, markRaw } from 'vue';
 import { createPinia } from 'pinia';
-import Unnnic from '@weni/unnnic-system';
+import Unnnic from '@/utils/plugins/UnnnicSystem';
 import '@weni/unnnic-system/dist/style.css';
 import i18n from '@/utils/plugins/i18n';
 import * as vueUse from '@vueuse/components';
@@ -22,7 +22,10 @@ const { useSharedStore } = await safeImport(
 
 const sharedStore = useSharedStore?.();
 
-export default async function mountIntegrationsApp({ containerId = 'app', initialRoute } = {}) {
+export default async function mountIntegrationsApp({
+  containerId = 'app',
+  initialRoute,
+} = {}) {
   let appRef = null;
 
   if (!isFederatedModule) {

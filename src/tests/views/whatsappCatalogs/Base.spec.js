@@ -40,7 +40,11 @@ describe('WhatsAppCatalogs.vue', () => {
 
     const crumbs = wrapper.vm.crumbs;
     expect(crumbs).toEqual([
-      { name: 'MyApps', path: '/apps/my', meta: { crumb_title: 'apps.nav.my_apps' } },
+      {
+        name: 'MyApps',
+        path: '/apps/my',
+        meta: { crumb_title: 'apps.nav.my_apps' },
+      },
       {
         name: 'WhatsApp Catalogs List',
         path: '/catalogs',

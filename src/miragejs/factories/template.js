@@ -16,7 +16,9 @@ export default {
       return faker.date.past();
     },
     category() {
-      return possibleCategories[Math.floor(Math.random() * possibleCategories.length)];
+      return possibleCategories[
+        Math.floor(Math.random() * possibleCategories.length)
+      ];
     },
     template_type() {
       return possibleTypes[Math.floor(Math.random() * possibleTypes.length)];
@@ -26,9 +28,13 @@ export default {
     },
     afterCreate(template, server) {
       template.update({
-        translations: server.createList('translation', Math.floor(Math.random() * 3) + 1, {
-          template,
-        }),
+        translations: server.createList(
+          'translation',
+          Math.floor(Math.random() * 3) + 1,
+          {
+            template,
+          },
+        ),
       });
     },
   }),

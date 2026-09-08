@@ -1,8 +1,10 @@
 module.exports = {
-  singleQuote: true,
-  endOfLine: 'auto',
+  tabWidth: 2,
   semi: true,
+  singleQuote: true,
+  bracketSpacing: true,
+  printWidth: 80,
   trailingComma: 'all',
-  vueIndentScriptAndStyle: true,
-  arrowParens: 'always',
+  endOfLine: 'lf',
+  singleAttributePerLine: true,
 };

@@ -68,11 +68,9 @@ describe('AccountTab.vue', () => {
   });
 
   it('renders a single manage content label', () => {
-
     expect(wrapper.find('.account-tab__content__section__title').text()).toBe(
       'Manage content',
     );
-
   });
 
   it('renders phone number correctly', () => {
@@ -81,12 +79,16 @@ describe('AccountTab.vue', () => {
 
   it('renders section fields correctly', () => {
     const section = wrapper.vm.accountSections[0];
-    expect(section.fields[0].label).toBe('WhatsApp.config.channel.fields.phone_number');
+    expect(section.fields[0].label).toBe(
+      'WhatsApp.config.channel.fields.phone_number',
+    );
     expect(section.fields[0].value).toBe('+1234567890');
   });
 
   it('navigates to templates when button is clicked', async () => {
-    const button = wrapper.find('.account-tab__content__templates__buttons unnnic-button-stub');
+    const button = wrapper.find(
+      '.account-tab__content__templates__buttons unnnic-button-stub',
+    );
     const spy = vi.spyOn(wrapper.vm.$router, 'push');
     expect(button.exists()).toBe(true);
     await button.trigger('click');
@@ -110,19 +112,29 @@ describe('AccountTab.vue', () => {
   it('copies the phone number and shows a success toast', async () => {
     const writeText = vi.fn().mockResolvedValue();
     global.navigator.clipboard = { writeText };
-    const toastSpy = vi.spyOn(unnnicToastManager, 'success').mockResolvedValue();
+    const toastSpy = vi
+      .spyOn(unnnicToastManager, 'success')
+      .mockResolvedValue();
 
-    await wrapper.find('.account-tab__content__section__fields__field__copy').trigger('click');
+    await wrapper
+      .find('.account-tab__content__section__fields__field__copy')
+      .trigger('click');
 
     expect(writeText).toHaveBeenCalledWith('+1234567890');
-    expect(toastSpy).toHaveBeenCalledWith(wrapper.vm.$t('apps.config.copy_success'));
+    expect(toastSpy).toHaveBeenCalledWith(
+      wrapper.vm.$t('apps.config.copy_success'),
+    );
     toastSpy.mockRestore();
   });
 
   it('opens WhatsApp URL when the outbound button is clicked', async () => {
-    const openSpy = vi.spyOn(window, 'open').mockReturnValue({ focus: vi.fn() });
+    const openSpy = vi
+      .spyOn(window, 'open')
+      .mockReturnValue({ focus: vi.fn() });
 
-    await wrapper.find('.account-tab__content__section__fields__field__open').trigger('click');
+    await wrapper
+      .find('.account-tab__content__section__fields__field__open')
+      .trigger('click');
 
     expect(openSpy).toHaveBeenCalledWith('https://wa.me/1234567890', '_blank');
     openSpy.mockRestore();

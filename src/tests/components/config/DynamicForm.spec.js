@@ -79,7 +79,9 @@ describe('DynamicForm.vue', () => {
       expect(wrapper.emitted('input')).toBeFalsy();
       wrapper.vm.emitInput(index, event);
       expect(wrapper.emitted('input')).toBeTruthy();
-      expect(wrapper.emitted('input')[0]).toEqual([{ index, value: input.options[1].value }]);
+      expect(wrapper.emitted('input')[0]).toEqual([
+        { index, value: input.options[1].value },
+      ]);
     });
   });
 });

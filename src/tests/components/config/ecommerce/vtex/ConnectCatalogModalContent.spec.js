@@ -1,15 +1,18 @@
 import { mount } from '@vue/test-utils';
 import ConnectCatalogModalContent from '@/components/config/ecommerce/vtex/ConnectCatalogModalContent.vue';
-import UnnnicSystem from '@weni/unnnic-system';
+import { UnnnicInput, UnnnicButton } from '@weni/unnnic-system';
 import { describe, it, expect } from 'vitest';
 import i18n from '@/utils/plugins/i18n';
+
+const globalConfig = {
+  plugins: [i18n],
+  components: { UnnnicInput, UnnnicButton },
+};
 
 describe('ConnectCatalogModalContent.vue', () => {
   it('should render the modal with title, input, and footer', () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
       mocks: {
         $t: (e) => e,
       },
@@ -19,7 +22,7 @@ describe('ConnectCatalogModalContent.vue', () => {
     expect(title.exists()).toBe(true);
     expect(title.text()).toBe('Basic information');
 
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent(UnnnicInput);
     expect(input.exists()).toBe(true);
     expect(input.props().label).toBe('Catalog ID');
     expect(input.props().placeholder).toBe('');
@@ -33,9 +36,7 @@ describe('ConnectCatalogModalContent.vue', () => {
 
   it('should emit closeModal when the cancel button is clicked', async () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
     });
 
     const closeButton = wrapper.findComponent({ ref: 'closeButton' });
@@ -48,30 +49,28 @@ describe('ConnectCatalogModalContent.vue', () => {
 
   it('should emit connectCatalog with the correct name when the continue button is clicked', async () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
     });
 
     const connectButton = wrapper.findComponent({ ref: 'connectButton' });
     expect(connectButton.exists()).toBe(true);
 
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent(UnnnicInput);
     await input.setValue('My Catalog');
 
     await connectButton.trigger('click');
 
     expect(wrapper.emitted('connectCatalog')).toBeTruthy();
-    expect(wrapper.emitted('connectCatalog')[0]).toEqual([{ name: 'My Catalog' }]);
+    expect(wrapper.emitted('connectCatalog')[0]).toEqual([
+      { name: 'My Catalog' },
+    ]);
 
     expect(wrapper.emitted()).toHaveProperty('closeModal');
   });
 
   it('should display loading state on the continue button', () => {
     const wrapper = mount(ConnectCatalogModalContent, {
-      global: {
-        plugins: [i18n, UnnnicSystem],
-      },
+      global: globalConfig,
       props: {
         loading: true,
       },

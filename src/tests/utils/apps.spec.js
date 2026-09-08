@@ -15,7 +15,9 @@ describe('apps utils', () => {
     });
 
     it('returns api name for non-wwc apps', () => {
-      expect(getAppDisplayName({ code: 'telegram', name: 'Telegram' }, t)).toBe('Telegram');
+      expect(getAppDisplayName({ code: 'telegram', name: 'Telegram' }, t)).toBe(
+        'Telegram',
+      );
     });
 
     it('falls back to WhatsApp when wpp-cloud has no name', () => {

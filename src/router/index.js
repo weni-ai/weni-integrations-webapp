@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+  createMemoryHistory,
+} from 'vue-router';
 import { auth_store } from '@/stores/modules/auth.store';
 import { moduleStorage } from '@/utils/storage';
 import { isFederatedModule } from '@/utils/moduleFederation';
@@ -91,7 +95,8 @@ const routes = [
           {
             name: 'WhatsApp Catalog Products',
             path: ':catalogUuid/products',
-            component: () => import('@/views/whatsAppCatalogs/CatalogProducts.vue'),
+            component: () =>
+              import('@/views/whatsAppCatalogs/CatalogProducts.vue'),
             meta: {
               crumb_title: 'WhatsApp.catalog.products.title',
             },
@@ -112,7 +117,9 @@ const routes = [
     beforeEnter: (to, from, next) => {
       const { project, flowOrg } = to.params;
       auth_store().selectedProject({ project });
-      flowOrg ? auth_store().selectedFlowOrg({ flowOrg }) : auth_store().getFlowOrganization();
+      flowOrg
+        ? auth_store().selectedFlowOrg({ flowOrg })
+        : auth_store().getFlowOrganization();
       if (to.query.next) {
         next(to.query.next);
       } else {

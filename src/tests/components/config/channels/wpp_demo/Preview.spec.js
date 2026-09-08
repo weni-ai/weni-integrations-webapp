@@ -42,12 +42,16 @@ describe('wpp-demo-preview Component', () => {
   });
 
   it('should render the header description', () => {
-    expect(wrapper.find('.app-preview-wpp_demo__header__description').exists()).toBe(true);
+    expect(
+      wrapper.find('.app-preview-wpp_demo__header__description').exists(),
+    ).toBe(true);
   });
 
   it('should display the QR code URL', () => {
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURI(mockApp.config.redirect_url)}`;
-    expect(wrapper.find('img[src^="https://api.qrserver.com"]').attributes('src')).toBe(qrCodeUrl);
+    expect(
+      wrapper.find('img[src^="https://api.qrserver.com"]').attributes('src'),
+    ).toBe(qrCodeUrl);
   });
 
   it('should emit closeModal when closePreview method is called', async () => {
@@ -61,7 +65,9 @@ describe('wpp-demo-preview Component', () => {
 
     await wrapper.vm.copyUrl();
 
-    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(mockApp.config.redirect_url);
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
+      mockApp.config.redirect_url,
+    );
     expect(unnnicCallAlertSpy).toHaveBeenCalledWith(
       expect.objectContaining({
         props: {
@@ -84,13 +90,17 @@ describe('wpp-demo-preview Component', () => {
   });
 
   it('should render the description correctly', () => {
-    expect(wrapper.find('.app-preview-wpp_demo__header__description').text()).toBe(
+    expect(
+      wrapper.find('.app-preview-wpp_demo__header__description').text(),
+    ).toBe(
       'Use the URL below to try WhatsApp Demo in your project or share it with others',
     );
   });
 
   it('should render the description correctly', () => {
-    expect(wrapper.find('.app-preview-wpp_demo__header__description').text()).toBe(
+    expect(
+      wrapper.find('.app-preview-wpp_demo__header__description').text(),
+    ).toBe(
       'Use the URL below to try WhatsApp Demo in your project or share it with others',
     );
   });

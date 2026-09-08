@@ -43,9 +43,9 @@ describe('Config.vue', () => {
   });
 
   it('should render the component correctly', () => {
-    expect(wrapper.find('.app-config-telegram__header__description').text()).toContain(
-      'Learn more about how to integrate Telegram here',
-    );
+    expect(
+      wrapper.find('.app-config-telegram__header__description').text(),
+    ).toContain('Learn more about how to integrate Telegram here');
     expect(wrapper.find('a').attributes('href')).toBe(
       'https://docs.weni.ai/l/en/weni-integrations/adding-a-telegram-channel',
     );
@@ -63,7 +63,7 @@ describe('Config.vue', () => {
   });
 
   it('should correctly bind the token input', async () => {
-    const input = wrapper.findComponent({ name: 'unnnic-input' });
+    const input = wrapper.findComponent({ name: 'UnnnicInput' });
 
     expect(input.props('modelValue')).toBe('valid-token');
 
@@ -99,7 +99,9 @@ describe('Config.vue', () => {
     const store = app_type();
     store.updateAppConfig = vi.fn().mockResolvedValue();
     store.errorUpdateAppConfig = false;
-    const updateAppConfigSpy = vi.spyOn(wrapper.vm, 'updateAppConfig').mockResolvedValue();
+    const updateAppConfigSpy = vi
+      .spyOn(wrapper.vm, 'updateAppConfig')
+      .mockResolvedValue();
     const callAlertSpy = vi.spyOn(unnnic, 'unnnicCallAlert');
 
     await wrapper.vm.saveConfig();
@@ -120,9 +122,11 @@ describe('Config.vue', () => {
   });
 
   it('handles invalid token error and shows specific error alert', async () => {
-    const updateAppConfigSpy = vi.spyOn(wrapper.vm, 'updateAppConfig').mockRejectedValue({
-      response: { status: 400 },
-    });
+    const updateAppConfigSpy = vi
+      .spyOn(wrapper.vm, 'updateAppConfig')
+      .mockRejectedValue({
+        response: { status: 400 },
+      });
     await wrapper.vm.saveConfig();
 
     expect(updateAppConfigSpy).toHaveBeenCalled();

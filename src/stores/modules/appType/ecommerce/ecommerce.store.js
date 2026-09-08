@@ -43,7 +43,11 @@ export const ecommerce_store = defineStore('ecommerce', {
       this.errorConnectVtexCatalog = null;
       this.connectVtexCatalogData = null;
       try {
-        const { data } = await ecommerce.connectVtexCatalog(code, appUuid, payload);
+        const { data } = await ecommerce.connectVtexCatalog(
+          code,
+          appUuid,
+          payload,
+        );
         this.connectVtexCatalogData = data;
         this.loadingConnectVtexCatalog = false;
       } catch (err) {

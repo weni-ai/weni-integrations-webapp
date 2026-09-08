@@ -39,13 +39,17 @@ describe('AppDetailsHeader.vue', () => {
   });
 
   it('renders the app description correctly', () => {
-    const description = wrapper.find('.app-details-header__content__description');
+    const description = wrapper.find(
+      '.app-details-header__content__description',
+    );
     expect(description.exists()).toBe(true);
     expect(description.text()).toBe('app.summary');
   });
 
   it('applies CSS variables correctly', () => {
-    expect(wrapper.element.style.getPropertyValue('--icon-bg-color')).toBe('blue');
+    expect(wrapper.element.style.getPropertyValue('--icon-bg-color')).toBe(
+      'blue',
+    );
   });
 
   it('renders IntegrateButton with correct props', () => {

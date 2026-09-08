@@ -4,7 +4,7 @@
       {{ $t('WhatsApp.templates.form_field.footer_text') }}
     </span>
 
-    <unnnic-input
+    <UnnnicInput
       :class="{
         'form-tab-content-footer__input': true,
         'form-tab-content-footer__input__disabled': disableInputs,
@@ -12,55 +12,57 @@
       :disabled="disableInputs"
       :maxLength="60"
       :modelValue="textInput"
-      @update:modelValue="$emit('input-change', { fieldName: 'footer', fieldValue: $event })"
       :placeholder="$t('WhatsApp.templates.form_field.footer_text_placeholder')"
+      @update:model-value="
+        $emit('input-change', { fieldName: 'footer', fieldValue: $event })
+      "
     />
   </div>
 </template>
 
 <script>
-  import { mapState } from 'pinia';
-  import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
+import { mapState } from 'pinia';
+import { whatsapp_store } from '@/stores/modules/appType/channels/whatsapp.store';
 
-  export default {
-    name: 'FormTabContentFooter',
-    props: {
-      disableInputs: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  name: 'FormTabContentFooter',
+  props: {
+    disableInputs: {
+      type: Boolean,
+      default: false,
     },
-    computed: {
-      ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
-      textInput() {
-        return this.templateTranslationCurrentForm.footer || '';
-      },
+  },
+  computed: {
+    ...mapState(whatsapp_store, ['templateTranslationCurrentForm']),
+    textInput() {
+      return this.templateTranslationCurrentForm.footer || '';
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .form-tab-content-footer {
-    display: flex;
-    flex-direction: column;
+.form-tab-content-footer {
+  display: flex;
+  flex-direction: column;
 
-    &__title {
-      margin-bottom: $unnnic-spacing-stack-sm;
-      font-size: $unnnic-font-size-body-lg;
-      line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
-      font-weight: $unnnic-font-weight-bold;
+  &__title {
+    margin-bottom: $unnnic-spacing-stack-sm;
+    font-size: $unnnic-font-size-body-lg;
+    line-height: $unnnic-font-size-body-lg + $unnnic-line-height-md;
+    font-weight: $unnnic-font-weight-bold;
 
-      color: $unnnic-color-fg-emphasized;
+    color: $unnnic-color-fg-emphasized;
+  }
+
+  &__input {
+    :deep(textarea) {
+      resize: none;
     }
 
-    &__input {
-      :deep(textarea) {
-        resize: none;
-      }
-
-      :deep(.helper) {
-        margin-top: $unnnic-spacing-stack-xs;
-      }
+    :deep(.helper) {
+      margin-top: $unnnic-spacing-stack-xs;
     }
   }
+}
 </style>

@@ -49,7 +49,9 @@ describe('vtex-config Component', () => {
   });
 
   it('should render the description', () => {
-    expect(wrapper.find('.config-vtex__header__description').exists()).toBe(true);
+    expect(wrapper.find('.config-vtex__header__description').exists()).toBe(
+      true,
+    );
   });
 
   it('should render the description correctly', () => {
@@ -102,7 +104,10 @@ describe('vtex-config Component', () => {
     wrapper.vm.sellersList = ['Seller 1', 'Seller 2'];
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.findAll('.config-vtex__settings__content__sellers__options').length).toBe(1);
+    expect(
+      wrapper.findAll('.config-vtex__settings__content__sellers__options')
+        .length,
+    ).toBe(1);
   });
 
   it('should disable save button when no sellers are selected', () => {

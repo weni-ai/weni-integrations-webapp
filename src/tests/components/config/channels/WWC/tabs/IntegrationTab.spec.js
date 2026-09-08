@@ -20,9 +20,9 @@ describe('IntegrationTab', () => {
       global: {
         plugins: [i18n, UnnnicSystem],
         stubs: {
-          'unnnic-disclaimer': true,
-          'unnnic-text-area': true,
-          'unnnic-button': true,
+          UnnnicDisclaimer: true,
+          UnnnicTextArea: true,
+          UnnnicButton: true,
         },
       },
       props: defaultProps,
@@ -61,9 +61,9 @@ describe('IntegrationTab', () => {
         global: {
           plugins: [i18n, UnnnicSystem],
           stubs: {
-            'unnnic-disclaimer': true,
-            'unnnic-text-area': true,
-            'unnnic-button': true,
+            UnnnicDisclaimer: true,
+            UnnnicTextArea: true,
+            UnnnicButton: true,
           },
         },
         props: {
@@ -91,8 +91,12 @@ describe('IntegrationTab', () => {
   describe('copy script functionality', () => {
     it('should create download link when copy button is clicked', async () => {
       const createElementSpy = vi.spyOn(document, 'createElement');
-      const appendChildSpy = vi.spyOn(document.body, 'appendChild').mockImplementation(() => {});
-      const removeChildSpy = vi.spyOn(document.body, 'removeChild').mockImplementation(() => {});
+      const appendChildSpy = vi
+        .spyOn(document.body, 'appendChild')
+        .mockImplementation(() => {});
+      const removeChildSpy = vi
+        .spyOn(document.body, 'removeChild')
+        .mockImplementation(() => {});
 
       const button = wrapper.find('unnnic-button-stub');
       await button.trigger('click');
@@ -111,9 +115,9 @@ describe('IntegrationTab', () => {
         global: {
           plugins: [i18n, UnnnicSystem],
           stubs: {
-            'unnnic-disclaimer': true,
-            'unnnic-text-area': true,
-            'unnnic-button': true,
+            UnnnicDisclaimer: true,
+            UnnnicTextArea: true,
+            UnnnicButton: true,
           },
         },
         props: {
