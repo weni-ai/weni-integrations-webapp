@@ -20,13 +20,13 @@
       :items="listItems"
       class="whatsapp-product-list__table"
     >
-      <template #header>
+      <template v-slot:header>
         <UnnnicTableRow :headers="headers" />
       </template>
 
-      <template #item="{ item }">
+      <template v-slot:item="{ item }">
         <UnnnicTableRow :headers="headers">
-          <template #title>
+          <template v-slot:title>
             <div
               class="whatsapp-product-list__table__title"
               name="table-title"
@@ -39,7 +39,7 @@
             </div>
           </template>
 
-          <template #available>
+          <template v-slot:available>
             <div
               :title="item.available"
               class="break-text whatsapp-product-list__table__status"
@@ -51,7 +51,7 @@
             </div>
           </template>
 
-          <template #price>
+          <template v-slot:price>
             <div
               :title="item.price"
               class="break-text whatsapp-product-list__table__price"
@@ -66,7 +66,7 @@
             </div>
           </template>
 
-          <template #facebook_product_id>
+          <template v-slot:facebook_product_id>
             <div
               :title="item.facebook_product_id"
               class="break-text"
@@ -84,9 +84,9 @@
       >
       <UnnnicPagination
         :modelValue="page"
+        @update:modelValue="onPageChange"
         :max="pageCount"
         :show="5"
-        @update:model-value="onPageChange"
       />
     </div>
   </div>

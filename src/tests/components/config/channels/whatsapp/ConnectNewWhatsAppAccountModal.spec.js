@@ -90,7 +90,7 @@ describe('ConnectNewWhatsAppAccountModal.vue', () => {
     ).toBe(true);
     expect(
       wrapper.find('.connect-new-whatsapp-account-modal__description').html(),
-    ).toContain('Create a <b>new WhatsApp Business Account</b>');
+    ).toContain('Create a <b>new WhatsApp Business account</b>');
 
     const button = wrapper.findComponent({ name: 'UnnnicButton' });
     expect(button.exists()).toBe(true);

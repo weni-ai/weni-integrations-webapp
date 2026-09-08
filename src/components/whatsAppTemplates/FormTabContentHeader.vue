@@ -25,6 +25,7 @@
 
       <UnnnicInput
         v-if="headerType === 'TEXT'"
+        ref="header-text-input"
         :class="{
           'form-tab-content-header__inputs__text-input': true,
           'form-tab-content-header__inputs__text-input__disabled':

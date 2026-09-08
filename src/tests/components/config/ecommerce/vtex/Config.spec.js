@@ -111,6 +111,8 @@ describe('vtex-config Component', () => {
   });
 
   it('should disable save button when no sellers are selected', () => {
+    wrapper.vm.selectedSellers = [];
+    wrapper.vm.disableVtexADS = true;
     expect(wrapper.vm.disableSave).toBe(true);
   });
 

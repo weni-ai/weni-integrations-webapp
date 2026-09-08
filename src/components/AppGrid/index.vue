@@ -25,21 +25,21 @@
 
       <div class="app-grid__content">
         <UnnnicCard
-          v-for="(app, index) in currentGridApps"
-          :id="app.id"
           ref="unnnic-marketplace-card"
-          :key="index"
           :class="[
             'app-grid__content__item',
             {
               'app-grid__content__item--generic': app.generic && type === 'add',
             },
           ]"
+          v-for="(app, index) in currentGridApps"
+          v-bind:key="index"
           type="marketplace"
           :title="appName(app)"
           :description="
             app.generic ? $t(`${getTranslation(app)}`) : $t(app.summary)
           "
+          :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
           :iconSrc="appIcon(app)"
@@ -50,12 +50,12 @@
             (!app.generic && app.code !== 'email' && app.code !== 'gmail') ||
             (type !== 'add' && app.code !== 'gmail')
           "
-          @open-modal="openAppModal(app)"
+          @openModal="openAppModal(app)"
         >
           <template #actions>
             <IntegrateButton
-              v-if="type === 'add'"
               :ref="`integrate-button-${app.code}`"
+              v-if="type === 'add'"
               :app="app"
               :icon="action"
               :disabled="!app.generic && !app.can_add"
@@ -85,9 +85,9 @@
               </UnnnicDropdownItem>
               <UnnnicDropdownItem
                 v-if="!['wpp', 'gmail'].includes(app.code)"
+                class="app-grid__content__item__button--details"
                 id="openAppDetails"
                 ref="openAppDetails"
-                class="app-grid__content__item__button--details"
                 @click="openAppDetails(app.code)"
               >
                 <UnnnicIconSvg
@@ -134,9 +134,9 @@
         <UnnnicPagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
           :modelValue="currentPage"
+          @update:modelValue="onPageChange"
           :max="maxGridPages"
           :show="6"
-          @update:model-value="onPageChange"
         />
       </div>
     </section>
@@ -186,8 +186,8 @@
 
 <script>
 import unnnic from '@weni/unnnic-system';
-import ConfigModal from '../config/ConfigModal.vue';
-import SkeletonLoading from '../loadings/AppGrid.vue';
+import configModal from '../config/ConfigModal.vue';
+import skeletonLoading from '../loadings/AppGrid.vue';
 import IntegrateButton from '../IntegrateButton/index.vue';
 import LoadingButton from '../LoadingButton/index.vue';
 import { avatarIcons, actionIcons, cardIcons } from '../../views/data/icons';
@@ -197,7 +197,7 @@ import { storeToRefs } from 'pinia';
 import { getAppDisplayName } from '@/utils/apps';
 export default {
   name: 'AppGrid',
-  components: { ConfigModal, IntegrateButton, LoadingButton, SkeletonLoading },
+  components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
   props: {
     section: {
       type: String,

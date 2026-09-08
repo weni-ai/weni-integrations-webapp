@@ -3,15 +3,15 @@
     <div class="modal__content">
       <div class="modal__content__form">
         <UnnnicInput
-          v-model="name"
           class="modal__content__form__input__name"
+          v-model="name"
           :label="$t('vtex.connect_catalog.name')"
           :placeholder="$t('vtex.connect_catalog.name_placeholder')"
         />
 
         <span
-          class="modal__content__form__footer"
           v-html="$t('vtex.connect_catalog.footer')"
+          class="modal__content__form__footer"
         ></span>
       </div>
     </div>

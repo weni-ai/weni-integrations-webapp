@@ -73,8 +73,8 @@
         </div>
 
         <span
-          class="modal__content__form__footer"
           v-html="$t('whatsapp.create_catalog.footer')"
+          class="modal__content__form__footer"
         ></span>
       </div>
     </div>
