@@ -121,9 +121,8 @@ describe('AppGrid', () => {
         );
       });
 
-      it('calls configModal.openModal when type is "config"', async () => {
+      it('opens ConfigModal with the app when type is "config"', async () => {
         pushMock.mockClear();
-        const openModalSpy = vi.fn();
         const w = mount(AppGrid, {
           props: {
             section: 'configured',
@@ -136,9 +135,7 @@ describe('AppGrid', () => {
               ConfigModal: {
                 name: 'ConfigModal',
                 template: '<div />',
-                methods: {
-                  openModal: openModalSpy,
-                },
+                props: ['open', 'app', 'isConfigured'],
               },
             },
             mocks: {
@@ -150,13 +147,16 @@ describe('AppGrid', () => {
 
         await w.vm.openAppModal(configuredApp);
 
-        expect(openModalSpy).toHaveBeenCalledWith({
-          app: configuredApp,
-          isConfigured: false,
-        });
+        expect(w.vm.showConfigModal).toBe(true);
+        expect(w.vm.configModalApp).toEqual(configuredApp);
         expect(pushMock).not.toHaveBeenCalledWith(
           expect.stringContaining('/apps/my/configured/'),
         );
+
+        await w
+          .findComponent({ name: 'ConfigModal' })
+          .vm.$emit('update:open', false);
+        expect(w.vm.showConfigModal).toBe(false);
       });
 
       it('does nothing when type is "add" and app is generic', async () => {

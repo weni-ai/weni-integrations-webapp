@@ -25,21 +25,21 @@
 
       <div class="app-grid__content">
         <UnnnicCard
+          v-for="(app, index) in currentGridApps"
+          :id="app.id"
           ref="unnnic-marketplace-card"
+          :key="index"
           :class="[
             'app-grid__content__item',
             {
               'app-grid__content__item--generic': app.generic && type === 'add',
             },
           ]"
-          v-for="(app, index) in currentGridApps"
-          v-bind:key="index"
           type="marketplace"
           :title="appName(app)"
           :description="
             app.generic ? $t(`${getTranslation(app)}`) : $t(app.summary)
           "
-          :id="app.id"
           :comments="`${app.comments_count} ${$t('apps.details.card.comments')}`"
           :rating="appRatingAverage(app)"
           :iconSrc="appIcon(app)"
@@ -50,12 +50,12 @@
             (!app.generic && app.code !== 'email' && app.code !== 'gmail') ||
             (type !== 'add' && app.code !== 'gmail')
           "
-          @openModal="openAppModal(app)"
+          @open-modal="openAppModal(app)"
         >
           <template #actions>
             <IntegrateButton
-              :ref="`integrate-button-${app.code}`"
               v-if="type === 'add'"
+              :ref="`integrate-button-${app.code}`"
               :app="app"
               :icon="action"
               :disabled="!app.generic && !app.can_add"
@@ -85,9 +85,9 @@
               </UnnnicDropdownItem>
               <UnnnicDropdownItem
                 v-if="!['wpp', 'gmail'].includes(app.code)"
-                class="app-grid__content__item__button--details"
                 id="openAppDetails"
                 ref="openAppDetails"
+                class="app-grid__content__item__button--details"
                 @click="openAppDetails(app.code)"
               >
                 <UnnnicIconSvg
@@ -134,9 +134,9 @@
         <UnnnicPagination
           :style="{ marginRight: `${paginationMarginOffset}px` }"
           :modelValue="currentPage"
-          @update:modelValue="onPageChange"
           :max="maxGridPages"
           :show="6"
+          @update:model-value="onPageChange"
         />
       </div>
     </section>
@@ -180,13 +180,18 @@
       </UnnnicDialogContent>
     </UnnnicDialog>
 
-    <ConfigModal ref="configModal" />
+    <ConfigModal
+      :open="showConfigModal"
+      :app="configModalApp"
+      :isConfigured="false"
+      @update:open="showConfigModal = $event"
+    />
   </div>
 </template>
 
 <script>
 import unnnic from '@weni/unnnic-system';
-import configModal from '../config/ConfigModal.vue';
+import ConfigModal from '../config/ConfigModal.vue';
 import skeletonLoading from '../loadings/AppGrid.vue';
 import IntegrateButton from '../IntegrateButton/index.vue';
 import LoadingButton from '../LoadingButton/index.vue';
@@ -197,7 +202,7 @@ import { storeToRefs } from 'pinia';
 import { getAppDisplayName } from '@/utils/apps';
 export default {
   name: 'AppGrid',
-  components: { configModal, IntegrateButton, LoadingButton, skeletonLoading },
+  components: { ConfigModal, IntegrateButton, LoadingButton, skeletonLoading },
   props: {
     section: {
       type: String,
@@ -232,10 +237,13 @@ export default {
       default: false,
     },
   },
+  emits: ['update'],
   data() {
     return {
       showAddModal: false,
       showRemoveModal: false,
+      showConfigModal: false,
+      configModalApp: {},
       currentRemoval: null,
       currentPage: 1,
       gridSize: 10,
@@ -245,15 +253,6 @@ export default {
       card: cardIcons[this.type],
       appType: storeToRefs(app_type()),
     };
-  },
-  /* istanbul ignore next */
-  mounted() {
-    this.updateGridSize();
-    window.addEventListener('resize', this.updateGridSize);
-  },
-  /* istanbul ignore next */
-  unmounted() {
-    window.removeEventListener('resize', this.updateGridSize);
   },
   computed: {
     ...mapState(app_type, ['loadingDeleteApp', 'errorDeleteApp']),
@@ -281,6 +280,23 @@ export default {
 
       return [];
     },
+  },
+  watch: {
+    /* istanbul ignore next */
+    loading(newState) {
+      if (newState === false) {
+        this.updateGridSize();
+      }
+    },
+  },
+  /* istanbul ignore next */
+  mounted() {
+    this.updateGridSize();
+    window.addEventListener('resize', this.updateGridSize);
+  },
+  /* istanbul ignore next */
+  unmounted() {
+    window.removeEventListener('resize', this.updateGridSize);
   },
   methods: {
     ...mapActions(app_type, ['deleteApp', 'setAppUuid']),
@@ -334,7 +350,8 @@ export default {
       } else if (this.type === 'edit') {
         this.$router.push(`/apps/my/configured/${app.code}/${app.uuid}`);
       } else {
-        this.$refs.configModal.openModal({ app, isConfigured: false });
+        this.configModalApp = app;
+        this.showConfigModal = true;
       }
     },
     appRatingAverage(app) {
@@ -399,14 +416,6 @@ export default {
           ? `channels.${code}`
           : `GenericApp.configuration_guide.${app.code}`;
       return this.$te(i18nkey) ? this.$t(i18nkey) : app.summary;
-    },
-  },
-  watch: {
-    /* istanbul ignore next */
-    loading(newState) {
-      if (newState === false) {
-        this.updateGridSize();
-      }
     },
   },
 };
