@@ -68,7 +68,10 @@ export default {
       if (Number.isNaN(lastSyncedMs)) {
         return 0;
       }
-      return Math.max(0, lastSyncedMs + TEMPLATES_SYNC_COOLDOWN_MS - this.nowMs);
+      return Math.max(
+        0,
+        lastSyncedMs + TEMPLATES_SYNC_COOLDOWN_MS - this.nowMs,
+      );
     },
     isSyncOnCooldown() {
       return this.remainingMs > 0;
@@ -77,9 +80,12 @@ export default {
       return Math.max(1, Math.ceil(this.remainingMs / 60000));
     },
     syncCooldownTooltip() {
-      return this.$t('WhatsApp.templates.table.sync_templates_cooldown_tooltip', {
-        remaining: this.remainingMinutes,
-      });
+      return this.$t(
+        'WhatsApp.templates.table.sync_templates_cooldown_tooltip',
+        {
+          remaining: this.remainingMinutes,
+        },
+      );
     },
   },
   mounted() {
@@ -119,7 +125,6 @@ export default {
       await this.syncWhatsAppTemplates({ appUuid });
       this.nowMs = Date.now();
 
-
       if (this.errorSyncWhatsAppTemplates) {
         unnnic.unnnicCallAlert({
           props: {
@@ -129,7 +134,6 @@ export default {
           seconds: 8,
         });
         return;
-
       }
 
       unnnic.unnnicCallAlert({
