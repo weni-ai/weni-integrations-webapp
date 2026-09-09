@@ -120,7 +120,7 @@ describe('MyApps', () => {
     });
 
     describe('openConfigFromRoute', () => {
-      it('calls directConfigModal.openModal via $nextTick', async () => {
+      it('opens ConfigModal with the routed app', async () => {
         const wrapper = mount(MyApps, {
           global: {
             plugins: [createTestingPinia({ createSpy: vi.fn }), i18n],
@@ -128,29 +128,11 @@ describe('MyApps', () => {
           },
         });
         await wrapper.vm.$nextTick();
-
-        const openModalSpy = vi
-          .spyOn(wrapper.vm.$refs.directConfigModal, 'openModal')
-          .mockImplementation(() => {});
 
         wrapper.vm.openConfigFromRoute(mockApp);
-        await wrapper.vm.$nextTick();
 
-        expect(openModalSpy).toHaveBeenCalledWith({
-          app: mockApp,
-          isConfigured: true,
-        });
-      });
-
-      it('does not throw if directConfigModal ref is unavailable', async () => {
-        const wrapper = mount(MyApps, {
-          global: {
-            plugins: [createTestingPinia({ createSpy: vi.fn }), i18n],
-            mocks: { $router: mockRouter(), $route: mockRoute() },
-          },
-        });
-        wrapper.vm.$refs.directConfigModal = undefined;
-        expect(() => wrapper.vm.openConfigFromRoute(mockApp)).not.toThrow();
+        expect(wrapper.vm.showDirectConfigModal).toBe(true);
+        expect(wrapper.vm.directConfigApp).toEqual(mockApp);
       });
     });
 
@@ -176,21 +158,14 @@ describe('MyApps', () => {
         const { wrapper, store } = mountForFetch();
         store.$patch({ currentApp: mockApp, errorCurrentApp: null });
 
-        const openModalSpy = vi
-          .spyOn(wrapper.vm.$refs.directConfigModal, 'openModal')
-          .mockImplementation(() => {});
-
         await wrapper.vm.fetchAppFromRoute();
-        await wrapper.vm.$nextTick();
 
         expect(store.getApp).toHaveBeenCalledWith({
           code: 'wwc',
           appUuid: 'app-uuid-123',
         });
-        expect(openModalSpy).toHaveBeenCalledWith({
-          app: mockApp,
-          isConfigured: true,
-        });
+        expect(wrapper.vm.showDirectConfigModal).toBe(true);
+        expect(wrapper.vm.directConfigApp).toEqual(mockApp);
       });
 
       it('shows error alert and does not open modal when getApp fails', async () => {
@@ -200,13 +175,9 @@ describe('MyApps', () => {
           errorCurrentApp: new Error('Not found'),
         });
 
-        const openModalSpy = vi
-          .spyOn(wrapper.vm.$refs.directConfigModal, 'openModal')
-          .mockImplementation(() => {});
-
         await wrapper.vm.fetchAppFromRoute();
 
-        expect(openModalSpy).not.toHaveBeenCalled();
+        expect(wrapper.vm.showDirectConfigModal).toBe(false);
       });
 
       it('guards against duplicate concurrent calls with isFetchingApp', async () => {
@@ -257,9 +228,28 @@ describe('MyApps', () => {
           },
         });
 
+        wrapper.vm.showDirectConfigModal = true;
         wrapper.vm.onDirectConfigModalClose();
+        expect(wrapper.vm.showDirectConfigModal).toBe(false);
         expect(router.replace).toHaveBeenCalledWith('/apps/my');
         expect(router.back).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('handleDirectConfigOpenUpdate', () => {
+      it('updates showDirectConfigModal from the drawer open state', () => {
+        const wrapper = mount(MyApps, {
+          global: {
+            plugins: [createTestingPinia({ createSpy: vi.fn }), i18n],
+            mocks: { $router: mockRouter(), $route: mockRoute() },
+          },
+        });
+
+        wrapper.vm.handleDirectConfigOpenUpdate(true);
+        expect(wrapper.vm.showDirectConfigModal).toBe(true);
+
+        wrapper.vm.handleDirectConfigOpenUpdate(false);
+        expect(wrapper.vm.showDirectConfigModal).toBe(false);
       });
     });
 
