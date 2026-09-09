@@ -644,6 +644,8 @@
           "date": "Fecha"
         },
         "new_template": "Nueva plantilla",
+        "sync_templates": "Sincronizar plantillas",
+        "sync_templates_cooldown_tooltip": "Las plantillas se podrán sincronizar de nuevo en {remaining} min",
         "filters": {
           "date": {
             "label": "Fecha",
@@ -696,6 +698,7 @@
         "create_translation": "No se pudo crear la traducción de la plantilla. Vuelve a intentarlo más tarde.",
         "unknown_error": "Se produjo un error desconocido. Actualiza la página.",
         "fetch_templates": "No se pudo cargar la lista de plantillas. Vuelve a intentarlo más tarde.",
+        "sync_templates": "No se pudieron sincronizar las plantillas debido a un problema técnico",
         "delete_template": "No se pudo eliminar la plantilla. Vuelve a intentarlo más tarde.",
         "invalid_file_format": "Formato de archivo no válido",
         "invalid_file_size": "Tamaño de archivo no válido. Debe ser menor que 16 MB.",
@@ -781,6 +784,7 @@
       },
       "success": {
         "create_translation": "Traducción de plantilla creada con éxito",
+        "sync_templates": "Plantillas sincronizadas con éxito",
         "update_translation": "Traducción de plantilla actualizada con éxito"
       }
     },

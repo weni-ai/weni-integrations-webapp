@@ -5,8 +5,8 @@
       v-if="$route.name === 'WhatsApp Templates Table'"
       class="whatsapp-templates__table"
     >
-      <Header />
-      <Table />
+      <Header @templates-synced="refreshTemplatesTable" />
+      <Table ref="templatesTable" />
     </div>
     <RouterView v-else />
   </div>
@@ -21,6 +21,12 @@ export default {
   components: {
     Header,
     Table,
+  },
+  methods: {
+    refreshTemplatesTable() {
+      const table = this.$refs.templatesTable;
+      table?.fetchData?.({ page: table.page || 1 });
+    },
   },
 };
 </script>
