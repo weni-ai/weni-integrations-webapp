@@ -457,6 +457,7 @@ watch(
     font-size: $unnnic-font-size-body-gt;
     line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
     padding: 0 $unnnic-space-6;
+    padding-top: $unnnic-space-6;
   }
 
   &__footer {
