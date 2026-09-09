@@ -1,3 +1,10 @@
+3.20.0
+----------
+`2026-09-09 · 1 🎉`
+
+### 🎉 New features
+- Add WhatsApp templates sync from Meta, with a one-hour cooldown between syncs
+
 3.19.0
 ----------
 `2026-09-08 · 7 🔧`
