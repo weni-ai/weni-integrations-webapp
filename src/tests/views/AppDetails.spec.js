@@ -57,7 +57,9 @@ describe('AppDetails.vue', () => {
     const appDetailsAbout = wrapper.findComponent({ ref: 'appDetailsAbout' });
     expect(appDetailsAbout.exists()).toBe(true);
 
-    const appDetailsComments = wrapper.findComponent({ ref: 'appDetailsComments' });
+    const appDetailsComments = wrapper.findComponent({
+      ref: 'appDetailsComments',
+    });
     expect(appDetailsComments.exists()).toBe(true);
   });
 

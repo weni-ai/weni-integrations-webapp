@@ -18,7 +18,17 @@ describe('Base.vue', () => {
   it('renders the component and its children correctly', () => {
     const wrapper = mount(Base, {
       global: {
-        plugins: [pinia, i18n, UnnnicSystem],
+        plugins: [pinia, i18n, UnnnicSystem, router],
+        stubs: {
+          RouterView: {
+            name: 'RouterView',
+            template: '<div class="router-view-stub" />',
+          },
+          UnnnicBreadcrumb: {
+            name: 'UnnnicBreadcrumb',
+            template: '<div class="unnnic-breadcrumb-stub" />',
+          },
+        },
         mocks: {
           $route: {
             meta: { crumb_title: 'Test Title' },
@@ -33,8 +43,10 @@ describe('Base.vue', () => {
     });
 
     expect(wrapper.find('.whatsapp-templates-base').exists()).toBe(true);
-    expect(wrapper.findComponent({ name: 'unnnic-breadcrumb' }).exists()).toBe(true);
-    expect(wrapper.find('router-view').exists()).toBe(true);
+    expect(wrapper.findComponent({ name: 'UnnnicBreadcrumb' }).exists()).toBe(
+      true,
+    );
+    expect(wrapper.findComponent({ name: 'RouterView' }).exists()).toBe(true);
   });
 
   it('computes crumbs correctly', async () => {
@@ -47,7 +59,9 @@ describe('Base.vue', () => {
             matched: [
               {
                 path: '/',
-                meta: { crumb_title: 'WhatsApp.template_details.crumbs.model_details' },
+                meta: {
+                  crumb_title: 'WhatsApp.template_details.crumbs.model_details',
+                },
               },
               { path: '/test', meta: { crumb_title: 'Test Crumb Title' } },
             ],

@@ -15,7 +15,10 @@ export function safeAsyncComponent(importFn) {
     try {
       return await importFn();
     } catch (error) {
-      console.error('[Module Federation] Failed to load remote component:', error.message);
+      console.error(
+        '[Module Federation] Failed to load remote component:',
+        error.message,
+      );
 
       Sentry.captureException(error, {
         tags: {
@@ -44,7 +47,10 @@ export async function safeImport(importFn, importPath) {
     const module = await importFn();
     return module.default || module;
   } catch (error) {
-    console.error(`[Module Federation] ${importPath} unavailable:`, error.message);
+    console.error(
+      `[Module Federation] ${importPath} unavailable:`,
+      error.message,
+    );
 
     Sentry.captureException(error, {
       tags: { module_federation: true, import_path: importPath },
@@ -59,5 +65,8 @@ const stripTrailingSlashes = (url = '') => url.replace(/\/+$/, '');
 export const isFederatedModule = (() => {
   const publicPathUrl = getEnv('PUBLIC_PATH_URL') || '';
   if (!publicPathUrl.startsWith('http')) return false;
-  return stripTrailingSlashes(window.location.origin) !== stripTrailingSlashes(publicPathUrl);
+  return (
+    stripTrailingSlashes(window.location.origin) !==
+    stripTrailingSlashes(publicPathUrl)
+  );
 })();

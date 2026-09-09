@@ -6,6 +6,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { email_store } from '@/stores/modules/appType/channels/email.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('@/utils/env', () => ({
   default: vi.fn(),
@@ -44,6 +45,7 @@ describe('EmailSetup.vue', () => {
     wrapper = mount(EmailSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $t: (key) => {
             const translations = {
@@ -145,7 +147,9 @@ describe('EmailSetup.vue', () => {
 
     wrapper.vm.login();
 
-    expect(window.alert).toHaveBeenCalledWith('Por favor, permita pop-ups para este site.');
+    expect(window.alert).toHaveBeenCalledWith(
+      'Por favor, permita pop-ups para este site.',
+    );
   });
 
   it('shows alert when popup is closed', () => {
@@ -154,7 +158,9 @@ describe('EmailSetup.vue', () => {
 
     wrapper.vm.login();
 
-    expect(window.alert).toHaveBeenCalledWith('Por favor, permita pop-ups para este site.');
+    expect(window.alert).toHaveBeenCalledWith(
+      'Por favor, permita pop-ups para este site.',
+    );
   });
 
   it('processes valid OAuth messages in handleAuthMessage', () => {
@@ -241,7 +247,9 @@ describe('EmailSetup.vue', () => {
 
     wrapper.vm.errorFor('username');
 
-    expect(wrapper.vm.username.error).toBe('By default, the maximum is 20 characters.');
+    expect(wrapper.vm.username.error).toBe(
+      'By default, the maximum is 20 characters.',
+    );
   });
 
   it('clears error for valid input in errorFor method', () => {
@@ -311,10 +319,16 @@ describe('EmailSetup.vue', () => {
       },
     });
 
-    expect(addEventListenerSpy).toHaveBeenCalledWith('message', newWrapper.vm.handleAuthMessage);
+    expect(addEventListenerSpy).toHaveBeenCalledWith(
+      'message',
+      newWrapper.vm.handleAuthMessage,
+    );
 
     newWrapper.unmount();
 
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('message', newWrapper.vm.handleAuthMessage);
+    expect(removeEventListenerSpy).toHaveBeenCalledWith(
+      'message',
+      newWrapper.vm.handleAuthMessage,
+    );
   });
 });

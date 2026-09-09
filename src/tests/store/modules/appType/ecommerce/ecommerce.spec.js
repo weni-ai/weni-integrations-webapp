@@ -77,7 +77,11 @@ describe('ecommerce_store', () => {
     const mockData = { result: 'success' };
     ecommerce.connectVtexCatalog.mockResolvedValue({ data: mockData });
 
-    await store.connectVtexCatalog({ code: 'code', appUuid: 'uuid', payload: {} });
+    await store.connectVtexCatalog({
+      code: 'code',
+      appUuid: 'uuid',
+      payload: {},
+    });
 
     expect(store.connectVtexCatalogData).toEqual(mockData);
     expect(store.loadingConnectVtexCatalog).toBe(false);
@@ -89,7 +93,11 @@ describe('ecommerce_store', () => {
     const mockError = new Error('Test Error');
     ecommerce.connectVtexCatalog.mockRejectedValue(mockError);
 
-    await store.connectVtexCatalog({ code: 'code', appUuid: 'uuid', payload: {} });
+    await store.connectVtexCatalog({
+      code: 'code',
+      appUuid: 'uuid',
+      payload: {},
+    });
 
     expect(store.connectVtexCatalogData).toBeNull();
     expect(store.loadingConnectVtexCatalog).toBe(false);

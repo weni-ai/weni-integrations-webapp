@@ -16,14 +16,18 @@ describe('TableHeaderLoading.vue', () => {
   });
 
   it('should render two skeletons', () => {
-    const skeletons = wrapper.findAllComponents({ name: 'unnnic-skeleton-loading' });
+    const skeletons = wrapper.findAllComponents({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletons.length).toBe(2);
   });
 
   it('should have correct dimensions for each skeleton', async () => {
     await wrapper.vm.$nextTick();
 
-    const skeletons = wrapper.findAllComponents({ name: 'unnnic-skeleton-loading' });
+    const skeletons = wrapper.findAllComponents({
+      name: 'UnnnicSkeletonLoading',
+    });
     expect(skeletons.length).toBe(2);
 
     const firstSkeleton = skeletons[0].props();

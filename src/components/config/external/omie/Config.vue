@@ -1,26 +1,32 @@
 <template>
   <div class="app-config-omie">
     <div class="app-config-omie__settings__content">
-      <unnnic-tab class="app-config-omie__tabs" :tabs="tabs" initialTab="config">
-        <template #tab-head-config> {{ $t('omie.config.tabs.config.title') }} </template>
+      <UnnnicTab
+        class="app-config-omie__tabs"
+        :tabs="tabs"
+        initialTab="config"
+      >
+        <template #tab-head-config>
+          {{ $t('omie.config.tabs.config.title') }}
+        </template>
         <template #tab-panel-config>
           <div class="app-config-omie__tabs__config__content">
             <div class="app-config-omie__tabs__config__content__scroll">
-              <unnnic-input
+              <UnnnicInput
                 v-model="name"
                 class="app-config-omie__settings__content__inputs__name"
                 type="normal"
                 :disabled="disabledForm"
                 :label="$t('omie.config.tabs.config.inputs.name.label')"
               />
-              <unnnic-input
+              <UnnnicInput
                 v-model="appKey"
                 class="app-config-omie__settings__content__inputs__key"
                 type="normal"
                 :disabled="disabledForm"
                 :label="$t('omie.config.tabs.config.inputs.app_key.label')"
               />
-              <unnnic-input
+              <UnnnicInput
                 v-model="appSecret"
                 class="app-config-omie__settings__content__inputs__secret"
                 type="normal"
@@ -31,7 +37,7 @@
             </div>
           </div>
           <div class="app-config-omie__tabs__config__content__buttons">
-            <unnnic-button
+            <UnnnicButton
               class="app-config-omie__tabs__config__content__buttons__cancel"
               type="tertiary"
               size="large"
@@ -39,7 +45,7 @@
               @click="closeConfig"
             />
 
-            <unnnic-button
+            <UnnnicButton
               class="app-config-omie__tabs__config__content__buttons__save"
               type="secondary"
               size="large"
@@ -50,170 +56,176 @@
             />
           </div>
         </template>
-      </unnnic-tab>
+      </UnnnicTab>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions, mapState } from 'pinia';
-  import { app_type } from '@/stores/modules/appType/appType.store';
-  import unnnic from '@weni/unnnic-system';
-  import { useEventStore } from '@/stores/event.store';
+import { mapActions, mapState } from 'pinia';
+import { app_type } from '@/stores/modules/appType/appType.store';
+import unnnic from '@weni/unnnic-system';
+import { useEventStore } from '@/stores/event.store';
 
-  export default {
-    name: 'omie-config',
-    props: {
-      app: {
-        type: Object,
-        default: /* istanbul ignore next */ () => {},
-      },
+export default {
+  name: 'OmieConfig',
+  props: {
+    app: {
+      type: Object,
+      default: /* istanbul ignore next */ () => {},
     },
-    data() {
-      return {
-        name: this.app.config.name ?? null,
-        appSecret: this.app.config.app_secret ?? null,
-        appKey: this.app.config.app_key ?? null,
-        tabs: ['config'],
-        disabledForm: !!this.app.config.name,
+  },
+  data() {
+    return {
+      name: this.app.config.name ?? null,
+      appSecret: this.app.config.app_secret ?? null,
+      appKey: this.app.config.app_key ?? null,
+      tabs: ['config'],
+      disabledForm: !!this.app.config.name,
+    };
+  },
+  computed: {
+    ...mapState(app_type, ['loadingUpdateAppConfig', 'errorUpdateAppConfig']),
+  },
+  methods: {
+    ...mapActions(app_type, ['updateAppConfig']),
+    ...mapActions(useEventStore, ['emit']),
+
+    async saveConfig() {
+      const data = {
+        code: this.app.code,
+        appUuid: this.app.uuid,
+        payload: {
+          config: {
+            name: this.name,
+            app_secret: this.appSecret,
+            app_key: this.appKey,
+          },
+        },
       };
-    },
-    computed: {
-      ...mapState(app_type, ['loadingUpdateAppConfig', 'errorUpdateAppConfig']),
-    },
-    methods: {
-      ...mapActions(app_type, ['updateAppConfig']),
-      ...mapActions(useEventStore, ['emit']),
 
-      async saveConfig() {
-        const data = {
-          code: this.app.code,
-          appUuid: this.app.uuid,
-          payload: {
-            config: {
-              name: this.name,
-              app_secret: this.appSecret,
-              app_key: this.appKey,
-            },
-          },
-        };
+      await this.updateAppConfig(data);
 
-        await this.updateAppConfig(data);
-
-        if (this.errorUpdateAppConfig) {
-          this.callModal({ type: 'error', text: this.$t('omie.errors.configure') });
-          return;
-        }
-
-        this.callModal({ type: 'success', text: this.$t('omie.success.configure') });
-        this.emit('updateGrid');
-        this.disabledForm = true;
-      },
-      closeConfig() {
-        this.$emit('closeModal');
-      },
-      callModal({ text, type }) {
-        unnnic.unnnicCallAlert({
-          props: {
-            text,
-            type,
-          },
-          seconds: 6,
+      if (this.errorUpdateAppConfig) {
+        this.callModal({
+          type: 'error',
+          text: this.$t('omie.errors.configure'),
         });
-      },
+        return;
+      }
+
+      this.callModal({
+        type: 'success',
+        text: this.$t('omie.success.configure'),
+      });
+      this.emit('updateGrid');
+      this.disabledForm = true;
     },
-  };
+    closeConfig() {
+      this.$emit('closeModal');
+    },
+    callModal({ text, type }) {
+      unnnic.unnnicCallAlert({
+        props: {
+          text,
+          type,
+        },
+        seconds: 6,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .app-config-omie {
+.app-config-omie {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    display: flex;
+    margin: $unnnic-spacing-inset-lg;
+    margin-bottom: $unnnic-spacing-stack-sm;
+    flex-direction: column;
+  }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    overflow-y: hidden;
+
+    &__content {
+      padding-right: $unnnic-spacing-inline-xs;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      overflow: auto;
+      color: $unnnic-color-fg-base;
+      font-size: $unnnic-font-size-body-gt;
+      line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
+      margin: $unnnic-spacing-inset-lg;
+      margin-top: 0;
+
+      &__inputs {
+        display: flex;
+        flex-direction: row;
+        gap: $unnnic-spacing-inline-xs;
+      }
+    }
+  }
+
+  &__tabs {
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow-y: hidden;
+    width: 100%;
 
-    &__header {
+    :deep(.tab-body) {
       display: flex;
-      margin: $unnnic-spacing-inset-lg;
-      margin-bottom: $unnnic-spacing-stack-sm;
-      flex-direction: column;
+      height: 100%;
+      overflow-y: auto;
     }
+    :deep(.tab-panel) {
+      width: 100%;
 
-    &__settings {
       display: flex;
       flex-direction: column;
-      height: -webkit-fill-available;
-      height: -moz-available;
-      overflow-y: hidden;
-
+      height: 100%;
+    }
+    &__config {
       &__content {
         padding-right: $unnnic-spacing-inline-xs;
         display: flex;
         flex-direction: column;
-        flex: 1;
+        height: 100%;
         overflow: auto;
-        color: $unnnic-color-fg-base;
-        font-size: $unnnic-font-size-body-gt;
-        line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
-        margin: $unnnic-spacing-inset-lg;
-        margin-top: 0;
 
-        &__inputs {
+        &__buttons {
+          margin-top: $unnnic-spacing-stack-md;
           display: flex;
           flex-direction: row;
-          gap: $unnnic-spacing-inline-xs;
+          width: 100%;
+
+          &__cancel,
+          &__save {
+            display: flex;
+            width: 300px;
+            flex-grow: 1;
+          }
         }
-      }
-    }
 
-    &__tabs {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      overflow-y: hidden;
-      width: 100%;
-
-      :deep(.tab-body) {
-        display: flex;
-        height: 100%;
-        overflow-y: auto;
-      }
-      :deep(.tab-panel) {
-        width: 100%;
-
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-      &__config {
-        &__content {
-          padding-right: $unnnic-spacing-inline-xs;
+        &__scroll {
           display: flex;
           flex-direction: column;
-          height: 100%;
           overflow: auto;
-
-          &__buttons {
-            margin-top: $unnnic-spacing-stack-md;
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-
-            &__cancel,
-            &__save {
-              display: flex;
-              width: 300px;
-              flex-grow: 1;
-            }
-          }
-
-          &__scroll {
-            display: flex;
-            flex-direction: column;
-            overflow: auto;
-            padding-right: $unnnic-spacing-stack-sm;
-          }
+          padding-right: $unnnic-spacing-stack-sm;
         }
       }
     }
   }
+}
 </style>

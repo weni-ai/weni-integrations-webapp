@@ -1,15 +1,24 @@
 <template>
   <div class="app-details-comments">
-    <div v-if="!editMode" class="app-details-comments__header">
+    <div
+      v-if="!editMode"
+      class="app-details-comments__header"
+    >
       {{ $t('apps.details.comments.leave_a_comment') }}
     </div>
-    <div v-else class="app-details-comments__header">
+    <div
+      v-else
+      class="app-details-comments__header"
+    >
       {{ $t('apps.details.comments.edit_comment') + ' -&nbsp;' }}
-      <div class="app-details-comments__header__cancel" @click="resetFields">
+      <div
+        class="app-details-comments__header__cancel"
+        @click="resetFields"
+      >
         {{ $t('general.Cancel') }}
       </div>
     </div>
-    <unnnic-input
+    <UnnnicInput
       ref="comment_input"
       class="app-details-comments__input"
       type="normal"
@@ -21,7 +30,7 @@
       @change="handleComment"
       v-model="currentComment"
     />
-    <unnnic-comment
+    <UnnnicComment
       class="app-details-comments__comment"
       v-for="(comment, index) in commentsList"
       :key="index"
@@ -30,7 +39,10 @@
       :text="comment.content"
     >
       <template #avatar>
-        <Avatar v-if="!comment.owner.photo_url" :username="fullOwnerName(comment.owner)" />
+        <Avatar
+          v-if="!comment.owner.photo_url"
+          :username="fullOwnerName(comment.owner)"
+        />
         <img
           class="app-details-comments__comment__avatar"
           v-else
@@ -39,199 +51,171 @@
         />
       </template>
       <template #actions>
-        <unnnic-dropdown v-if="comment.owned">
+        <UnnnicDropdown v-if="comment.owned">
           <template #trigger>
-            <unnnic-icon-svg icon="navigation-menu-vertical-1" size="sm" />
+            <UnnnicIconSvg
+              icon="navigation-menu-vertical-1"
+              size="sm"
+            />
           </template>
-          <unnnic-dropdown-item>
-            <unnnic-button
+          <UnnnicDropdownItem>
+            <UnnnicButton
               type="tertiary"
               iconLeft="pencil-write-1"
               :text="$t('apps.details.comments.edit_comment')"
               size="small"
               @click="handleUpdate(comment)"
             />
-          </unnnic-dropdown-item>
-          <unnnic-dropdown-item>
-            <unnnic-button
+          </UnnnicDropdownItem>
+          <UnnnicDropdownItem>
+            <UnnnicButton
               type="tertiary"
               iconLeft="delete-1"
               :text="$t('apps.details.comments.delete_comment')"
               size="small"
               @click="confirmDelete(comment.uuid)"
             />
-          </unnnic-dropdown-item>
-        </unnnic-dropdown>
+          </UnnnicDropdownItem>
+        </UnnnicDropdown>
       </template>
-    </unnnic-comment>
+    </UnnnicComment>
 
-    <unnnic-modal
+    <UnnnicDialog
       ref="unnnic-remove-modal"
-      :showModal="showRemoveModal"
-      :text="$t('apps.details.comments.remove.title')"
-      scheme="feedback-red"
-      modal-icon="alert-circle-1"
-      @close="toggleRemoveModal"
+      class="app-details-comments__remove-dialog"
+      :open="showRemoveModal"
+      @update:open="handleRemoveModalOpenUpdate"
     >
-      <template #message>
-        <span v-html="$t('apps.details.comments.remove.description')"></span>
-      </template>
-      <template #options>
-        <unnnic-button
-          ref="unnnic-remove-modal-close-button"
-          type="tertiary"
-          @click="toggleRemoveModal"
-          >{{ $t('general.Cancel') }}</unnnic-button
-        >
-        <unnnic-button
-          ref="unnnic-remove-modal-navigate-button"
-          type="primary"
-          @click="handleDelete(currentRemovalUuid)"
-          scheme="feedback-red"
-        >
-          {{ $t('apps.details.comments.remove.remove') }}
-        </unnnic-button>
-      </template>
-    </unnnic-modal>
+      <UnnnicDialogContent size="medium">
+        <UnnnicDialogHeader type="warning">
+          <UnnnicDialogTitle>
+            {{ $t('apps.details.comments.remove.title') }}
+          </UnnnicDialogTitle>
+        </UnnnicDialogHeader>
+
+        <section
+          class="app-details-comments__remove-dialog__description"
+          v-html="$t('apps.details.comments.remove.description')"
+        />
+
+        <UnnnicDialogFooter>
+          <UnnnicDialogClose>
+            <UnnnicButton
+              ref="unnnic-remove-modal-close-button"
+              type="tertiary"
+              :text="$t('general.Cancel')"
+            />
+          </UnnnicDialogClose>
+          <UnnnicButton
+            ref="unnnic-remove-modal-navigate-button"
+            type="primary"
+            :text="$t('apps.details.comments.remove.remove')"
+            @click="handleDelete(currentRemovalUuid)"
+          />
+        </UnnnicDialogFooter>
+      </UnnnicDialogContent>
+    </UnnnicDialog>
   </div>
 </template>
 
 <script>
-  import { app_type } from '@/stores/modules/appType/appType.store.js';
-  import { mapActions, mapState } from 'pinia';
-  import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
-  import getRelativeTime from '../../utils/time.js';
-  import unnnic from '@weni/unnnic-system';
-  import Avatar from 'vue-avatar';
+import { app_type } from '@/stores/modules/appType/appType.store.js';
+import { mapActions, mapState } from 'pinia';
+import { comments_store } from '@/stores/modules/appType/comments/comments.store.js';
+import getRelativeTime from '../../utils/time.js';
+import unnnic from '@weni/unnnic-system';
+import Avatar from 'vue-avatar';
 
-  export default {
-    name: 'AppDetailsComments',
-    components: { Avatar },
-    props: {
-      appCode: {
-        type: String,
-        default: null,
-      },
+export default {
+  name: 'AppDetailsComments',
+  components: { Avatar },
+  props: {
+    appCode: {
+      type: String,
+      default: null,
     },
-    data() {
-      return {
-        currentComment: null,
-        editMode: false,
-        editCommentUuid: null,
-        showRemoveModal: false,
-        currentRemovalUuid: null,
-      };
+  },
+  data() {
+    return {
+      currentComment: null,
+      editMode: false,
+      editCommentUuid: null,
+      showRemoveModal: false,
+      currentRemovalUuid: null,
+    };
+  },
+  async mounted() {
+    await this.listComments(this.appCode);
+  },
+  computed: {
+    ...mapState(app_type, [
+      'commentsList',
+      'errorListComments',
+      'errorCreateComment',
+      'errorDeleteComment',
+      'errorUpdateComment',
+    ]),
+  },
+  methods: {
+    ...mapActions(comments_store, [
+      'listComments',
+      'createComment',
+      'deleteComment',
+      'updateComment',
+    ]),
+    /* istanbul ignore next */
+    getCommentTime(time) {
+      const epoch = new Date(time).getTime();
+      return `- ${getRelativeTime(epoch, this.$root.$i18n.locale)}`;
     },
-    async mounted() {
-      await this.listComments(this.appCode);
+    resetFields() {
+      this.editMode = false;
+      this.editCommentUuid = null;
+      this.currentComment = null;
     },
-    computed: {
-      ...mapState(app_type, [
-        'commentsList',
-        'errorListComments',
-        'errorCreateComment',
-        'errorDeleteComment',
-        'errorUpdateComment',
-      ]),
+    fullOwnerName(owner) {
+      return owner.first_name + ' ' + owner.last_name;
     },
-    methods: {
-      ...mapActions(comments_store, [
-        'listComments',
-        'createComment',
-        'deleteComment',
-        'updateComment',
-      ]),
-      /* istanbul ignore next */
-      getCommentTime(time) {
-        const epoch = new Date(time).getTime();
-        return `- ${getRelativeTime(epoch, this.$root.$i18n.locale)}`;
-      },
-      resetFields() {
-        this.editMode = false;
-        this.editCommentUuid = null;
-        this.currentComment = null;
-      },
-      fullOwnerName(owner) {
-        return owner.first_name + ' ' + owner.last_name;
-      },
-      toggleRemoveModal() {
-        this.showRemoveModal = !this.showRemoveModal;
-      },
-      async handleComment() {
-        if (this.currentComment !== null && this.currentComment.trim() !== '') {
-          try {
-            if (this.editMode) {
-              await this.updateComment({
-                code: this.appCode,
-                commentUuid: this.editCommentUuid,
-                payload: {
-                  content: this.currentComment.trim(),
-                },
-              });
-
-              if (this.errorUpdateComment) {
-                throw new Error(this.errorUpdateComment);
-              }
-            } else {
-              await this.createComment({
-                code: this.appCode,
-                payload: {
-                  content: this.currentComment.trim(),
-                },
-              });
-
-              if (this.errorCreateComment) {
-                throw new Error(this.errorCreateComment);
-              }
-            }
-            await this.listComments(this.appCode);
-
-            if (this.errorListComments) {
-              throw new Error(this.errorListComments);
-            }
-          } catch (err) {
-            unnnic.unnnicCallAlert({
-              props: {
-                text: this.$t('apps.details.status_error'),
-                type: 'error',
-              },
-              seconds: 3,
-            });
-          } finally {
-            this.resetFields();
-          }
-        }
-      },
-      confirmDelete(commentUuid) {
-        this.showRemoveModal = true;
-        this.currentRemovalUuid = commentUuid;
-      },
-      async handleDelete(commentUuid) {
+    handleRemoveModalOpenUpdate(open) {
+      if (!open) {
+        this.showRemoveModal = false;
+      }
+    },
+    toggleRemoveModal() {
+      this.showRemoveModal = !this.showRemoveModal;
+    },
+    async handleComment() {
+      if (this.currentComment !== null && this.currentComment.trim() !== '') {
         try {
-          await this.deleteComment({
-            code: this.appCode,
-            commentUuid,
-          });
+          if (this.editMode) {
+            await this.updateComment({
+              code: this.appCode,
+              commentUuid: this.editCommentUuid,
+              payload: {
+                content: this.currentComment.trim(),
+              },
+            });
 
-          if (this.errorDeleteComment) {
-            throw new Error(this.errorDeleteComment);
+            if (this.errorUpdateComment) {
+              throw new Error(this.errorUpdateComment);
+            }
+          } else {
+            await this.createComment({
+              code: this.appCode,
+              payload: {
+                content: this.currentComment.trim(),
+              },
+            });
+
+            if (this.errorCreateComment) {
+              throw new Error(this.errorCreateComment);
+            }
           }
-
-          this.showRemoveModal = false;
-          this.currentRemovalUuid = null;
           await this.listComments(this.appCode);
 
           if (this.errorListComments) {
             throw new Error(this.errorListComments);
           }
-
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('apps.details.comments.remove.status_text'),
-              type: 'success',
-            },
-            seconds: 3,
-          });
         } catch (err) {
           unnnic.unnnicCallAlert({
             props: {
@@ -240,48 +224,98 @@
             },
             seconds: 3,
           });
+        } finally {
+          this.resetFields();
         }
-      },
-      handleUpdate(comment) {
-        this.editMode = true;
-        this.editCommentUuid = comment.uuid;
-        this.currentComment = comment.content;
-
-        this.$refs.comment_input.$el.children[0].children[0].focus();
-      },
+      }
     },
-  };
+    confirmDelete(commentUuid) {
+      this.showRemoveModal = true;
+      this.currentRemovalUuid = commentUuid;
+    },
+    async handleDelete(commentUuid) {
+      try {
+        await this.deleteComment({
+          code: this.appCode,
+          commentUuid,
+        });
+
+        if (this.errorDeleteComment) {
+          throw new Error(this.errorDeleteComment);
+        }
+
+        this.showRemoveModal = false;
+        this.currentRemovalUuid = null;
+        await this.listComments(this.appCode);
+
+        if (this.errorListComments) {
+          throw new Error(this.errorListComments);
+        }
+
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('apps.details.comments.remove.status_text'),
+            type: 'success',
+          },
+          seconds: 3,
+        });
+      } catch (err) {
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('apps.details.status_error'),
+            type: 'error',
+          },
+          seconds: 3,
+        });
+      }
+    },
+    handleUpdate(comment) {
+      this.editMode = true;
+      this.editCommentUuid = comment.uuid;
+      this.currentComment = comment.content;
+
+      this.$refs.comment_input.$el.children[0].children[0].focus();
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  .app-details-comments {
-    &__header {
-      display: flex;
-      font-family: $unnnic-font-family-secondary;
-      font-weight: $unnnic-font-weight-regular;
-      font-size: $unnnic-font-size-body-gt;
-      line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
-      color: $unnnic-color-fg-base;
-      margin-bottom: $unnnic-spacing-stack-xs;
+.app-details-comments {
+  &__header {
+    display: flex;
+    font-family: $unnnic-font-family-secondary;
+    font-weight: $unnnic-font-weight-regular;
+    font-size: $unnnic-font-size-body-gt;
+    line-height: $unnnic-font-size-body-gt + $unnnic-line-height-md;
+    color: $unnnic-color-fg-base;
+    margin-bottom: $unnnic-spacing-stack-xs;
 
-      &__cancel {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-    }
-
-    &__input {
-      margin-bottom: $unnnic-spacing-stack-md;
-    }
-
-    &__comment {
-      margin-bottom: $unnnic-spacing-stack-md;
-
-      &__avatar {
-        width: 56px;
-        object-fit: cover;
-        border-radius: $unnnic-border-radius-pill;
-      }
+    &__cancel {
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
+
+  &__input {
+    margin-bottom: $unnnic-spacing-stack-md;
+  }
+
+  &__comment {
+    margin-bottom: $unnnic-spacing-stack-md;
+
+    &__avatar {
+      width: 56px;
+      object-fit: cover;
+      border-radius: $unnnic-border-radius-pill;
+    }
+  }
+
+  &__remove-dialog {
+    &__description {
+      padding: $unnnic-space-4;
+      color: $unnnic-color-fg-base;
+    }
+  }
+}
 </style>

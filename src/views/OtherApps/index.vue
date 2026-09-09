@@ -1,57 +1,60 @@
 <template>
   <div class="container">
-    <div v-if="loading" class="flows-iframe">
-      <unnnic-icon-loading size="64px" />
+    <div
+      v-if="loading"
+      class="flows-iframe"
+    >
+      <UnnnicIconLoading size="64px" />
     </div>
 
     <iframe
-      @load="onLoad"
       v-show="!loading"
       class="flows-iframe"
       :src="iframeSrc"
       allow="clipboard-read; clipboard-write"
       title=""
       style="border: 0"
+      @load="onLoad"
     ></iframe>
   </div>
 </template>
 
 <script>
-  import { mapState } from 'pinia';
-  import { auth_store } from '@/stores/modules/auth.store';
-  import getEnv from '@/utils/env';
+import { mapState } from 'pinia';
+import { auth_store } from '@/stores/modules/auth.store';
+import getEnv from '@/utils/env';
 
-  export default {
-    name: 'OtherApps',
-    data() {
-      return {
-        loading: true,
-      };
-    },
-    computed: {
-      ...mapState(auth_store, ['project', 'token']),
-      iframeSrc() {
-        const token = this.token?.replace('Bearer ', '');
+export default {
+  name: 'OtherApps',
+  data() {
+    return {
+      loading: true,
+    };
+  },
+  computed: {
+    ...mapState(auth_store, ['project', 'token']),
+    iframeSrc() {
+      const token = this.token?.replace('Bearer ', '');
 
-        return `${getEnv('FLOWS_IFRAME_URL')}/weni/${
-          this.project
-        }/authenticate?access_token=${token}&next=/org/home/`;
-      },
+      return `${getEnv('FLOWS_IFRAME_URL')}/weni/${
+        this.project
+      }/authenticate?access_token=${token}&next=/org/home/`;
     },
-    methods: {
-      onLoad() {
-        this.loading = false;
-      },
+  },
+  methods: {
+    onLoad() {
+      this.loading = false;
     },
-  };
+  },
+};
 </script>
 
 <style scoped lang="scss">
-  @import './styles.scss';
+@import './styles.scss';
 </style>
 
 <style lang="scss">
-  body {
-    margin-bottom: 0 !important;
-  }
+body {
+  margin-bottom: 0 !important;
+}
 </style>

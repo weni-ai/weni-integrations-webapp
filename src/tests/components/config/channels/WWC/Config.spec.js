@@ -60,13 +60,26 @@ describe('wwcConfig Component', () => {
     return shallowMount(wwcConfig, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        components: {
+          UnnnicTab: {
+            name: 'UnnnicTab',
+            template:
+              '<div class="unnnic-tab"><slot name="tab-panel-appearance" /><slot name="tab-panel-preferences" /><slot name="tab-panel-integration" /></div>',
+          },
+        },
         stubs: {
-          'unnnic-tab': {
+          UnnnicTab: {
+            name: 'UnnnicTab',
             template:
               '<div><slot name="tab-panel-appearance" /><slot name="tab-panel-preferences" /><slot name="tab-panel-integration" /></div>',
           },
-          'unnnic-button': true,
-          'unnnic-icon-svg': true,
+          'unnnic-tab': {
+            name: 'UnnnicTab',
+            template:
+              '<div><slot name="tab-panel-appearance" /><slot name="tab-panel-preferences" /><slot name="tab-panel-integration" /></div>',
+          },
+          UnnnicButton: true,
+          UnnnicIconSvg: true,
           WwcSimulator: {
             template: '<div class="wwc-simulator" />',
             methods: {
@@ -107,28 +120,40 @@ describe('wwcConfig Component', () => {
   describe('rendering', () => {
     it('should render the component correctly', () => {
       expect(wrapper.find('.app-config-wwc').exists()).toBe(true);
-      expect(wrapper.find('.app-config-wwc__header__description').exists()).toBe(true);
+      expect(
+        wrapper.find('.app-config-wwc__header__description').exists(),
+      ).toBe(true);
     });
 
     it('should render AppearanceTab component', () => {
-      expect(wrapper.findComponent({ name: 'AppearanceTab' }).exists()).toBe(true);
+      expect(wrapper.findComponent({ name: 'AppearanceTab' }).exists()).toBe(
+        true,
+      );
     });
 
     it('should render PreferencesTab component', () => {
-      expect(wrapper.findComponent({ name: 'PreferencesTab' }).exists()).toBe(true);
+      expect(wrapper.findComponent({ name: 'PreferencesTab' }).exists()).toBe(
+        true,
+      );
     });
 
     it('should render IntegrationTab component', () => {
-      expect(wrapper.findComponent({ name: 'IntegrationTab' }).exists()).toBe(true);
+      expect(wrapper.findComponent({ name: 'IntegrationTab' }).exists()).toBe(
+        true,
+      );
     });
 
     it('should render header with description', () => {
       expect(wrapper.find('.app-config-wwc__header').exists()).toBe(true);
-      expect(wrapper.find('.app-config-wwc__header__description').exists()).toBe(true);
+      expect(
+        wrapper.find('.app-config-wwc__header__description').exists(),
+      ).toBe(true);
     });
 
     it('should have simulator switch button', () => {
-      expect(wrapper.find('.app-config-wwc__simulator-switch').exists()).toBe(true);
+      expect(wrapper.find('.app-config-wwc__simulator-switch').exists()).toBe(
+        true,
+      );
     });
 
     it('should render content container', () => {
@@ -164,42 +189,40 @@ describe('wwcConfig Component', () => {
   });
 
   describe('config updates', () => {
-    it('should emit setConfirmation when AppearanceTab emits update:title', async () => {
+    it('should update title when AppearanceTab emits update:title', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:title', 'New Title');
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      expect(wrapper.emitted().setConfirmation[0]).toEqual([true]);
+      expect(wrapper.vm.config.title).toBe('New Title');
     });
 
-    it('should emit setConfirmation when AppearanceTab emits update:subtitle', async () => {
+    it('should update subtitle when AppearanceTab emits update:subtitle', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:subtitle', 'New Subtitle');
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.subtitle).toBe('New Subtitle');
     });
 
-    it('should emit setConfirmation when AppearanceTab emits update:mainColor', async () => {
+    it('should update mainColor when AppearanceTab emits update:mainColor', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:mainColor', '#FF0000');
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.mainColor).toBe('#FF0000');
     });
 
-    it('should emit setConfirmation when PreferencesTab emits update:embedded', async () => {
+    it('should update embedded when PreferencesTab emits update:embedded', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:embedded', true);
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.embedded).toBe(true);
     });
 
-    it('should emit setConfirmation when PreferencesTab emits update:displayUnreadCount', async () => {
+    it('should update displayUnreadCount when PreferencesTab emits update:displayUnreadCount', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:displayUnreadCount', false);
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.displayUnreadCount).toBe(false);
     });
 
-    it('should emit setConfirmation when PreferencesTab emits update:conversationStartersPDP', async () => {
+    it('should update conversationStartersPDP when PreferencesTab emits update:conversationStartersPDP', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:conversationStartersPDP', true);
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      expect(wrapper.emitted().setConfirmation[0]).toEqual([true]);
+      expect(wrapper.vm.config.conversationStartersPDP).toBe(true);
     });
   });
 
@@ -221,7 +244,9 @@ describe('wwcConfig Component', () => {
 
     it('should pass correct initialInputTextFieldHint to AppearanceTab', () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      expect(appearanceTab.props('initialInputTextFieldHint')).toBe('Type here...');
+      expect(appearanceTab.props('initialInputTextFieldHint')).toBe(
+        'Type here...',
+      );
     });
 
     it('should pass correct initialTooltipMessage to AppearanceTab', () => {
@@ -278,16 +303,22 @@ describe('wwcConfig Component', () => {
 
     it('should pass correct initialUseConnectionOptimization to PreferencesTab', () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
-      expect(preferencesTab.props('initialUseConnectionOptimization')).toBe(false);
+      expect(preferencesTab.props('initialUseConnectionOptimization')).toBe(
+        false,
+      );
     });
 
     it('should pass correct initialConversationStartersPDP to PreferencesTab', () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
-      expect(preferencesTab.props('initialConversationStartersPDP')).toBe(false);
+      expect(preferencesTab.props('initialConversationStartersPDP')).toBe(
+        false,
+      );
     });
 
     it('should pass initialConversationStartersPDP as true when config has conversationStarters.pdp', () => {
-      wrapper = createWrapper({ config: { conversationStarters: { pdp: true } } });
+      wrapper = createWrapper({
+        config: { conversationStarters: { pdp: true } },
+      });
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       expect(preferencesTab.props('initialConversationStartersPDP')).toBe(true);
     });
@@ -312,7 +343,9 @@ describe('wwcConfig Component', () => {
     });
 
     it('should render simulator switch button', () => {
-      expect(wrapper.find('.app-config-wwc__simulator-switch').exists()).toBe(true);
+      expect(wrapper.find('.app-config-wwc__simulator-switch').exists()).toBe(
+        true,
+      );
     });
   });
 
@@ -368,7 +401,9 @@ describe('wwcConfig Component', () => {
     });
 
     it('should call updateAppConfig with correct data on save', async () => {
-      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      const updateAppConfigSpy = vi
+        .spyOn(store, 'updateAppConfig')
+        .mockResolvedValue();
       vi.spyOn(store, 'getApp').mockResolvedValue();
       store.currentApp = { config: { title: 'Test Title' } };
 
@@ -384,7 +419,9 @@ describe('wwcConfig Component', () => {
     });
 
     it('should include conversationStartersPDP in save payload', async () => {
-      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      const updateAppConfigSpy = vi
+        .spyOn(store, 'updateAppConfig')
+        .mockResolvedValue();
       vi.spyOn(store, 'getApp').mockResolvedValue();
       store.currentApp = { config: { title: 'Test Title' } };
 
@@ -404,7 +441,9 @@ describe('wwcConfig Component', () => {
       wrapper = createWrapper({
         config: { profileAvatar: 'https://example.com/avatar.png' },
       });
-      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      const updateAppConfigSpy = vi
+        .spyOn(store, 'updateAppConfig')
+        .mockResolvedValue();
       vi.spyOn(store, 'getApp').mockResolvedValue();
       store.currentApp = { config: { title: 'Test Title' } };
 
@@ -423,7 +462,9 @@ describe('wwcConfig Component', () => {
       wrapper = createWrapper({
         config: { customCss: 'https://example.com/custom.css' },
       });
-      const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+      const updateAppConfigSpy = vi
+        .spyOn(store, 'updateAppConfig')
+        .mockResolvedValue();
       vi.spyOn(store, 'getApp').mockResolvedValue();
       store.currentApp = { config: { title: 'Test Title' } };
 
@@ -446,7 +487,9 @@ describe('wwcConfig Component', () => {
     ])(
       'should send empty %s when the user clears an existing value',
       async (configKey, eventName) => {
-        const updateAppConfigSpy = vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
+        const updateAppConfigSpy = vi
+          .spyOn(store, 'updateAppConfig')
+          .mockResolvedValue();
         vi.spyOn(store, 'getApp').mockResolvedValue();
         store.currentApp = { config: { title: 'Test Title' } };
 
@@ -460,21 +503,6 @@ describe('wwcConfig Component', () => {
         expect(callArg.payload.config[configKey]).toBe('');
       },
     );
-
-    it('should emit setConfirmation false on successful save', async () => {
-      vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
-      vi.spyOn(store, 'getApp').mockResolvedValue();
-      store.currentApp = { config: { title: 'Test Title' } };
-
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('save');
-      await flushPromises();
-
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      const lastEmission =
-        wrapper.emitted().setConfirmation[wrapper.emitted().setConfirmation.length - 1];
-      expect(lastEmission).toEqual([false]);
-    });
 
     it('should trigger save flow when save event emitted', async () => {
       // Create wrapper with valid title
@@ -527,7 +555,10 @@ describe('wwcConfig Component', () => {
   describe('simulator toggle', () => {
     it('should have simulator switch with correct icon', () => {
       const simulatorSwitch = wrapper.find('.app-config-wwc__simulator-switch');
-      const icon = simulatorSwitch.find('unnnic-icon-svg-stub');
+      const icon = simulatorSwitch.find(
+        '.app-config-wwc__simulator-switch__icon',
+      );
+      expect(icon.exists()).toBe(true);
       expect(icon.attributes('icon')).toBe('view-1-1');
     });
 
@@ -598,24 +629,24 @@ describe('wwcConfig Component', () => {
   });
 
   describe('config state management', () => {
-    it('should emit setConfirmation when config updates are received', async () => {
+    it('should update config when appearance updates are received', async () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
 
       await appearanceTab.vm.$emit('update:title', 'Updated Title');
       await appearanceTab.vm.$emit('update:mainColor', '#FF0000');
       await appearanceTab.vm.$emit('update:subtitle', 'Updated Subtitle');
 
-      // Verify setConfirmation was emitted
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
-      expect(wrapper.emitted().setConfirmation.length).toBeGreaterThanOrEqual(3);
+      expect(wrapper.vm.config.title).toBe('Updated Title');
+      expect(wrapper.vm.config.mainColor).toBe('#FF0000');
+      expect(wrapper.vm.config.subtitle).toBe('Updated Subtitle');
     });
 
-    it('should emit setConfirmation when preference updates are received', async () => {
+    it('should update config when preference updates are received', async () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
 
       await preferencesTab.vm.$emit('update:displayUnreadCount', false);
 
-      expect(wrapper.emitted().setConfirmation).toBeTruthy();
+      expect(wrapper.vm.config.displayUnreadCount).toBe(false);
     });
   });
 });

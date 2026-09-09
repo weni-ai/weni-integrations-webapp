@@ -43,7 +43,9 @@ describe('externals_store', () => {
       { id: 1, name: 'Service 1' },
       { id: 2, name: 'Service 2' },
     ];
-    externalServices.getAllExternalServicesTypes.mockResolvedValue(mockExternalServices);
+    externalServices.getAllExternalServicesTypes.mockResolvedValue(
+      mockExternalServices,
+    );
 
     await store.getExternalServicesTypes();
 

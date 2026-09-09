@@ -20,10 +20,6 @@ const createWrapper = (props = {}) =>
     global: {
       plugins: [i18n, UnnnicSystem],
       stubs: {
-        'unnnic-switch': true,
-        'unnnic-button': true,
-        'unnnic-radio': true,
-        'unnnic-input': true,
         UnnnicSwitch: true,
         UnnnicButton: true,
         UnnnicRadio: true,
@@ -68,7 +64,9 @@ describe('VoiceModeTab', () => {
     });
 
     it('renders the voice mode toggle switch', () => {
-      expect(wrapper.find('unnnic-switch-stub, unnnicswitch-stub').exists()).toBe(true);
+      expect(
+        wrapper.find('unnnic-switch-stub, unnnicswitch-stub').exists(),
+      ).toBe(true);
     });
 
     it('renders the ElevenLabs token input', () => {
@@ -76,14 +74,18 @@ describe('VoiceModeTab', () => {
     });
 
     it('renders the token hint with ElevenLabs link', () => {
-      const link = wrapper.find('a[href="https://elevenlabs.io/app/settings/api-keys"]');
+      const link = wrapper.find(
+        'a[href="https://elevenlabs.io/app/settings/api-keys"]',
+      );
       expect(link.exists()).toBe(true);
       expect(link.attributes('target')).toBe('_blank');
       expect(link.attributes('rel')).toBe('noopener noreferrer');
     });
 
     it('renders the voice selection section', () => {
-      expect(wrapper.find('.voice-mode-tab__voice-selection').exists()).toBe(true);
+      expect(wrapper.find('.voice-mode-tab__voice-selection').exists()).toBe(
+        true,
+      );
     });
 
     it('renders all predefined voice rows', () => {
@@ -93,12 +95,16 @@ describe('VoiceModeTab', () => {
     });
 
     it('renders the "Other" voice row', () => {
-      expect(wrapper.find('.voice-mode-tab__voice-row--other').exists()).toBe(true);
+      expect(wrapper.find('.voice-mode-tab__voice-row--other').exists()).toBe(
+        true,
+      );
     });
 
     it('renders the custom voice ID input in the Other row', () => {
       const otherRow = wrapper.find('.voice-mode-tab__voice-row--other');
-      expect(otherRow.find('.voice-mode-tab__custom-voice-id').exists()).toBe(true);
+      expect(otherRow.find('.voice-mode-tab__custom-voice-id').exists()).toBe(
+        true,
+      );
     });
 
     it('renders save and cancel buttons', () => {
@@ -111,13 +117,17 @@ describe('VoiceModeTab', () => {
 
   describe('initialization', () => {
     it('defaults to the first predefined voice when no voiceId is provided', () => {
-      const radio = wrapper.find(`[data-testid="voice-radio-${FIRST_VOICE_ID}"]`);
+      const radio = wrapper.find(
+        `[data-testid="voice-radio-${FIRST_VOICE_ID}"]`,
+      );
       expect(radio.attributes('modelvalue')).toBe(FIRST_VOICE_ID);
     });
 
     it('pre-selects a known predefined voice when initialElevenLabsVoiceId matches', () => {
       wrapper = createWrapper({ initialElevenLabsVoiceId: SECOND_VOICE_ID });
-      const radio = wrapper.find(`[data-testid="voice-radio-${SECOND_VOICE_ID}"]`);
+      const radio = wrapper.find(
+        `[data-testid="voice-radio-${SECOND_VOICE_ID}"]`,
+      );
       expect(radio.attributes('modelvalue')).toBe(SECOND_VOICE_ID);
     });
 
@@ -153,7 +163,9 @@ describe('VoiceModeTab', () => {
   describe('emitted events', () => {
     it('emits "cancel" when the cancel button is clicked', async () => {
       const buttons = wrapper.findAll('unnnic-button-stub, unnnicbutton-stub');
-      const cancelBtn = buttons.find((b) => b.attributes('type') === 'tertiary');
+      const cancelBtn = buttons.find(
+        (b) => b.attributes('type') === 'tertiary',
+      );
       await cancelBtn.trigger('click');
       expect(wrapper.emitted('cancel')).toBeTruthy();
     });

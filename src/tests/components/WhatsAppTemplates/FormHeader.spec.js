@@ -102,6 +102,9 @@ describe('FormHeader.vue', () => {
     const appCode = 'test-app-code';
     wrapper.vm.$route = { params: { appCode } };
     wrapper.vm.fetchData();
-    expect(appTypeStore.getAppType).toHaveBeenCalledWith({ code: appCode, shouldLoad: true });
+    expect(appTypeStore.getAppType).toHaveBeenCalledWith({
+      code: appCode,
+      shouldLoad: true,
+    });
   });
 });

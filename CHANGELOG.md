@@ -1,3 +1,25 @@
+3.19.0
+----------
+`2026-09-08 · 7 🔧`
+
+### 🔧 Improvements
+- refactor(config): remove unsaved changes confirmation modal
+- refactor: migrate from unnnic-select-smart to unnnic-select across components
+- refactor: migrate modals from unnnic-modal to unnnic-dialog
+- Review messages added on #602
+- chore: migrate to use @weni/eslint-config
+- LOC-28641 - Weni's Integration new WhatsApp account message localization
+- LOC-28640 - Weni's Integrations WhatsApp charged in BRL messages localization
+
+3.18.0
+----------
+`2026-08-26 · 3 🔧`
+
+### 🔧 Improvements
+- Replace the app configuration overlay with `UnnnicDrawer` and show the app name and icon in the header
+- Redesign the WhatsApp Account tab and add a control to copy the phone number
+- Update Vue scoped styles to `:deep()` and SCSS modules to `@use`
+
 3.17.0
 ----------
 `2026-08-13 · 1 🎉`

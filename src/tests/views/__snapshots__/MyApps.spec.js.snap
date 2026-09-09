@@ -13,7 +13,6 @@ exports[`MyApps > matches snapshot 1`] = `
   </div>
   <div data-v-7d3d5e15="" data-v-d693ca5e="">
     <!--v-if-->
-    <unnnic-modal data-v-7d3d5e15="" showmodal="false" text="Discard changes" scheme="feedback-yellow" modal-icon="alert-circle-1"></unnnic-modal>
   </div>
 </div>"
 `;

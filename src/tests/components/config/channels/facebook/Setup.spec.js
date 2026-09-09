@@ -7,6 +7,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { setActivePinia } from 'pinia';
 import { app_type } from '@/stores/modules/appType/appType.store';
+import { teleportStubs } from '@/tests/helpers/teleportStub';
 
 vi.mock('axios');
 vi.mock('@/utils/plugins/fb', () => ({
@@ -29,6 +30,7 @@ describe('FacebookSetup.vue', () => {
     wrapper = mount(FacebookSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $router: { replace: vi.fn() },
         },
@@ -44,14 +46,18 @@ describe('FacebookSetup.vue', () => {
 
   it('renders correctly when stage is login', async () => {
     expect(wrapper.find('.facebook-setup').exists()).toBe(true);
-    expect(wrapper.findComponent({ ref: 'facebook-setup-modal' }).exists()).toBe(true);
+    expect(
+      wrapper.findComponent({ ref: 'facebook-setup-modal' }).exists(),
+    ).toBe(true);
   });
 
   it('changes stage to select-page and loads pages on successful login', async () => {
     wrapper.vm.startPageSelectionStage('mockAccessToken');
 
     await wrapper.vm.$nextTick();
-    expect(wrapper.findComponent({ ref: 'page-selection-modal' }).exists()).toBe(true);
+    expect(
+      wrapper.findComponent({ ref: 'page-selection-modal' }).exists(),
+    ).toBe(true);
 
     axios.get.mockResolvedValue({
       data: {
@@ -86,16 +92,21 @@ describe('FacebookSetup.vue', () => {
     wrapper = mount(FacebookSetup, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
+        stubs: teleportStubs,
         mocks: {
           $router: { replace: replaceMock },
         },
       },
       props: { app: mockApp },
     });
-    wrapper.vm.pageList = [{ id: '123', name: 'Test Page', access_token: 'mockAccessToken' }];
+    wrapper.vm.pageList = [
+      { id: '123', name: 'Test Page', access_token: 'mockAccessToken' },
+    ];
     wrapper.vm.selectedPage = [{ value: '123' }];
     const spyCreateApp = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue();
-    const spyUpdateAppConfig = vi.spyOn(wrapper.vm, 'updateAppConfig').mockResolvedValue();
+    const spyUpdateAppConfig = vi
+      .spyOn(wrapper.vm, 'updateAppConfig')
+      .mockResolvedValue();
 
     await wrapper.vm.createChannel();
     await wrapper.vm.$nextTick();
@@ -117,7 +128,9 @@ describe('FacebookSetup.vue', () => {
 
     const spyCreateApp = vi.spyOn(wrapper.vm, 'createApp').mockResolvedValue();
 
-    wrapper.vm.pageList = [{ id: '123', name: 'Test Page', access_token: 'mockAccessToken' }];
+    wrapper.vm.pageList = [
+      { id: '123', name: 'Test Page', access_token: 'mockAccessToken' },
+    ];
     wrapper.vm.selectedPage = [{ value: '123' }];
 
     await wrapper.vm.createChannel();

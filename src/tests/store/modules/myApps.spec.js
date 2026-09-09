@@ -88,7 +88,10 @@ describe('my_apps store', () => {
     const mockData = [{ id: 1, name: 'Test App' }];
     appType.getConfiguredApps.mockResolvedValue({ data: mockData });
 
-    await store.getConfiguredApps({ params: { test: 'test' }, skipLoading: true });
+    await store.getConfiguredApps({
+      params: { test: 'test' },
+      skipLoading: true,
+    });
 
     expect(store.loadingConfiguredApps).toBe(false);
     expect(store.configuredApps).toEqual(mockData);

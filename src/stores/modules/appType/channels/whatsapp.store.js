@@ -80,7 +80,10 @@ export const whatsapp_store = defineStore('whatsapp', {
       return state.loadingContactInfo;
     },
     templateTranslationCurrentForm(state) {
-      return state.templateTranslationForms[state.templateTranslationSelectedForm] || {};
+      return (
+        state.templateTranslationForms[state.templateTranslationSelectedForm] ||
+        {}
+      );
     },
   },
   actions: {
@@ -112,7 +115,11 @@ export const whatsapp_store = defineStore('whatsapp', {
       }
     },
     async updateWppContactInfo({ code, appUuid, payload }) {
-      const { data } = await whatsApp.updateWppContactInfo(code, appUuid, payload);
+      const { data } = await whatsApp.updateWppContactInfo(
+        code,
+        appUuid,
+        payload,
+      );
       this.contactInfo = data;
     },
     async getConversations({ code, appUuid, params }) {
@@ -134,7 +141,11 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.reportResult = null;
       this.errorConversationsReport = null;
       try {
-        const { data } = await whatsApp.requestConversationsReport(code, appUuid, params);
+        const { data } = await whatsApp.requestConversationsReport(
+          code,
+          appUuid,
+          params,
+        );
         this.reportResult = data;
         this.loadingConversationsReport = false;
       } catch (err) {
@@ -162,7 +173,11 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.updateWhatsAppProfileResult = null;
       this.errorUpdateWhatsAppProfile = null;
       try {
-        const { data } = await whatsApp.updateWppProfile(code, appUuid, payload);
+        const { data } = await whatsApp.updateWppProfile(
+          code,
+          appUuid,
+          payload,
+        );
         this.updateWhatsAppProfileResult = data;
         this.loadingUpdateWhatsAppProfile = false;
       } catch (err) {
@@ -233,7 +248,8 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.templateTranslationForms[formName] = formData;
     },
     renameTemplateTranslationForm({ currentName, newName }) {
-      this.templateTranslationForms[newName] = this.templateTranslationForms[currentName];
+      this.templateTranslationForms[newName] =
+        this.templateTranslationForms[currentName];
       delete this.templateTranslationForms[currentName];
       this.templateTranslationSelectedForm = newName;
     },
@@ -290,7 +306,8 @@ export const whatsapp_store = defineStore('whatsapp', {
         this.loadingFetchWhatsAppTemplateSelectLanguages = false;
       } catch (err) {
         captureSentryException(err);
-        this.errorFetchWhatsAppTemplateSelectLanguages = err.response?.data.error || err;
+        this.errorFetchWhatsAppTemplateSelectLanguages =
+          err.response?.data.error || err;
         this.loadingFetchWhatsAppTemplateSelectLanguages = false;
       }
     },
@@ -313,7 +330,11 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.createdTemplateTranslationData = null;
       this.errorCreateTemplateTranslation = null;
       try {
-        const data = await whatsApp.createTemplateTranslation(appUuid, templateUuid, payload);
+        const data = await whatsApp.createTemplateTranslation(
+          appUuid,
+          templateUuid,
+          payload,
+        );
         this.createdTemplateTranslationData = data;
         this.loadingCreateTemplateTranslation = false;
       } catch (err) {
@@ -327,7 +348,11 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.updatedTemplateTranslationData = null;
       this.errorUpdateTemplateTranslation = null;
       try {
-        const { data } = await whatsApp.updateTemplateTranslation(appUuid, templateUuid, payload);
+        const { data } = await whatsApp.updateTemplateTranslation(
+          appUuid,
+          templateUuid,
+          payload,
+        );
         this.updatedTemplateTranslationData = data;
         this.loadingUpdateTemplateTranslation = false;
       } catch (err) {
@@ -341,7 +366,10 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.deletedTemplateMessageData = null;
       this.errorDeleteTemplateMessage = null;
       try {
-        const { data } = await whatsApp.deleteTemplateMessage(appUuid, templateUuid);
+        const { data } = await whatsApp.deleteTemplateMessage(
+          appUuid,
+          templateUuid,
+        );
         this.deletedTemplateMessageData = data;
         this.loadingDeleteTemplateMessage = false;
       } catch (err) {
@@ -355,7 +383,11 @@ export const whatsapp_store = defineStore('whatsapp', {
       this.errorUpdateWebhookInfo = null;
       this.updateWebhookInfoData = null;
       try {
-        const { data } = await whatsApp.updateWppWebhookInfo(code, appUuid, payload);
+        const { data } = await whatsApp.updateWppWebhookInfo(
+          code,
+          appUuid,
+          payload,
+        );
         this.updateWebhookInfoData = data;
         this.loadingUpdateWebhookInfo = false;
       } catch (err) {

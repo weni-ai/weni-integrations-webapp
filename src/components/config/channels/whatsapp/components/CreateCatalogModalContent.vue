@@ -1,8 +1,6 @@
 <template>
   <div class="modal">
-    <div slot="message" class="modal__content">
-      <span class="modal__content__title">{{ $t('whatsapp.create_catalog.title') }}</span>
-
+    <div class="modal__content">
       <div class="modal__content__header">
         <span class="modal__content__header__title">{{
           $t('whatsapp.create_catalog.header.title')
@@ -16,7 +14,10 @@
         <div class="modal__content__form__options">
           <div
             ref="vtexOption"
-            :class="['modal__content__form__options__card', type === types.VTEX ? 'selected' : '']"
+            :class="[
+              'modal__content__form__options__card',
+              type === types.VTEX ? 'selected' : '',
+            ]"
             @click="type = types.VTEX"
           >
             <div class="modal__content__form__options__card__icon">
@@ -27,10 +28,13 @@
             </div>
 
             <div class="modal__content__form__options__card__content">
-              <span class="modal__content__form__options__card__content__title">{{
-                $t('whatsapp.create_catalog.option.vtex.title')
-              }}</span>
-              <span class="modal__content__form__options__card__content__description">
+              <span
+                class="modal__content__form__options__card__content__title"
+                >{{ $t('whatsapp.create_catalog.option.vtex.title') }}</span
+              >
+              <span
+                class="modal__content__form__options__card__content__description"
+              >
                 {{ $t('whatsapp.create_catalog.option.vtex.description') }}
               </span>
             </div>
@@ -38,7 +42,10 @@
 
           <div
             ref="metaOption"
-            :class="['modal__content__form__options__card', type === types.META ? 'selected' : '']"
+            :class="[
+              'modal__content__form__options__card',
+              type === types.META ? 'selected' : '',
+            ]"
             @click="type = types.META"
           >
             <div class="modal__content__form__options__card__icon">
@@ -51,12 +58,14 @@
             <div class="modal__content__form__options__card__content">
               <span class="modal__content__form__options__card__content__title">
                 {{ $t('whatsapp.create_catalog.option.meta.title') }}
-                <unnnic-icon
+                <UnnnicIcon
                   icon="open_in_new"
                   class="modal__content__form__options__card__content__title__icon"
                 />
               </span>
-              <span class="modal__content__form__options__card__content__description">
+              <span
+                class="modal__content__form__options__card__content__description"
+              >
                 {{ $t('whatsapp.create_catalog.option.meta.description') }}
               </span>
             </div>
@@ -69,163 +78,140 @@
         ></span>
       </div>
     </div>
-    <div class="modal__buttons">
-      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button slot="options" ref="createButton" @click="createCatalog">
-        {{ $t('general.continue') }}
-      </unnnic-button>
-    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'CreateCatalogModalContent',
-    data() {
-      return {
-        types: {
-          VTEX: 'vtex',
-          META: 'meta',
-        },
-        type: 'vtex',
-      };
-    },
-    methods: {
-      createCatalog() {
-        this.$emit('createCatalog', this.type);
+export default {
+  name: 'CreateCatalogModalContent',
+  data() {
+    return {
+      types: {
+        VTEX: 'vtex',
+        META: 'meta',
       },
-      closeModal() {
-        this.$emit('closeModal');
-      },
+      type: 'vtex',
+    };
+  },
+  methods: {
+    createCatalog() {
+      this.$emit('createCatalog', this.type);
     },
-  };
+    closeModal() {
+      this.$emit('closeModal');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .modal {
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: $unnnic-spacing-md;
+  padding: $unnnic-space-4;
+
+  &__content {
     display: flex;
     flex-direction: column;
-    gap: $unnnic-spacing-md;
+    gap: $unnnic-spacing-sm;
+    text-align: left;
 
-    &__buttons {
-      display: flex;
-      gap: $unnnic-spacing-lg;
-      widows: 100%;
-      flex: 1;
-
-      :deep(.unnnic-button) {
-        width: 100%;
-      }
-    }
-
-    &__content {
+    &__header {
       display: flex;
       flex-direction: column;
-      gap: $unnnic-spacing-sm;
-      text-align: left;
+      gap: $unnnic-spacing-nano;
 
       &__title {
         color: $unnnic-color-fg-emphasized;
-        font-size: $unnnic-font-size-title-sm;
+        font-size: $unnnic-font-size-body-lg;
         font-weight: $unnnic-font-weight-black;
-        line-height: $unnnic-font-size-title-sm + $unnnic-line-height-medium;
+        line-height: $unnnic-font-size-body-lg + $unnnic-line-height-medium;
       }
 
-      &__header {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-spacing-nano;
-
-        &__title {
-          color: $unnnic-color-fg-emphasized;
-          font-size: $unnnic-font-size-body-lg;
-          font-weight: $unnnic-font-weight-black;
-          line-height: $unnnic-font-size-body-lg + $unnnic-line-height-medium;
-        }
-
-        &__description {
-          color: $unnnic-color-fg-base;
-          font-size: $unnnic-font-size-body-md;
-          line-height: $unnnic-font-size-body-md + $unnnic-line-height-medium;
-        }
+      &__description {
+        color: $unnnic-color-fg-base;
+        font-size: $unnnic-font-size-body-md;
+        line-height: $unnnic-font-size-body-md + $unnnic-line-height-medium;
       }
+    }
 
-      &__form {
+    &__form {
+      display: flex;
+      flex-direction: column;
+      gap: $unnnic-spacing-sm;
+
+      &__options {
         display: flex;
         flex-direction: column;
-        gap: $unnnic-spacing-sm;
+        gap: $unnnic-spacing-xs;
 
-        &__options {
+        &__card {
           display: flex;
-          flex-direction: column;
-          gap: $unnnic-spacing-xs;
+          padding: $unnnic-spacing-ant $unnnic-spacing-sm;
+          align-items: center;
+          gap: $unnnic-spacing-sm;
 
-          &__card {
-            display: flex;
-            padding: $unnnic-spacing-ant $unnnic-spacing-sm;
-            align-items: center;
-            gap: $unnnic-spacing-sm;
+          border-radius: $unnnic-border-radius-sm;
+          border: 1px solid $unnnic-color-border-emphasized;
+          background: $unnnic-color-bg-base-soft;
 
+          cursor: pointer;
+
+          &.selected {
             border-radius: $unnnic-border-radius-sm;
-            border: 1px solid $unnnic-color-border-emphasized;
-            background: $unnnic-color-bg-base-soft;
+            border: 1px solid $unnnic-color-border-accent-strong;
+            background: $unnnic-color-bg-accent-plain;
+          }
 
-            cursor: pointer;
+          &__icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: $unnnic-border-radius-sm;
+            background: rgba(59, 65, 77, 0.08);
+            width: $unnnic-icon-size-xl;
+            height: $unnnic-icon-size-xl;
+          }
 
-            &.selected {
-              border-radius: $unnnic-border-radius-sm;
-              border: 1px solid $unnnic-color-border-accent-strong;
-              background: $unnnic-color-bg-accent-plain;
-            }
+          &__content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
 
-            &__icon {
+            &__title {
               display: flex;
-              flex-direction: column;
-              justify-content: center;
               align-items: center;
-              border-radius: $unnnic-border-radius-sm;
-              background: rgba(59, 65, 77, 0.08);
-              width: 40px;
-              height: 40px;
+              gap: $unnnic-spacing-nano;
+              color: $unnnic-color-fg-emphasized;
+              font-size: $unnnic-font-size-body-gt;
+              font-weight: $unnnic-font-weight-bold;
+              line-height: $unnnic-font-size-body-gt +
+                $unnnic-line-height-medium;
+
+              &__icon {
+                font-size: $unnnic-font-size-title-sm !important;
+              }
             }
 
-            &__content {
-              display: flex;
-              flex-direction: column;
-              align-items: flex-start;
-
-              &__title {
-                display: flex;
-                align-items: center;
-                gap: $unnnic-spacing-nano;
-                color: $unnnic-color-fg-emphasized;
-                font-size: $unnnic-font-size-body-gt;
-                font-weight: $unnnic-font-weight-bold;
-                line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
-
-                &__icon {
-                  font-size: $unnnic-font-size-title-sm !important;
-                }
-              }
-
-              &__description {
-                color: $unnnic-color-fg-base;
-                font-size: $unnnic-font-size-body-md;
-                line-height: $unnnic-font-size-body-md + $unnnic-line-height-medium;
-              }
+            &__description {
+              color: $unnnic-color-fg-base;
+              font-size: $unnnic-font-size-body-md;
+              line-height: $unnnic-font-size-body-md +
+                $unnnic-line-height-medium;
             }
           }
         }
+      }
 
-        &__footer {
-          margin-top: $unnnic-spacing-stack-xs;
-          color: $unnnic-color-fg-base;
-          font-size: $unnnic-font-size-body-gt;
-          line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
-        }
+      &__footer {
+        margin-top: $unnnic-spacing-stack-xs;
+        color: $unnnic-color-fg-base;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
       }
     }
   }
+}
 </style>

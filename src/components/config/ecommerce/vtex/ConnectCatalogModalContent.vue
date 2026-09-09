@@ -1,10 +1,8 @@
 <template>
   <div class="modal">
-    <div slot="message" class="modal__content">
-      <span class="modal__content__title">{{ $t('vtex.connect_catalog.title') }}</span>
-
+    <div class="modal__content">
       <div class="modal__content__form">
-        <unnnic-input
+        <UnnnicInput
           class="modal__content__form__input__name"
           v-model="name"
           :label="$t('vtex.connect_catalog.name')"
@@ -17,91 +15,62 @@
         ></span>
       </div>
     </div>
-
-    <div class="modal__buttons">
-      <unnnic-button slot="options" ref="closeButton" type="tertiary" @click="closeModal">
-        {{ $t('general.Cancel') }}
-      </unnnic-button>
-      <unnnic-button slot="options" ref="connectButton" @click="connectCatalog" :loading="loading">
-        {{ $t('general.continue') }}
-      </unnnic-button>
-    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'ConnectCatalogModalContent',
-    props: {
-      loading: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  name: 'ConnectCatalogModalContent',
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        name: '',
-      };
-    },
-    methods: {
-      connectCatalog() {
-        this.$emit('connectCatalog', {
-          name: this.name,
-        });
+  },
+  data() {
+    return {
+      name: '',
+    };
+  },
+  methods: {
+    connectCatalog() {
+      this.$emit('connectCatalog', {
+        name: this.name,
+      });
 
-        this.closeModal();
-      },
-      closeModal() {
-        this.$emit('closeModal');
-      },
+      this.closeModal();
     },
-  };
+    closeModal() {
+      this.$emit('closeModal');
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .modal {
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: $unnnic-spacing-md;
+  padding: $unnnic-space-4;
+
+  &__content {
     display: flex;
     flex-direction: column;
-    gap: $unnnic-spacing-md;
+    text-align: left;
 
-    &__buttons {
-      display: flex;
-      gap: $unnnic-spacing-lg;
-      widows: 100%;
-      flex: 1;
-
-      :deep(.unnnic-button) {
-        width: 100%;
-      }
-    }
-
-    &__content {
+    &__form {
       display: flex;
       flex-direction: column;
-      text-align: left;
+      gap: $unnnic-spacing-sm;
 
-      &__title {
-        color: $unnnic-color-fg-emphasized;
-
-        font-family: Lato;
-        font-size: $unnnic-font-size-title-sm;
-        font-weight: $unnnic-font-weight-black;
-        line-height: $unnnic-font-size-title-sm + $unnnic-line-height-medium;
-        margin-bottom: $unnnic-spacing-xs;
-      }
-
-      &__form {
-        display: flex;
-        flex-direction: column;
-        gap: $unnnic-spacing-sm;
-
-        &__footer {
-          margin-top: $unnnic-spacing-stack-xs;
-          color: $unnnic-color-fg-base;
-          font-size: $unnnic-font-size-body-gt;
-          line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
-        }
+      &__footer {
+        margin-top: $unnnic-spacing-stack-xs;
+        color: $unnnic-color-fg-base;
+        font-size: $unnnic-font-size-body-gt;
+        line-height: $unnnic-font-size-body-gt + $unnnic-line-height-medium;
       }
     }
   }
+}
 </style>

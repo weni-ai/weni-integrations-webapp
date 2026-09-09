@@ -7,10 +7,18 @@ import { createTestingPinia } from '@pinia/testing';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 
-vi.mock('@/components/whatsAppTemplates/loadings/TableLoading.vue', () => ({ default: vi.fn() }));
-vi.mock('@/components/whatsAppTemplates/TableActionButton.vue', () => ({ default: vi.fn() }));
-vi.mock('@/components/whatsAppTemplates/TableLanguageDropdown.vue', () => ({ default: vi.fn() }));
-vi.mock('@/components/whatsAppTemplates/TableSort.vue', () => ({ default: vi.fn() }));
+vi.mock('@/components/whatsAppTemplates/loadings/TableLoading.vue', () => ({
+  default: vi.fn(),
+}));
+vi.mock('@/components/whatsAppTemplates/TableActionButton.vue', () => ({
+  default: vi.fn(),
+}));
+vi.mock('@/components/whatsAppTemplates/TableLanguageDropdown.vue', () => ({
+  default: vi.fn(),
+}));
+vi.mock('@/components/whatsAppTemplates/TableSort.vue', () => ({
+  default: vi.fn(),
+}));
 
 describe('Table.vue', () => {
   let wrapper;
@@ -25,7 +33,13 @@ describe('Table.vue', () => {
     store.errorWhatsAppTemplates = false;
     store.whatsAppTemplates = {
       count: 10,
-      results: [{ name: 'Test', created_on: '2023-09-10', translations: [{ language: 'en' }] }],
+      results: [
+        {
+          name: 'Test',
+          created_on: '2023-09-10',
+          translations: [{ language: 'en' }],
+        },
+      ],
     };
 
     wrapper = mount(Table, {
@@ -38,8 +52,9 @@ describe('Table.vue', () => {
     });
   });
 
-  it('should fetch data on creation', async () => {
-    const wrapper = mount(Table, {
+  it('should fetch data on creation', () => {
+    const spy = vi.spyOn(Table.methods, 'fetchData');
+    mount(Table, {
       global: {
         plugins: [pinia, i18n, UnnnicSystem],
         mocks: {
@@ -47,9 +62,8 @@ describe('Table.vue', () => {
         },
       },
     });
-    const spy = vi.spyOn(wrapper.vm, 'fetchData').mockResolvedValue({});
-    await wrapper.vm.$nextTick();
     expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
   });
 
   it('should render the table items correctly', () => {
@@ -66,7 +80,9 @@ describe('Table.vue', () => {
   });
 
   it('should handle category selection change', async () => {
-    const categorySelect = wrapper.findComponent({ name: 'unnnic-select-smart' });
+    const categorySelect = wrapper.findComponent({
+      name: 'UnnnicSelect',
+    });
     await categorySelect.vm.$emit('update:modelValue', 'MARKETING');
 
     expect(wrapper.vm.selectedCategory).toBe('MARKETING');
