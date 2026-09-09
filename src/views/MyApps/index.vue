@@ -78,7 +78,10 @@
     </div>
 
     <ConfigModal
-      ref="directConfigModal"
+      :open="showDirectConfigModal"
+      :app="directConfigApp"
+      :isConfigured="true"
+      @update:open="handleDirectConfigOpenUpdate"
       @close="onDirectConfigModalClose"
     />
   </div>
@@ -104,15 +107,9 @@ export default {
       searchTerm: '',
       isFetchingApp: false,
       eventStore: useEventStore(),
+      showDirectConfigModal: false,
+      directConfigApp: {},
     };
-  },
-  /* istanbul ignore next */
-  mounted() {
-    this.fetchCategories();
-    this.on('updateGrid', this.fetchCategories);
-  },
-  beforeUnmount() {
-    this.off('updateGrid', this.fetchCategories);
   },
   /* istanbul ignore next */
   computed: {
@@ -167,6 +164,14 @@ export default {
       this.openConfigForRouteApp();
     },
   },
+  /* istanbul ignore next */
+  mounted() {
+    this.fetchCategories();
+    this.on('updateGrid', this.fetchCategories);
+  },
+  beforeUnmount() {
+    this.off('updateGrid', this.fetchCategories);
+  },
   methods: {
     ...mapActions(my_apps, ['getConfiguredApps', 'getInstalledApps']),
     ...mapActions(app_type, ['getApp']),
@@ -185,9 +190,8 @@ export default {
       this.fetchAppFromRoute();
     },
     openConfigFromRoute(app) {
-      this.$nextTick(() => {
-        this.$refs.directConfigModal?.openModal({ app, isConfigured: true });
-      });
+      this.directConfigApp = app;
+      this.showDirectConfigModal = true;
     },
     async fetchAppFromRoute() {
       if (this.isFetchingApp) return;
@@ -213,15 +217,15 @@ export default {
       }
 
       if (this.currentApp) {
-        this.$nextTick(() => {
-          this.$refs.directConfigModal?.openModal({
-            app: this.currentApp,
-            isConfigured: true,
-          });
-        });
+        this.directConfigApp = this.currentApp;
+        this.showDirectConfigModal = true;
       }
     },
+    handleDirectConfigOpenUpdate(open) {
+      this.showDirectConfigModal = open;
+    },
     onDirectConfigModalClose() {
+      this.showDirectConfigModal = false;
       this.$router.replace('/apps/my');
     },
     filterByName(appList, search) {

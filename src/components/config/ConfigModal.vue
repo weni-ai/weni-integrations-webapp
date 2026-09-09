@@ -1,10 +1,9 @@
 <template>
   <div>
     <UnnnicDrawerNext
-      v-if="show"
-      :open="show"
-      @update:open="onDrawerOpenChange"
+      :open="open"
       size="large"
+      @update:open="onDrawerOpenChange"
     >
       <UnnnicDrawerContent size="large">
         <UnnnicDrawerHeader>
@@ -22,11 +21,12 @@
         </UnnnicDrawerHeader>
         <div class="config-drawer__body">
           <component
-            class="config-drawer__component"
             :is="currentComponent"
+            v-if="open"
+            class="config-drawer__component"
             :app="currentApp"
             :isConfigured="isConfigured"
-            @closeModal="closeModal"
+            @close-modal="closeModal"
           />
         </div>
       </UnnnicDrawerContent>
@@ -58,19 +58,30 @@ import {
 const CODES_WITHOUT_HEADER_ICON = [...WHATSAPP_CODES, 'wwc'];
 
 export default {
-  name: 'Modal',
+  name: 'ConfigModal',
   components: {
     UnnnicDrawerNext,
     UnnnicDrawerContent,
     UnnnicDrawerHeader,
     UnnnicDrawerTitle,
   },
+  props: {
+    open: {
+      type: Boolean,
+      default: false,
+    },
+    app: {
+      type: Object,
+      default: () => ({}),
+    },
+    isConfigured: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ['close', 'update:open'],
   data() {
     return {
-      show: false,
-      type: '',
-      currentApp: {},
-      isConfigured: false,
       componentMapping: markRaw({
         wwc: wwcConfig,
         tg: telegramConfig,
@@ -86,27 +97,13 @@ export default {
       }),
     };
   },
-  emits: ['close'],
-  methods: {
-    onDrawerOpenChange(open) {
-      if (open) {
-        this.show = true;
-        return;
-      }
-      this.closeModal();
-    },
-    closeModal() {
-      this.show = false;
-      this.$emit('close');
-    },
-    openModal({ app, isConfigured }) {
-      this.type = app.code;
-      this.currentApp = app;
-      this.isConfigured = isConfigured;
-      this.show = true;
-    },
-  },
   computed: {
+    type() {
+      return this.app?.code || '';
+    },
+    currentApp() {
+      return this.app;
+    },
     currentComponent() {
       return this.componentMapping[this.type] || genericTypeConfig;
     },
@@ -130,6 +127,22 @@ export default {
         return this.currentApp.config?.channel_name || this.currentApp.name;
       }
       return getAppDisplayName(this.currentApp, this.$t.bind(this));
+    },
+  },
+  methods: {
+    onDrawerOpenChange(open) {
+      if (open === this.open) {
+        return;
+      }
+      if (open) {
+        this.$emit('update:open', true);
+        return;
+      }
+      this.closeModal();
+    },
+    closeModal() {
+      this.$emit('update:open', false);
+      this.$emit('close');
     },
   },
 };
