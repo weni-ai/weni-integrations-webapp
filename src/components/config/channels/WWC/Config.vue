@@ -1,11 +1,5 @@
 <template>
   <div class="app-config-wwc">
-    <div class="app-config-wwc__header">
-      <p class="app-config-wwc__header__description">
-        {{ $t('weniWebChat.config.description') }}
-      </p>
-    </div>
-
     <div class="app-config-wwc__content">
       <UnnnicTab
         class="app-config-wwc__tabs"
@@ -27,7 +21,6 @@
             :initialAvatarBase64="config.avatarBase64"
             :initialCssFile="config.customCssFile"
             :initialCustomCss="config.customCss"
-            :loading="loadingSave"
             @update:title="updateConfig('title', $event)"
             @update:subtitle="updateConfig('subtitle', $event)"
             @update:init-payload="updateConfig('initPayload', $event)"
@@ -40,8 +33,6 @@
             @update:avatar-base64="updateConfig('avatarBase64', $event)"
             @update:css-file="updateConfig('customCssFile', $event)"
             @update:custom-css="updateConfig('customCss', $event)"
-            @save="saveConfig"
-            @cancel="closeConfig"
           />
         </template>
 
@@ -65,7 +56,6 @@
             :initialNavigateIfSameDomain="config.navigateIfSameDomain"
             :initialConversationStartersPDP="config.conversationStartersPDP"
             :initialAddToCart="config.addToCart"
-            :loading="loadingSave"
             @update:embedded="updateConfig('embedded', $event)"
             @update:show-full-screen-button="
               updateConfig('showFullScreenButton', $event)
@@ -98,8 +88,6 @@
               updateConfig('conversationStartersPDP', $event)
             "
             @update:add-to-cart="updateConfig('addToCart', $event)"
-            @save="saveConfig"
-            @cancel="closeConfig"
           />
         </template>
 
@@ -117,7 +105,6 @@
             :initialVoiceModeEnabled="config.voiceModeEnabled"
             :initialElevenLabsVoiceId="config.elevenLabsVoiceId"
             :initialElevenLabsApiKey="config.elevenLabsApiKey"
-            :loading="loadingSave"
             @update:voice-mode-enabled="
               updateConfig('voiceModeEnabled', $event)
             "
@@ -127,8 +114,6 @@
             @update:eleven-labs-api-key="
               updateConfig('elevenLabsApiKey', $event)
             "
-            @save="saveConfig"
-            @cancel="closeConfig"
           />
         </template>
 
@@ -139,12 +124,26 @@
           <IntegrationTab
             :appConfig="selectedApp.config"
             :title="config.title"
-            :loading="loadingSave"
-            @save="saveConfig"
-            @cancel="closeConfig"
           />
         </template>
       </UnnnicTab>
+    </div>
+
+    <div class="app-config-wwc__footer">
+      <UnnnicButton
+        type="tertiary"
+        size="large"
+        :text="$t('general.Cancel')"
+        @click="closeConfig"
+      />
+      <UnnnicButton
+        type="primary"
+        size="large"
+        :text="$t('apps.config.save_changes')"
+        :disabled="contactTimeoutError || loadingSave"
+        :loading="loadingSave"
+        @click="saveConfig"
+      />
     </div>
 
     <div
@@ -189,6 +188,7 @@ import {
   TITLE_MAX_LENGTH,
   formatContactTimeout,
   parseContactTimeout,
+  isInvalidTime,
 } from './constants';
 import AppearanceTab from './components/tabs/AppearanceTab.vue';
 import PreferencesTab from './components/tabs/PreferencesTab.vue';
@@ -273,6 +273,11 @@ const chatSubtitle = computed(() => config.subtitle || ' ');
 const loadingSave = computed(
   () => loadingUpdateAppConfig.value || loadingCurrentApp.value,
 );
+
+const contactTimeoutError = computed(() => {
+  if (!config.enableContactTimeout) return false;
+  return isInvalidTime(config.contactTimeout);
+});
 
 // Methods
 function updateConfig(key, value) {
@@ -402,7 +407,7 @@ async function saveConfig() {
       },
       seconds: firstSave ? 8 : 3,
     });
-  } catch (err) {
+  } catch {
     unnnic.unnnicCallAlert({
       props: { text: t('apps.details.status_error'), type: 'error' },
       seconds: 3,
@@ -452,18 +457,15 @@ watch(
     font-size: $unnnic-font-size-body-gt;
     line-height: ($unnnic-font-size-body-gt + $unnnic-line-height-medium);
     padding: 0 $unnnic-space-6;
+    padding-top: $unnnic-space-6;
   }
 
-  &__header {
+  &__footer {
     display: flex;
-    margin: $unnnic-spacing-inset-lg;
-    margin-bottom: $unnnic-spacing-stack-sm;
-
-    &__description {
-      font: $unnnic-font-body;
-      color: $unnnic-color-fg-base;
-      margin: 0;
-    }
+    gap: $unnnic-space-2;
+    justify-content: flex-end;
+    padding: $unnnic-space-6;
+    margin-top: auto;
   }
 
   &__tabs {

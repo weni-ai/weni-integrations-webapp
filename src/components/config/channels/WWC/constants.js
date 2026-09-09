@@ -21,24 +21,28 @@ export const APPEARANCE_FIELDS = [
     type: 'input',
     labelKey: 'weniWebChat.config.SubtitleInput.label',
     placeholderKey: 'weniWebChat.config.SubtitleInput.placeholder',
+    helperKey: 'weniWebChat.config.SubtitleInput.helper',
   },
   {
     id: 'initPayload',
     type: 'input',
     labelKey: 'weniWebChat.config.initPayloadInput.label',
     placeholderKey: 'weniWebChat.config.initPayloadInput.placeholder',
+    addable: false,
   },
   {
     id: 'tooltipMessage',
     type: 'input',
     labelKey: 'weniWebChat.config.TooltipInput.label',
     placeholderKey: 'weniWebChat.config.TooltipInput.placeholder',
+    helperKey: 'weniWebChat.config.TooltipInput.helper',
   },
   {
     id: 'inputTextFieldHint',
     type: 'input',
     labelKey: 'weniWebChat.config.PlaceholderInput.label',
     placeholderKey: 'weniWebChat.config.PlaceholderInput.placeholder',
+    helperKey: 'weniWebChat.config.PlaceholderInput.helper',
   },
 ];
 

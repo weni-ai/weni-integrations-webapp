@@ -67,6 +67,19 @@ describe('WWC constants', () => {
       expect(ids).toContain('inputTextFieldHint');
     });
 
+    it('should mark initPayload as not addable', () => {
+      const initPayload = APPEARANCE_FIELDS.find((f) => f.id === 'initPayload');
+      expect(initPayload.addable).toBe(false);
+    });
+
+    it('should have helperKey for addable fields', () => {
+      APPEARANCE_FIELDS.filter((field) => field.addable !== false).forEach(
+        (field) => {
+          expect(field.helperKey).toBeDefined();
+        },
+      );
+    });
+
     it('should have labelKey and placeholderKey for each field', () => {
       APPEARANCE_FIELDS.forEach((field) => {
         expect(field.labelKey).toBeDefined();

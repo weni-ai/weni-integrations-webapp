@@ -39,7 +39,6 @@ describe('AppearanceTab', () => {
     initialAvatarBase64: null,
     initialCssFile: null,
     initialCustomCss: null,
-    loading: false,
   };
 
   const createWrapper = (props = {}) => {
@@ -48,7 +47,14 @@ describe('AppearanceTab', () => {
         plugins: [i18n, UnnnicSystem],
         stubs: {
           UnnnicInput: true,
-          UnnnicDropdown: true,
+          UnnnicFormElement: {
+            template: '<div class="unnnic-form-element"><slot /></div>',
+            props: ['label', 'error', 'message'],
+          },
+          UnnnicDropdown: {
+            template:
+              '<div class="unnnic-dropdown"><slot name="trigger" /><slot /></div>',
+          },
           UnnnicDropdownItem: true,
           UnnnicButton: true,
           UnnnicLabel: true,
@@ -78,9 +84,13 @@ describe('AppearanceTab', () => {
       expect(input.exists()).toBe(true);
     });
 
-    it('should render save and cancel buttons', () => {
-      const buttons = wrapper.findAll('unnnic-button-stub');
-      expect(buttons.length).toBeGreaterThanOrEqual(2);
+    it('should render form elements for fields', () => {
+      expect(wrapper.find('.unnnic-form-element').exists()).toBe(true);
+    });
+
+    it('should render the More button', () => {
+      const moreButton = wrapper.find('.appearance-tab__add-field-button');
+      expect(moreButton.exists()).toBe(true);
     });
 
     it('should render customization section', () => {
@@ -108,10 +118,6 @@ describe('AppearanceTab', () => {
       expect(wrapper.find('.appearance-tab__scroll').exists()).toBe(true);
     });
 
-    it('should render buttons container', () => {
-      expect(wrapper.find('.appearance-tab__buttons').exists()).toBe(true);
-    });
-
     it('should render customization title', () => {
       expect(
         wrapper.find('.appearance-tab__customization-title').exists(),
@@ -120,17 +126,6 @@ describe('AppearanceTab', () => {
   });
 
   describe('props', () => {
-    it('should pass loading prop to save button', () => {
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('loading')).toBeDefined();
-    });
-
-    it('should show loading state when loading is true', () => {
-      wrapper = createWrapper({ loading: true });
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('loading')).toBe('true');
-    });
-
     it('should use initialMainColor as default color', () => {
       wrapper = createWrapper({ initialMainColor: '#FF0000' });
       expect(wrapper.props('initialMainColor')).toBe('#FF0000');
@@ -143,18 +138,6 @@ describe('AppearanceTab', () => {
   });
 
   describe('events', () => {
-    it('should emit save when save button is clicked', async () => {
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      await saveButton.trigger('click');
-      expect(wrapper.emitted().save).toBeTruthy();
-    });
-
-    it('should emit cancel when cancel button is clicked', async () => {
-      const cancelButton = wrapper.findAll('unnnic-button-stub').at(0);
-      await cancelButton.trigger('click');
-      expect(wrapper.emitted().cancel).toBeTruthy();
-    });
-
     it('should emit update:title when title changes', async () => {
       await wrapper.vm.$nextTick();
       expect(wrapper.emitted()).toBeDefined();
@@ -214,10 +197,27 @@ describe('AppearanceTab', () => {
     });
 
     it('should display initPayload field when it has initial value', async () => {
-      wrapper = createWrapper({ initialInitPayload: '/start' });
+      wrapper = createWrapper({
+        initialSubtitle: '',
+        initialInitPayload: '/start',
+        initialTooltipMessage: '',
+        initialInputTextFieldHint: '',
+      });
       await wrapper.vm.$nextTick();
       const inputs = wrapper.findAll('unnnic-input-stub');
-      expect(inputs.length).toBeGreaterThan(1);
+      expect(inputs.length).toBe(2);
+    });
+
+    it('should not display initPayload field when it is empty', async () => {
+      wrapper = createWrapper({
+        initialSubtitle: '',
+        initialInitPayload: '',
+        initialTooltipMessage: '',
+        initialInputTextFieldHint: '',
+      });
+      await wrapper.vm.$nextTick();
+      const inputs = wrapper.findAll('unnnic-input-stub');
+      expect(inputs.length).toBe(1);
     });
 
     it('should display tooltipMessage field when it has initial value', async () => {
@@ -255,7 +255,7 @@ describe('AppearanceTab', () => {
         initialInputTextFieldHint: '',
       });
       await wrapper.vm.$nextTick();
-      const dropdown = wrapper.find('unnnic-dropdown-stub');
+      const dropdown = wrapper.find('.appearance-tab__add-field');
       expect(dropdown.exists()).toBe(true);
     });
 
@@ -268,12 +268,12 @@ describe('AppearanceTab', () => {
       });
       await wrapper.vm.$nextTick();
       const inputs = wrapper.findAll('unnnic-input-stub');
-      expect(inputs.length).toBe(5); // title + 4 optional fields
+      expect(inputs.length).toBe(5);
     });
   });
 
   describe('dropdown', () => {
-    it('should render dropdown when not all fields are displayed', async () => {
+    it('should render dropdown when not all addable fields are displayed', async () => {
       wrapper = createWrapper({
         initialSubtitle: '',
         initialInitPayload: '',
@@ -281,20 +281,50 @@ describe('AppearanceTab', () => {
         initialInputTextFieldHint: '',
       });
       await wrapper.vm.$nextTick();
-      const dropdown = wrapper.find('unnnic-dropdown-stub');
+      const dropdown = wrapper.find('.appearance-tab__add-field');
       expect(dropdown.exists()).toBe(true);
+      expect(
+        wrapper
+          .find('.appearance-tab__add-field-button')
+          .attributes('disabled'),
+      ).not.toBe('true');
     });
 
-    it('should hide dropdown when all fields are displayed', async () => {
+    it('should keep More button visible and disabled when all addable fields are displayed', async () => {
       wrapper = createWrapper({
         initialSubtitle: 'Subtitle',
-        initialInitPayload: '/start',
+        initialInitPayload: '',
         initialTooltipMessage: 'Hello!',
         initialInputTextFieldHint: 'Type here...',
       });
       await wrapper.vm.$nextTick();
-      const dropdown = wrapper.find('.appearance-tab__add-field');
-      expect(dropdown.exists()).toBe(false);
+      const moreButton = wrapper.find('.appearance-tab__add-field-button');
+      expect(moreButton.exists()).toBe(true);
+      expect(moreButton.attributes('disabled')).toBe('true');
+    });
+
+    it('should not include initPayload in the More dropdown', async () => {
+      wrapper = createWrapper({
+        initialSubtitle: '',
+        initialInitPayload: '',
+        initialTooltipMessage: '',
+        initialInputTextFieldHint: '',
+      });
+      await wrapper.vm.$nextTick();
+      const dropdownItems = wrapper.findAll('unnnic-dropdown-item-stub');
+      expect(dropdownItems.length).toBe(3);
+    });
+
+    it('should still allow adding Figma fields when a legacy initPayload is displayed', async () => {
+      wrapper = createWrapper({
+        initialSubtitle: '',
+        initialInitPayload: '/start',
+        initialTooltipMessage: '',
+        initialInputTextFieldHint: '',
+      });
+      await wrapper.vm.$nextTick();
+      const moreButton = wrapper.find('.appearance-tab__add-field-button');
+      expect(moreButton.attributes('disabled')).not.toBe('true');
     });
   });
 
@@ -526,7 +556,7 @@ describe('AppearanceTab', () => {
       expect(addFieldDropdown.exists()).toBe(true);
     });
 
-    it('should hide add field dropdown when all fields are displayed', async () => {
+    it('should disable More when all addable fields are displayed', async () => {
       wrapper = createWrapper({
         initialSubtitle: 'Subtitle',
         initialInitPayload: '/start',
@@ -534,8 +564,9 @@ describe('AppearanceTab', () => {
         initialInputTextFieldHint: 'Type here...',
       });
       await wrapper.vm.$nextTick();
-      const addFieldDropdown = wrapper.find('.appearance-tab__add-field');
-      expect(addFieldDropdown.exists()).toBe(false);
+      const moreButton = wrapper.find('.appearance-tab__add-field-button');
+      expect(moreButton.exists()).toBe(true);
+      expect(moreButton.attributes('disabled')).toBe('true');
     });
 
     it('should show add field dropdown when some fields are displayed', async () => {
@@ -548,6 +579,11 @@ describe('AppearanceTab', () => {
       await wrapper.vm.$nextTick();
       const addFieldDropdown = wrapper.find('.appearance-tab__add-field');
       expect(addFieldDropdown.exists()).toBe(true);
+      expect(
+        wrapper
+          .find('.appearance-tab__add-field-button')
+          .attributes('disabled'),
+      ).not.toBe('true');
     });
   });
 });

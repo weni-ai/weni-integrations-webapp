@@ -173,23 +173,6 @@
         </section>
       </div>
     </div>
-
-    <div class="preferences-tab__buttons">
-      <UnnnicButton
-        type="tertiary"
-        size="large"
-        :text="$t('general.Cancel')"
-        @click="emit('cancel')"
-      />
-      <UnnnicButton
-        type="primary"
-        size="large"
-        :text="$t('apps.config.save_changes')"
-        :disabled="contactTimeoutError || loading"
-        :loading="loading"
-        @click="emit('save')"
-      />
-    </div>
   </div>
 </template>
 
@@ -216,7 +199,6 @@ const props = defineProps({
   initialNavigateIfSameDomain: { type: Boolean, default: false },
   initialConversationStartersPDP: { type: Boolean, default: false },
   initialAddToCart: { type: Boolean, default: false },
-  loading: { type: Boolean, default: false },
 });
 
 const emit = defineEmits([
@@ -234,8 +216,6 @@ const emit = defineEmits([
   'update:navigateIfSameDomain',
   'update:conversationStartersPDP',
   'update:addToCart',
-  'save',
-  'cancel',
 ]);
 
 // Refs
@@ -392,18 +372,6 @@ watch(timeBetweenMessages, (value) =>
 
   &__contact-timeout-icon {
     margin-left: $unnnic-space-1;
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $unnnic-space-3;
-    justify-content: center;
-    padding: $unnnic-space-6 0;
-    margin-top: auto;
-
-    :deep(.unnnic-button) {
-      width: 100% !important;
-    }
   }
 
   &__switch-suffix {

@@ -18,7 +18,6 @@ describe('PreferencesTab', () => {
     initialEnableContactTimeout: false,
     initialContactTimeout: '23:59',
     initialTimeBetweenMessages: 1,
-    loading: false,
   };
 
   const createWrapper = (props = {}) => {
@@ -63,17 +62,8 @@ describe('PreferencesTab', () => {
       expect(wrapper.find('unnnic-form-element-stub').exists()).toBe(true);
     });
 
-    it('should render save and cancel buttons', () => {
-      const buttons = wrapper.findAll('unnnic-button-stub');
-      expect(buttons.length).toBe(2);
-    });
-
     it('should render scroll container', () => {
       expect(wrapper.find('.preferences-tab__scroll').exists()).toBe(true);
-    });
-
-    it('should render buttons container', () => {
-      expect(wrapper.find('.preferences-tab__buttons').exists()).toBe(true);
     });
 
     it('should render switches container', () => {
@@ -104,20 +94,6 @@ describe('PreferencesTab', () => {
     });
   });
 
-  describe('button events', () => {
-    it('should emit save when save button is clicked', async () => {
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      await saveButton.trigger('click');
-      expect(wrapper.emitted().save).toBeTruthy();
-    });
-
-    it('should emit cancel when cancel button is clicked', async () => {
-      const cancelButton = wrapper.findAll('unnnic-button-stub').at(0);
-      await cancelButton.trigger('click');
-      expect(wrapper.emitted().cancel).toBeTruthy();
-    });
-  });
-
   describe('embedded mode', () => {
     it('should disable fullscreen switches when embedded is true', () => {
       wrapper = createWrapper({ initialEmbedded: true });
@@ -131,7 +107,6 @@ describe('PreferencesTab', () => {
     it('should have disabled attribute on fullscreen switches with embedded enabled', () => {
       wrapper = createWrapper({ initialEmbedded: true });
       const switches = wrapper.findAll('unnnic-switch-stub');
-      // The disabled attribute will be set (even if as "true" string)
       expect(switches[1].attributes('disabled')).toBe('true');
       expect(switches[2].attributes('disabled')).toBe('true');
     });
@@ -147,13 +122,13 @@ describe('PreferencesTab', () => {
       expect(input.exists()).toBe(true);
     });
 
-    it('should disable save button when contact timeout is invalid (00:00)', () => {
+    it('should show error type input when contact timeout is invalid (00:00)', () => {
       wrapper = createWrapper({
         initialEnableContactTimeout: true,
         initialContactTimeout: '00:00',
       });
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('disabled')).toBeDefined();
+      const input = wrapper.find('.preferences-tab__contact-timeout-input');
+      expect(input.attributes('type')).toBe('error');
     });
 
     it('should show error type input when contact timeout is invalid', () => {
@@ -184,12 +159,6 @@ describe('PreferencesTab', () => {
   });
 
   describe('props', () => {
-    it('should show loading state when loading is true', () => {
-      wrapper = createWrapper({ loading: true });
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('loading')).toBe('true');
-    });
-
     it('should accept initialEmbedded prop', () => {
       wrapper = createWrapper({ initialEmbedded: true });
       expect(wrapper.props('initialEmbedded')).toBe(true);
@@ -239,29 +208,6 @@ describe('PreferencesTab', () => {
       wrapper = createWrapper({ initialTimeBetweenMessages: 2 });
       expect(wrapper.props('initialTimeBetweenMessages')).toBe(2);
     });
-
-    it('should accept loading prop', () => {
-      wrapper = createWrapper({ loading: true });
-      expect(wrapper.props('loading')).toBe(true);
-    });
-  });
-
-  describe('button states', () => {
-    it('should have tertiary type for cancel button', () => {
-      const cancelButton = wrapper.findAll('unnnic-button-stub').at(0);
-      expect(cancelButton.attributes('type')).toBe('tertiary');
-    });
-
-    it('should have primary type for save button', () => {
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('type')).toBe('primary');
-    });
-
-    it('should have large size for both buttons', () => {
-      const buttons = wrapper.findAll('unnnic-button-stub');
-      expect(buttons[0].attributes('size')).toBe('large');
-      expect(buttons[1].attributes('size')).toBe('large');
-    });
   });
 
   describe('invalid time validation', () => {
@@ -271,8 +217,8 @@ describe('PreferencesTab', () => {
         initialContactTimeout: '25:00',
       });
       await wrapper.vm.$nextTick();
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('disabled')).toBeDefined();
+      const input = wrapper.find('.preferences-tab__contact-timeout-input');
+      expect(input.attributes('type')).toBe('error');
     });
 
     it('should show error for 12:60', async () => {
@@ -281,8 +227,8 @@ describe('PreferencesTab', () => {
         initialContactTimeout: '12:60',
       });
       await wrapper.vm.$nextTick();
-      const saveButton = wrapper.findAll('unnnic-button-stub').at(1);
-      expect(saveButton.attributes('disabled')).toBeDefined();
+      const input = wrapper.find('.preferences-tab__contact-timeout-input');
+      expect(input.attributes('type')).toBe('error');
     });
   });
 

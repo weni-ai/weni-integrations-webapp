@@ -1,3 +1,11 @@
+3.20.1
+----------
+`2026-09-09 · 2 🔧`
+
+### 🔧 Improvements
+- refactor(ConfigModal): convert from imperative `openModal` ref to props-based control
+- refactor(WWC): move save/cancel buttons to shared footer in Config
+
 3.20.0
 ----------
 `2026-09-09 · 1 🎉`
