@@ -161,7 +161,7 @@ export default {
   &__actions {
     display: flex;
     align-items: center;
-    gap: $unnnic-spacing-inline-sm;
+    gap: $unnnic-space-2;
   }
 
   &__sync-button-wrapper {
