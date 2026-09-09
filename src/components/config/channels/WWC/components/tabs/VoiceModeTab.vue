@@ -112,22 +112,6 @@
         </label>
       </div>
     </section>
-
-    <div class="voice-mode-tab__buttons">
-      <UnnnicButton
-        type="tertiary"
-        size="large"
-        :text="$t('general.Cancel')"
-        @click="emit('cancel')"
-      />
-      <UnnnicButton
-        type="primary"
-        size="large"
-        :text="$t('apps.config.save_changes')"
-        :loading="loading"
-        @click="emit('save')"
-      />
-    </div>
   </div>
 </template>
 
@@ -184,18 +168,12 @@ const props = defineProps({
     type: String,
     default: null,
   },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const emit = defineEmits([
   'update:voiceModeEnabled',
   'update:elevenLabsVoiceId',
   'update:elevenLabsApiKey',
-  'save',
-  'cancel',
 ]);
 
 const voiceModeEnabled = ref(props.initialVoiceModeEnabled);
@@ -359,18 +337,6 @@ watch(computedVoiceId, (val) => emit('update:elevenLabsVoiceId', val));
 
     :deep(.unnnic-input__container) {
       margin-bottom: 0;
-    }
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $unnnic-space-3;
-    justify-content: center;
-    padding: $unnnic-space-6 0;
-    margin-top: auto;
-
-    :deep(.unnnic-button) {
-      width: 100% !important;
     }
   }
 }

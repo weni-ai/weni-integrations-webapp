@@ -31,22 +31,6 @@
       :disabled="!scriptCode"
       @click="downloadScript"
     />
-
-    <div class="integration-tab__buttons">
-      <UnnnicButton
-        type="tertiary"
-        size="large"
-        :text="$t('general.Cancel')"
-        @click="emit('cancel')"
-      />
-      <UnnnicButton
-        type="primary"
-        size="large"
-        :text="$t('apps.config.save_changes')"
-        :loading="loading"
-        @click="emit('save')"
-      />
-    </div>
   </div>
 </template>
 
@@ -63,13 +47,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
 });
-
-const emit = defineEmits(['save', 'cancel']);
 
 // Computed
 const scriptCode = computed(() => generateScriptCode(props.appConfig));
@@ -114,18 +92,6 @@ function downloadScript() {
 
   &__copy-button {
     width: 100% !important;
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $unnnic-space-3;
-    justify-content: center;
-    padding: $unnnic-space-6 0;
-    margin-top: auto;
-
-    :deep(.unnnic-button) {
-      width: 100% !important;
-    }
   }
 }
 </style>

@@ -120,9 +120,7 @@ describe('wwcConfig Component', () => {
   describe('rendering', () => {
     it('should render the component correctly', () => {
       expect(wrapper.find('.app-config-wwc').exists()).toBe(true);
-      expect(
-        wrapper.find('.app-config-wwc__header__description').exists(),
-      ).toBe(true);
+      expect(wrapper.find('.app-config-wwc__footer').exists()).toBe(true);
     });
 
     it('should render AppearanceTab component', () => {
@@ -143,11 +141,12 @@ describe('wwcConfig Component', () => {
       );
     });
 
-    it('should render header with description', () => {
-      expect(wrapper.find('.app-config-wwc__header').exists()).toBe(true);
-      expect(
-        wrapper.find('.app-config-wwc__header__description').exists(),
-      ).toBe(true);
+    it('should render footer with cancel and save buttons', () => {
+      expect(wrapper.find('.app-config-wwc__footer').exists()).toBe(true);
+      const buttons = wrapper.findAll(
+        '.app-config-wwc__footer unnnic-button-stub',
+      );
+      expect(buttons.length).toBe(2);
     });
 
     it('should have simulator switch button', () => {
@@ -167,6 +166,18 @@ describe('wwcConfig Component', () => {
     it('should render simulator', () => {
       expect(wrapper.find('.wwc-simulator').exists()).toBe(true);
     });
+
+    it('should disable save when contact timeout is invalid', () => {
+      wrapper = createWrapper({
+        config: {
+          contactTimeout: '00:00',
+        },
+      });
+      const saveButton = wrapper
+        .findAll('.app-config-wwc__footer unnnic-button-stub')
+        .at(1);
+      expect(saveButton.attributes('disabled')).toBe('true');
+    });
   });
 
   describe('close functionality', () => {
@@ -175,15 +186,11 @@ describe('wwcConfig Component', () => {
       expect(wrapper.emitted().closeModal).toBeTruthy();
     });
 
-    it('should emit closeModal when cancel is triggered from AppearanceTab', async () => {
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('cancel');
-      expect(wrapper.emitted().closeModal).toBeTruthy();
-    });
-
-    it('should emit closeModal when cancel is triggered from PreferencesTab', async () => {
-      const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
-      await preferencesTab.vm.$emit('cancel');
+    it('should emit closeModal when cancel is clicked', async () => {
+      const cancelButton = wrapper
+        .findAll('.app-config-wwc__footer unnnic-button-stub')
+        .at(0);
+      await cancelButton.trigger('click');
       expect(wrapper.emitted().closeModal).toBeTruthy();
     });
   });
@@ -253,11 +260,6 @@ describe('wwcConfig Component', () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       expect(appearanceTab.props('initialTooltipMessage')).toBe('Tooltip');
     });
-
-    it('should pass loading state to AppearanceTab', () => {
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      expect(appearanceTab.props('loading')).toBe(false);
-    });
   });
 
   describe('PreferencesTab props', () => {
@@ -284,11 +286,6 @@ describe('wwcConfig Component', () => {
     it('should pass correct initialEnableContactTimeout to PreferencesTab', () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       expect(preferencesTab.props('initialEnableContactTimeout')).toBe(true);
-    });
-
-    it('should pass loading state to PreferencesTab', () => {
-      const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
-      expect(preferencesTab.props('loading')).toBe(false);
     });
 
     it('should pass correct initialEmbedded to PreferencesTab', () => {
@@ -351,9 +348,8 @@ describe('wwcConfig Component', () => {
 
   describe('save functionality', () => {
     it('should not throw error when save is triggered with valid title', async () => {
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await expect(async () => {
-        await appearanceTab.vm.$emit('save');
+        await wrapper.vm.saveConfig();
         await wrapper.vm.$nextTick();
       }).not.toThrow();
     });
@@ -363,7 +359,7 @@ describe('wwcConfig Component', () => {
 
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:title', '');
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
 
       expect(alertSpy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -377,7 +373,7 @@ describe('wwcConfig Component', () => {
 
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:title', 'a'.repeat(1001));
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
 
       expect(alertSpy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -391,7 +387,7 @@ describe('wwcConfig Component', () => {
 
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:title', '   ');
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
 
       expect(alertSpy).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -407,8 +403,7 @@ describe('wwcConfig Component', () => {
       vi.spyOn(store, 'getApp').mockResolvedValue();
       store.currentApp = { config: { title: 'Test Title' } };
 
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await flushPromises();
 
       expect(updateAppConfigSpy).toHaveBeenCalled();
@@ -428,8 +423,7 @@ describe('wwcConfig Component', () => {
       const preferencesTab = wrapper.findComponent({ name: 'PreferencesTab' });
       await preferencesTab.vm.$emit('update:conversationStartersPDP', true);
 
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await flushPromises();
 
       expect(updateAppConfigSpy).toHaveBeenCalled();
@@ -450,7 +444,7 @@ describe('wwcConfig Component', () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:avatarFile', null);
       await appearanceTab.vm.$emit('update:avatarBase64', null);
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await flushPromises();
 
       expect(updateAppConfigSpy).toHaveBeenCalled();
@@ -471,7 +465,7 @@ describe('wwcConfig Component', () => {
       const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
       await appearanceTab.vm.$emit('update:cssFile', null);
       await appearanceTab.vm.$emit('update:customCss', null);
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await flushPromises();
 
       expect(updateAppConfigSpy).toHaveBeenCalled();
@@ -495,7 +489,7 @@ describe('wwcConfig Component', () => {
 
         const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
         await appearanceTab.vm.$emit(eventName, '');
-        await appearanceTab.vm.$emit('save');
+        await wrapper.vm.saveConfig();
         await flushPromises();
 
         expect(updateAppConfigSpy).toHaveBeenCalled();
@@ -504,17 +498,13 @@ describe('wwcConfig Component', () => {
       },
     );
 
-    it('should trigger save flow when save event emitted', async () => {
-      // Create wrapper with valid title
+    it('should trigger save flow when save is called', async () => {
       wrapper = createWrapper();
 
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      // The save will be attempted - even if it fails due to network, the flow was triggered
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await wrapper.vm.$nextTick();
 
-      // The component should attempt to validate and save
-      expect(appearanceTab.exists()).toBe(true);
+      expect(wrapper.find('.app-config-wwc__footer').exists()).toBe(true);
     });
 
     it('should show success alert on subsequent saves', async () => {
@@ -523,8 +513,7 @@ describe('wwcConfig Component', () => {
       vi.spyOn(store, 'getApp').mockResolvedValue();
       store.currentApp = { config: { title: 'Test Title' } };
 
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await flushPromises();
 
       expect(alertSpy).toHaveBeenCalledWith(
@@ -540,8 +529,7 @@ describe('wwcConfig Component', () => {
       store.errorUpdateAppConfig = 'Some error';
       vi.spyOn(store, 'updateAppConfig').mockResolvedValue();
 
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      await appearanceTab.vm.$emit('save');
+      await wrapper.vm.saveConfig();
       await flushPromises();
 
       expect(alertSpy).toHaveBeenCalledWith(
@@ -603,14 +591,18 @@ describe('wwcConfig Component', () => {
   describe('loading state', () => {
     it('should compute loadingSave based on loadingUpdateAppConfig', () => {
       wrapper = createWrapper({}, { loadingUpdateAppConfig: true });
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      expect(appearanceTab.props('loading')).toBe(true);
+      const saveButton = wrapper
+        .findAll('.app-config-wwc__footer unnnic-button-stub')
+        .at(1);
+      expect(saveButton.attributes('loading')).toBe('true');
     });
 
     it('should compute loadingSave based on loadingCurrentApp', () => {
       wrapper = createWrapper({}, { loadingCurrentApp: true });
-      const appearanceTab = wrapper.findComponent({ name: 'AppearanceTab' });
-      expect(appearanceTab.props('loading')).toBe(true);
+      const saveButton = wrapper
+        .findAll('.app-config-wwc__footer unnnic-button-stub')
+        .at(1);
+      expect(saveButton.attributes('loading')).toBe('true');
     });
   });
 

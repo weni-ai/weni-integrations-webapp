@@ -227,23 +227,27 @@
       "TitleInput": {
         "label": "Titlul chatului",
         "max_length": "Lungimea maximă este de {max} caractere",
-        "placeholder": "Ex.: Numele chatbot-ului tău"
+        "placeholder": "Ex.: Sofia, asistentul tău de cumpărături",
+        "helper": "Apare în partea de sus a widgetului. De obicei numele asistentului."
       },
       "SubtitleInput": {
-        "label": "Subtitlul chatului",
-        "placeholder": "Ex.: Denumire juridică"
+        "label": "Subtitlu",
+        "placeholder": "Ex.: Cum te pot ajuta?",
+        "helper": "Linie de suport sub titlu. Consolidează valoarea sau statusul."
       },
       "PlaceholderInput": {
-        "label": "Substituent de text",
-        "placeholder": "Ex.: Introdu mesajul tău"
+        "label": "Placeholder câmp mesaj",
+        "placeholder": "Ex.: Introdu mesajul tău",
+        "helper": "Afișat în câmp înainte ca cumpărătorul să tasteze."
       },
       "initPayloadInput": {
         "label": "Mesaj de declanșare",
         "placeholder": "Ex.: Salut, bine ai venit"
       },
       "TooltipInput": {
-        "label": "Mesaj de notificare chat",
-        "placeholder": "Mesaj care va fi afișat în notificarea chatbot-ului"
+        "label": "Mesaj de notificare",
+        "placeholder": "Ex.: Cauți ceva? Te pot ajuta.",
+        "helper": "Balon vizual care invită cumpărătorul să înceapă conversația."
       },
       "contactTimeoutInput": {
         "label": "Repornește conversația din cauza inactivității contactului"

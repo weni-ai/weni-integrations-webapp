@@ -227,23 +227,27 @@
       "TitleInput": {
         "label": "Chat title",
         "max_length": "The maximum length is {max} characters",
-        "placeholder": "Ex.: Your chatbot's name"
+        "placeholder": "Ex.: Sofia, your shopping assistant",
+        "helper": "Appears at the top of the widget. Usually the assistant's name."
       },
       "SubtitleInput": {
-        "label": "Chat subtitle",
-        "placeholder": "Ex.: Company name"
+        "label": "Subtitle",
+        "placeholder": "Ex.: How can I help you?",
+        "helper": "Support line below the title. Reinforces the value or status."
       },
       "PlaceholderInput": {
-        "label": "Placeholder text",
-        "placeholder": "Ex.: Type your message"
+        "label": "Message field placeholder",
+        "placeholder": "Ex.: Type your message",
+        "helper": "Shown inside the field before the shopper types."
       },
       "initPayloadInput": {
         "label": "Trigger message",
         "placeholder": "Ex.: Hello, welcome"
       },
       "TooltipInput": {
-        "label": "Chat notification message",
-        "placeholder": "Message that will be displayed in the chatbot notification"
+        "label": "Notification message",
+        "placeholder": "Ex.: Looking for something? I can help.",
+        "helper": "A visual bubble that invites the shopper to start chatting."
       },
       "contactTimeoutInput": {
         "label": "Restart conversation due to contact inactivity"

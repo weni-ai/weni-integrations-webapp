@@ -227,23 +227,27 @@
       "TitleInput": {
         "label": "Título do chat",
         "max_length": "O tamanho máximo é de {max} caracteres",
-        "placeholder": "Ex.: Nome do seu chatbot"
+        "placeholder": "Ex.: Sofia, sua assistente de compras",
+        "helper": "Aparece no topo do widget. Geralmente o nome da assistente."
       },
       "SubtitleInput": {
-        "label": "Subtítulo do chat",
-        "placeholder": "Ex.: Nome da empresa"
+        "label": "Subtítulo",
+        "placeholder": "Ex.: Como posso te ajudar?",
+        "helper": "Linha de apoio abaixo do título. Reforça o valor ou o status."
       },
       "PlaceholderInput": {
-        "label": "Texto do placeholder",
-        "placeholder": "Ex.: Digite sua mensagem"
+        "label": "Placeholder do campo de mensagem",
+        "placeholder": "Ex.: Digite sua mensagem",
+        "helper": "Exibido dentro do campo antes de o comprador digitar."
       },
       "initPayloadInput": {
         "label": "Mensagem de disparo",
         "placeholder": "Ex.: Olá, seja bem-vindo"
       },
       "TooltipInput": {
-        "label": "Mensagem de notificação do chat",
-        "placeholder": "Mensagem que aparecerá na notificação do chatbot"
+        "label": "Mensagem de notificação",
+        "placeholder": "Ex.: Procurando algo? Posso ajudar.",
+        "helper": "Balão visual que convida o comprador a iniciar o chat."
       },
       "contactTimeoutInput": {
         "label": "Reiniciar conversa por inatividade do contato"

@@ -2,38 +2,46 @@
   <div class="appearance-tab">
     <div class="appearance-tab__scroll">
       <section class="appearance-tab__fields">
-        <UnnnicInput
-          v-model="title"
-          :type="titleError ? 'error' : 'normal'"
-          :label="$t('weniWebChat.config.TitleInput.label')"
-          :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
-          :message="titleError || ''"
-        />
+        <UnnnicFormElement
+          :label="`${$t('weniWebChat.config.TitleInput.label')}*`"
+          :error="titleError"
+          :message="
+            titleError ? '' : $t('weniWebChat.config.TitleInput.helper')
+          "
+        >
+          <UnnnicInput
+            v-model="title"
+            :type="titleError ? 'error' : 'normal'"
+            :placeholder="$t('weniWebChat.config.TitleInput.placeholder')"
+          />
+        </UnnnicFormElement>
 
-        <UnnnicInput
+        <UnnnicFormElement
           v-for="field in displayedFields"
           :key="field.id"
-          v-model="fieldValues[field.id]"
           :label="$t(field.labelKey)"
-          :placeholder="$t(field.placeholderKey)"
-        />
-
-        <UnnnicDropdown
-          v-if="canAddNewField"
-          class="appearance-tab__add-field"
+          :message="field.helperKey ? $t(field.helperKey) : ''"
         >
+          <UnnnicInput
+            v-model="fieldValues[field.id]"
+            :placeholder="$t(field.placeholderKey)"
+          />
+        </UnnnicFormElement>
+
+        <UnnnicDropdown class="appearance-tab__add-field">
           <template #trigger>
             <UnnnicButton
               class="appearance-tab__add-field-button"
               type="secondary"
               size="small"
               iconLeft="add-1"
+              :disabled="!canAddNewField"
               :text="$t('weniWebChat.config.add_field')"
             />
           </template>
 
           <UnnnicDropdownItem
-            v-for="field in availableFields"
+            v-for="field in addableFields"
             :key="field.id"
             :class="[
               'appearance-tab__field-dropdown-item',
@@ -97,22 +105,6 @@
         </div>
       </section>
     </div>
-
-    <div class="appearance-tab__buttons">
-      <UnnnicButton
-        type="tertiary"
-        size="large"
-        :text="$t('general.Cancel')"
-        @click="emit('cancel')"
-      />
-      <UnnnicButton
-        type="primary"
-        size="large"
-        :text="$t('apps.config.save_changes')"
-        :loading="loading"
-        @click="emit('save')"
-      />
-    </div>
   </div>
 </template>
 
@@ -137,7 +129,6 @@ const props = defineProps({
   initialAvatarBase64: { type: String, default: null },
   initialCssFile: { type: [File, Object], default: null },
   initialCustomCss: { type: String, default: null },
-  loading: { type: Boolean, default: false },
 });
 
 const emit = defineEmits([
@@ -151,16 +142,12 @@ const emit = defineEmits([
   'update:avatarBase64',
   'update:cssFile',
   'update:customCss',
-  'save',
-  'cancel',
 ]);
 
-// Refs
 const colorPickerRef = ref(null);
 const title = ref(props.initialTitle);
 const displayedFieldIds = ref(new Set());
 
-// Field values as a reactive object
 const fieldValues = ref({
   subtitle: props.initialSubtitle,
   initPayload: props.initialInitPayload,
@@ -168,7 +155,6 @@ const fieldValues = ref({
   inputTextFieldHint: props.initialInputTextFieldHint,
 });
 
-// File uploads
 const avatarUpload = useFileUpload();
 const cssUpload = useFileUpload();
 const avatarFiles = ref([]);
@@ -193,7 +179,6 @@ async function customCssToFile(cssValue) {
   return new File([cssValue], 'style.css', { type: 'text/css' });
 }
 
-// Initialize displayed fields based on initial values
 onMounted(async () => {
   APPEARANCE_FIELDS.forEach((field) => {
     if (fieldValues.value[field.id]?.trim()) {
@@ -201,7 +186,6 @@ onMounted(async () => {
     }
   });
 
-  // Initialize avatar file if base64 provided
   if (props.initialAvatarBase64) {
     const file = await dataUrlToFile(props.initialAvatarBase64, 'avatar.png');
     if (file) {
@@ -209,7 +193,6 @@ onMounted(async () => {
     }
   }
 
-  // Initialize CSS file
   if (props.initialCssFile) {
     cssFiles.value = [props.initialCssFile];
   } else if (props.initialCustomCss) {
@@ -220,8 +203,9 @@ onMounted(async () => {
   }
 });
 
-// Computed
-const availableFields = computed(() => APPEARANCE_FIELDS);
+const addableFields = computed(() =>
+  APPEARANCE_FIELDS.filter((field) => field.addable !== false),
+);
 
 const displayedFields = computed(() =>
   APPEARANCE_FIELDS.filter(
@@ -231,8 +215,16 @@ const displayedFields = computed(() =>
   ),
 );
 
+const displayedAddableFields = computed(() =>
+  addableFields.value.filter(
+    (field) =>
+      displayedFieldIds.value.has(field.id) ||
+      fieldValues.value[field.id]?.trim(),
+  ),
+);
+
 const canAddNewField = computed(
-  () => displayedFields.value.length < APPEARANCE_FIELDS.length,
+  () => displayedAddableFields.value.length < addableFields.value.length,
 );
 
 const titleError = computed(() => {
@@ -247,7 +239,6 @@ const titleError = computed(() => {
   return '';
 });
 
-// Methods
 function isFieldDisplayed(fieldId) {
   return (
     displayedFieldIds.value.has(fieldId) || fieldValues.value[fieldId]?.trim()
@@ -299,7 +290,6 @@ function handleCssChange(files) {
   });
 }
 
-// Watchers to emit changes
 watch(title, (value) => emit('update:title', value));
 watch(
   () => fieldValues.value.subtitle,
@@ -337,7 +327,7 @@ watch(
   &__fields {
     display: flex;
     flex-direction: column;
-    gap: $unnnic-space-3;
+    gap: $unnnic-space-4;
   }
 
   &__add-field {
@@ -391,18 +381,6 @@ watch(
     display: flex;
     flex-direction: column;
     gap: $unnnic-space-4;
-  }
-
-  &__buttons {
-    display: flex;
-    gap: $unnnic-space-3;
-    justify-content: center;
-    padding: $unnnic-space-6 0;
-    margin-top: auto;
-
-    :deep(.unnnic-button) {
-      width: 100% !important;
-    }
   }
 }
 </style>

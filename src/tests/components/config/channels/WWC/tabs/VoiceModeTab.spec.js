@@ -12,7 +12,6 @@ const defaultProps = {
   initialVoiceModeEnabled: false,
   initialElevenLabsVoiceId: null,
   initialElevenLabsApiKey: null,
-  loading: false,
 };
 
 const createWrapper = (props = {}) =>
@@ -106,11 +105,6 @@ describe('VoiceModeTab', () => {
         true,
       );
     });
-
-    it('renders save and cancel buttons', () => {
-      const buttons = wrapper.findAll('unnnic-button-stub, unnnicbutton-stub');
-      expect(buttons.length).toBeGreaterThanOrEqual(2);
-    });
   });
 
   // ─── Initialization ───────────────────────────────────────────────────────
@@ -161,22 +155,6 @@ describe('VoiceModeTab', () => {
   // ─── Emitted events ───────────────────────────────────────────────────────
 
   describe('emitted events', () => {
-    it('emits "cancel" when the cancel button is clicked', async () => {
-      const buttons = wrapper.findAll('unnnic-button-stub, unnnicbutton-stub');
-      const cancelBtn = buttons.find(
-        (b) => b.attributes('type') === 'tertiary',
-      );
-      await cancelBtn.trigger('click');
-      expect(wrapper.emitted('cancel')).toBeTruthy();
-    });
-
-    it('emits "save" when the save button is clicked', async () => {
-      const buttons = wrapper.findAll('unnnic-button-stub, unnnicbutton-stub');
-      const saveBtn = buttons.find((b) => b.attributes('type') === 'primary');
-      await saveBtn.trigger('click');
-      expect(wrapper.emitted('save')).toBeTruthy();
-    });
-
     it('emits "update:voiceModeEnabled" when the toggle changes', async () => {
       const toggle = wrapper.findComponent('unnnic-switch-stub');
       await toggle.vm.$emit('update:modelValue', true);
