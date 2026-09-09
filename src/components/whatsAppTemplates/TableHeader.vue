@@ -119,17 +119,17 @@ export default {
       await this.syncWhatsAppTemplates({ appUuid });
       this.nowMs = Date.now();
 
+
       if (this.errorSyncWhatsAppTemplates) {
-        if (!this.isSyncOnCooldown) {
-          unnnic.unnnicCallAlert({
-            props: {
-              text: this.$t('WhatsApp.templates.error.sync_templates'),
-              type: 'error',
-            },
-            seconds: 8,
-          });
-        }
+        unnnic.unnnicCallAlert({
+          props: {
+            text: this.$t('WhatsApp.templates.error.sync_templates'),
+            type: 'error',
+          },
+          seconds: 8,
+        });
         return;
+
       }
 
       unnnic.unnnicCallAlert({
