@@ -8,6 +8,7 @@ import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
 import { whatsapp_cloud } from '@/stores/modules/appType/channels/whatsapp_cloud.store';
 import { teleportStubs } from '@/tests/helpers/teleportStub';
+import { initFacebookSdk } from '@/utils/plugins/fb';
 
 vi.mock('@/utils/plugins/fb', () => ({
   initFacebookSdk: vi.fn(),
@@ -18,23 +19,18 @@ vi.mock('@/utils/sentry', () => ({
   captureSentryException: vi.fn(),
 }));
 
-vi.mock('@/utils/env', async (importOriginal) => {
-  const actual = await importOriginal();
-
-  return {
-    ...actual,
-    getEnv: vi.fn((key) => {
-      switch (key) {
-        case 'WHATSAPP_FACEBOOK_APP_ID':
-          return 'mockFacebookAppId';
-        case 'WHATSAPP_FACEBOOK_APP_CONFIG_ID':
-          return 'mockConfigId';
-        default:
-          return null;
-      }
-    }),
-  };
-});
+vi.mock('@/utils/env', () => ({
+  default: vi.fn((key) => {
+    switch (key) {
+      case 'WHATSAPP_FACEBOOK_APP_ID':
+        return 'mockFacebookAppId';
+      case 'WHATSAPP_FACEBOOK_APP_CONFIG_ID':
+        return 'mockConfigId';
+      default:
+        return null;
+    }
+  }),
+}));
 
 describe('WhatsAppSetup.vue', () => {
   let wrapper;
@@ -78,23 +74,29 @@ describe('WhatsAppSetup.vue', () => {
     expect(wrapper.emitted('closePopUp')).toBeTruthy();
   });
 
-  it('handles Facebook login correctly', async () => {
-    vi.mock('../../../../utils/plugins/fb', () => ({
-      initFacebookSdk: vi.fn((appId, callback) => {
-        callback();
-      }),
-    }));
+  it('launches Embedded Signup v4 with extras.setup', () => {
+    initFacebookSdk.mockImplementation((appId, callback) => {
+      callback();
+    });
 
     global.FB = {
-      login: vi.fn((callback) => {
-        callback({ authResponse: { code: 'mockAuthCode' } });
-      }),
+      login: vi.fn(),
     };
 
     wrapper.vm.startFacebookLogin();
 
-    expect(wrapper.vm.phoneNumberId).toBeNull();
-    expect(wrapper.vm.wabaId).toBeNull();
+    expect(initFacebookSdk).toHaveBeenCalledWith(
+      'mockFacebookAppId',
+      expect.any(Function),
+    );
+    expect(global.FB.login).toHaveBeenCalledWith(expect.any(Function), {
+      config_id: 'mockConfigId',
+      response_type: 'code',
+      override_default_response_type: true,
+      extras: {
+        setup: {},
+      },
+    });
   });
 
   it('shows error toast when createChannel fails with a generic error', async () => {
