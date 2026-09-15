@@ -11,7 +11,7 @@
       >
         <UnnnicDialogHeader
           type="success"
-          :close-button="false"
+          :closeButton="false"
         >
           <UnnnicDialogTitle>
             {{ $t('WhatsAppCloud.setup.connect') }}
@@ -240,12 +240,7 @@ export default {
             response_type: 'code',
             override_default_response_type: true,
             extras: {
-              sessionInfoVersion: 2,
-              features: [
-                {
-                  name: 'marketing_messages_lite',
-                },
-              ],
+              setup: {},
             },
           },
         );
