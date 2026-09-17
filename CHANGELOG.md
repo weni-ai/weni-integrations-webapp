@@ -1,3 +1,10 @@
+3.21.0
+----------
+`2026-09-17 · 1 🔧`
+
+### 🔧 Improvements
+- feat(whatsapp): migrate Cloud setup Embedded Signup to v4
+
 3.20.1
 ----------
 `2026-09-09 · 2 🔧`
