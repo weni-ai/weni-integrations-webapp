@@ -8,26 +8,6 @@
           </h3>
 
           <UnnnicSwitch
-            v-model="embedded"
-            size="small"
-            :textRight="$t('weniWebChat.config.embedded_mode')"
-          />
-
-          <UnnnicSwitch
-            v-model="showFullScreenButton"
-            size="small"
-            :textRight="$t('weniWebChat.config.show_fullscreen_button')"
-            :disabled="embedded"
-          />
-
-          <UnnnicSwitch
-            v-model="startFullScreen"
-            size="small"
-            :textRight="$t('weniWebChat.config.start_with_fullscreen')"
-            :disabled="embedded"
-          />
-
-          <UnnnicSwitch
             v-model="displayUnreadCount"
             size="small"
             :textRight="$t('weniWebChat.config.unread_messages_indicator')"
@@ -52,13 +32,7 @@
               $t('weniWebChat.config.conversation_starters_pdp.label')
             "
             :helper="$t('weniWebChat.config.conversation_starters_pdp.helper')"
-          >
-            <template #suffix>
-              <p class="preferences-tab__switch-suffix">
-                {{ $t('general.new') }}
-              </p>
-            </template>
-          </UnnnicSwitch>
+          />
 
           <UnnnicSwitch
             v-model="navigateIfSameDomain"
