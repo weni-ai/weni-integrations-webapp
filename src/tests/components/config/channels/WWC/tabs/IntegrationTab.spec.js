@@ -1,5 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { unnnicToastManager } from '@weni/unnnic-system';
 import IntegrationTab from '@/components/config/channels/WWC/components/tabs/IntegrationTab.vue';
 import i18n from '@/utils/plugins/i18n';
 import UnnnicSystem from '@/utils/plugins/UnnnicSystem';
@@ -89,23 +90,23 @@ describe('IntegrationTab', () => {
   });
 
   describe('copy script functionality', () => {
-    it('should create download link when copy button is clicked', async () => {
-      const createElementSpy = vi.spyOn(document, 'createElement');
-      const appendChildSpy = vi
-        .spyOn(document.body, 'appendChild')
-        .mockImplementation(() => {});
-      const removeChildSpy = vi
-        .spyOn(document.body, 'removeChild')
+    it('should copy the script and show an info toast', async () => {
+      const writeText = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal('navigator', { clipboard: { writeText } });
+      const toastSpy = vi
+        .spyOn(unnnicToastManager, 'info')
         .mockImplementation(() => {});
 
       const button = wrapper.find('unnnic-button-stub');
       await button.trigger('click');
 
-      expect(createElementSpy).toHaveBeenCalledWith('a');
+      expect(writeText).toHaveBeenCalledWith(wrapper.vm.scriptCode);
+      expect(toastSpy).toHaveBeenCalledWith(
+        i18n.global.t('weniWebChat.config.code_copied'),
+      );
 
-      createElementSpy.mockRestore();
-      appendChildSpy.mockRestore();
-      removeChildSpy.mockRestore();
+      toastSpy.mockRestore();
+      vi.unstubAllGlobals();
     });
   });
 

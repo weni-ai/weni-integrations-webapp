@@ -194,6 +194,8 @@
       "script_tutorial": "Pentru a instala Shopping Assistant pe site-ul tău, copiază și lipește acest cod deasupra etichetei de închidere <strong>/body</strong> de pe site.",
       "script_disclaimer": "Scriptul va fi disponibil imediat ce ajustările de bază necesare sunt finalizate.",
       "download_script": "Descarcă scriptul",
+      "copy_code": "Copiază codul",
+      "code_copied": "Cod copiat în clipboard",
       "custom_css": "CSS personalizat",
       "avatar_image": "Avatar",
       "use_connection_optimization": "Utilizează optimizarea conexiunii",

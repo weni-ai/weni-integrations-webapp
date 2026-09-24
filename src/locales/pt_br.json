@@ -194,6 +194,8 @@
       "script_tutorial": "Para instalar o Shopping Assistant no seu site, copie e cole este código acima da última tag <strong>/body</strong> no seu site",
       "script_disclaimer": "O script estará disponível assim que os ajustes básicos necessários forem concluídos.",
       "download_script": "Baixar script",
+      "copy_code": "Copiar código",
+      "code_copied": "Código copiado para a área de transferência",
       "custom_css": "CSS customizado",
       "avatar_image": "Imagem do avatar",
       "use_connection_optimization": "Usar otimização de conexão",
