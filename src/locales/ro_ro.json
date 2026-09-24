@@ -191,7 +191,7 @@
       "media": "Media",
       "retail": "Comerț cu amănuntul",
       "history": "Istoricul chatului și al inactivității",
-      "script_tutorial": "Pentru a instala Shopping Assistant pe site-ul tău, copiază și lipește acest cod deasupra etichetei de închidere <strong>/body</strong> de pe site.",
+      "script_tutorial": "Pentru a instala Shopping Assistant pe site-ul tău, copiază și lipește acest cod deasupra etichetei de închidere </body> de pe site.",
       "script_disclaimer": "Scriptul va fi disponibil imediat ce ajustările de bază necesare sunt finalizate.",
       "download_script": "Descarcă scriptul",
       "copy_code": "Copiază codul",

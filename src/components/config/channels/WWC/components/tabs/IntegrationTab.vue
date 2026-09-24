@@ -11,13 +11,16 @@
       type="informational"
     />
 
+    <p class="integration-tab__description">
+      {{ $t('weniWebChat.config.script_tutorial') }}
+    </p>
+
     <UnnnicTextArea
       :class="[
         'integration-tab__textarea',
         { 'integration-tab__textarea--filled': !!scriptCode },
       ]"
       :modelValue="scriptCode"
-      :label="$t('weniWebChat.config.script_tutorial')"
       :disabled="!scriptCode"
       resize="none"
     />
@@ -76,6 +79,11 @@ async function copyCode() {
     margin: 0;
     margin-bottom: $unnnic-space-1;
     color: $unnnic-color-fg-emphasized;
+  }
+
+  &__description {
+    @include unnnic-font-body;
+    margin: 0;
   }
 
   &__textarea {

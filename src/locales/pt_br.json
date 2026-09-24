@@ -191,7 +191,7 @@
       "media": "Mídia",
       "retail": "Varejo",
       "history": "Histórico de chats e inatividade",
-      "script_tutorial": "Para instalar o Shopping Assistant no seu site, copie e cole este código acima da última tag <strong>/body</strong> no seu site",
+      "script_tutorial": "Para instalar o Shopping Assistant no seu site, copie e cole este código acima da última tag </body> no seu site",
       "script_disclaimer": "O script estará disponível assim que os ajustes básicos necessários forem concluídos.",
       "download_script": "Baixar script",
       "copy_code": "Copiar código",
