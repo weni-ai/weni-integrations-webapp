@@ -227,18 +227,18 @@
       "TitleInput": {
         "label": "Título del chat",
         "max_length": "La longitud máxima es de {max} caracteres",
-        "placeholder": "Ej.: Sofia, tu asistente de compras",
-        "helper": "Aparece en la parte superior del widget. Generalmente el nombre de la asistente."
+        "placeholder": "Ejemplo: Sofía, tu asistente de compras",
+        "helper": "Se muestra en la parte superior del widget. Por lo general es el nombre del asistente."
       },
       "SubtitleInput": {
         "label": "Subtítulo",
-        "placeholder": "Ej.: ¿Cómo puedo ayudarte?",
-        "helper": "Línea de apoyo debajo del título. Refuerza el valor o el estado."
+        "placeholder": "Ejemplo: ¿En qué puedo ayudarte?",
+        "helper": "Texto secundario bajo el título. Refuerza el valor o el status."
       },
       "PlaceholderInput": {
         "label": "Placeholder del campo de mensaje",
-        "placeholder": "Ej.: Escribe tu mensaje",
-        "helper": "Se muestra dentro del campo antes de que el comprador escriba."
+        "placeholder": "Ejemplo: Ingresa tu mensaje",
+        "helper": "Texto que se muestra dentro del campo antes de que el comprador escriba."
       },
       "initPayloadInput": {
         "label": "Mensaje del trigger",
@@ -246,8 +246,8 @@
       },
       "TooltipInput": {
         "label": "Mensaje de notificación",
-        "placeholder": "Ej.: ¿Buscas algo? Puedo ayudarte.",
-        "helper": "Burbuja visual que invita al comprador a iniciar el chat."
+        "placeholder": "Ejemplo: Pregúntame lo que necesites.",
+        "helper": "Notificación visual que invita al comprador a iniciar la conversación."
       },
       "contactTimeoutInput": {
         "label": "Reiniciar conversación por inactividad del contacto"
@@ -649,7 +649,7 @@
         },
         "new_template": "Nueva plantilla",
         "sync_templates": "Sincronizar plantillas",
-        "sync_templates_cooldown_tooltip": "Las plantillas se podrán sincronizar de nuevo en {remaining} min",
+        "sync_templates_cooldown_tooltip": "Las plantillas se podrán volver a sincronizar en {remaining} min",
         "filters": {
           "date": {
             "label": "Fecha",
@@ -788,7 +788,7 @@
       },
       "success": {
         "create_translation": "Traducción de plantilla creada con éxito",
-        "sync_templates": "Plantillas sincronizadas con éxito",
+        "sync_templates": "Las plantillas se sincronizaron con éxito",
         "update_translation": "Traducción de plantilla actualizada con éxito"
       }
     },

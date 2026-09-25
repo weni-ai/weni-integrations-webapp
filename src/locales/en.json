@@ -238,7 +238,7 @@
       "PlaceholderInput": {
         "label": "Message field placeholder",
         "placeholder": "Ex.: Type your message",
-        "helper": "Shown inside the field before the shopper types."
+        "helper": "Shown inside the field before the buyer types."
       },
       "initPayloadInput": {
         "label": "Trigger message",
@@ -247,7 +247,7 @@
       "TooltipInput": {
         "label": "Notification message",
         "placeholder": "Ex.: Looking for something? I can help.",
-        "helper": "A visual bubble that invites the shopper to start chatting."
+        "helper": "A visual bubble that invites the buyer to start chatting."
       },
       "contactTimeoutInput": {
         "label": "Restart conversation due to contact inactivity"
