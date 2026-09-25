@@ -230,17 +230,17 @@
         "label": "Título do chat",
         "max_length": "O tamanho máximo é de {max} caracteres",
         "placeholder": "Ex.: Sofia, sua assistente de compras",
-        "helper": "Aparece no topo do widget. Geralmente o nome da assistente."
+        "helper": "Aparece no topo do widget. Geralmente é o nome do assistente."
       },
       "SubtitleInput": {
         "label": "Subtítulo",
         "placeholder": "Ex.: Como posso te ajudar?",
-        "helper": "Linha de apoio abaixo do título. Reforça o valor ou o status."
+        "helper": "Linha de apoio abaixo do título. Reforça o valor ou status."
       },
       "PlaceholderInput": {
         "label": "Placeholder do campo de mensagem",
         "placeholder": "Ex.: Digite sua mensagem",
-        "helper": "Exibido dentro do campo antes de o comprador digitar."
+        "helper": "Exibido dentro do campo antes do cliente digitar."
       },
       "initPayloadInput": {
         "label": "Mensagem de disparo",
@@ -248,8 +248,8 @@
       },
       "TooltipInput": {
         "label": "Mensagem de notificação",
-        "placeholder": "Ex.: Procurando algo? Posso ajudar.",
-        "helper": "Balão visual que convida o comprador a iniciar o chat."
+        "placeholder": "Ex.: Está procurando algo? Posso ajudar.",
+        "helper": "Um balão visual que convida o comprador a iniciar uma conversa."
       },
       "contactTimeoutInput": {
         "label": "Reiniciar conversa por inatividade do contato"
