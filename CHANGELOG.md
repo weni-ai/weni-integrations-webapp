@@ -1,3 +1,14 @@
+3.22.0
+----------
+`2026-09-25 · 2 🎉 · 1 🔧`
+
+### 🎉 New features
+- Replace the Shopping Assistant script download with copy to clipboard
+- Add a description and clearer script tutorial copy on the Integration tab
+
+### 🔧 Improvements
+- Remove embedded mode switches from the Shopping Assistant Preferences tab
+
 3.21.0
 ----------
 `2026-09-17 · 1 🔧`

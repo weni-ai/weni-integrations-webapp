@@ -54,8 +54,8 @@ describe('PreferencesTab', () => {
 
     it('should render all behavior switches', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      // navigateIfSameDomain, embedded, showFullScreenButton, startFullScreen, displayUnreadCount, useConnectionOptimization, conversationStartersPDP, keepHistory, enableContactTimeout, addToCart
-      expect(switches.length).toBe(10);
+      // displayUnreadCount, useConnectionOptimization, conversationStartersPDP, navigateIfSameDomain, addToCart, keepHistory, enableContactTimeout
+      expect(switches.length).toBe(7);
     });
 
     it('should render form element for time between messages', () => {
@@ -91,24 +91,6 @@ describe('PreferencesTab', () => {
         wrapper.find('unnnic-tooltip-stub').exists() ||
           wrapper.find('.preferences-tab__contact-timeout-tooltip').exists(),
       ).toBe(true);
-    });
-  });
-
-  describe('embedded mode', () => {
-    it('should disable fullscreen switches when embedded is true', () => {
-      wrapper = createWrapper({ initialEmbedded: true });
-      const switches = wrapper.findAll('unnnic-switch-stub');
-      const fullscreenSwitch = switches[1];
-      const startFullscreenSwitch = switches[2];
-      expect(fullscreenSwitch.attributes('disabled')).toBeDefined();
-      expect(startFullscreenSwitch.attributes('disabled')).toBeDefined();
-    });
-
-    it('should have disabled attribute on fullscreen switches with embedded enabled', () => {
-      wrapper = createWrapper({ initialEmbedded: true });
-      const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[1].attributes('disabled')).toBe('true');
-      expect(switches[2].attributes('disabled')).toBe('true');
     });
   });
 
@@ -233,44 +215,29 @@ describe('PreferencesTab', () => {
   });
 
   describe('switch configuration', () => {
-    it('should render switch for embedded mode', () => {
+    it('should render switch for displayUnreadCount', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
       expect(switches[0].exists()).toBe(true);
     });
 
-    it('should render switch for showFullScreenButton', () => {
+    it('should render switch for useConnectionOptimization', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
       expect(switches[1].exists()).toBe(true);
     });
 
-    it('should render switch for startFullScreen', () => {
+    it('should render switch for conversationStartersPDP', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
       expect(switches[2].exists()).toBe(true);
     });
 
-    it('should render switch for displayUnreadCount', () => {
-      const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[3].exists()).toBe(true);
-    });
-
-    it('should render switch for useConnectionOptimization', () => {
-      const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[4].exists()).toBe(true);
-    });
-
-    it('should render switch for conversationStartersPDP', () => {
-      const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[6].exists()).toBe(true);
-    });
-
     it('should render switch for keepHistory', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[7].exists()).toBe(true);
+      expect(switches[5].exists()).toBe(true);
     });
 
     it('should render switch for enableContactTimeout', () => {
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches[8].exists()).toBe(true);
+      expect(switches[6].exists()).toBe(true);
     });
   });
 
@@ -288,7 +255,7 @@ describe('PreferencesTab', () => {
       const sections = wrapper.findAll('.preferences-tab__section');
       expect(sections.length).toBe(3);
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches.length).toBe(10);
+      expect(switches.length).toBe(7);
     });
 
     it('should render media section when version is v2', () => {
@@ -296,7 +263,7 @@ describe('PreferencesTab', () => {
       const sections = wrapper.findAll('.preferences-tab__section');
       expect(sections.length).toBe(4);
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches.length).toBe(12);
+      expect(switches.length).toBe(9);
     });
 
     it('should render media section when version is v3', () => {
@@ -304,7 +271,7 @@ describe('PreferencesTab', () => {
       const sections = wrapper.findAll('.preferences-tab__section');
       expect(sections.length).toBe(4);
       const switches = wrapper.findAll('unnnic-switch-stub');
-      expect(switches.length).toBe(12);
+      expect(switches.length).toBe(9);
     });
 
     it('should fall back to hiding media section when version is not numeric', () => {

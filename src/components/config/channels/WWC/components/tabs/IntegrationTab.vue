@@ -11,13 +11,16 @@
       type="informational"
     />
 
+    <p class="integration-tab__description">
+      {{ $t('weniWebChat.config.script_tutorial') }}
+    </p>
+
     <UnnnicTextArea
       :class="[
         'integration-tab__textarea',
         { 'integration-tab__textarea--filled': !!scriptCode },
       ]"
       :modelValue="scriptCode"
-      :label="$t('weniWebChat.config.script_tutorial')"
       :disabled="!scriptCode"
       resize="none"
     />
@@ -26,17 +29,21 @@
       class="integration-tab__copy-button"
       type="secondary"
       size="large"
-      iconCenter="download"
-      :text="$t('weniWebChat.config.download_script')"
+      iconLeft="content_copy"
+      :text="$t('weniWebChat.config.copy_code')"
       :disabled="!scriptCode"
-      @click="downloadScript"
+      @click="copyCode"
     />
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { unnnicToastManager } from '@weni/unnnic-system';
 import { generateScriptCode } from '../../constants';
+
+const { t } = useI18n();
 
 const props = defineProps({
   appConfig: {
@@ -53,19 +60,11 @@ const props = defineProps({
 const scriptCode = computed(() => generateScriptCode(props.appConfig));
 
 // Methods
-function downloadScript() {
-  const htmlScript = `<!DOCTYPE html>\n<head>\n\t<meta charset="UTF-8">\n</head>\n<body>\n\t${scriptCode.value}\n</body>\n</html>`;
+async function copyCode() {
+  if (!scriptCode.value) return;
 
-  const element = document.createElement('a');
-  element.setAttribute(
-    'href',
-    'data:text/plain;charset=utf-8, ' + encodeURIComponent(htmlScript),
-  );
-  element.setAttribute('download', `wwc-script-${props.title}.html`);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
+  await navigator.clipboard.writeText(scriptCode.value);
+  unnnicToastManager.info(t('weniWebChat.config.code_copied'));
 }
 </script>
 
@@ -80,6 +79,11 @@ function downloadScript() {
     margin: 0;
     margin-bottom: $unnnic-space-1;
     color: $unnnic-color-fg-emphasized;
+  }
+
+  &__description {
+    @include unnnic-font-body;
+    margin: 0;
   }
 
   &__textarea {
