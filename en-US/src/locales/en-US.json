@@ -145,17 +145,13 @@
     "config": {
       "first_integration_success": "To download the code and use it on your site, go to the Script Code tab.",
       "integration_success": "App installed successfully",
+      "copy_error": "Couldn't copy number",
       "copy_success": "Copied successfully",
       "configure_later": "Configure later",
       "save_changes": "Save changes",
       "cancel": "Cancel",
       "validate": "Validate",
-      "copy": "Copy",
-      "confirmation": {
-        "title": "Discard changes",
-        "description": "Are you sure you want to discard the changes? You'll lose any unsaved content.",
-        "goBackToConfig": "Back to settings"
-      }
+      "copy": "Copy"
     }
   },
   "upload_area": {
@@ -195,9 +191,11 @@
       "media": "Media",
       "retail": "Retail",
       "history": "Chat and inactivity history",
-      "script_tutorial": "To install Shopping Assistant on your website, copy and paste this code above the closing <strong>/body</strong> tag on your site",
+      "script_tutorial": "To install Shopping Assistant on your website, copy and paste this code above the closing </body> tag on your site",
       "script_disclaimer": "The script will be available as soon as the necessary basic adjustments are completed.",
       "download_script": "Download script",
+      "copy_code": "Copy code",
+      "code_copied": "Code copied to clipboard",
       "custom_css": "Custom CSS",
       "avatar_image": "Avatar image",
       "use_connection_optimization": "Use connection optimization",
@@ -230,24 +228,28 @@
       "initPayloadToolTip": "When opening the chat on your site, a trigger with this value will automatically fire to start the selected flow. You can configure it in Studio.",
       "TitleInput": {
         "label": "Chat title",
-        "max_length": "By default, the maximum is {max} characters.",
-        "placeholder": "Ex.: Your chatbot's name"
+        "max_length": "The maximum length is {max} characters",
+        "placeholder": "Ex.: Sofia, your shopping assistant",
+        "helper": "Appears at the top of the widget. Usually the assistant's name."
       },
       "SubtitleInput": {
-        "label": "Chat subtitle",
-        "placeholder": "Ex.: Company name"
+        "label": "Subtitle",
+        "placeholder": "Ex.: How can I help you?",
+        "helper": "Support line below the title. Reinforces the value or status."
       },
       "PlaceholderInput": {
-        "label": "Placeholder text",
-        "placeholder": "Ex.: Type your message"
+        "label": "Message field placeholder",
+        "placeholder": "Ex.: Type your message",
+        "helper": "Shown inside the field before the buyer types."
       },
       "initPayloadInput": {
         "label": "Trigger message",
         "placeholder": "Ex.: Hello, welcome"
       },
       "TooltipInput": {
-        "label": "Chat notification message",
-        "placeholder": "Message that will be displayed in the chatbot notification"
+        "label": "Notification message",
+        "placeholder": "Ex.: Looking for something? I can help.",
+        "helper": "A visual bubble that invites the buyer to start chatting."
       },
       "contactTimeoutInput": {
         "label": "Restart conversation due to contact inactivity"
@@ -398,6 +400,10 @@
         }
       },
       "billing": {
+        "brl_disclaimer": {
+          "description": "Meta now charges WhatsApp messages in reais in Brazil. On {migrationDate}, the account was updated automatically: a new WhatsApp Business account (WABA) in reais was created, and the number, templates, and flows were moved to it. The service kept running normally and no action is needed.",
+          "title": "Account now billed in Brazilian reais (BRL)"
+        },
         "title": "Payment information"
       },
       "account_verification": {
@@ -569,24 +575,18 @@
           "message": "The message header can't contain new lines, formatting characters, emojis, or asterisks."
         }
       },
-      "qr": {
-        "title": "WhatsApp link",
-        "button": "Access link",
-        "info": "To access the link, scan the QR code or click the button below"
-      },
       "templates": {
         "button": "View my templates",
-        "title": "Templates",
         "new_language": "New language"
       },
       "catalog": {
         "button": "View catalog list",
-        "title": "Catalog",
         "button_create": "Create catalog",
         "error": {
           "missing_vtex_app": "A VTEX app must be configured to connect a catalog"
         }
       },
+      "manage_content": "Manage content",
       "mmlite": {
         "button": "Upgrade to WhatsApp MM Lite API",
         "button_updating": "Updating to WhatsApp MM Lite API",
@@ -650,6 +650,8 @@
           "date": "Date"
         },
         "new_template": "New template",
+        "sync_templates": "Sync templates",
+        "sync_templates_cooldown_tooltip": "Templates can be synced again in {remaining} min",
         "filters": {
           "date": {
             "label": "Date",
@@ -702,6 +704,7 @@
         "create_translation": "Couldn't create template translation. Try again later.",
         "unknown_error": "An unknown error occurred. Refresh the page.",
         "fetch_templates": "Couldn't load the template list. Try again later.",
+        "sync_templates": "Templates couldn't be synced due to a technical issue",
         "delete_template": "Couldn't delete the template. Try again later.",
         "invalid_file_format": "Invalid file format",
         "invalid_file_size": "Invalid file size. It must be less than 16 MB.",
@@ -787,6 +790,7 @@
       },
       "success": {
         "create_translation": "Template translation created successfully",
+        "sync_templates": "Templates synced successfully",
         "update_translation": "Template translation updated successfully"
       }
     },
@@ -876,6 +880,11 @@
     "setup": {
       "continue": "Continue",
       "connect": "Connect",
+      "connect_new_account": {
+        "description": "The WhatsApp Business account you selected is already set up for billing with another system and your number can't be connected through it.<br /><br />Create a <b>new WhatsApp Business account</b> to connect your number successfully. This works no matter where your business is located.<br /><br /><ol><li>Select <b>Try again</b> below.</li><li>When WhatsApp asks which account to use, choose <b>Create a new WhatsApp Business account</b>.</li><li>Follow the setup steps to finish.</li></ol>",
+        "title": "Connect new WhatsApp account",
+        "try_again": "Try again"
+      },
       "description": "Follow the steps to integrate with WhatsApp"
     },
     "config": {
