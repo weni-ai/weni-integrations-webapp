@@ -1,0 +1,68 @@
+# Org override for weni-ai (see docs/decisions.md, decision 14) of
+# templates/workflows/localization-automation.yml. Copied from
+# weni-ai/vtex-loc-automation/.github/workflows/examples/consumer-localization-automation.yml
+# (identical to vtex/localization-tools/localization-automation/weni-ai-setup/.github/workflows/examples/).
+#
+# Why an override: weni-ai is NOT in the VTEX GitHub Enterprise, so its repositories
+# cannot resolve `uses:` references to the internal vtex/localization-tools. The
+# Localization team mirrors the pieces consumed via `uses:` (reusable lock workflow,
+# lock composite action, mint + dispatch actions) in the in-org host
+# weni-ai/vtex-loc-automation. Only the `uses:` paths change; the ticket/Jira/Crowdin/
+# agent pipeline still runs on vtex/localization-tools (`repository:` of the mint and
+# `target_repository:` of the dispatch stay `vtex/localization-tools`).
+#
+# Also required at repo root: crowdin.yml with project_id + files mappings
+# (see templates/crowdin.example.yml and localization-automation/README.md §1).
+#
+# Requires org Actions secrets in weni-ai: LOC_GITHUB_APP_ID, LOC_GITHUB_APP_PRIVATE_KEY
+# (same GitHub App as vtex, installed on the weni-ai org and on vtex/localization-tools).
+# Both are org-level and managed by the Localization team: nothing to configure per
+# repository, and never by an agent. See docs/decisions.md, decision 6.
+#
+# Default branch filter is `main`. To use `master` or several production branches, see
+# localization-automation/README.md §2 (Production / release branches).
+# IMPORTANT: adjust `branches: [...]` and the ticket `base.ref` condition below to the
+# target repo's real default branch (or the full set of production branches) before
+# using this template — do not assume. The two must cover the same set of bases.
+
+name: Localization automation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lock:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: weni-ai/vtex-loc-automation/.github/workflows/localization-lock.yml@main
+
+  ticket:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.event.action == 'closed' &&
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint GitHub App token
+        id: app-token
+        uses: weni-ai/vtex-loc-automation/.github/actions/mint-loc-github-app-token@main
+        with:
+          repository: vtex/localization-tools
+          app-id: ${{ secrets.LOC_GITHUB_APP_ID }}
+          private-key: ${{ secrets.LOC_GITHUB_APP_PRIVATE_KEY }}
+
+      - name: Dispatch ticket to localization-tools
+        uses: weni-ai/vtex-loc-automation/.github/actions/dispatch-loc-ticket@main
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          target_repository: vtex/localization-tools
+          consumer_repository: ${{ github.repository }}
+          pr_number: ${{ github.event.pull_request.number }}

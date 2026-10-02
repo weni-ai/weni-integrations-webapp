@@ -10,7 +10,8 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "test": "vitest",
-    "coverage": "vitest --coverage"
+    "coverage": "vitest --coverage",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "@babel/core": "^7.23.9",
@@ -59,7 +60,9 @@
     "eslint": "^9.33.0",
     "eslint-plugin-vue": "^10.4.0",
     "globals": "^16.5.0",
+    "js-yaml": "^4.1.0",
     "jsdom": "^24.1.0",
+    "micromatch": "^4.0.5",
     "miragejs": "^0.1.48",
     "mockdate": "^3.0.5",
     "postcss-preset-env": "^9.4.0",
