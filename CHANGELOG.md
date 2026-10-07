@@ -1,3 +1,9 @@
+Unreleased
+----------
+
+### 🎉 New features
+- Localization-lock guardrail (AGENTS.md instructions, pre-commit hook, and Claude Code PreToolUse hook) preventing edits to Crowdin-managed translation files, plus the `localization-automation.yml` workflow that opens the automated translation PR and Jira review ticket on merge.
+
 3.22.0
 ----------
 `2026-09-25 · 2 🎉 · 1 🔧`
